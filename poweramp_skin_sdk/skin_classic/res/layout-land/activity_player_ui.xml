@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- LANDSCAPE -->
+<RelativeLayout	xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer"
+	xmlns:gl="http://schemas.android.com/apk/res/com.maxmpz.audioplayer"
+	
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	
+	android:background="?com.maxmpz.audioplayer:attr/plain_bg_color"
+	>
+
+	<!--
+    <com.maxmpz.audioplayer.widget.DeckAlbumArtGL android:id="@com.maxmpz.audioplayer:id/deck_album_art"
+		style="?com.maxmpz.audioplayer:attr/DeckAlbumArt"
+		z:coverPadding="0dip"
+		z:coverMarginBottom="0dip"
+		z:coverScaleInt="10150"
+		android:layout_marginBottom="96dip"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		z:coverMarginRight="260dip"
+	/>
+	-->
+    <com.maxmpz.audioplayer.widget.DeckAlbumArtGL android:id="@com.maxmpz.audioplayer:id/deck_album_art"
+		style="?com.maxmpz.audioplayer:attr/DeckAlbumArt"
+		z:coverPadding="0dip"
+		z:coverMarginBottom="0dip"
+		z:coverScaleInt="10150"
+		android:layout_marginBottom="96dip"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		z:coverMarginRight="260dip"
+	/>
+
+	<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+
+		android:layout_marginBottom="0dip"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		android:layout_marginRight="264dip"
+	>
+		<!-- Required as this is anchor view for aaa panels -->
+		<View android:id="@com.maxmpz.audioplayer:id/bottom_bg"
+			android:layout_width="fill_parent"
+			android:layout_height="1dip"
+			android:layout_alignParentBottom="true"
+			android:layout_marginBottom="100dip"
+		/>
+		<include layout="@com.maxmpz.audioplayer:layout/aaa_panels"/>
+	</RelativeLayout>
+
+	
+	<View 
+		android:background="@drawable/matte_deck_controls_bg"
+		android:layout_width="fill_parent"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:layout_height="120dip"
+	/>
+	
+<!--
+ 		 		android:background="?com.maxmpz.audioplayer:attr/deck_bg"
+-->	
+	<LinearLayout android:id="@+id/right_col"
+		android:layout_width="268dip"
+		android:paddingLeft="5dip"
+		android:paddingRight="0dip"
+		android:layout_height="fill_parent"
+		android:orientation="vertical"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="96dip"
+		android:gravity="center"
+		android:background="@drawable/classic_panel_right"
+	>
+		<!--
+		android:background="@drawable/matte_deck_np_bg_selector"
+		-->
+		<RelativeLayout
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:layout_gravity="center"
+			android:background="@drawable/classic_mini_display"			
+		>
+			<com.maxmpz.audioplayer.widget.DeckNowPlaying android:id="@com.maxmpz.audioplayer:id/deck_now_playing"
+				android:background="?com.maxmpz.audioplayer:attr/in_deck_hilite_selector"
+				android:longClickable="true"
+				android:paddingTop="0dip"
+				android:layout_width="fill_parent"
+				android:layout_height="48dip"
+				android:layout_marginLeft="4dip"
+				android:layout_marginRight="4dip"
+				android:layout_marginTop="4dip"
+			/>	
+		
+			<com.maxmpz.audioplayer.widget.DeckTrackProgress android:id="@com.maxmpz.audioplayer:id/deck_track_progress"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:paddingLeft="2dip"
+				android:paddingRight="2dip"
+				android:paddingTop="0dip"
+				android:paddingBottom="8dip"
+				android:clickable="true"
+				android:layout_below="@com.maxmpz.audioplayer:id/deck_now_playing"
+			/>
+		</RelativeLayout>
+
+	</LinearLayout>
+
+	
+
+	<com.maxmpz.audioplayer.widget.DeckControls android:id="@com.maxmpz.audioplayer:id/deck_controls"
+		android:layout="@layout/deck_controls_hor"
+		android:clickable="true"
+		android:layout_weight="1"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:layout_width="fill_parent"
+		
+		android:layout_height="98dip"
+	/>
+
+</RelativeLayout>
+

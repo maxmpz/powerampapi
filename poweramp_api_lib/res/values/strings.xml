@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Poweramp API Example</string>
+
+	<string name="unknown">Unknown</string>
+	<string name="unknown_artist_name">Unknown artist</string>
+	<string name="unknown_album_name">Unknown album</string>
+</resources>

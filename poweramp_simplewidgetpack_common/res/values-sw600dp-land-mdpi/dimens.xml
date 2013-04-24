@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values-land-mdpi-v11 (3.0-3.1 devices, same as values-sw600dp-mdpi -->
+<resources>
+   	<dimen name="widget4x2_height">150dip</dimen>
+   	
+   	<dimen name="widget4x2_controls_marginBottom">4dip</dimen>
+   	
+   	<dimen name="widget4x2_lines_marginTop">3dip</dimen>
+   		
+   	<dimen name="appwidget_4x4_height">-2px</dimen><!-- wrap_content -->
+   	
+   	<dimen name="widget4x2_controls_margin1">0dip</dimen>
+   	<dimen name="widget4x2_controls_margin2">0dip</dimen>
+   	
+   	<dimen name="appwidget_small_configure_width">440dip</dimen>
+   	
+</resources>

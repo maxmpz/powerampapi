@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- layout -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+	<ImageButton android:id="@+id/folder_prev_button"
+	    android:scaleType="centerInside"
+		android:background="@null"
+		android:src="@drawable/matte_prev_cat_selector"
+		android:visibility="visible"
+
+		android:layout_marginRight="@dimen/widget4x2_controls_margin1"
+  		android:layout_width="45dip"
+  		android:layout_height="45dip"
+	/>
+	<ImageButton android:id="@+id/rw_button"
+	    android:scaleType="centerInside" 
+		android:src="@drawable/matte_rw_selector"
+		
+		android:background="@null"
+  		android:layout_width="60dip"
+  		android:layout_height="60dip"
+		
+		android:layout_marginRight="@dimen/widget4x2_controls_margin2"			
+	/>
+
+	
+	<!-- PLAY -->
+	<ImageButton android:id="@+id/play_button" 
+		android:scaleType="centerInside"
+		android:background="@null"
+		android:src="@drawable/matte_play_big_selector"
+		
+		android:maxHeight="64dip"
+		android:maxWidth="50dip"
+		android:adjustViewBounds="true"
+		
+  		android:layout_width="64dip"
+  		android:layout_height="50dip"
+	/>
+
+
+	<ImageButton android:id="@+id/ff_button" 
+		android:scaleType="centerInside"
+		android:src="@drawable/matte_ff_selector"		
+		android:background="@null"
+  		android:layout_width="60dip"
+  		android:layout_height="60dip"
+		
+		android:layout_marginLeft="@dimen/widget4x2_controls_margin2"			
+	/>
+	<ImageButton android:id="@+id/folder_next_button"
+		android:scaleType="centerInside"
+		android:visibility="visible"
+		android:background="@null"
+		android:src="@drawable/matte_next_cat_selector"
+
+  		android:layout_width="45dip"
+  		android:layout_height="45dip"
+		android:layout_marginLeft="@dimen/widget4x2_controls_margin1"
+	/>
+</merge>

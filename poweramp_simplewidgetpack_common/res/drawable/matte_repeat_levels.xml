@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+	NOTE: levels should match Poweramp API RepeatMode:
+	 
+	public static final int REPEAT_NONE = 0;
+	public static final int REPEAT_ON = 1;
+	public static final int REPEAT_SONG = 2;
+	public static final int REPEAT_ADVANCE = 3;
+ -->
+	<item android:maxLevel="0" android:drawable="@drawable/matte_repeat_none"/>
+	<item android:maxLevel="1" android:drawable="@drawable/matte_repeat"/>	
+	<item android:maxLevel="2" android:drawable="@drawable/matte_repeat_advance"/>
+	<item android:maxLevel="3" android:drawable="@drawable/matte_repeat_song"/>
+</level-list>

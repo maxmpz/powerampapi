@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- LANDSCAPE -->
+<RelativeLayout	xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer"
+	xmlns:gl="http://schemas.android.com/apk/res/com.maxmpz.audioplayer"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	>
+
+	<com.maxmpz.audioplayer.widget.DeckAlbumArtGL android:id="@+id/deck_album_art"
+		style="?DeckAlbumArt"
+	/>
+	
+	<include layout="@layout/aaa_panels"/>
+
+	<View android:id="@+id/bottom_bg"
+		android:background="?deck_main_ui_bg"
+	
+		android:layout_width="fill_parent"
+		android:layout_height="@dimen/bottom_bg_height"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		android:layout_above="@+id/buttons_panel"
+	/>
+
+
+	<!--
+
+	-->
+	<com.maxmpz.audioplayer.widget.DeckNowPlaying android:id="@+id/deck_now_playing"
+		android:background="?in_deck_hilite_selector"
+				
+		android:longClickable="true"
+		
+		android:layout_width="fill_parent"
+		android:layout_height="@dimen/deck_now_playing_height"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		android:layout_marginLeft="@dimen/decks_margin"
+		android:layout_marginRight="@dimen/decks_margin"
+		android:layout_marginBottom="-12dip"
+		android:layout_above="@+id/deck_track_progress"
+	/>	
+
+	<com.maxmpz.audioplayer.widget.DeckTrackProgress android:id="@+id/deck_track_progress"
+		android:layout_width="fill_parent"
+		android:layout_height="@dimen/deck_track_progress_height"
+		
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		android:layout_marginLeft="@dimen/decks_margin"
+		android:layout_marginRight="@dimen/decks_margin"
+		
+		android:layout_above="@+id/buttons_panel"
+	/>	
+
+	<com.maxmpz.audioplayer.widget.DeckControls android:id="@+id/deck_controls"
+		android:layout="@layout/deck_controls_reduced"
+		android:layout_width="fill_parent"
+		android:layout_height="@dimen/deck_controls_height"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		android:paddingLeft="@dimen/deck_controls_padding"
+		android:paddingRight="@dimen/deck_controls_padding"
+		android:paddingTop="@dimen/deck_controls_padding2"
+		android:paddingBottom="@dimen/deck_controls_padding2"
+
+		android:layout_above="@+id/buttons_panel"
+	/>
+	
+	<include layout="@layout/buttons_panel"/>	
+</RelativeLayout>
+

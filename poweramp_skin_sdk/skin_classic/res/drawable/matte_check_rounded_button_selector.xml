@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:drawable="@drawable/matte_check_rounded_button_pressed" />
+    <item android:state_enabled="false" android:drawable="@drawable/matte_check_rounded_button_disabled" />
+    <item android:state_focused="true" android:state_checked="true" android:drawable="@drawable/matte_check_rounded_button_focused_checked" />
+    <item android:state_focused="true" android:drawable="@drawable/matte_check_rounded_button_focused" />
+    <item android:state_checked="true" android:drawable="@drawable/matte_check_rounded_button_checked" />
+    <item android:drawable="@drawable/matte_check_rounded_button" />
+</selector>

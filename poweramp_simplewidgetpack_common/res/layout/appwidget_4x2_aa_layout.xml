@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- layout -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+	<ImageView android:id="@+id/shadow"
+		android:background="@drawable/widget_shadow"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+	/>
+
+	<ImageView android:id="@+id/deck_bg"
+		android:visibility="invisible"
+		android:src="@drawable/widget_bg2"
+		android:scaleType="fitXY"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentBottom="true"
+		android:layout_margin="@dimen/widget_shadow_offset"
+	/>
+		
+	<FrameLayout android:id="@+id/aa_cont_layout"
+		android:layout_width="@dimen/widget4x2_aa_size"
+		android:layout_height="@dimen/widget4x2_aa_size"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentLeft="true"
+		android:layout_marginLeft="6dip"
+		android:layout_marginTop="6dip"
+		android:layout_marginBottom="6dip"
+		android:layout_marginRight="-18dip"
+	>
+		<ImageView android:id="@+id/logo"
+			android:src="@drawable/lock_screen_logo"
+			android:scaleType="centerInside"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_gravity="center"
+			android:padding="16dip"				
+		/>
+		<FrameLayout android:id="@+id/flipper_frame"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_gravity="center"
+			android:paddingTop="9dip"
+			android:paddingLeft="9dip"
+			android:paddingBottom="12dip"
+			android:paddingRight="5dip"
+		>
+		</FrameLayout>
+		<FrameLayout android:id="@+id/flipper_frame_alt"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/widget4_shadow"
+			android:layout_gravity="center"
+			android:visibility="invisible"			
+		/>
+	</FrameLayout>
+</merge>

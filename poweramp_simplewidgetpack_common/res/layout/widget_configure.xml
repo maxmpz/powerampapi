@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/container"
+>
+	
+	<!-- <include layout="@layout/widget_configure_content"/> NOTE: inserted here by code -->
+	
+	<LinearLayout
+		android:id="@+id/options"
+        android:background="@drawable/widget_options_bg"
+        android:layout_alignParentBottom="true"        
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/widget_conf_options_padding"        
+	>      	    
+		<FrameLayout android:id="@+id/options_frame"
+	        android:layout_width="@dimen/appwidget_conf_options_width"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="center"
+	        android:gravity="center"
+	    >
+		</FrameLayout>
+			
+	    <Button
+	        android:id="@+id/done_button"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+   	        android:layout_gravity="center_horizontal"
+	        android:layout_marginTop="@dimen/widget_conf_options_padding"   	        
+	        android:text="@string/done"
+	        android:minWidth="120dip"
+	    />
+	</LinearLayout>
+</RelativeLayout>

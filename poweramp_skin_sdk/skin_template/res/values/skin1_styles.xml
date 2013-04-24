@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- Derive theme from Default - ActivityTheme_Default -->
+	<style name="Skin1" parent="@com.maxmpz.audioplayer:style/ActivityTheme_Default">
+	    <!-- Nothing overridden - just Default theme applied as is -->
+	</style>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Poweramp Simple Widget Pack</string>
+	<string name="widget_4x1">Poweramp Simple 4x1</string>
+	<string name="widget_4x2">Poweramp Simple 4x2</string>
+	<string name="widget_2x2">Poweramp Simple 2x2</string>
+	<string name="widget_4x4">Poweramp Simple 4x4</string>
+</resources>

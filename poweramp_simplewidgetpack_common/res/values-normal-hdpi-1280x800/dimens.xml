@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values-normal-hdpi - Samsung Galaxy Note (ICS)/HTC Butterfly? Butterfly reports normal screen, but still eats values from here. -->
+<resources>
+   	<dimen name="appwidget_4x4_minWidth">350dip</dimen>
+   	<dimen name="appwidget_4x4_minHeight">430dip</dimen>
+
+   	<dimen name="appwidget_4x4_lr_margin">12dip</dimen>
+   	<dimen name="appwidget_4x4_tb_margin">0dip</dimen>
+   	<dimen name="appwidget_4x4_width">-1px</dimen>
+   	<dimen name="appwidget_4x4_height">-1px</dimen>
+   	<dimen name="appwidget_4x4_height_config">520dp</dimen><!-- FILL_PARENT(-1px) is now broken on N7000/Butterfly -->
+   	
+   	<dimen name="appwidget_small_configure_width">318dip</dimen>
+</resources>

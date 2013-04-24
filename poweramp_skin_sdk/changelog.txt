@@ -1,0 +1,7 @@
+1.1
+- added .9 in default_style.psd for 9-patch images
+- added sdk_contents.rtf
+- using .rtf instead of .doc for docs
+
+1.0
+- initial release

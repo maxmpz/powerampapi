@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer">
+
+	<!-- NOTE: don't put v11+ values here due to Meizu M9 inability to load such themes -->
+	<!-- v11 means attribute is used for Honeycomb  -->
+	<!-- v14 means attribute is used for ICS -->
+	
+	<!-- 
+		Default theme definition. 
+		Note that actual theme name is "ActivityTheme_Default". 
+		ActivityTheme_Default is derived from Base_ActivityTheme_Default, for v11/v14 additional styles added to it. 
+	-->
+	<style name="Base_ActivityTheme_Default" parent="@style/ActivityThemeBase">
+	    <item name="plain_bg_color">#FF000000</item><!-- Previously used as activity background, almost not used now. Used in activity_help.xml --> 
+	    
+		<item name="player_layout">@layout/activity_player_ui</item><!-- Sets the layouts for main player ui. PlayerUIActivity -->
+		<item name="eq_layout">@layout/activity_eq</item><!-- Sets the layouts for EqActivity --> 
+		<item name="play_list_layout">@layout/activity_play_list</item><!-- Sets the layout for PlayListActivity -->
+		<item name="lock_screen_layout">@layout/activity_lock_screen</item><!-- Sets the layout for LockScreenActivity -->
+		
+		<item name="LockScreenTheme">@style/Matte_LockScreenTheme</item><!-- Sets the theme for LockScreenActivity. This is usually derived from the current theme with few possible modifications for LockScreen only -->
+		
+		<item name="deck_bg">@drawable/matte_deck_bg</item><!-- Currently used in eq layouts only as background for Eq panels/decks. activity_eq.xml -->
+		
+		<item name="eq_thumbs_background">@color/matte_eq_thumbs_background</item><!-- Background behind Eq thumbs. NOTE: changed for v11+. activity_eq.xml -->
+		<item name="in_deck_hilite_selector">@drawable/matte_in_deck_hilite_selector</item><!-- Background for DeckNowPlaying in activity_playrt_ui.xml --> 
+		<item name="list_header">@drawable/matte_list_header_selector</item><!-- Background for id=header in list_rest.xml, list_search.xml -->
+		<item name="list_footer">@drawable/matte_list_footer</item><!-- Background for various bottom panels in activity_play_list.xml (id=choice_panel), help_buttons.xml, list_media_scan_in_progress.xml -->
+		<item name="list_footer_selection">@drawable/matte_list_footer_selection</item><!-- Background for bottom choice panel in activity_play_list.xml (e.g. All, Add to playlist, Cancel) -->
+		<item name="list_item_bg_list">@drawable/matte_list_item_bg_list</item><!-- Special background for list/grid rows -->
+				
+		<item name="list_item_separator">#10151b</item><!-- not used anymore -->
+		<item name="grid_header_bg">#AA000000</item><!-- Lists grid view mode header background -->
+		<item name="row_more_levels">@drawable/matte_row_more_levels</item><!-- List items "more" button (the triangle button to the right of each row) -->
+		<item name="deck_main_ui_bg">@drawable/matte_deck_main_ui</item><!-- Background for id=bottom_bg in activity_player_ui.xml. This is "background" panel, usually behind controls/playing now info -->
+		<item name="list_insert_cursor">@drawable/matte_insert_cursor</item><!-- Drawable for list row insertion point in Playlists/Queue dragging mode --> 
+		<item name="level_up">@drawable/matte_level_up</item><!-- Drawable for level up icon in list header -->
+		
+    	<!-- Drawables shown when no album art available for album/folder -->
+    	<item name="folder_96">@drawable/matte_folder_96</item><!-- Folder drawable for lists -->
+    	<item name="folder_240">@drawable/matte_folder_240</item><!-- Folder drawable for grids -->
+    	<item name="album_96">@drawable/matte_album_96</item><!-- Album drawable for lists -->
+    	<item name="album_240">@drawable/matte_album_240</item><!-- Album drawable for grids -->
+		
+		<!-- Icons -->
+		<item name="player">@null</item><!-- not used anymore -->
+		<item name="add_to_pl">@drawable/matte_add_to_pl</item><!-- Add to playlist -->
+		<item name="enqueue">@drawable/matte_enqueue</item><!-- Enqueue -->
+		<item name="ringtone">@drawable/matte_ringtone</item><!-- Set as ringtone -->
+		<item name="delete">@drawable/matte_delete</item><!-- Delete -->
+		<item name="info">@drawable/matte_info</item><!-- Info/tags -->
+		<item name="search">@drawable/matte_search</item><!-- Search -->
+		<item name="equalizer">@drawable/matte_panel_equ</item><!-- Open equalizer -->
+		<item name="settings">@drawable/matte_settings</item><!-- Settings -->
+		<item name="sleep_timer">@drawable/matte_sleep_timer</item><!-- Sleep timer -->
+		<item name="sleep_timer_micro">@drawable/matte_sleep_timer_micro</item><!-- Small sleep timer icon shown under seekbar when sleep timer is set -->
+		<item name="lyrics">@drawable/matte_lyrics</item><!-- Lyrics -->
+		<item name="help">@drawable/matte_help</item><!-- Help -->
+		<item name="album_art">@null</item><!-- not used -->
+		<item name="clear_q">@drawable/matte_clear_q</item><!-- Clear queue -->
+		<item name="reorder">@drawable/matte_reorder_selector</item><!-- Playlist/Queue dragging mode enabler/reordering -->
+		<item name="list_opts">@drawable/matte_list_opts</item><!-- List options -->
+		<item name="sort">@drawable/matte_sort</item><!-- Sorting -->
+		<item name="send">@drawable/matte_send</item><!-- Send file -->
+		<item name="del_dups">@drawable/matte_del_dup</item><!-- Delete duplications -->
+		<item name="rename">@drawable/matte_rename</item><!-- Rename -->
+		<item name="assign_preset">@drawable/matte_assign_preset</item><!-- Assign Eq Preset -->
+		<item name="unassign_preset">@drawable/matte_unassign_preset</item><!-- Unassign Eq Preset -->
+		<item name="repeat_none">@drawable/matte_repeat_none</item><!-- Repeat mode off -->
+		<item name="repeat">@drawable/matte_repeat</item><!-- Repeat list mode -->
+		<item name="repeat_advance">@drawable/matte_repeat_advance</item><!-- Repeat mode - advance to the next -->
+		<item name="repeat_song">@drawable/matte_repeat_song</item><!-- Repeat song mode -->
+		<item name="shuffle_none">@drawable/matte_shuffle_none</item><!-- Shuffle off -->
+		<item name="shuffle_all">@drawable/matte_shuffle_all</item><!-- Shuffle all songs -->
+		<item name="shuffle_songs">@drawable/matte_shuffle_songs</item><!-- Shuffle songs in a list -->
+		<item name="shuffle_cats">@drawable/matte_shuffle_cats</item><!-- Shuffle lists, songs in order -->
+		<item name="shuffle_songs_and_cats">@drawable/matte_shuffle_songs_and_cats</item><!-- Shuffle songs in each list and shuffle lists as well -->
+	    <item name="folders_lib">@drawable/matte_ab_folders_lib</item><!-- Special new folders/lib icon -->
+	    <item name="rescan">@drawable/matte_rescan</item><!-- New rescan icon -->
+	    <item name="list_drag">@drawable/matte_list_drag</item><!-- Enable/disable Playlist/Queue dragging icon -->
+	    <item name="equalizer_off">@drawable/matte_panel_equ_off</item><!-- Equalizer off/disabled icon. Used also in ActionBar, as AB doesn't support levels -->
+	    <item name="tone">@drawable/matte_panel_tone</item><!-- Tone icon. Used also in ActionBar, as AB doesn't support levels -->
+	    <item name="tone_off">@drawable/matte_panel_tone_off</item><!-- Tone off icon. Used also in ActionBar, as AB doesn't support levels -->
+		<item name="menu">@drawable/matte_menu</item><!-- v11+. "Three dots" icon, used when menu button is not available -->	    
+		<item name="folder_cue">@drawable/matte_folder_cue</item><!-- Drawable shown for virtual CUE folders -->
+		<item name="dot_cue">@drawable/matte_dot_cue</item><!-- Small drawable .cue shown for virtual CUE folders -->
+		
+		<!-- Small preset icons when assigned to output: -->
+		<item name="pre_speaker">@drawable/matte_pre_speaker</item><!-- to speaker -->
+		<item name="pre_wired">@drawable/matte_pre_wired</item><!-- to wired headset -->
+		<item name="pre_bt">@drawable/matte_pre_bt</item><!-- to bluetooth headset -->
+		<item name="pre_song">@drawable/matte_pre_song</item><!-- to current song -->
+		
+		<!-- List type icons. Shown in Library and as Playing Now icon -->
+		<item name="all_songs">@drawable/matte_all_songs</item>
+		<item name="folders">@drawable/matte_folders</item>
+		<item name="albums">@drawable/matte_albums</item>
+		<item name="artists">@drawable/matte_artists</item>
+		<item name="composers">@drawable/matte_composers</item>
+		<item name="playlists">@drawable/matte_playlists</item>
+		<item name="genres">@drawable/matte_genres</item>
+		<item name="queue">@drawable/matte_queue</item>
+		<item name="top_rated">@drawable/matte_top_rated</item>
+		<item name="most_played">@drawable/matte_most_played</item>
+		<item name="recently_played">@drawable/matte_recently_played</item>
+		<item name="recently_added">@drawable/matte_recently_added</item>
+		
+		<item name="toast_bg">@drawable/matte_toast_bg</item><!-- Toast background drawable -->
+    	<item name="toast_excl">@drawable/matte_toast_excl</item><!-- Toast exlcamation sign -->
+    	
+	    <item name="unlock_keyguard_bg">@drawable/matte_unlock_keyguard_bg</item><!-- Background drawable for lockscreen unlock widget. Used in LockScreen -->
+	    <item name="unlock_icon">@drawable/ic_jog_dial_unlock</item><!-- Unlock widget icon. Used in LockScreen -->
+
+		<!-- Main controls. These are selectors, i.e. xml drawable files with multiple possible states -->
+		<item name="rw_selector">@drawable/matte_rw_selector</item><!-- << -->
+		<item name="ff_selector">@drawable/matte_ff_selector</item><!-- >> -->
+		<item name="next_cat_selector">@drawable/matte_next_cat_selector</item><!-- <<< -->    	
+		<item name="prev_cat_selector">@drawable/matte_prev_cat_selector</item><!-- >>> -->
+		<item name="play">@drawable/matte_play_big_selector</item><!-- main play -->
+		<item name="pause">@drawable/matte_pause_big_selector</item><!-- main pause -->
+		<item name="stop">@drawable/matte_stop_big</item><!-- main stop -->
+    	
+    	<item name="middle_pause">@drawable/matte_middle_pause</item><!-- used in track quick menu -->
+    	<item name="middle_play">@drawable/matte_middle_play</item><!-- used in track quick menu -->
+    	<item name="menu_play">@drawable/matte_menu_play</item><!-- used in main menu -->
+    	<item name="menu_shuffle">@drawable/matte_menu_shuffle</item><!-- used in main menu -->
+    	
+    	<item name="ratingbar_perm">@drawable/matte_ratingbar_perm</item><!-- Permanent (semitransparent) song rating drawable -->
+    	<item name="ratingbar_full">@drawable/matte_ratingbar_full</item><!-- Fully visible song rating drawable -->
+    	
+    	<item name="close_selector">@drawable/matte_close_selector</item><!-- Small close icon -->
+    	<item name="menu_button_selector">@drawable/matte_menu_button_selector</item><!-- Background used for custom menu buttons and for ActionBar FRS Preset control -->
+    	<item name="button_selector">@drawable/matte_button_selector</item><!-- Background used for buttons -->
+    	<item name="icon_selector">@drawable/matte_icon_selector</item><!-- Background used in aaa_panels.xml (main player ui) for permanent (semitransparent) icons -->
+    	
+    	<item name="aaa_panel_top_bg">@drawable/matte_panel_top_bg</item><!-- Background for top panel in aaa_panels.xml (main player ui) -->
+    	<item name="aaa_panel_bottom_bg">@drawable/matte_panel_bottom_bg</item><!-- Background for bottom panel in aaa_panels.xml (main player ui) -->
+
+    	<item name="repeat_levels">@drawable/matte_repeat_levels</item><!-- Repeat mode icons as level drawable -->
+    	<item name="shuffle_levels">@drawable/matte_shuffle_levels</item><!-- Shuffle mode icons as level drawable -->
+
+    	<item name="aaa_panel_crossfade">@drawable/matte_panel_crossfade_levels</item><!-- ignore, not used now -->
+    	<item name="aaa_panel_tone">@drawable/matte_panel_tone_levels</item><!-- Main player ui Tone icon as level drawable. Used only when ActionBar mode is off -->
+    	<item name="aaa_panel_equ">@drawable/matte_panel_equ_levels</item><!-- Main player ui Eq icon as level drawable. Used only when ActionBar mode is off -->
+    	<item name="aaa_perm_repeat">@drawable/matte_perm_repeat_levels</item><!-- Main player permanent (semitransparent) repeat mode icons -->
+    	<item name="aaa_perm_shuffle">@drawable/matte_perm_shuffle_levels</item><!-- Main player permanent (semitransparent) shuffle mode icons -->
+    	
+    	<item name="aaa_anim_top_enter">@anim/panel_enter_from_top</item><!-- "In" animation for top main player panel over Album Art. Used only when ActionBar mode is off -->
+    	<item name="aaa_anim_top_exit">@anim/panel_exit_to_top</item><!-- "Out" animation for top main player panel over Album Art. Used only when ActionBar mode is off -->
+    	<item name="aaa_anim_bottom_enter">@anim/panel_enter_from_bottom</item><!-- "In" animation for bottom main player panel over Album Art -->
+    	<item name="aaa_anim_bottom_exit">@anim/panel_exit_to_bottom</item><!-- "Out" animation for bottom main player panel over Album Art -->
+    	
+    	<item name="close_aa_widget">@drawable/matte_close_aa_widget</item><!-- Not used -->
+    	
+		<item name="text_color_1">@color/matte_text_color_1</item><!-- List item normal color -->
+		<item name="text_color_2">@color/matte_text_color_2</item><!-- List item 2nd line normal color -->
+		<item name="text_color_3">@color/matte_text_color_3</item><!-- List item 3rd line normal color -->
+		<item name="menu_text_color">@color/matte_menu_text</item><!-- Custom menu labels color --> 
+		
+		<!-- Text -->
+		<item name="Text1">@style/Matte_Text1</item><!-- ?Text1 not used -->
+		<item name="Text2">@style/Matte_Text2</item><!-- dialog_select_album_art.xml, list_no_folders.xml -->
+		<item name="Text3">@style/Matte_Text3</item><!-- ?Text3 not used -->
+		<item name="Text4">@style/Matte_Text4</item><!-- dialog_edit_tag.xml, dialog_info.xml -->
+		<item name="OnDeckText">@style/Matte_OnDeckText</item><!-- activity_help.xml, dialog_lyrics.xml, dialog_select_album_art.xml -->
+		<item name="OnDeckText2">@style/Matte_OnDeckText2</item><!-- dialog_info.xml, dialog_lyrics.xml -->
+		<item name="PlayListText1">@style/Matte_PlayListText1</item><!-- list items 1st line -->
+		<item name="PlayListText2">@style/Matte_PlayListText2</item><!-- list items 2nd line -->
+		<item name="PlayListText3">@style/Matte_PlayListText3</item><!-- list items 3rd line -->
+		<item name="PlayListText1_Alt">@style/Matte_PlayListText1_Alt</item><!-- Library items, separators -->		
+		<item name="ToastText1">@style/Matte_Text1</item><!-- Toast 1st line -->
+		<item name="ToastText2">@style/Matte_Text2</item><!-- Toast 2nd line -->
+		<item name="NowPlayingText1">@style/Matte_PlayListText1</item><!-- Main player NowPlaying 1st line -->
+		<item name="NowPlayingText2">@style/Matte_NowPlayingText2</item><!-- Main player NowPlaying 2nd line -->
+		<item name="PlayListText1_Header">@style/Matte_PlayListText1_Header</item><!-- Playlist header text -->
+		<item name="SmallLabelText">@style/Matte_SmallLabelText</item><!-- Used in eq layouts -->
+		<item name="DialogTitleText">@style/Matte_DialogTitleText</item><!-- dialog.xml, dialog_eq_preset.xml -->
+		<item name="DialogText">@style/Matte_DialogText</item><!-- various dialogs texts -->
+		<item name="MenuText">@style/Matte_MenuText</item><!-- Main player popup panels (aaa_panels.xml) labels -->
+		<item name="SmallMetaText">@style/Matte_SmallMetaText</item><!-- Main player NowPlaying text under seekbar. deck_track_progress.xml -->
+		<item name="PlayerSeekbarText">@style/Matte_PlayerSeekbarText</item><!-- Duration/elapsed text near seekbar -->
+
+		<!-- Widgets -->
+		<item name="BigRoundButton">@style/Matte_BigRoundButton</item><!-- Button for Play/Pause/Stop -->
+		<item name="MediumRoundButton">@style/Matte_MediumRoundButton</item><!-- Button for << >> -->
+		<item name="SmallRoundButton">@style/Matte_SmallRoundButton</item><!-- Button for <<< >>> -->
+		<item name="Button">@style/Matte_Button</item><!-- Just button -->
+		<item name="DialogButton">@style/Matte_DialogButton</item><!-- Dialog bottom buttons -->
+		<item name="CheckButton">@style/Matte_CheckButton</item><!-- Checkable buttons -->
+		<item name="EqButton">@style/Matte_EqButton</item><!-- Buttons used in Eq layouts -->
+		<item name="EqCheckButton">@style/Matte_EqCheckButton</item><!-- Checkable buttons used in Eq layouts -->
+		<item name="EqVertButtonDiv">@style/Matte_EqVertButtonDiv</item><!-- Vertical divider used for buttons in Eq layouts --> 
+		<item name="EqHorButtonDiv">@style/Matte_EqHorButtonDiv</item><!-- Horizontal divider used for buttons in Eq layouts -->
+		<item name="DivTableLayout">@style/Matte_DivTableLayout</item><!-- TableLayout style used in custom menus and button groupings - PlayList bottom choice panels, etc. -->
+		<item name="DivTableRow">@style/Matte_DivTableRow</item><!-- TableRow style used where DivTableLayout is used --> 
+		<item name="NowPlayingCounter">@style/Matte_NowPlayingCounter</item><!-- Main player UI NowPlaying song counter TextView -->
+		<item name="android:radioButtonStyle">@style/Matte_Radio</item><!-- Radio box style override -->
+		<item name="android:checkboxStyle">@style/Matte_Check</item><!-- Check box style override -->
+		<item name="android:ratingBarStyle">@style/Matte_RatingBar</item><!-- Rating bar style override -->
+		<item name="RoundProgress">@style/Matte_RoundProgress</item><!-- Round progress control style -->		
+		<item name="PermRatingBar">@style/Matte_PermRatingBar</item><!-- Permanent (semitransparent) rating bar style -->
+		<item name="MicroRatingBar">@style/Matte_MicroRatingBar</item><!-- Small (used in lists) rating bar style -->
+		<item name="LinearKnob">@style/Matte_LinearKnob</item><!-- Equalizer vertical knob -->
+		<item name="PreampLinearKnob">@style/Matte_PreampLinearKnob</item>><!-- Preamp vertical knob -->
+		<item name="RoundKnob">@style/Matte_RoundKnob</item><!-- Round knob - volume, tone, etc. -->
+		<item name="List">@style/Matte_List</item><!-- PlayList list style -->
+		<item name="Grid">@style/Matte_Grid</item><!-- PlayList grid style -->
+		<item name="TrackProgressBar">@style/Matte_TrackProgressBar</item><!-- Song seekbar style -->
+		<item name="ListSubHeader">@style/Matte_ListSubHeader</item><!-- Subheader style used in lists and dialog_list_opts.xml, dialog_resort.xml --> 
+		<item name="AaLyricsWidget">@style/Matte_AaLyricsWidget</item><!-- Not used now -->
+		<item name="AlbumArtAnimator">@style/Matte_AlbumArtAnimator</item><!-- Some styles for OpenGL album art animator (base control) -->
+		<item name="DeckAlbumArt">@style/Matte_DeckAlbumArt</item><!-- Some additional styles for OpenGL album art animator -->
+		<item name="FrequencyResponseScroller">@style/Matte_FrequencyResponseScroller</item><!-- Style for Frequency Response Scroller (the area in Poweramp Eq screen which scrolls thumbs and shows the Eq curve -->
+		<item name="InDeckFRS">@style/Matte_InDeckFRS</item><!-- Style for small Frequency Response Scroller, which used in Main Player UI in top panel (non Action Bar mode) and in Preset dialog -->
+		<item name="QuickMenuPopup2">@style/Matte_QuickMenuPopup2</item><!-- Quick (custom) popup menu style (non Action Bar mode) --> 
+		<item name="QuickOptionsMenu2">@style/Matte_QuickOptionsMenu2</item><!-- Quick (custom) main menu style (non Action Bar mode) -->
+		<item name="MenuImageButton">@style/Matte_MenuImageButton</item><!-- Special style for ImageButton (Image + text button). Used in aaa_panels.xml for buttons in top/bottom panels -->
+		<item name="Dialog">@style/Matte_Dialog</item><!-- General style used for dialogs -->
+		<item name="DialogSeparator">@style/Matte_DialogSeparator</item><!-- Dialog separator line -->
+	    <item name="EqBgLayout">@style/Matte_EqBgLayout</item><!-- Equalizer knobs background widget, this one draws dotted lines -->
+	    <item name="OverflowButton">@style/Matte_OverflowButton</item><!-- v11+. "Three dots" button style. Used when menu button is not available and ActionBar is disabled. -->
+	    	    
+		<!-- Styles for progress dialog -->
+		<item name="AlertDialogWindowStyle">@style/Matte_AlertDialogWindow</item>
+		<item name="android:alertDialogStyle">@style/Matte_AlertDialog</item>
+		<item name="android:editTextStyle">@style/Matte_EditText</item>
+		
+		<!-- These two styles set background for "native" android menus, for Honeycomb/ICS.  -->
+		<item name="android:popupMenuStyle">@style/Matte_ActionBarPopupMenu</item><!-- v14. Additional styles for ICS ActionBar/default menu popup -->
+		<item name="android:panelBackground">@drawable/matte_menu_bg</item><!-- v11. Background for Honeycomb ActionBar/default menu popup -->
+
+	    <!-- Few additional action bar styles -->
+	    <item name="ab_playerUI_background">#c00f1419</item><!-- v14+. Background for ActionBar when in Main Player UI on BOTTOM. NOTE: when action bar is on top for PlayerUI, 
+	    														 it's set to transparent, as special separate background is maintained by player ui (top panel) -->
+	    <item name="ab_top_background">?list_footer_selection</item><!-- v11+ Background for ActionBar when on top -->
+	    <item name="ab_bottom_background">?list_footer</item><!-- v14+ Background for ActionBar when forced to bottom -->
+	    <item name="ab_poweramp_icon">@drawable/matte_ab_poweramp_icon</item><!-- v11+. Poweramp smaller icon -->
+	    <item name="ab_poweramp_logo">@drawable/matte_ab_poweramp_logo</item><!-- v11+. Poweramp larger icon, shown when space is available -->
+	    <item name="ab_back">@drawable/matte_ab_back</item>
+	    
+	</style>
+
+	<style name="ActivityTheme_Default" parent="@style/Base_ActivityTheme_Default">
+	    <!-- Shouldn't have any styles here, but additional styles are added in values-v11 -->
+    </style>
+    
+	
+	
+	
+	<!-- Styles for Default theme -->
+	
+	<color name="matte_text_color_1">#e4f2ff</color>
+	<color name="matte_text_color_2">#c0e1ff</color>
+	<color name="matte_text_color_3">#aaaaaa</color>
+
+    <!-- Text -->
+    <style name="Matte_Text1" parent="@android:style/TextAppearance">
+    	<item name="android:textSize">@dimen/Text1_size</item>
+    	<item name="android:textStyle">bold</item>
+    	<item name="android:typeface">normal</item>
+    	<item name="android:textColor">@color/matte_text_color_1</item>
+    </style>
+
+    <style name="Matte_Text2">
+    	<item name="android:textSize">@dimen/Text2_size</item>
+    	<item name="android:textStyle">normal</item>
+    	<item name="android:typeface">normal</item>
+    	<item name="android:textColor">@color/matte_text_color_2</item>
+    </style>
+    
+    <style name="Matte_Text3" parent="@style/Matte_Text2">
+    	<item name="android:textColor">@color/matte_text_color_3</item>
+    </style>
+    
+    <style name="Matte_Text4" parent="@style/Matte_Text2">
+    	<item name="android:textSize">@dimen/Text4_size</item>
+    </style>
+
+    <style name="Matte_OnDeckText">
+    	<item name="android:textSize">@dimen/OnDeckText_size</item>
+    	<item name="android:textStyle">normal</item>
+    	<item name="android:typeface">normal</item>
+    	<item name="android:textColor">@color/matte_text_color_2</item>
+    </style>
+    
+    <style name="Matte_OnDeckText2" parent="@style/Matte_OnDeckText">
+	    <item name="android:textColor">@color/matte_text_color_1</item>
+	    <item name="android:textSize">@dimen/OnDeckText2_size</item>
+    </style>
+    
+    <style name="Matte_PlayListText1" parent="@style/Matte_Text1">
+    	<item name="android:textColor">@color/matte_list_item1</item>
+    </style>
+
+    <style name="Matte_PlayListText1_Alt" parent="@style/Matte_PlayListText1">
+    	<item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Matte_PlayListText2" parent="@style/Matte_Text2">
+    	<item name="android:textColor">@color/matte_list_item2</item>
+    </style>
+    
+    <style name="Matte_NowPlayingText1" parent="@style/Matte_PlayListText1">
+    </style>
+
+    <style name="Matte_NowPlayingText2" parent="@style/Matte_PlayListText2">
+    	<item name="android:textSize">16dip</item>
+    </style>
+
+    <style name="Matte_PlayListText3" parent="@style/Matte_Text2">
+    	<item name="android:textColor">@color/matte_list_item3</item>
+    </style>
+
+    <style name="Matte_PlayListText1_Header">
+    	<!--<item name="android:textColor">?text_color_1</item>-->
+    	<item name="android:textColor">#ffffff</item>
+    	<item name="android:textSize">@dimen/PlayListText1_Header_size</item>
+    </style>
+    
+    <style name="Matte_SmallLabelText">
+    	<item name="android:textSize">@dimen/SmallLabelText_size</item>
+    	<item name="android:textStyle">normal</item>
+    	<item name="android:typeface">normal</item>
+		<item name="android:textColor">@color/matte_button_text</item> <!-- used for text on layout - like equ knob labels -->    	
+    </style>
+    
+  
+	<style name="Matte_DialogTitleText">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">@dimen/DialogTitleText_size</item>
+		<item name="android:textColor">#ffffff</item>
+	</style>
+
+	<style name="Matte_DialogText">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/DialogText_size</item>
+		<item name="android:textColor">#ffffff</item>
+	</style>
+
+
+	<!-- Controls/Layouts -->
+	
+    <style name="Matte_BigRoundButton" parent="@android:style/Widget.ImageButton">
+    	<item name="android:background">@drawable/matte_big_round_button_selector</item>
+    	<item name="android:layout_width">@dimen/BigRoundButton_size</item>
+    	<item name="android:layout_height">@dimen/BigRoundButton_size</item>
+    </style>
+
+    <style name="Matte_MediumRoundButton" parent="@android:style/Widget.ImageButton">
+    	<item name="android:background">@drawable/matte_medium_round_button_selector</item>
+    	<item name="android:layout_width">@dimen/MediumRoundButton_size</item>
+    	<item name="android:layout_height">@dimen/MediumRoundButton_size</item>
+    </style>
+    
+    <style name="Matte_SmallRoundButton" parent="@android:style/Widget.ImageButton">
+    	<item name="android:background">@drawable/matte_small_round_button_selector</item>
+    	<item name="android:layout_width">@dimen/SmallRoundButton</item>
+    	<item name="android:layout_height">@dimen/SmallRoundButton</item>
+    </style>
+    
+    <style name="Matte_Button"  parent="@android:style/Widget.Button">
+    	<item name="android:background">@drawable/matte_button_selector</item>
+		<item name="android:focusable">true</item>
+		<item name="android:clickable">true</item>
+		<item name="android:textSize">@dimen/button_textSize</item>
+		<item name="android:textColor">@color/matte_button_text</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_height">48dip</item>
+		<item name="android:layout_width">@dimen/button_width</item>
+    </style>
+    <style name="Matte_OverflowButton"  parent="@style/Matte_Button">
+    </style>
+    
+
+	<style name="Matte_CheckButton" parent="@style/Matte_Button">
+		<item name="android:button">@drawable/matte_button_check_selector</item>
+		<item name="indicatorGravity">bottom|fill_horizontal</item>
+	</style>
+	
+	<style name="Matte_EqButton" parent="@style/Matte_Button">
+		<item name="android:layout_height">46dip</item>
+	</style>
+
+	<style name="Matte_EqCheckButton" parent="@style/Matte_CheckButton">
+		<item name="android:layout_height">46dip</item>
+	</style>
+
+	<style name="Matte_EqVertButtonDiv">
+		<item name="android:background">@drawable/matte_v_divider</item>
+		<item name="android:layout_width">1.33dip</item>
+		<item name="android:layout_height">46dip</item>
+	</style>
+    <style name="Matte_EqHorButtonDiv">
+		<item name="android:background">@drawable/matte_h_divider</item>
+		<item name="android:layout_width">@dimen/button_width</item>
+		<item name="android:layout_height">1dip</item>
+    </style>
+	
+	
+	<style name="Matte_RatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/matte_ratingbar_full</item>
+        <item name="android:indeterminateDrawable">@drawable/matte_ratingbar_full</item>
+        <item name="android:minHeight">@dimen/RatingBar_size</item>
+        <item name="android:maxHeight">@dimen/RatingBar_size</item>
+	</style>
+	
+	<style name="Matte_MicroRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/matte_ratingbar_micro</item>
+        <item name="android:minHeight">13.3dip</item>
+        <item name="android:maxHeight">13.3dip</item>
+	</style>
+
+	<style name="Matte_PermRatingBar" parent="Matte_RatingBar">
+        <item name="android:progressDrawable">@drawable/matte_ratingbar_perm</item>
+        <item name="android:indeterminateDrawable">@drawable/matte_ratingbar_perm</item>
+	</style>
+	
+    <style name="Matte_DialogButton" parent="@style/Matte_Button">
+    </style>
+
+	<style name="Matte_DivTableLayout">
+        <item name="verticalDivider">@drawable/matte_v_divider</item>
+        <item name="android:layout_height">48dip</item>
+	</style>
+
+	<style name="Matte_DivTableRow">
+        <item name="horizontalDivider">@drawable/matte_h_divider</item>
+        <item name="android:layout_height">48dip</item><!-- match button height -->
+	</style>
+	
+	<style name="Matte_Radio" parent="@android:style/Widget.CompoundButton.RadioButton">
+		<item name="android:button">@drawable/matte_radio_selector</item>
+		<item name="android:background">@drawable/matte_highlight_bg_selector</item>
+		<item name="android:paddingLeft">40dip</item>
+	</style>
+
+	<style name="Matte_Check" parent="@android:style/Widget.CompoundButton.CheckBox">
+		<item name="android:button">@drawable/matte_check_selector</item>
+		<item name="android:background">@drawable/matte_highlight_bg_selector</item>
+		<item name="android:paddingTop">7dip</item>
+		<item name="android:paddingBottom">7dip</item>
+		<item name="android:paddingLeft">40dip</item>
+	</style>
+
+    <style name="Matte_LinearKnob">
+    	<item name="hole">@drawable/matte_knob_hole_selector</item> 
+    	<item name="thumb">@drawable/matte_knob_thumb_selector</item>
+		<item name="android:textSize">@dimen/linear_knob_text_size</item>    	
+		<item name="android:paddingTop">2dip</item>
+		<item name="android:paddingBottom">2dip</item>
+		<item name="android:textStyle">normal</item>
+    </style>
+    
+	<style name="Matte_PreampLinearKnob" parent="@style/Matte_LinearKnob">
+		<item name="android:background">@drawable/matte_preamp_bg</item>
+	</style>
+    
+    <style name="Matte_RoundKnob">
+    	<item name="knob_bg">@drawable/matte_round_knob_bg_selector</item>
+    	<item name="indicator">@drawable/matte_round_knob_indicator</item>
+    </style>
+
+	<!--
+	coverMarginBottom should be ~ -(top shadow size of DeckControls background)
+	-->
+	<style name="Matte_AlbumArtAnimator">
+		<item name="default_bg">@drawable/gl_poweramp_logo</item>
+	</style>
+
+	
+	<style name="Matte_DeckAlbumArt">
+		<item name="coverScaleInt">@integer/coverScaleInt</item><!-- Album art cover image scale as fixed point integer number. 10000 => 1.0f -->
+		<item name="coverPadding">@dimen/coverPadding</item><!-- Padding for cover image -->
+		<item name="coverMarginBottom">@dimen/coverMarginBottom</item><!-- Bottom offset. This should be sync'ed with controls and playing now info panels size -->
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+	</style>
+
+	<style name="Matte_FrequencyResponseScroller">
+		<item name="android:background">@null</item>
+		<item name="selectionDrawable">@drawable/matte_eq_selection_selector</item>
+		<item name="android:padding">1dip</item>
+		<item name="android:textSize">12dip</item>
+		<item name="android:textColor">?text_color_1</item>
+		<item name="lineColor">#ffffffff</item>
+		<item name="lineWidth">@dimen/frs_lineWidth</item>
+		<item name="glowWidth">@dimen/frs_glowWidth</item>
+		<item name="blurWidth">4</item>
+		<item name="glowColor">#807a87ff</item>
+		<item name="textSize2">11dip</item>
+		<item name="textColor2">?text_color_2</item>
+	</style>
+	
+	
+	<style name="Matte_InDeckFRS">
+		<item name="android:background">@null</item>
+		<item name="android:textSize">9.5sp</item>
+		<item name="android:textColor">?text_color_2</item>
+		<item name="lineWidth">1px</item>
+		<item name="lineColor">?text_color_1</item>
+		<item name="glowColor">#807a87ff</item>
+		<item name="glowWidth">3dip</item>
+		<item name="miniMode">true</item>
+		<item name="textSize2">9dip</item>
+		<item name="textColor2">?text_color_2</item>
+	</style>
+	
+	
+    <style name="Matte_RoundProgress" parent="@android:style/Widget.ProgressBar.Large">
+    	<item name="android:indeterminateDrawable">@drawable/matte_round_progress</item>
+        <item name="android:minWidth">21.33dip</item>
+        <item name="android:maxWidth">21.33dip</item>
+        <item name="android:minHeight">21.33dip</item>
+        <item name="android:maxHeight">21.33dip</item>
+    </style>
+
+    <style name="Matte_LinearProgress" parent="@android:style/Widget.ProgressBar.Horizontal">
+    </style>
+
+    <style name="Matte_QuickOptionsMenu2">
+        <item name="background">@drawable/matte_options_menu_bg</item>
+        <item name="moreIcon">@drawable/matte_more</item>
+        <item name="lessIcon">@drawable/matte_less</item>
+        
+        <!-- These values control contents offset (which should be set due to the e.g. shaddows) -->  
+        <item name="shadowOffsetTop">9.5dip</item>
+        <item name="shadowOffsetBottom">0dip</item>
+        
+        <item name="optionsAnimation">@style/QuickOptionsMenuAnimation</item>
+        <item name="aboveAnimation">@style/QuickMenuAboveAnimation</item>
+        <item name="belowAnimation">@style/QuickMenuBelowAnimation</item>
+
+        <item name="horizontalDivider">@drawable/matte_menu_h_divider</item>
+        <item name="verticalDivider">@drawable/matte_menu_v_divider</item>
+
+        <item name="rowPaddingTop">0dip</item>
+        <item name="rowPaddingBottom">0dip</item>
+        <item name="rowHeight">70.6dip</item>
+    </style>
+    
+    <style name="Matte_QuickMenuPopup2" parent="@style/Matte_QuickOptionsMenu2">
+    	<item name="background">@drawable/matte_qm_bg</item>
+    	<item name="shadowOffsetTop">21.5dip</item>
+    	<item name="shadowOffsetBottom">22dip</item>
+    </style>
+
+    <style name="Matte_MenuText">
+    	<item name="android:textSize">@dimen/MenuText_size</item>
+    	<item name="android:textStyle">normal</item>
+		<item name="android:textColor">?menu_text_color</item>
+    </style>
+    
+    <style name="Matte_SmallMetaText">
+		<item name="android:textColor">?text_color_2</item>
+		<item name="android:textSize">@dimen/SmallMetaText_size</item>
+		<item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Matte_PlayerSeekbarText" parent="@style/Matte_PlayListText2">
+		<item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Matte_NowPlayingCounter">
+    	<item name="android:textColor">#000000</item>
+		<item name="android:background">@drawable/matte_rounded_bg</item>
+		
+		<item name="android:textAppearance">?Text2</item>
+		<item name="android:paddingLeft">4dip</item>
+		<item name="android:paddingRight">4dip</item>
+		<item name="android:textSize">12.5dip</item>
+    </style>
+    
+    <style name="Matte_MenuImageButton" parent="@style/Matte_MenuText">
+    	<item name="android:background">@null</item>
+    	<item name="buttonSrc">@drawable/matte_menu_button_selector</item>
+		<item name="android:paddingBottom">8dip</item>		
+		<item name="android:paddingTop">2dip</item>
+	</style>
+    
+    <style name="Matte_TrackProgressBar" parent="@android:style/Widget.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/matte_list_progress_horizontal</item>
+        <item name="android:minHeight">20dip</item>
+        <item name="android:maxHeight">20dip</item>
+        <item name="android:layout_height">28dip</item>
+        <item name="android:minWidth">100dip</item>
+        <item name="android:thumb">@null</item>
+        <item name="android:thumbOffset">0dip</item>
+        <item name="android:disabledAlpha">1</item>
+        <item name="minProgressDrawableWidth">20dip</item><!-- Special parameter which sets minimal size of progress drawable, as 9-patches sometimes can't be too narrow -->
+    </style>
+    
+    
+    <!-- Lists -->    
+    <style name="Matte_List" parent="@android:style/Widget.ListView">
+		<item name="android:scrollbarStyle">insideOverlay</item>
+		<item name="android:scrollbarThumbVertical">@drawable/matte_list_scrollbar</item> 
+		<item name="android:scrollbarSize">20dip</item>
+		
+		<item name="android:cacheColorHint">#00000000</item>
+		<item name="android:overScrollFooter">@null</item>
+		<item name="android:divider">#ff1a2229</item>
+		<item name="android:listSelector">@drawable/matte_list_selector</item>
+		<item name="android:dividerHeight">1px</item>
+    </style>
+    
+    <style name="Matte_Grid" parent="@android:style/Widget.GridView">
+		<item name="android:scrollbarStyle">outsideOverlay</item>
+		 
+		<item name="android:scrollbarThumbVertical">@drawable/matte_list_scrollbar</item> 
+		<item name="android:scrollbarSize">20dip</item>
+		
+    	<item name="android:cacheColorHint">#FF000000</item>
+		<item name="android:listSelector">@drawable/matte_list_selector</item>
+		<item name="android:verticalSpacing">4dip</item>
+		
+		<item name="android:fastScrollEnabled">true</item>
+		<item name="android:smoothScrollbar">false</item>
+		<item name="android:fadeScrollbars">true</item>
+		<item name="android:textFilterEnabled">false</item>
+    </style>
+
+    <style name="Matte_ListSubHeader">
+		<item name="android:background">?list_item_separator</item>
+		<item name="android:drawablePadding">4dip</item>
+		<item name="android:textColor">#ffffff</item>
+		<item name="android:textAppearance">?PlayListText1_Alt</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:singleLine">true</item>
+
+		<item name="android:layout_width">fill_parent</item> 
+		<item name="android:layout_height">wrap_content</item> 
+		<item name="android:paddingTop">4dip</item>
+		<item name="android:paddingBottom">4dip</item>
+		<item name="android:paddingRight">4dip</item>
+		<item name="android:paddingLeft">4dip</item>
+    </style>
+    
+    <style name="Matte_AaLyricsWidget">
+	    <item name="android:textSize">15sp</item>
+	    <item name="android:textColor">#ffffffff</item>
+	    <item name="android:padding">7dip</item>
+	    <item name="android:background">#99000000</item>
+    </style>
+    
+    
+	<!-- System stuff -->
+    <style name="Matte_DialogWindowTitle">
+        <item name="android:visibility">gone</item>
+    </style>
+
+	<style name="Base_Matte_Dialog" parent="@style/Base_ActivityTheme_Default">
+	    <!-- Shouldn't have any styles here - for Meizu. -->
+	</style>
+	<style name="Matte_Dialog" parent="@style/Base_Matte_Dialog">
+		<item name="android:windowBackground">@drawable/matte_dialog_bg</item>
+		<item name="android:windowTitleStyle">@style/Matte_DialogWindowTitle</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustResize</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+		<item name="android:backgroundDimAmount">0.75</item>
+		
+	</style>
+	
+	<style name="Frameless_Dialog" parent="@style/Matte_Dialog">
+		<item name="android:windowBackground">@drawable/frameless_dialog_bg</item>
+	</style>
+
+
+	<style name="Matte_AlertDialogWindow" parent="@style/Matte_Dialog">
+		<item name="android:windowBackground">@android:color/transparent</item>
+	</style>
+	
+	<style name="Matte_AlertDialog">
+		<item name="android:fullDark">@drawable/matte_dialog_bg</item>
+		<item name="android:fullBright">@drawable/matte_dialog_bg</item>
+	</style>
+
+
+	<style name="Matte_DialogSeparator">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">.66dip</item>
+		<item name="android:background">@drawable/matte_h_divider</item>
+	</style>
+	
+	<style name="Matte_EditText" parent="@android:style/Widget.EditText">
+		<item name="android:textColor">#ffffff</item>
+		<item name="android:textColorHint">#50ffffff</item>
+		<item name="android:textSize">@dimen/EditText_textSize</item>
+		<item name="android:paddingLeft">8dip</item>
+		<item name="android:paddingRight">dip</item>
+		<item name="android:background">@drawable/matte_edit_text_bg_selector</item>
+	</style>
+	
+	
+	<style name="Matte_LockScreenTheme" parent="@style/ActivityTheme_Default">
+		<item name="NowPlayingText1">@style/Matte_LockScreen_PlayListText1</item>
+		<item name="NowPlayingText2">@style/Matte_LockScreen_PlayListText2</item>
+		<item name="PlayerSeekbarText">@style/Matte_LockScreen_PlayerSeekbarText</item>
+		<item name="SmallMetaText">@style/Matte_LockScreen_SmallMetaText</item>
+	</style>
+	
+	<style name="Matte_LockScreen_PlayListText1" parent="@style/Matte_PlayListText1">
+		<item name="android:shadowColor">#F0000000</item>
+		<item name="android:shadowDx">0</item>
+		<item name="android:shadowDy">0</item>
+		<item name="android:shadowRadius">2.0</item>
+	</style>
+
+	<style name="Matte_LockScreen_PlayListText2" parent="@style/Matte_PlayListText2">
+		<item name="android:shadowColor">#F0000000</item>
+		<item name="android:shadowDx">0</item>
+		<item name="android:shadowDy">0</item>
+		<item name="android:shadowRadius">2.0</item>
+	</style>
+
+	<style name="Matte_LockScreen_PlayerSeekbarText" parent="@style/Matte_PlayerSeekbarText">
+		<item name="android:shadowColor">#F0000000</item>
+		<item name="android:shadowDx">0</item>
+		<item name="android:shadowDy">0</item>
+		<item name="android:shadowRadius">2.0</item>
+	</style>
+
+	<style name="Matte_LockScreen_SmallMetaText" parent="@style/Matte_SmallMetaText">
+		<item name="android:shadowColor">#F0000000</item>
+		<item name="android:shadowDx">0</item>
+		<item name="android:shadowDy">0</item>
+		<item name="android:shadowRadius">2.0</item>
+	</style>
+	
+	
+	<style name="Matte_ActionBar" parent="@android:style/Widget.Holo.ActionBar">
+	    <!--item name="android:height">48dip</item>-->
+	    <item name="android:background">@null</item><!-- NOTE: gets value from actionBar_*_background attributes -->
+        <item name="android:backgroundStacked">#00000000</item>
+        <item name="android:backgroundSplit">#00000000</item>
+        <item name="android:itemPadding">0dip</item>
+    </style>
+    
+	<style name="Matte_ActionOverflowButton" parent="@android:style/Widget.ActionButton.Overflow">
+	    <item name="android:src">@drawable/matte_menu</item>
+	</style>
+	
+	<style name="Matte_ActionBarPopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@drawable/matte_menu_bg</item>
+	</style>
+	
+	<style name="Matte_EqBgLayout">
+	    <!-- these depend on LinearKnob font size and thumb hole size (differs for tablets)-->
+	    <item name="line1Offset">@dimen/EqBgLayout_line1Offset</item>
+	    <item name="line2Offset">-8.5dip</item><!-- depends on LinearKnob font size and thumb hole size (differs for tablets)-->
+	    <item name="line3Offset">@dimen/EqBgLayout_line3Offset</item><!-- depends on LinearKnob font size -->
+	    
+	    <item name="line13Color">#44a3d3ff</item>
+	    <item name="backgroundColor">?eq_thumbs_background</item>
+	    <item name="line2Color">#77a3d3ff</item>
+	    <item name="strokeWidth">2dip</item>
+   	    <item name="dashes">2,18</item>
+	</style>
+</resources>

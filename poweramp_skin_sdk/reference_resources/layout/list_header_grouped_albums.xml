@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:gravity="center_vertical"
+	
+	android:layout_width="fill_parent"
+	android:layout_height="@dimen/list_item_height3"
+	android:paddingTop="@dimen/list_item_paddingTop"
+	android:paddingBottom="@dimen/list_item_paddingBottom"
+	android:paddingLeft="@dimen/list_item_paddingLeft"
+	android:paddingRight="@dimen/list_item_paddingRight"
+	
+	android:background="?list_item_bg_list"
+>
+	
+	<ImageView android:id="@+id/image"
+		android:scaleType="center"
+		
+		android:layout_width="@dimen/list_header_grouped_albums_image_width"
+		android:layout_height="@dimen/list_item_library_image_size"
+		android:layout_alignParentTop="true"
+		android:layout_marginRight="@dimen/list_header_grouped_albums_marginRight"
+
+		android:layout_alignParentLeft="true"
+	/>
+
+	<TextView android:id="@+id/line1"
+		android:textAppearance="?PlayListText2"
+		android:singleLine="true"
+
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		
+		android:layout_alignParentTop="true"
+		
+		android:layout_toRightOf="@+id/image"
+		android:layout_toLeftOf="@+id/row_more"
+		android:layout_marginTop="@dimen/list_item_library_playlist_marginTop"
+		android:layout_marginRight="4dip"
+	/>
+	
+	<TextView android:id="@+id/line2" 
+		android:textAppearance="?PlayListText2"
+		android:singleLine="true"
+		
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/line1"
+		android:layout_alignLeft="@+id/line1"
+		android:layout_toLeftOf="@+id/row_more" 
+	/>
+	
+	<ImageView android:id="@+id/row_more"
+		android:src="?row_more_levels"
+
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_centerVertical="true"
+	/>
+</RelativeLayout>

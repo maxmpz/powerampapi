@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer" 
+	android:ignoreGravity="@+id/frs"
+	android:background="?list_item_bg_list"
+
+	android:layout_width="fill_parent" 
+	android:layout_height="@dimen/list_item_eq_preset_height"
+	android:paddingLeft="@dimen/list_item_paddingLeft"
+	android:paddingRight="@dimen/list_item_paddingRight"
+>
+
+	<com.maxmpz.audioplayer.widget.FrequencyResponseScroller android:id="@+id/frs"
+		style="?InDeckFRS"
+		android:layout_width="100dip"
+		android:layout_height="fill_parent"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentBottom="true"
+		android:layout_marginLeft="0dip"
+		android:layout_marginTop="3dip"
+		android:layout_marginRight="3dip"
+		android:layout_marginBottom="3dip"
+		z:miniMode="true"
+	/>
+	
+	
+	<ImageView android:id="@+id/speaker"
+		android:src="?pre_speaker"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_toRightOf="@+id/frs"
+		android:visibility="gone"
+	/>
+	<ImageView android:id="@+id/wired"
+		android:src="?pre_wired"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_toRightOf="@+id/speaker"
+		android:layout_marginLeft="-2dip"
+		
+		android:visibility="gone"
+	/>
+	<ImageView android:id="@+id/bt"
+		android:src="?pre_bt"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_toRightOf="@+id/wired"
+		android:layout_marginLeft="-2dip"
+		
+		android:visibility="gone"
+	/>
+	<ImageView android:id="@+id/song"
+		android:src="?pre_song"
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_toRightOf="@+id/bt"
+		android:layout_marginLeft="-2dip"
+		
+		android:visibility="gone"
+	/>
+	
+
+	<TextView android:id="@+id/line1"
+		android:textAppearance="?PlayListText1"
+		android:ellipsize="marquee" 
+		android:singleLine="true"
+		android:paddingLeft="4dip"
+		
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+
+		android:layout_centerVertical="true"
+		android:layout_toLeftOf="@+id/row_more"
+		android:layout_toRightOf="@+id/song"
+		android:layout_marginTop="2dip"
+	/>
+	
+	<ImageView android:id="@+id/row_more"
+		android:src="?row_more_levels"
+
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentTop="true"
+	/>
+</RelativeLayout>

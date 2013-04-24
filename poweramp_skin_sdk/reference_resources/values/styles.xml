@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer">
+    <!-- Quick Menu -->
+    <style name="QuickMenuBelowAnimation">
+        <item name="android:windowEnterAnimation">@anim/grow_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/shrink_fade_out</item>
+    </style>
+
+    <style name="QuickMenuAboveAnimation">
+        <item name="android:windowEnterAnimation">@anim/grow_fade_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/shrink_fade_out_from_bottom</item>
+    </style>
+
+    <style name="QuickOptionsMenuAnimation">
+        <item name="android:windowEnterAnimation">@anim/options_panel_enter</item>
+        <item name="android:windowExitAnimation">@anim/options_panel_exit</item>
+    </style>
+    
+
+	<!-- Settings Theme -->
+	<style name="ChangedTextAppearanceLarge" parent="@android:style/TextAppearance.Large">
+        <item name="android:textSize">20sp</item>
+	</style>
+	
+	<style name="TreeViewList" parent="@android:style/Widget.ListView">
+    	<item name="android:divider">@drawable/divider_horizontal_dark</item>
+    </style>	
+    
+	<!-- NOTE: correct status styles exist only for 2.3+, thus, they are overriden in values-xx for lower versions -->
+	<style name="status_text_1" parent="@android:style/TextAppearance.StatusBar.EventContent.Title">
+	</style>    
+	
+	<style name="status_text_2" parent="@android:style/TextAppearance.StatusBar.EventContent">
+	</style>
+	
+	<style name="status_background">
+	    <!--<item name="android:background">#ff111111</item> needed for v14 -->
+	</style>
+	
+    <style name="ActionBarOffset">
+        <!-- nothing, used only for v11 -->
+    </style>
+    <style name="ActionBarBgFill">
+		<item name="android:layout_width">1px</item>
+		<item name="android:layout_height">0px</item>    
+    </style>
+</resources>
+
+

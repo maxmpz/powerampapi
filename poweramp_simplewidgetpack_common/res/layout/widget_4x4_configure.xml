@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:layout_gravity="center"
+>
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_marginBottom="@dimen/widget_conf_options_space"
+	>
+		<Spinner
+			android:id="@+id/theme_spinner"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1" />
+		<Button
+			android:id="@+id/color_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/background"
+			android:layout_weight="1" />
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/alpha_label"
+		android:layout_marginTop="4dip"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/bg_opacity" />
+
+	<SeekBar
+		android:id="@+id/alpha"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/alt_scale_cb"
+		android:max="255"
+		android:layout_marginBottom="@dimen/widget_conf_options_space" />
+
+	<CheckBox
+		android:id="@+id/alpha_sdk7"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/alt_scale_cb"
+		android:layout_marginBottom="@dimen/widget_conf_options_space"
+		android:layout_weight="1"
+		android:shadowColor="#FF000000"
+		android:shadowRadius="3"
+		android:text="@string/background"
+		android:visibility="gone" />
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="center"
+		android:layout_marginBottom="@dimen/widget_conf_options_space"
+	>
+		<CheckBox
+			android:id="@+id/alt_scale_cb"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/alt_scale"
+			android:shadowColor="#FF000000"
+			android:shadowRadius="3"
+			android:layout_weight="1"
+			android:layout_gravity="center" />
+		<Spinner
+			android:id="@+id/shadow_spinner"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_gravity="center" />
+
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Poweramp - классический скин</string>
+    <string name="installation_ok">Скин-пак для Poweramp был успешно установлен.\n\nВы можете переключить скин в настройках Poweramp => Тема</string>
+    <string name="start_poweramp">Открыть настройки тем Poweramp</string>
+</resources>

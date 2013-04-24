@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	>
+	<com.maxmpz.audioplayer.widget.PlayerSeekbar android:id="@+id/player_seekbar"
+ 		android:gravity="center_vertical"
+ 		
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+
+		android:layout_marginLeft="0dip"
+		android:layout_marginRight="0dip"
+		android:layout_alignParentTop="true"
+	/>
+	
+	<ImageView android:id="@+id/sleep_timer_icon"
+		android:src="?sleep_timer_micro"
+		android:visibility="gone"
+		
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		
+		android:layout_below="@+id/player_seekbar"
+		android:layout_marginLeft="44dip"
+		android:layout_marginTop="-19dip"
+		
+		android:layout_alignParentLeft="true"
+	/>
+	
+	
+	<!-- Possible TODO: show mini icon for Next folder: <icon> <name> -->
+	<TextView android:id="@+id/meta"
+		style="?SmallMetaText"
+		
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="-18dip"
+		android:singleLine="true"
+		
+		android:layout_below="@+id/player_seekbar"
+		android:gravity="center"
+		android:layout_toRightOf="@+id/sleep_timer_icon"
+		android:layout_marginLeft="4dip"
+		android:layout_marginRight="64dip"
+	/>
+</merge>

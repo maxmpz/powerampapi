@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values-sw600dp -->
+<resources>
+   	<dimen name="widget_keyguard_width">300dp</dimen>
+   	<dimen name="widget_keyguard_height">400dp</dimen><!--  fill parent -->
+   	
+   	<dimen name="appwidget_small_configure_width">400dip</dimen>
+   	<dimen name="appwidget_4x4_height_config">450dp</dimen>
+   	
+   	<dimen name="appwidget_conf_options_width">480dip</dimen>
+   	
+   	<dimen name="widget_conf_options_padding">24dp</dimen>
+   	<dimen name="widget_conf_options_space">8dp</dimen>
+</resources>

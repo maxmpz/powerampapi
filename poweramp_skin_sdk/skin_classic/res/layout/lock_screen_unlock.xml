@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@com.maxmpz.audioplayer:id/goto_keyguard_cont"
+	android:layout_width="300dip"
+	android:layout_height="wrap_content"
+	android:layout_alignParentBottom="true"
+	android:layout_centerHorizontal="true"
+	android:layout_marginBottom="6dip"
+	android:background="@null"
+>
+	<ImageView android:id="@com.maxmpz.audioplayer:id/unlock_ar_left"
+		android:layout_width="wrap_content"		
+		android:layout_height="wrap_content"
+		android:src="@com.maxmpz.audioplayer:drawable/unlock_ar_left"
+		android:layout_gravity="center_vertical|left"
+		android:layout_marginLeft="6dip"
+		android:visibility="invisible"
+	/>
+	<ImageView android:id="@com.maxmpz.audioplayer:id/unlock_ar_right"
+		android:layout_width="wrap_content"		
+		android:layout_height="wrap_content"
+		android:src="@com.maxmpz.audioplayer:drawable/unlock_ar_right"
+		android:layout_gravity="center_vertical|right"
+		android:layout_marginRight="6dip"
+		android:visibility="invisible"
+	/>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+		android:id="@com.maxmpz.audioplayer:id/goto_keyguard"
+		android:background="@com.maxmpz.audioplayer:drawable/matte_unlock_keyguard_bg"
+		android:paddingTop="4dip"
+		android:paddingBottom="4dip"
+		android:paddingLeft="12dip"
+		android:paddingRight="16dip"
+		android:clickable="true"
+		android:focusable="true"
+	
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+	>
+		<ImageView android:id="@com.maxmpz.audioplayer:id/goto_keyguard_icon"
+			android:layout_width="40dip"
+			android:layout_height="40dip"
+			android:src="@com.maxmpz.audioplayer:drawable/ic_jog_dial_unlock"
+		/>
+		<TextView android:id="@com.maxmpz.audioplayer:id/unlock_label"
+			android:textColor="#ffffff"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="4dip"
+			android:layout_gravity="center_vertical"
+		/>
+	</LinearLayout>
+</FrameLayout>

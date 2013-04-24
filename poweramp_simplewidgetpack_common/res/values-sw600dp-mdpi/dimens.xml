@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values-sw600dp-mdpi -->
+<resources>
+	<dimen name="widget_play_padding">16dip</dimen>
+	<dimen name="widget_rw_ff_padding">8dip</dimen>
+	<dimen name="widget_cat_padding">6dip</dimen>
+   	<dimen name="appwidget_4x4_width">296dip</dimen>
+   	<dimen name="appwidget_4x4_lr_margin">0dip</dimen>
+   	<dimen name="appwidget_4x4_height">420dip</dimen>
+   	
+   	<dimen name="widget4x2_playing_mode_width">-1px</dimen><!-- fill_parent -->
+   	<dimen name="widget4x2_playing_mode_marginTop">0dip</dimen>
+   	<dimen name="widget4x2_playing_mode_marginLeft">0dip</dimen>
+   	   	
+   	<dimen name="widget4x2_controls_marginBottom">4dip</dimen>
+   	
+   	<dimen name="widget4x2_counter_marginTop">4dip</dimen>
+   	<dimen name="widget4x2_controls_margin1">0dip</dimen>
+   	<dimen name="widget4x2_controls_margin2">0dip</dimen>
+    <dimen name="widget4x1_title_size">13dip</dimen>
+    <dimen name="widget4x1_line2_size">12dip</dimen>
+    <dimen name="widget4x1_counter_size">10dip</dimen>
+    	
+</resources>

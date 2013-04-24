@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- 
+		These should be sorted in desc order as they are in fact bitset values (android selects first match).
+		I.e. for:
+			- current + qm = 4 | 1 = 5, qm is selected.
+	-->
+
+	<item android:minLevel="32" android:maxLevel="10000" android:drawable="@drawable/matte_menu_button_pressed"/>
+
+	<item android:minLevel="4" android:maxLevel="10000" android:drawable="@drawable/matte_list_checked_selector"/>
+
+	<!-- NOTE: this is state drawable, which is transparent for any pressed/selected/focused states -->
+	<item android:minLevel="1" android:maxLevel="10000" android:drawable="@drawable/matte_list_current_item_bg"/>
+	
+	<!-- 0 is nothing (no bg for non selected rows) -->	
+</level-list>

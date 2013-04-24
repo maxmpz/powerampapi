@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer">
+	<LinearLayout android:id="@+id/layout1"
+		android:gravity="center"
+		 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentLeft="true" 
+		android:layout_alignParentRight="true"
+	>
+		<ImageButton android:id="@+id/folder_prev_button"
+			android:src="?prev_cat_selector"
+			style="?SmallRoundButton"
+
+			android:layout_marginRight="-2dip"
+		/>
+		<ImageButton android:id="@+id/rw_button" 
+			android:src="?rw_selector"
+			style="?MediumRoundButton"
+			
+			android:layout_marginRight="-5dip"			
+		/>
+	
+		
+		<!-- PLAY -->
+		<ImageButton android:id="@+id/play_button" 
+			android:scaleType="center"
+			style="?BigRoundButton"
+		/>
+	
+
+		<ImageButton android:id="@+id/ff_button" 
+			android:src="?ff_selector"		
+			style="?MediumRoundButton"
+			
+			android:layout_marginLeft="-5dip"			
+		/>
+		<ImageButton android:id="@+id/folder_next_button"
+			android:src="?next_cat_selector"
+			style="?SmallRoundButton"
+
+			android:layout_marginLeft="-2dip"
+		/>
+	</LinearLayout>
+</merge>

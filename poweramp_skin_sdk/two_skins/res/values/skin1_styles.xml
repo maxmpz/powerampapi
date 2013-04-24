@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!-- Derive theme from Default - ActivityTheme_Default -->
+	<style name="Skin1" parent="@com.maxmpz.audioplayer:style/ActivityTheme_Default">
+		<!-- Override text_color_1 -->
+		<item name="com.maxmpz.audioplayer:text_color_1">#ff0000</item>
+		
+		<!-- Set Text1 style to our overriden text style - Skin1_NowPlayingText1 -->
+		<item name="com.maxmpz.audioplayer:NowPlayingText1">@style/Skin1_NowPlayingText1</item>		
+	</style>
+	
+	<!-- Derive from default Matte_NowPlayingText1 and override just textColor -->
+    <style name="Skin1_NowPlayingText1" parent="@com.maxmpz.audioplayer:style/Matte_NowPlayingText1">
+    	<item name="android:textColor">?com.maxmpz.audioplayer:text_color_1</item><!-- Use the overriden value from Skin1 -->
+    </style>
+		
+</resources>

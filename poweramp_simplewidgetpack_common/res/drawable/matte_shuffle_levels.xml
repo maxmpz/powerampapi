@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+<!--
+	NOTE: levels should match Poweramp API ShuffleMode:
+	 
+	public static final int SHUFFLE_NONE = 0;
+	public static final int SHUFFLE_ALL = 1;
+	public static final int SHUFFLE_SONGS = 2;
+	public static final int SHUFFLE_CATS = 3; // Songs in order.
+	public static final int SHUFFLE_SONGS_AND_CATS = 4; // Songs shuffled.
+ -->
+	<item android:maxLevel="0" android:drawable="@drawable/matte_shuffle_none"/>
+	<item android:maxLevel="1" android:drawable="@drawable/matte_shuffle_all"/>	
+	<item android:maxLevel="2" android:drawable="@drawable/matte_shuffle_songs"/>
+	<item android:maxLevel="3" android:drawable="@drawable/matte_shuffle_cats"/>
+	<item android:maxLevel="4" android:drawable="@drawable/matte_shuffle_songs_and_cats"/>
+</level-list>

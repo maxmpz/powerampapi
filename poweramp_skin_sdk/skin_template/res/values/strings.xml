@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Skin Template</string>
+    <string name="installation_ok">Poweramp skin pack was successfully installed.\n\nYou can switch Poweramp skins via Poweramp Settings => Look and Feel => Theme</string>
+    <string name="start_poweramp">Start Poweramp/Open Theme Options</string>
+</resources>

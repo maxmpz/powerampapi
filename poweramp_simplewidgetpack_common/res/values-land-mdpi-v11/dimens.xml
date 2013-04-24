@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values-sw600dp-land-mdpi -->
+<resources>
+   	<dimen name="widget4x2_height">150dip</dimen>
+   	
+   	<dimen name="widget4x2_controls_marginBottom">4dip</dimen>
+   	
+   	<dimen name="widget4x2_lines_marginTop">3dip</dimen>
+   		
+   	<dimen name="appwidget_4x4_height">-2px</dimen><!-- wrap_content -->
+</resources>

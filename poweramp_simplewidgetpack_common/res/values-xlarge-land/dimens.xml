@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- xlarge-land -->
+<resources>
+   	<dimen name="appwidget_small_configure_width">450dip</dimen>
+</resources>

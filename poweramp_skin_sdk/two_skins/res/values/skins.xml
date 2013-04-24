@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<!-- Define reference to the skin styles -->
+	<integer-array name="poweramp_skins">
+		<item>@style/Skin1</item>
+		<item>@style/Skin2</item>
+	</integer-array>
+
+	<!-- Define skin names. # of items should match # of poweramp_skins items -->
+	<string-array name="poweramp_skin_names">
+		<item>TwoSkins 1</item>
+		<item>TwoSkins 2</item>
+	</string-array>
+	
+	<!-- Define author names. # of items should match # of poweramp_skins items -->
+	<string-array name="poweramp_skin_authors">
+		<item>MaxMP 1</item>
+		<item>MaxMP 2</item>
+	</string-array>
+	
+</resources>

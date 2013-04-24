@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- LANDSCAPE -->
+<RelativeLayout	xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+>
+
+	<com.maxmpz.audioplayer.widget.CustomViewAnimator android:id="@+id/view_animator"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_alignParentTop="true"
+		android:layout_above="@+id/buttons_panel"
+	>
+		<RelativeLayout android:id="@+id/equ_layout"
+
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:layout_above="@+id/frs_buttons"
+			android:layout_alignParentTop="true"		
+		>
+			<!-- note this one uses specific EqBgDrawable
+				android:paddingTop="2dip"
+				android:paddingBottom="2dip"
+			 -->
+			<com.maxmpz.audioplayer.widget.EqBgLayout
+				android:orientation="horizontal"
+				android:layout_height="200dip"
+				android:layout_width="fill_parent"
+				android:layout_alignParentTop="true"
+				android:layout_above="@+id/frs_buttons"
+				android:layout_margin="@dimen/eq_padding"				
+			>
+				<!-- android:layout_marginLeft="3dip" -->
+				<com.maxmpz.audioplayer.widget.LinearKnob android:id="@+id/preamp_knob"
+					z:value=".5"
+					android:text="@string/preamp"
+					style="?PreampLinearKnob"
+									 
+					android:layout_height="fill_parent"
+					android:layout_width="@dimen/preamp_knob_width"
+					android:layout_marginRight="2dip"
+				/>
+			
+				<com.maxmpz.audioplayer.widget.KnobsScrollView android:id="@+id/knobs_scroll_view"
+					android:scrollbars="none"
+								
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:layout_marginRight="2dip"
+				>
+				
+					<LinearLayout android:id="@+id/linear_knob_layout"
+		 
+						android:orientation="horizontal" 
+						android:layout_height="fill_parent"
+						android:layout_width="fill_parent"
+					>
+					</LinearLayout>
+					
+				</com.maxmpz.audioplayer.widget.KnobsScrollView>
+
+			</com.maxmpz.audioplayer.widget.EqBgLayout>
+
+			<RelativeLayout android:id="@+id/frs_buttons"
+				android:layout_width="fill_parent"
+				android:layout_height="@dimen/eq_frs_height"
+				android:background="?deck_bg"
+				android:layout_alignParentBottom="true"
+				android:padding="@dimen/eq_padding"
+			>
+				<com.maxmpz.audioplayer.widget.FrequencyResponseScroller android:id="@+id/frequency_response_scroller"
+					android:layout_height="fill_parent"
+					android:layout_width="fill_parent"
+					android:layout_alignParentLeft="true"
+					android:layout_toLeftOf="@+id/equ_button"
+				/>
+		
+				<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/equ_button"
+					style="?EqCheckButton"
+					android:text="@string/equ"
+					android:layout_toLeftOf="@+id/pre_button"
+					android:layout_centerVertical="true"
+				/>
+				
+				<!--
+				<View android:id="@+id/equ_button_div"
+					style="?EqVertButtonDiv"
+					android:layout_toLeftOf="@+id/pre_button"
+					android:layout_alignTop="@+id/equ_button"
+				/>
+				-->
+		
+				<Button android:id="@+id/pre_button" 
+					style="?EqButton"
+					android:text="@string/preset"
+					android:layout_alignTop="@+id/equ_button"
+					android:layout_toLeftOf="@+id/save_button"
+					android:layout_centerVertical="true"
+				/>
+				<!--
+				<View android:id="@+id/pre_button_div"
+					style="?EqVertButtonDiv"
+					android:layout_toLeftOf="@+id/save_button"
+					android:layout_alignTop="@+id/pre_button"
+				/>
+				-->
+		
+				<Button android:id="@+id/save_button" 
+					style="?EqButton"
+					android:text="@string/save"
+					
+					android:layout_alignTop="@+id/equ_button"
+					android:layout_toLeftOf="@+id/reset_button"
+					android:layout_centerVertical="true"
+				/>
+				<!--
+				<View android:id="@+id/save_button_div"
+					style="?EqVertButtonDiv"
+					android:layout_toLeftOf="@+id/reset_button"
+					android:layout_alignTop="@+id/pre_button"
+				/>
+				-->
+		
+				<Button android:id="@+id/reset_button" 
+					style="?EqButton"
+					android:text="@string/reset"
+		
+					android:layout_alignTop="@+id/equ_button"
+					android:layout_alignParentRight="true"
+					android:layout_centerVertical="true"
+				/>
+			</RelativeLayout>
+			
+		</RelativeLayout>
+		
+		
+		<RelativeLayout android:id="@+id/other_layout"
+			android:background="?deck_bg"
+			
+			android:layout_width="fill_parent" 
+			android:layout_height="fill_parent"
+		>
+			<RelativeLayout
+				android:layout_width="fill_parent" 
+				android:layout_height="fill_parent"
+				android:layout_alignParentTop="true"
+				android:layout_above="@+id/equ_buttons2"
+				android:padding="@dimen/eq_padding"				
+			>
+			
+				<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/tone_button" 
+					style="?EqCheckButton"
+					android:text="@string/tone"
+					android:layout_marginRight="@dimen/tone_button_marginRight"
+					android:layout_alignParentLeft="true"
+					android:layout_alignParentTop="true"
+				/>
+				<View android:id="@+id/tone_button_div"
+					style="?EqHorButtonDiv"
+					android:layout_below="@+id/tone_button"
+					android:layout_alignLeft="@+id/tone_button"
+				/>
+				
+				<LinearLayout
+				    android:layout_below="@+id/tone_button_div"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:orientation="vertical"
+			    >
+						<include layout="@layout/eq_fx_buttons"/>
+			    </LinearLayout>
+			    <!--
+				<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/dhd_button" 
+					style="?EqCheckButton"
+					android:text="@string/DHD"
+		
+					android:layout_below="@+id/tone_button_div"
+					android:visibility="gone"
+				/>
+				<View android:id="@+id/dhd_button_div"
+					style="?EqHorButtonDiv"
+
+					android:layout_below="@+id/dhd_button"
+					android:visibility="gone"
+				/>
+				
+				<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/beats_button" 
+					style="?EqCheckButton"
+					android:text="@string/beats_fx"
+			
+					android:layout_below="@+id/dhd_button_div"
+					android:visibility="gone"
+				/>
+				<View android:id="@+id/beats_button_div"
+					style="?EqHorButtonDiv"
+					android:layout_below="@+id/beats_button"
+					android:visibility="gone"
+				/>
+				
+				<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/srs_button" 
+					style="?EqCheckButton"
+					android:text="@string/srs_fx"
+			
+					android:layout_below="@+id/beats_button_div"
+					android:visibility="gone"
+				/>
+				<View android:id="@+id/srs_button_div"
+					style="?EqHorButtonDiv"
+					android:layout_below="@+id/srs_button"
+					android:visibility="gone"
+				/>
+				-->
+								
+	
+				
+				<com.maxmpz.audioplayer.widget.RoundKnob android:id="@+id/treble_knob"
+					android:layout_width="@dimen/round_knob_size"
+					android:layout_height="@dimen/round_knob_size"
+					android:padding="@dimen/round_knob_padding"
+					android:layout_alignLeft="@+id/bass_knob"
+					android:layout_marginTop="4dip"
+				/>
+				<TextView android:id="@+id/treble_label"
+					android:text="@string/treble"
+					android:gravity="right"
+					android:textAppearance="?SmallLabelText"
+					
+					android:layout_width="wrap_content"			
+					android:layout_height="wrap_content"
+
+					android:layout_toLeftOf="@+id/treble_knob"
+					android:layout_alignTop="@+id/treble_knob"
+					android:layout_marginRight="@dimen/round_knob_vert_label_offset"
+					android:layout_marginTop="4dip"
+				/>
+
+				<com.maxmpz.audioplayer.widget.RoundKnob android:id="@+id/bass_knob"
+					android:layout_width="@dimen/round_knob_size"
+					android:layout_height="@dimen/round_knob_size"
+					android:padding="@dimen/round_knob_padding"
+					android:layout_toRightOf="@+id/tone_button"
+					android:layout_alignParentBottom="true"
+					android:layout_marginBottom="4dip"
+					android:layout_marginRight="16dip"
+				/>
+				<TextView android:id="@+id/bass_label"
+					android:text="@string/bass_tone"
+					android:gravity="right"
+					android:textAppearance="?SmallLabelText"
+					
+					android:layout_width="wrap_content"			
+					android:layout_height="wrap_content"
+					android:layout_toLeftOf="@+id/bass_knob"
+					android:layout_alignTop="@+id/bass_knob"
+					android:layout_marginTop="4dip"
+					android:layout_marginRight="@dimen/round_knob_vert_label_offset"
+				/>
+					
+				
+
+
+
+				<com.maxmpz.audioplayer.widget.RoundKnob android:id="@+id/volume_knob"
+					android:layout_width="@dimen/vol_round_knob_size"
+					android:layout_height="@dimen/vol_round_knob_size"
+					android:layout_alignParentBottom="true"
+					android:layout_alignParentRight="true"
+					android:layout_marginBottom="4dip"
+				/>
+				<TextView android:id="@+id/vol_label"
+					android:text="@string/volume"
+					android:gravity="center"
+					android:textAppearance="?SmallLabelText"
+					
+					android:layout_width="wrap_content"			
+					android:layout_height="wrap_content"
+					android:layout_toLeftOf="@+id/volume_knob"
+					android:layout_alignBottom="@+id/volume_knob"
+					android:layout_marginBottom="4dip"
+					android:layout_marginRight="@dimen/vol_round_knob_vert_label_offset"
+				/>
+				
+				<com.maxmpz.audioplayer.widget.RoundKnob android:id="@+id/sfx_knob"
+					android:layout_width="@dimen/round_knob_size"
+					android:layout_height="@dimen/round_knob_size"
+					android:padding="@dimen/round_knob_padding"
+					android:layout_toRightOf="@+id/bass_knob"
+					android:layout_marginTop="4dip"
+				/>
+				<TextView android:id="@+id/sfx_label"
+					android:text="@string/stereo_x"
+					android:textAppearance="?SmallLabelText"
+					
+					android:layout_toRightOf="@+id/sfx_knob"
+					android:layout_alignTop="@+id/sfx_knob"
+					android:layout_width="wrap_content"			
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="@dimen/round_knob_vert_label_offset"
+					android:layout_marginTop="4dip"
+				/>
+	
+				<com.maxmpz.audioplayer.widget.RoundKnob android:id="@+id/balance_knob"
+					android:layout_marginBottom="4dip"
+					android:layout_width="@dimen/round_knob_size"
+					android:layout_height="@dimen/round_knob_size"
+					android:padding="@dimen/round_knob_padding"
+					android:layout_alignLeft="@+id/sfx_knob"
+					android:layout_alignParentBottom="true"
+					z:snap="true"
+					z:snapTo="0.5"
+				/>
+				<TextView android:id="@+id/balance_label"
+					android:text="@string/balance"
+					android:gravity="center"
+					android:textAppearance="?SmallLabelText"
+					
+					android:layout_toRightOf="@+id/balance_knob"
+					android:layout_alignTop="@+id/balance_knob"
+					android:layout_width="wrap_content"			
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="@dimen/round_knob_vert_label_offset"
+					android:layout_marginTop="4dip"
+				/>
+				<TextView
+					android:text="@string/balance_L"
+					android:textAppearance="?SmallLabelText"
+					
+					android:layout_alignLeft="@+id/balance_knob"
+					android:layout_width="wrap_content"			
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/balance_knob"
+					android:gravity="left"
+					android:layout_marginTop="-24dip"
+				/>
+				<TextView
+					android:text="@string/balance_R"
+					android:textAppearance="?SmallLabelText"
+					
+					android:layout_alignRight="@+id/balance_knob"
+					android:layout_width="wrap_content"			
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/balance_knob"
+					android:gravity="right"
+					android:layout_marginTop="-24dip"
+				/>
+				
+				<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/mono_button" 
+					style="?EqCheckButton"
+					android:text="@string/mono"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentTop="true"
+				/>
+				<View
+					style="?EqHorButtonDiv"
+					android:layout_below="@+id/mono_button"
+					android:layout_alignLeft="@+id/mono_button"
+				/>
+			</RelativeLayout>
+
+
+			<RelativeLayout android:id="@+id/equ_buttons2"
+				android:layout_width="fill_parent"
+				android:layout_height="52dip"
+				android:background="?deck_bg"
+				android:layout_alignParentBottom="true"
+				android:layout_alignParentLeft="true"
+			>
+				<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/equ_button2"
+					style="?EqCheckButton"
+					android:text="@string/equ"
+				/>
+								
+				<!--
+				<View android:id="@+id/equ_button_div2"
+					style="?EqVertButtonDiv"
+					android:layout_toRightOf="@+id/equ_button2"
+				/>
+				-->
+				<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/limiter_button" 
+					style="?EqCheckButton"
+					android:text="@string/limit"
+					android:layout_toRightOf="@+id/equ_button2"
+				/>
+				<!--
+				<View android:id="@+id/limiter_button_div2"
+					style="?EqVertButtonDiv"
+					android:layout_toRightOf="@+id/limiter_button"
+				/>
+				-->
+				<Button android:id="@+id/pre_button2" 
+					style="?EqButton"
+					android:text="@string/preset"
+					android:layout_toRightOf="@+id/limiter_button"
+				/>
+				<!--
+				<View android:id="@+id/pre_button_div2"
+					style="?EqVertButtonDiv"
+					android:layout_toRightOf="@+id/pre_button2"
+				/>
+				-->
+		
+				<Button android:id="@+id/save_button2" 
+					style="?EqButton"
+					android:text="@string/save"
+					android:layout_toRightOf="@+id/pre_button2"
+				/>
+				
+				<Button android:id="@+id/reset_button2" 
+					style="?EqButton"
+					android:text="@string/reset"
+					android:layout_alignParentRight="true"
+				/>
+			</RelativeLayout>
+
+		</RelativeLayout>
+	</com.maxmpz.audioplayer.widget.CustomViewAnimator>
+	
+	<include layout="@layout/buttons_panel"/>
+</RelativeLayout>

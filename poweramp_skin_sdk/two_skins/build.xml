@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+	name="TwoSkins"
+	default="jar">
+
+	<property
+		name="version.num"
+		value="1" />
+	
+	<buildnumber
+		file="build.num" />
+
+	<property
+		name="version.prefix"
+		value="1.0" />
+
+
+	
+	<property
+		file="local.properties" />
+
+	<property
+		file="project.properties" />
+	
+	<property file="ant.properties" />	
+
+	<loadproperties srcFile="project.properties" />
+
+    <fail
+            message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through an env var"
+            unless="sdk.dir"
+    />
+
+    <target name="-code-gen" depends="-build-setup">
+        <echo>SKIN: Generating R.java / Manifest.java from the resources...</echo>
+		<exec executable="${aapt}" failonerror="true">
+			<arg value="package"/>
+			<arg value="-f"/>
+			<arg value="-m"/>
+			<arg value="-M"/>
+			<arg value="AndroidManifest.xml"/>
+			<arg value="-S"/>
+			<arg value="${resource.absolute.dir}"/>
+			<arg value="-I"/>
+			<arg value="${project.target.android.jar}"/>
+			<arg value="-I"/>
+			<arg value="${poweramp.apk}"/>
+			<arg value="-J"/>
+			<arg value="${gen.absolute.dir}"/>
+			<arg value="-x"/>
+		</exec>
+    </target>
+
+    <target name="-package-resources">
+        <echo>SKIN: Packaging resources</echo>
+		<exec executable="${aapt}" failonerror="true">
+			<arg value="package"/>
+			<arg value="-f"/>
+			<arg value="-M"/>
+			<arg value="AndroidManifest.xml"/>
+			<arg value="-S"/>
+			<arg value="${resource.absolute.dir}"/>
+			<arg value="-A"/>
+			<arg value="${asset.absolute.dir}"/>
+			<arg value="-I"/>
+			<arg value="${project.target.android.jar}"/>
+			<arg value="-I"/>
+			<arg value="${poweramp.apk}"/>
+			<arg value="-F"/>
+			<arg value="${out.absolute.dir}/${resource.package.file.name}"/>
+			<arg value="-x"/>
+
+			<arg value="--version-code"/>
+			<arg value="${version.code}"/>
+		</exec>
+    </target>
+
+    <!-- version-tag: custom -->
+    <import file="${sdk.dir}/tools/ant/build.xml" />
+
+
+	<target name="-set-jar">
+	    <property name="resource.package.file.name" value="${ant.project.name}.jar" />
+	</target>
+	
+	<target name="jar" depends="clean, -set-jar, -code-gen, -package-resources">
+		<copy 
+			file="${out.absolute.dir}/${resource.package.file.name}" 
+			tofile="${out.absolute.dir}/${ant.project.name}.jar"
+		/>
+    </target>
+	
+	<target name="jarpush" depends="jar">
+		<exec executable="adb" failonerror="true">
+			<arg value="push"/>
+			<arg value="${out.absolute.dir}/${ant.project.name}.jar"/>
+			<arg value="/sdcard/Android/data/_com.maxmpz.audioplayer/skins/${ant.project.name}.jar"/>
+		</exec>
+	</target>
+
+	<target name="apkpush" depends="debug" >
+		<exec executable="adb" failonerror="true">
+			<arg value="install"/>
+			<arg value="-r"/>
+			<arg value="${out.final.file}"/>
+		</exec>
+	</target>
+
+	<target name="dist" depends="clean, release">
+		<property name="release.apk" value="${out.absolute.dir}/${ant.project.name}-release.apk"/>
+		<property name="version.tag" value="${version.prefix}-build-${build.number}"/>
+		<property name="dist.dir" value="dist/${version.tag}"/>
+
+		<mkdir dir="${dist.dir}"/>
+		<copy 
+			file="${release.apk}" 
+			tofile="${dist.dir}/${ant.project.name}-${version.tag}.apk"
+		/>
+	</target>
+</project>

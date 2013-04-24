@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values-large-xhdpi - Samsung Galaxy Note (pre ICS!) -->
+<resources>
+   	<dimen name="appwidget_4x4_minWidth">350dip</dimen>
+   	<dimen name="appwidget_4x4_minHeight">350dip</dimen>
+
+   	<dimen name="appwidget_4x4_lr_margin">12dip</dimen>
+   	<dimen name="appwidget_4x4_tb_margin">0dip</dimen>
+   	<dimen name="appwidget_4x4_width">-1px</dimen>
+   	<dimen name="appwidget_4x4_height">-1px</dimen>
+   	<dimen name="appwidget_4x4_height_config">450dp</dimen>
+</resources>

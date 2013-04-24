@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values -->
+<resources>
+   	<dimen name="widget4x2_height">200dip</dimen>
+   	<dimen name="widget4x2_playing_mode_width">-1px</dimen><!-- fill_parent -->
+   	<dimen name="widget4x2_playing_mode_marginTop">0dip</dimen>
+   	<dimen name="widget4x2_playing_mode_marginLeft">0px</dimen>
+   	<dimen name="widget4x2_playing_mode_marginRight">0px</dimen><!-- not used -->
+   	<dimen name="widget4x2_controls_marginLeft">0px</dimen><!-- not used -->
+	<dimen name="widget4x2_controls_marginBottom">8dip</dimen>
+	<dimen name="widget_shadow_offset">5dip</dimen>	
+	    
+	
+   	<dimen name="appwidget_4x4_minWidth">294dip</dimen> 
+   	<dimen name="appwidget_4x4_minHeight">294dip</dimen>
+   	
+   	<dimen name="appwidget_4x1_minHeight">62dip</dimen>
+   	<dimen name="widget4x1_np_marginTop">10.66dip</dimen>
+   	<dimen name="widget4x1_title_size">16dip</dimen>
+   	<dimen name="widget4x1_counter_size">11.5dip</dimen>
+   	<dimen name="widget4x1_line2_size">14dip</dimen>
+   	<dimen name="widget4x1_controls_marginBottom">0dip</dimen>
+   	<dimen name="widget4x1_aa_marginLR">6dip</dimen>
+   	<dimen name="widget4x1_aa_marginTB">6dip</dimen>
+   	<dimen name="widget4x1_controls_paddingLR">2dip</dimen>   	
+   	
+
+   	<dimen name="appwidget_4x4_lr_margin">7dip</dimen>
+   	<dimen name="appwidget_4x4_width">-1px</dimen><!-- fill_parent for atrix -->
+   	<dimen name="appwidget_4x4_height">-2px</dimen><!-- wrap_content -->
+   	<dimen name="appwidget_4x4_height_config">450dp</dimen>
+   	<dimen name="appwidget_4x4_tb_margin">0dip</dimen>
+   	
+   	<dimen name="appwidget_4x2_controls_padding">0px</dimen><!-- not used -->
+   	
+   	<dimen name="widget4x2_aa_size">140dip</dimen>
+   	<dimen name="widget4x2_title_marginTop">5.66dip</dimen>
+   	<dimen name="widget4x2_lines_marginTop">0dip</dimen>
+   	<dimen name="widget4x2_counter_marginTop">4dip</dimen>
+   	<dimen name="widget4x2_controls_margin1">0dip</dimen>
+   	<dimen name="widget4x2_controls_margin2">-4dip</dimen>
+   	<dimen name="widget4x2_controls_marginTop">-4dip</dimen>
+   	
+   	<dimen name="widget_keyguard_width">-1px</dimen><!--  fill parent -->
+   	<dimen name="widget_keyguard_height">-1px</dimen><!--  fill parent -->
+   	
+   	
+   	<dimen name="appwidget_small_configure_width">-2px</dimen>
+   	<dimen name="appwidget_small_configure_height">200dp</dimen>
+   	
+   	<dimen name="appwidget_4x1_configure_height">100dp</dimen>
+   	
+   	<dimen name="appwidget_2x2_configure_width">156dp</dimen>
+   	
+   	<dimen name="appwidget_conf_options_width">-1px</dimen><!--  fill parent -->
+   	<integer name="winget_conf_gravity">1</integer>
+   	
+	<dimen name="ambilwarna_hsvHeight">240dp</dimen>
+	<dimen name="ambilwarna_hsvWidth">240dp</dimen>
+	<dimen name="ambilwarna_hueWidth">30dp</dimen>
+	<dimen name="ambilwarna_spacer">8dp</dimen>
+	
+	<dimen name="widget_play_padding">0dip</dimen>
+	<dimen name="widget_rw_ff_padding">0dip</dimen>
+	<dimen name="widget_cat_padding">0dip</dimen>
+	
+	<dimen name="widget_conf_options_padding">8dp</dimen>
+	<dimen name="widget_conf_options_space">4dp</dimen>
+	
+</resources>

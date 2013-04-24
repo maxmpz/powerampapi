@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<string name="widget_4x1">Poweramp 4x1</string>
+	<string name="widget_4x2">Poweramp 4x2</string>
+	<string name="widget_2x2">Poweramp 2x2</string>
+	<string name="widget_4x4">Poweramp Large</string>
+	
+	<string name="configure_widget">Configure Widget</string>
+	<string name="background">Background</string>
+	<string name="alt_scale">Fit Album Art</string>
+	<string name="done">Done</string>
+	<string name="bg_opacity">Background Opacity</string>
+	<string name="album_art">Album Art</string>
+	
+	<string name="widget_style1">Style 1</string>
+	<string name="widget_style2">Style 2</string>
+	<string name="widget_style3">Style 3</string>
+	
+	<string name="widget_no_songs_selected">&lt;No song loaded yet&gt;</string>
+</resources>

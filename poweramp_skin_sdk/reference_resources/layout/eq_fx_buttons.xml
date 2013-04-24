@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2012 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer">
+	<Button android:id="@+id/htc_button" 
+		style="?EqCheckButton"
+		android:text="@string/htc_fx"
+		android:onClick="onClick"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		android:visibility="gone"
+	/>
+	<View android:id="@+id/htc_button_div"			
+		style="?EqHorButtonDiv"
+		android:layout_below="@+id/htc_button"
+		android:visibility="gone"
+	/>
+    
+	<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/dhd_button" 
+		style="?EqCheckButton"
+		android:text="@string/DHD"
+		android:visibility="gone"
+		android:layout_below="@+id/htc_button_div"
+	/>
+	<View android:id="@+id/dhd_button_div"
+		style="?EqHorButtonDiv"
+		android:layout_below="@+id/dhd_button"
+		android:visibility="gone"
+	/>
+
+	<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/beats_button" 
+		style="?EqCheckButton"
+		android:text="@string/beats_fx"
+
+		android:layout_alignParentLeft="true"
+		android:layout_alignWithParentIfMissing="true"
+		android:layout_below="@+id/dhd_button_div"
+		android:visibility="gone"
+	/>
+	<View android:id="@+id/beats_button_div"
+		style="?EqHorButtonDiv"
+		android:layout_below="@+id/beats_button"
+		android:visibility="gone"
+	/>
+
+	<com.maxmpz.audioplayer.widget.ToggleButton android:id="@+id/srs_button" 
+		style="?EqCheckButton"
+		android:text="@string/srs_fx"
+
+		android:layout_alignParentLeft="true"
+		android:layout_below="@+id/beats_button_div"
+		android:visibility="gone"
+	/>
+	<View android:id="@+id/srs_button_div"			
+		style="?EqHorButtonDiv"
+		android:layout_below="@+id/srs_button"
+		android:visibility="gone"
+	/>
+
+</merge>
