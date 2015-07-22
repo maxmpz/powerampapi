@@ -46,6 +46,8 @@ public abstract class BaseWidgetUpdaterService extends Service {
 	private static final boolean LOG = false;
 	
 	public static final String EXTRA_UPDATE_BY_OS = "updateByOs";
+	
+	public static final String DEFAULT_WIDGET_UPDATER_SERVICE_CLASSNAME = "com.maxmpz.audioplayer.widgetpackcommon.WidgetUpdaterService";
 
 	private static boolean sNewTrackPending;
 	private static boolean sUpdatedOnce;
@@ -71,7 +73,7 @@ public abstract class BaseWidgetUpdaterService extends Service {
 	private boolean mBound;
 	
 	
-	protected List<BaseWidgetProvider> mProviders = new ArrayList<BaseWidgetProvider>();
+	protected List<IWidgetUpdater> mProviders = new ArrayList<IWidgetUpdater>();
 	
 	private Handler mHandler = new Handler() {
 		@Override
@@ -171,6 +173,7 @@ public abstract class BaseWidgetUpdaterService extends Service {
 	public void onDestroy() {
 		mIsDestroyed = true;
 		mHandler.removeCallbacksAndMessages(null);
+		mBinder.mService = null;
 		
 		super.onDestroy();
 		
@@ -235,7 +238,7 @@ public abstract class BaseWidgetUpdaterService extends Service {
 		SharedPreferences prefs = getCachedSharedPreferences(this);
 		
 		WidgetUpdateData data = null;
-		for(BaseWidgetProvider prov : mProviders) {
+		for(IWidgetUpdater prov : mProviders) {
 			prov.pushUpdate(this, prefs, ids, sMediaRemoved, sNewTrackPending, updateByOs, data);
 		}
 		

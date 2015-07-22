@@ -40,7 +40,7 @@ import com.maxmpz.poweramp.player.PowerampAPI;
 /**
  * Base widget provider for PowerampAPI based app widgets.
  */
-public abstract class BaseWidgetProvider extends AppWidgetProvider {
+public abstract class BaseWidgetProvider extends AppWidgetProvider implements IWidgetUpdater {
 	private static final String TAG = "BaseWidgetProvider";
 	private static final boolean LOG = false;
 	
@@ -94,7 +94,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider {
 			if(LOG) Log.e(TAG, "received trackIntent");
 		} else if(!sPingedPowerampService) {
 			if(LOG) Log.e(TAG, "no trackIntent, pinging Poweramp service");
-			context.startService(new Intent(PowerampAPI.ACTION_API_COMMAND));
+			context.startService(PowerampAPI.newAPIIntent());
 			sPingedPowerampService = true;
 		}
 
@@ -194,7 +194,6 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider {
 
 
 	protected boolean getAANoAnimState(WidgetUpdateData data, WidgetContext widgetCtx) {
-		//final boolean LOG = true;
 		if(IS_HTC_SENSE && Build.VERSION.SDK_INT < 15
 				|| data.albumArtNoAnim
 				|| widgetCtx.lastAATimeStamp == data.albumArtTimestamp 

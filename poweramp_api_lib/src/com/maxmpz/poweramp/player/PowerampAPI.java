@@ -3,7 +3,7 @@ Copyright (C) 2011-2013 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
-which communicate with PowerAMP application on Android platform.
+which communicate with Poweramp application on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -20,6 +20,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.player;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.net.Uri;
 
 
@@ -30,7 +32,7 @@ public final class PowerampAPI {
 	/**
 	 * Defines PowerampAPI version, which could be also 200 and 210 for older Poweramps.
 	 */
-	public static final int VERSION = 526;
+	public static final int VERSION = 533;
 	
 	/**
 	 * No id flag.
@@ -52,12 +54,16 @@ public final class PowerampAPI {
 	
 	
 	/**
-	 * PowerAMP Control action.
+	 * Poweramp Control action.
 	 * Should be sent with sendBroadcast().
 	 * Extras:
 	 * 	- cmd - int - command to execute.
 	 */
 	public static final String ACTION_API_COMMAND = "com.maxmpz.audioplayer.API_COMMAND";
+	
+	public static Intent newAPIIntent() {
+		return new Intent(ACTION_API_COMMAND).setComponent(PLAYER_SERVICE_COMPONENT_NAME);
+	}
 	
 	/**
 	 * ACTION_API_COMMAND extra.
@@ -66,6 +72,11 @@ public final class PowerampAPI {
 	public static final String COMMAND = "cmd";
 	
 	
+	/** 
+	 * 
+	 * Commonm extras:
+	 * - beep - boolean - (optional) if true, Poweramp will beep on playback command
+	 */
 	public static final class Commands {
 		/**
 		 * Extras:
@@ -122,46 +133,153 @@ public final class PowerampAPI {
 		 * Data:
 		 * - uri, following URIs are recognized:
 		 * 	- file://path
-		 * 	- content://com.maxmpz.audioplayer/FOLDER/<folder_id>/<file_id>
-		 * 	- content://com.maxmpz.audioplayer/FOLDER/<root_folder_id>/<folder_id>/<file_id>?hier=true   (hierarchy mode)
-		 * 	- content://com.maxmpz.audioplayer/FOLDER_PLAYLIST/<folder_playlist_id>/<folder_playlist_entry_id>
-		 * 	- content://com.maxmpz.audioplayer/ALL/<lib_media_id>
-		 *  - content://com.maxmpz.audioplayer/ARTIST/<lib_artist_id>/<lib_media_id>
-		 * 	- content://com.maxmpz.audioplayer/ALBUM/<lib_album_id>/<lib_media_id>
-		 * 	- content://com.maxmpz.audioplayer/ARTIST_ALBUM/<lib_artist_id>/<lib_album_id>/<lib_media_id>
-		 *  - content://com.maxmpz.audioplayer/GENRE_ALBUM/<lib_genre_id>/<lib_album_id>/<lib_media_id>
-		 * 	- content://com.maxmpz.audioplayer/GENRE/<lib_genre_id>/<lib_media_id>
-		 * 	- content://com.maxmpz.audioplayer/PLAYLIST/<lib_playlist_id>/<lib_playlist_entry_id>
-		 * 	- content://com.maxmpz.audioplayer/QUEUE/<queue_entry_id>
+		 * 	- content://com.maxmpz.audioplayer.data/... (see below)
 		 * 
-		 * PowerAMP plays whole list starting from the specified song (for SONG uri) or from first one or random one in shuffle mode (for LIST uri).
-		 * If last Uri segment exists (file/song/entry id) - it's SONG uri. 
-		 * If last song/entry id segment doesn't exist - it's a LIST uri. 
+		 * # means some numeric id (track id for queries ending with /files, otherwise - appropriate category id). 
+		 * If song id (in place of #) is not specified, Poweramp plays whole list starting from the specified song,
+		 * or from first one, or from random one in shuffle mode.
 		 * 
-		 * Example SONG uri:          content://com.maxmpz.audioplayer/FOLDER/12/3
-		 * Example LIST (folder) uri: content://com.maxmpz.audioplayer/FOLDER/12
-		 * Example LIST (hier folder, with root folder=55, folder to play=12, no file id) uri: 
-		 * 							  content://com.maxmpz.audioplayer/FOLDER/55/12?hier=true
+		 * All queries support following params (added as URL encoded params, e.g. content://com.maxmpz.audioplayer.data/files?lim=10&flt=foo):
+		 * lim - integer - SQL LIMIT, which limits number of rows returned
+		 * flt - string - filter substring. Poweramp will return only matching rows (the same way as returned in Poweramp lists UI when filter is used).
+		 * hier - long - hierarchy folder id. Used only to play in shuffle lists/shuffle songs mode while in hierarchy folders view. This is the target folder id
+		 *               which will be shuffled with the all subfolders in it as one list.
+		 * shf - integer - shuffle mode (see ShuffleMode class)
+		 * ssid - long - shuffle session id (for internal use)
+		 * 
+		 * Each /files/meta subquery returns special crafted query with some metainformation provided (it differs in each category, you can explore it by analizing the cols returned).                
+		
+		- All Songs:
+		content://com.maxmpz.audioplayer.data/files
+		content://com.maxmpz.audioplayer.data/files/meta
+		content://com.maxmpz.audioplayer.data/files/#
+
+		- Most Played
+		content://com.maxmpz.audioplayer.data/most_played
+		content://com.maxmpz.audioplayer.data/most_played/files
+		content://com.maxmpz.audioplayer.data/most_played/files/meta
+		content://com.maxmpz.audioplayer.data/most_played/files/#
+		
+		- Top Rated
+		content://com.maxmpz.audioplayer.data/top_rated
+		content://com.maxmpz.audioplayer.data/top_rated/files
+		content://com.maxmpz.audioplayer.data/top_rated/files/meta
+		content://com.maxmpz.audioplayer.data/top_rated/files/#
+
+		- Recently Added
+		content://com.maxmpz.audioplayer.data/recently_added
+		content://com.maxmpz.audioplayer.data/recently_added/files
+		content://com.maxmpz.audioplayer.data/recently_added/files/meta
+		content://com.maxmpz.audioplayer.data/recently_added/files/#
+		
+		- Recently Played
+		content://com.maxmpz.audioplayer.data/recently_played
+		content://com.maxmpz.audioplayer.data/recently_played/files
+		content://com.maxmpz.audioplayer.data/recently_played/files/meta
+		content://com.maxmpz.audioplayer.data/recently_played/files/#
+		
+		- Plain folders view (just files in plain folders list)
+		content://com.maxmpz.audioplayer.data/folders
+		content://com.maxmpz.audioplayer.data/folders/#
+		content://com.maxmpz.audioplayer.data/folders/#/files
+		content://com.maxmpz.audioplayer.data/folders/#/files/meta
+		content://com.maxmpz.audioplayer.data/folders/#/files/#
+		
+		- Hierarchy folders view (files and folders intermixed in one cursor)
+		content://com.maxmpz.audioplayer.data/folders/#/folders_and_files
+		content://com.maxmpz.audioplayer.data/folders/#/folders_and_files/meta
+		content://com.maxmpz.audioplayer.data/folders/#/folders_and_files/#
+		content://com.maxmpz.audioplayer.data/folders/files // All folder files, sorted as folders_files sort (for mass ops).
+		
+		- Genres
+		content://com.maxmpz.audioplayer.data/genres
+		content://com.maxmpz.audioplayer.data/genres/#/files
+		content://com.maxmpz.audioplayer.data/genres/#/files/meta
+		content://com.maxmpz.audioplayer.data/genres/#/files/#
+		content://com.maxmpz.audioplayer.data/genres/files
+
+		- Artists
+		content://com.maxmpz.audioplayer.data/artists
+		content://com.maxmpz.audioplayer.data/artists/#
+		content://com.maxmpz.audioplayer.data/artists/#/files
+		content://com.maxmpz.audioplayer.data/artists/#/files/meta
+		content://com.maxmpz.audioplayer.data/artists/#/files/#
+		content://com.maxmpz.audioplayer.data/artists/files
+		
+		- Composers
+		content://com.maxmpz.audioplayer.data/composers
+		content://com.maxmpz.audioplayer.data/composers/#
+		content://com.maxmpz.audioplayer.data/composers/#/files
+		content://com.maxmpz.audioplayer.data/composers/#/files/#
+		content://com.maxmpz.audioplayer.data/composers/#/files/meta
+		content://com.maxmpz.audioplayer.data/composers/files
+		
+		- Albums 
+    	content://com.maxmpz.audioplayer.data/albums
+    	content://com.maxmpz.audioplayer.data/albums/#/files
+    	content://com.maxmpz.audioplayer.data/albums/#/files/#
+    	content://com.maxmpz.audioplayer.data/albums/#/files/meta
+    	content://com.maxmpz.audioplayer.data/albums/files
+    	
+    	- Albums by Genres
+    	content://com.maxmpz.audioplayer.data/genres/#/albums
+    	content://com.maxmpz.audioplayer.data/genres/#/albums/meta
+    	content://com.maxmpz.audioplayer.data/genres/#/albums/#/files
+    	content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/#
+    	content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/meta
+    	content://com.maxmpz.audioplayer.data/genres/#/albums/files
+    	content://com.maxmpz.audioplayer.data/genres/albums
+
+    	- Albums by Artists
+    	content://com.maxmpz.audioplayer.data/artists/#/albums
+    	content://com.maxmpz.audioplayer.data/artists/#/albums/meta
+    	content://com.maxmpz.audioplayer.data/artists/#/albums/#/files
+    	content://com.maxmpz.audioplayer.data/artists/#/albums/#/files/#
+    	content://com.maxmpz.audioplayer.data/artists/#/albums/#/files/meta
+    	content://com.maxmpz.audioplayer.data/artists/#/albums/files
+    	content://com.maxmpz.audioplayer.data/artists/albums
+
+    	- Albums by Composers
+    	content://com.maxmpz.audioplayer.data/composers/#/albums
+    	content://com.maxmpz.audioplayer.data/composers/#/albums/meta
+    	content://com.maxmpz.audioplayer.data/composers/#/albums/#/files
+    	content://com.maxmpz.audioplayer.data/composers/#/albums/#/files/#
+    	content://com.maxmpz.audioplayer.data/composers/#/albums/#/files/meta
+    	content://com.maxmpz.audioplayer.data/composers/#/albums/files
+    	content://com.maxmpz.audioplayer.data/composers/albums
+
+    	- Artists Albums
+    	content://com.maxmpz.audioplayer.data/artists_albums
+    	content://com.maxmpz.audioplayer.data/artists_albums/meta
+    	content://com.maxmpz.audioplayer.data/artists_albums/#/files
+    	content://com.maxmpz.audioplayer.data/artists_albums/#/files/#
+    	content://com.maxmpz.audioplayer.data/artists_albums/#/files/meta
+    	content://com.maxmpz.audioplayer.data/artists_albums/files
+		
+		- Playlists
+		content://com.maxmpz.audioplayer.data/playlists
+		content://com.maxmpz.audioplayer.data/playlists/#
+		content://com.maxmpz.audioplayer.data/playlists/#/files
+		content://com.maxmpz.audioplayer.data/playlists/#/files/#
+		content://com.maxmpz.audioplayer.data/playlists/#/files/meta
+		content://com.maxmpz.audioplayer.data/playlists/files
+		
+		- Library Search
+		content://com.maxmpz.audioplayer.data/search
+		
+		- Equalizer Presets
+		content://com.maxmpz.audioplayer.data/eq_presets
+		content://com.maxmpz.audioplayer.data/eq_presets/#
+		content://com.maxmpz.audioplayer.data/eq_presets_songs
+		content://com.maxmpz.audioplayer.data/queue
+		content://com.maxmpz.audioplayer.data/queue/#
+
 		 *  
 		 * Extras:
-		 * - shuffle - int - (optional) apply appropriate shuffle mode to the list. Correct shuffle mode should be selected:
-		 *                    to shuffle just folder - Shuffle.SHUFFLE_FOLDER, to shuffle in folder hierarchy - Shuffle.SHUFFLE_HIER (only in hierarchy mode)
-		 *                    to shuffle any other list - Shuffle.SHUFFLE_CAT
-		 *                    Can't be applied to file:// or SONG uri.
-		 * 
-		 * - filter - String - (optional) option text filtering to apply to the list which is played.
-		 * 					  Can't be applied to file:// or SONG uri.
-		 * 
 		 * - paused - boolean - (optional) default false. OPEN_TO_PLAY command starts playing the file immediately, unless "paused" extra is true.
-		 *                    Can be applied only to file:// and SONG uri.
+		 *                       (see PowerampAPI.PAUSED)
 		 * 
-		 * - pos - int - (optional) seek to this position in song before playing
-		 * 					  Can be applied only to file:// and SONG uri.
-		 * 
-		 * - matchFile - boolean - (optional) default true. If true, PowerAMP will try to match file://path against Folder Files database, and if match found,
-		 *                    PowerAMP will play that file based on matched folder/file ids. Otherwise just file is played (no list loaded, Category=NONE_RAW_FILE).
-		 *                    Can be applied only to file:// uri. 
-		 *  
+		 * - pos - int - (optional) seek to this position in song before playing (see PowerampAPI.Track.POSITION)
 		 */
 		public static final int OPEN_TO_PLAY = 20;
 		
@@ -277,14 +395,21 @@ public final class PowerampAPI {
 	 */
 	public static final String KEEP_SERVICE = "keepService"; 
 	
+	/**
+	 * Extra.
+	 * Boolean
+	 * Since build 533
+	 */
+	public static final String BEEP = "beep";
+	
 	
 	/**
-	 * PowerAMP track changed.
+	 * Poweramp track changed.
 	 * Sticky intent.
 	 * Extras:
 	 * - track - bundle - Track bundle, see Track class.
 	 * - ts - long - timestamp of the event (System.currentTimeMillis()).
-	 *  Note, that by default PowerAMP won't search/download album art when screen is OFF, but will do that on next screen ON event.  
+	 *  Note, that by default Poweramp won't search/download album art when screen is OFF, but will do that on next screen ON event.  
 	 */
 	public static final String ACTION_TRACK_CHANGED = "com.maxmpz.audioplayer.TRACK_CHANGED";
 	
@@ -305,7 +430,7 @@ public final class PowerampAPI {
 	public static final String ACTION_AA_CHANGED = "com.maxmpz.audioplayer.AA_CHANGED";
 
 	/**
-	 * PowerAMP playing status changed (track started/paused/resumed/ended, playing ended).
+	 * Poweramp playing status changed (track started/paused/resumed/ended, playing ended).
 	 * Sticky intent.
 	 * Extras: 
 	 * - status - string - one of the STATUS_* values
@@ -322,7 +447,7 @@ public final class PowerampAPI {
 	public static final String ACTION_TRACK_POS_SYNC = "com.maxmpz.audioplayer.TPOS_SYNC";
 	
 	/**
-	 * PowerAMP repeat or shuffle mode changed.
+	 * Poweramp repeat or shuffle mode changed.
 	 * Sticky intent.
 	 * Extras:
 	 * - repeat - int - new repeat mode. See RepeatMode class.
@@ -332,7 +457,7 @@ public final class PowerampAPI {
 	public static final String ACTION_PLAYING_MODE_CHANGED = "com.maxmpz.audioplayer.PLAYING_MODE_CHANGED";
 
 	/**
-	 * PowerAMP equalizer settings changed.
+	 * Poweramp equalizer settings changed.
 	 * Sticky intent.
 	 * Extras:
 	 * - name - string - preset name. If no name extra exists, it's not a preset.
@@ -354,6 +479,9 @@ public final class PowerampAPI {
 	
 
 	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
+	public static final String PLAYER_SERVICE_NAME = "com.maxmpz.audioplayer.player.PlayerService";
+	
+	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
 	
 	public static final String ACTIVITY_PLAYER_UI = "com.maxmpz.audioplayer.PlayerUIActivity";
 	public static final String ACTIVITY_EQ = "com.maxmpz.audioplayer.EqActivity";
@@ -404,7 +532,7 @@ public final class PowerampAPI {
 	public static final class Status {
 		/**
 		 * STATUS_CHANGED status value - track has been started to play or has been paused.
-		 * Note that PowerAMP will start track immediately into this state when it's just loaded to avoid STARTED => PAUSED transition. 
+		 * Note that Poweramp will start track immediately into this state when it's just loaded to avoid STARTED => PAUSED transition. 
 		 * Additional extras:
 		 * 	track - bundle - track info 
 		 * 	paused - boolean - true if track paused, false if track resumed
@@ -412,7 +540,7 @@ public final class PowerampAPI {
 		public static final int TRACK_PLAYING = 1;
 		
 		/**
-		 * STATUS_CHANGED status value - track has been ended. Note, this intent will NOT be sent for just finished song IF PowerAMP advances to the next song.
+		 * STATUS_CHANGED status value - track has been ended. Note, this intent will NOT be sent for just finished song IF Poweramp advances to the next song.
 		 * Additional extras:
 		 * 	track - bundle - track info 
 		 *  failed - boolean - true if track failed to play
@@ -420,7 +548,7 @@ public final class PowerampAPI {
 		public static final int TRACK_ENDED = 2;
 
 		/**
-		 * STATUS_CHANGED status value - PowerAMP finished playing some list and stopped.
+		 * STATUS_CHANGED status value - Poweramp finished playing some list and stopped.
 		 */
 		public static final int PLAYING_ENDED = 3;
 	}
@@ -498,7 +626,7 @@ public final class PowerampAPI {
 		public static final String ID = "id";
 		
 		/**
-		 * "Real" id. In case of playlist entry, this is always resolved to PowerAMP folder_files table row ID or System Library MediaStorage.Audio._ID. 
+		 * "Real" id. In case of playlist entry, this is always resolved to Poweramp folder_files table row ID or System Library MediaStorage.Audio._ID. 
 		 * Long.
 		 */
 		public static final String REAL_ID = "realId";
@@ -670,4 +798,162 @@ public final class PowerampAPI {
 		public static final int RECENTLY_PLAYED = 58;
 	}
 	
+
+	public static final class Scanner {
+		 
+		/**
+		 * Poweramp Scanner action.
+		 * 
+		 * Poweramp Scanner scanning process is 2 step:
+		 * 1. Folders scan.
+		 *    Checks filesystem and updates DB with folders/files structure.
+		 * 2. Tags scan.
+		 *    Iterates over files in DB with TAG_STATUS == TAG_NOT_SCANNED and scans them with tag scanner.
+		 *    
+		 * Poweramp Scanner is a IntentService, this means multiple scan requests at the same time (or during another scans) are queued.  
+		 * ACTION_SCAN_DIRS actions are prioritized and executed before ACTION_SCAN_TAGS.
+		 * 
+		 * Poweramp main scan action, which scans either incrementally or from scratch the set of folders, which is configured by user in Poweramp Settings.
+		 * Poweramp will always do ACTION_SCAN_TAGS automatically after ACTION_SCAN_DIRS is finished and some changes are required to song tags in DB.
+		 * Unless, fullRescan specified, Poweramp will not remove songs if they are missing from filesystem due to unmounted storages.
+		 * Normal menu => Rescan calls ACTION_SCAN_DIRS without extras
+		 * 
+		 * Poweramp Scanner sends appropriate broadcast intents:
+		 * ACTION_DIRS_SCAN_STARTED (sticky), ACTION_DIRS_SCAN_FINISHED, ACTION_TAGS_SCAN_STARTED (sticky), ACTION_TAGS_SCAN_PROGRESS, ACTION_TAGS_SCAN_FINISHED, or ACTION_FAST_TAGS_SCAN_FINISHED.
+		 * 
+		 * Extras:
+		 * - fastScan - Poweramp will not check folders and scan files which hasn't been modified from previous scan. Based on files last modified timestamp.
+         *				 
+		 *               
+		 * - eraseTags - Poweramp will clean all tags from exisiting songs. This causes each song to be re-scanned for tags.
+		 *               Warning: as a side effect, cleans CUE tracks from user created playlists. 
+		 *               This is because scanner can't incrementaly re-scan CUE sheets, so they are deleted from DB, causing their
+		 *               deletion from user playlists as well.
+		 *               
+		 * - fullRescan - Poweramp will also check for folders/files from missing/unmounted storages and will remove them from DB. 
+		 *                Warning: removed songs also disappear from user created playlists.
+		 *                Used in Poweramp only when user specificaly goes to Settings and does Full Rescan (after e.g. SD card change).                
+		 *                                  
+		 */
+		public static final String ACTION_SCAN_DIRS = "com.maxmpz.audioplayer.ACTION_SCAN_DIRS";
+
+		/**
+		 * Poweramp Scanner action.
+		 * Secondary action, only checks songs with TAG_STATUS set to TAG_NOT_SCANNED. Useful for rescanning just songs (which are already in Poweramp DB) with editied file tag info.  
+		 *
+		 * Extras:
+		 * - fastScan - If true, scanner doesn't send ACTION_TAGS_SCAN_STARTED/ACTION_TAGS_SCAN_PROGRESS/ACTION_TAGS_SCAN_FINISHED intents, 
+		 *               just sends ACTION_FAST_TAGS_SCAN_FINISHED when done.
+		 *               It doesn't modify scanning logic otherwise.  
+		 */
+		public static final String ACTION_SCAN_TAGS = "com.maxmpz.audioplayer.ACTION_SCAN_TAGS";
+		
+
+		/**
+		 * Broadcast.
+		 * Poweramp Scanner started folders scan.
+		 * This is sticky broadcast, so Poweramp folder scanner running status can be polled via registerReceiver() return value.
+		 */
+		public static final String ACTION_DIRS_SCAN_STARTED = "com.maxmpz.audioplayer.ACTION_DIRS_SCAN_STARTED";
+		/**
+		 * Broadcast.
+		 * Poweramp Scanner finished folders scan.
+		 */
+		public static final String ACTION_DIRS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_DIRS_SCAN_FINISHED";
+		/**
+		 * Broadcast.
+		 * Poweramp Scanner started tag scan.
+		 * This is sticky broadcast, so Poweramp tag scanner running status can be polled via registerReceiver() return value.
+		 */
+		public static final String ACTION_TAGS_SCAN_STARTED = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_STARTED";
+		/**
+		 * Broadcast.
+		 * Poweramp Scanner tag scan in progess.
+		 * Extras:
+		 * - progress - 0-100 progress of scanning.
+		 */
+		public static final String ACTION_TAGS_SCAN_PROGRESS = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_PROGRESS";
+		/**
+		 * Broadcast.
+		 * Poweramp Scanner finished tag scan.
+		 * Extras:
+		 * - track_content_changed - boolean - true if at least on track has been scanned, false if no tags scanned (probably, because all files are up-to-date).
+		 */
+		public static final String ACTION_TAGS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_FINISHED";
+		/**
+		 * Broadcast.
+		 * Poweramp Scanner finished fast tag scan. Only fired when ACTION_SCAN_TAGS is called with extra fastScan = true.
+		 * Extras:
+		 * - trackContentChanged - boolean - true if at least on track has been scanned, false if no tags scanned (probably, because all files are up-to-date).
+		 */
+		public static final String ACTION_FAST_TAGS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_FAST_TAGS_SCAN_FINISHED";
+		
+		/**
+		 * Extra.
+		 * Boolean 
+		 */
+		public static final String EXTRA_FAST_SCAN = "fastScan";
+		/**
+		 * Extra.
+		 * Int.
+		 */
+		public static final String EXTRA_PROGRESS = "progress";
+		/**
+		 * Extra.
+		 * Boolean - true if at least on track has been scanned, false if no tags scanned (probably, because all files are up-to-date).
+		 */
+		public static final String EXTRA_TRACK_CONTENT_CHANGED = "trackContentChanged";	
+
+		/**
+		 * Extra.
+		 * Boolean.
+		 */
+		public static final String EXTRA_ERASE_TAGS = "eraseTags";
+		
+		/**
+		 * Extra.
+		 * Boolean.
+		 */
+		public static final String EXTRA_FULL_RESCAN = "fullRescan";
+		
+		/**
+		 * Extra.
+		 * String.
+		 */
+		public static final String EXTRA_CAUSE = "cause";
+	}
+	
+	public static final class Settings {
+		public static final String ACTION_EXPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_EXPORT_SETTINGS";
+		public static final String ACTION_IMPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_IMPORT_SETTINGS";
+
+		public static final String EXTRA_UI = "ui";
+	}
+	
+	/**
+	 * Extra.
+	 * Since: 700
+	 * Mixed.
+	 */
+	public static final String DATA = "data";
+
+	/**
+	 * Poweramp native plugin command.
+	 * Since: 700
+	 * Extras:
+	 * - pak - string - plugin package (see PACKAGE).
+	 * - cmd - int - some dsp unique command. cmd should be >= 0 (see COMMAND).
+	 * - data - byte[] - the command data serialized as byte array (see CONTENT).
+	 */
+	public static final String ACTION_NATIVE_PLUGIN_COMMAND = "com.maxmpz.audioplayer.NATIVE_PLUGIN_COMMAND";
+	
+
+	/**
+	 * Poweramp initiated broadcast. Sent by Poweramp when it loads/reloads its audio kernel and loads plugin.
+	 * In response, plugin apps should send NATIVE_PLUGIN_COMMAND to Poweramp with the initial or restored plugin parameters.
+	 * Since: 700
+	 * Extras:
+	 * - api - int - Poweramp API version (see API_VERSION)
+	 */
+	public static final String ACTION_NATIVE_PLUGIN_INIT = "com.maxmpz.audioplayer.NATIVE_PLUGIN_INIT";
 }

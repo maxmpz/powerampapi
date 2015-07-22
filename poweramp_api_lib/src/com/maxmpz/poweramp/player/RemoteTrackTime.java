@@ -66,7 +66,7 @@ public class RemoteTrackTime {
 	public void registerAndLoadStatus() {
 		IntentFilter filter = new IntentFilter(PowerampAPI.ACTION_TRACK_POS_SYNC);
 		mContext.registerReceiver(mTrackPosSyncReceiver, filter);
-		mContext.startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.POS_SYNC));		
+		mContext.startService(PowerampAPI.newAPIIntent().putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.POS_SYNC));		
 		if(mPlaying) {
 			mHandler.removeCallbacks(mTickRunnable);
 			mHandler.postDelayed(mTickRunnable, 0);
