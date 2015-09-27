@@ -237,7 +237,12 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 			mCurrentTrack = mTrackIntent.getBundleExtra(PowerampAPI.TRACK);
 			if(mCurrentTrack != null) {
 				int duration = mCurrentTrack.getInt(PowerampAPI.Track.DURATION);
-				mRemoteTrackTime.updateTrackDuration(duration); // Let ReomoteTrackTime know about current song duration. 
+				mRemoteTrackTime.updateTrackDuration(duration); // Let RemoteTrackTime know about current song duration. 
+			}
+
+			int pos = mTrackIntent.getIntExtra(PowerampAPI.Track.POSITION, -1); // Poweramp build-700+ sends position along with the track intent
+			if(pos != -1) {
+				mRemoteTrackTime.updateTrackPosition(pos);
 			}
 			
 			updateTrackUI();
@@ -464,57 +469,57 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.play:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE));
 				break;
 				
 			case R.id.pause:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PAUSE));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PAUSE));
 				break;
 
 			case R.id.prev:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS));
 				break;
 
 			case R.id.next:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT));
 				break;
 				
 			case R.id.prev_in_cat:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT));
 				break;
 
 			case R.id.next_in_cat:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT_IN_CAT));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT_IN_CAT));
 				break;
 
 			case R.id.repeat:
 				// No toast for this button just for demo.
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT).putExtra(PowerampAPI.SHOW_TOAST, false));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT).putExtra(PowerampAPI.SHOW_TOAST, false));
 				break;
 
 			case R.id.shuffle:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE));
 				break;
 
 			case R.id.repeat_all:
 				// No toast for this button just for demo.
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
 						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_ON));
 				break;
 
 			case R.id.repeat_off:
 				// No toast for this button just for demo.
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
 						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE));
 				break;
 
 			case R.id.shuffle_all:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
 						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_ALL));
 				break;
 
 			case R.id.shuffle_off:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
 						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE));
 				break;
 				
@@ -523,7 +528,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 				break;
 				
 			case R.id.play_file:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 //						.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
 						.setData(Uri.parse("file://" + ((TextView)findViewById(R.id.play_file_path)).getText().toString())));
@@ -568,15 +573,15 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	public boolean onLongClick(View v) {
 		switch(v.getId()) {
 			case R.id.play:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.STOP));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.STOP));
 				return true;
 			
 			case R.id.next:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD));
 				return true;
 				
 			case R.id.prev:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_REWIND));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_REWIND));
 				return true;
 		}
 		
@@ -589,11 +594,11 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		if(event.getAction() == MotionEvent.ACTION_UP) {
 			switch(v.getId()) {
 			case R.id.next:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD));
 				break;
 				
 			case R.id.prev:
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND));
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND));
 				break;
 			}
 		}
@@ -603,7 +608,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	
 	// Just play all library songs (starting from first).
 	private void playAllSongs() {
-		startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+		startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 				.setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
 	}
@@ -617,7 +622,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 				String name = c.getString(1);
 				Toast.makeText(this, "Playing album: " + name, Toast.LENGTH_SHORT).show();
 
-				startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 						.setData(PowerampAPI.ROOT_URI.buildUpon()
 								.appendEncodedPath("albums")
@@ -650,7 +655,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 						
 						Toast.makeText(this, "Playing artist: " + artist + " album: " + album, Toast.LENGTH_SHORT).show();
 						
-						startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+						startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND)
 								.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 								.setData(PowerampAPI.ROOT_URI.buildUpon()
 										.appendEncodedPath("artists")
@@ -689,7 +694,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 			presetString.append(name).append("=").append(value).append(";");
 		}
 		
-		startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING).putExtra(PowerampAPI.VALUE, presetString.toString()));
+		startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING).putExtra(PowerampAPI.VALUE, presetString.toString()));
 	}
 	
 	// Applies correct seekBar-to-float scaling. 
@@ -740,7 +745,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		// Apply some throttling to avoid too many intents to be generated.
 		if(ignoreThrottling || mLastSeekSentTime == 0 || System.currentTimeMillis() - mLastSeekSentTime > SEEK_THROTTLE) {
 			mLastSeekSentTime = System.currentTimeMillis();
-			startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SEEK).putExtra(PowerampAPI.Track.POSITION, position));
+			startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SEEK).putExtra(PowerampAPI.Track.POSITION, position));
 			Log.w(TAG, "sent");
 		} else {
 			Log.w(TAG, "throttled");
@@ -753,11 +758,13 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	@Override
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
-			startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET).putExtra(PowerampAPI.ID, id));
+			startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET).putExtra(PowerampAPI.ID, id));
 		} else {
 			mSettingPreset = false;
 		}
 	}
+
+
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
@@ -784,5 +791,10 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		}
 
 		mSongSeekBar.setProgress(position);
+	}
+	
+	private void startPAService(Intent intent) {
+		intent.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME);
+		startService(intent);
 	}
 }

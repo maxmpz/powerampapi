@@ -32,7 +32,7 @@ public final class PowerampAPI {
 	/**
 	 * Defines PowerampAPI version, which could be also 200 and 210 for older Poweramps.
 	 */
-	public static final int VERSION = 533;
+	public static final int VERSION = 700;
 	
 	/**
 	 * No id flag.
@@ -136,20 +136,20 @@ public final class PowerampAPI {
 		 * 	- content://com.maxmpz.audioplayer.data/... (see below)
 		 * 
 		 * # means some numeric id (track id for queries ending with /files, otherwise - appropriate category id). 
-		 * If song id (in place of #) is not specified, Poweramp plays whole list starting from the specified song,
+		 * If track id (in place of #) is not specified, Poweramp plays whole list starting from the specified track,
 		 * or from first one, or from random one in shuffle mode.
 		 * 
 		 * All queries support following params (added as URL encoded params, e.g. content://com.maxmpz.audioplayer.data/files?lim=10&flt=foo):
 		 * lim - integer - SQL LIMIT, which limits number of rows returned
 		 * flt - string - filter substring. Poweramp will return only matching rows (the same way as returned in Poweramp lists UI when filter is used).
-		 * hier - long - hierarchy folder id. Used only to play in shuffle lists/shuffle songs mode while in hierarchy folders view. This is the target folder id
+		 * hier - long - hierarchy folder id. Used only to play in shuffle lists/shuffle tracks mode while in hierarchy folders view. This is the target folder id
 		 *               which will be shuffled with the all subfolders in it as one list.
 		 * shf - integer - shuffle mode (see ShuffleMode class)
 		 * ssid - long - shuffle session id (for internal use)
 		 * 
 		 * Each /files/meta subquery returns special crafted query with some metainformation provided (it differs in each category, you can explore it by analizing the cols returned).                
 		
-		- All Songs:
+		- All tracks:
 		content://com.maxmpz.audioplayer.data/files
 		content://com.maxmpz.audioplayer.data/files/meta
 		content://com.maxmpz.audioplayer.data/files/#
@@ -279,7 +279,7 @@ public final class PowerampAPI {
 		 * - paused - boolean - (optional) default false. OPEN_TO_PLAY command starts playing the file immediately, unless "paused" extra is true.
 		 *                       (see PowerampAPI.PAUSED)
 		 * 
-		 * - pos - int - (optional) seek to this position in song before playing (see PowerampAPI.Track.POSITION)
+		 * - pos - int - (optional) seek to this position in track before playing (see PowerampAPI.Track.POSITION)
 		 */
 		public static final int OPEN_TO_PLAY = 20;
 		
@@ -433,7 +433,8 @@ public final class PowerampAPI {
 	 * Poweramp playing status changed (track started/paused/resumed/ended, playing ended).
 	 * Sticky intent.
 	 * Extras: 
-	 * - status - string - one of the STATUS_* values
+	 * - state - int - one of the STATE_* values (700+)
+	 * - status - string - one of the STATUS_* values (depricated)
 	 * - pos - int - (optional) current in-track position in seconds.
 	 * - ts - long - timestamp of the event (System.currentTimeMillis()).
 	 * - additional extras - depending on STATUS_ value (see STATUS_* description below).
@@ -521,14 +522,37 @@ public final class PowerampAPI {
 	public static final String TIMESTAMP = "ts";
 	
 	/**
-	 * STATUS_CHANGED extra. See Status class for values.
+	 * Extra. (700+)
+	 * one of STATE_*
+	 * int.
+	 */
+	public static final String STATE = "state";
+
+	/**
+	 * 700+
+	 */
+	public static final int STATE_STOPPED = 0;
+	/**
+	 * 700+
+	 */
+	public static final int STATE_PLAYING = 1; 	
+	/**
+	 * 700+
+	 */
+	public static final int STATE_PAUSED = 2;
+	
+	
+	/**
+	 * STATUS_CHANGED extra. See Status class for values. (depricated)
 	 * Int.
 	 */
+	@Deprecated
 	public static final String STATUS = "status";	
 
 	/**
-	 * STATUS extra values.
+	 * STATUS extra values. (depricated)
 	 */
+	@Deprecated
 	public static final class Status {
 		/**
 		 * STATUS_CHANGED status value - track has been started to play or has been paused.
@@ -537,19 +561,22 @@ public final class PowerampAPI {
 		 * 	track - bundle - track info 
 		 * 	paused - boolean - true if track paused, false if track resumed
 		 */
+		@Deprecated
 		public static final int TRACK_PLAYING = 1;
 		
 		/**
-		 * STATUS_CHANGED status value - track has been ended. Note, this intent will NOT be sent for just finished song IF Poweramp advances to the next song.
+		 * STATUS_CHANGED status value - track has been ended. Note, this intent will NOT be sent for just finished track IF Poweramp advances to the next track.
 		 * Additional extras:
 		 * 	track - bundle - track info 
 		 *  failed - boolean - true if track failed to play
 		 */
+		@Deprecated
 		public static final int TRACK_ENDED = 2;
 
 		/**
 		 * STATUS_CHANGED status value - Poweramp finished playing some list and stopped.
 		 */
+		@Deprecated
 		public static final int PLAYING_ENDED = 3;
 	}
 	
@@ -662,37 +689,37 @@ public final class PowerampAPI {
 		public static final String FILE_TYPE = "fileType";
 	
 		/**
-		 * Song file path.
+		 * Track file path.
 		 * String
 		 */
 		public static final String PATH = "path";
 		
 		/**
-		 * Song title.
+		 * Track title.
 		 * String
 		 */
 		public static final String TITLE = "title";
 		
 		/**
-		 * Song album.
+		 * Track album.
 		 * String.
 		 */
 		public static final String ALBUM = "album";
 		
 		/**
-		 * Song artist.
+		 * Track artist.
 		 * String.
 		 */
 		public static final String ARTIST = "artist";
 		
 		/**
-		 * Song duration in seconds.
+		 * Track duration in seconds.
 		 * Int.
 		 */
 		public static final String DURATION = "dur";
 		
 		/**
-		 * Position in song in seconds.
+		 * Position in track in seconds.
 		 * Int.
 		 */
 		public static final String POSITION = "pos";
@@ -710,29 +737,35 @@ public final class PowerampAPI {
 		public static final String LIST_SIZE = "listSize";
 
 		/**
-		 * Song sample rate.
+		 * Track sample rate.
 		 * Int.
 		 */
 		public static final String SAMPLE_RATE = "sampleRate";
 		
 		/**
-		 * Song number of channels.
+		 * Track number of channels.
 		 * Int.
 		 */
 		public static final String CHANNELS = "channels";
 		
 		/**
-		 * Song average bitrate.
+		 * Track average bitrate.
 		 * Int.
 		 */
 		public static final String BITRATE = "bitRate";
 		
 		/**
-		 * Resolved codec name for the song.
+		 * Resolved codec name for the track.
 		 * Int.
 		 */
 		public static final String CODEC = "codec";
 		
+		/**
+		 * Track bits per sample.
+		 * Int.
+		 */
+		public static final String BITS_PER_SAMPLE = "bitsPerSample";
+
 		/**
 		 * Track flags.
 		 * Int.

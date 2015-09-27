@@ -23,14 +23,14 @@ public class PluginMsgHelper {
 	public static int MAX_SIZE_BYTES	 = MAX_SIZE_INTS * 4;
 	public static int HEADER_SIZE_BYTES  = HEADER_SIZE_INTS * 4; 
 	
-	public static int INDEX_PLUGIN_ID  = 0;
-	public static int INDEX_PLUGIN_ID_INT = 0;
-	public static int INDEX_TAG        = 4 * 4; // 1
-	public static int INDEX_MSG_ID     = 5 * 4; // 2
-	public static int INDEX_FLAGS      = 6 * 4; // 3
-	public static int INDEX_DATA_SIZE  = 7 * 4; // 4
-	public static int INDEX_DATA_START = 8 * 4;
-	public static int INDEX_DATA_START_INT = 8;
+	public static int IX_PLUGIN_ID      = 0;
+	public static int IX_PLUGIN_ID_INT  = 0;
+	public static int IX_TAG            = 4 * 4; // 1
+	public static int IX_MSG_ID         = 5 * 4; // 2
+	public static int IX_FLAGS          = 6 * 4; // 3
+	public static int IX_DATA_SIZE      = 7 * 4; // 4
+	public static int IX_DATA           = 8 * 4;
+	public static int IX_DATA_INT       = 8;
 	
 	public static int FLAG_SYNC_NO_CONTEXT =  0x0001;
 	
@@ -45,16 +45,16 @@ public class PluginMsgHelper {
 	private static void writeHeader(int[] buf, int pluginID, int msgID, int flags, int desiredSizeInts) {
 		buf[0] = pluginID;
 		// 3 ints are zeros (reserved for Poweramp msg header).
-		buf[INDEX_TAG / 4] = MSG_TAG;
-		buf[INDEX_MSG_ID / 4] = msgID;
-		buf[INDEX_FLAGS / 4] = flags;
-		buf[INDEX_DATA_SIZE / 4] = desiredSizeInts * 4;
+		buf[IX_TAG / 4] = MSG_TAG;
+		buf[IX_MSG_ID / 4] = msgID;
+		buf[IX_FLAGS / 4] = flags;
+		buf[IX_DATA_SIZE / 4] = desiredSizeInts * 4;
 	}
 
 	private static void writeHeader(ByteBuffer buf, int pluginID, int msgID, int flags, int desiredSizeBytes) {
 		buf.putInt(pluginID);
 		// 3 ints are zeros (reserved for Poweramp msg header).
-		buf.position(INDEX_TAG);
+		buf.position(IX_TAG);
 		buf.putInt(MSG_TAG);
 		buf.putInt(msgID);
 		buf.putInt(flags);
