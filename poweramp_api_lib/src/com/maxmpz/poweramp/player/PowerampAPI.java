@@ -951,7 +951,7 @@ public final class PowerampAPI {
 		
 		/**
 		 * Extra.
-		 * String.
+		 * String - cause of the scan (e.g. user request, auto scan, etc.). Useful for debugging, visible in logcat
 		 */
 		public static final String EXTRA_CAUSE = "cause";
 	}

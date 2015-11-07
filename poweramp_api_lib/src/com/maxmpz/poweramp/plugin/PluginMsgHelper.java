@@ -17,6 +17,7 @@ public class PluginMsgHelper {
 		}
 	}
 	
+	// sync with plugininterface.h
 	public static int MSG_TAG 			 = 0xF1F2F3F4; 
 	public static int HEADER_SIZE_INTS   = 8;
 	public static int MAX_SIZE_INTS		 = 1024; 
@@ -32,7 +33,18 @@ public class PluginMsgHelper {
 	public static int IX_DATA           = 8 * 4;
 	public static int IX_DATA_INT       = 8;
 	
-	public static int FLAG_SYNC_NO_CONTEXT =  0x0001;
+	public static int FLAG_TYPE_MASK            = 0xF000;
+	public static int FLAG_TYPE_SYNC_NO_CONTEXT = 0x1000;
+	public static int FLAG_TYPE_SEND_OUTSIDE    = 0x2000;
+	public static int FLAG_TYPE_BROADCAST       = 0x4000;
+	
+	public static int FLAG_BROADCAST_GROUP_MASK = 0x003F;
+	
+	// Volume updates
+	public static int PA_BROADCAST_VOLUME       = 1;
+	
+	public static int MSG_ID_BROADCAST          = -1;
+	
 	
 	public static int calcBufferSizeInts(int desiredSizeInts) {
 		return HEADER_SIZE_INTS + desiredSizeInts; 
