@@ -668,4 +668,16 @@ public interface TableDefs {
 		 */
 		public static final String PRESET_ID = "preset_id";
 	}
+	
+	public class ReverbPresets {
+		public static final String TABLE = "reverb_presets";
+		
+		public static final String _ID = TABLE + "._id";
+	
+	    public static final String _DATA = TABLE + "._data";
+	    
+	    public static final String NAME = TABLE + ".name";
+	}
+
+	
 }
