@@ -430,7 +430,7 @@ public final class PowerampAPI {
 	public static final String ACTION_AA_CHANGED = "com.maxmpz.audioplayer.AA_CHANGED";
 
 	/**
-	 * Poweramp playing status changed (track started/paused/resumed/ended, playing ended).
+	 * Poweramp playing status changed (paused/resumed/ended).
 	 * Sticky intent.
 	 * Extras: 
 	 * - state - int - one of the STATE_* values (700+)

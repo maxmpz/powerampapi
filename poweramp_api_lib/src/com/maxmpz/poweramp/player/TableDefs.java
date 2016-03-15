@@ -160,6 +160,11 @@ public interface TableDefs {
     	/*
     	 * Int.
     	 */
+    	public static final String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
+
+    	/*
+    	 * Int.
+    	 */
     	public static final String COMPOSER_ID = TABLE + ".composer_id";
     	
     	/*
@@ -323,7 +328,8 @@ public interface TableDefs {
     	/*
     	 * Int
     	 */
-    	//public static final String NUM_FILES = TABLE + ".num_files";
+    	public static final String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
+    	
     	/*
     	 * Int.
     	 */
@@ -340,9 +346,6 @@ public interface TableDefs {
     	
     	// Albums uses special where for cue sources, thus just count files is enough.
 		public static final String COUNT_FILES = "count(folder_files._id)";
-//		public static final String COUNT_FILES_RAW = "(SELECT COUNT(*) FROM folder_files WHERE album_id=albums._id)";
-//		public static final String COUNT_FILES_NON_CUE_SOURCE = "(SELECT COUNT(*) FROM folder_files WHERE album_id=albums._id AND folder_files.cue_folder_id IS NULL)";
-//		public static final String COUNT_FILES_NON_CUE_SOURCE = "count(folder_files._id)";
 	}
 	
 	
@@ -367,10 +370,12 @@ public interface TableDefs {
     	 * Int.
     	 */
     	public static final String SSID = TABLE + ".ssid";
+    	
     	/*
     	 * Int.
     	 */
     	public static final String PLAYED_AT = TABLE + ".played_at";
+    	
     	/*
     	 * First seen time.
     	 * Int.
@@ -382,6 +387,46 @@ public interface TableDefs {
 	}
 	
 
+	// NOTE: this is similar to Artists
+	public interface AlbumArtists {
+		public static final String TABLE = "album_artists";
+		
+		// Fields.
+		
+		public static final String _ID = TABLE + "._id";
+		
+    	/*
+    	 * String.
+    	 */
+    	public static final String ALBUM_ARTIST = "album_artist";
+
+    	/*
+    	 * String.
+    	 */
+    	public static final String ALBUM_ARTIST_SORT = "album_artist_sort";
+
+    	/*
+    	 * Int.
+    	 */
+    	public static final String SSID = TABLE + ".ssid";
+    	
+    	/*
+    	 * Int.
+    	 */
+    	public static final String PLAYED_AT = TABLE + ".played_at";
+    	
+    	/*
+    	 * First seen time.
+    	 * Int.
+    	 */
+    	public static final String CREATED_AT = TABLE + ".created_at";
+
+    	// Artists uses special where for cue sources, thus just count files is enough.
+		public static final String COUNT_FILES = "count(folder_files._id)";
+	}
+	
+
+	// NOTE: this is album => artist 1:1 binding table
 	public interface ArtistAlbums {
 		public static final String TABLE = "artist_albums";
 		
@@ -398,20 +443,17 @@ public interface TableDefs {
     	 * Int.
     	 */
     	public static final String ALBUM_ID = TABLE + ".album_id";
-
-    	/*
-    	 * Int
-    	 */
-    	//public static final String NUM_FILES = TABLE + ".num_files";
     	
     	/*
     	 * Int.
     	 */
     	public static final String SSID = TABLE + ".ssid";
+
     	/*
     	 * Int.
     	 */
     	public static final String PLAYED_AT = TABLE + ".played_at";
+    	
     	/*
     	 * First seen time.
     	 * Int.
