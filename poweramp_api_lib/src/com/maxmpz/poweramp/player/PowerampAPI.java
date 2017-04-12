@@ -77,6 +77,7 @@ public final class PowerampAPI {
 	 * Commonm extras:
 	 * - beep - boolean - (optional) if true, Poweramp will beep on playback command
 	 */
+	@SuppressWarnings("hiding")
 	public static final class Commands {
 		/**
 		 * Extras:
@@ -644,6 +645,7 @@ public final class PowerampAPI {
 	/**
 	 * STATUS_CHANGED track extra fields.
 	 */
+	@SuppressWarnings("hiding")
 	public static final class Track {
 		/**
 		 * Id of the current track.

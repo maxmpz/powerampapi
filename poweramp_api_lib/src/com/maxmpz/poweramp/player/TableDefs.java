@@ -47,6 +47,8 @@ public interface TableDefs {
     	public static final String VIEW_RECENTLY_ADDED = "files_recently_added";
     	public static final String VIEW_RECENTLY_ADDED_FS = "files_recently_added_fs";
     	public static final String VIEW_RECENTLY_PLAYED = "files_recently_played";
+
+    	public static final String RAW_TABLE = "raw_files";
     	
     	// Fields.
     	

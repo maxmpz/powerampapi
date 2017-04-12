@@ -68,7 +68,7 @@ public abstract class BaseWidgetUpdaterService extends Service {
 	private static SharedPreferences sCachedPrefs; // Access this only from gui thread.
 	
 	private LocalBinder mBinder = new LocalBinder(this);
-	private boolean mIsDestroyed;
+	protected boolean mIsDestroyed;
 	private PowerManager mPowerManager;
 	private boolean mBound;
 	
@@ -239,7 +239,7 @@ public abstract class BaseWidgetUpdaterService extends Service {
 		
 		WidgetUpdateData data = null;
 		for(IWidgetUpdater prov : mProviders) {
-			prov.pushUpdate(this, prefs, ids, sMediaRemoved, sNewTrackPending, updateByOs, data);
+			data = prov.pushUpdate(this, prefs, ids, sMediaRemoved, sNewTrackPending, updateByOs, data);
 		}
 		
 		if(data != null && data.track != null && !sUpdatedOnce) {

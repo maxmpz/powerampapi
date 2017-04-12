@@ -38,17 +38,17 @@ public class RemoteTrackTime {
 	private static final String TAG = "RemoteTrackTime";
 	private static final boolean LOG = false; // Make it false for production.
 
-	private static int UPDATE_DELAY = 1000;
+	private static final int UPDATE_DELAY = 1000;
 	
 	private Context mContext;
 	//private int mDuration;
-	private int mPosition;
+	int mPosition;
 	
-	private long mStartTimeMs;
-	private int mStartPosition;
+	long mStartTimeMs;
+	int mStartPosition;
 	private boolean mPlaying;
 	
-	private Handler mHandler = new Handler();
+	Handler mHandler = new Handler();
 	
 	
 	public interface TrackTimeListener {
@@ -56,7 +56,7 @@ public class RemoteTrackTime {
 		public void onTrackPositionChanged(int position);
 	}
 	
-	private TrackTimeListener mTrackTimeListener;
+	TrackTimeListener mTrackTimeListener;
 	
 	
 	public RemoteTrackTime(Context context) {
@@ -114,7 +114,7 @@ public class RemoteTrackTime {
 		}
 	}
 	
-	private Runnable mTickRunnable = new Runnable() {
+	Runnable mTickRunnable = new Runnable() {
 		public void run() {
 			mPosition = (int)(System.currentTimeMillis() - mStartTimeMs + 500) / 1000 + mStartPosition; 
 			if(LOG) Log.w(TAG, "mTickRunnable mPosition=" + mPosition);
