@@ -45,7 +45,7 @@ public interface TableDefs {
     	public static final String VIEW_MOST_PLAYED = "files_most_played";
     	public static final String VIEW_TOP_RATED = "files_most_played";
     	public static final String VIEW_RECENTLY_ADDED = "files_recently_added";
-    	public static final String VIEW_RECENTLY_ADDED_FS = "files_recently_added_fs";
+    	public static final String VIEW_RECENTLY_ADDED_FS = "files_recently_added_fs"; // REVISIT
     	public static final String VIEW_RECENTLY_PLAYED = "files_recently_played";
 
     	public static final String RAW_TABLE = "raw_files";
@@ -241,19 +241,19 @@ public interface TableDefs {
 		 * Full path of the folder.
 		 * String.
 		 */
-		public static final String PATH = TABLE + ".path";
+		public static final String PATH = "path"; //TABLE + ".path";
 
 		/*
 		 * Folder album art/thumb image (short name).
 		 * String.
 		 */
-		public static final String THUMB = TABLE + ".thumb";
+		public static final String THUMB = "thumb";//TABLE + ".thumb";
 
 		/*
 		 * One of the THUMB_* constants.
 		 * Int.
 		 */
-		public static final String THUMB_STATUS = TABLE + ".thumb_status";
+		public static final String THUMB_STATUS = "thumb_status"; //TABLE + ".thumb_status";
 
 		/*
 		 * Number of files in a folder.
@@ -307,6 +307,16 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final String CREATED_AT = TABLE + ".created_at";
+		
+	    /**
+	     * tag_status - some jpeg/png exists for dir
+	     */
+		public static final int THUMB_EXISTS_IMAGE = 10;
+
+		/**
+		 * tag_status - no thumbs for dir detected
+		 */
+	    public static final int THUMB_NO_THUMB = 0;
 	}
 	
 	
