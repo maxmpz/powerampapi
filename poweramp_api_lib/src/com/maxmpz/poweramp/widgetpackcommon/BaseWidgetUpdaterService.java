@@ -263,8 +263,7 @@ public abstract class BaseWidgetUpdaterService extends Service {
 		return context.getPackageName() + "_appwidgets";
 	}
 	
-	@SuppressLint({ "WorldWriteableFiles", "WorldReadableFiles" })
 	private static SharedPreferences getGlobalSharedPreferences(Context context) {
-        return context.getSharedPreferences(getGlobalSharedPreferencesName(context), Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE);
+        return context.getSharedPreferences(getGlobalSharedPreferencesName(context), 0/*Context.MODE_WORLD_READABLE | Context.MODE_WORLD_WRITEABLE*/);
 	}
 }
