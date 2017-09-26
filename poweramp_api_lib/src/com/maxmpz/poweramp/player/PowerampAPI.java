@@ -848,8 +848,8 @@ public final class PowerampAPI {
 		 * Poweramp Scanner is a IntentService, this means multiple scan requests at the same time (or during another scans) are queued.  
 		 * ACTION_SCAN_DIRS actions are prioritized and executed before ACTION_SCAN_TAGS.
 		 * 
-		 * Poweramp main scan action, which scans either incrementally or from scratch the set of folders, which is configured by user in Poweramp Settings.
-		 * Poweramp will always do ACTION_SCAN_TAGS automatically after ACTION_SCAN_DIRS is finished and some changes are required to song tags in DB.
+		 * Poweramp main scan action scans the set of folders either incrementally or from scratch, the folders are configured by user in Poweramp Settings.
+		 * NOTE: Poweramp will always do ACTION_SCAN_TAGS automatically after ACTION_SCAN_DIRS is finished and some changes are required to song tags in DB.
 		 * Unless, fullRescan specified, Poweramp will not remove songs if they are missing from filesystem due to unmounted storages.
 		 * Normal menu => Rescan calls ACTION_SCAN_DIRS without extras
 		 * 
