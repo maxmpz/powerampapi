@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2013 Maksim Petrov
+Copyright (C) 2011-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -530,6 +530,11 @@ public final class PowerampAPI {
 	public static final String STATE = "state";
 
 	/**
+	 * 705+
+	 */
+	public static final int STATE_NO_STATE = -1;
+	
+	/**
 	 * 700+
 	 */
 	public static final int STATE_STOPPED = 0;
@@ -544,7 +549,7 @@ public final class PowerampAPI {
 	
 	
 	/**
-	 * STATUS_CHANGED extra. See Status class for values. (depricated)
+	 * STATUS_CHANGED extra. See Status class for values. Depricated
 	 * Int.
 	 */
 	@Deprecated
