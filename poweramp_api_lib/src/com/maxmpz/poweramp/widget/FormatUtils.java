@@ -22,20 +22,21 @@ package com.maxmpz.poweramp.widget;
 
 import android.database.CharArrayBuffer;
 
-
-public class WidgetUtilsLite {
+// REVISIT: renamce/move to better place
+public class FormatUtils {
 	private static StringBuilder sFormatBuilder2 = new StringBuilder();
+	private static final char[] NO_TIME = new char[]{ '-', ':', '-', '-' };
 	
 	public static void formatTimeBuffer(CharArrayBuffer buffer, int secs, boolean showPlaceholderForZero) {
 		if(secs == 0 && showPlaceholderForZero) {
-			buffer.data = new char[]{ '-', ':', '-', '-' };
-			buffer.sizeCopied = buffer.data.length;
+			int len = buffer.data.length >= NO_TIME.length ? NO_TIME.length : buffer.data.length;
+			System.arraycopy(NO_TIME, 0, buffer.data, 0, len);
+			buffer.sizeCopied = len;
 			return;
 		}
 		
 		sFormatBuilder2.setLength(0);
 		int seconds = secs % 60;
-		
 		
 		if(secs < 3600) { // min:sec
 			int minutes = secs / 60;
@@ -58,6 +59,5 @@ public class WidgetUtilsLite {
 
 		int len = buffer.sizeCopied = buffer.data.length > sFormatBuilder2.length() ? sFormatBuilder2.length() : buffer.data.length;
 		sFormatBuilder2.getChars(0, len, buffer.data, 0);
-		
 	}
 }

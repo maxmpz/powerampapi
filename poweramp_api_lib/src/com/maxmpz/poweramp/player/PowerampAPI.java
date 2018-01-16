@@ -318,6 +318,11 @@ public final class PowerampAPI {
 	}
 	
 	/**
+	 * Minimum allowed time between seek commands
+	 */
+	public static int MIN_TIME_BETWEEN_SEEKS_MS = 200;
+	
+	/**
 	 * Extra.
 	 * Mixed.
 	 */
