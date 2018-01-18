@@ -22,7 +22,6 @@ package com.maxmpz.poweramp.apiexample;
 
 import java.io.File;
 import java.io.FileFilter;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -54,11 +53,10 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.RemoteTrackTime;
 import com.maxmpz.poweramp.player.RemoteTrackTime.TrackTimeListener;
-import com.maxmpz.poweramp.widget.WidgetUtilsLite;
+import com.maxmpz.poweramp.widget.FormatUtils;
 
 public class MainActivity extends Activity implements OnClickListener, OnLongClickListener, OnTouchListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener, TrackTimeListener {
 	private static final String TAG = "MainActivity";
@@ -774,7 +772,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	// Callback from RemoteTrackTime. Updates durations (both seekbar max value and duration label).
 	@Override
 	public void onTrackDurationChanged(int duration) {
-		WidgetUtilsLite.formatTimeBuffer(mDurationBuffer, duration, true);
+		FormatUtils.formatTimeBuffer(mDurationBuffer, duration, true);
 		mDuration.setText(mDurationBuffer.data, 0, mDurationBuffer.sizeCopied);
 		
 		mSongSeekBar.setMax(duration);
@@ -783,7 +781,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	// Callback from RemoteTrackTime. Updates current song progress. Ensures extra event is not processed (mUpdatingSongSeekBar).
 	@Override
 	public void onTrackPositionChanged(int position) {
-		WidgetUtilsLite.formatTimeBuffer(mElapsedBuffer, position, false);
+		FormatUtils.formatTimeBuffer(mElapsedBuffer, position, false);
 		mElapsed.setText(mElapsedBuffer.data, 0, mElapsedBuffer.sizeCopied);
 		
 		if(mSongSeekBar.isPressed()) {
