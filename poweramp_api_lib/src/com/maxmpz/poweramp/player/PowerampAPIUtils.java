@@ -31,31 +31,31 @@ public class PowerampAPIUtils {
 		return unknown;
 	}
 	
-	/**
-	 * Unpacks shuffle mode from packed repeat and shuffle integer
-	 * @param packedRepeatShuffle
-	 * @return
-	 */
-	public static int unpackShuffle(int packedRepeatShuffle) {
-		return packedRepeatShuffle & PACKED_PLAYING_MODE_MASK;
-	}
-	
-	/**
-	 * Unpacks repeat mode from packed repeat and shuffle integer
-	 * @param packedRepeatShuffle
-	 * @return
-	 */
-	public static int unpackRepeat(int packedRepeatShuffle) {
-		return (packedRepeatShuffle >> PACKED_PLAYING_MODE_SHUFFLE_SHIFT) & PACKED_PLAYING_MODE_MASK;
-	}
-	
-	/**
-	 * Packs both repeat and shuffle into one integer
-	 * @param repeat
-	 * @param shuffle
-	 * @return
-	 */
-	public static int packRepeatShuffle(int repeat, int shuffle) {
-		return (repeat & PACKED_PLAYING_MODE_MASK) | (shuffle & PACKED_PLAYING_MODE_MASK) << PACKED_PLAYING_MODE_SHUFFLE_SHIFT;
-	}
+//	/**
+//	 * Unpacks shuffle mode from packed repeat and shuffle integer
+//	 * @param packedRepeatShuffle
+//	 * @return
+//	 */
+//	public static int unpackShuffle(int packedRepeatShuffle) {
+//		return packedRepeatShuffle & PACKED_PLAYING_MODE_MASK;
+//	}
+//	
+//	/**
+//	 * Unpacks repeat mode from packed repeat and shuffle integer
+//	 * @param packedRepeatShuffle
+//	 * @return
+//	 */
+//	public static int unpackRepeat(int packedRepeatShuffle) {
+//		return (packedRepeatShuffle >> PACKED_PLAYING_MODE_SHUFFLE_SHIFT) & PACKED_PLAYING_MODE_MASK;
+//	}
+//	
+//	/**
+//	 * Packs both repeat and shuffle into one integer
+//	 * @param repeat
+//	 * @param shuffle
+//	 * @return
+//	 */
+//	public static int packRepeatShuffle(int repeat, int shuffle) {
+//		return (repeat & PACKED_PLAYING_MODE_MASK) | (shuffle & PACKED_PLAYING_MODE_MASK) << PACKED_PLAYING_MODE_SHUFFLE_SHIFT;
+//	}
 }
