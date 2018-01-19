@@ -21,7 +21,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.apiexample;
 
 import java.util.regex.Pattern;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -49,13 +48,12 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.maxmpz.poweramp.player.PowerampAPI;
 
 public class EqActivity extends Activity implements OnClickListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener {
 	private static final String TAG = "MainActivity";
 
-	private Intent mEquIntent;
+	Intent mEquIntent;
 	private boolean mEquBuilt;
 
 	private boolean mSettingEqu;
@@ -63,6 +61,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	private boolean mSettingPreset;
 	
 	/** Called when the activity is first created. */
+    @SuppressWarnings("resource")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +73,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
         
         // Create and bind spinner which binds to available PowerAMP presets.
         Spinner presetSpinner = (Spinner)findViewById(R.id.preset_spinner);
-        Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("eq_presets").build(), 
+		Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("eq_presets").build(), 
         		new String[] { "_id", "name", "preset" }, null, null, "preset, name");
         startManagingCursor(c);
         // Add first empty item to the merged cursor via matrix cursor with single row.
@@ -183,7 +182,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 	};
 
-	private void updateEqu() {
+	void updateEqu() {
 		if(mEquIntent == null) {
 			return;
 		}
@@ -316,7 +315,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 	
-	private void debugDumpEquIntent(Intent intent) {
+	void debugDumpEquIntent(Intent intent) {
 		if(intent != null) {
 			String presetName = intent.getStringExtra(PowerampAPI.NAME);
 			String presetString = intent.getStringExtra(PowerampAPI.VALUE);
