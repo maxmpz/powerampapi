@@ -252,8 +252,9 @@ public abstract class BaseWidgetUpdaterService extends Service {
 		if(LOG) Log.w(TAG, "update done ");
 	}
 
-	public synchronized static SharedPreferences getCachedSharedPreferences(Context context) {
+	public static SharedPreferences getCachedSharedPreferences(Context context) {
 		if(sCachedPrefs == null) {
+			// REVISIT: try to get preferences from Application itself
 			sCachedPrefs = getGlobalSharedPreferences(context.getApplicationContext());
 		}
 		return sCachedPrefs;
