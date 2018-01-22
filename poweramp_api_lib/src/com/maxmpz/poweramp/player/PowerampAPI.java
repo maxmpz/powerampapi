@@ -39,6 +39,8 @@ public final class PowerampAPI {
 	 */
 	public static final int NO_ID = 0;
 	
+	public static final long RAW_TRACK_ID = -2L;
+	
 	public static final String AUTHORITY = "com.maxmpz.audioplayer.data";
 	
 	public static final Uri ROOT_URI = new Uri.Builder().scheme("content").authority(AUTHORITY).build();
