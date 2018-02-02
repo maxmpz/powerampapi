@@ -653,6 +653,15 @@ public final class PowerampAPI {
 		public static final int REPEAT_SONG = 3;	
 	}
 	
+	/**
+	 * vis extras values.
+	 */
+	public static final class VisMode {
+		public static final int VIS_NONE = 0;
+		public static final int VIS_W_UI = 1; // Visualization with UI
+		public static final int VIS_FULL_SCREEN = 2;
+	}
+
 	
 	/**
 	 * STATUS_CHANGED track extra fields.
