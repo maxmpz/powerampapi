@@ -61,10 +61,10 @@ import com.maxmpz.poweramp.widget.FormatUtils;
 public class MainActivity extends Activity implements OnClickListener, OnLongClickListener, OnTouchListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener, TrackTimeListener {
 	private static final String TAG = "MainActivity";
 
-	private Intent mTrackIntent;
+	Intent mTrackIntent;
 	private Intent mAAIntent;
 	private Intent mStatusIntent;
-	private Intent mPlayingModeIntent;
+	Intent mPlayingModeIntent;
 	
 	private Bundle mCurrentTrack;
 	
@@ -228,7 +228,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		}
 	};
 
-	private void processTrackIntent() {
+	void processTrackIntent() {
 		mCurrentTrack = null;
 		
 		if(mTrackIntent != null) {
@@ -248,6 +248,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	}
 
 	private BroadcastReceiver mStatusReceiver = new BroadcastReceiver() {
+		@SuppressWarnings("synthetic-access")
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			mStatusIntent = intent;
@@ -302,7 +303,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		((TextView)findViewById(R.id.path)).setText("");
 	}
 	
-	private void updateStatusUI() {
+	void updateStatusUI() {
 		Log.w(TAG, "updateStatusUI");
 		if(mStatusIntent != null) {
 			boolean paused = true;
@@ -331,7 +332,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	}
 
 	// Updates shuffle/repeat UI.
-	private void updatePlayingModeUI() {
+	void updatePlayingModeUI() {
 		Log.w(TAG, "updatePlayingModeUI");
 		if(mPlayingModeIntent != null) {
 			int shuffle = mPlayingModeIntent.getIntExtra(PowerampAPI.SHUFFLE, -1);
@@ -396,6 +397,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     	}
     	return "";
     }
+    
     @SuppressWarnings("serial")
 	private static class FileFoundException extends RuntimeException {
     	File mFile;
@@ -403,7 +405,8 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
     		mFile = file;
     	}
     }
-	private void findFirstMP3InFolder(File dir) {
+	
+    void findFirstMP3InFolder(File dir) {
 		dir.listFiles(new FileFilter() {
 			@Override
 			public boolean accept(File child) {
@@ -420,7 +423,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		});
 	}
 
-	private void updateAlbumArt() {
+	void updateAlbumArt() {
 		Log.w(TAG, "updateAlbumArt");
 		String directAAPath = mAAIntent.getStringExtra(PowerampAPI.ALBUM_ART_PATH);
 		
@@ -441,7 +444,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		}
 	}
 
-	private void debugDumpStatusIntent(Intent intent) {
+	void debugDumpStatusIntent(Intent intent) {
 		if(intent != null) {
 			int status = intent.getIntExtra(PowerampAPI.STATUS, -1);
 			boolean paused = intent.getBooleanExtra(PowerampAPI.PAUSED, false);
@@ -452,7 +455,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		}
 	}
 
-	private void debugDumpPlayingModeIntent(Intent intent) {
+	void debugDumpPlayingModeIntent(Intent intent) {
 		if(intent != null) {
 			int shuffle = intent.getIntExtra(PowerampAPI.SHUFFLE, -1);
 			int repeat = intent.getIntExtra(PowerampAPI.REPEAT, -1);
@@ -699,9 +702,9 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	private float seekBarToValue(String name, int progress) {
 		float value;
 		if("preamp".equals(name) || "bass".equals(name) || "treble".equals(name)) {
-			value = (float)progress / 100.f;
+			value = progress / 100.f;
 		} else {
-			value = (float)(progress - 100) / 100.f;
+			value = (progress - 100) / 100.f;
 		}
 		return value;
 	}
