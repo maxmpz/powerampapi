@@ -481,7 +481,7 @@ public final class PowerampAPI {
 	public static final String ACTION_EQU_CHANGED = "com.maxmpz.audioplayer.EQU_CHANGED";
 	
 	/**
-	 * Special actions for com.maxmpz.audioplayer.PlayerUIActivity only.
+	 * Special actions for com.maxmpz.audioplayer.PlayListActivity only.
 	 */
 	public static final String ACTION_SHOW_CURRENT = "com.maxmpz.audioplayer.ACTION_SHOW_CURRENT";
 	public static final String ACTION_SHOW_LIST  = "com.maxmpz.audioplayer.ACTION_SHOW_LIST";
