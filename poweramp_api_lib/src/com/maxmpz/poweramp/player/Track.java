@@ -2,6 +2,7 @@ package com.maxmpz.poweramp.player;
 
 import static junit.framework.Assert.assertEquals;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,62 +13,64 @@ import com.maxmpz.poweramp.player.TableDefs;
 // NOTE: ensure Track is read-only, except few special cases, like tag-scanned updates or ratings
 // This means, fields should be either private + getter or "public final"
 // REVISIT: check threaded access, esp. to changeable vars
-// TODO: make track independent from audioplayer
 // OPTIONS:
 // - expose some base track POJO, and internally extended track?
 //   - problem with back casting POJO into Track (not guaranteed to be Track?)
 // - use just POJO + static app specific helper (+ move some of that code somewhere else)
-public final class Track {
+public class Track {
 	private static final String TAG = "Track";
 	private static final boolean LOG = false;
 	private static final boolean DEBUG_CHECKS = true;
 
 	private static final boolean DEBUG_CHECK_THREADS = true;
 	private static final boolean DEBUG_TESTS = false;
-	
+
 	//private static final String[] COLS_NAME_PARENT = new String[]{ "name", "parent_name" };
 	//private static final String[] COLS_NAME = new String[]{ "name" };
+	
+	// Sent with msg_player_track_changed. Sync with values-player.xml
+	public static final int TRACK_CHANGED_SAME_UPDATED = 1;
 
 	// Bitset. Sync with rgg.h
 	public static final int PA_RG_TYPE_NONE  = 0;
 	public static final int PA_RG_TYPE_ALBUM = 1;
 	public static final int PA_RG_TYPE_TRACK = 2;
-	
+
 	// Matches avcodec.h SampleFormat enum.
 
-    public static final int PA_SAMPLE_FMT_NONE     = -1;
-    public static final int PA_SAMPLE_FMT_U8       = 0;              ///< unsigned 8 bits
-    public static final int PA_SAMPLE_FMT_S16      = 1;             ///< signed 16 bits
-    public static final int PA_SAMPLE_FMT_S32      = 2;             ///< signed 32 bits
-    public static final int PA_SAMPLE_FMT_FLT      = 3;             ///< float
-    public static final int PA_SAMPLE_FMT_DBL      = 4;             ///< double
-    public static final int PA_SAMPLE_FMT_U8P      = 5;         ///< unsigned 8 bits, planar
-    public static final int PA_SAMPLE_FMT_S16P     = 6;        ///< signed 16 bits, planar
-    public static final int PA_SAMPLE_FMT_S32P     = 7;        ///< signed 32 bits, planar
-    public static final int PA_SAMPLE_FMT_FLTP     = 8;        ///< float, planar
-    public static final int PA_SAMPLE_FMT_DBLP     = 9;        ///< double, planar
-    public static final int PA_SAMPLE_FMT_S24   = 10;         // packed 24bit
-    public static final int PA_SAMPLE_FMT_S8_24 = 11;       // Android Q8.23
-    
+	public static final int PA_SAMPLE_FMT_NONE     = -1;
+	public static final int PA_SAMPLE_FMT_U8       = 0;              ///< unsigned 8 bits
+	public static final int PA_SAMPLE_FMT_S16      = 1;             ///< signed 16 bits
+	public static final int PA_SAMPLE_FMT_S32      = 2;             ///< signed 32 bits
+	public static final int PA_SAMPLE_FMT_FLT      = 3;             ///< float
+	public static final int PA_SAMPLE_FMT_DBL      = 4;             ///< double
+	public static final int PA_SAMPLE_FMT_U8P      = 5;         ///< unsigned 8 bits, planar
+	public static final int PA_SAMPLE_FMT_S16P     = 6;        ///< signed 16 bits, planar
+	public static final int PA_SAMPLE_FMT_S32P     = 7;        ///< signed 32 bits, planar
+	public static final int PA_SAMPLE_FMT_FLTP     = 8;        ///< float, planar
+	public static final int PA_SAMPLE_FMT_DBLP     = 9;        ///< double, planar
+	public static final int PA_SAMPLE_FMT_S24   = 10;         // packed 24bit
+	public static final int PA_SAMPLE_FMT_S8_24 = 11;       // Android Q8.23
 
-    //#define AV_CH_FRONT_LEFT             0x00000001
-    //#define AV_CH_FRONT_RIGHT            0x00000002
-    public static final long AV_CH_FRONT_LEFT =             0x00000001;
-    public static final long AV_CH_FRONT_RIGHT =            0x00000002; 
-    
-    // #define AV_CH_LAYOUT_STEREO            (AV_CH_FRONT_LEFT|AV_CH_FRONT_RIGHT)
-    public static final long AV_CH_LAYOUT_STEREO = AV_CH_FRONT_LEFT | AV_CH_FRONT_RIGHT;
-    
-	
+
+	//#define AV_CH_FRONT_LEFT             0x00000001
+	//#define AV_CH_FRONT_RIGHT            0x00000002
+	public static final long AV_CH_FRONT_LEFT =             0x00000001;
+	public static final long AV_CH_FRONT_RIGHT =            0x00000002; 
+
+	// #define AV_CH_LAYOUT_STEREO            (AV_CH_FRONT_LEFT|AV_CH_FRONT_RIGHT)
+	public static final long AV_CH_LAYOUT_STEREO = AV_CH_FRONT_LEFT | AV_CH_FRONT_RIGHT;
+
+
 	private final @NonNull Uri mFilesUri; // THREADING: any. Set once by RNP
-	public final @NonNull Uri actualLoadedFilesListUri; // THREADING: any. Set once by RNP. Canmatch mFilesUri for most cases, except SHUFFLE_ALL
-	
+	public final @NonNull Uri actualLoadedFilesListUri; // THREADING: any. Set once by RNP. Can match mFilesUri for most cases, except SHUFFLE_ALL
+
 	// NOTE: Serial used to identify the given track w/o track reference storage or compare. NOTE: pipelineSerial is strictly pipeline serial, which doesn't
 	// change when cue tracks are changed, and changes when we repeating same track
 	// This serial is generated by NPD. Will be also updated on e.g. tag edits and similar reloads, but will not be updated on optimized reloads of the same unchanged file
 	// Process-unique
 	public final int serial; // THREADING: any.  
-	
+
 	// Following are set once (final or final-like). Set by NPD ==================
 	public final int catUriMatch; // THREADING: any. Set once by RNP
 	public final String ssid; // THREADING: any. Set once by RNP
@@ -86,8 +89,10 @@ public final class Track {
 	public final int listSize;  // THREADING: any.  
 	public final int position; // THREADING: any. 
 	public final String path;  // THREADING: any. 
-	
+
 	public final boolean isCue; // TODO: flag. NOTE: this means track is set as CUE in db. Actual CUE playback status is set via OPEN_IS_CUE flag
+	public final int cueOffsetMs;
+
 	public final int fileType;
 
 	private final int durationMS; // NOTE: by default this is TagLib/DB duration for the file, may be updated on playback if differes from decoder. CUE: cue-list parsed duration
@@ -98,15 +103,13 @@ public final class Track {
 	//public final boolean supportsCategoryNavigation;
 
 	private final String readablePath; // THREADING: any. Set once by RNP. Used for content:// raw files, where track.path is hard-to-read uri
-		
+
 	// Equ stuff - used by PS
 	public final long equPresetId; // THREADING: any. Set once by RNP.
 	public final int equPresetIndex; // THREADING: any. Set once by RNP.
 	public final String equPresetName; // THREADING: any. Set once by RNP.
 	public final String equPresetData; // THREADING: any. Set once by RNP.
-	
-	public final int cueOffsetMs;
-	
+
 	// These can be changed after NPD and before publishing track to world by ps ==============
 	// REVISIT: can be also made final, if I run TrackProcessor (==TagReader) in NPD before I give track away.
 	// I don't do this now, as TagReader is IO operation, which can slow down start of track
@@ -120,7 +123,7 @@ public final class Track {
 
 	// TrackInfo
 	// THREADING: write: ps, read: any
-    private int trackSampleRate; 	
+	private int trackSampleRate; 	
 	private int trackBitsPerSample; 
 	//public long trackChannelLayout; // REVISIT: not used ATM
 	private int trackChannels;
@@ -133,8 +136,8 @@ public final class Track {
 	private float trackTrackPeak;
 	private float trackAlbumGain;
 	private float trackAlbumPeak;
-	
-	 
+
+
 	// TODO: revisit - split play request flags from track "state" permanent flags?
 	// NOTE: now these combines 2 types of flags -> "open" flags - which comes from flags to PS playWhatInNp() and to pipeline
 	// + flags _re-set_ by PS per playing session each time (e.g. isCue=>FLAG_OPEN_IS_CUE)
@@ -144,51 +147,51 @@ public final class Track {
 	// NOTE: generally those are set once per track playback by ps when track starts. Can I consider them read only?
 	// THREADING: write: ps, read: any
 	private int flags;
-	
+
 	// Can be updated anytime in PS thread. Non volatile, thus ordering not guaranteed, but as soon as track published, it will be synced
 	// Used internally by PS only
 	// NOTE: not process unique
 	// NOTE: if pipeline is restarted, new file can have same serial or various mixes of serial conflict can happen
 	// NOTE: also it's the same for tracks within same CUE file, and changed for same repeated track 
 	public int pipelineSerial; // THREADING: write: ps, read: any 
-	
-	
+
+
 	// TODO: remove aa from Track
 
 	// NOTE: access from multiple threads. Can't thus recycle this bitmap, as we can make copy/use it in the another thread - causes crash. 
-	
+
 	// AA Sync access only =====================================
-//	public static class AAInfo {
-//		public final static AAInfo RESOLVED_NONE = new AAInfo(null, null, 0f, 0, 0); // Resolved, but nothing found. 
-//
-//		public final Bitmap bitmapAlbumArt;    
-//		public final String albumArtSource;
-//		public final float aspect; // == w/h
-//		public final int aaOriginalW;
-//		public final int aaOriginalH;
-//		
-//		public AAInfo(Bitmap bitmap, String resolvedSource, float aspect, int outBitmapW, int outBitmapH) {
-//			this.bitmapAlbumArt = bitmap;
-//			this.albumArtSource = resolvedSource;
-//			this.aspect = aspect;
-//			this.aaOriginalW = outBitmapW;
-//			this.aaOriginalH = outBitmapH; 
-//		}
-//		
-//		@Override
-//		public String toString() {
-//			return super.toString() + "<AAInfo b=" + bitmapAlbumArt + " source=" + albumArtSource + " aspect=" + aspect + " originalW/H=" + aaOriginalW + "x" + aaOriginalH + ">";
-//		}
-//	}
-	
+	//	public static class AAInfo {
+	//		public final static AAInfo RESOLVED_NONE = new AAInfo(null, null, 0f, 0, 0); // Resolved, but nothing found. 
+	//
+	//		public final Bitmap bitmapAlbumArt;    
+	//		public final String albumArtSource;
+	//		public final float aspect; // == w/h
+	//		public final int aaOriginalW;
+	//		public final int aaOriginalH;
+	//		
+	//		public AAInfo(Bitmap bitmap, String resolvedSource, float aspect, int outBitmapW, int outBitmapH) {
+	//			this.bitmapAlbumArt = bitmap;
+	//			this.albumArtSource = resolvedSource;
+	//			this.aspect = aspect;
+	//			this.aaOriginalW = outBitmapW;
+	//			this.aaOriginalH = outBitmapH; 
+	//		}
+	//		
+	//		@Override
+	//		public String toString() {
+	//			return super.toString() + "<AAInfo b=" + bitmapAlbumArt + " source=" + albumArtSource + " aspect=" + aspect + " originalW/H=" + aaOriginalW + "x" + aaOriginalH + ">";
+	//		}
+	//	}
+
 	// THREADING: write - under sync(Track) by AlbumArtProvider. Read: any. AAInfo is final class thus forced to be "atomic" via volatile field
 	// TODO: remove
 	//public volatile AAInfo aa; // Null means not yet resolved, RESOLVED_NONE means resolved to nothing
 
-	
+
 	// End AA Sync ===============================================
-	
-	
+
+
 	// NOTE: sync with PowerampAPI.Track.Flags
 	public static final int FLAG_ADVANCE_NONE         = 0;
 	public static final int FLAG_ADVANCE_FORWARD      = 1;
@@ -196,9 +199,9 @@ public final class Track {
 	public static final int FLAG_ADVANCE_FORWARD_CAT  = 3;
 	public static final int FLAG_ADVANCE_BACKWARD_CAT = 4;
 	public static final int FLAG_ADVANCE_MASK         = 0x0007;
-	
+
 	public static final int FLAG_NOTIFICATION_UI      = 0x0020; // REVISIT: move away? If set, event comes from notification ui and we will animate aa update then
-	
+
 	public final static int FLAG_OPEN_REVERSE         = 0x0100; // REVISIT: move to open flags. Means we're seeking backwards, so playing starts from end (-5s). Used for starting new track
 	public final static int FLAG_OPEN_NO_CROSSFADE    = 0x0400; // REVISIT: move to open flags. Used for starting new track
 	public final static int FLAG_OPEN_AUTO_ADVANCED   = 0x1000; // REVISIT: move to open flags. Means no fade in/out. Used for starting new track
@@ -206,8 +209,8 @@ public final class Track {
 	public static final int FLAGS_ALLOW_AS_INPUT_MASK = 0xFFFF; // Allow only the above flags as input
 	public final static int FLAG_OPEN_IS_CUE          = 0x00010000; // REVISIT: move to open flags.
 	//public static final int FLAG_DURATION_UPDATED     = 0x00020000; // Duration was updated by RNP based on vs original duration in DB
-	
-	
+
+
 	// THREADING: ps
 	public Track(long fileId, long entryId, long folderId, long artistId, long albumArtistId, long albumId, int npSerial, int listSize, int position, 
 			String path, String readablePath, 
@@ -230,7 +233,7 @@ public final class Track {
 		this.readablePath = TextUtils.isEmpty(readablePath) ? null : readablePath; // NOTE: ensure null for empty string
 		this.catUriMatch = catUriMatch;
 		this.ssid = ssid;
- 
+
 		this.title = title;
 		this.album = album;
 		this.artist = artist; 
@@ -250,7 +253,7 @@ public final class Track {
 		this.actualLoadedFilesListUri = actualLoadedFilesListUri;
 		this.serial = serial;
 	}
-	
+
 	public int getDurationMS() {
 		if(!isCue && trackSampleRate != 0) {
 			return trackDurationMS; // Use trackinfo duration for non-cues.
@@ -258,7 +261,7 @@ public final class Track {
 			return durationMS; // Otherwise use duration from db (can be 0 for non-scanned tracks).
 		}
 	}
-	
+
 	public final boolean isRaw() {
 		return fileId == PowerampAPI.RAW_TRACK_ID; 
 	}
@@ -269,123 +272,123 @@ public final class Track {
 	public final boolean isFromLibrary() {
 		return fileId > PowerampAPI.NO_ID;
 	}
-	
+
 	public int getDbDurationMS() { // Package. Returns durationMS raw field (value from DB/tag scanner)
 		return durationMS;
 	}
-	
+
 	public int getDurationS() {
 		return (getDurationMS() + 500) / 1000;
 	}
-	
+
 	// THREADING: ps
-//	void setDurationMS(int durationMS) {
-//		this.durationMS = durationMS;
-//	}
-	
+	//	void setDurationMS(int durationMS) {
+	//		this.durationMS = durationMS;
+	//	}
+
 	// THREADING: any. Assuming atomic approach and sync-leak
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	
+
 	public int getRating() {
 		return rating;
 	}
-	
+
 	public int getTagStatus() {
 		return tagStatus;
 	}
 
-	
+
 	// THREADING: ps
 	// NOTE: called before track is published to PlayerAPI/other threads
-//	void updateFromTagScan(final TagAndMeta tagAndMeta) {
-//		if(DEBUG_CHECK_THREADS) PlayerService.debugCheckIsServiceThread();
-//		// NOTE: updateFromTagScan() should be called only for pipeline-loaded tracks with some track duration, as we don't update durationMS here from tagAndMeta
-//		if(DEBUG_CHECKS && this.trackSampleRate == 0) throw new AssertionError("track=" + this);  
-//		
-//		int res = tagAndMeta.scanRes;
-//		
-//		if(res > 0 && (res & TagAndMeta.HAS_TAG) != 0) {
-//			
-//			//track.embedAlbumArt = tagAndMeta.albumArt; // Can be null
-//			//tagAndMeta.albumArt = null;
-//			// NOTE: don't do any AA stuff here, as it's handled by AAProv.
-//			
-//			if(!isCue) {
-//				if(!TextUtils.isEmpty(album) && TextUtils.isEmpty(tagAndMeta.album)) {
-//					// Don't overwrite system lib cursor filled album (== folder name, filled this way by system scanner, this is to match lib album arts).
-//				} else {
-//					album = tagAndMeta.album;
-//				}
-//				
-//				artist = tagAndMeta.artist;
-//				albumArtist = tagAndMeta.albumArtist;
-//				title = tagAndMeta.title;
-//			}
-//			
-//			//durationMS = tagAndMeta.durationMS;
-//			//lyricsTag = tagAndMeta.lyrics;
-//			trackNum = tagAndMeta.track;
-//		//} else {
-//		//	trackNum = -1; //??? tagreader.cpp has 0 as no-track-num. Also, Track.trackNum is not used anywhere for now
-//		}
-//		
-//		tagStatus = TableDefs.Files.TAG_SCANNED;
-//	}
-	
+	//	void updateFromTagScan(final TagAndMeta tagAndMeta) {
+	//		if(DEBUG_CHECK_THREADS) PlayerService.debugCheckIsServiceThread();
+	//		// NOTE: updateFromTagScan() should be called only for pipeline-loaded tracks with some track duration, as we don't update durationMS here from tagAndMeta
+	//		if(DEBUG_CHECKS && this.trackSampleRate == 0) throw new AssertionError("track=" + this);  
+	//		
+	//		int res = tagAndMeta.scanRes;
+	//		
+	//		if(res > 0 && (res & TagAndMeta.HAS_TAG) != 0) {
+	//			
+	//			//track.embedAlbumArt = tagAndMeta.albumArt; // Can be null
+	//			//tagAndMeta.albumArt = null;
+	//			// NOTE: don't do any AA stuff here, as it's handled by AAProv.
+	//			
+	//			if(!isCue) {
+	//				if(!TextUtils.isEmpty(album) && TextUtils.isEmpty(tagAndMeta.album)) {
+	//					// Don't overwrite system lib cursor filled album (== folder name, filled this way by system scanner, this is to match lib album arts).
+	//				} else {
+	//					album = tagAndMeta.album;
+	//				}
+	//				
+	//				artist = tagAndMeta.artist;
+	//				albumArtist = tagAndMeta.albumArtist;
+	//				title = tagAndMeta.title;
+	//			}
+	//			
+	//			//durationMS = tagAndMeta.durationMS;
+	//			//lyricsTag = tagAndMeta.lyrics;
+	//			trackNum = tagAndMeta.track;
+	//		//} else {
+	//		//	trackNum = -1; //??? tagreader.cpp has 0 as no-track-num. Also, Track.trackNum is not used anywhere for now
+	//		}
+	//		
+	//		tagStatus = TableDefs.Files.TAG_SCANNED;
+	//	}
+
 	public void updateFromTagScan(boolean hasTag, String tagAndMetaTitle, String tagAndMetaAlbum, String tagAndMetaArtist, String tagAndMetaAlbumArtist, int tagAndMetaTrack) {
 		// NOTE: updateFromTagScan() should be called only for pipeline-loaded tracks with some track duration, as we don't update durationMS here from tagAndMeta
 		if(DEBUG_CHECKS && this.trackSampleRate == 0) throw new AssertionError("track=" + this);  
-		
+
 		if(hasTag) {
-			
+
 			//track.embedAlbumArt = tagAndMeta.albumArt; // Can be null
 			//tagAndMeta.albumArt = null;
 			// NOTE: don't do any AA stuff here, as it's handled by AAProv.
-			
+
 			if(!isCue) {
 				if(!TextUtils.isEmpty(album) && TextUtils.isEmpty(tagAndMetaAlbum)) {
 					// Don't overwrite system lib cursor filled album (== folder name, filled this way by system scanner, this is to match lib album arts).
 				} else {
 					album = tagAndMetaAlbum;
 				}
-				
+
 				artist = tagAndMetaArtist;
 				albumArtist = tagAndMetaAlbumArtist;
 				title = tagAndMetaTitle;
 			}
-			
+
 			//durationMS = tagAndMeta.durationMS;
 			//lyricsTag = tagAndMeta.lyrics;
 			trackNum = tagAndMetaTrack;
-		//} else {
-		//	trackNum = -1; //??? tagreader.cpp has 0 as no-track-num. Also, Track.trackNum is not used anywhere for now
+			//} else {
+			//	trackNum = -1; //??? tagreader.cpp has 0 as no-track-num. Also, Track.trackNum is not used anywhere for now
 		}
-		
+
 		tagStatus = TableDefs.Files.TAG_SCANNED;
 	}
 
 	//	void copyTrackInfoToTrack(PSTrackSession psTrack) {
-//		trackSampleRate = psTrack.trackSampleRate; 	
-//		trackBitsPerSample = psTrack.trackBitsPerSample; 
-//		//trackChannelLayout = psTrack.trackChannelLayout; //LONG, not atomic... So disabled for now 
-//		trackChannels = psTrack.trackChannels;
-//		trackDurationMS = psTrack.durationMS; // ms
-//		trackBitRate = psTrack.bitRate;
-//		trackCodec = psTrack.codec;
-//		trackIsGapless = psTrack.isGapless;
-//		trackRgType = psTrack.rgType;
-//		trackTrackGain = psTrack.trackGain;
-//		trackTrackPeak = psTrack.trackPeak;
-//		trackAlbumGain = psTrack.albumGain;
-//		trackAlbumPeak = psTrack.albumPeak;
-//	}
-	
+	//		trackSampleRate = psTrack.trackSampleRate; 	
+	//		trackBitsPerSample = psTrack.trackBitsPerSample; 
+	//		//trackChannelLayout = psTrack.trackChannelLayout; //LONG, not atomic... So disabled for now 
+	//		trackChannels = psTrack.trackChannels;
+	//		trackDurationMS = psTrack.durationMS; // ms
+	//		trackBitRate = psTrack.bitRate;
+	//		trackCodec = psTrack.codec;
+	//		trackIsGapless = psTrack.isGapless;
+	//		trackRgType = psTrack.rgType;
+	//		trackTrackGain = psTrack.trackGain;
+	//		trackTrackPeak = psTrack.trackPeak;
+	//		trackAlbumGain = psTrack.albumGain;
+	//		trackAlbumPeak = psTrack.albumPeak;
+	//	}
+
 	// THREADING: ps
 	// NOTE: called before track is published to PlayerAPI/other threads
 	public void copyTrackInfoToTrack(int trackSampleRate, int trackBitsPerSample, int trackChannels, int durationMS, int bitRate, String codec, boolean isGapless, int rgType,
-								float trackGain, float trackPeak, float albumGain, float albumPeak) {
+			float trackGain, float trackPeak, float albumGain, float albumPeak) {
 		this.trackSampleRate = trackSampleRate; 	
 		this.trackBitsPerSample = trackBitsPerSample; 
 		//trackChannelLayout = psTrack.trackChannelLayout; //LONG, not atomic... So disabled for now 
@@ -400,9 +403,9 @@ public final class Track {
 		this.trackAlbumGain = albumGain;
 		this.trackAlbumPeak = albumPeak;
 	}
-	
-	
-	
+
+
+
 	public int getTrackSampleRate() {
 		return trackSampleRate;
 	}
@@ -463,7 +466,7 @@ public final class Track {
 		return trackAlbumPeak;
 	}
 
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -488,7 +491,7 @@ public final class Track {
 		return entryId != PowerampAPI.NO_ID ? entryId : fileId;
 	}
 
-	
+
 	// TODO: somehow optimize this? as getReadable* stuff is called multiple times.
 	// NOTE: shouldn't be called from lists.
 	public final String getReadableTitle(String unknown, boolean useFilename) {
@@ -505,7 +508,7 @@ public final class Track {
 		}
 		return unknown;
 	}
-	
+
 	public String getReadableArtist(String unknown) {
 		if(artist != null && artist.length() > 0) {
 			return artist;
@@ -529,130 +532,170 @@ public final class Track {
 		}
 		return unknown;
 	}
-	
-	
-	
+
+
+
 	public String getReadableFolderName() {
 		if(LOG) Log.w(TAG, "getReadableFolderName path=" + path);
-		
+
 		int lastSlash = path.lastIndexOf('/');
 		if(lastSlash <= 0) {
 			return "/";
 		}
-		
+
 		if(LOG) Log.w(TAG, "getReadableFolderName lastSlash=" + lastSlash);
-		
+
 		int prevSlash = path.lastIndexOf('/', lastSlash - 1);
-		
+
 		if(LOG) Log.w(TAG, "getReadableFolderName prevSlash=" + prevSlash);
-		
+
 		if(prevSlash == -1) {
 			return path.substring(0, lastSlash);
 		}
 		if(prevSlash == 0) {
 			return path.substring(1, lastSlash);
 		}
-		
+
 		int prevPrevSlash = path.lastIndexOf('/', prevSlash - 1);
-		
+
 		if(LOG) Log.w(TAG, "getReadableFolderName prevPrevSlash=" + prevPrevSlash);
-		
+
 		if(prevPrevSlash == -1) {
 			return path.substring(0, lastSlash);
 		}
 		if(prevPrevSlash == 0) {
 			return path.substring(1, lastSlash);
 		}
-		
+
 		return path.substring(prevPrevSlash + 1, lastSlash);
 	}
-	
-	
-	
 
-//	void setFilesUri(Uri uri) { // Should be called by RNP only.
-//		mFilesUri = uri;
-//	}
+
+
+
+	//	void setFilesUri(Uri uri) { // Should be called by RNP only.
+	//		mFilesUri = uri;
+	//	}
 
 	// NOTE: this is not actual filesUri for SHUFFLE_ALL, instead, it's resolved (in RNP) to appropriate category based uri
 	public Uri getFilesUri() { 
 		return mFilesUri;
 	}
-	
+
 	// THREADING: ps
-//	void forgetAA() {
-//		aa = null;
-//	}
+	//	void forgetAA() {
+	//		aa = null;
+	//	}
 
 	//public void psAddFlags(int flags) { // ps only
-    //    this.flags |= flags;
-    //}
-    
-	public void psClearFlags(int flags) { // ps only
-        psSetFlags(0, flags);
-    }
+	//    this.flags |= flags;
+	//}
 
-    public void psSetFlags(int newFlags, int mask) { // ps only
-        flags = (flags & ~mask) | (newFlags & mask);
-    }
-    
-    public final int getFlags() {
-    	return flags;
-    }
-    
+	public void psClearFlags(int flags) { // ps only
+		psSetFlags(0, flags);
+	}
+
+	public void psSetFlags(int newFlags, int mask) { // ps only
+		flags = (flags & ~mask) | (newFlags & mask);
+	}
+
+	public final int getFlags() {
+		return flags;
+	}
+
 	public String toString() {
 		return "<Track " + this.hashCode() + " npSerial=" + npSerial + " mFilesUri=" + mFilesUri + " catUriMatch=" + catUriMatch + " fileId=" + fileId + " entryId=" + entryId + " folderId=" + folderId + " path=" + path + " title=" + title + " album=" + album + " artist=" 
-					+ artist + " durationMS=" + getDurationMS() + " tagStatus=" + tagStatus + " fileType=" + fileType + " position=" + position
-					+ " isCue=" + isCue + " " + " cueOffsetMs=" + cueOffsetMs + " flags=0x" + Integer.toHexString(flags) + "  trackSampleRate=" + trackSampleRate 
-					+ " trackChannels=" + trackChannels + " trackDurationMS=" + trackDurationMS + " bitRate=" + trackBitRate + " bitsPerSimple=" + trackBitsPerSample 
-					+ " codec=" + trackCodec + " isGapless=" + trackIsGapless + " rgType=" + trackRgType 
-					+ " pipelineSerial=" + pipelineSerial
-					+ ">";
+				+ artist + " durationMS=" + getDurationMS() + " tagStatus=" + tagStatus + " fileType=" + fileType + " position=" + position
+				+ " isCue=" + isCue + " " + " cueOffsetMs=" + cueOffsetMs + " flags=0x" + Integer.toHexString(flags) + "  trackSampleRate=" + trackSampleRate 
+				+ " trackChannels=" + trackChannels + " trackDurationMS=" + trackDurationMS + " bitRate=" + trackBitRate + " bitsPerSimple=" + trackBitsPerSample 
+				+ " codec=" + trackCodec + " isGapless=" + trackIsGapless + " rgType=" + trackRgType 
+				+ " pipelineSerial=" + pipelineSerial
+				+ ">";
 
+	}
+	
+	/**
+	 * @param track
+	 * @return true, if track itself is the same, as well as it's position in list, it's path, ssid and actualLoadedFilesListUri are the same
+	 */
+	public boolean isSame(@Nullable Track track) {
+		if(track == this) {
+			return true;
+		}
+		if(track != null) {
+			return position == track.position // NOTE: most of the tracks will fail here, on first condition
+					//&& npSerial == track.npSerial
+					&& fileId == track.fileId //
+					&& folderId == track.folderId //
+					&& albumId == track.albumId //
+					&& artistId == track.artistId //
+					&& entryId == track.entryId //
+					&& catUriMatch == track.catUriMatch //
+					&& listSize == track.listSize
+					&& isCue == track.isCue
+					&& cueOffsetMs == track.cueOffsetMs
+					&& trackNum == track.trackNum
+					&& fileType == track.fileType
+					&& tagStatus == track.tagStatus
+					&& rating == track.rating
+					&& actualLoadedFilesListUri.equals(track.actualLoadedFilesListUri)
+					&& TextUtils.equals(path, track.path) 
+					&& TextUtils.equals(ssid, track.ssid)
+					&& TextUtils.equals(album, track.album) // NOTE: need to compare strings as we can have edited tags
+					&& TextUtils.equals(artist, track.artist)
+					&& TextUtils.equals(albumArtist, track.albumArtist)
+					&& TextUtils.equals(title, track.title)
+					;
+			// Everything is the same for the track, but files uri can be different, as it doesn't belong to the track itself, but to parent cursor
+			// and depends on query, parameters, etc.
+			// But, as npSerial is the same, filesUri is guaranteed to be the same. Just because we change npSerial on any npd cursors change.
+			// NOTE: we may have updated durationMS in the current track, so don't check it.
+		}
+		return false;
 	}
 
 	@Override
-    public boolean equals(Object o) {
-    	if(o == this) {
-    		return true;
-    	}
-    	
-    	if(o instanceof Track) {
-    		Track currentTrack = (Track)o;
-			return position == currentTrack.position // NOTE: most of the tracks will fail here, on first condition
-				&& npSerial == currentTrack.npSerial
-				&& fileId == currentTrack.fileId //
-				&& folderId == currentTrack.folderId //
-				&& albumId == currentTrack.albumId //
-				&& artistId == currentTrack.artistId //
-				&& entryId == currentTrack.entryId //
-				&& catUriMatch == currentTrack.catUriMatch //
-				&& listSize == currentTrack.listSize
-				&& isCue == currentTrack.isCue
-				&& cueOffsetMs == currentTrack.cueOffsetMs
-				&& trackNum == currentTrack.trackNum
-				&& fileType == currentTrack.fileType
-				&& tagStatus == currentTrack.tagStatus
-				&& equPresetId == currentTrack.equPresetId
-				&& equPresetIndex == currentTrack.equPresetIndex
-				&& rating == currentTrack.rating
-				&& TextUtils.equals(path, currentTrack.path) 
-				&& TextUtils.equals(ssid, currentTrack.ssid)
-				&& TextUtils.equals(album, currentTrack.album) // NOTE: need to compare strings as we can have edited tags
-				&& TextUtils.equals(artist, currentTrack.artist)
-				&& TextUtils.equals(albumArtist, currentTrack.albumArtist)
-				&& TextUtils.equals(title, currentTrack.title)
-				&& TextUtils.equals(equPresetData, currentTrack.equPresetData) 
-				&& TextUtils.equals(equPresetName, currentTrack.equPresetName)
-				;
-				// Everything is the same for the track, but files uri can be different, as it doesn't belong to the track itself, but to parent cursor
-				// and depends on query, parameters, etc.
-				// But, as npSerial is the same, filesUri is guaranteed to be the same. Just because we change npSerial on any npd cursors change.
-				// NOTE: we may have updated durationMS in the current track, so don't check it.
+	public boolean equals(Object o) {
+		if(o == this) {
+			return true;
 		}
-    	return false;
-    }
-    
+
+		if(o instanceof Track) {
+			Track track = (Track)o;
+			return position == track.position // NOTE: most of the tracks will fail here, on first condition
+					&& npSerial == track.npSerial
+					&& fileId == track.fileId //
+					&& folderId == track.folderId //
+					&& albumId == track.albumId //
+					&& artistId == track.artistId //
+					&& entryId == track.entryId //
+					&& catUriMatch == track.catUriMatch //
+					&& listSize == track.listSize
+					&& isCue == track.isCue
+					&& cueOffsetMs == track.cueOffsetMs
+					&& trackNum == track.trackNum
+					&& fileType == track.fileType
+					&& tagStatus == track.tagStatus
+					//&& equPresetId == track.equPresetId
+					//&& equPresetIndex == track.equPresetIndex
+					&& rating == track.rating
+					&& TextUtils.equals(path, track.path) 
+					&& TextUtils.equals(ssid, track.ssid)
+					&& TextUtils.equals(album, track.album) // NOTE: need to compare strings as we can have edited tags
+					&& TextUtils.equals(artist, track.artist)
+					&& TextUtils.equals(albumArtist, track.albumArtist)
+					&& TextUtils.equals(title, track.title)
+					;
+			// NOTE: not comparing track.serial (as it differs for each created track instance)
+			
+			// Everything is the same for the track, but files uri can be different, as it doesn't belong to the track itself, but to parent cursor
+			// and depends on query, parameters, etc.
+			// But, as npSerial is the same, filesUri is guaranteed to be the same. Just because we change npSerial on any npd cursors change.
+			// NOTE: we may have updated durationMS in the current track, so don't check it.
+		}
+		return false;
+	}
+
 	@Override
 	public int hashCode() {
 		return super.hashCode(); // Just to remove warning. Not storing Track as hash key now
@@ -664,59 +707,59 @@ public final class Track {
 	}
 
 	private static void debugTests() {
-//		Track track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("/", track.getReadableFolderName());
-//		
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("/", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("/", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/f", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("/", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("foo", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo/file/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("foo/file", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "foo/file/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("foo/file", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("f", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("foo", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("f", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("eee/foo", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("e/f", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("eee/foo", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/e/f/f", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("e/f", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "werwer/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("eee/foo", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "w/e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("e/f", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/wer/werwer/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("eee/foo", track.getReadableFolderName());
-//
-//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/r/w/e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-//		assertEquals("e/f", track.getReadableFolderName());
+		//		Track track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("/", track.getReadableFolderName());
+		//		
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("/", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("/", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/f", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("/", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("foo", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo/file/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("foo/file", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "foo/file/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("foo/file", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("f", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("foo", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("f", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("eee/foo", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("e/f", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("eee/foo", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/e/f/f", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("e/f", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "werwer/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("eee/foo", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "w/e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("e/f", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/wer/werwer/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("eee/foo", track.getReadableFolderName());
+		//
+		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/r/w/e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
+		//		assertEquals("e/f", track.getReadableFolderName());
 	}
 
 }
