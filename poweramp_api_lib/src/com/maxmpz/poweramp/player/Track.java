@@ -129,13 +129,16 @@ public class Track {
 	private int trackChannels;
 	private int trackDurationMS; // NOTE Always duration of source track itself (!= durationMS for cues)
 	private int trackBitRate;
-	private String trackCodec;
+	private @Nullable String trackDecoderName;
+	private @Nullable String trackDecoderUniqName;
+	private @Nullable String trackCodec;
 	private boolean trackIsGapless; 
 	private int trackRgType;
 	private float trackTrackGain;
 	private float trackTrackPeak;
 	private float trackAlbumGain;
 	private float trackAlbumPeak;
+
 
 
 	// TODO: revisit - split play request flags from track "state" permanent flags?
@@ -387,14 +390,17 @@ public class Track {
 
 	// THREADING: ps
 	// NOTE: called before track is published to PlayerAPI/other threads
-	public void copyTrackInfoToTrack(int trackSampleRate, int trackBitsPerSample, int trackChannels, int durationMS, int bitRate, String codec, boolean isGapless, int rgType,
-			float trackGain, float trackPeak, float albumGain, float albumPeak) {
+	public void copyTrackInfoToTrack(int trackSampleRate, int trackBitsPerSample, int trackChannels, int durationMS, int bitRate, 
+			@Nullable String trackDecoderName, @Nullable String trackDecoderUniqName, @Nullable String codec, 
+			boolean isGapless, int rgType, float trackGain, float trackPeak, float albumGain, float albumPeak) {
 		this.trackSampleRate = trackSampleRate; 	
 		this.trackBitsPerSample = trackBitsPerSample; 
 		//trackChannelLayout = psTrack.trackChannelLayout; //LONG, not atomic... So disabled for now 
 		this.trackChannels = trackChannels;
 		this.trackDurationMS = durationMS; // ms
 		this.trackBitRate = bitRate;
+		this.trackDecoderName = trackDecoderName;
+		this.trackDecoderUniqName = trackDecoderUniqName;
 		this.trackCodec = codec;
 		this.trackIsGapless = isGapless;
 		this.trackRgType = rgType;
@@ -464,6 +470,14 @@ public class Track {
 
 	public float getTrackAlbumPeak() {
 		return trackAlbumPeak;
+	}
+	
+	public @Nullable String getTrackDecoderName() {
+		return trackDecoderName;
+	}
+	
+	public @Nullable String getTrackDecoderUniqName() {
+		return trackDecoderUniqName;
 	}
 
 
