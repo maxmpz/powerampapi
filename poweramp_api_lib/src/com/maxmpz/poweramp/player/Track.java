@@ -132,6 +132,7 @@ public class Track {
 	private @Nullable String trackDecoderName;
 	private @Nullable String trackDecoderUniqName;
 	private @Nullable String trackCodec;
+	private @Nullable String trackDecodeInfo;
 	private boolean trackIsGapless; 
 	private int trackRgType;
 	private float trackTrackGain;
@@ -391,7 +392,7 @@ public class Track {
 	// THREADING: ps
 	// NOTE: called before track is published to PlayerAPI/other threads
 	public void copyTrackInfoToTrack(int trackSampleRate, int trackBitsPerSample, int trackChannels, int durationMS, int bitRate, 
-			@Nullable String trackDecoderName, @Nullable String trackDecoderUniqName, @Nullable String codec, 
+			@Nullable String trackDecoderName, @Nullable String trackDecoderUniqName, @Nullable String codec, @Nullable String trackDecodeInfo, 
 			boolean isGapless, int rgType, float trackGain, float trackPeak, float albumGain, float albumPeak) {
 		this.trackSampleRate = trackSampleRate; 	
 		this.trackBitsPerSample = trackBitsPerSample; 
@@ -402,6 +403,7 @@ public class Track {
 		this.trackDecoderName = trackDecoderName;
 		this.trackDecoderUniqName = trackDecoderUniqName;
 		this.trackCodec = codec;
+		this.trackDecodeInfo = trackDecodeInfo;
 		this.trackIsGapless = isGapless;
 		this.trackRgType = rgType;
 		this.trackTrackGain = trackGain;
@@ -478,6 +480,10 @@ public class Track {
 	
 	public @Nullable String getTrackDecoderUniqName() {
 		return trackDecoderUniqName;
+	}
+	
+	public @Nullable String getTrackDecodeInfo() {
+		return trackDecodeInfo;
 	}
 
 
