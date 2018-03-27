@@ -140,6 +140,8 @@ public class Track {
 	private float trackAlbumGain;
 	private float trackAlbumPeak;
 
+	// THREADING: write: ps - before publishing, read: any
+	private @Nullable String nextTrackInfo;  
 
 
 	// TODO: revisit - split play request flags from track "state" permanent flags?
@@ -301,6 +303,14 @@ public class Track {
 
 	public int getTagStatus() {
 		return tagStatus;
+	}
+	
+	public void setNextTrackInfo(@Nullable String nextTrackInfo) {
+		this.nextTrackInfo = nextTrackInfo;
+	}
+	
+	public @Nullable String getNextTrackInfo() {
+		return nextTrackInfo;
 	}
 
 
@@ -515,6 +525,24 @@ public class Track {
 	// TODO: somehow optimize this? as getReadable* stuff is called multiple times.
 	// NOTE: shouldn't be called from lists.
 	public final String getReadableTitle(String unknown, boolean useFilename) {
+//		if(!useFilename && title != null && title.length() > 0) {
+//			return title;
+//		}
+//		String pathSubstitute = readablePath != null ? readablePath : path;
+//		if(pathSubstitute != null && pathSubstitute.length() > 0) {
+//			int slash = pathSubstitute.lastIndexOf('/');
+//			if(slash == -1 || slash == pathSubstitute.length() - 1) {
+//				return pathSubstitute;
+//			}
+//			return pathSubstitute.substring(slash + 1);
+//		}
+//		return unknown;
+		
+		return getReadableTitle(title, readablePath, path, unknown, useFilename);
+	}
+	
+	// NOTE: used by next track info code for data retrieval directly from cursor
+	public final static String getReadableTitle(String title, String readablePath, String path, String unknown, boolean useFilename) {
 		if(!useFilename && title != null && title.length() > 0) {
 			return title;
 		}
@@ -528,6 +556,7 @@ public class Track {
 		}
 		return unknown;
 	}
+	
 
 	public String getReadableArtist(String unknown) {
 		if(artist != null && artist.length() > 0) {
