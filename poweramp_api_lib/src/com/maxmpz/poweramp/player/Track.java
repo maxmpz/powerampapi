@@ -652,6 +652,7 @@ public class Track {
 		return flags;
 	}
 
+	@Override
 	public String toString() {
 		return "<Track " + this.hashCode() + " npSerial=" + npSerial + " mFilesUri=" + mFilesUri + " catUriMatch=" + catUriMatch + " fileId=" + fileId + " entryId=" + entryId + " folderId=" + folderId + " path=" + path + " title=" + title + " album=" + album + " artist=" 
 				+ artist + " durationMS=" + getDurationMS() + " tagStatus=" + tagStatus + " fileType=" + fileType + " position=" + position

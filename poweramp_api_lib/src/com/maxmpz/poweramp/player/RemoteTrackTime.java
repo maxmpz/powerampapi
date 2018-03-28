@@ -115,6 +115,7 @@ public class RemoteTrackTime {
 	}
 	
 	Runnable mTickRunnable = new Runnable() {
+		@Override
 		public void run() {
 			mPosition = (int)(System.currentTimeMillis() - mStartTimeMs + 500) / 1000 + mStartPosition; 
 			if(LOG) Log.w(TAG, "mTickRunnable mPosition=" + mPosition);

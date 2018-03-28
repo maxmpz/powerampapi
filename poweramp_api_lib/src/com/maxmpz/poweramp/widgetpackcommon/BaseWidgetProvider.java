@@ -154,6 +154,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 	}
 
 	
+	@Override
 	public WidgetUpdateData pushUpdate(Context context, SharedPreferences prefs, int[] ids, boolean mediaRemoved, boolean trackChanged, boolean updateByOs, WidgetUpdateData data) {
 		final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		if(ids == null) {
