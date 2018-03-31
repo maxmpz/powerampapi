@@ -24,7 +24,7 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_PARAM_ANDROID_AUDIO_STREAM = 5;
 	
 	// Internal
-	public static final int PA_OUTPUT_PARAM_AUDIO_IO_HANDLE     = 0x80000001;
+	public static final int PA_OUTPUT_PARAM_AUDIO_IO_HANDLE     = 0x80000001; // NOTE: supported by atoutput only
 	
 	// getPipelineParamInt() SUBSYSTEM_PIPELINE
 	public static final int PARAM_LAST_DECODER_IX       = 1; // Never used ATM

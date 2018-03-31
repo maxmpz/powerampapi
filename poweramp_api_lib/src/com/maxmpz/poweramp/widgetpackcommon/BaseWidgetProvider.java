@@ -194,6 +194,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 	}
 
 
+	@SuppressWarnings("static-method")
 	protected boolean getAANoAnimState(WidgetUpdateData data, WidgetContext widgetCtx) {
 		if(IS_HTC_SENSE && Build.VERSION.SDK_INT < 15
 				|| data.albumArtNoAnim
