@@ -73,7 +73,7 @@ public class Track {
 
 	// Following are set once (final or final-like). Set by NPD ==================
 	public final int catUriMatch; // THREADING: any. Set once by RNP
-	public final String ssid; // THREADING: any. Set once by RNP
+	public final @Nullable String ssid; // THREADING: any. Set once by RNP
 
 	public final long entryId; // THREADING: any. Set once by RNP. Set only for playlist/queue entries.
 	public final long folderId; // THREADING: any. 
@@ -88,7 +88,7 @@ public class Track {
 	// Also, npd state can change 1sec in advance, due to bufferings
 	public final int listSize;  // THREADING: any.  
 	public final int position; // THREADING: any. 
-	public final String path;  // THREADING: any. 
+	public final @NonNull String path;  // THREADING: any. 
 
 	public final boolean isCue; // TODO: flag. NOTE: this means track is set as CUE in db. Actual CUE playback status is set via OPEN_IS_CUE flag
 	public final int cueOffsetMs;
@@ -102,22 +102,23 @@ public class Track {
 	// NOTE: this is needed so supportsCatNav state is bound to current track, not to NPD, which can change it anytime (e.g. on crossfades, etc)
 	//public final boolean supportsCategoryNavigation;
 
-	private final String readablePath; // THREADING: any. Set once by RNP. Used for content:// raw files, where track.path is hard-to-read uri
+	private final @Nullable String readablePath; // THREADING: any. Set once by RNP. Used for content:// raw files, where track.path is hard-to-read uri
 
 	// Equ stuff - used by PS
 	public final long equPresetId; // THREADING: any. Set once by RNP.
 	public final int equPresetIndex; // THREADING: any. Set once by RNP.
-	public final String equPresetName; // THREADING: any. Set once by RNP.
-	public final String equPresetData; // THREADING: any. Set once by RNP.
+	public final @Nullable String equPresetName; // THREADING: any. Set once by RNP.
+	public final @Nullable String equPresetData; // THREADING: any. Set once by RNP.
 
 	// These can be changed after NPD and before publishing track to world by ps ==============
 	// REVISIT: can be also made final, if I run TrackProcessor (==TagReader) in NPD before I give track away.
 	// I don't do this now, as TagReader is IO operation, which can slow down start of track
 	private int tagStatus;
-	private String title;
-	private String album;
-	private String artist;
-	private String albumArtist;
+	private @Nullable float[] wave;
+	private @Nullable String title;
+	private @Nullable String album;
+	private @Nullable String artist;
+	private @Nullable String albumArtist;
 	private int trackNum;
 	//private String lyricsTag; // REVISIT: not used ATM	
 
@@ -219,11 +220,13 @@ public class Track {
 
 	// THREADING: ps
 	public Track(long fileId, long entryId, long folderId, long artistId, long albumArtistId, long albumId, int npSerial, int listSize, int position, 
-			String path, String readablePath, 
+			@NonNull String path, String readablePath, 
 			int catUriMatch, String ssid, 
 			String title, String album, String artist, String albumArtist, int durationMS, 
 			int trackNum, int rating, 
-			int tagStatus, int fileType, 
+			int tagStatus, 
+			@Nullable float[] wave, 
+			int fileType, 
 			boolean isCue, int cueOffsetMs, long equPresetId, 
 			int equPresetIndex, String equPresetData, String equPresetName, @NonNull Uri filesUri, @NonNull Uri actualLoadedFilesListUri, int serial) {
 		this.fileId = fileId;
@@ -246,6 +249,7 @@ public class Track {
 		this.albumArtist = albumArtist;
 		this.durationMS = durationMS;
 		this.tagStatus = tagStatus;
+		this.wave = wave;
 		this.fileType = fileType;
 		this.isCue = isCue;
 		this.cueOffsetMs = cueOffsetMs;
@@ -303,6 +307,10 @@ public class Track {
 
 	public int getTagStatus() {
 		return tagStatus;
+	}
+	
+	public @Nullable float[] getWave() {
+		return wave;
 	}
 	
 	public void setNextTrackInfo(@Nullable String nextTrackInfo) {
@@ -381,6 +389,10 @@ public class Track {
 		}
 
 		tagStatus = TableDefs.Files.TAG_SCANNED;
+	}
+	
+	public void updateFromWaveScan(@Nullable float[] wave) {
+		this.wave = wave;
 	}
 
 	//	void copyTrackInfoToTrack(PSTrackSession psTrack) {
