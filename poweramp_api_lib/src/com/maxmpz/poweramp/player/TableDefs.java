@@ -195,6 +195,8 @@ public interface TableDefs {
 		 * byte[] blob, nullable
 		 */
 		public static final String WAVE = TABLE + ".wave";
+		
+		public static final String TITLE_OR_NAME = "ifnull(" + TABLE + ".title_tag, " + TABLE + ".name)";
 
 
 		/**
