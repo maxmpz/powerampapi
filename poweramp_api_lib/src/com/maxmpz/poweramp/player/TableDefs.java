@@ -249,7 +249,7 @@ public interface TableDefs {
 		 * Full path of the folder.
 		 * String.
 		 */
-		public static final String PATH = "path"; //TABLE + ".path";
+		public static final String PATH = "path"; //TABLE + ".path"; // NOTE: avoid TABLE name here to allow using field in raw_files. "path" is unique column, anyways
 
 		/*
 		 * Folder album art/thumb image (short name).
