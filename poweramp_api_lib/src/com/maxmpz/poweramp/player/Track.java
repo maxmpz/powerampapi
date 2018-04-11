@@ -639,7 +639,7 @@ public class Track {
 	//	}
 
 	// NOTE: this is not actual filesUri for SHUFFLE_ALL, instead, it's resolved (in RNP) to appropriate category based uri
-	public Uri getFilesUri() { 
+	public @NonNull Uri getFilesUri() { 
 		return mFilesUri;
 	}
 
