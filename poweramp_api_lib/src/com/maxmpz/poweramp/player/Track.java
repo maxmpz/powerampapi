@@ -82,7 +82,7 @@ public class Track {
 	public final long albumArtistId; // THREADING: any.
 	public final long fileId;  // THREADING: any. 
 	// NOTE: Now playing (category) serial. Changed during reloads, etc. Multiple tracks from same category have same npSerial. 
-	// Process-unique.
+	// Process-unique. Starts from 1 (thus, 0 means no serial and not allowed in Track)
 	public final int npSerial;  // THREADING: any.  
 	// NOTE: needed, as if we get it from NPD, it can return some new/modified value which is wrong for this track. Though, this means track is going to be replaced by that new track soon anyway?
 	// Also, npd state can change 1sec in advance, due to bufferings
@@ -229,6 +229,9 @@ public class Track {
 			int fileType, 
 			boolean isCue, int cueOffsetMs, long equPresetId, 
 			int equPresetIndex, String equPresetData, String equPresetName, @NonNull Uri filesUri, @NonNull Uri actualLoadedFilesListUri, int serial) {
+		
+		if(DEBUG_CHECKS && npSerial == 0) throw new AssertionError();
+		
 		this.fileId = fileId;
 		this.entryId = entryId;
 		this.folderId = folderId;
