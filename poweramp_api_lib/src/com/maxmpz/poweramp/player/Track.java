@@ -228,7 +228,9 @@ public class Track {
 			@Nullable float[] wave, 
 			int fileType, 
 			boolean isCue, int cueOffsetMs, long equPresetId, 
-			int equPresetIndex, String equPresetData, String equPresetName, @NonNull Uri filesUri, @NonNull Uri actualLoadedFilesListUri, int serial) {
+			int equPresetIndex, String equPresetData, String equPresetName, @NonNull Uri filesUri, @NonNull Uri actualLoadedFilesListUri, 
+			int serial
+	) {
 		
 		if(DEBUG_CHECKS && npSerial == 0) throw new AssertionError();
 		
