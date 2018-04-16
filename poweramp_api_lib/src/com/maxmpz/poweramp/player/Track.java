@@ -534,7 +534,10 @@ public class Track {
 		return trackNum;
 	}
 
-	public final long getIdForCursor() {
+	/**
+	 * @return either fileId or entryId. entryId is for playlists/queue (where main id is entry id due to possible same-file-id duplications)
+	 */
+	public final long getIdForFilesCursor() {
 		return entryId != PowerampAPI.NO_ID ? entryId : fileId;
 	}
 
