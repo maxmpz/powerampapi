@@ -22,7 +22,8 @@ package com.maxmpz.poweramp.widget;
 
 import android.database.CharArrayBuffer;
 
-// REVISIT: renamce/move to better place
+// REVISIT: rename/move to better place
+@Deprecated
 public class FormatUtils {
 	private static StringBuilder sFormatBuilder2 = new StringBuilder();
 	private static final char[] NO_TIME = new char[]{ '-', ':', '-', '-' };

@@ -834,7 +834,8 @@ public final class PowerampAPI {
 			public static final int FLAG_FIRST_IN_PLAYER_SESSION = 0x40; // Currently used just to indicate that track is first in playerservice session.			
 		}
 	}
-	
+
+
 	public static final class Cats {
 		public static final int ROOT = 0;
 		public static final int FOLDERS = 10;

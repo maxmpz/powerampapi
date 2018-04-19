@@ -20,183 +20,189 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.player;
 
+import org.eclipse.jdt.annotation.NonNull;
 import android.provider.BaseColumns;
 
 public interface TableDefs {
 	/**
 	 * Alias used for category. Useful when query is actually a multi table join.
 	 */
-	public static final String CATEGORY_ALIAS = "cat";
+	public static final @NonNull String CATEGORY_ALIAS = "cat";
 
 	public static final long UNKNOWN_ID = 1000L;
 
-	public static final String NUM_FILES_ALL = "num_files AS num_files_total";
-	public static final String NUM_FILES_NO_CUE = "(num_files - num_cue_files) AS num_files_total";
+	public static final @NonNull String NUM_FILES_ALL = "num_files AS num_files_total";
+	public static final @NonNull String NUM_FILES_NO_CUE = "(num_files - num_cue_files) AS num_files_total";
 
 
 	/**
 	 * Alias used for category aliased table _id.
 	 */
-	public static final String CATEGORY_ALIAS_ID = CATEGORY_ALIAS + "._id";
+	public static final @NonNull String CATEGORY_ALIAS_ID = CATEGORY_ALIAS + "._id";
 
 
 	public interface Files {
-		public static final String TABLE = "folder_files";
-		public static final String VIEW_MOST_PLAYED = "files_most_played";
-		public static final String VIEW_TOP_RATED = "files_most_played";
-		public static final String VIEW_RECENTLY_ADDED = "files_recently_added";
-		public static final String VIEW_RECENTLY_ADDED_FS = "files_recently_added_fs"; // REVISIT
-		public static final String VIEW_RECENTLY_PLAYED = "files_recently_played";
+		public static final @NonNull String TABLE = "folder_files";
+		public static final @NonNull String VIEW_MOST_PLAYED = "files_most_played";
+		public static final @NonNull String VIEW_TOP_RATED = "files_most_played";
+		public static final @NonNull String VIEW_RECENTLY_ADDED = "files_recently_added";
+		public static final @NonNull String VIEW_RECENTLY_ADDED_FS = "files_recently_added_fs"; // REVISIT
+		public static final @NonNull String VIEW_RECENTLY_PLAYED = "files_recently_played";
 
-		public static final String RAW_TABLE = "raw_files";
+		public static final @NonNull String RAW_TABLE = "raw_files";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * Short filename.
 		 * String.
 		 */
-		public static final String NAME = TABLE + ".name";
+		public static final @NonNull String NAME = TABLE + ".name";
 
 		/*
 		 * Track number (extracted from filename).
 		 * Int.
 		 */
-		public static final String TRACK_NUMBER = "track_number";
+		public static final @NonNull String TRACK_NUMBER = "track_number";
 
 		/*
 		 * Track name without number.
 		 * String.
 		 */
-		public static final String NAME_WITHOUT_NUMBER = "name_without_number";
+		public static final @NonNull String NAME_WITHOUT_NUMBER = "name_without_number";
 
 		/*
 		 * One of the TAG_* constants.
 		 * Int.
 		 */
-		public static final String TAG_STATUS = "tag_status";
+		public static final @NonNull String TAG_STATUS = "tag_status";
 
 		/*
 		 * Track # tag.
 		 * Int.
 		 */
-		public static final String TRACK_TAG = "track_tag";
+		public static final @NonNull String TRACK_TAG = "track_tag";
 
 		/*
 		 * Parent folder id.
 		 * Int.
 		 */
-		public static final String FOLDER_ID = "folder_id";
+		public static final @NonNull String FOLDER_ID = "folder_id";
 
 		/*
 		 * Title tag.
 		 * String.
 		 */
-		public static final String TITLE_TAG = TABLE + ".title_tag";
+		public static final @NonNull String TITLE_TAG = TABLE + ".title_tag";
 
 		/*
 		 * Duration in miliseconds.
 		 * Int.
 		 */
-		public static final String DURATION = "duration";
+		public static final @NonNull String DURATION = "duration";
 
 		/*
 		 * Int.
 		 */
-		public static final String UPDATED_AT = TABLE + ".updated_at";
+		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 
 		/*
 		 * One of the file types - see PowerAMPiAPI.Track.FileType class.
 		 */
-		public static final String FILE_TYPE = "file_type";
+		public static final @NonNull String FILE_TYPE = "file_type";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
 		 * Int.
 		 * This is file last modified time actually, for most filesystems
 		 */
-		public static final String FILE_CREATED_AT = "file_created_at";
+		public static final @NonNull String FILE_CREATED_AT = "file_created_at";
 
 		/*
 		 * Bitwise flag.
 		 * Int.
 		 */
-		public static final String AA_STATUS = "aa_status";
+		public static final @NonNull String AA_STATUS = "aa_status";
 
 		/*
 		 * Full path. Works only if the query is joined with the folders.
 		 * String.
 		 */
-		public static final String FULL_PATH = Folders.PATH + "||" + NAME;
+		public static final @NonNull String FULL_PATH = Folders.PATH + "||" + NAME;
 
 		/*
 		 * Int.
 		 */
-		public static final String RATING = "rating";
+		public static final @NonNull String RATING = "rating";
 
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_TIMES = TABLE + ".played_times";
+		public static final @NonNull String PLAYED_TIMES = TABLE + ".played_times";
 
 		/*
 		 * Int.
 		 */
-		public static final String ALBUM_ID = TABLE + ".album_id";
+		public static final @NonNull String ALBUM_ID = TABLE + ".album_id";
 
 		/*
 		 * Int.
 		 */
-		public static final String ARTIST_ID = TABLE + ".artist_id";
+		public static final @NonNull String ARTIST_ID = TABLE + ".artist_id";
 
 		/*
 		 * Int.
 		 */
-		public static final String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
+		public static final @NonNull String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
 
 		/*
 		 * Int.
 		 */
-		public static final String COMPOSER_ID = TABLE + ".composer_id";
+		public static final @NonNull String COMPOSER_ID = TABLE + ".composer_id";
 
 		/*
 		 * Int.
 		 */
-		public static final String YEAR = "year";
+		public static final @NonNull String YEAR = "year";
 
 		/*
 		 * Int.
 		 */
-		public static final String OFFSET_MS = "offset_ms";
+		public static final @NonNull String OFFSET_MS = "offset_ms";
 
 		/*
 		 * Int.
 		 */
-		public static final String CUE_FOLDER_ID = "cue_folder_id";
+		public static final @NonNull String CUE_FOLDER_ID = "cue_folder_id";
 
 		/*
 		 * First seen time.
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 		
 		/**
 		 * Wave scan data
 		 * byte[] blob, nullable
 		 */
-		public static final String WAVE = TABLE + ".wave";
+		public static final @NonNull String WAVE = TABLE + ".wave";
 		
-		public static final String TITLE_OR_NAME = "ifnull(" + TABLE + ".title_tag, " + TABLE + ".name)";
+		/**
+		 * String
+		 */
+		public static final @NonNull String META = TABLE + ".meta";
+		
+		//public static final @NonNull String TITLE_OR_NAME = "ifnull(" + TABLE + ".title_tag, " + TABLE + ".name)";
 
 
 		/**
@@ -221,100 +227,100 @@ public interface TableDefs {
 
 
 	public interface Folders {
-		public static final String TABLE = "folders";
+		public static final @NonNull String TABLE = "folders";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * volume_id (fatID) of the storage.
 		 * Int.
 		 */
-		//public static final String VOLUME_ID = TABLE + ".volume_id";
+		//public static final @NonNull String VOLUME_ID = TABLE + ".volume_id";
 
 		/*
 		 * Short name of the folder.
 		 * String.
 		 */
-		public static final String NAME = TABLE + ".name";
+		public static final @NonNull String NAME = TABLE + ".name";
 
 		/*
 		 * Short path of the parent folder.
 		 * String.
 		 */
-		public static final String PARENT_NAME = TABLE + ".parent_name";
+		public static final @NonNull String PARENT_NAME = TABLE + ".parent_name";
 
 		/*
 		 * Full path of the folder.
 		 * String.
 		 */
-		public static final String PATH = "path"; //TABLE + ".path"; // NOTE: avoid TABLE name here to allow using field in raw_files. "path" is unique column, anyways
+		public static final @NonNull String PATH = "path"; //TABLE + ".path"; // NOTE: avoid TABLE name here to allow using field in raw_files. "path" is unique column, anyways
 
 		/*
 		 * Folder album art/thumb image (short name).
 		 * String.
 		 */
-		public static final String THUMB = "thumb";//TABLE + ".thumb";
+		public static final @NonNull String THUMB = "thumb";//TABLE + ".thumb";
 
 		/*
 		 * One of the THUMB_* constants.
 		 * Int.
 		 */
-		public static final String THUMB_STATUS = "thumb_status"; //TABLE + ".thumb_status";
+		public static final @NonNull String THUMB_STATUS = "thumb_status"; //TABLE + ".thumb_status";
 
 		/*
 		 * Number of files in a folder.
 		 * Int.
 		 */
-		public static final String NUM_FILES = TABLE + ".num_files";
+		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
 		/*
 		 * Int.
 		 */
-		public static final String DIR_MODIFIED_AT = TABLE + ".dir_modified_at";
+		public static final @NonNull String DIR_MODIFIED_AT = TABLE + ".dir_modified_at";
 
 		/*
 		 * Int.
 		 */
-		public static final String UPDATED_AT = TABLE + ".updated_at";
+		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 		/*
 		 * Id of the parent folder or 0 for "root" folders.
 		 * Int.
 		 */
-		public static final String PARENT_ID = TABLE + ".parent_id";	
+		public static final @NonNull String PARENT_ID = TABLE + ".parent_id";	
 		/*
 		 * Number of child subfolders.
 		 * Int.
 		 */
-		public static final String NUM_SUBFOLDERS = TABLE + ".num_subfolders";
+		public static final @NonNull String NUM_SUBFOLDERS = TABLE + ".num_subfolders";
 
 		/*
 		 * Int.
 		 */
-		public static final String IS_CUE = TABLE + ".is_cue";
+		public static final @NonNull String IS_CUE = TABLE + ".is_cue";
 
 		/*
 		 * Set for real (non-cue-virtual) folders, means number of cue source files inside this folder.
 		 * Int.
 		 */
-		public static final String NUM_CUE_FILES = TABLE + ".num_cue_files";
+		public static final @NonNull String NUM_CUE_FILES = TABLE + ".num_cue_files";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
 		 * 
 		 * First seen time.
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
 		/**
 		 * tag_status - some jpeg/png exists for dir
@@ -329,416 +335,416 @@ public interface TableDefs {
 
 
 	public interface Albums {
-		public static final String TABLE = "albums";
+		public static final @NonNull String TABLE = "albums";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * String.
 		 */
-		public static final String ALBUM = "album";
+		public static final @NonNull String ALBUM = "album";
 
 		/*
 		 * String.
 		 */
-		public static final String ALBUM_SORT = "album_sort";
+		public static final @NonNull String ALBUM_SORT = "album_sort";
 
 		/*
 		 * Int
 		 */
-		public static final String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
+		public static final @NonNull String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 		/*
 		 * First seen time.
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
 		// Albums uses special where for cue sources, thus just count files is enough.
-		public static final String COUNT_FILES = "count(folder_files._id)";
+		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
 	}
 
 
 	public interface Artists {
-		public static final String TABLE = "artists";
+		public static final @NonNull String TABLE = "artists";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * String.
 		 */
-		public static final String ARTIST = "artist";
+		public static final @NonNull String ARTIST = "artist";
 
 		/*
 		 * String.
 		 */
-		public static final String ARTIST_SORT = "artist_sort";
+		public static final @NonNull String ARTIST_SORT = "artist_sort";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
 		 * First seen time.
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
 		// Artists uses special where for cue sources, thus just count files is enough.
-		public static final String COUNT_FILES = "count(folder_files._id)";
+		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
 	}
 
 
 	// NOTE: this is similar to Artists
 	public interface AlbumArtists {
-		public static final String TABLE = "album_artists";
+		public static final @NonNull String TABLE = "album_artists";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * String.
 		 */
-		public static final String ALBUM_ARTIST = "album_artist";
+		public static final @NonNull String ALBUM_ARTIST = "album_artist";
 
 		/*
 		 * String.
 		 */
-		public static final String ALBUM_ARTIST_SORT = "album_artist_sort";
+		public static final @NonNull String ALBUM_ARTIST_SORT = "album_artist_sort";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
 		 * First seen time.
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
 		// Artists uses special where for cue sources, thus just count files is enough.
-		public static final String COUNT_FILES = "count(folder_files._id)";
+		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
 	}
 
 
 	// NOTE: this is album => artist 1:1 binding table
 	public interface ArtistAlbums {
-		public static final String TABLE = "artist_albums";
+		public static final @NonNull String TABLE = "artist_albums";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * Int.
 		 */
-		public static final String ARTIST_ID = TABLE + ".artist_id";
+		public static final @NonNull String ARTIST_ID = TABLE + ".artist_id";
 
 		/*
 		 * Int.
 		 */
-		public static final String ALBUM_ID = TABLE + ".album_id";
+		public static final @NonNull String ALBUM_ID = TABLE + ".album_id";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
 		 * First seen time.
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 	}
 
 
 	public interface Composers {
-		public static final String TABLE = "composers";
+		public static final @NonNull String TABLE = "composers";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * String.
 		 */
-		public static final String COMPOSER = "composer";
+		public static final @NonNull String COMPOSER = "composer";
 
-		public static final String COMPOSER_SORT = "composer_sort";
+		public static final @NonNull String COMPOSER_SORT = "composer_sort";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 		/*
 		 * First seen time.
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
 		// Composers uses special where for cue sources, thus just count files is enough.
-		public static final String COUNT_FILES = "count(folder_files._id)";
+		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
 	}
 
 	public interface Genres {
-		public static final String TABLE = "genres";
+		public static final @NonNull String TABLE = "genres";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * String.
 		 */
-		public static final String GENRE = "genre";
+		public static final @NonNull String GENRE = "genre";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 		/*
 		 * First seen time.
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
-		public static final String COUNT_FILES = "count(folder_files._id)";    	
+		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";    	
 	}
 
 
 	public interface GenreEntries {
-		public static final String TABLE = "genre_entries";
+		public static final @NonNull String TABLE = "genre_entries";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * Actual id of the file in folder_files table.
 		 * Long.
 		 */
-		public static final String FOLDER_FILE_ID = "folder_file_id";
+		public static final @NonNull String FOLDER_FILE_ID = "folder_file_id";
 
 		/*
 		 * Gerne id.
 		 * Long.
 		 */
-		public static final String GENRE_ID = "genre_id";
+		public static final @NonNull String GENRE_ID = "genre_id";
 	}
 
 
 	public interface PlaylistEntries {
-		public static final String TABLE = "folder_playlist_entries";
+		public static final @NonNull String TABLE = "folder_playlist_entries";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * Actual id of the file in folder_files table.
 		 * Int.
 		 */
-		public static final String FOLDER_FILE_ID = "folder_file_id";
+		public static final @NonNull String FOLDER_FILE_ID = "folder_file_id";
 
 		/*
 		 * Folder Playlist id.
 		 * Int.
 		 */
-		public static final String PLAYLIST_ID = "playlist_id";
+		public static final @NonNull String PLAYLIST_ID = "playlist_id";
 
 		/*
 		 * Sort order.
 		 * Int.
 		 */
-		public static final String SORT = "sort";
+		public static final @NonNull String SORT = "sort";
 	}
 
 
 	public interface Playlists {
-		public static final String TABLE = "folder_playlists";
+		public static final @NonNull String TABLE = "folder_playlists";
 
 		// Fields.
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * Name of the playlist.
 		 * String.
 		 */
-		public static final String NAME = TABLE + ".name";
+		public static final @NonNull String NAME = TABLE + ".name";
 
 		/*
 		 * Int.
 		 */
-		public static final String MTIME = TABLE + ".mtime";
+		public static final @NonNull String MTIME = TABLE + ".mtime";
 
 		/*
 		 * Int.
 		 */
-		public static final String PATH = TABLE + ".path";
+		public static final @NonNull String PATH = TABLE + ".path";
 
 		/*
 		 * Int.
 		 */
-		public static final String SSID = TABLE + ".ssid";
+		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
 		 */
-		public static final String PLAYED_AT = TABLE + ".played_at";
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 		/*
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 		/*
 		 * Int.
 		 */
-		public static final String UPDATED_AT = TABLE + ".updated_at";
+		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 
-		public static final String NUM_FILES_COUNT = "(SELECT COUNT(*) FROM " + PlaylistEntries.TABLE + " WHERE " + PlaylistEntries.PLAYLIST_ID + "=" + _ID + ") AS _track_count";
+		public static final @NonNull String NUM_FILES_COUNT = "(SELECT COUNT(*) FROM " + PlaylistEntries.TABLE + " WHERE " + PlaylistEntries.PLAYLIST_ID + "=" + _ID + ") AS _track_count";
 	}
 
 
 
 
 	public class Queue {
-		public static final String TABLE = "queue";
+		public static final @NonNull String TABLE = "queue";
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * Folder file id.
 		 * Int.
 		 */
-		public static final String FOLDER_FILE_ID = TABLE + ".folder_file_id";
+		public static final @NonNull String FOLDER_FILE_ID = TABLE + ".folder_file_id";
 
 		/*
 		 * Int.
 		 */
-		public static final String CREATED_AT = TABLE + ".created_at";
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
 		/*
 		 * Int.
 		 */
-		public static final String SORT = TABLE + ".sort";
+		public static final @NonNull String SORT = TABLE + ".sort";
 
-		public static final String CALC_PLAYED = "folder_files.played_at > queue.created_at";
-		public static final String CALC_UNPLAYED = "folder_files.played_at <= queue.created_at";
+		public static final @NonNull String CALC_PLAYED = "folder_files.played_at > queue.created_at";
+		public static final @NonNull String CALC_UNPLAYED = "folder_files.played_at <= queue.created_at";
 	}
 
 	public class ShuffleSessionIds {
-		public static final String TABLE = "shuffle_session_ids";
+		public static final @NonNull String TABLE = "shuffle_session_ids";
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 	}
 
 
 	public class EqPresets {
-		public static final String TABLE = "eq_presets";
+		public static final @NonNull String TABLE = "eq_presets";
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * Predefined preset number (see res/values/arrays/eq_preset_labels) or NULL for custom preset.
 		 * Int.
 		 */
-		public static final String PRESET = "preset";
+		public static final @NonNull String PRESET = "preset";
 
 		/*
 		 * Eq preset string.
 		 * String. 
 		 */
-		public static final String _DATA = TABLE + "._data";
+		public static final @NonNull String _DATA = TABLE + "._data";
 
 		/*
 		 * Custom preset name or null for predefined preset.
 		 * String.
 		 */
-		public static final String NAME = TABLE + ".name";
+		public static final @NonNull String NAME = TABLE + ".name";
 
 		/*
 		 * 1 if preset is bound to speaker, 0 otherwise.
 		 * Int.
 		 */
-		public static final String BIND_TO_SPEAKER = "bind_to_speaker";
+		public static final @NonNull String BIND_TO_SPEAKER = "bind_to_speaker";
 
 		/*
 		 * 1 if preset is bound to wired headset, 0 otherwise.
 		 * Int.
 		 */
-		public static final String BIND_TO_WIRED = "bind_to_wired";
+		public static final @NonNull String BIND_TO_WIRED = "bind_to_wired";
 
 		/*
 		 * 1 if preset is bound to bluetooth audio output, 0 otherwise.
 		 * Int.
 		 */
-		public static final String BIND_TO_BT = "bind_to_bt";
+		public static final @NonNull String BIND_TO_BT = "bind_to_bt";
 	}
 
 
 	public static final class EqPresetSongs implements BaseColumns {
-		public static final String TABLE = "eq_preset_songs";
+		public static final @NonNull String TABLE = "eq_preset_songs";
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
 		/*
 		 * Either folder_file_id.
 		 * Int. 
 		 */
-		public static final String FILE_ID = TABLE + ".file_id";
+		public static final @NonNull String FILE_ID = TABLE + ".file_id";
 
 		/*
 		 * Eq preset id.
 		 * Int.
 		 */
-		public static final String PRESET_ID = "preset_id";
+		public static final @NonNull String PRESET_ID = "preset_id";
 	}
 
 	public class ReverbPresets {
-		public static final String TABLE = "reverb_presets";
+		public static final @NonNull String TABLE = "reverb_presets";
 
-		public static final String _ID = TABLE + "._id";
+		public static final @NonNull String _ID = TABLE + "._id";
 
-		public static final String _DATA = TABLE + "._data";
+		public static final @NonNull String _DATA = TABLE + "._data";
 
-		public static final String NAME = TABLE + ".name";
+		public static final @NonNull String NAME = TABLE + ".name";
 	}
 
 
