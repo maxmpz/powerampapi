@@ -49,8 +49,6 @@ public interface TableDefs {
 		public static final @NonNull String VIEW_RECENTLY_ADDED_FS = "files_recently_added_fs"; // REVISIT
 		public static final @NonNull String VIEW_RECENTLY_PLAYED = "files_recently_played";
 
-		public static final @NonNull String RAW_TABLE = "raw_files";
-
 		// Fields.
 
 		public static final @NonNull String _ID = TABLE + "._id";
@@ -95,7 +93,7 @@ public interface TableDefs {
 		 * Title tag.
 		 * String.
 		 */
-		public static final @NonNull String TITLE_TAG = TABLE + ".title_tag";
+		public static final @NonNull String TITLE_TAG = TABLE + ".title_tag"; // REVISIT: remove TABLE
 
 		/*
 		 * Duration in miliseconds.
@@ -195,7 +193,7 @@ public interface TableDefs {
 		 * Wave scan data
 		 * byte[] blob, nullable
 		 */
-		public static final @NonNull String WAVE = TABLE + ".wave";
+		public static final @NonNull String WAVE = "wave";
 		
 		/**
 		 * String
@@ -224,6 +222,80 @@ public interface TableDefs {
 		public static final int AA_STATUS_EMBED = 1;
 	}
 
+	
+	public interface RawFiles extends Files {
+		public static final @NonNull String TABLE = "raw_files";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+
+		/*
+		 * Short filename.
+		 * String.
+		 */
+		public static final @NonNull String NAME = TABLE + ".name";
+
+		/*
+		 * Title tag.
+		 * String.
+		 */
+		public static final @NonNull String TITLE_TAG = TABLE + ".title_tag";
+
+		/*
+		 * Int.
+		 */
+		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
+
+		/*
+		 * Int.
+		 */
+		public static final @NonNull String SSID = TABLE + ".ssid";
+		/*
+		 * Int.
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		/*
+		 * Full path. Works only if the query is joined with the folders.
+		 * String.
+		 */
+		public static final @NonNull String FULL_PATH = Folders.PATH + "||" + NAME;
+
+		/*
+		 * Int.
+		 */
+		public static final @NonNull String PLAYED_TIMES = TABLE + ".played_times";
+
+		/*
+		 * Int.
+		 */
+		public static final @NonNull String ALBUM_ID = TABLE + ".album_id";
+
+		/*
+		 * Int.
+		 */
+		public static final @NonNull String ARTIST_ID = TABLE + ".artist_id";
+
+		/*
+		 * Int.
+		 */
+		public static final @NonNull String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
+
+		/*
+		 * Int.
+		 */
+		public static final @NonNull String COMPOSER_ID = TABLE + ".composer_id";
+
+		/*
+		 * First seen time.
+		 * Int.
+		 */
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+		
+		/**
+		 * String
+		 */
+		public static final @NonNull String META = TABLE + ".meta";
+	}
 
 
 	public interface Folders {
@@ -410,6 +482,8 @@ public interface TableDefs {
 
 		// Artists uses special where for cue sources, thus just count files is enough.
 		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
+		
+		public static final @NonNull String COUNT_ALBUMS = "count(albums._id)";
 	}
 
 
@@ -449,6 +523,8 @@ public interface TableDefs {
 
 		// Artists uses special where for cue sources, thus just count files is enough.
 		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
+		
+		public static final @NonNull String COUNT_ALBUMS = "count(albums._id)";
 	}
 
 
@@ -518,6 +594,8 @@ public interface TableDefs {
 
 		// Composers uses special where for cue sources, thus just count files is enough.
 		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
+		
+		public static final @NonNull String COUNT_ALBUMS = "count(albums._id)";
 	}
 
 	public interface Genres {
@@ -546,7 +624,9 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
-		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";    	
+		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
+		
+		public static final @NonNull String COUNT_ALBUMS = "count(albums._id)";
 	}
 
 
@@ -639,6 +719,12 @@ public interface TableDefs {
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 
 		public static final @NonNull String NUM_FILES_COUNT = "(SELECT COUNT(*) FROM " + PlaylistEntries.TABLE + " WHERE " + PlaylistEntries.PLAYLIST_ID + "=" + _ID + ") AS _track_count";
+		
+		// NOTE: requires CTE with durs, e.g.:
+		// with durs as (select (sum(duration)) as dur, album from folder_files inner join albums on albums._id=folder_files.album_id group by album_id) 
+		//    select (dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0)), dur, album from durs limit 10;
+		
+		public static final @NonNull String TOTAL_DURATION = "(dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0))";
 	}
 
 
