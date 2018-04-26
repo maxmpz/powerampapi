@@ -384,7 +384,9 @@ public interface TableDefs {
 		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
@@ -434,7 +436,9 @@ public interface TableDefs {
 		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 		/*
 		 * First seen time.
@@ -471,7 +475,9 @@ public interface TableDefs {
 
 		/*
 		 * Int.
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
@@ -512,7 +518,9 @@ public interface TableDefs {
 
 		/*
 		 * Int.
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
@@ -553,7 +561,9 @@ public interface TableDefs {
 
 		/*
 		 * Int.
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/*
@@ -584,7 +594,9 @@ public interface TableDefs {
 		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 		/*
 		 * First seen time.
@@ -616,7 +628,9 @@ public interface TableDefs {
 		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 		/*
 		 * First seen time.
@@ -707,7 +721,9 @@ public interface TableDefs {
 		public static final @NonNull String SSID = TABLE + ".ssid";
 		/*
 		 * Int.
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 		/*
 		 * Int.

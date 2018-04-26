@@ -17,7 +17,9 @@ import com.maxmpz.poweramp.player.TableDefs;
 // - expose some base track POJO, and internally extended track?
 //   - problem with back casting POJO into Track (not guaranteed to be Track?)
 // - use just POJO + static app specific helper (+ move some of that code somewhere else)
-public class Track {
+
+// NOTE: Track contains MetaTrackInfo fields, but MetaTrackInfo can be also updated with repeat/shuffle changes (appropriate separate MetaTrackInfo object is sent then)
+public class Track extends MetaTrackInfo {
 	private static final String TAG = "Track";
 	private static final boolean LOG = false;
 	private static final boolean DEBUG_CHECKS = true;
@@ -94,7 +96,7 @@ public class Track {
 	public final int cueOffsetMs;
 
 	public final int fileType;
-
+	
 	private final int durationMS; // NOTE: by default this is TagLib/DB duration for the file, may be updated on playback if differes from decoder. CUE: cue-list parsed duration
 
 	private int rating; // THREADING: set by gui and ps/RNP. Assuming leakage is enough for sync REVISIT: avoid setting this from gui
@@ -140,10 +142,6 @@ public class Track {
 	private float trackTrackPeak;
 	private float trackAlbumGain;
 	private float trackAlbumPeak;
-
-	// THREADING: write: ps - before publishing, read: any
-	private @Nullable String nextTrackInfo;  
-
 
 	// TODO: revisit - split play request flags from track "state" permanent flags?
 	// NOTE: now these combines 2 types of flags -> "open" flags - which comes from flags to PS playWhatInNp() and to pipeline
@@ -225,15 +223,16 @@ public class Track {
 			String title, String album, String artist, String albumArtist, int durationMS, 
 			int trackNum, int rating, 
 			int tagStatus, 
+			String nextTrackInfo, String prevCategory, String nextCategory, 
 			@Nullable float[] wave, 
 			int fileType, 
 			boolean isCue, int cueOffsetMs, long equPresetId, 
 			int equPresetIndex, String equPresetData, String equPresetName, @NonNull Uri filesUri, @NonNull Uri actualLoadedFilesListUri, 
 			int serial
 	) {
+		super(nextTrackInfo, prevCategory, nextCategory);
 		
 		if(DEBUG_CHECKS && npSerial == 0) throw new AssertionError();
-		
 		this.fileId = fileId;
 		this.entryId = entryId;
 		this.folderId = folderId;
@@ -254,6 +253,7 @@ public class Track {
 		this.albumArtist = albumArtist;
 		this.durationMS = durationMS;
 		this.tagStatus = tagStatus;
+
 		this.wave = wave;
 		this.fileType = fileType;
 		this.isCue = isCue;
@@ -267,6 +267,7 @@ public class Track {
 		this.mFilesUri = filesUri;
 		this.actualLoadedFilesListUri = actualLoadedFilesListUri;
 		this.serial = serial;
+		
 	}
 
 	public int getDurationMS() {
@@ -318,13 +319,13 @@ public class Track {
 		return wave;
 	}
 	
-	public void setNextTrackInfo(@Nullable String nextTrackInfo) {
-		this.nextTrackInfo = nextTrackInfo;
-	}
-	
-	public @Nullable String getNextTrackInfo() {
-		return nextTrackInfo;
-	}
+//	public void setNextTrackInfo(@Nullable String nextTrackInfo) {
+//		this.nextTrackInfo = nextTrackInfo;
+//	}
+//	
+//	public @Nullable String getNextTrackInfo() {
+//		return nextTrackInfo;
+//	}
 
 
 	// THREADING: ps
@@ -453,16 +454,8 @@ public class Track {
 		return trackBitsPerSample;
 	}
 
-	public void setTrackBitsPerSample(int trackBitsPerSample) {
-		this.trackBitsPerSample = trackBitsPerSample;
-	}
-
 	public int getTrackChannels() {
 		return trackChannels;
-	}
-
-	public void setTrackChannels(int trackChannels) {
-		this.trackChannels = trackChannels;
 	}
 
 	public int getTrackDurationMS() { // Package. Duration from pipeline
@@ -684,46 +677,6 @@ public class Track {
 
 	}
 	
-	/**
-	 * @param track
-	 * @return true, if track itself is the same, as well as it's position in list, it's path, ssid and actualLoadedFilesListUri are the same
-	 */
-	public boolean isSame(@Nullable Track track) {
-		if(track == this) {
-			return true;
-		}
-		if(track != null) {
-			return position == track.position // NOTE: most of the tracks will fail here, on first condition
-					//&& npSerial == track.npSerial
-					&& fileId == track.fileId //
-					&& folderId == track.folderId //
-					&& albumId == track.albumId //
-					&& artistId == track.artistId //
-					&& entryId == track.entryId //
-					&& catUriMatch == track.catUriMatch //
-					&& listSize == track.listSize
-					&& isCue == track.isCue
-					&& cueOffsetMs == track.cueOffsetMs
-					&& trackNum == track.trackNum
-					&& fileType == track.fileType
-					&& tagStatus == track.tagStatus
-					&& rating == track.rating
-					&& actualLoadedFilesListUri.equals(track.actualLoadedFilesListUri)
-					&& TextUtils.equals(path, track.path) 
-					&& TextUtils.equals(ssid, track.ssid)
-					&& TextUtils.equals(album, track.album) // NOTE: need to compare strings as we can have edited tags
-					&& TextUtils.equals(artist, track.artist)
-					&& TextUtils.equals(albumArtist, track.albumArtist)
-					&& TextUtils.equals(title, track.title)
-					;
-			// Everything is the same for the track, but files uri can be different, as it doesn't belong to the track itself, but to parent cursor
-			// and depends on query, parameters, etc.
-			// But, as npSerial is the same, filesUri is guaranteed to be the same. Just because we change npSerial on any npd cursors change.
-			// NOTE: we may have updated durationMS in the current track, so don't check it.
-		}
-		return false;
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if(o == this) {
