@@ -1,6 +1,7 @@
 package com.maxmpz.poweramp.player;
 
 import static junit.framework.Assert.assertEquals;
+import java.nio.ByteBuffer;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import android.net.Uri;
@@ -12,24 +13,19 @@ import com.maxmpz.poweramp.player.TableDefs;
 // Don't put anything which can produce context or other leaks here
 // NOTE: ensure Track is read-only, except few special cases, like tag-scanned updates or ratings
 // This means, fields should be either private + getter or "public final"
+// Any exception from that (e.g. pipelineSerial) should be implemented with special extra care and documented
 // REVISIT: check threaded access, esp. to changeable vars
 // OPTIONS:
 // - expose some base track POJO, and internally extended track?
-//   - problem with back casting POJO into Track (not guaranteed to be Track?)
-// - use just POJO + static app specific helper (+ move some of that code somewhere else)
 
-// NOTE: Track contains MetaTrackInfo fields, but MetaTrackInfo can be also updated with repeat/shuffle changes (appropriate separate MetaTrackInfo object is sent then)
-public class Track extends MetaTrackInfo {
+// NOTE: Track contains MetaTrackInfo fields, but MetaTrackInfo can be also updated with repeat changes (appropriate separate MetaTrackInfo object is sent then)
+public abstract class Track extends MetaTrackInfo {
 	private static final String TAG = "Track";
 	private static final boolean LOG = false;
 	private static final boolean DEBUG_CHECKS = true;
-
-	private static final boolean DEBUG_CHECK_THREADS = true;
-	private static final boolean DEBUG_TESTS = false;
-
-	//private static final String[] COLS_NAME_PARENT = new String[]{ "name", "parent_name" };
-	//private static final String[] COLS_NAME = new String[]{ "name" };
 	
+	public static final int DIRECT_STATE_SIZE = Integer.BYTES * 2; // Sync with Pipeline2/pipeline.c
+
 	// Sent with msg_player_track_changed. Sync with values-player.xml
 	public static final int TRACK_CHANGED_SAME_UPDATED = 1;
 
@@ -41,30 +37,29 @@ public class Track extends MetaTrackInfo {
 	// Matches avcodec.h SampleFormat enum.
 
 	public static final int PA_SAMPLE_FMT_NONE     = -1;
-	public static final int PA_SAMPLE_FMT_U8       = 0;              ///< unsigned 8 bits
-	public static final int PA_SAMPLE_FMT_S16      = 1;             ///< signed 16 bits
-	public static final int PA_SAMPLE_FMT_S32      = 2;             ///< signed 32 bits
-	public static final int PA_SAMPLE_FMT_FLT      = 3;             ///< float
-	public static final int PA_SAMPLE_FMT_DBL      = 4;             ///< double
-	public static final int PA_SAMPLE_FMT_U8P      = 5;         ///< unsigned 8 bits, planar
-	public static final int PA_SAMPLE_FMT_S16P     = 6;        ///< signed 16 bits, planar
-	public static final int PA_SAMPLE_FMT_S32P     = 7;        ///< signed 32 bits, planar
-	public static final int PA_SAMPLE_FMT_FLTP     = 8;        ///< float, planar
-	public static final int PA_SAMPLE_FMT_DBLP     = 9;        ///< double, planar
-	public static final int PA_SAMPLE_FMT_S24   = 10;         // packed 24bit
-	public static final int PA_SAMPLE_FMT_S8_24 = 11;       // Android Q8.23
+	public static final int PA_SAMPLE_FMT_U8       = 0;      ///< unsigned 8 bits
+	public static final int PA_SAMPLE_FMT_S16      = 1;      ///< signed 16 bits
+	public static final int PA_SAMPLE_FMT_S32      = 2;      ///< signed 32 bits
+	public static final int PA_SAMPLE_FMT_FLT      = 3;      ///< float
+	public static final int PA_SAMPLE_FMT_DBL      = 4;      ///< double
+	public static final int PA_SAMPLE_FMT_U8P      = 5;      ///< unsigned 8 bits, planar
+	public static final int PA_SAMPLE_FMT_S16P     = 6;      ///< signed 16 bits, planar
+	public static final int PA_SAMPLE_FMT_S32P     = 7;      ///< signed 32 bits, planar
+	public static final int PA_SAMPLE_FMT_FLTP     = 8;      ///< float, planar
+	public static final int PA_SAMPLE_FMT_DBLP     = 9;      ///< double, planar
+	public static final int PA_SAMPLE_FMT_S24      = 10;     // packed 24bit
+	public static final int PA_SAMPLE_FMT_S8_24    = 11;     // Android Q8.23
 
-
-	//#define AV_CH_FRONT_LEFT             0x00000001
-	//#define AV_CH_FRONT_RIGHT            0x00000002
 	public static final long AV_CH_FRONT_LEFT =             0x00000001;
 	public static final long AV_CH_FRONT_RIGHT =            0x00000002; 
-
-	// #define AV_CH_LAYOUT_STEREO            (AV_CH_FRONT_LEFT|AV_CH_FRONT_RIGHT)
 	public static final long AV_CH_LAYOUT_STEREO = AV_CH_FRONT_LEFT | AV_CH_FRONT_RIGHT;
 
-
-	private final @NonNull Uri mFilesUri; // THREADING: any. Set once by RNP
+	// Category Related =============================================
+	
+	// NOTE: this is not actual filesUri for SHUFFLE_ALL or some other modes, instead, it's resolved (in RNP) to appropriate category based uri,
+	// so it can be used for building new track uri
+	// Actual RNP loaded list is avialble from actualLoadedFilesListUri 
+	public final @NonNull Uri filesUri; // THREADING: any. Set once by RNP
 	public final @NonNull Uri actualLoadedFilesListUri; // THREADING: any. Set once by RNP. Can match mFilesUri for most cases, except SHUFFLE_ALL
 
 	// NOTE: Serial used to identify the given track w/o track reference storage or compare. NOTE: pipelineSerial is strictly pipeline serial, which doesn't
@@ -76,37 +71,49 @@ public class Track extends MetaTrackInfo {
 	// Following are set once (final or final-like). Set by NPD ==================
 	public final int catUriMatch; // THREADING: any. Set once by RNP
 	public final @Nullable String ssid; // THREADING: any. Set once by RNP
+	// NOTE: Now playing (category) serial. Changed during reloads, etc. Multiple tracks from same category have same npSerial. 
+	// Process-unique. Starts from 1 (thus, 0 means no serial and not allowed in Track)
+	public final int npSerial;  // THREADING: any.
+	
+	public final @Nullable String prevCategory;
+	public final @Nullable String nextCategory;
+	
+	/**
+	 * true if it's possible to navigate by categories
+	 * NOTE: track is regenerated and resent when shuffle mode changes (it also usually changes other track properties, like actualLoadedFilesListUri, npSerial, etc.) 
+	 */
+	public final boolean isCatNavigable;
+	
 
+	// Track Related ==========================================
+	
 	public final long entryId; // THREADING: any. Set once by RNP. Set only for playlist/queue entries.
 	public final long folderId; // THREADING: any. 
 	public final long albumId;  // THREADING: any. 
 	public final long artistId;  // THREADING: any. 
 	public final long albumArtistId; // THREADING: any.
 	public final long fileId;  // THREADING: any. 
-	// NOTE: Now playing (category) serial. Changed during reloads, etc. Multiple tracks from same category have same npSerial. 
-	// Process-unique. Starts from 1 (thus, 0 means no serial and not allowed in Track)
-	public final int npSerial;  // THREADING: any.  
+	public final boolean isCue; // THREADING: any. NOTE: this means track is set as CUE in db. Actual CUE playback status is set via OPEN_IS_CUE flag
+	public final int cueOffsetMs;
+	public final int fileType;
+
 	// NOTE: needed, as if we get it from NPD, it can return some new/modified value which is wrong for this track. Though, this means track is going to be replaced by that new track soon anyway?
 	// Also, npd state can change 1sec in advance, due to bufferings
-	public final int listSize;  // THREADING: any.  
-	public final int position; // THREADING: any. 
 	public final @NonNull String path;  // THREADING: any. 
 
-	public final boolean isCue; // TODO: flag. NOTE: this means track is set as CUE in db. Actual CUE playback status is set via OPEN_IS_CUE flag
-	public final int cueOffsetMs;
+	public final int listSize;  // THREADING: any.  
+	public final int position; // THREADING: any. 
 
-	public final int fileType;
-	
 	private final int durationMS; // NOTE: by default this is TagLib/DB duration for the file, may be updated on playback if differes from decoder. CUE: cue-list parsed duration
 
-	private int rating; // THREADING: set by gui and ps/RNP. Assuming leakage is enough for sync REVISIT: avoid setting this from gui
+	protected int rating; // MUTABLE. THREADING: set by gui and ps/RNP. Assuming leakage is enough for sync REVISIT: avoid setting this from gui
 
 	// NOTE: this is needed so supportsCatNav state is bound to current track, not to NPD, which can change it anytime (e.g. on crossfades, etc)
 	//public final boolean supportsCategoryNavigation;
 
 	private final @Nullable String readablePath; // THREADING: any. Set once by RNP. Used for content:// raw files, where track.path is hard-to-read uri
 
-	// Equ stuff - used by PS
+	// Equ stuff - used by PS ===================================
 	public final long equPresetId; // THREADING: any. Set once by RNP.
 	public final int equPresetIndex; // THREADING: any. Set once by RNP.
 	public final @Nullable String equPresetName; // THREADING: any. Set once by RNP.
@@ -115,33 +122,33 @@ public class Track extends MetaTrackInfo {
 	// These can be changed after NPD and before publishing track to world by ps ==============
 	// REVISIT: can be also made final, if I run TrackProcessor (==TagReader) in NPD before I give track away.
 	// I don't do this now, as TagReader is IO operation, which can slow down start of track
-	private int tagStatus;
-	private @Nullable float[] wave;
-	private @Nullable String title;
-	private @Nullable String album;
-	private @Nullable String artist;
-	private @Nullable String albumArtist;
-	private int trackNum;
+	protected int tagStatus; // MUTABLE
+	protected @Nullable float[] wave; // MUTABLE
+	protected @Nullable String title; // MUTABLE
+	protected @Nullable String album; // MUTABLE
+	protected @Nullable String artist; // MUTABLE
+	protected @Nullable String albumArtist; // MUTABLE
+	protected int trackNum; // MUTABLE
 	//private String lyricsTag; // REVISIT: not used ATM	
 
-	// TrackInfo
+	// TrackInfo =============================================
 	// THREADING: write: ps, read: any
-	private int trackSampleRate; 	
-	private int trackBitsPerSample; 
+	protected int trackSampleRate; // MUTABLE 	
+	protected int trackBitsPerSample; // MUTABLE
 	//public long trackChannelLayout; // REVISIT: not used ATM
-	private int trackChannels;
-	private int trackDurationMS; // NOTE Always duration of source track itself (!= durationMS for cues)
-	private int trackBitRate;
-	private @Nullable String trackDecoderName;
-	private @Nullable String trackDecoderUniqName;
-	private @Nullable String trackCodec;
-	private @Nullable String trackDecodeInfo;
-	private boolean trackIsGapless; 
-	private int trackRgType;
-	private float trackTrackGain;
-	private float trackTrackPeak;
-	private float trackAlbumGain;
-	private float trackAlbumPeak;
+	protected int trackChannels; // MUTABLE
+	protected int trackDurationMS; // MUTABLE. NOTE Always duration of source track itself (!= durationMS for cues)
+	protected int trackBitRate; // MUTABLE
+	protected @Nullable String trackDecoderName; // MUTABLE
+	protected @Nullable String trackDecoderUniqName; // MUTABLE
+	protected @Nullable String trackCodec; // MUTABLE
+	protected @Nullable String trackDecodeInfo; // MUTABLE
+	protected boolean trackIsGapless; // MUTABLE
+	protected int trackRgType; // MUTABLE
+	protected float trackTrackGain; // MUTABLE
+	protected float trackTrackPeak; // MUTABLE
+	protected float trackAlbumGain; // MUTABLE
+	protected float trackAlbumPeak; // MUTABLE
 
 	// TODO: revisit - split play request flags from track "state" permanent flags?
 	// NOTE: now these combines 2 types of flags -> "open" flags - which comes from flags to PS playWhatInNp() and to pipeline
@@ -151,50 +158,7 @@ public class Track extends MetaTrackInfo {
 	// REVISIT: this is modified in thread-unsafe way now
 	// NOTE: generally those are set once per track playback by ps when track starts. Can I consider them read only?
 	// THREADING: write: ps, read: any
-	private int flags;
-
-	// Can be updated anytime in PS thread. Non volatile, thus ordering not guaranteed, but as soon as track published, it will be synced
-	// Used internally by PS only
-	// NOTE: not process unique
-	// NOTE: if pipeline is restarted, new file can have same serial or various mixes of serial conflict can happen
-	// NOTE: also it's the same for tracks within same CUE file, and changed for same repeated track 
-	public int pipelineSerial; // THREADING: write: ps, read: any 
-
-
-	// TODO: remove aa from Track
-
-	// NOTE: access from multiple threads. Can't thus recycle this bitmap, as we can make copy/use it in the another thread - causes crash. 
-
-	// AA Sync access only =====================================
-	//	public static class AAInfo {
-	//		public final static AAInfo RESOLVED_NONE = new AAInfo(null, null, 0f, 0, 0); // Resolved, but nothing found. 
-	//
-	//		public final Bitmap bitmapAlbumArt;    
-	//		public final String albumArtSource;
-	//		public final float aspect; // == w/h
-	//		public final int aaOriginalW;
-	//		public final int aaOriginalH;
-	//		
-	//		public AAInfo(Bitmap bitmap, String resolvedSource, float aspect, int outBitmapW, int outBitmapH) {
-	//			this.bitmapAlbumArt = bitmap;
-	//			this.albumArtSource = resolvedSource;
-	//			this.aspect = aspect;
-	//			this.aaOriginalW = outBitmapW;
-	//			this.aaOriginalH = outBitmapH; 
-	//		}
-	//		
-	//		@Override
-	//		public String toString() {
-	//			return super.toString() + "<AAInfo b=" + bitmapAlbumArt + " source=" + albumArtSource + " aspect=" + aspect + " originalW/H=" + aaOriginalW + "x" + aaOriginalH + ">";
-	//		}
-	//	}
-
-	// THREADING: write - under sync(Track) by AlbumArtProvider. Read: any. AAInfo is final class thus forced to be "atomic" via volatile field
-	// TODO: remove
-	//public volatile AAInfo aa; // Null means not yet resolved, RESOLVED_NONE means resolved to nothing
-
-
-	// End AA Sync ===============================================
+	protected int flags; // MUTABLE
 
 
 	// NOTE: sync with PowerampAPI.Track.Flags
@@ -213,26 +177,26 @@ public class Track extends MetaTrackInfo {
 	public final static int FLAG_OPEN_NO_TOAST        = 0x2000; // REVISIT: move to open flags. Don't show toast for failure - we'll shown own
 	public static final int FLAGS_ALLOW_AS_INPUT_MASK = 0xFFFF; // Allow only the above flags as input
 	public final static int FLAG_OPEN_IS_CUE          = 0x00010000; // REVISIT: move to open flags.
-	//public static final int FLAG_DURATION_UPDATED     = 0x00020000; // Duration was updated by RNP based on vs original duration in DB
 
 
 	// THREADING: ps
-	public Track(long fileId, long entryId, long folderId, long artistId, long albumArtistId, long albumId, int npSerial, int listSize, int position, 
+	public Track(
+			long fileId, long entryId, long folderId, long artistId, long albumArtistId, long albumId, int npSerial, int listSize, int position, 
 			@NonNull String path, String readablePath, 
 			int catUriMatch, String ssid, 
-			String title, String album, String artist, String albumArtist, int durationMS, 
+			@NonNull String title, String album, String artist, String albumArtist, int durationMS, 
 			int trackNum, int rating, 
 			int tagStatus, 
-			String nextTrackInfo, String prevCategory, String nextCategory, 
+			String nextTrackInfo, String prevCategory, String nextCategory,
+			boolean isCatNavigable,
 			@Nullable float[] wave, 
 			int fileType, 
 			boolean isCue, int cueOffsetMs, long equPresetId, 
 			int equPresetIndex, String equPresetData, String equPresetName, @NonNull Uri filesUri, @NonNull Uri actualLoadedFilesListUri, 
 			int serial
 	) {
-		super(nextTrackInfo, prevCategory, nextCategory);
-		
-		if(DEBUG_CHECKS && npSerial == 0) throw new AssertionError();
+		super(nextTrackInfo);
+
 		this.fileId = fileId;
 		this.entryId = entryId;
 		this.folderId = folderId;
@@ -246,6 +210,11 @@ public class Track extends MetaTrackInfo {
 		this.readablePath = TextUtils.isEmpty(readablePath) ? null : readablePath; // NOTE: ensure null for empty string
 		this.catUriMatch = catUriMatch;
 		this.ssid = ssid;
+
+		this.nextCategory = nextCategory;
+		this.prevCategory = prevCategory;
+		this.isCatNavigable = isCatNavigable;
+
 
 		this.title = title;
 		this.album = album;
@@ -264,19 +233,30 @@ public class Track extends MetaTrackInfo {
 		this.equPresetData = equPresetData;
 		this.equPresetName = equPresetName; 
 		this.rating = rating;
-		this.mFilesUri = filesUri;
+		this.filesUri = filesUri;
 		this.actualLoadedFilesListUri = actualLoadedFilesListUri;
 		this.serial = serial;
-		
+
+		if(DEBUG_CHECKS && title.length() == 0) throw new AssertionError(this);
+		if(DEBUG_CHECKS && npSerial == 0) throw new AssertionError(this);
 	}
 
+	/**
+	 * @return trackinfo (from loaded file properties) duration for non-cues, otherwise returns duration from the db (can be 0 for non-scanned tracks)
+	 */
 	public int getDurationMS() {
 		if(!isCue && trackSampleRate != 0) {
-			return trackDurationMS; // Use trackinfo duration for non-cues.
+			return trackDurationMS;
 		} else {
-			return durationMS; // Otherwise use duration from db (can be 0 for non-scanned tracks).
+			return durationMS;
 		}
 	}
+
+	/**
+	 * @param pipelineDirectStateBlob Pipeline directly updated blob buffer
+	 * @return current Pipeline playing position if pipeline currently played track matches this track, or -1 on failure 
+	 */
+	public abstract int getPositionMsFromPipelineBlob(@NonNull ByteBuffer pipelineDirectStateBlob);
 
 	public final boolean isRaw() {
 		return fileId == PowerampAPI.RAW_TRACK_ID; 
@@ -289,22 +269,15 @@ public class Track extends MetaTrackInfo {
 		return fileId > PowerampAPI.NO_ID;
 	}
 
-	public int getDbDurationMS() { // Package. Returns durationMS raw field (value from DB/tag scanner)
+	/**
+	 * @return durationMS raw field (value from DB/tag scanner)
+	 */
+	public int getDbDurationMS() { 
 		return durationMS;
 	}
 
 	public int getDurationS() {
 		return (getDurationMS() + 500) / 1000;
-	}
-
-	// THREADING: ps
-	//	void setDurationMS(int durationMS) {
-	//		this.durationMS = durationMS;
-	//	}
-
-	// THREADING: any. Assuming atomic approach and sync-leak
-	public void setRating(int rating) {
-		this.rating = rating;
 	}
 
 	public int getRating() {
@@ -314,140 +287,13 @@ public class Track extends MetaTrackInfo {
 	public int getTagStatus() {
 		return tagStatus;
 	}
-	
+
 	public @Nullable float[] getWave() {
 		return wave;
 	}
-	
-//	public void setNextTrackInfo(@Nullable String nextTrackInfo) {
-//		this.nextTrackInfo = nextTrackInfo;
-//	}
-//	
-//	public @Nullable String getNextTrackInfo() {
-//		return nextTrackInfo;
-//	}
-
-
-	// THREADING: ps
-	// NOTE: called before track is published to PlayerAPI/other threads
-	//	void updateFromTagScan(final TagAndMeta tagAndMeta) {
-	//		if(DEBUG_CHECK_THREADS) PlayerService.debugCheckIsServiceThread();
-	//		// NOTE: updateFromTagScan() should be called only for pipeline-loaded tracks with some track duration, as we don't update durationMS here from tagAndMeta
-	//		if(DEBUG_CHECKS && this.trackSampleRate == 0) throw new AssertionError("track=" + this);  
-	//		
-	//		int res = tagAndMeta.scanRes;
-	//		
-	//		if(res > 0 && (res & TagAndMeta.HAS_TAG) != 0) {
-	//			
-	//			//track.embedAlbumArt = tagAndMeta.albumArt; // Can be null
-	//			//tagAndMeta.albumArt = null;
-	//			// NOTE: don't do any AA stuff here, as it's handled by AAProv.
-	//			
-	//			if(!isCue) {
-	//				if(!TextUtils.isEmpty(album) && TextUtils.isEmpty(tagAndMeta.album)) {
-	//					// Don't overwrite system lib cursor filled album (== folder name, filled this way by system scanner, this is to match lib album arts).
-	//				} else {
-	//					album = tagAndMeta.album;
-	//				}
-	//				
-	//				artist = tagAndMeta.artist;
-	//				albumArtist = tagAndMeta.albumArtist;
-	//				title = tagAndMeta.title;
-	//			}
-	//			
-	//			//durationMS = tagAndMeta.durationMS;
-	//			//lyricsTag = tagAndMeta.lyrics;
-	//			trackNum = tagAndMeta.track;
-	//		//} else {
-	//		//	trackNum = -1; //??? tagreader.cpp has 0 as no-track-num. Also, Track.trackNum is not used anywhere for now
-	//		}
-	//		
-	//		tagStatus = TableDefs.Files.TAG_SCANNED;
-	//	}
-
-	public void updateFromTagScan(boolean hasTag, String tagAndMetaTitle, String tagAndMetaAlbum, String tagAndMetaArtist, String tagAndMetaAlbumArtist, int tagAndMetaTrack) {
-		// NOTE: updateFromTagScan() should be called only for pipeline-loaded tracks with some track duration, as we don't update durationMS here from tagAndMeta
-		if(DEBUG_CHECKS && this.trackSampleRate == 0) throw new AssertionError("track=" + this);  
-
-		if(hasTag) {
-
-			//track.embedAlbumArt = tagAndMeta.albumArt; // Can be null
-			//tagAndMeta.albumArt = null;
-			// NOTE: don't do any AA stuff here, as it's handled by AAProv.
-
-			if(!isCue) {
-				if(!TextUtils.isEmpty(album) && TextUtils.isEmpty(tagAndMetaAlbum)) {
-					// Don't overwrite system lib cursor filled album (== folder name, filled this way by system scanner, this is to match lib album arts).
-				} else {
-					album = tagAndMetaAlbum;
-				}
-
-				artist = tagAndMetaArtist;
-				albumArtist = tagAndMetaAlbumArtist;
-				title = tagAndMetaTitle;
-			}
-
-			//durationMS = tagAndMeta.durationMS;
-			//lyricsTag = tagAndMeta.lyrics;
-			trackNum = tagAndMetaTrack;
-			//} else {
-			//	trackNum = -1; //??? tagreader.cpp has 0 as no-track-num. Also, Track.trackNum is not used anywhere for now
-		}
-
-		tagStatus = TableDefs.Files.TAG_SCANNED;
-	}
-	
-	public void updateFromWaveScan(@Nullable float[] wave) {
-		this.wave = wave;
-	}
-
-	//	void copyTrackInfoToTrack(PSTrackSession psTrack) {
-	//		trackSampleRate = psTrack.trackSampleRate; 	
-	//		trackBitsPerSample = psTrack.trackBitsPerSample; 
-	//		//trackChannelLayout = psTrack.trackChannelLayout; //LONG, not atomic... So disabled for now 
-	//		trackChannels = psTrack.trackChannels;
-	//		trackDurationMS = psTrack.durationMS; // ms
-	//		trackBitRate = psTrack.bitRate;
-	//		trackCodec = psTrack.codec;
-	//		trackIsGapless = psTrack.isGapless;
-	//		trackRgType = psTrack.rgType;
-	//		trackTrackGain = psTrack.trackGain;
-	//		trackTrackPeak = psTrack.trackPeak;
-	//		trackAlbumGain = psTrack.albumGain;
-	//		trackAlbumPeak = psTrack.albumPeak;
-	//	}
-
-	// THREADING: ps
-	// NOTE: called before track is published to PlayerAPI/other threads
-	public void copyTrackInfoToTrack(int trackSampleRate, int trackBitsPerSample, int trackChannels, int durationMS, int bitRate, 
-			@Nullable String trackDecoderName, @Nullable String trackDecoderUniqName, @Nullable String codec, @Nullable String trackDecodeInfo, 
-			boolean isGapless, int rgType, float trackGain, float trackPeak, float albumGain, float albumPeak) {
-		this.trackSampleRate = trackSampleRate; 	
-		this.trackBitsPerSample = trackBitsPerSample; 
-		//trackChannelLayout = psTrack.trackChannelLayout; //LONG, not atomic... So disabled for now 
-		this.trackChannels = trackChannels;
-		this.trackDurationMS = durationMS; // ms
-		this.trackBitRate = bitRate;
-		this.trackDecoderName = trackDecoderName;
-		this.trackDecoderUniqName = trackDecoderUniqName;
-		this.trackCodec = codec;
-		this.trackDecodeInfo = trackDecodeInfo;
-		this.trackIsGapless = isGapless;
-		this.trackRgType = rgType;
-		this.trackTrackGain = trackGain;
-		this.trackTrackPeak = trackPeak;
-		this.trackAlbumGain = albumGain;
-		this.trackAlbumPeak = albumPeak;
-	}
-
-
 
 	public int getTrackSampleRate() {
 		return trackSampleRate;
-	}
-
-	public void setTrackSampleRate(int trackSampleRate) {
-		this.trackSampleRate = trackSampleRate;
 	}
 
 	public int getTrackBitsPerSample() {
@@ -493,15 +339,15 @@ public class Track extends MetaTrackInfo {
 	public float getTrackAlbumPeak() {
 		return trackAlbumPeak;
 	}
-	
+
 	public @Nullable String getTrackDecoderName() {
 		return trackDecoderName;
 	}
-	
+
 	public @Nullable String getTrackDecoderUniqName() {
 		return trackDecoderUniqName;
 	}
-	
+
 	public @Nullable String getTrackDecodeInfo() {
 		return trackDecodeInfo;
 	}
@@ -535,67 +381,70 @@ public class Track extends MetaTrackInfo {
 	}
 
 
-	// TODO: somehow optimize this? as getReadable* stuff is called multiple times.
 	// NOTE: shouldn't be called from lists.
-	public final String getReadableTitle(String unknown, boolean useFilename) {
-//		if(!useFilename && title != null && title.length() > 0) {
-//			return title;
-//		}
-//		String pathSubstitute = readablePath != null ? readablePath : path;
-//		if(pathSubstitute != null && pathSubstitute.length() > 0) {
-//			int slash = pathSubstitute.lastIndexOf('/');
-//			if(slash == -1 || slash == pathSubstitute.length() - 1) {
-//				return pathSubstitute;
-//			}
-//			return pathSubstitute.substring(slash + 1);
-//		}
-//		return unknown;
-		
+	// NOTE: actually, just title is never empty/unknown (DB title and filename should be never empty)
+	public final @NonNull String getReadableTitle(@Nullable String unknown, boolean useFilename) {
 		return getReadableTitle(title, readablePath, path, unknown, useFilename);
 	}
-	
+
 	// NOTE: used by next track info code for data retrieval directly from cursor
-	public final static String getReadableTitle(String title, String readablePath, String path, String unknown, boolean useFilename) {
+	public final static @NonNull String getReadableTitle(@Nullable String title, @Nullable String readablePath, @NonNull String path, @Nullable String unknown, boolean useFilename) {
 		if(!useFilename && title != null && title.length() > 0) {
 			return title;
 		}
 		String pathSubstitute = readablePath != null ? readablePath : path;
-		if(pathSubstitute != null && pathSubstitute.length() > 0) {
+		if(pathSubstitute.length() > 0) {
 			int slash = pathSubstitute.lastIndexOf('/');
 			if(slash == -1 || slash == pathSubstitute.length() - 1) {
 				return pathSubstitute;
 			}
-			return pathSubstitute.substring(slash + 1);
+			pathSubstitute = pathSubstitute.substring(slash + 1);
+			if(pathSubstitute != null) { // Generally can't be the case, required by @NonNull
+				return pathSubstitute;
+			}
 		}
-		return unknown;
-	}
-	
-
-	public String getReadableArtist(String unknown) {
-		if(artist != null && artist.length() > 0) {
-			return artist;
-		}
-		return unknown;
-	}
-
-	public String getReadableAlbumArtist(String unknown) {
-		if(albumArtist != null && albumArtist.length() > 0) {
-			return albumArtist;
+		if(unknown == null || unknown.length() == 0) {
+			return "???"; // Failed everything. Should never happen though
 		}
 		return unknown;
 	}
 
-	public String getReadableAlbum(String unknown, boolean hideUnknown) { // TODO: use UNKNOWN_ID for unknown label?
+
+	public @NonNull String getReadableArtist(@Nullable String unknown) { // TODO: use UNKNOWN_ID for unknown label?
+		String str = artist;
+		if(str != null && str.length() > 0) {
+			return str;
+		}
+		if(unknown == null || unknown.length() == 0) {
+			return "???"; // Failed everything. Should never happen though
+		}
+		return unknown;
+	}
+
+	public @NonNull String getReadableAlbumArtist(@Nullable String unknown) { // TODO: use UNKNOWN_ID for unknown label?
+		String str = albumArtist;
+		if(str != null && str.length() > 0) {
+			return str;
+		}
+		if(unknown == null || unknown.length() == 0) {
+			return "???"; // Failed everything. Should never happen though
+		}
+		return unknown;
+	}
+
+	public @NonNull String getReadableAlbum(@Nullable String unknown, boolean hideUnknown) { 
 		if(hideUnknown && albumId == TableDefs.UNKNOWN_ID) {
-			return null;
+			return "";
 		}
-		if(album != null && album.length() > 0) {
-			return album;
+		String str = album;
+		if(str != null && str.length() > 0) {
+			return str;
+		}
+		if(unknown == null || unknown.length() == 0) {
+			return "???"; // Failed everything. Should never happen though
 		}
 		return unknown;
 	}
-
-
 
 	public String getReadableFolderName() {
 		if(LOG) Log.w(TAG, "getReadableFolderName path=" + path);
@@ -632,51 +481,29 @@ public class Track extends MetaTrackInfo {
 		return path.substring(prevPrevSlash + 1, lastSlash);
 	}
 
-
-
-
-	//	void setFilesUri(Uri uri) { // Should be called by RNP only.
-	//		mFilesUri = uri;
-	//	}
-
-	// NOTE: this is not actual filesUri for SHUFFLE_ALL, instead, it's resolved (in RNP) to appropriate category based uri
-	public @NonNull Uri getFilesUri() { 
-		return mFilesUri;
-	}
-
-	// THREADING: ps
-	//	void forgetAA() {
-	//		aa = null;
-	//	}
-
-	//public void psAddFlags(int flags) { // ps only
-	//    this.flags |= flags;
-	//}
-
-	public void psClearFlags(int flags) { // ps only
-		psSetFlags(0, flags);
-	}
-
-	public void psSetFlags(int newFlags, int mask) { // ps only
-		flags = (flags & ~mask) | (newFlags & mask);
-	}
-
 	public final int getFlags() {
 		return flags;
+	}
+	
+	public final int getAdvance() {
+		return flags & FLAG_ADVANCE_MASK;
+	}
+	
+	public final boolean isAdvancedByCat() {
+		int advance = getAdvance();
+		return advance == FLAG_ADVANCE_BACKWARD_CAT || advance == FLAG_ADVANCE_FORWARD_CAT;
 	}
 
 	@Override
 	public String toString() {
-		return "<Track " + this.hashCode() + " npSerial=" + npSerial + " mFilesUri=" + mFilesUri + " catUriMatch=" + catUriMatch + " fileId=" + fileId + " entryId=" + entryId + " folderId=" + folderId + " path=" + path + " title=" + title + " album=" + album + " artist=" 
+		return "Track " + this.hashCode() + " npSerial=" + npSerial + " mFilesUri=" + filesUri + " catUriMatch=" + catUriMatch + " fileId=" + fileId + " entryId=" + entryId + " folderId=" + folderId + " path=" + path + " title=" + title + " album=" + album + " artist=" 
 				+ artist + " durationMS=" + getDurationMS() + " tagStatus=" + tagStatus + " fileType=" + fileType + " position=" + position
 				+ " isCue=" + isCue + " " + " cueOffsetMs=" + cueOffsetMs + " flags=0x" + Integer.toHexString(flags) + "  trackSampleRate=" + trackSampleRate 
 				+ " trackChannels=" + trackChannels + " trackDurationMS=" + trackDurationMS + " bitRate=" + trackBitRate + " bitsPerSimple=" + trackBitsPerSample 
-				+ " codec=" + trackCodec + " isGapless=" + trackIsGapless + " rgType=" + trackRgType 
-				+ " pipelineSerial=" + pipelineSerial
-				+ ">";
-
+				+ " codec=" + trackCodec + " isGapless=" + trackIsGapless + " rgType=" + trackRgType
+				; 
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
 		if(o == this) {
@@ -710,7 +537,7 @@ public class Track extends MetaTrackInfo {
 					&& TextUtils.equals(title, track.title)
 					;
 			// NOTE: not comparing track.serial (as it differs for each created track instance)
-			
+
 			// Everything is the same for the track, but files uri can be different, as it doesn't belong to the track itself, but to parent cursor
 			// and depends on query, parameters, etc.
 			// But, as npSerial is the same, filesUri is guaranteed to be the same. Just because we change npSerial on any npd cursors change.
@@ -723,66 +550,4 @@ public class Track extends MetaTrackInfo {
 	public int hashCode() {
 		return super.hashCode(); // Just to remove warning. Not storing Track as hash key now
 	}
-
-
-	static {
-		if(DEBUG_TESTS) debugTests();
-	}
-
-	private static void debugTests() {
-		//		Track track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("/", track.getReadableFolderName());
-		//		
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("/", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("/", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/f", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("/", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("foo", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/foo/file/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("foo/file", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "foo/file/", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("foo/file", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("f", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("foo", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("f", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("eee/foo", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("e/f", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("eee/foo", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/e/f/f", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("e/f", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "werwer/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("eee/foo", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "w/e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("e/f", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/wer/werwer/eee/foo/file", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("eee/foo", track.getReadableFolderName());
-		//
-		//		track = new Track(0, 0, 0, 0, 0, 0, 0, 0, 0, "/r/w/e/f/a", null, 0, null, null, null, null, null, 0, 0, 0, 0, 0, false, 0, 0, 0, null, null, null, null, 0);
-		//		assertEquals("e/f", track.getReadableFolderName());
-	}
-
 }
