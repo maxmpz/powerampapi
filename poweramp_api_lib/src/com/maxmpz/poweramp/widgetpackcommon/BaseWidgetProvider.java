@@ -16,7 +16,7 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ */
 
 package com.maxmpz.poweramp.widgetpackcommon;
 
@@ -43,26 +43,26 @@ import com.maxmpz.poweramp.player.PowerampAPI;
 public abstract class BaseWidgetProvider extends AppWidgetProvider implements IWidgetUpdater {
 	private static final String TAG = "BaseWidgetProvider";
 	private static final boolean LOG = false;
-	
+
 	public static final int WIDGET_PACK_PREFS_VERSION = 209;
-	
+
 	public static final int API_VERSION_200 = 200;
-	
+
 	public static boolean IS_HTC_SENSE; // NOTE: this should be set by Application class.
 	private static boolean sPingedPowerampService;
-	
+
 	public static class WidgetContext {
 		public long lastAATimeStamp;
 		public int id;
 	}
-	
+
 	public static final class ShuffleModeV140 {
 		public static final int SHUFFLE_NONE = 0;
 		public static final int SHUFFLE_ALL = 1;
 		public static final int SHUFFLE_IN_CAT = 2;
 		public static final int SHUFFLE_HIER = 3;
 	}
-	
+
 	public static final class RepeatModeV140 {
 		public static final int REPEAT_NONE = 0;
 		public static final int REPEAT_ALL = 1;
@@ -73,18 +73,18 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 	protected static final int MIN_WIDTH = 100;
 	protected static final int MIN_HEIGHT = 100;
 	protected static ComponentName sServiceName;
-	
+
 	protected abstract ComponentName getWidgetUpdaterServiceName(Context context);
-	
+
 	public abstract RemoteViews update(Context context, WidgetUpdateData data, SharedPreferences prefs, int id);
-	
-	
+
+
 	// Data should be always the same for any type of widgets as data is reused by other widgets, thus method is final.
 	public final WidgetUpdateData generateUpdateData(Context context, boolean mediaRemoved, boolean trackChanged, boolean updateByOs) {
 		if(LOG) Log.e(TAG, "generateUpdateData me=" + this);
-		
+
 		WidgetUpdateData data = new WidgetUpdateData();
-		
+
 		data.updateByOs = updateByOs;
 		data.trackChanged = trackChanged;
 
@@ -94,7 +94,11 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 			if(LOG) Log.e(TAG, "received trackIntent");
 		} else if(!sPingedPowerampService) {
 			if(LOG) Log.e(TAG, "no trackIntent, pinging Poweramp service");
-			context.startService(PowerampAPI.newAPIIntent());
+			try {
+				context.startService(PowerampAPI.newAPIIntent());
+			} catch(Throwable th) {
+				Log.e(TAG, "", th);
+			}
 			sPingedPowerampService = true;
 		}
 
@@ -116,17 +120,17 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 		} else {
 			Intent statusIntent = context.registerReceiver(null, BaseWidgetUpdaterService.sStatusFilter);
 			if(statusIntent != null) {
-			
+
 				int status = statusIntent.getIntExtra(PowerampAPI.STATUS, 0);
 				boolean paused = statusIntent.getBooleanExtra(PowerampAPI.PAUSED, true);
 				data.playing = (status == PowerampAPI.Status.TRACK_PLAYING) && !paused;
-				
+
 				data.apiVersion = statusIntent.getIntExtra(PowerampAPI.API_VERSION, 0);
-				
+
 				if(LOG) Log.e(TAG, "generateUpdateData statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing + " status=" + status);				
 			} else if(LOG)  Log.e(TAG, "generateUpdateData statusIntent==null");
 		}
-		
+
 		Intent modeIntent = context.registerReceiver(null, BaseWidgetUpdaterService.sModeFilter);
 		if(modeIntent != null) {
 			data.shuffle = modeIntent.getIntExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE);
@@ -135,25 +139,29 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 		}
 		return data;
 	}
-	
+
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 		if(appWidgetIds.length == 0) {
 			if(LOG) Log.e(TAG, "no widget ids");
 			return;
 		}
-		
+
 		if(LOG) Log.e(TAG, "onUpdate ids=" + Arrays.toString(appWidgetIds));
 		if(sServiceName == null) {
 			sServiceName = getWidgetUpdaterServiceName(context);
 		}
-		
+
 		Intent intent = new Intent().setComponent(sServiceName)
-							.putExtra(BaseWidgetUpdaterService.EXTRA_UPDATE_BY_OS, true);
-		context.startService(intent);
+				.putExtra(BaseWidgetUpdaterService.EXTRA_UPDATE_BY_OS, true);
+		try {
+			context.startService(intent);
+		} catch(Throwable th) {
+			Log.e(TAG, "", th);
+		}
 	}
 
-	
+
 	@Override
 	public WidgetUpdateData pushUpdate(Context context, SharedPreferences prefs, int[] ids, boolean mediaRemoved, boolean trackChanged, boolean updateByOs, WidgetUpdateData data) {
 		final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -164,17 +172,17 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 				Log.e(TAG, "", ex);
 			}
 		}
-		
+
 		if(ids == null || ids.length == 0) {
 			return null;
 		}
-		
+
 		if(LOG) Log.w(TAG, "pushUpdate() ids to update: " + Arrays.toString(ids));
-		
+
 		if(data == null) {
 			data = generateUpdateData(context, mediaRemoved, trackChanged, updateByOs);
 		}
-		
+
 		int tid = Process.myTid();
 		int priority = Process.getThreadPriority(tid);
 		Process.setThreadPriority(tid, Process.THREAD_PRIORITY_LOWEST);
@@ -183,10 +191,10 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 				RemoteViews rv = update(context, data, prefs, id); // java.lang.RuntimeException: Could not write bitmap to parcel blob.
 				appWidgetManager.updateAppWidget(id, rv);
 			}
-			
+
 		} catch(Exception ex) {
 			Log.e(TAG, "", ex);
-			
+
 		} finally {
 			Process.setThreadPriority(tid, priority);
 		}
@@ -200,16 +208,16 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 				|| data.albumArtNoAnim
 				|| widgetCtx.lastAATimeStamp == data.albumArtTimestamp 
 				|| data.track != null && (data.track.getInt(PowerampAPI.Track.FLAGS, 0) & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0) {
-			
+
 			if(LOG) Log.e(TAG, "same AA, noAnim=>true, same ts=" + widgetCtx.lastAATimeStamp + 
 					" or FLAG_FIRST_IN_PLAYER_SESSION=" + (data.track.getInt(PowerampAPI.Track.FLAGS, 0) & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) + " bitmap=" + data.albumArtBitmap);
-			
+
 			return true;
 		}
 		return false;
 	}
-	
-	
+
+
 	public static String getReadable(String title, String unknown) {
 		if(title != null && title.length() > 0) {
 			return title;
