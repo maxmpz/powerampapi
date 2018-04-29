@@ -818,6 +818,18 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String BIND_TO_BT = "bind_to_bt";
+		
+		/*
+		 * 1 if preset is bound to USB audio output, 0 otherwise.
+		 * Int.
+		 */
+		public static final @NonNull String BIND_TO_USB = "bind_to_usb";
+		
+		/*
+		 * 1 if preset is bound to other audio outputs, 0 otherwise.
+		 * Int.
+		 */
+		public static final @NonNull String BIND_TO_OTHER = "bind_to_other";
 	}
 
 
