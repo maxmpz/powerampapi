@@ -179,6 +179,7 @@ public interface TableDefs {
 		public static final @NonNull String OFFSET_MS = "offset_ms";
 
 		/*
+		 * If non-null - this is cue "source" (big single uncut) file with that given virtual folder id 
 		 * Int.
 		 */
 		public static final @NonNull String CUE_FOLDER_ID = "cue_folder_id";
@@ -339,7 +340,7 @@ public interface TableDefs {
 		 * One of the THUMB_* constants.
 		 * Int.
 		 */
-		public static final @NonNull String THUMB_STATUS = "thumb_status"; //TABLE + ".thumb_status";
+		//public static final @NonNull String THUMB_STATUS = "thumb_status"; //TABLE + ".thumb_status"; // Not used anymore
 
 		/*
 		 * Number of files in a folder.
@@ -396,15 +397,15 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 
-		/**
-		 * tag_status - some jpeg/png exists for dir
-		 */
-		public static final int THUMB_EXISTS_IMAGE = 10;
-
-		/**
-		 * tag_status - no thumbs for dir detected
-		 */
-		public static final int THUMB_NO_THUMB = 0;
+//		/**
+//		 * tag_status - some jpeg/png exists for dir
+//		 */
+//		public static final int THUMB_EXISTS_IMAGE = 10;
+//
+//		/**
+//		 * tag_status - no thumbs for dir detected
+//		 */
+//		public static final int THUMB_NO_THUMB = 0;
 	}
 
 
