@@ -636,21 +636,23 @@ public final class PowerampAPI {
 	 * shuffle extras values.
 	 */
 	public static final class ShuffleMode {
-		public static final int SHUFFLE_NONE = 0;
-		public static final int SHUFFLE_ALL = 1;
-		public static final int SHUFFLE_SONGS = 2;
-		public static final int SHUFFLE_CATS = 3; // Songs in order.
+		public static final int SHUFFLE_NONE           = 0;
+		public static final int SHUFFLE_ALL            = 1;
+		public static final int SHUFFLE_SONGS          = 2;
+		public static final int SHUFFLE_CATS           = 3; // Songs in order.
 		public static final int SHUFFLE_SONGS_AND_CATS = 4; // Songs shuffled.
+		public static final int MAX_SHUFFLE            = 4;
 	}
 	
 	/**
 	 * repeat extras values.
 	 */
 	public static final class RepeatMode {
-		public static final int REPEAT_NONE = 0;
-		public static final int REPEAT_ON = 1;
+		public static final int REPEAT_NONE    = 0;
+		public static final int REPEAT_ON      = 1;
 		public static final int REPEAT_ADVANCE = 2;
-		public static final int REPEAT_SONG = 3;	
+		public static final int REPEAT_SONG    = 3;	
+		public static final int MAX_REPEAT     = 3;
 	}
 	
 	/**
