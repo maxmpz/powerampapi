@@ -3,4 +3,14 @@
     <string name="app_name">Skin Template</string>
     <string name="installation_ok">Poweramp skin pack was successfully installed.\n\nYou can switch Poweramp skins via Poweramp Settings => Look and Feel => Theme</string>
     <string name="start_poweramp">Start Poweramp/Open Theme Options</string>
+    
+    <string name="skin1_name">Skin 1</string>
+    <string name="skin1_description">This is template skin. Used to demonstrate basic skin loading and processing</string>
+    
+    <string name="skin2_name">Skin 2</string>
+    <string name="skin2_description">This is template skin with options</string>
+    <string name="skin2_option1">Option 1</string>
+    <string name="skin2_option2">Option 2</string>
+    
+    <string name="author">Author Name</string>
 </resources>

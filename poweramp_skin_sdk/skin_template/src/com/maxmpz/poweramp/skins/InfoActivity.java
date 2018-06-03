@@ -20,13 +20,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.skins;
 
-import com.maxmpz.poweramp.skins.classic.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import com.maxmpz.poweramp.skins.skintemplate.R;
 
 public class InfoActivity extends Activity {
 	private static final String TAG = "InfoActivity";

@@ -3,7 +3,20 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	
 	<!-- Derive theme from Default - ActivityTheme_Default -->
-	<style name="Skin1" parent="@com.maxmpz.audioplayer:style/ActivityTheme_Default">
+	<style name="Skin1" ><!-- TODO: parent="@com.maxmpz.audioplayer:style/ActivityTheme_Default" -->
 	    <!-- Nothing overridden - just Default theme applied as is -->
 	</style>
+	
+	<style name="Skin2" ><!-- TODO: parent="@com.maxmpz.audioplayer:style/ActivityTheme_Default" -->
+	    <!-- Nothing overridden - just Default theme applied as is -->
+	</style>
+		
+	<!-- Extra option styles are applied to Skin2 whehn appropriate option is set by user (or is checkedByDefault=true). This style rules override base style rules -->
+	
+	<style name="Skin2_option1">
+	</style>
+	
+	<style name="Skin2_option2">
+	</style>
+		
 </resources>

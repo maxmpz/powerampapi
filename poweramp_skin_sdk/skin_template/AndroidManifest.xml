@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.maxmpz.poweramp.skins.skintemplate"
-      android:versionCode="1"
-      android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="14"/>
+	  package="com.maxmpz.poweramp.skins.skintemplate"
+	  android:versionCode="1"
+	  android:versionName="1.0">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="26"/>
 
-    <application android:icon="@drawable/skin_app_icon" android:label="@string/app_name">
-    	<!-- This meta-data tag indicates Poweramp skin APK -->
-    	<meta-data android:name="com.maxmpz.PowerampSkins" android:value="true"/>
-    
-    	<!-- Simple activity which opens Poweramp select theme dialog via intent --> 
-        <activity android:name="com.maxmpz.poweramp.skins.InfoActivity" android:label="@string/app_name" android:configChanges="keyboardHidden" 
-        	android:excludeFromRecents="true" android:noHistory="true">
-            <intent-filter>
+	<application android:icon="@drawable/skin_app_icon" android:label="@string/app_name">
+		<!-- This meta-data tag indicates Poweramp skin APK -->
+		<meta-data
+			android:name="com.maxmpz.PowerampSkins"
+			android:resource="@xml/skins" 
+		/>
+				
+	
+		<!-- Simple activity which opens Poweramp select theme dialog via intent --> 
+		<activity android:name="com.maxmpz.poweramp.skins.InfoActivity" android:label="@string/app_name" android:configChanges="keyboardHidden" 
+			android:excludeFromRecents="true" android:noHistory="true" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
+			<intent-filter>
 				<!-- Don't appear in launcher, but appear as Run button in Google Play installation dialog. -->
 				<category android:name="android.intent.category.INFO"/>
 				
@@ -21,7 +25,7 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 				
 				<action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
-    </application>
+			</intent-filter>
+		</activity>
+	</application>
 </manifest>

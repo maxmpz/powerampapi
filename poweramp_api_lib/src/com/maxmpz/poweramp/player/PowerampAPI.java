@@ -1015,4 +1015,20 @@ public final class PowerampAPI {
 	 * - api - int - Poweramp API version (see API_VERSION)
 	 */
 	public static final String ACTION_NATIVE_PLUGIN_INIT = "com.maxmpz.audioplayer.NATIVE_PLUGIN_INIT";
+	
+
+	/**
+	 * 
+	 */
+	public static final String ACTION_SET_SKIN = "com.maxmpz.audioplayer.action.SET_SKIN";
+	
+	/**
+	 * 
+	 */
+	public static final String EXTRA_SKIN_STYLE_ID = "theme_id";
+	
+	/**
+	 * 
+	 */
+	public static final String EXTRA_SKIN_PACKAGE = "theme_path";
 }
