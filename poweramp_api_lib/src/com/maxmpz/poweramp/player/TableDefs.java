@@ -845,7 +845,10 @@ public interface TableDefs {
 		public static final @NonNull String NAME = "name";
 	}
 
-
+	/**
+	 * @deprecated Not used now
+	 */
+	@Deprecated
 	public static final class EqPresetSongs implements BaseColumns {
 		public static final @NonNull String TABLE = "eq_preset_songs";
 
