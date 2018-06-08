@@ -874,5 +874,16 @@ public interface TableDefs {
 		public static final @NonNull String NAME = TABLE + ".name";
 	}
 
+	/**
+	 * Same as ReverbPresets, but can be used for INSERT
+	 */
+	public class ReverbPresetsRaw extends ReverbPresets {
+		@SuppressWarnings("hiding")
+		public static final @NonNull String _ID = "_id";
+		@SuppressWarnings("hiding")
+		public static final @NonNull String _DATA = "_data";
+		@SuppressWarnings("hiding")
+		public static final @NonNull String NAME = "name";
+	}
 
 }

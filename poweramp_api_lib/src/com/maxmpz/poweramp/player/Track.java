@@ -115,7 +115,7 @@ public abstract class Track extends MetaTrackInfo {
 
 	// Equ stuff - used by PS ===================================
 	public final long equPresetId; // THREADING: any. Set once by RNP.
-	public final int equPresetIndex; // THREADING: any. Set once by RNP.
+	//public final int equPresetIndex; // THREADING: any. Set once by RNP.
 	public final @Nullable String equPresetName; // THREADING: any. Set once by RNP.
 	public final @Nullable String equPresetData; // THREADING: any. Set once by RNP.
 
@@ -191,8 +191,9 @@ public abstract class Track extends MetaTrackInfo {
 			boolean isCatNavigable,
 			@Nullable float[] wave, 
 			int fileType, 
-			boolean isCue, int cueOffsetMs, long equPresetId, 
-			int equPresetIndex, String equPresetData, String equPresetName, @NonNull Uri filesUri, @NonNull Uri actualLoadedFilesListUri, 
+			boolean isCue, int cueOffsetMs, 
+			long equPresetId, //int equPresetIndex, 
+			String equPresetData, String equPresetName, @NonNull Uri filesUri, @NonNull Uri actualLoadedFilesListUri, 
 			int serial
 	) {
 		super(nextTrackInfo);
@@ -229,7 +230,7 @@ public abstract class Track extends MetaTrackInfo {
 		this.cueOffsetMs = cueOffsetMs;
 		this.trackNum = trackNum; 
 		this.equPresetId = equPresetId;
-		this.equPresetIndex = equPresetIndex;
+		//this.equPresetIndex = equPresetIndex;
 		this.equPresetData = equPresetData;
 		this.equPresetName = equPresetName; 
 		this.rating = rating;
