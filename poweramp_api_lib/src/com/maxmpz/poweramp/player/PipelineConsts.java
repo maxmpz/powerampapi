@@ -17,8 +17,8 @@ public interface PipelineConsts {
 	
 	// REVISIT: better naming (prefex with P_ or PA_P_ or move to subclass, etc.
 	
-	public static final int PA_OUTPUT_PARAM_SAMPLE_RATE         = 1;
-	public static final int PA_OUTPUT_PARAM_SAMPLE_BITS         = 2;
+	public static final int PA_OUTPUT_PARAM_SAMPLE_RATE         = 1; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
+	public static final int PA_OUTPUT_PARAM_SAMPLE_BITS         = 2; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
 	public static final int PA_OUTPUT_PARAM_ANDROID_SESSION_ID  = 3;
 	public static final int PA_OUTPUT_PARAM_RESTART_LATENCY_MS  = 4;
 	public static final int PA_OUTPUT_PARAM_ANDROID_AUDIO_STREAM = 5;
@@ -51,13 +51,11 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_CAP_TRACK_CHANGE_FAST_VOLUME = 0x0400;
 	public static final int PA_OUTPUT_CAP_NEEDS_VOLUME_PROVIDER    = 0x0800;
 	public static final int PA_OUTPUT_CAP_CUSTOM_MASTER_VOLUME     = 0x1000;
-	
+	public static final int PA_OUTPUT_CAP_NO_DUCK                  = 0x2000;
 	
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only
-	public static final int PA_OUTPUT_CAP_24BIT_NEEDS_CHECK      = 0x10000000;
-	public static final int PA_OUTPUT_CAP_FORCED_UNITY_GAIN      = 0x20000000;
-	// Used for caps as well
-	public static final int PA_OUTPUT_CAP_OEM_VARIANT            = 0x40000000;	
-
+	//public static final int PA_OUTPUT_CAP_24BIT_NEEDS_CHECK      = 0x10000;
+	public static final int PA_OUTPUT_CAP_FORCED_UNITY_GAIN      = 0x20000;
+	public static final int PA_OUTPUT_CAP_OEM_VARIANT            = 0x40000; 	// Used for caps as well
 }
