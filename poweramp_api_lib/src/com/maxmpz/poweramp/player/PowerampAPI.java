@@ -146,11 +146,11 @@ public final class PowerampAPI {
 		 * lim - integer - SQL LIMIT, which limits number of rows returned
 		 * flt - string - filter substring. Poweramp will return only matching rows (the same way as returned in Poweramp lists UI when filter is used).
 		 * hier - long - hierarchy folder id. Used only to play in shuffle lists/shuffle tracks mode while in hierarchy folders view. This is the target folder id
-		 *               which will be shuffled with the all subfolders in it as one list.
+		 *			   which will be shuffled with the all subfolders in it as one list.
 		 * shf - integer - shuffle mode (see ShuffleMode class)
 		 * ssid - long - shuffle session id (for internal use)
 		 * 
-		 * Each /files/meta subquery returns special crafted query with some metainformation provided (it differs in each category, you can explore it by analizing the cols returned).                
+		 * Each /files/meta subquery returns special crafted query with some metainformation provided (it differs in each category, you can explore it by analizing the cols returned).				
 		
 		- All tracks:
 		content://com.maxmpz.audioplayer.data/files
@@ -218,46 +218,46 @@ public final class PowerampAPI {
 		content://com.maxmpz.audioplayer.data/composers/files
 		
 		- Albums 
-    	content://com.maxmpz.audioplayer.data/albums
-    	content://com.maxmpz.audioplayer.data/albums/#/files
-    	content://com.maxmpz.audioplayer.data/albums/#/files/#
-    	content://com.maxmpz.audioplayer.data/albums/#/files/meta
-    	content://com.maxmpz.audioplayer.data/albums/files
-    	
-    	- Albums by Genres
-    	content://com.maxmpz.audioplayer.data/genres/#/albums
-    	content://com.maxmpz.audioplayer.data/genres/#/albums/meta
-    	content://com.maxmpz.audioplayer.data/genres/#/albums/#/files
-    	content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/#
-    	content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/meta
-    	content://com.maxmpz.audioplayer.data/genres/#/albums/files
-    	content://com.maxmpz.audioplayer.data/genres/albums
+		content://com.maxmpz.audioplayer.data/albums
+		content://com.maxmpz.audioplayer.data/albums/#/files
+		content://com.maxmpz.audioplayer.data/albums/#/files/#
+		content://com.maxmpz.audioplayer.data/albums/#/files/meta
+		content://com.maxmpz.audioplayer.data/albums/files
+		
+		- Albums by Genres
+		content://com.maxmpz.audioplayer.data/genres/#/albums
+		content://com.maxmpz.audioplayer.data/genres/#/albums/meta
+		content://com.maxmpz.audioplayer.data/genres/#/albums/#/files
+		content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/#
+		content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/meta
+		content://com.maxmpz.audioplayer.data/genres/#/albums/files
+		content://com.maxmpz.audioplayer.data/genres/albums
 
-    	- Albums by Artists
-    	content://com.maxmpz.audioplayer.data/artists/#/albums
-    	content://com.maxmpz.audioplayer.data/artists/#/albums/meta
-    	content://com.maxmpz.audioplayer.data/artists/#/albums/#/files
-    	content://com.maxmpz.audioplayer.data/artists/#/albums/#/files/#
-    	content://com.maxmpz.audioplayer.data/artists/#/albums/#/files/meta
-    	content://com.maxmpz.audioplayer.data/artists/#/albums/files
-    	content://com.maxmpz.audioplayer.data/artists/albums
+		- Albums by Artists
+		content://com.maxmpz.audioplayer.data/artists/#/albums
+		content://com.maxmpz.audioplayer.data/artists/#/albums/meta
+		content://com.maxmpz.audioplayer.data/artists/#/albums/#/files
+		content://com.maxmpz.audioplayer.data/artists/#/albums/#/files/#
+		content://com.maxmpz.audioplayer.data/artists/#/albums/#/files/meta
+		content://com.maxmpz.audioplayer.data/artists/#/albums/files
+		content://com.maxmpz.audioplayer.data/artists/albums
 
-    	- Albums by Composers
-    	content://com.maxmpz.audioplayer.data/composers/#/albums
-    	content://com.maxmpz.audioplayer.data/composers/#/albums/meta
-    	content://com.maxmpz.audioplayer.data/composers/#/albums/#/files
-    	content://com.maxmpz.audioplayer.data/composers/#/albums/#/files/#
-    	content://com.maxmpz.audioplayer.data/composers/#/albums/#/files/meta
-    	content://com.maxmpz.audioplayer.data/composers/#/albums/files
-    	content://com.maxmpz.audioplayer.data/composers/albums
+		- Albums by Composers
+		content://com.maxmpz.audioplayer.data/composers/#/albums
+		content://com.maxmpz.audioplayer.data/composers/#/albums/meta
+		content://com.maxmpz.audioplayer.data/composers/#/albums/#/files
+		content://com.maxmpz.audioplayer.data/composers/#/albums/#/files/#
+		content://com.maxmpz.audioplayer.data/composers/#/albums/#/files/meta
+		content://com.maxmpz.audioplayer.data/composers/#/albums/files
+		content://com.maxmpz.audioplayer.data/composers/albums
 
-    	- Artists Albums
-    	content://com.maxmpz.audioplayer.data/artists_albums
-    	content://com.maxmpz.audioplayer.data/artists_albums/meta
-    	content://com.maxmpz.audioplayer.data/artists_albums/#/files
-    	content://com.maxmpz.audioplayer.data/artists_albums/#/files/#
-    	content://com.maxmpz.audioplayer.data/artists_albums/#/files/meta
-    	content://com.maxmpz.audioplayer.data/artists_albums/files
+		- Artists Albums
+		content://com.maxmpz.audioplayer.data/artists_albums
+		content://com.maxmpz.audioplayer.data/artists_albums/meta
+		content://com.maxmpz.audioplayer.data/artists_albums/#/files
+		content://com.maxmpz.audioplayer.data/artists_albums/#/files/#
+		content://com.maxmpz.audioplayer.data/artists_albums/#/files/meta
+		content://com.maxmpz.audioplayer.data/artists_albums/files
 		
 		- Playlists
 		content://com.maxmpz.audioplayer.data/playlists
@@ -280,7 +280,7 @@ public final class PowerampAPI {
 		 *  
 		 * Extras:
 		 * - paused - boolean - (optional) default false. OPEN_TO_PLAY command starts playing the file immediately, unless "paused" extra is true.
-		 *                       (see PowerampAPI.PAUSED)
+		 *					   (see PowerampAPI.PAUSED)
 		 * 
 		 * - pos - int - (optional) seek to this position in track before playing (see PowerampAPI.Track.POSITION)
 		 */
@@ -430,9 +430,9 @@ public final class PowerampAPI {
 	 * Extras:
 	 * - aaPath - String - (optional) if exists, direct path to the cached album art is available.
 	 * - aaBitmap - Bitmap - (optional)	if exists, some rescaled up to 500x500 px album art bitmap is available.
-	 *              There will be aaBitmap if aaPath is available, but image is bigger than 600x600 px.
+	 *			  There will be aaBitmap if aaPath is available, but image is bigger than 600x600 px.
 	 * - delayed - boolean - (optional) if true, this album art was downloaded or selected later by user.
-              
+			  
 	 * - ts - long - timestamp of the event (System.currentTimeMillis()).
 	 */
 	public static final String ACTION_AA_CHANGED = "com.maxmpz.audioplayer.AA_CHANGED";
@@ -473,7 +473,7 @@ public final class PowerampAPI {
 	 * - id - long - preset id. If no id extra exists, it's not a preset.
 	 * - value - string - equalizer and tone values in format:
 	 *   	bass=pos_float|treble=pos_float|31=float|62=float|....|16K=float|preamp=0.0 ... 2.0
-	 *      where float = -1.0 ... 1.0, pos_float = 0.0 ... 1.0
+	 *	  where float = -1.0 ... 1.0, pos_float = 0.0 ... 1.0
 	 * - equ - boolean - true if equalizer bands are enabled
 	 * - tone - boolean - truel if tone bands are enabled
 	 * - ts - long - timestamp of the event (System.currentTimeMillis()).
@@ -636,23 +636,23 @@ public final class PowerampAPI {
 	 * shuffle extras values.
 	 */
 	public static final class ShuffleMode {
-		public static final int SHUFFLE_NONE           = 0;
-		public static final int SHUFFLE_ALL            = 1;
-		public static final int SHUFFLE_SONGS          = 2;
-		public static final int SHUFFLE_CATS           = 3; // Songs in order.
+		public static final int SHUFFLE_NONE		   = 0;
+		public static final int SHUFFLE_ALL			= 1;
+		public static final int SHUFFLE_SONGS		  = 2;
+		public static final int SHUFFLE_CATS		   = 3; // Songs in order.
 		public static final int SHUFFLE_SONGS_AND_CATS = 4; // Songs shuffled.
-		public static final int MAX_SHUFFLE            = 4;
+		public static final int MAX_SHUFFLE			= 4;
 	}
 	
 	/**
 	 * repeat extras values.
 	 */
 	public static final class RepeatMode {
-		public static final int REPEAT_NONE    = 0;
-		public static final int REPEAT_ON      = 1;
+		public static final int REPEAT_NONE	= 0;
+		public static final int REPEAT_ON	  = 1;
 		public static final int REPEAT_ADVANCE = 2;
-		public static final int REPEAT_SONG    = 3;	
-		public static final int MAX_REPEAT     = 3;
+		public static final int REPEAT_SONG	= 3;	
+		public static final int MAX_REPEAT	 = 3;
 	}
 	
 	/**
@@ -865,10 +865,10 @@ public final class PowerampAPI {
 		 * 
 		 * Poweramp Scanner scanning process is 2 step:
 		 * 1. Folders scan.
-		 *    Checks filesystem and updates DB with folders/files structure.
+		 *	Checks filesystem and updates DB with folders/files structure.
 		 * 2. Tags scan.
-		 *    Iterates over files in DB with TAG_STATUS == TAG_NOT_SCANNED and scans them with tag scanner.
-		 *    
+		 *	Iterates over files in DB with TAG_STATUS == TAG_NOT_SCANNED and scans them with tag scanner.
+		 *	
 		 * Poweramp Scanner is a IntentService, this means multiple scan requests at the same time (or during another scans) are queued.  
 		 * ACTION_SCAN_DIRS actions are prioritized and executed before ACTION_SCAN_TAGS.
 		 * 
@@ -882,17 +882,17 @@ public final class PowerampAPI {
 		 * 
 		 * Extras:
 		 * - fastScan - Poweramp will not check folders and scan files which hasn't been modified from previous scan. Based on files last modified timestamp.
-         *				 
-		 *               
+		 *				 
+		 *			   
 		 * - eraseTags - Poweramp will clean all tags from exisiting songs. This causes each song to be re-scanned for tags.
-		 *               Warning: as a side effect, cleans CUE tracks from user created playlists. 
-		 *               This is because scanner can't incrementaly re-scan CUE sheets, so they are deleted from DB, causing their
-		 *               deletion from user playlists as well.
-		 *               
+		 *			   Warning: as a side effect, cleans CUE tracks from user created playlists. 
+		 *			   This is because scanner can't incrementaly re-scan CUE sheets, so they are deleted from DB, causing their
+		 *			   deletion from user playlists as well.
+		 *			   
 		 * - fullRescan - Poweramp will also check for folders/files from missing/unmounted storages and will remove them from DB. 
-		 *                Warning: removed songs also disappear from user created playlists.
-		 *                Used in Poweramp only when user specificaly goes to Settings and does Full Rescan (after e.g. SD card change).                
-		 *                                  
+		 *				Warning: removed songs also disappear from user created playlists.
+		 *				Used in Poweramp only when user specificaly goes to Settings and does Full Rescan (after e.g. SD card change).				
+		 *								  
 		 */
 		public static final String ACTION_SCAN_DIRS = "com.maxmpz.audioplayer.ACTION_SCAN_DIRS";
 
@@ -902,8 +902,8 @@ public final class PowerampAPI {
 		 *
 		 * Extras:
 		 * - fastScan - If true, scanner doesn't send ACTION_TAGS_SCAN_STARTED/ACTION_TAGS_SCAN_PROGRESS/ACTION_TAGS_SCAN_FINISHED intents, 
-		 *               just sends ACTION_FAST_TAGS_SCAN_FINISHED when done.
-		 *               It doesn't modify scanning logic otherwise.  
+		 *			   just sends ACTION_FAST_TAGS_SCAN_FINISHED when done.
+		 *			   It doesn't modify scanning logic otherwise.  
 		 */
 		public static final String ACTION_SCAN_TAGS = "com.maxmpz.audioplayer.ACTION_SCAN_TAGS";
 		
