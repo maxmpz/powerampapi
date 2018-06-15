@@ -70,7 +70,7 @@ public abstract class Track extends MetaTrackInfo {
 
 	// Following are set once (final or final-like). Set by NPD ==================
 	public final int catUriMatch; // THREADING: any. Set once by RNP
-	public final @Nullable String ssid; // THREADING: any. Set once by RNP
+	public final int shuffle; // THREADING: any. Set once by RNP
 	// NOTE: Now playing (category) serial. Changed during reloads, etc. Multiple tracks from same category have same npSerial. 
 	// Process-unique. Starts from 1 (thus, 0 means no serial and not allowed in Track)
 	public final int npSerial;  // THREADING: any.
@@ -183,7 +183,7 @@ public abstract class Track extends MetaTrackInfo {
 	public Track(
 			long fileId, long entryId, long folderId, long artistId, long albumArtistId, long albumId, int npSerial, int listSize, int position, 
 			@NonNull String path, String readablePath, 
-			int catUriMatch, String ssid, 
+			int catUriMatch, int shuffle, 
 			@NonNull String title, String album, String artist, String albumArtist, int durationMS, 
 			int trackNum, int rating, 
 			int tagStatus, 
@@ -210,7 +210,7 @@ public abstract class Track extends MetaTrackInfo {
 		this.path = path;
 		this.readablePath = TextUtils.isEmpty(readablePath) ? null : readablePath; // NOTE: ensure null for empty string
 		this.catUriMatch = catUriMatch;
-		this.ssid = ssid;
+		this.shuffle = shuffle;
 
 		this.nextCategory = nextCategory;
 		this.prevCategory = prevCategory;
@@ -531,7 +531,7 @@ public abstract class Track extends MetaTrackInfo {
 					//&& equPresetIndex == track.equPresetIndex
 					&& rating == track.rating
 					&& TextUtils.equals(path, track.path) 
-					&& TextUtils.equals(ssid, track.ssid)
+					&& shuffle == track.shuffle
 					&& TextUtils.equals(album, track.album) // NOTE: need to compare strings as we can have edited tags
 					&& TextUtils.equals(artist, track.artist)
 					&& TextUtils.equals(albumArtist, track.albumArtist)

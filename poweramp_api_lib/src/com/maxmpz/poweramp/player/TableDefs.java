@@ -296,6 +296,16 @@ public interface TableDefs {
 		 * String
 		 */
 		public static final @NonNull String META = TABLE + ".meta";
+		
+		/**
+		 * String
+		 */
+		public static final @NonNull String ALBUM_TAG = TABLE + ".album_tag";
+		
+		/**
+		 * String
+		 */
+		public static final @NonNull String ARTIST_TAG = TABLE + ".artist_tag";
 	}
 
 
@@ -396,6 +406,13 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+		
+		
+		/**
+		 * String.
+		 * Special calculated subquery column which retrieves short parent name 
+		 */
+		public static final @NonNull String PARENT_NAME_SUBQUERY = "(SELECT name FROM folders AS f2 WHERE f2._id=folders.parent_id) AS parent_name_subquery";		
 
 //		/**
 //		 * tag_status - some jpeg/png exists for dir
