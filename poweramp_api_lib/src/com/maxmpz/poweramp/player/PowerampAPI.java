@@ -482,9 +482,20 @@ public final class PowerampAPI {
 	
 	/**
 	 * Special actions for com.maxmpz.audioplayer.PlayListActivity only.
+	 * @deprecated opens library
 	 */
+	@Deprecated
 	public static final String ACTION_SHOW_CURRENT = "com.maxmpz.audioplayer.ACTION_SHOW_CURRENT";
+	/**
+	 * Special actions for com.maxmpz.audioplayer.PlayListActivity only.
+	 * @deprecated opens library
+	 */
+	@Deprecated
 	public static final String ACTION_SHOW_LIST  = "com.maxmpz.audioplayer.ACTION_SHOW_LIST";
+	
+	public static final String ACTION_OPEN_LIBRARY  = "com.maxmpz.audioplayer.ACTION_OPEN_LIBRARY";
+	public static final String ACTION_OPEN_SEARCH  = "com.maxmpz.audioplayer.ACTION_OPEN_SEARCH";
+	public static final String ACTION_OPEN_EQ  = "com.maxmpz.audioplayer.ACTION_OPEN_EQ";
 	
 
 	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
@@ -492,16 +503,25 @@ public final class PowerampAPI {
 	
 	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
 	
+	/**
+	 * @deprecated there is no PlayerUIActivity anymore
+	 */
+	@Deprecated
 	public static final String ACTIVITY_PLAYER_UI = "com.maxmpz.audioplayer.PlayerUIActivity";
+	
+	/**
+	 * @deprecated there is no EqActivity anymore
+	 */
+	@Deprecated
 	public static final String ACTIVITY_EQ = "com.maxmpz.audioplayer.EqActivity";
 	
 	/**
-	 * If com.maxmpz.audioplayer.ACTION_SHOW_LIST action is sent to this activity, it will react to some extras.
-	 * Extras:
-	 * Data:
-	 * - uri - uri of the list to display. 
+	 * @deprecated there is no PlayListActivity anymore
 	 */
+	@Deprecated
 	public static final String ACTIVITY_PLAYLIST = "com.maxmpz.audioplayer.PlayListActivity";
+	
+	
 	public static final String ACTIVITY_SETTINGS = "com.maxmpz.audioplayer.preference.SettingsActivity";
 	
 	/**
