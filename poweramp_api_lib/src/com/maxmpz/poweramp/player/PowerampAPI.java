@@ -63,6 +63,11 @@ public final class PowerampAPI {
 	 */
 	public static final String ACTION_API_COMMAND = "com.maxmpz.audioplayer.API_COMMAND";
 	
+	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
+	public static final String PLAYER_SERVICE_NAME = "com.maxmpz.audioplayer.player.PlayerService";
+	
+	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
+	
 	public static Intent newAPIIntent() {
 		return new Intent(ACTION_API_COMMAND).setComponent(PLAYER_SERVICE_COMPONENT_NAME);
 	}
@@ -274,6 +279,8 @@ public final class PowerampAPI {
 		content://com.maxmpz.audioplayer.data/eq_presets
 		content://com.maxmpz.audioplayer.data/eq_presets/#
 		content://com.maxmpz.audioplayer.data/eq_presets_songs
+
+		- Queue
 		content://com.maxmpz.audioplayer.data/queue
 		content://com.maxmpz.audioplayer.data/queue/#
 
@@ -481,28 +488,31 @@ public final class PowerampAPI {
 	public static final String ACTION_EQU_CHANGED = "com.maxmpz.audioplayer.EQU_CHANGED";
 	
 	/**
-	 * Special actions for com.maxmpz.audioplayer.PlayListActivity only.
-	 * @deprecated opens library
+	 * Opens a category list for the current track, or library - if no track is loaded
 	 */
-	@Deprecated
 	public static final String ACTION_SHOW_CURRENT = "com.maxmpz.audioplayer.ACTION_SHOW_CURRENT";
+
 	/**
-	 * Special actions for com.maxmpz.audioplayer.PlayListActivity only.
 	 * @deprecated opens library
 	 */
 	@Deprecated
 	public static final String ACTION_SHOW_LIST  = "com.maxmpz.audioplayer.ACTION_SHOW_LIST";
 	
 	public static final String ACTION_OPEN_LIBRARY  = "com.maxmpz.audioplayer.ACTION_OPEN_LIBRARY";
+	
 	public static final String ACTION_OPEN_SEARCH  = "com.maxmpz.audioplayer.ACTION_OPEN_SEARCH";
+
+	/**
+	 * @see EXTRA_EQ_TAB
+	 */
 	public static final String ACTION_OPEN_EQ  = "com.maxmpz.audioplayer.ACTION_OPEN_EQ";
 	
+	/**
+	 * Opens main screen
+	 */
+	public static final String ACTION_OPEN_MAIN  = "com.maxmpz.audioplayer.ACTION_OPEN_MAIN";
+	
 
-	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
-	public static final String PLAYER_SERVICE_NAME = "com.maxmpz.audioplayer.player.PlayerService";
-	
-	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
-	
 	/**
 	 * @deprecated there is no PlayerUIActivity anymore
 	 */
@@ -523,6 +533,36 @@ public final class PowerampAPI {
 	
 	
 	public static final String ACTIVITY_SETTINGS = "com.maxmpz.audioplayer.preference.SettingsActivity";
+	
+	/**
+	 * Extra
+	 * Int
+	 * @see ACTION_OPEN_EQ
+	 * @see EQ_TAB_DEFAULT, EQ_TAB_EQUALIZER, EQ_TAB_VOLUME, EQ_TAB_REVERB
+	 */
+	public static final String EXTRA_EQ_TAB = "eqTab";
+	
+	/**
+	 * Open last user opened eq tab 
+	 * @see EXTRA_EQ_TAB
+	 */
+	public static final int EQ_TAB_DEFAULT = -1;
+	/**
+	 * Open equalizer tab 
+	 * @see EXTRA_EQ_TAB
+	 */
+	public static final int EQ_TAB_EQUALIZER = 0;
+	/**
+	 * Open volume tab 
+	 * @see EXTRA_EQ_TAB
+	 */
+	public static final int EQ_TAB_VOLUME = 1;
+	/**
+	 * Open reverb tab 
+	 * @see EXTRA_EQ_TAB
+	 */
+	public static final int EQ_TAB_REVERB = 2;
+	
 	
 	/**
 	 * Extra.
