@@ -130,7 +130,7 @@ public interface TableDefs {
 		 * Bitwise flag.
 		 * Int.
 		 */
-		public static final @NonNull String AA_STATUS = "aa_status";
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 
 		/*
 		 * Full path. Works only if the query is joined with the folders.
@@ -213,14 +213,6 @@ public interface TableDefs {
 		 */
 		public static final int TAG_SCANNED = 1;
 
-		/**
-		 * aa_status
-		 */
-		public static final int AA_STATUS_NONE = 0;
-		/**
-		 * aa_status
-		 */
-		public static final int AA_STATUS_EMBED = 1;
 	}
 
 	
@@ -503,6 +495,13 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+		
+		/*
+		 * Bitwise flag.
+		 * Int.
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+		
 
 		// Artists uses special where for cue sources, thus just count files is enough.
 		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
@@ -546,6 +545,13 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+		
+		/*
+		 * Bitwise flag.
+		 * Int.
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+		
 
 		// Artists uses special where for cue sources, thus just count files is enough.
 		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
@@ -621,6 +627,13 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+		
+		/*
+		 * Bitwise flag.
+		 * Int.
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+		
 
 		// Composers uses special where for cue sources, thus just count files is enough.
 		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
