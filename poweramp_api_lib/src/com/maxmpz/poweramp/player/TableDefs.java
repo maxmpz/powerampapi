@@ -93,7 +93,7 @@ public interface TableDefs {
 		 * Title tag.
 		 * String.
 		 */
-		public static final @NonNull String TITLE_TAG = TABLE + ".title_tag"; // REVISIT: remove TABLE
+		public static final @NonNull String TITLE_TAG = "title_tag"; // NOTE: important to have it w/o table for headers-enabled compound selects
 
 		/*
 		 * Duration in miliseconds.
@@ -428,12 +428,12 @@ public interface TableDefs {
 		/*
 		 * String.
 		 */
-		public static final @NonNull String ALBUM = "album";
+		public static final @NonNull String ALBUM = "album"; // NOTE: important to have it w/o table for headers-enabled compound selects
 
 		/*
 		 * String.
 		 */
-		public static final @NonNull String ALBUM_SORT = "album_sort";
+		public static final @NonNull String ALBUM_SORT = "album_sort"; // NOTE: important to have it w/o table for headers-enabled compound selects
 
 		/*
 		 * Int
