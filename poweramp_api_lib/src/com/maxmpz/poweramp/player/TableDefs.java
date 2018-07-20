@@ -383,6 +383,12 @@ public interface TableDefs {
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
 		
 		/**
+		 * Bitwise flag.
+		 * Int.
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+		
+		/**
 		 * String.
 		 * Special calculated subquery column which retrieves short parent name 
 		 */
@@ -432,6 +438,12 @@ public interface TableDefs {
 		 * Number of tracks in this category, including cue source images
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
+		
+		/**
+		 * Bitwise flag.
+		 * Int.
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 	}
 
 
@@ -538,7 +550,7 @@ public interface TableDefs {
 
 	// NOTE: this is album => artist 1:1 binding table
 	// Used for Albums by Artist category, where can be multiple same Album repeated per each Artist
-	public interface ArtistAlbums {
+	public interface AlbumsByArtist {
 		public static final @NonNull String TABLE = "artist_albums";
 
 		// Fields.
@@ -648,9 +660,11 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
 
-		
-//		public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
-//		public static final @NonNull String COUNT_ALBUMS = "count(albums._id)";
+		/**
+		 * Bitwise flag.
+		 * Int.
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 	}
 
 
@@ -746,6 +760,12 @@ public interface TableDefs {
 		//    select (dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0)), dur, album from durs limit 10;
 		
 		public static final @NonNull String TOTAL_DURATION = "(dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0))";
+		
+		/**
+		 * Bitwise flag.
+		 * Int.
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 	}
 
 

@@ -503,7 +503,7 @@ public abstract class Track extends MetaTrackInfo {
 	public @NonNull Builder buildFileUri() {
 		Builder b = filesUri.buildUpon()
 				.appendEncodedPath(Long.toString(entryId != PowerampAPI.NO_ID ? entryId : fileId))
-				.fragment(null)
+				.encodedFragment(null)
 				.encodedQuery(null);
 		return b;
 	}
