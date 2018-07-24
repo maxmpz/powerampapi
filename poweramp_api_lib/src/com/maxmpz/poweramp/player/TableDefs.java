@@ -114,7 +114,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 		/**
 		 * Int.
 		 */
@@ -238,7 +238,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 		/**
 		 * Int.
 		 */
@@ -321,7 +321,7 @@ public interface TableDefs {
 		 * Full path of the folder.
 		 * String.
 		 */
-		// NOTE: avoid TABLE name here to allow using field in raw_files. "path" is (almost) unique column, also used in folder_playlists
+		// NOTE: avoid TABLE name here to allow using field in raw_files. "path" is (almost) unique column, also used in playlists
 		public static final @NonNull String PATH = "path"; 
 
 		/**
@@ -359,7 +359,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/**
 		 * First seen time.
@@ -422,7 +422,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/**
 		 * First seen time.
@@ -468,7 +468,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/**
 		 * First seen time.
@@ -519,7 +519,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/**
 		 * First seen time.
@@ -571,7 +571,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/**
 		 * First seen time.
@@ -598,7 +598,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 		
 		/**
 		 * First seen time.
@@ -643,7 +643,7 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 		
 		/**
 		 * First seen time.
@@ -691,7 +691,7 @@ public interface TableDefs {
 
 
 	public interface PlaylistEntries {
-		public static final @NonNull String TABLE = "folder_playlist_entries";
+		public static final @NonNull String TABLE = "playlist_entries";
 
 		// Fields.
 
@@ -718,7 +718,7 @@ public interface TableDefs {
 
 
 	public interface Playlists {
-		public static final @NonNull String TABLE = "folder_playlists";
+		public static final @NonNull String TABLE = "playlists";
 
 		// Fields.
 
@@ -728,7 +728,7 @@ public interface TableDefs {
 		 * Name of the playlist.
 		 * String.
 		 */
-		public static final @NonNull String NAME = TABLE + ".name";
+		public static final @NonNull String PLAYLIST = TABLE + ".playlist";
 
 		/**
 		 * Int.
@@ -738,12 +738,12 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String PATH = TABLE + ".path";
+		public static final @NonNull String PATH = TABLE + ".playlist_path";
 
 		/**
 		 * Int.
 		 */
-		public static final @NonNull String SSID = TABLE + ".ssid";
+		//public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/**
 		 * Int.
@@ -754,7 +754,7 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 
-		public static final @NonNull String NUM_FILES_COUNT = "(SELECT COUNT(*) FROM " + PlaylistEntries.TABLE + " WHERE " + PlaylistEntries.PLAYLIST_ID + "=" + _ID + ") AS _track_count";
+		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 		
 		// NOTE: requires CTE with durs, e.g.:
 		// with durs as (select (sum(duration)) as dur, album from folder_files inner join albums on albums._id=folder_files.album_id group by album_id) 

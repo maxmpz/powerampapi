@@ -153,7 +153,7 @@ public final class PowerampAPI {
 		 * hier - long - hierarchy folder id. Used only to play in shuffle lists/shuffle tracks mode while in hierarchy folders view. This is the target folder id
 		 *			   which will be shuffled with the all subfolders in it as one list.
 		 * shf - integer - shuffle mode (see ShuffleMode class)
-		 * ssid - long - shuffle session id (for internal use)
+		 * shs - integer - 1 if this is shuffle session (for internal use)
 		 * 
 		 * Each /files/meta subquery returns special crafted query with some metainformation provided (it differs in each category, you can explore it by analizing the cols returned).				
 		
