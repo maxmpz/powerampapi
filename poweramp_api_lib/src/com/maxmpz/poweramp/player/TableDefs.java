@@ -321,7 +321,8 @@ public interface TableDefs {
 		 * Full path of the folder.
 		 * String.
 		 */
-		public static final @NonNull String PATH = "path"; // NOTE: avoid TABLE name here to allow using field in raw_files. "path" is unique column, anyways
+		// NOTE: avoid TABLE name here to allow using field in raw_files. "path" is (almost) unique column, also used in folder_playlists
+		public static final @NonNull String PATH = "path"; 
 
 		/**
 		 * Folder album art/thumb image (short name).
