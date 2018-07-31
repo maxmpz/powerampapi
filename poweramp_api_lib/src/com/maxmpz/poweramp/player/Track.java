@@ -57,15 +57,30 @@ public abstract class Track extends MetaTrackInfo {
 
 	// Category Related =============================================
 	
-	// NOTE: this is not actual filesUri for SHUFFLE_ALL or some other modes, instead, it's resolved (in RNP) to appropriate category based uri,
-	// so it can be used for building new track uri
-	// Actual RNP loaded list is avialble from actualLoadedFilesListUri 
+	/**
+	 * NOTE: this is not actual filesUri for SHUFFLE_ALL or some other modes, instead, it's resolved (in RNP) to appropriate category based uri, 
+	 * so it can be used for building new track uri.
+	 * Actual RNP loaded list is avialble from actualLoadedFilesListUri
+	 */
 	public final @NonNull Uri filesUri; // THREADING: any. Set once by RNP
-	public final @NonNull Uri actualLoadedFilesListUri; // THREADING: any. Set once by RNP. Can match mFilesUri for most cases, except SHUFFLE_ALL
+
+	/**
+	 * Can match mFilesUri for most cases, except SHUFFLE_ALL
+	 */
+	public final @NonNull Uri actualLoadedFilesListUri; // THREADING: any. Set once by RNP
 
 	// Following are set once (final or final-like). Set by NPD ==================
 	public final int catUriMatch; // THREADING: any. Set once by RNP
 	
+	/**
+	 * Localized current track category name, e.g. Folders, Albums, etc.
+	 */
+	public final @NonNull String catLabel; // THREADING: any. Set once by RNP
+	/**
+	 * Small category icon resource id, usually 12x12dp size
+	 */
+	public final int catMicroIconRes; // THREADING: any. Set once by RNP
+
 	public final int shuffle; // THREADING: any. Set once by RNP
 	
 	// NOTE: Now playing (category) serial. Changed during reloads, etc. Multiple tracks from same category have same npSerial. 
@@ -187,7 +202,8 @@ public abstract class Track extends MetaTrackInfo {
 	public Track(
 			long fileId, long entryId, long folderId, long artistId, long albumArtistId, long albumId, int npSerial, int listSize, int position, 
 			@NonNull String path, String readablePath, 
-			int catUriMatch, int shuffle, 
+			int catUriMatch, @NonNull String catLabel, int catMicroIconRes, 
+			int shuffle, 
 			@NonNull String title, String album, String artist, String albumArtist, int durationMS, 
 			int trackNum, int rating, 
 			int tagStatus, 
@@ -214,6 +230,9 @@ public abstract class Track extends MetaTrackInfo {
 		this.path = path;
 		this.readablePath = TextUtils.isEmpty(readablePath) ? null : readablePath; // NOTE: ensure null for empty string
 		this.catUriMatch = catUriMatch;
+		this.catLabel = catLabel;
+		this.catMicroIconRes = catMicroIconRes;
+
 		this.shuffle = shuffle;
 
 		this.nextCategory = nextCategory;

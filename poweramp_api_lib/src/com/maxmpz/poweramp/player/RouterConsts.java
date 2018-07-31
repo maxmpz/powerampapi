@@ -7,6 +7,7 @@ public interface RouterConsts {
 	public static final int DEVICE_BT      = 2;
 	public static final int DEVICE_USB     = 3;
 	public static final int DEVICE_OTHER   = 4;
+	// 5
 
 	public static final int DEVICE_UNKNOWN = 0xFF;
 	
