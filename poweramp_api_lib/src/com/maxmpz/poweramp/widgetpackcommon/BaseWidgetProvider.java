@@ -28,11 +28,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Build;
 import android.os.Process;
 import android.util.Log;
-import android.util.SparseArray;
 import android.widget.RemoteViews;
 
 import com.maxmpz.poweramp.player.PowerampAPI;

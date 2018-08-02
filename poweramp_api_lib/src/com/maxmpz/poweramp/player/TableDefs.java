@@ -43,11 +43,6 @@ public interface TableDefs {
 
 	public interface Files {
 		public static final @NonNull String TABLE = "folder_files";
-		public static final @NonNull String VIEW_MOST_PLAYED = "files_most_played";
-		public static final @NonNull String VIEW_TOP_RATED = "files_most_played";
-		public static final @NonNull String VIEW_RECENTLY_ADDED = "files_recently_added";
-		public static final @NonNull String VIEW_RECENTLY_ADDED_FS = "files_recently_added_fs"; // REVISIT
-		public static final @NonNull String VIEW_RECENTLY_PLAYED = "files_recently_played";
 
 		// Fields.
 

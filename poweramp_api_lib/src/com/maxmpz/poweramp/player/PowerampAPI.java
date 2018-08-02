@@ -150,59 +150,44 @@ public final class PowerampAPI {
 		 * All queries support following params (added as URL encoded params, e.g. content://com.maxmpz.audioplayer.data/files?lim=10&flt=foo):
 		 * lim - integer - SQL LIMIT, which limits number of rows returned
 		 * flt - string - filter substring. Poweramp will return only matching rows (the same way as returned in Poweramp lists UI when filter is used).
-		 * hier - long - hierarchy folder id. Used only to play in shuffle lists/shuffle tracks mode while in hierarchy folders view. This is the target folder id
-		 *			   which will be shuffled with the all subfolders in it as one list.
 		 * shf - integer - shuffle mode (see ShuffleMode class)
 		 * shs - integer - 1 if this is shuffle session (for internal use)
 		 * 
-		 * Each /files/meta subquery returns special crafted query with some metainformation provided (it differs in each category, you can explore it by analizing the cols returned).				
 		
 		- All tracks:
 		content://com.maxmpz.audioplayer.data/files
-		content://com.maxmpz.audioplayer.data/files/meta
 		content://com.maxmpz.audioplayer.data/files/#
 
 		- Most Played
 		content://com.maxmpz.audioplayer.data/most_played
-		content://com.maxmpz.audioplayer.data/most_played/files
-		content://com.maxmpz.audioplayer.data/most_played/files/meta
-		content://com.maxmpz.audioplayer.data/most_played/files/#
+		content://com.maxmpz.audioplayer.data/most_played/#
 		
 		- Top Rated
 		content://com.maxmpz.audioplayer.data/top_rated
-		content://com.maxmpz.audioplayer.data/top_rated/files
-		content://com.maxmpz.audioplayer.data/top_rated/files/meta
-		content://com.maxmpz.audioplayer.data/top_rated/files/#
+		content://com.maxmpz.audioplayer.data/top_rated/#
 
 		- Recently Added
 		content://com.maxmpz.audioplayer.data/recently_added
-		content://com.maxmpz.audioplayer.data/recently_added/files
-		content://com.maxmpz.audioplayer.data/recently_added/files/meta
-		content://com.maxmpz.audioplayer.data/recently_added/files/#
+		content://com.maxmpz.audioplayer.data/recently_added/#
 		
 		- Recently Played
 		content://com.maxmpz.audioplayer.data/recently_played
-		content://com.maxmpz.audioplayer.data/recently_played/files
-		content://com.maxmpz.audioplayer.data/recently_played/files/meta
-		content://com.maxmpz.audioplayer.data/recently_played/files/#
+		content://com.maxmpz.audioplayer.data/recently_played/#
 		
 		- Plain folders view (just files in plain folders list)
 		content://com.maxmpz.audioplayer.data/folders
 		content://com.maxmpz.audioplayer.data/folders/#
 		content://com.maxmpz.audioplayer.data/folders/#/files
-		content://com.maxmpz.audioplayer.data/folders/#/files/meta
 		content://com.maxmpz.audioplayer.data/folders/#/files/#
 		
 		- Hierarchy folders view (files and folders intermixed in one cursor)
 		content://com.maxmpz.audioplayer.data/folders/#/folders_and_files
-		content://com.maxmpz.audioplayer.data/folders/#/folders_and_files/meta
 		content://com.maxmpz.audioplayer.data/folders/#/folders_and_files/#
 		content://com.maxmpz.audioplayer.data/folders/files // All folder files, sorted as folders_files sort (for mass ops).
 		
 		- Genres
 		content://com.maxmpz.audioplayer.data/genres
 		content://com.maxmpz.audioplayer.data/genres/#/files
-		content://com.maxmpz.audioplayer.data/genres/#/files/meta
 		content://com.maxmpz.audioplayer.data/genres/#/files/#
 		content://com.maxmpz.audioplayer.data/genres/files
 
@@ -210,7 +195,6 @@ public final class PowerampAPI {
 		content://com.maxmpz.audioplayer.data/artists
 		content://com.maxmpz.audioplayer.data/artists/#
 		content://com.maxmpz.audioplayer.data/artists/#/files
-		content://com.maxmpz.audioplayer.data/artists/#/files/meta
 		content://com.maxmpz.audioplayer.data/artists/#/files/#
 		content://com.maxmpz.audioplayer.data/artists/files
 		
@@ -219,49 +203,39 @@ public final class PowerampAPI {
 		content://com.maxmpz.audioplayer.data/composers/#
 		content://com.maxmpz.audioplayer.data/composers/#/files
 		content://com.maxmpz.audioplayer.data/composers/#/files/#
-		content://com.maxmpz.audioplayer.data/composers/#/files/meta
 		content://com.maxmpz.audioplayer.data/composers/files
 		
 		- Albums 
 		content://com.maxmpz.audioplayer.data/albums
 		content://com.maxmpz.audioplayer.data/albums/#/files
 		content://com.maxmpz.audioplayer.data/albums/#/files/#
-		content://com.maxmpz.audioplayer.data/albums/#/files/meta
 		content://com.maxmpz.audioplayer.data/albums/files
 		
 		- Albums by Genres
 		content://com.maxmpz.audioplayer.data/genres/#/albums
-		content://com.maxmpz.audioplayer.data/genres/#/albums/meta
 		content://com.maxmpz.audioplayer.data/genres/#/albums/#/files
 		content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/#
-		content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/meta
 		content://com.maxmpz.audioplayer.data/genres/#/albums/files
 		content://com.maxmpz.audioplayer.data/genres/albums
 
 		- Albums by Artists
 		content://com.maxmpz.audioplayer.data/artists/#/albums
-		content://com.maxmpz.audioplayer.data/artists/#/albums/meta
 		content://com.maxmpz.audioplayer.data/artists/#/albums/#/files
 		content://com.maxmpz.audioplayer.data/artists/#/albums/#/files/#
-		content://com.maxmpz.audioplayer.data/artists/#/albums/#/files/meta
 		content://com.maxmpz.audioplayer.data/artists/#/albums/files
 		content://com.maxmpz.audioplayer.data/artists/albums
 
 		- Albums by Composers
 		content://com.maxmpz.audioplayer.data/composers/#/albums
-		content://com.maxmpz.audioplayer.data/composers/#/albums/meta
 		content://com.maxmpz.audioplayer.data/composers/#/albums/#/files
 		content://com.maxmpz.audioplayer.data/composers/#/albums/#/files/#
-		content://com.maxmpz.audioplayer.data/composers/#/albums/#/files/meta
 		content://com.maxmpz.audioplayer.data/composers/#/albums/files
 		content://com.maxmpz.audioplayer.data/composers/albums
 
 		- Albums by Artist
 		content://com.maxmpz.audioplayer.data/artists_albums
-		content://com.maxmpz.audioplayer.data/artists_albums/meta
 		content://com.maxmpz.audioplayer.data/artists_albums/#/files
 		content://com.maxmpz.audioplayer.data/artists_albums/#/files/#
-		content://com.maxmpz.audioplayer.data/artists_albums/#/files/meta
 		content://com.maxmpz.audioplayer.data/artists_albums/files
 		
 		- Playlists
@@ -269,16 +243,18 @@ public final class PowerampAPI {
 		content://com.maxmpz.audioplayer.data/playlists/#
 		content://com.maxmpz.audioplayer.data/playlists/#/files
 		content://com.maxmpz.audioplayer.data/playlists/#/files/#
-		content://com.maxmpz.audioplayer.data/playlists/#/files/meta
 		content://com.maxmpz.audioplayer.data/playlists/files
 		
-		- Library Search
+		- Search
 		content://com.maxmpz.audioplayer.data/search
 		
 		- Equalizer Presets
 		content://com.maxmpz.audioplayer.data/eq_presets
 		content://com.maxmpz.audioplayer.data/eq_presets/#
-		content://com.maxmpz.audioplayer.data/eq_presets_songs
+
+		- Reverb Presets
+		content://com.maxmpz.audioplayer.data/reverb_presets
+		content://com.maxmpz.audioplayer.data/reverb_presets/#
 
 		- Queue
 		content://com.maxmpz.audioplayer.data/queue
@@ -903,6 +879,7 @@ public final class PowerampAPI {
 		public static final int FOLDERS = 10;
 		public static final int MOST_PLAYED = 43;
 		public static final int TOP_RATED = 48;
+		public static final int LOW_RATED = 50;
 		public static final int RECENTLY_ADDED = 53;
 		public static final int RECENTLY_PLAYED = 58;
 		public static final int PLAYLISTS = 100;
