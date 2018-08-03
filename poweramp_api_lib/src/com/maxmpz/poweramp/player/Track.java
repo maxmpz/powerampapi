@@ -436,7 +436,7 @@ public abstract class Track extends MetaTrackInfo {
 
 	public @NonNull String getReadableArtist(@Nullable String unknown) { // TODO: use UNKNOWN_ID for unknown label?
 		String str = artist;
-		if(str != null && str.length() > 0) {
+		if(artistId != TableDefs.UNKNOWN_ID && str != null && str.length() > 0) {
 			return str;
 		}
 		if(unknown == null || unknown.length() == 0) {
@@ -447,7 +447,7 @@ public abstract class Track extends MetaTrackInfo {
 
 	public @NonNull String getReadableAlbumArtist(@Nullable String unknown) { // TODO: use UNKNOWN_ID for unknown label?
 		String str = albumArtist;
-		if(str != null && str.length() > 0) {
+		if(albumArtistId != TableDefs.UNKNOWN_ID && str != null && str.length() > 0) {
 			return str;
 		}
 		if(unknown == null || unknown.length() == 0) {
@@ -461,7 +461,7 @@ public abstract class Track extends MetaTrackInfo {
 			return "";
 		}
 		String str = album;
-		if(str != null && str.length() > 0) {
+		if(albumId != TableDefs.UNKNOWN_ID && str != null && str.length() > 0) {
 			return str;
 		}
 		if(unknown == null || unknown.length() == 0) {
