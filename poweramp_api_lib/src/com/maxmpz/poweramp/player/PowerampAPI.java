@@ -744,6 +744,12 @@ public final class PowerampAPI {
 		public static final String CAT_URI = "catUri";
 		
 		/**
+		 * True if category navigation (<<< >>>) is possible
+		 * Boolean.
+		 */
+		public static final String SUPPORTS_CAT_NAV = "supportsCatNav";
+		
+		/**
 		 * File type. See Track.FileType.
 		 * Integer.
 		 */

@@ -751,17 +751,18 @@ public interface TableDefs {
 
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 		
-		// NOTE: requires CTE with durs, e.g.:
-		// with durs as (select (sum(duration)) as dur, album from folder_files inner join albums on albums._id=folder_files.album_id group by album_id) 
-		//    select (dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0)), dur, album from durs limit 10;
-		
-		public static final @NonNull String TOTAL_DURATION = "(dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0))";
-		
 		/**
 		 * Bitwise flag.
 		 * Int.
 		 */
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+
+		// NOTE: requires CTE with durs, e.g.:
+		// with durs as (select (sum(duration)) as dur, album from folder_files inner join albums on albums._id=folder_files.album_id group by album_id) 
+		//    select (dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0)), dur, album from durs limit 10;
+		
+		public static final @NonNull String TOTAL_DURATION = "(dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0))";
+		public static final @NonNull String IS_FILE = TABLE + ".playlist_path IS NOT NULL AS _is_file";
 	}
 
 
