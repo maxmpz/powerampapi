@@ -509,6 +509,7 @@ public final class PowerampAPI {
 	
 	
 	public static final String ACTIVITY_SETTINGS = "com.maxmpz.audioplayer.preference.SettingsActivity";
+	public static final String ACTIVITY_STARTUP = "com.maxmpz.audioplayer.StartupActivity";
 	
 	/**
 	 * Extra

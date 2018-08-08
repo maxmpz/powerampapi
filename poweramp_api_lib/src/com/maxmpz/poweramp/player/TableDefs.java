@@ -233,10 +233,6 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
-		/**
-		 * Int.
-		 */
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/**

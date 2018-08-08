@@ -520,7 +520,16 @@ public abstract class Track extends MetaTrackInfo {
 	
 	@SuppressWarnings("null")
 	public @NonNull Builder buildFileUri() {
-		Builder b = filesUri.buildUpon()
+		// NOTE: for rawFiles, we have fileUri == all files - for UI purposes as there is no raw_files category, 
+		// but we still want that given file uri to be within raw_files for proper actions handling
+		Uri uri;
+		if(!isRaw()) {
+			uri = filesUri; 
+		} else {
+			uri = actualLoadedFilesListUri;
+			
+		}
+		Builder b = uri.buildUpon()
 				.appendEncodedPath(Long.toString(entryId != PowerampAPI.NO_ID ? entryId : fileId))
 				.encodedFragment(null)
 				.encodedQuery(null);
