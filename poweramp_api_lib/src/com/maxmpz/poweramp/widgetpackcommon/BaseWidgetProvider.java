@@ -29,6 +29,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Looper;
 import android.os.Process;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -180,10 +181,12 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 		if(data == null) {
 			data = generateUpdateData(context, mediaRemoved, trackChanged, updateByOs);
 		}
+		
+//		if(Looper.getMainLooper().getThread() == Thread.currentThread()) throw new AssertionError();
 
-		int tid = Process.myTid();
-		int priority = Process.getThreadPriority(tid);
-		Process.setThreadPriority(tid, Process.THREAD_PRIORITY_LOWEST);
+//		int tid = Process.myTid();
+//		int priority = Process.getThreadPriority(tid);
+//		Process.setThreadPriority(tid, Process.THREAD_PRIORITY_LOWEST);
 		try {
 			for(int id : ids) {
 				RemoteViews rv = update(context, data, prefs, id); // java.lang.RuntimeException: Could not write bitmap to parcel blob.
@@ -193,8 +196,8 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 		} catch(Exception ex) {
 			Log.e(TAG, "", ex);
 
-		} finally {
-			Process.setThreadPriority(tid, priority);
+//		} finally {
+//			Process.setThreadPriority(tid, priority);
 		}
 		return data;
 	}
