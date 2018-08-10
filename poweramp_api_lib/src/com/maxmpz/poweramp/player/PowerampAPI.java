@@ -30,7 +30,7 @@ import android.net.Uri;
  */
 public final class PowerampAPI {
 	/**
-	 * Defines PowerampAPI version, which could be also 200 and 210 for older Poweramps.
+	 * Defines PowerampAPI version, which could be also 200 and 210 for older Poweramp.
 	 */
 	public static final int VERSION = 700;
 	
@@ -81,7 +81,7 @@ public final class PowerampAPI {
 	
 	/** 
 	 * 
-	 * Commonm extras:
+	 * Common extras:
 	 * - beep - boolean - (optional) if true, Poweramp will beep on playback command
 	 */
 	@SuppressWarnings("hiding")

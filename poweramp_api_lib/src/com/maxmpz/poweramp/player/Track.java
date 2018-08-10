@@ -261,7 +261,7 @@ public abstract class Track extends MetaTrackInfo {
 		this.actualLoadedFilesListUri = actualLoadedFilesListUri;
 		this.serial = serial;
 
-		if(DEBUG_CHECKS && title.length() == 0) throw new AssertionError(this);
+		if(DEBUG_CHECKS && title.length() == 0) throw new AssertionError(this); // May happen after update (from db with empty titles in DB)
 		if(DEBUG_CHECKS && npSerial == 0) throw new AssertionError(this);
 	}
 
