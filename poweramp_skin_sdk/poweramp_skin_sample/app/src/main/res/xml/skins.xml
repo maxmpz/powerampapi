@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<skins xmlns:android="http://schemas.android.com/apk/res/android">
+	<skin
+		name="@string/skin_sample"
+		author="@string/skin_author"
+		description="@string/skin_sample_description"
+		style="@style/SampleSkin"
+	>
+		<!-- Checkable option. In this case we use built-in ActivityTheme_Whitepro_StaticSeekbar substyle. We may need own substyle if we modify theme more -->
+		<option
+			key="static_seekbar"
+			name="@string/skin_static_seekbar"
+			overlapStyle="@com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_StaticSeekbar"
+			checkedByDefault="false"
+		/>
+
+		<!-- Let's add our skin unique option which makes navigation bars fully transparent -->
+		<option
+			key="trans_navbar"
+			name="@string/skin_transparent_navbar"
+			summary="@string/skin_summary_transparent_navbar"
+			overlapStyle="@style/SampleSkin_transparentNavbar"
+			checkedByDefault="false"
+		/>
+
+	</skin>
+</skins>

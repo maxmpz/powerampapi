@@ -1062,17 +1062,17 @@ public final class PowerampAPI {
 	
 
 	/**
-	 * 
+	 * Extra for ACTIVITY_STARTUP.
+	 * If this is specified with EXTRA_SKIN_STYLE_ID, Poweramp will attempt to change skin as commanded, but on any failure, default skin is activated
+
+	 * String - Skin APK package name 
 	 */
-	public static final String ACTION_SET_SKIN = "com.maxmpz.audioplayer.action.SET_SKIN";
-	
+	public static final String EXTRA_SKIN_PACKAGE = "theme_pak";
+
 	/**
-	 * 
+	 * Extra for com.maxmpz.audioplayer.action.SET_SKIN
+	 * Integer - theme resource id
 	 */
 	public static final String EXTRA_SKIN_STYLE_ID = "theme_id";
 	
-	/**
-	 * 
-	 */
-	public static final String EXTRA_SKIN_PACKAGE = "theme_path";
 }

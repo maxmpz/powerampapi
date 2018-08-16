@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Poweramp Skin Sample</string>
+    <string name="start_poweramp">Start Poweramp\nwith this theme</string>
+    <string name="installation_ok">Successfully installed</string>
+
+    <string name="skin_sample">Sample Skin</string>
+    <string name="skin_author">Sample Skin Author</string>
+    <string name="skin_sample_description">This is a sample skin</string>
+    <string name="open_theme_settings">Open Theme Settings</string>
+
+	<string name="skin_static_seekbar">Static Seekbar</string>
+	<string name="skin_transparent_navbar">Transparent Navbars</string>
+	<string name="skin_summary_transparent_navbar">Both, Poweramp and Android navigation bars are transparent</string>
+</resources>

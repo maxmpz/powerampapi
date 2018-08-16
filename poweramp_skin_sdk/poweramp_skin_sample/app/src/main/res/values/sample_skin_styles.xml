@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+
+	<!-- Main theme, derived from Poweramp base white theme. We override only the attributes we need.
+	     Poweramp styles/attributes/values start with "com.maxmpz.audioplayer:", otherwise syntax is the standard Android xml resource syntax
+	 -->
+	<style name="SampleSkin" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
+		<item name="com.maxmpz.audioplayer:corners_navbar">0dp</item>
+
+		<item name="com.maxmpz.audioplayer:corners_popup">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_medium">4dp</item>
+		<item name="com.maxmpz.audioplayer:corners_medium_plus">4dp</item>
+		<item name="com.maxmpz.audioplayer:corners_searchbar">4dp</item>
+		<item name="com.maxmpz.audioplayer:corners_mini">0dp</item>
+		<item name="com.maxmpz.audioplayer:corners_large">8dp</item>
+		<item name="com.maxmpz.audioplayer:corners_small">1dp</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other">matchHeight</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_zoomed">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_zoomed">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_zoomed">matchHeight</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid">matchHeight</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid_zoomed">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid_zoomed">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid_zoomed">matchHeight</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_small">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_miniplayer_aa">0dp</item>
+
+		<item name="com.maxmpz.audioplayer:colorStroke">#ddd</item><!-- Make stroked buttons much less contrasted -->
+
+		<item name="com.maxmpz.audioplayer:navbar_elevation">8dp</item><!-- Increase elevation for navbar -->
+
+		<!-- Change Navbar style to make it fill whole width -->
+		<item name="com.maxmpz.audioplayer:Navbar">@style/Navbar</item>
+		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet</item>
+		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines</item>
+
+		<!-- Apply same for selection menu -->
+		<item name="com.maxmpz.audioplayer:SelectionMenuSubcontainer">@style/SelectionMenuSubcontainer</item>
+		<item name="com.maxmpz.audioplayer:SelectionMenuSubcontainer_scene_selection_menu">@style/SelectionMenuSubcontainer_scene_selection_menu</item>
+
+		<!-- Change Equalizer top bar style to make it fill whole width -->
+		<item name="com.maxmpz.audioplayer:TopActionModeBar">@style/TopActionModeBar</item>
+
+		<!-- As we changed corners for everything, let's add separate always rounded background for menu -->
+		<item name="com.maxmpz.audioplayer:ItemTrackMenu">@style/ItemTrackMenu</item>
+		<!-- Also modify text header menu, as it uses different styling -->
+		<item name="com.maxmpz.audioplayer:ItemTextMenu">@style/ItemTextMenu</item>
+
+		<!-- Let's add background for buttons in list headers. It's always hidden in Poweramp default themes -->
+		<item name="com.maxmpz.audioplayer:ItemHeaderButtonsBg">@style/ItemHeaderButtonsBg</item>
+		<item name="com.maxmpz.audioplayer:ItemHeaderButtonsBg_scene_header">@style/ItemHeaderButtonsBg_scene_header</item>
+
+		<!-- Override buttons with different background drawable/ripple -->
+		<item name="com.maxmpz.audioplayer:ItemHeaderShuffleButton">@style/ItemHeaderShuffleButton</item>
+		<item name="com.maxmpz.audioplayer:ItemHeaderPlayButton">@style/ItemHeaderPlayButton</item>
+		<item name="com.maxmpz.audioplayer:ItemHeaderSelectButton">@style/ItemHeaderSelectButton</item>
+
+		<!-- Override menu button in just scene_header scene -->
+		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_header">@style/ItemTrackMenu_scene_header</item>
+
+		<!-- As we added buttons background, let's move title / album artist a bit to the top -->
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_header">@style/ItemTrackLine2_scene_header</item>
+		<!-- Same adjustment is needed for ItemTrackTitle_scene_header_1, as in scene_header_1 only title is shown, attached to bottom, no line2 displayed.
+		     scene_header_1 is used for e.g. Artists / Genres / etc. 1-line layout headers -->
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_header_1">@style/ItemTrackTitle_scene_header_1</item>
+
+		<!-- Few more adjustments are needed for "back decors" as they should have same layout as title for proper animations -->
+		<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_1">@style/ItemTrackBackDecorTitle_scene_header_1</item>
+	</style>
+
+	<!-- We need to change layout in all "scenes" for the target view, in this case, Navbar -->
+	<style name="Navbar" parent="com.maxmpz.audioplayer:Navbar">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+	<style name="Navbar_scene_navbar_1line_sheet" parent="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+	<style name="Navbar_scene_navbar_2lines" parent="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
+	<style name="SelectionMenuSubcontainer" parent="com.maxmpz.audioplayer:SelectionMenuSubcontainer">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+	<style name="SelectionMenuSubcontainer_scene_selection_menu" parent="com.maxmpz.audioplayer:SelectionMenuSubcontainer_scene_selection_menu">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
+
+	<style name="TopActionModeBar" parent="com.maxmpz.audioplayer:TopActionModeBar">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:elevation">1dp</item>
+	</style>
+
+	<style name="ItemTrackMenu" parent="com.maxmpz.audioplayer:ItemTrackMenu">
+		<item name="android:background">@drawable/ripple_inverse_always_rounded</item>
+	</style>
+
+	<style name="ItemTextMenu" parent="com.maxmpz.audioplayer:ItemTextMenu">
+		<item name="android:background">@drawable/ripple_inverse_stroke_always_rounded</item>
+	</style>
+
+	<style name="ItemHeaderButtonsBg" parent="com.maxmpz.audioplayer:ItemHeaderButtonsBg">
+		<item name="android:visibility">invisible</item><!-- By default, this view should be invisible, and it will become visible in scene_header (see below) -->
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">50dp</item>
+		<item name="android:background">#8000</item><!-- Add some background -->
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
+		<item name="android:translationZ">?com.maxmpz.audioplayer:over_aa_elevation</item><!-- Need this elevation to be above AA -->
+		<item name="android:outlineProvider">none</item><!-- Force no shadow -->
+		<item name="android:disabledAlpha">0</item><!-- This makes it to disappear with buttons in selection mode -->
+	</style>
+	<style name="ItemHeaderButtonsBg_scene_header" parent="com.maxmpz.audioplayer:ItemHeaderButtonsBg_scene_header">
+		<item name="android:visibility">visible</item>
+	</style>
+
+	<style name="ItemHeaderShuffleButton" parent="com.maxmpz.audioplayer:ItemHeaderShuffleButton">
+		<item name="android:background">@drawable/ripple_button</item>
+	</style>
+
+	<style name="ItemHeaderPlayButton" parent="com.maxmpz.audioplayer:ItemHeaderPlayButton">
+		<item name="android:background">@drawable/ripple_button</item>
+	</style>
+
+	<style name="ItemHeaderSelectButton" parent="com.maxmpz.audioplayer:ItemHeaderSelectButton">
+		<item name="android:background">@drawable/ripple_button</item>
+	</style>
+
+	<style name="ItemTrackMenu_scene_header" parent="com.maxmpz.audioplayer:ItemTrackMenu_scene_header">
+		<item name="android:background">@drawable/ripple_button</item>
+		<!-- By default, view params like background are not applied for ItemTrackMenu during scene transitions, but as we want to change background, set applyViewParams to true -->
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+	<style name="ItemTrackLine2_scene_header" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_header">
+		<item name="android:layout_marginBottom">52.5dp</item>
+	</style>
+	<style name="ItemTrackTitle_scene_header_1" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_header_1">
+		<item name="android:layout_marginBottom">52.5dp</item>
+	</style>
+
+	<style name="ItemTrackBackDecorTitle" parent="com.maxmpz.audioplayer:ItemTrackBackDecorTitle">
+		<item name="android:layout_marginBottom">86dp</item>
+	</style>
+	<style name="ItemTrackBackDecorTitle_scene_header_1" parent="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_1">
+		<item name="android:layout_marginBottom">52.5dp</item>
+	</style>
+
+
+	<!-- Optional style for SampleSkin_transparentNavbar option. Poweramp applies option styles on top of the skin theme, if such option is checked by user
+	     NOTE: as fully transparent navigation bar is supported by Android 8.0+, we have different variants of this style for v21-25 (Android 5-7), and for v26+ (Android 8+)
+	-->
+	<style name="SampleSkin_transparentNavbarBase">
+
+		<item name="com.maxmpz.audioplayer:navigationBarBg">#0000</item>
+
+		<item name="com.maxmpz.audioplayer:colorNavbarIcons">#7a7a7a</item><!-- Makes Poweramp navbar icons a bit more contrast for non-white backgrounds possible due to an album art -->
+
+		<item name="com.maxmpz.audioplayer:navbar_elevation">0dp</item><!-- Remove elevation for navbar -->
+
+		<item name="com.maxmpz.audioplayer:Navbar">@style/Navbar_transparentNavbar</item>
+		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
+		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+
+		<!-- Apply same for selection menu container -->
+		<item name="com.maxmpz.audioplayer:TopSelectionMenuContainer">@style/TopSelectionMenuContainer</item>
+
+		<!-- We want Android navigation bar to become non-transparent for lists, as list goes beyond it -->
+		<item name="com.maxmpz.audioplayer:TopFitsNavigationBarView_scenes_non_main">@style/TopFitsNavigationBarView_scenes_non_main</item>
+
+		<!-- To demonstrate animation duration overriding, let's override transition time between main AA and other screens to sync nav bar background animations with it -->
+		<item name="com.maxmpz.audioplayer:TopContainer">@style/TopContainer_transparentNavbar</item>
+	</style>
+
+	<!-- SampleSkin_transparentNavbar variant for v21-v25 (Android 5-7) -->
+	<style name="SampleSkin_transparentNavbar" parent="SampleSkin_transparentNavbarBase">
+		<item name="android:windowTranslucentNavigation">true</item>
+	</style>
+
+
+
+	<!-- No need to override all scenes, as we change just background, which is not changed by scenes for Poweramp Navbar.
+	     We also derive from our skin Navbar style to reuse previous modification (e.g. margins) -->
+	<style name="Navbar_transparentNavbar" parent="Navbar">
+		<!-- Attach bottom to navigation_bar_bg view, which automatically spans Android navigation bar space when Android navigation bar color is transparent -->
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
+
+		<item name="android:background">#0000</item><!-- NOTE: @null won't work here, as this will make navbar a non-drawing view, thus, no scene background change will happen -->
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+
+	<style name="Navbar_scene_navbar_1line_sheet_transparentNavbar" parent="Navbar_scene_navbar_1line_sheet">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
+
+		<item name="android:background">#fff</item><!-- Apply white background for scenes, so navbar has visible background in lists and when expanded -->
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item><!-- Enables background changes for scene -->
+	</style>
+	<style name="Navbar_scene_navbar_2lines_transparentNavbar" parent="Navbar_scene_navbar_2lines">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
+		<item name="android:background">#fff</item>
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+	<style name="TopSelectionMenuContainer" parent="com.maxmpz.audioplayer:TopSelectionMenuContainer">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
+		<item name="android:clipToPadding">true</item>
+		<item name="android:clipChildren">true</item>
+	</style>
+
+	<style name="TopFitsNavigationBarView_scenes_non_main" parent="com.maxmpz.audioplayer:TopFitsNavigationBarView_scenes_non_main">
+		<item name="android:background">#fff</item>
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+	<style name="TopContainer_transparentNavbar" parent="com.maxmpz.audioplayer:TopContainer">
+		<!-- By default this is 0, but we sync it with navigation transition duration, which is 500ms by default -->
+		<item name="com.maxmpz.audioplayer:animMainExitTime">500</item>
+		<item name="android:clipChildren">true</item><!-- Force clipping to avoid selection menu going under android navigation bar -->
+	</style>
+
+</resources>

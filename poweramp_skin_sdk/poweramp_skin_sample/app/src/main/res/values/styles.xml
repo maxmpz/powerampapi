@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Base application theme - just for skin information activity -->
+    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
+    </style>
+
+</resources>
