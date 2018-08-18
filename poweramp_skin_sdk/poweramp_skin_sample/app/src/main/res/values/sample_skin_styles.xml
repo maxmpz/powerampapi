@@ -174,8 +174,9 @@
 	</style>
 
 
-	<!-- Optional style for SampleSkin_transparentNavbar option. Poweramp applies option styles on top of the skin theme, if such option is checked by user
-	     NOTE: as fully transparent navigation bar is supported by Android 8.0+, we have different variants of this style for v21-25 (Android 5-7), and for v26+ (Android 8+)
+	<!-- Optional style for SampleSkin_transparentNavbar option. Poweramp applies optional styles on top of the skin theme, if such option is checked by user in settings.
+	     NOTE: as fully transparent navigation bar is supported by Android 8.0+, we have different variants of this style for v21-25 (Android 5-7), and for v26+ (Android 8+).
+	     NOTE: this is overriden in values-land (back to default), as we don't want UI to go under navigation bar in landscape, as navigation bar is to the right / left
 	-->
 	<style name="SampleSkin_transparentNavbarBase">
 
@@ -194,6 +195,9 @@
 
 		<!-- We want Android navigation bar to become non-transparent for lists, as list goes beyond it -->
 		<item name="com.maxmpz.audioplayer:TopFitsNavigationBarView_scenes_non_main">@style/TopFitsNavigationBarView_scenes_non_main</item>
+
+		<!-- Attach list scroller to navigation bar bg, as by default it's attached to bottom, which is too low now -->
+		<item name="com.maxmpz.audioplayer:TopListScrollerView">@style/TopListScrollerView</item>
 
 		<!-- To demonstrate animation duration overriding, let's override transition time between main AA and other screens to sync nav bar background animations with it -->
 		<item name="com.maxmpz.audioplayer:TopContainer">@style/TopContainer_transparentNavbar</item>
@@ -238,6 +242,10 @@
 	<style name="TopFitsNavigationBarView_scenes_non_main" parent="com.maxmpz.audioplayer:TopFitsNavigationBarView_scenes_non_main">
 		<item name="android:background">#fff</item>
 		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+	<style name="TopListScrollerView" parent="com.maxmpz.audioplayer:TopListScrollerView">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
 	</style>
 
 	<style name="TopContainer_transparentNavbar" parent="com.maxmpz.audioplayer:TopContainer">
