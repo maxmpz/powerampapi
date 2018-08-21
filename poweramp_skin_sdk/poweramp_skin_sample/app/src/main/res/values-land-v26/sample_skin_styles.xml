@@ -2,8 +2,4 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
 
-	<style name="SampleSkin_transparentNavbar" parent="SampleSkin_transparentNavbarBase">
-		<!-- Due to right or left Android navigation bar, we should attach our content to insets -->
-
-	</style>
 </resources>

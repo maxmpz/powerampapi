@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-	<dimen name="TopNavbarBounds_height">48dp</dimen><!-- This is still needed for list AA in landscape, as list AA can't be attached to outer views -->
+	<dimen name="NavbarBounds_height">48dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines">102dp</dimen>
 </resources>

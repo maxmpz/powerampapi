@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- NOTE: these are baseline values for large scale screens. See values-sw360dp-h1dp for normal screens dimens -->
 <resources>
-	<dimen name="TopNavbarBounds_height">40dp</dimen><!-- This is still needed for list AA in landscape, as list AA can't be attached to outer views -->
+	<dimen name="NavbarBounds_height">40dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines">90dp</dimen>
 </resources>
