@@ -31,10 +31,6 @@ public interface TableDefs {
 
 	public static final long UNKNOWN_ID = 1000L;
 
-	public static final @NonNull String NUM_FILES_ALL = "num_files AS num_files_total";
-	public static final @NonNull String NUM_FILES_NO_CUE = "(num_files - num_cue_files) AS num_files_total";
-
-
 	/**
 	 * Alias used for category aliased table _id.
 	 */
@@ -174,7 +170,8 @@ public interface TableDefs {
 		public static final @NonNull String OFFSET_MS = "offset_ms";
 
 		/**
-		 * If non-null - this is cue "source" (big single uncut) file with that given virtual folder id 
+		 * If non-null - this is cue "source" (big single uncut) file with that given virtual folder id.
+		 * NOTE: enforces 1-1 between source files and cues. No multiple cues per single image thus possible
 		 * Int.
 		 */
 		public static final @NonNull String CUE_FOLDER_ID = "cue_folder_id";

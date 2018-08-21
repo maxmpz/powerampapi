@@ -3,7 +3,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
 
 	<!-- Disable transparent navigation bar here -->
-	<style name="SampleSkin_transparentNavbar">
-		<item name="android:windowTranslucentNavigation">false</item>
+	<!--<style name="SampleSkin_transparentNavbar">-->
+		<!--<item name="android:windowTranslucentNavigation">false</item>-->
+	<!--</style>-->
+
+	<!-- Adjust AA in list as we moved navbar to the bottom slightly -->
+	<style name="ListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle">
+		<item name="com.maxmpz.audioplayer:aaPaddingBottom">@dimen/TopNavbarBounds_height</item><!-- Adding height of navbar + padding => corresponds navbar_bounds top -->
 	</style>
+
 </resources>

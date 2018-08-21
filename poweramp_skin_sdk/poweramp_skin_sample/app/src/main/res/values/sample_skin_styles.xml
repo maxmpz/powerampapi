@@ -45,9 +45,14 @@
 		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet</item>
 		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines</item>
 
+		<item name="com.maxmpz.audioplayer:TopNavbarBounds">@style/TopNavbarBounds</item>
+
 		<!-- Apply same for selection menu -->
 		<item name="com.maxmpz.audioplayer:SelectionMenuSubcontainer">@style/SelectionMenuSubcontainer</item>
 		<item name="com.maxmpz.audioplayer:SelectionMenuSubcontainer_scene_selection_menu">@style/SelectionMenuSubcontainer_scene_selection_menu</item>
+
+		<!-- Adjust AA in list as we moved navbar to the bottom slightly (NOTE: for landscape only) -->
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/TopListWidget</item>
 
 		<!-- Change Equalizer top bar style to make it fill whole width -->
 		<item name="com.maxmpz.audioplayer:TopActionModeBar">@style/TopActionModeBar</item>
@@ -214,7 +219,7 @@
 	     We also derive from our skin Navbar style to reuse previous modification (e.g. margins) -->
 	<style name="Navbar_transparentNavbar" parent="Navbar">
 		<!-- Attach bottom to navigation_bar_bg view, which automatically spans Android navigation bar space when Android navigation bar color is transparent -->
-		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
+		<!--<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>-->
 
 		<item name="android:background">#0000</item><!-- NOTE: @null won't work here, as this will make navbar a non-drawing view, thus, no scene background change will happen -->
 		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
@@ -222,19 +227,19 @@
 
 
 	<style name="Navbar_scene_navbar_1line_sheet_transparentNavbar" parent="Navbar_scene_navbar_1line_sheet">
-		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
+		<!--<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>-->
 
 		<item name="android:background">#fff</item><!-- Apply white background for scenes, so navbar has visible background in lists and when expanded -->
 		<item name="com.maxmpz.audioplayer:applyViewParams">true</item><!-- Enables background changes for scene -->
 	</style>
 	<style name="Navbar_scene_navbar_2lines_transparentNavbar" parent="Navbar_scene_navbar_2lines">
-		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
+		<!--<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>-->
 		<item name="android:background">#fff</item>
 		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
 	</style>
 
 	<style name="TopSelectionMenuContainer" parent="com.maxmpz.audioplayer:TopSelectionMenuContainer">
-		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>
+		<!--<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/navigation_bar_bg</item>-->
 		<item name="android:clipToPadding">true</item>
 		<item name="android:clipChildren">true</item>
 	</style>
@@ -252,6 +257,18 @@
 		<!-- By default this is 0, but we sync it with navigation transition duration, which is 500ms by default -->
 		<item name="com.maxmpz.audioplayer:animMainExitTime">500</item>
 		<item name="android:clipChildren">true</item><!-- Force clipping to avoid selection menu going under android navigation bar -->
+	</style>
+
+	<style name="TopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listSubstyle">@style/ListSubstyle</item>
+	</style>
+
+	<style name="ListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle">
+		<!-- Overriden for landscape -->
+	</style>
+
+	<style name="TopNavbarBounds" parent="com.maxmpz.audioplayer:TopNavbarBounds">
+		<item name="android:layout_height">@dimen/TopNavbarBounds_height</item><!-- 48 + 8 +> 64 -->
 	</style>
 
 </resources>

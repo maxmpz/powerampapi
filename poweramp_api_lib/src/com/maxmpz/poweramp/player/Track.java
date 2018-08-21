@@ -15,7 +15,7 @@ import com.maxmpz.poweramp.player.TableDefs;
 // NOTE: ensure Track is read-only, except few special cases, like tag-scanned updates or ratings
 // This means, fields should be either private + getter or "public final"
 // Any exception from that (e.g. pipelineSerial) should be implemented with special extra care and documented
-// REVISIT: check threaded access, esp. to changeable vars
+// REVISIT: check threaded access, esp. to non-final vars
 // OPTIONS:
 // - expose some base track POJO, and internally extended track?
 
@@ -178,6 +178,7 @@ public abstract class Track extends MetaTrackInfo {
 	// NOTE: generally those are set once per track playback by ps when track starts. Can I consider them read only?
 	// THREADING: write: ps, read: any
 	protected int flags; // MUTABLE
+	private @Nullable String mCounterText;
 
 
 	// NOTE: sync with PowerampAPI.Track.Flags
@@ -534,6 +535,17 @@ public abstract class Track extends MetaTrackInfo {
 				.encodedFragment(null)
 				.encodedQuery(null);
 		return b;
+	}
+	
+	public String getCounterText() {
+		if(isRaw() || listSize == 0) {
+			return "- / -";
+		}
+		
+		if(mCounterText == null) { // NOTE: sync / membar on string is not needed here (same as for android.net.Uri caching)
+			mCounterText = (position + 1) + " / " + listSize;
+		}
+		return mCounterText;
 	}
 
 	@Override
