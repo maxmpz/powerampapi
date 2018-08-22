@@ -211,6 +211,12 @@ public final class PowerampAPI {
 		content://com.maxmpz.audioplayer.data/albums/#/files/#
 		content://com.maxmpz.audioplayer.data/albums/files
 		
+		- Album Artists 
+		content://com.maxmpz.audioplayer.data/album_artists
+		content://com.maxmpz.audioplayer.data/album_artists/#/files
+		content://com.maxmpz.audioplayer.data/album_artists/#/files/#
+		content://com.maxmpz.audioplayer.data/album_artists/files
+		
 		- Albums by Genres
 		content://com.maxmpz.audioplayer.data/genres/#/albums
 		content://com.maxmpz.audioplayer.data/genres/#/albums/#/files

@@ -56,8 +56,9 @@
 		<!-- Change Equalizer top bar style to make it fill whole width -->
 		<item name="com.maxmpz.audioplayer:TopActionModeBar">@style/TopActionModeBar</item>
 
-		<!-- As we changed corners for everything, let's add separate always rounded background for menu -->
+		<!-- As we changed corners for everything, let's add separate always rounded background for menu button -->
 		<item name="com.maxmpz.audioplayer:ItemTrackMenu">@style/ItemTrackMenu</item>
+
 		<!-- Also modify text header menu, as it uses different styling -->
 		<item name="com.maxmpz.audioplayer:ItemTextMenu">@style/ItemTextMenu</item>
 
