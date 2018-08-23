@@ -11,4 +11,7 @@
 	<string name="skin_static_seekbar">Static Seekbar</string>
 	<string name="skin_transparent_navbar">Transparent Navbars</string>
 	<string name="skin_summary_transparent_navbar">Both, Poweramp and Android navigation bars are transparent</string>
+
+	<string name="skin_plain_seekbar">Alternative Layout</string>
+	<string name="skin_summary_plain_seekbar">Plain seekbar, track info below album art</string>
 </resources>

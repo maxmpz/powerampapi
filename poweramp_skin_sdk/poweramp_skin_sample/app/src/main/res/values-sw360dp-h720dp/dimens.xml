@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 18:9 screens -->
+<resources>
+
+	<dimen name="Seek_plainSeekbar_height">44dp</dimen>
+	<dimen name="Seek_plainSeekbar_marginBottom">30dp</dimen>
+	<dimen name="TopTrackElapsed_plainseekbar_marginBottom">13dp</dimen>
+	<dimen name="TopMetaInfoLayout_plainseekbar_marginBottom">16dp</dimen>
+
+	<dimen name="TopPlay_plainseekbar_maxSize">110dp</dimen>
+	<dimen name="TopPause_plainseekbar_maxSize">100dp</dimen>
+
+	<item type="dimen" format="float" name="ItemTrackMenu_altAA_scene_aa_scale">.85</item>
+	<item type="dimen" format="float" name="ItemLikeUnlikeLayout_altAA_scene_aa_scale">.875</item>
+	<item type="dimen" format="float" name="ItemTrackTitle_altAA_scene_aa_scale">1</item>
+	<item type="dimen" format="float" name="TopShuffleButtonLayout_altAA_scale">1</item>
+	<item type="dimen" format="float" name="TopTrackElapsed_plainseekbar_scale">.8</item>
+	<item type="dimen" format="float" name="TopTrackElapsed_plainseekbar_scene_playing_scale">.9</item>
+
+	<dimen name="TopSleepTimerButtonLayout_altAA_marginLeft">4dp</dimen>
+
+	<dimen name="ListSubstyle_altAA_aaPaddingBottom">68dp</dimen>
+
+	<fraction name="TopAAItemRatio_altAA">100%</fraction>
+	<dimen name="ItemTrackMenu_altAA_scene_aa_marginBottom">34dp</dimen>
+</resources>

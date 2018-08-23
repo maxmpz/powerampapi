@@ -24,5 +24,13 @@
 			checkedByDefault="false"
 		/>
 
+		<!-- Option to change waveseek to plain seekbar and move track text / like/unlike/ menu below AA -->
+		<option
+			key="plain_seekbar"
+			name="@string/skin_plain_seekbar"
+			summary="@string/skin_summary_plain_seekbar"
+			overlapStyle="@style/SampleSkin_plainSeekbar"
+			checkedByDefault="false"
+		/>
 	</skin>
 </skins>

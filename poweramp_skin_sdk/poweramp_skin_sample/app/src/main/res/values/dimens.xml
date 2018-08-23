@@ -4,4 +4,32 @@
 <resources>
 	<dimen name="NavbarBounds_height">40dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines">90dp</dimen>
+
+
+	<dimen name="Seek_plainSeekbar_height">32dp</dimen>
+	<dimen name="TopPlay_plainseekbar_marginBottom">24dp</dimen>
+	<dimen name="Seek_plainSeekbar_marginBottom">16dp</dimen>
+	<dimen name="TopTrackElapsed_plainseekbar_marginBottom">2dp</dimen>
+	<dimen name="TopMetaInfoLayout_plainseekbar_marginBottom">8dp</dimen>
+
+	<dimen name="TopPlay_plainseekbar_maxSize">64dp</dimen>
+	<dimen name="TopPause_plainseekbar_maxSize">54dp</dimen>
+	<dimen name="TopMediumButton_plainseekbar_size">48dp</dimen>
+
+
+	<item type="dimen" format="float" name="ItemTrackMenu_altAA_scene_aa_scale">.7</item>
+	<item type="dimen" format="float" name="ItemLikeUnlikeLayout_altAA_scene_aa_scale">.75</item>
+	<item type="dimen" format="float" name="ItemTrackTitle_altAA_scene_aa_scale">.75</item>
+	<item type="dimen" format="float" name="TopShuffleButtonLayout_altAA_scale">.8</item>
+	<item type="dimen" format="float" name="TopTrackElapsed_plainseekbar_scale">.7</item>
+	<item type="dimen" format="float" name="TopTrackElapsed_plainseekbar_scene_playing_scale">.8</item>
+
+	<dimen name="TopSleepTimerButtonLayout_altAA_marginLeft">-9.75dp</dimen>
+
+
+	<dimen name="ListSubstyle_altAA_aaPaddingBottom">48dp</dimen>
+	<dimen name="ItemTrackMenu_altAA_scene_aa_width">56dp</dimen>
+	<dimen name="ItemTrackMenu_altAA_scene_aa_marginBottom">26dp</dimen>
+
+	<fraction name="TopAAItemRatio_altAA">85%</fraction>
 </resources>
