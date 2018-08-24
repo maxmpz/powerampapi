@@ -3,10 +3,10 @@
 <!-- 18:9 screens -->
 <resources>
 
-	<dimen name="AAA_Seek_height">44dp</dimen>
-	<dimen name="AAA_Seek_marginBottom">30dp</dimen>
-	<dimen name="AAA_TopTrackElapsed_marginBottom">13dp</dimen>
-	<dimen name="AAA_TopMetaInfoLayout_marginBottom">16dp</dimen>
+	<dimen name="AAA_Seek_height">32dp</dimen>
+	<dimen name="AAA_Seek_marginBottom">20dp</dimen>
+	<dimen name="AAA_TopTrackElapsed_marginBottom">0dp</dimen>
+	<dimen name="AAA_TopMetaInfoLayout_marginBottom">8dp</dimen>
 
 	<dimen name="AAA_TopPlay_maxSize">100dp</dimen>
 	<dimen name="AAA_TopPause_maxSize">90dp</dimen>
@@ -21,11 +21,8 @@
 
 	<dimen name="AAA_TopSleepTimerButtonLayout_marginLeft">4dp</dimen>
 
-	<dimen name="AAA_ListSubstyle_aaPaddingBottom">75dp</dimen>
-
 	<fraction name="AAA_TopAAItemRatio">100%</fraction>
 	<dimen name="AAA_aaMaxSize">500dp</dimen><!-- For 18:9 actually it doesn't limit max size (width of screen does) -->
-	<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">34dp</dimen>
 
-	<dimen name="AAA_TopSubAAButtons_marginTop">14.5dp</dimen><!-- Spread out views vertically even more -->
+	<dimen name="AAA_ItemTrackAAImage_scene_aa_margin">8dp</dimen>
 </resources>

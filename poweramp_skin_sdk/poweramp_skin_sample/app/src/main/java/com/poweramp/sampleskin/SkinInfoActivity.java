@@ -13,10 +13,18 @@ public class SkinInfoActivity extends Activity {
         setContentView(R.layout.activity_skin_info);
     }
 
-    public void startPoweramp(View view) {
+    public void startWithSampleSkin(View view) {
         Intent intent = new Intent(Intent.ACTION_MAIN).setClassName("com.maxmpz.audioplayer", "com.maxmpz.audioplayer.StartupActivity");
         intent.putExtra("theme_pak", getPackageName());
         intent.putExtra("theme_id", R.style.SampleSkin);
+        startActivity(intent);
+        finish();
+    }
+
+    public void startWithSampleAAASkin(View view) {
+        Intent intent = new Intent(Intent.ACTION_MAIN).setClassName("com.maxmpz.audioplayer", "com.maxmpz.audioplayer.StartupActivity");
+        intent.putExtra("theme_pak", getPackageName());
+        intent.putExtra("theme_id", R.style.SampleSkinAAA);
         startActivity(intent);
         finish();
     }

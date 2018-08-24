@@ -10,7 +10,7 @@
 
 	<!-- Add our plain seekbar -->
 	<com.maxmpz.widget.player.Seek
-		style="@style/SampleSkin_Seek"
+		style="@style/AAA_Seek"
 	/>
 
 </merge>
