@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<level-list xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:maxLevel="0" android:drawable="@drawable/matte_panel_crossfade_off"/>
-	<item android:maxLevel="1" android:drawable="@drawable/matte_panel_crossfade"/>	
-</level-list>

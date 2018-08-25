@@ -25,16 +25,26 @@ opens Poweramp skin settings or directly start Poweramp with target skin applied
 
 * one or multiple skins style definitions (see **values/sample_skin_styles.xml**, **values/sample_skin_aaa_styles.xml**)
 * all the required skin drawables, extra layouts, dimens, and other resources
-* skin development is done directly from Android Studio (3.1.4 was used for these skins development):
-  * you run skin as a normal Android app
-  * when skin activity is started, "Start Poweramp With * Skin" button can be pressed to force Poweramp immediately reload the skin
+
+### How to start own skin (based on sample skin)
+Skin development is done directly from Android Studio (3.1.4 was used for these skins development).
+* clone this repository, rename appropriately and change **/res/values/strings.xml** labels and **res/xml/skins.xml** entries
+* edit app/build.gradle, replace ../../../audioplayer/bin/audioplayer.apk with path to your Poweramp v3 APK (**build 795** and above)
+```
+additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
+```
+
+* run skin as a normal Android app
+* when skin activity is started, "Start Poweramp With * Skin" button can be pressed to force Poweramp immediately reload the skin
+* skin should appear in Poweramp skin selection settings page as well
+
 
 ### How Poweramp v3 skins work
 
-Poweramp loads skin APK resources and applies skin theme style directly to its main player activity (there is only one player activity in Poweramp v3, exluding dialogs and Settings).
-To ensure future skin compatibility (and to reuse existing default skin styles), skin styles usually *extend* default Poweramp styles.
+Poweramp loads skin APK resources and applies skin theme style directly to its main player activity (there is only one player activity in Poweramp v3).
+To ensure future skin compatibility (and to reuse existing default skin styles), skin styles **must extend** default Poweramp styles.
 
-See **values/sample_skin_styles.xml**, **values/sample_skin_aaa_styles.xml** for commented skin style definitions
+See **values/sample_skin_styles.xml**, **values/sample_skin_aaa_styles.xml** for commented skin style definitions.
 
 ### Poweramp skin styles.xml
 
@@ -62,7 +72,7 @@ In this sample skin, SampleSkin style is defined in **res/values/sample_skin_sty
 </style>
 ```
 
-* all the overridden styles should be derived from appropriate Poweramp styles, with com.maxmpz.audioplayer: prefix:
+* all the overridden styles should be derived from appropriate Poweramp styles, with **com.maxmpz.audioplayer:** prefix:
 ```xml
 <style name="SampleSkin" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
     ...
@@ -70,7 +80,7 @@ In this sample skin, SampleSkin style is defined in **res/values/sample_skin_sty
     ...
 </style>
 
-<!-- Our @style/ItemTrackMenu style, we derive it from com.maxmpz.audioplayer:ItemTrackMenu -->
+<!-- This is our @style/ItemTrackMenu style, we derive it from com.maxmpz.audioplayer:ItemTrackMenu -->
 <style name="ItemTrackMenu" parent="com.maxmpz.audioplayer:ItemTrackMenu">
    ...
 </style>
@@ -80,19 +90,29 @@ In this sample skin, SampleSkin style is defined in **res/values/sample_skin_sty
 * overriden styles **should always be derived** from Poweramp styles, otherwise almost any Poweramp update will break skin, due to possible base styles changes
 
 ### Poweramp v3 skin theme specifics
-Poweramp v3 has concept of scene. View can be rendered in the target scene (e.g. scene_aa for main player UI large album art item) and can be animated from one scene to another
+Poweramp v3 has concept of a scene. A view can be rendered in the target scene (e.g. scene_aa for main player UI large album art item) and can be animated from one scene to another
 (e.g. item can be animated from scene_aa to scene_grid when transition happens from main screen to the library playlist).
 
-This is why many attribute/styles are ending by "_scene.." suffix, as for almost each view, addition per-scene styles are required.
+This is why many attributes/styles are ending with "_scene.." suffix, as for almost each view addition per-scene styles are required.
 
-Scenes generally define initial and final view layout/position and some view parameters.
+Scene generally defines initial and final view layout/position and some view parameters.
 
-See appropriate reference resources xmls for the details in comments.
+Also, almost all Poweramp views are custom views, including layout (FastLayout) and text views (FastTextView). FastLayout idea somewhat similar to CoordinatorLayout,
+but is strictly one-pass per layout, and FastText is a text view optimized for transitions. See **res/values-sw1dp/attrs-powerui.xml** for commented attributes definitions for these views.
+
+See appropriate reference resources xmls for the details in the comments.
 
 
 ### Reference resources
 
-For skin authoring, some Poweramp v3 resources (attributes definitions, styles, drawables, etc.) are provided for the reference - see **/reference_resources** directory
+For skin authoring, some Poweramp v3 resources (attribute definitions, styles, drawables, etc.) are provided for the reference - see **/reference_resources** directory.
+
+The most important files are:
+* res/layout-sw1dp/activity_list_fast.xml - the main Poweramp activity layout
+* res/layout-sw1dp/merge_*.xml - various additional merged layouts
+* res/layout-sw1dp/item_track.xml - the "track" item which is used in main player UI and lists for all the items with image
+* res/layout-sw1dp/item_text.xml - same as item_track.xml, but for text-only items
+* res/values-sq1dp/attrs-powerui.xml, attrs-player.xml - attributes definitions for all the Poweramp custom views, scenes, etc.
 
 ### License
 

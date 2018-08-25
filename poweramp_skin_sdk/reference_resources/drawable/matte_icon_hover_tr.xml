@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<transition xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/matte_icon_hover_focused" />
-    <item android:drawable="@drawable/matte_icon_hover" />
-</transition>

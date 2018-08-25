@@ -2,7 +2,6 @@
 
 <!-- 18:9 screens -->
 <resources>
-
 	<dimen name="AAA_Seek_height">32dp</dimen>
 	<dimen name="AAA_Seek_marginBottom">20dp</dimen>
 	<dimen name="AAA_TopTrackElapsed_marginBottom">0dp</dimen>

@@ -37,4 +37,5 @@ public class SkinInfoActivity extends Activity {
         startActivity(intent);
         finish();
     }
+
 }
