@@ -104,10 +104,6 @@
 		<item name="com.maxmpz.audioplayer:layout_maxWidth">@dimen/AAA_aaMaxSize</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 
-		<!-- This is the extra room for title / line2 / menu / like/unlike below AA image. NOTE: need to add this to aa_bounds, so other views can properly attach to it with
-		     the aaPaddingBottom accounted for -->
-		<!--<item name="android:layout_marginBottom">@dimen/AAA_ListSubstyle_aaPaddingBottom</item>-->
-
 		<!-- DEBUG -->
 		<!--<item name="android:background">#5f00</item>-->
 	</style>

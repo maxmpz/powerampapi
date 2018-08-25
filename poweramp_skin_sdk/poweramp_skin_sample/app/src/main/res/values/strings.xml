@@ -16,5 +16,5 @@
 	<string name="skin_summary_transparent_navbar">Both, Poweramp and Android navigation bars are transparent</string>
 
 	<string name="skin_sample_aaa">Sample Skin Alternative Layout</string>
-	<string name="skin_sample_aaa_description">Plain seekbar, track info below album art</string>
+	<string name="skin_sample_aaa_description">Plain seekbar, labels don\'t overlap image in main UI and grids</string>
 </resources>

@@ -2,6 +2,9 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
 
+	<!-- Also see values-land/sample_skin_aaa_styles.xml -->
+	<!-- Alternative Album Art skin, also includes alternative grid items (labels below images), plain seek	bar, pro buttons -->
+
 	<style name="SampleSkinAAA" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
 		<item name="com.maxmpz.audioplayer:colorBgPrimaryAlpha">#2fff</item>
 
@@ -67,6 +70,21 @@
 
 		<item name="com.maxmpz.audioplayer:ItemLike_scene_aa">@style/AAA_ItemLike_scene_aa</item>
 		<item name="com.maxmpz.audioplayer:ItemUnlike_scene_aa">@style/AAA_ItemUnlike_scene_aa</item>
+
+		<!-- Uncomment to remove background for title for grid scenes (as we move labels below image in list).
+		     It's used in this skin for better zoom transitions (with backgrounds visible during zooming) -->
+		<!--
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid">@style/AAA_ItemTrackTitle_scene_grid</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_zoomed">@style/AAA_ItemTrackTitle_scene_grid_zoomed</item>
+		-->
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_1">@style/AAA_ItemTrackTitle_scene_grid_1</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_1_zoomed">@style/AAA_ItemTrackTitle_scene_grid_1_zoomed</item>
+
+		<!-- Optionally remove background for line2 for grid scenes (uncomment in these styles if needed) and adjust margins to make labels a bit more compact -->
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid">@style/AAA_ItemTrackLine2_scene_grid</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_zoomed">@style/AAA_ItemTrackLine2_scene_grid_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_1">@style/AAA_ItemTrackLine2_scene_grid_1</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_1_zoomed">@style/AAA_ItemTrackLine2_scene_grid_1_zoomed</item>
 
 		<!-- Make menu button similar to like/unlike buttons -->
 		<item name="com.maxmpz.audioplayer:ItemTrackMenu">@style/AAA_ItemTrackMenu</item>
@@ -270,6 +288,41 @@
 		<item name="android:layout_marginRight">8dp</item>
 	</style>
 
+	<!-- Uncomment to remove background for title for grid scenes (as we move labels below image in list).
+	     It's used in this skin for better zoom transitions (with backgrounds visible during zooming) -->
+	<!--
+	<style name="AAA_ItemTrackTitle_scene_grid" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	</style>
+	<style name="AAA_ItemTrackTitle_scene_grid_zoomed" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_zoomed">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	</style>
+	-->
+	<style name="AAA_ItemTrackTitle_scene_grid_1" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_1">
+		<!--<item name="com.maxmpz.audioplayer:lineBackground">@null</item>-->
+		<item name="android:layout_marginBottom">4dp</item>
+	</style>
+	<style name="AAA_ItemTrackTitle_scene_grid_1_zoomed" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_1_zoomed">
+		<!--<item name="com.maxmpz.audioplayer:lineBackground">@null</item>-->
+		<item name="android:layout_marginBottom">8dp</item>
+	</style>
+
+	<style name="AAA_ItemTrackLine2_scene_grid" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid">
+		<!--<item name="com.maxmpz.audioplayer:lineBackground">@null</item>-->
+		<item name="android:layout_marginTop">-4dp</item>
+	</style>
+	<style name="AAA_ItemTrackLine2_scene_grid_1" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_1">
+		<!--<item name="com.maxmpz.audioplayer:lineBackground">@null</item>-->
+	</style>
+	<style name="AAA_ItemTrackLine2_scene_grid_zoomed" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_zoomed">
+		<!--<item name="com.maxmpz.audioplayer:lineBackground">@null</item>-->
+		<item name="android:layout_marginTop">-4dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+	</style>
+	<style name="AAA_ItemTrackLine2_scene_grid_1_zoomed" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_1_zoomed">
+		<!--<item name="com.maxmpz.audioplayer:lineBackground">@null</item>-->
+	</style>
+
 	<style name="AAA_ItemTrackLine2_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">
 		<item name="com.maxmpz.audioplayer:scale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
@@ -354,6 +407,7 @@
 	<style name="AAA_TopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
 		<item name="com.maxmpz.audioplayer:listSubstyle">@style/AAA_ListSubstyle</item>
 	</style>
+
 	<style name="AAA_ListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle">
 		<!-- This is the extra room for title / line2 / menu / like/unlike below AA image -->
 		<item name="com.maxmpz.audioplayer:aaPaddingBottom">@dimen/AAA_ListSubstyle_aaPaddingBottom</item>
@@ -361,6 +415,13 @@
 		<!-- Set own TopAAItemRatio as we need to make AA smaller on smaller screens -->
 		<item name="com.maxmpz.audioplayer:aaItemRatio">@fraction/AAA_TopAAItemRatio</item><!-- NOTE: sync with TopAABounds -->
 		<item name="com.maxmpz.audioplayer:aaMaxSize">@dimen/AAA_aaMaxSize</item><!-- NOTE: sync with TopAABounds -->
+
+		<!-- Extra space grid cell layouts => so cell has non-square layout with extra space for title below image -->
+		<item name="com.maxmpz.audioplayer:gridItem1LineExtraSpace">30dp</item><!-- 1line 4x, 3x grids -->
+		<item name="com.maxmpz.audioplayer:gridZoomedItem1LineExtraSpace">38dp</item><!-- 1line 2x grids -->
+
+		<item name="com.maxmpz.audioplayer:gridItemExtraSpace">54dp</item><!-- 2line 4x, 3x grids -->
+		<item name="com.maxmpz.audioplayer:gridZoomedItemExtraSpace">60dp</item><!-- 2line 2x grids -->
 	</style>
 
 	<!-- Redefine aa_bounds position and size, so it preciselly follows AA (+ optional padding) position in list.
@@ -384,5 +445,4 @@
 	<style name="AAA_TopMetaInfoLabel" parent="com.maxmpz.audioplayer:TopMetaInfoLabel">
 		<item name="com.maxmpz.audioplayer:layout_maxWidth">260dp</item>
 	</style>
-
 </resources>
