@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2013 Maksim Petrov
+Copyright (C) 2011-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -22,6 +22,9 @@ package com.maxmpz.poweramp.apiexample;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.eclipse.jdt.annotation.NonNull;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -29,14 +32,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
+import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -57,6 +59,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.maxmpz.poweramp.player.PowerampAPI;
+import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.RemoteTrackTime;
 import com.maxmpz.poweramp.player.RemoteTrackTime.TrackTimeListener;
 
@@ -76,7 +79,6 @@ public class MainActivity extends Activity implements
 	private static final int SEEK_THROTTLE = 500;
 	
 	protected Intent mTrackIntent;
-	protected Intent mAAIntent;
 	private Intent mStatusIntent;
 	protected Intent mPlayingModeIntent;
 	
@@ -205,7 +207,7 @@ public class MainActivity extends Activity implements
 	private void registerAndLoadStatus() {
 		// Note, it's not necessary to set mStatusIntent/mPlayingModeIntent this way here,
 		// but this approach can be used with null receiver to get current sticky intent without broadcast receiver.
-		mAAIntent = registerReceiver(mAAReceiver, new IntentFilter(PowerampAPI.ACTION_AA_CHANGED));
+		registerReceiver(mAAReceiver, new IntentFilter(PowerampAPI.ACTION_AA_CHANGED));
 		mTrackIntent = registerReceiver(mTrackReceiver, new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED));
 		mStatusIntent = registerReceiver(mStatusReceiver, new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED));
 		mPlayingModeIntent = registerReceiver(mPlayingModeReceiver, new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED));
@@ -217,11 +219,9 @@ public class MainActivity extends Activity implements
 				unregisterReceiver(mTrackReceiver);
 			} catch(Exception ex){} // Can throw exception if for some reason broadcast receiver wasn't registered.
 		}
-		if(mAAIntent != null) {
-			try {
-				unregisterReceiver(mAAReceiver);
-			} catch(Exception ex){} // Can throw exception if for some reason broadcast receiver wasn't registered.
-		}
+		try {
+			unregisterReceiver(mAAReceiver);
+		} catch(Exception ex){} // Can throw exception if for some reason broadcast receiver wasn't registered.
 		if(mStatusReceiver != null) {
 			try {
 				unregisterReceiver(mStatusReceiver);
@@ -246,9 +246,7 @@ public class MainActivity extends Activity implements
 	private BroadcastReceiver mAAReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			mAAIntent = intent;
-			
-			updateAlbumArt();
+			updateAlbumArt(mCurrentTrack);
 
 			Log.w(TAG, "mAAReceiver " + intent);
 		}
@@ -270,6 +268,8 @@ public class MainActivity extends Activity implements
 			}
 			
 			updateTrackUI();
+
+			updateAlbumArt(mCurrentTrack);
 		}
 	}
 
@@ -456,26 +456,80 @@ public class MainActivity extends Activity implements
 		});
 	}
 
-	void updateAlbumArt() {
+	void updateAlbumArt(Bundle track) {
 		Log.w(TAG, "updateAlbumArt");
-		String directAAPath = mAAIntent.getStringExtra(PowerampAPI.ALBUM_ART_PATH);
-		
-		if(!TextUtils.isEmpty(directAAPath)) {
-			Log.w(TAG, "has AA, albumArtPath=" + directAAPath);			
-			
-			((ImageView)findViewById(R.id.album_art)).setImageURI(Uri.parse(directAAPath));
-		} else if(mAAIntent.hasExtra(PowerampAPI.ALBUM_ART_BITMAP)) {
-			
-			Bitmap albumArtBitmap = mAAIntent.getParcelableExtra(PowerampAPI.ALBUM_ART_BITMAP);
-			if(albumArtBitmap != null) {
-				Log.w(TAG, "has AA, bitmap");
-				((ImageView)findViewById(R.id.album_art)).setImageBitmap(albumArtBitmap);
-			}
-		} else {
+
+		ImageView aaImage = ((ImageView)findViewById(R.id.album_art));
+		TextView albumArtInfo = (TextView)findViewById(R.id.album_art_info);
+
+		if(track == null) {
 			Log.w(TAG, "no AA");
-			((ImageView)findViewById(R.id.album_art)).setImageBitmap(null);
+			aaImage.setImageBitmap(null);
+			albumArtInfo.setText("no AA");
+			return;
 		}
+
+		Uri aaUri = PowerampAPI.AA_ROOT_URI.buildUpon().appendEncodedPath("files").appendEncodedPath(Long.toString(mCurrentTrack.getLong(PowerampAPI.Track.REAL_ID))).build();
+
+		// WARNING: openFileDescriptor() will return the original image right from embed track loaded in Poweramp or
+		// file cached image. The later is more or less under control in terms of size, though, that can be in-folder user provided image.
+		// As for embed album art, the resulting bitmap can be any size. Poweramp has some upper limits on embed album art, still, the decoded image can be very large.
+
+		// I recommend using some sub-sampling scaling code here
+		ParcelFileDescriptor pfd = null;
+
+		try {
+			pfd = getContentResolver().openFileDescriptor(aaUri, "r");
+
+			// Get original bitmap size
+			BitmapFactory.Options opts = new BitmapFactory.Options();
+			opts.inJustDecodeBounds = true;
+			BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
+
+			String original = "original album art w: " + opts.outWidth + " h:" + opts.outHeight + " format: " + opts.outMimeType;
+
+			// Calculate subsample and load subsampled image
+			opts.inJustDecodeBounds = false;
+			opts.inSampleSize = calcSubsample(1024, 1024, opts.outWidth, opts.outHeight); // Subsamples images up to 2047x2047, should be safe, though this is up to 16mb per bitmap
+
+			Bitmap b = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
+
+			aaImage.setImageBitmap(b);
+
+			albumArtInfo.setText(original + " scaled w: " + b.getWidth() + " h: " + b.getHeight());
+
+		} catch(FileNotFoundException ex) {
+			albumArtInfo.setText("no AA");
+			aaImage.setImageBitmap(null);
+
+		} catch(Throwable th) {
+			Log.w(TAG, "failed AA " + th.getMessage());
+			albumArtInfo.setText("failed AA");
+			aaImage.setImageBitmap(null);
+
+		} finally {
+			if(pfd != null) {
+				try {
+					pfd.close();
+				} catch (IOException e) {}
+			}
+		}
+
 	}
+
+	// NOTE: maxW/maxH is not actual max, as we just subsample. Output image size will be up to maxW(H)*2 - 1
+	private static int calcSubsample(final int maxW, final int maxH, final int outWidth, final int outHeight) {
+		int sampleSize = 1;
+		int nextWidth = outWidth >> 1;
+		int nextHeight = outHeight >> 1;
+		while(nextWidth >= maxW && nextHeight >= maxH) {
+			sampleSize <<= 1;
+			nextWidth >>= 1;
+			nextHeight >>= 1;
+		}
+		return sampleSize;
+	}
+
 
 	void debugDumpStatusIntent(Intent intent) {
 		if(intent != null) {
@@ -503,57 +557,57 @@ public class MainActivity extends Activity implements
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.play:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE));
 				break;
 				
 			case R.id.pause:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PAUSE));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PAUSE));
 				break;
 
 			case R.id.prev:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS));
 				break;
 
 			case R.id.next:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT));
 				break;
 				
 			case R.id.prev_in_cat:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT));
 				break;
 
 			case R.id.next_in_cat:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT_IN_CAT));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT_IN_CAT));
 				break;
 
 			case R.id.repeat:
 				// No toast for this button just for demo.
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT).putExtra(PowerampAPI.SHOW_TOAST, false));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT).putExtra(PowerampAPI.SHOW_TOAST, false));
 				break;
 
 			case R.id.shuffle:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE));
 				break;
 
 			case R.id.repeat_all:
 				// No toast for this button just for demo.
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
 						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_ON));
 				break;
 
 			case R.id.repeat_off:
 				// No toast for this button just for demo.
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
 						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE));
 				break;
 
 			case R.id.shuffle_all:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
 						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_ALL));
 				break;
 
 			case R.id.shuffle_off:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
 						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE));
 				break;
 				
@@ -562,7 +616,7 @@ public class MainActivity extends Activity implements
 				break;
 				
 			case R.id.play_file:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 //						.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
 						.setData(Uri.parse("file://" + ((TextView)findViewById(R.id.play_file_path)).getText().toString())));
@@ -607,15 +661,15 @@ public class MainActivity extends Activity implements
 	public boolean onLongClick(View v) {
 		switch(v.getId()) {
 			case R.id.play:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.STOP));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.STOP));
 				return true;
 			
 			case R.id.next:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD));
 				return true;
 				
 			case R.id.prev:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_REWIND));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_REWIND));
 				return true;
 		}
 		
@@ -629,11 +683,11 @@ public class MainActivity extends Activity implements
 		if(event.getAction() == MotionEvent.ACTION_UP) {
 			switch(v.getId()) {
 			case R.id.next:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD));
 				break;
 				
 			case R.id.prev:
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND));
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND));
 				break;
 			}
 		}
@@ -643,7 +697,7 @@ public class MainActivity extends Activity implements
 	
 	// Just play all library songs (starting from first).
 	private void playAllSongs() {
-		startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 				.setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
 	}
@@ -657,7 +711,7 @@ public class MainActivity extends Activity implements
 				String name = c.getString(1);
 				Toast.makeText(this, "Playing album: " + name, Toast.LENGTH_SHORT).show();
 
-				startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 						.setData(PowerampAPI.ROOT_URI.buildUpon()
 								.appendEncodedPath("albums")
@@ -690,7 +744,7 @@ public class MainActivity extends Activity implements
 						
 						Toast.makeText(this, "Playing artist: " + artist + " album: " + album, Toast.LENGTH_SHORT).show();
 						
-						startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+						PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 								.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 								.setData(PowerampAPI.ROOT_URI.buildUpon()
 										.appendEncodedPath("artists")
@@ -729,7 +783,7 @@ public class MainActivity extends Activity implements
 			presetString.append(name).append("=").append(value).append(";");
 		}
 		
-		startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING).putExtra(PowerampAPI.VALUE, presetString.toString()));
+		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING).putExtra(PowerampAPI.VALUE, presetString.toString()));
 	}
 	
 	// Applies correct seekBar-to-float scaling. 
@@ -774,7 +828,7 @@ public class MainActivity extends Activity implements
 		// Apply some throttling to avoid too many intents to be generated.
 		if(ignoreThrottling || mLastSeekSentTime == 0 || System.currentTimeMillis() - mLastSeekSentTime > SEEK_THROTTLE) {
 			mLastSeekSentTime = System.currentTimeMillis();
-			startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SEEK).putExtra(PowerampAPI.Track.POSITION, position));
+			PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SEEK).putExtra(PowerampAPI.Track.POSITION, position));
 			Log.w(TAG, "sent");
 		} else {
 			Log.w(TAG, "throttled");
@@ -787,7 +841,7 @@ public class MainActivity extends Activity implements
 	@Override
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
-			startPAService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET).putExtra(PowerampAPI.ID, id));
+			PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET).putExtra(PowerampAPI.ID, id));
 		} else {
 			mSettingPreset = false;
 		}
@@ -827,16 +881,7 @@ public class MainActivity extends Activity implements
 
 		mSongSeekBar.setProgress(position);
 	}
-	
-	private void startPAService(Intent intent) {
-		intent.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME);
-		if(Build.VERSION.SDK_INT >= 26) {
-			startForegroundService(intent);
-		} else {
-			startService(intent);
-		}
-	}
-	
+
 
 	public static void formatTimeS(@NonNull StringBuilder sb, int secs, boolean showPlaceholderForZero) {
 		if(secs < 0 || secs == 0 && showPlaceholderForZero) {

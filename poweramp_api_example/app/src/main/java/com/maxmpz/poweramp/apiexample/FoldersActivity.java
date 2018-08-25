@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2013 Maksim Petrov
+Copyright (C) 2011-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -21,11 +21,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.apiexample;
 
 import com.maxmpz.poweramp.player.PowerampAPI;
+import com.maxmpz.poweramp.player.PowerampAPIHelper;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -74,9 +76,8 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 				.appendEncodedPath("folders")
 				.appendEncodedPath(Long.toString(id))
 				.appendQueryParameter(PowerampAPI.PARAM_SHUFFLE, Integer.toString(PowerampAPI.ShuffleMode.SHUFFLE_SONGS));
-		
-		startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-						.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+
+		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 						.setData(uriB.build())
 					);

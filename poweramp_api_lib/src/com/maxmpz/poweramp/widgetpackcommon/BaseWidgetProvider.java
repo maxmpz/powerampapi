@@ -105,7 +105,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 		if(aaIntent != null) {
 			try {
 				data.albumArtBitmap = aaIntent.getParcelableExtra(PowerampAPI.ALBUM_ART_BITMAP);
-				data.albumArtPath = aaIntent.getStringExtra(PowerampAPI.ALBUM_ART_PATH);
+				//data.albumArtPath = aaIntent.getStringExtra(PowerampAPI.ALBUM_ART_PATH);
 				data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.TIMESTAMP, 0);
 				if(LOG) Log.e(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
 			} catch(OutOfMemoryError oom) {

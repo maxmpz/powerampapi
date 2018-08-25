@@ -40,10 +40,25 @@ public final class PowerampAPI {
 	public static final int NO_ID = 0;
 	
 	public static final long RAW_TRACK_ID = -2L;
-	
+
+	/**
+	 * Authority used for data provider
+	 */
 	public static final String AUTHORITY = "com.maxmpz.audioplayer.data";
-	
+
+	/**
+	 * Root data provider uri
+	 */
 	public static final Uri ROOT_URI = new Uri.Builder().scheme("content").authority(AUTHORITY).build();
+
+	/**
+	 * Authority used for album art provider
+	 */
+	public static final String AA_AUTHORITY = "com.maxmpz.audioplayer.aa";
+	/**
+	 * Root album art provider uri
+	 */
+	public static final Uri AA_ROOT_URI = new Uri.Builder().scheme("content").authority(AA_AUTHORITY).build();
 	
 	/**
 	 * Uri query parameter - filter. Currently used only for search uri
@@ -418,11 +433,6 @@ public final class PowerampAPI {
 	 * for example - when new album art asynchronously downloaded from internet or selected by user.
 	 * Sticky intent.
 	 * Extras:
-	 * - aaPath - String - (optional) if exists, direct path to the cached album art is available.
-	 * - aaBitmap - Bitmap - (optional)	if exists, some rescaled up to 500x500 px album art bitmap is available.
-	 *			  There will be aaBitmap if aaPath is available, but image is bigger than 600x600 px.
-	 * - delayed - boolean - (optional) if true, this album art was downloaded or selected later by user.
-			  
 	 * - ts - long - timestamp of the event (System.currentTimeMillis()).
 	 */
 	public static final String ACTION_AA_CHANGED = "com.maxmpz.audioplayer.AA_CHANGED";
@@ -557,19 +567,25 @@ public final class PowerampAPI {
 	/**
 	 * Extra.
 	 * String.
+	 * @deprecated not used anymore
 	 */
+	@Deprecated
 	public static final String ALBUM_ART_PATH = "aaPath";
 	
 	/**
 	 * Extra.
-	 * Bitmap. 
+	 * Bitmap.
+	 * @deprecated not used anymore
 	 */
+	@Deprecated
 	public static final String ALBUM_ART_BITMAP = "aaBitmap";
 
 	/**
 	 * Extra.
-	 * boolean. 
+	 * boolean.
+	 * @deprecated not used anymore
 	 */
+	@Deprecated
 	public static final String DELAYED = "delayed";
 
 

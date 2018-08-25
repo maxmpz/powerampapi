@@ -115,35 +115,27 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 	/>
-	
-	<ImageView android:id="@+id/album_art"
-		android:layout_below="@+id/info"
-		android:layout_width="200dip"
-		android:layout_height="200dip"
-	/>
-	
+
 	<TextView android:id="@+id/elapsed"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/album_art"
-		android:layout_marginTop="8dip"		
-		android:text="1:11"
-	/>
+		android:layout_below="@+id/info"
+		android:layout_marginTop="8dip"
+		/>
 	<TextView android:id="@+id/duration"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/album_art"
+		android:layout_below="@+id/info"
 		android:layout_alignParentRight="true"
-		android:layout_marginTop="8dip"		
-		android:text="2:11"
-	/>
+		android:layout_marginTop="8dip"
+		/>
 	<SeekBar android:id="@+id/song_seekbar"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/elapsed"
 		android:layout_marginBottom="4dip"
-	/>	
-	
+		/>
+
 	<LinearLayout android:id="@+id/controls"
 		android:layout_below="@+id/song_seekbar"
 		android:layout_width="fill_parent"
@@ -151,41 +143,59 @@
 		android:orientation="horizontal"
 		android:gravity="center"
 		android:layout_marginTop="8dip"
-	>
+		>
 		<Button android:id="@+id/prev_in_cat"
 			android:text="&lt;&lt;&lt;"
 			android:layout_width="60dip"
 			android:layout_height="wrap_content"
-		/>
+			/>
 		<Button android:id="@+id/prev"
 			android:text="&lt;&lt;"
 			android:layout_width="60dip"
 			android:layout_height="wrap_content"
-		/>
+			/>
 		<Button android:id="@+id/play"
 			android:text="&gt;"
 			android:layout_width="60dip"
 			android:layout_height="wrap_content"
-		/>
+			/>
 		<Button android:id="@+id/pause"
 			android:text="||"
 			android:layout_width="60dip"
 			android:layout_height="wrap_content"
-		/>
+			/>
 		<Button android:id="@+id/next"
 			android:text="&gt;&gt;"
 			android:layout_width="60dip"
 			android:layout_height="wrap_content"
-		/>
+			/>
 		<Button android:id="@+id/next_in_cat"
 			android:text="&gt;&gt;&gt;"
 			android:layout_width="60dip"
 			android:layout_height="wrap_content"
-		/>
+			/>
 	</LinearLayout>
-	
-	<LinearLayout android:id="@+id/playing_mode"
+
+	<TextView android:id="@+id/album_art_info"
 		android:layout_below="@+id/controls"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dip"
+	/>
+
+	<ImageView android:id="@+id/album_art"
+		android:layout_below="@+id/album_art_info"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:minHeight="100dp"
+		android:minWidth="100dp"
+		android:adjustViewBounds="true"
+		android:scaleType="center"
+	/>
+
+
+	<LinearLayout android:id="@+id/playing_mode"
+		android:layout_below="@+id/album_art"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"

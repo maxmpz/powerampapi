@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2013 Maksim Petrov
+Copyright (C) 2011-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -29,6 +29,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -49,9 +50,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import com.maxmpz.poweramp.player.PowerampAPI;
+import com.maxmpz.poweramp.player.PowerampAPIHelper;
+import com.maxmpz.poweramp.player.TableDefs;
 
 public class EqActivity extends Activity implements OnClickListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener {
-	private static final String TAG = "MainActivity";
+	private static final String TAG = "EqActivity";
 
 	Intent mEquIntent;
 	private boolean mEquBuilt;
@@ -73,16 +76,17 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
         
         // Create and bind spinner which binds to available PowerAMP presets.
         Spinner presetSpinner = (Spinner)findViewById(R.id.preset_spinner);
+        String[] cols = new String[] { "_id", "name" };
 		Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("eq_presets").build(), 
-        		new String[] { "_id", "name", "preset" }, null, null, "preset, name");
+        			cols, null, null, "name");
         startManagingCursor(c);
         // Add first empty item to the merged cursor via matrix cursor with single row.
-        MatrixCursor mc = new MatrixCursor(new String[] { "_id", "name", "preset" });
-        mc.addRow(new Object[]{ PowerampAPI.NO_ID, "", null});
+        MatrixCursor mc = new MatrixCursor(cols);
+        mc.addRow(new Object[]{ PowerampAPI.NO_ID, "" });
         MergeCursor mrgc = new MergeCursor(new Cursor[]{ mc, c });
         
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_spinner_item,
+                android.R.layout.simple_spinner_dropdown_item,
                 mrgc,
                 new String[] { "name" },
                 new int[] { android.R.id.text1 }, 
@@ -91,7 +95,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
         adapter.setViewBinder(new ViewBinder() {
 			@Override
 			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-				((TextView)view).setText(getPresetName(EqActivity.this, cursor.getString(1), cursor.getInt(2)));
+				((TextView)view).setText(cursor.getString(1));
 				return true;
 			}
         });
@@ -102,19 +106,6 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
         ((CheckBox)findViewById(R.id.eq)).setOnCheckedChangeListener(this);
         ((CheckBox)findViewById(R.id.tone)).setOnCheckedChangeListener(this);
     }
-    
-	public static final String getPresetName(Context context, String name, int preset) {
-		CharSequence[] eqPresetsLabels = context.getResources().getTextArray(R.array.eq_preset_labels);
-		if(!TextUtils.isEmpty(name)) {
-			return name;
-		} else 	if(eqPresetsLabels != null && preset >= 0 && preset < eqPresetsLabels.length) {
-			return eqPresetsLabels[preset].toString();
-		} else {
-			return context.getString(R.string.unknown);
-		}
-	}
-    
-
     
 	/*
 	 * NOTE: when screen is rotated, by default android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
@@ -288,7 +279,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 	
-	// Almost the same as buildEquUI, just update UI, not build it.
+	// Almost the same as buildEquUI, just do the UI update without building it
 	private void updateEquUI(String string) {
 		Log.w(TAG, "updateEquUI!");
 		String[] pairs = sSemicolonSplitRe.split(string);
@@ -328,7 +319,6 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	}
 
 	
-	// Process button press. Demonstrates sending various commands to PowerAMP.
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
@@ -338,7 +328,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 
-	// Event handler for Dynamic Eq checkbox.
+	// Event handler for Dynamic Eq checkbox
 	@Override
 	public void onCheckedChanged(CompoundButton view, boolean isChecked) {
 		Log.w(TAG, "onCheckedChanged=" + view);
@@ -349,8 +339,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 				
 			case R.id.eq:
 				if(!mSettingEqu) {
-					startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-									.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+					PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 									.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
 									.putExtra(PowerampAPI.EQU, isChecked)
 								);
@@ -360,8 +349,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 				
 			case R.id.tone:
 				if(!mSettingTone) {
-					startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-									.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+					PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 									.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
 									.putExtra(PowerampAPI.TONE, isChecked)
 								);
@@ -371,7 +359,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 	
-	// Generates and sends presetString to PowerAMP Eq.
+	// Generates and sends presetString to Poweramp
 	private void commitEq() {
 		StringBuilder presetString = new StringBuilder();
 		
@@ -383,9 +371,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			float value = seekBarToValue(name, bar.getProgress());
 			presetString.append(name).append("=").append(value).append(";");
 		}
-		
-		startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-							.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+
+		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
 							.putExtra(PowerampAPI.VALUE, presetString.toString())
 						);
@@ -402,15 +389,13 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		return value;
 	}
 
-	// Event handler for both song progress seekbar and equalizer bands.
 	@Override
 	public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
 		// Process Eq band change.
 		if(((CheckBox)findViewById(R.id.dynamic)).isChecked()) {
 			String name = (String)bar.getTag();
 			float value = seekBarToValue(name, bar.getProgress());
-			startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-							.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+			PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_BAND)
 							.putExtra(PowerampAPI.NAME, name)
 							.putExtra(PowerampAPI.VALUE, value)
@@ -427,12 +412,11 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	public void onStopTrackingTouch(SeekBar seekBar) {
 	}
 
-	// Event handler for Presets spinner.
+	// Event handler for Presets spinner
 	@Override
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
-			startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-							.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+			PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
 							.putExtra(PowerampAPI.ID, id)
 						);

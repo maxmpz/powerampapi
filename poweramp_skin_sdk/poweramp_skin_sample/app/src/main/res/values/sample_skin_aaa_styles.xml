@@ -422,6 +422,8 @@
 
 		<item name="com.maxmpz.audioplayer:gridItemExtraSpace">54dp</item><!-- 2line 4x, 3x grids -->
 		<item name="com.maxmpz.audioplayer:gridZoomedItemExtraSpace">60dp</item><!-- 2line 2x grids -->
+
+
 	</style>
 
 	<!-- Redefine aa_bounds position and size, so it preciselly follows AA (+ optional padding) position in list.

@@ -9,23 +9,6 @@
 	<string name="unknown_artist_name">Unknown artist</string>
 	<string name="unknown_album_name">Unknown album</string>
 	
-	<string name="bass">Bass</string>
-	<string name="bass_extreme">Bass Extreme</string>
-	<string name="bass_treble">Bass &amp; Treble</string>	
-	<string name="treble">Treble</string>
-	<string name="classical">Classical</string>
-	<string name="dance">Dance</string>
-	<string name="rock">Rock</string>
-	<string name="techno">Techno</string>
-	<string name="phone_speaker">Phone Speaker (Loud)</string>
-	<string name="flat">Flat</string>
-	<string name="live">Live</string>
-	<string name="pop">Pop</string>
-	<string name="soft">Soft</string>
-	<string name="soft_bass">Soft Bass</string>
-	<string name="soft_treble">Soft Treble</string>
-	<string name="middle">Middle</string>	
-	
 	<string name="widget_no_songs_selected">&lt;No songs selected&gt;</string>
 	<string name="widget_tap_to_open_power_amp">Tap here to open Poweramp</string>
 </resources>
