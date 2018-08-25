@@ -1,21 +1,37 @@
+/*
+Copyright (C) 2011-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for widgets, plugins, applications and other software
+which communicate with Poweramp application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 package com.maxmpz.poweramp.player;
 
 public interface PipelineConsts {
 	
 	// For getPipelineParamInt()
-	// REVISIT: match PLUGIN_ID_*?
 	public static final int SUBSYSTEM_PIPELINE   = 0;
 	public static final int SUBSYSTEM_DSP_TH     = 1; 
 	public static final int SUBSYSTEM_DECODER_TH = 2;
 	public static final int SUBSYSTEM_OUTPUT     = 3; // probably change to pipeline?
-	//private static final int SUBSYSTEM_DECODER    = 5;
 	
 	// For queueMsg()
 	public static final int PLUGIN_ID_SUBSYSTEM_PIPELINE   = 0;
 	public static final int PLUGIN_ID_SUBSYSTEM_DECODER_TH = 1; // NOTE: sync with NativePlguinManager.PLUGIN_ID_SUBSYSTEM_LAST
 	public static final int PLUGIN_ID_SUBSYSTEM_DSP_TH     = 2;
-	
-	// REVISIT: better naming (prefex with P_ or PA_P_ or move to subclass, etc.
 	
 	public static final int PA_OUTPUT_PARAM_SAMPLE_RATE         = 1; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
 	public static final int PA_OUTPUT_PARAM_SAMPLE_BITS         = 2; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
@@ -55,7 +71,6 @@ public interface PipelineConsts {
 	
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only
-	//public static final int PA_OUTPUT_CAP_24BIT_NEEDS_CHECK      = 0x10000;
 	public static final int PA_OUTPUT_CAP_FORCED_UNITY_GAIN      = 0x20000;
 	public static final int PA_OUTPUT_CAP_OEM_VARIANT            = 0x40000; 	// Used for caps as well
 }

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2014 Maksim Petrov
+Copyright (C) 2011-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -16,7 +16,7 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+*/
 
 package com.maxmpz.poweramp.player;
 
@@ -102,10 +102,6 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String FILE_TYPE = "file_type";
 
-		/**
-		 * Int.
-		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
 		/**
 		 * Int.
 		 */
@@ -345,11 +341,6 @@ public interface TableDefs {
 		public static final @NonNull String NUM_CUE_FILES = TABLE + ".num_cue_files";
 
 		/**
-		 * Int.
-		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
-
-		/**
 		 * First seen time.
 		 * Int.
 		 */
@@ -408,11 +399,6 @@ public interface TableDefs {
 		public static final @NonNull String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
 
 		/**
-		 * Int.
-		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
-
-		/**
 		 * First seen time.
 		 * Int.
 		 */
@@ -452,11 +438,6 @@ public interface TableDefs {
 		 * String.
 		 */
 		public static final @NonNull String ARTIST_SORT = "artist_sort";
-
-		/**
-		 * Int.
-		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/**
 		 * First seen time.
@@ -505,11 +486,6 @@ public interface TableDefs {
 		public static final @NonNull String ALBUM_ARTIST_SORT = "album_artist_sort";
 
 		/**
-		 * Int.
-		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
-
-		/**
 		 * First seen time.
 		 * Int.
 		 */
@@ -530,10 +506,6 @@ public interface TableDefs {
 		 * Number of tracks in this category, including cue source images
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-
-		// Artists uses special where for cue sources, thus just count files is enough.
-		//public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
-		//public static final @NonNull String COUNT_ALBUMS = "count(albums._id)";
 	}
 
 
@@ -555,11 +527,6 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String ALBUM_ID = TABLE + ".album_id";
-
-		/**
-		 * Int.
-		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
 
 		/**
 		 * First seen time.
@@ -584,11 +551,6 @@ public interface TableDefs {
 		public static final @NonNull String COMPOSER_SORT = "composer_sort";
 
 		/**
-		 * Int.
-		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
-		
-		/**
 		 * First seen time.
 		 * Int.
 		 */
@@ -609,11 +571,6 @@ public interface TableDefs {
 		 * Number of tracks in this category, including cue source images
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-		
-
-		// Composers uses special where for cue sources, thus just count files is enough.
-		//public static final @NonNull String COUNT_FILES = "count(folder_files._id)";
-		//public static final @NonNull String COUNT_ALBUMS = "count(albums._id)";
 	}
 
 	public interface Genres {
@@ -628,11 +585,6 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String GENRE = "genre";
 
-		/**
-		 * Int.
-		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
-		
 		/**
 		 * First seen time.
 		 * Int.
@@ -731,11 +683,6 @@ public interface TableDefs {
 		/**
 		 * Int.
 		 */
-		//public static final @NonNull String SSID = TABLE + ".ssid";
-
-		/**
-		 * Int.
-		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 		/**
 		 * Int.
@@ -757,7 +704,6 @@ public interface TableDefs {
 		public static final @NonNull String TOTAL_DURATION = "(dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0))";
 		public static final @NonNull String IS_FILE = TABLE + ".playlist_path IS NOT NULL AS _is_file";
 	}
-
 
 
 
@@ -859,10 +805,6 @@ public interface TableDefs {
 		public static final @NonNull String NAME = "name";
 	}
 
-	/**
-	 * @deprecated Not used now
-	 */
-	@Deprecated
 	public static final class EqPresetSongs implements BaseColumns {
 		public static final @NonNull String TABLE = "eq_preset_songs";
 
@@ -902,5 +844,4 @@ public interface TableDefs {
 		@SuppressWarnings("hiding")
 		public static final @NonNull String NAME = "name";
 	}
-
 }

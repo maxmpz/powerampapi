@@ -32,7 +32,7 @@ public final class PowerampAPI {
 	/**
 	 * Defines PowerampAPI version, which could be also 200 and 210 for older Poweramp.
 	 */
-	public static final int VERSION = 700;
+	public static final int VERSION = 800;
 	
 	/**
 	 * No id flag.
@@ -46,9 +46,10 @@ public final class PowerampAPI {
 	public static final Uri ROOT_URI = new Uri.Builder().scheme("content").authority(AUTHORITY).build();
 	
 	/**
-	 * Uri query parameter - filter.
+	 * Uri query parameter - filter. Currently used only for search uri
 	 */
 	public static final String PARAM_FILTER = "flt";
+	
 	/**
 	 * Uri query parameter - shuffle mode.
 	 */
@@ -252,7 +253,7 @@ public final class PowerampAPI {
 		content://com.maxmpz.audioplayer.data/playlists/files
 		
 		- Search
-		content://com.maxmpz.audioplayer.data/search
+		content://com.maxmpz.audioplayer.data/search?flt=search string
 		
 		- Equalizer Presets
 		content://com.maxmpz.audioplayer.data/eq_presets
@@ -269,7 +270,7 @@ public final class PowerampAPI {
 		 *  
 		 * Extras:
 		 * - paused - boolean - (optional) default false. OPEN_TO_PLAY command starts playing the file immediately, unless "paused" extra is true.
-		 *					   (see PowerampAPI.PAUSED)
+		 *					    (see PowerampAPI.PAUSED)
 		 * 
 		 * - pos - int - (optional) seek to this position in track before playing (see PowerampAPI.Track.POSITION)
 		 */
@@ -431,7 +432,7 @@ public final class PowerampAPI {
 	 * Sticky intent.
 	 * Extras: 
 	 * - state - int - one of the STATE_* values (700+)
-	 * - status - string - one of the STATUS_* values (depricated)
+	 * - status - string - one of the STATUS_* values (deprecated)
 	 * - pos - int - (optional) current in-track position in seconds.
 	 * - ts - long - timestamp of the event (System.currentTimeMillis()).
 	 * - additional extras - depending on STATUS_ value (see STATUS_* description below).
@@ -475,25 +476,31 @@ public final class PowerampAPI {
 	public static final String ACTION_SHOW_CURRENT = "com.maxmpz.audioplayer.ACTION_SHOW_CURRENT";
 
 	/**
-	 * @deprecated opens library
+	 * Opens library
+	 * @deprecated. Use ACTION_OPEN_LIBRARY
 	 */
 	@Deprecated
-	public static final String ACTION_SHOW_LIST  = "com.maxmpz.audioplayer.ACTION_SHOW_LIST";
+	public static final String ACTION_SHOW_LIST = "com.maxmpz.audioplayer.ACTION_SHOW_LIST";
 	
-	public static final String ACTION_OPEN_LIBRARY  = "com.maxmpz.audioplayer.ACTION_OPEN_LIBRARY";
+	public static final String ACTION_OPEN_LIBRARY = "com.maxmpz.audioplayer.ACTION_OPEN_LIBRARY";
 	
-	public static final String ACTION_OPEN_SEARCH  = "com.maxmpz.audioplayer.ACTION_OPEN_SEARCH";
+	public static final String ACTION_OPEN_SEARCH = "com.maxmpz.audioplayer.ACTION_OPEN_SEARCH";
 
 	/**
 	 * @see EXTRA_EQ_TAB
 	 */
-	public static final String ACTION_OPEN_EQ  = "com.maxmpz.audioplayer.ACTION_OPEN_EQ";
+	public static final String ACTION_OPEN_EQ = "com.maxmpz.audioplayer.ACTION_OPEN_EQ";
 	
 	/**
 	 * Opens main screen
 	 */
-	public static final String ACTION_OPEN_MAIN  = "com.maxmpz.audioplayer.ACTION_OPEN_MAIN";
+	public static final String ACTION_OPEN_MAIN = "com.maxmpz.audioplayer.ACTION_OPEN_MAIN";
+
 	
+	/**
+	 * Grants sender 
+	 */
+	public static final String ACTION_ASK_FOR_DATA_PERMISSION = "com.maxmpz.audioplayer.ACTION_ASK_FOR_DATA_PERMISSION";
 
 	/**
 	 * @deprecated there is no PlayerUIActivity anymore
@@ -599,14 +606,16 @@ public final class PowerampAPI {
 	
 	
 	/**
-	 * STATUS_CHANGED extra. See Status class for values. Depricated
+	 * STATUS_CHANGED extra. See Status class for values. 
+	 * @deprecated use ACTION_STATUS_CHANGED
 	 * Int.
 	 */
 	@Deprecated
 	public static final String STATUS = "status";	
 
 	/**
-	 * STATUS extra values. (depricated)
+	 * STATUS extra values.
+	 * @deprecated use ACTION_STATUS_CHANGED
 	 */
 	@Deprecated
 	public static final class Status {
@@ -680,30 +689,30 @@ public final class PowerampAPI {
 	 */
 	public static final class ShuffleMode {
 		public static final int SHUFFLE_NONE		   = 0;
-		public static final int SHUFFLE_ALL			= 1;
-		public static final int SHUFFLE_SONGS		  = 2;
+		public static final int SHUFFLE_ALL			   = 1;
+		public static final int SHUFFLE_SONGS		   = 2;
 		public static final int SHUFFLE_CATS		   = 3; // Songs in order.
 		public static final int SHUFFLE_SONGS_AND_CATS = 4; // Songs shuffled.
-		public static final int MAX_SHUFFLE			= 4;
+		public static final int MAX_SHUFFLE			   = 4;
 	}
 	
 	/**
 	 * repeat extras values.
 	 */
 	public static final class RepeatMode {
-		public static final int REPEAT_NONE	= 0;
-		public static final int REPEAT_ON	  = 1;
+		public static final int REPEAT_NONE	   = 0;
+		public static final int REPEAT_ON	   = 1;
 		public static final int REPEAT_ADVANCE = 2;
-		public static final int REPEAT_SONG	= 3;	
-		public static final int MAX_REPEAT	 = 3;
+		public static final int REPEAT_SONG    = 3;	
+		public static final int MAX_REPEAT     = 3;
 	}
 	
 	/**
 	 * vis extras values.
 	 */
 	public static final class VisMode {
-		public static final int VIS_NONE = 0;
-		public static final int VIS_W_UI = 1; // Visualization with UI
+		public static final int VIS_NONE        = 0;
+		public static final int VIS_W_UI        = 1; // Visualization with UI
 		public static final int VIS_FULL_SCREEN = 2;
 	}
 

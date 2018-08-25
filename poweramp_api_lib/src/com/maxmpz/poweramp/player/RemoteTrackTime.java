@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2013 Maksim Petrov
+Copyright (C) 2011-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -27,7 +27,8 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.util.Log;
 
-/*
+
+/**
  * This class tracks Poweramp in-song position via as few sync intents as possible.
  * Syncing happens when:
  * - your app calls registerAndLoadStatus() (for example, in activity onResume).
@@ -36,12 +37,11 @@ import android.util.Log;
  */
 public class RemoteTrackTime {
 	private static final String TAG = "RemoteTrackTime";
-	private static final boolean LOG = false; // Make it false for production.
+	private static final boolean LOG = true; // Make it false for production.
 
 	private static final int UPDATE_DELAY = 1000;
 	
 	private Context mContext;
-	//private int mDuration;
 	int mPosition;
 	
 	long mStartTimeMs;
@@ -52,6 +52,7 @@ public class RemoteTrackTime {
 	
 	
 	public interface TrackTimeListener {
+		@Deprecated 
 		public void onTrackDurationChanged(int duration);
 		public void onTrackPositionChanged(int position);
 	}
@@ -101,8 +102,8 @@ public class RemoteTrackTime {
 		mTrackTimeListener = l;
 	}
 
+	// REVISIT: not used to update duration here ATM
 	public void updateTrackDuration(int duration) {
-		//mDuration = duration;
 		if(mTrackTimeListener != null) {
 			mTrackTimeListener.onTrackDurationChanged(duration);
 		}
@@ -110,6 +111,7 @@ public class RemoteTrackTime {
 
 	public void updateTrackPosition(int position) {
 		mPosition = position;
+		if(LOG) Log.w(TAG, "updateTrackPosition mPosition=>" + mPosition, new Exception());
 		if(mPlaying) {
 			mStartTimeMs = System.currentTimeMillis();
 			mStartPosition = mPosition;
@@ -119,7 +121,7 @@ public class RemoteTrackTime {
 		}
 	}
 	
-	Runnable mTickRunnable = new Runnable() {
+	protected Runnable mTickRunnable = new Runnable() {
 		@Override
 		public void run() {
 			mPosition = (int)(System.currentTimeMillis() - mStartTimeMs + 500) / 1000 + mStartPosition; 
