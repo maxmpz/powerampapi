@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- 
+		NOTE: dialog themes are applied in multiple steps:
+		- main app theme applied
+		- then dialog style, which inherits some *Dialog (e.g. BottomsheetDialog) is applied without overriding exisiting app theme values
+		  (meaning, only values which are missing from app theme are applied. App theme attributes take priority)
+		- then ?DialogForcedStyle (==BaseDialogForcedStyle) style is applied with overriding. This applies few styles
+		  which should be overriden in app theme, like window title, background, etc.
+	-->
+	
+		
+	<!-- Dialog styles, which should be forced on app theme -->
+	<style name="BaseDialogForcedStyle">
+		<item name="android:windowNoTitle">true</item>
+		<item name="windowNoTitle">true</item>
+		<item name="android:windowActionBar">false</item>
+		<item name="windowActionBar">false</item>
+
+		<item name="android:colorBackground">#00000000</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+
+		<item name="android:windowFrame">@null</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowIsFloating">false</item>
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:backgroundDimEnabled">false</item>
+		<item name="android:windowElevation">0px</item><!-- Forced no elevation -->
+		<item name="android:windowClipToOutline">false</item>
+		<item name="android:windowSoftInputMode">adjustResize</item>
+		
+		<item name="android:windowAnimationStyle">@null</item>
+		<item name="android:windowEnterTransition">@android:transition/no_transition</item>
+		<item name="android:windowSharedElementEnterTransition">@android:transition/no_transition</item>
+		<item name="android:windowSharedElementExitTransition">@android:transition/no_transition</item>
+		<item name="android:windowActivityTransitions">false</item>
+		<item name="android:windowContentTransitions">false</item>
+		<item name="android:windowDisablePreview">true</item>
+
+		<item name="android:statusBarColor">#00000000</item>
+		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
+		<item name="android:windowOverscan">true</item>
+	</style>
+	
+	<style name="BaseDialog">
+		<item name="android:windowNoTitle">true</item>
+		<item name="windowNoTitle">true</item>
+		<item name="android:windowActionBar">false</item>
+		<item name="windowActionBar">false</item>
+						
+		<item name="android:colorBackground">#00000000</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+
+		<item name="android:windowFrame">@null</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowIsFloating">false</item>
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:backgroundDimEnabled">false</item>
+		<item name="android:windowElevation">0px</item><!-- Forced no elevation -->
+		<item name="android:windowClipToOutline">false</item>
+		
+		<item name="android:windowAnimationStyle">@null</item>
+		<item name="android:windowEnterTransition">@android:transition/no_transition</item>
+		<item name="android:windowSharedElementEnterTransition">@android:transition/no_transition</item>
+		<item name="android:windowSharedElementExitTransition">@android:transition/no_transition</item>
+		<item name="android:windowActivityTransitions">false</item>
+		<item name="android:windowContentTransitions">false</item>
+		<item name="android:windowDisablePreview">true</item>
+		
+		<item name="android:statusBarColor">#00000000</item>
+		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
+		<item name="android:windowOverscan">true</item>
+		
+		<item name="DialogTitleLayout">@style/DialogTitleLayout</item>
+		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayout_scene_progress</item>
+		<item name="DialogTitle">@style/DialogTitle</item>
+		<item name="DialogTitleProgress">@style/DialogTitleProgress</item>
+		<item name="DialogToast">@style/DialogToast</item>
+		<item name="DialogToastImg">@style/DialogToastImg</item>
+		<item name="DialogToastLine1">@style/DialogToastLine1</item>
+		<item name="DialogToastLine2">@style/DialogToastLine2</item>
+		<item name="DialogToastLineOnly1">@style/DialogToastLineOnly1</item>
+		
+		<item name="DialogSeparator">@style/DialogSeparator</item>
+		
+		<!-- NOTE: following attributes are pulled from theme by DialogBehavior -->
+		<item name="dragDirection">none</item>
+		<item name="animTime">350</item>
+		<item name="dragAnimTime">1000</item>
+		<item name="dragByNestedScroll">true</item>
+		<item name="dragThreshold">0.5</item>
+		<item name="dragUseNestedScrollVelocity">false</item><!-- NOTE: false here makes nested scrolling NOT to dismiss dialog by velocity -->
+		<item name="dragThresholdVelocity">1800dp</item><!-- was 700dp -->
+		
+		<item name="dialogAdjustToSoftKeyboard">true</item>
+		
+		<item name="dialogFrame_elevation">16dp</item><!-- NOTE: usually this is re-defined in main app/skin theme. NOTE: also used directly in dialog.xml -->
+		
+		<item name="DialogShim">@style/DialogShim</item>
+		
+		<item name="dialogButtonsBarPaddingLR">16dp</item>
+		<item name="dialogButtonsBarPaddingTB">4dp</item>
+		
+		<item name="dialogPaddingTop">18dp</item><!-- 24dp NOTE: optically the same as padding left/right due to optical extra padding on text view -->
+		<item name="dialogContentPaddingLR">24dp</item><!-- 30dp -->
+		<item name="dialogContentPaddingTop">12dp</item><!-- 12dp -->
+		<item name="dialogContentPaddingBottom">12dp</item><!-- 24dp -->
+		
+		<item name="dialogLayout">@layout/dialog</item>
+		<item name="dialogButtonsLayout">@layout/dialog_buttons</item>
+		
+		<item name="DialogButtonBar">@style/DialogButtonBar</item>
+		<item name="DialogPositiveButtonStyle">@style/DialogPositiveButtonStyle</item>
+		<item name="DialogNegativeButtonStyle">@style/DialogNegativeButtonStyle</item>
+		<item name="DialogNeutralButtonStyle">@style/DialogNeutralButtonStyle</item>
+		<item name="DialogButtonSpace">@style/DialogButtonSpace</item>
+	</style>
+	
+	<style name="BottomsheetDialog" parent="BaseDialog">
+		<item name="dragDirection">down</item>
+		<item name="DialogFrame">@style/BottomsheetDialogFrame</item>
+		<item name="DialogFrameStyle_scene_dialog_in">@style/BottomsheetDialogFrameStyle_scene_dialog_in</item>
+		<item name="DialogFrameContent">@style/DialogFrameContent</item>
+		<item name="DialogContent">@style/DialogContent</item>
+		<item name="DialogContentNoPadding">@style/DialogContentNoPadding</item><!-- REVISIT: remove, use DialogContent styles redefinition per dialog instead -->
+	</style>
+	
+	<style name="TopsheetDialog" parent="BaseDialog">
+		<item name="dragDirection">up</item>
+		<item name="dialogAdjustToSoftKeyboard">false</item>
+		<item name="DialogFrame">@style/TopsheetDialogFrame</item>
+		<item name="DialogFrameStyle_scene_dialog_in">@style/TopsheetDialogFrameStyle_scene_dialog_in</item>
+		<item name="DialogFrameContent">@style/DialogFrameContent</item>
+		<item name="DialogContent">@style/DialogContent</item>
+		<item name="DialogContentNoPadding">@style/DialogContentNoPadding</item>
+	</style>
+	
+	<style name="CenteredDialog" parent="BaseDialog">
+		<item name="dialogAltOutScene">true</item>
+		<item name="dragDirection">up</item>
+		<item name="animTime">450</item>
+		<item name="DialogFrame">@style/CenteredDialogFrame</item>
+		<item name="DialogFrameStyle_scene_dialog_in">@style/CenteredDialogFrameStyle_scene_dialog_in</item>
+		<item name="DialogFrameContent">@style/CenteredDialogFrameContent</item>
+		<item name="DialogContent">@style/CenteredDialogContent</item>
+		<item name="DialogContentNoPadding">@style/CenteredDialogContentNoPadding</item>
+	</style>
+	
+	<style name="DialogShim">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:background">?colorShade</item>
+	</style>
+	
+	
+	<style name="BaseDialogFrame">
+		<item name="android:background">@drawable/default_dialog_bg_less_rounded</item>
+		<item name="android:elevation">?dialogFrame_elevation</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:minWidth">300dp</item>
+	</style>
+	
+	<style name="BottomsheetDialogFrame" parent="BaseDialogFrame">
+		<item name="layout_attachTop">100%</item>
+		<item name="layout_maxHeight">400dp</item> 
+	</style>
+	<style name="BottomsheetDialogFrameStyle_scene_dialog_in">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_maxHeight">400dp</item>
+		<item name="layout_attachBottom">parent</item>
+	</style>
+	
+	<style name="TopsheetDialogFrame" parent="BaseDialogFrame">
+		<item name="layout_attachBottom">0%</item>
+		<item name="layout_maxHeight">400dp</item>
+		<item name="android:layout_marginBottom">24dp</item><!-- Compensate for status bar slightly --> 
+	</style>
+	<style name="TopsheetDialogFrameStyle_scene_dialog_in">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_maxHeight">400dp</item>
+		<item name="layout_attachTop">parent</item>
+	</style>
+	
+	<style name="CenteredDialogFrame" parent="BaseDialogFrame">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_maxWidth">380dp</item>
+		<item name="layout_maxHeight">500dp</item>
+		<item name="android:visibility">invisible</item>
+		<item name="android:scaleX">0.975</item>
+		<item name="android:scaleY">0.975</item>
+		<!-- <item name="android:minWidth">300dp</item> --><!-- We don't want too narrow dialogs. Applied to all scenes (view property, not layout) -->
+	</style>
+	<style name="CenteredDialogFrameStyle_scene_dialog_in">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:visibility">visible</item>
+		<item name="layout_maxWidth">380dp</item>
+		<item name="layout_maxHeight">500dp</item>
+		<item name="scale">1.0</item>
+	</style>
+	
+	<style name="CenteredDialogFrameContent">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">vertical</item>
+		<item name="android:minWidth">300dp</item><!-- We don't want too narrow dialogs. Applied to all scenes (view property, not layout) -->
+	</style>
+	
+	<style name="DialogFrameContent">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">vertical</item>
+	</style>
+	
+	<style name="DialogTitleLayout">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">?dialogPaddingTop</item>
+		<item name="android:layout_marginLeft">?dialogContentPaddingLR</item>
+		<item name="android:layout_marginRight">?dialogContentPaddingLR</item>
+		<item name="layout_flexAxis">vertical</item>
+		<item name="android:visibility">visible</item><!-- NOTE: needed as we go to scene with gone and need explicit visibility to go back to visible -->
+		<item name="recalcChildren">on_start</item>
+	</style>
+	
+	<style name="DialogTitleLayout_scene_progress" parent="DialogTitleLayout">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_margin">16dp</item>
+		<item name="android:layout_gravity">center</item>
+	</style>
+	
+	<style name="DialogTitle">
+		<item name="android:textSize">20dp</item>
+		<item name="android:textStyle">bold</item>
+		
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">@id/dialog_progress</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+			
+	<style name="DialogTitleProgress" parent="@style/Widget.AppCompat.ProgressBar">
+		<item name="android:layout_width">24dp</item>
+		<item name="android:layout_height">24dp</item>
+		<item name="android:visibility">gone</item>
+		<item name="android:layout_marginRight">8dp</item>
+	</style>
+	
+	<style name="DialogToast">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_flexAxis">vertical</item>
+		<item name="android:layout_marginTop">5dp</item>
+		<item name="android:layout_marginBottom">5dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">6dp</item>
+		<item name="android:minWidth">300dp</item>
+		<item name="android:minHeight">48dp</item>
+		<item name="android:visibility">gone</item>
+	</style>
+	
+	<style name="DialogToastImg">
+		<item name="android:layout_width">48dp</item>
+		<item name="android:layout_height">48dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:drawable">@drawable/check_big</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="drawableOnly">true</item>
+		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+	
+	<style name="DialogToastLine1">
+		<!-- NOTE: due to consume space by image, match_parent matches the space left to the right -->
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">4dp</item>
+				
+		<item name="android:textSize">15dp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:color">#000</item>
+		<item name="android:maxLines">1</item>
+	</style>
+	
+	<style name="DialogToastLine2">
+		<!-- NOTE: due to consume space by image, match_parent matches the space left to the right -->
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachTop">@+id/dialog_toast_line1</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+				
+		<item name="android:textSize">13dp</item>
+		<item name="android:color">#000</item>
+	</style>
+	
+	<style name="DialogToastLineOnly1" parent="DialogToastLine1">
+		<item name="android:layout_marginTop">11.5dp</item>
+		<item name="android:textSize">16dp</item>
+	</style>
+	
+	<style name="DialogContent">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_weight">1</item>
+		<item name="layout_flexAxis">vertical</item>
+		<item name="layout_flexWeight">1</item>
+		<!-- <item name="android:clipChildren">false</item> -->
+		
+		<!-- <item name="android:fadeScrollbars">false</item> -->
+		<item name="android:scrollbarStyle">outsideOverlay</item>
+		<item name="android:nestedScrollingEnabled">true</item>
+		
+		<item name="android:paddingTop">?dialogContentPaddingTop</item>
+		<item name="android:paddingLeft">?dialogContentPaddingLR</item>
+		<item name="android:paddingRight">?dialogContentPaddingLR</item>
+	</style>
+	<style name="CenteredDialogContent" parent="DialogContent">
+		<item name="android:layout_width">wrap_content</item>
+   	</style>
+   	
+	<style name="DialogContentNoPadding" parent="DialogContent">
+		<!-- <item name="android:paddingTop">0dp</item> -->
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+	</style>
+	<style name="CenteredDialogContentNoPadding" parent="CenteredDialogContent">
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+	</style>
+	
+	<style name="DialogButtonBar">
+		<item name="android:visibility">visible</item><!-- NOTE: need explicit visibility, so visibility is applied properly for scene -->
+		<item name="layout_flexAxis">vertical</item>
+		<item name="android:paddingLeft">?dialogButtonsBarPaddingLR</item>
+		<item name="android:paddingRight">?dialogButtonsBarPaddingLR</item>
+		<item name="android:paddingBottom">?dialogButtonsBarPaddingTB</item>
+		<item name="android:paddingTop">?dialogButtonsBarPaddingTB</item>
+	
+		<item name="android:layout_gravity">right</item>
+		
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+	
+	<style name="DialogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_maxWidth">148dp</item>
+		<item name="android:capitalize">characters</item>
+		<item name="animOnClick">true</item>
+	</style>
+	
+	<style name="DialogPositiveButtonStyle" parent="DialogButtonStyle">
+		<item name="layout_flexAxis">horizontal</item>
+		<!-- <item name="layout_flexWeight">1</item> -->
+		<item name="layout_maxWidth">250dp</item>
+	</style>
+	<style name="DialogNegativeButtonStyle" parent="DialogButtonStyle">
+		<item name="layout_flexAxis">horizontal</item>
+		<!-- <item name="layout_flexWeight">1</item> -->
+   	</style>
+	<style name="DialogNeutralButtonStyle" parent="DialogButtonStyle">
+		<item name="layout_flexAxis">horizontal</item>
+		<!-- <item name="layout_flexWeight">1</item> -->
+	</style>
+	
+	<style name="DialogButtonSpace">
+		<item name="android:layout_width">wrap_content</item>	
+		<item name="android:layout_height">0px</item>
+		<item name="layout_flexAxis">horizontal</item>
+		<item name="layout_flexWeight">1</item>
+	</style>
+		
+	
+	<style name="DialogSeparator"><!-- Invisible for v21+, but still provides padding --><!-- REVISIT -->
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">0px</item>
+		<item name="android:background">@null</item>
+	</style>		
+	
+	
+	
+	
+	<style name="CenteredAlertDialog" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>	
+	</style>
+	<style name="BottomsheetAlertDialog" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>	
+	</style>
+	<style name="TopsheetAlertDialog" parent="TopsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>	
+	</style>
+	
+	<style name="dialog_AlertDialogActivity" parent="BottomsheetAlertDialog"/>
+	
+	<style name="dialog_AlertDialogActivity_list" parent="BottomsheetAlertDialog">
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
+		<item name="dragByNestedScroll">false</item>
+	</style>
+	
+			
+</resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<SceneParams w:forId="parent" w:scene="@id/scene_selection_menu"
+		style="?SelectionMenuSubcontainer_scene_selection_menu" 
+	/>
+	<!-- Update w:jumpVisibility on default scene, so we don't fade out when menu goes down -->
+	<SceneParams w:forId="parent"
+		 w:scene="defaultScene"
+		 w:baseScene="defaultScene"
+		 style="?SelectionMenuSubcontainer_scenes_hidden"
+	/>
+
+	<!-- NOTE: SelectionMenuBehavior assumes this behavior unloads and thus no additional cleanup is made on unload -->
+			
+	<!-- Top line -->
+	<com.maxmpz.widget.FastLayout android:id="@+id/selection_menu_top_line_layout"
+		style="?SelectionMenuTopLineLayout"
+	>
+		<!-- NOTE: stateBusId is set dynamically by SelectionMenuBehavior -->
+		<com.maxmpz.widget.BusCheckBox android:id="@+id/select_box"
+			style="?SelectionMenuSelectBox"
+			android:text="@string/select_all_short"			
+			w:stateMsgId="@id/state_list_all_selected"
+			w:booleanStateId="@id/state_list_all_selected"
+			w:checkCmdId="@id/cmd_list_select_all"
+			w:uncheckCmdId="@id/cmd_list_select_none"
+		/>
+		
+		<!-- NOTE: busId is set dynamically by SelectionMenuBehavior -->
+		<com.maxmpz.widget.BusStateText android:id="@+id/selection_menu_count_text"
+			style="?SelectionMenuCountText"
+			w:busId="@id/list"
+			w:stateId="@id/state_list_selection_count"
+			w:secondaryStateId="@id/state_list_selectable_item_count"
+			w:format="@string/d_slash_d"
+		/>
+
+		<com.maxmpz.widget.BusActionButton
+			style="?SelectionMenuCloseButton"
+			android:text="@string/close"
+			w:busId="@id/bus_gui"
+			w:msgId="@id/cmd_selection_menu_close"
+		/>
+		
+	</com.maxmpz.widget.FastLayout>
+	
+	<com.maxmpz.widget.NonOverlappingView android:id="@+id/separator"
+		style="?SelectionMenuSeparator"
+	/>
+	
+	<com.maxmpz.widget.FastLayout android:id="@+id/selection_menu_items"
+		style="?SelectionMenuBottomLineLayout"
+	>
+		<!-- Menu items are inflated here -->
+	</com.maxmpz.widget.FastLayout>
+		
+</merge>

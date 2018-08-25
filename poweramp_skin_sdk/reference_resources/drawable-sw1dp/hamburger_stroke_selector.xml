@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+	android:exitFadeDuration="@integer/selector_fade_ms">
+
+	<item android:state_activated="true" android:drawable="@drawable/hamburger" />
+	<item android:state_pressed="true" android:drawable="@drawable/hamburger" />
+	<item android:drawable="@drawable/hamburger_stroke" />
+	
+</selector>

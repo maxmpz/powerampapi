@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+		
+	<!-- NOTE: layout_attachTop="100%" attaches top to bottom of parent (so we can slide in from bottom and back) -->
+	<!-- NOTE: see merge_selection_menu.xml for extra scene params for selection_menu_subcontainer   -->
+	<!-- NOTE: SelectionMenuBehavior params can be applied here -->
+	<style name="SelectionMenuSubcontainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">100dp</item><!-- We need some default non-zero height, as initially nothing is in selection menu and it gets 0 height, thus, visibily resizing -->
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="layout_attachTop">100%</item>
+		<item name="android:visibility">invisible</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:layout_gravity">bottom</item>
+		<item name="android:elevation">?bar_elevation</item>
+		<item name="android:background">@drawable/navbar_ext_bg</item>
+		<item name="android:clickable">true</item>
+		<item name="animTime">500</item>
+		<item name="animExitTime">200</item>
+		
+	</style>
+	<!-- NOTE: this is added to SelectionMenuSubcontainer scene params for defaultScene, so avoid layout params here -->
+	<style name="SelectionMenuSubcontainer_scenes_hidden">
+		<item name="recalcChildren">on_start</item>
+		<item name="jumpVisibility">true</item>
+	</style>
+	
+	<style name="SelectionMenuSubcontainer_scene_selection_menu">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:layout_gravity">bottom</item>
+		<item name="android:visibility">visible</item>
+		<item name="recalcChildren">on_start</item>
+		<item name="jumpVisibility">true</item>
+	</style>
+	
+	<style name="SelectionMenuTopLineLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_margin">2dp</item>
+	</style>
+	
+	<style name="SelectionMenuSelectBox">
+		<item name="layout_widthPercent">30%</item>
+		<!-- <item name="layout_consumeSpace">horizontal</item> -->
+		<item name="android:layout_height">38dp</item>
+		<item name="android:background">@drawable/ripple_rounded_medium</item>
+		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
+		<item name="android:clickable">true</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+		<item name="android:drawablePadding">4dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+	</style>
+	
+	<style name="SelectionMenuCountText">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<!-- <item name="layout_consumeSpace">horizontal</item> -->
+		<item name="android:layout_height">38dp</item>
+		<item name="android:gravity">center</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+	</style>
+	
+	<style name="SelectionMenuCloseButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_height">38dp</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="android:clickable">true</item>
+		<item name="animOnClick">true</item>
+		<item name="android:gravity">center</item>
+		<item name="android:padding">8dp</item>
+		<item name="android:drawable">@drawable/close_stroke</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:background">@drawable/ripple_rounded_medium</item>
+	</style>
+	
+	<style name="SelectionMenuSeparator">
+		<item name="android:background">?colorSeparator</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">1px</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	
+	<style name="SelectionMenuBottomLineLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_margin">2dp</item>
+	</style>
+	
+	<style name="SelectionListContextButtonBase">		
+		<item name="layout_widthPercent">33.333%</item> 
+		<item name="android:layout_height">wrap_content</item>
+		<item name="drawablePaddingStart">4dp</item><!-- The padding on top, before drawable -->
+		<item name="android:drawablePadding">2dp</item><!-- The padding between drawable and text -->
+		<item name="android:paddingTop">0dp</item><!-- In this case this adds to distance between drawable and text -->
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item>
+		<item name="android:textSize">12.5dp</item>
+		
+		<item name="drawablePosition">top</item>
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
+		<!-- <item name="android:disabledAlpha">0.5</item> -->
+		<!-- NOTE: important to avoid default android theme text colorlist with disabled text color, as we do own disabled processing 
+			 If we don't specify color explicetly, it's taken from theme, causing text color to jump to disabled, but we want alpha animation -->
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+
+		<item name="android:gravity">center</item>
+		<item name="android:background">@drawable/ripple_rounded_medium</item>
+		<item name="animOnClick">true</item><!-- REVISIT: not needed if I hide toolbar on clicks -->
+		<item name="android:duplicateParentState">false</item><!-- Parent can be clickable, but we don't want to duplicate presses on it -->
+		<item name="android:clickable">true</item><!-- Also enforces clickable state (FastButtons are not clickable by default) and ignores parent drawable hot spots -->
+	</style>
+	<style name="SelectionListContextButton" parent="SelectionListContextButtonBase"></style>		
+</resources>

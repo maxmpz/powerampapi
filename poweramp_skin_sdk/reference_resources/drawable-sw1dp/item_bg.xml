@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- These should be sorted in desc order as they are in fact bitset values (android selects first match) -->
+<level-list xmlns:android="http://schemas.android.com/apk/res/android"
+	android:exitFadeDuration="200">
+
+	<!-- Set when item needs background as it can overlap other items, e.g. when it's dragged -->
+	<item android:minLevel="@integer/ITEM_BG_LEVEL_INTERMEDIATE" android:maxLevel="@integer/ITEM_BG_LEVEL_INTERMEDIATE">
+		<shape>
+			<corners android:radius="?corners_medium"/>
+			<solid android:color="?colorAABgColor"/><!-- Match activity background -->
+		</shape>
+	</item>
+	
+	<!-- Set when item becomes popup menu -->
+	<item android:minLevel="@integer/ITEM_BG_LEVEL_POPUP" android:maxLevel="@integer/ITEM_BG_LEVEL_POPUP">
+		<shape>
+			<corners android:radius="?corners_popup"/>
+			<solid android:color="?colorBgPrimary"/>
+		</shape>
+	</item>
+	
+	<!-- Set when item needs touch feedback, e.g. on long press -->
+	<item android:minLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:maxLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:drawable="@drawable/ripple_rounded_medium"/>
+	
+</level-list>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<!-- TODO: ?attr for drawables -->
+	
+	<string-array name="vis_modes">
+		<item>@string/vis_none</item>
+		<item>@string/vis_w_ui</item>
+		<item>@string/vis_full_screen</item>
+	</string-array>
+	<array name="vis_icons_32dp">
+		<item>@drawable/vis_stroke_32dp_tinted</item>
+		<item>@drawable/vis_w_ui_32dp_tinted</item>
+		<item>@drawable/vis_32dp_tinted</item>
+	</array>
+	<array name="vis_icons_32dp_alt">
+		<item>@drawable/vis_disabled_32dp_tinted</item>
+		<item>@drawable/vis_w_ui_32dp_tinted</item>
+		<item>@drawable/vis_32dp_tinted</item>
+	</array>
+	<integer-array name="vis_modes_enum">
+		<item>@integer/VIS_NONE</item>
+		<item>@integer/VIS_W_UI</item>
+		<item>@integer/VIS_FULL_SCREEN</item>
+	</integer-array>
+					
+	
+	
+	<!-- NOTE: indices should match PlayerAPI.REPEAT_* 
+	public static final int REPEAT_NONE = 0;
+	public static final int REPEAT_ON = 1;
+	public static final int REPEAT_ADVANCE = 2;
+	public static final int REPEAT_SONG = 3;
+	--> 
+	<string-array name="repeat_modes">
+		<item>@string/repeat_none</item>
+		<item>@string/repeat_on</item>
+		<item>@string/repeat_advance</item>
+		<item>@string/repeat_song</item>
+	</string-array>
+	<!-- Extra line for repeat modes -->
+	<string-array name="repeat_modes_summary">
+		<item>@string/stop_on_last_song</item>
+		<item>@string/jump_to_first_song</item>
+		<item>@string/jump_to_next_list</item>
+		<item>@string/repeat_one_song</item>
+		<item></item>
+	</string-array>
+	<array name="repeat_icons_32dp">
+		<item>@drawable/repeat_stroke_32dp_tinted</item>
+		<item>@drawable/repeat_32dp_tinted</item>
+		<item>@drawable/repeat_advance_32dp_tinted</item>
+		<item>@drawable/repeat_song_32dp_tinted</item>
+	</array>
+	<array name="repeat_icons_32dp_alt">
+		<item>@drawable/repeat_none_32dp_tinted</item>
+		<item>@drawable/repeat_32dp_tinted</item>
+		<item>@drawable/repeat_advance_32dp_tinted</item>
+		<item>@drawable/repeat_song_32dp_tinted</item>
+	</array>
+	<integer-array name="repeat_modes_enum">
+		<item>@integer/REPEAT_NONE</item>
+		<item>@integer/REPEAT_ON</item>
+		<item>@integer/REPEAT_ADVANCE</item>
+		<item>@integer/REPEAT_SONG</item>
+	</integer-array>
+	
+	
+	<!--
+	public static final int SHUFFLE_NONE = 0;
+	public static final int SHUFFLE_ALL = 1;
+	public static final int SHUFFLE_SONGS = 2;
+	public static final int SHUFFLE_CATS = 3; // Songs in order.
+	public static final int SHUFFLE_SONGS_AND_CATS = 4; // Songs shuffled.
+	-->
+	<integer-array name="shuffle_modes_enum">
+		<item>@integer/SHUFFLE_NONE</item>
+		<item>@integer/SHUFFLE_ALL</item>
+		<item>@integer/SHUFFLE_SONGS</item>
+		<item>@integer/SHUFFLE_CATS</item>
+		<item>@integer/SHUFFLE_SONGS_AND_CATS</item>
+	</integer-array>
+	<string-array name="shuffle_modes">
+		<item>@string/shuffle_none</item>
+		<item>@string/shuffle_all</item>
+		<item>@string/shuffle_songs</item>
+		<item>@string/shuffle_cats</item>
+		<item>@string/shuffle_songs_and_cats</item>
+	</string-array>
+	<string-array name="shuffle_modes_long">
+		<item>@string/shuffle_none_long</item>
+		<item>@string/shuffle_all_long</item>
+		<item>@string/shuffle_songs_long</item>
+		<item>@string/shuffle_cats_long</item>
+		<item>@string/shuffle_songs_and_cats_long</item>
+	</string-array>	
+	
+	<array name="shuffle_icons_32dp">
+		<item>@drawable/shuffle_stroke_32dp_tinted</item>
+		<item>@drawable/shuffle_all_32dp_tinted</item>
+		<item>@drawable/shuffle_songs_32dp_tinted</item>
+		<item>@drawable/shuffle_cats_32dp_tinted</item>
+		<item>@drawable/shuffle_songs_and_cats_32dp_tinted</item>
+	</array>
+	<array name="shuffle_icons_32dp_alt">
+		<item>@drawable/shuffle_none_32dp_tinted</item>
+		<item>@drawable/shuffle_all_32dp_tinted</item>
+		<item>@drawable/shuffle_songs_32dp_tinted</item>
+		<item>@drawable/shuffle_cats_32dp_tinted</item>
+		<item>@drawable/shuffle_songs_and_cats_32dp_tinted</item>
+	</array>
+		
+	<string-array name="milk_sort_modes"><!-- Sync with RestMilkPreset.SORT_* -->
+		<item>@string/by_type</item>
+		<item>@string/by_name</item>
+		<item>@string/by_author</item>
+		<item>@string/by_source</item>
+		<item>@string/by_rating</item>
+	</string-array>
+	<array name="milk_sort_icons_24dp">
+		<item>?sort_type_24dp</item>
+		<item>?sort_24dp</item>
+		<item>?sort_author_24dp</item>
+		<item>?sort_source_24dp</item>
+		<item>?sort_rating_24dp</item>
+	</array>
+	
+	<string-array name="milk_advance_modes"><!-- Sync with MilkAPI.ADVANCE_* -->
+		<item>@string/lock</item>
+		<item>@string/change_with_track</item>
+		<item>@string/change_by_time</item>
+		<item>@string/shuffle_by_time</item>
+	</string-array>
+	<array name="milk_advance_icons_24dp">
+		<item>@drawable/vis_lock_24dp</item>
+		<item>@drawable/advance_24dp</item>
+		<item>@drawable/advance_by_time_24dp</item>
+		<item>@drawable/shuffle_24dp</item>
+	</array>
+</resources>

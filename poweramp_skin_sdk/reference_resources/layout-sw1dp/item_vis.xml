@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- NOTE layoutWidth/height of items are always ignored -->
+<com.maxmpz.widget.player.VisPanelFrameItemView 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	
+	style="?ItemVis"
+>
+	<com.maxmpz.widget.player.list.IconView android:id="@+id/aa_image"
+		style="?ItemVisImage"
+	/>	
+	
+	<com.maxmpz.widget.FastCheckBoxOnly android:id="@+id/like"
+		style="?ItemVisLikeButton"
+	/>
+	<SceneParams w:scene="@+id/scene_vis_item_list"
+		android:visibility="visible"
+		w:recalcChildren="on_end"		
+	/>
+		
+	<!-- NOTE: SceneParams are needed for title/line2 for a bit better transition (otherwise they can jump due to non-processing by Scene) -->
+	
+	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+		style="?ItemVisTitle"
+	/>
+	<SceneParams w:scene="@+id/scene_vis_item_list"
+		android:visibility="visible"
+		w:recalcChildren="on_start"
+	/>
+	
+	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
+		style="?ItemVisLine2"
+	/>
+	<SceneParams w:scene="@+id/scene_vis_item_list"
+		android:visibility="visible"
+		w:recalcChildren="on_start"
+	/>
+	
+	<com.maxmpz.widget.FastTextView
+		style="?ItemVisActivatedCheck"
+	/>
+	<SceneParams w:scene="@+id/scene_vis_item_list"
+		android:visibility="visible"
+	/>
+		
+
+</com.maxmpz.widget.player.VisPanelFrameItemView>

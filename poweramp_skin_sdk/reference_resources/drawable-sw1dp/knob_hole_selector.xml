@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: can't change size of drawable, thus, emulating bolder hole when pressed with invisile (#0000) stroke -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+	android:exitFadeDuration="300"
+>
+	<item android:state_enabled="false">
+		<shape>
+			<size android:width="3dp"/>
+			<padding android:left="18dp" android:right="18dp" android:top="20dp" android:bottom="20dp"/>
+			<corners android:radius="3dp"/>
+			<solid android:color="?colorKnobHoleDisabled"/>
+			<stroke android:color="#0000" android:width="1dp"/>
+		</shape>
+		</item>
+	
+	<item android:state_pressed="true">
+		<shape>
+			<size android:width="3dp"/>
+			<padding android:left="18dp" android:right="18dp" android:top="20dp" android:bottom="20dp"/>
+			<corners android:radius="3dp"/>
+			<solid android:color="?colorKnobHolePressed"/>
+			<stroke android:color="?colorKnobHolePressed" android:width="1dp"/>
+		</shape>
+		</item>
+		
+	<item>
+		<shape>
+			<size android:width="3dp"/>
+			<padding android:left="18dp" android:right="18dp" android:top="20dp" android:bottom="20dp"/>
+			<corners android:radius="3dp"/>
+			<solid android:color="?colorKnobHole"/>
+			<stroke android:color="#0000" android:width="1dp"/>
+		</shape>
+		</item>
+</selector>

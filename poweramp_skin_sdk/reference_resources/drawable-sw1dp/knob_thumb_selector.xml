@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: keeping ripple as top drawable item: 
+	- that allows setting software mode on it
+	- avoiding multiple ripples inside drawable hierarchy
+--> 
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+	android:color="?colorKnobRipple">
+	<item>
+		<layer-list>
+			<!-- NOTE: layer item width/height is supported for SDK 23+, thus, using linear knob thumbWidth/height attributes instead -->
+			<!-- <item android:width="32dp" android:height="64dp"> -->
+			<item>
+				<selector android:exitFadeDuration="300">
+					<item android:state_enabled="false">
+						<shape>
+							<corners android:radius="?corners_knob_thumb"/>
+							<solid android:color="?colorKnobBg"/>
+							<stroke android:color="?colorKnobDisabled" android:width="1dp"/>
+						</shape>
+					</item>
+					
+					<item android:state_pressed="true">
+						<shape>
+							<corners android:radius="?corners_knob_thumb"/>
+							<solid android:color="?colorKnobBg"/>
+							<stroke android:color="?colorKnobPressed" android:width="2.5dp"/>
+						</shape>
+					</item>
+						
+					<item>
+						<shape>
+							<corners android:radius="?corners_knob_thumb"/>
+							<solid android:color="?colorKnobBg"/>
+							<stroke android:color="?colorKnob" android:width="1dp"/>
+						</shape>
+					</item>
+				</selector>
+			</item>
+			
+			<item android:top="@dimen/knob_thumb_indicator_top_bottom" 
+				android:left="@dimen/knob_thumb_indicator_left_right" 
+				android:right="@dimen/knob_thumb_indicator_left_right" 
+				android:bottom="@dimen/knob_thumb_indicator_top_bottom"
+			>
+				<selector android:exitFadeDuration="300">
+					<item android:state_enabled="false">
+						<shape>
+							<solid android:color="?colorKnobIndicatorDisabled"/>
+						</shape>
+					</item>
+					<item android:state_pressed="true">
+						<shape>
+							<solid android:color="?colorKnobIndicatorPressed"/>
+						</shape>
+					</item>
+					<item>
+						<shape>
+							<solid android:color="?colorKnobIndicator"/>
+						</shape>
+					</item>
+				</selector>
+			</item>
+			
+		</layer-list>
+	</item>
+</ripple>

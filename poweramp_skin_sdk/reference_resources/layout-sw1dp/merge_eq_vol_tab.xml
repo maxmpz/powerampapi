@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<com.maxmpz.widget.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+	style="?EqTabLayout"
+	w:enableStateAnim="true"
+	w:privateScene="true"
+>	
+	<com.maxmpz.widget.FastLayout android:id="@+id/vol_panel1"
+		style="?EqVolPanel1"
+	>
+		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/balance_knob_layout"
+			style="?EqBalanceKnobLayout"
+			w:param="@id/dsp_balance"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			w:valueFormat="@string/format_2f"
+			w:valueFormatMin="-1"
+			w:valueFormatMax="1"
+			w:valueFormatMid="0"
+			w:valueFormatMidPos="0.5"
+			w:snapTo="0.5"
+			w:leftLabelText="@string/balance_L"
+			w:labelText="@string/balance"
+			w:rightLabelText="@string/balance_R"
+		/>
+		
+		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/sfx_knob_layout"
+			style="?EqSFXKnobLayout"
+			w:param="@id/dsp_stereo_fx"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			w:valueFormat="@string/f0_percent"
+			w:valueFormatMin="0"
+			w:valueFormatMax="100"
+			w:labelText="@string/stereo_x"			
+		/>
+	</com.maxmpz.widget.FastLayout>
+	
+	<!-- Tempo -->
+	<com.maxmpz.widget.FastLayout android:id="@+id/vol_panel2"
+		style="?EqVolPanel2"
+	>
+		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/tempo_button"
+			style="?EqTempoCheckButton"
+			w:param="@id/dsp_tempo_enabled"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			android:text="@string/tempo"
+		/>
+			
+		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/tempo_knob_layout"
+			style="?EqTempoKnobLayout"
+
+			w:param="@id/dsp_tempo"
+			w:enablingParam="@id/dsp_tempo_enabled"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			
+			w:snapTo="0.5"
+			w:dependentLabel="@+id/tempo_label1"
+			w:dependentLabel2="@+id/tempo_label2"
+			w:valueFormat="@string/format_2f_x"
+			w:valueFormatMin="0.5"
+			w:valueFormatMax="2.0"
+			w:valueFormatMid="1.0"
+			w:valueFormatMidPos="0.5"
+			
+			w:leftLabelText="@string/tempo_05x"
+			w:rightLabelText="@string/tempo_2x"
+		/>
+	
+	</com.maxmpz.widget.FastLayout><!-- tempo_knob_outer_layout -->
+	
+	<!-- Mono + Volume -->
+	
+	<com.maxmpz.widget.FastLayout android:id="@+id/vol_panel3"
+		style="?EqVolPanel3"
+	>
+		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/mono_button"
+			style="?EqMonoCheckButton"
+			w:param="@id/dsp_mono_enabled"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			android:text="@string/mono"
+		/>
+		
+		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/platform_fx_button"
+			style="?EqPlatformFXCheckButton"
+			w:param="@id/dsp_platform_fx_enabled"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			w:enablingParam="@id/dsp_has_platform_fx"
+			android:text="@string/platform_fx"
+			w:toastOnPress="@string/long_press_for_more_options"
+			w:toastHeaderOnPress="@string/platform_fx"
+			w:longPressCmdId="@id/cmd_dsp_open_platform_fx"
+		/>
+		
+		<com.maxmpz.widget.BusActionButton android:id="@+id/other_reset_button"
+			style="?EqOtherResetButton"
+			w:busId="@id/bus_dsp_cmd"
+			w:msgId="@id/cmd_dsp_reset_other"
+			
+			android:text="@string/reset"
+			w:confirmTitle="@string/reset"
+			w:confirmText="@string/reset_knobs_on_screen"
+		/>
+				
+			
+		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/volume_knob_layout"
+			style="?EqVolumeKnobLayout"
+			
+			w:param="@id/dsp_master_volume"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			
+			w:valueFormat="@string/f0_percent"
+			w:valueFormatMin="0"
+			w:valueFormatMax="100"
+			
+			w:labelText="@string/volume"
+		/>
+	</com.maxmpz.widget.FastLayout>
+		
+</com.maxmpz.widget.SceneFastLayout>

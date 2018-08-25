@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:color="?colorFrsSelectionBgRipple">
+	<item>
+		<selector android:exitFadeDuration="300" android:enterFadeDuration="300">
+			<item android:state_pressed="true">
+				<shape>
+					<corners android:radius="?corners_mini"/>
+					<solid android:color="?colorFrsSelectionBgPressed"/>
+				</shape>
+			</item>
+			<item>
+				<shape>
+					<corners android:radius="?corners_mini"/>
+					<solid android:color="?colorFrsSelectionBg"/>
+				</shape>
+			</item>
+		</selector>
+	</item>
+</ripple>
+

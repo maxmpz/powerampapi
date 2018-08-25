@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<com.maxmpz.widget.Shim android:id="@+id/vis_panel_shim"
+		style="?VisPanelShim"
+	/>
+	
+	<!-- NOTE: as shim now outside of vis_panel_container, can't control it with scenes - controlled by code now
+	<SceneParams w:scene="@+id/scene_vispanel_expanded"
+		android:visibility="visible"
+	/>
+	-->
+	
+	<com.maxmpz.widget.SceneFastLayout android:id="@+id/vis_panel_container"
+		style="?VisPanelContainer"
+		w:privateScene="true"
+		w:enableStateAnim="true"
+	>
+		<com.maxmpz.widget.player.VisPanelFrame android:id="@+id/vis_panel_frame"
+			style="?VisPanelFrame"
+		>
+			<!-- NOTE: buttons are aligned to the right, thus, reveresed -->
+			<com.maxmpz.widget.FastButton android:id="@+id/close_button"
+				style="?VisCloseButton"
+			/>
+			<SceneParams w:scene="@+id/scene_vispanel_expanded"
+				android:visibility="visible"
+			/>
+			
+			<com.maxmpz.widget.BusActionButton android:id="@+id/settings_button"
+				style="?VisSettingsButton"
+				w:busId="@id/bus_app_cmd"
+				w:msgId="@id/cmd_app_open_settings"
+				w:string="vis"
+			/>
+			<SceneParams w:scene="@+id/scene_vispanel_expanded"
+				android:visibility="visible"
+			/>
+
+			<!-- w:msgId="@id/msg_player_milk_data_changed" NOTE: don't react on msg, as no message with sort is sent ATM. 
+				 msg_player_milk_data_changed is with arg1==0 which breaks selected icon -->
+			<!-- w:buttonsArg1="@array/milk_sort_modes_enum" -->
+			<com.maxmpz.widget.BusSelectablePopupButtonLayout
+				style="?VisSortButtonLayout"
+			
+				w:stateBusId="@id/bus_player"
+				w:stateId="@id/state_player_milk_sort"			
+				
+				w:buttonsLabels="@array/milk_sort_modes"
+				w:buttonsDrawables="@array/milk_sort_icons_24dp"
+				
+				w:buttonsBusId="@id/bus_player_cmd"
+				w:buttonsMsgId="@id/cmd_player_set_milk_sort"
+			/>
+			<SceneParams w:scene="@+id/scene_button_menu"
+				style="?ItemPopupMenu_scene_item_menu"
+			/>
+			<SceneParams w:scene="@+id/scene_vispanel_expanded"
+				android:visibility="visible"
+			/>
+						
+			
+			
+			<EditText android:id="@+id/vis_panel_edittext"
+				style="?VisFilterEditText"
+				android:hint="@string/filter"
+			/>
+			<SceneParams w:scene="@+id/scene_vispanel_expanded"
+				android:visibility="visible"
+			/>
+			
+						
+			<com.maxmpz.widget.PowerList android:id="@+id/vis_panel_list"
+				style="?VisPanelList"
+			/>
+			<SceneParams w:scene="@+id/scene_vispanel_expanded"
+				w:recalcChildren="on_end"
+			/>
+	
+			<com.maxmpz.widget.BusSelectablePopupButtonLayout
+				style="?VisLockButtonLayout"
+			
+				w:stateBusId="@id/bus_player"
+				w:stateId="@id/state_player_milk_advance"			
+				
+				w:buttonsLabels="@array/milk_advance_modes"
+				w:buttonsDrawables="@array/milk_advance_icons_24dp"
+
+				w:buttonsBusId="@id/bus_player_cmd"
+				w:buttonsMsgId="@id/cmd_player_set_milk_advance"
+				
+				w:toastOnPress="@string/long_press_for_more_options"
+			/>
+			<SceneParams w:scene="@+id/scene_button_menu"
+				style="?ItemPopupMenu_scene_item_menu"
+			/>
+			<SceneParams w:scene="@+id/scene_vispanel_expanded"
+				android:visibility="gone"
+			/>
+		</com.maxmpz.widget.player.VisPanelFrame>
+		
+		<SceneParams w:scene="@+id/scene_vispanel_expanded"
+			style="?VisPanelFrame_scene_vispanel_expanded"
+			w:recalcChildren="on_end"
+		/>
+		<StateAnimParams w:stateAnim="@+id/anim_temp_hidden"
+			android:alpha="0"
+		/>
+	
+	</com.maxmpz.widget.SceneFastLayout>
+	<SceneParams w:scene="@id/scene_vis_temp_ui"
+		android:visibility="visible"
+		android:alpha="1"
+	/>
+	<!-- NOTE: alpha is overriden by user preference -->
+	<SceneParams w:scene="@id/scene_vis_w_ui"
+		android:visibility="visible"
+		android:alpha="0.55"
+	/>
+	<SceneParams w:scene="@id/scene_vis"
+		android:visibility="invisible"
+	/>
+	<SceneParams w:scene="@id/scene_lib" w:scene_2="@id/scene_lib" w:scene_3="@id/scene_search" w:scene_4="@id/scene_eq" w:scene_5="@id/scene_playing"
+		android:visibility="gone"
+	/>
+	
+</merge>

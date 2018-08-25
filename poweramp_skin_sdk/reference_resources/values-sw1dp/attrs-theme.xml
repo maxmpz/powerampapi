@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+
+	<attr name="colorBgPrimary" format="color"/><!-- primary background color, e.g. white for Light theme -->
+	<attr name="colorBgPrimaryAlpha" format="color"/><!-- alpha faded primary background color -->
+	<attr name="colorBgLessAlpha" format="color"/><!-- a bit more pronounced alpha faded primary background color -->
+	<attr name="colorInverse" format="color"/><!-- Foreground color for inverted color controls -->
+	<attr name="colorBgInverse" format="color"/><!-- Inverse background color, e.g. black for Light theme -->
+	<attr name="colorBgInverseChecked" format="color"/><!-- Inverse checked background color, e.g. EQ checkable buttons -->
+	<attr name="colorStroke" format="color"/><!-- Color for button stroke -->
+	<attr name="colorLessContrast" format="color"/><!-- Tint/foreground color for a bit less contrast icons/buttons -->
+	<attr name="colorShade" format="color"/><!-- Shade colors for popup menus -->
+	<attr name="colorSeparator" format="color"/><!-- E.g. menu separator -->
+	<attr name="colorBgLight" format="color"/><!-- Non-contrast bg. Used ATM for Search Frame bg -->
+	
+	<attr name="colorIconPrimary" format="color"/><!-- Usually same as colorPrimary, but for black/#000 it should be #0000 to avoid tinting at all -->
+	<attr name="colorIconPrimaryForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
+	<attr name="colorIconInverse" format="color"/><!-- Usually same as colorInverse, but for black/#000 it should be #0000 to avoid tinting at all -->
+	<attr name="colorIconInverseForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
+	<attr name="colorIconDisabled" format="color"/><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
+	
+	<attr name="colorFastScroller" format="color"/>
+	<attr name="colorFastScrollerPressed" format="color"/>
+	<attr name="colorFastScrollerTrack" format="color"/>
+	<attr name="colorScrollPopupBg" format="color"/>
+	
+	<attr name="colorNavbarIcons" format="color"/>
+	<attr name="colorNavbarIconsLessContrast" format="color"/>
+	<attr name="colorBgNavbar" format="color"/>
+	
+	<attr name="colorItemActive" format="color"/><!-- Playing/currently loaded track in a list -->
+	
+	<attr name="statusBarBg" format="color|reference"/><!-- Shade under status bar -->
+	<attr name="navigationBarBg" format="color|reference"/><!-- Shade under Android navigation bar -->
+		
+	<attr name="defaultLowResAA" format="reference"/><!-- Default AA image. Strictly 512x512 bitmap -->
+	<attr name="defaultHiResAA" format="reference"/><!-- Default AA image. Strictly 1024x1024 bitmap -->
+	
+	<!-- Extra state for drawables -->
+	<attr name="state_toolbar_in_header" format="boolean" /><!-- REVISIT: not used ATM -->
+	<attr name="state_playing" format="boolean" />
+	
+	<attr name="dialog_AlertDialogActivity"/>
+	<attr name="dialog_AlertDialogActivity_list"/>
+
+</resources>

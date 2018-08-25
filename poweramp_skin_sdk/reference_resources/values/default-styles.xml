@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- NOTE: dialog styles are in separate xml file (e.g. default_styles_dialogs.xml) -->		 
+	<!-- NOTE: using app compat theme to avoid unexpected OEM system theme overrides  -->
+	
+	<style name="Base_ActivityTheme_Default" parent="@style/Theme.AppCompat.Light">
+				
+		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>			
+		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>		
+		<item name="DialogForcedStyle">@style/Default_BaseDialogForcedStyle</item>
+				
+		<item name="android:windowNoTitle">true</item> 
+		<item name="windowNoTitle">true</item>
+		<item name="android:windowActionBar">false</item>
+		<item name="windowActionBar">false</item>
+		<item name="android:windowActionBarOverlay">false</item>
+		<item name="windowActionBarOverlay">false</item>
+		<item name="android:textColorAlertDialogListItem">?android:textColorPrimary</item>
+		<item name="android:textColorPrimaryDisableOnly">?android:textColorPrimary</item><!-- Needed by popups, e.g. spinner drop down item -->
+		
+		<!-- Poweramp also allows layout under statusbar if statusbar color is not solid, and under android navigation bar, if navigationBarColor is not solid
+			 Following logic is applied:
+			 - if FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS exists (==android:windowDrawsSystemBarBackgrounds=true)
+			   - if android:navigationBarColor has alpha, go under navigation
+			   - if android:statusBarColor has alpha, go under status bar
+		 -->
+		 
+		<!-- NOTE: some devices may always ignore navigation bar or status bar colors (LG) -->
+		
+		<item name="android:statusBarColor">#0000</item><!-- Still may be used by Android. Either this, or statusBarBg should have some color, but not both -->
+		<item name="statusBarBg">#5000</item><!-- Used by TopFitsStatusBarView -->
+		
+		<item name="navigationBarBg">#0000</item><!-- Used by TopFitsNavigationBarView. We don't actually draw android navigation bar by TopFitsNavigationBarView in this theme, but some color is needed -->
+
+		<!-- The code below make status bar light -->
+		<!-- <item name="android:statusBarColor">#4fff</item>
+		<item name="statusBarBg">#0000</item>
+		<item name="android:windowLightStatusBar">true</item> -->
+
+		<!-- The code below makes navigation bar light -->
+		<!-- <item name="android:navigationBarColor">@android:color/white</item>
+		<item name="android:windowLightNavigationBar">true</item>
+		<item name="windowLightNavigationBar">true</item> 
+		<item name="android:navigationBarDividerColor">#1f000000</item>
+		-->
+		
+		<item name="android:windowBackground">@null</item><!-- NOTE: general background color is set on Milk widget which spans whole screen -->
+		
+		<!-- NOTE: avoid putting android:textColor as that derived by almost all views and can cause unexpected color changes -->
+				
+		<!-- <item name="android:colorPrimary">@color/primary</item> NOTE: android:colorPrimary/android:colorAccent set to colorPrimary/colorAccent by AppCompat -->
+		<item name="colorPrimary">#29343f</item>
+		<item name="android:colorSecondary">#00f</item><!-- Not used ATM -->
+		<item name="colorAccent">#000</item><!-- Used e.g. for AccentedText -->
+		
+		<item name="android:textColorPrimary">#000</item><!-- Used e.g. for Text -->
+		<item name="android:textColorSecondary">#444</item><!-- Used e.g. for SubheadText -->
+		<!-- NOTE: by default, text has ?textAppearanceSmall => TextAppearance.Material.Small => ?attr/textColorTertiary, thus, this is color for non-styled TextViews -->
+		<item name="android:textColorTertiary">#656565</item>
+		<item name="android:textColorPrimaryInverse">#fff</item>
+		<!-- <item name="android:textColorSecondaryInverse">#ccc</item> --><!-- Not used -->
+		<!-- <item name="android:textColorTertiaryInverse">#656565</item> --><!-- Not used -->
+				
+		<item name="colorBgPrimary">#fff</item>
+		<item name="colorBgPrimaryAlpha">#55F5F5F5</item>
+		<item name="colorBgLessAlpha">#dfff</item>
+		<item name="colorInverse">#fff</item>
+		<item name="colorBgInverse">#000</item>
+		<item name="colorBgInverseChecked">#000</item>
+		<item name="colorStroke">#555</item>
+		<item name="colorLessContrast">#333</item><!-- Used for e.g. for main screen tinted icons, nav icons, some text -->
+		<item name="colorShade">#88000000</item>
+		<item name="colorBgLight">#f0f0f0</item><!-- Used ATM for Search Frame bg -->
+		
+		<item name="colorIconPrimary">@null</item><!-- By default, our icon drawables are black, thus, no extra tinting -->
+		<item name="colorIconPrimaryForced">#000</item>
+		<item name="colorIconInverse">#fff</item>
+		<item name="colorIconInverseForced">#fff</item>
+		<item name="colorIconDisabled">#7777</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
+		
+		<!-- Basically, the main background color for Poweramp main activity, as Milk visualization/AA blur is always on background, except lock screen mode.
+		     Though, in lock screen mode, this color is also used as background color by lock screen code -->
+		<item name="colorAABgColor">#fff</item>
+		
+		<item name="colorFastScroller">#888</item>
+		<item name="colorFastScrollerPressed">#444</item>
+		<item name="colorFastScrollerTrack">#0000</item>
+		<item name="colorScrollPopupBg">#a555</item>
+		
+		<item name="colorFrsSelectionBgRipple">#aaa</item>
+		<item name="colorFrsSelectionBgPressed">#3000</item>
+		<item name="colorFrsSelectionBg">#1000</item>
+		<item name="colorEqKnobsLines1">#aaa</item>
+		<item name="colorEqKnobsLines2">#333</item>
+		
+		<item name="colorFrs">#000</item>
+		<item name="colorFrsTone">#aa000000</item>
+		<item name="colorFrsToneFill">#28000000</item>
+		<item name="colorFrsBackline">#777</item>
+		
+		<item name="colorKnobHolePressed">#000</item>
+		<item name="colorKnobHole">#555</item>
+		<item name="colorKnobRipple">#bbb</item>
+		<item name="colorKnob">#000</item>
+		<item name="colorKnobIndicator">#000</item>
+		<item name="colorKnobIndicatorPressed">#000</item>
+		<item name="colorKnobIndicatorDisabled">#ccc</item>
+		<item name="colorKnobPressed">#000</item>
+		<item name="colorKnobBg">#fff</item>
+		<item name="colorKnobDisabled">#ccc</item>
+		<item name="colorKnobHoleDisabled">#ccc</item>
+		<item name="colorPreampBg">#ccc</item>
+		
+		<item name="colorTrackMeta">#999</item>
+		<item name="colorSeparator">#FF888888</item>
+				
+		<item name="colorNavbarIconsLessContrast">#fff</item><!-- NOTE: not used in default theme -->
+		<item name="colorNavbarIcons">#FF585858</item>
+		<item name="colorBgNavbar">#fff</item>
+		
+		<item name="defaultHiResAA">@drawable/gl_poweramp_logo_hd</item>
+		<item name="defaultLowResAA">@drawable/gl_poweramp_logo</item>
+		
+		<item name="miniplayer_play_pause">@drawable/miniplayer_play_pause_stroke</item>
+				
+		<item name="waveseek_bar">@drawable/bar</item>		
+		<item name="waveseek_elapsedbar">@drawable/elapsedbar</item>
+		
+		
+		<!-- Small preset icons when assigned to output: -->
+		<item name="pre_speaker">@drawable/pre_speaker</item><!-- to speaker -->
+		<item name="pre_wired">@drawable/pre_wired</item><!-- to wired headset -->
+		<item name="pre_bt">@drawable/pre_bt</item><!-- to bluetooth headset -->
+		<item name="pre_song">@drawable/pre_song</item><!-- to current song -->
+		<item name="pre_usb">@drawable/pre_usb</item><!-- to usb dac -->
+		<item name="pre_other">@drawable/pre_other</item><!-- to other (cast) -->
+		
+		<item name="folder_cat_icon">@drawable/folder_16dp</item>
+		
+		<!-- List type icons. Shown in Library and as Playing Now icon -->
+		<item name="all_songs">@drawable/all_songs_colored</item>
+		<item name="folders">@drawable/folders_colored</item>
+		<item name="folders_hier">@drawable/folders_colored</item><!-- TODO -->
+		<item name="albums">@drawable/albums_colored</item>
+		<item name="albums_by_artist">@drawable/albums_colored</item><!-- REVISIT -->
+		<item name="artists">@drawable/artists_colored</item>
+		<item name="album_artists">@drawable/album_artists_colored</item>
+		<item name="composers">@drawable/composers_colored</item>
+		<item name="playlists">@drawable/playlists_colored</item>
+		<item name="genres">@drawable/genres_colored</item>
+		<item name="queue">@drawable/queue_colored</item>
+		<item name="top_rated">@drawable/top_rated_colored</item>
+		<item name="low_rated">@drawable/low_rated_colored</item>
+		<item name="most_played">@drawable/most_played_colored</item>
+		<item name="recently_played">@drawable/recently_played_colored</item>
+		<item name="recently_added">@drawable/recently_added_colored</item>
+		
+		<item name="micro_all_songs">@drawable/song_12dp</item>
+		<!-- TODO: 12p sizes -->
+		<item name="micro_folders">@drawable/folders_12dp</item>
+		<item name="micro_folders_hier">@drawable/folders_hier_12dp</item>
+		<item name="micro_albums">@drawable/albums_12dp</item>
+		<item name="micro_albums_by_artist">@drawable/albums_12dp</item>
+		<item name="micro_artists">@drawable/artists_12dp</item>
+		<item name="micro_album_artists">@drawable/album_artists_12dp</item>
+		<item name="micro_composers">@drawable/composers_12dp</item>
+		<item name="micro_playlists">@drawable/playlists_12dp</item>
+		<item name="micro_genres">@drawable/genres_12dp</item>
+		<item name="micro_queue">@drawable/queue_12dp</item>
+		<item name="micro_top_rated">@drawable/like_12dp</item>
+		<item name="micro_low_rated">@drawable/unlike_12dp</item>
+		<item name="micro_most_played">@drawable/most_played_12dp</item>
+		<item name="micro_recently_played">@drawable/recently_played_12dp</item>
+		<item name="micro_recently_added">@drawable/recently_added_12dp</item>
+		
+		<item name="meta_next_12dp">@drawable/next_12dp</item>
+		<item name="meta_songs_12dp">@drawable/song_12dp</item><!-- Small song icon used for item_track meta -->
+		<item name="settings_v">@drawable/settings_v_colored</item><!-- NOTE: used in some dialogs -->
+		
+		<item name="toast_excl">@drawable/exclamation_48dp</item><!-- Toast exlcamation sign -->
+		<item name="toast_queue">@drawable/toast_queue</item>
+		<item name="button_selector">?android:attr/selectableItemBackgroundBorderless</item><!-- Background used for buttons -->
+		<item name="ar_down_selector">@drawable/ar_down</item><!-- Arrow down image used for combobox inputs, e.g. like in Edit Tags dialog/Genre -->
+		
+		<!-- Menu items -->
+		<item name="rescan">@drawable/refresh</item> 
+		<item name="list_options">@drawable/list_options</item>
+		<item name="add_to_pl">@drawable/add_to_pl_stroke</item>
+		<item name="info">@drawable/info</item>
+		<item name="send">@drawable/send_stroke</item>
+		<item name="enqueue">@drawable/enqueue_stroke</item>
+		<item name="lyrics">@drawable/lyrics</item>
+		<item name="album_art">@drawable/image</item>
+		<item name="delete">@drawable/delete_stroke_24dp</item>
+		<item name="resort">@drawable/sort_24dp</item>
+		<item name="delete_dups">@drawable/del_dups</item>
+		<item name="clear_q">@drawable/clear_q</item>
+		
+		<item name="clear_q_24dp">@drawable/clear_q_stroke_24dp</item>
+		<item name="artists_24dp">@drawable/artists_stroke_24dp</item>
+		<item name="albums_24dp">@drawable/albums_stroke_24dp</item>
+		<item name="folders_24dp">@drawable/folders_stroke_24dp</item>
+		<item name="rename_24dp">@drawable/rename_24dp</item>
+		<item name="delete_24dp">@drawable/delete_stroke_24dp</item>
+		<item name="assign_eq_24dp">@drawable/assign_eq_24dp</item>
+		<item name="playlist_24dp">@drawable/playlist_24dp</item>
+		<item name="play_24dp">@drawable/play_24dp</item>
+		
+		<item name="sort_type_24dp">@drawable/sort_type_24dp</item>
+		<item name="sort_24dp">@drawable/sort_24dp</item>
+		<item name="sort_author_24dp">@drawable/sort_author_24dp</item>
+		<item name="sort_source_24dp">@drawable/sort_source_24dp</item>
+		<item name="sort_rating_24dp">@drawable/sort_rating_24dp</item>
+		
+		<item name="shuffle_24dp">@drawable/shuffle_24dp</item>
+		<item name="shuffle_stroke_32dp">@drawable/shuffle_stroke_32dp</item>
+		<item name="shuffle_32dp">@drawable/shuffle_32dp</item>
+		<item name="shuffle_songs_32dp">@drawable/shuffle_songs_32dp</item>
+		<item name="shuffle_cats_32dp">@drawable/shuffle_cats_32dp</item>
+		<item name="shuffle_songs_and_cats_32dp">@drawable/shuffle_songs_and_cats_32dp</item>
+		
+		<!-- Android autocomplete items -->
+		<item name="android:listPreferredItemHeight">44dp</item>
+		
+		<!-- Text -->
+		<item name="HeadText">@style/HeadText</item>
+		<item name="SubheadText">@style/SubheadText</item>
+		<item name="Text">@style/Text</item>
+		<item name="AccentedText">@style/AccentedText</item>
+		<item name="Hint">@style/Hint</item>
+		
+		<!-- Elevation -->
+		<item name="dialogFrame_elevation">16dp</item>
+		<item name="control_elevation">4dp</item>
+		
+		<item name="aa_elevation">4dp</item>
+		<item name="grid_aa_elevation">4dp</item>
+		<item name="list_aa_elevation">2dp</item>
+		<item name="over_aa_elevation">4dp</item>
+		
+		<item name="popup_elevation">8dp</item>
+		<item name="navbar_elevation">1.25dp</item>
+		<item name="bar_elevation">2dp</item>
+		<item name="toast_elevation">2dp</item>
+		<item name="VisPanelFrame_elevation">1.99dp</item><!-- Usually slightly below toast, but above other main contents -->
+		<item name="modal_translationZ">10dp</item>
+		
+		<!-- Corners -->
+		<item name="corners_popup">6dp</item>
+		<item name="corners_medium">8dp</item>
+		<item name="corners_medium_plus">16dp</item>
+		<item name="corners_navbar">8dp</item>
+		<item name="corners_searchbar">8dp</item>
+		<item name="corners_mini">4dp</item>
+		<item name="corners_large">24dp</item>
+		<item name="corners_small">2dp</item>
+		<item name="corners_knob_thumb">@dimen/knob_thumb_radius</item>
+		
+		<item name="corners_aa_tracks">22dp</item>
+		<item name="corners_aa_albums">8dp</item>
+		<item name="corners_aa_other">matchHeight</item>
+		
+		<item name="corners_aa_tracks_zoomed">24dp</item>
+		<item name="corners_aa_albums_zoomed">12dp</item>
+		<item name="corners_aa_other_zoomed">matchHeight</item>
+		
+		<item name="corners_aa_tracks_grid">16dp</item>
+		<item name="corners_aa_albums_grid">8dp</item>
+		<item name="corners_aa_other_grid">matchHeight</item>
+		
+		<item name="corners_aa_tracks_grid_zoomed">24dp</item>
+		<item name="corners_aa_albums_grid_zoomed">16dp</item>
+		<item name="corners_aa_other_grid_zoomed">matchHeight</item>
+		
+		<item name="corners_aa_tracks_small">8dp</item>
+		<item name="corners_aa_scene_aa">8dp</item>
+		
+		<item name="corners_miniplayer_aa">4dp</item>
+		
+		<!-- Dimensions -->
+		<item name="bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>
+		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>
+		
+		
+		<item name="VolumePanelPopup">@style/VolumePanelPopup</item>
+		<item name="VolumePanelFrame">@style/VolumePanelFrame</item>
+		<item name="VolumePanelKnobLayout">@style/VolumePanelKnobLayout</item>
+
+		<!-- NOTE: StartupActivity doesn't have any overlapStyles from skin options, nor TopPoweruiStyles, nor BasePoweruiStyles, nor DialogForcedStyle -->
+		<item name="StartupActivity">@style/StartupActivity</item>
+		
+		<!-- NOTE: dialogs have overlapStyles from skin options, BasePoweruiStyles, and DialogForcedStyle, but not TopPoweruiStyles -->
+
+		<!-- See default_styles_dialogs.xml for concrete dialog styles -->
+		
+		<item name="dialog_WelcomeActivity">@style/dialog_WelcomeActivity</item>
+		<item name="dialog_InfoActivity">@style/dialog_InfoActivity</item>
+		<item name="dialog_EditTagActivity">@style/dialog_EditTagActivity</item>
+		<item name="dialog_ExpiredActivity">@style/dialog_ExpiredActivity</item>
+		<item name="dialog_ChangelogActivity">@style/dialog_ChangelogActivity</item>
+		<item name="dialog_EqPresetAssignActivity">@style/dialog_EqPresetAssignActivity</item>
+		<item name="dialog_AddEqPresetActivity">@style/dialog_AddEqPresetActivity</item>
+		<item name="dialog_AddReverbPresetActivity">@style/dialog_AddReverbPresetActivity</item>
+		<item name="dialog_SelectAlbumArtActivity">@style/dialog_SelectAlbumArtActivity</item>
+		<item name="dialog_EditNameActivity">@style/dialog_EditNameActivity</item>
+		<item name="dialog_MusicFoldersActivity">@style/dialog_MusicFoldersActivity</item>
+		<item name="dialog_AutoFindDialogActivity">@style/dialog_AutoFindDialogActivity</item>
+		<item name="dialog_TextAlertDialogActivity">@style/dialog_TextAlertDialogActivity</item>
+		<item name="dialog_APMUnlockDialogActivity">@style/dialog_APMUnlockDialogActivity</item>
+		<item name="dialog_AudioBufferActivity">@style/dialog_AudioBufferActivity</item>
+		<item name="dialog_ListOptsActivity">@style/dialog_ListOptsActivity</item>
+		<item name="dialog_PlaylistSortActivity">@style/dialog_PlaylistSortActivity</item>
+		<item name="dialog_PlaylistSelectActivity">@style/dialog_PlaylistSelectActivity</item>
+		<item name="dialog_LyricsActivity">@style/dialog_LyricsActivity</item>		
+				
+		<item name="dialog_MobirooDRMErrorActivity">@style/dialog_MobirooDRMErrorActivity</item>
+	</style>
+	
+	
+	<style name="ActivityTheme_White" parent="Base_ActivityTheme_Default">
+	</style>
+	
+	
+	<!-- An overlay style -->
+	<style name="ActivityTheme_Whitepro_ForceLightNavbar">
+		<!-- The code below makes navigation bar light -->
+		<item name="android:navigationBarColor">@android:color/white</item>
+		<item name="android:windowLightNavigationBar">true</item>
+		<item name="windowLightNavigationBar">true</item> 
+		<item name="android:navigationBarDividerColor">#1f000000</item>
+	</style>	
+	
+	<!-- An overlay style -->
+	<style name="ActivityTheme_Whitepro_StaticSeekbar">
+		<item name="waveseek_bar">@drawable/narrow_bar</item>
+		<item name="waveseek_elapsedbar">@drawable/narrow_elapsedbar</item>
+		<item name="TopWaveseek">@style/TopWaveseekStatic</item>
+	</style>
+		
+	<!-- An overlay style -->
+	<style name="ActivityTheme_Whitepro_MoreButtons">
+		<!-- Additional layout which is otherwise missing -->
+		<item name="TopWaveseekLayout_extraLayout">@layout/merge_topwaveseeklayout_extralayout</item>
+		
+		<item name="TopPause">@style/TopPauseMoreButtons</item>
+		<item name="TopPause_scene_playing">@style/TopPauseMoreButtons_scene_playing</item>
+		
+		<item name="TopTrackElapsed">@style/TopTrackElapsedMoreButtons</item>
+		<item name="TopTrackElapsed_scene_playing">@style/TopTrackElapsedMoreButtons_scene_playing</item>
+		
+		<item name="TopTrackDuration">@style/TopTrackDurationMoreButtons</item>
+		<item name="TopTrackDuration_scene_playing">@style/TopTrackDurationMoreButtons_scene_playing</item>
+	</style>
+		
+	
+	<style name="ActivityTheme_Whitepro_Counter">
+		<!-- Additional layout which is otherwise missing -->
+		<item name="TopContainer_extraLayout">@layout/merge_top_extralayout</item>
+	</style>	
+		
+	
+	<style name="StartupActivity" parent="Base_ActivityTheme_Default">
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowClipToOutline">false</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="windowNoTitle">true</item>
+		<item name="android:windowActionBar">false</item>
+		<item name="windowActionBar">false</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+		<item name="android:windowShowWallpaper">true</item>
+		<item name="android:windowTranslucentStatus">true</item>
+	</style>
+	
+	
+	<!-- This style can be used to additionally override dialog forced styles. Dialog forced styles are styles which overrides main app theme --> 
+	<style name="Default_BaseDialogForcedStyle" parent="BaseDialogForcedStyle">
+	</style>
+	
+	
+	<!-- Styles for Default theme -->
+	
+	<!-- Text -->
+	<style name="HeadText">
+		<item name="android:textSize">@dimen/HeadText_size</item>
+		<item name="android:textColor">?android:textColorSecondary</item>
+	</style>
+
+	<style name="SubheadText">
+		<item name="android:textSize">@dimen/SubheadText_size</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">?android:textColorSecondary</item>
+	</style>
+	
+	<style name="Text">
+		<item name="android:textSize">@dimen/Text_size</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	
+	<style name="AccentedText" parent="Text">
+		<item name="android:textColor">?colorAccent</item>
+	</style>
+	
+	<style name="Hint">
+		<item name="android:textSize">@dimen/Hint_size</item>
+		<item name="android:textColor">?android:textColorTertiary</item>
+	</style>
+	
+	
+	<style name="VolumePanelPopup">
+		<!-- NOTE: avoid non window attrs here, as they are applied to any views inside window (propagate as base styles to any view inside) -->
+		<item name="android:colorBackground">#0000</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        
+		<item name="android:windowElevation">0dp</item>
+		<item name="android:windowCloseOnTouchOutside">true</item>
+	</style>
+	
+	<style name="VolumePanelFrame">
+		<item name="android:layout_margin">4dp</item>
+		<item name="android:elevation">2dp</item>
+		<item name="android:layout_width">250dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:background">@drawable/less_alpha_rounded_medium</item>
+	</style>
+	
+	<style name="VolumePanelKnobLayout" parent="EqVolumeKnobLayout">
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="android:layout_width">140dp</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+</resources>

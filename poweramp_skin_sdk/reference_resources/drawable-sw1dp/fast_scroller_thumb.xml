@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+	android:exitFadeDuration="250"
+>
+	<item android:id="@+id/pressed" android:state_pressed="true" android:drawable="@drawable/fast_scroller_thumb_pressed"/> 	
+	
+	<item android:id="@+id/normal" android:drawable="@drawable/fast_scroller_thumb_normal">
+	</item>
+</selector>

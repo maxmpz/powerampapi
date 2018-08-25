@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!--
+^\s*((android:)|(?:w:))(\w+)="(.*?)"
+\t\t<item name="\1\3">\4</item>
+
+name="w:
+name="
+-->
+
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<style name="SleepTimerButton_scene_button_menu" parent="TopSleepTimerButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">11dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+	
+	<style name="SleepTimerTitle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:textSize">17dp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:visibility">invisible</item>
+	</style>
+	
+	<style name="SleepTimerSeekbar">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">20dip</item>
+		<item name="android:layout_marginBottom">16dip</item>
+		<item name="android:layout_marginLeft">10dip</item>
+		<item name="android:layout_marginRight">10dip</item>
+		<item name="android:paddingLeft">20dp</item>
+		<item name="android:paddingRight">20dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:duplicateParentState">false</item>
+	</style>
+	
+	<style name="SleepTimerPTESelectBox">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:clickable">true</item>
+	</style>
+	
+	
+	<style name="PopupButtonLayoutDialogButton" parent="DialogButtonStyle">
+		<item name="android:layout_marginBottom">2dp</item>
+		<item name="animOnClick">false</item>
+	</style>
+	
+	<style name="PopupButtonLayoutDialogButton3" parent="PopupButtonLayoutDialogButton">
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginLeft">10dp</item>
+	</style>
+	<style name="PopupButtonLayoutDialogButton2" parent="PopupButtonLayoutDialogButton">
+		<item name="layout_attachRight">@+id/button1</item>
+		<item name="android:layout_marginRight">4dp</item>
+	</style>
+	<style name="PopupButtonLayoutDialogButton1" parent="PopupButtonLayoutDialogButton">
+		<item name="layout_attachRight">parent</item>
+		<item name="android:layout_marginRight">10dp</item>
+	</style>
+	
+</resources>

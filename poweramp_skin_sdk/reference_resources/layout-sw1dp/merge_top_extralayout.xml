@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
+	<com.maxmpz.widget.BgAnimFastLayout 
+		android:id="@+id/counter_layout"
+		style="?TopCounterLayout"
+		w:privateScene="true"
+		android:clickable="true"
+	>
+		<com.maxmpz.widget.player.BusStatusText android:id="@id/_label"
+			style="?TopCounter"
+			android:text="100/300"			
+			w:stateBusId="@id/bus_player"
+			w:labelStateId="@id/state_player_track_short_meta"
+			w:updateMsgId="@id/msg_player_track_changed"
+			w:updateMsgId_2="@id/msg_pipeline_started"
+		/>
+	</com.maxmpz.widget.BgAnimFastLayout>
+	<!-- NOTE: alpha is overriden by user preference -->
+	<SceneParams w:scene="@+id/scene_vis_w_ui" 
+		style="?TopCounterLayout_scenes_playing"
+	/>
+	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@+id/scene_vis" w:scene_3="@id/scene_vis_temp_ui"
+		style="?TopCounterLayout_scenes_playing"
+	/>
+	<StateAnimParams w:stateAnim="@id/anim_seeking"
+		style="?TopCounterLayout_anim_seeking"
+	/>
+	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis" w:scene_4="@+id/scene_lib"
+		style="?TopCounterLayout_scenes_invisible"
+	/>
+</merge>
+	

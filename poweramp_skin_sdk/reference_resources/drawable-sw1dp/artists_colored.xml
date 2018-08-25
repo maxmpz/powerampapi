@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+	android:src="@drawable/artists_alt" 
+	android:tint="#5c5880"
+/>

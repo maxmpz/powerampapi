@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<!-- Uses line2 style/scenes -->
+	<com.maxmpz.widget.player.BusStatusText android:id="@+id/queue_counter"
+		style="?ItemTextLine2"
+		w:stateBusId="@id/bus_player"
+		w:labelStateId="@id/state_player_queue_counter"
+		w:updateMsgId="@id/msg_player_track_changed"
+		w:updateMsgId_2="@id/msg_player_queue_changed"
+	/>
+	<SceneParams w:scene="@+id/scene_grid"
+		style="?ItemTextLine2_scene_grid"
+	/>
+	<SceneParams w:scene="@+id/scene_header"
+		style="?ItemTextLine2_scene_header"
+	/>
+	<SceneParams w:scene="@+id/scene_item_menu"
+		style="?ItemTextLine2_scene_item_menu"
+	/>
+	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header"
+		android:visibility="gone"
+	/>
+		
+</merge>

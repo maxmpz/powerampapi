@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<!-- 
+		TODO: polish naming convention:
+		- drawable resources, backgrounds - lower_case
+		- inline properties - camelCase 
+		- controls/styles - PascalCase
+		- combinations possible, e.g. ControlStyle_resource_name
+	-->
+	<declare-styleable name="MyTheme">
+		<attr name="toast_excl" format="reference"/>
+		<attr name="toast_queue" format="reference"/>
+		
+		<attr name="button_selector" format="reference"/>
+		<attr name="ar_down_selector" format="reference"/>
+				
+		<!-- NOTE: volume panel is specific popup, it's not a Dialog -->
+		<attr name="VolumePanelPopup" format="reference"/><!-- Window style -->
+		<attr name="VolumePanelFrame" format="reference"/>
+		<attr name="VolumePanelKnobLayout" format="reference"/>
+
+		<!-- Activity and Dialog themes -->
+		<!-- ^.*?E/ThemeManager\(\d+\):\s+ -->
+		
+		<attr name="StartupActivity" format="reference"/>
+		<attr name="dialog_WelcomeActivity" format="reference"/>
+		<attr name="dialog_AutoFindDialogActivity" format="reference"/>
+		<attr name="dialog_InfoActivity" format="reference"/>
+		<attr name="dialog_EditTagActivity" format="reference"/>
+		<attr name="dialog_SettingsLicenseActivity" format="reference"/>
+		<attr name="dialog_ExpiredActivity" format="reference"/>
+		<attr name="dialog_ChangelogActivity" format="reference"/>
+		<attr name="dialog_EditNameActivity" format="reference"/>
+		<attr name="dialog_EqPresetAssignActivity" format="reference"/>
+		<attr name="dialog_AddEqPresetActivity" format="reference"/>
+		<attr name="dialog_AddReverbPresetActivity" format="reference"/>
+		<attr name="dialog_MusicFoldersActivity" format="reference"/>
+		<attr name="dialog_TextAlertDialogActivity" format="reference"/>
+		<attr name="dialog_APMUnlockDialogActivity" format="reference"/>
+		<attr name="dialog_AudioBufferActivity" format="reference"/>
+		<attr name="dialog_SelectAlbumArtActivity" format="reference"/>
+		<attr name="dialog_PlaylistSortActivity" format="reference"/>
+		<attr name="dialog_ListOptsActivity" format="reference"/>
+		<attr name="dialog_PlaylistSelectActivity" format="reference"/>
+		<attr name="dialog_LyricsActivity" format="reference"/>
+								
+		<!-- REVISIT -->		
+		<attr name="dialog_MobirooDRMErrorActivity" format="reference"/>
+		
+	</declare-styleable>
+	
+	
+	<declare-styleable name="TextAppearance">
+		<attr name="android:textColor" />
+		<attr name="android:textSize" />
+		<attr name="android:textStyle" />
+		<attr name="android:typeface" />
+		<attr name="android:fontFamily" />
+		<attr name="android:textAllCaps"/>
+	</declare-styleable>
+ 
+	
+	<declare-styleable name="SelectPluginPreference">
+		<attr name="types" format="string"/>
+	</declare-styleable>
+	
+	<declare-styleable name="TickSeekBar">
+		<attr name="tickMark" format="reference"/>
+	</declare-styleable>
+	
+	
+	<attr name="skin_ref1" format="reference"/>
+	<attr name="skin_ref2" format="reference"/>
+	<attr name="skin_ref3" format="reference"/>
+	<attr name="skin_ref4" format="reference"/>
+	<attr name="skin_ref5" format="reference"/>
+	<attr name="skin_ref6" format="reference"/>
+	<attr name="skin_ref7" format="reference"/>
+	<attr name="skin_ref8" format="reference"/>
+	<attr name="skin_ref9" format="reference"/>
+	<attr name="skin_ref10" format="reference"/>
+	<attr name="skin_bg1" format="color|reference"/>
+	<attr name="skin_bg2" format="color|reference"/>
+	<attr name="skin_bg3" format="color|reference"/>
+	<attr name="skin_bg4" format="color|reference"/>
+	<attr name="skin_bg5" format="color|reference"/>
+	<attr name="skin_bg6" format="color|reference"/>
+	<attr name="skin_bg7" format="color|reference"/>
+	<attr name="skin_bg8" format="color|reference"/>
+	<attr name="skin_bg9" format="color|reference"/>
+	<attr name="skin_bg10" format="color|reference"/>
+	<attr name="skin_color1" format="color|reference"/>
+	<attr name="skin_color2" format="color|reference"/>
+	<attr name="skin_color3" format="color|reference"/>
+	<attr name="skin_color4" format="color|reference"/>
+	<attr name="skin_color5" format="color|reference"/>
+	<attr name="skin_color6" format="color|reference"/>
+	<attr name="skin_color7" format="color|reference"/>
+	<attr name="skin_color8" format="color|reference"/>
+	<attr name="skin_color9" format="color|reference"/>
+	<attr name="skin_color10" format="color|reference"/>
+	<attr name="skin_dimen1" format="dimension|reference"/>
+	<attr name="skin_dimen2" format="dimension|reference"/>
+	<attr name="skin_dimen3" format="dimension|reference"/>
+	<attr name="skin_dimen4" format="dimension|reference"/>
+	<attr name="skin_dimen5" format="dimension|reference"/>
+	<attr name="skin_dimen6" format="dimension|reference"/>
+	<attr name="skin_dimen7" format="dimension|reference"/>
+	<attr name="skin_dimen8" format="dimension|reference"/>
+	<attr name="skin_dimen9" format="dimension|reference"/>
+	<attr name="skin_dimen10" format="dimension|reference"/>
+</resources>

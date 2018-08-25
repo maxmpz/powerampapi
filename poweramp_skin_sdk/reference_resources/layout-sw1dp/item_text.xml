@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!--
+	NOTE: 
+	- clipChildren=false is needed for some devices, which fail to apply RenderNode transformations to clip area (e.g. Huaweis)
+	- TextItemView is (Scene)FastLayout
+	- default scene is "list"
+	- height is defined by list
+	
+	Base scenes:
+	- default list == 0  (_tag_scene_zero/defaultScene depending on context)
+	- grid               (scene_grid)
+	== 2
+	
+	Special:	
+	- header
+	- scene_top_header
+	- scene_search_header
+	- menu
+	== +4
+	
+	Total: 6
+-->
+<!--
+
+-->
+<com.maxmpz.widget.player.list.TextItemView 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	
+	style="?ItemText"
+>
+	<!--
+	<com.maxmpz.widget.player.list.AAImageView android:id="@+id/aa_image"
+		style="?ItemTextAAImage"
+	/>	
+	-->
+	<com.maxmpz.widget.player.list.IconView android:id="@+id/aa_image"
+		style="?ItemTextAAImage"
+	/>	
+	<!-- aa_image -->
+	<SceneParams w:scene="@+id/scene_grid"
+		style="?ItemTextAAImage_scene_grid"
+	/>
+	<!-- aa_image -->
+	<SceneParams w:scene="@+id/scene_header"
+		style="?ItemTextAAImage_scene_header"
+	/>
+	<!-- aa_image -->
+	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header"
+		android:visibility="gone"
+	/>
+	<!-- aa_image -->
+	<!-- NOTE: we don't change visibility here, so for scene_top_header => scene_item_menu aa_image still stays "gone", and title is adjusted left as needed -->
+	<SceneParams w:scene="@+id/scene_item_menu"
+		style="?ItemTextAAImage_scene_item_menu"
+	/>
+	<!-- aa_image -->
+	
+	
+	<!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
+	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+		style="?ItemTextTitle"
+	/><!-- title -->
+	<SceneParams w:scene="@+id/scene_grid"
+		style="?ItemTextTitle_scene_grid"
+	/><!-- title -->
+	<SceneParams w:scene="@+id/scene_header"
+		style="?ItemTextTitle_scene_header"
+	/><!-- title -->
+	<SceneParams w:scene="@+id/scene_top_header" 
+		style="?ItemTextTitle_scene_top_header"
+	/><!-- title -->
+	<SceneParams w:scene="@+id/scene_search_header"
+		android:visibility="gone"
+	/>
+	<!-- title -->
+	<!-- NOTE: consumes vertical space so separator is positioned below title -->
+	<SceneParams w:scene="@+id/scene_item_menu"
+		style="?ItemTextTitle_scene_item_menu"
+	/>
+	<!-- title -->
+	
+	
+	<!-- NOTE: for now it's not used. NOTE: menu attaches to line2 so it's important to have proper layout for it anyway -->
+	<!-- NOTE: due to zoom on title, we can't reliable position line2 after title horizontally, as layout just doesn't know about zoom -->
+	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
+		style="?ItemTextLine2"
+	/><!-- line2 -->
+	<SceneParams w:scene="@+id/scene_grid"
+		style="?ItemTextLine2_scene_grid"
+	/><!-- line2 -->
+	<SceneParams w:scene="@+id/scene_header"
+		style="?ItemTextLine2_scene_header"
+	/><!-- line2 -->
+	<SceneParams w:scene="@+id/scene_item_menu"
+		style="?ItemTextLine2_scene_item_menu"
+	/><!-- line2 -->
+	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header"
+		android:visibility="gone"
+	/><!-- line2 -->
+	
+	
+	<com.maxmpz.widget.FastButton android:id="@+id/menu"
+		style="?ItemTextMenu"
+	>
+		<tag android:id="@+id/header_button" android:value="1"/>
+	</com.maxmpz.widget.FastButton>
+	<SceneParams w:scene="@+id/scene_item_menu" 
+		style="?ItemTextMenu_scene_menu"
+	/><!-- menu -->
+	<SceneParams w:scene="@+id/scene_grid"
+		w:baseScene="defaultScene"
+	/>
+	<SceneParams w:scene="@+id/scene_search_header"
+		style="?ItemTextMenu_scene_search_header"
+	/>
+	<SceneParams w:scene="@+id/scene_header" 
+		style="?ItemTextMenu_scene_header"
+	/><!-- menu -->
+	<SceneParams w:scene="@+id/scene_top_header"
+		style="?ItemTextMenu_scene_top_header" 
+	/>
+	
+	<!-- NOTE: programatically loaded -->
+	<com.maxmpz.widget.LoadableBehavior
+		android:id="@+id/behavior_queue_counter"
+		android:layout="@layout/merge_item_queue_counter" 
+	/>
+		
+	<com.maxmpz.widget.LoadableBehavior android:id="@+id/behavior_header"
+		android:layout="@layout/merge_item_text_header"
+		w:loadForScene="@id/scene_header"
+		w:loadForScene_2="@id/scene_search_header"
+		w:loadForScene_3="@id/scene_top_header"
+	/>
+	
+	<!-- NOTE: programatically loaded for scene_item_menu -->
+	<com.maxmpz.widget.LoadableBehavior
+		android:id="@+id/behavior_menu"
+		android:layout="@layout/merge_item_popup_menu" 
+	/>
+
+</com.maxmpz.widget.player.list.TextItemView>
