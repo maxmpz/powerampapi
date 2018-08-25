@@ -12,23 +12,23 @@ and unpolished when all such features combined in one skin**
 ### Poweramp v3 skin
 
 Poweramp skin is a pretty much standard Android app in APK which includes:
-* meta entry in AndroidManifest.xml which points to **res/xml/skins.xml**:
+* meta entry in AndroidManifest.xml which points to **[app/src/main/res/xml/skins.xml]**:
 ```xml
 <meta-data android:name="com.maxmpz.PowerampSkins" android:resource="@xml/skins"/>
 ```
-* **res/xml/skins.xml** file which defines skins in the APK and additional per-skin options
+* **[xml/skins.xml](app/src/main/res/xml/skins.xml)** file which defines skins in the APK and additional per-skin options
 
 * an Activity which can be started by user. This activity may include actions which
 opens Poweramp skin settings or directly start Poweramp with target skin applied
     * the activity is also used for skin development to force Poweramp to reload skin under development
     * the activity can be further customized as needed
 
-* one or multiple skins style definitions (see **values/sample_skin_styles.xml**, **values/sample_skin_aaa_styles.xml**)
+* one or multiple skins style definitions (see **[app/src/main/res/values/sample_skin_styles.xml]**, **[app/src/main/res/values/sample_skin_aaa_styles.xml]**)
 * all the required skin drawables, extra layouts, dimens, and other resources
 
 ### How to start own skin (based on sample skin)
 Skin development is done directly from Android Studio (3.1.4 was used for these skins development).
-* clone this repository, rename appropriately and change **/res/values/strings.xml** labels and **res/xml/skins.xml** entries
+* clone this repository, rename appropriately and change **[app/src/main/res/values/strings.xml]** labels and **[app/src/main/res/xml/skins.xml]** entries
 * edit app/build.gradle, replace ../../../audioplayer/bin/audioplayer.apk with path to your Poweramp v3 APK (**build 795** and above)
 ```
 additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
@@ -44,11 +44,11 @@ additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
 Poweramp loads skin APK resources and applies skin theme style directly to its main player activity (there is only one player activity in Poweramp v3).
 To ensure future skin compatibility (and to reuse existing default skin styles), skin styles **must extend** default Poweramp styles.
 
-See **values/sample_skin_styles.xml**, **values/sample_skin_aaa_styles.xml** for commented skin style definitions.
+See [app/values/sample_skin_styles.xml], [app/values/sample_skin_aaa_styles.xml] for commented skin style definitions.
 
 ### Poweramp skin styles.xml
 
-The main skin styles is defined via res/xml/skins.xml (in this example, SampleSkin):
+The main skin styles is defined via [app/src/main/res/xml/skins.xml] (in this example, SampleSkin):
 ```xml
 <skins xmlns:android="http://schemas.android.com/apk/res/android">
     <skin
@@ -64,7 +64,7 @@ The main skin styles is defined via res/xml/skins.xml (in this example, SampleSk
 ```
 
 
-In this sample skin, SampleSkin style is defined in **res/values/sample_skin_styles.xml**. This is standard Android theme style definition, with couple additional requirements:
+In this sample skin, SampleSkin style is defined in **[app/src/main/res/values/sample_skin_styles.xml]**. This is standard Android theme style definition, with couple additional requirements:
 * the skin style should have one of the Poweramp default skin styles as parent:
 ```xml
 <style name="SampleSkin" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
@@ -98,9 +98,15 @@ This is why many attributes/styles are ending with "_scene.." suffix, as for alm
 Scene generally defines initial and final view layout/position and some view parameters.
 
 Also, almost all Poweramp views are custom views, including layout (FastLayout) and text views (FastTextView). FastLayout idea somewhat similar to CoordinatorLayout,
-but is strictly one-pass per layout, and FastText is a text view optimized for transitions. See **res/values-sw1dp/attrs-powerui.xml** for commented attributes definitions for these views.
+but is strictly one-pass per layout, and FastText is a text view optimized for transitions. See **[app/src/main/res/values-sw1dp/attrs-powerui.xml]** for commented attributes definitions
+for these views.
 
 See appropriate reference resources xmls for the details in the comments.
+
+### Difference vs Poweramp v2 skins
+* Poweramp v2 skins are not compatible with Poweramp v3, Poweramp v3 skins are not compatible with Poweramp v2
+* Poweramp v2 skins relied on skin provided layout xmls, v3 skins rely on style redefinitions, layouts xmls can't be changed by skin (except for few injected specific **merge_** layouts)
+* much less raster graphics in default skins, but this is open for skin author, there is no limitation on raster images
 
 
 ### Reference resources
@@ -112,7 +118,9 @@ The most important files are:
 * res/layout-sw1dp/merge_*.xml - various additional merged layouts
 * res/layout-sw1dp/item_track.xml - the "track" item which is used in main player UI and lists for all the items with image
 * res/layout-sw1dp/item_text.xml - same as item_track.xml, but for text-only items
-* res/values-sq1dp/attrs-powerui.xml, attrs-player.xml - attributes definitions for all the Poweramp custom views, scenes, etc.
+* res/values-sq1dp/attrs.xml, attrs-powerui.xml, attrs-player.xml - attributes definitions for all the Poweramp custom views, scenes, etc.
+* res/values/default-styles.xml - default skin style
+* res/values-sw1db/styles-*.xml - various default skin styles, grouped by style name prefix (all of them combined into default style inside Poweramp)
 
 ### License
 

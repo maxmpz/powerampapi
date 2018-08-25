@@ -1,8 +1,0 @@
-
-<!-- SKIN. Do not edit these values as Poweramp accesses skin arrays by their numeric ids, and this file forces appropriate well-known by Poweramp ids. -->
-
-<resources>
-	<public type="array" name="poweramp_skins" id="0x80050000" />
-	<public type="array" name="poweramp_skin_names" id="0x80050001" />
-	<public type="array" name="poweramp_skin_authors" id="0x80050002" />
-</resources>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<selector xmlns:android="http://schemas.android.com/apk/res/android" android:constantSize="false">
-	<item android:state_pressed="true" android:drawable="@drawable/matte_list_progress_value_pressed"/>
-	<item android:state_enabled="false" android:drawable="@drawable/matte_list_progress_value_disabled"/>
-	<item android:drawable="@drawable/matte_list_progress_value"/>	
-</selector>
