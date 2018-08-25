@@ -1,9 +1,9 @@
-[Poweramp v3 Skin Sample]
+# Poweramp v3 Skin Sample
 ============================================
 
 This is a sample skin source, which demonstrates two separate skins in one project.
 This can be directly used to build APK which can be installed on the device and recognized by
-Poweramp.
+Poweramp v3.
 
 **NOTE: this sample skin is intended for demonstration purposes only. While you can build and publish this skin, the skin goal is Poweramp v3 skin features demonstration, which may look weird
 and unpolished when all such features combined in one skin**
@@ -12,7 +12,7 @@ and unpolished when all such features combined in one skin**
 ### Poweramp v3 skin
 
 Poweramp skin is a pretty much standard Android app in APK which includes:
-* meta entry in AndroidManifest.xml which points to **[app/src/main/res/xml/skins.xml]**:
+* meta entry in AndroidManifest.xml which points to **[xml/skins.xml](app/src/main/res/xml/skins.xml)**:
 ```xml
 <meta-data android:name="com.maxmpz.PowerampSkins" android:resource="@xml/skins"/>
 ```
@@ -23,18 +23,18 @@ opens Poweramp skin settings or directly start Poweramp with target skin applied
     * the activity is also used for skin development to force Poweramp to reload skin under development
     * the activity can be further customized as needed
 
-* one or multiple skins style definitions (see **[app/src/main/res/values/sample_skin_styles.xml]**, **[app/src/main/res/values/sample_skin_aaa_styles.xml]**)
+* one or multiple skins style definitions (see **[values/sample_skin_styles.xml](app/src/main/res/values/sample_skin_styles.xml)**, **[values/sample_skin_aaa_styles.xml](app/src/main/res/values/sample_skin_aaa_styles.xml)**)
 * all the required skin drawables, extra layouts, dimens, and other resources
 
 ### How to start own skin (based on sample skin)
 Skin development is done directly from Android Studio (3.1.4 was used for these skins development).
-* clone this repository, rename appropriately and change **[app/src/main/res/values/strings.xml]** labels and **[app/src/main/res/xml/skins.xml]** entries
+* clone this repository, rename appropriately and change **[values/strings.xml](app/src/main/res/values/strings.xml)** labels and **[xml/skins.xml](app/src/main/res/xml/skins.xml)** entries
 * edit app/build.gradle, replace ../../../audioplayer/bin/audioplayer.apk with path to your Poweramp v3 APK (**build 795** and above)
 ```
 additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
 ```
 
-* run skin as a normal Android app
+* build and run skin as a normal Android app
 * when skin activity is started, "Start Poweramp With * Skin" button can be pressed to force Poweramp immediately reload the skin
 * skin should appear in Poweramp skin selection settings page as well
 
@@ -44,11 +44,11 @@ additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
 Poweramp loads skin APK resources and applies skin theme style directly to its main player activity (there is only one player activity in Poweramp v3).
 To ensure future skin compatibility (and to reuse existing default skin styles), skin styles **must extend** default Poweramp styles.
 
-See [app/values/sample_skin_styles.xml], [app/values/sample_skin_aaa_styles.xml] for commented skin style definitions.
+See [values/sample_skin_styles.xml](app/src/main/res/values/sample_skin_styles.xml), [values/sample_skin_aaa_styles.xml](app/src/main/res/values/sample_skin_aaa_styles.xml) for commented skin style definitions.
 
 ### Poweramp skin styles.xml
 
-The main skin styles is defined via [app/src/main/res/xml/skins.xml] (in this example, SampleSkin):
+The main skin styles is defined via [xml/skins.xml](app/src/main/res/xml/skins.xml) (in this example, SampleSkin):
 ```xml
 <skins xmlns:android="http://schemas.android.com/apk/res/android">
     <skin
@@ -64,7 +64,8 @@ The main skin styles is defined via [app/src/main/res/xml/skins.xml] (in this ex
 ```
 
 
-In this sample skin, SampleSkin style is defined in **[app/src/main/res/values/sample_skin_styles.xml]**. This is standard Android theme style definition, with couple additional requirements:
+In this sample skin, SampleSkin style is defined in **[values/sample_skin_styles.xml](app/src/main/res/values/sample_skin_styles.xml)**.
+This is standard Android theme style definition, with couple additional requirements:
 * the skin style should have one of the Poweramp default skin styles as parent:
 ```xml
 <style name="SampleSkin" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
@@ -98,7 +99,7 @@ This is why many attributes/styles are ending with "_scene.." suffix, as for alm
 Scene generally defines initial and final view layout/position and some view parameters.
 
 Also, almost all Poweramp views are custom views, including layout (FastLayout) and text views (FastTextView). FastLayout idea somewhat similar to CoordinatorLayout,
-but is strictly one-pass per layout, and FastText is a text view optimized for transitions. See **[app/src/main/res/values-sw1dp/attrs-powerui.xml]** for commented attributes definitions
+but is strictly one-pass per layout, and FastText is a text view optimized for transitions. See **[reference_resources/values-sw1dp/attrs-powerui.xml](/poweramp_skin_sdk/reference_resources/values-sw1dp/attrs-powerui.xml)** for commented attributes definitions
 for these views.
 
 See appropriate reference resources xmls for the details in the comments.
@@ -111,7 +112,7 @@ See appropriate reference resources xmls for the details in the comments.
 
 ### Reference resources
 
-For skin authoring, some Poweramp v3 resources (attribute definitions, styles, drawables, etc.) are provided for the reference - see **/reference_resources** directory.
+For skin authoring, some Poweramp v3 resources (attribute definitions, styles, drawables, etc.) are provided for the reference - see **[/reference_resources](/poweramp_skin_sdk/reference_resources)** directory.
 
 The most important files are:
 * res/layout-sw1dp/activity_list_fast.xml - the main Poweramp activity layout

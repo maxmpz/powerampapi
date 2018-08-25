@@ -3,7 +3,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
 
 	<!-- Also see values-land/sample_skin_aaa_styles.xml -->
-	<!-- Alternative Album Art skin, also includes alternative grid items (labels below images), plain seek	bar, pro buttons -->
+	<!-- Alternative Album Art skin, includes alternative main AA and grid items (labels below images), plain seek	bar, pro buttons -->
 
 	<style name="SampleSkinAAA" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
 		<item name="com.maxmpz.audioplayer:colorBgPrimaryAlpha">#2fff</item>
