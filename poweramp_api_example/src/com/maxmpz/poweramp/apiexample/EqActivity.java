@@ -85,7 +85,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
                 android.R.layout.simple_spinner_item,
                 mrgc,
                 new String[] { "name" },
-                new int[] { android.R.id.text1 });
+                new int[] { android.R.id.text1 }, 
+                0);
         
         adapter.setViewBinder(new ViewBinder() {
 			@Override
@@ -348,14 +349,22 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 				
 			case R.id.eq:
 				if(!mSettingEqu) {
-					startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED).putExtra(PowerampAPI.EQU, isChecked));
+					startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+									.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+									.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
+									.putExtra(PowerampAPI.EQU, isChecked)
+								);
 				}
 				mSettingEqu = false;
 				break;
 				
 			case R.id.tone:
 				if(!mSettingTone) {
-					startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED).putExtra(PowerampAPI.TONE, isChecked));
+					startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+									.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+									.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
+									.putExtra(PowerampAPI.TONE, isChecked)
+								);
 				}
 				mSettingTone = false;
 				break;
@@ -375,7 +384,11 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			presetString.append(name).append("=").append(value).append(";");
 		}
 		
-		startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING).putExtra(PowerampAPI.VALUE, presetString.toString()));
+		startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+							.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
+							.putExtra(PowerampAPI.VALUE, presetString.toString())
+						);
 	}
 	
 	// Applies correct seekBar-to-float scaling. 
@@ -396,9 +409,12 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		if(((CheckBox)findViewById(R.id.dynamic)).isChecked()) {
 			String name = (String)bar.getTag();
 			float value = seekBarToValue(name, bar.getProgress());
-			startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_BAND).
-					putExtra(PowerampAPI.NAME, name).
-					putExtra(PowerampAPI.VALUE, value));
+			startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+							.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_BAND)
+							.putExtra(PowerampAPI.NAME, name)
+							.putExtra(PowerampAPI.VALUE, value)
+						);
 		}
 	}
 	
@@ -415,7 +431,11 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	@Override
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
-			startService(new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET).putExtra(PowerampAPI.ID, id));
+			startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
+							.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
+							.putExtra(PowerampAPI.ID, id)
+						);
 		} else {
 			mSettingPreset = false;
 		}

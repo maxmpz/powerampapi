@@ -22,6 +22,8 @@ package com.maxmpz.poweramp.apiexample;
 
 import java.io.File;
 import java.io.FileFilter;
+import org.eclipse.jdt.annotation.NonNull;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -56,15 +58,26 @@ import android.widget.Toast;
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.RemoteTrackTime;
 import com.maxmpz.poweramp.player.RemoteTrackTime.TrackTimeListener;
-import com.maxmpz.poweramp.widget.FormatUtils;
 
-public class MainActivity extends Activity implements OnClickListener, OnLongClickListener, OnTouchListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener, TrackTimeListener {
+
+public class MainActivity extends Activity implements 
+	OnClickListener, 
+	OnLongClickListener, 
+	OnTouchListener, 
+	OnCheckedChangeListener, 
+	OnSeekBarChangeListener, 
+	OnItemSelectedListener, 
+	TrackTimeListener 
+{
 	private static final String TAG = "MainActivity";
 
-	Intent mTrackIntent;
-	private Intent mAAIntent;
+	private static final char[] NO_TIME = new char[]{ '-', ':', '-', '-' };
+	private static final int SEEK_THROTTLE = 500;
+	
+	protected Intent mTrackIntent;
+	protected Intent mAAIntent;
 	private Intent mStatusIntent;
-	Intent mPlayingModeIntent;
+	protected Intent mPlayingModeIntent;
 	
 	private Bundle mCurrentTrack;
 	
@@ -75,8 +88,12 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	private TextView mElapsed;
 	private boolean mSettingPreset;
 	
+	private long mLastSeekSentTime;
 	
-	/** Called when the activity is first created. */
+	private final StringBuilder mDurationBuffer = new StringBuilder();
+	private final StringBuilder mElapsedBuffer = new StringBuilder();
+	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +139,14 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
         findViewById(R.id.pa_current_list).setOnClickListener(this);
         findViewById(R.id.pa_folders).setOnClickListener(this);
         findViewById(R.id.pa_all_songs).setOnClickListener(this);
+        
+        // Ask Poweramp for permission to access its data provider. Needed only if we want to make queries againt Poweramp database, e.g. in FilesActivity/FoldersActivity
+        // NOTE: this will work only if Poweramp process is alive 
+        // This actually should be done once per this app installation
+        Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
+        intent.setPackage(PowerampAPI.PACKAGE_NAME);
+        intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
+        sendBroadcast(intent);
     }
     
  
@@ -235,7 +260,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 			mCurrentTrack = mTrackIntent.getBundleExtra(PowerampAPI.TRACK);
 			if(mCurrentTrack != null) {
 				int duration = mCurrentTrack.getInt(PowerampAPI.Track.DURATION);
-				mRemoteTrackTime.updateTrackDuration(duration); // Let RemoteTrackTime know about current song duration. 
+				mRemoteTrackTime.updateTrackDuration(duration); // Let RemoteTrackTime know about current song duration.
 			}
 
 			int pos = mTrackIntent.getIntExtra(PowerampAPI.Track.POSITION, -1); // Poweramp build-700+ sends position along with the track intent
@@ -306,9 +331,9 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	void updateStatusUI() {
 		Log.w(TAG, "updateStatusUI");
 		if(mStatusIntent != null) {
-			boolean paused = true;
+			boolean paused;
 			
-			int status = mStatusIntent.getIntExtra(PowerampAPI.STATUS, -1);
+			int state = mStatusIntent.getIntExtra(PowerampAPI.STATE, PowerampAPI.STATE_NO_STATE); // NOTE: not used here, provides STATE_* int
 			
 			// Each status update can contain track position update as well.
 			int pos = mStatusIntent.getIntExtra(PowerampAPI.Track.POSITION, -1);
@@ -316,15 +341,22 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 				mRemoteTrackTime.updateTrackPosition(pos);
 			}
 			
-			switch(status) {
-				case PowerampAPI.Status.TRACK_PLAYING:
-					paused = mStatusIntent.getBooleanExtra(PowerampAPI.PAUSED, false);
-					startStopRemoteTrackTime(paused);
+			switch(state) {
+				case PowerampAPI.STATE_PAUSED:
+					paused = true;
+					startStopRemoteTrackTime(true);
+					break;
+					
+				case PowerampAPI.STATE_PLAYING:
+					paused = false;
+					startStopRemoteTrackTime(false);
 					break;
 		
-				case PowerampAPI.Status.TRACK_ENDED:
-				case PowerampAPI.Status.PLAYING_ENDED:
+				default:
+				case PowerampAPI.STATE_NO_STATE:
+				case PowerampAPI.STATE_STOPPED:
 					mRemoteTrackTime.stopSongProgress();
+					paused = true;
 					break;
 			}
 			((Button)findViewById(R.id.play)).setText(paused ? ">" : "||");
@@ -560,11 +592,11 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 				break;
 				
 			case R.id.pa_folders:
-				startActivity(new Intent(PowerampAPI.ACTION_SHOW_LIST).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build()));
+				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build()));
 				break;
 				
 			case R.id.pa_all_songs:
-				startActivity(new Intent(PowerampAPI.ACTION_SHOW_LIST).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
+				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
 				break;
 		}
 	}
@@ -590,6 +622,7 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	}
 
 	// Process touch up event to stop ff/rw.
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if(event.getAction() == MotionEvent.ACTION_UP) {
@@ -731,12 +764,6 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 		
 	}
 
-	private long mLastSeekSentTime;
-	private static int SEEK_THROTTLE = 500;
-	
-	final private CharArrayBuffer mDurationBuffer = new CharArrayBuffer(16);
-	final private CharArrayBuffer mElapsedBuffer = new CharArrayBuffer(16);
-
 	// Send seek command.
 	private void sendSeek(boolean ignoreThrottling) {
 
@@ -775,8 +802,11 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	// Callback from RemoteTrackTime. Updates durations (both seekbar max value and duration label).
 	@Override
 	public void onTrackDurationChanged(int duration) {
-		FormatUtils.formatTimeBuffer(mDurationBuffer, duration, true);
-		mDuration.setText(mDurationBuffer.data, 0, mDurationBuffer.sizeCopied);
+		mDurationBuffer.setLength(0);
+		
+		formatTimeS(mDurationBuffer, duration, true);
+		
+		mDuration.setText(mDurationBuffer);
 		
 		mSongSeekBar.setMax(duration);
 	}
@@ -784,8 +814,11 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	// Callback from RemoteTrackTime. Updates current song progress. Ensures extra event is not processed (mUpdatingSongSeekBar).
 	@Override
 	public void onTrackPositionChanged(int position) {
-		FormatUtils.formatTimeBuffer(mElapsedBuffer, position, false);
-		mElapsed.setText(mElapsedBuffer.data, 0, mElapsedBuffer.sizeCopied);
+		mElapsedBuffer.setLength(0);
+		
+		formatTimeS(mElapsedBuffer, position, false);
+		
+		mElapsed.setText(mElapsedBuffer);
 		
 		if(mSongSeekBar.isPressed()) {
 			return;
@@ -797,5 +830,33 @@ public class MainActivity extends Activity implements OnClickListener, OnLongCli
 	private void startPAService(Intent intent) {
 		intent.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME);
 		startService(intent);
+	}
+	
+
+	public static void formatTimeS(@NonNull StringBuilder sb, int secs, boolean showPlaceholderForZero) {
+		if(secs < 0 || secs == 0 && showPlaceholderForZero) {
+			sb.append(NO_TIME);
+			return;
+		}
+		
+		int seconds = secs % 60;
+		
+		if(secs < 3600) { // min:sec
+			int minutes = secs / 60;
+			sb.append(minutes).append(':');
+		} else { // hour:min:sec
+			int hours = secs / 3600;
+			int minutes = (secs / 60) % 60;
+			
+			sb.append(hours).append(':');
+			if(minutes < 10) {
+				sb.append('0');
+			}
+			sb.append(minutes).append(':');
+		}
+		if(seconds < 10) {
+			sb.append('0');
+		}
+		sb.append(seconds);
 	}
 }

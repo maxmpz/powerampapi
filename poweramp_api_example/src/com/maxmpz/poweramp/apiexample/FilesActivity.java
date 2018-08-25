@@ -57,7 +57,8 @@ public class FilesActivity extends ListActivity implements OnItemClickListener {
 				android.R.layout.two_line_list_item,
 				c,
 				new String[] { "name", "title_tag" },
-				new int[] {android.R.id.text1, android.R.id.text2});
+				new int[] {android.R.id.text1, android.R.id.text2},
+				0);
 				setListAdapter(adapter);
 				
 		ListView list = (ListView)findViewById(android.R.id.list);
@@ -76,9 +77,10 @@ public class FilesActivity extends ListActivity implements OnItemClickListener {
 				.appendQueryParameter(PowerampAPI.PARAM_SHUFFLE, Integer.toString(PowerampAPI.ShuffleMode.SHUFFLE_SONGS));
 		
 		startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-				.setData(uriB.build())
-				);
+						.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+						.setData(uriB.build())
+					);
 
 		finish();
 	}

@@ -76,9 +76,10 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 				.appendQueryParameter(PowerampAPI.PARAM_SHUFFLE, Integer.toString(PowerampAPI.ShuffleMode.SHUFFLE_SONGS));
 		
 		startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-				.setData(uriB.build())
-				);
+						.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME)
+						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+						.setData(uriB.build())
+					);
 		finish();
 		return true;
 	}
