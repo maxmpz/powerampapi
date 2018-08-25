@@ -37,7 +37,7 @@ import android.util.Log;
  */
 public class RemoteTrackTime {
 	private static final String TAG = "RemoteTrackTime";
-	private static final boolean LOG = true; // Make it false for production.
+	private static final boolean LOG = false; // Make it false for production.
 
 	private static final int UPDATE_DELAY = 1000;
 	
@@ -111,7 +111,7 @@ public class RemoteTrackTime {
 
 	public void updateTrackPosition(int position) {
 		mPosition = position;
-		if(LOG) Log.w(TAG, "updateTrackPosition mPosition=>" + mPosition, new Exception());
+		if(LOG) Log.w(TAG, "updateTrackPosition mPosition=>" + mPosition);
 		if(mPlaying) {
 			mStartTimeMs = System.currentTimeMillis();
 			mStartPosition = mPosition;

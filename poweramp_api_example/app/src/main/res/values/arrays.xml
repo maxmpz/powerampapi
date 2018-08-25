@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="eq_preset_labels">
+		<item></item>
+		<item>@string/bass</item>
+		<item>@string/bass_extreme</item>
+		<item>@string/bass_treble</item>
+		<item>@string/treble</item>
+		<item>@string/flat</item>
+		<item>@string/classical</item>
+		<item>@string/dance</item>
+		<item>@string/rock</item>
+		<item>@string/techno</item>
+		<item>@string/phone_speaker</item>
+		<item>@string/live</item>
+		<item>@string/middle</item>		
+		<item>@string/pop</item>
+		<item>@string/soft</item>
+		<item>@string/soft_bass</item>
+		<item>@string/soft_treble</item>
+	</string-array>
+</resources>
