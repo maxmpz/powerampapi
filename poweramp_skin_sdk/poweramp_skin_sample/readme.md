@@ -98,8 +98,8 @@ This is why many attributes/styles are ending with "_scene.." suffix, as for alm
 
 Scene generally defines initial and final view layout/position and some view parameters.
 
-Also, almost all Poweramp views are custom views, including layout (FastLayout) and text views (FastTextView). FastLayout idea somewhat similar to CoordinatorLayout,
-but is strictly one-pass per layout, and FastText is a text view optimized for transitions. See **[reference_resources/values-sw1dp/attrs-powerui.xml](/poweramp_skin_sdk/reference_resources/values-sw1dp/attrs-powerui.xml)** for commented attributes definitions
+Also, almost all Poweramp views are custom views, including layout (FastLayout) and text views (FastTextView). FastLayout is multi-paradigm layout, somewhat similar to ConstraintLayout,
+but faster, strictly one-pass per layout, and optimized for animations; and FastText is a fast text rendering view optimized for transitions. See **[reference_resources/values-sw1dp/attrs-powerui.xml](/poweramp_skin_sdk/reference_resources/values-sw1dp/attrs-powerui.xml)** for commented attributes definitions
 for these views.
 
 See appropriate reference resources xmls for the details in the comments.

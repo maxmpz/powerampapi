@@ -1,9 +1,9 @@
 /*
-Copyright (C) 2011-2013 Maksim Petrov
+Copyright (C) 2011-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
-which communicate with PowerAMP application on Android platform.
+which communicate with Poweramp application on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT

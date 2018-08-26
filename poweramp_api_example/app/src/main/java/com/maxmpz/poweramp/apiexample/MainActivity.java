@@ -20,15 +20,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.apiexample;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.eclipse.jdt.annotation.NonNull;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -39,7 +34,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
-import android.text.TextUtils;
+import android.os.PersistableBundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -58,13 +54,23 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.RemoteTrackTime;
 import com.maxmpz.poweramp.player.RemoteTrackTime.TrackTimeListener;
+import com.maxmpz.poweramp.player.TableDefs;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
-public class MainActivity extends Activity implements 
+public class MainActivity extends AppCompatActivity implements
 	OnClickListener, 
 	OnLongClickListener, 
 	OnTouchListener, 
@@ -95,9 +101,10 @@ public class MainActivity extends Activity implements
 	
 	private final StringBuilder mDurationBuffer = new StringBuilder();
 	private final StringBuilder mElapsedBuffer = new StringBuilder();
-	
-	
-    @Override
+	private @Nullable Uri mLastCreatedPlaylistFilesUri;
+
+
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -155,14 +162,14 @@ public class MainActivity extends Activity implements
  
 	/*
 	 * NOTE: when screen is rotated, by default android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
-	 * on screen rotation some commands could be sent to PowerMAP unintentionally. 
-	 * As this activity always syncs everything with the actual state of PowerAMP, this automatic restoring of state is just non needed.  
+	 * on screen rotation some commands could be sent to Poweramp unintentionally.
+	 * As this activity always syncs everything with the actual state of Poweramp, this automatic restoring of state is just non needed.
 	 */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-    }
+	@Override
+	public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+	}
 
-    @Override
+	@Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
     }
     
@@ -175,6 +182,7 @@ public class MainActivity extends Activity implements
     	
     	super.onPause();
     }
+
     // Register broadcast receivers.
     @Override
     protected void onResume() {
@@ -552,7 +560,7 @@ public class MainActivity extends Activity implements
 		}
 	}
 	
-	// Process button press. Demonstrates sending various commands to PowerAMP.
+	// Process button press. Demonstrates sending various commands to Poweramp.
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
@@ -652,6 +660,23 @@ public class MainActivity extends Activity implements
 				
 			case R.id.pa_all_songs:
 				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
+				break;
+
+			case R.id.create_playlist:
+				createPlaylistAndAddToIt();
+				break;
+
+			case R.id.goto_created_playlist:
+				gotoCreatedPlaylist();
+				break;
+
+			case R.id.add_to_q_and_goto_q:
+				addToQAndGotoQ();
+				break;
+
+
+			case R.id.queue:
+				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("queue").build()));
 				break;
 		}
 	}
@@ -770,7 +795,7 @@ public class MainActivity extends Activity implements
 		findViewById(R.id.commit_eq).setEnabled(!isChecked);
 	}
 	
-	// Generates and sends presetString to PowerAMP Eq.
+	// Generates and sends presetString to Poweramp Eq.
 	private void commitEq() {
 		StringBuilder presetString = new StringBuilder();
 		
@@ -880,6 +905,151 @@ public class MainActivity extends Activity implements
 		}
 
 		mSongSeekBar.setProgress(position);
+	}
+
+	// NOTE: real code should run on some worker thread
+	private void createPlaylistAndAddToIt() {
+		ContentResolver cr = getContentResolver();
+		Uri playlistsUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("playlists").build();
+
+		// NOTE: we need raw column names for insert queries, thus, using getRawColName()
+
+		ContentValues values = new ContentValues();
+		values.put(getRawColName(TableDefs.Playlists.PLAYLIST), "Sample Playlist " + System.currentTimeMillis());
+		Uri playlistInsertedUri = cr.insert(playlistsUri, values);
+
+		if(playlistInsertedUri != null) {
+			Log.w(TAG, "createPlaylistAndAddToIt inserted=" + playlistInsertedUri);
+			
+			// NOTE: we are inserting into /playlists/#/files, playlistInsertedUri (/playlists/#) is not valid for entries insertion
+			Uri playlistEntriesUri = playlistInsertedUri.buildUpon().appendEncodedPath("files").build();
+
+			mLastCreatedPlaylistFilesUri = playlistEntriesUri;
+
+			// Select up to 10 random files
+			final int numFilesToInsert = 10;
+			Uri filesUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build();
+			Cursor c = getContentResolver().query(filesUri, new String[]{ TableDefs.Files._ID, TableDefs.Files.NAME }, null, null, "RANDOM() LIMIT " + numFilesToInsert);
+
+			int sort = 0;
+
+			if(c != null) {
+				while(c.moveToNext()) {
+					long fileId = c.getLong(0);
+					String name = c.getString(1);
+
+					values.clear();
+					values.put(getRawColName(TableDefs.PlaylistEntries.FOLDER_FILE_ID), fileId);
+
+					// Playlist entries are always sorted by "sort" fields, so if we want them to be in order, we should provide it.
+					// If we're adding entries to existing playlist, it's a good idea to get MAX(sort) first from the given playlist
+
+					values.put(getRawColName(TableDefs.PlaylistEntries.SORT), sort);
+
+					Uri entryUri = cr.insert(playlistEntriesUri, values);
+					if(entryUri != null) {
+						Log.w(TAG, "createPlaylistAndAddToIt inserted entry fileId=" + fileId + " sort=" + sort + " name=" + name + " entryUri=" + entryUri);
+						sort++;
+					} else {
+						Log.e(TAG, "createPlaylistAndAddToIt FAILED to insert entry fileId=" + fileId);
+					}
+				}
+
+				c.close();
+
+				Toast.makeText(this, "Inserted files=" + sort, Toast.LENGTH_SHORT).show();
+			}
+
+			if(sort > 0) {
+				// Force Poweramp to reload data in UI / PlayerService as we changed something
+				Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
+				intent.setPackage(PowerampAPI.PACKAGE_NAME);
+				intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
+				intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send changed table for adequate UI / PlayerService reloading
+				sendBroadcast(intent);
+			}
+
+			// Make open playlist button active
+			findViewById(R.id.goto_created_playlist).setEnabled(true);
+
+		} else {
+			Log.e(TAG, "createPlaylistAndAddToIt FAILED");
+		}
+	}
+	
+	private void gotoCreatedPlaylist() {
+		if(mLastCreatedPlaylistFilesUri != null) {
+			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(mLastCreatedPlaylistFilesUri));
+		}
+	}
+
+	private void addToQAndGotoQ() {
+		ContentResolver cr = getContentResolver();
+		Uri queueUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("queue").build();
+		ContentValues values = new ContentValues();
+
+		// Get max sort from queue
+		int maxSort = 0;
+		Cursor c = getContentResolver().query(queueUri, new String[]{ "MAX(" + TableDefs.Queue.SORT + ")" }, null, null, null);
+		if(c != null) {
+			if(c.moveToFirst()) {
+				maxSort = c.getInt(0);
+			}
+			c.close();
+		}
+
+		// Select up to 10 random files
+		final int numFilesToInsert = 10;
+		Uri filesUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build();
+		c = getContentResolver().query(filesUri, new String[]{ TableDefs.Files._ID, TableDefs.Files.NAME }, null, null, "RANDOM() LIMIT " + numFilesToInsert);
+
+		int inserted = 0;
+
+		if(c != null) {
+			int sort = maxSort + 1; // Start from maxSort + 1
+			while(c.moveToNext()) {
+				long fileId = c.getLong(0);
+				String name = c.getString(1);
+
+				values.clear();
+				values.put(getRawColName(TableDefs.Queue.FOLDER_FILE_ID), fileId);
+				values.put(getRawColName(TableDefs.Queue.SORT), sort);
+
+				Uri entryUri = cr.insert(queueUri, values);
+				if(entryUri != null) {
+					Log.w(TAG, "addToQAndGotoQ inserted entry fileId=" + fileId + " sort=" + sort + " name=" + name + " entryUri=" + entryUri);
+					sort++;
+					inserted++;
+				} else {
+					Log.e(TAG, "addToQAndGotoQ FAILED to insert entry fileId=" + fileId);
+				}
+			}
+
+			c.close();
+
+			Toast.makeText(this, "Inserted files=" + sort, Toast.LENGTH_SHORT).show();
+		}
+
+		if(inserted > 0) {
+			// Force Poweramp to reload data in UI / PlayerService as we changed something
+			Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
+			intent.setPackage(PowerampAPI.PACKAGE_NAME);
+			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
+			intent.putExtra(PowerampAPI.TABLE, TableDefs.Queue.TABLE); // NOTE: important to send changed table for adequate UI / PlayerService reloading. This can also make Poweramp to go to Queue
+			sendBroadcast(intent);
+
+			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(queueUri));
+		}
+
+	}
+
+
+	public static final @NonNull String getRawColName(@NonNull String col) {
+		int dot = col.indexOf('.');
+		if(dot >= 0 && dot + 1 <= col.length()) {
+			return col.substring(dot + 1);
+		}
+		return col;
 	}
 
 

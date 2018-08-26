@@ -83,7 +83,7 @@ public final class PowerampAPI {
 	public static final String PLAYER_SERVICE_NAME = "com.maxmpz.audioplayer.player.PlayerService";
 	
 	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
-	
+
 	public static Intent newAPIIntent() {
 		return new Intent(ACTION_API_COMMAND).setComponent(PLAYER_SERVICE_COMPONENT_NAME);
 	}
@@ -417,6 +417,13 @@ public final class PowerampAPI {
 	
 	
 	/**
+	 * Extra.
+	 * String
+	 * Since build 795
+	 */
+	public static final String TABLE = "table";
+	
+	/**
 	 * Poweramp track changed.
 	 * Sticky intent.
 	 * Extras:
@@ -508,9 +515,19 @@ public final class PowerampAPI {
 
 	
 	/**
-	 * Grants sender 
+	 * Grants sender a permission for data access
+	 * Extras:
+	 * - package - the package name of app trying to get access
 	 */
 	public static final String ACTION_ASK_FOR_DATA_PERMISSION = "com.maxmpz.audioplayer.ACTION_ASK_FOR_DATA_PERMISSION";
+
+	/**
+	 * Forces Poweramp UI and PlayerService to reload data from DB
+	 * Extras:
+	 * - package - the package name of app asking for the reload
+	 * - table - the changed table, e.g. "playlists", "queue". Gives Poweramp a hint regarding data reloading, e.g. when queue is changed, queue UI stats should be probably updated
+	 */
+	public static final String ACTION_RELOAD_DATA = "com.maxmpz.audioplayer.ACTION_RELOAD_DATA";
 
 	/**
 	 * @deprecated there is no PlayerUIActivity anymore

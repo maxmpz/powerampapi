@@ -263,24 +263,58 @@
 		android:layout_alignTop="@+id/play_file_path"
 		android:layout_toRightOf="@+id/play_file_path"
 		android:text="Play file"
-		/>
+	/>
 
-	
-	<Button android:id="@+id/folders"
+	<Button android:id="@+id/create_playlist"
+		android:layout_below="@+id/play_file_path"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/play_file_path"
 		android:layout_marginTop="8dip"
-		android:text="Folders"
+		android:text="Create Playlist And Add Something To It"
+		android:onClick="onClick"
 	/>
-	
-	
+
+	<Button android:id="@+id/goto_created_playlist"
+		android:layout_below="@+id/play_file_path"
+		android:layout_toRightOf="@id/create_playlist"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dip"
+		android:text="Go To Created Playlist"
+		android:onClick="onClick"
+		android:enabled="false"
+	/>
+
+	<Button android:id="@+id/add_to_q_and_goto_q"
+		android:layout_below="@+id/create_playlist"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dip"
+		android:text="Add Something To Queue And Go To Queue"
+		android:onClick="onClick"
+	/>
+
 	<LinearLayout android:id="@+id/category_buttons"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/folders"
+		android:layout_below="@+id/add_to_q_and_goto_q"
 		android:orientation="vertical"
 	>
+		<Button android:id="@+id/folders"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dip"
+			android:text="Folders"
+		/>
+
+		<Button android:id="@+id/queue"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dip"
+			android:text="Queue"
+			android:onClick="onClick"
+		/>
+
 		<Button android:id="@+id/play_album"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

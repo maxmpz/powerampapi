@@ -3,7 +3,7 @@ Copyright (C) 2011-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
-which communicate with PowerAMP application on Android platform.
+which communicate with Poweramp application on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -74,7 +74,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
         ((CheckBox)findViewById(R.id.dynamic)).setOnCheckedChangeListener(this);
         findViewById(R.id.commit_eq).setOnClickListener(this);
         
-        // Create and bind spinner which binds to available PowerAMP presets.
+        // Create and bind spinner which binds to available Poweramp presets.
         Spinner presetSpinner = (Spinner)findViewById(R.id.preset_spinner);
         String[] cols = new String[] { "_id", "name" };
 		Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("eq_presets").build(), 
@@ -109,8 +109,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
     
 	/*
 	 * NOTE: when screen is rotated, by default android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
-	 * on screen rotation some commands could be sent to PowerMAP unintentionally. 
-	 * As this activity always syncs everything with the actual state of PowerAMP, this automatic restoring of state is just non needed.  
+	 * on screen rotation some commands could be sent to Poweramp unintentionally.
+	 * As this activity always syncs everything with the actual state of Poweramp, this automatic restoring of state is just non needed.
 	 */
     @Override
     protected void onSaveInstanceState(Bundle outState) {

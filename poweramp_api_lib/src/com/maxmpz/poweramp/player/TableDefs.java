@@ -98,7 +98,7 @@ public interface TableDefs {
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 
 		/**
-		 * One of the file types - see PowerAMPiAPI.Track.FileType class.
+		 * One of the file types - see PowerampAPI.Track.FileType class.
 		 */
 		public static final @NonNull String FILE_TYPE = "file_type";
 
