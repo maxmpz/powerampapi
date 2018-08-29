@@ -17,17 +17,23 @@
 	<dimen name="AAA_TopPause_maxSize">70dp</dimen>
 	<dimen name="AAA_TopMediumButton_size">50dp</dimen>
 
-	<item type="dimen" format="float" name="AAA_ItemTrackMenu_scene_aa_scale">1</item>
 	<item type="dimen" format="float" name="AAA_ItemLikeUnlikeLayout_scene_aa_scale">.825</item>
-	<item type="dimen" format="float" name="AAA_ItemTrackTitle_scene_aa_scale">.9</item>
+	<item type="dimen" format="float" name="AAA_ItemTrackTitle_scene_aa_scale">1</item>
+	<dimen name="AAA_ItemTrackLine2_scene_aa_marginTop">2dp</dimen>
 
 	<dimen name="AAA_ListSubstyle_aaPaddingBottom">60dp</dimen>
-	<dimen name="AAA_ItemTrackMenu_scene_aa_width">60dp</dimen>
-	<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">31dp</dimen>
+	<!--<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">31dp</dimen>-->
 
 	<fraction name="AAA_TopAAItemRatio">100%</fraction>
 	<dimen name="AAA_aaMaxSize">340dp</dimen>
 	<dimen name="AAA_ItemTrackAAImage_scene_aa_margin">8dp</dimen>
 
+	<dimen name="AAA_ItemTrackMenu_padding">4dp</dimen>
+	<dimen name="AAA_ItemTrackMenu_drawableSize">24dp</dimen>
+
+	<dimen name="AAA_ItemRatingBar_padding">4dp</dimen>
+	<dimen name="AAA_ItemRatingBar_drawableSize">24dp</dimen>
+
+	<dimen name="AAA_ItemRatingBar_scene_aa_marginTop">4dp</dimen>
 
 </resources>

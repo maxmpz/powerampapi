@@ -12,10 +12,11 @@
 	<dimen name="AAA_TopPause_maxSize">90dp</dimen>
 	<dimen name="AAA_TopMediumButton_size">64dp</dimen>
 
-	<item type="dimen" format="float" name="AAA_ItemTrackMenu_scene_aa_scale">.9</item>
 	<item type="dimen" format="float" name="AAA_ItemLikeUnlikeLayout_scene_aa_scale">.875</item>
 	<item type="dimen" format="float" name="AAA_ItemTrackTitle_scene_aa_scale">1</item>
+
 	<item type="dimen" format="float" name="AAA_TopShuffleButtonLayout_scale">1</item>
+
 	<item type="dimen" format="float" name="AAA_TopTrackElapsed_scale">.8</item>
 	<item type="dimen" format="float" name="AAA_TopTrackElapsed_scene_playing_scale">.9</item>
 

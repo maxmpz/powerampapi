@@ -59,9 +59,17 @@
 		<!-- Slightly offset meta info -->
 		<item name="com.maxmpz.audioplayer:TopMetaInfoLayout">@style/AAA_TopMetaInfoLayout</item>
 
+		<!-- NOTE: as we attach rating to the right, it makes a sense to make stars expand to the left, thus, setting right gravity.
+		     RatingBar gravity is not dynamic property, so need to redefine base style -->
+		<item name="com.maxmpz.audioplayer:ItemRatingBar">@style/AAA_ItemRatingBar</item>
+		<item name="com.maxmpz.audioplayer:ItemRatingBar_scene_item_menu_lu">@style/AAA_ItemRatingBar_scene_item_menu_lu</item>
+		<!-- Don't grow so much on rating bar press -->
+		<item name="com.maxmpz.audioplayer:ItemRatingBar_anim_ratingbar_pressed">@style/AAA_ItemRatingBar_anim_ratingbar_pressed</item>
+
 		<!-- Override various item styles for scene_aa -->
 		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">@style/AAA_ItemTrackAAImage_scene_aa</item>
 		<item name="com.maxmpz.audioplayer:ItemLikeUnlikeLayout_scene_aa">@style/AAA_ItemLikeUnlikeLayout_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemRatingBar_scene_aa">@style/AAA_ItemRatingBar_scene_aa</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">@style/AAA_ItemTrackTitle_scene_aa</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">@style/AAA_ItemTrackLine2_scene_aa</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_aa">@style/AAA_ItemTrackMenu_scene_aa</item>
@@ -70,6 +78,8 @@
 
 		<item name="com.maxmpz.audioplayer:ItemLike_scene_aa">@style/AAA_ItemLike_scene_aa</item>
 		<item name="com.maxmpz.audioplayer:ItemUnlike_scene_aa">@style/AAA_ItemUnlike_scene_aa</item>
+
+		<item name="com.maxmpz.audioplayer:ItemRatingBar_scene_aa">@style/AAA_ItemRatingBar_scene_aa</item>
 
 		<!-- Uncomment to remove background for title for grid scenes (as we move labels below image in list).
 		     It's used in this skin for better zoom transitions (with backgrounds visible during zooming) -->
@@ -328,11 +338,11 @@
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
 
 		<item name="android:layout_marginLeft">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
-		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginRight">0dp</item>
 
 		<!-- Reattach to bottom and move below parent (parent==item itself) -->
 		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
-		<item name="com.maxmpz.audioplayer:layout_attachRight">@com.maxmpz.audioplayer:id/like_unlike_layout</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@com.maxmpz.audioplayer:id/rating</item>
 		<item name="android:layout_marginBottom">0dp</item>
 	</style>
 
@@ -342,25 +352,33 @@
 		<item name="com.maxmpz.audioplayer:drawableTint">?com.maxmpz.audioplayer:colorIconPrimary</item>
 		-->
 		<item name="android:gravity">center_horizontal</item>
-		<!--<item name="com.maxmpz.audioplayer:drawableOnly">true</item>-->
+		<item name="android:padding">@dimen/AAA_ItemTrackMenu_padding</item>
+		<item name="com.maxmpz.audioplayer:drawableWidth">@dimen/AAA_ItemTrackMenu_drawableSize</item>
+		<item name="com.maxmpz.audioplayer:drawableHeight">@dimen/AAA_ItemTrackMenu_drawableSize</item>
+		<item name="com.maxmpz.audioplayer:drawableOnly">true</item>
+
+		<!-- NOTE: drawableOnly=true disables text for menu button, but we may have it if we want, e.g.:
+			<item name="android:text">Menu</item>
+			<item name="android:textColor">?attr/android:textColorPrimaryInverse</item>
+		-->
 	</style>
 
 	<style name="AAA_ItemTrackMenu_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackMenu_scene_aa">
-		<!-- NOTE: can't attach directly to like_unlike_layout, as like_unlike_layout can be hidden by user settings -->
-		<!--<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/like_unlike_layout</item>-->
+		<!-- NOTE: can't attach directly to rating, as rating can be hidden by user settings -->
+		<!--<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/rating</item>-->
+
 		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
 		<item name="android:layout_marginBottom">@dimen/AAA_ItemTrackMenu_scene_aa_marginBottom</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
 
-		<item name="com.maxmpz.audioplayer:scale">@dimen/AAA_ItemTrackMenu_scene_aa_scale</item>
-		<item name="com.maxmpz.audioplayer:layout_compensateScale">@dimen/AAA_ItemTrackMenu_scene_aa_scale</item>
-		<!--<item name="android:layout_width">@dimen/AAA_ItemTrackMenu_scene_aa_width</item>-->
+		<item name="com.maxmpz.audioplayer:scale">1</item>
+		<item name="com.maxmpz.audioplayer:layout_compensateScale">1</item>
 	</style>
 
 	<style name="AAA_ItemLikeUnlikeLayout_scene_aa" parent="com.maxmpz.audioplayer:ItemLikeUnlikeLayout_scene_aa">
 		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
-		<item name="android:layout_marginBottom">0dp</item>
+
 		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
 		<item name="com.maxmpz.audioplayer:layout_attachRight">parent</item>
 
@@ -369,7 +387,7 @@
 
 		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginLeft">0dp</item>
-
+		<item name="android:layout_marginBottom">0dp</item>
 	</style>
 
 	<style name="AAA_ItemLike_scene_aa" parent="com.maxmpz.audioplayer:ItemLike_scene_aa">
@@ -385,6 +403,35 @@
 		-->
 	</style>
 
+	<style name="AAA_ItemRatingBar" parent="com.maxmpz.audioplayer:ItemRatingBar">
+		<!-- NOTE: as we attach rating to the right, it makes a sense to make stars expand to the left, thus, setting right gravity -->
+		<item name="android:gravity">right</item>
+		<item name="android:padding">@dimen/AAA_ItemRatingBar_padding</item>
+		<item name="com.maxmpz.audioplayer:drawableWidth">@dimen/AAA_ItemRatingBar_drawableSize</item>
+		<item name="com.maxmpz.audioplayer:drawableHeight">@dimen/AAA_ItemRatingBar_drawableSize</item>
+	</style>
+	<style name="AAA_ItemRatingBar_scene_aa" parent="com.maxmpz.audioplayer:ItemRatingBar_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">parent</item>
+
+		<item name="com.maxmpz.audioplayer:scale">1</item>
+		<item name="com.maxmpz.audioplayer:layout_compensateScale">1</item>
+
+		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Requires specific margin due to center scaling -->
+		<item name="android:layout_marginBottom">@dimen/AAA_ItemRatingBar_scene_aa_marginBottom</item>
+		<item name="android:layout_marginLeft">0dp</item>
+	</style>
+	<style name="AAA_ItemRatingBar_scene_item_menu_lu" parent="com.maxmpz.audioplayer:ItemRatingBar_scene_item_menu_lu">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">parent</item>
+		<item name="android:layout_marginRight">24dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+	</style>
+	<style name="AAA_ItemRatingBar_anim_ratingbar_pressed" parent="com.maxmpz.audioplayer:ItemRatingBar_anim_ratingbar_pressed">
+		<item name="com.maxmpz.audioplayer:scale">1.1</item>
+	</style>
 
 	<style name="AAA_ItemTrackAAPanel">
 		<item name="android:visibility">invisible</item><!-- Should be invisible by default so this view is faded-in for aa scenes -->
@@ -409,7 +456,7 @@
 	</style>
 
 	<style name="AAA_ListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle">
-		<!-- This is the extra room for title / line2 / menu / like/unlike below AA image -->
+		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
 		<item name="com.maxmpz.audioplayer:aaPaddingBottom">@dimen/AAA_ListSubstyle_aaPaddingBottom</item>
 
 		<!-- Set own TopAAItemRatio as we need to make AA smaller on smaller screens -->
@@ -435,7 +482,7 @@
 		<item name="com.maxmpz.audioplayer:layout_maxHeight">@dimen/AAA_aaMaxSize</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 
-		<!-- This is the extra room for title / line2 / menu / like/unlike below AA image. NOTE: need to add this to aa_bounds, so other views can properly attach to it with
+		<!-- This is the extra room for title / line2 / menu / rating below AA image. NOTE: need to add this to aa_bounds, so other views can properly attach to it with
 		     the aaPaddingBottom accounted for -->
 		<item name="android:layout_marginBottom">@dimen/AAA_ListSubstyle_aaPaddingBottom</item>
 

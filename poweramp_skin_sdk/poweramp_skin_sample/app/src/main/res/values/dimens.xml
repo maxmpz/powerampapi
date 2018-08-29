@@ -8,8 +8,8 @@
 
 	<dimen name="AAA_Seek_height">32dp</dimen>
 	<dimen name="AAA_TopPlay_marginBottom">24dp</dimen>
-	<dimen name="AAA_Seek_marginBottom">16dp</dimen>
-	<dimen name="AAA_TopTrackElapsed_marginBottom">2dp</dimen>
+	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
+	<dimen name="AAA_TopTrackElapsed_marginBottom">4dp</dimen>
 	<dimen name="AAA_TopMetaInfoLayout_marginBottom">8dp</dimen>
 
 	<dimen name="AAA_TopPlay_maxSize">64dp</dimen>
@@ -17,17 +17,15 @@
 	<dimen name="AAA_TopMediumButton_size">48dp</dimen>
 
 
-	<item type="dimen" format="float" name="AAA_ItemTrackMenu_scene_aa_scale">1</item>
 	<item type="dimen" format="float" name="AAA_ItemLikeUnlikeLayout_scene_aa_scale">.75</item>
+
 	<item type="dimen" format="float" name="AAA_ItemTrackTitle_scene_aa_scale">.75</item>
 	<item type="dimen" format="float" name="AAA_TopShuffleButtonLayout_scale">.8</item>
-	<item type="dimen" format="float" name="AAA_TopTrackElapsed_scale">.7</item>
-	<item type="dimen" format="float" name="AAA_TopTrackElapsed_scene_playing_scale">.8</item>
+	<item type="dimen" format="float" name="AAA_TopTrackElapsed_scale">.65</item>
+	<item type="dimen" format="float" name="AAA_TopTrackElapsed_scene_playing_scale">.75</item>
 
 	<dimen name="AAA_TopSleepTimerButtonLayout_marginLeft">-9.75dp</dimen>
 
-	<dimen name="AAA_ItemTrackMenu_scene_aa_width">56dp</dimen>
-	<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">28dp</dimen>
 
 	<dimen name="AAA_TopSubAAButtons_marginTop">8dp</dimen>
 
@@ -37,6 +35,17 @@
 	<fraction name="AAA_TopAAItemRatio">100%</fraction>
 	<!-- Extra hard limit on AA height. This is to ensure we always have a room for other controls. This value may be further adjusted depending on screen aspect and height,
 	     or portrait / landscape orientation, or both -->
-	<dimen name="AAA_aaMaxSize">270dp</dimen>
+	<dimen name="AAA_aaMaxSize">260dp</dimen>
+
 	<dimen name="AAA_ItemTrackAAImage_scene_aa_margin">4dp</dimen><!-- Smaller AA image margin for small screens -->
+
+	<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">26dp</dimen>
+
+	<dimen name="AAA_ItemTrackMenu_padding">4dp</dimen>
+	<dimen name="AAA_ItemTrackMenu_drawableSize">16dp</dimen>
+
+	<dimen name="AAA_ItemRatingBar_padding">4dp</dimen>
+	<dimen name="AAA_ItemRatingBar_drawableSize">16dp</dimen>
+
+	<dimen name="AAA_ItemRatingBar_scene_aa_marginBottom">0dp</dimen>
 </resources>

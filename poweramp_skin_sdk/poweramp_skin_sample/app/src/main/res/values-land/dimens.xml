@@ -10,4 +10,8 @@
 	<dimen name="AAA_TopPlay_marginBottom">16dp</dimen>
 
 	<dimen name="AAA_TopSleepTimerButtonLayout_marginLeft">-6dp</dimen>
+
+	<dimen name="AAA_ItemTrackLine2_scene_aa_marginTop">-8dp</dimen>
+
+	<dimen name="AAA_ItemRatingBar_scene_aa_marginTop">4dp</dimen>
 </resources>
