@@ -137,11 +137,15 @@
 	</style>
 
 
-	<style name="AAA_Seek">
+	<!-- Style for our injected seekbar (see layout/merge_topwaveseeklayout_aaa.xml) -->
+	<style name="AAA_Seek" parent="@android:style/Widget.Material.SeekBar">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/AAA_Seek_height</item>
 		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
 		<item name="android:layout_marginBottom">@dimen/AAA_Seek_marginBottom</item>
+		<!-- Customize drawables slightly -->
+		<item name="android:progressDrawable">@drawable/seekbar</item>
+		<item name="android:thumb">@drawable/seekbar_thumb</item>
 	</style>
 
 	<style name="AAA_TopPlay" parent="com.maxmpz.audioplayer:TopPlay">

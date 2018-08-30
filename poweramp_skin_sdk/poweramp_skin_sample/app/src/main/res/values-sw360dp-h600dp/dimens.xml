@@ -15,7 +15,7 @@
 	<dimen name="AAA_TopPause_maxSize">70dp</dimen>
 	<dimen name="AAA_TopMediumButton_size">50dp</dimen>
 
-	<item type="dimen" format="float" name="AAA_ItemLikeUnlikeLayout_scene_aa_scale">.75</item>
+	<item type="dimen" format="float" name="AAA_ItemLikeUnlikeLayout_scene_aa_scale">.9</item>
 	<item type="dimen" format="float" name="AAA_ItemTrackTitle_scene_aa_scale">1</item>
 
 	<dimen name="AAA_ListSubstyle_aaPaddingBottom">61dp</dimen>
