@@ -21,12 +21,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.widgetpackcommon;
 
 import android.graphics.Bitmap;
-import android.os.Bundle;
 
 import com.maxmpz.poweramp.player.PowerampAPI;
 
 /**
- * The data required for wiget update. May be reused
+ * The data required for widget update
  */
 public class WidgetUpdateData {
 	public int apiVersion;
@@ -41,7 +40,6 @@ public class WidgetUpdateData {
 	public int flags;
 	
 	public Bitmap albumArtBitmap;
-	public String albumArtPath; // Not used ATM
 	public long albumArtTimestamp;
 
 	public boolean playing;
@@ -55,13 +53,13 @@ public class WidgetUpdateData {
 	public String toString() {
 		return super.toString() + " hasTrack=" + hasTrack + " title=" + title + " album=" + album + " artist=" + artist + " supportsCatNav=" + supportsCatNav +  
 								" posInList=" + posInList + " listSize=" + listSize + " flags=0x" + Integer.toHexString(flags) + " albumArtBitmap=" + albumArtBitmap + 
-								" albumArtPath=" + albumArtPath + " albumArtTimestamp=" + albumArtTimestamp + " playing=" + playing + " shuffle=" + shuffle + " repeat=" + repeat;
+								" albumArtTimestamp=" + albumArtTimestamp + " playing=" + playing + " shuffle=" + shuffle + " repeat=" + repeat;
 	}
 	
 	
 	public void resetTrackData() {
 		hasTrack = false;
-		title = album = artist = albumArtPath = null;
+		title = album = artist = null;
 		supportsCatNav = false;
 		posInList = 0;
 		listSize = 0;

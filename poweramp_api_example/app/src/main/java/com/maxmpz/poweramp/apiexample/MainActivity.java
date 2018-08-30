@@ -463,7 +463,6 @@ public class MainActivity extends AppCompatActivity implements
 			}
 		});
 	}
-
 	void updateAlbumArt(Bundle track) {
 		Log.w(TAG, "updateAlbumArt");
 
@@ -477,66 +476,16 @@ public class MainActivity extends AppCompatActivity implements
 			return;
 		}
 
-		Uri aaUri = PowerampAPI.AA_ROOT_URI.buildUpon().appendEncodedPath("files").appendEncodedPath(Long.toString(mCurrentTrack.getLong(PowerampAPI.Track.REAL_ID))).build();
-
-		// WARNING: openFileDescriptor() will return the original image right from embed track loaded in Poweramp or
-		// file cached image. The later is more or less under control in terms of size, though, that can be in-folder user provided image.
-		// As for embed album art, the resulting bitmap can be any size. Poweramp has some upper limits on embed album art, still, the decoded image can be very large.
-
-		// I recommend using some sub-sampling scaling code here
-		ParcelFileDescriptor pfd = null;
-
-		try {
-			pfd = getContentResolver().openFileDescriptor(aaUri, "r");
-
-			// Get original bitmap size
-			BitmapFactory.Options opts = new BitmapFactory.Options();
-			opts.inJustDecodeBounds = true;
-			BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
-
-			String original = "original album art w: " + opts.outWidth + " h:" + opts.outHeight + " format: " + opts.outMimeType;
-
-			// Calculate subsample and load subsampled image
-			opts.inJustDecodeBounds = false;
-			opts.inSampleSize = calcSubsample(1024, 1024, opts.outWidth, opts.outHeight); // Subsamples images up to 2047x2047, should be safe, though this is up to 16mb per bitmap
-
-			Bitmap b = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
-
+		Bitmap b = PowerampAPIHelper.getAlbumArt(this, track, 1024, 1024);
+		if(b != null) {
 			aaImage.setImageBitmap(b);
-
-			albumArtInfo.setText(original + " scaled w: " + b.getWidth() + " h: " + b.getHeight());
-
-		} catch(FileNotFoundException ex) {
+			albumArtInfo.setText("scaled w: " + b.getWidth() + " h: " + b.getHeight());
+		} else {
 			albumArtInfo.setText("no AA");
 			aaImage.setImageBitmap(null);
-
-		} catch(Throwable th) {
-			Log.w(TAG, "failed AA " + th.getMessage());
-			albumArtInfo.setText("failed AA");
-			aaImage.setImageBitmap(null);
-
-		} finally {
-			if(pfd != null) {
-				try {
-					pfd.close();
-				} catch (IOException e) {}
-			}
 		}
-
 	}
 
-	// NOTE: maxW/maxH is not actual max, as we just subsample. Output image size will be up to maxW(H)*2 - 1
-	private static int calcSubsample(final int maxW, final int maxH, final int outWidth, final int outHeight) {
-		int sampleSize = 1;
-		int nextWidth = outWidth >> 1;
-		int nextHeight = outHeight >> 1;
-		while(nextWidth >= maxW && nextHeight >= maxH) {
-			sampleSize <<= 1;
-			nextWidth >>= 1;
-			nextHeight >>= 1;
-		}
-		return sampleSize;
-	}
 
 
 	void debugDumpStatusIntent(Intent intent) {

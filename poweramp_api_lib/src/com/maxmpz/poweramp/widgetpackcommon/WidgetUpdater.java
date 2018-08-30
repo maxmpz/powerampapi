@@ -52,15 +52,16 @@ public class WidgetUpdater {
 
 	private static final int MSG_UPDATE = 1;
 
+	private final Context mContext;
+
 	private static boolean sMediaRemoved;
 	private static @Nullable SharedPreferences sCachedPrefs; 
 	
 	protected boolean mIsDestroyed;
-	private PowerManager mPowerManager;
+	private final @NonNull PowerManager mPowerManager;
 	
 	protected final @NonNull Object mLock = new Object();;
-	
-	protected List<IWidgetUpdater> mProviders = new ArrayList<>();
+	protected final @NonNull List<IWidgetUpdater> mProviders = new ArrayList<>();
 	
 	private Handler mHandler = new Handler(Looper.getMainLooper()) {
 		@Override
@@ -72,10 +73,13 @@ public class WidgetUpdater {
 			}
 		};
 	};
-	private Context mContext;
+
 
 	public WidgetUpdater(Context context) {
-		mPowerManager = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+		PowerManager powerManager = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+		if(powerManager == null) throw new AssertionError();
+		mPowerManager = powerManager;
+		
 		mContext = context;
 	}
 	

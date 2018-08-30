@@ -89,20 +89,20 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	 * @param id
 	 * @return
 	 */
-	public abstract RemoteViews update(Context context, WidgetUpdateData data, SharedPreferences prefs, int id);
+	public abstract @NonNull RemoteViews update(Context context, @NonNull WidgetUpdateData data, @NonNull SharedPreferences prefs, int id);
 
 
 	// Data should be always the same for any type of widgets as data is reused by other widgets, thus method is final.
 	public static final @NonNull WidgetUpdateData generateUpdateData(Context context, boolean mediaRemoved) {
-		final boolean LOG = true;
 		if(LOG) Log.w(TAG, "generateUpdateData");
 
 		WidgetUpdateData data = new WidgetUpdateData();
-
+		Bundle track = null;
+		
 		Intent trackIntent = context.registerReceiver(null, WidgetUpdater.sTrackFilter);
 		if(trackIntent != null) {
 			
-			Bundle track = trackIntent.getParcelableExtra(PowerampAPI.TRACK);
+			track = trackIntent.getParcelableExtra(PowerampAPI.TRACK);
 			
 			if(track != null) {
 				data.hasTrack = true;
@@ -127,10 +127,10 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 		}
 
 		Intent aaIntent = context.registerReceiver(null, WidgetUpdater.sAAFilter);
-		if(aaIntent != null) {
+		if(aaIntent != null && track != null) {
 			try {
-				data.albumArtBitmap = aaIntent.getParcelableExtra(PowerampAPI.ALBUM_ART_BITMAP);
-				//data.albumArtPath = aaIntent.getStringExtra(PowerampAPI.ALBUM_ART_PATH);
+				data.albumArtBitmap = PowerampAPIHelper.getAlbumArt(context, track, 512, 512);
+				if(LOG) Log.w(TAG, "generateUpdateData got aa=" + data.albumArtBitmap);
 				data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.TIMESTAMP, 0);
 				if(LOG) Log.w(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
 			} catch(OutOfMemoryError oom) {
