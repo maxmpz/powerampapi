@@ -25,17 +25,46 @@ import android.os.Bundle;
 
 import com.maxmpz.poweramp.player.PowerampAPI;
 
+/**
+ * The data required for wiget update. May be reused
+ */
 public class WidgetUpdateData {
-	public Bundle track = null;
-	public Bitmap albumArtBitmap;
-	public String albumArtPath;
-	public long albumArtTimestamp;
-	public boolean playing = false;
-	public int shuffle = PowerampAPI.ShuffleMode.SHUFFLE_NONE;
-	public int repeat = PowerampAPI.RepeatMode.REPEAT_NONE;
 	public int apiVersion;
 	
+	public boolean hasTrack;
+	public String title;
+	public String album;
+	public String artist;
+	public boolean supportsCatNav;
+	public int posInList;
+	public int listSize;
+	public int flags;
+	
+	public Bitmap albumArtBitmap;
+	public String albumArtPath; // Not used ATM
+	public long albumArtTimestamp;
+
+	public boolean playing;
+
+	public int shuffle = PowerampAPI.ShuffleMode.SHUFFLE_NONE;
+	public int repeat = PowerampAPI.RepeatMode.REPEAT_NONE;
+	
 	public boolean albumArtNoAnim; // Used by widget configurator.
-	public boolean updateByOs;
-	public boolean trackChanged;
+	
+	@Override
+	public String toString() {
+		return super.toString() + " hasTrack=" + hasTrack + " title=" + title + " album=" + album + " artist=" + artist + " supportsCatNav=" + supportsCatNav +  
+								" posInList=" + posInList + " listSize=" + listSize + " flags=0x" + Integer.toHexString(flags) + " albumArtBitmap=" + albumArtBitmap + 
+								" albumArtPath=" + albumArtPath + " albumArtTimestamp=" + albumArtTimestamp + " playing=" + playing + " shuffle=" + shuffle + " repeat=" + repeat;
+	}
+	
+	
+	public void resetTrackData() {
+		hasTrack = false;
+		title = album = artist = albumArtPath = null;
+		supportsCatNav = false;
+		posInList = 0;
+		listSize = 0;
+		// NOTE: not resetting album art, repeat/shuffle, nor playing
+	}
 }

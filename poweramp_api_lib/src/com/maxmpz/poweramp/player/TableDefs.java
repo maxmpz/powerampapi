@@ -793,18 +793,6 @@ public interface TableDefs {
 		public static final @NonNull String BIND_TO_OTHER = "bind_to_other";
 	}
 	
-	/**
-	 * Same as EqPresets, but can be used for INSERT
-	 */
-	public static final class EqPresetsRaw extends EqPresets {
-		@SuppressWarnings("hiding")
-		public static final @NonNull String _ID = "_id";
-		@SuppressWarnings("hiding")
-		public static final @NonNull String _DATA = "_data";
-		@SuppressWarnings("hiding")
-		public static final @NonNull String NAME = "name";
-	}
-
 	public static final class EqPresetSongs implements BaseColumns {
 		public static final @NonNull String TABLE = "eq_preset_songs";
 
@@ -831,17 +819,5 @@ public interface TableDefs {
 		public static final @NonNull String _DATA = TABLE + "._data";
 
 		public static final @NonNull String NAME = TABLE + ".name";
-	}
-
-	/**
-	 * Same as ReverbPresets, but can be used for INSERT
-	 */
-	public class ReverbPresetsRaw extends ReverbPresets {
-		@SuppressWarnings("hiding")
-		public static final @NonNull String _ID = "_id";
-		@SuppressWarnings("hiding")
-		public static final @NonNull String _DATA = "_data";
-		@SuppressWarnings("hiding")
-		public static final @NonNull String NAME = "name";
 	}
 }

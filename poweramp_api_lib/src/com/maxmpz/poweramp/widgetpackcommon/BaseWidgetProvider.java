@@ -21,7 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.widgetpackcommon;
 
 import java.util.Arrays;
-
+import org.eclipse.jdt.annotation.NonNull;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -29,17 +29,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Looper;
 import android.os.Process;
 import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.maxmpz.poweramp.player.PowerampAPI;
+import com.maxmpz.poweramp.player.PowerampAPIHelper;
 
 /**
- * Base widget provider for PowerampAPI based app widgets.
+ * Base widget provider for PowerampAPI based app widgets
  */
-public abstract class BaseWidgetProvider extends AppWidgetProvider implements IWidgetUpdater {
+public abstract class BaseWidgetProvider extends AppWidgetProvider implements 
+	IWidgetUpdater 
+{
 	private static final String TAG = "BaseWidgetProvider";
 	private static final boolean LOG = false;
 
@@ -71,43 +75,64 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 
 	protected static final int MIN_WIDTH = 100;
 	protected static final int MIN_HEIGHT = 100;
-	protected static ComponentName sServiceName;
+	
+//	protected static ComponentName sServiceName;
+//	protected abstract ComponentName getWidgetUpdaterServiceName(Context context);
+	
+	protected abstract @NonNull WidgetUpdater getWidgetUpdaterService(Context context);
 
-	protected abstract ComponentName getWidgetUpdaterServiceName(Context context);
-
+	/**
+	 * THREADING: any
+	 * @param context
+	 * @param data
+	 * @param prefs
+	 * @param id
+	 * @return
+	 */
 	public abstract RemoteViews update(Context context, WidgetUpdateData data, SharedPreferences prefs, int id);
 
 
 	// Data should be always the same for any type of widgets as data is reused by other widgets, thus method is final.
-	public final WidgetUpdateData generateUpdateData(Context context, boolean mediaRemoved, boolean trackChanged, boolean updateByOs) {
-		if(LOG) Log.e(TAG, "generateUpdateData me=" + this);
+	public static final @NonNull WidgetUpdateData generateUpdateData(Context context, boolean mediaRemoved) {
+		final boolean LOG = true;
+		if(LOG) Log.w(TAG, "generateUpdateData");
 
 		WidgetUpdateData data = new WidgetUpdateData();
 
-		data.updateByOs = updateByOs;
-		data.trackChanged = trackChanged;
-
-		Intent trackIntent = context.registerReceiver(null, BaseWidgetUpdaterService.sTrackFilter);
+		Intent trackIntent = context.registerReceiver(null, WidgetUpdater.sTrackFilter);
 		if(trackIntent != null) {
-			data.track = trackIntent.getParcelableExtra(PowerampAPI.TRACK);
-			if(LOG) Log.e(TAG, "received trackIntent");
+			
+			Bundle track = trackIntent.getParcelableExtra(PowerampAPI.TRACK);
+			
+			if(track != null) {
+				data.hasTrack = true;
+				data.title = track.getString(PowerampAPI.Track.TITLE);
+				data.album = track.getString(PowerampAPI.Track.ALBUM);
+				data.artist = track.getString(PowerampAPI.Track.ARTIST);
+				data.listSize = track.getInt(PowerampAPI.Track.LIST_SIZE);
+				data.posInList = track.getInt(PowerampAPI.Track.POS_IN_LIST);
+				data.supportsCatNav = track.getBoolean(PowerampAPI.Track.SUPPORTS_CAT_NAV);
+				data.flags = track.getInt(PowerampAPI.Track.FLAGS);
+			}
+			
+			if(LOG) Log.w(TAG, "received trackIntent");
 		} else if(!sPingedPowerampService) {
 			if(LOG) Log.e(TAG, "no trackIntent, pinging Poweramp service");
 			try {
-				context.startService(PowerampAPI.newAPIIntent());
+				PowerampAPIHelper.startPAService(context, PowerampAPI.newAPIIntent());
 			} catch(Throwable th) {
 				Log.e(TAG, "", th);
 			}
 			sPingedPowerampService = true;
 		}
 
-		Intent aaIntent = context.registerReceiver(null, BaseWidgetUpdaterService.sAAFilter);
+		Intent aaIntent = context.registerReceiver(null, WidgetUpdater.sAAFilter);
 		if(aaIntent != null) {
 			try {
 				data.albumArtBitmap = aaIntent.getParcelableExtra(PowerampAPI.ALBUM_ART_BITMAP);
 				//data.albumArtPath = aaIntent.getStringExtra(PowerampAPI.ALBUM_ART_PATH);
 				data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.TIMESTAMP, 0);
-				if(LOG) Log.e(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
+				if(LOG) Log.w(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
 			} catch(OutOfMemoryError oom) {
 				Log.e(TAG, "", oom);
 			}
@@ -115,9 +140,9 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 
 		if(mediaRemoved) {
 			data.playing = false;
-			if(LOG)  Log.e(TAG, "generateUpdateData mediaRemoved");
+			if(LOG)  Log.w(TAG, "generateUpdateData mediaRemoved");
 		} else {
-			Intent statusIntent = context.registerReceiver(null, BaseWidgetUpdaterService.sStatusFilter);
+			Intent statusIntent = context.registerReceiver(null, WidgetUpdater.sStatusFilter);
 			if(statusIntent != null) {
 
 				int status = statusIntent.getIntExtra(PowerampAPI.STATUS, 0);
@@ -126,15 +151,15 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 
 				data.apiVersion = statusIntent.getIntExtra(PowerampAPI.API_VERSION, 0);
 
-				if(LOG) Log.e(TAG, "generateUpdateData statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing + " status=" + status);				
+				if(LOG) Log.w(TAG, "generateUpdateData statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing + " status=" + status);				
 			} else if(LOG)  Log.e(TAG, "generateUpdateData statusIntent==null");
 		}
 
-		Intent modeIntent = context.registerReceiver(null, BaseWidgetUpdaterService.sModeFilter);
+		Intent modeIntent = context.registerReceiver(null, WidgetUpdater.sModeFilter);
 		if(modeIntent != null) {
 			data.shuffle = modeIntent.getIntExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE);
 			data.repeat = modeIntent.getIntExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE);
-			if(LOG) Log.e(TAG, "repeat=" + data.repeat + " shuffle=" + data.shuffle);
+			if(LOG) Log.w(TAG, "repeat=" + data.repeat + " shuffle=" + data.shuffle);
 		}
 		return data;
 	}
@@ -146,23 +171,24 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 			return;
 		}
 
-		if(LOG) Log.e(TAG, "onUpdate ids=" + Arrays.toString(appWidgetIds));
-		if(sServiceName == null) {
-			sServiceName = getWidgetUpdaterServiceName(context);
-		}
-
-		Intent intent = new Intent().setComponent(sServiceName)
-				.putExtra(BaseWidgetUpdaterService.EXTRA_UPDATE_BY_OS, true);
+		if(LOG) Log.w(TAG, "onUpdate ids=" + Arrays.toString(appWidgetIds));
+		
+		WidgetUpdater widgetUpdater = getWidgetUpdaterService(context);
+		
 		try {
-			context.startService(intent);
+		
+			widgetUpdater.updateSafe(null, true, true); // Immediate update
+
 		} catch(Throwable th) {
 			Log.e(TAG, "", th);
+		} finally {
+			widgetUpdater.destroy();
 		}
 	}
 
-
+	// THREADING: any
 	@Override
-	public WidgetUpdateData pushUpdate(Context context, SharedPreferences prefs, int[] ids, boolean mediaRemoved, boolean trackChanged, boolean updateByOs, WidgetUpdateData data) {
+	public WidgetUpdateData pushUpdate(Context context, SharedPreferences prefs, int[] ids, boolean mediaRemoved, WidgetUpdateData data) {
 		final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		if(ids == null) {
 			try { // java.lang.RuntimeException: system server dead?  at android.appwidget.AppWidgetManager.getAppWidgetIds(AppWidgetManager.java:492) at com.maxmpz.audioplayer.widgetpackcommon.BaseWidgetProvider (":139)
@@ -179,14 +205,9 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 		if(LOG) Log.w(TAG, "pushUpdate() ids to update: " + Arrays.toString(ids));
 
 		if(data == null) {
-			data = generateUpdateData(context, mediaRemoved, trackChanged, updateByOs);
+			data = generateUpdateData(context, mediaRemoved);
 		}
 		
-//		if(Looper.getMainLooper().getThread() == Thread.currentThread()) throw new AssertionError();
-
-//		int tid = Process.myTid();
-//		int priority = Process.getThreadPriority(tid);
-//		Process.setThreadPriority(tid, Process.THREAD_PRIORITY_LOWEST);
 		try {
 			for(int id : ids) {
 				RemoteViews rv = update(context, data, prefs, id); // java.lang.RuntimeException: Could not write bitmap to parcel blob.
@@ -195,9 +216,6 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 
 		} catch(Exception ex) {
 			Log.e(TAG, "", ex);
-
-//		} finally {
-//			Process.setThreadPriority(tid, priority);
 		}
 		return data;
 	}
@@ -208,10 +226,10 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements IW
 		if(IS_HTC_SENSE && Build.VERSION.SDK_INT < 15
 				|| data.albumArtNoAnim
 				|| widgetCtx.lastAATimeStamp == data.albumArtTimestamp 
-				|| data.track != null && (data.track.getInt(PowerampAPI.Track.FLAGS, 0) & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0) {
+				|| data.hasTrack && (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0) {
 
-			if(LOG) Log.e(TAG, "same AA, noAnim=>true, same ts=" + widgetCtx.lastAATimeStamp + 
-					" or FLAG_FIRST_IN_PLAYER_SESSION=" + (data.track.getInt(PowerampAPI.Track.FLAGS, 0) & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) + " bitmap=" + data.albumArtBitmap);
+			if(LOG) Log.w(TAG, "same AA, noAnim=>true, same ts=" + widgetCtx.lastAATimeStamp + 
+					" or FLAG_FIRST_IN_PLAYER_SESSION=" + (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) + " bitmap=" + data.albumArtBitmap);
 
 			return true;
 		}
