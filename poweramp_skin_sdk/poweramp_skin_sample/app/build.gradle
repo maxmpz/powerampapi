@@ -22,7 +22,7 @@ android {
 
     }
     aaptOptions {
-        additionalParameters "--shared-lib", "-I", "../../../audioplayer/bin/audioplayer.apk"
+        additionalParameters "--shared-lib", "-I", "../../../audioplayer/dist/795-arm-uni/Poweramp-beta-build-795-uni.apk"
     }
 
     useLibrary 'android.test.runner'
