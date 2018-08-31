@@ -96,12 +96,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_gui_show_hide_milk"/><!-- bus_gui, arg1 == STATE_TRUE => show, STATE_FALSE => hide -->
 	
 	<item type="id" name="cmd_data_info_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track -->
-	<item type="id" name="cmd_data_edit_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track   -->
+	<item type="id" name="cmd_data_edit_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track -->
 	<item type="id" name="cmd_data_lyrics"/><!-- bus_data_cmd -->
 	
 	<item type="id" name="cmd_list_select_aa_dialog"/><!-- NOTE: calls cmd_data_album_art -->
 	<item type="id" name="cmd_data_album_art"/><!-- bus_data_cmd, arg1: 0 (default, show for current PS loaded track)/RestLibrary.AA_TYPE_*; obj => IdAndPath, Long fileId, String/Uri => file path/uri, null => current track  -->
-	<item type="id" name="cmd_data_track_like_unlike"/><!-- bus_data_cmd, arg1 => like=0/unlike=1, obj => Long fileId -->
+	<item type="id" name="cmd_data_track_rating"/><!-- bus_data_cmd, arg1 => like=0/unlike=1, obj => Long fileId -->
 	<item type="id" name="cmd_data_reset_aa_status"/>
 	
 	<item type="id" name="cmd_data_delete"/><!-- bus_data_cmd, obj => UriAndIds -->
@@ -115,7 +115,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_mass_send"/><!-- bus-data_cmd, obj =>UriAndIds -->
 	
 	<item type="id" name="cmd_list_rename_dialog"/>
-	<item type="id" name="cmd_data_update"/><!-- bus_data_cmd, obj => UriAndIds -->
+	<item type="id" name="cmd_data_update"/><!-- bus_data_cmd, obj => UriAndIds, arg1 => true/ - don't send msg_app_data_changed -->
 	<item type="id" name="cmd_data_rename"/><!-- bus_data_cmd, obj => UriAndIds. Like cmd_data_update, but also handles RestLibraryEntityRenameSupport -->
 	
 	<item type="id" name="cmd_list_preset_assign_dialog"/>
@@ -250,7 +250,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_player_sleep_timer"/><!-- int. SystemClock.uptimeMilli() base seconds when to sleep, or 0 if sleep timer is disabled. boolean => enabled/disabled -->
 	
 	<item type="id" name="state_player_milk_preset"/><!-- MilkPreset obj -->
-	<item type="id" name="state_player_milk_big_widgets"/><!-- int -->
+	<item type="id" name="state_player_milk_mode_big_widgets"/><!-- int -->
 	<item type="id" name="state_player_milk_widgets"/><!-- int -->
 	<item type="id" name="state_player_milk_fd_and_serial"/><!-- long -->
 	<item type="id" name="state_player_milk_sort"/><!-- int == RestMilkPreset.SORT_* -->
@@ -267,9 +267,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_toggle_playing"/>
 	<item type="id" name="cmd_player_play_next_track"/>
 	<item type="id" name="cmd_player_play_prev_track"/>
-	<item type="id" name="cmd_player_on_queue_updated"/><!-- arg1 => queue played count, arg2 => total queue count, obj = Boolean.TRUE if something is just enqueued -->
+	<item type="id" name="cmd_player_on_queue_updated"/><!-- obj = Boolean.TRUE if something is just enqueued -->
 	<item type="id" name="cmd_player_reload_pipeline"/>
-	<!-- <item type="id" name="cmd_player_update_equ_preset"/> --><!-- REVISIT: not used, remove -->
 	<item type="id" name="cmd_player_seek"/>
 	<item type="id" name="cmd_player_set_rg"/>
 	<item type="id" name="cmd_player_set_rg_levels"/>

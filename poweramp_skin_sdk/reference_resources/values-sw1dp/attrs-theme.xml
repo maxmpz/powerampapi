@@ -19,8 +19,9 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<resources>
+<!-- Generic colors and few other global theme attribures. See also attrs-player.xml -->
 
+<resources>
 	<attr name="colorBgPrimary" format="color"/><!-- primary background color, e.g. white for Light theme -->
 	<attr name="colorBgPrimaryAlpha" format="color"/><!-- alpha faded primary background color -->
 	<attr name="colorBgLessAlpha" format="color"/><!-- a bit more pronounced alpha faded primary background color -->

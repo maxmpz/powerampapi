@@ -23,6 +23,22 @@
 			overlapStyle="@style/SampleSkin_transparentNavbar"
 			checkedByDefault="false"
 		/>
+
+		<option
+			key="divided_waveseek"
+			name="@string/skin_divided_waveseek"
+			summary="@string/skin_summary_divided_waveseek"
+			overlapStyle="@style/SampleSkin_dividedWaveseek"
+			checkedByDefault="false"
+		/>
+
+		<option
+			key="no_aa_blur"
+			name="@string/skin_no_aa_blur"
+			summary="@string/skin_summary_no_aa_blur"
+			overlapStyle="@style/SampleSkin_noAABlur"
+			checkedByDefault="false"
+		/>
 	</skin>
 
 	<skin
@@ -31,6 +47,13 @@
 		description="@string/skin_sample_aaa_description"
 		style="@style/SampleSkinAAA"
 	>
-		<!-- No options -->
+		<!-- NOTE: noAABlur option for SampleSkinAAA requires another style as SampleSkinAAA overrides list styles -->
+		<option
+			key="no_aa_blur"
+			name="@string/skin_no_aa_blur"
+			summary="@string/skin_summary_no_aa_blur"
+			overlapStyle="@style/SampleSkinAAA_noAABlur"
+			checkedByDefault="false"
+		/>
 	</skin>
 </skins>

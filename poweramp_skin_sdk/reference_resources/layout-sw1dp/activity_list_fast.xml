@@ -259,7 +259,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:arg2="1"
 			
 			w:buttonsLabels="@array/vis_modes"
-			w:buttonsDrawables="?vis_icons_32dp"
+			w:buttonsDrawables="@array/vis_icons_32dp"
 			w:buttonsBusId="@id/bus_gui"
 			w:buttonsMsgId="@id/cmd_gui_set_vis_mode"
 			w:buttonsArg1="@array/vis_modes_enum"
@@ -299,7 +299,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:arg2="1"
 			
 			w:buttonsLabels="@array/shuffle_modes"
-			w:buttonsDrawables="?shuffle_icons_32dp"
+			w:buttonsDrawables="@array/shuffle_icons_32dp"
 			w:buttonsBusId="@id/bus_player_cmd"
 			w:buttonsMsgId="@id/cmd_player_set_shuffle_mode"
 			w:buttonsArg1="@array/shuffle_modes_enum"
@@ -317,7 +317,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:arg2="1"
 			
 			w:buttonsLabels="@array/repeat_modes"
-			w:buttonsDrawables="?repeat_icons_32dp"
+			w:buttonsDrawables="@array/repeat_icons_32dp"
 			w:buttonsBusId="@id/bus_player_cmd"
 			w:buttonsMsgId="@id/cmd_player_set_repeat_mode"
 			w:buttonsArg1="@array/repeat_modes_enum"
@@ -394,7 +394,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 thus it's View and it's visitility == VISIBLE 
 	-->
 
-	<View android:id="@+id/navbar_bounds"
+	<com.maxmpz.widget.InvisibleView android:id="@+id/navbar_bounds"
 		style="?TopNavbarBounds"
 	/>
 	

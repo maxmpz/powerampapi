@@ -23,20 +23,37 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Used in <include>, if true, no any error happens if android:layout doesn't exist (set to @null for that <include>) -->
 	<attr name="optional" format="boolean"/>
 	
+	<!-- Optional styles. Applied based on user preferences. 
+	     Styles for these attributes should be defined in main skin theme, but these styles will be applied only if appropriate option is set in Poweramp settings  -->
+	<declare-styleable name="OptionalPoweruiStyles">
+		<!-- Applied (over main theme style) when rating is enabled and set to stars -->
+		<attr name="OptionRatingStars" format="reference"/>
+		
+		<!-- Applied (over main theme style) when rating is enabled and set to like/unlike thumbs -->
+		<attr name="OptionRatingLikeUnlike" format="reference"/>
+		
+		<!-- Applied (over main theme style) when track counter is enabled -->
+		<attr name="OptionCounter" format="reference"/>
+	</declare-styleable>
+	
+	<!-- Styles always applied for activities / dialogs -->
 	<declare-styleable name="PoweruiStyles">
 		<!-- Base styles applied for any activity -->
 		<attr name="BasePoweruiStyles" format="reference"/>
 		
-		<!-- Powerui lib styles, including list, items, navbar, etc. are kept in separate "theme" styles -->
+		<!-- Styles applied for main activity, includes top list widget, items, navbar, etc. styles -->
 		<attr name="TopPoweruiStyles" format="reference"/>
-		
+	
+		<!-- Forced styles for dialogs -->	
 		<attr name="DialogForcedStyle"/>
 	</declare-styleable>
 	
 	
-	<!-- Base PowerList attributes. NOTE: main Poweramp list is a ListWidget instance which has extra attributes (see below) -->
+	<!-- Base PowerList attributes. NOTE: main Poweramp list is a ListWidget (derived from PowerList) which has extra attributes (see ListWidget below) -->
 	<declare-styleable name="PowerList">
+		<!-- ListScroller view id. PowerList uses separate view as scrollbar -->
 		<attr name="listScroller" format="reference"/>
+		<!-- ListIndexer view id. PowerList uses separate indexer view (small popup with character for a-z scrolling) -->
 		<attr name="listIndexer" format="reference"/>
 		
 		<attr name="moveableToolbar" format="reference"/><!-- Id of the toolbar which can be moved by list on scroll -->
@@ -56,25 +73,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="android:colorEdgeEffect"/><!-- Defines overshoot edge effect color -->
 	</declare-styleable>
+	
 
 	<!-- Main Poweramp list, i.e. main screen AA and all the Library lists and Library itself. 
 		 NOTE: derived from PowerList - accepts PowerList attributes as well -->
 	<declare-styleable name="ListWidget">
+		<!-- ListWidget popup menu animation time -->
 		<attr name="popupEnterAnimTime" format="integer"/><!-- ms -->
+		<!-- ListWidget popup menu animation time -->
 		<attr name="popupExitAnimTime" format="integer"/><!-- ms -->
 		<attr name="menuPlaceholder" format="reference"/><!-- Some top level MenuHelper-enabled layout (poped-out item transformed into menu and attached there) -->
 		
 		<!-- Animation time between AA states (playing/paused) -->
 		<attr name="preferedAAAnimTime" format="integer"/><!-- ms -->
 		
-		<!-- Controls milk+AA  --> 
+		<!-- Controls AA blur background --> 
 		<attr name="listMilkMode" format="integer">
-			<flag name="none" value="0"/><!-- No any AA images are applied to milk -->
-			<flag name="mainAA" value="1"/><!-- Default. AA from main screen is applied to milk --> 
-			<flag name="listHeader" value="2"/><!-- AA from list headers is applied -->
+			<flag name="none" value="0"/><!-- No any AA images are applied to background -->
+			<flag name="mainAA" value="1"/><!-- Default. AA from main screen is applied to background --> 
+			<flag name="listHeader" value="2"/><!-- AA from list headers is applied . Doesn't work ATM. REVISIT: doesn't work due to the header image not created due to the header delayed creation -->
 		</attr>
 		
-		<!-- Milk AA widget id --> 
+		<!-- Milk (visualization) AA widget id --> 
 		<attr name="listMilkAA" format="reference"/>
 		
 		<!-- Number of styles to apply to list internals -->
@@ -91,11 +111,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	<!-- NOTE: see attrs-player.xml for ListSubstyle -->
 	
-	
 	<declare-styleable name="Waveseek">
+		<!-- Defines waveseek layout -->
 		<attr name="waveLayout" format="integer">
-			<enum name="scrollable" value="0"/>
-			<enum name="fixed" value="1"/>
+			<enum name="scrollable" value="0"/><!-- Waveseek can be dragged with swipes -->
+			<enum name="fixed" value="1"/><!-- Waveseek can't be dragged, progress follows touch -->
 		</attr>
 	
 		<!-- Used only in layout=scrollable mode. Ignored in layout=fixed mode -->
@@ -131,10 +151,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- The divisor size (size of the empty space between top and bottom bars) -->
 		<attr name="divisorSize" format="dimension"/>
 		
-		<attr name="stroke" format="dimension"/><!-- NOTE: shared -->
 		
-		<!-- NOTE: bar/elapsedBarColor*, bar/elapsedBarDrawable* are not used now due to issues on some Android devices. Instead raw bitmaps are used. 
-			 See bar/elaspedBarBitmap* for details. --> 
+		<!-- NOTE: bar/elapsedBarColor*, bar/elapsedBarDrawable* / stroke are not used now due to issues on some Android devices. Instead raw bitmaps are used. 
+			 See bar/elaspedBarBitmap* for details --> 
 		<attr name="barColor" format="color|reference"/><!-- NOTE: not used -->
 		<attr name="barColor2" format="color|reference"/><!-- NOTE: not used -->
 		<attr name="elapsedBarColor" format="color|reference"/><!-- NOTE: not used -->
@@ -148,19 +167,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="elapsedBarDrawable2" format="reference"/><!-- NOTE: not used -->
 		<!-- If non-zero, rounded corners applied to bars -->
 		<attr name="barRoundedCorners" format="dimension"/><!-- NOTE: not used -->
-		
+		<attr name="stroke" format="dimension"/><!-- NOTE: not used -->
 					
-		<!-- NOTE: specifically crafted bitmaps. Height of the bitmap should be >= width of the bitmap.
+		<!-- NOTE: barBitmap/elapsedBarBitmap/barBitmap2/elapsedBarBitmap2 are specifically crafted bitmaps. Height of the bitmap should be >= width of the bitmap.
 			 Bitmap is stretched in a way similar to 9-patch images, but only 3 "patches" used - top, middle, bottom.
 			 Top is unstretched, height=width*0.5, bottom is unstretched, height=width*0.5 and reset is stretched middle.
-			 This is required as accross Android devices, many can't render 9-patch images reliable and fast, others can't reliable
-			 render e.g. RoundRect shapes or other Drawables, thus, the solution with raw Bitmaps is used. -->
 			 
+			 This is required as accross Android devices, many can't render 9-patch images reliable and fast, others can't reliable
+			 render e.g. RoundRect shapes or other Drawables, thus, the approach with the raw Bitmaps is used here -->
+
+		<!-- Non-yet-elapsed bar (to the right of playing point) --> 			 
 		<attr name="barBitmap" format="reference"/>
+		<!-- Elapsed bar (to the left of playing point) -->
 		<attr name="elapsedBarBitmap" format="reference"/>
+		<!-- Optiponal non-yet-elapsed bar (to the right of playing point) - bottom part -->
 		<attr name="barBitmap2" format="reference"/>
-		<attr name="elapsedBarBitmap2" format="reference"/>
-		
+		<!-- Optiponal elapsed bar (to the left of playing point) - bottom part -->
+		<attr name="elapsedBarBitmap2" format="reference"/>		
 			
 		<!-- Used only in layout=fixed mode. Cursor position in percent of Waveseek width. 50%=center -->
 		<attr name="cursorPosition" format="fraction"/>
@@ -217,9 +240,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				 "parent" is used for loadable / merged XML layouts, when extra SceneParams should be added to parent view, where XML is added to
 			--> 
 			<enum name="parent" value="0"/>
+			<!-- These SceneParams is for RootView (window top view group). Very special case, used e.g. for dialogs -->
 			<enum name="root" value="-1"/>
 		</attr>
 		
+		<!-- Target scene id which this SceneParams is for -->
 		<attr name="scene" format="reference|integer">
 			<!-- NOTE: scene can be set to defaultScene, so that will redefine the default scene (or update, if baseScene="defaultScene" is used 
 				 Only first "scene" attribute supports that -->
@@ -241,20 +266,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 If layout_width exists in attributes, we assume layout is set for this scene params, otherwise no layout is applied per this scene params -->
 		<attr name="android:layout_width"/>
 		
+		<!-- Defines point during transition when target view is re-layout. Layout is a costly operation for most views -->
 		<attr name="recalcChildren" format="fraction|integer">
-			<!-- initial child layout used for while transition until end (jumps in the end) -->
+			<!-- Initial child layout used for while transition until end (jumps in the end) -->
 			<enum name="on_end" value="0" /><!-- Sync with SceneParams --> 
-			<!-- final child layout used for whole transition (jumps in the beggining) -->
-			<enum name="on_start" value="1" /><!-- Sync with SceneParams --> 
-			<!-- dynamically recalculate layout of children, slow -->
+			
+			<!-- Final child layout used for whole transition (jumps in the beggining) -->
+			<enum name="on_start" value="1" /><!-- Sync with SceneParams -->
+			 
+			<!-- Dynamically recalculate layout of children, can be slow -->
 			<enum name="dynamic" value="2" /><!-- Sync with SceneParams -->
 		</attr>
-		
-		<!-- REVISIT: alternatively use flags, e.g. w:flags="applyScene|applyViewParams":
-			 + faster parsing
-			 + easier to track just one xml flag
-			 - not possible to override just one flag in derived scenes
-		-->
 		
 		<!-- Default is true. Used for disabling existing scene, e.g. _tag_scene_zero -->
 		<attr name="applyScene" format="boolean"/>
@@ -272,15 +294,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- StateAnim is pseudo-view-tag which defines animation attribures, orthogonal to Scene animated params, used for small temporary transforms -->
 	<declare-styleable name="StateAnimParams">
+		<!-- Target view id -->
 		<attr name="forId"/>
+		<!-- State animation id -->
 		<attr name="stateAnim" format="reference" />
+		<!-- State animation id, valid if stateAnim is defined -->
 		<attr name="stateAnim_2" format="reference" />
+		<!-- State animation id, valid if stateAnim_2 is defined -->
 		<attr name="stateAnim_3" format="reference" />
+		<!-- State animation id, valid if stateAnim_3 is defined -->
 		<attr name="stateAnim_4" format="reference" />
-		
+
+		<!-- Duration in ms -->		
 		<attr name="android:duration"/>
 		
+		<!-- Target alpha. NOTE: if view is also transitioned by SceneParams with alpha, SceneParams alpha make take priority in some cases -->
 		<attr name="android:alpha"/>
+		<!-- Sets both scaleX and scaleY to same value. Has priority over separate scaleX/Y values -->
+		<attr name="scale"/>
+		<!-- Other params, animating the standard Android view transform properties -->
 		<attr name="android:scaleX"/>
 		<attr name="android:scaleY"/>
 		<attr name="android:translationX"/>
@@ -290,7 +322,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:rotationY"/>
 	</declare-styleable>
 	
-
 	<!-- Used internally -->	
 	<declare-styleable name="ViewTag">
 		<attr name="android:id" />
@@ -317,7 +348,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:typeface" />
 	</declare-styleable>
 	
+	<!-- Simple view which applies disabledAlpha when disabled -->
 	<declare-styleable name="AlphaDisabledView">
+		<!-- Defines the disabled alpha value -->	
 		<attr name="android:disabledAlpha"/>
 	</declare-styleable>
 	
@@ -373,6 +406,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:maxLines"/>
 		<!-- NOTE: for compability reasons, singleLine=true just forces maxLines=1 (actual maxLines attribute is then ignored)-->
 		<attr name="android:singleLine"/>
+		<!-- Optional drawable -->
 		<attr name="android:drawable"/>
 		<!-- Padding before drawable when drawable is available. Can be negative. NOTE: paddingLeft is not applied to drawable (always applied to text)-->
 		<attr name="drawablePaddingStart" format="dimension"/>
@@ -413,12 +447,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  		<attr name="android:enabled"/>
  		<!-- NOTE: not actually processed by FastTextView, but FastTextView descendants - e.g. FastButton -->
 		<attr name="android:disabledAlpha"/>
-
+		
 		<attr name="android:text"/>	
 		<attr name="android:gravity"/>
 		<attr name="android:lineSpacingMultiplier"/>
 		<attr name="android:lineSpacingExtra"/>
-		
 	</declare-styleable>
 	
 	<!-- Used internally -->
@@ -429,18 +462,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:typeface" />
 		<attr name="android:fontFamily" />
 		<attr name="android:textAllCaps"/>
-		<!--	NOTE: these are not supported by FastTextView	 
-		<attr name="android:textColorHighlight" />
-		<attr name="android:textColorHint" />
-		<attr name="android:textColorLink" />
-		<attr name="android:textAllCaps"/>
-		<attr name="android:shadowColor"/>
-		<attr name="android:shadowDx"/>
-		<attr name="android:shadowDy"/>
-		<attr name="android:shadowRadius"/>
-		 -->	
 	</declare-styleable>
 	
+
 	<!-- Scene-overridable extra FastTextView params -->
 	<declare-styleable name="FastTextViewSceneParams">
 		<attr name="lineBackground"/>
@@ -453,7 +477,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:drawable"/>
 	</declare-styleable>
 	
-
+	
 	<!-- FastButton is derived from FastTextView -->
 	<declare-styleable name="FastButton">
 		<!-- Default=false. If false, ripple animation is cancelled, good for cases when button click causes immediate animation/scene transition, and animated
@@ -461,6 +485,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="animOnClick" format="boolean"/>
 		<attr name="disableClickHandler" format="boolean"/>
 	</declare-styleable>
+	
 	
 	<!-- com.maxmpz.widget.EditText extension -->
 	<declare-styleable name="EditText">
@@ -488,6 +513,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:checked"/>
 	</declare-styleable>
 	
+	
 	<!-- FastLayout (and variants, like SceneFastLayout) is strictly one-pass, one-measure per pass (thus, fast), supporting multiple
 		 layout paradigms within single layout, allowing major child layout manipulation with styles, without editing actual layout xmls
 		 
@@ -514,9 +540,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT) -->
 		<attr name="layout_widthPercent" format="fraction"/>
+		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT) -->
 		<attr name="layout_heightPercent" format="fraction"/>
 		
+		<!-- Defines max possible width for the child -->
 		<attr name="layout_maxWidth" format="dimension"/>
+		<!-- Defines max possible height for the child -->
 		<attr name="layout_maxHeight" format="dimension"/>
 		
 		<!-- If set, one view dimension will be matched against another, basically making view square. This works only if the source dimension has defined value, 
@@ -711,21 +740,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:layout_marginEnd"/>
 	</declare-styleable>
 	
-	<!-- Constant definitions for FastLayoutLP layout_matchDimension --> 
+	<!-- Constant definitions for FastLayoutLP layout_matchDimension. Can be used e.g. via resource specific @integer --> 
 	<integer name="layout_matchDimension_widthToHeight" tools:ignore="UnusedResources">0x100000</integer>
 	<integer name="layout_matchDimension_heightToWidth" tools:ignore="UnusedResources">0x200000</integer>
-		
 
 	<!-- Generic Scene extra attributes, usually applied to layouts starting with Scene* (e.g. SceneFastLayout) -->
 	<declare-styleable name="Scene">
-		<attr name="enableStateAnim" format="boolean"/><!-- Default false. If true, scene allows state anims -->
-		<attr name="clipChildrenForSceneAnim" format="boolean"/><!-- Default false -->
+		<!-- Default false. If true, scene allows scene-wide state anims, otherwise only specific per-view StateAnims are possible -->
+		<attr name="enableStateAnim" format="boolean"/>
+		<attr name="clipChildrenForSceneAnim" format="boolean"/><!-- Default false. NOTE: not used ATM -->
 		<!-- Default false. If private, child views are not processed by scenes, initiated outside of this view -->
 		<attr name="privateScene" format="boolean"/>
 	</declare-styleable>
 	
 	<!-- Extra scene parameters supported for FastLayout children -->
 	<declare-styleable name="SceneFastLayoutViewSceneParams">
+		<!-- If true, per view params will be applied for this scene -->
 		<attr name="applyViewParams"/>
 		<attr name="android:background"/>
 		<attr name="android:elevation"/>
@@ -739,28 +769,36 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Track drawable. Enter/exit animation is ignored. Instead, StateAnim is applied -->
 		<attr name="android:track"/>
 		
+		<!-- Like standard android transformPivotX/Y, but expressed as percent -->
 		<attr name="transformPivotX_percent" format="fraction"/>
 		<attr name="transformPivotY_percent" format="fraction"/>
 		
+		<!-- Background to use in az scrolling mode -->
 		<attr name="azBackground" format="reference|color"/>
+		<!-- Touched background to use in az scrolling mode -->
 		<attr name="azTouchedBackground" format="reference|color"/>
+		<!-- Text scale to use in az scrolling mode -->
 		<attr name="azTextScale" format="float"/>
 		<!-- If exists, scroll up small drawable will be drawn on top of az -->
 		<attr name="azScrollUp" format="reference"/>		
 				
+		<!-- The characters to use in az scrolling mode. Should be properly sorted -->
 		<attr name="azChars" format="string"/><!-- NOTE: also should be defined for main theme, as Pages take it from there -->
-				
-		<attr name="azPaddingLeft" format="dimension"/>
-		<attr name="azPaddingRight" format="dimension"/>
 		
-		<!-- NOTE: is azSize is used (valid not @null/@empty value, > 0), then azPaddingTop/azPaddingBottom are ignored, AZ centered --> 
-		<attr name="azPaddingTop" format="dimension"/>
+		<!-- Padding for az scrolling mode -->		
+		<attr name="azPaddingLeft" format="dimension"/>
+		<!-- Padding for az scrolling mode -->
+		<attr name="azPaddingRight" format="dimension"/>
+		<!-- Padding for az scrolling mode -->
+		<attr name="azPaddingTop" format="dimension"/><!-- NOTE: is azSize is used (valid not @null/@empty value, > 0), then azPaddingTop/azPaddingBottom are ignored, AZ centered -->
+		<!-- Padding for az scrolling mode -->
 		<attr name="azPaddingBottom" format="dimension"/>
 
+		<!-- Optional size (height) for az scrolling mode. Can be a percentage of available height or direct fixed size -->
 		<attr name="azSize" format="dimension|fraction"/>
 		
 		<!-- Also, android:text* attributes are supported -->
-		<!-- NOTE: font size is automatically selected depending on space available in cells -->
+		<!-- NOTE: font size is automatically selected depending on space available in the cells -->
 	</declare-styleable>
 	
 	<!-- Poping out character shown when user actively scrolls in az mode -->
@@ -773,6 +811,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="thumbModeOffsetX" format="dimension"/>
 	</declare-styleable>
 	
+	<!-- Used internally -->
 	<declare-styleable name="BgTransSceneParams">
 		<attr name="android:background"/>
 	</declare-styleable>
@@ -823,9 +862,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) 
-	     which is able to load specific layout for one or multiple scenes, and unload it later, if needed -->		
+	     which is able to load specific layout for one or multiple scenes, and unload it later, if needed.
+	     Similar to Android Stub view, but is not a view (not visible, doesn't participate in layout/rendering/etc.) -->		
 	<declare-styleable name="LoadableBehavior">
+		<!-- Defines this loadable behavior id. Used by code to find given behavior --> 
 		<attr name="android:id"/>
+		<!-- Target layout to inject -->
 		<attr name="android:layout"/>
 		<!-- Target scene id layout will load for. This is usually not needed and missing, as code decides when to load this behavior instead -->
 		<attr name="loadForScene" format="reference"/>
@@ -839,14 +881,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				 NOTE: position is recorded when behavior is first parsed, thus, subsequent changes to view hierarchy can move this insert point 
 			-->
 			<enum name="thisPosition" value="-2"/><!-- Sync with LoadableBehavior -->
+			<!-- Add to the end of parent view (default) -->
 			<enum name="end" value="-1"/>
+			<!-- Insert as first child in the parent view -->
 			<enum name="start" value="0"/>
 		</attr>
 		<!-- Default is "onSceneEnd". NOTE: LoadableBehaviors can be loaded/unloaded directly by code.
 			 unload="never" makes LoadableBehavior similar to StubView, but it's not a view and controlled by scenes (or code).
 		 -->
 		<attr name="unload">
+			<!-- Unloads when scene moves away from behavior defined loadForScene* sceneId -->
 			<enum name="onSceneEnd" value="0"/><!-- Sync with LoadableBehavior -->
+			<!-- Never automatically unloaded (but can be unloaded by code -->
 			<enum name="never" value="1"/><!-- Sync with LoadableBehavior -->
 		</attr>		
 	</declare-styleable>
@@ -1046,6 +1092,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- List item view - heading with small button --> 
 	<declare-styleable name="SeparatorItemView">
+		<!-- Extra padding (can be negative) to apply when this is the first item in list -->
 		<attr name="paddingTopWhenFirst" format="dimension"/>
 	</declare-styleable>
 	
@@ -1243,9 +1290,34 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="listItemSize" format="dimension"/>
 	</declare-styleable>
 		
+	<!-- Additional attributes for selection menu -->
 	<declare-styleable name="SelectionMenuBehavior">
 		<attr name="animTime"/><!-- In animation duration -->
 		<attr name="animExitTime"/><!-- Optional out animation duration (if not specified, animTime is used for both enter and exit) -->
-	</declare-styleable>		
-
+	</declare-styleable>
+	
+	<declare-styleable name="RatingBar">
+		<attr name="android:enabled"/>
+		<!-- The star drawble to use -->
+		<attr name="android:drawable"/>
+		<!-- The off version of star drawable -->
+		<attr name="drawableOff" format="reference"/>
+		<attr name="drawableWidth"/>
+		<attr name="drawableHeight"/>
+		<attr name="drawableTint"/>
+		<!-- The animated background -->
+		<attr name="lineBackground"/>
+		<!-- Can be left (default) / right. Defines horizontal position for stars within rating bar -->
+		<attr name="android:gravity"/>
+	</declare-styleable>
+	<declare-styleable name="RatingBarSceneParams">
+		<attr name="android:background"/>
+		<attr name="drawableTint"/>
+		<!-- NOTE: limited support for drawable transitions. For new drawable to appear, default scene should have some default drawable set
+			 Basically, that means we can transition between drawables, but we can't transition between no-drawable and drawable and vice-versa -->
+		<attr name="android:drawable"/>
+		<attr name="drawableOff"/>
+		<attr name="lineBackground"/>
+	</declare-styleable>
+	
 </resources>

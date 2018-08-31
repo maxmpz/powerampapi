@@ -19,7 +19,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- audioplayer UI specific attributes (i.e. for com.maxmpz.widget.player.* packages -->
+<!-- Poweramp UI specific attributes (i.e. for com.maxmpz.widget.player.* packages). See also attrs-theme.xml -->
 
 <resources>
 	<attr name="colorAABgColor" format="color"/><!-- NOTE: this is basically main background color for application, as Milk + AA blur is used as background -->
@@ -56,7 +56,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="AccentedText" format="reference"/>
 	<attr name="Hint" format="reference"/>
 	
-	<attr name="windowLightNavigationBar" format="boolean"/><!-- Just for Android 8.0 -->
+	<attr name="windowLightNavigationBar" format="boolean"/><!-- Just for Android 8.0, which supports light navigation bar, but doesn't have attribute for that -->
 	
 	<!-- Navbar icons -->
 	<attr name="nav_lists" format="reference"/>
@@ -72,20 +72,44 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="miniplayer_play_pause" format="reference"/>
 	<attr name="sleep_timer_32dp" format="reference"/><!-- sub aa -->
 
+	<!-- Small equalizer preset icons when assigned to output -->
 	<attr name="pre_speaker" format="reference"/>
 	<attr name="pre_wired" format="reference"/>
 	<attr name="pre_bt" format="reference"/>
 	<attr name="pre_song" format="reference"/>
 	<attr name="pre_usb" format="reference"/>
 	<attr name="pre_other" format="reference"/>
+	<attr name="pre_song" format="reference"/>
 	
 	<!-- CatImage item icon -->
 	<attr name="folder_cat_icon" format="reference"/>
 	
 	<!-- Points to array of drawables, array sorting order is important -->
 	<attr name="vis_icons_32dp" format="reference"/>
-	<attr name="repeat_icons_32dp" format="reference"/>
-	<attr name="shuffle_icons_32dp" format="reference"/>
+	
+	<attr name="repeat_none_32dp" format="reference"/>
+	<attr name="repeat_32dp" format="reference"/>
+	<attr name="repeat_advance_32dp" format="reference"/>
+	<attr name="repeat_song_32dp" format="reference"/>
+	
+	<attr name="shuffle_none_32dp"/>
+	<attr name="shuffle_all_32dp"/>
+	<attr name="shuffle_songs_32dp"/>
+	<attr name="shuffle_cats_32dp"/>
+	<attr name="shuffle_songs_and_cats_32dp"/>
+
+	<attr name="vis_none_32dp"/>
+	<attr name="vis_w_ui_32dp"/>
+	<attr name="vis_32dp"/>
+	
+	<attr name="vis_lock_24dp"/>
+	<attr name="vis_advance_24dp"/>
+	<attr name="vis_advance_by_time_24dp"/>
+	<attr name="vis_shuffle_24dp"/>
+	
+	
+
+	
 	<attr name="reverb_24dp" format="reference"/>
 	<attr name="vis_24dp" format="reference"/>
 	<attr name="waveseek_bar" format="reference"/>
@@ -121,16 +145,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="sort_source_24dp" format="reference"/>
 	<attr name="sort_rating_24dp" format="reference"/>
 	
-	<attr name="shuffle_24dp" format="reference"/>	
-	<attr name="shuffle_stroke_32dp" format="reference"/>
-	<attr name="shuffle_32dp" format="reference"/>
-	<attr name="shuffle_songs_32dp" format="reference"/>
-	<attr name="shuffle_cats_32dp" format="reference"/>
-	<attr name="shuffle_songs_and_cats_32dp" format="reference"/>
+	<attr name="shuffle_24dp" format="reference"/>
 	
 	<attr name="meta_next_12dp" format="reference"/>
 	<attr name="meta_songs_12dp" format="reference"/>
 
+	<!-- Small star drawables for list cat image (1-5 stars) --> 
+	<declare-styleable name="RatingStars_8dp">
+		<attr name="star_8dp" format="reference"/>
+		<attr name="star_2_8dp" format="reference"/>
+		<attr name="star_3_8dp" format="reference"/>
+		<attr name="star_4_8dp" format="reference"/>
+		<attr name="star_5_8dp" format="reference"/>
+	</declare-styleable>
+	
 	<attr name="control_elevation" format="dimension"/><!-- Controls elevation, e.g. for equ thumbs -->
 	<attr name="aa_elevation" format="dimension"/><!-- When on main screen -->
 	<attr name="list_aa_elevation" format="dimension"/><!-- When in list -->
@@ -223,6 +251,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Extra optional layout to include into TopContainer (e.g. counter, but can be anything skin wants) -->
 	<attr name="TopContainer_extraLayout" format="reference"/>
+	
+	<!-- Optional layout to include into ItemLikeUnlikeLayout, when item is AA scene (or going to AA scene) --> 
+	<attr name="ItemLikeUnlikeLayout_layout" format="reference"/>
 						
 			
 	<!-- Styles, applied to ListWidget internals (e.g. LayoutEngines/HeaderEngines/etc.) -->
@@ -589,12 +620,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="roundKnobStyle" format="reference"/>
 		
 	</declare-styleable>
-	
-	<declare-styleable name="Seek">
-		<attr name="minProgressDrawableWidth" format="dimension"/>
-		<attr name="minProgressDrawableOffset" format="dimension"/>
-		<attr name="allowShrinkWithAlpha" format="boolean"/>
-	</declare-styleable>
-		
-	
 </resources>

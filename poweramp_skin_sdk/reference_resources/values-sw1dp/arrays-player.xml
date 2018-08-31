@@ -20,7 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- TODO: ?attr for drawables -->
+	<!-- NOTE: using arrays to drawable attrs here to allow for future array changes w/o breaking skins -->
 	
 	<string-array name="vis_modes">
 		<item>@string/vis_none</item>
@@ -28,14 +28,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>@string/vis_full_screen</item>
 	</string-array>
 	<array name="vis_icons_32dp">
-		<item>@drawable/vis_stroke_32dp_tinted</item>
-		<item>@drawable/vis_w_ui_32dp_tinted</item>
-		<item>@drawable/vis_32dp_tinted</item>
-	</array>
-	<array name="vis_icons_32dp_alt">
-		<item>@drawable/vis_disabled_32dp_tinted</item>
-		<item>@drawable/vis_w_ui_32dp_tinted</item>
-		<item>@drawable/vis_32dp_tinted</item>
+		<item>?vis_none_32dp</item>
+		<item>?vis_w_ui_32dp</item>
+		<item>?vis_32dp</item>
 	</array>
 	<integer-array name="vis_modes_enum">
 		<item>@integer/VIS_NONE</item>
@@ -43,7 +38,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>@integer/VIS_FULL_SCREEN</item>
 	</integer-array>
 					
-	
 	
 	<!-- NOTE: indices should match PlayerAPI.REPEAT_* 
 	public static final int REPEAT_NONE = 0;
@@ -66,16 +60,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item></item>
 	</string-array>
 	<array name="repeat_icons_32dp">
-		<item>@drawable/repeat_stroke_32dp_tinted</item>
-		<item>@drawable/repeat_32dp_tinted</item>
-		<item>@drawable/repeat_advance_32dp_tinted</item>
-		<item>@drawable/repeat_song_32dp_tinted</item>
-	</array>
-	<array name="repeat_icons_32dp_alt">
-		<item>@drawable/repeat_none_32dp_tinted</item>
-		<item>@drawable/repeat_32dp_tinted</item>
-		<item>@drawable/repeat_advance_32dp_tinted</item>
-		<item>@drawable/repeat_song_32dp_tinted</item>
+		<item>?repeat_none_32dp</item>
+		<item>?repeat_32dp</item>
+		<item>?repeat_advance_32dp</item>
+		<item>?repeat_song_32dp</item>
 	</array>
 	<integer-array name="repeat_modes_enum">
 		<item>@integer/REPEAT_NONE</item>
@@ -115,18 +103,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</string-array>	
 	
 	<array name="shuffle_icons_32dp">
-		<item>@drawable/shuffle_stroke_32dp_tinted</item>
-		<item>@drawable/shuffle_all_32dp_tinted</item>
-		<item>@drawable/shuffle_songs_32dp_tinted</item>
-		<item>@drawable/shuffle_cats_32dp_tinted</item>
-		<item>@drawable/shuffle_songs_and_cats_32dp_tinted</item>
-	</array>
-	<array name="shuffle_icons_32dp_alt">
-		<item>@drawable/shuffle_none_32dp_tinted</item>
-		<item>@drawable/shuffle_all_32dp_tinted</item>
-		<item>@drawable/shuffle_songs_32dp_tinted</item>
-		<item>@drawable/shuffle_cats_32dp_tinted</item>
-		<item>@drawable/shuffle_songs_and_cats_32dp_tinted</item>
+		<item>?shuffle_none_32dp</item>
+		<item>?shuffle_all_32dp</item>
+		<item>?shuffle_songs_32dp</item>
+		<item>?shuffle_cats_32dp</item>
+		<item>?shuffle_songs_and_cats_32dp</item>
 	</array>
 		
 	<string-array name="milk_sort_modes"><!-- Sync with RestMilkPreset.SORT_* -->
@@ -151,9 +132,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>@string/shuffle_by_time</item>
 	</string-array>
 	<array name="milk_advance_icons_24dp">
-		<item>@drawable/vis_lock_24dp</item>
-		<item>@drawable/advance_24dp</item>
-		<item>@drawable/advance_by_time_24dp</item>
-		<item>@drawable/shuffle_24dp</item>
+		<item>?vis_lock_24dp</item>
+		<item>?vis_advance_24dp</item>
+		<item>?vis_advance_by_time_24dp</item>
+		<item>?vis_shuffle_24dp</item>
 	</array>
 </resources>

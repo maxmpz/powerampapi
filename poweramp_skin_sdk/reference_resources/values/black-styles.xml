@@ -128,9 +128,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="miniplayer_play_pause">@drawable/miniplayer_play_pause</item>
 		
-		<item name="vis_icons_32dp">@array/vis_icons_32dp_alt</item>
-		<item name="repeat_icons_32dp">@array/repeat_icons_32dp_alt</item>
-		<item name="shuffle_icons_32dp">@array/shuffle_icons_32dp_alt</item>
+		<item name="repeat_none_32dp">@drawable/repeat_none_32dp_tinted</item>
+		
+		<item name="shuffle_none_32dp">@drawable/shuffle_none_32dp_tinted</item>
+		
+		<item name="vis_none_32dp">@drawable/vis_disabled_32dp_tinted</item>
+				
 		<item name="sleep_timer_32dp">@drawable/sleep_timer_32dp_selector</item>
 		
 		<item name="EqMilkFrs_presetUri">internal://#fft2</item>

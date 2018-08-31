@@ -245,4 +245,28 @@
 		<item name="com.maxmpz.audioplayer:animMainExitTime">500</item>
 		<item name="android:clipChildren">true</item><!-- Force clipping to avoid selection menu going under android navigation bar -->
 	</style>
+
+
+	<!-- Divided waveseek option -->
+	<style name="SampleSkin_dividedWaveseek">
+		<!-- Override TopWaveseek -->
+		<item name="com.maxmpz.audioplayer:TopWaveseek">@style/SampleSkin_dividedWaveseek_TopWaveseek</item>
+	</style>
+	<style name="SampleSkin_dividedWaveseek_TopWaveseek" parent="com.maxmpz.audioplayer:TopWaveseek">
+		<item name="com.maxmpz.audioplayer:divisor">75%</item>
+		<!-- Redefine bottom bars with our own bitmap -->
+		<item name="com.maxmpz.audioplayer:barBitmap2">@drawable/bar_alpha</item>
+		<item name="com.maxmpz.audioplayer:elapsedBarBitmap2">@drawable/bar_alpha</item>
+	</style>
+
+
+	<!-- No AA blur option -->
+	<style name="SampleSkin_noAABlur">
+		<!-- We should override listMilkMode in TopListWidget style -->
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/SampleSkin_noAABlur_TopListWidget</item>
+	</style>
+	<style name="SampleSkin_noAABlur_TopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listMilkMode">none</item>
+	</style>
+
 </resources>

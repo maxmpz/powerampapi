@@ -498,4 +498,16 @@
 	<style name="AAA_TopMetaInfoLabel" parent="com.maxmpz.audioplayer:TopMetaInfoLabel">
 		<item name="com.maxmpz.audioplayer:layout_maxWidth">260dp</item>
 	</style>
+
+
+	<!-- No AA blur option.
+		 NOTE: noAABlur option for SampleSkinAAA requires another style as SampleSkinAAA overrides list styles -->
+	<style name="SampleSkinAAA_noAABlur">
+		<!-- We should override listMilkMode in TopListWidget style -->
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/SampleSkinAAA_noAABlur_TopListWidget</item>
+	</style>
+	<!-- We override own AAA_TopListWidget here, as we already changed this style and still need those changes for this option as well -->
+	<style name="SampleSkinAAA_noAABlur_TopListWidget" parent="@style/AAA_TopListWidget">
+		<item name="com.maxmpz.audioplayer:listMilkMode">none</item>
+	</style>
 </resources>

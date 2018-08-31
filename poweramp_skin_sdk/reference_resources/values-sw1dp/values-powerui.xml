@@ -106,6 +106,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_app_live_activities"/><!-- int. Number of created and not yet destroyed activities -->
 	<item type="id" name="state_app_active_activities"/><!-- int. Number of started activities in state between start and stop -->
 	
+	<item type="id" name="msg_app_active_activities_change"/><!-- bus_app, arg1 => num of active activities, arg2 => boolean STATE_TRUE if it's activity start, false otherwise -->
+	
 	
 	<!-- Called by list onProviderOrDataChanged() on data change -->
 	<item type="id" name="msg_list_data_loaded"/>
@@ -161,15 +163,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_alert_dialog"/><!-- To alert dialog -->
 	<item type="id" name="msg_alert_dialog"/><!-- From alert dialog -->
 
-	<item type="id" name="msg_activity_on_create"/><!-- bus_gui, bus_app -->
+	<item type="id" name="msg_activity_on_create"/><!-- bus_gui -->
 	<item type="id" name="msg_activity_on_content_changed"/><!-- bus_gui -->
 	<item type="id" name="msg_activity_on_new_intent"/><!-- bus_gui -->
-	<item type="id" name="msg_activity_on_start"/><!-- bus_gui, , bus_app -->
+	<item type="id" name="msg_activity_on_start"/><!-- bus_gui -->
 	<item type="id" name="msg_activity_on_resume"/><!-- bus_gui -->
 	<item type="id" name="msg_activity_on_pause"/><!-- bus_gui -->
-	<item type="id" name="msg_activity_on_stop"/><!-- bus_gui, , bus_app -->
-	<item type="id" name="msg_activity_on_destroy"/><!-- bus_gui, bus_app -->
-	<item type="id" name="msg_activity_on_save"/><!-- onSaveInstanceState, bus_gui, bus_app -->
+	<item type="id" name="msg_activity_on_stop"/><!-- bus_gui -->
+	<item type="id" name="msg_activity_on_destroy"/><!-- bus_gui -->
+	<item type="id" name="msg_activity_on_save"/><!-- onSaveInstanceState, bus_gui -->
+	
+	
 	
 	<!-- Other bus msgs -->
 	<item type="id" name="msg_version_info_changed"/>

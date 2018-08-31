@@ -11,6 +11,12 @@
 	<string name="skin_sample_description">This is a sample skin</string>
 	<string name="open_theme_settings">Open Theme Settings</string>
 
+	<string name="skin_divided_waveseek">Divided Waveseek</string>
+	<string name="skin_summary_divided_waveseek">Waveseek with the top and bottom parts separated</string>
+
+	<string name="skin_no_aa_blur">No Album Art Blur Background</string>
+	<string name="skin_summary_no_aa_blur">Just show default background color</string>
+
 	<string name="skin_static_seekbar">Static Seekbar</string>
 	<string name="skin_transparent_navbar">Transparent Navbars</string>
 	<string name="skin_summary_transparent_navbar">Both, Poweramp and Android navigation bars are transparent</string>

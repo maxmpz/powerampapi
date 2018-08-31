@@ -27,6 +27,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="Base_ActivityTheme_Default" parent="@style/Theme.AppCompat.Light">
 				
+		<item name="OptionRatingStars">@style/OptionRatingStars</item>
+		<item name="OptionRatingLikeUnlike">@style/OptionRatingLikeUnlike</item>
+		<item name="OptionCounter">@style/OptionCounter</item>
+		
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>			
 		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>		
 		<item name="DialogForcedStyle">@style/Default_BaseDialogForcedStyle</item>
@@ -148,14 +152,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="waveseek_bar">@drawable/bar</item>		
 		<item name="waveseek_elapsedbar">@drawable/elapsedbar</item>
 		
-		
-		<!-- Small preset icons when assigned to output: -->
-		<item name="pre_speaker">@drawable/pre_speaker</item><!-- to speaker -->
-		<item name="pre_wired">@drawable/pre_wired</item><!-- to wired headset -->
-		<item name="pre_bt">@drawable/pre_bt</item><!-- to bluetooth headset -->
-		<item name="pre_song">@drawable/pre_song</item><!-- to current song -->
-		<item name="pre_usb">@drawable/pre_usb</item><!-- to usb dac -->
-		<item name="pre_other">@drawable/pre_other</item><!-- to other (cast) -->
+		<!-- Small equalizer preset icons when assigned to output -->
+		<item name="pre_speaker">@drawable/pre_speaker</item>
+		<item name="pre_wired">@drawable/pre_wired</item>
+		<item name="pre_bt">@drawable/pre_bt</item>
+		<item name="pre_song">@drawable/pre_song</item>
+		<item name="pre_usb">@drawable/pre_usb</item>
+		<item name="pre_other">@drawable/pre_other</item>
 		
 		<item name="folder_cat_icon">@drawable/folder_16dp</item>
 		
@@ -235,11 +238,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="sort_rating_24dp">@drawable/sort_rating_24dp</item>
 		
 		<item name="shuffle_24dp">@drawable/shuffle_24dp</item>
-		<item name="shuffle_stroke_32dp">@drawable/shuffle_stroke_32dp</item>
-		<item name="shuffle_32dp">@drawable/shuffle_32dp</item>
-		<item name="shuffle_songs_32dp">@drawable/shuffle_songs_32dp</item>
-		<item name="shuffle_cats_32dp">@drawable/shuffle_cats_32dp</item>
-		<item name="shuffle_songs_and_cats_32dp">@drawable/shuffle_songs_and_cats_32dp</item>
+		
+		<item name="star_8dp">@drawable/star_8dp</item>
+		<item name="star_2_8dp">@drawable/star_2_8dp</item>
+		<item name="star_3_8dp">@drawable/star_3_8dp</item>
+		<item name="star_4_8dp">@drawable/star_4_8dp</item>
+		<item name="star_5_8dp">@drawable/star_5_8dp</item>
 		
 		<!-- Android autocomplete items -->
 		<item name="android:listPreferredItemHeight">44dp</item>
@@ -373,12 +377,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopTrackDuration">@style/TopTrackDurationMoreButtons</item>
 		<item name="TopTrackDuration_scene_playing">@style/TopTrackDurationMoreButtons_scene_playing</item>
 	</style>
-		
-	
-	<style name="ActivityTheme_Whitepro_Counter">
-		<!-- Additional layout which is otherwise missing -->
-		<item name="TopContainer_extraLayout">@layout/merge_top_extralayout</item>
-	</style>	
 		
 	
 	<style name="StartupActivity" parent="Base_ActivityTheme_Default">

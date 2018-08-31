@@ -20,10 +20,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<declare-styleable name="TopPoweruiStyles">
 
-		<!-- Styles -->		
-		
+	<!-- Styles used for items/top views/etc. Applied to main theme style (for default skins - via  TopPoweruiStyles in styles-powerui-styles.xml).
+		 For custom skins, just override appropriate attribute directly in top skin theme style or in option style -->	
+	<declare-styleable name="TopPoweruiStyles">
 		<attr name="ItemTrack" format="reference"/>
 		
 		<attr name="ItemTrackSelectBox" format="reference"/>
@@ -44,6 +44,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="ItemTrackCatImage" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_zoomed" format="reference"/>
+		<attr name="ItemTrackCatImage_scene_small" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_aa" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_aa_vis" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_aa_playing" format="reference"/>
@@ -248,6 +249,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemLikeUnlikeLayout_scene_item_menu" format="reference"/>
 		<attr name="ItemLikeUnlikeLayout_scene_item_menu_lu" format="reference"/>
 		<attr name="ItemLikeUnlikeLayout_scene_aa" format="reference"/>
+		
+		<attr name="ItemRatingBar" format="reference"/>
+		<attr name="ItemRatingBar_scene_aa" format="reference"/>
+		<attr name="ItemRatingBar_scene_item_menu_lu" format="reference"/>
+		<attr name="ItemRatingBar_anim_ratingbar_pressed" format="reference"/>
 		
 		<attr name="ItemLike" format="reference"/>
 		<attr name="ItemLike_scene_aa" format="reference"/>

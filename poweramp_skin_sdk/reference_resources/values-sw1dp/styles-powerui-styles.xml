@@ -27,13 +27,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="BasePoweruiStyles">
 		<!-- Drawables -->
 		<!-- NOTE: for non default themes, these can be overriden in separate theme xmls -->
-		<item name="vis_icons_32dp">@array/vis_icons_32dp</item>
-		<item name="repeat_icons_32dp">@array/repeat_icons_32dp</item>
-		<item name="shuffle_icons_32dp">@array/shuffle_icons_32dp</item>
+		
+		<item name="repeat_none_32dp">@drawable/repeat_stroke_32dp_tinted</item>
+		<item name="repeat_32dp">@drawable/repeat_32dp_tinted</item>
+		<item name="repeat_advance_32dp">@drawable/repeat_advance_32dp_tinted</item>
+		<item name="repeat_song_32dp">@drawable/repeat_song_32dp_tinted</item>
+		
+		<item name="shuffle_none_32dp">@drawable/shuffle_stroke_32dp_tinted</item>
+		<item name="shuffle_all_32dp">@drawable/shuffle_all_32dp_tinted</item>
+		<item name="shuffle_songs_32dp">@drawable/shuffle_songs_32dp_tinted</item>
+		<item name="shuffle_cats_32dp">@drawable/shuffle_cats_32dp_tinted</item>
+		<item name="shuffle_songs_and_cats_32dp">@drawable/shuffle_songs_and_cats_32dp_tinted</item>
+		
+		<item name="vis_lock_24dp">@drawable/vis_lock_24dp</item>
+		<item name="vis_advance_24dp">@drawable/advance_24dp</item>
+		<item name="vis_advance_by_time_24dp">@drawable/advance_by_time_24dp</item>
+		<item name="vis_shuffle_24dp">@drawable/shuffle_24dp</item>
+		
+		<item name="vis_none_32dp">@drawable/vis_stroke_32dp_tinted</item>
+		<item name="vis_w_ui_32dp">@drawable/vis_w_ui_32dp_tinted</item>
+		<item name="vis_32dp">@drawable/vis_32dp_tinted</item>
+				
 		
 		<item name="reverb_24dp">@drawable/reverb_24dp</item>
-		<item name="vis_24dp">@drawable/vis_stroke_32dp</item>
-		<!-- <item name="equ_24dp">@drawable/equ_stroke</item> -->
+		<item name="vis_24dp">@drawable/vis_stroke_32dp</item><!-- Vis panel list item icon -->
 		
 		<item name="sleep_timer_32dp">@drawable/sleep_timer_stroke_32dp_tinted</item>
 				
@@ -96,6 +113,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="ItemTrackCatImage">@style/ItemTrackCatImage</item>
 		<item name="ItemTrackCatImage_scene_zoomed">@style/ItemTrackCatImage_scene_zoomed</item>
+		<item name="ItemTrackCatImage_scene_small">@style/ItemTrackCatImage_scene_small</item>
 		<item name="ItemTrackCatImage_scene_header">@style/ItemTrackCatImage_hidden</item>
 		<item name="ItemTrackCatImage_scene_grid">@style/ItemTrackCatImage_scene_grid</item>
 		<item name="ItemTrackCatImage_scene_grid_zoomed">@style/ItemTrackCatImage_scene_grid_zoomed</item>
@@ -283,9 +301,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackAAPanel_scenes_hidden">@style/ItemTrackAAPanel_scenes_hidden</item>
 		
 		<item name="ItemLikeUnlikeLayout">@style/ItemLikeUnlikeLayout</item>
-		<item name="ItemLikeUnlikeLayout_scene_item_menu">@style/ItemLikeUnlikeLayout_scene_item_menu</item>
 		<item name="ItemLikeUnlikeLayout_scene_item_menu_lu">@style/ItemLikeUnlikeLayout_scene_item_menu_lu</item>
 		<item name="ItemLikeUnlikeLayout_scene_aa">@style/ItemLikeUnlikeLayout_scene_aa</item>
+		
+		<item name="ItemRatingBar">@style/ItemRatingBar</item>
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa</item>
+		<item name="ItemRatingBar_scene_item_menu_lu">@style/ItemRatingBar_scene_item_menu_lu</item>
+		<item name="ItemRatingBar_anim_ratingbar_pressed">@style/ItemRatingBar_anim_ratingbar_pressed</item>
 		
 		<item name="ItemLike">@style/ItemLike</item>
 		<item name="ItemLike_scene_aa">@style/ItemLike_scene_aa</item>

@@ -131,7 +131,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_small"
 		style="?ItemTrackCatImage_scene_zoomed" 
 	/>
-	<!-- cat_image -->
+	<SceneParams w:scene="@+id/scene_small"
+		style="?ItemTrackCatImage_scene_small" 
+	/>
+		<!-- cat_image -->
 	<SceneParams w:scene="@+id/scene_aa"
 		style="?ItemTrackCatImage_scene_aa"
 	/>
