@@ -304,6 +304,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Additional padding to apply to AA layout. Usuful e.g. for landscape or extra views inside AA "frame" -->
 		<attr name="aaPaddingBottom" format="dimension"/>
 		
+		<!-- Max Y rotation for AA item when swiped left/right. Default value is -10.0 -->
+		<attr name="aaMaxYRotation" format="float"/>
+		<!-- Max Z rotation for AA item when swiped left/right. Default value is 5.5 -->
+		<attr name="aaMaxZRotation" format="float"/>
+		<!-- Max scale to use for hidden (out of screen) items. Default value is 0.5 -->
+		<attr name="aaMaxScale" format="float"/>
+		<!-- Dense factor > 0.0f. Values < 1 will make AA items closer to each other. Default value is 0.75 -->
+		<attr name="aaDenseFactor" format="float"/>
+		
+		
 		<!-- Normal list item size. NOTE: grid layouts have automatic cell size, which depends on screen width and number of columns -->
 		<attr name="itemSize" format="dimension"/>
 		<!-- Small scene_small item size -->

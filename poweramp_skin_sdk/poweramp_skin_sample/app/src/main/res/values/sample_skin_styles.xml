@@ -56,6 +56,9 @@
 		<!-- Change Equalizer top bar style to make it fill whole width -->
 		<item name="com.maxmpz.audioplayer:TopActionModeBar">@style/TopActionModeBar</item>
 
+		<!-- Redefine AA swipe transform -->
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/TopListWidget</item>
+
 		<!-- As we changed corners for everything, let's add separate always rounded background for menu button -->
 		<item name="com.maxmpz.audioplayer:ItemTrackMenu">@style/ItemTrackMenu</item>
 
@@ -122,6 +125,16 @@
 		<item name="android:layout_marginRight">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:elevation">1dp</item>
+	</style>
+
+	<style name="TopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listSubstyle">@style/ListSubstyle</item>
+	</style>
+	<style name="ListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle">
+		<item name="com.maxmpz.audioplayer:aaMaxYRotation">-2</item><!-- Slightly rotate on Y axis -->
+		<item name="com.maxmpz.audioplayer:aaMaxZRotation">0</item><!-- Don't rotate on Z axis -->
+		<item name="com.maxmpz.audioplayer:aaMaxScale">1</item><!-- Don't scale items when out of view -->
+		<item name="com.maxmpz.audioplayer:aaDenseFactor">0.6</item><!-- Make items closer to each other -->
 	</style>
 
 	<style name="ItemTrackMenu" parent="com.maxmpz.audioplayer:ItemTrackMenu">
