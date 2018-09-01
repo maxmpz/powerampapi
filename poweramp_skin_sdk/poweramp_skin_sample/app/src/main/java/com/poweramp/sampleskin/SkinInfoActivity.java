@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class SkinInfoActivity extends Activity {
 
@@ -18,6 +19,8 @@ public class SkinInfoActivity extends Activity {
         intent.putExtra("theme_pak", getPackageName());
         intent.putExtra("theme_id", R.style.SampleSkin);
         startActivity(intent);
+        Toast.makeText(SkinInfoActivity.this,
+                "Skin has been successfully applied!", Toast.LENGTH_LONG).show();
         finish();
     }
 
