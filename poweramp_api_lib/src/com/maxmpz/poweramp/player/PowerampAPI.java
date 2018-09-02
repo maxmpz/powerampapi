@@ -190,6 +190,10 @@ public final class PowerampAPI {
 		content://com.maxmpz.audioplayer.data/recently_played
 		content://com.maxmpz.audioplayer.data/recently_played/#
 		
+		- Long
+		content://com.maxmpz.audioplayer.data/long
+		content://com.maxmpz.audioplayer.data/long/#
+
 		- Plain folders view (just files in plain folders list)
 		content://com.maxmpz.audioplayer.data/folders
 		content://com.maxmpz.audioplayer.data/folders/#
@@ -937,6 +941,7 @@ public final class PowerampAPI {
 		public static final int LOW_RATED = 50;
 		public static final int RECENTLY_ADDED = 53;
 		public static final int RECENTLY_PLAYED = 58;
+		public static final int LONG = 55;
 		public static final int PLAYLISTS = 100;
 		public static final int ALBUMS = 200;
 		public static final int GENRES_ID_ALBUMS = 210;
