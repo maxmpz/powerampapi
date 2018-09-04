@@ -86,6 +86,9 @@
 		<!-- Few more adjustments are needed for "back decors" as they should have same layout as title for proper animations -->
 		<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_1">@style/ItemTrackBackDecorTitle_scene_header_1</item>
+
+		<!-- Change volume panel slightly (optional panel, can be enabled in Poweramp Audio settings -->
+		<item name="com.maxmpz.audioplayer:VolumePanelFrame">@style/VolumePanelFrame</item>
 	</style>
 
 	<!-- We need to change layout in all "scenes" for the target view, in this case, Navbar -->
@@ -280,6 +283,10 @@
 	</style>
 	<style name="SampleSkin_noAABlur_TopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
 		<item name="com.maxmpz.audioplayer:listMilkMode">none</item>
+	</style>
+
+	<style name="VolumePanelFrame" parent="com.maxmpz.audioplayer:VolumePanelFrame">
+		<item name="android:background">@drawable/semi_black_bg</item><!-- Make it black -->
 	</style>
 
 </resources>
