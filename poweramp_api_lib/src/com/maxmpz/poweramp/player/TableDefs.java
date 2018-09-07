@@ -689,7 +689,16 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 
+		/**
+		 * Number of files without cue images
+		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
+		
+		/**
+		 * Number of files including cue images
+		 * Since 796
+		 */
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
 		
 		/**
 		 * Bitwise flag.
@@ -728,8 +737,8 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String SORT = TABLE + ".sort";
 
-		public static final @NonNull String CALC_PLAYED = "folder_files.played_at > queue.created_at";
-		public static final @NonNull String CALC_UNPLAYED = "folder_files.played_at <= queue.created_at";
+		public static final @NonNull String CALC_PLAYED = "folder_files.played_at >= queue.created_at"; // If played at is the same as queue entry time, consider it played already 
+		public static final @NonNull String CALC_UNPLAYED = "folder_files.played_at < queue.created_at";
 	}
 
 	public class ShuffleSessionIds {
