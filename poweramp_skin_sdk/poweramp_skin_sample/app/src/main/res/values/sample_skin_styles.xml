@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
-
 	<!-- Main theme, derived from Poweramp base white theme. We override only the attributes we need.
 	     Poweramp styles/attributes/values start with "com.maxmpz.audioplayer:", otherwise syntax is the standard Android xml resource syntax
 	 -->

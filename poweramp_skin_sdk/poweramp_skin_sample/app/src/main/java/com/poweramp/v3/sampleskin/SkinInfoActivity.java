@@ -1,4 +1,4 @@
-package com.poweramp.sampleskin;
+package com.poweramp.v3.sampleskin;
 
 import android.app.Activity;
 import android.content.Intent;
