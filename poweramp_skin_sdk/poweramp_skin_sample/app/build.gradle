@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.poweramp.sampleskin"
+        applicationId "com.poweramp.v3.sampleskin"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
