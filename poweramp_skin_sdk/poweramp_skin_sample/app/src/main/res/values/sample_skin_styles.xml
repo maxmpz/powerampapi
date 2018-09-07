@@ -88,6 +88,23 @@
 
 		<!-- Change volume panel slightly (optional panel, can be enabled in Poweramp Audio settings -->
 		<item name="com.maxmpz.audioplayer:VolumePanelFrame">@style/VolumePanelFrame</item>
+
+		<!-- Change Playing Mark from just background to overlay icon.
+		     By default, currently played track has background, but we may change that to a completely different thing, in this case - icon.
+		     All scenes should be overriden for that, though (as layout is changed in every scene)
+		-->
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark">@style/ItemTrackPlayingMark</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_small">@style/ItemTrackPlayingMark_scene_small</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_1">@style/ItemTrackPlayingMark_scene_1</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_zoomed">@style/ItemTrackPlayingMark_scene_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_1_zoomed">@style/ItemTrackPlayingMark_scene_1_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid">@style/ItemTrackPlayingMark_scene_grid</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1">@style/ItemTrackPlayingMark_scene_grid_1</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1_alt">@style/ItemTrackPlayingMark_scene_grid_1_alt</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_zoomed">@style/ItemTrackPlayingMark_scene_grid_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1_zoomed">@style/ItemTrackPlayingMark_scene_grid_1_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1_alt_zoomed">@style/ItemTrackPlayingMark_scene_grid_1_alt_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scenes_hidden">@style/ItemTrackPlayingMark_scenes_hidden</item>
 	</style>
 
 	<!-- We need to change layout in all "scenes" for the target view, in this case, Navbar -->
@@ -287,5 +304,58 @@
 	<style name="VolumePanelFrame" parent="com.maxmpz.audioplayer:VolumePanelFrame">
 		<item name="android:background">@drawable/semi_black_bg</item><!-- Make it black -->
 	</style>
+
+	<!-- Playing mark in normal list. Also a base style for other scenes -->
+	<style name="ItemTrackPlayingMark">
+		<item name="android:layout_width">32dp</item>
+		<item name="android:layout_height">32dp</item>
+		<item name="android:layout_gravity">right|center_vertical</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:visibility">visible</item>
+		<!-- Drawable should be set only for activated state -->
+		<item name="android:background">@drawable/playing_mark_selector</item>
+		<item name="android:translationZ">?attr/com.maxmpz.audioplayer:item_ontop_elevation</item>
+		<item name="android:outlineProvider">none</item><!-- Disable shadow -->
+	</style>
+	<!-- For list-compact (==scene_small) move mark to the left -->
+	<style name="ItemTrackPlayingMark_scene_small">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+		<item name="android:layout_width">24dp</item>
+		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="android:layout_marginLeft">20dp</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_1">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_zoomed">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_1_zoomed">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+		<item name="android:layout_width">24dp</item>
+		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_gravity">right|top</item>
+		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_marginTop">12dp</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_1" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_1_alt" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_zoomed" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_1_zoomed" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_1_alt_zoomed" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scenes_hidden">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+		<item name="android:visibility">invisible</item>
+	</style>
+
 
 </resources>
