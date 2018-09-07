@@ -3,13 +3,13 @@
 <merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	>
+>
 
 	<!-- Include standard Poweramp skin extra buttons -->
 	<include android:layout="@com.maxmpz.audioplayer:layout/merge_topwaveseeklayout_extralayout"/>
 
 	<!-- Add our plain seekbar -->
-	<com.maxmpz.widget.player.Seek
+	<com.maxmpz.widget.player.Seek android:id="@+id/seekbar"
 		style="@style/AAA_Seek"
 	/>
 

@@ -55,5 +55,13 @@
 			overlapStyle="@style/SampleSkinAAA_noAABlur"
 			checkedByDefault="false"
 		/>
+
+		<option
+			key="seekbar_and_waveseek"
+			name="@string/skin_seekbar_and_waveseek"
+			summary="@string/skin_summart_seekbar_and_waveseek"
+			overlapStyle="@style/SampleSkinAAA_seekbar_and_waveseek"
+			checkedByDefault="false"
+		/>
 	</skin>
 </skins>

@@ -11,6 +11,7 @@
 	<string name="skin_sample_description">This is a sample skin</string>
 	<string name="open_theme_settings">Open Theme Settings</string>
 
+
 	<string name="skin_divided_waveseek">Divided Waveseek</string>
 	<string name="skin_summary_divided_waveseek">Waveseek with the top and bottom parts separated</string>
 
@@ -23,4 +24,8 @@
 
 	<string name="skin_sample_aaa">Sample Skin Alternative Layout</string>
 	<string name="skin_sample_aaa_description">Plain seekbar, labels don\'t overlap image in main UI and grids</string>
+
+	<string name="skin_seekbar_and_waveseek">Static waveseek + seek bar</string>
+	<string name="skin_summart_seekbar_and_waveseek">Both seek widgets visible and operational</string>
+
 </resources>

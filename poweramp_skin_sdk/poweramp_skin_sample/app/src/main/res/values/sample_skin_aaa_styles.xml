@@ -129,8 +129,8 @@
 	</style>
 
 	<!-- Disable waveseek -->
+	<!-- Important to set enabled=>false to avoid all the rendering and waveseek processing for the hidden waveseek -->
 	<style name="AAA_TopWaveseek" parent="com.maxmpz.audioplayer:TopWaveseek">
-		<!-- Important to set enabled=>false to avoid all the rendering and waveseek processing for the hidden waveseek -->
 		<item name="android:enabled">false</item>
 		<item name="android:visibility">gone</item>
 		<item name="com.maxmpz.audioplayer:applyScene">false</item>
@@ -510,4 +510,27 @@
 	<style name="SampleSkinAAA_noAABlur_TopListWidget" parent="@style/AAA_TopListWidget">
 		<item name="com.maxmpz.audioplayer:listMilkMode">none</item>
 	</style>
+
+	<!-- Two bars - seekbar and waveseek, both operational -->
+	<style name="SampleSkinAAA_seekbar_and_waveseek">
+		<!-- Override waveseek again - now re-enable it -->
+		<item name="com.maxmpz.audioplayer:TopWaveseek">@style/AAA_TopWaveseek_seekbar_and_waveseek</item>
+
+		<!-- Also use narrower bars -->
+		<item name="com.maxmpz.audioplayer:waveseek_bar">@com.maxmpz.audioplayer:drawable/narrow_bar</item>
+		<item name="com.maxmpz.audioplayer:waveseek_elapsedbar">@com.maxmpz.audioplayer:drawable/narrow_elapsedbar</item>
+	</style>
+
+	<!-- NOTE: uses TopWaveseekStatic as parent style, which gives static waveseek style out of box -->
+	<style name="AAA_TopWaveseek_seekbar_and_waveseek" parent="com.maxmpz.audioplayer:TopWaveseekStatic">
+		<item name="com.maxmpz.audioplayer:layout_maxHeight">80dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<!-- NOTE: this is our seekbar with our @id, defined in merge_towaveseeklayout_aaa.xml. layout_gravityTarget makes waveseek to gravitate to seekbar -->
+		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@id/seekbar</item>
+
+		<!-- Adjust margins so our seekbar width matches waveseek -->
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+	</style>
+
 </resources>
