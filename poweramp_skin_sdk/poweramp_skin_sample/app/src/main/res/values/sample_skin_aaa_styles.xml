@@ -521,9 +521,13 @@
 		<item name="com.maxmpz.audioplayer:waveseek_elapsedbar">@com.maxmpz.audioplayer:drawable/narrow_elapsedbar</item>
 	</style>
 
-	<!-- NOTE: uses TopWaveseekStatic as parent style, which gives static waveseek style out of box -->
+	<!-- NOTE: uses TopWaveseekStatic as parent style, that gives static waveseek style out of box -->
 	<style name="AAA_TopWaveseek_seekbar_and_waveseek" parent="com.maxmpz.audioplayer:TopWaveseekStatic">
 		<item name="com.maxmpz.audioplayer:layout_maxHeight">80dp</item>
+		
+		<item name="com.maxmpz.audioplayer:divisor">50%</item>
+		<item name="com.maxmpz.audioplayer:divisorSize">9dp</item>
+
 		<item name="android:layout_gravity">center_vertical</item>
 		<!-- NOTE: this is our seekbar with our @id, defined in merge_towaveseeklayout_aaa.xml. layout_gravityTarget makes waveseek to gravitate to seekbar -->
 		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@id/seekbar</item>
