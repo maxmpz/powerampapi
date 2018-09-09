@@ -1,8 +1,8 @@
 # Poweramp v3 Skin Sample
 ============================================
 
-This is a sample skin source, which demonstrates two separate skins in one project.
-This can be directly used to build APK which can be installed on the device and recognized by
+This is a sample skin source that demonstrates two separate skins in one project.
+This project can be directly used to build APK which can be installed on the device and recognized by
 Poweramp v3.
 
 **NOTE: this sample skin is intended for demonstration purposes only. While you can build and publish this skin, the skin goal is Poweramp v3 skin features demonstration, which may look weird
@@ -27,8 +27,10 @@ opens Poweramp skin settings or directly start Poweramp with target skin applied
 * all the required skin drawables, extra layouts, dimens, and other resources
 
 ### How to start own skin (based on sample skin)
+
 Skin development is done directly from Android Studio (3.1.4 was used for these skins development).
 * clone this repository, rename appropriately and change **[values/strings.xml](app/src/main/res/values/strings.xml)** labels and **[xml/skins.xml](app/src/main/res/xml/skins.xml)** entries
+* change application package, preferable to something containing **".poweramp.v3.skins."** as this is the substring that will be used in Poweramp to search for skin APKs in Play
 * edit app/build.gradle, replace ../../../audioplayer/bin/audioplayer.apk with path to your Poweramp v3 APK (**build 795** and above)
 ```
 additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
