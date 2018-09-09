@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:id="@android:id/custom"
+>
+	<ScrollView
+		android:id="@+id/scrollview"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:scrollbarDefaultDelayBeforeFade="100000"
+		android:layout_above="@+id/buttons"
+		android:layout_alignParentTop="true"
+	>
+		<RelativeLayout
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:padding="16dp"
+		>
+			<ImageView
+				android:id="@+id/icon"
+				android:src="@mipmap/app_icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="2dp"
+				/>
+			<TextView
+				android:id="@+id/title"
+				android:layout_marginLeft="16dp"
+				android:layout_toRightOf="@+id/icon"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/installation_ok"
+				android:textSize="16sp"
+				android:layout_alignTop="@+id/icon"
+				android:layout_alignBottom="@+id/icon"
+				android:gravity="center_vertical"
+			/>
+		</RelativeLayout>
+	</ScrollView>
+
+	<LinearLayout android:id="@+id/buttons"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:orientation="vertical"
+	>
+		<Button
+			android:onClick="startWithVisPresets"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="10dp"
+			android:text="@string/start_with_presets"
+			android:textSize="16sp"
+			android:layout_marginLeft="8dp"
+			android:layout_marginRight="8dp"
+		/>
+
+		<Button
+			android:onClick="openPowerampVisSettings"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/open_vis_settings"
+			android:layout_marginLeft="8dp"
+			android:layout_marginRight="8dp"
+			android:layout_marginBottom="8dp"
+		/>
+	</LinearLayout>
+</RelativeLayout>

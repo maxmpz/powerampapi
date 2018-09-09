@@ -1,0 +1,54 @@
+[preset00]
+fGammaAdj=1.0
+bWaveThick=1
+bModWaveAlphaByVolume = 1
+fModWaveAlphaEnd = 1.0
+fWarpAnimSpeed = 1.0
+fWarpScale = 1.0
+fZoomExponent = 0.9
+fDecay=0.980000
+
+zoom=1.009006
+cx=0.500000
+cy=0.500000
+dx=0.000000
+
+
+sx = 1.0
+sy = 1.0
+wave_r = 1.0
+wave_g = 1.0
+wave_b = 1.0
+wave_x = 0.5
+wave_y = 0.5
+
+# Select bars mode
+# none = 0 
+# FftLongBars1 = 1
+# FftQuadBars2 = 2
+# FftLongBarsCenter3 = 3
+# FftQuadBarsCenter4 = 4
+# FftTopBars5 = 5
+# FftLongBarsReflected6 = 6
+# FftQuadBarsReflected7 = 7
+bars_mode = 6
+
+bars_rot=90 # Bars Rotation
+
+bars_thr = 0.5
+bars_thr_color_t = 0xFFFF0000
+bars_thr_color_b = 0xFFFF0000
+bars_thr_color_l = 0x00000000
+bars_thr_color_r = 0xFF050709
+bars_color_t = 0xFF98c8ff
+bars_color_b = 0xFF050709
+bars_color_r = 0x00000000
+bars_color_l = 0x00000000
+bars_sx = 1.0
+bars_sy = 1.0
+bars_num_x = 256
+bars_num_y = 24
+bars_smooth = 0.85
+bars_sensitivity = 0.5
+bars_spacing_y = 0.3
+bars_spacing_x = 0.0

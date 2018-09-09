@@ -1,0 +1,8 @@
+<resources>
+	<string name="app_name">Poweramp v3 Vis Preset Example</string>
+
+	<string name="installation_ok">Successfully installed</string>
+
+	<string name="start_with_presets">Start Poweramp\nwith this Presets</string>
+	<string name="open_vis_settings">Open Vis Settings</string>
+</resources>

@@ -553,6 +553,8 @@ public final class PowerampAPI {
 	
 	
 	public static final String ACTIVITY_SETTINGS = "com.maxmpz.audioplayer.preference.SettingsActivity";
+
+	
 	public static final String ACTIVITY_STARTUP = "com.maxmpz.audioplayer.StartupActivity";
 	
 	/**
@@ -1113,11 +1115,29 @@ public final class PowerampAPI {
 	 */
 	public static final String ACTION_NATIVE_PLUGIN_INIT = "com.maxmpz.audioplayer.NATIVE_PLUGIN_INIT";
 	
+	/**
+	 * Extra for ACTIVITY_SETTINGS
+	 * String
+	 * @see ACTIVITY_SETTINGS
+	 */
+	public static final String EXTRA_OPEN = "open";
+	
+	/**
+	 * Value for EXTRA_OPEN - opens skins list
+	 * @see ACTIVITY_SETTINGS
+	 */
+	public static final String OPEN_THEME = "theme";
 
 	/**
-	 * Extra for ACTIVITY_STARTUP.
+	 * Value for EXTRA_OPEN - opens vis presets list
+	 * @see ACTIVITY_SETTINGS
+	 */
+	public static final String OPEN_VIS = "vis";
+
+	/**
+	 * Extra for ACTIVITY_STARTUP and ACTIVITY_SETTINGS
 	 * If this is specified with EXTRA_SKIN_STYLE_ID, Poweramp will attempt to change skin as commanded, but on any failure, default skin is activated
-	 * Can be also specified for com.maxmpz.audioplayer.SettingsActivity and open/theme extras top scroll to given skin in skins list
+	 * Can be also specified for com.maxmpz.audioplayer.SettingsActivity (with EXTRA_OPEN=theme) to scroll to that skin in skins list
 
 	 * String - Skin APK package name 
 	 */
@@ -1129,5 +1149,14 @@ public final class PowerampAPI {
 	 * Integer - theme resource id
 	 */
 	public static final String EXTRA_SKIN_STYLE_ID = "theme_id";
-	
+
+	/**
+	 * Extra for ACTIVITY_STARTUP and ACTIVITY_SETTINGS
+	 * If this is specified, Poweramp will attempt to enable and scan vis presets in this package.
+	 * Can be also specified for com.maxmpz.audioplayer.SettingsActivity (with EXTRA_OPEN=vis) to scroll to that apk in presets list 
+
+	 * String - vis presets APK package name 
+	 */
+	public static final String EXTRA_VIS_PRESETS_PAK = "vis_presets_pak";
+
 }
