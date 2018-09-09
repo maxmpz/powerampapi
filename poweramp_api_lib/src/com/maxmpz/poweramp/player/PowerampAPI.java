@@ -112,6 +112,9 @@ public final class PowerampAPI {
 		 * - keepService - boolean - (optional) if true, Poweramp won't unload player service. Notification will be appropriately updated.
 		 */
 		public static final int PAUSE = 2;
+		/**
+		 * - shuffle - int - (optional) if set, shuffle mode to set (even if Poweramp is already playing) 
+		 */
 		public static final int RESUME = 3;
 		/**
 		 * NOTE: subject to 200ms throttling.
@@ -1158,5 +1161,13 @@ public final class PowerampAPI {
 	 * String - vis presets APK package name 
 	 */
 	public static final String EXTRA_VIS_PRESETS_PAK = "vis_presets_pak";
+	
+	/**
+	 * Extra for ACTION_API_COMMAND and RESUME command.
+	 * Int
+	 * @see Shuffle
+	 */
+	public static final String EXTRA_SHUFFLE = "shuffle";
+	
 
 }
