@@ -10,7 +10,7 @@
 			android:insetRight="1dp"
 		>
 			<solid android:color="?android:attr/colorControlNormal" />
-			<size android:width="16dp" android:height="16dp" />
+			<size android:width="@dimen/AAA_Seek_thumb_size" android:height="@dimen/AAA_Seek_thumb_size" />
 		</shape>
 	</item>
 	<item>
@@ -22,7 +22,7 @@
 			android:insetRight="3dp"
 		>
 			<solid android:color="?android:attr/colorControlNormal" />
-			<size android:width="16dp" android:height="16dp" />
+			<size android:width="@dimen/AAA_Seek_thumb_size" android:height="@dimen/AAA_Seek_thumb_size" />
 		</shape>
 	</item>
 </selector>

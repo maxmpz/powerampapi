@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<dimen name="AAA_Seek_thumb_size">5dp</dimen>
+	<dimen name="AAA_Seek_paddingTopBottom">13.5dp</dimen>
+
+</resources>

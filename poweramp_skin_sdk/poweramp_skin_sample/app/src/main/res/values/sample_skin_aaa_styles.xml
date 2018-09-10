@@ -138,9 +138,12 @@
 
 
 	<!-- Style for our injected seekbar (see layout/merge_topwaveseeklayout_aaa.xml) -->
+	<!-- NOTE: seekbar is slightly broken on Androids up to 6.0, so for 5.0/5.1 we override drawable dimens in values-v21 -->
 	<style name="AAA_Seek" parent="@android:style/Widget.Material.SeekBar">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/AAA_Seek_height</item>
+		<item name="android:paddingTop">@dimen/AAA_Seek_paddingTopBottom</item>
+		<item name="android:paddingBottom">@dimen/AAA_Seek_paddingTopBottom</item>
 		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
 		<item name="android:layout_marginBottom">@dimen/AAA_Seek_marginBottom</item>
 		<!-- Customize drawables slightly -->
