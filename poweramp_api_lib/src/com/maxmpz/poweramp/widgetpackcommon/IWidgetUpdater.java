@@ -20,9 +20,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.widgetpackcommon;
 
+import org.eclipse.jdt.annotation.NonNull;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 public interface IWidgetUpdater {
-	public WidgetUpdateData pushUpdate(Context context, SharedPreferences prefs, int[] ids, boolean mediaRemoved, WidgetUpdateData data);
+	public WidgetUpdateData pushUpdate(Context context, @NonNull SharedPreferences prefs, int[] ids, boolean mediaRemoved, @NonNull WidgetUpdateData data);
 }

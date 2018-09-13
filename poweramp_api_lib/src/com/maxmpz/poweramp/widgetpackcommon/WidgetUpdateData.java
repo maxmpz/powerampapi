@@ -47,7 +47,7 @@ public class WidgetUpdateData {
 	public int shuffle = PowerampAPI.ShuffleMode.SHUFFLE_NONE;
 	public int repeat = PowerampAPI.RepeatMode.REPEAT_NONE;
 	
-	public boolean albumArtNoAnim; // Used by widget configurator.
+	public boolean albumArtNoAnim; // Used by widget configurator
 	
 	@Override
 	public String toString() {

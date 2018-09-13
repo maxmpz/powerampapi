@@ -52,12 +52,13 @@ public class PowerampAPIHelper {
 				// Calculate subsample and load subsampled image
 				opts.inJustDecodeBounds = false;
 				if(subsampleWidth > 0 && subsampleHeight > 0) {
-					opts.inSampleSize = calcSubsample(1024, 1024, opts.outWidth, opts.outHeight); // Subsamples images up to 2047x2047, should be safe, though this is up to 16mb per bitmap
+					opts.inSampleSize = calcSubsample(subsampleWidth, subsampleHeight, opts.outWidth, opts.outHeight); // Subsamples images up to 2047x2047, should be safe, though this is up to 16mb per bitmap
 				}
 	
 				Bitmap b = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
 				
 				if(LOG) Log.e(TAG, "getAlbumArt aaUri=" + aaUri + " b=" + b);
+				if(LOG && b != null) Log.e(TAG, "getAlbumArt w=" + b.getWidth() + " h=" + b.getHeight());
 				
 				return b;
 				
@@ -65,7 +66,6 @@ public class PowerampAPIHelper {
 
 		} catch(FileNotFoundException ex) {
 			// OK
-
 			if(LOG) Log.e(TAG, "getAlbumArt aaUri=" + aaUri, ex);
 
 		} catch(Throwable th) {
