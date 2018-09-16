@@ -68,6 +68,7 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_CAP_NEEDS_VOLUME_PROVIDER    = 0x0800;
 	public static final int PA_OUTPUT_CAP_CUSTOM_MASTER_VOLUME     = 0x1000;
 	public static final int PA_OUTPUT_CAP_NO_DUCK                  = 0x2000;
+	public static final int PA_OUTPUT_TRACK_PLAYBACK               = 0x4000;
 	
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only
