@@ -133,7 +133,7 @@ public abstract class WidgetUpdater {
 	}
 
 	public void updateDirectSafe(@NonNull WidgetUpdateData data, boolean ignorePowerState) {
-		if(LOG) Log.w(TAG, "updateDirectSafe data=" + data + " th=" + Thread.currentThread(), new Exception()); // + " extras=" + intent == null ? null : Arrays.toString(intent.getExtras().keySet().toArray(new String[]{})));
+		if(LOG) Log.w(TAG, "updateDirectSafe data=" + data + " th=" + Thread.currentThread()); // + " extras=" + intent == null ? null : Arrays.toString(intent.getExtras().keySet().toArray(new String[]{})));
 		
 		synchronized(mLock) {
 			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){ 
@@ -188,7 +188,12 @@ public abstract class WidgetUpdater {
 		WidgetUpdateData data = new WidgetUpdateData();
 		
 		if(ALWAYS_USE_PERSISTANT_DATA) {
+			// Still check for actual playing status, as persistent data is stored per track change, thus never reflects playing state
+			// Do it before loadDefaultOrPersistantUpdateData
+			getPlayingState(context, data, mediaRemoved);
+
 			loadDefaultOrPersistantUpdateData(context, data);
+			
 			return data;
 		}
 
@@ -236,6 +241,19 @@ public abstract class WidgetUpdater {
 //			}
 //		}
 
+		getPlayingState(context, data, mediaRemoved);
+		
+		Intent modeIntent = context.registerReceiver(null, WidgetUpdater.sModeFilter);
+		if(modeIntent != null) {
+			data.shuffle = modeIntent.getIntExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE);
+			data.repeat = modeIntent.getIntExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE);
+			if(LOG) Log.w(TAG, "repeat=" + data.repeat + " shuffle=" + data.shuffle);
+		}
+		return data;
+	}
+
+	@SuppressWarnings("static-method")
+	private void getPlayingState(Context context, @NonNull WidgetUpdateData data, boolean mediaRemoved) {
 		if(mediaRemoved) {
 			data.playing = false;
 			if(LOG)  Log.w(TAG, "generateUpdateData mediaRemoved");
@@ -251,13 +269,5 @@ public abstract class WidgetUpdater {
 				if(LOG) Log.w(TAG, "generateUpdateData statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing);				
 			} else if(LOG)  Log.e(TAG, "generateUpdateData statusIntent==null");
 		}
-
-		Intent modeIntent = context.registerReceiver(null, WidgetUpdater.sModeFilter);
-		if(modeIntent != null) {
-			data.shuffle = modeIntent.getIntExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE);
-			data.repeat = modeIntent.getIntExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE);
-			if(LOG) Log.w(TAG, "repeat=" + data.repeat + " shuffle=" + data.shuffle);
-		}
-		return data;
 	}
 }

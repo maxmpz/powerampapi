@@ -27,6 +27,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -86,7 +87,6 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	public abstract @NonNull RemoteViews update(Context context, @NonNull WidgetUpdateData data, @NonNull SharedPreferences prefs, int id);
 
 	
-
 	// NOTE: called by system
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -107,6 +107,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 			Log.e(TAG, "", th);
 		}
 	}
+	
 	
 
 	// THREADING: any
