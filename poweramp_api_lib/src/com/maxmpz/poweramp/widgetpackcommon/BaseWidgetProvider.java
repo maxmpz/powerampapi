@@ -27,7 +27,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -65,8 +64,10 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 		public static final int REPEAT_CAT = 3;
 	}
 
-	protected static final int MIN_WIDTH = 100;
-	protected static final int MIN_HEIGHT = 100;
+	/**
+	 * Min. AA image size to show (otherwise logo shown)
+	 */
+	protected static final int MIN_SIZE = 32;
 	
 	/**
 	 * Creates and caches widgetupdater suitable for updating this provider. Called when provider is called by system or by widget configure. Implmentation should be thread safe
