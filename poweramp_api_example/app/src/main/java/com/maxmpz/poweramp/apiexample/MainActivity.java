@@ -29,11 +29,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.ParcelFileDescriptor;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -66,8 +64,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -287,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements
 		public void onReceive(Context context, Intent intent) {
 			mStatusIntent = intent;
 			
-			debugDumpStatusIntent(mStatusIntent);
+			debugDumpIntent(TAG, "mStatusReceiver", intent);
 			
 			updateStatusUI();
 		}
@@ -297,8 +294,8 @@ public class MainActivity extends AppCompatActivity implements
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			mPlayingModeIntent = intent;
-			
-			debugDumpPlayingModeIntent(intent);
+
+			debugDumpIntent(TAG, "mPlayingModeReceiver", intent);
 			
 			updatePlayingModeUI();
 		}
@@ -487,28 +484,6 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 
-
-	void debugDumpStatusIntent(Intent intent) {
-		if(intent != null) {
-			int status = intent.getIntExtra(PowerampAPI.STATUS, -1);
-			boolean paused = intent.getBooleanExtra(PowerampAPI.PAUSED, false);
-			boolean failed = intent.getBooleanExtra(PowerampAPI.FAILED, false);
-			Log.w(TAG, "statusIntent status=" + status + " paused=" + paused + " failed=" + failed);
-		} else {
-			Log.e(TAG, "statusIntent: intent is null");
-		}
-	}
-
-	void debugDumpPlayingModeIntent(Intent intent) {
-		if(intent != null) {
-			int shuffle = intent.getIntExtra(PowerampAPI.SHUFFLE, -1);
-			int repeat = intent.getIntExtra(PowerampAPI.REPEAT, -1);
-			Log.w(TAG, "debugDumpPlayingModeIntent shuffle=" + shuffle + " repeat=" + repeat);
-		} else {
-			Log.e(TAG, "debugDumpPlayingModeIntent: intent is null");
-		}
-	}
-	
 	// Process button press. Demonstrates sending various commands to Poweramp.
 	@Override
 	public void onClick(View v) {
@@ -1027,5 +1002,37 @@ public class MainActivity extends AppCompatActivity implements
 			sb.append('0');
 		}
 		sb.append(seconds);
+	}
+
+	public static void debugDumpIntent(@NonNull String tag, @NonNull String description, @Nullable Intent intent) {
+		if(intent != null) {
+			Log.w(tag, description + " debugDumpIntent action=" + intent.getAction() + " extras=" + dumpBundle(intent.getExtras()));
+			Bundle track = intent.getBundleExtra(PowerampAPI.TRACK);
+			if(track != null) {
+				Log.w(tag, "track=" + dumpBundle(track));
+			}
+		} else {
+			Log.e(tag, description + " debugDumpIntent intent is null");
+		}
+	}
+
+	@SuppressWarnings("null")
+	public static @NonNull String dumpBundle(@Nullable Bundle bundle) {
+		if(bundle == null) {
+			return "null bundle";
+		}
+		StringBuilder sb = new StringBuilder();
+		Set<String> keys = bundle.keySet();
+		sb.append("\n");
+		for(String key : keys) {
+			sb.append('\t').append(key).append("=");
+			Object val = bundle.get(key);
+			sb.append(val);
+			if(val != null) {
+				sb.append(" ").append(val.getClass().getSimpleName());
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }

@@ -7,7 +7,7 @@
 	
 	<uses-sdk
 		android:minSdkVersion="21"
-		android:targetSdkVersion="26" />
+		android:targetSdkVersion="28" />
 		
 	<application
 		android:icon="@mipmap/app_icon"
@@ -37,6 +37,14 @@
 		<activity
 			android:name=".FilesActivity"
 			android:label="Files" />
+
+		<receiver android:label="PowerampAPIReceiver" android:name=".PowerampAPIReceiver">
+			<intent-filter>
+				<action android:name="com.maxmpz.audioplayer.STATUS_CHANGED_EXPLICIT"/>
+				<action android:name="com.maxmpz.audioplayer.TRACK_CHANGED_EXPLICIT"/>
+			</intent-filter>
+		</receiver>
+
 			
 	</application>
 </manifest>
