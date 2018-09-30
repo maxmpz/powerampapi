@@ -309,6 +309,13 @@ public interface TableDefs {
 		public static final @NonNull String PATH = "path"; 
 
 		/**
+		 * This is the same as path for usual folders, but for cue virtual folders, this is path + name.
+		 * Used for proper folders/subfolders sorting.
+		 * String.
+		 */
+		public static final @NonNull String SORT_PATH = "sort_path";
+		
+		/**
 		 * Folder album art/thumb image (short name).
 		 * String.
 		 */
