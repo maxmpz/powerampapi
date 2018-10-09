@@ -22,7 +22,7 @@ android {
 
     }
     aaptOptions {
-        additionalParameters "--shared-lib", "-I", "../../../audioplayer/bin/audioplayer.apk"
+        additionalParameters "--package-id", "0x80", "-I", "../../../audioplayer/bin/audioplayer.apk"
     }
 
     useLibrary 'android.test.runner'

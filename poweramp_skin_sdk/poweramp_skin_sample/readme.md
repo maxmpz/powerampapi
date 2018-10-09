@@ -28,7 +28,7 @@ opens Poweramp skin settings or directly start Poweramp with target skin applied
 
 ### How to start own skin (based on sample skin)
 
-Skin development is done directly from Android Studio (3.1.4 was used for these skins development).
+Skin development is done directly from Android Studio (3.2 was used for these skins development).
 * clone this repository, rename appropriately and change **[values/strings.xml](app/src/main/res/values/strings.xml)** labels and **[xml/skins.xml](app/src/main/res/xml/skins.xml)** entries
 * change application package, preferable to something containing **".poweramp.v3.skins."** as this is the substring that will be used in Poweramp to search for skin APKs in Play
 * edit app/build.gradle, replace ../../../audioplayer/bin/audioplayer.apk with path to your Poweramp v3 APK (**build 795** and above)
