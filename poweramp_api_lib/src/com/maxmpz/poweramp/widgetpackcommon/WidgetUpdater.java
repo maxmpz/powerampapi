@@ -132,23 +132,26 @@ public abstract class WidgetUpdater {
 		}
 	}
 
-	public void updateDirectSafe(@NonNull WidgetUpdateData data, boolean ignorePowerState) {
-		if(LOG) Log.w(TAG, "updateDirectSafe data=" + data + " th=" + Thread.currentThread()); // + " extras=" + intent == null ? null : Arrays.toString(intent.getExtras().keySet().toArray(new String[]{})));
-		
+	/**
+	 * @param data
+	 * @param ignorePowerState
+	 * @return true if update happened, false if power state doesn't allow update now
+	 */
+	public boolean updateDirectSafe(@NonNull WidgetUpdateData data, boolean ignorePowerState) {
 		synchronized(mLock) {
 			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){ 
-				if(LOG) Log.e(TAG, "skipping update, screen is off");
-				return;
+				if(LOG) Log.e(TAG, "updateDirectSafe skipping update, screen is off");
+				return false;
 			}
 			
-			int[] ids = null;
-	
-			if(LOG) Log.w(TAG, "========== updateDirectSafe UPDATE => " + data);
-			
-			pushUpdateCore(data, ids);
+			if(LOG) Log.w(TAG, "updateDirectSafe data=" + data + " th=" + Thread.currentThread()); // + " extras=" + intent == null ? null : Arrays.toString(intent.getExtras().keySet().toArray(new String[]{})));
+
+			pushUpdateCore(data, null);
 		}
 		
 		if(LOG) Log.w(TAG, "update done ");
+		
+		return true;
 	}
 
 	// NOTE: specifically not synchronized as Context.getSharedPreferences() is thread safe and synchronized, so if we get contested here, we just get same preferences
