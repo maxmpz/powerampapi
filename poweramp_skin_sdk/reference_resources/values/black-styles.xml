@@ -56,7 +56,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorIconPrimaryForced">#fff</item>
 		<item name="colorIconInverse">#fff</item>
 		<item name="colorIconInverseForced">#fff</item>
-		<item name="colorIconDisabled">#8ccc</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
+		<item name="colorIconDisabled">#7eee</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
 		
 		<item name="colorBgPrimary">#222</item>
 		<item name="colorBgPrimaryAlpha">#4333</item>
@@ -65,10 +65,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#222</item>
 		<item name="colorStroke">#aaa</item>
-		<item name="colorLessContrast">#ccc</item>
+		<item name="colorLessContrast">#eee</item>
+		
+		<item name="colorStrokeHelp">#555</item>
 		
 		<item name="colorShade">#88000000</item>
 		<item name="colorBgLight">#0f0f0f</item><!-- Used ATM for Search Frame bg -->
+		<item name="colorItemPlayingMark">#282828</item>
 		
 		<item name="colorAABgColor">#000</item>
 		
@@ -129,14 +132,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="miniplayer_play_pause">@drawable/miniplayer_play_pause</item>
 		
 		<item name="repeat_none_32dp">@drawable/repeat_none_32dp_tinted</item>
+		<item name="vis_none_32dp">@drawable/vis_disabled_32dp_tinted</item>
+		<item name="sleep_timer_32dp">@drawable/sleep_timer_32dp_selector</item>
+		<item name="EqMilkFrs_presetUri">internal://#fft2</item>
 		
 		<item name="shuffle_none_32dp">@drawable/shuffle_none_32dp_tinted</item>
-		
-		<item name="vis_none_32dp">@drawable/vis_disabled_32dp_tinted</item>
-				
-		<item name="sleep_timer_32dp">@drawable/sleep_timer_32dp_selector</item>
-		
-		<item name="EqMilkFrs_presetUri">internal://#fft2</item>
 	</style>
 
 		

@@ -46,10 +46,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopPlay_state_seeking"
 	/>
 			
+	<!-- arg1="0" - rewind -->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/rw"
 		style="?TopRw"
 		w:busId="@id/bus_player_cmd"
 		w:msgId="@id/cmd_player_play_prev_track"
+		w:longPressMsgId="@id/cmd_player_seek_step"
+		w:arg1="0"
+		w:repeatLongPressPeriod="250"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 		style="?TopRw_scene_playing"
@@ -57,11 +61,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
-		
+	
+	<!-- arg1="1" - forward -->	
 	<com.maxmpz.widget.BusActionButton android:id="@+id/ff"
 		style="?TopFf"
 		w:busId="@id/bus_player_cmd"
 		w:msgId="@id/cmd_player_play_next_track"
+		w:longPressMsgId="@id/cmd_player_seek_step"
+		w:arg1="1"
+		w:repeatLongPressPeriod="250"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 		style="?TopFf_scene_playing"

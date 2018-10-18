@@ -91,7 +91,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="listMilkMode" format="integer">
 			<flag name="none" value="0"/><!-- No any AA images are applied to background -->
 			<flag name="mainAA" value="1"/><!-- Default. AA from main screen is applied to background --> 
-			<flag name="listHeader" value="2"/><!-- AA from list headers is applied . Doesn't work ATM. REVISIT: doesn't work due to the header image not created due to the header delayed creation -->
+			<flag name="listHeader" value="2"/><!-- AA from list headers is applied -->
 		</attr>
 		
 		<!-- Milk (visualization) AA widget id --> 
@@ -571,12 +571,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="horizontal" value="0x0400"/><!-- NOTE: should match FastLayoutParams.FLAG_FLEX_* -->
 			<enum name="vertical" value="0x0800"/>
 		</attr>
+		
 		<!-- 
 			NOTE: FastLayout uses weightSum=num of flexWeight children
 			Basically this means, layout_flexWeight=1 children always expands uniformely.
 			Also, if no layout_flexWeight attribute is specified for a view, it's never stretched/shrinked, just stays as layout_width/height commands. 
 		--> 
 		<attr name="layout_flexWeight" format="float"/>
+		
+		<!-- If true, this and all next flex views are layed out bottom-top in xml order -->
+		<attr name="layout_flexReverse" format="boolean"/>
 		
 		<!-- layout_attach* attribute can attach view to:
 			 - any other child view, including flex layout child.
@@ -875,6 +879,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="loadForScene_3" format="reference"/>
 		<attr name="loadForScene_4" format="reference"/>
 		<attr name="loadForScene_5" format="reference"/>
+		<attr name="loadForScene_6" format="reference"/>
+		<attr name="loadForScene_7" format="reference"/>
 		<!-- Optional insert position. Default is end (views appended to parent, fastest) -->
 		<attr name="insertAt" format="integer">
 			<!-- Insert at position of behavior. 
@@ -904,6 +910,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="busId" format="reference"/><!-- E.g. @id/list (== bus supporting view id) or @id/bus_gui -->
 		<attr name="msgId" format="reference"/><!-- E.g. @id/cmd_list_select_all -->
 		<attr name="longPressMsgId" format="reference"/><!-- E.g. @id/cmd_list_select_all -->
+		
+		<attr name="repeatLongPressPeriod" format="integer"/><!-- If non zero, repeated events sent each repeatLongPressPeriod ms -->
 		
 		<attr name="arg1" format="reference|integer|boolean|float|fraction|dimension|color"><!-- Optional argument #1 -->
 			<enum name="checkedState" value="-1"/><!-- If parent view is Chechable, then arg will have checked state (1==checked)) -->
@@ -1052,7 +1060,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- State bus to listen/query to -->
 		<attr name="stateBusId"/>
 		<!-- Msg id to listen to -->
-		<attr name="updateMsgId"/>
+		<attr name="updateMsgId" format="reference"/>
 		<!-- Msg id to listen to -->
 		<attr name="updateMsgId_2" format="reference"/>
 		<!-- Msg id to listen to -->
@@ -1129,7 +1137,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Temporary UI (on touch, when vis is enabled) duration -->
 		<attr name="tempUITime" format="integer"/>
 		
-		<!-- AA background hide anim duration during navigation 
+		<!-- 
+			 AA background hide anim duration during navigation 
 			 NOTE: this duration works for main => eq navigation. 
 			 Main => lib and main => search navigation are different, as navigation is withing the list itself.
 			 List has own animation durations
@@ -1148,8 +1157,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 		<attr name="aaBlurUpdateAnimTime" format="integer"/>
 		
-		<!-- Standard time to set bitmap blur when going to AA -->
-		<attr name="aaBlurEnterAnimTime" format="integer"/>
+		<!-- Anim time to use if AA blur loaded with the delay -->
+		<attr name="aaBlurLongerUpdateAnimTime" format="integer"/>
 		
 	</declare-styleable>
 	
@@ -1203,7 +1212,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     completely from current parent while in popup mode. Alternatively use private scene layout, or set this to false and not rely on this view layout --> 
 		<attr name="disableParentLayoutForPopup"/>
 		
-		<attr name="toastOnPress"/>
+		<attr name="toastOnPress" format="reference"/>
 	</declare-styleable>
 	
 	
@@ -1285,7 +1294,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Visualization panel layout -->	
 	<declare-styleable name="VisPanelFrame">
 		<!-- Size of normal item -->
-		<attr name="itemSize"/>
+		<attr name="itemSize" format="dimension"/>
 		<!-- Size of list item -->
 		<attr name="listItemSize" format="dimension"/>
 	</declare-styleable>

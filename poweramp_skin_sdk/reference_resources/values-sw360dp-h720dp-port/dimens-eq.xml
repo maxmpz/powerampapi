@@ -23,9 +23,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="eq_frs_height">54dp</dimen>
 	<dimen name="EqToneRoundKnob_size">112dp</dimen>
-	<dimen name="MediumRoundKnob_size">130dp</dimen>
+	<dimen name="MediumRoundKnob_size">110dp</dimen>
 	<dimen name="BigRoundKnob_size">150dp</dimen>
 	<dimen name="EqToneKnobs_marginTop">16dp</dimen>
 	<dimen name="EqReverbParam5KnobLayout_margin">24dp</dimen>	
-	<dimen name="SmallRoundKnob_size">108dip</dimen>
+	<dimen name="SmallRoundKnob_size">100dip</dimen>
+	
+	<dimen name="EqButton_layout_maxWidth">100dp</dimen>
+	<dimen name="EqButton_marginSide">8dp</dimen>
+	<dimen name="EqRoundKnobLabel_maxWidth">100dp</dimen>
+	
+	<dimen name="EqEquPresetButtonLayout_layout_width">120dp</dimen>
+		
 </resources>

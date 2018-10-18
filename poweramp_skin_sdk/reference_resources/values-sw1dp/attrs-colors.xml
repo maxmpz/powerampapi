@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<attr name="colorAABgColor" format="color"/><!-- NOTE: this is basically main background color for application, as Milk + AA blur is used as background -->
+	
+	<attr name="colorFrsSelectionBg" format="color"/>
+	<attr name="colorFrsSelectionBgPressed" format="color"/>
+	<attr name="colorFrsSelectionBgRipple" format="color"/>
+	<attr name="colorEqKnobsLines1" format="color"/>
+	<attr name="colorEqKnobsLines2" format="color"/>
+	<attr name="colorFrs" format="color"/>
+	<attr name="colorFrsTone" format="color"/>
+	<attr name="colorFrsToneFill" format="color"/>
+	<attr name="colorFrsBackline" format="color"/>
+	
+	<attr name="colorKnobHoleDisabled" format="color"/>
+	<attr name="colorKnobHolePressed" format="color"/>
+	<attr name="colorKnobHole" format="color"/>
+	
+	<attr name="colorKnobRipple" format="color"/>
+	<attr name="colorKnob" format="color"/>
+	<attr name="colorKnobIndicator" format="color"/>
+	<attr name="colorKnobIndicatorPressed" format="color"/>
+	<attr name="colorKnobIndicatorDisabled" format="color"/>
+	<attr name="colorKnobPressed" format="color"/>
+	<attr name="colorKnobBg" format="color"/>
+	<attr name="colorKnobDisabled" format="color"/>
+	<attr name="colorPreampBg" format="color"/>
+	
+	<attr name="colorTrackMeta" format="color"/>
+</resources>

@@ -19,11 +19,9 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- NOTE: same as values-sw360dp-h600dp but for landscape. Needed as we differentiate dimens by available screen height, and this differes for land vs non-land.
-	  Basically Android smallest width (sw) is directed for phones vs tables, but currently we have 18:9+ aspect ratios which require different dimensions -->
 <resources>
-	<dimen name="EqToneRoundKnob_size">88dp</dimen>
-	<dimen name="MediumRoundKnob_size">80dp</dimen>
+	<dimen name="EqToneRoundKnob_size">64dp</dimen>
+	<dimen name="MediumRoundKnob_size">64dp</dimen>
 	<dimen name="BigRoundKnob_size">96dp</dimen>
 	<dimen name="SmallRoundKnob_size">70dip</dimen>
 	
@@ -39,4 +37,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_layout_width">64dp</dimen>
 	<dimen name="EqButton_layout_height">32dp</dimen>
 	<dimen name="EqButton_textSize">12dp</dimen>
+	
+	<dimen name="EqButton_layout_maxWidth">100dp</dimen>
+	<dimen name="EqButton_marginSide">8dp</dimen>
+	
+	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
 </resources>

@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		- then dialog style, which inherits some *Dialog (e.g. BottomsheetDialog) is applied without overriding exisiting app theme values
 		  (meaning, only values which are missing from app theme are applied. App theme attributes take priority)
 		- then ?DialogForcedStyle (==BaseDialogForcedStyle) style is applied with overriding. This applies few styles
-		  which should be overriden in app theme, like window title, background, etc.
+		  which always should be overriden for dialog theme, like window title, background, position, etc.
 	-->
 	
 		
@@ -123,6 +123,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogButtonsBarPaddingLR">16dp</item>
 		<item name="dialogButtonsBarPaddingTB">4dp</item>
 		
+		<item name="dialogCheckBig">@drawable/check_big</item>
+		
 		<item name="dialogPaddingTop">18dp</item><!-- 24dp NOTE: optically the same as padding left/right due to optical extra padding on text view -->
 		<item name="dialogContentPaddingLR">24dp</item><!-- 30dp -->
 		<item name="dialogContentPaddingTop">12dp</item><!-- 12dp -->
@@ -136,6 +138,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogNegativeButtonStyle">@style/DialogNegativeButtonStyle</item>
 		<item name="DialogNeutralButtonStyle">@style/DialogNeutralButtonStyle</item>
 		<item name="DialogButtonSpace">@style/DialogButtonSpace</item>
+		<item name="DialogMenuPlaceholderLayout">@style/DialogMenuPlaceholderLayout</item>
 	</style>
 	
 	<style name="BottomsheetDialog" parent="BaseDialog">
@@ -184,25 +187,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="BottomsheetDialogFrame" parent="BaseDialogFrame">
+		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachTop">100%</item>
-		<item name="layout_maxHeight">400dp</item> 
+		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
+		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
 	</style>
 	<style name="BottomsheetDialogFrameStyle_scene_dialog_in">
+		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_maxHeight">400dp</item>
+		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
+		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
 		<item name="layout_attachBottom">parent</item>
 	</style>
 	
 	<style name="TopsheetDialogFrame" parent="BaseDialogFrame">
+		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachBottom">0%</item>
-		<item name="layout_maxHeight">400dp</item>
-		<item name="android:layout_marginBottom">24dp</item><!-- Compensate for status bar slightly --> 
+		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
+		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
+		<item name="android:layout_marginBottom">24dp</item><!-- Compensate for status bar slightly -->
 	</style>
 	<style name="TopsheetDialogFrameStyle_scene_dialog_in">
+		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_maxHeight">400dp</item>
+		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
+		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
 		<item name="layout_attachTop">parent</item>
 	</style>
 	
@@ -211,7 +222,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxWidth">380dp</item>
-		<item name="layout_maxHeight">500dp</item>
+		<item name="layout_maxHeight">@dimen/CenterDialogFrame_maxHeight</item>
 		<item name="android:visibility">invisible</item>
 		<item name="android:scaleX">0.975</item>
 		<item name="android:scaleY">0.975</item>
@@ -223,7 +234,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:visibility">visible</item>
 		<item name="layout_maxWidth">380dp</item>
-		<item name="layout_maxHeight">500dp</item>
+		<item name="layout_maxHeight">@dimen/CenterDialogFrame_maxHeight</item>
 		<item name="scale">1.0</item>
 	</style>
 	
@@ -345,8 +356,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="CenteredDialogContent" parent="DialogContent">
 		<item name="android:layout_width">wrap_content</item>
-   	</style>
-   	
+	</style>
+
 	<style name="DialogContentNoPadding" parent="DialogContent">
 		<!-- <item name="android:paddingTop">0dp</item> -->
 		<item name="android:paddingLeft">0dp</item>
@@ -380,18 +391,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="animOnClick">true</item>
 	</style>
 	
-	<style name="DialogPositiveButtonStyle" parent="DialogButtonStyle">
+	<style name="DialogNeutralButtonStyle" parent="DialogButtonStyle">
 		<item name="layout_flexAxis">horizontal</item>
-		<!-- <item name="layout_flexWeight">1</item> -->
-		<item name="layout_maxWidth">250dp</item>
+		<item name="layout_flexReverse">true</item><!-- NOTE: forces right-to-left dialog buttons measure, thus positive button gets more real estate -->
 	</style>
 	<style name="DialogNegativeButtonStyle" parent="DialogButtonStyle">
 		<item name="layout_flexAxis">horizontal</item>
 		<!-- <item name="layout_flexWeight">1</item> -->
    	</style>
-	<style name="DialogNeutralButtonStyle" parent="DialogButtonStyle">
+	<style name="DialogPositiveButtonStyle" parent="DialogButtonStyle">
 		<item name="layout_flexAxis">horizontal</item>
 		<!-- <item name="layout_flexWeight">1</item> -->
+		<item name="layout_maxWidth">250dp</item>
+		<!-- <item name="android:maxLines">1</item> -->
 	</style>
 	
 	<style name="DialogButtonSpace">
@@ -428,5 +440,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dragByNestedScroll">false</item>
 	</style>
 	
-			
+	<style name="DialogMenuPlaceholderLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:translationZ">?modal_translationZ</item>
+		<item name="android:outlineProvider">none</item>
+		<item name="shadeColor">?colorShade</item>
+	</style>
+				
 </resources>

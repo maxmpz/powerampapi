@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="AccentedText" parent="Text">
-		<item name="android:textColor">?colorAccent</item>
+		<item name="android:textColor">?android:colorAccent</item>
 	</style>
 	
 	<style name="Hint">

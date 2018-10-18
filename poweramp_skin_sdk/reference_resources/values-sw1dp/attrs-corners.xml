@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<attr name="corners_popup" format="dimension"/><!-- alpha_popup_button_layout_activated_bg, alpha_popup_button_layout_bg, item_bg -->
+	<attr name="corners_navbar" format="dimension"/><!--  navbar_bg, navbar_ext_bg -->
+	<attr name="corners_searchbar" format="dimension"/><!-- searchbar_bg -->
+	<attr name="corners_medium" format="dimension"/><!-- Various backgrounds, usually containing "medium" suffix. Includes item_bg, default_dialog_bg_less_rounded -->
+	<attr name="corners_large" format="dimension"/><!-- Various backgrounds, usually containing "large" suffix -->
+	<attr name="corners_small" format="dimension"/><!-- Various backgrounds, usually containing "small" suffix -->
+	<attr name="corners_medium_plus" format="dimension"/><!-- toast_bg, scroll_popup_bg -->
+	<attr name="corners_mini" format="dimension"/><!-- frs_selection_selector  -->
+	<attr name="corners_knob_thumb" format="dimension"/>
+</resources>

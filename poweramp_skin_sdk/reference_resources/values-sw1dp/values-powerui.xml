@@ -45,6 +45,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="behavior_dialog"/><!-- Top level dialog behavior -->
 	<item type="id" name="behavior_back_button"/><!-- Top level back button behavior -->
+	<item type="id" name="behavior_menu" />
 		
 	<!-- REVISIT: move to better place - player related ids needed for styles - otherwise appt can crash -->
 	
@@ -128,12 +129,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_nav_allowed"/><!-- boolean, also a msg. Msg is sent only when state_list_nav_allowed state becomes true -->
 	<item type="id" name="state_list_view_cache"/><!-- obj=>ViewCache -->
 	<item type="id" name="state_list_current_uri"/><!-- (main list) obj=>Uri which describes current loaded list state -->
+	<item type="id" name="state_list_current_pos"/>
 	<!-- <item type="id" name="state_list_aa_cursor"/> --><!-- obj=>BaseCursorQueryArgs -->
 
-	<item type="id" name="state_list_transition_ratio"/><!-- float, also a msg. Msg arg1=float ratio -->
+	<!-- float, also a msg. Msg arg1=float ratio -->
+	<item type="id" name="state_list_transition_ratio"/>
+	
 	<!-- int. -1/NO_ID = no trans, 0 = to main scene, to scene_list, also a msg -->
 	<!-- For msg, -1/NO_ID = end of transition, other values => start of transition -->
-	<item type="id" name="state_list_transition"/><!-- int=type. Also a msg. Msg arg1=type, arg2=ListWidgetBase.FLAG_TRANS_TYPE_* -->
+	<!-- int=type. Also a msg. Msg arg1=type, arg2=ListWidgetBase.FLAG_TRANS_TYPE_* -->
+	<item type="id" name="state_list_transition"/>
+	
+	<!-- Sets gui to modal mode: used for popups and other modal-like use cases -->
+	<item type="id" name="cmd_gui_set_modal"/><!-- bus_gui -->
+	<item type="id" name="cmd_gui_unset_modal"/><!-- bus_gui -->
+	<item type="id" name="cmd_gui_reset_modal"/><!-- bus_gui, no anim by default, optional boolean arg = anim (PopupMenuHelper only) -->
 	
 	<item type="id" name="cmd_list_select_all"/>
 	<item type="id" name="cmd_list_select_none"/>

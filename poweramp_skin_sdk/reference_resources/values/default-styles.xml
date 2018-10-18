@@ -94,9 +94,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#000</item>
 		<item name="colorStroke">#555</item>
-		<item name="colorLessContrast">#333</item><!-- Used for e.g. for main screen tinted icons, nav icons, some text -->
+		<item name="colorStrokeHelp">#333</item>
+		<item name="colorLessContrast">#333</item><!-- Used for e.g. for main screen tinted icons, some text -->
 		<item name="colorShade">#88000000</item>
 		<item name="colorBgLight">#f0f0f0</item><!-- Used ATM for Search Frame bg -->
+		<item name="colorItemPlayingMark">#eee</item>
 		
 		<item name="colorIconPrimary">@null</item><!-- By default, our icon drawables are black, thus, no extra tinting -->
 		<item name="colorIconPrimaryForced">#000</item>
@@ -165,7 +167,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- List type icons. Shown in Library and as Playing Now icon -->
 		<item name="all_songs">@drawable/all_songs_colored</item>
 		<item name="folders">@drawable/folders_colored</item>
-		<item name="folders_hier">@drawable/folders_colored</item><!-- TODO -->
+		<item name="folders_hier">@drawable/folders_hier_colored</item><!-- TODO -->
 		<item name="albums">@drawable/albums_colored</item>
 		<item name="albums_by_artist">@drawable/albums_colored</item><!-- REVISIT -->
 		<item name="artists">@drawable/artists_colored</item>
@@ -179,6 +181,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="most_played">@drawable/most_played_colored</item>
 		<item name="recently_played">@drawable/recently_played_colored</item>
 		<item name="recently_added">@drawable/recently_added_colored</item>
+		<item name="long_files">@drawable/long_files_colored</item>
 		
 		<item name="micro_all_songs">@drawable/song_12dp</item>
 		<!-- TODO: 12p sizes -->
@@ -197,13 +200,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="micro_most_played">@drawable/most_played_12dp</item>
 		<item name="micro_recently_played">@drawable/recently_played_12dp</item>
 		<item name="micro_recently_added">@drawable/recently_added_12dp</item>
+		<item name="micro_long_files">@drawable/long_files_12dp</item>
 		
 		<item name="meta_next_12dp">@drawable/next_12dp</item>
 		<item name="meta_songs_12dp">@drawable/song_12dp</item><!-- Small song icon used for item_track meta -->
 		<item name="settings_v">@drawable/settings_v_colored</item><!-- NOTE: used in some dialogs -->
 		
-		<item name="toast_excl">@drawable/exclamation_48dp</item><!-- Toast exlcamation sign -->
-		<item name="toast_queue">@drawable/toast_queue</item>
+		<item name="toast_excl">@drawable/toast_exclamation_tinted</item><!-- Toast exlcamation sign -->
+		<item name="toast_queue">@drawable/toast_queue_tinted</item>
 		<item name="button_selector">?android:attr/selectableItemBackgroundBorderless</item><!-- Background used for buttons -->
 		<item name="ar_down_selector">@drawable/ar_down</item><!-- Arrow down image used for combobox inputs, e.g. like in Edit Tags dialog/Genre -->
 		
@@ -220,6 +224,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="resort">@drawable/sort_24dp</item>
 		<item name="delete_dups">@drawable/del_dups</item>
 		<item name="clear_q">@drawable/clear_q</item>
+		<item name="clear">@drawable/clear_24dp</item>
 		
 		<item name="clear_q_24dp">@drawable/clear_q_stroke_24dp</item>
 		<item name="artists_24dp">@drawable/artists_stroke_24dp</item>
@@ -230,6 +235,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="assign_eq_24dp">@drawable/assign_eq_24dp</item>
 		<item name="playlist_24dp">@drawable/playlist_24dp</item>
 		<item name="play_24dp">@drawable/play_24dp</item>
+		
+		<item name="changelog_24dp">@drawable/zap</item>
+		<item name="settings_24dp">@drawable/settings_24dp</item>
+		<item name="support_24dp">@drawable/support</item>
 		
 		<item name="sort_type_24dp">@drawable/sort_type_24dp</item>
 		<item name="sort_24dp">@drawable/sort_24dp</item>
@@ -263,6 +272,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="grid_aa_elevation">4dp</item>
 		<item name="list_aa_elevation">2dp</item>
 		<item name="over_aa_elevation">4dp</item>
+		<item name="item_ontop_elevation">4.5dp</item><!-- This should be always on top of everything in item -->
 		
 		<item name="popup_elevation">8dp</item>
 		<item name="navbar_elevation">1.25dp</item>

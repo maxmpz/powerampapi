@@ -29,10 +29,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorBgInverse" format="color"/><!-- Inverse background color, e.g. black for Light theme -->
 	<attr name="colorBgInverseChecked" format="color"/><!-- Inverse checked background color, e.g. EQ checkable buttons -->
 	<attr name="colorStroke" format="color"/><!-- Color for button stroke -->
+	<attr name="colorStrokeHelp" format="color"/><!-- Color for less visible stroke, e.g. for help hints -->
 	<attr name="colorLessContrast" format="color"/><!-- Tint/foreground color for a bit less contrast icons/buttons -->
 	<attr name="colorShade" format="color"/><!-- Shade colors for popup menus -->
 	<attr name="colorSeparator" format="color"/><!-- E.g. menu separator -->
 	<attr name="colorBgLight" format="color"/><!-- Non-contrast bg. Used ATM for Search Frame bg -->
+	<attr name="colorItemPlayingMark" format="color"/><!-- Current playing item mark bg -->
 	
 	<attr name="colorIconPrimary" format="color"/><!-- Usually same as colorPrimary, but for black/#000 it should be #0000 to avoid tinting at all -->
 	<attr name="colorIconPrimaryForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+	
+	<!-- NOTE: header can transition to/from scenes:
+		   => 0/defaultScene
+		   => scene_1
+		   => scene_zoomed
+		   => scene_1_zoomed
+		   => scene_grid
+		   => scene_grid_1
+		   => scene_grid_1_alt
+		   => scene_1_zoomed
+		   => scene_grid_zoomed
+		   => scene_grid_1_zoomed
+		   => scene_grid_1_alt_zoomed
+		   => scene_item_menu
+		   => scene_item_menu_lu (* generally not, as this is used only for AA main screen items)
+		   => scene_header
+		   => scene_search_header
+		   => scene_top_header
+		   -  can't be transitioned from scene_aa
+		To avoid animation jumps, all those scenes should be defined
+		
+		NOTE: buttons are invisible in their default style/default scene (e.g. for style ItemHeaderShuffleButton),
+		visible in *_scene_header, ang again invisible in *_scene_menu, but optionally positioned differently in *_scene_menu
+		(attached below line2, instead of bottom of view) for better animation to/from layouts with large item size, like scene_item_menu
+	-->
+	
+	<!-- NOTE: this view is never visible in default themes, but can be used in 3rd party skins -->
+	<com.maxmpz.widget.AlphaDisabledView android:id="@+id/buttons_bg"
+		style="?ItemHeaderButtonsBg"
+	>
+		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
+	</com.maxmpz.widget.AlphaDisabledView>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_top_header" w:scene_5="@+id/scene_small"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
+									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" 
+		android:visibility="gone"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"  w:scene_3="@+id/scene_search_header"
+		style="?ItemHeaderButtonsBg_scene_header"
+	/>
+		
+	<com.maxmpz.widget.BusActionButton android:id="@+id/shuffle_button" 
+		style="?ItemHeaderShuffleButton"
+		w:busId="@id/list"
+		w:msgId="@id/cmd_list_shuffle"
+	>
+		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
+	</com.maxmpz.widget.BusActionButton>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_top_header" w:scene_5="@+id/scene_small"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
+									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" 
+		style="?ItemHeaderShuffleButton_scene_menu"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"  w:scene_3="@+id/scene_search_header"
+		style="?ItemHeaderShuffleButton_scene_header"
+	/>
+	
+	<com.maxmpz.widget.BusActionButton android:id="@+id/play_button"
+		style="?ItemHeaderPlayButton"
+		w:busId="@id/list"
+		w:msgId="@id/cmd_list_play"
+	>
+		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
+	</com.maxmpz.widget.BusActionButton>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_top_header" w:scene_5="@+id/scene_small"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
+									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+		style="?ItemHeaderPlayButton_scene_menu"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"  w:scene_3="@+id/scene_search_header"
+		style="?ItemHeaderPlayButton_scene_header"
+	/>
+	
+	
+	<!-- NOTE: invisible by default -->
+	<com.maxmpz.widget.BusActionButton android:id="@+id/select_button"
+		style="?ItemHeaderSelectButton"
+		android:text="@string/select"
+		w:busId="@id/list"
+		w:msgId="@id/cmd_list_toggle_selection_mode"
+	>
+		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
+	</com.maxmpz.widget.BusActionButton>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_top_header" w:scene_5="@+id/scene_small"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
+									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+		style="?ItemHeaderSelectButton_scene_menu"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"  w:scene_3="@+id/scene_search_header"
+		style="?ItemHeaderSelectButton_scene_header"
+	/>
+	
+	<!-- NOTE: moved menu to header-only layout, to avoid menu view on each item in list:
+		 - we don't use menu in list for now
+		 - it can't be "gone" as then header-to-(default)list animation doesn't look well (gone view stays with same left/right offset, and this is too much for header-list anim) 
+	-->
+</merge>

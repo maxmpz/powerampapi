@@ -35,4 +35,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqReverbParam5KnobLayout_margin">24dp</dimen>	
 	<dimen name="SmallRoundKnob_size">90dp</dimen>
 	<dimen name="EqSmallKnobLayoutLand_width">160dp</dimen>
+	
+	<dimen name="EqEquPresetButtonLayout_layout_width">120dp</dimen>
 </resources>

@@ -58,6 +58,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<attr name="dialogAdjustToSoftKeyboard" format="boolean"/>
 	
+	<!-- Default dialog toast icon -->
+	<attr name="dialogCheckBig" format="reference"/>
+	
 	<attr name="dialogLayout" format="reference"/><!-- The top level dialog xml layout. Usually it's the same for all dialogs -->
 	<attr name="dialogContentLayout" format="reference"/><!-- The dialog content (differs per dialog) -->
 	<attr name="dialogButtonsLayout" format="reference"/><!-- The dialog buttons. Usually the same for dialogs of same type -->
@@ -69,6 +72,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="dialogButtonsBarPaddingLR" format="dimension"/>
 	<attr name="dialogButtonsBarPaddingTB" format="dimension"/>
 	<attr name="dialogFrame_elevation" format="dimension"/>
+	
 
 	<attr name="DialogBehavior" format="reference"/>	
 	<attr name="DialogShim" format="reference"/>
@@ -96,7 +100,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="DialogNegativeButtonStyle" format="reference"/>
 	<attr name="DialogNeutralButtonStyle" format="reference"/>
 	<attr name="DialogButtonSpace" format="reference"/>
-	
 	<attr name="DialogSeparator" format="reference"/>
+	<attr name="DialogMenuPlaceholderLayout" format="reference"/>
 	
 </resources>
