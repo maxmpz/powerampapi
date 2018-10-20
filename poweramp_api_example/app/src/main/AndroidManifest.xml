@@ -4,17 +4,15 @@
 	package="com.maxmpz.poweramp.apiexample"
 	android:versionCode="1"
 	android:versionName="1.0">
-	
-	<uses-sdk
-		android:minSdkVersion="21"
-		android:targetSdkVersion="28" />
-		
+
+	<uses-sdk android:targetSdkVersion="28" />
+
 	<application
 		android:icon="@mipmap/app_icon"
 		android:label="@string/app_name"
 		android:theme="@style/AppTheme"
 		android:allowBackup="false"
-	>
+		>
 		<activity
 			android:name=".MainActivity"
 			android:label="@string/app_name"
@@ -29,7 +27,7 @@
 			android:name=".EqActivity"
 			android:label="Eq">
 		</activity>
-			
+
 		<activity
 			android:name=".FoldersActivity"
 			android:label="Folders" />
@@ -45,6 +43,6 @@
 			</intent-filter>
 		</receiver>
 
-			
+
 	</application>
 </manifest>

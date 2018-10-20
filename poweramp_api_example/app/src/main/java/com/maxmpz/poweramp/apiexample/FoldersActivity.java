@@ -46,7 +46,7 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 
 		setContentView(R.layout.folders);
 
-		Cursor c = this.getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build(), 
+		Cursor c = this.getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build(),
 				new String[]{ "folders._id AS _id", "folders.name AS name", "folders.parent_name AS parent_name" }, null, null, "folders.name COLLATE NOCASE");
 		startManagingCursor(c);
 
@@ -56,8 +56,8 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 				c,
 				new String[] { "name", "parent_name" },
 				new int[] {android.R.id.text1, android.R.id.text2});
-				setListAdapter(adapter);
-				
+		setListAdapter(adapter);
+
 		ListView list = (ListView)findViewById(android.R.id.list);
 		list.setOnItemClickListener(this);
 		list.setOnItemLongClickListener(this);
@@ -66,21 +66,21 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 	@Override
 	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
 		Log.w(TAG, "folder long press=" + id);
-		
+
 //		startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
 //				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 //				.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_SONGS)
 //				.setData(Uri.parse("content://com.maxmpz.audioplayer/folders/" + id)));
-		
+
 		Uri.Builder uriB = PowerampAPI.ROOT_URI.buildUpon()
 				.appendEncodedPath("folders")
 				.appendEncodedPath(Long.toString(id))
 				.appendQueryParameter(PowerampAPI.PARAM_SHUFFLE, Integer.toString(PowerampAPI.ShuffleMode.SHUFFLE_SONGS));
 
 		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-						.setData(uriB.build())
-					);
+				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+				.setData(uriB.build())
+		);
 		finish();
 		return true;
 	}
@@ -88,7 +88,7 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
 		Log.w(TAG, "folder press=" + id);
-		
+
 		startActivity(new Intent(this, FilesActivity.class).putExtra("id", id));
 	}
 }

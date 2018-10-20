@@ -177,18 +177,18 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-		
+
 		/**
 		 * Wave scan data
 		 * byte[] blob, nullable
 		 */
 		public static final @NonNull String WAVE = "wave";
-		
+
 		/**
 		 * String
 		 */
 		public static final @NonNull String META = TABLE + ".meta";
-		
+
 		/**
 		 * tag_status
 		 */
@@ -200,7 +200,7 @@ public interface TableDefs {
 
 	}
 
-	
+
 	public interface RawFiles extends Files {
 		public static final @NonNull String TABLE = "raw_files";
 
@@ -264,17 +264,17 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-		
+
 		/**
 		 * String
 		 */
 		public static final @NonNull String META = TABLE + ".meta";
-		
+
 		/**
 		 * String
 		 */
 		public static final @NonNull String ALBUM_TAG = TABLE + ".album_tag";
-		
+
 		/**
 		 * String
 		 */
@@ -306,7 +306,7 @@ public interface TableDefs {
 		 * String.
 		 */
 		// NOTE: avoid TABLE name here to allow using field in raw_files. "path" is (almost) unique column, also used in playlists
-		public static final @NonNull String PATH = "path"; 
+		public static final @NonNull String PATH = "path";
 
 		/**
 		 * This is the same as path for usual folders, but for cue virtual folders, this is path + name.
@@ -314,7 +314,7 @@ public interface TableDefs {
 		 * String.
 		 */
 		public static final @NonNull String SORT_PATH = "sort_path";
-		
+
 		/**
 		 * Folder album art/thumb image (short name).
 		 * String.
@@ -334,7 +334,7 @@ public interface TableDefs {
 		 * Id of the parent folder or 0 for "root" folders.
 		 * Int.
 		 */
-		public static final @NonNull String PARENT_ID = TABLE + ".parent_id";	
+		public static final @NonNull String PARENT_ID = TABLE + ".parent_id";
 
 		/**
 		 * Int.
@@ -352,7 +352,7 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-		
+
 		/**
 		 * Number of child subfolders.
 		 * Int.
@@ -363,23 +363,23 @@ public interface TableDefs {
 		 * Number of tracks in this category, excluding cue source images
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
-		
+
 		/**
 		 * Number of tracks in this category, including cue source images
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-		
+
 		/**
 		 * Bitwise flag.
 		 * Int.
 		 */
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
-		
+
 		/**
 		 * String.
 		 * Special calculated subquery column which retrieves short parent name 
 		 */
-		public static final @NonNull String PARENT_NAME_SUBQUERY = "(SELECT name FROM folders AS f2 WHERE f2._id=folders.parent_id) AS parent_name_subquery";		
+		public static final @NonNull String PARENT_NAME_SUBQUERY = "(SELECT name FROM folders AS f2 WHERE f2._id=folders.parent_id) AS parent_name_subquery";
 	}
 
 
@@ -410,17 +410,17 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-		
+
 		/**
 		 * Number of tracks in this category, excluding cue source images
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
-		
+
 		/**
 		 * Number of tracks in this category, including cue source images
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-		
+
 		/**
 		 * Bitwise flag.
 		 * Int.
@@ -451,18 +451,18 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-		
+
 		/**
 		 * Bitwise flag.
 		 * Int.
 		 */
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
-		
+
 		/**
 		 * Number of tracks in this category, excluding cue source images
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
-		
+
 		/**
 		 * Number of tracks in this category, including cue source images
 		 */
@@ -497,7 +497,7 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-		
+
 		/**
 		 * Bitwise flag.
 		 * Int.
@@ -508,7 +508,7 @@ public interface TableDefs {
 		 * Number of tracks in this category, excluding cue source images
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
-		
+
 		/**
 		 * Number of tracks in this category, including cue source images
 		 */
@@ -562,18 +562,18 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-		
+
 		/**
 		 * Bitwise flag.
 		 * Int.
 		 */
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
-		
+
 		/**
 		 * Number of tracks in this category, excluding cue source images
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
-		
+
 		/**
 		 * Number of tracks in this category, including cue source images
 		 */
@@ -597,12 +597,12 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-		
+
 		/**
 		 * Number of tracks in this category, excluding cue source images
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
-		
+
 		/**
 		 * Number of tracks in this category, including cue source images
 		 */
@@ -700,13 +700,13 @@ public interface TableDefs {
 		 * Number of files without cue images
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
-		
+
 		/**
 		 * Number of files including cue images
 		 * Since 796
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-		
+
 		/**
 		 * Bitwise flag.
 		 * Int.
@@ -716,7 +716,7 @@ public interface TableDefs {
 		// NOTE: requires CTE with durs, e.g.:
 		// with durs as (select (sum(duration)) as dur, album from folder_files inner join albums on albums._id=folder_files.album_id group by album_id) 
 		//    select (dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0)), dur, album from durs limit 10;
-		
+
 		public static final @NonNull String TOTAL_DURATION = "(dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0))";
 		public static final @NonNull String IS_FILE = TABLE + ".playlist_path IS NOT NULL AS _is_file";
 	}
@@ -795,20 +795,20 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String BIND_TO_BT = "bind_to_bt";
-		
+
 		/**
 		 * 1 if preset is bound to USB audio output, 0 otherwise.
 		 * Int.
 		 */
 		public static final @NonNull String BIND_TO_USB = "bind_to_usb";
-		
+
 		/**
 		 * 1 if preset is bound to other audio outputs, 0 otherwise.
 		 * Int.
 		 */
 		public static final @NonNull String BIND_TO_OTHER = "bind_to_other";
 	}
-	
+
 	public static final class EqPresetSongs implements BaseColumns {
 		public static final @NonNull String TABLE = "eq_preset_songs";
 

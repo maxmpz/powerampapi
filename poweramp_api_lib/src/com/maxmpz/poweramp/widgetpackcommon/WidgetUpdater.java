@@ -40,7 +40,7 @@ import com.maxmpz.poweramp.player.PowerampAPIHelper;
 public abstract class WidgetUpdater {
 	private static final String TAG = "WidgetUpdater";
 	private static final boolean LOG = false;
-	
+
 	/**
 	 * If true, loadDefaultOrPersistantUpdateData call is used to generate widget update data in case of system calls to update widget.
 	 * loadDefaultOrPersistantUpdateData should be able to retrieve all the data needed + album art
@@ -48,22 +48,22 @@ public abstract class WidgetUpdater {
 	private static final boolean ALWAYS_USE_PERSISTANT_DATA = true;
 
 	private static boolean sUpdatedOnce;
-	
+
 	public static final IntentFilter sTrackFilter = new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED);
 	public static final IntentFilter sAAFilter = new IntentFilter(PowerampAPI.ACTION_AA_CHANGED);
 	public static final IntentFilter sStatusFilter = new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED);
 	public static final IntentFilter sModeFilter = new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED);
-	
+
 	private final Context mContext;
 
 	private static boolean sMediaRemoved;
-	private static @Nullable SharedPreferences sCachedPrefs; 
-	
+	private static @Nullable SharedPreferences sCachedPrefs;
+
 	private final @NonNull PowerManager mPowerManager;
-	
+
 	protected final @NonNull Object mLock = new Object();;
 	protected final @NonNull List<IWidgetUpdater> mProviders = new ArrayList<>();
-	
+
 	/**
 	 * Used by PS to push updates, usually all providers added in constructor of the derived class
 	 */
@@ -71,61 +71,61 @@ public abstract class WidgetUpdater {
 		PowerManager powerManager = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
 		if(powerManager == null) throw new AssertionError();
 		mPowerManager = powerManager;
-		
+
 		mContext = context;
 	}
-	
+
 	/**
 	 * Per-single provider ctor, used for cases when provider is called by system
 	 */
 	public WidgetUpdater(Context context, @NonNull BaseWidgetProvider prov) {
 		this(context);
-		
+
 		synchronized(mLock) {
 			mProviders.add(prov);
 		}
 	}
-	
+
 	/**
 	 * Called during system onUpdate() call which requires remote views for widget due to some system event (boot, etc.) 
 	 */
 	// THREADING: any
 	public void updateSafe(@NonNull BaseWidgetProvider provider, @Nullable Intent intent, boolean ignorePowerState, boolean updateByOs) {
 		if(LOG) Log.w(TAG, "updateSafe=" + intent + " th=" + Thread.currentThread()); // + " extras=" + intent == null ? null : Arrays.toString(intent.getExtras().keySet().toArray(new String[]{})));
-		
+
 		synchronized(mLock) {
-			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){ 
+			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){
 				if(LOG) Log.e(TAG, "skipping update, screen is off");
 				return;
 			}
-			
+
 			int[] ids = null;
-	
+
 			if(intent != null && updateByOs/*intent.getBooleanExtra(EXTRA_UPDATE_BY_OS, false)*/) {
 				// Check if media is removed. In this case PowerampAPI status can be in stale "playing" state (as Poweramp process could be killed by ripper).
 				sMediaRemoved = !Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
 				// If update by OS, some Androids 2.x require new AA to be set again.
 			}
-			
+
 			WidgetUpdateData data = generateUpdateData(mContext, sMediaRemoved);
 
 			if(LOG) Log.w(TAG, "========== updateSafe UPDATE data=" + data);
-			
+
 			pushUpdateCore(data, ids);
 		}
-		
+
 		if(LOG) Log.w(TAG, "update done ");
 	}
 
 	private void pushUpdateCore(@NonNull WidgetUpdateData data, int[] ids) {
 		if(LOG) Log.w(TAG, "pushUpdateCore data=" + data + " ids=" + Arrays.toString(ids) + " mProviders.length=" + mProviders.size());
-		
+
 		SharedPreferences prefs = getCachedSharedPreferences(mContext);
-		
+
 		for(IWidgetUpdater prov : mProviders) {
 			prov.pushUpdate(mContext, prefs, ids, sMediaRemoved, data);
 		}
-		
+
 		if(data.hasTrack && !sUpdatedOnce) {
 			if(LOG) Log.w(TAG, "pushUpdateCore sUpdatedOnce=>true");
 			sUpdatedOnce = true;
@@ -139,18 +139,18 @@ public abstract class WidgetUpdater {
 	 */
 	public boolean updateDirectSafe(@NonNull WidgetUpdateData data, boolean ignorePowerState) {
 		synchronized(mLock) {
-			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){ 
+			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){
 				if(LOG) Log.e(TAG, "updateDirectSafe skipping update, screen is off");
 				return false;
 			}
-			
+
 			if(LOG) Log.w(TAG, "updateDirectSafe data=" + data + " th=" + Thread.currentThread()); // + " extras=" + intent == null ? null : Arrays.toString(intent.getExtras().keySet().toArray(new String[]{})));
 
 			pushUpdateCore(data, null);
 		}
-		
+
 		if(LOG) Log.w(TAG, "update done ");
-		
+
 		return true;
 	}
 
@@ -167,12 +167,12 @@ public abstract class WidgetUpdater {
 		}
 		return cachedPrefs;
 	}
-	
+
 	public static String getGlobalSharedPreferencesName(Context context) {
 		return context.getPackageName() + "_appwidgets";
 	}
-	
-	
+
+
 	/**
 	 * Called when generateUpdateData is not able to find any sticky intents (e.g. after reboot), so default or previously stored data should be retrieved
 	 * @param context
@@ -189,27 +189,27 @@ public abstract class WidgetUpdater {
 	// Data should be always the same for any type of widgets as data is reused by other widgets, thus method is final.
 	public @NonNull WidgetUpdateData generateUpdateData(Context context, boolean mediaRemoved) {
 		WidgetUpdateData data = new WidgetUpdateData();
-		
+
 		if(ALWAYS_USE_PERSISTANT_DATA) {
 			// Still check for actual playing status, as persistent data is stored per track change, thus never reflects playing state
 			// Do it before loadDefaultOrPersistantUpdateData
 			getPlayingState(context, data, mediaRemoved);
 
 			loadDefaultOrPersistantUpdateData(context, data);
-			
+
 			return data;
 		}
 
 		Bundle track = null;
-		
+
 		Intent trackIntent = context.registerReceiver(null, WidgetUpdater.sTrackFilter);
-		
+
 		if(LOG) Log.w(TAG, "generateUpdateData trackIntent=" + trackIntent);
 
-		
+
 		if(trackIntent != null) {
 			track = trackIntent.getParcelableExtra(PowerampAPI.TRACK);
-			
+
 			if(track != null) {
 				data.hasTrack = true;
 				data.title = track.getString(PowerampAPI.Track.TITLE);
@@ -220,11 +220,11 @@ public abstract class WidgetUpdater {
 				data.supportsCatNav = track.getBoolean(PowerampAPI.Track.SUPPORTS_CAT_NAV);
 				data.flags = track.getInt(PowerampAPI.Track.FLAGS);
 				if(LOG) Log.w(TAG, "received trackIntent data=" + data);
-				
+
 			} else {
 				loadDefaultOrPersistantUpdateData(context, data);
 				return data;
-			}			
+			}
 		} else {
 			// No any intent stored, need to get some defaults or previously saved persistent data 
 			loadDefaultOrPersistantUpdateData(context, data);
@@ -245,7 +245,7 @@ public abstract class WidgetUpdater {
 //		}
 
 		getPlayingState(context, data, mediaRemoved);
-		
+
 		Intent modeIntent = context.registerReceiver(null, WidgetUpdater.sModeFilter);
 		if(modeIntent != null) {
 			data.shuffle = modeIntent.getIntExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE);
@@ -269,7 +269,7 @@ public abstract class WidgetUpdater {
 
 				data.apiVersion = statusIntent.getIntExtra(PowerampAPI.API_VERSION, 0);
 
-				if(LOG) Log.w(TAG, "generateUpdateData statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing);				
+				if(LOG) Log.w(TAG, "generateUpdateData statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing);
 			} else if(LOG)  Log.e(TAG, "generateUpdateData statusIntent==null");
 		}
 	}

@@ -68,95 +68,95 @@ import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity implements
-	OnClickListener, 
-	OnLongClickListener, 
-	OnTouchListener, 
-	OnCheckedChangeListener, 
-	OnSeekBarChangeListener, 
-	OnItemSelectedListener, 
-	TrackTimeListener 
+		OnClickListener,
+		OnLongClickListener,
+		OnTouchListener,
+		OnCheckedChangeListener,
+		OnSeekBarChangeListener,
+		OnItemSelectedListener,
+		TrackTimeListener
 {
 	private static final String TAG = "MainActivity";
 
 	private static final char[] NO_TIME = new char[]{ '-', ':', '-', '-' };
 	private static final int SEEK_THROTTLE = 500;
-	
+
 	protected Intent mTrackIntent;
 	private Intent mStatusIntent;
 	protected Intent mPlayingModeIntent;
-	
+
 	private Bundle mCurrentTrack;
-	
+
 	private RemoteTrackTime mRemoteTrackTime;
 	private SeekBar mSongSeekBar;
-	
+
 	private TextView mDuration;
 	private TextView mElapsed;
 	private boolean mSettingPreset;
-	
+
 	private long mLastSeekSentTime;
-	
+
 	private final StringBuilder mDurationBuffer = new StringBuilder();
 	private final StringBuilder mElapsedBuffer = new StringBuilder();
 	private @Nullable Uri mLastCreatedPlaylistFilesUri;
 
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-        findViewById(R.id.play).setOnClickListener(this);
-        findViewById(R.id.play).setOnLongClickListener(this);
-        findViewById(R.id.pause).setOnClickListener(this);        
-        findViewById(R.id.prev).setOnClickListener(this);
-        findViewById(R.id.prev).setOnLongClickListener(this);
-        findViewById(R.id.next).setOnClickListener(this);
-        findViewById(R.id.next).setOnLongClickListener(this);
-        findViewById(R.id.prev).setOnTouchListener(this);        
-        findViewById(R.id.next).setOnTouchListener(this);
-        findViewById(R.id.prev_in_cat).setOnClickListener(this);
-        findViewById(R.id.next_in_cat).setOnClickListener(this);
-        findViewById(R.id.repeat).setOnClickListener(this);
-        findViewById(R.id.shuffle).setOnClickListener(this);
-        findViewById(R.id.repeat_all).setOnClickListener(this);
-        findViewById(R.id.repeat_off).setOnClickListener(this);
-        findViewById(R.id.shuffle_all).setOnClickListener(this);
-        findViewById(R.id.shuffle_off).setOnClickListener(this);
-        findViewById(R.id.eq).setOnClickListener(this);
-        
-        mSongSeekBar = (SeekBar)findViewById(R.id.song_seekbar);
-        mSongSeekBar.setOnSeekBarChangeListener(this);
-        
-        mDuration = (TextView)findViewById(R.id.duration);
-        mElapsed = (TextView)findViewById(R.id.elapsed);
-        
-        mRemoteTrackTime = new RemoteTrackTime(this);
-        mRemoteTrackTime.setTrackTimeListener(this);
-        
-        ((TextView)findViewById(R.id.play_file_path)).setText(findFirstMP3(Environment.getExternalStorageDirectory()));
-        findViewById(R.id.play_file).setOnClickListener(this);
-        
-        findViewById(R.id.folders).setOnClickListener(this);
-        
-        findViewById(R.id.play_album).setOnClickListener(this);        
-        findViewById(R.id.play_all_songs).setOnClickListener(this);
-        findViewById(R.id.play_second_artist_first_album).setOnClickListener(this);
-        
-        findViewById(R.id.pa_current_list).setOnClickListener(this);
-        findViewById(R.id.pa_folders).setOnClickListener(this);
-        findViewById(R.id.pa_all_songs).setOnClickListener(this);
-        
-        // Ask Poweramp for permission to access its data provider. Needed only if we want to make queries againt Poweramp database, e.g. in FilesActivity/FoldersActivity
-        // NOTE: this will work only if Poweramp process is alive 
-        // This actually should be done once per this app installation
-        Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
-        intent.setPackage(PowerampAPI.PACKAGE_NAME);
-        intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-        sendBroadcast(intent);
-    }
-    
- 
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		findViewById(R.id.play).setOnClickListener(this);
+		findViewById(R.id.play).setOnLongClickListener(this);
+		findViewById(R.id.pause).setOnClickListener(this);
+		findViewById(R.id.prev).setOnClickListener(this);
+		findViewById(R.id.prev).setOnLongClickListener(this);
+		findViewById(R.id.next).setOnClickListener(this);
+		findViewById(R.id.next).setOnLongClickListener(this);
+		findViewById(R.id.prev).setOnTouchListener(this);
+		findViewById(R.id.next).setOnTouchListener(this);
+		findViewById(R.id.prev_in_cat).setOnClickListener(this);
+		findViewById(R.id.next_in_cat).setOnClickListener(this);
+		findViewById(R.id.repeat).setOnClickListener(this);
+		findViewById(R.id.shuffle).setOnClickListener(this);
+		findViewById(R.id.repeat_all).setOnClickListener(this);
+		findViewById(R.id.repeat_off).setOnClickListener(this);
+		findViewById(R.id.shuffle_all).setOnClickListener(this);
+		findViewById(R.id.shuffle_off).setOnClickListener(this);
+		findViewById(R.id.eq).setOnClickListener(this);
+
+		mSongSeekBar = (SeekBar)findViewById(R.id.song_seekbar);
+		mSongSeekBar.setOnSeekBarChangeListener(this);
+
+		mDuration = (TextView)findViewById(R.id.duration);
+		mElapsed = (TextView)findViewById(R.id.elapsed);
+
+		mRemoteTrackTime = new RemoteTrackTime(this);
+		mRemoteTrackTime.setTrackTimeListener(this);
+
+		((TextView)findViewById(R.id.play_file_path)).setText(findFirstMP3(Environment.getExternalStorageDirectory()));
+		findViewById(R.id.play_file).setOnClickListener(this);
+
+		findViewById(R.id.folders).setOnClickListener(this);
+
+		findViewById(R.id.play_album).setOnClickListener(this);
+		findViewById(R.id.play_all_songs).setOnClickListener(this);
+		findViewById(R.id.play_second_artist_first_album).setOnClickListener(this);
+
+		findViewById(R.id.pa_current_list).setOnClickListener(this);
+		findViewById(R.id.pa_folders).setOnClickListener(this);
+		findViewById(R.id.pa_all_songs).setOnClickListener(this);
+
+		// Ask Poweramp for permission to access its data provider. Needed only if we want to make queries againt Poweramp database, e.g. in FilesActivity/FoldersActivity
+		// NOTE: this will work only if Poweramp process is alive
+		// This actually should be done once per this app installation
+		Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
+		intent.setPackage(PowerampAPI.PACKAGE_NAME);
+		intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
+		sendBroadcast(intent);
+	}
+
+
 	/*
 	 * NOTE: when screen is rotated, by default android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
 	 * on screen rotation some commands could be sent to Poweramp unintentionally.
@@ -167,48 +167,48 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	@Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-    }
-    
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+	}
+
 	// NOTE: this method unregister all broadcast receivers on activity pause. This is the correct way of handling things - we're
 	// sure no unnecessary event processing will be done for paused activity, when screen is OFF, etc.
-    @Override
-    protected void onPause() {
-    	unregister();
-    	mRemoteTrackTime.unregister();
-    	
-    	super.onPause();
-    }
+	@Override
+	protected void onPause() {
+		unregister();
+		mRemoteTrackTime.unregister();
 
-    // Register broadcast receivers.
-    @Override
-    protected void onResume() {
-    	super.onResume();
-    	
-    	registerAndLoadStatus();
-    	mRemoteTrackTime.registerAndLoadStatus();
-    }
-    
-    
-    @Override
-    protected void onDestroy() {
-    	Log.w(TAG, "onDestroy");
-    	try {
-	    	unregister();
-	    	mRemoteTrackTime.setTrackTimeListener(null);
-	    	mRemoteTrackTime.unregister();
-	    	
-	    	mRemoteTrackTime = null;
-	    	mTrackReceiver = null;
-	    	mStatusReceiver = null;
-	    	mPlayingModeReceiver = null;
-    	} catch(Exception ex) {
-    		Log.e(TAG, "", ex);
-    	}
-    	
-    	super.onDestroy();
-    }
-    
+		super.onPause();
+	}
+
+	// Register broadcast receivers.
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		registerAndLoadStatus();
+		mRemoteTrackTime.registerAndLoadStatus();
+	}
+
+
+	@Override
+	protected void onDestroy() {
+		Log.w(TAG, "onDestroy");
+		try {
+			unregister();
+			mRemoteTrackTime.setTrackTimeListener(null);
+			mRemoteTrackTime.unregister();
+
+			mRemoteTrackTime = null;
+			mTrackReceiver = null;
+			mStatusReceiver = null;
+			mPlayingModeReceiver = null;
+		} catch(Exception ex) {
+			Log.e(TAG, "", ex);
+		}
+
+		super.onDestroy();
+	}
+
 	private void registerAndLoadStatus() {
 		// Note, it's not necessary to set mStatusIntent/mPlayingModeIntent this way here,
 		// but this approach can be used with null receiver to get current sticky intent without broadcast receiver.
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements
 		mStatusIntent = registerReceiver(mStatusReceiver, new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED));
 		mPlayingModeIntent = registerReceiver(mPlayingModeReceiver, new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED));
 	}
-	
+
 	private void unregister() {
 		if(mTrackIntent != null) {
 			try {
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements
 			} catch(Exception ex){}
 		}
 	}
-	
+
 	private BroadcastReceiver mTrackReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements
 			Log.w(TAG, "mTrackReceiver " + intent);
 		}
 	};
-	
+
 	private BroadcastReceiver mAAReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	void processTrackIntent() {
 		mCurrentTrack = null;
-		
+
 		if(mTrackIntent != null) {
 			mCurrentTrack = mTrackIntent.getBundleExtra(PowerampAPI.TRACK);
 			if(mCurrentTrack != null) {
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements
 			if(pos != -1) {
 				mRemoteTrackTime.updateTrackPosition(pos);
 			}
-			
+
 			updateTrackUI();
 
 			updateAlbumArt(mCurrentTrack);
@@ -283,20 +283,20 @@ public class MainActivity extends AppCompatActivity implements
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			mStatusIntent = intent;
-			
+
 			debugDumpIntent(TAG, "mStatusReceiver", intent);
-			
+
 			updateStatusUI();
 		}
 	};
-	
+
 	private BroadcastReceiver mPlayingModeReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			mPlayingModeIntent = intent;
 
 			debugDumpIntent(TAG, "mPlayingModeReceiver", intent);
-			
+
 			updatePlayingModeUI();
 		}
 	};
@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements
 	// This method updates track related info, album art.
 	private void updateTrackUI() {
 		Log.w(TAG, "updateTrackUI");
-		
+
 		if(mTrackIntent != null) {
 			if(mCurrentTrack != null) {
 				((TextView)findViewById(R.id.cat)).setText(Integer.toString(mCurrentTrack.getInt(PowerampAPI.Track.CAT)));
@@ -314,14 +314,14 @@ public class MainActivity extends AppCompatActivity implements
 				((TextView)findViewById(R.id.album)).setText(mCurrentTrack.getString(PowerampAPI.Track.ALBUM));
 				((TextView)findViewById(R.id.artist)).setText(mCurrentTrack.getString(PowerampAPI.Track.ARTIST));
 				((TextView)findViewById(R.id.path)).setText(mCurrentTrack.getString(PowerampAPI.Track.PATH));
-				
+
 				StringBuilder info = new StringBuilder();
 				info.append("Codec: ").append(mCurrentTrack.getString(PowerampAPI.Track.CODEC)).append(" ");
 				info.append("Bitrate: ").append(mCurrentTrack.getInt(PowerampAPI.Track.BITRATE, -1)).append(" ");
 				info.append("Sample Rate: ").append(mCurrentTrack.getInt(PowerampAPI.Track.SAMPLE_RATE, -1)).append(" ");
 				info.append("Channels: ").append(mCurrentTrack.getInt(PowerampAPI.Track.CHANNELS, -1)).append(" ");
 				info.append("Duration: ").append(mCurrentTrack.getInt(PowerampAPI.Track.DURATION, -1)).append("sec ");
-				
+
 				((TextView)findViewById(R.id.info)).setText(info);
 				return;
 			}
@@ -333,31 +333,31 @@ public class MainActivity extends AppCompatActivity implements
 		((TextView)findViewById(R.id.artist)).setText("");
 		((TextView)findViewById(R.id.path)).setText("");
 	}
-	
+
 	void updateStatusUI() {
 		Log.w(TAG, "updateStatusUI");
 		if(mStatusIntent != null) {
 			boolean paused;
-			
+
 			int state = mStatusIntent.getIntExtra(PowerampAPI.STATE, PowerampAPI.STATE_NO_STATE); // NOTE: not used here, provides STATE_* int
-			
+
 			// Each status update can contain track position update as well.
 			int pos = mStatusIntent.getIntExtra(PowerampAPI.Track.POSITION, -1);
 			if(pos != -1) {
 				mRemoteTrackTime.updateTrackPosition(pos);
 			}
-			
+
 			switch(state) {
 				case PowerampAPI.STATE_PAUSED:
 					paused = true;
 					startStopRemoteTrackTime(true);
 					break;
-					
+
 				case PowerampAPI.STATE_PLAYING:
 					paused = false;
 					startStopRemoteTrackTime(false);
 					break;
-		
+
 				default:
 				case PowerampAPI.STATE_NO_STATE:
 				case PowerampAPI.STATE_STOPPED:
@@ -393,8 +393,8 @@ public class MainActivity extends AppCompatActivity implements
 					break;
 			}
 			((Button)findViewById(R.id.shuffle)).setText(shuffleStr);
-			
-			int repeat = mPlayingModeIntent.getIntExtra(PowerampAPI.REPEAT, -1);			
+
+			int repeat = mPlayingModeIntent.getIntExtra(PowerampAPI.REPEAT, -1);
 			String repeatStr;
 			switch(repeat) {
 				case PowerampAPI.RepeatMode.REPEAT_ON:
@@ -410,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements
 					repeatStr = "Repeat OFF";
 					break;
 			}
-			
+
 			((Button)findViewById(R.id.repeat)).setText(repeatStr);
 		}
 	}
@@ -424,27 +424,27 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
-    /**
-     * Find first mp3 in dir or in any subdir of it.
-     */
-    private String findFirstMP3(File dir) {
-    	try {
-	    	findFirstMP3InFolder(dir);
-    	} catch(FileFoundException ex) {
-    		return ex.mFile.getPath();
-    	}
-    	return "";
-    }
-    
-    @SuppressWarnings("serial")
+	/**
+	 * Find first mp3 in dir or in any subdir of it.
+	 */
+	private String findFirstMP3(File dir) {
+		try {
+			findFirstMP3InFolder(dir);
+		} catch(FileFoundException ex) {
+			return ex.mFile.getPath();
+		}
+		return "";
+	}
+
+	@SuppressWarnings("serial")
 	private static class FileFoundException extends RuntimeException {
-    	File mFile;
-    	FileFoundException(File file) {
-    		mFile = file;
-    	}
-    }
-	
-    void findFirstMP3InFolder(File dir) {
+		File mFile;
+		FileFoundException(File file) {
+			mFile = file;
+		}
+	}
+
+	void findFirstMP3InFolder(File dir) {
 		dir.listFiles(new FileFilter() {
 			@Override
 			public boolean accept(File child) {
@@ -453,7 +453,7 @@ public class MainActivity extends AppCompatActivity implements
 				} else {
 					String fileName = child.getName();
 					if(fileName.regionMatches(true, fileName.length() - "mp3".length(), "mp3", 0, "mp3".length())){
-						throw new FileFoundException(child); 
+						throw new FileFoundException(child);
 					}
 				}
 				return false;
@@ -491,7 +491,7 @@ public class MainActivity extends AppCompatActivity implements
 			case R.id.play:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE));
 				break;
-				
+
 			case R.id.pause:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PAUSE));
 				break;
@@ -503,7 +503,7 @@ public class MainActivity extends AppCompatActivity implements
 			case R.id.next:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT));
 				break;
-				
+
 			case R.id.prev_in_cat:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT));
 				break;
@@ -542,46 +542,46 @@ public class MainActivity extends AppCompatActivity implements
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
 						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE));
 				break;
-				
+
 			case R.id.commit_eq:
 				commitEq();
 				break;
-				
+
 			case R.id.play_file:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 //						.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
 						.setData(Uri.parse("file://" + ((TextView)findViewById(R.id.play_file_path)).getText().toString())));
 				break;
-				
+
 			case R.id.folders:
 				startActivity(new Intent(this, FoldersActivity.class));
 				break;
-				
+
 			case R.id.play_album:
 				playAlbum();
 				break;
-			
+
 			case R.id.play_all_songs:
 				playAllSongs();
 				break;
-			
+
 			case R.id.play_second_artist_first_album:
 				playSecondArtistFirstAlbum();
 				break;
-				
+
 			case R.id.eq:
 				startActivity(new Intent(this, EqActivity.class));
 				break;
-				
+
 			case R.id.pa_current_list:
 				startActivity(new Intent(PowerampAPI.ACTION_SHOW_CURRENT));
 				break;
-				
+
 			case R.id.pa_folders:
 				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build()));
 				break;
-				
+
 			case R.id.pa_all_songs:
 				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
 				break;
@@ -612,16 +612,16 @@ public class MainActivity extends AppCompatActivity implements
 			case R.id.play:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.STOP));
 				return true;
-			
+
 			case R.id.next:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD));
 				return true;
-				
+
 			case R.id.prev:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_REWIND));
 				return true;
 		}
-		
+
 		return false;
 	}
 
@@ -631,19 +631,19 @@ public class MainActivity extends AppCompatActivity implements
 	public boolean onTouch(View v, MotionEvent event) {
 		if(event.getAction() == MotionEvent.ACTION_UP) {
 			switch(v.getId()) {
-			case R.id.next:
-				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD));
-				break;
-				
-			case R.id.prev:
-				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND));
-				break;
+				case R.id.next:
+					PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD));
+					break;
+
+				case R.id.prev:
+					PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND));
+					break;
 			}
 		}
 
 		return false;
 	}
-	
+
 	// Just play all library songs (starting from first).
 	private void playAllSongs() {
 		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
@@ -671,28 +671,28 @@ public class MainActivity extends AppCompatActivity implements
 			c.close();
 		}
 	}
-	
+
 	// Play first available album from first available artist in ARTIST_ALBUMs.
 	private void playSecondArtistFirstAlbum() {
 		// Get first artist.
-		Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("artists").build(), 
-				new String[]{ "artists._id", "artist" }, 
+		Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("artists").build(),
+				new String[]{ "artists._id", "artist" },
 				null, null, "artist_sort COLLATE NOCASE");
 		if(c != null) {
 			c.moveToNext(); // First artist.
 			if(c.moveToNext()) { // Second artist.
 				long artistId = c.getLong(0);
 				String artist = c.getString(1);
-				Cursor c2 = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("artists_albums").build(), 
-						new String[] { "albums._id", "album" }, 
+				Cursor c2 = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("artists_albums").build(),
+						new String[] { "albums._id", "album" },
 						"artists._id=?", new String[]{ Long.toString(artistId) }, "album_sort COLLATE NOCASE");
 				if(c2 != null) {
 					if(c2.moveToNext()) {
 						long albumId = c2.getLong(0);
 						String album = c2.getString(1);
-						
+
 						Toast.makeText(this, "Playing artist: " + artist + " album: " + album, Toast.LENGTH_SHORT).show();
-						
+
 						PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 								.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 								.setData(PowerampAPI.ROOT_URI.buildUpon()
@@ -702,27 +702,27 @@ public class MainActivity extends AppCompatActivity implements
 										.appendEncodedPath(Long.toString(albumId))
 										.appendEncodedPath("files")
 										.build()
-										));
+								));
 					}
 					c2.close();
 				}
-			
+
 			}
 			c.close();
 		}
 	}
-	
+
 
 	// Event handler for Dynamic Eq checkbox.
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		findViewById(R.id.commit_eq).setEnabled(!isChecked);
 	}
-	
+
 	// Generates and sends presetString to Poweramp Eq.
 	private void commitEq() {
 		StringBuilder presetString = new StringBuilder();
-		
+
 		TableLayout equLayout = (TableLayout)findViewById(R.id.equ_layout);
 		int count = equLayout.getChildCount();
 		for(int i = count - 1; i >= 0; i--) {
@@ -731,10 +731,10 @@ public class MainActivity extends AppCompatActivity implements
 			float value = seekBarToValue(name, bar.getProgress());
 			presetString.append(name).append("=").append(value).append(";");
 		}
-		
+
 		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING).putExtra(PowerampAPI.VALUE, presetString.toString()));
 	}
-	
+
 	// Applies correct seekBar-to-float scaling. 
 	private float seekBarToValue(String name, int progress) {
 		float value;
@@ -757,7 +757,7 @@ public class MainActivity extends AppCompatActivity implements
 				break;
 		}
 	}
-	
+
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
 	}
@@ -765,7 +765,7 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		sendSeek(true); // Force seek when user ends seeking.
-		
+
 	}
 
 	// Send seek command.
@@ -773,7 +773,7 @@ public class MainActivity extends AppCompatActivity implements
 
 		int position = mSongSeekBar.getProgress();
 		mRemoteTrackTime.updateTrackPosition(position);
-		
+
 		// Apply some throttling to avoid too many intents to be generated.
 		if(ignoreThrottling || mLastSeekSentTime == 0 || System.currentTimeMillis() - mLastSeekSentTime > SEEK_THROTTLE) {
 			mLastSeekSentTime = System.currentTimeMillis();
@@ -783,8 +783,8 @@ public class MainActivity extends AppCompatActivity implements
 			Log.w(TAG, "throttled");
 		}
 	}
-	
-	
+
+
 
 	// Event handler for Presets spinner.
 	@Override
@@ -807,11 +807,11 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void onTrackDurationChanged(int duration) {
 		mDurationBuffer.setLength(0);
-		
+
 		formatTimeS(mDurationBuffer, duration, true);
-		
+
 		mDuration.setText(mDurationBuffer);
-		
+
 		mSongSeekBar.setMax(duration);
 	}
 
@@ -819,11 +819,11 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void onTrackPositionChanged(int position) {
 		mElapsedBuffer.setLength(0);
-		
+
 		formatTimeS(mElapsedBuffer, position, false);
-		
+
 		mElapsed.setText(mElapsedBuffer);
-		
+
 		if(mSongSeekBar.isPressed()) {
 			return;
 		}
@@ -844,7 +844,7 @@ public class MainActivity extends AppCompatActivity implements
 
 		if(playlistInsertedUri != null) {
 			Log.w(TAG, "createPlaylistAndAddToIt inserted=" + playlistInsertedUri);
-			
+
 			// NOTE: we are inserting into /playlists/#/files, playlistInsertedUri (/playlists/#) is not valid for entries insertion
 			Uri playlistEntriesUri = playlistInsertedUri.buildUpon().appendEncodedPath("files").build();
 
@@ -900,7 +900,7 @@ public class MainActivity extends AppCompatActivity implements
 			Log.e(TAG, "createPlaylistAndAddToIt FAILED");
 		}
 	}
-	
+
 	private void gotoCreatedPlaylist() {
 		if(mLastCreatedPlaylistFilesUri != null) {
 			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(mLastCreatedPlaylistFilesUri));
@@ -982,16 +982,16 @@ public class MainActivity extends AppCompatActivity implements
 			sb.append(NO_TIME);
 			return;
 		}
-		
+
 		int seconds = secs % 60;
-		
+
 		if(secs < 3600) { // min:sec
 			int minutes = secs / 60;
 			sb.append(minutes).append(':');
 		} else { // hour:min:sec
 			int hours = secs / 3600;
 			int minutes = (secs / 60) % 60;
-			
+
 			sb.append(hours).append(':');
 			if(minutes < 10) {
 				sb.append('0');

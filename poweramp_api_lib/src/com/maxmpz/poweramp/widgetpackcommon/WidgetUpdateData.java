@@ -29,7 +29,7 @@ import com.maxmpz.poweramp.player.PowerampAPI;
  */
 public class WidgetUpdateData {
 	public int apiVersion;
-	
+
 	public boolean hasTrack;
 	public String title;
 	public String album;
@@ -38,7 +38,7 @@ public class WidgetUpdateData {
 	public int posInList;
 	public int listSize;
 	public int flags;
-	
+
 	public Bitmap albumArtBitmap;
 	public long albumArtTimestamp;
 
@@ -46,17 +46,17 @@ public class WidgetUpdateData {
 
 	public int shuffle = PowerampAPI.ShuffleMode.SHUFFLE_NONE;
 	public int repeat = PowerampAPI.RepeatMode.REPEAT_NONE;
-	
+
 	public boolean albumArtNoAnim; // Used by widget configurator
-	
+
 	@Override
 	public String toString() {
-		return super.toString() + " hasTrack=" + hasTrack + " title=" + title + " album=" + album + " artist=" + artist + " supportsCatNav=" + supportsCatNav +  
-								" posInList=" + posInList + " listSize=" + listSize + " flags=0x" + Integer.toHexString(flags) + " albumArtBitmap=" + albumArtBitmap + 
-								" albumArtTimestamp=" + albumArtTimestamp + " playing=" + playing + " shuffle=" + shuffle + " repeat=" + repeat;
+		return super.toString() + " hasTrack=" + hasTrack + " title=" + title + " album=" + album + " artist=" + artist + " supportsCatNav=" + supportsCatNav +
+				" posInList=" + posInList + " listSize=" + listSize + " flags=0x" + Integer.toHexString(flags) + " albumArtBitmap=" + albumArtBitmap +
+				" albumArtTimestamp=" + albumArtTimestamp + " playing=" + playing + " shuffle=" + shuffle + " repeat=" + repeat;
 	}
-	
-	
+
+
 	public void resetTrackData() {
 		hasTrack = false;
 		title = album = artist = null;

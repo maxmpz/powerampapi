@@ -1,375 +1,375 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
->
-
-<RelativeLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    >
-	
-	<TableLayout android:id="@+id/track_info"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:stretchColumns="*"
-		android:collapseColumns="*"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
 	>
-		<TableRow>
-			<TextView 
-				android:text="List Uri"
-				android:layout_width="60dip"
-				android:layout_height="wrap_content"
-			/>    
-		</TableRow>
-		<TextView android:id="@+id/uri"
-			android:layout_width="200dip"
-			android:layout_height="wrap_content"
-			android:textStyle="bold"
-			android:lines="2"
-		/>
 
-		<TableRow>
-			<TextView 
-				android:text="Category Type"
-				android:layout_width="60dip"
-				android:layout_height="wrap_content"
-			/>    
-			<TextView android:id="@+id/cat"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textStyle="bold"
-			/>
-		</TableRow>
+	<RelativeLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		>
 
-		<TableRow>
-			<TextView 
-				android:text="ID"
-				android:layout_width="60dip"
-				android:layout_height="wrap_content"
-			/>    
-			<TextView android:id="@+id/id"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:textStyle="bold"
-			/>
-		</TableRow>
-
-		<TableRow>
-			<TextView 
-				android:text="Title"
-				android:layout_width="60dip"
-				android:layout_height="wrap_content"
-			/>    
-			<TextView android:id="@+id/title"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:textStyle="bold"
-			/>
-		</TableRow>
-		
-		<TableRow>
-			<TextView 
-				android:text="Album"
-				android:layout_width="60dip"
-				android:layout_height="wrap_content"
-			/>    
-			<TextView android:id="@+id/album"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:textStyle="bold"
-			/>
-		</TableRow>
-
-		<TableRow>
-			<TextView 
-				android:text="Artist"
-				android:layout_width="60dip"
-				android:layout_height="wrap_content"
-			/>    
-			<TextView android:id="@+id/artist"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:textStyle="bold"
-			/>
-		</TableRow>
-
-		<TableRow>
-			<TextView 
-				android:text="Path"
-				android:layout_width="60dip"
-				android:layout_height="wrap_content"
-			/>    
-		</TableRow>
-		<TextView android:id="@+id/path"
+		<TableLayout android:id="@+id/track_info"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:textStyle="bold"
-		/>
-	</TableLayout>
-	
-	<TextView android:id="@+id/info"
-		android:layout_below="@id/track_info"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-	/>
+			android:stretchColumns="*"
+			android:collapseColumns="*"
+			>
+			<TableRow>
+				<TextView
+					android:text="List Uri"
+					android:layout_width="60dip"
+					android:layout_height="wrap_content"
+					/>
+			</TableRow>
+			<TextView android:id="@+id/uri"
+				android:layout_width="200dip"
+				android:layout_height="wrap_content"
+				android:textStyle="bold"
+				android:lines="2"
+				/>
 
-	<TextView android:id="@+id/elapsed"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/info"
-		android:layout_marginTop="8dip"
-		/>
-	<TextView android:id="@+id/duration"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/info"
-		android:layout_alignParentRight="true"
-		android:layout_marginTop="8dip"
-		/>
-	<SeekBar android:id="@+id/song_seekbar"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/elapsed"
-		android:layout_marginBottom="4dip"
-		/>
+			<TableRow>
+				<TextView
+					android:text="Category Type"
+					android:layout_width="60dip"
+					android:layout_height="wrap_content"
+					/>
+				<TextView android:id="@+id/cat"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textStyle="bold"
+					/>
+			</TableRow>
 
-	<LinearLayout android:id="@+id/controls"
-		android:layout_below="@+id/song_seekbar"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="center"
-		android:layout_marginTop="8dip"
-		>
-		<Button android:id="@+id/prev_in_cat"
-			android:text="&lt;&lt;&lt;"
-			android:layout_width="60dip"
+			<TableRow>
+				<TextView
+					android:text="ID"
+					android:layout_width="60dip"
+					android:layout_height="wrap_content"
+					/>
+				<TextView android:id="@+id/id"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textStyle="bold"
+					/>
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:text="Title"
+					android:layout_width="60dip"
+					android:layout_height="wrap_content"
+					/>
+				<TextView android:id="@+id/title"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textStyle="bold"
+					/>
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:text="Album"
+					android:layout_width="60dip"
+					android:layout_height="wrap_content"
+					/>
+				<TextView android:id="@+id/album"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textStyle="bold"
+					/>
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:text="Artist"
+					android:layout_width="60dip"
+					android:layout_height="wrap_content"
+					/>
+				<TextView android:id="@+id/artist"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:textStyle="bold"
+					/>
+			</TableRow>
+
+			<TableRow>
+				<TextView
+					android:text="Path"
+					android:layout_width="60dip"
+					android:layout_height="wrap_content"
+					/>
+			</TableRow>
+			<TextView android:id="@+id/path"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:textStyle="bold"
+				/>
+		</TableLayout>
+
+		<TextView android:id="@+id/info"
+			android:layout_below="@id/track_info"
+			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			/>
-		<Button android:id="@+id/prev"
-			android:text="&lt;&lt;"
-			android:layout_width="60dip"
+
+		<TextView android:id="@+id/elapsed"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_below="@+id/info"
+			android:layout_marginTop="8dip"
 			/>
-		<Button android:id="@+id/play"
-			android:text="&gt;"
-			android:layout_width="60dip"
+		<TextView android:id="@+id/duration"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_below="@+id/info"
+			android:layout_alignParentRight="true"
+			android:layout_marginTop="8dip"
 			/>
-		<Button android:id="@+id/pause"
-			android:text="||"
-			android:layout_width="60dip"
+		<SeekBar android:id="@+id/song_seekbar"
+			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
+			android:layout_below="@+id/elapsed"
+			android:layout_marginBottom="4dip"
 			/>
-		<Button android:id="@+id/next"
-			android:text="&gt;&gt;"
-			android:layout_width="60dip"
+
+		<LinearLayout android:id="@+id/controls"
+			android:layout_below="@+id/song_seekbar"
+			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginTop="8dip"
+			>
+			<Button android:id="@+id/prev_in_cat"
+				android:text="&lt;&lt;&lt;"
+				android:layout_width="60dip"
+				android:layout_height="wrap_content"
+				/>
+			<Button android:id="@+id/prev"
+				android:text="&lt;&lt;"
+				android:layout_width="60dip"
+				android:layout_height="wrap_content"
+				/>
+			<Button android:id="@+id/play"
+				android:text="&gt;"
+				android:layout_width="60dip"
+				android:layout_height="wrap_content"
+				/>
+			<Button android:id="@+id/pause"
+				android:text="||"
+				android:layout_width="60dip"
+				android:layout_height="wrap_content"
+				/>
+			<Button android:id="@+id/next"
+				android:text="&gt;&gt;"
+				android:layout_width="60dip"
+				android:layout_height="wrap_content"
+				/>
+			<Button android:id="@+id/next_in_cat"
+				android:text="&gt;&gt;&gt;"
+				android:layout_width="60dip"
+				android:layout_height="wrap_content"
+				/>
+		</LinearLayout>
+
+		<TextView android:id="@+id/album_art_info"
+			android:layout_below="@+id/controls"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dip"
 			/>
-		<Button android:id="@+id/next_in_cat"
-			android:text="&gt;&gt;&gt;"
-			android:layout_width="60dip"
+
+		<ImageView android:id="@+id/album_art"
+			android:layout_below="@+id/album_art_info"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:minHeight="100dp"
+			android:minWidth="100dp"
+			android:adjustViewBounds="true"
+			android:scaleType="center"
 			/>
-	</LinearLayout>
-
-	<TextView android:id="@+id/album_art_info"
-		android:layout_below="@+id/controls"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dip"
-	/>
-
-	<ImageView android:id="@+id/album_art"
-		android:layout_below="@+id/album_art_info"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:minHeight="100dp"
-		android:minWidth="100dp"
-		android:adjustViewBounds="true"
-		android:scaleType="center"
-	/>
 
 
-	<LinearLayout android:id="@+id/playing_mode"
-		android:layout_below="@+id/album_art"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="center"
-		android:layout_marginTop="8dip"
-	>
-		<TextView
+		<LinearLayout android:id="@+id/playing_mode"
+			android:layout_below="@+id/album_art"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginTop="8dip"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Cycle"
+				/>
+			<Button android:id="@+id/repeat"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Repeat"
+				/>
+
+			<Button android:id="@+id/shuffle"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Shuffle"
+				/>
+		</LinearLayout>
+
+		<LinearLayout android:id="@+id/playing_mode2"
+			android:layout_below="@+id/playing_mode"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			>
+			<Button android:id="@+id/repeat_off"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Rep OFF"
+				/>
+			<Button android:id="@+id/repeat_all"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Rep ALL"
+				/>
+
+			<Button android:id="@+id/shuffle_off"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Shuf OFF"
+				/>
+			<Button android:id="@+id/shuffle_all"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Shuf ALL"
+				/>
+		</LinearLayout>
+
+		<EditText android:id="@+id/play_file_path"
+			android:layout_width="200dip"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/playing_mode2"
+			android:layout_marginTop="8dip"
+			android:singleLine="true"
+			/>
+		<Button android:id="@+id/play_file"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Cycle"
-		/>
-		<Button android:id="@+id/repeat"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Repeat"
-		/>
-		
-		<Button android:id="@+id/shuffle"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Shuffle"
-		/>
-	</LinearLayout>
-	
-	<LinearLayout android:id="@+id/playing_mode2"
-		android:layout_below="@+id/playing_mode"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="center"
-	>
-		<Button android:id="@+id/repeat_off"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Rep OFF"
-		/>
-		<Button android:id="@+id/repeat_all"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Rep ALL"
-		/>
-		
-		<Button android:id="@+id/shuffle_off"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Shuf OFF"
-		/>
-		<Button android:id="@+id/shuffle_all"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Shuf ALL"
-		/>
-	</LinearLayout>
-	
-	<EditText android:id="@+id/play_file_path"
-		android:layout_width="200dip"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/playing_mode2"
-		android:layout_marginTop="8dip"
-		android:singleLine="true"
-	/>
-	<Button android:id="@+id/play_file"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignTop="@+id/play_file_path"
-		android:layout_toRightOf="@+id/play_file_path"
-		android:text="Play file"
-	/>
+			android:layout_alignTop="@+id/play_file_path"
+			android:layout_toRightOf="@+id/play_file_path"
+			android:text="Play file"
+			/>
 
-	<Button android:id="@+id/create_playlist"
-		android:layout_below="@+id/play_file_path"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dip"
-		android:text="Create Playlist And Add Something To It"
-		android:onClick="onClick"
-	/>
-
-	<Button android:id="@+id/goto_created_playlist"
-		android:layout_below="@+id/play_file_path"
-		android:layout_toRightOf="@id/create_playlist"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dip"
-		android:text="Go To Created Playlist"
-		android:onClick="onClick"
-		android:enabled="false"
-	/>
-
-	<Button android:id="@+id/add_to_q_and_goto_q"
-		android:layout_below="@+id/create_playlist"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dip"
-		android:text="Add Something To Queue And Go To Queue"
-		android:onClick="onClick"
-	/>
-
-	<LinearLayout android:id="@+id/category_buttons"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/add_to_q_and_goto_q"
-		android:orientation="vertical"
-	>
-		<Button android:id="@+id/folders"
+		<Button android:id="@+id/create_playlist"
+			android:layout_below="@+id/play_file_path"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dip"
-			android:text="Folders"
-		/>
-
-		<Button android:id="@+id/queue"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="8dip"
-			android:text="Queue"
+			android:text="Create Playlist And Add Something To It"
 			android:onClick="onClick"
-		/>
+			/>
 
-		<Button android:id="@+id/play_album"
+		<Button android:id="@+id/goto_created_playlist"
+			android:layout_below="@+id/play_file_path"
+			android:layout_toRightOf="@id/create_playlist"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Play First Album"
-		/>
-	
-		<Button android:id="@+id/play_all_songs"
+			android:layout_marginTop="8dip"
+			android:text="Go To Created Playlist"
+			android:onClick="onClick"
+			android:enabled="false"
+			/>
+
+		<Button android:id="@+id/add_to_q_and_goto_q"
+			android:layout_below="@+id/create_playlist"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Play All Songs"
-		/>
-	
-		<Button android:id="@+id/play_second_artist_first_album"
+			android:layout_marginTop="8dip"
+			android:text="Add Something To Queue And Go To Queue"
+			android:onClick="onClick"
+			/>
+
+		<LinearLayout android:id="@+id/category_buttons"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="Play Second Artist First Album"
-		/>
-	</LinearLayout>
-	
-	<Button android:id="@+id/eq"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/category_buttons"
-		android:layout_marginTop="16dip"
-		android:text="Open Eq"
-	/>
-	
-	<Button android:id="@+id/pa_current_list"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/eq"
-		android:layout_marginTop="16dip"
-		android:textStyle="bold"
-		android:text="PA Current List"
-	/>
+			android:layout_below="@+id/add_to_q_and_goto_q"
+			android:orientation="vertical"
+			>
+			<Button android:id="@+id/folders"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dip"
+				android:text="Folders"
+				/>
 
-	<Button android:id="@+id/pa_folders"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/eq"
-		android:layout_marginTop="16dip"
-		android:layout_toRightOf="@+id/pa_current_list"
-		android:textStyle="bold"
-		android:text="PA Folders"
-	/>
+			<Button android:id="@+id/queue"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dip"
+				android:text="Queue"
+				android:onClick="onClick"
+				/>
 
-	<Button android:id="@+id/pa_all_songs"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/eq"
-		android:layout_marginTop="16dip"
-		android:layout_toRightOf="@+id/pa_folders"
-		android:textStyle="bold"
-		android:text="PA All Songs"
-	/>
-</RelativeLayout>
+			<Button android:id="@+id/play_album"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Play First Album"
+				/>
+
+			<Button android:id="@+id/play_all_songs"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Play All Songs"
+				/>
+
+			<Button android:id="@+id/play_second_artist_first_album"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Play Second Artist First Album"
+				/>
+		</LinearLayout>
+
+		<Button android:id="@+id/eq"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/category_buttons"
+			android:layout_marginTop="16dip"
+			android:text="Open Eq"
+			/>
+
+		<Button android:id="@+id/pa_current_list"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/eq"
+			android:layout_marginTop="16dip"
+			android:textStyle="bold"
+			android:text="PA Current List"
+			/>
+
+		<Button android:id="@+id/pa_folders"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/eq"
+			android:layout_marginTop="16dip"
+			android:layout_toRightOf="@+id/pa_current_list"
+			android:textStyle="bold"
+			android:text="PA Folders"
+			/>
+
+		<Button android:id="@+id/pa_all_songs"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/eq"
+			android:layout_marginTop="16dip"
+			android:layout_toRightOf="@+id/pa_folders"
+			android:textStyle="bold"
+			android:text="PA All Songs"
+			/>
+	</RelativeLayout>
 
 </ScrollView>

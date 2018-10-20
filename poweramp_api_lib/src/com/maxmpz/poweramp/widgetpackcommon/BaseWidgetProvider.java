@@ -16,7 +16,7 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+*/
 
 package com.maxmpz.poweramp.widgetpackcommon;
 
@@ -35,8 +35,8 @@ import com.maxmpz.poweramp.player.PowerampAPI;
 /**
  * Base widget provider for PowerampAPI based app widgets
  */
-public abstract class BaseWidgetProvider extends AppWidgetProvider implements 
-	IWidgetUpdater 
+public abstract class BaseWidgetProvider extends AppWidgetProvider implements
+		IWidgetUpdater
 {
 	private static final String TAG = "BaseWidgetProvider";
 	private static final boolean LOG = false;
@@ -68,7 +68,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	 * Min. AA image size to show (otherwise logo shown)
 	 */
 	protected static final int MIN_SIZE = 32;
-	
+
 	/**
 	 * Creates and caches widgetupdater suitable for updating this provider. Called when provider is called by system or by widget configure. Implmentation should be thread safe
 	 * @param context
@@ -87,7 +87,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	 */
 	public abstract @NonNull RemoteViews update(Context context, @NonNull WidgetUpdateData data, @NonNull SharedPreferences prefs, int id);
 
-	
+
 	// NOTE: called by system
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -97,19 +97,19 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 		}
 
 		if(LOG) Log.w(TAG, "onUpdate ids=" + Arrays.toString(appWidgetIds));
-		
+
 		WidgetUpdater widgetUpdater = getWidgetUpdater(context);
-		
+
 		try {
-		
+
 			widgetUpdater.updateSafe(this, null, true, true); // Immediate update, ignores power state
 
 		} catch(Throwable th) {
 			Log.e(TAG, "", th);
 		}
 	}
-	
-	
+
+
 
 	// THREADING: any
 	@Override
@@ -141,15 +141,15 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 		}
 		return data;
 	}
-	
+
 
 	@SuppressWarnings("static-method")
 	protected boolean getAANoAnimState(WidgetUpdateData data, WidgetContext widgetCtx) {
 		if(data.albumArtNoAnim
-			|| widgetCtx.lastAATimeStamp == data.albumArtTimestamp 
-			|| data.hasTrack && (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0) {
+				|| widgetCtx.lastAATimeStamp == data.albumArtTimestamp
+				|| data.hasTrack && (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0) {
 
-			if(LOG) Log.w(TAG, "same AA, noAnim=>true, same ts=" + widgetCtx.lastAATimeStamp + 
+			if(LOG) Log.w(TAG, "same AA, noAnim=>true, same ts=" + widgetCtx.lastAATimeStamp +
 					" or FLAG_FIRST_IN_PLAYER_SESSION=" + (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) + " bitmap=" + data.albumArtBitmap);
 
 			return true;

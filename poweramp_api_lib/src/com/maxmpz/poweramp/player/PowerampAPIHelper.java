@@ -1,3 +1,23 @@
+/*
+Copyright (C) 2011-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for widgets, plugins, applications and other software
+which communicate with Poweramp application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 package com.maxmpz.poweramp.player;
 
 import android.content.Context;
@@ -17,7 +37,7 @@ import org.eclipse.jdt.annotation.Nullable;
 public class PowerampAPIHelper {
 	private static final String TAG = "PowerampAPIHelper";
 	private static final boolean LOG = false;
-	
+
 
 	public static void startPAService(Context context, Intent intent) {
 		intent.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME);
@@ -48,20 +68,20 @@ public class PowerampAPIHelper {
 				BitmapFactory.Options opts = new BitmapFactory.Options();
 				opts.inJustDecodeBounds = true;
 				BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
-	
+
 				// Calculate subsample and load subsampled image
 				opts.inJustDecodeBounds = false;
 				if(subsampleWidth > 0 && subsampleHeight > 0) {
 					opts.inSampleSize = calcSubsample(subsampleWidth, subsampleHeight, opts.outWidth, opts.outHeight); // Subsamples images up to 2047x2047, should be safe, though this is up to 16mb per bitmap
 				}
-	
+
 				Bitmap b = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
-				
+
 				if(LOG) Log.e(TAG, "getAlbumArt aaUri=" + aaUri + " b=" + b);
 				if(LOG && b != null) Log.e(TAG, "getAlbumArt w=" + b.getWidth() + " h=" + b.getHeight());
-				
+
 				return b;
-				
+
 			} else if(LOG) Log.e(TAG, "getAlbumArt no pfd for aaUri=" + aaUri);
 
 		} catch(FileNotFoundException ex) {
