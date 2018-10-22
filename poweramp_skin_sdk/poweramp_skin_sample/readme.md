@@ -39,7 +39,7 @@ additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
 * build and run skin as a normal Android app
 * when skin activity is started, "Start Poweramp With * Skin" button can be pressed to force Poweramp immediately reload the skin
 * skin should appear in Poweramp skin selection settings page as well
-
+* **if skin fails, ensure Android Studio's "Instant Run" feature is turned off (Prefs > Build, Execution, Deployment > Instant Run**
 
 ### How Poweramp v3 skins work
 
