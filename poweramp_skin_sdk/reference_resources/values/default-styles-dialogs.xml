@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<!--
+	NOTE: current Theme is always applied for dialogs, no matter which parent Dialog theme extends (it can be e.g. Android or Support Library dialog theme, or nothing at all).
+	Current Theme is applied without force-overriding, thus, Dialog theme values take precendence
+	-->
+
+	<!-- Concrete dialog styles -->
+	<!-- NOTE: each dialog theme inheritance path is: dialog_* => *Dialog => BaseDialog => Theme.AppCompat.Light + ActivityTheme_White -->
+	<!-- ^.*?E/ThemeManager\(\d+\):\s+ -->
+	
+	<style name="dialog_EditTagActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_edit_tag</item>
+	</style>
+	
+	<style name="dialog_InfoActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_info</item>
+	</style>
+	
+	<style name="dialog_WelcomeActivity" parent="@style/CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_welcome</item>
+		<item name="DialogTitleLayout">@style/dialog_WelcomeActivity_DialogTitleLayout</item>
+		<item name="DialogTitle">@style/dialog_WelcomeActivity_DialogTitle</item>
+		<item name="DialogContent">@style/dialog_WelcomeActivity_DialogContent</item>
+	</style>
+	<style name="dialog_WelcomeActivity_DialogTitleLayout" parent="DialogTitleLayout">
+		<item name="android:layout_marginTop">24dp</item>
+	</style>
+	<style name="dialog_WelcomeActivity_DialogTitle" parent="DialogTitle">
+		<item name="android:drawable">@drawable/logo_navbar_hamburger</item>
+		<item name="drawableOnly">true</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		
+	</style>
+	<style name="dialog_WelcomeActivity_DialogContent" parent="DialogContent">
+		<item name="android:layout_marginTop">12dp</item>
+		<!-- <item name="android:layout_marginBottom">4dp</item> --><!-- Needs some vertical symmetry vs larger header -->
+	</style>
+	
+
+	<style name="DialogButtonBarHidden" parent="@style/DialogButtonBar">
+		<item name="android:visibility">gone</item>
+	</style>
+	<style name="DialogTitleLayoutHidden" parent="@style/DialogTitleLayout">
+		<item name="android:visibility">gone</item>
+	</style>
+	
+	
+	<style name="dialog_ExpiredActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
+		<item name="DialogNegativeButtonStyle">@style/LongDialogNegativeButtonStyle</item>
+	</style>
+	
+	<style name="LongDialogNegativeButtonStyle" parent="DialogNegativeButtonStyle">
+		<item name="layout_maxWidth">250dp</item>
+	</style>
+				
+	<style name="dialog_ChangelogActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
+		<item name="Text">@style/TextSmaller</item>
+	</style>
+	<!--
+	<style name="dialog_EqPresetActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_select_preset</item>
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
+		<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>
+		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
+		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
+	</style>
+	-->
+	
+	<style name="dialog_EditNameActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_text_input</item>
+	</style>
+	
+	<style name="dialog_EqPresetAssignActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_eq_preset_assign</item>
+	</style>
+	
+	<style name="dialog_AddEqPresetActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_add_eq_preset</item>
+	</style>
+	<style name="dialog_AddReverbPresetActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_add_reverb_preset</item>
+	</style>
+				
+	<style name="dialog_SelectAlbumArtActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_select_album_art</item>
+		<item name="DialogFrame">@style/SelectAlbumArt_BottomsheetDialogFrame</item>
+		<item name="DialogFrameStyle_scene_dialog_in">@style/SelectAlbumArt_BottomsheetDialogFrameStyle_scene_dialog_in</item>
+		<item name="dragByNestedScroll">false</item>
+		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
+		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
+	</style>
+    <style name="SelectAlbumArt_BottomsheetDialogFrame" parent="BottomsheetDialogFrame">
+		<item name="layout_maxHeight">@dimen/LargerTopBottomSheetDialogFrame_maxHeight</item>
+	</style>
+	<style name="SelectAlbumArt_BottomsheetDialogFrameStyle_scene_dialog_in" parent="BottomsheetDialogFrameStyle_scene_dialog_in">
+		<item name="layout_maxHeight">@dimen/LargerTopBottomSheetDialogFrame_maxHeight</item>
+	</style>
+	<style name="dialog_ListOptsActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_list_opts</item>
+		<item name="DialogTitleLayout">@style/dialog_ListOptsActivity_DialogTitleLayout</item>
+	</style>
+	<style name="dialog_ListOptsActivity_DialogTitleLayout" parent="DialogTitleLayout">
+		<item name="android:layout_marginRight">54dp</item><!-- Space for settings icon -->
+	</style>
+	<style name="dialog_PlaylistSortActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_resort</item>
+	</style>
+	<style name="dialog_PlaylistSelectActivity" parent="BottomsheetDialog">
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
+		<item name="dialogContentLayout">@layout/dialog_content_playlist_select</item>
+		<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>
+	</style>
+	
+	<style name="dialog_MusicFoldersActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_music_folders</item>
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
+	</style>
+	<style name="dialog_AutoFindDialogActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_auto_find</item>
+	</style>
+	<style name="dialog_TextAlertDialogActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_alert</item>
+		<item name="DialogNegativeButtonStyle">@style/LongDialogNegativeButtonStyle</item>
+	</style>
+	<style name="dialog_APMUnlockDialogActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_apm_unlock</item>
+	</style>
+	
+	<style name="dialog_LyricsActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_lyrics</item>
+	</style>
+		
+	<style name="dialog_MobirooDRMErrorActivity" parent="CenteredDialog"></style>
+	
+	<style name="dialog_AudioBufferActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_audio_buffer</item>
+	</style>
+		
+	<!--
+	<style name="dialog_DialogActivity" parent="BottomsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_generic</item>
+	</style>
+	<style name="dialog_DialogActivity_centered" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_generic</item>
+	</style>
+	<style name="dialog_DialogActivity_top" parent="TopsheetDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_generic</item>
+	</style>
+	-->
+			
+	<!-- Styles used in dialogs -->
+	
+	<style name="TextSmaller" parent="@style/Text">
+		<item name="android:textSize">14dp</item>
+	</style>
+	
+	
+	<style name="EqPresetAssignIcon">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">30dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="drawableOnly">true</item>
+	</style>
+	<style name="EqPresetAssignCheckbox">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">30dp</item>
+		<item name="android:gravity">center_vertical</item>
+		
+		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	
+	<style name="EqPresetAssignText">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+	</style>
+		
+	<!--  -->
+	
+	<!-- 
+	NOTE: standard dialog doesn't explicely derive from our custom theme (e.g. ActivityTheme_White), it derived from
+	some system (or AppCompat) theme.
+	
+	BUT Poweramp applies currently selected theme (e.g. ActivityTheme_White) on top of StandardDialog, thus
+	all the values/styles from main theme (ActivityTheme) are avable in standard dialogs as well.
+	
+	The difference vs Dialog theme is that we don't need to rollback all the customization to theme to make it look system-lie,
+	as StandardDialog styles are not overriden by ActivityTheme.
+	-->
+	
+	<!-- REVISIT -->
+	
+	
+	
+</resources>

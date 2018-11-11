@@ -68,6 +68,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorLessContrast">#eee</item>
 		
 		<item name="colorStrokeHelp">#555</item>
+		<item name="colorBgHelp">#333</item>
 		
 		<item name="colorShade">#88000000</item>
 		<item name="colorBgLight">#0f0f0f</item><!-- Used ATM for Search Frame bg -->

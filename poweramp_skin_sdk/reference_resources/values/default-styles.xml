@@ -94,6 +94,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#000</item>
 		<item name="colorStroke">#555</item>
+		<item name="colorBgHelp">#f0f0f0</item>
 		<item name="colorStrokeHelp">#333</item>
 		<item name="colorLessContrast">#333</item><!-- Used for e.g. for main screen tinted icons, some text -->
 		<item name="colorShade">#88000000</item>
