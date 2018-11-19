@@ -29,9 +29,9 @@ Poweramp skin is a pretty much standard Android app in APK which includes:
 ```xml
 <meta-data android:name="com.maxmpz.PowerampVisPresets" android:value="true"/>
 ```
-* .milk files in **[app/src/main/milk_presets](app/src/main/assets/milk_presets)**
+* .milk files in **[app/src/main/assets/milk_presets](app/src/main/assets/milk_presets)**
   * Poweramp parses preset file name using "name - author.milk" scheme, where name, author, and APK name are separate searchable labels in Poweramp presets list
-* optional textures in **[app/src/main/milk_milk_textures](app/src/main/assets/milk_textures)**
+* optional textures in **[app/src/main/assets/milk_textures](app/src/main/assets/milk_textures)**
   * jpg/png/bmp/tga formats are supported
 * an Activity which can be started by user. This activity may include actions to open Poweramp visualization settings or directly start Poweramp with target preset APK loaded
     * the activity is also used for the development to force Poweramp to reload APK under development
