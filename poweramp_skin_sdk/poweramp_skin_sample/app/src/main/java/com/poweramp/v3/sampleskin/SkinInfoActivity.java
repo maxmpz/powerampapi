@@ -32,7 +32,7 @@ public class SkinInfoActivity extends Activity {
     public void openPowerampThemeSettings(View view) {
         Intent intent = new Intent(Intent.ACTION_MAIN).setClassName("com.maxmpz.audioplayer", "com.maxmpz.audioplayer.SettingsActivity");
         intent.putExtra("open", "theme");
-        intent.putExtra("theme_pak", getPackageName()); // If theme_pak/theme_id specified for open/theme, will scroll skins list to this skin
+        intent.putExtra("theme_pak", getPackageName()); // If theme_pak/theme_id specified for open/theme, will scroll to/opens this skins settings
         intent.putExtra("theme_id", R.style.SampleSkin);
         startActivity(intent);
         finish();

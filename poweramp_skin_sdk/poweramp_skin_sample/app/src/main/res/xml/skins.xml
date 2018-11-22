@@ -15,6 +15,93 @@
 			checkedByDefault="false"
 		/>
 
+		<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
+		     See strings.xml for some examples.
+		-->
+		<option
+			key="color1"
+			name="@string/skin_text_color1"
+			overlapStyle="@style/SampleSkin_color1"
+			checkedByDefault="false"
+		/>
+
+		<!-- (build 810+) radio / popup - an option selectable from the number of available options -->
+
+		<!--
+			Multiple "radio" button options.
+
+		     defaultValue is the style selected and applied by default.
+		     defaultValue can be an empty string "" (or can be missing) - this indicates that none of the options are selected nor applied.
+		     Preferable, one of the child options should have defaultValue value too (or be an empty/missing), otherwise some unspecified option will be shown for defaultValue
+
+		     name and summary are optional for <radio>
+        -->
+		<radio
+			key="color2"
+			name="@string/skin_select_text_color"
+			summary="@string/skin_summary_select_text_color"
+
+			type="radio"
+			defaultValue=""
+		>
+			<!-- name is the required attribute. summary is optional, key is ignored -->
+			<option
+				name="@string/skin_default"
+				summary="@string/skin_summary_default"
+				overlapStyle=""
+			/>
+			<option
+				name="@string/skin_red"
+				summary="@string/skin_red_w_color"
+				overlapStyle="@style/SampleSkin_color_red"
+			/>
+			<option
+				name="@string/skin_green"
+				summary="@string/skin_green_w_color"
+				overlapStyle="@style/SampleSkin_color_green"
+			/>
+			<option
+				name="@string/skin_blue"
+				summary="@string/skin_blue_w_color"
+				overlapStyle="@style/SampleSkin_color_blue"
+			/>
+		</radio>
+
+		<!--
+			Multiple options in a popup.
+
+		     defaultValue is the style selected and applied by default.
+		     defaultValue can be an empty string "" (or can be missing) - this indicates that none of the options are selected nor applied.
+		     Preferable, one of the child options should have defaultValue value too (or be an empty/missing), otherwise some unspecified option will be shown for defaultValue
+
+		     popup name and summary are optional.
+		     popup name doesn't support html as it's used for dialog title.
+		     popup summary can include %s => that is replaced by the selected option name
+        -->
+		<popup
+			key="bg_color"
+			name="@string/skin_select_bg_color"
+			summary="@string/skin_summary_select_bg_color_s"
+		>
+			<!-- name is the required attribute. summary is ignored, key is ignored -->
+			<option
+				name="@string/skin_default"
+				overlapStyle=""
+			/>
+			<option
+				name="@string/skin_red_w_color"
+				overlapStyle="@style/SampleSkin_bg_color_red"
+			/>
+			<option
+				name="@string/skin_green_w_color"
+				overlapStyle="@style/SampleSkin_bg_color_green"
+			/>
+			<option
+				name="@string/skin_blue_w_color"
+				overlapStyle="@style/SampleSkin_bg_color_blue"
+			/>
+		</popup>
+
 		<!-- Let's add our skin unique option which makes navigation bars fully transparent -->
 		<option
 			key="trans_navbar"

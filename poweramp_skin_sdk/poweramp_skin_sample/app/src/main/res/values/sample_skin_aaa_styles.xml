@@ -79,8 +79,6 @@
 		<item name="com.maxmpz.audioplayer:ItemLike_scene_aa">@style/AAA_ItemLike_scene_aa</item>
 		<item name="com.maxmpz.audioplayer:ItemUnlike_scene_aa">@style/AAA_ItemUnlike_scene_aa</item>
 
-		<item name="com.maxmpz.audioplayer:ItemRatingBar_scene_aa">@style/AAA_ItemRatingBar_scene_aa</item>
-
 		<!-- Uncomment to remove background for title for grid scenes (as we move labels below image in list).
 		     It's used in this skin for better zoom transitions (with backgrounds visible during zooming) -->
 		<!--

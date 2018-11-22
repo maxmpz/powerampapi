@@ -211,6 +211,38 @@
 	</style>
 
 
+	<!-- Optional styles for color1 option, color2 option select, and bg_color popup -->
+	<style name="SampleSkin_color1">
+		<item name="android:textColorPrimary">#f00</item>
+	</style>
+	<style name="SampleSkin_color_red">
+		<item name="android:textColorPrimary">#f00</item>
+	</style>
+	<style name="SampleSkin_color_green">
+		<item name="android:textColorPrimary">#0f0</item>
+	</style>
+	<style name="SampleSkin_color_blue">
+		<item name="android:textColorPrimary">#00f</item>
+	</style>
+
+	<style name="SampleSkin_bg_color_red">
+		<item name="com.maxmpz.audioplayer:colorBgPrimary">#faa</item>
+		<item name="com.maxmpz.audioplayer:colorBgNavbar">#faa</item>
+		<item name="com.maxmpz.audioplayer:colorAABgColor">#faa</item>
+	</style>
+	<style name="SampleSkin_bg_color_green">
+		<item name="com.maxmpz.audioplayer:colorBgPrimary">#afa</item>
+		<item name="com.maxmpz.audioplayer:colorBgNavbar">#afa</item>
+		<item name="com.maxmpz.audioplayer:colorAABgColor">#afa</item>
+	</style>
+	<style name="SampleSkin_bg_color_blue">
+		<item name="com.maxmpz.audioplayer:colorBgPrimary">#aaf</item>
+		<item name="com.maxmpz.audioplayer:colorBgNavbar">#aaf</item>
+		<item name="com.maxmpz.audioplayer:colorAABgColor">#aaf</item>
+	</style>
+
+
+
 
 	<!-- Optional style for SampleSkin_transparentNavbar option. Poweramp applies optional styles on top of the skin theme, if such option is checked by user in settings.
 	     NOTE: as fully transparent navigation bar is supported by Android 8.0+, we have different variants of this style for v21-25 (Android 5-7), and for v26+ (Android 8+).
@@ -356,6 +388,9 @@
 		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
 		<item name="android:visibility">invisible</item>
 	</style>
+
+
+
 
 
 </resources>

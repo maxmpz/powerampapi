@@ -19,6 +19,28 @@
 	<string name="skin_summary_no_aa_blur">Just show default background color</string>
 
 	<string name="skin_static_seekbar">Static Seekbar</string>
+
+	<!-- Color rectangle (simple ⬤ symbol + color). NOTE: extra backslash is needed before quotes (\") -->
+	<string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>
+
+	<string name="skin_select_text_color">Select Text Color</string>
+	<string name="skin_summary_select_text_color">Select one of the colors below</string>
+
+	<string name="skin_select_bg_color">Select Background Color</string>
+	<string name="skin_summary_select_bg_color_s">Background Color: %s</string>
+
+	<string name="skin_default">Default</string>
+	<string name="skin_summary_default">Default summary</string>
+
+	<string name="skin_red">Red</string>
+	<string name="skin_red_w_color"><![CDATA[<span style=\"color: #ff0000;\">⬤</span> Red color]]></string>
+
+	<string name="skin_green">Green</string>
+	<string name="skin_green_w_color"><![CDATA[<span style=\"color: #00ff00;\">⬤</span> Green color]]></string>
+
+	<string name="skin_blue">Blue</string>
+	<string name="skin_blue_w_color"><![CDATA[<span style=\"color: #0000ff;\">⬤</span> Blue color]]></string>
+
 	<string name="skin_transparent_navbar">Transparent Navbars</string>
 	<string name="skin_summary_transparent_navbar">Both, Poweramp and Android navigation bars are transparent</string>
 
