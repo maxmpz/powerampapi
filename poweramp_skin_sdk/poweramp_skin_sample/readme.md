@@ -106,6 +106,66 @@ for these views.
 
 See appropriate reference resources xmls for the details in the comments.
 
+### Poweramp v3 skin options
+Poweramp v3 supports unique feature allowing user selectable skin options to be defined by skin author. Option is an "overlap" style which is applied in addition to main skin theme.
+See sample skin **[xml/skins.xml](app/src/main/res/xml/skins.xml)** for reference.
+
+Options include:
+* option with just a name (rendered as half-width switch), or with the summary (rendered as 2 line switch):
+```xml
+<option
+    key="[preference unique key]"
+    name="[visible name]"
+    summary="[optional summary]"
+    overlapStyle="[overlap style reference]"
+    checkedByDefault="[true|false]"/>
+```
+* set of radio buttons (build 810+). Only one selected value from the set of options is applied:
+```xml
+<radio
+    key="[preference unique key]"
+    name="[visible name]"
+    summary="[optional summary]"
+    defaultValue="[optional default overlap style reference]">
+        <option
+            name="[visible name]"
+            summary="[optional summary]"
+            overlapStyle="[overlap style reference, can be an empty string]"
+        />
+        ...
+</radio>
+```
+* option with popup option chooser list (build 810+). Only one selected value from the set of options is applied:
+```xml
+<popup
+    key="[preference unique key]"
+    name="[visible name]"
+    summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
+    defaultValue="[optional default overlap style reference]">
+        <option
+            name="[visible name]"
+            overlapStyle="[overlap style reference, can be an empty string]"
+        />
+        ...
+</popup>
+```
+
+Most options support limited set of html tags inside **name** and **summary** attributes. These allow e.g. specifying color:
+```xml
+<option
+    ...
+    name="@string/skin_text_color1"
+    ...
+/>
+
+```
+where skin_text_color1 is defined in strings.xml with html tags inside:
+```xml
+<string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>
+```
+
+
+
 ### Difference vs Poweramp v2 skins
 * Poweramp v2 skins are not compatible with Poweramp v3, Poweramp v3 skins are not compatible with Poweramp v2
 * Poweramp v2 skins relied on skin provided layout xmls, v3 skins rely on style redefinitions, layouts xmls can't be changed by skin (except for few injected specific **merge_** layouts)
