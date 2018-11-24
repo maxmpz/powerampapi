@@ -426,6 +426,11 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+		
+		/**
+		 * The guessed album year
+		 */
+		public static final @NonNull String ALBUM_YEAR = "album_year";
 	}
 
 

@@ -24,7 +24,6 @@
 	<dimen name="AAA_ListSubstyle_aaPaddingBottom">60dp</dimen>
 	<!--<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">31dp</dimen>-->
 
-	<fraction name="AAA_TopAAItemRatio">100%</fraction>
 	<dimen name="AAA_aaMaxSize">340dp</dimen>
 	<dimen name="AAA_ItemTrackAAImage_scene_aa_margin">8dp</dimen>
 

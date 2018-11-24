@@ -22,7 +22,7 @@
 		<!--<item name="com.maxmpz.audioplayer:aaPaddingBottom">@dimen/AAA_ListSubstyle_aaPaddingBottom</item>-->
 
 		<!-- Set own TopAAItemRatio as we need to make AA smaller on smaller screens -->
-		<item name="com.maxmpz.audioplayer:aaItemRatio">@fraction/AAA_TopAAItemRatio</item><!-- NOTE: sync with TopAABounds -->
+		<item name="com.maxmpz.audioplayer:aaItemRatio">100%</item><!-- NOTE: sync with TopAABounds -->
 		<item name="com.maxmpz.audioplayer:aaMaxSize">@dimen/AAA_aaMaxSize</item><!-- NOTE: sync with TopAABounds -->
 		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
 	</style>
@@ -111,8 +111,8 @@
 	</style>
 
 	<style name="AAA_TopAABounds" parent="com.maxmpz.audioplayer:TopAABounds">
-		<item name="com.maxmpz.audioplayer:layout_widthPercent">@fraction/AAA_TopAAItemRatio</item><!-- NOTE: sync with ListSubstyle -->
-		<item name="com.maxmpz.audioplayer:layout_heightPercent">@fraction/AAA_TopAAItemRatio</item><!-- NOTE: sync with ListSubstyle -->
+		<item name="com.maxmpz.audioplayer:layout_widthPercent">100%</item><!-- NOTE: sync with ListSubstyle -->
+		<item name="com.maxmpz.audioplayer:layout_heightPercent">100%</item><!-- NOTE: sync with ListSubstyle -->
 		<item name="com.maxmpz.audioplayer:layout_maxWidth">@dimen/AAA_aaMaxSize</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 

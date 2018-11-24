@@ -107,11 +107,11 @@ for these views.
 See appropriate reference resources xmls for the details in the comments.
 
 ### Poweramp v3 skin options
-Poweramp v3 supports unique feature allowing user selectable skin options to be defined by skin author. Option is an "overlap" style which is applied in addition to main skin theme.
+Poweramp v3 supports unique feature allowing user selectable skin options to be defined by skin author. Option is an "overlap" style which is applied in addition to the main skin theme.
 See sample skin **[xml/skins.xml](app/src/main/res/xml/skins.xml)** for reference.
 
 Options include:
-* option with just a name (rendered as half-width switch), or with the summary (rendered as 2 line switch):
+* simple option with just a name (rendered as half-width switch), or with the summary (rendered as 2 line switch):
 ```xml
 <option
     key="[preference unique key]"
@@ -120,7 +120,7 @@ Options include:
     overlapStyle="[overlap style reference]"
     checkedByDefault="[true|false]"/>
 ```
-* set of radio buttons (build 810+). Only one selected value from the set of options is applied:
+* set of a radio buttons (build 810+). Only one selected value from the set of options is applied:
 ```xml
 <radio
     key="[preference unique key]"
@@ -135,7 +135,7 @@ Options include:
         ...
 </radio>
 ```
-* option with popup option chooser list (build 810+). Only one selected value from the set of options is applied:
+* option with a popup option chooser list (build 810+). Only one selected value from the set of options is applied:
 ```xml
 <popup
     key="[preference unique key]"

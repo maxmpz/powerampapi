@@ -24,7 +24,6 @@
 
 	<dimen name="AAA_ListSubstyle_aaPaddingBottom">75dp</dimen>
 
-	<fraction name="AAA_TopAAItemRatio">100%</fraction>
 	<dimen name="AAA_aaMaxSize">500dp</dimen><!-- For 18:9 actually it doesn't limit max size (width of screen does) -->
 	<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">34dp</dimen>
 

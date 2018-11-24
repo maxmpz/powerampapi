@@ -18,7 +18,6 @@
 
 	<dimen name="AAA_TopSleepTimerButtonLayout_marginLeft">4dp</dimen>
 
-	<fraction name="AAA_TopAAItemRatio">100%</fraction>
 	<dimen name="AAA_aaMaxSize">500dp</dimen><!-- For 18:9 actually it doesn't limit max size (width of screen does) -->
 
 	<dimen name="AAA_ItemTrackAAImage_scene_aa_margin">8dp</dimen>
