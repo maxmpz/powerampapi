@@ -748,7 +748,7 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String SORT = TABLE + ".sort";
-
+		
 		public static final @NonNull String CALC_PLAYED = "folder_files.played_at >= queue.created_at"; // If played at is the same as queue entry time, consider it played already 
 		public static final @NonNull String CALC_UNPLAYED = "folder_files.played_at < queue.created_at";
 	}
