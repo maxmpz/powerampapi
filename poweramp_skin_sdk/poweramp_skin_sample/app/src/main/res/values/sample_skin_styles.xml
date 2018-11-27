@@ -73,6 +73,10 @@
 		<item name="com.maxmpz.audioplayer:ItemHeaderPlayButton">@style/ItemHeaderPlayButton</item>
 		<item name="com.maxmpz.audioplayer:ItemHeaderSelectButton">@style/ItemHeaderSelectButton</item>
 
+		<!-- The text header button (text header => header without background image for categories like Albums, Playlists, etc. -->
+		<item name="com.maxmpz.audioplayer:ItemTextHeaderShuffleButton">@style/ItemTextHeaderShuffleButton</item>
+
+
 		<!-- Override menu button in just scene_header scene -->
 		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_header">@style/ItemTrackMenu_scene_header</item>
 
@@ -180,6 +184,11 @@
 
 	<style name="ItemHeaderShuffleButton" parent="com.maxmpz.audioplayer:ItemHeaderShuffleButton">
 		<item name="android:background">@drawable/ripple_button</item>
+		<item name="com.maxmpz.audioplayer:drawableTint">#f00</item>
+	</style>
+
+	<style name="ItemTextHeaderShuffleButton" parent="com.maxmpz.audioplayer:ItemTextHeaderShuffleButton">
+		<item name="com.maxmpz.audioplayer:drawableTint">#00f</item>
 	</style>
 
 	<style name="ItemHeaderPlayButton" parent="com.maxmpz.audioplayer:ItemHeaderPlayButton">
