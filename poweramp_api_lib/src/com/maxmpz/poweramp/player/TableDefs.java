@@ -183,11 +183,16 @@ public interface TableDefs {
 		 * byte[] blob, nullable
 		 */
 		public static final @NonNull String WAVE = "wave";
-
+		
 		/**
 		 * String
 		 */
 		public static final @NonNull String META = TABLE + ".meta";
+		
+		/**
+		 * Last played position in ms
+		 */
+		public static final @NonNull String LAST_POS = "last_pos";
 
 		/**
 		 * tag_status
