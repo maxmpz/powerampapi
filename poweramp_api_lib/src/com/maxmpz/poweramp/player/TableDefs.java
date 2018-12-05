@@ -120,10 +120,16 @@ public interface TableDefs {
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 
 		/**
-		 * Full path. Works only if the query is joined with the folders.
+		 * Full path. Works only if the query is joined with the folders, otherwise this will fail
 		 * String.
 		 */
 		public static final @NonNull String FULL_PATH = Folders.PATH + "||" + NAME;
+
+		/**
+		 * Full path. Doesn't depend on joining folders table
+		 * String.
+		 */
+		public static final @NonNull String FULL_PATH_NO_JOIN = "(SELECT folders.path FROM folders WHERE folders._id=folder_files.folder_id)||" + NAME;
 
 		/**
 		 * Int.
