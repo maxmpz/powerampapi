@@ -112,19 +112,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			>
 				<com.maxmpz.widget.FastButton android:id="@id/cmd_nav_to_lib"
 					style="?NavBarButton"
+					android:longClickable="true"
 					android:drawable="?nav_lists"
+					android:contentDescription="@string/library"
 				/>
 				<com.maxmpz.widget.FastButton android:id="@id/cmd_nav_to_eq"
 					style="?NavBarButton"
 					android:drawable="?nav_equ"
+					android:contentDescription="@string/h_equ_effects"
 				/>
 				<com.maxmpz.widget.FastButton android:id="@id/cmd_nav_to_search"
 					style="?NavBarButton"
 					android:drawable="?nav_search"
+					android:contentDescription="@string/search"
 				/>
 				<com.maxmpz.widget.FastButton android:id="@id/cmd_nav_more"
 					style="?NavBarButton"
 					android:drawable="?nav_hamburger"
+					android:contentDescription="@string/settings"
 				/>
 			</com.maxmpz.widget.FastLayout>
 			<com.maxmpz.widget.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"

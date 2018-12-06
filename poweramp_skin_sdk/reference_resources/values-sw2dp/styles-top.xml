@@ -44,7 +44,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="stateAnimTime">250</item>
 		
 		<item name="visAnimTime">320</item>
-		<item name="tempUITime">1500</item>
+		<!-- <item name="tempUITime">1500</item> --><!-- NOTE: not used anymore, instead now defined by user option -->
 		
 		<!-- NOTE: this is ignored, if animTime/animMainExitTime is set to 0. 
 		  	 Also, LARGE values apply for list => no list transition, which is currently only to Eq 
@@ -748,11 +748,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<!-- NOTE: for simplicity, fixed height, thus, easier to layout everything inside centered as needed -->
 	<style name="TopToastFrame">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		
+		<item name="android:minHeight">38dp</item>
+		<item name="layout_maxWidth">300dp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_gravity">center_horizontal|bottom</item>
+				
 		<item name="android:background">@drawable/toast_bg</item>
 		<item name="android:clickable">true</item>
 		<item name="android:elevation">?toast_elevation</item>
-		<item name="android:layout_marginLeft">12dp</item>
-		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:paddingLeft">16dp</item>
 		<item name="android:paddingRight">16dp</item>
 		<item name="android:paddingTop">10dp</item>
@@ -760,11 +767,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scaleX">1</item>
 		<item name="android:scaleY">1</item>
 		<item name="android:visibility">invisible</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:minHeight">38dp</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_maxWidth">300dp</item>
-		<item name="android:layout_gravity">center_horizontal|bottom</item>
+		
 		<!-- NOTE: needed as we may have icon size too small - defined by title/line2 bounds -->	
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
@@ -900,17 +903,37 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">4dp</item>
 	</style>
 	
-	<style name="TopCounterLayout">
+	<!-- NOTE: as top counter now uses TopCounterLayout style, TopCounterLayout is just derived from TopCounter style, which still exists for compatibility -->
+	<style name="TopCounter">
+		<!-- <item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item> -->
+		<!-- <item name="layout_unlimitedMeasure">true</item> -->
+		<!-- <item name="android:clipChildren">false</item> -->
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<!-- <item name="layout_maxWidth">68dp</item> --><!-- 68 -->
+		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:paddingTop">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
+		<item name="android:paddingBottom">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
+		<item name="android:lineSpacingExtra">1.75dp</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:capitalize">characters</item>
+		<item name="android:ellipsize">end</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:gravity">center</item>
+	</style>
+	<style name="TopCounterLayout" parent="TopCounter">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:clipChildren">false</item>
+		<item name="android:clipChildren">true</item>
 		<item name="android:scaleX">0.95</item>
 		<item name="android:scaleY">0.95</item>
 		<item name="layout_compensateScale">0.95</item>
 		<item name="android:alpha">0.75</item>
 		<item name="layout_gravityTarget">@id/sub_aa_buttons</item>
 		<item name="android:layout_gravity">center</item>
-		<item name="lineBackground">@drawable/ripple_alpha_rounded_small</item>
+		<item name="lineBackground">@drawable/alpha_rounded_small</item>
 	</style>
 	<style name="TopCounterLayout_scenes_playing">
 		<item name="android:visibility">visible</item>
@@ -928,28 +951,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scaleY">0.85</item>
 	</style>
 	
-	<style name="TopCounter">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:clipChildren">false</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="layout_maxWidth">68dp</item>
-		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
-		<item name="android:paddingLeft">4dp</item>
-		<item name="android:paddingRight">4dp</item>
-		<item name="android:paddingTop">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
-		<item name="android:paddingBottom">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
-		<item name="android:lineSpacingExtra">1.75dp</item>
-		<item name="android:maxLines">2</item>
-		<item name="android:capitalize">characters</item>
-		<item name="android:ellipsize">end</item>
-		<item name="drawableWidth">12dp</item>
-		<item name="drawableHeight">12dp</item>
-		<item name="drawablePaddingStart">8dp</item>
-		<item name="android:drawablePadding">-6dp</item>
-		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:gravity">center</item>
-	</style>
 	
 	
 	<style name="TopMetaInfoLayout">
@@ -1057,7 +1058,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="arrowStrokeWidth">2px</item>
 		<item name="arrowLineWeight">4dp</item>
 		<item name="arrowStrokeColor">?colorStrokeHelp</item>
-		<item name="arrowFillColor">?colorBgPrimary</item>
+		<item name="arrowFillColor">?colorBgHelp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		
 		<item name="android:scaleX">1.25</item>

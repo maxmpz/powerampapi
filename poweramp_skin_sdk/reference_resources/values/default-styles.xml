@@ -351,6 +351,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_LyricsActivity">@style/dialog_LyricsActivity</item>		
 				
 		<item name="dialog_MobirooDRMErrorActivity">@style/dialog_MobirooDRMErrorActivity</item>
+		
+		<!-- Skin overlap -->
+		<item name="overlap_more_buttons">@style/ActivityTheme_Whitepro_MoreButtons</item>
 	</style>
 	
 	
@@ -364,7 +367,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:navigationBarColor">@android:color/white</item>
 		<item name="android:windowLightNavigationBar">true</item>
 		<item name="windowLightNavigationBar">true</item> 
-		<item name="android:navigationBarDividerColor">#1f000000</item>
+		<item name="android:navigationBarDividerColor">#08000000</item>
 	</style>	
 	
 	<!-- An overlay style -->
@@ -388,7 +391,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopTrackDuration">@style/TopTrackDurationMoreButtons</item>
 		<item name="TopTrackDuration_scene_playing">@style/TopTrackDurationMoreButtons_scene_playing</item>
 	</style>
-		
+	
+
 	
 	<style name="StartupActivity" parent="Base_ActivityTheme_Default">
 		<item name="android:windowBackground">@android:color/transparent</item>

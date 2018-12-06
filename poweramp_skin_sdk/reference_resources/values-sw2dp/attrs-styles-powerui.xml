@@ -386,12 +386,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopBaseButtonLayout" format="reference"/><!-- E.g. edit tag dialog genres popup -->
 		
 		<attr name="TopToastContainer" format="reference"/>
+		<attr name="TopToastContainer_scenes_non_main" format="reference"/>
 		<attr name="TopToastFrame" format="reference"/>
 		<attr name="TopToastIcon" format="reference"/>
 		<attr name="TopToastTextContainer" format="reference"/>
 		<attr name="TopToastSpacer" format="reference"/>
 		<attr name="TopToastTitle" format="reference"/>
 		<attr name="TopToastLine2" format="reference"/>
+		<attr name="TopToastTitle_no_icon" format="reference"/>
+		<attr name="TopToastLine2_no_icon" format="reference"/>
 		<attr name="TopToastFrame_scene_expanded" format="reference"/>
 		
 		<attr name="TopCounterLayout" format="reference"/>

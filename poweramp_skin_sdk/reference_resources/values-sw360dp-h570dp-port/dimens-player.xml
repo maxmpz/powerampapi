@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<!-- Non-Alt: LG V30 360x654, LG G6 360x644, Meizu Pro5 360x618 -->
+	
+	<fraction name="TopAAItemRatio">100%</fraction>
+	
+	<dimen name="TopPlay_maxSize">86dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">80dp</dimen>
+	<dimen name="TopMediumButton_size">58dp</dimen> 
+	<dimen name="TopSmallButton_size">42dp</dimen>
+	
+	<dimen name="TopTrackElapsedMoreButtons_marginBottom">0dp</dimen>
+	<dimen name="TopMetaInfoLabel_textSize">10dp</dimen>
+	<dimen name="TopMetaInfoLabel_drawableSize">12dp</dimen>
+	<dimen name="TopMetaInfoLabel_paddingTopBottom">3dp</dimen>
+	
+	
+	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
+	
+	<dimen name="Navbar_height">48dp</dimen>
+	<dimen name="NavbarNavButtonsLayout_height">44dp</dimen>
+	
+	<dimen name="NavBarButton_drawableSize">@null</dimen>
+
+	<dimen name="NavbarBounds_height">56dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines">108dp</dimen>
+	
+	<dimen name="ListMenu_drawableSize">24dp</dimen>
+		
+	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- NOTE: aa bounds already have visual margin on bottom == 8 dp -->
+	
+	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
+	
+	<dimen name="TopPlayPauseBehind_size">45dp</dimen>
+	
+	<dimen name="TopHelpSmaller_textSize">11dp</dimen>
+	<dimen name="TopHelpSmaller_paddingLR">12dp</dimen>
+	<dimen name="TopHelpSmaller_paddingTB">6dp</dimen>
+	<dimen name="TopHelpSmaller_marginTB">12dp</dimen>
+	
+	<!-- Alt -->
+	<!-- NOTE: port still requires reduced size (e.g. Meizu pro5) -->
+	<!-- Huawei l29 h=578, Meizu pro7+ 360x576 -->
+	<dimen name="Alt_aaMaxSize">300dp</dimen>
+	
+	<dimen name="Alt_TopPlay_maxSize">66dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">60dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">46dp</dimen> 
+	<dimen name="Alt_TopSmallButton_size">38dp</dimen>
+		
+</resources>

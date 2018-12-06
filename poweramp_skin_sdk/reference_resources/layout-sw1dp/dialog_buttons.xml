@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
+	
+	<!-- NOTE: while this approach works, it will fail for:
+	- 2+line buttons (as they will overflow given space). Thus force such buttons to be short 1 liner
+	- non-linear buttons (though I don't support these)
+	? Do I really need that left aligned button at all? 
+	! Material.io doesn't provide such use case and explicitly forbids right aligned 3rd dialog button
+	-->
+	<com.maxmpz.widget.FastLayout android:id="@+id/buttons_layout"
+		style="?DialogButtonBar"
+	>
+		<com.maxmpz.widget.FastButton
+			android:id="@+id/button3"
+			style="?DialogNeutralButtonStyle"
+		/>
+		
+		<Space
+			style="?DialogButtonSpace" 
+		/>
+		
+		<com.maxmpz.widget.FastButton
+			android:id="@+id/button2"
+			style="?DialogNegativeButtonStyle"
+		/>
+		
+		
+		<com.maxmpz.widget.FastButton
+			android:id="@+id/button1"
+			style="?DialogPositiveButtonStyle"
+		/>				
+		
+	</com.maxmpz.widget.FastLayout>
+</merge>

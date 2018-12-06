@@ -20,11 +20,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- s9+, OnePlus6, 18:9 -->
-	
-	<dimen name="TopPlay_maxSize">110dp</dimen>
-	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">86dp</dimen>
-	<dimen name="TopPlayPauseBehind_size">55dp</dimen>
-	<dimen name="TopWaveseek_maxHeight">184dp</dimen>
-	
+	<item type="dimen" format="float" name="scale_title_scene_grid">.75</item>
+	<item type="dimen" format="float" name="scale_line2_scene_grid">.70</item>
+	<dimen name="ItemLike_drawableSize">24dp</dimen>
+		
+	<fraction name="TopAAItemRatio">100%</fraction>
 </resources>

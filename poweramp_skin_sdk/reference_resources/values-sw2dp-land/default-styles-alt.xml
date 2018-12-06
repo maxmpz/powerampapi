@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values-sw2dp-land -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="Alt_VisPanelContainer" parent="VisPanelContainer">
+		<item name="layout_attachTop">inset</item>
+		<item name="layout_attachBottom">inset</item>
+		<item name="layout_attachRightToRight">@id/aa_bounds</item>
+		<item name="layout_attachLeftToLeft">@id/aa_bounds</item>
+		<item name="android:layout_width">0px</item>
+		<item name="android:visibility">gone</item>
+		<item name="android:padding">8dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+	
+	<style name="Alt_TopAABounds" parent="TopAABounds">
+		<!-- This is the extra room for title / line2 / menu / rating below AA image. NOTE: need to add this to aa_bounds, so other views can properly attach to it with
+		     the aaPaddingBottom accounted for -->
+		<!-- <item name="android:layout_marginBottom">70dp</item> -->
+		
+		<item name="layout_maxWidth">@dimen/Alt_aaMaxSize</item>
+		<item name="layout_widthPercent">100%</item>
+		<item name="layout_heightPercent">100%</item>
+		
+		<!-- DEBUG -->
+		<!--<item name="android:background">#5f00</item>-->
+	</style>
+	
+	<style name="Alt_TopWaveseekLayout" parent="TopWaveseekLayout">
+		<item name="android:layout_height">160dp</item>		
+		<item name="android:layout_marginTop">104dp</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachBottom">@+id/meta_info_layout</item>
+		<item name="layout_attachLeft">@+id/aa_bounds</item>
+		<item name="layout_attachRight">inset</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:clickable">true</item><!-- Clickable to avoid touching trough it and moving AA/List -->
+		<item name="android:clipToPadding">false</item>
+		<item name="android:clipChildren">false</item>
+		<!-- <item name="android:background">#f00</item> -->
+	</style>
+	
+	<style name="Alt_TopWaveseek" parent="TopWaveseek">
+		<item name="layout_maxHeight">160dp</item>
+	</style>
+		
+	
+	<style name="Alt_TopMetaInfoLayout" parent="TopMetaInfoLayout">
+	</style>
+	
+	<style name="Alt_TopSubAAButtons" parent="TopSubAAButtons">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginBottom">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
+	</style>
+	
+	<style name="Alt_ListSubstyle" parent="Alt_ListSubstyle_Base">
+		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
+		
+		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
+		<item name="aaPaddingBottom">0dp</item>
+	</style>
+	
+	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_matchDimension">widthToHeight</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+	</style>
+		
+	<style name="Alt_ItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachRight">parent</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">inset</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+
+		<item name="android:layout_marginLeft">0dp</item><!-- Sync margins with AA image margins -->
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginTop">12dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+	</style>
+
+	<style name="Alt_ItemTrackLine2_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">
+		<item name="android:layout_marginLeft">0dp</item><!-- Sync margins with AA image margins -->
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+
+		<item name="com.maxmpz.audioplayer:layout_attachRight">parent</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+	</style>
+	
+	<style name="Alt_ItemRatingBar_scene_aa" parent="ItemRatingBar_scene_aa">
+		<item name="scale">0.9</item>
+		<item name="layout_compensateScale">0.9</item>
+				
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginBottom">14dp</item>
+		
+		<item name="drawableTint">?colorIconPrimaryForced</item>
+		<item name="lineBackground">@drawable/ripple_alpha_rounded_large</item>
+	</style>
+	
+	<style name="Alt_ItemTrackMenu_scene_aa" parent="ItemTrackMenu_scene_aa">
+		<item name="scale">0.9</item>
+		<item name="layout_compensateScale">0.9</item>
+		<item name="layout_attachRightToRight">@+id/aa_image</item>
+		<item name="layout_attachRight">@null</item>
+		
+		<item name="android:layout_marginRight">6dp</item>
+		<item name="android:layout_marginBottom">14dp</item>
+	</style>
+	
+	<style name="Alt_ItemLikeUnlikeLayout_scene_aa" parent="ItemLikeUnlikeLayout_scene_aa">
+		<item name="scale">0.9</item>
+		<item name="layout_compensateScale">0.9</item>
+		
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginBottom">14dp</item>
+	</style>
+	
+	<style name="Alt_TopToastContainer" parent="TopToastContainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">200dp</item><!-- This defines top toast position -->
+		<item name="layout_attachTop">inset</item>
+		<item name="layout_attachBottom">@null</item>
+	</style>
+	<style name="Alt_TopToastContainer_scenes_non_main" parent="Alt_TopToastContainer">
+	</style>
+	<style name="Alt_TopToastFrame" parent="TopToastFrame">
+		<item name="dragDirection">up</item>
+		<item name="android:layout_gravity">center_horizontal|top</item>
+		<item name="android:layout_marginTop">-32dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+	<style name="Alt_TopToastFrame_scene_expanded" parent="Alt_TopToastFrame">
+		<item name="android:visibility">visible</item>
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+		
+	
+</resources>

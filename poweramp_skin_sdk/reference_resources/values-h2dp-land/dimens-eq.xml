@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="eq_frs_height">32dp</dimen>
 	
 	<dimen name="EqToneRoundKnob_size">56dp</dimen>
-	<dimen name="EqToneKnobLayoutBaseLand_width">72dp</dimen>
+	<dimen name="EqToneKnobLayoutBaseLand_width">100dp</dimen>
 	<dimen name="MediumRoundKnob_size">56dp</dimen>
 	<dimen name="SmallRoundKnob_size">56dip</dimen>
 
@@ -33,4 +33,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqEquButtonLand_marginLeft">8dp</dimen>
 	
 	<dimen name="EqSmallKnobLayoutLand_width">150dp</dimen>
+
+	<dimen name="EqButton_layout_maxWidth">70dp</dimen>
 </resources>

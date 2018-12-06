@@ -20,7 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Pixel 2 -->
-	<dimen name="TopHelpSmaller_textSize">12dp</dimen>
-	
+	<!-- Pixel 411x659, Nexus6 411x659, wider screens which has no enough height -->
+	<!-- Alt -->
+	<dimen name="Alt_aaMaxSize">370dp</dimen>	
 </resources>

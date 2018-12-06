@@ -109,6 +109,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 Same PopupButton_scene_button_menu style is used (as expanded button inside a popup is the same style) -->
 	<style name="SmallerPopupButton" parent="PopupButton">
 		<item name="android:layout_marginLeft">@dimen/SmallerPopupButton_marginLeft</item>
+		<item name="drawableWidth">@dimen/SmallerPopupButtons_drawableSize</item><!-- 24dp -->
+		<item name="drawableHeight">@dimen/SmallerPopupButtons_drawableSize</item>
+		<item name="drawablePaddingStart">@dimen/SmallerPopupButtons_paddingLeft</item><!-- Padding before image -->
 	</style>
 	<style name="SmallerPopupButton_scene_button_menu" parent="PopupButton_scene_button_menu">
 	</style>
@@ -148,11 +151,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="PopupInfoTextTitle">
-		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_width">0px</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_consumeSpace">vertical</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">@+id/configure_button</item>
 		<item name="android:layout_marginTop">16dp</item>
-		<item name="android:layout_marginLeft">24dp</item>
+		<item name="android:layout_marginLeft">20dp</item>
 		<item name="android:layout_marginRight">24dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:drawable">@drawable/info_stroke_32dp</item>

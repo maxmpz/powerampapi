@@ -40,6 +40,39 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="gone"
 	/>
 		
+	<!-- Put gear icon out of main content, next to title -->
+	<com.maxmpz.widget.BusActionButton android:id="@+id/configure_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="top|right"
+		android:layout_marginTop="10dp"
+		android:layout_marginRight="4dp"
+		w:layout_consumeSpace="vertical"
+		
+		android:visibility="invisible"
+		
+		android:drawable="@drawable/settings_24dp"
+		w:drawableTint="?colorIconPrimary"
+		w:drawableOnly="true"
+		android:paddingTop="8dp"
+		android:paddingBottom="8dp"
+		android:paddingLeft="16dp"
+		android:paddingRight="16dp"
+		android:background="@drawable/ripple_rounded_large"
+		android:clickable="true"
+		w:busId="@id/bus_app_cmd"
+		w:msgId="@id/cmd_app_open_settings"
+		w:string="audio"
+	/>
+	<SceneParams w:scene="@id/scene_button_menu"
+		w:recalcChildren="on_start"
+		android:visibility="visible"
+	/>
+	<SceneParams w:scene="@id/scene_button_menu_closed"
+		w:recalcChildren="on_start"
+		android:visibility="gone"
+	/>
+		
 	<com.maxmpz.widget.player.DSPInfoTextView android:id="@+id/dsp_info_text"
 		style="?PopupInfoText"
 	/>

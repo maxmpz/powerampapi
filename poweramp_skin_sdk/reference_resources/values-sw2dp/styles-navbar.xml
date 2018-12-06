@@ -128,7 +128,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="NavbarList">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">44dp</item>
+		<item name="android:layout_height">48dp</item>
+		<!-- Slightly move to navbar buttons territory by offseting bottom. This is for better paddings distribution inside miniplayer list item => better background positioning when pressed -->
+		<item name="android:layout_marginBottom">-4dp</item>
 		<item name="android:visibility">gone</item>
 		<item name="layout_attachTop">@id/navbar_extension</item>
 		<item name="android:duplicateParentState">true</item><!-- Needed to e.g. state_playing to propagate -->

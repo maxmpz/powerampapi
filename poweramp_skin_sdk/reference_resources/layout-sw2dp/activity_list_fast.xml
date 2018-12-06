@@ -67,7 +67,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: alpha is overriden by user preference -->
 	<SceneParams w:scene="@+id/scene_vis_w_ui" 
 		android:visibility="visible"
-		android:alpha=".55"
+		android:alpha=".25"
 	/>
 	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_vis"
 		android:visibility="gone"
@@ -113,6 +113,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	 		 	
 		<com.maxmpz.widget.player.Duration android:id="@+id/track_duration"
 			style="?TopTrackDuration"
+			android:importantForAccessibility="yes"
 		/>
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 			style="?TopTrackDuration_scene_playing"
@@ -127,6 +128,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
 			w:longPressMsgId="@id/cmd_player_stop_playing"
+			android:contentDescription="@string/pause"
 		/>
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@+id/scene_vis_w_ui" w:scene_3="@+id/scene_vis" w:scene_4="@id/scene_vis_temp_ui"
 			style="?TopPause_scene_playing"
@@ -140,6 +142,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
 			w:longPressMsgId="@id/cmd_player_stop_playing"
+			android:contentDescription="@string/play"
 		/>
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@+id/scene_vis_w_ui" w:scene_3="@+id/scene_vis" w:scene_4="@id/scene_vis_temp_ui"
 			style="?TopPlay_scene_playing"
@@ -161,7 +164,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: alpha is overriden by user preference -->
 	<SceneParams w:scene="@id/scene_vis_w_ui"
 		style="?TopWaveseekLayout_scenes_playing"
-		android:alpha="0.55"
+		android:alpha="0.25"
 	/><!-- waveseek_layout -->
 	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis"
 		style="?TopWaveseekLayout_scenes_invisible"
@@ -236,7 +239,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<!-- NOTE: alpha is overriden by user preference -->
 	<SceneParams w:scene="@+id/scene_vis_w_ui"
-		android:alpha="0.55"
+		android:alpha="0.25"
 		android:visibility="visible"
 	/>
 	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_vis"
@@ -263,6 +266,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:buttonsBusId="@id/bus_gui"
 			w:buttonsMsgId="@id/cmd_gui_set_vis_mode"
 			w:buttonsArg1="@array/vis_modes_enum"
+			
+			android:contentDescription="@string/visualization"
 		>
 		</com.maxmpz.widget.BusSelectablePopupButtonLayout>
 		<SceneParams w:scene="@+id/scene_button_menu" 
@@ -272,6 +277,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.player.SleepTimerPopupLayout android:id="@+id/sleep_timer_layout" 
 			style="?TopSleepTimerButtonLayout"
 			w:menuItemsLayout="@layout/merge_sleep_timer_popup_layout"
+			android:contentDescription="@string/sleep_timer"
 		>
 			<com.maxmpz.widget.PopupButton
 				style="?TopSleepTimerButton"
@@ -335,7 +341,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: alpha is overriden by user preference -->
 	<SceneParams w:scene="@+id/scene_vis_w_ui"
 		style="?TopSubAAButtons_scenes_playing"
-		android:alpha="0.55"
+		android:alpha="0.25"
 	/><!-- sub_aa_buttons -->
 	<!-- Needed to be invisible so waveseek properly attaches to it -->
 	<SceneParams w:scene="@+id/scene_lib" 
@@ -460,7 +466,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:baseScene="defaultScene"
 			/>
 			<SceneParams w:scene="@+id/scene_expanded_no_icon" w:scene_2="@+id/scene_collapsed_no_icon"
-				style="@style/TopToastTitle_no_icon"
+				style="?TopToastTitle_no_icon"
 			/>
 			
 			<com.maxmpz.widget.FastTextView android:id="@+id/line2"
@@ -471,14 +477,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:baseScene="defaultScene"
 			/>
 			<SceneParams w:scene="@+id/scene_expanded_no_icon" w:scene_2="@+id/scene_collapsed_no_icon"
-				style="@style/TopToastLine2_no_icon"
+				style="?TopToastLine2_no_icon"
 			/>
 		</com.maxmpz.widget.player.PlayerToastFrameLayout>
 		<SceneParams w:scene="@+id/scene_collapsed_no_icon"
 			w:baseScene="defaultScene"
 		/>
 		<SceneParams w:scene="@+id/scene_expanded" w:scene_2="@+id/scene_expanded_no_icon"
-			style="@style/TopToastFrame_scene_expanded"
+			style="?TopToastFrame_scene_expanded"
 		/>
 	</com.maxmpz.widget.SceneFastLayout><!-- toast_container -->
 	<SceneParams w:scene="@id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis"
@@ -489,7 +495,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:baseScene="defaultScene"
 	/>
 	<SceneParams w:scene="@id/scene_lib" w:scene_2="@id/scene_search" w:scene_3="@id/scene_eq"
-		style="@style/TopToastContainer_scenes_non_main"
+		style="?TopToastContainer_scenes_non_main"
 	/>
 	
 	

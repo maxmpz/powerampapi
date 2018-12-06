@@ -39,13 +39,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"  w:scene_3="@+id/scene_search_header"
 		style="?ItemTextHeaderButtonsBg_scene_header"
 	/>
-		
 	
 	
+	<!-- Invisible to allow position anim -->
 	<com.maxmpz.widget.player.ScanProgress
 		style="?ItemTextHeaderScanProgress"
 		android:tag="merge_item_text_header"
-		android:visibility="gone"
+		android:visibility="invisible"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextHeaderScanProgress_scene_item_menu"
@@ -54,12 +54,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:baseScene="defaultScene"
 		android:visibility="visible"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" 
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header" 
 		style="?ItemTextHeaderScanProgress_scene_header"
 		android:visibility="visible"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_grid"
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_grid"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>

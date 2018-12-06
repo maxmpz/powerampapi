@@ -33,5 +33,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:valueFormat="@string/f0_percent"
 		w:valueFormatMin="0"
 		w:valueFormatMax="100"
+		w:animOnAttach="true"
 	/>
 </com.maxmpz.widget.SceneFastLayout>

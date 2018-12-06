@@ -80,6 +80,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 	<com.maxmpz.widget.FastTextView android:id="@+id/title"
 		style="?ItemTextTitle"
+		android:importantForAccessibility="yes"
 	/><!-- title -->
 	<SceneParams w:scene="@+id/scene_grid"
 		style="?ItemTextTitle_scene_grid"
@@ -122,6 +123,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<com.maxmpz.widget.FastButton android:id="@+id/menu"
 		style="?ItemTextMenu"
+		android:contentDescription="@string/menu"
 	>
 		<tag android:id="@+id/header_button" android:value="1"/>
 	</com.maxmpz.widget.FastButton>

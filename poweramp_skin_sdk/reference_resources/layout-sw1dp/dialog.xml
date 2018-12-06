@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!--
+	Dialog layout. Same layout is used for topsheet/bottomsheet/centered dialogs, the actual behavior is defined by styles.
+	Layout selection happens via:
+	- ThemeManager.getDialogTheme(this) -> finds style/theme for given activity based on its name => e.g. dialog_SomeActivity for SomeActivityDialog 
+	  That style/theme is used for given Activity. Style/theme can be derived from skin theme or it can be derived from anything, as it's force-filled with skin theme
+	  (without overriding). 
+	- dialog_SomeActivity has item dialogContentLayout => dialog_some.xml
+	- dialog.xml is top level layout, content is loaded via <include android:layout="?dialogContentLayout"/> 
+	
+	States (each of them has visible/hidden sub-state):
+	- normal
+	- progress
+	- toast
+	
+	Scenes:
+	- scene_dialog_in/0 - normal dialog visible/hidden
+	- scene_dialog_in_loading - header has loading indicator
+	- scene_dialog_in_progress/scene_dialog_out_progress - progress visible/hidden
+	- scene_dialog_in_toast/scene_dialog_out_toast - toast visible/hidden
+	- scene_dialog_out_alt - alternative dialog-out scene. Used for manual CenteredDialog dragging-out - which normally fades in/out 	
+-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto" >
+
+	<!-- NOTE: we're inside FrameLayout (sub-DecorView) here -->
+	
+	<!-- Setup scene for DecorView -->
+	<com.maxmpz.widget.RootSceneActivityBehavior/>
+
+	<!-- Setup animation and touch/dragging dialog behavior. DialogBehavior is also a BackButtonHost -->
+	<com.maxmpz.widget.DialogBehavior android:id="@id/behavior_dialog"/>
+
+	<!-- Set background shade shim -->
+	<com.maxmpz.widget.Shim
+		android:id="@+id/dialog_shim"
+		style="?DialogShim"
+		android:visibility="invisible" 
+	/>
+	<SceneParams
+		android:visibility="visible"
+		w:scene="@id/scene_dialog_in" 
+		w:scene_2="@id/scene_dialog_in_toast"
+		w:scene_3="@id/scene_dialog_in_progress"
+	/>
+	<SceneParams
+		w:scene="@id/scene_dialog_out_progress"
+		w:scene_2="@id/scene_dialog_out_toast"
+		w:scene_3="@id/scene_dialog_out_alt"
+		android:visibility="invisible"
+	/>
+	
+	<!-- 
+		Outer layout - matches full screen. Mostly used to intercept nested scroll events from content ScrollView
+		NOTE: no style needed, inline attributes always apply
+	-->
+	<com.maxmpz.widget.DialogOuterFastLayout android:id="@+id/dialog_outer_layout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" 
+		android:clipToPadding="false"
+		android:fitsSystemWindows="true"
+	>
+				
+		<!-- 
+			This behavior tries to manipulate parent layout scene params (bottom margin) the way it animates soft keyboard state. 
+			Also automatically disables fitsSystemWindows if needed and applies status bar offset via top margin 
+		-->
+		<com.maxmpz.widget.AdjustToSoftKeyboardBehavior
+			android:enabled="?dialogAdjustToSoftKeyboard"	
+		/>
+
+		<!-- Inner layout - actual dialog frame -->
+		<com.maxmpz.widget.FastLayout
+			android:id="@+id/dialog_frame"
+			style="?DialogFrame"
+			android:clickable="true"
+		>
+				<!-- Title layout -->
+				<com.maxmpz.widget.FastLayout android:id="@+id/dialog_title_layout"
+					style="?DialogTitleLayout"
+				>
+					<ProgressBar android:id="@+id/dialog_progress"
+						style="?DialogTitleProgress"
+					/>
+					<SceneParams w:scene="@id/_tag_scene_zero"
+						w:applyScene="false"
+					/>
+					<!-- Progress is invisible usually -->					 
+					<SceneParams w:scene="@id/scene_dialog_in" 
+						android:visibility="gone"
+						w:recalcChildren="on_start"
+					/>	
+					<!-- But visible when loading/in-progress -->
+					<SceneParams w:scene="@id/scene_dialog_in_loading"
+						w:scene_2="@id/scene_dialog_in_progress"
+						android:visibility="visible"
+						w:recalcChildren="on_start"
+					/>	
+															
+					<!-- NOTE: FastText behaves a bit better here during animations, due to support for clipChildren=false -->
+					<com.maxmpz.widget.FastTextView android:id="@+id/title"
+						style="?DialogTitle"
+					/>
+					<!-- Needed to make title animate between loading/progress state and normal one -->
+					<SceneParams w:scene="@id/scene_dialog_in_loading"
+						w:scene_2="@id/scene_dialog_in_progress"
+						w:scene_3="@id/scene_dialog_in"
+						w:recalcChildren="on_start"
+					/>	
+				</com.maxmpz.widget.FastLayout>
+				<!-- Left aligned title layout -->
+				<SceneParams
+					w:scene="@id/scene_dialog_in"
+					w:scene_2="@id/scene_dialog_in_loading"
+					style="?DialogTitleLayout"
+				/>
+				<!-- Center aligned title layout -->
+				<SceneParams
+					w:scene="@id/scene_dialog_in_progress"
+					w:scene_2="@id/scene_dialog_out_progress"
+					style="?DialogTitleLayout_scene_progress"
+				/>
+				<!-- Hide for toast -->
+				<SceneParams
+					w:scene="@id/scene_dialog_in_toast"
+					w:scene_2="@id/scene_dialog_out_toast"
+					android:visibility="gone"
+				/>
+				
+				
+				<com.maxmpz.widget.FastLayout
+					style="?DialogToast"
+				>
+					<com.maxmpz.widget.FastTextView android:id="@+id/dialog_toast_img"
+						style="?DialogToastImg"
+					/>
+					
+					<TextView android:id="@+id/dialog_toast_line1"
+						style="?DialogToastLine1"
+					/>
+					<TextView android:id="@+id/dialog_toast_line2"
+						style="?DialogToastLine2"
+					/>
+					<TextView android:id="@+id/dialog_toast_line_only_1"
+						style="?DialogToastLineOnly1"
+					/>
+				</com.maxmpz.widget.FastLayout>
+				<!-- Toast visible in those states. 5% - looks like relayout is needed, but not at "on_start" -->
+				<SceneParams
+					w:recalcChildren="5%"
+					w:scene="@id/scene_dialog_in_toast"
+					w:scene_2="@id/scene_dialog_out_toast"
+					android:visibility="visible"
+				/>
+				<!-- Otherwise invisible -->
+				<SceneParams
+					w:recalcChildren="on_start"
+					w:scene="@id/scene_dialog_in"
+					w:scene_2="@id/scene_dialog_in_loading"
+					w:scene_3="@id/scene_dialog_in_progress"
+					w:scene_4="@id/scene_dialog_out_progress"
+					android:visibility="gone"
+				/>
+																				
+				<!-- 
+					Content is added here 
+					NOTE: using android:layout (vs just "layout") for faster and correct resolution of themed attribute happens
+					(that fixes bug/oversight in default Android layout inflater)
+				-->
+				<include android:layout="?dialogContentLayout"/>
+				
+				<SceneParams
+					w:scene="@id/scene_dialog_in" 
+					w:scene_2="@id/scene_dialog_in_loading"
+					android:visibility="visible"
+					w:recalcChildren="on_start"
+				/>
+				<SceneParams
+					w:scene="@id/scene_dialog_in_progress" 
+					w:scene_2="@id/scene_dialog_in_toast"
+					w:scene_3="@id/scene_dialog_out_progress" 
+					w:scene_4="@id/scene_dialog_out_toast"
+					android:visibility="gone"
+					w:recalcChildren="on_start"
+				/>
+				
+				<include android:layout="?dialogButtonsLayout"/>
+				
+				<SceneParams
+					w:scene="@id/scene_dialog_in" 
+					w:scene_2="@id/scene_dialog_in_loading"
+					style="?DialogButtonBar"
+				/>
+				<SceneParams
+					w:scene="@id/scene_dialog_in_progress" 
+					w:scene_2="@id/scene_dialog_in_toast"
+					w:scene_3="@id/scene_dialog_out_progress" 
+					w:scene_4="@id/scene_dialog_out_toast"
+					android:visibility="gone"
+				/>
+			<!-- </LinearLayout> -->
+			
+		</com.maxmpz.widget.FastLayout><!-- dialog_frame -->
+		<!-- Frame: on screen -->
+
+		<SceneParams
+			style="?DialogFrameStyle_scene_dialog_in"
+			w:scene="@id/scene_dialog_in" 
+			w:scene_2="@id/scene_dialog_in_progress"
+			w:scene_3="@id/scene_dialog_in_toast" 
+		/>
+		<!-- Frame: wrapping content -->
+		<SceneParams
+			style="?DialogFrameStyle_scene_dialog_in"
+			w:scene="@id/scene_dialog_in_loading" 
+		/>
+		<!-- Frame: out of screen -->
+		<SceneParams style="?DialogFrame"
+			w:scene="@id/scene_dialog_out_toast"
+			w:scene_2="@id/scene_dialog_out_progress"
+		/>
+		<SceneParams style="?DialogFrame"
+			w:layout_attachBottom="0%"
+			android:visibility="visible"
+			w:scene="@id/scene_dialog_out_alt"
+		/>
+		
+		<!-- NOTE: this is the view where popup item view is moved and transitioned to popup menu and back -->
+		<!-- NOTE: translationZ is synced with dialog frame elevation -->
+		<com.maxmpz.widget.MenuPlaceholderLayout android:id="@+id/menu_placeholder"
+			style="?DialogMenuPlaceholderLayout"
+			android:translationZ="?dialogFrame_elevation"
+			w:privateScene="true"
+		/>
+		
+	</com.maxmpz.widget.DialogOuterFastLayout>
+	<!-- NOTE: empty SceneParams for dialog-in scenes. Needed for AdjustToSoftKeyboardBehavior - it animates current scene for soft keyboard -->
+	<SceneParams
+		w:scene="@id/scene_dialog_in" 
+		w:scene_2="@id/scene_dialog_in_progress"
+		w:scene_3="@id/scene_dialog_in_toast" 
+	/>
+		
+</merge>

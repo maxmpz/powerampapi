@@ -39,10 +39,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="shuffle_cats_32dp">@drawable/shuffle_cats_32dp_tinted</item>
 		<item name="shuffle_songs_and_cats_32dp">@drawable/shuffle_songs_and_cats_32dp_tinted</item>
 		
-		<item name="vis_lock_24dp">@drawable/vis_lock_24dp</item>
-		<item name="vis_advance_24dp">@drawable/advance_24dp</item>
-		<item name="vis_advance_by_time_24dp">@drawable/advance_by_time_24dp</item>
-		<item name="vis_shuffle_24dp">@drawable/shuffle_24dp</item>
+		<item name="vis_lock_24dp">@drawable/vis_lock_24dp_tinted</item>
+		<item name="vis_advance_24dp">@drawable/advance_24dp_tinted</item>
+		<item name="vis_advance_by_time_24dp">@drawable/advance_by_time_24dp_tinted</item>
+		<item name="vis_shuffle_24dp">@drawable/shuffle_24dp_tinted</item>
 		
 		<item name="vis_none_32dp">@drawable/vis_stroke_32dp_tinted</item>
 		<item name="vis_w_ui_32dp">@drawable/vis_w_ui_32dp_tinted</item>
@@ -319,7 +319,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemLikeUnlikeLayout_scene_aa">@style/ItemLikeUnlikeLayout_scene_aa</item>
 		<item name="ItemLikeUnlikeLayout_scenes_invisible">@style/ItemLikeUnlikeLayout_scenes_invisible</item>
 		
-		
 		<item name="ItemRatingBar">@style/ItemRatingBar</item>
 		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa</item>
 		<item name="ItemRatingBar_scene_item_menu_lu">@style/ItemRatingBar_scene_item_menu_lu</item>
@@ -437,19 +436,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopSleepTimerButton">@style/TopSleepTimerButton</item>
 		
 		<item name="TopToastContainer">@style/TopToastContainer</item>
+		<item name="TopToastContainer_scenes_non_main">@style/TopToastContainer_scenes_non_main</item>
 		<item name="TopToastFrame">@style/TopToastFrame</item>
+		<item name="TopToastFrame_scene_expanded">@style/TopToastFrame_scene_expanded</item>
 		<item name="TopToastIcon">@style/TopToastIcon</item>
 		<!-- <item name="TopToastTextContainer">@style/TopToastTextContainer</item> -->
 		<!-- <item name="TopToastSpacer">@style/TopToastSpacer</item> -->
 		<item name="TopToastTitle">@style/TopToastTitle</item>
 		<item name="TopToastLine2">@style/TopToastLine2</item>
-		<item name="TopToastFrame_scene_expanded">@style/TopToastFrame_scene_expanded</item>
+		<item name="TopToastTitle_no_icon">@style/TopToastTitle_no_icon</item>
+		<item name="TopToastLine2_no_icon">@style/TopToastLine2_no_icon</item>
 		
 		<item name="TopCounterLayout">@style/TopCounterLayout</item>
 		<item name="TopCounterLayout_scenes_playing">@style/TopMetaInfoLayout_scenes_playing</item><!-- NOTE: using same scene styles as TopMetaInfoLayout --> 
 		<item name="TopCounterLayout_scenes_invisible">@style/TopMetaInfoLayout_scenes_invisible</item>
 		<item name="TopCounterLayout_anim_seeking">@style/TopMetaInfoLayout_anim_seeking</item>
-		<item name="TopCounter">@style/TopCounter</item>
+		<!-- NOTE: not used from build 811, top counter now uses TopCounterLayout attr/style -->
+		<!-- <item name="TopCounter">@style/TopCounter</item> -->
 				
 		
 		<item name="TopMetaInfoLayout">@style/TopMetaInfoLayout</item>

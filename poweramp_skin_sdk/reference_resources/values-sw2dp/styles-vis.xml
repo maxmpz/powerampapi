@@ -112,6 +112,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">center</item>
 		<item name="android:visibility">gone</item>
+		<!-- <item name="drawableWidth">20dp</item>
+		<item name="drawableHeight">20dp</item> -->
 	</style>
 	
 	<style name="VisFilterEditText" parent="Widget.AppCompat.EditText">

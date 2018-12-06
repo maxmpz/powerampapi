@@ -20,12 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Pixel 2 -->
-	
-	<dimen name="TopPlay_maxSize">100dp</dimen>
-	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">80dp</dimen>
-	<dimen name="TopPlayPauseBehind_size">50dp</dimen>
-	<dimen name="TopWaveseek_maxHeight">156dp</dimen>
-	<dimen name="TopHelpSmaller_textSize">12dp</dimen>
-	
+	<!-- HTC U11 -->
+	<!-- Alt -->
+	<dimen name="Alt_aaMaxSize">356dp</dimen>	
 </resources>

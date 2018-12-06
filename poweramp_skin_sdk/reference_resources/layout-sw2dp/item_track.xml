@@ -223,6 +223,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<com.maxmpz.widget.FastTextView android:id="@+id/title"
 		style="?ItemTrackTitle"
+		android:importantForAccessibility="yes"
 	/>
 	<!-- title -->
 	<SceneParams w:scene="@+id/scene_1"
@@ -297,6 +298,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
 		style="?ItemTrackLine2"
+		android:importantForAccessibility="yes"
 	/>
 	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_small"

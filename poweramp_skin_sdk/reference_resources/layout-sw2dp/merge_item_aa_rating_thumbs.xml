@@ -7,9 +7,9 @@
 	<com.maxmpz.widget.player.list.LikeUnlikeLayout android:id="@+id/rating"
 		style="?ItemLikeUnlikeLayout"
 	>
-	
 		<com.maxmpz.widget.FastCheckBox android:id="@+id/like"
 			style="?ItemLike"
+			android:contentDescription="@string/like"
 		/>
 		<SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_aa_vis" w:scene_3="@+id/scene_aa_playing"
 			style="?ItemLike_scene_aa"
@@ -20,6 +20,7 @@
 					
 		<com.maxmpz.widget.FastCheckBox android:id="@+id/unlike"
 			style="?ItemUnlike"
+			android:contentDescription="@string/unlike"
 		/>
 		<SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_aa_vis" w:scene_3="@+id/scene_aa_playing"
 			style="?ItemUnlike_scene_aa"
@@ -37,7 +38,8 @@
 	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_zoomed" w:scene_3="@+id/scene_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_1" w:scene_6="@+id/scene_1_zoomed"
 		style="?ItemLikeUnlikeLayout_scenes_invisible"
 	/> 
-	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
+	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1" w:scene_3="@+id/scene_grid_1_alt_zoomed" w:scene_4="@+id/scene_grid_1_zoomed" 
+			w:scene_5="@+id/scene_grid_1" w:scene_6="@+id/scene_grid_1_alt"
 		style="?ItemLikeUnlikeLayout_scenes_invisible"	
 	/>
 	<!-- NOTE: force hidden -->

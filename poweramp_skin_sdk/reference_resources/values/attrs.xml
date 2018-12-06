@@ -67,6 +67,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- REVISIT -->		
 		<attr name="dialog_MobirooDRMErrorActivity" format="reference"/>
 		
+		<attr name="overlap_more_buttons" format="reference"/>
 	</declare-styleable>
 	
 	

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values-sw1dp-land -->
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<style name="EqKnobsLayout" parent="EqKnobsLayoutBase">
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">0px</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">8dp</item>
+				
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">@+id/equ_button</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachBottom">@+id/frequency_response_scroller</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+		
+	</style>
+	
+	<style name="EqMilkFrs" parent="EqMilkFrsBase">
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">@dimen/eq_frs_height</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">@+id/equ_button</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+	
+	<style name="EqFrequencyResponseScroller" parent="EqFrequencyResponseScrollerBase">
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">@dimen/eq_frs_height</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachRight">@+id/equ_button</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+
+	</style>
+		
+	<style name="EqInfo" parent="EqInfoBase">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:visibility">gone</item><!-- No place for this ATM. REVISIT: 18:9 screens have enough room for this -->
+	</style>
+	
+		
+		
+	
+	<style name="EqEquButton" parent="EqCheckButton">
+		<item name="android:layout_marginLeft">@dimen/EqEquButtonLand_marginLeft</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachRight">@+id/eq_treble_knob_layout</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+	</style>
+	
+	<style name="EqToneButton" parent="EqCheckButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="layout_attachTop">@+id/equ_button</item>
+		<item name="layout_attachLeftToLeft">@+id/equ_button</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item> 
+	</style>
+	
+	<style name="EqLimiterButton" parent="EqCheckButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="layout_attachTop">@+id/tone_button</item>
+		<item name="layout_attachLeftToLeft">@+id/equ_button</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+	</style>
+		
+	<style name="EqEquPresetButtonLayout" parent="EqPresetButtonLayoutBase">
+		<item name="android:layout_width">@dimen/EqPresetButtonLayout_width</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="layout_attachLeftToLeft">@+id/equ_button</item>
+		<item name="layout_attachBottom">@+id/save_button</item>
+		</style>
+		
+	<style name="EqEquSaveButton" parent="EqButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="layout_attachLeftToLeft">@+id/equ_button</item>
+		<item name="layout_attachBottom">@+id/reset_button</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+	</style>
+	
+	<style name="EqEquResetButton" parent="EqButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="layout_attachLeftToLeft">@+id/equ_button</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+	</style>
+		
+	<style name="EqToneRoundKnob" parent="EqSmallRoundKnob">
+		<item name="android:layout_width">@dimen/EqToneRoundKnob_size</item>
+		<item name="android:layout_height">@dimen/EqToneRoundKnob_size</item>
+	 </style>
+	
+	<style name="EqToneKnobLayoutBaseLand" parent="EqSmallKnobLayout">
+		<item name="android:layout_width">@dimen/EqToneKnobLayoutBaseLand_width</item>
+		<item name="roundKnobStyle">@style/EqToneRoundKnob</item>
+		<item name="labelStyle">@style/EqRoundKnobLabel</item>
+		<item name="android:layout_marginLeft">@dimen/EqToneKnobLayoutBaseLand_marginLeft</item>
+		<item name="android:layout_marginRight">@dimen/EqToneKnobLayoutBaseLand_marginRight</item>
+	</style>
+	
+	<style name="EqTrebleToneKnobLayout" parent="EqToneKnobLayoutBaseLand">
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachBottom">50%</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+	</style>
+	
+	<style name="EqBassToneKnobLayout" parent="EqToneKnobLayoutBaseLand">
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachTop">50%</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginBottom">0dp</item>				
+	</style>
+	
+	
+	<!-- Vol -->
+
+	<style name="EqVolPanel1">
+		<item name="android:clipChildren">false</item>
+		<item name="android:layout_width">@null</item>
+		<item name="layout_widthPercent">33.33%</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+
+	<style name="EqVolPanel2">
+		<item name="android:layout_width">@null</item>
+		<item name="layout_widthPercent">33.33%</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+	
+	<style name="EqVolPanel3">
+		<item name="android:clipChildren">false</item>
+		<item name="android:layout_width">@null</item>
+		<item name="layout_widthPercent">33.33%</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+	
+	<style name="EqBalanceKnobLayout" parent="EqBalanceKnobLayoutBase">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="layout_attachBottom">50%</item>
+	</style>
+			
+	<style name="EqSFXKnobLayout" parent="EqSFXKnobLayoutBase">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachTop">50%</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+	
+	<style name="EqTempoCheckButton" parent="EqCheckButton">
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_gravity">center_horizontal|bottom</item>
+	</style>
+	
+	<style name="EqMonoCheckButton" parent="EqCheckButton">
+		<item name="android:layout_gravity">left|bottom</item>
+	</style>
+	
+	<style name="EqPlatformFXCheckButton" parent="EqPlatformFXCheckButtonBase">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+	
+	<style name="EqOtherResetButton" parent="EqButton">
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_gravity">right|bottom</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+	
+	<style name="EqVolumeKnobLayout" parent="EqVolumeKnobLayoutBase">
+		<item name="android:layout_gravity">center</item>
+	</style>
+		
+	<!-- Reverb -->
+	
+	<style name="EqReverbPanel1">
+		<item name="android:layout_width">@null</item>
+		<item name="layout_widthPercent">33.33%</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+	</style>
+	
+	<style name="EqReverbPanel2">
+		<item name="android:layout_width">@null</item>
+		<item name="layout_widthPercent">33.33%</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+	</style>
+	
+	<style name="EqReverbPanel3">
+		<item name="android:layout_width">@null</item>
+		<item name="layout_widthPercent">33.33%</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+	</style>
+	
+	<style name="EqSmallKnobLayoutLand">
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:layout_width">@dimen/EqSmallKnobLayoutLand_width</item>
+		<item name="android:paddingLeft">8dp</item>
+	
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">@dimen/EqSmallKnobLayout_marginTop</item>
+		<item name="valueFormat">@string/format_2f</item>
+
+		<item name="labelStyle">@style/EqRoundKnobLabelLeftTop2</item>
+		<item name="valueLabelStyle">@style/EqRoundKnobValueLabelLeftTop2</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqToneLabelPressedAnim</item>
+		
+		<item name="roundKnobStyle">@style/EqSmallRoundKnob</item>
+	</style>
+	
+	<style name="EqReverbParam7KnobLayout" parent="EqSmallKnobLayoutLand">
+		<item name="layout_heightPercent">33.33%</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	<style name="EqReverbParam2KnobLayout" parent="EqSmallKnobLayoutLand">
+		<item name="layout_heightPercent">33.33%</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	<style name="EqReverbParam3KnobLayout" parent="EqSmallKnobLayoutLand">
+		<item name="layout_heightPercent">33.33%</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	
+	<style name="EqReverbParam4KnobLayout" parent="EqSmallKnobLayoutLand">
+		<item name="layout_heightPercent">33.33%</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+		
+	<style name="EqReverbParam6KnobLayout" parent="EqSmallKnobLayoutLand">
+		<item name="layout_heightPercent">33.33%</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	
+	<style name="EqReverbParam1KnobLayout" parent="EqSmallKnobLayoutLand">
+		<item name="layout_heightPercent">33.33%</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	
+	<style name="EqReverbParam5KnobLayout" parent="EqReverbParam5KnobLayoutBase">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginBottom">@dimen/EqReverbParam5KnobLayout_margin</item>
+		
+		<item name="roundKnobStyle">@style/EqToneRoundKnob</item>
+		<item name="labelStyle">@style/EqRoundKnobLabel</item>
+	</style>
+	
+	<style name="EqReverbCheckButton" parent="EqCheckButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_gravity">left</item>
+	</style>
+	
+	<style name="EqReverbPresetButtonLayout" parent="EqPresetButtonLayoutBase">
+		<!-- Avoid paddings here as they apply to list as well -->
+		<item name="android:layout_width">@dimen/EqPresetButtonLayout_width</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="layout_attachBottom">@id/reverb_save_button</item>
+	</style>
+	
+	<style name="EqReverbSaveButton" parent="EqButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="layout_attachBottom">@+id/reverb_reset_button</item>
+	</style>
+	
+	<style name="EqReverbResetButton" parent="EqButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+	</style>
+	
+</resources>

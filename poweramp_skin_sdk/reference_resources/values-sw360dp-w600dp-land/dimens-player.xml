@@ -19,9 +19,10 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<!-- land -->
 <resources>
-	<dimen name="TopPlay_maxSize">100dp</dimen>
-	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">76dp</dimen>
+	<dimen name="TopPlay_maxSize">80dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">74dp</dimen>
 	<dimen name="TopSmallButton_size">52dp</dimen>
 	<dimen name="TopMediumButton_size">64dp</dimen>
 		
@@ -30,11 +31,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfoLabel_drawableSize">12dp</dimen>
 	<dimen name="TopMetaInfoLabel_paddingTopBottom">3dp</dimen>
 	
-	<dimen name="TopBaseButtonLayout_layout_width">68dp</dimen>
-	<dimen name="TopBaseButtonLayout_layout_height">36dp</dimen>
-	<dimen name="PopupButtons_drawableSize">32dp</dimen>
-	<dimen name="SmallerPopupButton_marginLeft">-12dp</dimen>
-	<dimen name="PopupButtons_paddingLeft">18dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
 	
 	<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>
 	
@@ -52,4 +48,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpSmaller_paddingLR">12dp</dimen>
 	<dimen name="TopHelpSmaller_paddingTB">6dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">12dp</dimen>
+	
+	<!-- Alt -->
+	<dimen name="Alt_aaMaxSize">360dp</dimen>
+	
+	<dimen name="Alt_TopPlay_maxSize">80dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">74dp</dimen>
+	<dimen name="Alt_TopSmallButton_size">52dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">64dp</dimen>
+		
 </resources>

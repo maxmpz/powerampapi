@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: fade duration here is not parsed by Android -->
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item android:minLevel="@integer/ITEM_BG_LEVEL_POPUP" android:maxLevel="10000"
+		>
+		<shape>
+			<corners android:radius="?corners_popup"/>
+			<solid android:color="?colorBgPrimary"/>
+		</shape>
+	</item>
+	
+	<item android:minLevel="0" android:maxLevel="0" android:drawable="@drawable/ripple_alpha_rounded_large"/>
+</level-list>

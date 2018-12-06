@@ -31,14 +31,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<com.maxmpz.widget.FastTextView android:id="@+id/title"
 		style="?ItemMiniplayerTitle"
+		android:importantForAccessibility="yes"
 	/>
 	
 	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
 		style="?ItemMiniplayerLine2"
+		android:importantForAccessibility="yes"
 	/>
 	
 	<com.maxmpz.widget.player.PlayPauseButton android:id="@+id/button"
 		style="?ItemMiniplayerPlayButton" 
+		android:importantForAccessibility="yes"
 	/>
 	
 </com.maxmpz.widget.player.list.AAItemView>

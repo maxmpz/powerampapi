@@ -460,6 +460,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="enablingParam" format="boolean"/>
 		<!-- One of msg_dsp_eq_changed/msg_dsp_other_changed/msg_dsp_reverb_changed to listen to --> 
 		<attr name="updateMsgId"/>
+		<!-- Animate to value on attach -->
+		<attr name="animOnAttach" format="boolean"/>
 	</declare-styleable>
 	
 	<declare-styleable name="DSPCheckBox">
@@ -625,6 +627,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="drawableTint"/>
 		
 		<attr name="html" format="string"/>
+	</declare-styleable>
+	
+	<declare-styleable name="HtmlTextView">
+		<attr name="html" format="string"/>
+		<attr name="drawableTint"/>
 	</declare-styleable>	
+	
 	
 </resources>

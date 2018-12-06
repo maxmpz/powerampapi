@@ -85,9 +85,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="thumbHeight">@dimen/EqLinearKnob_thumbHeight</item><!-- 64dp -->
 		<item name="android:textSize">@dimen/linear_knob_text_size</item>
 				
-		<item name="android:paddingLeft">4dip</item>
-		<item name="android:paddingRight">4dip</item>
-		<item name="android:paddingBottom">4dip</item>
+		<item name="android:paddingLeft">@dimen/EqLinearKnob_paddingLR</item>
+		<item name="android:paddingRight">@dimen/EqLinearKnob_paddingLR</item>
+		<item name="android:paddingBottom">4dp</item>
 		
 		<item name="textPadding">0dp</item>
 		<item name="android:textStyle">normal</item>
@@ -202,6 +202,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_height">@dimen/EqButton_layout_height</item><!-- 32dp -->
 		<item name="android:minWidth">@dimen/EqButton_layout_width</item><!-- 64dp -->
+		<item name="android:ellipsize">end</item>
 	</style>
 	
 	<style name="EqCheckButton" parent="EqButton"><!-- styles-eq usage only -->
@@ -276,7 +277,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overriden for smaller screens -->
 		
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
-		<item name="android:ellipsize">end</item>
 	</style>
 	
 	<style name="EqEquResetButton" parent="EqButton">
@@ -435,6 +435,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<style name="EqToneRoundKnobLabel" parent="EqRoundKnobLabelLeftTop">
+		<item name="layout_maxWidth">65dp</item>
 	</style>
 	
 	<style name="EqToneRoundKnobValueLabel" parent="EqRoundKnobValueLabelLeftTop">
@@ -503,7 +504,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="EqTempoKnobLayout">
 		<item name="android:clipChildren">false</item>
-		<item name="android:layout_width">160dp</item>
+		<item name="android:layout_width">@dimen/EqTempoKnobLayout_width</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 		

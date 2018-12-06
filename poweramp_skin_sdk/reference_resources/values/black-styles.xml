@@ -36,6 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 NOTE: some devices may always ignore these colors (LGs)
 		-->
 		<item name="android:navigationBarColor">#000</item>
+		<item name="android:navigationBarDividerColor">#00000000</item><!-- Force nothing for divider as it doesn't look well on some devices which use light divider -->
 		<item name="statusBarBg">#55000000</item><!-- Drawable/color for view under Android status bar.  -->
 		<item name="navigationBarBg">#0000</item><!-- Drawable/color for view under Android navigation bar. -->
 		
@@ -138,6 +139,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqMilkFrs_presetUri">internal://#fft2</item>
 		
 		<item name="shuffle_none_32dp">@drawable/shuffle_none_32dp_tinted</item>
+		
+		<!-- Skin overlap -->
+		<item name="overlap_more_buttons">@style/ActivityTheme_Blackpro_MoreButtons</item>
 	</style>
 
 		

@@ -39,6 +39,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:disableForStateBusId="@id/bus_player"
 		w:disableForStateId="@id/state_player_category_not_navigable"
 		w:disableForStateMsgId="@id/msg_player_track_changed"
+		
+		android:contentDescription="@string/h_prev_list"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
 	
@@ -54,6 +56,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:longPressMsgId="@id/cmd_player_seek_step"
 		w:arg1="0"
 		w:repeatLongPressPeriod="250"
+		
+		android:contentDescription="@string/previous_track"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 		style="?TopRw_scene_playing"
@@ -70,6 +74,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:longPressMsgId="@id/cmd_player_seek_step"
 		w:arg1="1"
 		w:repeatLongPressPeriod="250"
+		
+		android:contentDescription="@string/next_track"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 		style="?TopFf_scene_playing"
@@ -87,6 +93,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:disableForStateBusId="@id/bus_player"
 		w:disableForStateId="@id/state_player_category_not_navigable"
 		w:disableForStateMsgId="@id/msg_player_track_changed"
+		
+		android:contentDescription="@string/h_next_list"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
 	<com.maxmpz.widget.StateAnimParams w:stateAnim="@id/anim_seeking"

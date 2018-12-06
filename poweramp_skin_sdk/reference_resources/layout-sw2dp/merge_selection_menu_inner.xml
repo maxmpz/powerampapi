@@ -55,6 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:stateId="@id/state_list_selection_count"
 			w:secondaryStateId="@id/state_list_selectable_item_count"
 			w:format="@string/d_slash_d"
+			android:importantForAccessibility="yes"
 		/>
 
 		<com.maxmpz.widget.BusActionButton

@@ -38,7 +38,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopBaseButtonLayout_layout_height">30dp</dimen>
 	<dimen name="PopupButtons_drawableSize">28dp</dimen>
 	<dimen name="SmallerPopupButton_marginLeft">-8dp</dimen>
+	<dimen name="SmallerPopupButtons_drawableSize">24dp</dimen>
 	<dimen name="PopupButtons_paddingLeft">15dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
+	<dimen name="SmallerPopupButtons_paddingLeft">16.5dp</dimen>
 
 	<integer name="selector_fade_ms">150</integer>
 	

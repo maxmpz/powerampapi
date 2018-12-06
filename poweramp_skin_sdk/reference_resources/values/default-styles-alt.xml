@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<style name="ActivityTheme_Whitepro_AltLayout">
+		<item name="VisPanelContainer">@style/Alt_VisPanelContainer</item>
+		
+		<item name="TopListWidget">@style/Alt_TopListWidget</item>
+		<item name="TopAABounds">@style/Alt_TopAABounds</item>
+		
+		<item name="ItemTrackAAImage_scene_aa">@style/Alt_ItemTrackAAImage_scene_aa</item>
+		
+		<item name="TopSubAAButtons">@style/Alt_TopSubAAButtons</item>
+		<item name="TopWaveseekLayout">@style/Alt_TopWaveseekLayout</item>
+		<item name="TopWaveseek">@style/Alt_TopWaveseek</item>
+		<item name="TopMetaInfoLayout">@style/Alt_TopMetaInfoLayout</item>
+		
+		<item name="ItemTrackTitle">@style/Alt_ItemTrackTitle</item>
+		<item name="ItemTrackLine2">@style/Alt_ItemTrackLine2</item>
+		<item name="ItemTrackTitle_scene_aa">@style/Alt_ItemTrackTitle_scene_aa</item>
+		<item name="ItemTrackLine2_scene_aa">@style/Alt_ItemTrackLine2_scene_aa</item>
+		
+		<item name="ItemLikeUnlikeLayout_scene_aa">@style/Alt_ItemLikeUnlikeLayout_scene_aa</item>
+		<item name="ItemLike_scene_aa">@style/Alt_ItemLike_scene_aa</item>
+		<item name="ItemUnlike_scene_aa">@style/Alt_ItemUnlike_scene_aa</item>
+		
+		<item name="ItemRatingBar">@style/Alt_ItemRatingBar</item>
+		<item name="ItemRatingBar_scene_aa">@style/Alt_ItemRatingBar_scene_aa</item>
+		<item name="ItemRatingBar_scene_item_menu_lu">@style/Alt_ItemRatingBar_scene_item_menu_lu</item>		
+		
+		<item name="ItemTrackMenu">@style/Alt_ItemTrackMenu</item>
+		<item name="ItemTrackMenu_scene_aa">@style/Alt_ItemTrackMenu_scene_aa</item>
+		<item name="ItemTrackMenu_scene_header">@style/Alt_ItemTrackMenu_scene_header</item>
+		
+		<item name="TopVisButtonLayout">@style/Alt_TopVisButtonLayout</item>
+		<item name="TopSleepTimerButtonLayout">@style/Alt_TopSleepTimerButtonLayout</item>
+		<item name="TopShuffleButtonLayout">@style/Alt_TopShuffleButtonLayout</item>
+		<item name="TopRepeatButtonLayout">@style/Alt_TopRepeatButtonLayout</item>
+		
+		<item name="TopPlay">@style/Alt_TopPlay</item>
+		
+		<item name="TopPrevCat">@style/Alt_TopPrevCat</item>
+		<item name="TopNextCat">@style/Alt_TopNextCat</item>
+		<item name="TopRw">@style/Alt_TopRw</item>
+		<item name="TopFf">@style/Alt_TopFf</item>
+		<item name="TopRw_scene_playing">@style/Alt_TopRw_scene_playing</item>
+		<item name="TopFf_scene_playing">@style/Alt_TopFf_scene_playing</item>
+
+		<item name="TopToastContainer">@style/Alt_TopToastContainer</item>
+		<item name="TopToastContainer_scenes_non_main">@style/Alt_TopToastContainer_scenes_non_main</item>
+		<item name="TopToastFrame">@style/Alt_TopToastFrame</item>
+		<item name="TopToastFrame_scene_expanded">@style/Alt_TopToastFrame_scene_expanded</item>
+		
+		<item name="TopCounterLayout">@style/Alt_TopCounterLayout</item>
+				
+		<!-- Skin overlap -->
+		<item name="overlap_more_buttons">@style/Alt_Whitepro_MoreButtons</item>
+		
+		<!-- Lists -->
+		
+		<item name="ItemTrackTitle_scene_grid_1">@style/Alt_ItemTrackTitle_scene_grid_1</item>
+		<item name="ItemTrackTitle_scene_grid_1_zoomed">@style/Alt_ItemTrackTitle_scene_grid_1_zoomed</item>
+		<item name="ItemTrackTitle_scene_grid">@style/Alt_ItemTrackTitle_scene_grid</item>
+		<item name="ItemTrackTitle_scene_grid_zoomed">@style/Alt_ItemTrackTitle_scene_grid_zoomed</item>
+		
+		<!-- Optionally remove background for line2 for grid scenes (uncomment in these styles if needed) and adjust margins to make labels a bit more compact -->
+		<item name="ItemTrackLine2_scene_grid">@style/Alt_ItemTrackLine2_scene_grid</item>
+		<item name="ItemTrackLine2_scene_grid_zoomed">@style/Alt_ItemTrackLine2_scene_grid_zoomed</item>
+		<item name="ItemTrackLine2_scene_grid_1">@style/Alt_ItemTrackLine2_scene_grid_1</item>
+		<item name="ItemTrackLine2_scene_grid_1_zoomed">@style/Alt_ItemTrackLine2_scene_grid_1_zoomed</item>
+	</style>
+	
+	<style name="Alt_VisPanelContainer" parent="VisPanelContainer">
+	</style>
+	
+	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
+	</style>
+	
+	<style name="Alt_TopSubAAButtons" parent="TopSubAAButtons">
+		<item name="android:layout_marginTop">@dimen/Alt_TopSubAAButtons_marginTop</item>
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginRight">14dp</item>
+	</style>
+	
+	<style name="Alt_TopWaveseekLayout" parent="TopWaveseekLayout">
+	</style>
+	
+	<style name="Alt_TopWaveseek" parent="TopWaveseek">
+		<item name="android:paddingTop">@dimen/Alt_TopWaveseek_paddingTB</item>
+		<item name="android:paddingBottom">@dimen/Alt_TopWaveseek_paddingTB</item>
+	</style>
+	
+	
+		
+	
+	<style name="Alt_ItemTrackTitle" parent="ItemTrackTitle">
+		<!-- Padding for rounded -->
+		<!-- <item name="android:paddingLeft">11dp</item>
+		<item name="android:paddingRight">11dp</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingBottom">5dp</item> -->
+	</style>
+	
+	<style name="Alt_ItemTrackLine2" parent="ItemTrackLine2">
+		<!-- Padding for rounded -->
+		<!-- <item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingBottom">5dp</item> -->
+	</style>
+	<style name="Alt_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		
+		<!-- Centered -->
+		<!-- <item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@id/aa_image</item>
+		<item name="android:layout_gravity">center_horizontal</item> --> 
+
+
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@id/aa_image</item>
+		
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginRight">14dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginTop">@dimen/Alt_ItemTrackTitle_scene_aa_marginTop</item>
+		
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+	</style>
+	
+	<style name="Alt_ItemTrackLine2_scene_aa" parent="ItemTrackLine2_scene_aa">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		
+		<!-- Centered -->
+		<!-- <item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@id/title</item>
+		<item name="android:layout_gravity">center_horizontal</item> -->
+		
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@id/title</item>
+
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginRight">14dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginTop">2dp</item>
+		
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+	</style>
+	
+	<style name="Alt_ItemLikeUnlikeLayout_scene_aa" parent="ItemLikeUnlikeLayout_scene_aa">
+		<item name="scale">0.9</item>
+		<item name="layout_compensateScale">0.9</item>
+		
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginBottom">84dp</item>
+		
+	</style>
+	<style name="Alt_ItemLike_scene_aa" parent="ItemLike_scene_aa">
+		<item name="drawableTint">?colorIconPrimaryForced</item>
+		<item name="android:background">@drawable/ripple_alpha_rounded_large</item>
+	</style>
+	
+	<style name="Alt_ItemUnlike_scene_aa" parent="ItemUnlike_scene_aa">
+		<item name="drawableTint">?colorIconPrimaryForced</item>
+		<item name="android:background">@drawable/ripple_alpha_rounded_large</item>
+	</style>
+	
+	<style name="Alt_ItemRatingBar" parent="ItemRatingBar">
+		<!-- Default centered pivot is better, but for proper/easier margin management, setting it to 0/0 here -->
+		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotY">0px</item>
+		
+	</style>
+	<style name="Alt_ItemRatingBar_scene_aa" parent="ItemRatingBar_scene_aa">
+		<item name="scale">0.9</item>
+		<item name="layout_compensateScale">0.9</item>
+				
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginBottom">84dp</item>
+		
+		<item name="drawableTint">?colorIconPrimaryForced</item>
+		<item name="lineBackground">@drawable/ripple_alpha_rounded_large</item>
+	</style>
+	<style name="Alt_ItemRatingBar_scene_item_menu_lu" parent="ItemRatingBar_scene_item_menu_lu">
+		<item name="android:layout_marginLeft">0dp</item>
+	</style>
+	
+	<style name="Alt_ItemTrackMenu" parent="ItemTrackMenu">
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:background">@drawable/ripple_alpha_rounded_large</item>
+	</style>
+	
+	<style name="Alt_ItemTrackMenu_scene_aa" parent="ItemTrackMenu_scene_aa">
+		<item name="scale">0.9</item>
+		<item name="layout_compensateScale">0.9</item>
+		
+		<item name="android:layout_marginRight">14dp</item>
+		<item name="android:layout_marginBottom">84dp</item><!-- Extra margin is needed due to AA item paddings -->
+	</style>
+	
+	<style name="Alt_ItemTrackMenu_scene_header" parent="ItemTrackMenu_scene_header">
+		<item name="applyViewParams">true</item><!-- NOTE: as currently menu is not shown for items and basically never transitions between item states, applyViewParams just here is enough -->
+		<item name="drawableTint">?colorIconInverse</item> 
+		<item name="android:background">@drawable/ripple_inverse_rounded_large</item><!-- Shouldn't have alpha for header -->
+		
+	</style>
+	
+	<style name="Alt_TopVisButtonLayout" parent="TopVisButtonLayout">
+		<item name="android:background">@drawable/alpha_popup_button_layout_large_bg</item>
+		<item name="buttonStyle">@style/Alt_PopupButtonNoTint</item>
+		<!-- <item name="android:layout_marginRight">4dp</item> -->
+	</style>
+	<style name="Alt_TopSleepTimerButtonLayout" parent="TopSleepTimerButtonLayout">
+		<item name="android:background">@drawable/alpha_popup_button_layout_activated_large_bg</item>
+		<item name="buttonStyle">@style/Alt_PopupButtonNoTint</item>
+	</style>
+	<style name="Alt_TopRepeatButtonLayout" parent="TopRepeatButtonLayout">
+		<item name="android:background">@drawable/alpha_popup_button_layout_large_bg</item>
+		<item name="buttonStyle">@style/Alt_PopupButtonNoTint</item>
+	</style>
+	<style name="Alt_TopShuffleButtonLayout" parent="TopShuffleButtonLayout">
+		<item name="android:background">@drawable/alpha_popup_button_layout_large_bg</item>
+		<item name="buttonStyle">@style/Alt_PopupButtonNoTint</item>
+		<!-- <item name="android:layout_marginLeft">4dp</item> -->
+	</style>
+	
+	<style name="Alt_TopPlay" parent="TopPlay">
+		<item name="layout_maxWidth">@dimen/Alt_TopPlay_maxSize</item>
+		<item name="layout_maxHeight">@dimen/Alt_TopPlay_maxSize</item>
+	</style>
+	<style name="Alt_TopPauseMoreButtons" parent="TopPauseMoreButtons">
+		<item name="layout_maxWidth">@dimen/Alt_TopPlay_maxSize</item>
+		<item name="layout_maxHeight">@dimen/Alt_TopPlay_maxSize</item>
+	</style>
+	<style name="Alt_TopPauseMoreButtons_scene_playing" parent="TopPauseMoreButtons_scene_playing">
+		<item name="layout_maxWidth">@dimen/Alt_TopPauseMoreButtons_maxSize_scene_playing</item>
+		<item name="layout_maxHeight">@dimen/Alt_TopPauseMoreButtons_maxSize_scene_playing</item>
+	</style>
+	<style name="Alt_TopRw" parent="TopRw">
+		<item name="layout_maxWidth">@dimen/Alt_TopMediumButton_size</item>
+		<item name="layout_maxHeight">@dimen/Alt_TopMediumButton_size</item>
+	</style>	
+	<style name="Alt_TopRw_scene_playing" parent="TopRw_scene_playing">
+		<item name="layout_maxWidth">@dimen/Alt_TopMediumButton_size</item>
+		<item name="layout_maxHeight">@dimen/Alt_TopMediumButton_size</item>
+	</style>
+	<style name="Alt_TopFf" parent="TopFf">
+		<item name="layout_maxWidth">@dimen/Alt_TopMediumButton_size</item>
+		<item name="layout_maxHeight">@dimen/Alt_TopMediumButton_size</item>
+	</style>	
+	<style name="Alt_TopFf_scene_playing" parent="TopFf_scene_playing">
+		<item name="layout_maxWidth">@dimen/Alt_TopMediumButton_size</item>
+		<item name="layout_maxHeight">@dimen/Alt_TopMediumButton_size</item>
+		</style>
+	<style name="Alt_TopPrevCat" parent="TopPrevCat">
+		<item name="android:layout_width">@dimen/Alt_TopSmallButton_size</item> 
+		<item name="android:layout_height">@dimen/Alt_TopSmallButton_size</item>
+	</style>	
+	<style name="Alt_TopNextCat" parent="TopNextCat">
+		<item name="android:layout_width">@dimen/Alt_TopSmallButton_size</item> 
+		<item name="android:layout_height">@dimen/Alt_TopSmallButton_size</item>
+	</style>	
+		
+	<style name="Alt_PopupButtonNoTint" parent="PopupButtonNoTint">
+		
+	</style>
+	
+	<style name="Alt_TopToastContainer" parent="TopToastContainer">
+	</style>
+	<style name="Alt_TopToastContainer_scenes_non_main" parent="TopToastContainer_scenes_non_main">
+	</style>
+	<style name="Alt_TopToastFrame" parent="TopToastFrame">
+	</style>
+	<style name="Alt_TopToastFrame_scene_expanded" parent="TopToastFrame_scene_expanded">
+	</style>
+	
+	<style name="Alt_TopCounterLayout" parent="TopCounterLayout">
+		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+	</style>
+	
+	
+	<!-- Override pro buttons overlap with rounded elapsed/duration -->
+	<style name="Alt_Whitepro_MoreButtons" parent="ActivityTheme_Whitepro_MoreButtons">
+		<item name="TopTrackElapsed">@style/Alt_TopTrackElapsedMoreButtons</item>
+		<item name="TopTrackDuration">@style/Alt_TopTrackDurationMoreButtons</item>
+		
+		<item name="TopPause">@style/Alt_TopPauseMoreButtons</item>
+		<item name="TopPause_scene_playing">@style/Alt_TopPauseMoreButtons_scene_playing</item>
+	</style>
+	
+	<style name="Alt_TopTrackElapsedMoreButtons" parent="TopTrackElapsedMoreButtons">
+		<item name="android:background">@drawable/ripple_inverse_bg_rounded_popup</item>
+	</style>
+	<style name="Alt_TopTrackDurationMoreButtons" parent="TopTrackDurationMoreButtons">
+		<item name="android:background">@drawable/inverse_bg_rounded_popup</item>
+	</style>
+	
+	<style name="Alt_TopMetaInfoLayout" parent="TopMetaInfoLayout">
+	</style>
+	
+	<style name="Alt_TopListWidget" parent="TopListWidget">
+		<item name="listSubstyle">@style/Alt_ListSubstyle</item>
+	</style>
+	<style name="Alt_ListSubstyle_Base" parent="ListSubstyle">
+		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
+		<item name="aaPaddingBottom">70dp</item>
+		
+		<item name="aaMaxSize">@dimen/Alt_aaMaxSize</item><!-- NOTE: sync with TopAABounds -->
+		<item name="aaItemRatio">100%</item><!-- NOTE: sync with TopAABounds -->
+		
+		<!-- Extra space grid cell layouts => so cell has non-square layout with extra space for title below image -->
+		<item name="gridItem1LineExtraSpace">30dp</item><!-- 1line 4x, 3x grids -->
+		<item name="gridZoomedItem1LineExtraSpace">38dp</item><!-- 1line 2x grids -->
+
+		<item name="gridItemExtraSpace">54dp</item><!-- 2line 4x, 3x grids -->
+		<item name="gridZoomedItemExtraSpace">60dp</item><!-- 2line 2x grids -->
+	</style>
+	<style name="Alt_ListSubstyle" parent="Alt_ListSubstyle_Base">
+	</style>
+	
+	<style name="Alt_TopAABounds" parent="TopAABounds">
+		<!-- This is the extra room for title / line2 / menu / rating below AA image. NOTE: need to add this to aa_bounds, so other views can properly attach to it with
+		     the aaPaddingBottom accounted for -->
+		<item name="android:layout_marginBottom">@dimen/Alt_TopAABounds_marginBottom</item>
+		
+		<item name="layout_maxHeight">@dimen/Alt_aaMaxSize</item>
+		<item name="layout_widthPercent">100%</item>
+		<item name="layout_heightPercent">100%</item>
+		
+		<!-- DEBUG -->
+		<!--<item name="android:background">#5f00</item>-->
+	</style>
+		
+	<style name="Alt_ItemTrackTitle_scene_grid_1" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_1">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+		<item name="android:layout_marginBottom">4dp</item>
+	</style>
+	<style name="Alt_ItemTrackTitle_scene_grid_1_zoomed" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_1_zoomed">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+		<item name="android:layout_marginBottom">8dp</item>
+	</style>
+	<style name="Alt_ItemTrackTitle_scene_grid" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	</style>
+	<style name="Alt_ItemTrackTitle_scene_grid_zoomed" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_zoomed">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	</style>
+	
+	<style name="Alt_ItemTrackLine2_scene_grid" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+		<item name="android:layout_marginTop">-4dp</item>
+	</style>
+	<style name="Alt_ItemTrackLine2_scene_grid_1" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_1">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	</style>
+	<style name="Alt_ItemTrackLine2_scene_grid_zoomed" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_zoomed">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+		<item name="android:layout_marginTop">-4dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+	</style>
+	<style name="Alt_ItemTrackLine2_scene_grid_1_zoomed" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_1_zoomed">
+		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	</style>
+	
+</resources>

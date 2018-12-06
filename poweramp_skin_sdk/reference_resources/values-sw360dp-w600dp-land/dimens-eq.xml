@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_layout_height">32dp</dimen>
 	<dimen name="EqButton_textSize">12dp</dimen>
 	
-	<dimen name="EqButton_layout_maxWidth">100dp</dimen>
+	<dimen name="EqButton_layout_maxWidth">90dp</dimen>
 	<dimen name="EqButton_marginSide">8dp</dimen>
 	
 	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>

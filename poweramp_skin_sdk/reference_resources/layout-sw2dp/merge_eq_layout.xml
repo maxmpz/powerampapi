@@ -41,6 +41,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:busId="@id/bus_gui"
 				w:msgId="@id/cmd_nav_to_eq"
 				w:arg1="@integer/EQ_TAB_EQ"
+				
+				android:contentDescription="@string/equ"
 			/>
 
 			<com.maxmpz.widget.BusActionButton
@@ -50,6 +52,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:arg1="@integer/EQ_TAB_VOL"
 				w:busId="@id/bus_gui"
 				w:msgId="@id/cmd_nav_to_eq" 
+				
+				android:contentDescription="@string/volume"
 			/>
 
 			<com.maxmpz.widget.BusActionButton
@@ -59,6 +63,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:arg1="@integer/EQ_TAB_REVERB"
 				w:busId="@id/bus_gui"
 				w:msgId="@id/cmd_nav_to_eq" 
+				
+				android:contentDescription="@string/reverb"
 			/>
 		</com.maxmpz.widget.FastLayout>
 		

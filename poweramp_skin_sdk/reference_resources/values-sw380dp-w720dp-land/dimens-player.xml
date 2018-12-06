@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- land -->
+<resources>
+	<!-- Pixel 2, A7 2018, Nokia 7.1 -->
+	
+	<dimen name="TopPlay_maxSize">104dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">90dp</dimen>
+	<dimen name="TopPlayPauseBehind_size">55dp</dimen>
+	
+	<dimen name="TopWaveseek_maxHeight">184dp</dimen>
+
+	<dimen name="TopBaseButtonLayout_layout_width">68dp</dimen>
+	<dimen name="TopBaseButtonLayout_layout_height">36dp</dimen>
+	<dimen name="PopupButtons_drawableSize">32dp</dimen>
+	<dimen name="SmallerPopupButton_marginLeft">-12dp</dimen>
+	<dimen name="PopupButtons_paddingLeft">18dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
+	<dimen name="SmallerPopupButtons_paddingLeft">20.5dp</dimen>
+	
+	<dimen name="TopHelpSmaller_textSize">12dp</dimen>
+	
+	<!-- Alt -->
+	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.9</item>
+	<dimen name="Alt_aaMaxSize">480dp</dimen>
+	
+	<dimen name="Alt_TopPlay_maxSize">104dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">86dp</dimen>
+	<dimen name="Alt_TopPlayPauseBehind_size">55dp</dimen>
+</resources>

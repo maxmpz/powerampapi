@@ -26,16 +26,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="TopWaveseek_maxHeight">128dp</dimen>
 	
-	<dimen name="TopPlay_maxSize">74dp</dimen>
-	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">68dp</dimen>
-
-	<dimen name="TopSmallButton_size">40dp</dimen>
-	<dimen name="TopMediumButton_size">50dp</dimen>
+	
+	<dimen name="TopPlay_maxSize">64dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
+	<dimen name="TopSmallButton_size">36dp</dimen>
+	<dimen name="TopMediumButton_size">46dp</dimen>
 	
 	<dimen name="TopPlayPauseBehind_size">40dp</dimen>
 	
 	<dimen name="TopTrackElapsedMoreButtons_marginBottom">-8dp</dimen>
-	<dimen name="TopMetaInfoLabel_textSize">9dp</dimen>
+	<dimen name="TopMetaInfoLabel_textSize">8dp</dimen>
 	<dimen name="TopMetaInfoLabel_drawableSize">10dp</dimen>
 	<dimen name="TopMetaInfoLabel_paddingTopBottom">2dp</dimen>
 	
@@ -57,4 +57,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpSmaller_paddingTB">4dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">8dp</dimen>
 	
+	<!-- Alt -->
+	<dimen name="Alt_TopAABounds_marginBottom">70dp</dimen>
+	<dimen name="Alt_TopSubAAButtons_marginTop">2dp</dimen>
+	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-2dp</dimen>
+
+	<dimen name="Alt_TopPlay_maxSize">64dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
+	<dimen name="Alt_TopSmallButton_size">36dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">46dp</dimen>
+			
+	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.3</item>
+	<dimen name="Alt_TopWaveseek_paddingTB">4dp</dimen>
+		
+	<!-- Huge scaling -->
+	<dimen name="Alt_aaMaxSize">240dp</dimen>
 </resources>

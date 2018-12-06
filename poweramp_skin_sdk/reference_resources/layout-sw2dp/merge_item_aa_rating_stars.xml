@@ -6,20 +6,21 @@
 >
 	<com.maxmpz.widget.RatingBar android:id="@+id/rating"
 		style="?ItemRatingBar"
+		android:contentDescription="@string/rating"
 	/>
 	<SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_aa_vis" w:scene_3="@+id/scene_aa_playing"
 		style="?ItemRatingBar_scene_aa"
 		w:applyViewParams="true"
 	/>
-	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_zoomed" w:scene_3="@+id/scene_zoomed" w:scene_4="@+id/scene_small"  
+	
+	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_zoomed" w:scene_3="@+id/scene_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_1" w:scene_6="@+id/scene_1_zoomed"
 		style="?ItemRatingBar_scenes_invisible"
 	/> 
-	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
-		style="?ItemRatingBar_scenes_invisible"
+	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1" w:scene_3="@+id/scene_grid_1_alt_zoomed" w:scene_4="@+id/scene_grid_1_zoomed" 
+			w:scene_5="@+id/scene_grid_1" w:scene_6="@+id/scene_grid_1_alt"
+		style="?ItemRatingBar_scenes_invisible"	
 	/>
-	<SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed"  
-		style="?ItemRatingBar_scenes_invisible"
-	/> 
+		
 	<!-- NOTE: force hidden -->
 	<SceneParams w:scene="@+id/scene_item_menu"
 		android:visibility="gone"

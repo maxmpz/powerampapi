@@ -1079,6 +1079,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="iconStateId" format="reference"/>
 		<!-- Optional scene in which no updates happen. This view should have SceneParams for such scene -->
 		<attr name="noUpdateInScene" format="reference"/>
+		<attr name="noUpdateInTransition" format="boolean"/>
 		<!-- Show the default (android:text) text if state is empty/null -->
 		<attr name="defaultTextOnNoState" format="boolean"/>
 	</declare-styleable>
@@ -1134,7 +1135,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="stateAnimTime" format="integer"/>
 		<!-- Vis enter/exit anim duration -->
 		<attr name="visAnimTime" format="integer"/>
-		<!-- Temporary UI (on touch, when vis is enabled) duration -->
+		<!-- NOTE: not used anymore, instead now defined by user option. Temporary UI (on touch, when vis is enabled) duration -->
 		<attr name="tempUITime" format="integer"/>
 		
 		<!-- 

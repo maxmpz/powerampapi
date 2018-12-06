@@ -40,6 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_app_refresh_aa"/>
 	<item type="id" name="cmd_app_clean_aa"/><!-- arg1 == aa type, obj == LongArray with ids to clean cache for. NOTE: msg_app_aa_refreshed is not sent -->
 	<item type="id" name="cmd_app_open_settings"/><!-- obj == settings page -->
+	<item type="id" name="cmd_app_close_settings"/><!-- Closes all open setting activities -->
 	<item type="id" name="cmd_app_open_support"/>
 	<item type="id" name="cmd_app_rescan"/><!-- arg1 => boolean, slow scan if true, obj => String cause of rescan -->
 	<item type="id" name="cmd_app_milk_rescan"/><!-- arg1 => boolean, slow scan if true, obj => String cause of rescan -->
@@ -172,11 +173,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="state_gui_anim_durations"/><!-- obj -->
 	
-	<item type="id" name="msg_gui_vis_mode_changed"/><!-- integer VIS_* --> 
-	
-		
-	
-	
+	<item type="id" name="msg_gui_vis_mode_changed"/><!-- integer VIS_* -->
+
+	<item type="id" name="msg_app_screen_on"/><!-- arg1 => boolean == screen_on --> 
+	<item type="id" name="state_app_screen_on"/><!-- boolean -->
 	
 
 	<!-- StateAnim states -->
@@ -209,7 +209,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_player_track_wave_changed"/>
 	<!-- NOTE: this is called after cmd_player_on_queue_updated, but on bus_player, and only if PS is alive --> 
 	<item type="id" name="msg_player_queue_changed"/><!-- arg1 = unplayed count, arg2 = total count, obj = Boolean.TRUE if enqueued-->
-	
 	<item type="id" name="msg_player_output_meta_changed"/><!-- obj => BluetoothCodecConfig -->
 	
 	<!-- PlayerState states -->
@@ -297,9 +296,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_play_prev_category"/>
 	<item type="id" name="cmd_player_play_first_category"/>
 	<item type="id" name="cmd_player_reload_track"/>
-	<item type="id" name="cmd_player_recreate_notification"/>
+	<item type="id" name="cmd_player_recreate_notification"/><!-- arg1 => boolean, true => also recreate helper -->
 	<item type="id" name="cmd_player_set_master_volume"/><!-- NOTE: this also duplicated on bus_dsp_cmd via dsp_master_volume -->
 	<item type="id" name="cmd_player_adjust_master_volume"/><!-- arg1 =>0 down => 1 up, arg2 => DirectVolumeController.FLAG_* -->
+	<item type="id" name="cmd_player_force_volume_panel"/>
 	<item type="id" name="cmd_player_switch_track_meta"/><!-- NOTE: handled in PlayerState -->
 	<item type="id" name="cmd_player_set_sleep_timer"/><!-- arg1 => seconds, arg2 => playToEnd boolean -->
 	<item type="id" name="cmd_player_save_sate"/>

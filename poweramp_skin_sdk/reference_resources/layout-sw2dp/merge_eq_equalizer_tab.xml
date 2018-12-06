@@ -159,6 +159,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:valueFormat="@string/f0_percent"
 		w:valueFormatMin="0"
 		w:valueFormatMax="100"
+		
+		android:importantForAccessibility="yes"
 	/>
 	
 	<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/eq_treble_knob_layout"
@@ -172,5 +174,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:valueFormat="@string/f0_percent"
 		w:valueFormatMin="0"
 		w:valueFormatMax="100"
+		
+		android:importantForAccessibility="yes"
 	/>
 </com.maxmpz.widget.SceneFastLayout>

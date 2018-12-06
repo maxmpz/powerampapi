@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- These should be sorted in desc order as they are in fact bitset values (android selects first match) -->
+<!-- NOTE: see also item_playing_mark_bg.xml -->
+
 <level-list xmlns:android="http://schemas.android.com/apk/res/android"
 	android:exitFadeDuration="200">
 
@@ -22,5 +24,7 @@
 	
 	<!-- Set when item needs touch feedback, e.g. on long press -->
 	<item android:minLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:maxLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:drawable="@drawable/ripple_rounded_medium"/>
+	
+	<!-- <item android:minLevel="0" android:maxLevel="0" android:drawable="@drawable/rounded_medium"/> -->
 	
 </level-list>

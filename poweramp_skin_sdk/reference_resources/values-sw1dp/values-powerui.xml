@@ -46,6 +46,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="behavior_dialog"/><!-- Top level dialog behavior -->
 	<item type="id" name="behavior_back_button"/><!-- Top level back button behavior -->
 	<item type="id" name="behavior_menu" />
+	<item type="id" name="behavior_player_connection"/>
 		
 	<!-- REVISIT: move to better place - player related ids needed for styles - otherwise appt can crash -->
 	

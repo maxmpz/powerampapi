@@ -24,11 +24,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<attr name="colorBgPrimary" format="color"/><!-- primary background color, e.g. white for Light theme -->
 	<attr name="colorBgPrimaryAlpha" format="color"/><!-- alpha faded primary background color -->
-	<attr name="colorBgLessAlpha" format="color"/><!-- a bit more pronounced alpha faded primary background color -->
+	<attr name="colorBgLessAlpha" format="color"/><!-- a bit more pronounced alpha-faded primary background color -->
 	<attr name="colorInverse" format="color"/><!-- Foreground color for inverted color controls -->
 	<attr name="colorBgInverse" format="color"/><!-- Inverse background color, e.g. black for Light theme -->
 	<attr name="colorBgInverseChecked" format="color"/><!-- Inverse checked background color, e.g. EQ checkable buttons -->
 	<attr name="colorStroke" format="color"/><!-- Color for button stroke -->
+	<attr name="colorBgHelp" format="color"/><!-- Color for help balloons bg -->
 	<attr name="colorStrokeHelp" format="color"/><!-- Color for less visible stroke, e.g. for help hints -->
 	<attr name="colorLessContrast" format="color"/><!-- Tint/foreground color for a bit less contrast icons/buttons -->
 	<attr name="colorShade" format="color"/><!-- Shade colors for popup menus -->
