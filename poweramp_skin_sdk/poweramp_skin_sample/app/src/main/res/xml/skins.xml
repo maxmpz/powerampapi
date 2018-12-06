@@ -126,6 +126,14 @@
 			overlapStyle="@style/SampleSkin_noAABlur"
 			checkedByDefault="false"
 		/>
+
+		<option
+			key="main_mini_spectrum"
+			name="@string/skin_main_mini_spectrum"
+			summary="@string/skin_summary_main_mini_spectrum"
+			overlapStyle="@style/SampleSkin_mainMiniSpectrum"
+			checkedByDefault="false"
+		/>
 	</skin>
 
 	<skin

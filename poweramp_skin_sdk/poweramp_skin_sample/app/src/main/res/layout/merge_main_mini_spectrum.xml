@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:w="http://schemas.android.com/apk/res/com.maxmpz.audioplayer"
+>
+	<!-- Hide in base scene (main player, non playing) -->
+	<com.maxmpz.widget.player.MilkFRS
+		style="@style/SampleSkin_mainMiniSpectrum_MilkFRS"
+		android:visibility="invisible"
+	/>
+	<!-- Show in playing scene -->
+	<SceneParams
+		w:scene="@com.maxmpz.audioplayer:id/scene_playing"
+		android:visibility="visible"
+	/>
+
+	<!-- Hide in all other scenes -->
+	<SceneParams
+		w:scene="@com.maxmpz.audioplayer:id/scene_lib"
+		w:scene_2="@com.maxmpz.audioplayer:id/scene_search"
+		w:scene_3="@com.maxmpz.audioplayer:id/scene_eq"
+		w:scene_4="@com.maxmpz.audioplayer:id/scene_vis_w_ui"
+		w:scene_5="@com.maxmpz.audioplayer:id/scene_vis_temp_ui"
+		w:scene_6="@com.maxmpz.audioplayer:id/scene_vis"
+		android:visibility="invisible"
+	/>
+
+</merge>

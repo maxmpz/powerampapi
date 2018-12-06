@@ -399,7 +399,58 @@
 	</style>
 
 
+	<!-- Mini spectrum on main screen option -->
+	<style name="SampleSkin_mainMiniSpectrum">
+		<item name="com.maxmpz.audioplayer:TopContainer_extraLayout">@layout/merge_main_mini_spectrum</item>
+	</style>
 
+	<style name="SampleSkin_mainMiniSpectrum_MilkFRS_base">
+		<!-- Using transparent background.
+			 NOTE: this works only with "bars" visualizations
+		-->
+		<!--<item name="com.maxmpz.audioplayer:bgColor">?com.maxmpz.audioplayer:colorBgPrimary</item>-->
+		<!--<item name="com.maxmpz.audioplayer:bgColor">#000</item>-->
+		<item name="com.maxmpz.audioplayer:bgColor">#0000</item>
+		<!--
+			Poweramp uses (for eq screen):
 
+		    "internal://#fft2inv" - black bars
+		    "internal://#fft2" - light bars
+
+		    But here, we're using own milk preset from our skin assets directory (assets/milk_presets/SampleSkin - spectrum-main.milk)
+
+		    NOTE: if Poweramp fails to load preset, it will load some default one (Poweramp - spectrum-centered) and will complain in log
+		    NOTE: presetUri is an URI and should be properly escaped (e.g. spaces in #fragment => %20, etc.)
+		    NOTE: Poweramp uses "small" profile for such visualization components, they don't support milkdrop scripts/shaders, just "bar" spectrum
+
+		    List of Poweramp builtin spectrum presets:
+		        internal://#fft1
+		        internal://#fft2
+		        internal://#fft2inv
+				builtin://#Poweramp%20-%20spectrum-centered
+				builtin://#Poweramp%20-%20spectrum-centered-narrow
+				builtin://#Poweramp%20-%20spectrum-centered-reflected
+				builtin://#Poweramp%20-%20spectrum-centered-wide
+				builtin://#Poweramp%20-%20spectrum-dots
+				builtin://#Poweramp%20-%20spectrum-narrow
+				builtin://#Poweramp%20-%20spectrum-plain
+				builtin://#Poweramp%20-%20spectrum-quads-narrow
+				builtin://#Poweramp%20-%20spectrum-reflected-wide
+				builtin://#Poweramp%20-%20spectrum-wide
+		 -->
+		<!--<item name="com.maxmpz.audioplayer:presetUri">internal://#fft2</item>-->
+		<item name="com.maxmpz.audioplayer:presetUri">apk://com.poweramp.v3.sampleskin#SampleSkin%20-%20spectrum-main.milk</item>
+	</style>
+
+	<style name="SampleSkin_mainMiniSpectrum_MilkFRS" parent="SampleSkin_mainMiniSpectrum_MilkFRS_base">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">64dp</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/sub_aa_buttons</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+
+	</style>
 
 </resources>
