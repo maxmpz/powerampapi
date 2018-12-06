@@ -415,7 +415,7 @@
 			Poweramp uses (for eq screen):
 
 		    "internal://#fft2inv" - black bars
-		    "internal://#fft2" - light bars
+			"internal://#fft2" - light bars
 
 		    But here, we're using own milk preset from our skin assets directory (assets/milk_presets/SampleSkin - spectrum-main.milk)
 
