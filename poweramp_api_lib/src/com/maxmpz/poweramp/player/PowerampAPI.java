@@ -890,7 +890,6 @@ public final class PowerampAPI {
 	 */
 	public static final String TRACK = "track";
 
-
 	/**
 	 * Shuffle extras values
 	 */
@@ -1176,40 +1175,21 @@ public final class PowerampAPI {
 		 * {@link PowerampAPI.Track} {@link #FLAGS} bitset values. First 3 bits = FLAG_ADVANCE_*
 		 */
 		public static final class Flags {
-			/**
-			 * Track wasn't advanced
-			 */
-			public static final int FLAG_ADVANCE_NONE = 0;
-			/**
-			 * Track was advanced forward
-			 */
-			public static final int FLAG_ADVANCE_FORWARD = 1;
-			/**
-			 * Track was advanced backward
-			 */
-			public static final int FLAG_ADVANCE_BACKWARD = 2;
-			/**
-			 * Track category was advanced forward
-			 */
-			public static final int FLAG_ADVANCE_FORWARD_CAT = 3;
-			/**
-			 * Track category was advanced backward
-			 */
-			public static final int FLAG_ADVANCE_BACKWARD_CAT = 4;
-
-			/**
-			 * Mask for FLAG_ADVANCE_* values
-			 */
-			public static final int FLAG_ADVANCE_MASK = 0x7; // 111
-
-			/**
-			 * Track was advanced from notification
-			 */
-			public static final int FLAG_NOTIFICATION_UI = 0x20;
-
-			/**
-			 * Used to indicate that track is first in Poweramp service session
-			 */
+			/** Track wasn't advanced */
+			public static final int FLAG_ADVANCE_NONE            = 0;
+			/** Track was advanced forward */
+			public static final int FLAG_ADVANCE_FORWARD         = 1;
+			/** Track was advanced backward */
+			public static final int FLAG_ADVANCE_BACKWARD        = 2;
+			/** Track category was advanced forward */
+			public static final int FLAG_ADVANCE_FORWARD_CAT     = 3;
+			/** Track category was advanced backward */
+			public static final int FLAG_ADVANCE_BACKWARD_CAT    = 4;
+			/** Mask for FLAG_ADVANCE_* values */
+			public static final int FLAG_ADVANCE_MASK            = 0x7; // 111
+			/** Track was advanced from notification */
+			public static final int FLAG_NOTIFICATION_UI         = 0x20;
+			/** Used to indicate that track is first in Poweramp service session */
 			public static final int FLAG_FIRST_IN_PLAYER_SESSION = 0x40;
 		}
 	}
