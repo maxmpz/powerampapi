@@ -56,7 +56,7 @@ public abstract class WidgetUpdater {
 
 	private final Context mContext;
 
-	private static boolean sMediaRemoved;
+	//private static boolean sMediaRemoved; // REVISIT: never true, remove
 	private static @Nullable SharedPreferences sCachedPrefs;
 
 	private final @NonNull PowerManager mPowerManager;
@@ -87,11 +87,12 @@ public abstract class WidgetUpdater {
 	}
 
 	/**
-	 * Called during system onUpdate() call which requires remote views for widget due to some system event (boot, etc.) 
+	 * Called during system onUpdate() call which requires remote views for widget due to some system event (boot, etc.)
+	 * Called just for given provider 
 	 */
 	// THREADING: any
-	public void updateSafe(@NonNull BaseWidgetProvider provider, @Nullable Intent intent, boolean ignorePowerState, boolean updateByOs) {
-		if(LOG) Log.w(TAG, "updateSafe=" + intent + " th=" + Thread.currentThread()); // + " extras=" + intent == null ? null : Arrays.toString(intent.getExtras().keySet().toArray(new String[]{})));
+	public void updateSafe(@NonNull BaseWidgetProvider provider, boolean ignorePowerState, boolean updateByOs, int[] appWidgetIds) {
+		if(LOG) Log.w(TAG, "updateSafe th=" + Thread.currentThread() + " provider=" + provider); 
 
 		synchronized(mLock) {
 			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){
@@ -99,19 +100,18 @@ public abstract class WidgetUpdater {
 				return;
 			}
 
-			int[] ids = null;
+//			int[] ids = appWidgetIds;
+//			if(intent != null && updateByOs/*intent.getBooleanExtra(EXTRA_UPDATE_BY_OS, false)*/) {
+//				// Check if media is removed. In this case PowerampAPI status can be in stale "playing" state (as Poweramp process could be killed by ripper).
+//				sMediaRemoved = !Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
+//				// If update by OS, some Androids 2.x require new AA to be set again.
+//			}
 
-			if(intent != null && updateByOs/*intent.getBooleanExtra(EXTRA_UPDATE_BY_OS, false)*/) {
-				// Check if media is removed. In this case PowerampAPI status can be in stale "playing" state (as Poweramp process could be killed by ripper).
-				sMediaRemoved = !Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-				// If update by OS, some Androids 2.x require new AA to be set again.
-			}
-
-			WidgetUpdateData data = generateUpdateData(mContext, sMediaRemoved);
+			WidgetUpdateData data = generateUpdateData(mContext/*, sMediaRemoved*/);
 
 			if(LOG) Log.w(TAG, "========== updateSafe UPDATE data=" + data);
 
-			pushUpdateCore(data, ids);
+			pushUpdateCore(data, appWidgetIds);
 		}
 
 		if(LOG) Log.w(TAG, "update done ");
@@ -123,7 +123,7 @@ public abstract class WidgetUpdater {
 		SharedPreferences prefs = getCachedSharedPreferences(mContext);
 
 		for(IWidgetUpdater prov : mProviders) {
-			prov.pushUpdate(mContext, prefs, ids, sMediaRemoved, data);
+			prov.pushUpdate(mContext, prefs, ids, false, data); // Media never removed, not changing signature for now
 		}
 
 		if(data.hasTrack && !sUpdatedOnce) {
@@ -133,6 +133,7 @@ public abstract class WidgetUpdater {
 	}
 
 	/**
+	 * Called by ExternalAPI
 	 * @param data
 	 * @param ignorePowerState
 	 * @return true if update happened, false if power state doesn't allow update now
@@ -187,13 +188,13 @@ public abstract class WidgetUpdater {
 	 * @return
 	 */
 	// Data should be always the same for any type of widgets as data is reused by other widgets, thus method is final.
-	public @NonNull WidgetUpdateData generateUpdateData(Context context, boolean mediaRemoved) {
+	public @NonNull WidgetUpdateData generateUpdateData(Context context/*, boolean mediaRemoved*/) {
 		WidgetUpdateData data = new WidgetUpdateData();
 
 		if(ALWAYS_USE_PERSISTANT_DATA) {
 			// Still check for actual playing status, as persistent data is stored per track change, thus never reflects playing state
 			// Do it before loadDefaultOrPersistantUpdateData
-			getPlayingState(context, data, mediaRemoved);
+			getPlayingState(context, data);
 
 			loadDefaultOrPersistantUpdateData(context, data);
 
@@ -244,7 +245,7 @@ public abstract class WidgetUpdater {
 //			}
 //		}
 
-		getPlayingState(context, data, mediaRemoved);
+		getPlayingState(context, data/*, mediaRemoved*/);
 
 		Intent modeIntent = context.registerReceiver(null, WidgetUpdater.sModeFilter);
 		if(modeIntent != null) {
@@ -256,11 +257,11 @@ public abstract class WidgetUpdater {
 	}
 
 	@SuppressWarnings("static-method")
-	private void getPlayingState(Context context, @NonNull WidgetUpdateData data, boolean mediaRemoved) {
-		if(mediaRemoved) {
-			data.playing = false;
-			if(LOG)  Log.w(TAG, "generateUpdateData mediaRemoved");
-		} else {
+	private void getPlayingState(Context context, @NonNull WidgetUpdateData data/*, boolean mediaRemoved*/) {
+//		if(mediaRemoved) {
+//			data.playing = false;
+//			if(LOG)  Log.w(TAG, "generateUpdateData mediaRemoved");
+//		} else {
 			Intent statusIntent = context.registerReceiver(null, WidgetUpdater.sStatusFilter);
 			if(statusIntent != null) {
 
@@ -271,6 +272,6 @@ public abstract class WidgetUpdater {
 
 				if(LOG) Log.w(TAG, "generateUpdateData statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing);
 			} else if(LOG)  Log.e(TAG, "generateUpdateData statusIntent==null");
-		}
+//		}
 	}
 }

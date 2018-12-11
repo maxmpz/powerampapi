@@ -22,6 +22,7 @@ package com.maxmpz.poweramp.widgetpackcommon;
 
 import java.util.Arrays;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -68,7 +69,10 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	 * Min. AA image size to show (otherwise logo shown)
 	 */
 	protected static final int MIN_SIZE = 32;
-
+	
+	private @Nullable ComponentName mComponentName; // This provider component name
+	private @Nullable AppWidgetManager mAppWidgetManager;
+	
 	/**
 	 * Creates and caches widgetupdater suitable for updating this provider. Called when provider is called by system or by widget configure. Implmentation should be thread safe
 	 * @param context
@@ -102,7 +106,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 
 		try {
 
-			widgetUpdater.updateSafe(this, null, true, true); // Immediate update, ignores power state
+			widgetUpdater.updateSafe(this, true, true, appWidgetIds); // Immediate update, ignores power state
 
 		} catch(Throwable th) {
 			Log.e(TAG, "", th);
@@ -113,25 +117,41 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 
 	// THREADING: any
 	@Override
-	public WidgetUpdateData pushUpdate(Context context, @NonNull SharedPreferences prefs, int[] ids, boolean mediaRemoved, @NonNull WidgetUpdateData data) {
-		final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+	public WidgetUpdateData pushUpdate(Context context, @NonNull SharedPreferences prefs, @Nullable int[] ids, boolean mediaRemoved, @NonNull WidgetUpdateData data) {
+		AppWidgetManager appWidgetManager = mAppWidgetManager;
+		if(appWidgetManager == null) {
+			appWidgetManager = mAppWidgetManager = AppWidgetManager.getInstance(context); 
+		}
+		
 		if(ids == null) {
 			try { // java.lang.RuntimeException: system server dead?  at android.appwidget.AppWidgetManager.getAppWidgetIds(AppWidgetManager.java:492) at com.maxmpz.audioplayer.widgetpackcommon.BaseWidgetProvider (":139)
-				ids = appWidgetManager.getAppWidgetIds(new ComponentName(context, this.getClass()));
+				long start;
+				if(LOG) start = System.nanoTime();
+				
+				if(mComponentName == null) {
+					mComponentName = new ComponentName(context, this.getClass());
+				}
+				ids = appWidgetManager.getAppWidgetIds(mComponentName);
+
+				if(LOG) Log.w(TAG, "pushUpdate getAppWidgetIds in=" + (System.nanoTime() - start) / 1000 + " =>ids=" + Arrays.toString(ids) + " me=" + this);
 			} catch(Exception ex) {
 				Log.e(TAG, "", ex);
 			}
 		}
 
 		if(ids == null || ids.length == 0) {
-			if(LOG) Log.e(TAG, "pushUpdate FAIL no ids");
+			if(LOG) Log.w(TAG, "pushUpdate FAIL no ids me=" + this);
 			return null;
 		}
 
-		if(LOG) Log.w(TAG, "pushUpdate() ids to update: " + Arrays.toString(ids) + " data=" + data);
+		if(LOG) Log.w(TAG, "pushUpdate ids to update: " + Arrays.toString(ids) + " data=" + data + " me=" + this);
 
 		try {
 			for(int id : ids) {
+				if(id == 0) { // Skip possible zero ids
+					if(LOG) Log.w(TAG, "pushUpdate SKIP as ids[0] me=" + this);
+					break;
+				}
 				RemoteViews rv = update(context, data, prefs, id); // java.lang.RuntimeException: Could not write bitmap to parcel blob.
 				appWidgetManager.updateAppWidget(id, rv);
 			}
