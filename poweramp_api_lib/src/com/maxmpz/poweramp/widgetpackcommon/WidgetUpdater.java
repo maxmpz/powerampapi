@@ -30,7 +30,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.PowerManager;
 import android.util.Log;
 import com.maxmpz.poweramp.player.PowerampAPI;
@@ -46,11 +45,15 @@ public abstract class WidgetUpdater {
 	 * loadDefaultOrPersistantUpdateData should be able to retrieve all the data needed + album art
 	 */
 	private static final boolean ALWAYS_USE_PERSISTANT_DATA = true;
+	/**
+	 * NOTE: as of v3 betas, no album art event is sent anymore
+	 */
+	private static final boolean USE_AA_EVENT = false;
 
 	private static boolean sUpdatedOnce;
 
 	public static final IntentFilter sTrackFilter = new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED);
-	public static final IntentFilter sAAFilter = new IntentFilter(PowerampAPI.ACTION_AA_CHANGED);
+	public static final IntentFilter sAAFilter = USE_AA_EVENT ? new IntentFilter(PowerampAPI.ACTION_AA_CHANGED) : null;
 	public static final IntentFilter sStatusFilter = new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED);
 	public static final IntentFilter sModeFilter = new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED);
 
@@ -61,7 +64,7 @@ public abstract class WidgetUpdater {
 
 	private final @NonNull PowerManager mPowerManager;
 
-	protected final @NonNull Object mLock = new Object();;
+	protected final @NonNull Object mLock = new Object();
 	protected final @NonNull List<IWidgetUpdater> mProviders = new ArrayList<>();
 
 	/**
@@ -233,19 +236,21 @@ public abstract class WidgetUpdater {
 		}
 
 		// NOTE: as of v3 betas, no album art event is sent anymore
-//		Intent aaIntent = context.registerReceiver(null, WidgetUpdater.sAAFilter);
-//		if(aaIntent != null) {
-//			try {
-//				data.albumArtBitmap = PowerampAPIHelper.getAlbumArt(context, track, 512, 512);
-//				if(LOG) Log.w(TAG, "generateUpdateData got aa=" + data.albumArtBitmap);
-//				data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.TIMESTAMP, 0);
-//				if(LOG) Log.w(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
-//			} catch(OutOfMemoryError oom) {
-//				Log.e(TAG, "", oom);
-//			}
-//		}
+		if(USE_AA_EVENT) {
+			Intent aaIntent = context.registerReceiver(null, WidgetUpdater.sAAFilter);
+			if(aaIntent != null) {
+				try {
+					data.albumArtBitmap = PowerampAPIHelper.getAlbumArt(context, track, 512, 512);
+					if(LOG) Log.w(TAG, "generateUpdateData got aa=" + data.albumArtBitmap);
+					data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.TIMESTAMP, 0);
+					if(LOG) Log.w(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
+				} catch(OutOfMemoryError oom) {
+					Log.e(TAG, "", oom);
+				}
+			}
+		}
 
-		getPlayingState(context, data/*, mediaRemoved*/);
+		getPlayingState(context, data);
 
 		Intent modeIntent = context.registerReceiver(null, WidgetUpdater.sModeFilter);
 		if(modeIntent != null) {
@@ -257,21 +262,16 @@ public abstract class WidgetUpdater {
 	}
 
 	@SuppressWarnings("static-method")
-	private void getPlayingState(Context context, @NonNull WidgetUpdateData data/*, boolean mediaRemoved*/) {
-//		if(mediaRemoved) {
-//			data.playing = false;
-//			if(LOG)  Log.w(TAG, "generateUpdateData mediaRemoved");
-//		} else {
-			Intent statusIntent = context.registerReceiver(null, WidgetUpdater.sStatusFilter);
-			if(statusIntent != null) {
+	private void getPlayingState(Context context, @NonNull WidgetUpdateData data) {
+		Intent statusIntent = context.registerReceiver(null, WidgetUpdater.sStatusFilter);
+		if(statusIntent != null) {
 
-				boolean paused = statusIntent.getBooleanExtra(PowerampAPI.PAUSED, true);
-				data.playing = !paused;
+			boolean paused = statusIntent.getBooleanExtra(PowerampAPI.PAUSED, true);
+			data.playing = !paused;
 
-				data.apiVersion = statusIntent.getIntExtra(PowerampAPI.API_VERSION, 0);
+			data.apiVersion = statusIntent.getIntExtra(PowerampAPI.API_VERSION, 0);
 
-				if(LOG) Log.w(TAG, "generateUpdateData statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing);
-			} else if(LOG)  Log.e(TAG, "generateUpdateData statusIntent==null");
-//		}
+			if(LOG) Log.w(TAG, "getPlayingState statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing);
+		} else if(LOG)  Log.e(TAG, "getPlayingState statusIntent==null");
 	}
 }

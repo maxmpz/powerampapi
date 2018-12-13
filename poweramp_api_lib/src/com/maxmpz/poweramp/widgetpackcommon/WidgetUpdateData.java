@@ -21,13 +21,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.widgetpackcommon;
 
 import android.graphics.Bitmap;
-
+import android.util.Log;
 import com.maxmpz.poweramp.player.PowerampAPI;
 
 /**
  * The data required for widget update
  */
 public class WidgetUpdateData {
+	private static final String TAG = "WidgetUpdateData";
+	private static final boolean LOG = false;
+
 	public int apiVersion;
 
 	public boolean hasTrack;
@@ -41,6 +44,7 @@ public class WidgetUpdateData {
 
 	public Bitmap albumArtBitmap;
 	public long albumArtTimestamp;
+	public boolean albumArtResolved;
 
 	public boolean playing;
 
@@ -56,8 +60,12 @@ public class WidgetUpdateData {
 				" albumArtTimestamp=" + albumArtTimestamp + " playing=" + playing + " shuffle=" + shuffle + " repeat=" + repeat;
 	}
 
-
+	/**
+	 * Resets textual track information, but not album art, as album art is generally independent from track info (==can be shared between different tracks).
+	 * Same for repeat/shuffle, playing state
+	 */
 	public void resetTrackData() {
+		if(LOG) Log.w(TAG, "resetTrackData", new Exception());
 		hasTrack = false;
 		title = album = artist = null;
 		supportsCatNav = false;
