@@ -35,7 +35,7 @@ public class WidgetUpdateData {
 
 	public boolean hasTrack;
 	public String title;
-	public String album;
+	public String album; // null for hide_unknown_album + unknown album
 	public String artist;
 	public boolean supportsCatNav;
 	public int posInList;

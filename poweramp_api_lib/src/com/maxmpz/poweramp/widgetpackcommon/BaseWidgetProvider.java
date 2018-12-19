@@ -179,7 +179,11 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 
 
 	public static String getReadable(String title, String unknown) {
-		if(title != null && title.length() > 0) {
+		return getReadable(title, unknown, false);
+	}
+	
+	public static String getReadable(String title, String unknown, boolean allowEmpty) {
+		if(title != null && (allowEmpty || title.length() > 0)) {
 			return title;
 		}
 		return unknown;
