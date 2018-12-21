@@ -76,11 +76,10 @@ public final class PowerampAPI {
 
 	/**
 	 * Poweramp Control action.
-	 * <br>
-	 * Should be sent with sendBroadcast().
-	 * <br>
 	 * Extras:<br>
-	 * {@code int cmd} - command to execute. See {@link #COMMAND}
+	 * {@code int cmd} - command to execute. See {@link #COMMAND}, 
+	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for debugging purposes
+	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for debugging purposes
 	 */
 	public static final String ACTION_API_COMMAND = "com.maxmpz.audioplayer.API_COMMAND";
 
@@ -367,6 +366,58 @@ public final class PowerampAPI {
 		 * Used by Notification controls to stop pending/paused service/playback and unload/remove notification
 		 */
 		public static final int STOP_SERVICE = 100;
+		
+		
+		public static String cmdToString(int cmd) {
+			switch(cmd) {
+				case TOGGLE_PLAY_PAUSE:
+					return "TOGGLE_PLAY_PAUSE";
+				case PAUSE:
+					return "PAUSE";
+				case RESUME:
+					return "RESUME";
+				case NEXT:
+					return "NEXT";
+				case PREVIOUS:
+					return "PREVIOUS";
+				case NEXT_IN_CAT:
+					return "NEXT_IN_CAT";
+				case PREVIOUS_IN_CAT:
+					return "PREVIOUS_IN_CAT";
+				case REPEAT:
+					return "REPEAT";
+				case SHUFFLE:
+					return "SHUFFLE";
+				case BEGIN_FAST_FORWARD:
+					return "BEGIN_FAST_FORWARD";
+				case END_FAST_FORWARD:
+					return "END_FAST_FORWARD";
+				case BEGIN_REWIND:
+					return "BEGIN_REWIND";
+				case END_REWIND:
+					return "END_REWIND";
+				case STOP:
+					return "STOP";
+				case SEEK:
+					return "SEEK";
+				case POS_SYNC:
+					return "POS_SYNC";
+				case OPEN_TO_PLAY:
+					return "OPEN_TO_PLAY";
+				case SET_EQU_PRESET:
+					return "SET_EQU_PRESET";
+				case SET_EQU_STRING:
+					return "SET_EQU_STRING";
+				case SET_EQU_BAND:
+					return "SET_EQU_BAND";
+				case SET_EQU_ENABLED:
+					return "SET_EQU_ENABLED";
+				case STOP_SERVICE:
+					return "STOP_SERVICE";
+				default:
+					return "unknown cmd=" + cmd;
+			}
+		}
 	}
 
 	/**
@@ -393,6 +444,13 @@ public final class PowerampAPI {
 	 * {@code String}
 	 */
 	public static final String PACKAGE = "pak";
+
+	/**
+	 * ACTION_API_COMMAND extra
+	 * <br>
+	 * {@code int}
+	 */
+	public static final String SOURCE = "src";
 
 	/**
 	 * Extra<br>
