@@ -976,6 +976,11 @@ public final class PowerampAPI {
 		 * Max possible shuffle value
 		 */
 		public static final int MAX_SHUFFLE			   = 4;
+		
+		/**
+		 * Pseudo mode just for UI, not used as mode directly (SHUFFLE_SONGS is used)
+		 */
+		public static final int SHUFFLE_SONGS_HIER     = 5;
 	}
 
 	/**
