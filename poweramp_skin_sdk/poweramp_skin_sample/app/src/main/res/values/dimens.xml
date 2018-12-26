@@ -7,8 +7,9 @@
 
 
 	<dimen name="AAA_Seek_height">32dp</dimen>
-	<dimen name="AAA_TopPlay_marginBottom">24dp</dimen>
 	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
+
+	<dimen name="AAA_TopPlay_marginBottom">24dp</dimen>
 	<dimen name="AAA_TopTrackElapsed_marginBottom">4dp</dimen>
 	<dimen name="AAA_TopMetaInfoLayout_marginBottom">8dp</dimen>
 

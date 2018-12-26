@@ -41,7 +41,6 @@
 			name="@string/skin_select_text_color"
 			summary="@string/skin_summary_select_text_color"
 
-			type="radio"
 			defaultValue=""
 		>
 			<!-- name is the required attribute. summary is optional, key is ignored -->

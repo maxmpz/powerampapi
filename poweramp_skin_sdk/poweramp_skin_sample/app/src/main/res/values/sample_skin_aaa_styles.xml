@@ -301,6 +301,11 @@
 		<item name="com.maxmpz.audioplayer:layout_attachRight">@com.maxmpz.audioplayer:id/menu</item>
 		<item name="android:layout_marginLeft">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginRight">8dp</item>
+
+		<!-- NOTE: to make it centered, use something like:
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="android:layout_gravity">center_horizontal</item>-->
 	</style>
 
 	<!-- Uncomment to remove background for title for grid scenes (as we move labels below image in list).
