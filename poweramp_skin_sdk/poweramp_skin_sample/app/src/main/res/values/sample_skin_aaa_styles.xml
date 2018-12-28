@@ -53,8 +53,8 @@
 		<item name="com.maxmpz.audioplayer:TopTrackDuration_scene_playing">@style/AAA_TopTrackDuration_scene_playing</item>
 
 		<!-- Override zooming when seeking -->
-		<item name="com.maxmpz.audioplayer:TopTrackElapsed_state_seeking">@style/AAA_TopTrackElapsed_state_seeking</item>
-		<item name="com.maxmpz.audioplayer:TopTrackDuration_state_seeking">@style/AAA_TopTrackElapsed_state_seeking</item><!-- Same style -->
+		<item name="com.maxmpz.audioplayer:TopTrackElapsed_state_seeking">@style/AAA_TopTrackElapsed_Duration_state_seeking</item>
+		<item name="com.maxmpz.audioplayer:TopTrackDuration_state_seeking">@style/AAA_TopTrackElapsed_Duration_state_seeking</item><!-- Same style -->
 
 		<!-- Slightly offset meta info -->
 		<item name="com.maxmpz.audioplayer:TopMetaInfoLayout">@style/AAA_TopMetaInfoLayout</item>
@@ -235,7 +235,7 @@
 	</style>
 
 	<!-- Override zooming when seeking. Used for both duration and elapsed -->
-	<style name="AAA_TopTrackElapsed_state_seeking">
+	<style name="AAA_TopTrackElapsed_Duration_state_seeking">
 		<item name="android:scaleX">1</item>
 		<item name="android:scaleY">1</item>
 	</style>
