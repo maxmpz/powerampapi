@@ -87,8 +87,26 @@
 		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_header_1">@style/ItemTrackTitle_scene_header_1</item>
 
 		<!-- Few more adjustments are needed for "back decors" as they should have same layout as title for proper animations -->
+		<!-- Also, we override all possible backdecor styles/scenes here just to demonstrate how to apply some styles too all possible
+		     backdecor combinations:
+		     - top backdecor (Library => any top category)
+		     - text backdecor (Top category => child list)
+		     - item backdecor (List => List with cover background)
+		       + scene_header_1 for 1-line categories (Artists, Generes, etc.)
+		     NOTE: generally you don't need to override all such styles, this is why they are commented here - we override only the styles we need for sample skin
+		-->
+		<!--
+		<item name="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle">@style/ItemTopTextBackDecorTitle</item>
+		<item name="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle_scene_header_back_decor">@style/ItemTopTextBackDecorTitle_scene_header_back_decor</item>
+
+		<item name="com.maxmpz.audioplayer:ItemTextBackDecorTitle">@style/ItemTextBackDecorTitle</item>
+		<item name="com.maxmpz.audioplayer:ItemTextBackDecorTitle_scene_header_back_decor">@style/ItemTextBackDecorTitle_scene_header_back_decor</item>
+		-->
+
 		<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_1">@style/ItemTrackBackDecorTitle_scene_header_1</item>
+		<!--<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_back_decor">@style/ItemTrackBackDecorTitle_scene_header_back_decor</item>-->
+
 
 		<!-- Change volume panel slightly (optional panel, can be enabled in Poweramp Audio settings -->
 		<item name="com.maxmpz.audioplayer:VolumePanelFrame">@style/VolumePanelFrame</item>
@@ -212,12 +230,35 @@
 		<item name="android:layout_marginBottom">52.5dp</item>
 	</style>
 
+	<!--
+	<style name="ItemTopTextBackDecorTitle" parent="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle">
+		<item name="android:textColor">#f00</item>
+	</style>
+	<style name="ItemTopTextBackDecorTitle_scene_header_back_decor" parent="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle_scene_header_back_decor">
+		<item name="android:textColor">#f00</item>
+	</style>
+
+	<style name="ItemTextBackDecorTitle" parent="com.maxmpz.audioplayer:ItemTextBackDecorTitle">
+		<item name="android:textColor">#f00</item>
+	</style>
+	<style name="ItemTextBackDecorTitle_scene_header_back_decor" parent="com.maxmpz.audioplayer:ItemTextBackDecorTitle_scene_header_back_decor">
+		<item name="android:textColor">#f00</item>
+	</style>
+	-->
+
 	<style name="ItemTrackBackDecorTitle" parent="com.maxmpz.audioplayer:ItemTrackBackDecorTitle">
 		<item name="android:layout_marginBottom">86dp</item>
+		<!--<item name="android:textColor">#f00</item>-->
 	</style>
 	<style name="ItemTrackBackDecorTitle_scene_header_1" parent="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_1">
 		<item name="android:layout_marginBottom">52.5dp</item>
+		<!--<item name="android:textColor">#f00</item>-->
 	</style>
+	<!--
+	<style name="ItemTrackBackDecorTitle_scene_header_back_decor" parent="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_back_decor">
+		<item name="android:textColor">#f00</item>
+	</style>
+	-->
 
 
 	<!-- Optional styles for color1 option, color2 option select, and bg_color popup -->
