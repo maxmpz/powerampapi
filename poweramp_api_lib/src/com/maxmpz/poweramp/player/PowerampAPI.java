@@ -64,6 +64,16 @@ public final class PowerampAPI {
 	public static final Uri AA_ROOT_URI = new Uri.Builder().scheme("content").authority(AA_AUTHORITY).build();
 
 	/**
+	 * AA_AUTHORITY accepted parameter - get HD image. Default is true.
+	 */
+	public static final String PARAM_AA_HD = "hd";
+
+	/**
+	 * AA_AUTHORITY accepted parameter - try to download image. Default is false.
+	 */
+	public static final String PARAM_AA_DOWNLOAD = "dl";
+	
+	/**
 	 * Uri query parameter - filter. Currently used only for search uri
 	 */
 	public static final String PARAM_FILTER = "flt";
@@ -72,7 +82,6 @@ public final class PowerampAPI {
 	 * Uri query parameter - shuffle mode
 	 */
 	public static final String PARAM_SHUFFLE = "shf";
-
 
 	/**
 	 * Poweramp Control action.

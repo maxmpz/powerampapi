@@ -65,18 +65,23 @@ public abstract class WidgetUpdater {
 	private final @NonNull PowerManager mPowerManager;
 
 	protected final @NonNull Object mLock = new Object();
-	protected final @NonNull List<IWidgetUpdater> mProviders = new ArrayList<>();
+	protected final @NonNull List<IWidgetUpdater> mProviders = new ArrayList<>(4);
 
 	/**
 	 * Used by PS to push updates, usually all providers added in constructor of the derived class
 	 */
 	public WidgetUpdater(Context context) {
+		long start;
+		if(LOG) start = System.nanoTime();
+		
 		PowerManager powerManager = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
 		if(powerManager == null) throw new AssertionError();
 		mPowerManager = powerManager;
 
 		mContext = context;
-	}
+		
+		if(LOG) Log.w(TAG, "ctor in=" + (System.nanoTime() - start) / 1000);
+	} 
 
 	/**
 	 * Per-single provider ctor, used for cases when provider is called by system

@@ -48,9 +48,9 @@ public class PowerampAPIHelper {
 		}
 	}
 
-	// WARNING: openFileDescriptor() will return the original image right from embed track loaded in Poweramp or
-	// file cached image. The later is more or less under control in terms of size, though, that can be in-folder user provided image.
-	// As for embed album art, the resulting bitmap can be any size. Poweramp has some upper limits on embed album art, still, the decoded image can be very large.
+	// WARNING: openFileDescriptor() will return the original image right from the track loaded in Poweramp or
+	// a cached image file. The later is more or less under control in terms of size, though, that can be in-folder user provided image without any limits.
+	// As for embedded album art, the resulting bitmap can be any size. Poweramp has some upper limits on embed album art, still the decoded image can be very large.
 	public static @Nullable Bitmap getAlbumArt(Context context, @Nullable Bundle track, int subsampleWidth, int subsampleHeight) {
 		if(track == null) {
 			if(LOG) Log.e(TAG, "getAlbumArt !track");
