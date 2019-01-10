@@ -35,7 +35,8 @@ Skin development is done directly from Android Studio (3.2 was used for these sk
 ```
 additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
 ```
-* your emulated device needs to have Poweramp v3 installed. Locate your Android\Sdk\platform-tools folder and copy the poweramp.apk into it. Open a shell and enter `./adb install demo.apk`
+* your emulated device needs to have Poweramp v3 installed (e.g. locate your Android\Sdk\platform-tools folder and copy the poweramp.apk into it.
+Open a shell and enter `./adb install poweramp.apk`)
 * build and run skin as a normal Android app
 * when skin activity is started, "Start Poweramp With * Skin" button can be pressed to force Poweramp immediately reload the skin
 * skin should appear in Poweramp skin selection settings page as well
@@ -187,7 +188,7 @@ The most important files are:
 
 ### License
 
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
