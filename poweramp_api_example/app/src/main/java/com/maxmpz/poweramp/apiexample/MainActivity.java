@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements
 	private final StringBuilder mDurationBuffer = new StringBuilder();
 	private final StringBuilder mElapsedBuffer = new StringBuilder();
 	private @Nullable Uri mLastCreatedPlaylistFilesUri;
+	private static boolean sPermissionAsked;
 
 
 	@Override
@@ -147,31 +148,42 @@ public class MainActivity extends AppCompatActivity implements
 		findViewById(R.id.pa_folders).setOnClickListener(this);
 		findViewById(R.id.pa_all_songs).setOnClickListener(this);
 
-		// Ask Poweramp for permission to access its data provider. Needed only if we want to make queries againt Poweramp database, e.g. in FilesActivity/FoldersActivity
+		// Ask Poweramp for permission to access its data provider. Needed only if we want to make queries against Poweramp database, e.g. in FilesActivity/FoldersActivity
 		// NOTE: this will work only if Poweramp process is alive
-		// This actually should be done once per this app installation
-		Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
-		intent.setPackage(PowerampAPI.PACKAGE_NAME);
-		intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-		sendBroadcast(intent);
+		// This actually should be done once per this app installation, for simplicity, we use per-process static field here
+		if(!sPermissionAsked) {
+			Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
+			intent.setPackage(PowerampAPI.PACKAGE_NAME);
+			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
+			sendBroadcast(intent);
+			sPermissionAsked = true;
+		}
 	}
 
 
-	/*
-	 * NOTE: when screen is rotated, by default android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
+	/**
+	 * When screen is rotated, by default Android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
 	 * on screen rotation some commands could be sent to Poweramp unintentionally.
 	 * As this activity always syncs everything with the actual state of Poweramp, this automatic restoring of state is just non needed.
+	 * <br><br>
+	 * Nevertheless, the actual implementation should probably manipulate per view View.setSaveEnabled() for specific controls, as empty onSaveInstanceState here denies save
+	 * for everything
 	 */
 	@Override
 	public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
 	}
 
+	/**
+	 * @see #onSaveInstanceState
+	 */
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 	}
 
-	// NOTE: this method unregister all broadcast receivers on activity pause. This is the correct way of handling things - we're
-	// sure no unnecessary event processing will be done for paused activity, when screen is OFF, etc.
+	/**
+	 * This method unregister all broadcast receivers on activity pause. This is the correct way of handling things - we're
+	 * sure no unnecessary event processing will be done for paused activity, when screen is OFF, etc.
+	 */
 	@Override
 	protected void onPause() {
 		unregister();
@@ -180,7 +192,9 @@ public class MainActivity extends AppCompatActivity implements
 		super.onPause();
 	}
 
-	// Register broadcast receivers.
+	/**
+	 * Register broadcast receivers
+ 	 */
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -209,9 +223,11 @@ public class MainActivity extends AppCompatActivity implements
 		super.onDestroy();
 	}
 
+	/**
+	 * NOTE: it's not necessary to set mStatusIntent/mPlayingModeIntent this way here,
+	 * but this approach can be used with null receiver to get current sticky intent without broadcast receiver.
+	 */
 	private void registerAndLoadStatus() {
-		// Note, it's not necessary to set mStatusIntent/mPlayingModeIntent this way here,
-		// but this approach can be used with null receiver to get current sticky intent without broadcast receiver.
 		registerReceiver(mAAReceiver, new IntentFilter(PowerampAPI.ACTION_AA_CHANGED));
 		mTrackIntent = registerReceiver(mTrackReceiver, new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED));
 		mStatusIntent = registerReceiver(mStatusReceiver, new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED));
@@ -369,7 +385,9 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
-	// Updates shuffle/repeat UI.
+	/**
+	 * Updates shuffle/repeat UI
+ 	 */
 	void updatePlayingModeUI() {
 		Log.w(TAG, "updatePlayingModeUI");
 		if(mPlayingModeIntent != null) {
@@ -415,7 +433,9 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
-	// Commands RemoteTrackTime to start or stop showing song progress.
+	/**
+	 * Commands RemoteTrackTime to start or stop showing song progress
+ 	 */
 	void startStopRemoteTrackTime(boolean paused) {
 		if(!paused) {
 			mRemoteTrackTime.startSongProgress();
@@ -425,7 +445,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/**
-	 * Find first mp3 in dir or in any subdir of it.
+	 * Find first mp3 in dir or in any sub-folder of it
 	 */
 	private String findFirstMP3(File dir) {
 		try {
@@ -484,7 +504,9 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 
-	// Process button press. Demonstrates sending various commands to Poweramp.
+	/**
+	 * Process button press. Demonstrates sending various commands to Poweramp
+ 	 */
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
@@ -522,13 +544,11 @@ public class MainActivity extends AppCompatActivity implements
 				break;
 
 			case R.id.repeat_all:
-				// No toast for this button just for demo.
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
 						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_ON));
 				break;
 
 			case R.id.repeat_off:
-				// No toast for this button just for demo.
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
 						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE));
 				break;
@@ -550,7 +570,7 @@ public class MainActivity extends AppCompatActivity implements
 			case R.id.play_file:
 				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-//						.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
+						//.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
 						.setData(Uri.parse("file://" + ((TextView)findViewById(R.id.play_file_path)).getText().toString())));
 				break;
 
@@ -605,7 +625,9 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
-	// Process few long presses.
+	/**
+	 * Process some long presses
+ 	 */
 	@Override
 	public boolean onLongClick(View v) {
 		switch(v.getId()) {
@@ -625,7 +647,9 @@ public class MainActivity extends AppCompatActivity implements
 		return false;
 	}
 
-	// Process touch up event to stop ff/rw.
+	/**
+	 * Process touch up event to stop ff/rw
+ 	 */
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -644,15 +668,19 @@ public class MainActivity extends AppCompatActivity implements
 		return false;
 	}
 
-	// Just play all library songs (starting from first).
+	/**
+	 * Just play all library songs (starting from first)
+ 	 */
 	private void playAllSongs() {
 		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 				.setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
 	}
 
+	/**
+	 * Get first album id and play it
+	 */
 	private void playAlbum() {
-		// Get first album id.
 		Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("albums").build(), new String[]{ "albums._id", "album" }, null, null, "album");
 		if(c != null) {
 			if(c.moveToNext()) {
@@ -672,7 +700,9 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
-	// Play first available album from first available artist in ARTIST_ALBUMs.
+	/**
+	 * Play first available album from first available artist in ARTIST_ALBUMs
+ 	 */
 	private void playSecondArtistFirstAlbum() {
 		// Get first artist.
 		Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("artists").build(),
@@ -713,13 +743,17 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 
-	// Event handler for Dynamic Eq checkbox.
+	/**
+	 * Event handler for Dynamic Eq checkbox
+ 	 */
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		findViewById(R.id.commit_eq).setEnabled(!isChecked);
 	}
 
-	// Generates and sends presetString to Poweramp Eq.
+	/**
+	 * Generates and sends presetString to Poweramp Eq
+	 */
 	private void commitEq() {
 		StringBuilder presetString = new StringBuilder();
 
@@ -735,7 +769,9 @@ public class MainActivity extends AppCompatActivity implements
 		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING).putExtra(PowerampAPI.VALUE, presetString.toString()));
 	}
 
-	// Applies correct seekBar-to-float scaling. 
+	/**
+	 * Applies correct seekBar-to-float scaling
+ 	 */
 	private float seekBarToValue(String name, int progress) {
 		float value;
 		if("preamp".equals(name) || "bass".equals(name) || "treble".equals(name)) {
@@ -746,7 +782,9 @@ public class MainActivity extends AppCompatActivity implements
 		return value;
 	}
 
-	// Event handler for both song progress seekbar and equalizer bands.
+	/**
+	 * Event handler for both song progress seekbar and equalizer bands
+ 	 */
 	@Override
 	public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
 		switch(bar.getId()) {
@@ -762,13 +800,18 @@ public class MainActivity extends AppCompatActivity implements
 	public void onStartTrackingTouch(SeekBar seekBar) {
 	}
 
+	/**
+	 * Force seek when user ends seeking.
+	 */
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		sendSeek(true); // Force seek when user ends seeking.
+		sendSeek(true);
 
 	}
 
-	// Send seek command.
+	/**
+	 * Send seek command
+ 	 */
 	private void sendSeek(boolean ignoreThrottling) {
 
 		int position = mSongSeekBar.getProgress();
@@ -785,8 +828,9 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 
-
-	// Event handler for Presets spinner.
+	/**
+	 * Event handler for Presets spinner
+ 	 */
 	@Override
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
@@ -796,14 +840,13 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
-
-
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 	}
 
-
-	// Callback from RemoteTrackTime. Updates durations (both seekbar max value and duration label).
+	/**
+	 * Callback from RemoteTrackTime. Updates durations (both seekbar max value and duration label)
+ 	 */
 	@Override
 	public void onTrackDurationChanged(int duration) {
 		mDurationBuffer.setLength(0);
@@ -815,7 +858,9 @@ public class MainActivity extends AppCompatActivity implements
 		mSongSeekBar.setMax(duration);
 	}
 
-	// Callback from RemoteTrackTime. Updates current song progress. Ensures extra event is not processed (mUpdatingSongSeekBar).
+	/**
+	 * Callback from RemoteTrackTime. Updates current song progress. Ensures extra event is not processed (mUpdatingSongSeekBar).
+ 	 */
 	@Override
 	public void onTrackPositionChanged(int position) {
 		mElapsedBuffer.setLength(0);
@@ -831,7 +876,9 @@ public class MainActivity extends AppCompatActivity implements
 		mSongSeekBar.setProgress(position);
 	}
 
-	// NOTE: real code should run on some worker thread
+	/**
+	 * NOTE: real code should run on some worker thread
+ 	 */
 	private void createPlaylistAndAddToIt() {
 		ContentResolver cr = getContentResolver();
 		Uri playlistsUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("playlists").build();

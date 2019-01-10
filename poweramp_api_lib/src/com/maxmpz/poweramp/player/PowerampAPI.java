@@ -26,7 +26,7 @@ import android.net.Uri;
 
 
 /**
- * Poweramp intent based API.
+ * Poweramp Intent based API.
  */
 public final class PowerampAPI {
 	/**
@@ -693,7 +693,7 @@ public final class PowerampAPI {
 
 
 	/**
-	 * Grants sender a permission for data access<br>
+	 * Grants sender a permission for content provider data access<br>
 	 * Extras:<br>
 	 * {@code String package} - the package name of app trying to get access<br>
 	 * @since 797

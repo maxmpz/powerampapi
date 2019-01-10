@@ -63,7 +63,6 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	private boolean mSettingTone;
 	private boolean mSettingPreset;
 
-	/** Called when the activity is first created. */
 	@SuppressWarnings("resource")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -107,7 +106,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		((CheckBox)findViewById(R.id.tone)).setOnCheckedChangeListener(this);
 	}
 
-	/*
+	/**
 	 * NOTE: when screen is rotated, by default android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
 	 * on screen rotation some commands could be sent to Poweramp unintentionally.
 	 * As this activity always syncs everything with the actual state of Poweramp, this automatic restoring of state is just non needed.
@@ -121,8 +120,10 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	}
 
 
-	// NOTE: this method unregister all broadcast receivers on activity pause. This is the correct way of handling things - we're
-	// sure no unnecessary event processing will be done for paused activity, when screen is OFF, etc.
+	/**
+	 * NOTE: this method unregister all broadcast receivers on activity pause. This is the correct way of handling things - we're
+	 * sure no unnecessary event processing will be done for paused activity, when screen is OFF, etc.
+ 	 */
 	@Override
 	protected void onPause() {
 		unregister();
@@ -130,7 +131,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		super.onPause();
 	}
 
-	// Register broadcast receivers.
+	/**
+	 * Register broadcast receivers.
+ 	 */
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -148,9 +151,11 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		super.onDestroy();
 	}
 
+	/**
+	 * NOTE, it's not necessary to set mStatusIntent/mPlayingModeIntent/mEquIntent this way here,
+	 * but this approach can be used with null receiver to get current sticky intent without broadcast receiver
+	 */
 	private void registerAndLoadStatus() {
-		// Note, it's not necessary to set mStatusIntent/mPlayingModeIntent/mEquIntent this way here,
-		// but this approach can be used with null receiver to get current sticky intent without broadcast receiver.
 		mEquIntent = registerReceiver(mEquReceiver, new IntentFilter(PowerampAPI.ACTION_EQU_CHANGED));
 	}
 
@@ -227,7 +232,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	private static Pattern sSemicolonSplitRe = Pattern.compile(";");
 	private static Pattern sEqualSplitRe = Pattern.compile("=");
 
-	// This method parses the equalizer serialized "presetString" and creates appropriate seekbars.
+	/**
+	 * This method parses the equalizer serialized "presetString" and creates appropriate seekbars.
+ 	 */
 	private void buildEquUI(String string) {
 		String[] pairs = sSemicolonSplitRe.split(string);
 		TableLayout equLayout = (TableLayout)findViewById(R.id.equ_layout);
@@ -264,7 +271,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 
-	// Preamp, bass/treble and equ bands have different scalling. This method ensures correct scalling is applied. 
+	/**
+	 * Preamp, bass/treble and equ bands have different scalling. This method ensures correct scalling is applied.
+ 	 */
 	void setBandValue(String name, float value, SeekBar bar) {
 		//Log.w(TAG, "name=" + name + " value=" + value);
 		if("preamp".equals(name)) {
@@ -279,7 +288,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 
-	// Almost the same as buildEquUI, just do the UI update without building it
+	/**
+	 * Almost the same as buildEquUI, just do the UI update without building it
+	 */
 	private void updateEquUI(String string) {
 		Log.w(TAG, "updateEquUI!");
 		String[] pairs = sSemicolonSplitRe.split(string);
@@ -318,7 +329,6 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 
-
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()) {
@@ -328,7 +338,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 
-	// Event handler for Dynamic Eq checkbox
+	/**
+	 * Event handler for Dynamic Eq checkbox
+	 */
 	@Override
 	public void onCheckedChanged(CompoundButton view, boolean isChecked) {
 		Log.w(TAG, "onCheckedChanged=" + view);
@@ -359,7 +371,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 
-	// Generates and sends presetString to Poweramp
+	/**
+	 * Generates and sends presetString to Poweramp
+ 	 */
 	private void commitEq() {
 		StringBuilder presetString = new StringBuilder();
 
@@ -378,7 +392,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		);
 	}
 
-	// Applies correct seekBar-to-float scaling. 
+	/**
+	 * Applies correct seekBar-to-float scaling
+ 	 */
 	private float seekBarToValue(String name, int progress) {
 		float value;
 		if("preamp".equals(name) || "bass".equals(name) || "treble".equals(name)) {
@@ -389,9 +405,12 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		return value;
 	}
 
+	/**
+	 * Process Eq band change.
+	 */
 	@Override
 	public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
-		// Process Eq band change.
+
 		if(((CheckBox)findViewById(R.id.dynamic)).isChecked()) {
 			String name = (String)bar.getTag();
 			float value = seekBarToValue(name, bar.getProgress());
@@ -403,7 +422,6 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 
-
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
 	}
@@ -412,7 +430,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	public void onStopTrackingTouch(SeekBar seekBar) {
 	}
 
-	// Event handler for Presets spinner
+	/**
+	 * Event handler for Presets spinner
+ 	 */
 	@Override
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
