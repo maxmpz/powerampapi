@@ -52,5 +52,6 @@
 
 	<string name="skin_main_mini_spectrum">Mini Spectrum On Main Screen</string>
 	<string name="skin_summary_main_mini_spectrum">Demonstrates visualization component on main screen, not polished</string>
+	<string name="skin_applied_msg">Skin has been successfully applied!</string>
 
 </resources>
