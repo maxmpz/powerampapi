@@ -1,10 +1,11 @@
 # Poweramp Intent APIs
 ============================================
 
-Poweramp v2 and v3 Intent based APIs are focused on simplicity, you can just throw a simple Intent to Poweramp to play something, command Poweramp to do something, or get some Poweramp state from published Intents.
-While being simple, Intent APIs still provide almost complete control over Poweramp.
+Poweramp v2 and v3 Intent based APIs are focused on simplicity: you can just throw a simple Intent to Poweramp to play something, command Poweramp to do something,
+or get some Poweramp state from the published Intents.
+While being simple Intent APIs provide almost complete control over Poweramp.
 
-See [src/com/maxmpzp/poweramp/player/PowerampAPI.java](src/com/maxmpzp/poweramp/player/PowerampAPI.java) comments for reference.
+See [src/com/maxmpz/poweramp/player/PowerampAPI.java](src/com/maxmpz/poweramp/player/PowerampAPI.java) comments for reference.
 
 ### Other Relevant Poweramp APIs
 
@@ -20,11 +21,11 @@ See [src/com/maxmpzp/poweramp/player/PowerampAPI.java](src/com/maxmpzp/poweramp/
 * old Poweramp v3 builds (from Alphas to build 816) partially implements **MediaSession**:
   * current played track info is exposed
   * commands are processed only via *onMediaButtonEvent*
-* Poweramp supports querying its database via **content provider** with REST like URIs. Please see [src/com/maxmpzp/poweramp/player/PowerampAPI.java](src/com/maxmpzp/poweramp/player/PowerampAPI.java) for reference
+* Poweramp supports querying its database via **content provider** with REST like URIs. Please see [src/com/maxmpz/poweramp/player/PowerampAPI.java](src/com/maxmpz/poweramp/player/PowerampAPI.java) for reference
   * inaccurate data updates may corrupt Poweramp database or break Library consistency
   * **Android 8+**: permission should be requested from Poweramp: see *PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION*
-* Poweramp v3 exposes current playing track album art via **content://com.maxmpz.audioplayer.aa/** URIs. Album art is delivered in its original form as it is on
-  (*ParcelFileDescriptor* to either a cached image file or to an embedded album art)
+* Poweramp v3 exposes current playing track album art via **content://com.maxmpz.audioplayer.aa/** URIs. Album art is delivered in its original form "as is"
+  (*ParcelFileDescriptor* eitger to the cached image file or to the embedded album art)
   * Poweramp v3 (**build 817+**) also provides album art, artist, genres, etc. images for any "entity" (track, album, genre, artist, etc.) in their original form via REST like URIs.
     (These uris are used for MediaBrowserCompat resulting lists via *MediaBrowserCompat.MediaItem.getDescription().getIconUri()*)
 
