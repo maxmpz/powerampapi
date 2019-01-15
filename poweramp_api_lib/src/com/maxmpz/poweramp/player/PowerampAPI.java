@@ -27,6 +27,9 @@ import android.net.Uri;
 
 /**
  * Poweramp Intent based API.
+ * <br><br>
+ * NOTE: in addition to ACTION_* intent actions defined by PowerampAPI, Poweramp also supports:
+ * android.content.Intent.ACTION_VIEW, android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH, android.content.Intent.ACTION_SEARCH.
  */
 public final class PowerampAPI {
 	/**
@@ -657,7 +660,6 @@ public final class PowerampAPI {
 	 */
 	public static final String ACTION_EQU_CHANGED = "com.maxmpz.audioplayer.EQU_CHANGED";
 
-
 	/**
 	 * Opens a category list for the current track, or library - if no track is loaded
 	 */
@@ -690,8 +692,7 @@ public final class PowerampAPI {
 	 * Opens main screen
 	 */
 	public static final String ACTION_OPEN_MAIN = "com.maxmpz.audioplayer.ACTION_OPEN_MAIN";
-
-
+	
 	/**
 	 * Grants sender a permission for content provider data access<br>
 	 * Extras:<br>
