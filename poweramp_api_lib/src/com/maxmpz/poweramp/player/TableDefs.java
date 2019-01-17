@@ -201,6 +201,11 @@ public interface TableDefs {
 		public static final @NonNull String LAST_POS = "last_pos";
 
 		/**
+		 * Long
+		 */
+		public static final @NonNull String SHUFFLE_ORDER = TABLE + ".shuffle_order";
+
+		/**
 		 * tag_status
 		 */
 		public static final int TAG_NOT_SCANNED = 0;
