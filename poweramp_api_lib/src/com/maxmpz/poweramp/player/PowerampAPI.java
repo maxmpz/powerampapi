@@ -184,7 +184,7 @@ public final class PowerampAPI {
 		 */
 		public static final int BEGIN_FAST_FORWARD = 10;
 		/**
-		 * Stops #BEGIN_FAST_FORWARD
+		 * Stops {@link #BEGIN_FAST_FORWARD} or {@link #BEGIN_REWIND}
 		 */
 		public static final int END_FAST_FORWARD = 11;
 		/**
@@ -192,7 +192,7 @@ public final class PowerampAPI {
 		 */
 		public static final int BEGIN_REWIND = 12;
 		/**
-		 * Stops {@link #BEGIN_REWIND}
+		 * Stops {@link #BEGIN_REWIND} or {@link #BEGIN_FAST_FORWARD}
 		 */
 		public static final int END_REWIND = 13;
 		public static final int STOP = 14;
@@ -207,6 +207,11 @@ public final class PowerampAPI {
 		public static final int POS_SYNC = 16;
 
 		/**
+		 * Stops {@link #BEGIN_FAST_FORWARD} or {@link #BEGIN_REWIND}
+		 */
+		public static final int END_FF_OR_RW = 11;
+
+		 /**
 		 * Data:<br>
 		 * - uri, following URIs are recognized:<br>
 		 * 	- file://path<br>
