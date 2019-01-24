@@ -20,6 +20,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.player;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 public interface RouterConsts {
 	// Sync with output-internal.h
 	public static final int DEVICE_HEADSET = 0;
@@ -36,9 +38,9 @@ public interface RouterConsts {
 	public static final int DEVICE_COUNT   = 5;
 	public static final int DEVICE_SAFE_DEFAULT = DEVICE_HEADSET;
 
-	public static final String DEVICE_NAME_HEADSET = "headset";
-	public static final String DEVICE_NAME_SPEAKER = "speaker";
-	public static final String DEVICE_NAME_BT = "bt";
-	public static final String DEVICE_NAME_USB = "usb";
-	public static final String DEVICE_NAME_OTHER = "other";
+	public static final @NonNull String DEVICE_NAME_HEADSET = "headset";
+	public static final @NonNull String DEVICE_NAME_SPEAKER = "speaker";
+	public static final @NonNull String DEVICE_NAME_BT = "bt";
+	public static final @NonNull String DEVICE_NAME_USB = "usb";
+	public static final @NonNull String DEVICE_NAME_OTHER = "other";
 }
