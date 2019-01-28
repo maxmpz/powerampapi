@@ -417,6 +417,7 @@ public interface TableDefs {
 		public static final @NonNull String ALBUM_SORT = "album_sort"; // NOTE: important to have it w/o table for headers-enabled compound selects
 
 		/**
+		 * NOTE: this is NULL for Unknown album, so not all joins are possible with just albums + album_artists (use folder_files for joins)
 		 * Int
 		 */
 		public static final @NonNull String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
