@@ -33,11 +33,12 @@ public interface PipelineConsts {
 	public static final int PLUGIN_ID_SUBSYSTEM_DECODER_TH = 1; // NOTE: sync with NativePlguinManager.PLUGIN_ID_SUBSYSTEM_LAST
 	public static final int PLUGIN_ID_SUBSYSTEM_DSP_TH     = 2;
 
-	public static final int PA_OUTPUT_PARAM_SAMPLE_RATE         = 1; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
-	public static final int PA_OUTPUT_PARAM_SAMPLE_BITS         = 2; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
-	public static final int PA_OUTPUT_PARAM_ANDROID_SESSION_ID  = 3;
-	public static final int PA_OUTPUT_PARAM_RESTART_LATENCY_MS  = 4;
+	public static final int PA_OUTPUT_PARAM_SAMPLE_RATE          = 1; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
+	public static final int PA_OUTPUT_PARAM_SAMPLE_BITS          = 2; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
+	public static final int PA_OUTPUT_PARAM_ANDROID_SESSION_ID   = 3;
+	public static final int PA_OUTPUT_PARAM_RESTART_LATENCY_MS   = 4;
 	public static final int PA_OUTPUT_PARAM_ANDROID_AUDIO_STREAM = 5;
+	public static final int PA_OUTPUT_PARAM_FIRST_CUSTOM         = 0x1000;
 
 	// Internal
 	public static final int PA_OUTPUT_PARAM_AUDIO_IO_HANDLE     = 0x80000001; // NOTE: supported by atoutput only

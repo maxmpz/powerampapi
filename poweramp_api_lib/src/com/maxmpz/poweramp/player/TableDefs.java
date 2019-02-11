@@ -829,6 +829,12 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String BIND_TO_OTHER = "bind_to_other";
+
+		/**
+		 * 1 if preset is bound to chromecast output, 0 otherwise.
+		 * Int.
+		 */
+		public static final @NonNull String BIND_TO_CHROMECAST = "bind_to_cc";
 	}
 
 	public static final class EqPresetSongs implements BaseColumns {
