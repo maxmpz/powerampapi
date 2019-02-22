@@ -58,7 +58,7 @@ public interface PipelineConsts {
 	public static final int DSP_TH_BUFFERS              = 7;
 	public static final int DSP_TH_BUFFER_FRAMES        = 8;
 
-
+	// NOTE: sync with plugininterfaxce-output.h
 	public static final int PA_OUTPUT_CAP_ALWAYS_UNITY_GAIN        = 0x0010;
 	public static final int PA_OUTPUT_CAP_NO_HEADROOM_GAIN         = 0x0020;
 	public static final int PA_OUTPUT_CAP_NO_EQU                   = 0x0040;
@@ -71,6 +71,7 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_CAP_NO_DUCK                  = 0x2000;
 	public static final int PA_OUTPUT_CAP_TRACK_PLAYBACK           = 0x4000;
 	public static final int PA_OUTPUT_CAP_NEEDS_VOL_UI             = 0x8000;
+	public static final int PA_OUTPUT_CAP_NO_FADING                = 0x0008;
 
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only
