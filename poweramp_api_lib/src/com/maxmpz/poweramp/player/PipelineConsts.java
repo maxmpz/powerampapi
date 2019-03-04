@@ -33,11 +33,20 @@ public interface PipelineConsts {
 	public static final int PLUGIN_ID_SUBSYSTEM_DECODER_TH = 1; // NOTE: sync with NativePlguinManager.PLUGIN_ID_SUBSYSTEM_LAST
 	public static final int PLUGIN_ID_SUBSYSTEM_DSP_TH     = 2;
 
-	public static final int PA_OUTPUT_PARAM_SAMPLE_RATE          = 1; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
-	public static final int PA_OUTPUT_PARAM_SAMPLE_BITS          = 2; // NOTE: requires deviceId arg, otherwise returns for 0 == HEADSET
+	/*
+	 * NOTE: raw native plugin value, not resolved vs Android audio subsystem
+	 */
+	public static final int PA_OUTPUT_PARAM_SAMPLE_RATE          = 1;  
+	/*
+	 * NOTE: raw native plugin value, not resolved vs Android audio subsystem
+	 */
+	public static final int PA_OUTPUT_PARAM_SAMPLE_BITS          = 2;
 	public static final int PA_OUTPUT_PARAM_ANDROID_SESSION_ID   = 3;
 	public static final int PA_OUTPUT_PARAM_RESTART_LATENCY_MS   = 4;
 	public static final int PA_OUTPUT_PARAM_ANDROID_AUDIO_STREAM = 5;
+	public static final int PA_OUTPUT_PARAM_DEFAULT_MASTER_VOLUME_LEVELS = 20;
+	public static final int PA_OUTPUT_PARAM_MASTER_VOLUME_LINEAR         = 21;
+	
 	public static final int PA_OUTPUT_PARAM_FIRST_CUSTOM         = 0x1000;
 
 	// Internal
@@ -58,7 +67,7 @@ public interface PipelineConsts {
 	public static final int DSP_TH_BUFFERS              = 7;
 	public static final int DSP_TH_BUFFER_FRAMES        = 8;
 
-	// NOTE: sync with plugininterfaxce-output.h
+	// NOTE: sync with plugininterface-output.h
 	public static final int PA_OUTPUT_CAP_ALWAYS_UNITY_GAIN        = 0x0010;
 	public static final int PA_OUTPUT_CAP_NO_HEADROOM_GAIN         = 0x0020;
 	public static final int PA_OUTPUT_CAP_NO_EQU                   = 0x0040;
@@ -72,6 +81,7 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_CAP_TRACK_PLAYBACK           = 0x4000;
 	public static final int PA_OUTPUT_CAP_NEEDS_VOL_UI             = 0x8000;
 	public static final int PA_OUTPUT_CAP_NO_FADING                = 0x0008;
+	public static final int PA_OUTPUT_CAP_NO_MUSIC_STREAM_VOL      = 0x0004;
 
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only
