@@ -80,7 +80,7 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_CAP_NO_DUCK                  = 0x2000;
 	public static final int PA_OUTPUT_CAP_TRACK_PLAYBACK           = 0x4000;
 	public static final int PA_OUTPUT_CAP_NEEDS_VOL_UI             = 0x8000;
-	public static final int PA_OUTPUT_CAP_NO_FADING                = 0x0008;
+	public static final int PA_OUTPUT_CAP_RAW                      = 0x0008;
 	public static final int PA_OUTPUT_CAP_NO_MUSIC_STREAM_VOL      = 0x0004;
 
 	// NOTE: plugininterface-internal.h
