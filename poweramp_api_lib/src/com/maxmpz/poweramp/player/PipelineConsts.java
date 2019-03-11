@@ -45,7 +45,6 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_PARAM_RESTART_LATENCY_MS   = 4;
 	public static final int PA_OUTPUT_PARAM_ANDROID_AUDIO_STREAM = 5;
 	public static final int PA_OUTPUT_PARAM_DEFAULT_MASTER_VOLUME_LEVELS = 20;
-	public static final int PA_OUTPUT_PARAM_MASTER_VOLUME_LINEAR         = 21;
 	
 	public static final int PA_OUTPUT_PARAM_FIRST_CUSTOM         = 0x1000;
 
