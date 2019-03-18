@@ -392,6 +392,16 @@ public interface TableDefs {
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 
 		/**
+		 * Boolean.
+		 */
+		public static final @NonNull String KEEP_LIST_POS = TABLE + ".keep_list_pos"; // Sync with RestLibraryListMemorizable
+
+		/**
+		 * Boolean.
+		 */
+		public static final @NonNull String KEEP_TRACK_POS = TABLE + ".keep_track_pos"; // Sync with RestLibraryListMemorizable
+
+		/**
 		 * String.
 		 * Special calculated subquery column which retrieves short parent name 
 		 */
@@ -683,6 +693,11 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String SORT = "sort";
+		
+		/**
+		 * Int.
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 	}
 
 
@@ -734,6 +749,16 @@ public interface TableDefs {
 		 * Int.
 		 */
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+		
+		/**
+		 * Boolean.
+		 */
+		public static final @NonNull String KEEP_LIST_POS = TABLE + ".keep_list_pos"; // Sync with RestLibraryListMemorizable
+
+		/**
+		 * Boolean.
+		 */
+		public static final @NonNull String KEEP_TRACK_POS = TABLE + ".keep_track_pos"; // Sync with RestLibraryListMemorizable
 
 		// NOTE: requires CTE with durs, e.g.:
 		// with durs as (select (sum(duration)) as dur, album from folder_files inner join albums on albums._id=folder_files.album_id group by album_id) 
