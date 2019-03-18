@@ -123,7 +123,7 @@ public final class PowerampAPI {
 	 * {@code int}
 	 */
 	public static final String COMMAND = "cmd";
-
+	
 
 	/**
 	 * Common extras:
@@ -1271,6 +1271,18 @@ public final class PowerampAPI {
 			public static final int FLAG_FIRST_IN_PLAYER_SESSION = 0x40;
 		}
 	}
+	
+	public interface PauseFlags {
+		/**
+		 * Ask to keep service/notification
+		 */
+		@SuppressWarnings("hiding")
+		public static final int KEEP_SERVICE      = 0x0001;
+		/**
+		 * Specifically ask not to keep service/notification. Has priority over KEEP_SERVICE
+		 */
+		public static final int DONT_KEEP_SERVICE = 0x0002;
+	}
 
 	/**
 	 * {@link PowerampAPI.Track} {@link PowerampAPI.Track.CAT} categories
@@ -1294,6 +1306,8 @@ public final class PowerampAPI {
 		public static final int ARTISTS = 500;
 		public static final int COMPOSERS = 600;
 		public static final int QUEUE = 800;
+		
+		private Cats() {}
 	}
 
 	/**
