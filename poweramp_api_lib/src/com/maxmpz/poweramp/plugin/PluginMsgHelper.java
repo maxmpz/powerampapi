@@ -24,6 +24,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 public class PluginMsgHelper {
 	public static class PluginMsgException extends RuntimeException {
@@ -92,7 +93,7 @@ public class PluginMsgHelper {
 		buf.putInt(desiredSizeBytes);
 	}
 
-	public static int[] createIntMsgBuffer(int pluginID, int msgID, int flags, int desiredSizeInts) {
+	public static @NonNull int[] createIntMsgBuffer(int pluginID, int msgID, int flags, int desiredSizeInts) {
 		if(desiredSizeInts > MAX_SIZE_INTS) {
 			throw new PluginMsgException("bad desiredSizeInts=" + desiredSizeInts + " MAX_SIZE_INTS=" + MAX_SIZE_INTS);
 		}
@@ -113,7 +114,10 @@ public class PluginMsgHelper {
 		return buf;
 	}
 
-	public static @NonNull String msgBufferAsString(@NonNull int[] buf) {
+	public static @NonNull String msgBufferAsString(@Nullable int[] buf) {
+		if(buf == null) {
+			return "null";
+		}
 		if(buf.length < HEADER_SIZE_INTS) {
 			throw new PluginMsgException("bad buf length=" + buf.length);
 		}
