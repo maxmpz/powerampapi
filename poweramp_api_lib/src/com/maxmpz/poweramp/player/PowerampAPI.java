@@ -48,6 +48,11 @@ public final class PowerampAPI {
 	public static final long RAW_TRACK_ID = -2L;
 
 	/**
+	 * Special {@link PowerampAPI.Track.ID} value indicating missing file - for example playlist entry which can't be found
+	 */
+	public static final long MISSING_TRACK_ID = -3L;
+
+	/**
 	 * Authority used for data provider
 	 */
 	public static final String AUTHORITY = "com.maxmpz.audioplayer.data";
@@ -1404,6 +1409,7 @@ public final class PowerampAPI {
 		public static final String ACTION_FAST_TAGS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_FAST_TAGS_SCAN_FINISHED";
 
 		/**
+		 * If true, FolderScanner tries to skip unmodified folders/files
 		 * Extra<br>
 		 * {@code boolean}
 		 */
@@ -1420,16 +1426,26 @@ public final class PowerampAPI {
 		public static final String EXTRA_TRACK_CONTENT_CHANGED = "trackContentChanged";
 
 		/**
+		 * If true, LibraryScanner will first clear all track scanned tags prior scan, causing total tags rescanning.
+		 * FolderScanner will force-parse statndalone CUEs
 		 * Extra<br>
 		 * {@code boolean}
 		 */
 		public static final String EXTRA_ERASE_TAGS = "eraseTags";
 
 		/**
+		 * If true, FolderScanner will scan unmounted storages (removing track entries which were previously scanned from them)
 		 * Extra<br>
 		 * {@code boolean}
 		 */
 		public static final String EXTRA_FULL_RESCAN = "fullRescan";
+
+		/**
+		 * If true, force LibraryScanner to resolve playlists
+		 * Extra<br>
+		 * {@code boolean}
+		 */
+		public static final String EXTRA_RESOLVE_PLAYLISTS = "resolvePlaylists";
 
 		/**
 		 * Extra<br>

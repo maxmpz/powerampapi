@@ -167,12 +167,13 @@ public interface TableDefs {
 		public static final @NonNull String YEAR = "year";
 
 		/**
+		 * Cue offset ms
 		 * Int.
 		 */
 		public static final @NonNull String OFFSET_MS = "offset_ms";
 
 		/**
-		 * If non-null - this is cue "source" (big single uncut) file with that given virtual folder id.
+		 * If non-null - this is cue "source" (big uncut image) file with that given virtual folder id.
 		 * NOTE: enforces 1-1 between source files and cues. No multiple cues per single image thus possible
 		 * Int.
 		 */
