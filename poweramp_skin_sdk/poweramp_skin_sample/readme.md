@@ -99,20 +99,16 @@ Poweramp v3 has concept of a scene. A view can be rendered in the target scene (
 
 This is why many attributes/styles are ending with "_scene.." suffix, as for almost each view addition per-scene styles are required.
 
-Scene generally defines initial and final view layout/position and some view parameters.
-
 Also, almost all Poweramp views are custom views, including layout (FastLayout) and text views (FastTextView). FastLayout is multi-paradigm layout, somewhat similar to ConstraintLayout,
-but faster, strictly one-pass per layout, and optimized for animations; and FastText is a fast text rendering view optimized for transitions. See **[reference_resources/values-sw1dp/attrs-powerui.xml](/poweramp_skin_sdk/reference_resources/values-sw1dp/attrs-powerui.xml)** for commented attributes definitions
+but faster, strictly one-pass per layout, and optimized for animations; and FastText is a fast text rendering view optimized for transitions. See **[reference_resources/values-sw1dp/attrs-powerui.xml](/poweramp_skin_sdk/reference_resources/values-sw1dp/attrs-powerui.xml)** for the commented attributes definitions
 for these views.
-
-See appropriate reference resources xmls for the details in the comments.
 
 ### Poweramp v3 skin options
 Poweramp v3 supports unique feature allowing user selectable skin options to be defined by skin author. Option is an "overlap" style which is applied in addition to the main skin theme.
 See sample skin **[xml/skins.xml](app/src/main/res/xml/skins.xml)** for reference.
 
 Options include:
-* simple option with just a name (rendered as half-width switch), or with the summary (rendered as 2 line switch):
+* simple option with just a name (rendered as half-width switch), or with a summary (rendered as 2 line switch):
 ```xml
 <option
     key="[preference unique key]"
@@ -170,7 +166,7 @@ where skin_text_color1 is defined in strings.xml with html tags inside:
 ### Difference vs Poweramp v2 skins
 * Poweramp v2 skins are not compatible with Poweramp v3, Poweramp v3 skins are not compatible with Poweramp v2
 * Poweramp v2 skins relied on skin provided layout xmls, v3 skins rely on style redefinitions, layouts xmls can't be changed by skin (except for few injected specific **merge_** layouts)
-* much less raster graphics in default skins, but this is open for skin author, there is no limitation on raster images
+* less bitmap graphics in default skins, but this is open for skin author, there is no any limitation on bitmap images
 
 
 ### Reference resources
