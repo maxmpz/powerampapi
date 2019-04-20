@@ -319,6 +319,12 @@ public interface TableDefs {
 		public static final @NonNull String PARENT_NAME = TABLE + ".parent_name";
 
 		/**
+		 * Parent folder label (which can be much longer than just PARENT_NAME, e.g. include storage description) to display in the UI
+		 * String.
+		 */
+		public static final @NonNull String PARENT_LABEL = TABLE + ".parent_label";
+
+		/**
 		 * Full path of the folder.
 		 * String.
 		 */
