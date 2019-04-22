@@ -93,6 +93,7 @@ public interface TableDefs {
 		public static final @NonNull String DURATION = "duration";
 
 		/**
+		 * Seconds.
 		 * Int.
 		 */
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
@@ -103,11 +104,13 @@ public interface TableDefs {
 		public static final @NonNull String FILE_TYPE = "file_type";
 
 		/**
+		 * Milliseconds
 		 * Int.
 		 */
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
 
 		/**
+		 * Seconds.
 		 * Int.
 		 * This is file last modified time actually, for most filesystems
 		 */
@@ -181,6 +184,7 @@ public interface TableDefs {
 
 		/**
 		 * First seen time.
+		 * Seconds.
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
@@ -236,6 +240,7 @@ public interface TableDefs {
 		public static final @NonNull String TITLE_TAG = TABLE + ".title_tag";
 
 		/**
+		 * Seconds.
 		 * Int.
 		 */
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
@@ -350,6 +355,7 @@ public interface TableDefs {
 		public static final @NonNull String DIR_MODIFIED_AT = TABLE + ".dir_modified_at";
 
 		/**
+		 * Seconds.
 		 * Int.
 		 */
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
@@ -732,10 +738,12 @@ public interface TableDefs {
 		public static final @NonNull String PATH = TABLE + ".playlist_path";
 
 		/**
+		 * Seconds.
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 		/**
+		 * Seconds.
 		 * Int.
 		 */
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
@@ -789,6 +797,7 @@ public interface TableDefs {
 		public static final @NonNull String FOLDER_FILE_ID = TABLE + ".folder_file_id";
 
 		/**
+		 * Milliseconds
 		 * Int.
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
