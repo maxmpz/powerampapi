@@ -87,7 +87,7 @@ public interface TableDefs {
 		public static final @NonNull String TITLE_TAG = "title_tag"; // NOTE: important to have it w/o table for headers-enabled compound selects
 
 		/**
-		 * Duration in miliseconds.
+		 * Duration in milliseconds.
 		 * Int.
 		 */
 		public static final @NonNull String DURATION = "duration";
@@ -749,12 +749,14 @@ public interface TableDefs {
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 
 		/**
-		 * Number of files without cue images
+		 * Number of playlist entries
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
 		/**
-		 * Number of files including cue images
+		 * Number of playlist entries. Since 824 - same as num_files.
+		 * Poweramp can insert CUE images into playlists if appropriate option enabled, or it skips them completely. In anycase, playlist should show # of all possible entries in it,
+		 * without filtering for CUE images
 		 * Since 796
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
@@ -774,12 +776,23 @@ public interface TableDefs {
 		 * Boolean.
 		 */
 		public static final @NonNull String KEEP_TRACK_POS = TABLE + ".keep_track_pos"; // Sync with RestLibraryListMemorizable
+		
+		/**
+		 * Duration in milliseconds.
+		 * Int.
+		 */
+		public static final @NonNull String DURATION = TABLE + ".duration";
 
-		// NOTE: requires CTE with durs, e.g.:
-		// with durs as (select (sum(duration)) as dur, album from folder_files inner join albums on albums._id=folder_files.album_id group by album_id) 
-		//    select (dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0)), dur, album from durs limit 10;
+		/**
+		 * Duration in seconds.
+		 * Int.
+		 */
+		public static final @NonNull String DURATION_S = "(" + TABLE + ".duration + 500) / 1000 as dur_s";
 
-		public static final @NonNull String TOTAL_DURATION = "(dur/3600000) || ':' || strftime('%M:%S', (dur/86400000.0))";
+		// NOTE: strftime requires julian day https://en.wikipedia.org/wiki/Julian_day
+		// 3600 * 24 * 1000 => 86_400_000 or 86400 for sec
+		// ((duration+500)/1000)/86400.0) => first ceil duration up to seconds
+		public static final @NonNull String TOTAL_DURATION = "CASE WHEN duration<=0 THEN '-:--' WHEN duration < 60000 THEN strftime('0:%S', ((duration+500)/1000)/86400.0) WHEN duration < 3600000 THEN ltrim(strftime('%M:%S', ((duration+500)/1000)/86400.0), '0') ELSE (duration/3600000) || ':' || strftime('%M:%S', ((duration+500)/1000)/86400.0) END";
 		public static final @NonNull String IS_FILE = TABLE + ".playlist_path IS NOT NULL AS _is_file";
 	}
 
