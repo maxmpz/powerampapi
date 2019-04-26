@@ -50,6 +50,9 @@
 	<string name="skin_seekbar_and_waveseek">Static waveseek + seek bar</string>
 	<string name="skin_summart_seekbar_and_waveseek">Both seek widgets visible and operational</string>
 
+	<string name="skin_trans_bg_main">Transparent Background</string>
+	<string name="skin_summary_trans_bg_main">Make Main UI background transparent (wallpaper visible)</string>
+
 	<string name="skin_main_mini_spectrum">Mini Spectrum On Main Screen</string>
 	<string name="skin_summary_main_mini_spectrum">Demonstrates visualization component on main screen, not polished</string>
 	<string name="skin_applied_msg">Skin has been successfully applied!</string>

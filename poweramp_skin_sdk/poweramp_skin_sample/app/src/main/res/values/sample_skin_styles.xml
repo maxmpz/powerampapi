@@ -491,7 +491,17 @@
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginRight">0dp</item>
-
 	</style>
+
+	<style name="SampleSkin_transBgMain">
+		<item name="com.maxmpz.audioplayer:TopMilk">@style/SampleSkin_transBgMain_TopMilk</item>
+		<item name="android:windowShowWallpaper">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+	</style>
+
+	<style name="SampleSkin_transBgMain_TopMilk" parent="@com.maxmpz.audioplayer:style/TopMilk">
+		<item name="android:visibility">gone</item>
+	</style>
+
 
 </resources>

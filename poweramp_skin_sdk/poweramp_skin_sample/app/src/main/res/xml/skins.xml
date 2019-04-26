@@ -101,6 +101,15 @@
 			/>
 		</popup>
 
+		<!-- Option to make app background transparent in main player UI -->
+		<option
+			key="trans_bg_main"
+			name="@string/skin_trans_bg_main"
+			summary="@string/skin_summary_trans_bg_main"
+			overlapStyle="@style/SampleSkin_transBgMain"
+			checkedByDefault="false"
+		/>
+
 		<!-- Let's add our skin unique option which makes navigation bars fully transparent -->
 		<option
 			key="trans_navbar"
