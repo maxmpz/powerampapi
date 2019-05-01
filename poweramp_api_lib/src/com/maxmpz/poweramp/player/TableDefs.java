@@ -312,10 +312,16 @@ public interface TableDefs {
 		public static final @NonNull String _ID = TABLE + "._id";
 
 		/**
-		 * Short name of the folder.
+		 * Name of the folder. Can be long for roots (e.g. can include storage description). 
 		 * String.
 		 */
 		public static final @NonNull String NAME = TABLE + ".name";
+
+		/**
+		 * (Always) short name of the folder.
+		 * String.
+		 */
+		public static final @NonNull String SHORT_NAME = TABLE + ".short_name";
 
 		/**
 		 * Short path of the parent folder.
