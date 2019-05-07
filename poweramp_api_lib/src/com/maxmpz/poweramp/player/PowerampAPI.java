@@ -1496,7 +1496,14 @@ public final class PowerampAPI {
 		 * @since 700
 		 */
 		public static final String EXTRA_OPEN = "open";
-
+		
+		/**
+		 * Extra for ACTIVITY_SETTINGS<br>
+		 * {@code String}
+		 * @see PowerampAPI.ACTIVITY_SETTINGS
+		 * @since 820
+		 */
+		public static final String EXTRA_OPEN_PATH = "open_path";
 
 		/**
 		 * Value for EXTRA_OPEN - opens vis presets list
