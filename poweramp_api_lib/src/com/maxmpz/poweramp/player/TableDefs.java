@@ -422,9 +422,15 @@ public interface TableDefs {
 
 		/**
 		 * String.
-		 * Special calculated subquery column which retrieves short parent name 
+		 * Special calculated subquery column which retrieves parent name 
 		 */
 		public static final @NonNull String PARENT_NAME_SUBQUERY = "(SELECT name FROM folders AS f2 WHERE f2._id=folders.parent_id) AS parent_name_subquery";
+		
+		/**
+		 * String.
+		 * Special calculated subquery column which retrieves short parent name 
+		 */
+		public static final @NonNull String PARENT_SHORT_NAME_SUBQUERY = "(SELECT short_name FROM folders AS f2 WHERE f2._id=folders.parent_id) AS parent_short_name_subquery";
 	}
 
 
