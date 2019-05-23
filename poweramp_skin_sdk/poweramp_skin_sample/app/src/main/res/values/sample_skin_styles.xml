@@ -296,7 +296,7 @@
 
 	<!-- Optional style for SampleSkin_transparentNavbar option. Poweramp applies optional styles on top of the skin theme, if such option is checked by user in settings.
 	     NOTE: as fully transparent navigation bar is supported by Android 8.0+, we have different variants of this style for v21-25 (Android 5-7), and for v26+ (Android 8+).
-	     NOTE: this is overriden in values-land (back to default), as we don't want UI to go under navigation bar in landscape, as navigation bar is to the right / left
+	     NOTE: this is overridden in values-land (back to default), as we don't want UI to go under navigation bar in landscape, as navigation bar is to the right / left
 	-->
 	<style name="SampleSkin_transparentNavbarBase">
 

@@ -49,7 +49,7 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_PARAM_FIRST_CUSTOM         = 0x1000;
 
 	// Internal
-	public static final int PA_OUTPUT_PARAM_AUDIO_IO_HANDLE     = 0x80000001; // NOTE: supported by atoutput only
+	public static final int PA_OUTPUT_PARAM_AUDIO_IO_HANDLE     = 0x80000001;
 
 	// getPipelineParamInt() SUBSYSTEM_PIPELINE
 	public static final int PARAM_LAST_DECODER_IX       = 1; // Never used ATM
@@ -88,4 +88,6 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_CAP_FORCED_UNITY_GAIN      = 0x20000;
 	public static final int PA_OUTPUT_CAP_OEM_VARIANT            = 0x40000; 	// Used for caps as well
 	
+	
+	public static final int UI_FLAG_NO_DVC_DUE_TO_BT_ABSVOL      = 0x0001;
 }
