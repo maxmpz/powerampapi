@@ -103,7 +103,7 @@ public abstract class WidgetUpdater {
 		if(LOG) Log.w(TAG, "updateSafe th=" + Thread.currentThread() + " provider=" + provider); 
 
 		synchronized(mLock) {
-			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){
+			if(!ignorePowerState && !mPowerManager.isInteractive() && sUpdatedOnce){
 				if(LOG) Log.e(TAG, "skipping update, screen is off");
 				return;
 			}
@@ -146,9 +146,9 @@ public abstract class WidgetUpdater {
 	 * @param ignorePowerState
 	 * @return true if update happened, false if power state doesn't allow update now
 	 */
-	public boolean updateDirectSafe(@NonNull WidgetUpdateData data, boolean ignorePowerState) {
+	public boolean updateDirectSafe(@NonNull WidgetUpdateData data, boolean ignorePowerState, boolean isScreenOn) {
 		synchronized(mLock) {
-			if(!ignorePowerState && !mPowerManager.isScreenOn() && sUpdatedOnce){
+			if(!ignorePowerState && !isScreenOn && sUpdatedOnce){
 				if(LOG) Log.e(TAG, "updateDirectSafe skipping update, screen is off");
 				return false;
 			}
