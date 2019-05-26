@@ -90,7 +90,7 @@ public interface TableDefs {
 		 * Duration in milliseconds.
 		 * Int.
 		 */
-		public static final @NonNull String DURATION = "duration";
+		public static final @NonNull String DURATION = TABLE + ".duration";
 
 		/**
 		 * Seconds.
