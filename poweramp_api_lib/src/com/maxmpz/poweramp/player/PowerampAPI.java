@@ -1295,6 +1295,7 @@ public final class PowerampAPI {
 	public static final class Cats {
 		public static final int ROOT = 0;
 		public static final int FOLDERS = 10;
+		public static final int FOLDERS_HIER = 20;
 		public static final int MOST_PLAYED = 43;
 		public static final int TOP_RATED = 48;
 		public static final int LOW_RATED = 50;
