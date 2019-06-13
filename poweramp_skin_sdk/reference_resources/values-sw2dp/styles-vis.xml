@@ -119,9 +119,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="VisFilterEditText" parent="Widget.AppCompat.EditText">
 		<item name="layout_consumeSpace">vertical|reset_full_horizontal</item>
 		<item name="android:background">@null</item>
-		<item name="android:drawableLeft">@drawable/filter_24dp</item>
-		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:drawableTint">?colorIconPrimary</item>
+		<item name="android:drawableLeft">@drawable/filter_24dp_tinted</item>
+		<!-- NOTE: tint doesn't work for Android 5/6 -->
+		<!-- <item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:drawableTint">?colorIconPrimary</item> -->
 		<item name="android:drawableBottom">@null</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:textColorHint">?android:textColorTertiary</item>

@@ -22,7 +22,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<include android:layout="@layout/merge_selection_menu_list_tracks_items"/>
+	<include android:layout="@layout/merge_selection_menu_list_base_items"/>
+	
+	<com.maxmpz.widget.BusStateEnabledActionButton
+		style="?SelectionListContextButton"
+		android:drawable="?info"
+		
+		android:text="@string/info"
+		w:stateId="@id/state_list_one_track_selected"
+		w:stateMsgId="@id/state_list_selection_count"
+		
+		w:msgId="@id/cmd_list_info_dialog"
+	/>
 	
 	<com.maxmpz.widget.BusStateEnabledActionButton
 		style="?SelectionListContextButton"

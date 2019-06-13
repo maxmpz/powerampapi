@@ -59,6 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:menuItemsLayout="@layout/merge_dsp_info_popup_layout"
 		w:busId="@id/bus_dsp_cmd"
 		w:msgId="@id/cmd_dsp_switch_dsp_meta"
+		w:firstPressToast="@string/long_press_for_more_options"
 	>
 		<com.maxmpz.widget.player.BusStatusText android:id="@id/_label"
 			style="?EqInfoLabel"

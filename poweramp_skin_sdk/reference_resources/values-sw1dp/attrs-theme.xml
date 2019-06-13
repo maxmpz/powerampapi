@@ -51,8 +51,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorNavbarIcons" format="color"/>
 	<attr name="colorNavbarIconsLessContrast" format="color"/>
 	<attr name="colorBgNavbar" format="color"/>
+	<attr name="colorBgTransparentNavbar" format="color"/>
 	
 	<attr name="colorItemActive" format="color"/><!-- Playing/currently loaded track in a list -->
+	
+	<attr name="colorIconCC" format="color"/><!-- Forced (white) color for Chromecast icon -->
 	
 	<attr name="statusBarBg" format="color|reference"/><!-- Shade under status bar -->
 	<attr name="navigationBarBg" format="color|reference"/><!-- Shade under Android navigation bar -->

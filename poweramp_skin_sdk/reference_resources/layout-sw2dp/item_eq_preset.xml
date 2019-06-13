@@ -50,6 +50,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:drawable="?pre_usb"
 		style="?ItemPopupListMicroIcon"		
 	/>
+	<com.maxmpz.widget.FastTextView android:id="@+id/chromecast"
+		android:drawable="?pre_chromecast"
+		style="?ItemPopupListMicroIcon"
+	/>
 	<com.maxmpz.widget.FastTextView android:id="@+id/other"
 		android:drawable="?pre_other"
 		style="?ItemPopupListMicroIcon"

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: as HelpLayout is Scene by itself, it's own StateAnimParams (forId="parent") will be pushed into it, if placed inside -->
+<com.maxmpz.widget.player.HelpLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+	android:id="@+id/help_equ_eq"
+	style="@style/TopHelpLayout"
+	w:enableStateAnim="true"
+>
+	<include android:layout="@layout/merge_help_eq_buttons"/>
+	
+	<!-- NOTE: specific order of help views so navbar help has higher priority and positions on top of navbar -->
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelp"
+		
+		w:help_anchor="@id/navbar"
+		w:help_position="top"
+		
+		w:html="@string/h_navbar_list"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+		
+		w:help_anchor="@id/frequency_response_scroller"
+		w:help_position="right"
+		
+		android:text="@string/h_frs_drag_to_scroll"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelp"
+		
+		w:help_anchor="@id/eq_knobs_layout"
+		w:help_position="top"
+		w:help_inside="true"
+		w:showArrow="false"
+		
+		android:text="@string/h_knobs_scroll_view"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+	
+</com.maxmpz.widget.player.HelpLayout>

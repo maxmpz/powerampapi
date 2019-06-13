@@ -75,6 +75,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/Alt_Whitepro_MoreButtons</item>
+		<item name="overlap_plain_seekbar">@style/ActivityTheme_Whitepro_PlainSeekbar_Alt</item>
 		
 		<!-- Lists -->
 		
@@ -88,6 +89,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackLine2_scene_grid_zoomed">@style/Alt_ItemTrackLine2_scene_grid_zoomed</item>
 		<item name="ItemTrackLine2_scene_grid_1">@style/Alt_ItemTrackLine2_scene_grid_1</item>
 		<item name="ItemTrackLine2_scene_grid_1_zoomed">@style/Alt_ItemTrackLine2_scene_grid_1_zoomed</item>
+		
+		
+		<item name="PlainSeekbar_buttons_offset">@dimen/Alt_PlainSeekbar_buttons_offset</item>
+		<item name="PlainSeekbar_marginBottom">@dimen/Alt_PlainSeekbar_marginBottom</item>
+		<item name="PlainSeekbar_common_marginBottom">@dimen/Alt_PlainSeekbar_common_marginBottom</item>
 	</style>
 	
 	<style name="Alt_VisPanelContainer" parent="VisPanelContainer">
@@ -103,30 +109,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="Alt_TopWaveseekLayout" parent="TopWaveseekLayout">
+		<item name="android:paddingTop">@dimen/Alt_TopWaveseek_paddingTB</item>
+		<item name="android:paddingBottom">@dimen/Alt_TopWaveseek_paddingTB</item>
 	</style>
 	
 	<style name="Alt_TopWaveseek" parent="TopWaveseek">
-		<item name="android:paddingTop">@dimen/Alt_TopWaveseek_paddingTB</item>
-		<item name="android:paddingBottom">@dimen/Alt_TopWaveseek_paddingTB</item>
 	</style>
 	
 	
 		
 	
 	<style name="Alt_ItemTrackTitle" parent="ItemTrackTitle">
-		<!-- Padding for rounded -->
-		<!-- <item name="android:paddingLeft">11dp</item>
-		<item name="android:paddingRight">11dp</item>
-		<item name="android:paddingTop">5dp</item>
-		<item name="android:paddingBottom">5dp</item> -->
 	</style>
 	
 	<style name="Alt_ItemTrackLine2" parent="ItemTrackLine2">
-		<!-- Padding for rounded -->
-		<!-- <item name="android:paddingLeft">12dp</item>
-		<item name="android:paddingRight">12dp</item>
-		<item name="android:paddingTop">5dp</item>
-		<item name="android:paddingBottom">5dp</item> -->
 	</style>
 	<style name="Alt_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
 		<item name="android:layout_width">wrap_content</item>
@@ -138,7 +134,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">@null</item>
 		<item name="layout_attachTop">@id/aa_image</item>
 		<item name="android:layout_gravity">center_horizontal</item> --> 
-
 
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
@@ -152,6 +147,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+		
+		<item name="android:visibility">visible</item>
+		
+		<item name="scale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
+		<item name="layout_compensateScale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
 	</style>
 	
 	<style name="Alt_ItemTrackLine2_scene_aa" parent="ItemTrackLine2_scene_aa">
@@ -173,10 +173,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">14dp</item>
 		<item name="android:layout_marginRight">14dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
-		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginTop">@dimen/Alt_ItemTrackLine_scene_aa_marginTop</item>
 		
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+		
+		<item name="scale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
+		<item name="layout_compensateScale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
 	</style>
 	
 	<style name="Alt_ItemLikeUnlikeLayout_scene_aa" parent="ItemLikeUnlikeLayout_scene_aa">
@@ -317,6 +320,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopTrackElapsed">@style/Alt_TopTrackElapsedMoreButtons</item>
 		<item name="TopTrackDuration">@style/Alt_TopTrackDurationMoreButtons</item>
 		
+		<item name="TopPlay">@style/Alt_TopPlay</item><!-- NOTE: we still need out Alt_TopPlay, as otherwise it's overridden by ActivityTheme_Whitepro_MoreButtons -->
+
 		<item name="TopPause">@style/Alt_TopPauseMoreButtons</item>
 		<item name="TopPause_scene_playing">@style/Alt_TopPauseMoreButtons_scene_playing</item>
 	</style>
@@ -336,7 +341,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="Alt_ListSubstyle_Base" parent="ListSubstyle">
 		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
-		<item name="aaPaddingBottom">70dp</item>
+		<item name="aaPaddingBottom">@dimen/Alt_ListSubstyle_aaPaddingBottom</item><!-- 70dp -->
 		
 		<item name="aaMaxSize">@dimen/Alt_aaMaxSize</item><!-- NOTE: sync with TopAABounds -->
 		<item name="aaItemRatio">100%</item><!-- NOTE: sync with TopAABounds -->
@@ -364,35 +369,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!--<item name="android:background">#5f00</item>-->
 	</style>
 		
-	<style name="Alt_ItemTrackTitle_scene_grid_1" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_1">
-		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	<style name="Alt_ItemTrackTitle_scene_grid_1" parent="ItemTrackTitle_scene_grid_1">
+		<item name="lineBackground">@null</item>
 		<item name="android:layout_marginBottom">4dp</item>
 	</style>
-	<style name="Alt_ItemTrackTitle_scene_grid_1_zoomed" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_1_zoomed">
-		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	<style name="Alt_ItemTrackTitle_scene_grid_1_zoomed" parent="ItemTrackTitle_scene_grid_1_zoomed">
+		<item name="lineBackground">@null</item>
 		<item name="android:layout_marginBottom">8dp</item>
 	</style>
-	<style name="Alt_ItemTrackTitle_scene_grid" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid">
-		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	<style name="Alt_ItemTrackTitle_scene_grid" parent="ItemTrackTitle_scene_grid">
+		<item name="lineBackground">@null</item>
 	</style>
-	<style name="Alt_ItemTrackTitle_scene_grid_zoomed" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_grid_zoomed">
-		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	<style name="Alt_ItemTrackTitle_scene_grid_zoomed" parent="ItemTrackTitle_scene_grid_zoomed">
+		<item name="lineBackground">@null</item>
 	</style>
 	
-	<style name="Alt_ItemTrackLine2_scene_grid" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid">
-		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	<style name="Alt_ItemTrackLine2_scene_grid" parent="ItemTrackLine2_scene_grid">
+		<item name="lineBackground">@null</item>
 		<item name="android:layout_marginTop">-4dp</item>
 	</style>
-	<style name="Alt_ItemTrackLine2_scene_grid_1" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_1">
-		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	<style name="Alt_ItemTrackLine2_scene_grid_1" parent="ItemTrackLine2_scene_grid_1">
+		<item name="lineBackground">@null</item>
 	</style>
-	<style name="Alt_ItemTrackLine2_scene_grid_zoomed" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_zoomed">
-		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	<style name="Alt_ItemTrackLine2_scene_grid_zoomed" parent="ItemTrackLine2_scene_grid_zoomed">
+		<item name="lineBackground">@null</item>
 		<item name="android:layout_marginTop">-4dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
 	</style>
-	<style name="Alt_ItemTrackLine2_scene_grid_1_zoomed" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_grid_1_zoomed">
-		<item name="com.maxmpz.audioplayer:lineBackground">@null</item>
+	<style name="Alt_ItemTrackLine2_scene_grid_1_zoomed" parent="ItemTrackLine2_scene_grid_1_zoomed">
+		<item name="lineBackground">@null</item>
 	</style>
 	
 </resources>

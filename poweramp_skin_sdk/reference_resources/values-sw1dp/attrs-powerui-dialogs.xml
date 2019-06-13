@@ -51,6 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 	<attr name="DialogForcedStyle" format="reference"/>
+	<attr name="DialogInverseSystemUIStyle" format="reference"/>
 	
 	<!-- False by default. If true, alternative scene is used for manual drag out (e.g. as for Centered dialog, where default scene transition is just fade in/out,
 	     but manual dragging-out can be to the top.  -->
@@ -73,11 +74,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="dialogButtonsBarPaddingTB" format="dimension"/>
 	<attr name="dialogFrame_elevation" format="dimension"/>
 	
-
+	<attr name="check_48dp" format="reference"/>
+	<attr name="fail_48dp" format="reference"/>
+	
 	<attr name="DialogBehavior" format="reference"/>	
 	<attr name="DialogShim" format="reference"/>
 	<attr name="DialogFrame" format="reference"/>
-	<attr name="DialogFrameStyle_scene_dialog_in" format="reference"/>
+	<attr name="DialogFrame_scene_dialog_in" format="reference"/>
 
 	<attr name="DialogFrameContent" foramt="reference"/>
 	

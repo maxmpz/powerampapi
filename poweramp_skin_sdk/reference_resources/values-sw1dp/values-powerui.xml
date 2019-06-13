@@ -102,11 +102,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Bus ids -->
 	<item type="id" name="bus_app"/><!-- App level bus, also a state bus -->
 	<item type="id" name="bus_app_cmd"/>
-	<item type="id" name="bus_gui"/><!-- Gui only messages. REVISIT: no bus_gui_cmd for now? -->
+	<item type="id" name="bus_gui"/><!-- Gui only messages. REVISIT: no bus_gui_cmd for now? Public -->
 		
 	<!-- Msgs/states/cmds -->
 	<item type="id" name="state_app_live_activities"/><!-- int. Number of created and not yet destroyed activities -->
 	<item type="id" name="state_app_active_activities"/><!-- int. Number of started activities in state between start and stop -->
+	<item type="id" name="state_app_last_non_temp_activity"/><!-- object. Check for isFinishing() -->
+	<item type="id" name="state_app_last_activity"/><!-- object. Check for isFinishing() -->
 	
 	<item type="id" name="msg_app_active_activities_change"/><!-- bus_app, arg1 => num of active activities, arg2 => boolean STATE_TRUE if it's activity start, false otherwise -->
 	
@@ -121,6 +123,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_selection_mode"/><!-- boolean, also a msg -->
 	<item type="id" name="state_list_all_selected"/><!-- boolean, also a msg -->
 	<item type="id" name="state_list_something_selected"/><!-- boolean -->
+	<item type="id" name="state_list_can_delete"/><!-- boolean, like state_list_something_selected but depends on enable_deletion -->
 	<item type="id" name="state_list_one_track_selected"/><!-- boolean -->
 	<item type="id" name="state_list_selection_count"/><!-- integer, also a msg -->
 	<item type="id" name="state_list_item_count"/><!-- integer -->
@@ -142,8 +145,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_transition"/>
 	
 	<!-- Sets gui to modal mode: used for popups and other modal-like use cases -->
-	<item type="id" name="cmd_gui_set_modal"/><!-- bus_gui -->
-	<item type="id" name="cmd_gui_unset_modal"/><!-- bus_gui -->
+	<item type="id" name="cmd_gui_set_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
+	<item type="id" name="cmd_gui_unset_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
 	<item type="id" name="cmd_gui_reset_modal"/><!-- bus_gui, no anim by default, optional boolean arg = anim (PopupMenuHelper only) -->
 	
 	<item type="id" name="cmd_list_select_all"/>
@@ -155,6 +158,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_add_to_q"/>
 	<item type="id" name="cmd_list_delete"/>
 	<item type="id" name="cmd_list_info_dialog"/>
+	<item type="id" name="cmd_list_album_art"/>
 	
 	<item type="id" name="cmd_list_play"/>
 	<item type="id" name="cmd_list_shuffle"/>

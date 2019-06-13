@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: as HelpLayout is Scene by itself, it's own StateAnimParams (forId="parent") will be pushed into it, if placed inside -->
+<com.maxmpz.widget.player.HelpLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+	android:id="@+id/help_lib"
+	style="@style/TopHelpLayout"
+	w:enableStateAnim="true"
+>
+	<include android:layout="@layout/merge_help_buttons"/>
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpWider"
+		
+		w:help_anchor="@id/list"
+		w:help_position="bottom"
+		w:help_inside="true"
+		w:showArrow="false"		
+		
+		w:html="@string/h_lib_list"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+		
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelp"
+		
+		w:help_anchor="@id/list"
+		w:help_position="top"
+		w:help_inside="true"
+		w:showArrow="false"
+		
+		w:html="@string/h_lib_list_opts"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+		
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelp"
+		
+		w:help_anchor="@id/navbar_list"
+		w:help_position="top"
+		w:help_inside="true"		
+		w:html="@string/h_navbar_list"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+</com.maxmpz.widget.player.HelpLayout>

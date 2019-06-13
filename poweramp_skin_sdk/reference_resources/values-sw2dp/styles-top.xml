@@ -169,6 +169,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clickable">true</item><!-- Clickable to avoid touching trough it and moving AA/List -->
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item>
+		
+		<!-- <item name="android:background">#f00</item> -->
 	</style>
 	<style name="TopWaveseekLayout_scene_lib">
 		<item name="recalcChildren">on_start</item>
@@ -194,8 +196,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="minBarHeight">10dp</item>
-
-	
 		<item name="layout_maxHeight">@dimen/TopWaveseek_maxHeight</item><!-- 150dp -->
 		<item name="fadeSidebars">true</item>
 		<item name="cursorPosition">50%</item>
@@ -208,13 +208,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="TopWaveseekStatic" parent="TopWaveseek">
-		<item name="layout_maxHeight">150dp</item>
+		<!-- <item name="layout_maxHeight">150dp</item> -->
+		<item name="layout_maxHeight">@dimen/TopWaveseek_maxHeight</item><!-- 150dp -->
 		<item name="waveLayout">fixed</item>
 		<item name="numBars">60</item>
 		<item name="barSpacing">0.5dp</item>
 		<item name="cursorBgFastTracking">true</item>
 	</style>
-		
+	
+	
 	
 	<style name="TopWaveseekCursor">
 		<item name="android:background">@drawable/waveseek_cursor</item>
@@ -233,10 +235,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopTrackElapsed">
 		<item name="android:layout_gravity">center_vertical</item><!-- View gravity -->
 		<item name="android:gravity">center_vertical</item><!-- Text gravity -->
+		
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">25dp</item><!-- Match pause button height in state_playing -->
 		<item name="layout_attachRight">@+id/play</item>
 		<item name="android:layout_marginRight">1dp</item>
+		
 		<item name="android:paddingLeft">6dp</item>
 		<item name="android:paddingRight">6dp</item>
 		<item name="android:ellipsize">none</item>
@@ -310,7 +314,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clickable">true</item>
 		<item name="android:longClickable">true</item>
 		<item name="android:background">?colorBgInverse</item>
-		<item name="android:drawable">@drawable/pause_small_narrow</item>
+		<item name="android:drawable">?pause_small_narrow</item>
 		<item name="drawableTint">?colorIconInverse</item>
 		<item name="drawableWidth">24dp</item>
 		<item name="drawableHeight">24dp</item>
@@ -350,7 +354,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopPlay_scene_playing">
 		<item name="recalcChildren">on_end</item>
-		<item name="android:layout_width">50dp</item>
+		<item name="android:layout_width">50dp</item><!-- REVISIT: need dimen size here? -->
 		<item name="android:layout_height">50dp</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:visibility">invisible</item>
@@ -423,6 +427,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:longClickable">true</item><!-- Need to support long clicks -->
 	</style>
 	
+	<style name="TopPlayMoreButtons" parent="TopPlay">
+		<!-- <item name="animOnClick">true</item> --><!-- NOTE: this doesn't look good due to play button disappearing into pause, thus, ripple disappears too fast -->
+	</style>
+	
 	<!-- NOTE: not doing zoom here, but change size from large TopPlay size to pause drawable native size -->  
 	<style name="TopPauseMoreButtons" parent="TopPause">
 		<item name="layout_maxWidth">@dimen/TopPlay_maxSize</item>
@@ -490,7 +498,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="scale">1</item>
 	</style>		
 	
-		
+					
 	<style name="TopSubAAButtons">
 		<item name="android:layout_width">match_parent</item>		
 		<item name="android:layout_height">wrap_content</item>
@@ -559,10 +567,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<style name="TopActionModeBarBase">
-		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginTop">@dimen/TopActionModeBar_marginTop</item><!-- Increased for longer screens -->
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginBottom">@dimen/TopActionModeBar_marginBottom</item><!-- Increased for longer screens -->
 		<item name="android:elevation">?bar_elevation</item>
 		<item name="android:background">@drawable/navbar_bg</item>
 		<item name="android:padding">2dp</item>
@@ -698,6 +706,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- <item name="overscan">top|bottom</item> -->
 	</style>
 	
+	<!-- Overriden in values-sw2dp-land -->
 	<style name="TopFitsStatusBarView">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
@@ -709,6 +718,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="TopFitsStatusBarView_scenes_non_main"></style><!-- NOTE: nothing changes for default skins -->
 	
+	<!-- Overriden in values-sw2dp-land -->
 	<style name="TopFitsNavigationBarView">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
@@ -853,6 +863,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:longClickable">true</item>
 		<item name="android:hapticFeedbackEnabled">true</item>
 		
+		<item name="listItemSize">48dp</item>
+		
 		<item name="buttonStyle">@style/PopupButtonNoTint</item>
 		<item name="menuButtonStyle">@style/PopupButtonNoTint_scene_button_menu</item>
 		
@@ -957,6 +969,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachBottom">@id/navbar_bounds</item>
+		<!-- Need some min height, as when we expand meta to popup, the container becomes empty and collapses to the bottom, causing popup animating to too low position.
+		     Happens e.g. when Play => Pause happens during popup -->
+		<item name="android:minHeight">20dp</item>
 		<item name="android:layout_marginBottom">@dimen/TopMetaInfoLayout_marginBottom</item><!-- 8dp -->
 		<item name="android:clipChildren">false</item>
 		<item name="android:scaleX">0.95</item>
@@ -1106,7 +1121,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:background">@drawable/ripple_filled_rounded_large</item>
+		<item name="android:background">@drawable/ripple_help_large</item>
 		<item name="android:paddingLeft">16dp</item>
 		<item name="drawablePaddingStart">8dp</item>
 		<item name="android:drawablePadding">-12dp</item>

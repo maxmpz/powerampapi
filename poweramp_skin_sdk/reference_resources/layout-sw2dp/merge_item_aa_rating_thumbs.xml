@@ -42,6 +42,9 @@
 			w:scene_5="@+id/scene_grid_1" w:scene_6="@+id/scene_grid_1_alt"
 		style="?ItemLikeUnlikeLayout_scenes_invisible"	
 	/>
+	<SceneParams w:scene="@+id/scene_1_small"
+		style="?ItemLikeUnlikeLayout_scenes_invisible"
+	/> 
 	<!-- NOTE: force hidden -->
 	<SceneParams w:scene="@+id/scene_item_menu"
 		android:visibility="gone"

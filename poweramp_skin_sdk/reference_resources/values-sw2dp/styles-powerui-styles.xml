@@ -76,6 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopMenuPlaceholderLayout">@style/TopMenuPlaceholderLayout</item>
 		
 		<item name="ItemPopupList">@style/ItemPopupList</item>
+		<item name="ItemPopupListMorePadding">@style/ItemPopupListMorePadding</item>		
 		<item name="ItemPopupListImage">@style/ItemPopupListImage</item>
 		<item name="ItemPopupListSelectBox">@style/ItemPopupListSelectBox</item>
 		<item name="ItemPopupListTitle">@style/ItemPopupListTitle</item>
@@ -139,6 +140,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackTitle">@style/ItemTrackTitle</item>
 		<item name="ItemTrackTitle_scene_small">@style/ItemTrackTitle_scene_small</item>
 		<item name="ItemTrackTitle_scene_1">@style/ItemTrackTitle_scene_1</item>
+		<item name="ItemTrackTitle_scene_1_small">@style/ItemTrackTitle_scene_1_small</item>
 		<item name="ItemTrackTitle_scene_zoomed">@style/ItemTrackTitle_scene_zoomed</item>
 		<item name="ItemTrackTitle_scene_1_zoomed">@style/ItemTrackTitle_scene_1_zoomed</item>
 		<item name="ItemTrackTitle_scene_grid">@style/ItemTrackTitle_scene_grid</item>
@@ -158,6 +160,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackLine2">@style/ItemTrackLine2</item>
 		<item name="ItemTrackLine2_scene_small">@style/ItemTrackLine2_scene_small</item>
 		<item name="ItemTrackLine2_scene_1">@style/ItemTrackLine2_scene_1</item>
+		<item name="ItemTrackLine2_scene_1_small">@style/ItemTrackLine2_scene_1</item><!-- NOTE: same visibility="gone" scene -->
 		<item name="ItemTrackLine2_scene_zoomed">@style/ItemTrackLine2_scene_zoomed</item>
 		<item name="ItemTrackLine2_scene_1_zoomed">@style/ItemTrackLine2_scene_1_zoomed</item>
 		<item name="ItemTrackLine2_scene_grid">@style/ItemTrackLine2_scene_grid</item>
@@ -176,6 +179,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMeta">@style/ItemTrackMeta</item>
 		<item name="ItemTrackMeta_scene_small">@style/ItemTrackMeta_scene_small</item>
 		<item name="ItemTrackMeta_scene_1">@style/ItemTrackMeta_scene_1</item>
+		<item name="ItemTrackMeta_scene_1_small">@style/ItemTrackMeta_scene_1_small</item>
 		<item name="ItemTrackMeta_scene_zoomed">@style/ItemTrackMeta_scene_zoomed</item>
 		<item name="ItemTrackMeta_scene_1_zoomed">@style/ItemTrackMeta_scene_1_zoomed</item>
 		<item name="ItemTrackMeta_scene_grid">@style/ItemTrackMeta_scene_grid</item>
@@ -251,6 +255,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTopTextBackDecor">@style/ItemTopTextBackDecor</item>
 		<item name="ItemTopTextBackDecorTitle">@style/ItemTopTextBackDecorTitle</item>
 		<item name="ItemTopTextBackDecorTitle_scene_header_back_decor">@style/ItemTopTextBackDecorTitle_scene_header_back_decor</item>
+		
+		<item name="ItemHeaderScanProgress">@style/ItemHeaderScanProgress</item>
+		<item name="ItemHeaderScanProgress_scene_item_menu">@style/ItemHeaderScanProgress_scene_item_menu</item>
+		<item name="ItemHeaderScanProgress_scene_header">@style/ItemHeaderScanProgress_scene_header</item>
 		
 		<item name="ItemTextHeaderScanProgress">@style/ItemTextHeaderScanProgress</item>
 		<item name="ItemTextHeaderScanProgress_scene_item_menu">@style/ItemTextHeaderScanProgress_scene_item_menu</item>

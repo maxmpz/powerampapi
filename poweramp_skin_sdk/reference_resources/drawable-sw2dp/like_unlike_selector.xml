@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+<!-- NOTE: this is actually like-only selector -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:exitFadeDuration="@integer/selector_fade_ms">
 	
 	<item android:state_checked="true" android:drawable="@drawable/like"/>
+	<item android:state_last="true" android:drawable="@drawable/unlike"/>
 	<item android:drawable="@drawable/like_stroke"/>
 	
 </selector>

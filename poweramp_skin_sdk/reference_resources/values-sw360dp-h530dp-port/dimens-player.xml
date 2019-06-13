@@ -26,7 +26,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMediumButton_size">50dp</dimen>
 	<dimen name="TopSmallButton_size">40dp</dimen>
 	
-	<!-- Nexus 5 360x568 -->
+	<!-- Nexus 5 360x568, LG V10 360x534 -->
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">290dp</dimen>	
+	<dimen name="Alt_aaMaxSize">290dp</dimen>
+	
+	<dimen name="Alt_TopPlay_maxSize">74dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">64dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">52dp</dimen> 
+	<dimen name="Alt_TopSmallButton_size">44dp</dimen>
+		
+	
 </resources>

@@ -20,6 +20,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
+	<dimen name="TopActionModeBar_marginTop">8dp</dimen>
+	<dimen name="TopActionModeBar_marginBottom">4dp</dimen>
+	<dimen name="EqFrequencyResponseScroller_marginTop">8dp</dimen>
+		
 	<dimen name="eq_frs_height">54dp</dimen>
 	<dimen name="EqToneRoundKnob_size">100dp</dimen>
 	<dimen name="MediumRoundKnob_size">100dp</dimen>
@@ -28,10 +32,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqReverbParam5KnobLayout_margin">24dp</dimen>	
 	<dimen name="SmallRoundKnob_size">100dip</dimen>
 	
-	<dimen name="EqButton_layout_maxWidth">100dp</dimen>
 	<dimen name="EqButton_marginSide">8dp</dimen>
 	<dimen name="EqRoundKnobLabel_maxWidth">100dp</dimen>
+		
 	
 	<dimen name="EqEquPresetButtonLayout_layout_width">120dp</dimen>
-		
+	
+	<dimen name="EqVolPanel1_paddingTop">8dp</dimen>
+	<dimen name="EqVolPanel1_paddingBottom">8dp</dimen>
+			
 </resources>

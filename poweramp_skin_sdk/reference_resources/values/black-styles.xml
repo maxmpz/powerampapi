@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -33,12 +33,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 Poweramp places id/navigation_bar_bg view under navigation bar, with navigationBarBg drawable, which can be any drawable, not just color.
 			 Use either android:navigationBarColor for just color, or navigationBarBg, but avoid using both to limit overdraw (set other to transparent/#0000)
 			 
-			 NOTE: some devices may always ignore these colors (LGs)
+			 NOTE: some devices may always ignore these colors (OnePlus - ignores #FF000000, but accepts #FF000001)
 		-->
-		<item name="android:navigationBarColor">#000</item>
-		<item name="android:navigationBarDividerColor">#00000000</item><!-- Force nothing for divider as it doesn't look well on some devices which use light divider -->
-		<item name="statusBarBg">#55000000</item><!-- Drawable/color for view under Android status bar.  -->
-		<item name="navigationBarBg">#0000</item><!-- Drawable/color for view under Android navigation bar. -->
+		<item name="android:navigationBarColor">#FF000001</item>
+		<item name="android:navigationBarDividerColor">#0000</item><!-- Force nothing for divider as it doesn't look well on some devices which use light divider -->
+		<item name="statusBarBg">#5000</item><!-- Drawable/color for a view under Android status bar.  -->
+		<item name="navigationBarBg">#0000</item><!-- Drawable/color for a view under Android navigation bar. -->
 		
 		<item name="colorPrimary">#fff</item>
 		<item name="colorAccent">#fff</item>
@@ -113,8 +113,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorNavbarIcons">@color/navbar_icons_selector</item>
 		<item name="colorNavbarIconsLessContrast">#999</item><!-- NOTE: not used in default theme -->
 		<item name="colorBgNavbar">#181818</item>
+		<item name="colorBgTransparentNavbar">#88181818</item>		
 		
 		<item name="colorItemActive">#f00</item>
+		<item name="colorSeekbarThumb">#7eee</item>
+		
+		<item name="colorIconCC">#eee</item>
 		
 		<item name="defaultHiResAA">@drawable/black_poweramp_logo_hd</item>
 		<item name="defaultLowResAA">@drawable/black_poweramp_logo</item>
@@ -139,9 +143,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqMilkFrs_presetUri">internal://#fft2</item>
 		
 		<item name="shuffle_none_32dp">@drawable/shuffle_none_32dp_tinted</item>
+
+		<!-- Android mediarouter icons -->
+		<item name="media_route">@drawable/mr_button_dark</item>
+		<item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_dark</item>
+        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_dark</item>
+        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_dark</item>
+        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_dark</item>
+        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
+        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_disconnected_dark</item>
+        <item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_dark</item>
+        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_dark</item>
+        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_dark</item>
 		
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Blackpro_MoreButtons</item>
+		
+		<item name="DialogInverseSystemUIStyle">@style/ActivityTheme_Black_DialogInverseSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
 	</style>
 
 		
@@ -150,12 +168,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_Black" parent="Base_ActivityTheme_Black">
 	</style>
 	
+	<style name="ActivityTheme_Black_DialogInverseSystemUIStyle">
+		<item name="android:navigationBarColor">@android:color/white</item>
+		<item name="android:windowLightNavigationBar">true</item>
+		<item name="windowLightNavigationBar">true</item> 
+		<item name="android:navigationBarDividerColor">#08000000</item>
+	</style>
+	
 	
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Blackpro_StaticSeekbar">
 		<item name="waveseek_bar">@drawable/inverse_narrow_bar</item>
 		<item name="waveseek_elapsedbar">@drawable/inverse_narrow_elapsedbar</item>
 		<item name="TopWaveseek">@style/TopWaveseekStatic</item>
+	</style>
+	
+	<style name="ActivityTheme_Blackpro_PlainSeekbar">
+		
 	</style>
 		
 	<!-- An overlay style -->
@@ -173,5 +202,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopTrackDuration_scene_playing">@style/TopTrackDurationMoreButtons_scene_playing</item>
 	</style>
 		
-
+	<!-- An overlay style -->
+	<!-- Overriden for 26+ -->
+	<style name="ActivityTheme_Blackpro_TransparentNavbar">
+		<item name="android:windowTranslucentNavigation">true</item>
+		
+		<item name="Navbar">@style/Navbar_transparentNavbar</item>
+		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
+		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+	</style>
 </resources>

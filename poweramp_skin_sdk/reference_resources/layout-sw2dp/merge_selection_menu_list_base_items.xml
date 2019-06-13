@@ -45,7 +45,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:drawable="?delete_24dp"
 		
 		android:text="@string/delete"
-		w:stateId="@id/state_list_something_selected"
+		w:stateId="@id/state_list_can_delete"
 		w:stateMsgId="@id/state_list_selection_count"
 		
 		w:msgId="@id/cmd_list_delete_dialog"

@@ -40,9 +40,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	
 	<dimen name="eq_frs_height">48dp</dimen>
-	<dimen name="MediumRoundKnob_size">100dp</dimen>
+	<dimen name="MediumRoundKnob_size">84dp</dimen><!-- Reduced here for Honor 8 @ large scaling -->
 	<dimen name="EqToneRoundKnob_size">84dp</dimen>
-	<dimen name="BigRoundKnob_size">120dp</dimen>
+	<dimen name="BigRoundKnob_size">120dp</dimen><!-- Reduced here for Honor 8 @ large scaling -->
 	<dimen name="SmallRoundKnob_size">80dip</dimen>
 	<dimen name="EqReverbParam5KnobLayout_margin">16dp</dimen>
 	<dimen name="EqSmallKnobLayout_marginTop">8dp</dimen>

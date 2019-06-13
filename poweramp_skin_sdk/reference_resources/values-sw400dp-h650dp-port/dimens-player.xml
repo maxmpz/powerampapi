@@ -20,7 +20,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Pixel 411x659, Nexus6 411x659, wider screens which has no enough height -->
+	<!-- Pixel1 411x659, Nexus6 411x659 wider screens which has no enough height -->
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">370dp</dimen>	
+	<dimen name="Alt_aaMaxSize">370dp</dimen>
+	
+	<dimen name="Alt_TopPlay_maxSize">68dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">60dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">52dp</dimen>
+	<dimen name="Alt_TopSmallButton_size">44dp</dimen>
+	
 </resources>

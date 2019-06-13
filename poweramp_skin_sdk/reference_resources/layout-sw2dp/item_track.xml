@@ -37,8 +37,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	Base scenes:
 	- default list == 0      (_tag_scene_zero/defaultScene depending on context) 
 	- list 1-line            (scene_1) 
-	- small list             (scene_small) 
-	- zoomed list            (scene_zoomed)
+	- small list             (scene_small)
+	- small list 1-line      (scene_1_small)
+	  zoomed list            (scene_zoomed)
 	- zoom list 1-line       (scene_1_zoomed)
 	- grid                   (scene_grid)
 	- grid 1-line            (scene_grid_1)
@@ -47,7 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	- zoomed grid 1-line     (scene_grid_1_zoomed)
 	- zoomed grid 1-line alt (scene_grid_1_alt_zoomed) used for human categories (artists, composers)
 	NOTE: rounded AA image is implemented via bind property, which forces it to use cornerRadiusAlt attribute
-	== 11
+	== 12
 
 	Special:		   
 	- header	            (scene_header)
@@ -58,7 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	- aa_vis                (scene_aa_vis)
 	- aa_playing            (scene_aa_playing)
 	== +7 
-	Total: 18
+	Total: 19
 		
 -->
 <com.maxmpz.widget.player.list.AAItemView 
@@ -73,7 +74,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackPlayingMark"	
 	/>
 	<!-- playing_mark -->
-	<SceneParams w:scene="@+id/scene_small"
+	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small"
 		style="?ItemTrackPlayingMark_scene_small"
 	/>
 	<!-- playing_mark -->
@@ -136,7 +137,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackAAImage_scene_zoomed" 
 	/>
 	<!-- aa_image -->
-	<SceneParams w:scene="@+id/scene_small"
+	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small"
 		style="?ItemTrackAAImage_scene_small"
 	/>
 	<!-- aa_image -->
@@ -187,7 +188,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_1_zoomed"
 		style="?ItemTrackCatImage_scene_zoomed" 
 	/>
-	<SceneParams w:scene="@+id/scene_small"
+	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small"
 		style="?ItemTrackCatImage_scene_small" 
 	/>
 		<!-- cat_image -->
@@ -221,7 +222,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 		
 	
-	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
 		style="?ItemTrackTitle"
 		android:importantForAccessibility="yes"
 	/>
@@ -232,6 +233,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- title -->
 	<SceneParams w:scene="@+id/scene_small"
 		style="?ItemTrackTitle_scene_small"	   
+	/>
+	<!-- title -->
+	<SceneParams w:scene="@+id/scene_1_small"
+		style="?ItemTrackTitle_scene_1_small"	   
 	/>
 	<!-- title -->
 	<SceneParams w:scene="@+id/scene_zoomed"  
@@ -296,7 +301,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	
-	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
+	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/line2"
 		style="?ItemTrackLine2"
 		android:importantForAccessibility="yes"
 	/>
@@ -307,6 +312,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_1"
 		style="?ItemTrackLine2_scene_1"
+	/>
+	<!-- line2 -->
+	<SceneParams w:scene="@+id/scene_1_small"
+		style="?ItemTrackLine2_scene_1_small"
 	/>
 	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_zoomed"
@@ -377,6 +386,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackMeta_scene_1"
 	/>
 	<!-- meta -->
+	<SceneParams w:scene="@+id/scene_1_small"
+		style="?ItemTrackMeta_scene_1_small"
+	/>
+	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_zoomed"
 		style="?ItemTrackMeta_scene_zoomed"
 	/>
@@ -439,7 +452,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.DragHandler android:id="@+id/drag_handler"
 		style="?ItemTrackDragHandler"
 	/>
-	<SceneParams w:scene="defaultScene" w:scene_2="@id/scene_zoomed" w:scene_3="@id/scene_1" w:scene_4="@id/scene_1_zoomed" w:scene_5="@+id/scene_small"
+	<SceneParams w:scene="defaultScene" w:scene_2="@id/scene_zoomed" w:scene_3="@id/scene_1" w:scene_4="@id/scene_1_zoomed" w:scene_5="@+id/scene_small" w:scene_6="@+id/scene_1_small"
 		style="?ItemTrackDragHandler" 
 	/>
 	<!-- drag_handler -->
@@ -458,7 +471,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<!-- NOTE: IMPORTANT: defining defaultScene right here to avoid auto-default-scene creation with the default visibility - needed as we operate this view 
 	     visibility completely from code -->
-	<SceneParams w:scene="defaultScene" w:scene_2="@id/scene_zoomed" w:scene_3="@id/scene_1" w:scene_4="@id/scene_1_zoomed" w:scene_5="@+id/scene_small"
+	<SceneParams w:scene="defaultScene" w:scene_2="@id/scene_zoomed" w:scene_3="@id/scene_1" w:scene_4="@id/scene_1_zoomed" w:scene_5="@+id/scene_small" w:scene_6="@+id/scene_1_small"
 		style="?ItemTrackSelectBox"
 	/>
 	<!-- select_box -->

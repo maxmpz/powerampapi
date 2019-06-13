@@ -65,7 +65,7 @@ name="
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:duplicateParentState">false</item>
 	</style>
-	
+
 	<style name="SleepTimerPTESelectBox">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>

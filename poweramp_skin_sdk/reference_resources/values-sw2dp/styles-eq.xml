@@ -131,7 +131,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">@dimen/eq_frs_height</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginTop">@dimen/EqFrequencyResponseScroller_marginTop</item>
 		<item name="layout_attachBottom">@+id/frs_info_label</item>
 	</style>
 	
@@ -306,8 +306,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- <item name="stateAnim">@id/anim_knob_pressed</item> -->
 		<item name="android:scaleX">1.5</item>
 		<item name="android:scaleY">1.5</item>
-		<item name="android:translationX">0dp</item>
-		<item name="android:translationY">12dp</item>
+		<!-- <item name="android:translationX">0dp</item>
+		<item name="android:translationY">10dp</item> translationY was broken and now fixed - it's not needed -->
 		<item name="android:duration">300</item>
 	</style>
 		
@@ -315,7 +315,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- <item name="stateAnim">@id/anim_knob_pressed</item> -->
 		<item name="android:scaleX">1.5</item>
 		<item name="android:scaleY">1.5</item>
-		<item name="android:translationY">10dp</item>
+		<!-- <item name="android:translationY">10dp</item> translationY was broken and now fixed - it's not needed -->
 		<item name="android:duration">300</item>
 	</style>
 		
@@ -448,10 +448,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">false</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingTop">@dimen/EqVolPanel1_paddingTop</item>
+		<item name="android:paddingBottom">@dimen/EqVolPanel1_paddingBottom</item>
 	</style>
 
 	<style name="EqVolPanel2">
-		<!-- <item name="android:clipChildren">false</item> -->
+		<item name="android:clipChildren">false</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">200dp</item>
 		<item name="layout_attachTop">@+id/vol_panel1</item>

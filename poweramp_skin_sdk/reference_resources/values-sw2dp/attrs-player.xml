@@ -24,6 +24,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<attr name="windowLightNavigationBar" format="boolean"/><!-- Just for Android 8.0, which supports light navigation bar, but doesn't have attribute for that -->
 	
+	<!-- Player buttons -->
+	
+	<attr name="prev_cat_round" format="reference"/>
+	<attr name="rw_round" format="reference"/>
+	<attr name="ff_round" format="reference"/>
+	<attr name="next_cat_round" format="reference"/>
+	<attr name="pause_round" format="reference"/>
+	<attr name="play_round" format="reference"/>
+	<attr name="pause_small_narrow" format="reference"/>
+
 	<!-- Navbar icons -->
 	<attr name="nav_lists" format="reference"/>
 	<attr name="nav_equ" format="reference"/>
@@ -44,6 +54,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="pre_bt" format="reference"/>
 	<attr name="pre_song" format="reference"/>
 	<attr name="pre_usb" format="reference"/>
+	<attr name="pre_chromecast" format="reference"/>
 	<attr name="pre_other" format="reference"/>
 	<attr name="pre_song" format="reference"/>
 	
@@ -73,9 +84,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="vis_advance_by_time_24dp"/>
 	<attr name="vis_shuffle_24dp"/>
 	
-	
-
-	
 	<attr name="reverb_24dp" format="reference"/>
 	<attr name="vis_24dp" format="reference"/>
 	<attr name="waveseek_bar" format="reference"/>
@@ -95,11 +103,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="delete_dups" format="reference"/>
 	<attr name="clear_q" format="reference"/>
 	<attr name="clear" format="reference"/>
+	<attr name="redo" format="reference"/>
 
 	<attr name="clear_q_24dp" format="reference"/>
 	<attr name="artists_24dp" format="reference"/>
 	<attr name="albums_24dp" format="reference"/>
 	<attr name="folders_24dp" format="reference"/>
+	<attr name="folder_24dp" format="reference"/>
 	<attr name="rename_24dp" format="reference"/>
 	<attr name="delete_24dp" format="reference"/>
 	<attr name="assign_eq_24dp" format="reference"/>
@@ -107,6 +117,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="play_24dp" format="reference"/>
 	
 	<attr name="settings_24dp" format="reference"/>
+	<attr name="settings_alt_24dp" format="reference"/><!-- E.g. settings_stroke_24dp -->
 	<attr name="changelog_24dp" format="reference"/>
 	<attr name="support_24dp" format="reference"/>
 	
@@ -120,7 +131,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="meta_next_12dp" format="reference"/>
 	<attr name="meta_songs_12dp" format="reference"/>
-
+	
+	<declare-styleable name="ListMetaIcons">
+		<attr name="meta_songs_12dp"/>
+		<attr name="keep_list_pos_12dp" format="reference"/>
+		<attr name="keep_track_pos_12dp" format="reference"/>
+		<attr name="keep_list_track_pos_12dp" format="reference"/>
+	</declare-styleable>
+	
 	<!-- Small star drawables for list cat image (1-5 stars) --> 
 	<declare-styleable name="RatingStars_8dp">
 		<attr name="star_8dp" format="reference"/>
@@ -133,13 +151,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="micro_low_rated" format="reference"/>
 		<attr name="micro_top_rated" format="reference"/>
 	</declare-styleable>
+	
+	<attr name="media_route" format="reference"/>
+	
 			
 	<attr name="aa_elevation" format="dimension"/><!-- When on main screen -->
 	<attr name="list_aa_elevation" format="dimension"/><!-- When in list -->
 	<attr name="grid_aa_elevation" format="dimension"/><!-- When in grid -->
 	<attr name="over_aa_elevation" format="dimension"/><!-- Max. possible aa elevation - to keep some other views always on top of AA -->
 	<attr name="VisPanelFrame_elevation" format="dimension"/>
-	<attr name="item_ontop_elevation" foramt="dimension"/><!-- Elevation which is over any other standard item child views -->
+	<attr name="item_ontop_elevation" format="dimension"/><!-- Elevation which is over any other standard item child views -->
 	<attr name="navbar_elevation" format="dimension"/>
 			
 	<!-- Usually corresponds to @dimen/NavbarBounds_height. Anchoring point for content above navbar.
@@ -203,8 +224,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- AA corners for miniplayer -->
 	<attr name="corners_miniplayer_aa" format="dimension"/>
 	
-			
-			
 	<attr name="EqMilkFrs_presetUri" format="string"/>
 	
 	<!-- Extra optional layout to include into TopWaveseekLayout (e.g. extra pro-buttons, but can be anything skin wants) -->
@@ -212,9 +231,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Extra optional layout to include into TopContainer (e.g. counter, but can be anything skin wants) -->
 	<attr name="TopContainer_extraLayout" format="reference"/>
-	
+
 	<!-- Optional layout to include into ItemLikeUnlikeLayout, when item is AA scene (or going to AA scene) --> 
 	<attr name="ItemLikeUnlikeLayout_layout" format="reference"/>
+	
+	<!-- Style for enabled/disabled Chromecast button in menu. Also used in OptionCCDisabled/OptionCCInMenu/OptionCCMainUIAndInMenu --> 
+	<attr name="CcButton_NavbarExtensionMenuLine" format="reference"/>
+	
+	<!-- Style for enabled/disabled Chromecast button on main screen. Also used in OptionCCDisabled/OptionCCInMenu/OptionCCMainUIAndInMenu --> 
+	<attr name="CcButton_MainUI" format="reference"/>
+	<attr name="CcButton_MainUI_scenes_playing" format="reference"/>
+	<attr name="CcButton_MainUI_scenes_vis_w_ui" format="reference"/>
+	<attr name="CcButton_MainUI_scenes_invisible" format="reference"/>
+		
+	<!-- This depends on theme opts, e.g. this may be different for Alt + PlainSeekbar vs just PlainSeekbar -->
+	<attr name="PlainSeekbar_buttons_offset" format="dimension"/>
+	<!-- This depends on theme opts, e.g. this may be different for Alt + PlainSeekbar vs just PlainSeekbar -->
+	<attr name="PlainSeekbar_common_marginBottom" format="dimension"/>
+	<!-- This depends on theme opts, e.g. this may be different for Alt + PlainSeekbar vs just PlainSeekbar -->
+	<attr name="PlainSeekbar_marginBottom" format="dimension"/>
 						
 			
 	<!-- Styles, applied to ListWidget internals (e.g. LayoutEngines/HeaderEngines/etc.) -->
@@ -631,6 +666,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<declare-styleable name="HtmlTextView">
 		<attr name="html" format="string"/>
+		<attr name="html_2" format="string"/>
 		<attr name="drawableTint"/>
 	</declare-styleable>	
 	

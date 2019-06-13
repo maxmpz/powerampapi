@@ -37,10 +37,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopWaveseek_maxHeight">164dp</dimen>
 	<dimen name="TopHelpSmaller_textSize">12dp</dimen>
 	
-	<!-- Alt -->
-	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-2dp</dimen>
-	<dimen name="Alt_TopAABounds_marginBottom">68dp</dimen><!-- NOTE: TopSubAAButton is attached to TopAABounds bottom -->
-	<dimen name="Alt_TopSubAAButtons_marginTop">4dp</dimen>
+	<!-- Alt: PF1 492x736 -->
 	<dimen name="Alt_aaMaxSize">420dp</dimen>
 	
 	<dimen name="Alt_TopPlay_maxSize">80dp</dimen>

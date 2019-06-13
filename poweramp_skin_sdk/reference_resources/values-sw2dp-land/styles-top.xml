@@ -35,23 +35,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="ListSubstyle" parent="ListSubstyleBase">
-		<item name="textHeaderSize">190dp</item>
-		<item name="headerSize">200dp</item>
-		<item name="humanCatHeaderSize">200dp</item>
+		<item name="textHeaderSize">158dp</item>
+		<item name="headerSize">168dp</item>
+		<item name="humanCatHeaderSize">148dp</item>
 		<item name="aaGravity">left</item>
 		<item name="aaMarginBottom">?bottom_navbar_bounds_size</item>
 		<item name="aaSideItemNum">2</item>
 	</style>
 	
 	<style name="TopWaveseekLayout">
-		<item name="android:layout_height">180dp</item>		
-		<item name="layout_attachBottom">@+id/meta_info_layout</item>
+		<item name="android:layout_height">160dp</item>		
+		<!-- <item name="layout_attachBottom">@+id/meta_info_layout</item> -->
+		<item name="layout_gravityTarget">@id/aa_bounds</item>
+		<item name="android:layout_gravity">center_vertical</item>
 		<item name="layout_attachLeft">@+id/aa_bounds</item>
 		<item name="layout_attachRight">inset</item>
-		<item name="android:paddingBottom">8dp</item>
+		<!-- <item name="android:paddingBottom">8dp</item> -->
 		<item name="android:clickable">true</item><!-- Clickable to avoid touching trough it and moving AA/List -->
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item>
+		<!-- <item name="android:background">#f00</item> -->
 	</style>
 		
 	<style name="TopMetaInfoLayout">

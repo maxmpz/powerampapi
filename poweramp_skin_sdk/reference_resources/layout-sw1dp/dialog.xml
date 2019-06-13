@@ -224,14 +224,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Frame: on screen -->
 
 		<SceneParams
-			style="?DialogFrameStyle_scene_dialog_in"
+			style="?DialogFrame_scene_dialog_in"
 			w:scene="@id/scene_dialog_in" 
 			w:scene_2="@id/scene_dialog_in_progress"
 			w:scene_3="@id/scene_dialog_in_toast" 
 		/>
 		<!-- Frame: wrapping content -->
 		<SceneParams
-			style="?DialogFrameStyle_scene_dialog_in"
+			style="?DialogFrame_scene_dialog_in"
 			w:scene="@id/scene_dialog_in_loading" 
 		/>
 		<!-- Frame: out of screen -->

@@ -23,19 +23,49 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-
+	<!-- NOTE: these optional styles applied to theme before other skin-dependent style overrides, thus skin options always can override these as needed -->
+	
 	<!-- Applied (over main theme style) when rating is enabled and set to stars -->
 	<style name="OptionRatingStars">
 		<item name="ItemLikeUnlikeLayout_layout">@layout/merge_item_aa_rating_stars</item>
+		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overriden for Alt layout -->
 	</style>
 	
 	<!-- Applied (over main theme style) when rating is enabled and set to like/unlike thumbs -->
 	<style name="OptionRatingLikeUnlike">
 		<item name="ItemLikeUnlikeLayout_layout">@layout/merge_item_aa_rating_thumbs</item>
+		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overriden for Alt layout -->
 	</style>
 	
 	<style name="OptionCounter">
 		<!-- Additional layout which is otherwise missing -->
 		<item name="TopContainer_extraLayout">@layout/merge_top_extralayout</item>
+	</style>
+	
+	<style name="OptionCCDisabled">
+		<item name="CcButton_MainUI">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_MainUI_scenes_playing">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_MainUI_scenes_vis_w_ui">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_MainUI_scenes_invisible">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine_disabled</item>
+	</style>
+		
+	<style name="OptionCCInMenu">
+		<item name="CcButton_MainUI">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_MainUI_scenes_playing">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_MainUI_scenes_invisible">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_MainUI_scenes_vis_w_ui">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine</item>
+	</style>
+	
+	<style name="OptionCCMainUIAndInMenu">
+		<!-- NOTE: keeping default CcButton_MainUI* styles - it shows it in main UI by default -->
+		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine</item>
+	</style>
+	
+	<style name="OptionHeaderMeta">
+		<item name="ItemTrackMeta_scene_header">@style/ItemTrackMeta_scene_header_w_meta</item>
+		<item name="ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle_w_meta</item>
+		<item name="ItemTrackBackDecorTitle_scene_header_1">@style/ItemTrackBackDecorTitle_scene_header_1_w_meta</item>
 	</style>
 </resources>

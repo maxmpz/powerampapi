@@ -23,6 +23,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
+	<!-- arg1=0 => fastScan -->
+	<!-- NOTE: label/args can be changed e.g. for Playlists -->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/rescan"
 		style="?PopupMenuItem"
 		android:drawable="?rescan"
@@ -30,6 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/bus_app_cmd"
 		w:msgId="@id/cmd_app_rescan"
 		w:string="menu click"
+		w:arg1="0"
 		
 		android:text="@string/pref_rescan_folders"
 	/>
@@ -82,6 +85,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/clear_q"
 		
 		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_clear_q"
+	/>
+	
+	<com.maxmpz.widget.BusActionButton android:id="@+id/show_all"
+		style="?PopupMenuItem"
+		android:visibility="gone"
+		android:drawable="?redo"
+
+		w:busId="@id/list" 
+		w:msgId="@id/cmd_list_show_all"
+
+		android:text="@string/show_all"
 	/>
 	
 	<com.maxmpz.widget.BusActionButton android:id="@+id/clear"

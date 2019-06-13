@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.BusActionButton
+	<com.maxmpz.widget.BusActionButton android:id="@+id/delete"
 		style="?PopupMenuItem"
 		android:drawable="?delete"
 
@@ -80,7 +80,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.BusActionButton android:id="@+id/folder"
 		style="?PopupMenuItem50"
 		android:text="@string/folder_short"
-		android:drawable="?folders_24dp"
+		android:drawable="?folder_24dp"
 
 		w:busId="@id/list" w:msgId="@id/cmd_list_current_folder"
 	/>

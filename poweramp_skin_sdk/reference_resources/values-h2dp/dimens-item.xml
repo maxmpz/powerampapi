@@ -29,4 +29,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="dimen" format="float" name="scale_line2_scene_grid">.625</item>
 	
 	<dimen name="ItemLike_drawableSize">20dp</dimen>
+	
 </resources>

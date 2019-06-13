@@ -53,6 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
 	</com.maxmpz.widget.AlphaDisabledView>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_top_header" w:scene_5="@+id/scene_small"
+		w:scene_6="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
@@ -66,6 +67,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemHeaderButtonsBg_scene_header"
 	/>
 		
+
 	<com.maxmpz.widget.BusActionButton android:id="@+id/shuffle_button" 
 		style="?ItemHeaderShuffleButton"
 		w:busId="@id/list"
@@ -74,6 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
 	</com.maxmpz.widget.BusActionButton>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_top_header" w:scene_5="@+id/scene_small"
+		w:scene_6="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
@@ -95,6 +98,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
 	</com.maxmpz.widget.BusActionButton>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_top_header" w:scene_5="@+id/scene_small"
+		w:scene_6="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
@@ -119,6 +123,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
 	</com.maxmpz.widget.BusActionButton>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_top_header" w:scene_5="@+id/scene_small"
+		w:scene_6="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
@@ -132,8 +137,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemHeaderSelectButton_scene_header"
 	/>
 	
-	<!-- NOTE: moved menu to header-only layout, to avoid menu view on each item in list:
-		 - we don't use menu in list for now
-		 - it can't be "gone" as then header-to-(default)list animation doesn't look well (gone view stays with same left/right offset, and this is too much for header-list anim) 
-	-->
+	
+	<!-- Invisible to allow position anim -->
+	<com.maxmpz.widget.player.ScanProgress
+		style="?ItemHeaderScanProgress"
+		android:visibility="invisible"
+		android:tag="_DEBUG_"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+		style="?ItemHeaderScanProgress_scene_item_menu"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"  w:scene_3="@+id/scene_search_header" w:scene_4="@+id/scene_top_header"  
+		style="?ItemHeaderScanProgress_scene_header"
+	/>
+	<!-- NOTE: needed to avoid jump from/to grid scene -->
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_1_small"
+		w:baseScene="defaultScene"
+		android:visibility="invisible"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
+									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed" 
+		w:baseScene="defaultScene"
+		android:visibility="invisible"
+	/>
 </merge>

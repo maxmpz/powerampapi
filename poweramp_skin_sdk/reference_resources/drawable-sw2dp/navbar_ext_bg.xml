@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
-		android:exitFadeDuration="500"
-		android:enterFadeDuration="250"
-	>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
+	<!-- TODO: requires extra state for e.g. expanded state
 	<item w:state_toolbar_in_header="true">
 		<shape>
-			<!-- Empty. TODO: requires extra state for e.g. expanded state -->
+			
 		</shape>
 	</item>
-
+	-->
 	<item>
 		<shape>
 			<corners android:radius="?corners_navbar"/>

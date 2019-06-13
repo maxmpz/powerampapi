@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
+	
+	<TextView android:id="@+id/label"
+		android:visibility="gone"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		w:layout_consumeSpace="vertical"
+		android:layout_marginBottom="4dp"
+	/>
+	
+	<com.maxmpz.widget.FastTextView android:id="@+id/speaker"
+		style="@style/EqPresetAssignIcon"
+		android:drawable="?pre_speaker"
+	/>
+	<CheckBox android:id="@+id/bind_to_speaker"
+		style="@style/EqPresetAssignCheckbox"
+		android:text="@string/speaker" 
+	/>
+	
+	<com.maxmpz.widget.FastTextView android:id="@+id/wired"
+		style="@style/EqPresetAssignIcon"
+		android:drawable="?pre_wired"
+	/>
+	<CheckBox android:id="@+id/bind_to_wired"
+		style="@style/EqPresetAssignCheckbox"  
+		android:text="@string/wired_headset"
+	/>
+				
+	<com.maxmpz.widget.FastTextView android:id="@+id/bt"
+		style="@style/EqPresetAssignIcon"
+		android:drawable="?pre_bt"
+	/>
+	<CheckBox android:id="@+id/bind_to_bt" 
+		style="@style/EqPresetAssignCheckbox" 
+		android:text="@string/bluetooth_headset"
+	/>
+		
+	<com.maxmpz.widget.FastTextView android:id="@+id/usb"
+		style="@style/EqPresetAssignIcon"
+		android:drawable="?pre_usb"
+	/>
+	<CheckBox android:id="@+id/bind_to_usb" 
+		style="@style/EqPresetAssignCheckbox"
+		android:text="@string/device_usb"
+	/>
+		
+	<com.maxmpz.widget.FastTextView android:id="@+id/chromecast"
+		style="@style/EqPresetAssignIcon"
+		android:drawable="?pre_chromecast"
+	/>
+	<CheckBox android:id="@+id/bind_to_chromecast" 
+		style="@style/EqPresetAssignCheckbox"
+		android:text="@string/device_chromecast"
+	/>
+	
+	<com.maxmpz.widget.FastTextView android:id="@+id/other"
+		style="@style/EqPresetAssignIcon"
+		android:drawable="?pre_other"
+	/>
+	<CheckBox android:id="@+id/bind_to_other" 
+		style="@style/EqPresetAssignCheckbox"
+		android:text="@string/device_other"
+	/>
+
+
+	<TextView android:id="@+id/songs_label"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		w:layout_consumeSpace="vertical"
+		android:layout_marginTop="8dp"
+		android:layout_marginBottom="4dp"
+		android:text="@string/apply_to_songs_colon"
+	/>
+	
+	<com.maxmpz.widget.FastTextView android:id="@+id/song"
+		style="@style/EqPresetAssignIcon"
+		android:drawable="?pre_song"
+	/>
+	<CheckBox android:id="@+id/bind_to_song" 
+		style="@style/EqPresetAssignCheckbox"
+		android:text="@string/song"
+	/>
+	
+	<com.maxmpz.widget.FastTextView android:id="@+id/cat"
+		style="@style/EqPresetAssignIcon"
+		android:drawable="?pre_song"
+	/>
+	<CheckBox android:id="@+id/bind_to_cat" 
+		style="@style/EqPresetAssignCheckbox"
+	/>
+			
+</merge>

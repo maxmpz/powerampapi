@@ -45,6 +45,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorKnobBg" format="color"/>
 	<attr name="colorKnobDisabled" format="color"/>
 	<attr name="colorPreampBg" format="color"/>
-	
 	<attr name="colorTrackMeta" format="color"/>
+	
+	<attr name="colorSeekbarBg" format="color"/>	
+	<attr name="colorSeekbarProgress" format="color"/>
+	<attr name="colorSeekbarThumb" format="color"/>
 </resources>

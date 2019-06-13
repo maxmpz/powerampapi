@@ -123,7 +123,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogButtonsBarPaddingLR">16dp</item>
 		<item name="dialogButtonsBarPaddingTB">4dp</item>
 		
-		<item name="dialogCheckBig">@drawable/check_big</item>
+		<item name="check_48dp">@drawable/check_48dp</item>
+		<item name="fail_48dp">@drawable/fail_48dp</item>
+		
+		<item name="dialogCheckBig">?check_48dp</item>
 		
 		<item name="dialogPaddingTop">18dp</item><!-- 24dp NOTE: optically the same as padding left/right due to optical extra padding on text view -->
 		<item name="dialogContentPaddingLR">24dp</item><!-- 30dp -->
@@ -144,7 +147,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="BottomsheetDialog" parent="BaseDialog">
 		<item name="dragDirection">down</item>
 		<item name="DialogFrame">@style/BottomsheetDialogFrame</item>
-		<item name="DialogFrameStyle_scene_dialog_in">@style/BottomsheetDialogFrameStyle_scene_dialog_in</item>
+		<item name="DialogFrame_scene_dialog_in">@style/BottomsheetDialogFrame_scene_dialog_in</item>
 		<item name="DialogFrameContent">@style/DialogFrameContent</item>
 		<item name="DialogContent">@style/DialogContent</item>
 		<item name="DialogContentNoPadding">@style/DialogContentNoPadding</item><!-- REVISIT: remove, use DialogContent styles redefinition per dialog instead -->
@@ -154,7 +157,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dragDirection">up</item>
 		<item name="dialogAdjustToSoftKeyboard">false</item>
 		<item name="DialogFrame">@style/TopsheetDialogFrame</item>
-		<item name="DialogFrameStyle_scene_dialog_in">@style/TopsheetDialogFrameStyle_scene_dialog_in</item>
+		<item name="DialogFrame_scene_dialog_in">@style/TopsheetDialogFrame_scene_dialog_in</item>
 		<item name="DialogFrameContent">@style/DialogFrameContent</item>
 		<item name="DialogContent">@style/DialogContent</item>
 		<item name="DialogContentNoPadding">@style/DialogContentNoPadding</item>
@@ -165,11 +168,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dragDirection">up</item>
 		<item name="animTime">450</item>
 		<item name="DialogFrame">@style/CenteredDialogFrame</item>
-		<item name="DialogFrameStyle_scene_dialog_in">@style/CenteredDialogFrameStyle_scene_dialog_in</item>
+		<item name="DialogFrame_scene_dialog_in">@style/CenteredDialogFrame_scene_dialog_in</item>
 		<item name="DialogFrameContent">@style/CenteredDialogFrameContent</item>
 		<item name="DialogContent">@style/CenteredDialogContent</item>
 		<item name="DialogContentNoPadding">@style/CenteredDialogContentNoPadding</item>
 	</style>
+	
+	<style name="SmallerCenteredDialog" parent="CenteredDialog">
+		<item name="DialogFrame">@style/SmallerCenteredDialogFrame</item>
+		<item name="DialogFrame_scene_dialog_in">@style/SmallerCenteredDialogFrame_scene_dialog_in</item>
+	</style>
+	
 	
 	<style name="DialogShim">
 		<item name="android:layout_width">match_parent</item>
@@ -192,7 +201,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
 	</style>
-	<style name="BottomsheetDialogFrameStyle_scene_dialog_in">
+	<style name="BottomsheetDialogFrame_scene_dialog_in">
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -208,7 +217,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
 		<item name="android:layout_marginBottom">24dp</item><!-- Compensate for status bar slightly -->
 	</style>
-	<style name="TopsheetDialogFrameStyle_scene_dialog_in">
+	<style name="TopsheetDialogFrame_scene_dialog_in">
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -228,7 +237,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scaleY">0.975</item>
 		<!-- <item name="android:minWidth">300dp</item> --><!-- We don't want too narrow dialogs. Applied to all scenes (view property, not layout) -->
 	</style>
-	<style name="CenteredDialogFrameStyle_scene_dialog_in">
+	<style name="CenteredDialogFrame_scene_dialog_in">
 		<item name="android:layout_gravity">center</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -237,6 +246,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxHeight">@dimen/CenterDialogFrame_maxHeight</item>
 		<item name="scale">1.0</item>
 	</style>
+	<style name="SmallerCenteredDialogFrame" parent="CenteredDialogFrame">
+		<item name="layout_maxHeight">@dimen/SmallerCenterDialogFrame_maxHeight</item>
+	</style>
+	<style name="SmallerCenteredDialogFrame_scene_dialog_in" parent="CenteredDialogFrame_scene_dialog_in">
+		<item name="layout_maxHeight">@dimen/SmallerCenterDialogFrame_maxHeight</item>
+	</style>
+	
 	
 	<style name="CenteredDialogFrameContent">
 		<item name="android:layout_width">wrap_content</item>
@@ -303,7 +319,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">48dp</item>
 		<item name="android:layout_height">48dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:drawable">@drawable/check_big</item>
+		<item name="android:drawable">?check_48dp</item><!-- Also ?fail_48dp can be used -->
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableOnly">true</item>
 		<item name="layout_consumeSpace">horizontal</item>
@@ -446,6 +462,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:translationZ">?modal_translationZ</item>
 		<item name="android:outlineProvider">none</item>
 		<item name="shadeColor">?colorShade</item>
+	</style>
+	
+	<style name="DialogAlertDontShowAgainLP">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">16dp</item>
 	</style>
 				
 </resources>

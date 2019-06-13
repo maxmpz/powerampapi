@@ -26,14 +26,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: using app compat theme to avoid unexpected OEM system theme overrides  -->
 	
 	<style name="Base_ActivityTheme_Default" parent="@style/Theme.AppCompat.Light">
-				
+		<!--<item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item> NOTE: this may be required to support going under cutout hole on S10+ -->
+		
 		<item name="OptionRatingStars">@style/OptionRatingStars</item>
 		<item name="OptionRatingLikeUnlike">@style/OptionRatingLikeUnlike</item>
 		<item name="OptionCounter">@style/OptionCounter</item>
+		<item name="OptionCCDisabled">@style/OptionCCDisabled</item><!-- See also CcButton_MainUI/CcButton_NavbarExtensionMenuLine -->
+		<item name="OptionCCInMenu">@style/OptionCCInMenu</item>
+		<item name="OptionCCMainUIAndInMenu">@style/OptionCCMainUIAndInMenu</item>
+		<item name="OptionHeaderMeta">@style/OptionHeaderMeta</item>
 		
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>			
 		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>		
 		<item name="DialogForcedStyle">@style/Default_BaseDialogForcedStyle</item>
+		<item name="DialogInverseSystemUIStyle">@style/Default_DialogInverseSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
 				
 		<item name="android:windowNoTitle">true</item> 
 		<item name="windowNoTitle">true</item>
@@ -52,6 +58,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 -->
 		 
 		<!-- NOTE: some devices may always ignore navigation bar or status bar colors (LG) -->
+		<!-- Also see DialogInverseSystemUIStyle, Default_DialogInverseSystemUIStyle for inverted navigation/status bar colors (applied for dialogs when system ui should be inverted) -->
 		
 		<item name="android:statusBarColor">#0000</item><!-- Still may be used by Android. Either this, or statusBarBg should have some color, but not both -->
 		<item name="statusBarBg">#5000</item><!-- Used by TopFitsStatusBarView -->
@@ -146,6 +153,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorNavbarIconsLessContrast">#fff</item><!-- NOTE: not used in default theme -->
 		<item name="colorNavbarIcons">#FF585858</item>
 		<item name="colorBgNavbar">#fff</item>
+		<item name="colorBgTransparentNavbar">#7fff</item>
+		
+		<item name="colorSeekbarBg">#0000</item>
+		<item name="colorSeekbarProgress">#0000</item>
+		<item name="colorSeekbarThumb">#333</item>
+		
+		<item name="colorIconCC">#e8e8e8</item>
+		
+		
+		<item name="prev_cat_round">@drawable/prev_cat_round</item>
+		<item name="rw_round">@drawable/rw_round</item>
+		<item name="ff_round">@drawable/ff_round</item>
+		<item name="next_cat_round">@drawable/next_cat_round</item>
+		<item name="pause_round">@drawable/pause_round</item>
+		<item name="play_round">@drawable/play_round_100dp</item>
+		<item name="pause_small_narrow">@drawable/pause_small_narrow</item>
 		
 		<item name="defaultHiResAA">@drawable/gl_poweramp_logo_hd</item>
 		<item name="defaultLowResAA">@drawable/gl_poweramp_logo</item>
@@ -161,6 +184,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="pre_bt">@drawable/pre_bt</item>
 		<item name="pre_song">@drawable/pre_song</item>
 		<item name="pre_usb">@drawable/pre_usb</item>
+		<item name="pre_chromecast">@drawable/pre_chromecast</item>
 		<item name="pre_other">@drawable/pre_other</item>
 		
 		<item name="folder_cat_icon">@drawable/folder_16dp</item>
@@ -205,7 +229,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="meta_next_12dp">@drawable/next_12dp</item>
 		<item name="meta_songs_12dp">@drawable/song_12dp</item><!-- Small song icon used for item_track meta -->
+		<item name="keep_list_pos_12dp">@drawable/keep_list_pos_12dp</item>
+		<item name="keep_track_pos_12dp">@drawable/keep_track_pos_12dp</item>
+		<item name="keep_list_track_pos_12dp">@drawable/keep_list_track_pos_12dp</item>
+		
+		
 		<item name="settings_v">@drawable/settings_v_colored</item><!-- NOTE: used in some dialogs -->
+		<item name="check_48dp">@drawable/check_48dp</item>
+		<item name="fail_48dp">@drawable/fail_48dp</item>
 		
 		<item name="toast_excl">@drawable/toast_exclamation_tinted</item><!-- Toast exlcamation sign -->
 		<item name="toast_queue">@drawable/toast_queue_tinted</item>
@@ -214,7 +245,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Menu items -->
 		<item name="rescan">@drawable/refresh</item> 
-		<item name="list_options">@drawable/list_options</item>
+		<item name="list_options">@drawable/list_options_stroke</item>
 		<item name="add_to_pl">@drawable/add_to_pl_stroke</item>
 		<item name="info">@drawable/info</item>
 		<item name="send">@drawable/send_stroke</item>
@@ -226,11 +257,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="delete_dups">@drawable/del_dups</item>
 		<item name="clear_q">@drawable/clear_q</item>
 		<item name="clear">@drawable/clear_24dp</item>
+		<item name="redo">@drawable/redo_24dp</item>
 		
 		<item name="clear_q_24dp">@drawable/clear_q_stroke_24dp</item>
 		<item name="artists_24dp">@drawable/artists_stroke_24dp</item>
 		<item name="albums_24dp">@drawable/albums_stroke_24dp</item>
 		<item name="folders_24dp">@drawable/folders_stroke_24dp</item>
+		<item name="folder_24dp">@drawable/folder_stroke_24dp</item>
 		<item name="rename_24dp">@drawable/rename_24dp</item>
 		<item name="delete_24dp">@drawable/delete_stroke_24dp</item>
 		<item name="assign_eq_24dp">@drawable/assign_eq_24dp</item>
@@ -239,6 +272,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="changelog_24dp">@drawable/zap</item>
 		<item name="settings_24dp">@drawable/settings_24dp</item>
+		<item name="settings_alt_24dp">@drawable/settings_stroke_24dp</item>
 		<item name="support_24dp">@drawable/support</item>
 		
 		<item name="sort_type_24dp">@drawable/sort_type_24dp</item>
@@ -254,6 +288,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="star_3_8dp">@drawable/star_3_8dp</item>
 		<item name="star_4_8dp">@drawable/star_4_8dp</item>
 		<item name="star_5_8dp">@drawable/star_5_8dp</item>
+		
+		<!-- Android mediarouter icons -->
+		<item name="media_route">@drawable/mr_button_light</item>
+        <item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_light</item>
+        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_light</item>
+        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_light</item>
+        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_light</item>
+        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_light</item>
+        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_grey</item>
+        <item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_light</item>
+        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_light</item>
+        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_light</item>
 		
 		<!-- Android autocomplete items -->
 		<item name="android:listPreferredItemHeight">44dp</item>
@@ -335,6 +381,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_EditTagActivity">@style/dialog_EditTagActivity</item>
 		<item name="dialog_ExpiredActivity">@style/dialog_ExpiredActivity</item>
 		<item name="dialog_ChangelogActivity">@style/dialog_ChangelogActivity</item>
+		<item name="dialog_AudioInfoActivity">@style/dialog_AudioInfoActivity</item>
 		<item name="dialog_EqPresetAssignActivity">@style/dialog_EqPresetAssignActivity</item>
 		<item name="dialog_AddEqPresetActivity">@style/dialog_AddEqPresetActivity</item>
 		<item name="dialog_AddReverbPresetActivity">@style/dialog_AddReverbPresetActivity</item>
@@ -342,33 +389,94 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_EditNameActivity">@style/dialog_EditNameActivity</item>
 		<item name="dialog_MusicFoldersActivity">@style/dialog_MusicFoldersActivity</item>
 		<item name="dialog_AutoFindDialogActivity">@style/dialog_AutoFindDialogActivity</item>
-		<item name="dialog_TextAlertDialogActivity">@style/dialog_TextAlertDialogActivity</item>
+		<!--<item name="dialog_TextAlertDialogActivity">@style/dialog_TextAlertDialogActivity</item>-->
 		<item name="dialog_APMUnlockDialogActivity">@style/dialog_APMUnlockDialogActivity</item>
 		<item name="dialog_AudioBufferActivity">@style/dialog_AudioBufferActivity</item>
 		<item name="dialog_ListOptsActivity">@style/dialog_ListOptsActivity</item>
 		<item name="dialog_PlaylistSortActivity">@style/dialog_PlaylistSortActivity</item>
 		<item name="dialog_PlaylistSelectActivity">@style/dialog_PlaylistSelectActivity</item>
+		<item name="dialog_PlaylistShortcutActivity">@style/dialog_PlaylistShortcutActivity</item>
+		<item name="dialog_MediaRouteChooserActivity">@style/dialog_MediaRouteChooserActivity</item>		
+		<item name="dialog_MediaRouteControllerActivity">@style/dialog_MediaRouteControllerActivity</item>
 		<item name="dialog_LyricsActivity">@style/dialog_LyricsActivity</item>		
-				
 		<item name="dialog_MobirooDRMErrorActivity">@style/dialog_MobirooDRMErrorActivity</item>
+		<item name="dialog_PlaylistsExportActivity">@style/dialog_PlaylistsExportActivity</item>		
 		
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Whitepro_MoreButtons</item>
+		<item name="overlap_plain_seekbar">@style/ActivityTheme_Whitepro_PlainSeekbar</item>
+		<item name="overlap_transparent_navbar">@style/ActivityTheme_Whitepro_TransparentNavbar</item>
+		
+		<!-- Used for ActivityTheme_Whitepro_PlainSeekbar, overridden by ActivityTheme_Whitepro_AltLayout  -->
+		<item name="PlainSeekbar_buttons_offset">@dimen/PlainSeekbar_buttons_offset</item>
+		<item name="PlainSeekbar_marginBottom">@dimen/PlainSeekbar_marginBottom</item>
+		<item name="PlainSeekbar_common_marginBottom">@dimen/PlainSeekbar_common_marginBottom</item>
+		
+		<!-- By default, we're showing Chromecast button in main UI, though, this is overridden by OptionCCDisabled/OptionCCInMenu -->
+		<item name="CcButton_MainUI">@style/CcButton_MainUI</item>
+		<item name="CcButton_MainUI_scenes_playing">@style/CcButton_MainUI_scenes_playing</item>
+		<item name="CcButton_MainUI_scenes_vis_w_ui">@style/CcButton_MainUI_scenes_vis_w_ui</item>
+		<item name="CcButton_MainUI_scenes_invisible">@style/CcButton_MainUI_scenes_invisible</item>
+		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine_disabled</item>
 	</style>
 	
 	
 	<style name="ActivityTheme_White" parent="Base_ActivityTheme_Default">
 	</style>
 	
+	<style name="Default_DialogInverseSystemUIStyle">
+		<item name="android:navigationBarColor">@android:color/black</item>
+		<item name="android:windowLightNavigationBar">false</item>
+		<item name="windowLightNavigationBar">false</item> 
+		<item name="android:navigationBarDividerColor">#08000000</item>
+	</style>
 	
 	<!-- An overlay style -->
+	<!-- Inverses navbar -->
 	<style name="ActivityTheme_Whitepro_ForceLightNavbar">
 		<!-- The code below makes navigation bar light -->
 		<item name="android:navigationBarColor">@android:color/white</item>
 		<item name="android:windowLightNavigationBar">true</item>
 		<item name="windowLightNavigationBar">true</item> 
 		<item name="android:navigationBarDividerColor">#08000000</item>
-	</style>	
+		<item name="overlap_transparent_navbar">@style/ActivityTheme_Whitepro_TransparentLightNavbar</item>
+	</style>
+	
+	<!-- An overlay style -->
+	<!-- Overriden for 26+ -->
+	<style name="ActivityTheme_Whitepro_TransparentNavbar">
+		<item name="android:windowTranslucentNavigation">true</item>
+		
+		<item name="Navbar">@style/Navbar_transparentNavbar</item>
+		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
+		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+		<item name="SelectionMenuSubcontainer_scenes_hidden">@style/SelectionMenuSubcontainer_scenes_hidden_transparentNavbar</item>
+	</style>
+	<style name="ActivityTheme_Whitepro_TransparentLightNavbar" parent="ActivityTheme_Whitepro_TransparentNavbar">
+	</style>
+	
+	<!-- No need to override all scenes, as we change just background, which is not changed by scenes for Poweramp Navbar.
+	     We also derive from our skin Navbar style to reuse previous modification (e.g. margins) -->
+	<style name="Navbar_transparentNavbar" parent="Navbar">
+		<item name="android:background">@drawable/navbar_transparent_bg</item><!-- NOTE: @null won't work here, as this will make navbar a non-drawing view, thus, no scene background change will happen -->
+		<item name="applyViewParams">true</item>
+		<item name="android:elevation">0px</item>
+	</style>
+	<style name="Navbar_scene_navbar_1line_sheet_transparentNavbar" parent="Navbar_scene_navbar_1line_sheet">
+		<item name="android:background">@drawable/navbar_bg</item><!-- Apply white background for scenes, so navbar has visible background in lists and when expanded -->
+		<item name="applyViewParams">true</item><!-- Enables background changes for scene -->
+		<item name="android:elevation">?navbar_elevation</item>
+	</style>
+	<style name="Navbar_scene_navbar_2lines_transparentNavbar" parent="Navbar_scene_navbar_2lines">
+		<item name="android:background">@drawable/navbar_bg</item>
+		<item name="applyViewParams">true</item>
+		<item name="android:elevation">?navbar_elevation</item>
+	</style>
+	<style name="SelectionMenuSubcontainer_scenes_hidden_transparentNavbar" parent="SelectionMenuSubcontainer_scenes_hidden">
+		<item name="jumpVisibility">false</item><!-- Avoid jumping visibility, let it properly fade -->
+	</style>
+		
+			
 	
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Whitepro_StaticSeekbar">
@@ -376,11 +484,31 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="waveseek_elapsedbar">@drawable/narrow_elapsedbar</item>
 		<item name="TopWaveseek">@style/TopWaveseekStatic</item>
 	</style>
+	
+	<!-- An overlay style -->
+	<style name="ActivityTheme_Whitepro_LightButtons">
+		<item name="colorInverse">#000</item>
+		<item name="colorBgInverse">#fff</item>
+		<item name="colorBgInverseChecked">#ccc</item><!-- Used for checkable buttons. As we don't inverse text to white, use some grey for checked state -->
+		<item name="android:textColorPrimaryInverse">#000</item>
+		<item name="colorIconInverse">@null</item>
+		<item name="colorIconInverseForced">#000</item>
 		
+		<item name="prev_cat_round">@drawable/prev_cat_round_inv</item>
+		<item name="rw_round">@drawable/rw_round_inv</item>
+		<item name="ff_round">@drawable/ff_round_inv</item>
+		<item name="next_cat_round">@drawable/next_cat_round_inv</item>
+		<item name="pause_round">@drawable/pause_round_inv</item>
+		<item name="play_round">@drawable/play_round_inv_100dp</item>
+		<!-- NOTE: small pause is just tinted -->
+	</style>
+	
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Whitepro_MoreButtons">
 		<!-- Additional layout which is otherwise missing -->
 		<item name="TopWaveseekLayout_extraLayout">@layout/merge_topwaveseeklayout_extralayout</item>
+		
+		<!--<item name="TopPlay">@style/TopPlayMoreButtons</item>--><!-- NOTE: no need to override -->
 		
 		<item name="TopPause">@style/TopPauseMoreButtons</item>
 		<item name="TopPause_scene_playing">@style/TopPauseMoreButtons_scene_playing</item>
@@ -392,7 +520,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopTrackDuration_scene_playing">@style/TopTrackDurationMoreButtons_scene_playing</item>
 	</style>
 	
-
+	
+	<style name="TopWaveseek_disabled" parent="TopWaveseek">
+		<item name="android:enabled">false</item>
+		<item name="android:visibility">gone</item>
+		<item name="applyScene">false</item>
+	</style>
+		
 	
 	<style name="StartupActivity" parent="Base_ActivityTheme_Default">
 		<item name="android:windowBackground">@android:color/transparent</item>
@@ -410,6 +544,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- This style can be used to additionally override dialog forced styles. Dialog forced styles are styles which overrides main app theme --> 
 	<style name="Default_BaseDialogForcedStyle" parent="BaseDialogForcedStyle">
 	</style>
+	
 	
 	
 	<!-- Styles for Default theme -->
@@ -473,5 +608,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">16dp</item>
 		<item name="android:layout_width">140dp</item>
 		<item name="android:layout_height">wrap_content</item>
+		<item name="labelStyle">@style/VolumePanelRoundKnobLabel</item>
+		<item name="valueLabelStyle">@style/VolumePanelRoundKnobValueLabel</item>
+	</style>
+	
+	<style name="VolumePanelRoundKnobLabel" parent="EqRoundKnobLabel">
+		<item name="android:visibility">gone</item>
+	</style>
+	
+	<style name="VolumePanelRoundKnobValueLabel" parent="EqRoundKnobValueLabel">
+		<item name="android:textColor">?android:attr/textColorPrimary</item><!-- Make volume panel text color more pronounced as panel itself is semitransparent -->
+		<item name="android:textSize">@dimen/EqKnobLabelText_size</item>
+		<item name="android:layout_marginTop">14dp</item>
 	</style>
 </resources>

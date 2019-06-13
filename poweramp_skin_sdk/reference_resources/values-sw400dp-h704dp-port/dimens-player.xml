@@ -20,8 +20,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Pixel2 411x746, Nokia 7.1 411x750, A7 2018 411x773 -->
+	<!-- Leeco@8.1 411x707 -->
 	
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">411dp</dimen>
+	<dimen name="Alt_aaMaxSize">1000dp</dimen><!-- Basically no limit -->
 </resources>

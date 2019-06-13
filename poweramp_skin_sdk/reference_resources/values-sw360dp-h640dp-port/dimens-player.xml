@@ -20,6 +20,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
+	<dimen name="PlainSeekbar_common_marginBottom">8dp</dimen>
+	<dimen name="Alt_PlainSeekbar_common_marginBottom">8dp</dimen>
+	<dimen name="Alt_PlainSeekbar_marginBottom">-2dp</dimen>
+	
 	<!-- HTC U11 -->
 	<!-- Alt -->
 	<dimen name="Alt_aaMaxSize">356dp</dimen>	

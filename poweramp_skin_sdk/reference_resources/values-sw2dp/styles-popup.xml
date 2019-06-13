@@ -127,7 +127,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="PopupDialogListLayoutList"><!-- Used for separate dialogs with popup lists, e.g. for Playlist select dialog -->
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">@dimen/PopupLayoutList_height</item>
+		<item name="android:layout_height">match_parent</item>
 		<item name="android:scrollbars">vertical</item>
 		<item name="android:nestedScrollingEnabled">true</item>
 	</style>

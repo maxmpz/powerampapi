@@ -34,6 +34,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Applied (over main theme style) when track counter is enabled -->
 		<attr name="OptionCounter" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Chromecast buttons should be disabled completely. NOTE: default style shows CC button on top of main screen AA -->
+		<attr name="OptionCCDisabled" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Chromecast should be shown in main menu. NOTE: default style shows CC button on top of main screen AA -->
+		<attr name="OptionCCInMenu" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Chromecast should be shown in main UI AND main menu -->
+		<attr name="OptionCCMainUIAndInMenu" format="reference"/>
+
+		<!-- Applied (over main theme style) when meta should be shown in headers -->
+		<attr name="OptionHeaderMeta" format="reference"/>
 	</declare-styleable>
 	
 	<!-- Styles always applied for activities / dialogs -->
@@ -46,6 +58,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 		<!-- Forced styles for dialogs -->	
 		<attr name="DialogForcedStyle"/>
+		
+		<!-- Forced style for case when dark system ui (navigation/status bar) is needed for light theme, or 
+		     when light system ui is needed for dark theme.
+		     This usually happens in Settings, where Settings theme differs from main app theme, thus, dialogs may change system ui colors --> 
+		<attr name="DialogInverseSystemUIStyle"/>
 	</declare-styleable>
 	
 	
@@ -408,7 +425,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:singleLine"/>
 		<!-- Optional drawable -->
 		<attr name="android:drawable"/>
-		<!-- Padding before drawable when drawable is available. Can be negative. NOTE: paddingLeft is not applied to drawable (always applied to text)-->
+		<!-- Padding before drawable when drawable is available. Can be negative. NOTE: paddingLeft is not applied to drawable (always applied to the text)-->
 		<attr name="drawablePaddingStart" format="dimension"/>
 		<!-- Padding between drawable and text. Basically it's added to paddingLeft when drawable exists -->
 		<attr name="android:drawablePadding"/>
@@ -470,11 +487,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="lineBackground"/>
 		<attr name="android:textColor" />
 		<attr name="android:maxLines"/>
+		<!-- NOTE: prior SDK=22 it's not possible to detect @empty (or @null) vs missing attribute.
+		     For now, use #00000000 (#0000) color instead to indicate transition to no-background -->
 		<attr name="android:background"/>
 		<attr name="drawableTint"/>
 		<!-- NOTE: limited support for drawable transitions. For new drawable to appear, default scene should have some default drawable set
 			 Basically, that means we can transition between drawables, but we can't transition between no-drawable and drawable and vice-versa -->
 		<attr name="android:drawable"/>
+		
+		<!-- NOTE: supported by MarqueeFastTextView only -->
+		<attr name="android:ellipsize"/>
 	</declare-styleable>
 	
 	
@@ -495,12 +517,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- FastCheckBoxOnly is simplified check box, which is View-based (not TextView based, as standard Android checkbox), thus is much-much faster to layout and render
-		 in cases when no text is needed (as list items are)
+		 in cases when no text is needed (as list items are).
+		 Also can be a tristate checkbox
 	-->
 	<declare-styleable name="FastCheckBoxOnly">
 		<attr name="android:drawable"/>
 		<attr name="drawableTint"/>
 		<attr name="android:checked"/>
+		<attr name="tristate" format="boolean"/>
 	</declare-styleable>
 	
 	
@@ -515,19 +539,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- FastLayout (and variants, like SceneFastLayout) is strictly one-pass, one-measure per pass (thus, fast), supporting multiple
-		 layout paradigms within single layout, allowing major child layout manipulation with styles, without editing actual layout xmls
+		 layout paradigms within single layout, allowing major child layout manipulation with styles, without editing actual layout xmls.
+		 Most of the design decisions for FastLayout/FastLayout layout params are dictated by performance. The resulting layouts
+		 are faster vs Android basic layouts (LinearLayout/RelativeLayout), much faster than ConstraintLayout, and can be also used
+		 as replacement for FrameLayout as well  
 		 
 		 FastLayout can replace:
 		 - FrameLayout (not slower than FrameLayout, or faster, as FastLayout never remeassures children for MATCH_PARENT)
 		 - LinearLayout (can be implemented via layout_flex* or via layout_consumeSpace)
-		 - RelativeLayout
-		 - partially ConstraintLayout 
+		 - RelativeLayout (FastLayout is faster as it uses strictly one-pass, one measure per pass approach) 
+		 - partially ConstraintLayout (FastLayout is much faster) 
 		 - or combination of those in one layout
 		 
 		 FastLayout is focused on performance and thus has limitations due to strict "no-remeasure" approach:
-		 - views are layed-out in xml order
-		 - unless some view is referenced by other view, which triggers immediate laying out of such referenced view
-		 - this may cause cycles, which are invalid and will throw StackOverflowException
+		 - views are layed-out in xml order (some layout params may override the layout direction)
+		   - unless some view is referenced by other view, which triggers immediate laying out of such referenced view
+		     - this may cause cycles, which are invalid and will throw StackOverflowException
 		 
 		 FastLayoutLP are attribures for FastLayout child views. FastLayout itself has no extra attribures
 	--> 
@@ -579,7 +606,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		--> 
 		<attr name="layout_flexWeight" format="float"/>
 		
-		<!-- If true, this and all next flex views are layed out bottom-top in xml order -->
+		<!-- If true, this and all next flex views are layed out bottom-up in the xml order -->
 		<attr name="layout_flexReverse" format="boolean"/>
 		
 		<!-- layout_attach* attribute can attach view to:
@@ -909,9 +936,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="BusActionBehavior">
 		<attr name="busId" format="reference"/><!-- E.g. @id/list (== bus supporting view id) or @id/bus_gui -->
 		<attr name="msgId" format="reference"/><!-- E.g. @id/cmd_list_select_all -->
-		<attr name="longPressMsgId" format="reference"/><!-- E.g. @id/cmd_list_select_all -->
+		<attr name="longPressMsgId" format="reference"/><!-- E.g. @id/cmd_list_select_all. Send on long press and (if repeatLongPressPeriod > 0) periodically  -->
+		<attr name="longPressEndMsgId" format="reference"/><!-- Sent on long press end. Optional. Only valid if longPressMsgId is set -->
 		
-		<attr name="repeatLongPressPeriod" format="integer"/><!-- If non zero, repeated events sent each repeatLongPressPeriod ms -->
+		<attr name="repeatLongPressPeriod" format="integer"/><!-- If non zero, repeated longPressMsgId events sent each repeatLongPressPeriod ms -->
 		
 		<attr name="arg1" format="reference|integer|boolean|float|fraction|dimension|color"><!-- Optional argument #1 -->
 			<enum name="checkedState" value="-1"/><!-- If parent view is Chechable, then arg will have checked state (1==checked)) -->
@@ -931,6 +959,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="clickDelay" format="integer"/>
 		
 		<attr name="disableForStateBusId" format="reference"/><!-- See BusDisabledForStateBehavior -->
+		<attr name="firstPressToast" format="string|reference"/><!-- If set, toast msg will be shown for first ever press on this button. Preference is stored based on view id -->
 	</declare-styleable>
 	
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) to enable/disable views based on Poweramp state buses

@@ -21,6 +21,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<!-- Nexus 5x -->
+	<fraction name="TopAAItemRatio">96%</fraction>
+	
 	<!-- Alt -->
 	<dimen name="Alt_aaMaxSize">276dp</dimen>	
 </resources>

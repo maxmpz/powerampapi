@@ -20,7 +20,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
+	<!-- Non-Alt: LG V30 360x654, LG G6 360x644, Meizu Pro5 360x618 -->
+	
+	<dimen name="TopPlay_maxSize">82dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">80dp</dimen>
+	<dimen name="TopMediumButton_size">58dp</dimen> 
+	<dimen name="TopSmallButton_size">42dp</dimen>
+	
 	<!-- Meizu pro 5, Mi1 360x616, Redmi Note4 360x620, Mi5s 360x620, S7e 360x616, S4Active 360x615 -->
+	
+	<dimen name="PlainSeekbar_buttons_offset">26dp</dimen>
+	<dimen name="Alt_PlainSeekbar_buttons_offset">26dp</dimen>
+	
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">320dp</dimen>	
+	<dimen name="Alt_aaMaxSize">344dp</dimen>	
+	
+	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">0dp</dimen>
+	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">.85</item>
+	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
+	<dimen name="Alt_ListSubstyle_aaPaddingBottom">66dp</dimen>
+	<dimen name="Alt_TopAABounds_marginBottom">66dp</dimen>
+	
+	
 </resources>

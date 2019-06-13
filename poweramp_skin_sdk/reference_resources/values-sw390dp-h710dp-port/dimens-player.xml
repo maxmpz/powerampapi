@@ -20,15 +20,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Non-alt: PF1 392x736, Pixel2 411x746 -->
+	<!-- Redmi N5 392x714 -->
 	<dimen name="TopPlay_maxSize">100dp</dimen>
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">88dp</dimen>
 	<dimen name="TopPlayPauseBehind_size">75dp</dimen>
 	<dimen name="TopMediumButton_size">64dp</dimen>
 	<dimen name="TopSmallButton_size">48dp</dimen>
+	
+	<dimen name="PlainSeekbar_marginBottom">00dp</dimen>
+	<dimen name="PlainSeekbar_common_marginBottom">16dp</dimen>
 		
 	
-	<!-- PF1 392x736. Redmi5+ 392x714 Enough vertical space -->
+	<!-- Redmi5+ 392x714 Enough vertical space -->
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">420dp</dimen>	
+	<dimen name="Alt_aaMaxSize">420dp</dimen>
+	
+	<dimen name="Alt_TopPlay_maxSize">90dp</dimen>
+		
 </resources>

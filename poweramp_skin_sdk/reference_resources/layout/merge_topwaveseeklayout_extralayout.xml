@@ -49,13 +49,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 			
 	<!-- arg1="0" - rewind -->
+	<!-- REVISIT: use start seek/stop seek cmds instead -->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/rw"
 		style="?TopRw"
 		w:busId="@id/bus_player_cmd"
 		w:msgId="@id/cmd_player_play_prev_track"
-		w:longPressMsgId="@id/cmd_player_seek_step"
+		w:longPressMsgId="@id/cmd_player_begin_seek_jumps"
+		w:longPressEndMsgId="@id/cmd_player_end_seek_jumps"
 		w:arg1="0"
-		w:repeatLongPressPeriod="250"
 		
 		android:contentDescription="@string/previous_track"
 	/>
@@ -67,13 +68,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<!-- arg1="1" - forward -->	
+	<!-- REVISIT: use start seek/stop seek cmds instead -->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/ff"
 		style="?TopFf"
 		w:busId="@id/bus_player_cmd"
 		w:msgId="@id/cmd_player_play_next_track"
-		w:longPressMsgId="@id/cmd_player_seek_step"
+		w:longPressMsgId="@id/cmd_player_begin_seek_jumps"
+		w:longPressEndMsgId="@id/cmd_player_end_seek_jumps"
 		w:arg1="1"
-		w:repeatLongPressPeriod="250"
 		
 		android:contentDescription="@string/next_track"
 	/>

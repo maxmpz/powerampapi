@@ -66,6 +66,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpSmaller_paddingTB">6dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">12dp</dimen>
 	
+	<dimen name="PopupLayoutList_height">400dp</dimen>
+	
 	<!-- Alt -->
 	<dimen name="Alt_aaMaxSize">800dp</dimen>
 	

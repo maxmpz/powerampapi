@@ -20,7 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- NOTE layoutWidth/height of items are always ignored -->
-<com.maxmpz.widget.player.VisPanelFrameItemView 
+<com.maxmpz.audioplayer.widget.VisPanelItemView 
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	
@@ -32,12 +32,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<com.maxmpz.widget.FastCheckBoxOnly android:id="@+id/like"
 		style="?ItemVisLikeButton"
+		w:tristate="true"
 	/>
 	<SceneParams w:scene="@+id/scene_vis_item_list"
 		android:visibility="visible"
 		w:recalcChildren="on_end"		
 	/>
-		
+			
 	<!-- NOTE: SceneParams are needed for title/line2 for a bit better transition (otherwise they can jump due to non-processing by Scene) -->
 	
 	<com.maxmpz.widget.FastTextView android:id="@+id/title"
@@ -62,6 +63,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_vis_item_list"
 		android:visibility="visible"
 	/>
-		
 
-</com.maxmpz.widget.player.VisPanelFrameItemView>
+</com.maxmpz.audioplayer.widget.VisPanelItemView>

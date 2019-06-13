@@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	>
 		<tag android:id="@+id/header_button" android:value="1"/>
 	</com.maxmpz.widget.FastButton>
-	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_small" w:scene_3="@+id/scene_grid_1_alt" w:scene_4="@+id/scene_grid_1_alt_zoomed"
+	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_small" w:scene_3="@+id/scene_grid_1_alt" w:scene_4="@+id/scene_grid_1_alt_zoomed" w:scene_5="@+id/scene_1_small"
 		w:baseScene="defaultScene" 
 	/>
 	<SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid" w:scene_4="@+id/scene_grid_zoomed"
@@ -65,7 +65,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackAAPanel_scene_aa_playing"
 	/>
-	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_zoomed" w:scene_3="@+id/scene_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_header"
+	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_zoomed" w:scene_3="@+id/scene_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_header" w:scene_6="@+id/scene_1_small"
 		style="?ItemTrackAAPanel_scenes_hidden"  
 	/> 
 	<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" w:scene_3="@+id/scene_header" w:scene_4="@+id/scene_header_1"

@@ -29,7 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: SelectionMenuBehavior params can be applied here -->
 	<style name="SelectionMenuSubcontainer">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">100dp</item><!-- We need some default non-zero height, as initially nothing is in selection menu and it gets 0 height, thus, visibily resizing -->
+		<item name="android:layout_height">100dp</item><!-- We need some default non-zero height, as initially nothing is inside selection menu and it gets 0 height, thus, visibily resizing -->
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="layout_attachTop">100%</item>
@@ -46,7 +46,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: this is added to SelectionMenuSubcontainer scene params for defaultScene, so avoid layout params here -->
 	<style name="SelectionMenuSubcontainer_scenes_hidden">
 		<item name="recalcChildren">on_start</item>
-		<item name="jumpVisibility">true</item>
+		<item name="jumpVisibility">true</item><!-- Jumping visibility for a bit better hide animation -->
 	</style>
 	
 	<style name="SelectionMenuSubcontainer_scene_selection_menu">
@@ -132,6 +132,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">8dp</item>
 		<item name="layout_consumeSpace">horizontal|reset_auto</item>
 		<item name="android:textSize">12.5dp</item>
+		<item name="android:singleLine">true</item>
 		
 		<item name="drawablePosition">top</item>
 		<item name="drawableWidth">24dp</item>

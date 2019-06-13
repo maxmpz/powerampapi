@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: as HelpLayout is Scene by itself, it's own StateAnimParams (forId="parent") will be pushed into it, if placed inside -->
+<com.maxmpz.widget.player.HelpLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+	android:id="@+id/help_equ_reverb"
+	style="@style/TopHelpLayout"
+	w:enableStateAnim="true"
+>
+	<include android:layout="@layout/merge_help_eq_buttons"/>
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+		
+		w:help_anchor="@id/reverb_preset_button"
+		w:help_position="top"
+		
+		w:html="@string/h_reverb_presets"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelp"
+		
+		w:help_anchor="@id/navbar"
+		w:help_position="top"
+		
+		w:html="@string/h_navbar_list"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+</com.maxmpz.widget.player.HelpLayout>

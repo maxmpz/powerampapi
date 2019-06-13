@@ -27,7 +27,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopSelectionMenuContainer"
 	>
 		<!-- NOTE: layout_attachTop="100%" attaches top to bottom of parent (so we can slide in from bottom and back) -->
-		<!-- NOTE: see merge_selection_menu.xml for extra scene params for selection_menu_subcontainer -->
 		<com.maxmpz.widget.player.SelectionMenuLayout android:id="@+id/selection_menu_subcontainer"
 			style="?SelectionMenuSubcontainer"
 		>

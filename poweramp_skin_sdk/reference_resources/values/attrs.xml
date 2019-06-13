@@ -50,6 +50,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="dialog_SettingsLicenseActivity" format="reference"/>
 		<attr name="dialog_ExpiredActivity" format="reference"/>
 		<attr name="dialog_ChangelogActivity" format="reference"/>
+		<attr name="dialog_AudioInfoActivity" format="reference"/>
 		<attr name="dialog_EditNameActivity" format="reference"/>
 		<attr name="dialog_EqPresetAssignActivity" format="reference"/>
 		<attr name="dialog_AddEqPresetActivity" format="reference"/>
@@ -62,12 +63,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="dialog_PlaylistSortActivity" format="reference"/>
 		<attr name="dialog_ListOptsActivity" format="reference"/>
 		<attr name="dialog_PlaylistSelectActivity" format="reference"/>
+		<attr name="dialog_PlaylistShortcutActivity" format="reference"/>
+		<attr name="dialog_MediaRouteChooserActivity" format="reference"/>
+		<attr name="dialog_MediaRouteControllerActivity" format="reference"/>
 		<attr name="dialog_LyricsActivity" format="reference"/>
+		<attr name="dialog_PlaylistsExportActivity" format="reference"/>		
 								
 		<!-- REVISIT -->		
 		<attr name="dialog_MobirooDRMErrorActivity" format="reference"/>
 		
 		<attr name="overlap_more_buttons" format="reference"/>
+		<attr name="overlap_transparent_navbar" format="reference"/>
+		<attr name="overlap_plain_seekbar" format="reference"/>
 	</declare-styleable>
 	
 	

@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:privateScene="true"
 		w:enableStateAnim="true"
 	>
-		<com.maxmpz.widget.player.VisPanelFrame android:id="@+id/vis_panel_frame"
+		<com.maxmpz.audioplayer.widget.VisPanelFrame android:id="@+id/vis_panel_frame"
 			style="?VisPanelFrame"
 		>
 			<!-- NOTE: buttons are aligned to the right, thus, reveresed -->
@@ -59,9 +59,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				android:visibility="visible"
 			/>
 
-			<!-- w:msgId="@id/msg_player_milk_data_changed" NOTE: don't react on msg, as no message with sort is sent ATM. 
-				 msg_player_milk_data_changed is with arg1==0 which breaks selected icon -->
-			<!-- w:buttonsArg1="@array/milk_sort_modes_enum" -->
 			<com.maxmpz.widget.BusSelectablePopupButtonLayout
 				style="?VisSortButtonLayout"
 			
@@ -119,7 +116,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<SceneParams w:scene="@+id/scene_vispanel_expanded"
 				android:visibility="gone"
 			/>
-		</com.maxmpz.widget.player.VisPanelFrame>
+		</com.maxmpz.audioplayer.widget.VisPanelFrame>
 		
 		<SceneParams w:scene="@+id/scene_vispanel_expanded"
 			style="?VisPanelFrame_scene_vispanel_expanded"

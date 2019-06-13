@@ -76,25 +76,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="Alt_ListSubstyle" parent="Alt_ListSubstyle_Base">
-		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
+		<item name="aaItemBoundsMatchList">width</item>
 		
 		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
 		<item name="aaPaddingBottom">0dp</item>
 	</style>
 	
 	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
-		<item name="com.maxmpz.audioplayer:layout_matchDimension">widthToHeight</item>
+		<item name="layout_matchDimension">widthToHeight</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
 	</style>
 		
-	<style name="Alt_ItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">
-		<item name="com.maxmpz.audioplayer:layout_attachRight">parent</item>
-		<item name="com.maxmpz.audioplayer:layout_attachLeft">@com.maxmpz.audioplayer:id/aa_image</item>
-		<item name="com.maxmpz.audioplayer:layout_attachTop">inset</item>
-		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+	<style name="Alt_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachLeft">@id/aa_image</item>
+		<item name="layout_attachTop">inset</item>
+		<item name="layout_attachBottom">@null</item>
 
 		<item name="android:layout_marginLeft">0dp</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginRight">8dp</item>
@@ -105,16 +105,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
 	</style>
 
-	<style name="Alt_ItemTrackLine2_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">
+	<style name="Alt_ItemTrackLine2_scene_aa" parent="ItemTrackLine2_scene_aa">
 		<item name="android:layout_marginLeft">0dp</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 
-		<item name="com.maxmpz.audioplayer:layout_attachRight">parent</item>
-		<item name="com.maxmpz.audioplayer:layout_attachLeft">@com.maxmpz.audioplayer:id/aa_image</item>
-		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
-		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachLeft">@id/aa_image</item>
+		<item name="layout_attachTop">@id/title</item>
+		<item name="layout_attachBottom">@null</item>
 		
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@drawable/alpha_rounded_popup</item>

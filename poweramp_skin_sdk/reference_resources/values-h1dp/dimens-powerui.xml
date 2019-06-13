@@ -26,9 +26,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<dimen name="TopBottomSheetDialogFrame_maxHeight">400dp</dimen>
 	<dimen name="CenterDialogFrame_maxHeight">500dp</dimen>
+	<dimen name="SmallerCenterDialogFrame_maxHeight">320dp</dimen>
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">600dp</dimen>
 	<dimen name="DialogFrame_maxWidth">780dp</dimen>
-
+	
 	<dimen name="HeadText_size">18sp</dimen>
 	<dimen name="SubheadText_size">12sp</dimen>
 	<dimen name="Text_size">14sp</dimen>

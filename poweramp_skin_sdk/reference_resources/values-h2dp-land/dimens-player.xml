@@ -28,8 +28,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopPlay_maxSize">72dp</dimen>
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
 	
+	<dimen name="PlainSeekbar_common_marginBottom">0dp</dimen>
+	<dimen name="Alt_PlainSeekbar_common_marginBottom">0dp</dimen>
+		
+	
 	<!-- Alt -->
 	<dimen name="Alt_TopPlay_maxSize">72dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
+	
+	<dimen name="Alt_aaMaxSize">360dp</dimen><!-- We're good with rather larget Alt AA size for land -->
 		
 </resources>

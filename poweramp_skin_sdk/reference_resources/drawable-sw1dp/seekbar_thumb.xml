@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="250">
+	<item android:state_pressed="true">
+		<!--
+		<shape android:shape="ring"
+			android:useLevel="false"
+			android:innerRadius="2.5dp"
+			android:thickness="2.5dp"
+			android:insetLeft="1dp"
+			android:insetRight="1dp"
+		>
+			<solid android:color="?colorSeekbarThumb" />
+			<size android:width="@dimen/AAA_Seek_thumb_size" android:height="@dimen/AAA_Seek_thumb_size" />
+		</shape>
+		-->
+		<shape android:shape="rectangle"
+			android:useLevel="false"
+		>
+			<solid android:color="?colorKnobPressed" />
+			<!-- <size android:width="@dimen/AAA_Seek_thumb_size" android:height="@dimen/AAA_Seek_thumb_size" /> -->
+			
+			<size android:width="16dp" android:height="12dp" />
+			<corners android:radius="5dp"/>
+		</shape>
+		
+	</item>
+	
+	<item>
+		<!--  
+			android:shape="ring" 
+			android:innerRadius="2dp"
+			android:thickness="1.5dp"
+			android:insetLeft="2dp"
+			android:insetRight="2dp"
+		-->
+		<shape android:shape="rectangle"
+			android:useLevel="false"
+		>
+			<solid android:color="?colorSeekbarThumb" />
+			<!-- <size android:width="@dimen/AAA_Seek_thumb_size" android:height="@dimen/AAA_Seek_thumb_size" /> -->
+			
+			<size android:width="16dp" android:height="8dp" />
+			<corners android:radius="4dp"/>
+		</shape>
+	</item>
+</selector>

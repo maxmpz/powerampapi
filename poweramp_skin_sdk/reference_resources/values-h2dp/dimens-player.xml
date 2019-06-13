@@ -58,10 +58,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpSmaller_marginTB">8dp</dimen>
 	
 	<!-- Alt -->
-	<dimen name="Alt_TopAABounds_marginBottom">70dp</dimen>
 	<dimen name="Alt_TopSubAAButtons_marginTop">2dp</dimen>
-	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-2dp</dimen>
-
+	
+	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-4dp</dimen>
+	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">.85</item>
+	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
+	<dimen name="Alt_ListSubstyle_aaPaddingBottom">62dp</dimen>
+	<dimen name="Alt_TopAABounds_marginBottom">62dp</dimen>
+		
 	<dimen name="Alt_TopPlay_maxSize">64dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
 	<dimen name="Alt_TopSmallButton_size">36dp</dimen>
@@ -72,4 +76,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<!-- Huge scaling -->
 	<dimen name="Alt_aaMaxSize">240dp</dimen>
+	
+	
+	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
+	
+	<dimen name="PlainSeekbar_buttons_offset">30dp</dimen>
+	<dimen name="Alt_PlainSeekbar_buttons_offset">30dp</dimen><!-- Keep it the same for smaller screens as otherwise buttons get too close to seekbar -->
+	
+	<dimen name="PlainSeekbar_marginBottom">-4dp</dimen>
+	<dimen name="PlainSeekbar_common_marginBottom">6dp</dimen>
+	<dimen name="Alt_PlainSeekbar_common_marginBottom">6dp</dimen>
+	<dimen name="Alt_PlainSeekbar_marginBottom">-4dp</dimen>
 </resources>

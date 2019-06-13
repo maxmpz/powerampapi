@@ -422,7 +422,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:outlineProvider">none</item>
 		<item name="android:textSize">16.5dp</item>
 		<item name="android:textStyle">bold</item>
-		<item name="android:ellipsize">end</item>
 		<item name="android:lineSpacingMultiplier">1.1</item>
 		
 		<item name="android:scaleX">.85</item>
@@ -432,16 +431,17 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
 		<item name="lineBackground">@null</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	<style name="ItemTrackTitle_scene_1" parent="ItemTrackTitle">
+		<item name="recalcChildren">dynamic</item>
 		<item name="layout_attachBottom">50%</item>
 		<item name="android:layout_marginBottom">-4dp</item>
 	</style>
 	<style name="ItemTrackTitle_scene_small">
 		<item name="baseScene">defaultScene</item>
-		<!-- <item name="recalcChildren">50%</item> -->
 		<item name="recalcChildren">dynamic</item>
 		
 		<item name="layout_compensateScale">0.85</item><!-- Needed here, as it's a layout param, thus, not copied by baseScene=defaultScene, layout params always copied as a whole -->
@@ -455,7 +455,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginBottom">-6dp</item><!-- Make title closer to line2 - by default distance is too large due to paddings for line background -->
 		<item name="layout_attachTop">parent</item>
 	</style>
-	
+	<style name="ItemTrackTitle_scene_1_small" parent="ItemTrackTitle_scene_small">
+		<item name="layout_attachTop">@null</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="layout_attachRight">@+id/meta</item>
+	</style>
 	<style name="ItemTrackTitle_scene_zoomed">
 		<!-- <item name="recalcChildren">on_start</item> -->
 		<item name="recalcChildren">dynamic</item>
@@ -474,7 +480,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_compensateScale">1</item>
 		
 		<item name="applyViewParams">true</item>
-		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
 		<item name="lineBackground">@null</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
@@ -497,9 +503,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_compensateScale">@dimen/scale_title_scene_grid</item>
 				
 		<item name="applyViewParams">true</item>
+		<item name="android:ellipsize">end</item>
 		<item name="lineBackground">@drawable/rounded_small</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:maxLines">1</item>
 	</style>
 	<style name="ItemTrackTitle_scene_grid_1" parent="ItemTrackTitle_scene_grid">
 		<item name="layout_attachBottom">parent</item>
@@ -514,14 +520,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachBottom">parent</item>
 		
-		<item name="applyViewParams">true</item>
 		<item name="lineBackground">@null</item>
 	</style>
 	<style name="ItemTrackTitle_scene_grid_zoomed" parent="ItemTrackTitle_scene_grid">
 		<item name="scale">.90</item>
 		<item name="layout_compensateScale">.90</item>
-		<item name="android:layout_marginLeft">16dp</item>
-		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
 	</style>
 	<style name="ItemTrackTitle_scene_grid_1_zoomed" parent="ItemTrackTitle_scene_grid_zoomed">
 		<item name="layout_attachBottom">parent</item>
@@ -537,7 +542,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachBottom">parent</item>
 		<item name="scale">.95</item>
 		<item name="layout_compensateScale">.95</item>
-		<item name="applyViewParams">true</item>
 		<item name="lineBackground">@null</item>
 	</style>
 	<!-- NOTE: parent is explicitly set to ItemTrackTitle to allow ItemTrackBackDecorTitle to derive from ItemTrackTitle_scene_header and have
@@ -561,16 +565,19 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_compensateScale">1</item>
 	
 		<item name="applyViewParams">true</item>
+		<item name="android:ellipsize">marquee</item>
 		<item name="lineBackground">@drawable/inverse_rounded_small</item>
 		<item name="android:textColor">?android:textColorPrimaryInverse</item>
-		<item name="android:maxLines">1</item><!-- NOTE: max lines here is needed to fix title position in scene_header, so back decor title can match position exactly -->
 	</style>
 	<style name="ItemTrackTitle_scene_header_1" parent="ItemTrackTitle_scene_header">
-		<item name="layout_attachBottom">parent</item>
-		<item name="android:layout_marginBottom">48.5dp</item>
+		<item name="layout_attachBottom">@+id/meta</item>
+		<item name="android:layout_marginBottom">2dp</item>
+		<!--<item name="layout_attachBottom">parent</item>-->
+		<!--<item name="android:layout_marginBottom">48.5dp</item>-->
 	</style>
 	<style name="ItemTrackTitle_scene_aa">
-		<item name="recalcChildren">on_start</item>
+		<!--<item name="recalcChildren">on_start</item>-->
+		<item name="recalcChildren">dynamic</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item>
@@ -583,9 +590,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_compensateScale">1</item>		
 		
 		<item name="applyViewParams">true</item>
+		<item name="android:ellipsize">marquee</item>
 		<item name="lineBackground">@drawable/inverse_rounded_small</item>
 		<item name="android:textColor">?android:textColorPrimaryInverse</item>
-		<item name="android:maxLines">1</item>
 	</style>
 	<style name="ItemTrackTitle_scene_aa_vis">
 		<item name="baseScene">@id/scene_aa</item>
@@ -605,9 +612,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_compensateScale">.95</item>
 		
 		<item name="applyViewParams">true</item>
+		<item name="android:ellipsize">marquee</item>
 		<item name="lineBackground">@empty</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:maxLines">1</item>
 	</style>
 	<style name="ItemTrackTitle_scene_item_menu_lu" parent="ItemTrackTitle_scene_item_menu"><!-- scene_item_menu_lu is used for AA item menu (with the like/unlike layout) -->
 		<!-- <item name="layout_attachBottom">@null</item>
@@ -651,7 +658,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:outlineProvider">none</item>
 		
 		<item name="android:visibility">visible</item>
+		<item name="applyViewParams">true</item>
 		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@null</item>
 	</style>
@@ -693,7 +702,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">visible</item>
 		
 		<item name="applyViewParams">true</item>
-		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@null</item>
 	</style>
@@ -702,7 +711,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<style name="ItemTrackLine2_scene_grid">
 		<item name="recalcChildren">dynamic</item>
-		
 		<!-- <item name="recalcChildren">50%</item> -->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -718,15 +726,15 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">visible</item>
 
 		<item name="applyViewParams">true</item>
+		<item name="android:ellipsize">end</item>
 		<item name="lineBackground">@drawable/rounded_small</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:maxLines">1</item>
 	</style>
 	<style name="ItemTrackLine2_scene_grid_zoomed" parent="ItemTrackLine2_scene_grid">
 		<item name="scale">.86</item>
 		<item name="layout_compensateScale">.86</item>
-		<item name="android:layout_marginLeft">16dp</item>
-		<item name="android:layout_marginBottom">16dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:layout_marginRight">16dp</item>
 	</style>
 	<style name="ItemTrackLine2_scene_grid_1">
@@ -747,38 +755,46 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
-		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachBottom">@+id/meta</item>
+		<item name="android:layout_marginBottom">2dp</item>
+		<!--<item name="layout_attachBottom">parent</item>-->
+		<!--<item name="android:layout_marginBottom">48.5dp</item>-->
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">12dp</item>
-		<item name="android:layout_marginBottom">48.5dp</item>
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="scale">1</item>
 		<item name="layout_compensateScale">1</item>
 		<item name="android:visibility">visible</item>
 		
 		<item name="applyViewParams">true</item>
+		<item name="android:ellipsize">marquee</item>
 		<item name="lineBackground">@drawable/inverse_rounded_small</item>
 		<item name="android:textColor">?android:textColorPrimaryInverse</item>
-		<item name="android:maxLines">1</item><!-- NOTE: max lines here is needed to fix title position in scene_header, so back decor title can match position exactly -->		
 	</style>
+	<!-- NOTE: ItemTrackLine2_scene_aa is modified for OptionRatingStars/OptionRatingLikeUnlike, where it spans to the right side, not just to @id/menu.
+	     See @style/ItemTrackLine2_scene_aa_w_rating -->
 	<style name="ItemTrackLine2_scene_aa">
-		<item name="recalcChildren">on_start</item>
+		<item name="recalcChildren">dynamic</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item>
-		<item name="layout_attachRight">@+id/menu</item>
 		<item name="layout_attachBottom">@+id/rating</item>
-		<item name="android:layout_marginLeft">24dp</item>
+		<item name="layout_attachRight">@+id/menu</item>
 		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginLeft">24dp</item>
 		<item name="android:layout_marginBottom">20dp</item>
 		<item name="scale">1</item>
 		<item name="layout_compensateScale">1</item>
 		<item name="android:visibility">visible</item>
 		
 		<item name="applyViewParams">true</item>
+		<item name="android:ellipsize">marquee</item>
 		<item name="lineBackground">@drawable/inverse_rounded_small</item>
 		<item name="android:textColor">?android:textColorPrimaryInverse</item>
-		<item name="android:maxLines">1</item>		
+	</style>
+	<style name="ItemTrackLine2_scene_aa_w_rating" parent="ItemTrackLine2_scene_aa">
+		<item name="layout_attachRight">parent</item>
+		<item name="android:layout_marginRight">24dp</item>
 	</style>
 	<style name="ItemTrackLine2_scene_aa_vis">
 		<item name="baseScene">@id/scene_aa</item>
@@ -800,9 +816,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">visible</item>
 						
 		<item name="applyViewParams">true</item>
+		<item name="android:ellipsize">marquee</item>
 		<item name="lineBackground">@empty</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:maxLines">1</item>
 	</style>
 	<style name="ItemTrackLine2_scene_item_menu_lu" parent="ItemTrackLine2_scene_item_menu"><!-- scene_item_menu_lu is used for AA item menu (with the like/unlike layout) -->
 		<item name="layout_gravityTarget">@null</item>
@@ -815,7 +831,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">@+id/aa_image</item>
-		<item name="layout_attachRight">parent</item>
+		<!--<item name="layout_attachRight">parent</item>-->
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">12dp</item>
 		
@@ -826,13 +842,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:textSize">10dp</item>
 		<item name="android:textStyle">bold</item>
 				
-		<item name="android:paddingLeft">9dp</item>
+		<item name="android:paddingLeft">12dp</item>
 		<item name="android:paddingRight">9dp</item>
 		<item name="android:paddingTop">7dp</item>
 		<item name="android:paddingBottom">7dp</item>
 		<item name="drawablePaddingStart">7.5dp</item>
-		<item name="android:drawablePadding">-8dp</item>
-		<item name="drawableWidth">12dp</item>
+		<item name="android:drawablePadding">-10dp</item>
+		<!--<item name="drawableWidth">12dp</item>-->
 		<item name="drawableHeight">12dp</item>
 		
 		<item name="android:transformPivotX">0px</item>
@@ -845,10 +861,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="scale">.9</item>
 		<item name="layout_compensateScale">0.9</item>
 				
+		<item name="applyViewParams">true</item>
 		<item name="android:maxLines">1</item>
 		<item name="android:textColor">?colorTrackMeta</item>
 		<item name="drawableTint">?colorTrackMeta</item>
 		<item name="lineBackground">@null</item>
+		<item name="android:background">#0000</item>
 	</style>
 	<style name="ItemTrackMeta_scene_small">
 		<item name="baseScene">defaultScene</item>
@@ -863,17 +881,26 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 						
 		<item name="scale">.9</item>
 		<item name="layout_compensateScale">.9</item>
+		
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?colorTrackMeta</item>
+		<item name="drawableTint">?colorTrackMeta</item>
+		<item name="android:background">#0000</item>
 	</style>
 	<style name="ItemTrackMeta_scene_1" parent="ItemTrackMeta">
 		<item name="layout_attachTop">50%</item>
 		<item name="android:layout_marginTop">-3dp</item>
+	</style>
+	<style name="ItemTrackMeta_scene_1_small" parent="ItemTrackMeta_scene_small">
+		<item name="layout_attachTop">@null</item>
+		<item name="android:layout_gravity">center_vertical</item>
 	</style>
 	<style name="ItemTrackMeta_scene_zoomed">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">@+id/aa_image</item>
 		<item name="android:layout_marginLeft">10dp</item>
-		<item name="layout_attachRight">parent</item>
+		<!--<item name="layout_attachRight">parent</item>-->
 		
 		<item name="layout_attachTop">@+id/line2</item>
 		<item name="android:layout_marginTop">-3dp</item>
@@ -882,6 +909,11 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		
 		<item name="scale">1</item>
 		<item name="layout_compensateScale">1</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?colorTrackMeta</item>
+		<item name="drawableTint">?colorTrackMeta</item>
+		<item name="android:background">#0000</item>
 	</style>
 	<style name="ItemTrackMeta_scene_1_zoomed" parent="ItemTrackMeta_scene_zoomed">
 		<item name="layout_attachTop">50%</item>
@@ -891,13 +923,18 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item>
-		<item name="layout_attachRight">parent</item>
+		<!--<item name="layout_attachRight">parent</item>-->
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_marginLeft">10dp</item>
 		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:layout_marginBottom">-8dp</item><!-- meta is invisible in scene_grid, but keeping meaningful offets from line2 position -->
 		<item name="scale">0.85</item>
 		<item name="layout_compensateScale">0.85</item>
+		
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?colorTrackMeta</item>
+		<item name="drawableTint">?colorTrackMeta</item>
+		<item name="android:background">#0000</item>
 	</style>
 	<style name="ItemTrackMeta_scene_grid_1" parent="ItemTrackMeta_scene_grid">
 		<item name="android:layout_marginTop">0dp</item>
@@ -915,19 +952,57 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTrackMeta_scene_grid_1_alt_zoomed" parent="ItemTrackMeta_scene_grid_zoomed">
 		<item name="android:layout_marginTop">0dp</item>
 	</style>
-	<style name="ItemTrackMeta_scene_header" parent="ItemTrackMeta_scene_aa">
-	</style>
 	<style name="ItemTrackMeta_scene_aa">
 		<item name="recalcChildren">on_start</item>
 		<item name="android:visibility">invisible</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item>
-		<item name="layout_attachRight">parent</item>
+		<!--<item name="layout_attachRight">parent</item>-->
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_marginLeft">24dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginBottom">36dp</item>
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
+		
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?colorTrackMeta</item>
+		<item name="drawableTint">?colorTrackMeta</item>
+		<item name="android:background">#0000</item>
+	</style>
+	<style name="ItemTrackMeta_scene_header_w_meta_base">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">visible</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginBottom">48.5dp</item>
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
+		
+		<item name="applyViewParams">true</item>
+		<item name="android:background">@drawable/inverse_rounded_small</item>
+		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+		<item name="drawableTint">?colorIconInverse</item>
+	</style>
+	<!-- Overriden in values-sw2dp-land -->
+	<style name="ItemTrackMeta_scene_header_w_meta" parent="ItemTrackMeta_scene_header_w_meta_base">
+	</style>
+	<!-- Meta is invisible, but it's still a valid anchor for line2 -->
+	<style name="ItemTrackMeta_scene_header">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">invisible</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">0px</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginBottom">48.5dp</item>
 		<item name="scale">1</item>
 		<item name="layout_compensateScale">1</item>
 	</style>
@@ -948,6 +1023,11 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="scale">1</item>
 		<item name="layout_compensateScale">1</item>
+		
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?colorTrackMeta</item>
+		<item name="drawableTint">?colorTrackMeta</item>
+		<item name="android:background">#0000</item>
 	</style>
 	<style name="ItemTrackMeta_scene_item_menu_lu" parent="ItemTrackMeta_scene_item_menu">
 		<!-- <item name="android:layout_marginTop">-13dp</item> -->
@@ -1241,14 +1321,20 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">-13dp</item>
 		<item name="layout_attachRight">@null</item>
 		<item name="layout_attachBottom">parent</item><!-- NOTE: ItemTrackBackDecorTitle lives in separate container, there is no any line2 to attach to -->
-		<item name="android:layout_marginBottom">82dp</item>
+		<item name="android:layout_marginBottom">84dp</item>
 		<!-- <item name="layout_compensateScale">1</item> -->
 		<item name="android:background">#0000</item>
+	</style>
+	<style name="ItemTrackBackDecorTitle_w_meta" parent="ItemTrackBackDecorTitle">
+		<item name="android:layout_marginBottom">112dp</item>
 	</style>
 	<style name="ItemTrackBackDecorTitle_scene_header_1" parent="ItemTrackBackDecorTitle">
 		<item name="android:layout_marginBottom">48.5dp</item>
 	</style>
-	
+	<style name="ItemTrackBackDecorTitle_scene_header_1_w_meta" parent="ItemTrackBackDecorTitle">
+		<item name="android:layout_marginBottom">77.33dp</item>
+	</style>
+		
 	<style name="ItemTrackBackDecorTitle_scene_header_back_decor" parent="ItemTopTextBackDecorTitle_scene_header_back_decor">
 		<item name="scale">1</item>
 		<item name="layout_compensateScale">1</item>
@@ -1410,6 +1496,28 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<style name="ItemHeaderSelectButton_scene_menu" parent="BlackListHeaderButton_scene_menu"></style>
 	
+	<style name="ItemHeaderScanProgress">
+		<item name="android:layout_height">24dp</item>	
+		<item name="android:layout_width">24dp</item>
+		<item name="layout_attachRight">@+id/menu</item>
+		<item name="android:layout_marginBottom">12dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="layout_attachBottom">parent</item>
+				
+	</style>
+	<style name="ItemHeaderScanProgress_scene_header" parent="ItemHeaderScanProgress">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemHeaderScanProgress_scene_item_menu">
+		<item name="android:layout_height">24dp</item>	
+		<item name="android:layout_width">24dp</item>
+		<item name="android:visibility">invisible</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachBottom">@null</item><!-- Avoid attaching to bottom in menu as it extends it too much -->
+	</style>
+	
 	<!-- Text Header -->
 
 	<style name="ItemTextHeaderScanProgress">
@@ -1425,6 +1533,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">top</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="layout_attachTopToTop">@+id/menu</item>
+		<item name="android:visibility">visible</item>
 	</style>
 	<style name="ItemTextHeaderScanProgress_scene_item_menu">
 		<item name="android:layout_height">24dp</item>	
@@ -1434,7 +1543,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:visibility">visible</item>
+		<item name="android:visibility">visible</item><!-- Visible for text -->
 	</style>
 
 	<style name="ItemTextHeaderShuffleButton" parent="WhiteStrokedListIconOnlyHeaderButton">
@@ -1494,7 +1603,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<!-- <item name="layout_attachTop">@+id/line2</item> -->
 		<item name="layout_attachBottom">parent</item>
 		<item name="layout_consumeSpace">horizontal</item>
-		<item name="android:disabledAlpha">0.1</item>
+		<item name="android:disabledAlpha">0.275</item><!-- was 0.1 - to low for light skin -->
 		<item name="android:visibility">invisible</item><!-- Invisible by default -->
 
 		<item name="scale">0.75</item>
@@ -1616,7 +1725,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="scale">1</item>
 	</style>
 	<style name="BlackListMenu_scene_aa" parent="BlackListMenu_scene_header">
-		<item name="android:layout_marginBottom">16dp</item><!-- Extra margin is needed due to AA item paddings -->
+		<item name="android:layout_marginBottom">12dp</item><!-- Extra margin is needed due to AA item paddings -->
 	</style>
 
 	
@@ -1657,6 +1766,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:visibility">visible</item><!-- Required as we hide it in e.g. top header scene -->
 	</style>
 	<style name="ItemTextAAImage_scene_header">
 		<item name="recalcChildren">dynamic</item>
@@ -2130,12 +2240,33 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:ellipsize">end</item>
 	</style>
 	
+	<!-- item_popup_simple_2line -->
+	<style name="ItemGeneric2LineTitle" parent="ItemGenericTitle">
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginBottom">-6dp</item>
+		<item name="android:textSize">15dp</item>
+		<!-- <item name="android:layout_marginTop">0dp</item> -->
+		<item name="layout_attachBottom">50%</item>
+	</style>
+	
+	<style name="ItemGeneric2LineLine2" parent="ItemGenericLine2">
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginTop">-6dp</item>
+		<item name="android:textColor">?android:textColorSecondary</item>
+		<!-- <item name="android:layout_marginTop">0dp</item>
+		<item name="layout_attachTop">50%</item> -->
+	</style>
+		
+	
 	<!-- popup list -->
 	
 	<style name="ItemPopupList" parent="ItemGenericBase">
 		<item name="android:background">@drawable/ripple_with_check_selector</item>
 		<item name="android:paddingRight">48dp</item><!-- NOTE: padding is needed for check icon in background -->
 		<item name="android:paddingLeft">16dp</item>
+	</style>
+	<style name="ItemPopupListMorePadding" parent="ItemPopupList">
+		<item name="android:paddingLeft">24dp</item>
 	</style>
 	
 	<style name="ItemPopupListImage" parent="ItemGenericImage">
@@ -2153,7 +2284,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:textSize">15dp</item>
 	</style>
 	
-	<style name="ItemPopupListLine2" parent="ItemGenericLine2">
+	<style name="ItemPopupListLine2" parent="ItemGenericLine2"><!-- NOTE: not used ATM -->
 		<item name="layout_attachTop">@null</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_marginTop">0dp</item>
@@ -2223,7 +2354,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">2dp</item>
 		<item name="android:visibility">gone</item>
 	</style>
-	
+		
 	<!-- eq -->
 	
 	<style name="ItemPopupListFrs" parent="ItemGenericImage">

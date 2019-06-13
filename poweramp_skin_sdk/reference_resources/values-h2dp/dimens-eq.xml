@@ -21,8 +21,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<!-- Base -->
+	
+	<dimen name="TopActionModeBar_marginTop">4dp</dimen>
+	<dimen name="TopActionModeBar_marginBottom">0dp</dimen>
+	
 	<dimen name="preamp_knob_width">56dp</dimen>
 	<dimen name="eq_frs_height">32dp</dimen>
+	<dimen name="EqFrequencyResponseScroller_marginTop">4dp</dimen><!-- Increased for longer screens -->
 	
 	<dimen name="linear_knob_text_size">12sp</dimen>
 	<dimen name="EqLinearKnob_paddingLR">4dp</dimen>
@@ -52,7 +57,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_marginSide">4dp</dimen>
 	<dimen name="EqButton_textSize">10dp</dimen>
 	
+	
+	<dimen name="EqVolPanel1_paddingTop">0px</dimen>
+	<dimen name="EqVolPanel1_paddingBottom">0px</dimen>
 	<dimen name="EqTempoKnobLayout_width">160dp</dimen>
+	
 	
 	<dimen name="EqRoundKnobLabel_maxWidth">90dp</dimen>
 	

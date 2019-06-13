@@ -32,19 +32,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PopupButtons_drawableSize">32dp</dimen>
 	<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>
 	
+	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
+	<dimen name="PlainSeekbar_common_marginBottom">12dp</dimen>
+	
 	<!-- Alt -->
-	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">4dp</dimen>
-	<dimen name="Alt_TopAABounds_marginBottom">78dp</dimen>
 	<dimen name="Alt_TopSubAAButtons_marginTop">7dp</dimen><!-- 8dp here is 1dp more than needed visually -->
 	
 	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.9</item>
 		
 	<dimen name="Alt_aaMaxSize">480dp</dimen>
-	<dimen name="Alt_TopWaveseek_paddingTB">8dp</dimen>
+	<dimen name="Alt_TopWaveseek_paddingTB">12dp</dimen>
 	
 	<dimen name="Alt_TopPlay_maxSize">100dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">92dp</dimen>
 	<dimen name="Alt_TopPlayPauseBehind_size">55dp</dimen>
 	<dimen name="Alt_TopWaveseek_maxHeight">184dp</dimen>
+	
 		
 </resources>

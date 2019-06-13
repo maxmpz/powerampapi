@@ -24,6 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
 	<!-- arg1=0 => fastScan -->
+	<!-- NOTE: label/args can be changed e.g. by PlaylistPage -->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/rescan"
 		style="?PopupMenuItem"
 		android:drawable="?rescan"
