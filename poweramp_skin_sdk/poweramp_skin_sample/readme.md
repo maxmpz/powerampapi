@@ -161,7 +161,13 @@ where skin_text_color1 is defined in strings.xml with html tags inside:
 <string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>
 ```
 
+### Skin Options Persistence
+Poweramp persists skin option to own preferences based on skin generated IDs for styles/attributes. Re-generating such IDs (e.g. in case of Clean build) will reset some
+or all options on user side as style/attribute IDs used as keys to persist options - and those will be changed.
 
+To avoid this issue, **[stable-ids.txt](stable-ids.txt)** file is used, which is automatically updated during skin build process with the new styles/attributes you add to your skin.
+Be sure to keep this file around. 
+The file initially contains the sample skin IDs (which won't generally interfere with your IDs). 
 
 ### Difference vs Poweramp v2 skins
 * Poweramp v2 skins are not compatible with Poweramp v3, Poweramp v3 skins are not compatible with Poweramp v2
