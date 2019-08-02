@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -55,6 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingTop">4dp</item>
 		<item name="android:paddingBottom">4dp</item>
 		<item name="android:clickable">true</item><!-- Clickable to avoid touching trough it and moving AA/List -->
+		<item name="android:focusable">false</item><!-- Not focusable, as it's clickable just to eat touches -->
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item>
 		<!-- <item name="android:background">#f00</item> -->
@@ -93,7 +94,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
 		<item name="layout_attachRight">parent</item>
 		<item name="layout_attachLeft">@id/aa_image</item>
-		<item name="layout_attachTop">inset</item>
+		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottom">@null</item>
 
 		<item name="android:layout_marginLeft">0dp</item><!-- Sync margins with AA image margins -->

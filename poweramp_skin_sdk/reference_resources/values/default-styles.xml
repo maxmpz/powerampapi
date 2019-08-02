@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -39,7 +39,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>			
 		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>		
 		<item name="DialogForcedStyle">@style/Default_BaseDialogForcedStyle</item>
-		<item name="DialogInverseSystemUIStyle">@style/Default_DialogInverseSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
+		<item name="DialogForceLightSystemUIStyle">@style/Default_DialogForceLightSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
+		<item name="DialogForceDarkSystemUIStyle">@style/Default_DialogForceDarkSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
 				
 		<item name="android:windowNoTitle">true</item> 
 		<item name="windowNoTitle">true</item>
@@ -58,7 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 -->
 		 
 		<!-- NOTE: some devices may always ignore navigation bar or status bar colors (LG) -->
-		<!-- Also see DialogInverseSystemUIStyle, Default_DialogInverseSystemUIStyle for inverted navigation/status bar colors (applied for dialogs when system ui should be inverted) -->
+		<!-- Also see DialogForceLightSystemUIStyle/DialogForceDarkSystemUIStyle for inverted navigation/status bar colors (applied for dialogs when system ui should be inverted) -->
 		
 		<item name="android:statusBarColor">#0000</item><!-- Still may be used by Android. Either this, or statusBarBg should have some color, but not both -->
 		<item name="statusBarBg">#5000</item><!-- Used by TopFitsStatusBarView -->
@@ -258,6 +259,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="clear_q">@drawable/clear_q</item>
 		<item name="clear">@drawable/clear_24dp</item>
 		<item name="redo">@drawable/redo_24dp</item>
+		<item name="export">@drawable/export_24dp</item>
 		
 		<item name="clear_q_24dp">@drawable/clear_q_stroke_24dp</item>
 		<item name="artists_24dp">@drawable/artists_stroke_24dp</item>
@@ -269,6 +271,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="assign_eq_24dp">@drawable/assign_eq_24dp</item>
 		<item name="playlist_24dp">@drawable/playlist_24dp</item>
 		<item name="play_24dp">@drawable/play_24dp</item>
+		<item name="search_24dp">@drawable/search</item>
 		
 		<item name="changelog_24dp">@drawable/zap</item>
 		<item name="settings_24dp">@drawable/settings_24dp</item>
@@ -360,11 +363,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="corners_miniplayer_aa">4dp</item>
 		
-		<!-- Dimensions -->
-		<item name="bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>
-		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>
-		
-		
 		<item name="VolumePanelPopup">@style/VolumePanelPopup</item>
 		<item name="VolumePanelFrame">@style/VolumePanelFrame</item>
 		<item name="VolumePanelKnobLayout">@style/VolumePanelKnobLayout</item>
@@ -406,7 +404,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_more_buttons">@style/ActivityTheme_Whitepro_MoreButtons</item>
 		<item name="overlap_plain_seekbar">@style/ActivityTheme_Whitepro_PlainSeekbar</item>
 		<item name="overlap_transparent_navbar">@style/ActivityTheme_Whitepro_TransparentNavbar</item>
+		<item name="overlap_navbar_offset">@style/ActivityTheme_Whitepro_OffsetNavbar</item>
 		
+		<!-- Navbar margins to allow easy overriding for overlap_navbar_offset option -->
+		<item name="navbar_marginLR">8dp</item>
+		<item name="navbar_marginB">8dp</item>
+		<!-- NOTE: modified by overlap_navbar_offset -->
+		<item name="bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>
+		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>
+		
+				
 		<!-- Used for ActivityTheme_Whitepro_PlainSeekbar, overridden by ActivityTheme_Whitepro_AltLayout  -->
 		<item name="PlainSeekbar_buttons_offset">@dimen/PlainSeekbar_buttons_offset</item>
 		<item name="PlainSeekbar_marginBottom">@dimen/PlainSeekbar_marginBottom</item>
@@ -424,13 +431,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_White" parent="Base_ActivityTheme_Default">
 	</style>
 	
-	<style name="Default_DialogInverseSystemUIStyle">
+	<style name="Default_DialogForceLightSystemUIStyle">
+		<item name="android:navigationBarColor">@android:color/white</item>
+		<item name="android:windowLightNavigationBar">true</item>
+		<item name="windowLightNavigationBar">true</item> 
+		<item name="android:navigationBarDividerColor">#08ffffff</item>
+		<item name="android:windowLightStatusBar">true</item>
+	</style>
+	<style name="Default_DialogForceDarkSystemUIStyle">
 		<item name="android:navigationBarColor">@android:color/black</item>
 		<item name="android:windowLightNavigationBar">false</item>
 		<item name="windowLightNavigationBar">false</item> 
 		<item name="android:navigationBarDividerColor">#08000000</item>
+		<item name="android:windowLightStatusBar">false</item>
 	</style>
-	
+		
 	<!-- An overlay style -->
 	<!-- Inverses navbar -->
 	<style name="ActivityTheme_Whitepro_ForceLightNavbar">
@@ -476,7 +491,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="jumpVisibility">false</item><!-- Avoid jumping visibility, let it properly fade -->
 	</style>
 		
-			
+	<!-- An overlay style -->
+	<style name="ActivityTheme_Whitepro_OffsetNavbar">
+		<item name="navbar_marginLR">12dp</item>
+		<item name="navbar_marginB">12dp</item>
+		<item name="bottom_navbar_bounds_size">@dimen/NavbarBounds_height_offset</item>
+		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines_offset</item>
+	</style>
 	
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Whitepro_StaticSeekbar">
@@ -621,4 +642,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textSize">@dimen/EqKnobLabelText_size</item>
 		<item name="android:layout_marginTop">14dp</item>
 	</style>
+	
+	<style name="Queue_RatingStars_8dp">
+		<item name="star_8dp">@drawable/queue_star_8dp</item>
+		<item name="star_2_8dp">@drawable/queue_star_2_8dp</item>
+		<item name="star_3_8dp">@drawable/queue_star_3_8dp</item>
+		<item name="star_4_8dp">@drawable/queue_star_4_8dp</item>
+		<item name="star_5_8dp">@drawable/queue_star_5_8dp</item>
+	</style>
+	<style name="Queue_RatingThumbs_8dp">
+		<item name="micro_low_rated">@drawable/queue_micro_low_rated</item>
+		<item name="micro_top_rated">@drawable/queue_micro_top_rated</item>
+	</style>
+		
 </resources>
+

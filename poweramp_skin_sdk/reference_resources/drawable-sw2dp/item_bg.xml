@@ -2,6 +2,9 @@
 
 <!-- These should be sorted in desc order as they are in fact bitset values (android selects first match) -->
 <!-- NOTE: see also item_playing_mark_bg.xml -->
+<!-- NOTE: this has 2 variants - up to Android 8 (drawable-sw2dp), and Android 8+ (drawable-sw2dp-v26).
+     Default is with focus drawable, for Android 8+, no focus drawable, as default focus drawable is used instead
+-->
 
 <level-list xmlns:android="http://schemas.android.com/apk/res/android"
 	android:exitFadeDuration="200">
@@ -25,6 +28,17 @@
 	<!-- Set when item needs touch feedback, e.g. on long press -->
 	<item android:minLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:maxLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:drawable="@drawable/ripple_rounded_medium"/>
 	
-	<!-- <item android:minLevel="0" android:maxLevel="0" android:drawable="@drawable/rounded_medium"/> -->
+	<!-- Focus is specifically handled. This is used ONLY for Androids prior to 8, where no default focus hightlight exists -->
+	<item android:minLevel="0" android:maxLevel="0">
+		<selector>
+			<item android:state_focused="true">
+				<shape android:shape="rectangle">
+					<solid android:color="?colorBgLight"/>
+					<corners android:radius="?corners_medium"/>
+				</shape>
+			</item>
+		</selector>	
+	</item>
 	
+	<!-- By default, we have null drawable for level==0, thus, improving performance -->
 </level-list>

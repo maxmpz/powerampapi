@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -59,10 +59,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Forced styles for dialogs -->	
 		<attr name="DialogForcedStyle"/>
 		
-		<!-- Forced style for case when dark system ui (navigation/status bar) is needed for light theme, or 
-		     when light system ui is needed for dark theme.
+		<!-- Forced style for case when light system ui (navigation/status bar) is needed for light theme.
 		     This usually happens in Settings, where Settings theme differs from main app theme, thus, dialogs may change system ui colors --> 
-		<attr name="DialogInverseSystemUIStyle"/>
+		<attr name="DialogForceLightSystemUIStyle"/>
+		<!-- Forced style for case when dark system ui (navigation/status bar) is needed for light theme.
+		     This usually happens in Settings, where Settings theme differs from main app theme, thus, dialogs may change system ui colors --> 
+		<attr name="DialogForceDarkSystemUIStyle"/>
 	</declare-styleable>
 	
 	
@@ -231,7 +233,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Scene params is a pseudo-view-tag (xml tag without actual view) which defines attributes for one or multiple scenes -->
 	<declare-styleable name="SceneParams">
-		<!-- If visibility is missing from given SceneParams, visibility is not changed -->
+		<!-- If visibility is missing from the given SceneParams, visibility is not changed -->
 		<attr name="android:visibility"/>
 		
 		<!-- NOTE: manipulating visibility, alpha + StateAnim alpha is hard, and some scenarios may not work properly due to conflicting or overlapping alpha values --> 
@@ -295,7 +297,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="dynamic" value="2" /><!-- Sync with SceneParams -->
 		</attr>
 		
-		<!-- Default is true. Used for disabling existing scene, e.g. _tag_scene_zero -->
+		<!-- Default is true. Used to disable existing scene, e.g. _tag_scene_zero -->
 		<attr name="applyScene" format="boolean"/>
 		
 		<!-- Default is false for non-zero/default scene and true for zero/default scene. If true, per view params will be applied for this scene (if supported by view) -->
@@ -305,7 +307,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="jumpVisibility" format="boolean"/>
 		
 		<!-- Apply scene params even if view is gone in both (from/to) scenes. Useful for views which are force-hidden by code, but still should differ in scenes -->
-		<attr name="applyEvenIfGone" format="boolean"/>
+		<attr name="applyEvenIfGone" format="boolean|integer">
+			<enum name="dontApplyIfGone" value="2"/>
+		</attr>
+		
+		<!-- Don't apply scene params if view is gone currently. If view is gone, it then can't participate in scenes until set to non-gone by code -->
+		<!--<attr name="dontApplyIfGone" format="boolean"/>-->
 	</declare-styleable>
 	
 	
@@ -448,7 +455,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="allowZeroHeight" format="boolean"/>
 		
 		<!-- 
-		When drawable exists, paddings and backgrrounds are distributes as follows:
+		When drawable exists, paddings and backgrounds are distributed as follows:
 		  (bg starts) drawablePaddingStart <drawable> drawablePadding (line bg starts) paddingLeft <text> paddingRight (line bg ends) (bg ends)
 		When no drawable, paddings are as usual:
 		  (bg starts)(line bg starts) paddingLeft <text> paddingRight (line bg ends)(bg ends)
@@ -539,10 +546,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- FastLayout (and variants, like SceneFastLayout) is strictly one-pass, one-measure per pass (thus, fast), supporting multiple
-		 layout paradigms within single layout, allowing major child layout manipulation with styles, without editing actual layout xmls.
-		 Most of the design decisions for FastLayout/FastLayout layout params are dictated by performance. The resulting layouts
+		 layout paradigms within single layout, allowing major child layout manipulation with styles without editing actual layout xmls.
+		 Most of the design decisions for FastLayout and its FastLayoutParams are dictated by performance. The resulting layouts
 		 are faster vs Android basic layouts (LinearLayout/RelativeLayout), much faster than ConstraintLayout, and can be also used
-		 as replacement for FrameLayout as well  
+		 as replacement for very simple layouts as FrameLayout due to the minimal overhead
 		 
 		 FastLayout can replace:
 		 - FrameLayout (not slower than FrameLayout, or faster, as FastLayout never remeassures children for MATCH_PARENT)
@@ -553,8 +560,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 
 		 FastLayout is focused on performance and thus has limitations due to strict "no-remeasure" approach:
 		 - views are layed-out in xml order (some layout params may override the layout direction)
-		   - unless some view is referenced by other view, which triggers immediate laying out of such referenced view
-		     - this may cause cycles, which are invalid and will throw StackOverflowException
+		   - if some view is referenced by other view that triggers immediate laying out of such referenced view
+		     - this may cause cycles and will throw StackOverflowException
 		 
 		 FastLayoutLP are attribures for FastLayout child views. FastLayout itself has no extra attribures
 	--> 
@@ -615,39 +622,29 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 - "parent" attaches to parent side, accounting for any "consumed" space (if any) from side(s) where view is attached or "gravitated" to 
 			 - percent value (e.g. 50%) positions view by offset calculated form parent width/height * percent.
 			   This works only if width/height is fixed on the FastLayout (i.e. not WRAP_CONTENT).
-			 - "none" - resets any previous value (e.g. set by parent style)
+			 - "inset" - like parent, but offsets by window inset on given side. Makes sense only for parent views which align with
+			   the appropriate screen side
+			 - "none" - resets any previous value (e.g. set by theme style)
 		-->
 	 	<!-- layout_attachLeft => attaches left edge of view to right edge of target view or to parent left, or to parent fraction width from left -->
 		<attr name="layout_attachLeft" format="reference|integer|fraction">
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
-			<!-- Behaves as "parent", unless parent is under Android navigation bar and supports special interface - then attaches to tje right inset == navigation bar to the right 
-			    (if navigation bar is on the right). Attaching to an inset will ignore parent padding. Special interface supported by ListWidget, TopNavSceneFastLayout. 
-			    Attaching to an inset makes sense for parent views taking whole screen dimension (width or height or both) or at least aligned to the appropriate screen side -->
 			<enum name="inset" value="-2"/>
 		</attr>
 		<attr name="layout_attachTop" format="reference|integer|fraction">
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
-			<!-- Behaves as "parent", unless parent is under status bar and supports special interface - then attaches to the top inset == status bar height.
-			     Attaching to an inset will ignore parent padding. Special interface supported by ListWidget, TopNavSceneFastLayout.
-			     Attaching to an inset makes sense for parent views taking whole screen dimension (width or height or both) or at least aligned to the appropriate screen side -->
 			<enum name="inset" value="-2"/>
 		</attr>
 		<attr name="layout_attachRight" format="reference|integer|fraction">
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
-			<!-- Behaves as "parent", unless parent is under Android navigation bar and supports special interface - then attaches to the left inset == navigation bar on the left 
-			     (if navigation bar on the left). Attaching to an inset will ignore parent padding. Special interface supported by ListWidget, TopNavSceneFastLayout.
-			     Attaching to an inset makes sense for parent views taking whole screen dimension (width or height or both) or at least aligned to the appropriate screen side -->
 			<enum name="inset" value="-2"/>
 		</attr>
 		<attr name="layout_attachBottom" format="reference|integer|fraction">
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
-			<!-- Behaves as "parent", unless parent is under Android navigation bar and supports special interface - then attaches to the bottom inset == navigation bar on the bottom 
-			     (if navigation bar on the bottom). Attaching to an inset will ignore parent padding. Special interface supported by ListWidget, TopNavSceneFastLayout.
-			     Attaching to an inset makes sense for parent views taking whole screen dimension (width or height or both) or at least aligned to the appropriate screen side -->
 			<enum name="inset" value="-2"/>
 		</attr>
 		
@@ -674,6 +671,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 		<attr name="layout_gravityTarget" format="reference|integer">
 			<enum name="parent" value="0"/>
+		</attr>
+		
+		<!-- Applies additional offsets for gravity on appripriate axis based on window insets -->
+		<attr name="layout_gravityOffset">
+			<flag name="insetLeft"   value="0x10000000"/>
+			<flag name="insetTop"    value="0x20000000"/>
+			<flag name="insetRight"  value="0x40000000"/>
+			<flag name="insetBottom" value="0x80000000"/>
 		</attr>
 		
 		
@@ -968,8 +973,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="disableForStateBusId"/><!-- E.g. @id/list -->
 		<attr name="disableForStateId" format="reference"/><!-- E.g. @id/state_list_selection_mode -->
 		<attr name="disableForStateId_2" format="reference"/><!-- Valid only if stateId defined -->
-		<!-- <attr name="stateId_3" format="reference"/> --><!-- Valid only if stateId defined -->
-		<!-- <attr name="stateId_4" format="reference"/> --><!-- Valid only if stateId defined -->
+		<attr name="enableForStateId" format="reference"/><!-- E.g. @id/state_list_selection_mode -->
 		<attr name="disableForStateMsgId" format="reference"/><!-- Can match stateIds or can be any other message -->
 		<attr name="disableForStateMsgId_2" format="reference"/><!-- Can match stateIds or can be any other message -->
 	</declare-styleable>
@@ -1160,6 +1164,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="playStateAnimTime" format="integer"/>
 		<!-- Other screes animation durations. Applied to UI, but not inside List. List has own animation durations -->
 		<attr name="animTime"/>
+		<!-- Alternative animation time to apply when animTime=0 and code still requires some forced anim (as for search results anim) -->
+		<attr name="forcedAnimTime" format="integer"/>
 		<!-- State anim duration, e.g. for state_seeking anim -->
 		<attr name="stateAnimTime" format="integer"/>
 		<!-- Vis enter/exit anim duration -->
@@ -1189,6 +1195,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Anim time to use if AA blur loaded with the delay -->
 		<attr name="aaBlurLongerUpdateAnimTime" format="integer"/>
+		
+		<!-- Anim time to use for cases as no-AA (null/solid color) to AA transition happens.
+		     NOTE: in-list transitions override this time to sync blur transition to in-list transition, so Search to Main screen
+		     is not affected, and the only controlled time here is Eq to Main screen
+		 -->
+		<attr name="aaBlurNoAAToAAAnimTime" format="integer"/>
 		
 	</declare-styleable>
 	

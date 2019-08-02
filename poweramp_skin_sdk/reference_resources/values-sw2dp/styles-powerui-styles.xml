@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -244,6 +244,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTextHeaderPlayButton">@style/ItemTextHeaderPlayButton</item>
 		<item name="ItemTextHeaderPlayButton_scene_header">@style/ItemTextHeaderPlayButton_scene_header</item>
 		<item name="ItemTextHeaderPlayButton_scene_menu">@style/ItemTextHeaderPlayButton_scene_menu</item>
+		<item name="ItemTextHeaderSearchButton">@style/ItemTextHeaderSearchButton</item>
+		<item name="ItemTextHeaderSearchButton_scene_header">@style/ItemTextHeaderSearchButton_scene_header</item>
+		<item name="ItemTextHeaderSearchButton_scene_menu">@style/ItemTextHeaderSearchButton_scene_menu</item>
+		
 		<item name="ItemTextHeaderSelectButton">@style/ItemTextHeaderSelectButton</item>
 		<item name="ItemTextHeaderSelectButton_scene_header">@style/ItemTextHeaderSelectButton_scene_header</item>
 		<item name="ItemTextHeaderSelectButton_scene_menu">@style/ItemTextHeaderSelectButton_scene_menu</item>
@@ -263,6 +267,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTextHeaderScanProgress">@style/ItemTextHeaderScanProgress</item>
 		<item name="ItemTextHeaderScanProgress_scene_item_menu">@style/ItemTextHeaderScanProgress_scene_item_menu</item>
 		<item name="ItemTextHeaderScanProgress_scene_header">@style/ItemTextHeaderScanProgress_scene_header</item>
+		<item name="ItemTextHeaderScanProgress_scene_top_header">@style/ItemTextHeaderScanProgress_scene_top_header</item>
 		
 		<item name="ItemAALEDecorLayout">@style/ItemAALEDecorLayout</item>
 		<item name="ItemAALEDecorText">@style/ItemAALEDecorText</item>
@@ -315,7 +320,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemHeaderSelectButton">@style/ItemHeaderSelectButton</item>
 		<item name="ItemHeaderSelectButton_scene_header">@style/ItemHeaderSelectButton_scene_header</item>
 		<item name="ItemHeaderSelectButton_scene_menu">@style/ItemHeaderSelectButton_scene_menu</item>
-		
+		<item name="ItemHeaderSearchButton">@style/ItemHeaderSearchButton</item>
+		<item name="ItemHeaderSearchButton_scene_header">@style/ItemHeaderSearchButton_scene_header</item>
+		<item name="ItemHeaderSearchButton_scene_menu">@style/ItemHeaderSearchButton_scene_menu</item>
+				
 		<item name="ItemTrackAAPanel">@style/ItemTrackAAPanel</item>
 		<item name="ItemTrackAAPanel_scene_aa">@style/ItemTrackAAPanel_scenes_hidden</item>
 		<item name="ItemTrackAAPanel_scene_aa_playing">@style/ItemTrackAAPanel_scenes_hidden</item>

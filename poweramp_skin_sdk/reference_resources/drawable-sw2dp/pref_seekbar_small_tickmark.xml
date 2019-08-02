@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- Selected - to the left of current value -->
+	<item android:state_selected="true">
+		<shape android:shape="rectangle">
+			<size android:width="3.725dp" android:height="3.725dp"/>
+			<solid android:color="?android:attr/colorControlActivated"/>
+			<corners android:radius="1.8625dp"/>
+		</shape>
+	</item>
+	<!-- To the right of current value. 
+		 NOTE: Android uses white_disabled_material (with alpha) + tint, so when we draw it with alpha again, we get overlapping area with different color,
+		 this doesn't work for 5.0, and alpha extraction/workaround is too complicated for this case -->
+	<item>
+		<shape android:shape="rectangle">
+			<size android:width="3.25dp" android:height="3.25dp"/>
+			<solid android:color="?android:attr/colorControlNormal"/>
+			<corners android:radius="1.625dp"/>
+		</shape>
+	</item>
+</selector>

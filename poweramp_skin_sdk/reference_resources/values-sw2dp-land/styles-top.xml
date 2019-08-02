@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -52,6 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachRight">inset</item>
 		<!-- <item name="android:paddingBottom">8dp</item> -->
 		<item name="android:clickable">true</item><!-- Clickable to avoid touching trough it and moving AA/List -->
+		<item name="android:focusable">false</item><!-- Not focusable, as it's clickable just to eat touches -->
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item>
 		<!-- <item name="android:background">#f00</item> -->

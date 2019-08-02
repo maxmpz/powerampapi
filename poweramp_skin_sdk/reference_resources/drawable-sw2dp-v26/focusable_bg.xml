@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: this has 2 variants - up to Android 8 (drawable-sw2dp), and Android 8+ (drawable-sw2dp-v26).
+     Default is with focus drawable, for Android 8+, no focus drawable, as default focus drawable is used instead -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- Empty -->
+</selector>	

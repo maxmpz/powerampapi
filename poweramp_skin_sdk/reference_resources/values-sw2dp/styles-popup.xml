@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -28,6 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:textSize">16dp</item>
@@ -175,6 +176,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingLeft">24dp</item>
 		<item name="android:paddingRight">24dp</item>
 		<item name="android:paddingBottom">16dp</item>
+		<item name="android:defaultFocusHighlightEnabled">false</item><!-- Disable, as we allow internal links to be focused, not view itself -->
 	</style>		
 	
 </resources>

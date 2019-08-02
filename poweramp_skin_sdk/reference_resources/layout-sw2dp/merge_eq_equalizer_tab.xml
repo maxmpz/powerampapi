@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.FastLayout
 			style="?EqPreampKnobLayout"
 		>
-			<com.maxmpz.widget.player.DSPLinearKnob android:id="@+id/preamp_knob"
+			<com.maxmpz.widget.player.DSPPreampLinearKnob android:id="@+id/preamp_knob"
 				style="?EqPreampLinearKnob"
 				android:text="@string/preamp"
 				w:param="@id/dsp_preamp"
@@ -149,7 +149,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:confirmText="@string/reset_knobs_on_screen"
 	/>
 	
-	<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/eq_bass_knob_layout"
+	<com.maxmpz.widget.player.DSPToneRoundKnobLayout android:id="@+id/eq_bass_knob_layout"
 		style="?EqBassToneKnobLayout"
 		
 		w:param="@id/dsp_bass_gain"
@@ -164,7 +164,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:importantForAccessibility="yes"
 	/>
 	
-	<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/eq_treble_knob_layout"
+	<com.maxmpz.widget.player.DSPToneRoundKnobLayout android:id="@+id/eq_treble_knob_layout"
 		style="?EqTrebleToneKnobLayout"
 
 		w:param="@id/dsp_treble_gain"

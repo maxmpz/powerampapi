@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -107,6 +107,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">10dp</item>
 		
 		<item name="android:clickable">true</item><!-- Avoid setPressed propagation from parent clicks -->
+		<item name="android:focusable">true</item>
 	</style>
 	<style name="PlainSeekbar_scene_playing">
 	</style>

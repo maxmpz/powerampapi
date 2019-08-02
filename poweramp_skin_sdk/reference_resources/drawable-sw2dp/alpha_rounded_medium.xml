@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-	<corners android:radius="?corners_medium"/>
-	<solid android:color="?colorBgPrimaryAlpha"/>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- NOTE: single shape with color selector fails on lower Androids -->
+	<item android:state_focused="true">
+		<shape>
+			<corners android:radius="?corners_medium"/>
+			<solid android:color="?attr/colorBgLight"/>
+		</shape>
+	</item>
+	<item>
+		<shape>
+			<corners android:radius="?corners_medium"/>
+			<solid android:color="?attr/colorBgPrimaryAlpha"/>
+		</shape>
+	</item>	
+</selector>

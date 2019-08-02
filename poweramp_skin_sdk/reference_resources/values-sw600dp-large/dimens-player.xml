@@ -43,7 +43,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="NavbarBounds_height">56dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines">108dp</dimen>
-	
+	<!-- Same for overlap_navbar_offset -->
+	<dimen name="NavbarBounds_height_offset">60dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">112dp</dimen>
+		
 	<dimen name="ListMenu_drawableSize">24dp</dimen>
 	
 		

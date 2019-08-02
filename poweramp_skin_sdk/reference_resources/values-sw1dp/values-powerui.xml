@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -47,6 +47,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="behavior_back_button"/><!-- Top level back button behavior -->
 	<item type="id" name="behavior_menu" />
 	<item type="id" name="behavior_player_connection"/>
+	<item type="id" name="behavior_scrolling"/>
 		
 	<!-- REVISIT: move to better place - player related ids needed for styles - otherwise appt can crash -->
 	
@@ -59,11 +60,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="_item_type_null_content"/><!-- No content placeholder for NullLayoutEngine --> 
 	<item type="id" name="_item_type_track"/>
-	<item type="id" name="_item_type_separator"/>
+	<item type="id" name="_item_type_separator"/><!-- NOTE: includes line2 button -->
 	<item type="id" name="_item_type_basic_header"/><!-- Debug -->
 	<item type="id" name="_item_type_text"/>
-	<!-- <item type="id" name="_item_type_aa_le_decor"/> -->
-	<!-- <item type="id" name="_item_type_miniplayer_track"/> -->
 	<item type="id" name="_item_type_menu"/>
 	<item type="id" name="_item_type_menu_shade"/>
 	
@@ -86,6 +85,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Popup menu -->
 	<item type="id" name="menu_placeholder_scene_menu"/>
+	<item type="id" name="popup_menu"/><!-- Modality id: any non-item popups -->
+	<item type="id" name="popup_menu_item"/><!-- Modality id: item popups -->
 	
 	<!-- Dialogs -->
 	<item type="id" name="dialog_shim"/>
@@ -155,13 +156,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_selection_mode"/><!-- arg1=0 disalbe, arg1=1 enable -->
 	<item type="id" name="cmd_list_up_nav"/>
 	<item type="id" name="cmd_list_search_text"/>
-	<item type="id" name="cmd_list_add_to_q"/>
 	<item type="id" name="cmd_list_delete"/>
-	<item type="id" name="cmd_list_info_dialog"/>
-	<item type="id" name="cmd_list_album_art"/>
 	
-	<item type="id" name="cmd_list_play"/>
-	<item type="id" name="cmd_list_shuffle"/>
 	
 	
 	<item type="id" name="cmd_list_prefer_aa_scene"/><!-- arg1 == scene_aa, scene_aa_playing, scene_aa_vis -->
@@ -173,6 +169,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="cmd_selection_menu_open"/><!-- arg1 == menu layout, arg2 == target bus for selection menu cmds -->
 	<item type="id" name="cmd_selection_menu_close"/><!-- no args => closes recent selection menu. Selective: arg1 == menu layout, arg2 == target bus => closes matching selection menu-->
+	<item type="id" name="cmd_selection_menu_focus"/>
+	
+	<item type="id" name="cmd_popup_menu_focus"/>
 	
 	
 	<item type="id" name="cmd_alert_dialog"/><!-- To alert dialog -->
@@ -188,9 +187,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_activity_on_destroy"/><!-- bus_gui -->
 	<item type="id" name="msg_activity_on_save"/><!-- onSaveInstanceState, bus_gui -->
 	
-	
-	
 	<!-- Other bus msgs -->
-	<item type="id" name="msg_version_info_changed"/>
+	<item type="id" name="msg_version_info_changed"/><!-- bus_app -->
 </resources>
 	

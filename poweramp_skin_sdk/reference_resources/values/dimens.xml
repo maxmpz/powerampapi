@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2019 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values/ -->
+<resources>
+	<bool name="app_large_heap">true</bool><!-- Up to SDK=24 -->
+	
+   	<dimen name="dialog_info_separator_margin">5dp</dimen>
+   	<dimen name="status_button_margin">-4dp</dimen>
+   	<dimen name="status_content_marginTop">8dp</dimen>
+   	<dimen name="status_icon_margin">0dp</dimen>
+   	<dimen name="status_big_line1_marginBottom">2dp</dimen>
+   	<dimen name="init_panel_width">280dip</dimen>
+   	<dimen name="help_hint_font_size">12sp</dimen>
+   	
+   	<!-- Tree -->
+	<dimen name="tree_item_height">48dp</dimen>
+	<dimen name="tree_item_2_line_height">64dp</dimen>
+	<dimen name="tree_item_indent_per_level">20dp</dimen>
+   	<!--<dimen name="dialog_music_folders_labelPaddingLR">20.33dip</dimen>-->
+	<dimen name="dir_tree_item_checkbox_width">@dimen/WRAP_CONTENT</dimen><!-- WRAP_CONTENT -->
+	<dimen name="dir_tree_item_checkbox_paddingLeft">10dp</dimen><!-- add some padding to help with touch presses -->
+   	<dimen name="dir_tree_item_paddingLeft">16dp</dimen>
+   	<dimen name="dir_tree_item_checkbox_paddingRight">4dp</dimen><!-- NOTE: some difference in checkbox default padding -->
+</resources>

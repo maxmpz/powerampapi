@@ -159,7 +159,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Blackpro_MoreButtons</item>
 		
-		<item name="DialogInverseSystemUIStyle">@style/ActivityTheme_Black_DialogInverseSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
+		<item name="DialogForceLightSystemUIStyle">@style/ActivityTheme_Black_DialogForceLightSystemUIStyle</item>
+		<item name="DialogForceDarkSystemUIStyle">@style/ActivityTheme_Black_DialogForceDarkSystemUIStyle</item>
 	</style>
 
 		
@@ -168,14 +169,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_Black" parent="Base_ActivityTheme_Black">
 	</style>
 	
-	<style name="ActivityTheme_Black_DialogInverseSystemUIStyle">
+	<!-- NOTE: changing statusbar background is not looking well on many devices, so not touching it here -->
+	<style name="ActivityTheme_Black_DialogForceLightSystemUIStyle">
 		<item name="android:navigationBarColor">@android:color/white</item>
 		<item name="android:windowLightNavigationBar">true</item>
 		<item name="windowLightNavigationBar">true</item> 
+		<item name="android:windowLightStatusBar">true</item>
 		<item name="android:navigationBarDividerColor">#08000000</item>
 	</style>
-	
-	
+	<style name="ActivityTheme_Black_DialogForceDarkSystemUIStyle">
+		<item name="android:navigationBarColor">@android:color/black</item>
+		<item name="android:windowLightNavigationBar">false</item>
+		<item name="windowLightNavigationBar">false</item> 
+		<item name="android:windowLightStatusBar">false</item>
+		<item name="android:navigationBarDividerColor">#08FFFFFF</item>
+	</style>
+		
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Blackpro_StaticSeekbar">
 		<item name="waveseek_bar">@drawable/inverse_narrow_bar</item>
@@ -211,4 +220,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
 		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
 	</style>
+	
+	<!-- An overlay style -->
+	<style name="ActivityTheme_Blackpro_SwapLand">
+		<!-- NOTE: applied in landscape -->
+	</style>
+	
 </resources>

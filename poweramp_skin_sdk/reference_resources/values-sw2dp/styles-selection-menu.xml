@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -39,6 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:elevation">?bar_elevation</item>
 		<item name="android:background">@drawable/navbar_ext_bg</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Clickable just to avoid touch-through -->
 		<item name="animTime">500</item>
 		<item name="animExitTime">200</item>
 		
@@ -75,6 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:gravity">left|center_vertical</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
@@ -100,6 +102,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">38dp</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="android:gravity">center</item>
 		<item name="android:padding">8dp</item>
@@ -148,6 +151,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="animOnClick">true</item><!-- REVISIT: not needed if I hide toolbar on clicks -->
 		<item name="android:duplicateParentState">false</item><!-- Parent can be clickable, but we don't want to duplicate presses on it -->
 		<item name="android:clickable">true</item><!-- Also enforces clickable state (FastButtons are not clickable by default) and ignores parent drawable hot spots -->
+		<item name="android:focusable">true</item>
 	</style>
 	<style name="SelectionListContextButton" parent="SelectionListContextButtonBase"></style>		
 </resources>

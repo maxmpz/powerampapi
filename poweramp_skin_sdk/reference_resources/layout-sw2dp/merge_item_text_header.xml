@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,6 +19,8 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<!-- NOTE: applied for various header scenes + scene_top_header
+     View actioan can't transition between header scenes and scene_top_header, but we still need load progress -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"	xmlns:tools="http://schemas.android.com/tools">
 	
 	<!-- NOTE: this view is never visible in default themes, but can be used in 3rd party skins -->
@@ -50,11 +52,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextHeaderScanProgress_scene_item_menu"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_top_header" 
-		w:baseScene="defaultScene"
-		android:visibility="visible"
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_top_header" w:scene_2="@+id/scene_search_header" 
+		style="?ItemTextHeaderScanProgress_scene_top_header"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header" 
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header"  
 		style="?ItemTextHeaderScanProgress_scene_header"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->
@@ -107,7 +108,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="invisible"
 	/>
 		
-	
+	<com.maxmpz.widget.BusActionButton android:id="@+id/search_button"
+		style="?ItemTextHeaderSearchButton"
+		w:busId="@id/list"
+		w:msgId="@id/cmd_list_target_search"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
+		style="?ItemTextHeaderSearchButton_scene_header"
+	/>
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_top_header"
+		style="?ItemTextHeaderSearchButton_scene_menu"
+	/>
+	<!-- NOTE: needed to avoid jump from/to grid scene
+	     NOTE: dontApplyIfGone needed here as it's can't be derived from the default scene -->
+	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_grid"
+		w:baseScene="defaultScene"
+		w:applyEvenIfGone="dontApplyIfGone"
+		android:visibility="invisible"
+	/>
+		
 	<com.maxmpz.widget.BusActionButton android:id="@+id/select_button"
 		android:text="@string/select"
 		style="?ItemTextHeaderSelectButton"
@@ -116,7 +135,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	>
 		<tag android:id="@+id/header_button" android:value="1"/>
 	</com.maxmpz.widget.BusActionButton>
-	<!-- <com.maxmpz.widget.SceneParams w:scene="@+id/scene_select" w:scene_2="@+id/scene_grid_select" w:baseScene="defaultScene"/> -->
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
 		style="?ItemTextHeaderSelectButton_scene_header"
 	/>
@@ -129,5 +147,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>
-	
 </merge>

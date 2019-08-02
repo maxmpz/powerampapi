@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -28,18 +28,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:visibility">gone</item>
 		<item name="android:outlineProvider">none</item>
 	</style>
 	
 	<style name="Navbar">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">@dimen/Navbar_height</item><!-- 48dp -->
+		<item name="android:layout_height">@dimen/Navbar_height</item><!-- ~48dp -->
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:layout_marginLeft">?navbar_marginLR</item>
+		<item name="android:layout_marginRight">?navbar_marginLR</item>
+		<item name="android:layout_marginBottom">?navbar_marginB</item>
 		<item name="android:clipToPadding">false</item>
 		<item name="android:elevation">?navbar_elevation</item>
 		<!-- <item name="android:forceHasOverlappingRendering">@bool/v28_forceHasOverlappingRendering</item> --><!-- True for Android 9+ -->
@@ -50,18 +51,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:layout_marginLeft">?navbar_marginLR</item>
+		<item name="android:layout_marginRight">?navbar_marginLR</item>
+		<item name="android:layout_marginBottom">?navbar_marginB</item>
 	</style>
 	<style name="Navbar_scene_navbar_2lines">
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:layout_marginLeft">?navbar_marginLR</item>
+		<item name="android:layout_marginRight">?navbar_marginLR</item>
+		<item name="android:layout_marginBottom">?navbar_marginB</item>
 	</style>
 	
 	<style name="NavbarExtension">
@@ -82,16 +83,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="NavbarExtensionLogo">
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_height">28dp</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:scaleType">center</item>
-		<item name="android:layout_marginLeft">4dp</item>
-		<item name="android:layout_marginRight">4dp</item>
-		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<!--<item name="android:layout_marginTop">4dp</item>-->
+		<item name="android:paddingTop">4dp</item>
+		
 		<item name="android:layout_gravity">top|center_horizontal</item>
 		<item name="android:drawable">@drawable/logo_navbar_hamburger</item>
 		<item name="drawableOnly">true</item>
 		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="clickDelay">@integer/activity_start_navbar_click_delay</item>
+		<item name="android:background">?android:selectableItemBackground</item>
 	</style>
 
 	<style name="NavbarExtensionLogoLabel">
@@ -103,10 +110,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">top|center_horizontal</item>
 		<item name="android:textStyle">italic</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textSize">14dp</item><!-- Fixed size to avoid overflowing for large text scale -->
 	</style>
 	
 	<style name="NavbarExtensionMenuLine">
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">44dp</item>
 		<item name="layout_consumeSpace">vertical</item>
@@ -161,6 +170,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawablePosition">forceGravity</item>
 		<item name="android:gravity">center</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		
 		<item name="android:minWidth">24dp</item>

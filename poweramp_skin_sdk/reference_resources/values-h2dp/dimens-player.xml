@@ -49,7 +49,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="NavbarBounds_height">48dp</dimen>
 	<!-- Navbar (2 lines scene) + bottom Navbar paddings => resulting anchoring point for other views -->
 	<dimen name="NavbarBounds_height_scene_navbar_2lines">98dp</dimen>
-
+	<!-- Same for overlap_navbar_offset -->
+	<dimen name="NavbarBounds_height_offset">52dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">102dp</dimen>
+	
 	<dimen name="ListMenu_drawableSize">20dp</dimen>
 	
 	<dimen name="TopHelpSmaller_textSize">10dp</dimen>

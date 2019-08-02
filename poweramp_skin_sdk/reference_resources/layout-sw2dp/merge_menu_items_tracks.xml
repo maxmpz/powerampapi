@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,7 +23,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<!-- arg1=0 => fastScan -->
+ 	<com.maxmpz.widget.IntentActionButton android:id="@+id/folders"
+		style="?PopupMenuItem"
+		android:drawable="?folders_24dp"
+		android:text="@string/select_folders"
+		android:targetClass=".dialogs.MusicFoldersActivity"
+	/>	
+	
+ 	<!-- arg1=0 => fastScan -->
 	<!-- NOTE: label/args can be changed e.g. for Playlists -->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/rescan"
 		style="?PopupMenuItem"

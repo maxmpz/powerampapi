@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -52,23 +52,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scrollbars">horizontal</item><!-- NOTE: need scrollbars=horizontal to enable scrolling -->
 		<item name="android:scrollbarThumbHorizontal">@null</item><!-- NOTE: but disable default android scroll thumb drawing -->
 		<item name="android:clipToPadding">false</item>
-
-		<item name="linesBackground">true</item>
-
-		<!-- Basically, offset of the first eq knob == EqKnobsLayout paddingLeft + EqPreampLinearKnob width + EqPreampKnobLayout margin(s) -->
-		<item name="lineDrawableOffsetLeft">68dp</item>  
-		
-		<item name="line1Offset">32dp</item>
-		<item name="line2Offset">0dp</item>
-		<item name="line3Offset">-52dp</item><!-- depends on LinearKnob font size + LinearKnob textPadding  -->
-		
-		<item name="line13Color">?colorEqKnobsLines1</item>
-		<item name="line2Color">?colorEqKnobsLines2</item>
-		<item name="stroke">1dp</item>
-		<!-- Total width == width of EqLinearKnob (40dp here) -->
-		<!-- 0 = means no dash, 8 - space, 3 - dash, 18 - space, 3 - dash, 8 space --> 
-		<item name="dashes">0,8,3,18,3,8</item>
-		<item name="dashesPhase">0px</item>
 	</style>
 	<style name="EqKnobsLayout" parent="EqKnobsLayoutBase">
 		<item name="android:layout_width">match_parent</item>
@@ -76,6 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottom">@+id/frequency_response_scroller</item>
+		<item name="android:clipChildren">false</item>
 	</style>
 	
 	<style name="EqLinearKnob">
@@ -84,12 +68,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="thumbWidth">@dimen/EqLinearKnob_thumbWidth</item><!-- 32dp -->
 		<item name="thumbHeight">@dimen/EqLinearKnob_thumbHeight</item><!-- 64dp -->
 		<item name="android:textSize">@dimen/linear_knob_text_size</item>
+		<item name="android:background">@drawable/focusable_bg</item>
 				
 		<item name="android:paddingLeft">@dimen/EqLinearKnob_paddingLR</item>
 		<item name="android:paddingRight">@dimen/EqLinearKnob_paddingLR</item>
 		<item name="android:paddingBottom">4dp</item>
 		
 		<item name="textPadding">0dp</item>
+		<item name="valuePadding">1.5dp</item>
+		
 		<item name="android:textStyle">normal</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_width">wrap_content</item>
@@ -98,6 +85,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:disabledAlpha">1</item><!-- NOTE: keeping it full alpha - using xml drawable disabled state instead -->
 		<item name="android:elevation">?control_elevation</item>
 		<item name="layout_unlimitedMeasure">true</item>
+		<item name="android:clipToPadding">false</item>
+		
+		<item name="valueTextAppearance">@style/EqKnobValueText</item>
+		<item name="valueAnimTime">300</item>
+		<item name="valueAnimZoom">1.5</item>
+		
+		<!-- NOTE: this is set by code depending on user preference -->
+		<!--<item name="valueFormat">%.1fdB</item>
+		<item name="valueFormatMid">0</item>
+		<item name="valueFormatMidPos">0.5</item>
+		<item name="valueFormatMax">15</item>
+		<item name="valueFormatMin">-15</item>
+		-->
+		
+		<item name="linesBackground">true</item>
+		<item name="line13Color">?colorEqKnobsLines1</item>
+		<item name="line2Color">?colorEqKnobsLines2</item>
+		<item name="stroke">1dp</item>
+		<!-- Total width == width of EqLinearKnob (40dp here). Though dashes centered horizontally -->
+		<!-- 0 = means no dash, 8 - space, 3 - dash, 18 - space, 3 - dash, 8 space --> 
+		<item name="dashes">0,8,3,18,3,8</item>
+		
 	</style>
 	
 	<style name="EqPreampKnobLayout">
@@ -106,6 +115,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_marginRight">4dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:clipChildren">false</item>
 	</style>
 		
 	<style name="EqPreampLinearKnob" parent="EqLinearKnob">
@@ -153,6 +163,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="menuPlaceholder">@+id/menu_placeholder</item>
 		<item name="openOnClick">false</item>
 		<item name="innerScrolling">true</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:longClickable">true</item><!-- NOTE: making it also clickable=true here will cause ripple drawable in popup to activate -->
 				
 		<item name="lineBackground">@drawable/alpha_popup_button_layout_bg</item>
@@ -188,10 +200,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="EqKnobLabelText"><!-- styles-eq usage only -->
+		<!-- used for text on layout - like equ knob labels -->
 		<item name="android:textSize">@dimen/EqKnobLabelText_size</item>
+		<item name="android:textColor">@color/button_text_color_selector</item> 
 		<item name="android:textStyle">normal</item>
 		<item name="android:typeface">normal</item>
-		<item name="android:textColor">@color/button_text_color_selector</item> <!-- used for text on layout - like equ knob labels -->
 	</style>
 			
 
@@ -241,6 +254,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- <item name="android:layout_width">wrap_content</item> --><!-- NOTE: can't use dynamic size due to current popup behavior, when we can't return to new size -->
 		<item name="android:layout_height">@dimen/EqButton_layout_height</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		
 		<item name="listItemSize">50dp</item>
@@ -646,6 +660,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">@drawable/rounded_stroke_button_layout_bg</item>
 		<item name="android:layout_height">@dimen/EqButton_layout_height</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="listItemSize">50dp</item>
 		<item name="disableParentLayoutForPopup">false</item>

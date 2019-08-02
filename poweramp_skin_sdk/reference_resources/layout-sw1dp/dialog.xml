@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -94,6 +94,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			android:id="@+id/dialog_frame"
 			style="?DialogFrame"
 			android:clickable="true"
+			android:focusable="false"
 		>
 				<!-- Title layout -->
 				<com.maxmpz.widget.FastLayout android:id="@+id/dialog_title_layout"

@@ -51,7 +51,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 	<attr name="DialogForcedStyle" format="reference"/>
-	<attr name="DialogInverseSystemUIStyle" format="reference"/>
+	<attr name="DialogForceLightSystemUIStyle" format="reference"/>
+	<attr name="DialogForceDarkSystemUIStyle" format="reference"/>
 	
 	<!-- False by default. If true, alternative scene is used for manual drag out (e.g. as for Centered dialog, where default scene transition is just fade in/out,
 	     but manual dragging-out can be to the top.  -->

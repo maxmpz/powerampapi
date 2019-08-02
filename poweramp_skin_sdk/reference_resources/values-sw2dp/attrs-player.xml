@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -58,9 +58,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="pre_other" format="reference"/>
 	<attr name="pre_song" format="reference"/>
 	
-	<!-- CatImage item icon -->
-	<attr name="folder_cat_icon" format="reference"/>
-	
 	<!-- Points to array of drawables, array sorting order is important -->
 	<attr name="vis_icons_32dp" format="reference"/>
 	
@@ -104,6 +101,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="clear_q" format="reference"/>
 	<attr name="clear" format="reference"/>
 	<attr name="redo" format="reference"/>
+	<attr name="export" format="reference"/>
 
 	<attr name="clear_q_24dp" format="reference"/>
 	<attr name="artists_24dp" format="reference"/>
@@ -115,7 +113,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="assign_eq_24dp" format="reference"/>
 	<attr name="playlist_24dp" format="reference"/>
 	<attr name="play_24dp" format="reference"/>
-	
+	<attr name="search_24dp" format="reference"/>
+		
 	<attr name="settings_24dp" format="reference"/>
 	<attr name="settings_alt_24dp" format="reference"/><!-- E.g. settings_stroke_24dp -->
 	<attr name="changelog_24dp" format="reference"/>
@@ -139,7 +138,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="keep_list_track_pos_12dp" format="reference"/>
 	</declare-styleable>
 	
-	<!-- Small star drawables for list cat image (1-5 stars) --> 
+	<!-- Small star drawables for list cat image (1-5 stars). NOTE: style itself is not used in resources, just in code --> 
 	<declare-styleable name="RatingStars_8dp">
 		<attr name="star_8dp" format="reference"/>
 		<attr name="star_2_8dp" format="reference"/>
@@ -328,6 +327,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="humanCatHeaderSize" format="dimension"/>
 		<!-- Size for header in search page -->
 		<attr name="searchHeaderSize" format="dimension"/>
+		<!-- Size for header in target search page -->
+		<attr name="targetSearchHeaderSize" format="dimension"/>
 		<!-- Separator size, e.g. for search results separators -->
 		<attr name="separatorSize" format="dimension"/>
 		<!-- Text item size (first level library items) -->
@@ -478,6 +479,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- <attr name="android:disabledAlpha"/> -->
 		<!-- Vertical padding between linear knob text and knob drawables -->
 		<attr name="textPadding" format="dimension"/>
+		<!-- Vertical padding between value and text -->
+		<attr name="valuePadding" format="dimension"/>
+		
+		<attr name="valueFormat" format="string"/>
+		<attr name="valueTextAppearance" format="reference"/>
+		<attr name="valueAnimZoom" format="float"/>
+		<attr name="valueAnimTime" format="integer"/>
+		
+		<attr name="valueFormatMin" format="float"/>
+		<attr name="valueFormatMax" format="float"/>
+		<attr name="valueFormatMid" format="float"/>
+		<attr name="valueFormatMidPos" format="float"/>
+		
+		<!-- If true, special lines background is rendered, android:background is ignored. EqLinesDrawable attributes can be used right in EqKnobsFastLayout styles -->
+		<attr name="linesBackground"/>
 	</declare-styleable>
 	
 	<!-- NOTE: also applies to DSPBusCheckButton -->
@@ -529,12 +545,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="dependentLabel2" format="reference"/>
 		<attr name="dependentLabel3" format="reference"/>
 		<attr name="valueLabel" format="reference"/>
-		<attr name="valueFormat" format="string|reference"/>
+		<attr name="valueFormat"/>
 
-		<attr name="valueFormatMin" format="float"/>
-		<attr name="valueFormatMax" format="float"/>
-		<attr name="valueFormatMid" format="float"/>
-		<attr name="valueFormatMidPos" format="float"/>
+		<attr name="valueFormatMin"/>
+		<attr name="valueFormatMax"/>
+		<attr name="valueFormatMid"/>
+		<attr name="valueFormatMidPos"/>
 	</declare-styleable>
 	
 	

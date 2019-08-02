@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -36,6 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Don't focus on this -->
 		<item name="android:visibility">gone</item>
 		<item name="android:outlineProvider">none</item>
 	</style>
@@ -48,6 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:elevation">?VisPanelFrame_elevation</item>
 		<item name="android:background">@drawable/rounded_medium</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Don't focus on this -->
 		
 		<!-- <item name="collapsedScene"></item> Default is 0 -->
 		<item name="expandedScene">@+id/scene_vispanel_expanded</item>
@@ -91,6 +93,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 	</style>
 	
@@ -163,14 +166,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="menuButtonStyle">@style/SmallerPopupButton_scene_button_menu</item>
 	</style>
 		
-	
 	<style name="VisPanelList">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">316dp</item><!-- This is max expanded height, it's always the same to allow proper item animations -->
 		<item name="android:scrollbars">vertical</item>
 	</style>
-	
-		
-		
-	
 </resources>

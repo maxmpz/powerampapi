@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2019 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
 
 <skins xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- IMPORTANT: all these styles should be skipped from obfuscation, otherwise they may be removed from R or otherwise disabled.
@@ -49,6 +68,9 @@
 			checkedByDefault="false"
 		/>
 		
+		<!-- REVISIT: requires also modifying more_buttons + elapsed and all the related styles
+		     ? can be done with background/color attributes, but requires multiple such attributes (elasped/duration bg, text color, title/line2 bg, color, etc)
+		     ? color can be propagated to appropriate backgrounds, but then they should differ from others (i.e. separate ripples) --> 
 		<option
 			key="light_buttons"
 			name="@string/skin_light_buttons"
@@ -73,7 +95,14 @@
 			checkedByDefault="false"
 		/>
 				
-		
+		<option
+			key="navbar_offset"
+			name="@string/skin_navbar_offset"
+			summary="@string/skin_summary_navbar_offset"
+			overlapAttr="@attr/overlap_navbar_offset"
+			checkedByDefault="false"
+		/>
+				
 	</skin>
 		
 	<skin
@@ -89,6 +118,14 @@
 			overlapStyle="@style/ActivityTheme_Blackpro_AltLayout"
 			checkedByDefault="false"
 		/>
+		<!--
+		<option
+			key="static_seekbar"
+			name="@string/skin_static_seekbar"
+			overlapStyle="@style/ActivityTheme_Blackpro_StaticSeekbar"
+			checkedByDefault="false"
+		/>
+		-->
 		<popup
 			key="seekbar"
 			name="@string/skin_seekbar_style"
@@ -125,6 +162,13 @@
 			name="@string/skin_transparent_navbar"
 			summary="@string/skin_summary_transparent_navbar"
 			overlapStyle="@style/ActivityTheme_Blackpro_TransparentNavbar"
+			checkedByDefault="false"
+		/>
+		<option
+			key="navbar_offset"
+			name="@string/skin_navbar_offset"
+			summary="@string/skin_summary_navbar_offset"
+			overlapAttr="@attr/overlap_navbar_offset"
 			checkedByDefault="false"
 		/>
 	</skin>

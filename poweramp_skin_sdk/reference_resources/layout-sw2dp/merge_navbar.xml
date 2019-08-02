@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -53,8 +53,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<com.maxmpz.widget.player.NavbarExtension android:id="@id/navbar_extension"
 				style="?NavbarExtension"
 			>
-				<com.maxmpz.widget.FastTextView
+				<com.maxmpz.widget.BusActionButton
 					style="?NavbarExtensionLogo" 
+					w:busId="@id/bus_app_cmd"
+					w:msgId="@id/cmd_app_open_settings"
+					w:string="general"
 				/>
 				
 				<!-- NOTE: wrap content items shrink too much and causes jumps when we resize parent container to small height/GONE.
@@ -68,7 +71,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					style="?CcButton_NavbarExtensionMenuLine"
 				/>
 				
-				<com.maxmpz.widget.IntentActionButton
+				<com.maxmpz.widget.IntentActionButton android:id="@+id/navbar_ext_settings"
 					style="?NavbarExtensionMenuLine"
 					android:drawable="?settings_24dp"
 					android:text="@string/settings"

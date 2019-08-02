@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -51,6 +51,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 		<item name="android:background">@drawable/item_bg</item>
+		<item name="android:focusable">true</item>
 	</style>
 
 	<!-- NOTE: derived by ItemPopupListSelectBox -->
@@ -311,6 +312,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">parent</item>
 		<item name="layout_attachTop">@id/line2</item>
 		
+		<!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 		<item name="android:transformPivotX">0px</item>
 		<item name="android:transformPivotY">0px</item>
 		
@@ -416,7 +418,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:paddingTop">6dp</item>
 		<item name="android:paddingBottom">6dp</item>
-		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->		
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
@@ -652,7 +654,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="allowZeroHeight">true</item><!-- This view will have height=minHeight if empty, allowing attached views to take its place (i.e. title will be shifted down) -->
 		<item name="android:minHeight">12dp</item>
 		
-		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
@@ -851,7 +853,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<!--<item name="drawableWidth">12dp</item>-->
 		<item name="drawableHeight">12dp</item>
 		
-		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
@@ -876,7 +878,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginRight">10dp</item><!-- Compensate for padding -->
 		<item name="android:layout_marginLeft">0dp</item>
-		<item name="layout_attachTop">@id/cat_image</item>
+		<item name="layout_attachTop">50%</item>
 		<item name="android:layout_marginTop">0dp</item>
 						
 		<item name="scale">.9</item>
@@ -1043,6 +1045,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Handles just touching -->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_vertical|right</item>
@@ -1114,7 +1117,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:translationZ">?over_aa_elevation</item><!-- 10dp? -->
 		
 		<item name="recalcChildren">on_start</item>
-		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 		<item name="android:transformPivotY">0px</item>
 
 		<!-- NOTE: inivisible by default (e.g. when animating from a list) -->
@@ -1156,6 +1159,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<!-- NOTE: tint is done via drawable, see drawable/rating_star_24dp.xml -->	
 	<style name="ItemRatingBar">
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:longClickable">true</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -1241,6 +1245,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="drawablePosition">forceGravity</item>
 		<item name="android:gravity">center</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="android:disabledAlpha">0</item><!-- Usefull for e.g. raw files -->
 		<item name="android:layout_width">wrap_content</item>
@@ -1272,6 +1277,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="drawablePosition">forceGravity</item>
 		<item name="android:gravity">center</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="android:disabledAlpha">0</item><!-- Usefull for e.g. raw files -->
 		<item name="android:layout_width">wrap_content</item>
@@ -1315,6 +1321,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:disabledAlpha">0</item>
 		<item name="drawableTint">#0000</item><!-- Invisible -->
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">false</item>
 		<item name="android:gravity">center_vertical</item>
 		<!-- NOTE: margins change as size of back title is different due to additional larger background and drawable -->
@@ -1395,7 +1402,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="SeparatorWithButton">
 		<item name="paddingTopWhenFirst">8dp</item>
 		<item name="android:paddingLeft">8dp</item>
-		<item name="android:paddingRight">8dp</item>
+		<item name="android:paddingRight">0dp</item>
 	</style>
 	<style name="SeparatorWithButtonTitle" parent="ListItemSimpleSeparator">
 		<item name="android:layout_width">wrap_content</item>
@@ -1407,14 +1414,22 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">right|center_vertical</item>
 		<item name="android:clickable">true</item>
-		<item name="android:paddingLeft">4dp</item>
-		<item name="android:paddingRight">12dp</item>
+		<item name="android:focusable">true</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
 		<item name="android:paddingTop">6dp</item>
 		<item name="android:paddingBottom">6dp</item>
-		<item name="drawablePaddingStart">12dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:drawablePadding">0dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:drawable">@drawable/text_right_arrow</item>
+		<!--<item name="android:drawable">@drawable/text_right_arrow</item>-->
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
+		<item name="drawablePosition">right</item>
+		<item name="drawableWidth">8dp</item>
+		<item name="drawableHeight">8dp</item>
 		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+		<item name="drawableTint">?colorIconInverseForced</item>
 	</style>
 	
 	<!-- NOTE: ItemSubheadWithButton height is defined by styles-top.xml ListSubstyle subheadSize -->
@@ -1436,6 +1451,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">right|center_vertical</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:paddingLeft">4dp</item>
 		<item name="android:paddingRight">12dp</item>
 		<item name="android:paddingTop">6dp</item>
@@ -1496,14 +1512,26 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<style name="ItemHeaderSelectButton_scene_menu" parent="BlackListHeaderButton_scene_menu"></style>
 	
+	<!-- NOTE: search button visibility relies heavily on code inside HeaderItemViewHelper -->
+	<style name="ItemHeaderSearchButton" parent="BlackListIconOnlyHeaderButton">
+		<item name="android:drawable">?search_24dp</item>
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	<style name="ItemHeaderSearchButton_scene_header" parent="BlackListIconOnlyHeaderButton_scene_header">
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	<style name="ItemHeaderSearchButton_scene_menu" parent="BlackListIconOnlyHeaderButton_scene_menu">
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	
 	<style name="ItemHeaderScanProgress">
 		<item name="android:layout_height">24dp</item>	
 		<item name="android:layout_width">24dp</item>
-		<item name="layout_attachRight">@+id/menu</item>
-		<item name="android:layout_marginBottom">12dp</item>
-		<item name="android:layout_marginRight">8dp</item>
-		<item name="layout_attachBottom">parent</item>
-				
+		<item name="android:layout_marginRight">24dp</item>
+		<item name="android:layout_marginTop">12dp</item>
+		<item name="layout_attachTop">inset</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:visibility">visible</item>
 	</style>
 	<style name="ItemHeaderScanProgress_scene_header" parent="ItemHeaderScanProgress">
 		<item name="recalcChildren">on_start</item>
@@ -1523,19 +1551,26 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTextHeaderScanProgress">
 		<item name="android:layout_height">24dp</item>	
 		<item name="android:layout_width">24dp</item>
-		<item name="layout_attachRight">@+id/menu</item>
 		<item name="android:indeterminate">true</item>
-		<item name="android:layout_gravity">center_vertical</item>
-		<item name="android:layout_marginTop">16dp</item>
-		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_gravity">center_vertical|right</item>
+		<item name="android:layout_marginTop">12dp</item>
+		<item name="android:layout_marginRight">24dp</item>
 	</style>
 	<style name="ItemTextHeaderScanProgress_scene_header" parent="ItemTextHeaderScanProgress">
-		<item name="android:layout_gravity">top</item>
+		<item name="layout_attachTop">inset</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:layout_marginTop">12dp</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextHeaderScanProgress_scene_top_header" parent="ItemTextHeaderScanProgress">
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginTop">8dp</item>
+		<item name="layout_attachRight">@+id/menu</item>
 		<item name="layout_attachTopToTop">@+id/menu</item>
 		<item name="android:visibility">visible</item>
 	</style>
 	<style name="ItemTextHeaderScanProgress_scene_item_menu">
+		<item name="android:visibility">invisible</item><!-- Keep invisible as text may be too wide for some screens -->
 		<item name="android:layout_height">24dp</item>	
 		<item name="android:layout_width">24dp</item>
 		<item name="android:layout_gravity">center_vertical</item>
@@ -1543,7 +1578,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:visibility">visible</item><!-- Visible for text -->
 	</style>
 
 	<style name="ItemTextHeaderShuffleButton" parent="WhiteStrokedListIconOnlyHeaderButton">
@@ -1557,10 +1591,21 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<style name="ItemTextHeaderPlayButton_scene_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_header"></style>
 	<style name="ItemTextHeaderPlayButton_scene_menu" parent="WhiteStrokedListIconOnlyHeaderButton_scene_menu"></style>
+	
+	<style name="ItemTextHeaderSearchButton" parent="WhiteStrokedListIconOnlyHeaderButton">
+		<item name="android:drawable">?search_24dp</item>
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	<style name="ItemTextHeaderSearchButton_scene_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_header">
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	<style name="ItemTextHeaderSearchButton_scene_menu" parent="WhiteStrokedListIconOnlyHeaderButton_scene_menu">
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
 		
 	<!-- NOTE: reset_horizontal here is needed for scene_item_menu, so separator can start from left, not pushed by buttons -->
 	<style name="ItemTextHeaderSelectButton" parent="WhiteStrokedListHeaderButton">
-		<item name="android:disabledAlpha">0</item>
+		<!--<item name="android:disabledAlpha">0</item> NOTE: 0 here makes it too different vs other lists where it's not 0 -->
 		<item name="layout_consumeSpace">reset_horizontal</item>		
 	</style>
 	<style name="ItemTextHeaderSelectButton_scene_header" parent="WhiteStrokedListHeaderButton_scene_header"></style>
@@ -1576,6 +1621,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:capitalize">characters</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="drawableWidth">24dp</item> <!-- TODO: 32 for larger screens -->
 		<item name="drawableHeight">24dp</item>
@@ -1600,7 +1646,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">-8dp</item>
-		<!-- <item name="layout_attachTop">@+id/line2</item> -->
 		<item name="layout_attachBottom">parent</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:disabledAlpha">0.275</item><!-- was 0.1 - to low for light skin -->
@@ -1619,7 +1664,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">36dp</item>
 		
 		<item name="android:layout_marginLeft">12dp</item>
-		<item name="android:layout_marginRight">-10dp</item>
+		<item name="android:layout_marginRight">-8.5dp</item>
 		<item name="android:layout_marginBottom">6dp</item>
 		
 		<item name="layout_attachBottom">parent</item>
@@ -1668,6 +1713,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		
 	<style name="BlackListMenu">
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:layout_width">wrap_content</item>	
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachRight">parent</item>
@@ -1691,14 +1738,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:translationZ">1px</item>
 		<item name="android:disabledAlpha">0</item>
 		<item name="animOnClick">true</item>
-		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 		<item name="android:transformPivotY">0px</item>
 				
 		<item name="scale">0.75</item>
 		<item name="android:scaleX">0.75</item>
 		<item name="android:scaleY">0.75</item>	
-		<!-- NOTE: avoid being focused and ripple-animated and it may introduce unnecessary ripple animation during initial appearance of such buttons -->
-		<item name="android:focusable">false</item>
 	</style>
 	
 	<!-- NOTE: avoid attaching menu to the bottom for bottom popup menu in scene_item_menu as it will overextend popup menu -->	
@@ -1774,8 +1819,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">48dp</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="android:layout_gravity">center_vertical</item>
-		<item name="android:layout_marginTop">21dp</item>
-		<item name="android:layout_marginBottom">9dp</item>
+		<item name="layout_gravityOffset">insetTop</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">0dp</item>
 		<item name="android:visibility">visible</item>
@@ -1795,7 +1841,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTextTitle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_gravity">center_vertical</item>
@@ -1827,9 +1873,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">@+id/aa_image</item>
 		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityOffset">insetTop</item><!-- Force gravity to account for window inset, so we're aligned with offset to the status bar -->
 		<item name="android:layout_marginLeft">0dp</item><!-- -4dp -->
 		<item name="android:layout_marginRight">0dp</item>
-		<item name="android:layout_marginTop">12dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="scale">1.5</item>
 		<item name="android:scaleX">1.5</item>
@@ -1845,9 +1892,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityOffset">insetTop</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:visibility">visible</item>
 	</style>
@@ -1882,7 +1930,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:paddingRight">4dp</item>
 		<item name="android:paddingTop">6dp</item>
 		<item name="android:paddingBottom">6dp</item>
-		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
@@ -1962,7 +2010,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item>
-		<item name="android:layout_gravity">center_vertical</item>
 		
 		<!-- Compensate horizontal margin (as no attach to image here and we have a bit different up image here) -->
 		<item name="android:layout_marginLeft">12dp</item> 
@@ -1974,6 +2021,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="drawableTint">#0000</item><!-- Invisible -->
 		<item name="animOnClick">false</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 	</style>
 	<style name="ItemTextBackDecorTitle_scene_header_back_decor" parent="ItemTopTextBackDecorTitle_scene_header_back_decor">
 		<item name="drawableTint">?colorIconInverseForced</item>
@@ -1994,11 +2042,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityOffset">insetTop</item>
 		<item name="layout_attachLeft">parent</item>
 		
 		<item name="android:layout_marginLeft">-40dp</item><!-- -40dp -->
 		<item name="android:layout_marginRight">0dp</item>
-		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		
 		<item name="android:disabledAlpha">0</item>
@@ -2010,6 +2059,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="drawableTint">#0000</item><!-- Invisible -->
 		<item name="animOnClick">false</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 	</style>
 	<style name="ItemTopTextBackDecorTitle_scene_header_back_decor">
 		<item name="recalcChildren">on_start</item>
@@ -2167,6 +2217,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">center_vertical|right</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="android:drawable">?miniplayer_play_pause</item>
@@ -2347,6 +2398,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<!-- NOTE: for only one button per item, no need to consume space. marginRight for title/line2 always works for right indenting -->
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="android:drawable">@drawable/like_unlike_selector</item>

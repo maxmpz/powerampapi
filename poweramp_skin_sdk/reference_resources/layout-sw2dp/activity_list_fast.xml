@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -75,7 +75,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<!-- Invisible view which matches (more or less) list AA layout - thus should also match aaItemRatio as used in ListSubstyle style
 		 Used to attach other views to it, as @id/list itself spans the whole screen
-		 Also defines visualization size for bars in non-full-screen mode (aa_bounds padding accounted for this as well)  
+		 Also defines visualization size for bars in non-full-screen mode (aa_bounds padding accounted for this as well).
+		 
+		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
+		 This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
 	-->
 	<com.maxmpz.widget.InvisibleView android:id="@+id/aa_bounds"
 		style="?TopAABounds"
@@ -408,7 +411,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				style="?TopListSearchEditText"
 				android:hint="@string/search"
 			/>
-		</com.maxmpz.widget.FastLayout>	
+		</com.maxmpz.widget.FastLayout>
+		
+		<!--
+			w:disableForStateBusId="@id/list"
+			w:disableForStateId="@id/state_list_selection_mode"
+		-->
+		<com.maxmpz.widget.ListSearchTargetButton android:id="@+id/search_target"
+			style="@style/TopSearchTarget"
+			w:busId="@id/list"
+			w:msgId="@id/cmd_list_clear_target_search"
+		/>
+					
 	</com.maxmpz.widget.FastLayout><!-- search_layout -->
 	<SceneParams w:scene="@+id/scene_search"
 		android:visibility="visible"
@@ -423,8 +437,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: anchor invisible views which match Navbar dimensions. Navbar itself is rooted into independent scene/layout, thus, we need some anchor views
 		 in top container for other views to be aware of navbar size
 		 
+		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
+		 This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
+
 		 NOTE: these views can cause navbar shadow to be cut off on some devices if placed after navbar - looks like bug for some (actually quite many) hwui/driver implementations,
-		 thus it's View and it's visitility == VISIBLE 
+		 thus it's View and it's visibility == VISIBLE (Note5, S6@7.0, S5@6.0). 
+		 There also other rendering artifacts possible due to no any visible view under navbar + gl surface reproducible up to Pie,
+		 e.g. background shim may fail to render below navbar, etc. 
 	-->
 
 	<com.maxmpz.widget.InvisibleView android:id="@+id/navbar_bounds"

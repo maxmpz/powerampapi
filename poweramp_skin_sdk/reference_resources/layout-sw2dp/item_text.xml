@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -49,11 +49,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	style="?ItemText"
 >
-	<!--
-	<com.maxmpz.widget.player.list.AAImageView android:id="@+id/aa_image"
-		style="?ItemTextAAImage"
-	/>	
-	-->
 	<com.maxmpz.widget.player.list.IconView android:id="@+id/aa_image"
 		style="?ItemTextAAImage"
 	/>	
@@ -77,7 +72,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- aa_image -->
 	
 	
-	<!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 	<com.maxmpz.widget.FastTextView android:id="@+id/title"
 		style="?ItemTextTitle"
 		android:importantForAccessibility="yes"

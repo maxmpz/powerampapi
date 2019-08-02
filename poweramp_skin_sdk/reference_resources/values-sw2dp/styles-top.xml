@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -31,6 +31,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		  By default is 0 for fast nav changes.
 		  See also animMainExitTime which is used for anims between main and other screens --> 
 		<item name="animTime">0</item>
+	
+		<!-- Applied for search panel, when going to/from deep search results -->
+		<item name="forcedAnimTime">250</item>
 		
 		<item name="playStateAnimTime">320</item>
 
@@ -57,9 +60,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="visExitAnimTime">100</item>
 		<item name="aaEnterAnimTime">250</item>
 		
-		<!-- The time new image animates over placeholder. Larger times (>~250) may be overriden by logic which ensures image is properly rendered -->
+		<!-- The time new image blur animates over placeholder. Larger times (>~250) may be overriden by logic which ensures image is properly rendered -->
 		<item name="aaBlurUpdateAnimTime">50</item>
 		<item name="aaBlurLongerUpdateAnimTime">250</item>
+		<item name="aaBlurNoAAToAAAnimTime">200</item>
 		
 		<item name="android:paddingBottom">0dp</item>
 		<item name="android:paddingLeft">0dp</item>
@@ -122,7 +126,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="addStatusBarHeightToHeaders">true</item>
 		<item name="textHeaderSize">186dp</item>
 		<item name="headerSize">236dp</item>
-		<item name="searchHeaderSize">106dp</item><!-- NOTE: includes margin for status bar and search field -->
+		<item name="searchHeaderSize">106dp</item><!-- Includes margin for status bar and search field -->
+		<item name="targetSearchHeaderSize">142dp</item><!-- Includes margin for status bar, search field, and target button -->
 		<item name="humanCatHeaderSize">276dp</item>
 		<item name="topTextHeaderSize">76dp</item>
 		
@@ -167,10 +172,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingTop">@dimen/TopWaveseekLayout_paddingTop</item>
 		
 		<item name="android:clickable">true</item><!-- Clickable to avoid touching trough it and moving AA/List -->
+		<item name="android:focusable">false</item><!-- Avoid focusing as it does nothing -->
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item>
-		
-		<!-- <item name="android:background">#f00</item> -->
 	</style>
 	<style name="TopWaveseekLayout_scene_lib">
 		<item name="recalcChildren">on_start</item>
@@ -205,6 +209,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="barSpacing">1.25dp</item>
 		<item name="barBitmap">?waveseek_bar</item>
 		<item name="elapsedBarBitmap">?waveseek_elapsedbar</item>
+		<item name="android:background">@drawable/focusable_bg</item><!-- Empty for Android 8+ -->
 	</style>
 	
 	<style name="TopWaveseekStatic" parent="TopWaveseek">
@@ -300,6 +305,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Don't focus on this as this is touch-only control -->
 		<item name="android:longClickable">true</item>
 	</style>
 	
@@ -312,6 +318,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:visibility">invisible</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:longClickable">true</item>
 		<item name="android:background">?colorBgInverse</item>
 		<item name="android:drawable">?pause_small_narrow</item>
@@ -343,6 +350,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:layout_gravity">center</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:longClickable">true</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">fill</item>
@@ -370,6 +378,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">@dimen/TopSmallButton_size</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="android:gravity">fill</item><!-- Force drawable to fill dimensions -->
 		<item name="drawableOnly">true</item>
@@ -387,6 +396,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:longClickable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="android:gravity">fill</item><!-- Force drawable to fill dimensions -->
@@ -545,6 +555,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="azTextScale">.45</item>
 		<!-- <item name="azChars">@string/azChars</item> --><!-- NOTE: always provided by Pages -->
 		<item name="azScrollUp">@drawable/scroll_up</item>
+		<item name="android:focusable">false</item><!-- Disable, as focusing it makes little sense -->
 	</style>
 	<style name="TopListScrollerView" parent="TopListScrollerViewBase">
 	</style>
@@ -582,7 +593,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">vertical</item>
 	</style>
 	
-	
 		
 	<!-- Equ -->
 	
@@ -603,6 +613,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopSearchPanel">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">48dp</item>
+		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
@@ -617,6 +628,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="layout_consumeSpace">horizontal</item>
@@ -642,7 +654,39 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawablePadding">8dp</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:singleLine">true</item>
-	</style>			
+	</style>	
+	
+	<style name="TopSearchTarget">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+						
+		<item name="animOnClick">true</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:drawablePadding">0dp</item>
+		<item name="drawablePosition">right</item>
+		<item name="drawableWidth">16dp</item>
+		<item name="drawableHeight">16dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:drawable">?clear</item>
+				
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:textSize">13dp</item>
+		<item name="android:textStyle">bold</item>
+				
+		<item name="android:background">@drawable/ripple_bg_light_rounded_large</item>
+		<item name="android:disabledAlpha">0</item><!-- DEBUG -->
+	</style>		
 	
 	<style name="TopNavbarContainer">
 		<item name="android:layout_width">match_parent</item>
@@ -651,13 +695,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">inset</item>
 	</style>
 	
-	<!-- IMPORTANT: specifically not using margin here, but extending the size due to issue with navbar shadow cut on some devices
+	<!-- IMPORTANT: specifically can't use layout_margin* here, but extending the size due to issue with navbar shadow cut on some devices
 		 (looks like Android fails to properly handle clipping for some view combinations).
-		 NOTE: this view is not used for anchoring anymore, instead, NavbarBounds_height/NavbarBounds_height_scene_navbar_2lines dimens are used to offset content from bottom
+		 
+		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
+		 This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
 	-->
 	<style name="TopNavbarBounds">
 		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_height">?bottom_navbar_bounds_size</item>
+		<!-- NOTE: it's possible to define navbar_bounds size with minHeight + paddings, but for consinstency, using bottom_navbar_bounds_size,
+		     as this is needed anyway for other unrelated components --> 
+		<!-- No padding top as we just indicate navbar top bound, no need for extra space there -->
+		<!--<item name="android:paddingBottom">?navbar_marginB</item>--><!-- Matches actual navbar bottom padding, which depends on theme and user preference/style overlap -->
+		<!--<item name="android:minHeight">@dimen/Navbar_height</item>-->
 		<item name="layout_attachBottom">inset</item>
 	</style>
 			
@@ -769,6 +821,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<item name="android:background">@drawable/toast_bg</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Don't focus on this -->
 		<item name="android:elevation">?toast_elevation</item>
 		<item name="android:paddingLeft">16dp</item>
 		<item name="android:paddingRight">16dp</item>
@@ -860,6 +913,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="menuPlaceholder">@+id/menu_placeholder</item>
 		<item name="android:background">@drawable/alpha_popup_button_layout_bg</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:longClickable">true</item>
 		<item name="android:hapticFeedbackEnabled">true</item>
 		
@@ -1001,6 +1055,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:clipChildren">false</item>
+		<item name="android:clickable">true</item><!-- Force clickable, otherwise, while we're actually clickable here, some keyboard presses are mishandled -->
+		<item name="android:focusable">true</item><!-- Clickability is managed automatically -->
 		<item name="lineBackground">@drawable/alpha_popup_button_layout_bg</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:longClickable">true</item><!-- NOTE: making it also clickable=true here will cause ripple drawable in popup to activate -->
@@ -1131,6 +1187,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center_vertical</item>
 		<item name="animOnClick">true</item>
 		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
 		<item name="android:elevation">4dp</item>
 		
 		<item name="android:alpha">0</item>

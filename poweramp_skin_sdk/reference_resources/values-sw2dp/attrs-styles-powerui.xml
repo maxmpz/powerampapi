@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -186,6 +186,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTextHeaderSelectButton" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton_scene_header" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton_scene_menu" format="reference"/>
+		<attr name="ItemTextHeaderSearchButton" format="reference"/><!-- The search button -->
+		<attr name="ItemTextHeaderSearchButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderSearchButton_scene_menu" format="reference"/>
 		
 		<attr name="ItemTextBackDecor" format="reference"/>
 		<attr name="ItemTextBackDecorTitle" format="reference"/>
@@ -198,6 +201,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTextHeaderScanProgress" format="reference"/>
 		<attr name="ItemTextHeaderScanProgress_scene_item_menu" format="reference"/>
 		<attr name="ItemTextHeaderScanProgress_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderScanProgress_scene_top_header" format="reference"/>
 		
 		<attr name="ItemHeaderScanProgress" format="reference"/>
 		<attr name="ItemHeaderScanProgress_scene_item_menu" format="reference"/>
@@ -260,6 +264,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemHeaderSelectButton" format="reference"/>
 		<attr name="ItemHeaderSelectButton_scene_header" format="reference"/>
 		<attr name="ItemHeaderSelectButton_scene_menu" format="reference"/>
+		<attr name="ItemHeaderSearchButton" format="reference"/>
+		<attr name="ItemHeaderSearchButton_scene_header" format="reference"/>
+		<attr name="ItemHeaderSearchButton_scene_menu" format="reference"/>				
 		
 		<attr name="ItemTrackAAPanel" format="reference"/>
 		<attr name="ItemTrackAAPanel_scene_aa" format="reference"/>

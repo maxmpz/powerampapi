@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -84,7 +84,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="nav_lib"/><!-- bus_gui, arg1 = LIB_* -->
 	<item type="id" name="nav_main"/><!-- bus_gui -->
-	<item type="id" name="nav_search"/><!-- bus_gui -->
+	<item type="id" name="nav_search"/><!-- bus_gui, arg1 => boolean focusSearchText -->
 	<item type="id" name="nav_eq"/><!-- bus_gui, arg1 => EQ_TAB_*  -->
 	
 	<!-- Opens last used tab -->
@@ -174,7 +174,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_options_dialog"/>
 	<item type="id" name="cmd_list_empty_dialog"/><!-- Dialog shown when gears button clicked in empty list => depends on list current Page -->
 	<item type="id" name="cmd_list_force_ab_on_screen"/><!-- arg1 => ListWidgetBase.LOCK_AB_* -->
+	
+	<item type="id" name="cmd_list_target_search"/>
+	<item type="id" name="cmd_list_clear_target_search"/>
+	<item type="id" name="state_list_targeted_search"/><!-- boolean, true for targeted search mode, string, non-null targeted search label, or null if non-target/search mode -->
 
+	<item type="id" name="cmd_list_add_to_q"/>
+	<item type="id" name="cmd_list_info_dialog"/>
+	<item type="id" name="cmd_list_album_art"/>
+	<item type="id" name="cmd_list_play"/>
+	<item type="id" name="cmd_list_shuffle"/>
+	
 	
 	<item type="id" name="state_gui_vis_mode"/><!-- integer VIS_* -->
 	<item type="id" name="state_gui_is_modal_now"/><!-- boolean, integer => @id of scene or view, identifying this model state, or 0 -->
@@ -187,6 +197,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<item type="id" name="msg_app_screen_on"/><!-- arg1 => boolean => screen_on --> 
 	<item type="id" name="state_app_screen_on"/><!-- boolean -->
+	
+	<item type="id" name="msg_app_device_shutdown"/>
 	
 
 	<!-- StateAnim states -->
