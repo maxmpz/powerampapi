@@ -1132,4 +1132,12 @@ public interface TableDefs {
 
 		public static final @NonNull String NAME = TABLE + ".name";
 	}
+	
+	public class PrefSearch {
+		public static final @NonNull String TABLE = "pref_search";
+	}
+	
+	public class PrefSearchFts {
+		public static final @NonNull String TABLE = "pref_search_fts";
+	}
 }
