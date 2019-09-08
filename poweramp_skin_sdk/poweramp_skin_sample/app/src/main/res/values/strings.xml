@@ -20,6 +20,10 @@
 
 	<string name="skin_static_seekbar">Static Seekbar</string>
 
+	<string name="skin_font">Font</string>
+	<string name="skin_opensans_font">OpenSans</string>
+	<string name="skin_ubuntu_font">Ubuntu</string>
+
 	<!-- Color rectangle (simple ⬤ symbol + color). NOTE: extra backslash is needed before quotes (\") -->
 	<string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>
 

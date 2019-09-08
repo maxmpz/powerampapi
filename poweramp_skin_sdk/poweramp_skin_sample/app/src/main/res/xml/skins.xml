@@ -7,6 +7,22 @@
 		description="@string/skin_sample_description"
 		style="@style/SampleSkin"
 	>
+		<!-- (build 842+) Custom loadable fonts -->
+		<radio
+			key="font"
+			name="@string/skin_font"
+			defaultValue=""
+			>
+			<option
+				name="@string/skin_opensans_font"
+				overlapStyle="@style/SampleSkin_OpenSansFont"
+			/>
+			<option
+				name="@string/skin_ubuntu_font"
+				overlapStyle="@style/SampleSkin_UbuntuFont"
+			/>
+		</radio>
+
 		<!-- Checkable option. In this case we use built-in ActivityTheme_Whitepro_StaticSeekbar substyle. We may need own substyle if we modify theme more -->
 		<option
 			key="static_seekbar"
@@ -14,6 +30,7 @@
 			overlapStyle="@com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_StaticSeekbar"
 			checkedByDefault="false"
 		/>
+
 
 		<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
 		     See strings.xml for some examples.

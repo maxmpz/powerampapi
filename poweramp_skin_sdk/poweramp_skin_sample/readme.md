@@ -108,7 +108,7 @@ Poweramp v3 supports unique feature allowing user selectable skin options to be 
 See sample skin **[xml/skins.xml](app/src/main/res/xml/skins.xml)** for reference.
 
 Options include:
-* simple option with just a name (rendered as half-width switch), or with a summary (rendered as 2 line switch):
+* simple option with some name and optional summary (rendered as switch):
 ```xml
 <option
     key="[preference unique key]"
@@ -147,7 +147,7 @@ Options include:
 </popup>
 ```
 
-Most options support limited set of html tags inside **name** and **summary** attributes. These allow e.g. specifying color:
+Radio/popup options support limited set of html tags inside **name** and **summary** attributes. These allow e.g. specifying color:
 ```xml
 <option
     ...
@@ -167,8 +167,19 @@ or all options on user side as style/attribute IDs used as keys to persist optio
 
 To avoid this issue, **[stable-ids.txt](stable-ids.txt)** file is used, which is automatically updated during skin build process with the new styles/attributes you add to your skin.
 Be sure to keep this file around. 
-The file initially contains the sample skin IDs (which won't generally interfere with your IDs). 
+The file initially contains the sample skin IDs (which won't generally interfere with your IDs).
 
+### Custom/Loadable Fonts
+Poweramp (build 842+) supports custom fonts from **res/fonts**. See https://developer.android.com/guide/topics/ui/look-and-feel/fonts-in-xml for details on Android custom fonts usage.
+If you use font family .xml file, don't forget to add both android: and app: prefixed properties. The app: values are used on Androids prior 8.
+
+Please note that font files (.ttf/.otf) should be named with lowercase latin, 0-9, and "_" characters only. For example OpenSans-Bold.ttf should be renamed to opensans_bold.ttf.
+This is Android resources builder requirement.
+
+Poweramp control/view styles have separate layer of TextAppearance styling (same as core Android widgets do), which can be modified independently of other styles.
+See sample skin font option implementations: **[values/sample_skin_open_sans.xml](app/src/main/res/values/sample_skin_open_sans.xml)**, **[values/sample_skin_ununtu.xml](app/src/main/res/values/sample_skin_ubuntu.xml)** and Poppin
+
+ 
 ### Difference vs Poweramp v2 skins
 * Poweramp v2 skins are not compatible with Poweramp v3, Poweramp v3 skins are not compatible with Poweramp v2
 * Poweramp v2 skins relied on skin provided layout xmls, v3 skins rely on style redefinitions, layouts xmls can't be changed by skin (except for few injected specific **merge_** layouts)

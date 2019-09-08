@@ -922,9 +922,46 @@ public interface TableDefs {
 		public static final @NonNull String SORT = "sort";
 		
 		/**
+		 * Filename of stream uri.
+		 * String.
+		 */
+		public static final @NonNull String FILE_NAME = "file_name";
+		
+		/**
+		 * Parent folder path
+		 * String.
+		 */
+		public static final @NonNull String FOLDER_PATH = "folder_path";
+		
+		/**
+		 * Cue offset for .cue tracks
+		 * Int.
+		 */
+		public static final @NonNull String CUE_OFFSET_MS = TABLE + ".cue_offset_ms";
+
+		/**
 		 * Int.
 		 */
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		/**
+		 * 0 - default file entries
+		 * 1 - streams 
+		 * Int.
+		 */
+		public static final @NonNull String ENTRY_TYPE = "entry_type";
+
+		/**
+		 * Line2 for stream entries.
+		 * String.
+		 */
+		public static final @NonNull String LINE2 = "line2";
+
+		/**
+		 * Meta for stream entries.
+		 * String.
+		 */
+		public static final @NonNull String META = TABLE + ".meta";
 	}
 
 
@@ -1135,9 +1172,18 @@ public interface TableDefs {
 	
 	public class PrefSearch {
 		public static final @NonNull String TABLE = "pref_search";
+		public static final @NonNull String _ID = TABLE + "._id";
+		public static final @NonNull String BREADCRUMB = "breadcrumb";
+		public static final @NonNull String PREF_URI = "pref_uri";
+		public static final @NonNull String PREF_KEY = "pref_key";
+		public static final @NonNull String ICON = "icon";
+		public static final @NonNull String SORT = "sort";
 	}
 	
 	public class PrefSearchFts {
 		public static final @NonNull String TABLE = "pref_search_fts";
+		public static final @NonNull String DOCID = "docid";
+		public static final @NonNull String TITLE = "title";
+		public static final @NonNull String SUMMARY = "summary";
 	}
 }

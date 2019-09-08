@@ -23,7 +23,7 @@ android {
     }
     aaptOptions {
         additionalParameters "--stable-ids", "stable-ids.txt", "--emit-ids", "stable-ids.txt", "--package-id", "0x80",
-                                "-I", "../../../audioplayer/dist/836-uni/Poweramp-v3-build-836-uni.apk"
+                                "-I", "../../../audioplayer/bin/audioplayer.apk"
     }
 
     useLibrary 'android.test.runner'
@@ -35,4 +35,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    def appcompat_version = "1.1.0-rc01"
+
+    // NOTE: we need just resources for loadable font support (or, actually, for building that)
+    implementation "androidx.appcompat:appcompat-resources:$appcompat_version"
 }

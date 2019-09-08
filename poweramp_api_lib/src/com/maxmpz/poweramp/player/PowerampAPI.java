@@ -1449,6 +1449,14 @@ public final class PowerampAPI {
 		public static final String EXTRA_RESOLVE_PLAYLISTS = "resolvePlaylists";
 
 		/**
+		 * If true, force LibraryScanner to import system playlists
+		 * Extra<br>
+		 * {@code boolean}
+		 * @since 841
+		 */
+		public static final String EXTRA_IMPORT_SYSTEM_PLAYLISTS= "importSystemPlaylists";
+
+		/**
 		 * Extra<br>
 		 * {@code String} - cause of the scan (e.g. user request, auto scan, etc.). Useful for debugging, visible in logcat
 		 */
