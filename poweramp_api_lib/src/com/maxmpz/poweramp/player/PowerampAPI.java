@@ -1192,31 +1192,32 @@ public final class PowerampAPI {
 		 */
 		public static class FileType {
 			public static final int TYPE_UNKNOWN = -1;
-			public static final int TYPE_MP3 = 0;
-			public static final int TYPE_FLAC = 1;
-			public static final int TYPE_M4A = 2;
-			public static final int TYPE_MP4 = 3;
-			public static final int TYPE_OGG = 4;
-			public static final int TYPE_WMA = 5;
-			public static final int TYPE_WAV = 6;
-			public static final int TYPE_TTA = 7;
-			public static final int TYPE_APE = 8;
-			public static final int TYPE_WV = 9;
-			public static final int TYPE_AAC = 10;
-			public static final int TYPE_MPGA = 11;
-			public static final int TYPE_AMR = 12;
-
-			public static final int TYPE_3GP = 13;
-			public static final int TYPE_MPC = 14;
-			public static final int TYPE_AIFF = 15;
-			public static final int TYPE_AIF = 16;
-			public static final int TYPE_FLV = 17;
-			public static final int TYPE_OPUS = 18;
-			public static final int TYPE_DFF = 19;
-			public static final int TYPE_DSF = 20;
-			public static final int TYPE_MKA = 21;
-			public static final int TYPE_TAK = 22;
-			public static final int LAST_TYPE = 22;
+			public static final int TYPE_MP3      = 0;
+			public static final int TYPE_FLAC     = 1;
+			public static final int TYPE_M4A      = 2;
+			public static final int TYPE_MP4      = 3;
+			public static final int TYPE_OGG      = 4;
+			public static final int TYPE_WMA      = 5;
+			public static final int TYPE_WAV      = 6;
+			public static final int TYPE_TTA      = 7;
+			public static final int TYPE_APE      = 8;
+			public static final int TYPE_WV       = 9;
+			public static final int TYPE_AAC      = 10;
+			public static final int TYPE_MPGA     = 11;
+			@Deprecated
+			public static final int TYPE_AMR      = 12;
+			public static final int TYPE_3GP      = 13;
+			public static final int TYPE_MPC      = 14;
+			public static final int TYPE_AIFF     = 15;
+			public static final int TYPE_AIF      = 16;
+			public static final int TYPE_FLV      = 17;
+			public static final int TYPE_OPUS     = 18;
+			public static final int TYPE_DFF      = 19;
+			public static final int TYPE_DSF      = 20;
+			public static final int TYPE_MKA      = 21;
+			public static final int TYPE_TAK      = 22;
+			public static final int TYPE_STREAM   = 23;
+			public static final int LAST_TYPE     = 23;
 
 			@Deprecated
 			public static final int mp3 = 0;
@@ -1270,9 +1271,9 @@ public final class PowerampAPI {
 			public static final int FLAG_ADVANCE_BACKWARD_CAT    = 4;
 			/** Mask for FLAG_ADVANCE_* values */
 			public static final int FLAG_ADVANCE_MASK            = 0x7; // 111
-			/** Track was advanced from notification */
+			/** Track was advanced from the notification */
 			public static final int FLAG_NOTIFICATION_UI         = 0x20;
-			/** Used to indicate that track is first in Poweramp service session */
+			/** Indicates the track is the first in Poweramp service session */
 			public static final int FLAG_FIRST_IN_PLAYER_SESSION = 0x40;
 		}
 	}
