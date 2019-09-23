@@ -1458,6 +1458,14 @@ public final class PowerampAPI {
 		public static final String EXTRA_IMPORT_SYSTEM_PLAYLISTS= "importSystemPlaylists";
 
 		/**
+		 * If true, force file based playlist re-parsing
+		 * Extra<br>
+		 * {@code boolean}
+		 * @since 842
+		 */
+		public static final String EXTRA_REPARSE_PLAYLISTS= "reparsePlaylists";
+
+		/**
 		 * Extra<br>
 		 * {@code String} - cause of the scan (e.g. user request, auto scan, etc.). Useful for debugging, visible in logcat
 		 */
