@@ -21,8 +21,11 @@
 	<string name="skin_static_seekbar">Static Seekbar</string>
 
 	<string name="skin_font">Font</string>
+	<string name="_default">Default</string>
 	<string name="skin_opensans_font">OpenSans</string>
 	<string name="skin_ubuntu_font">Ubuntu</string>
+
+
 
 	<!-- Color rectangle (simple ⬤ symbol + color). NOTE: extra backslash is needed before quotes (\") -->
 	<string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>
@@ -60,5 +63,8 @@
 	<string name="skin_main_mini_spectrum">Mini Spectrum On Main Screen</string>
 	<string name="skin_summary_main_mini_spectrum">Demonstrates visualization component on main screen, not polished</string>
 	<string name="skin_applied_msg">Skin has been successfully applied!</string>
+
+	<string name="skin_alt_layout">Alternative layout</string>
+	<string name="skin_summary_alt_layout">Moves track labels below cover, makes on-cover buttons smaller and faded</string>
 
 </resources>

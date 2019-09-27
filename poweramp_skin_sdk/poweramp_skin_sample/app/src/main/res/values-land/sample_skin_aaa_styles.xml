@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<style name="AAA_ListSubstyle" parent="AAA_ListSubstyle_Base">
+		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
+		<item name="com.maxmpz.audioplayer:aaMarginBottom">?com.maxmpz.audioplayer:bottom_navbar_bounds_size</item>
+		<item name="com.maxmpz.audioplayer:aaPaddingBottom">0dp</item><!-- No space below AA as we put labels to the right of AA -->
+	</style>
+
+	<style name="AAA_TopAABounds" parent="com.maxmpz.audioplayer:TopAABounds2">
+		<!-- DEBUG -->
+		<!--<item name="android:background">#5f00</item>-->
+	</style>
+
 	<style name="AAA_TopWaveseekLayout" parent="com.maxmpz.audioplayer:TopWaveseekLayout">
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item><!-- Don't reserve space for meta info -->
@@ -15,24 +27,12 @@
 		<!-- DEBUG -->
 		<!--<item name="android:background">#500f</item>-->
 		<item name="android:layout_marginTop">0dp</item>
-	</style>
-
-	<style name="AAA_ListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle">
-		<!-- This is the extra room for title / line2 / menu / like/unlike below AA image -->
-		<!--<item name="com.maxmpz.audioplayer:aaPaddingBottom">@dimen/AAA_ListSubstyle_aaPaddingBottom</item>-->
-
-		<!-- Set own TopAAItemRatio as we need to make AA smaller on smaller screens -->
-		<item name="com.maxmpz.audioplayer:aaItemRatio">100%</item><!-- NOTE: sync with TopAABounds -->
-		<item name="com.maxmpz.audioplayer:aaMaxSize">@dimen/AAA_aaMaxSize</item><!-- NOTE: sync with TopAABounds -->
-		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
+		<!--<item name="android:layout_marginBottom">16dp</item>-->
 	</style>
 
 	<style name="AAA_ItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">
+		<!-- Redefine layout_matchDimension which changes to matching width to height for landscape -->
 		<item name="com.maxmpz.audioplayer:layout_matchDimension">widthToHeight</item>
-		<item name="android:layout_marginLeft">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
-		<item name="android:layout_marginTop">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
-		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
-		<item name="android:layout_marginBottom">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
 	</style>
 
 	<style name="AAA_ItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">
@@ -45,7 +45,7 @@
 		<item name="com.maxmpz.audioplayer:layout_attachTop">parent</item>
 		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
 
-		<item name="android:layout_marginLeft">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
+		<item name="android:layout_marginLeft">8dp</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
@@ -55,7 +55,7 @@
 		<item name="com.maxmpz.audioplayer:scale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
 
-		<item name="android:layout_marginLeft">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
+		<item name="android:layout_marginLeft">8dp</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginTop">@dimen/AAA_ItemTrackLine2_scene_aa_marginTop</item>
 		<item name="android:layout_marginBottom">0dp</item>
@@ -67,7 +67,7 @@
 	</style>
 
 	<style name="AAA_ItemTrackMenu_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackMenu_scene_aa">
-		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
@@ -91,7 +91,7 @@
 
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
+		<item name="android:layout_marginRight">8dp</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginLeft">0dp</item>
 	</style>
 
@@ -106,18 +106,9 @@
 
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginTop">@dimen/AAA_ItemRatingBar_scene_aa_marginTop</item>
-		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
+		<item name="android:layout_marginRight">8dp</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginLeft">0dp</item>
 	</style>
 
-	<style name="AAA_TopAABounds" parent="com.maxmpz.audioplayer:TopAABounds">
-		<item name="com.maxmpz.audioplayer:layout_widthPercent">100%</item><!-- NOTE: sync with ListSubstyle -->
-		<item name="com.maxmpz.audioplayer:layout_heightPercent">100%</item><!-- NOTE: sync with ListSubstyle -->
-		<item name="com.maxmpz.audioplayer:layout_maxWidth">@dimen/AAA_aaMaxSize</item>
-		<item name="android:layout_gravity">center_horizontal</item>
-
-		<!-- DEBUG -->
-		<!--<item name="android:background">#5f00</item>-->
-	</style>
 
 </resources>

@@ -115,6 +115,11 @@
 
 		<!-- Reduce meta info maximum size, so it doesn't overlap elapsed / duration -->
 		<item name="com.maxmpz.audioplayer:TopMetaInfoLabel">@style/AAA_TopMetaInfoLabel</item>
+
+		<!-- Overridden mostly to move CC icon to AA from the right in landscape layout -->
+		<item name="com.maxmpz.audioplayer:CcButton_MainUI">@style/AAA_CcButton_MainUI</item>
+		<item name="com.maxmpz.audioplayer:CcButton_MainUI_scenes_playing">@style/AAA_CcButton_MainUI_scenes_playing</item>
+		<item name="com.maxmpz.audioplayer:CcButton_MainUI_scenes_vis_w_ui">@style/AAA_CcButton_MainUI_scenes_vis_w_ui</item>
 	</style>
 
 	<!-- Adjust our waveseek layout => push it to the top of navbar, ignoring meta info.
@@ -286,12 +291,7 @@
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">@dimen/AAA_TopShuffleButtonLayout_scale</item>
 	</style>
 
-	<!-- For AA image, set margins which depends on screen size via dimens, as we need smaller margin for smaller screens -->
 	<style name="AAA_ItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">
-		<item name="android:layout_marginLeft">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
-		<item name="android:layout_marginTop">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
-		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
-		<item name="android:layout_marginBottom">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
 	</style>
 
 	<style name="AAA_ItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">
@@ -299,8 +299,8 @@
 		<item name="com.maxmpz.audioplayer:scale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
 		<item name="com.maxmpz.audioplayer:layout_attachRight">@com.maxmpz.audioplayer:id/menu</item>
-		<item name="android:layout_marginLeft">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
 
 		<!-- NOTE: to make it centered, use something like:
 		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
@@ -347,22 +347,21 @@
 		<item name="com.maxmpz.audioplayer:scale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">@dimen/AAA_ItemTrackTitle_scene_aa_scale</item>
 
-		<item name="android:layout_marginLeft">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
 		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
 
 		<!-- Reattach to bottom and move below parent (parent==item itself) -->
 		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
 		<item name="com.maxmpz.audioplayer:layout_attachRight">@com.maxmpz.audioplayer:id/rating</item>
-		<item name="android:layout_marginBottom">0dp</item>
 	</style>
 
 	<style name="AAA_ItemTrackMenu" parent="com.maxmpz.audioplayer:ItemTrackMenu">
-		<!-- NOTE: not overriden, but can be overriden with any icon/tint/background
+		<!-- NOTE: not overridden, but can be overridden with any icon/tint/background
 		<item name="android:background">@drawable/ripple_inverse_stroke_always_rounded</item>
 		<item name="com.maxmpz.audioplayer:drawableTint">?com.maxmpz.audioplayer:colorIconPrimary</item>
 		-->
 		<item name="android:gravity">center_horizontal</item>
-		<item name="android:padding">@dimen/AAA_ItemTrackMenu_padding</item>
 		<item name="com.maxmpz.audioplayer:drawableWidth">@dimen/AAA_ItemTrackMenu_drawableSize</item>
 		<item name="com.maxmpz.audioplayer:drawableHeight">@dimen/AAA_ItemTrackMenu_drawableSize</item>
 		<item name="com.maxmpz.audioplayer:drawableOnly">true</item>
@@ -377,10 +376,10 @@
 		<!-- NOTE: can't attach directly to rating, as rating can be hidden by user settings -->
 		<!--<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/rating</item>-->
 
-		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item>
 		<item name="android:layout_marginBottom">@dimen/AAA_ItemTrackMenu_scene_aa_marginBottom</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">8dp</item>
 
 		<item name="com.maxmpz.audioplayer:scale">1</item>
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">1</item>
@@ -395,19 +394,19 @@
 		<item name="com.maxmpz.audioplayer:scale">@dimen/AAA_ItemLikeUnlikeLayout_scene_aa_scale</item>
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">@dimen/AAA_ItemLikeUnlikeLayout_scene_aa_scale</item>
 
-		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Sync margins with AA image margins -->
-		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 	</style>
 
 	<style name="AAA_ItemLike_scene_aa" parent="com.maxmpz.audioplayer:ItemLike_scene_aa">
-		<!-- NOTE: not overriden, but can be overriden with any icon/tint/background
+		<!-- NOTE: not overridden, but can be overridden with any icon/tint/background
 		<item name="android:background">@com.maxmpz.audioplayer:drawable/ripple_rounded_large</item>
 		<item name="com.maxmpz.audioplayer:drawableTint">?com.maxmpz.audioplayer:colorIconPrimaryForced</item>
 		-->
 	</style>
 	<style name="AAA_ItemUnlike_scene_aa" parent="com.maxmpz.audioplayer:ItemUnlike_scene_aa">
-		<!-- NOTE: not overriden, but can be overriden with any icon/tint/background
+		<!-- NOTE: not overridden, but can be overridden with any icon/tint/background
 		<item name="android:background">@com.maxmpz.audioplayer:drawable/ripple_rounded_large</item>
 		<item name="com.maxmpz.audioplayer:drawableTint">?com.maxmpz.audioplayer:colorIconPrimaryForced</item>
 		-->
@@ -428,7 +427,6 @@
 		<item name="com.maxmpz.audioplayer:scale">1</item>
 		<item name="com.maxmpz.audioplayer:layout_compensateScale">1</item>
 
-		<item name="android:layout_marginRight">@dimen/AAA_ItemTrackAAImage_scene_aa_margin</item><!-- Requires specific margin due to center scaling -->
 		<item name="android:layout_marginBottom">@dimen/AAA_ItemRatingBar_scene_aa_marginBottom</item>
 		<item name="android:layout_marginLeft">0dp</item>
 	</style>
@@ -465,13 +463,14 @@
 		<item name="com.maxmpz.audioplayer:listSubstyle">@style/AAA_ListSubstyle</item>
 	</style>
 
-	<style name="AAA_ListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle">
+	<style name="AAA_ListSubstyle_Base" parent="com.maxmpz.audioplayer:ListSubstyle2">
 		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
-		<item name="com.maxmpz.audioplayer:aaPaddingBottom">@dimen/AAA_ListSubstyle_aaPaddingBottom</item>
-
-		<!-- Set own TopAAItemRatio as we need to make AA smaller on smaller screens -->
-		<item name="com.maxmpz.audioplayer:aaItemRatio">100%</item><!-- NOTE: sync with TopAABounds -->
-		<item name="com.maxmpz.audioplayer:aaMaxSize">@dimen/AAA_aaMaxSize</item><!-- NOTE: sync with TopAABounds -->
+		<item name="com.maxmpz.audioplayer:aaPaddingBottom">60dp</item><!-- Sync with AAA_TopAABounds -->
+		<!-- Minimum size we can shring AA to -->
+		<item name="com.maxmpz.audioplayer:aaMinSize">50dp</item><!-- Sync with AAA_TopAABounds -->
+		<!-- The space reserved below AA. We need some space there for sub aa buttons, controls, seekbar, etc.
+		     This affects splitsceen layout mostly or very short screens, as for the longer screens, there is always enough space -->
+		<item name="com.maxmpz.audioplayer:aaMarginBottom">200dp</item><!-- Sync with AAA_TopAABounds -->
 
 		<!-- Extra space grid cell layouts => so cell has non-square layout with extra space for title below image -->
 		<item name="com.maxmpz.audioplayer:gridItem1LineExtraSpace">30dp</item><!-- 1line 4x, 3x grids -->
@@ -479,22 +478,24 @@
 
 		<item name="com.maxmpz.audioplayer:gridItemExtraSpace">54dp</item><!-- 2line 4x, 3x grids -->
 		<item name="com.maxmpz.audioplayer:gridZoomedItemExtraSpace">60dp</item><!-- 2line 2x grids -->
-
-
+	</style>
+	<style name="AAA_ListSubstyle" parent="AAA_ListSubstyle_Base">
+		<!-- Overridden in land -->
 	</style>
 
-	<!-- Redefine aa_bounds position and size, so it preciselly follows AA (+ optional padding) position in list.
+	<!-- Redefine aa_bounds position and size, so it precisely follows AA (+ optional padding) position in list.
 	     This view is used as anchoring point for other views, it's invisible, but it can be set to visible for debugging.
-	     For portrait layout, aa_bounds matches height to width (see original TopAABounds style)  -->
-	<style name="AAA_TopAABounds" parent="com.maxmpz.audioplayer:TopAABounds">
-		<item name="com.maxmpz.audioplayer:layout_widthPercent">100%</item><!-- NOTE: sync with ListSubstyle -->
-		<item name="com.maxmpz.audioplayer:layout_heightPercent">100%</item><!-- NOTE: sync with ListSubstyle -->
-		<item name="com.maxmpz.audioplayer:layout_maxHeight">@dimen/AAA_aaMaxSize</item>
-		<item name="android:layout_gravity">center_horizontal</item>
+	     For portrait layout, aa_bounds matches height to width (see original TopAABounds style).
+	     NOTE: build-842 supports better, split-screen compatible AA layout and AABounds, though, that is disabled by default
+	     for compatibility -->
+	<!-- NOTE: TopAABounds style is deprecated, we have TopAABounds2 now -->
+	<style name="AAA_TopAABounds" parent="com.maxmpz.audioplayer:TopAABounds2">
+		<item name="com.maxmpz.audioplayer:aaPaddingBottom">60dp</item><!-- Sync with AAA_ListSubstyle -->
+		<item name="com.maxmpz.audioplayer:aaMinSize">50dp</item><!-- Sync with AAA_ListSubstyle -->
+		<item name="com.maxmpz.audioplayer:aaMarginBottom">200dp</item><!-- Sync with AAA_ListSubstyle -->
 
-		<!-- This is the extra room for title / line2 / menu / rating below AA image. NOTE: need to add this to aa_bounds, so other views can properly attach to it with
-		     the aaPaddingBottom accounted for -->
-		<item name="android:layout_marginBottom">@dimen/AAA_ListSubstyle_aaPaddingBottom</item>
+		<!-- NOTE: same as aaPaddingBottom. We need this to push other attached views (sub aa buttons) below labels -->
+		<item name="android:layout_marginBottom">60dp</item>
 
 		<!-- DEBUG -->
 		<!--<item name="android:background">#5f00</item>-->
@@ -543,4 +544,13 @@
 		<item name="android:layout_marginRight">8dp</item>
 	</style>
 
+	<style name="AAA_CcButton_MainUI" parent="com.maxmpz.audioplayer:CcButton_MainUI">
+		<item name="com.maxmpz.audioplayer:layout_attachRightToRight">@com.maxmpz.audioplayer:id/aa_bounds</item>
+	</style>
+	<style name="AAA_CcButton_MainUI_scenes_playing" parent="AAA_CcButton_MainUI">
+		<item name="com.maxmpz.audioplayer:layout_attachRightToRight">@com.maxmpz.audioplayer:id/aa_bounds</item>
+	</style>
+	<style name="AAA_CcButton_MainUI_scenes_vis_w_ui" parent="AAA_CcButton_MainUI">
+		<item name="com.maxmpz.audioplayer:layout_attachRightToRight">@com.maxmpz.audioplayer:id/aa_bounds</item>
+	</style>
 </resources>

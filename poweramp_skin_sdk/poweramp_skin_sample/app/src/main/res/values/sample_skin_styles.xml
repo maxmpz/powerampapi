@@ -113,7 +113,7 @@
 
 		<!-- Change Playing Mark from just background to overlay icon.
 		     By default, currently played track has background, but we may change that to a completely different thing, in this case - icon.
-		     All scenes should be overriden for that, though (as layout is changed in every scene)
+		     All scenes should be overridden for that, though (as layout is changed in every scene)
 		-->
 		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark">@style/ItemTrackPlayingMark</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_small">@style/ItemTrackPlayingMark_scene_small</item>

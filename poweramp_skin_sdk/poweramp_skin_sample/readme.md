@@ -91,7 +91,7 @@ This is standard Android theme style definition, with couple additional requirem
 
 ```
 
-* overriden styles **should always be derived** from Poweramp styles, otherwise almost any Poweramp update will break skin, due to possible base styles changes
+* overridden styles **should always be derived** from Poweramp styles, otherwise almost any Poweramp update will break skin, due to possible base styles changes
 
 ### Poweramp v3 skin theme specifics
 Poweramp v3 has concept of a scene. A view can be rendered in the target scene (e.g. scene_aa for main player UI large album art item) and can be animated from one scene to another

@@ -33,15 +33,8 @@
 	<!-- This is the extra room for title / line2 / menu / like/unlike below AA image -->
 	<dimen name="AAA_ListSubstyle_aaPaddingBottom">52dp</dimen>
 
-	<!-- Extra hard limit on AA height. This is to ensure we always have a room for other controls. This value may be further adjusted depending on screen aspect and height,
-	     or portrait / landscape orientation, or both -->
-	<dimen name="AAA_aaMaxSize">260dp</dimen>
-
-	<dimen name="AAA_ItemTrackAAImage_scene_aa_margin">4dp</dimen><!-- Smaller AA image margin for small screens -->
-
 	<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">26dp</dimen>
 
-	<dimen name="AAA_ItemTrackMenu_padding">4dp</dimen>
 	<dimen name="AAA_ItemTrackMenu_drawableSize">16dp</dimen>
 
 	<dimen name="AAA_ItemRatingBar_padding">4dp</dimen>

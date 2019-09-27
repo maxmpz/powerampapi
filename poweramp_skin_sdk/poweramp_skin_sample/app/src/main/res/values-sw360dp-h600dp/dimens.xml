@@ -20,12 +20,8 @@
 
 	<dimen name="AAA_ListSubstyle_aaPaddingBottom">61dp</dimen>
 
-	<dimen name="AAA_aaMaxSize">340dp</dimen>
-	<dimen name="AAA_ItemTrackAAImage_scene_aa_margin">8dp</dimen>
-
 	<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">34dp</dimen>
 
-	<dimen name="AAA_ItemTrackMenu_padding">4dp</dimen>
 	<dimen name="AAA_ItemTrackMenu_drawableSize">24dp</dimen>
 
 	<dimen name="AAA_ItemRatingBar_padding">4dp</dimen>

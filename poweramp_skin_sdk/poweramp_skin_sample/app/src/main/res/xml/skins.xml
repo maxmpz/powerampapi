@@ -14,6 +14,10 @@
 			defaultValue=""
 			>
 			<option
+				name="@string/_default"
+				overlapStyle=""
+			/>
+			<option
 				name="@string/skin_opensans_font"
 				overlapStyle="@style/SampleSkin_OpenSansFont"
 			/>
@@ -31,6 +35,24 @@
 			checkedByDefault="false"
 		/>
 
+		<!-- Alternative layout which uses default Poweramp "alternative" layout styles.
+		     For the custom detailed alternative layout implementation, see SampleSkinAAA.
+
+		     overlapAttr here means we'll add extra style based on current overlap_alt_layout attribute value, which is:
+		     - @com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_AltLayout - by default
+		     - @com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_AltLayout_StarsMenu - for OptionRatingStarsMenu
+
+		     You can check those styles in reference_resources.
+		     Alternative styles added then change main and items layout as needed - no further redefines are needed.
+		     If you want more control over alternative layout, see SampleSkinAAA -->
+		-->
+		<option
+			key="alt_layout"
+			name="@string/skin_alt_layout"
+			summary="@string/skin_summary_alt_layout"
+			overlapAttr="@com.maxmpz.audioplayer:attr/overlap_alt_layout"
+			checkedByDefault="false"
+		/>
 
 		<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
 		     See strings.xml for some examples.
@@ -161,6 +183,8 @@
 		/>
 	</skin>
 
+	<!-- Custom "alternative" layout. NOTE: it's recommended to use Poweramp alternative style based option instead.
+	     Still this theme demonstrates how to change layout with own styles without reusing Poweramp builtin "alternative" layout styles -->
 	<skin
 		name="@string/skin_sample_aaa"
 		author="@string/skin_author"
