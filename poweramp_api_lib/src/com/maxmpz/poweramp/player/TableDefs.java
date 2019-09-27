@@ -983,6 +983,7 @@ public interface TableDefs {
 		public static final @NonNull String PLAYLIST = TABLE + ".playlist";
 
 		/**
+		 * Updated to match file based playlist. Also updated on entry insert/reorder/deletion - for all playlists
 		 * INTEGER
 		 */
 		public static final @NonNull String MTIME = TABLE + ".mtime";
@@ -997,6 +998,7 @@ public interface TableDefs {
 		 * INTEGER
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+
 		/**
 		 * Seconds.
 		 * INTEGER
