@@ -35,6 +35,8 @@
 		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">2dp</item>
 		<item name="com.maxmpz.audioplayer:corners_miniplayer_aa">0dp</item>
 
+		<!--<item name="com.maxmpz.audioplayer:colorBgInverse">#00f</item>--><!-- Change e.g. all background colors globally. See other color* definitions in reference_resources -->
+
 		<item name="com.maxmpz.audioplayer:colorStroke">#ddd</item><!-- Make stroked buttons much less contrasted -->
 
 		<item name="com.maxmpz.audioplayer:navbar_elevation">8dp</item><!-- Increase elevation for navbar -->
@@ -72,6 +74,7 @@
 		<item name="com.maxmpz.audioplayer:ItemHeaderShuffleButton">@style/ItemHeaderShuffleButton</item>
 		<item name="com.maxmpz.audioplayer:ItemHeaderPlayButton">@style/ItemHeaderPlayButton</item>
 		<item name="com.maxmpz.audioplayer:ItemHeaderSelectButton">@style/ItemHeaderSelectButton</item>
+		<item name="com.maxmpz.audioplayer:ItemHeaderSearchButton">@style/ItemHeaderSearchButton</item>
 
 		<!-- The text header button (text header => header without background image for categories like Albums, Playlists, etc. -->
 		<item name="com.maxmpz.audioplayer:ItemTextHeaderShuffleButton">@style/ItemTextHeaderShuffleButton</item>
@@ -214,6 +217,10 @@
 	</style>
 
 	<style name="ItemHeaderSelectButton" parent="com.maxmpz.audioplayer:ItemHeaderSelectButton">
+		<item name="android:background">@drawable/ripple_button</item>
+	</style>
+
+	<style name="ItemHeaderSearchButton" parent="com.maxmpz.audioplayer:ItemHeaderSearchButton">
 		<item name="android:background">@drawable/ripple_button</item>
 	</style>
 
