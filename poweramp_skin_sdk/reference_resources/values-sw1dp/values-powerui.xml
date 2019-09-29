@@ -61,7 +61,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="_item_type_null_content"/><!-- No content placeholder for NullLayoutEngine --> 
 	<item type="id" name="_item_type_track"/>
 	<item type="id" name="_item_type_separator"/><!-- NOTE: includes line2 button -->
-	<item type="id" name="_item_type_basic_header"/><!-- Debug -->
+	<item type="id" name="_item_type_basic_header"/>
 	<item type="id" name="_item_type_text"/>
 	<item type="id" name="_item_type_menu"/>
 	<item type="id" name="_item_type_menu_shade"/>
@@ -126,6 +126,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_something_selected"/><!-- boolean -->
 	<item type="id" name="state_list_can_delete"/><!-- boolean, like state_list_something_selected but depends on enable_deletion -->
 	<item type="id" name="state_list_one_track_selected"/><!-- boolean -->
+	<item type="id" name="state_list_one_item_selected"/><!-- boolean -->
 	<item type="id" name="state_list_selection_count"/><!-- integer, also a msg -->
 	<item type="id" name="state_list_item_count"/><!-- integer -->
 	<item type="id" name="state_list_selectable_item_count"/><!-- integer -->

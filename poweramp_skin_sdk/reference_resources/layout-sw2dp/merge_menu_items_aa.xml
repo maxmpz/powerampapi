@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list" w:msgId="@id/cmd_list_delete_dialog"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton
+	<com.maxmpz.widget.BusActionButton android:id="@+id/lyrics"
 		style="?PopupMenuItem"
 		android:drawable="?lyrics"
 
@@ -51,7 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:msgId="@id/cmd_list_add_to_pl_dialog"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton
+	<com.maxmpz.widget.BusActionButton android:id="@+id/info"
 		style="?PopupMenuItem"
 		android:drawable="?info"
 		

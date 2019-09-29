@@ -23,12 +23,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	
 	<!--
-	NOTE: current Theme is always applied for dialogs, no matter which parent Dialog theme extends (it can be e.g. Android or Support Library dialog theme, or nothing at all).
-	Current Theme is applied without force-overriding, thus, Dialog theme values take precendence
+	NOTE: current Theme is always applied for dialogs, no matter which parent Dialog theme extends
+	NOTE: the dialog theme can't override app theme attributes	
 	-->
 
 	<!-- Concrete dialog styles -->
-	<!-- NOTE: each dialog theme inheritance path is: dialog_* => *Dialog => BaseDialog => Theme.AppCompat.Light + ActivityTheme_White -->
+	<!-- NOTE: each dialog theme inheritance path is: dialog_* => *Dialog => BaseDialog => ActivityTheme_White -->
 	<!-- ^.*?E/ThemeManager\(\d+\):\s+ -->
 	
 	<style name="dialog_EditTagActivity" parent="BottomsheetDialog">
@@ -60,14 +60,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 
-	<style name="DialogButtonBarHidden" parent="@style/DialogButtonBar">
-		<item name="android:visibility">gone</item>
-	</style>
-	<style name="DialogTitleLayoutHidden" parent="@style/DialogTitleLayout">
-		<item name="android:visibility">gone</item>
-	</style>
-	
-	
 	<style name="dialog_ExpiredActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
 		<item name="DialogNegativeButtonStyle">@style/LongDialogNegativeButtonStyle</item>
@@ -79,14 +71,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 	<style name="dialog_ChangelogActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text_spread</item>
-		<item name="Text">@style/TextSmaller</item>
+		<!-- NOTE: can't override Text here -->
 	</style>
 	
-	<style name="dialog_AudioInfoActivity" parent="BottomsheetDialog">
+	<style name="dialog_AudioInfoActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_audio_info</item>
 		<item name="DialogTitle">@style/dialog_AudioInfoActivity_DialogTitle</item>
 		<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>
-		<item name="DialogContent">@style/dialog_AudioInfoActivity_DialogContent</item>
+		<item name="DialogContent">@style/CenteredDialogContentNoPadding</item>
 	</style>
 	<style name="dialog_AudioInfoActivity_DialogTitle" parent="DialogTitle">
 		<item name="android:drawable">@drawable/info_stroke_32dp</item>
@@ -95,23 +87,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">-4dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 	</style>
-	<style name="dialog_AudioInfoActivity_DialogContent" parent="DialogContent">
-	</style>
 	
-	<style name="dialog_PlaylistsExportActivity" parent="BottomsheetDialog">
+	<style name="dialog_PlaylistsExportActivity" parent="BottomsheetDialog_vertical_buttons">
 		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
 	</style>
 		
-	<!--
-	<style name="dialog_EqPresetActivity" parent="BottomsheetDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_select_preset</item>
-		<item name="DialogContent">@style/DialogContentNoPadding</item>
-		<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>
-		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
-		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
-	</style>
-	-->
-	
 	<style name="dialog_EditNameActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_text_input</item>
 	</style>
@@ -141,6 +121,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SelectAlbumArt_BottomsheetDialogFrame_scene_dialog_in" parent="BottomsheetDialogFrame_scene_dialog_in">
 		<item name="layout_maxHeight">@dimen/LargerTopBottomSheetDialogFrame_maxHeight</item>
 	</style>
+	
 	<style name="dialog_ListOptsActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_list_opts</item>
 		<item name="DialogTitleLayout">@style/dialog_ListOptsActivity_DialogTitleLayout</item>
@@ -164,18 +145,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="dialog_MediaRouteChooserActivity" parent="SmallerCenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_mediaroute_chooser</item>
-		<!-- <item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item> -->
-		<!-- <item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item> -->
 		<item name="DialogContent">@style/CenteredDialogContentNoPadding</item>
-		<!-- <item name="DialogButtonBar">@style/DialogButtonBarHidden</item> -->
 	</style>
 		
 	<style name="dialog_MediaRouteControllerActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_mediaroute_controller</item>
-		<!-- <item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item> -->
-		<!-- <item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item> -->
-		<!-- <item name="DialogContent">@style/CenteredDialogContentNoPadding</item> -->
-		<!-- <item name="DialogButtonBar">@style/DialogButtonBarHidden</item> -->
 	</style>
 	
 	<style name="dialog_MusicFoldersActivity" parent="CenteredDialog">
@@ -185,12 +159,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="dialog_AutoFindDialogActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_auto_find</item>
 	</style>
-	<!--
-	<style name="dialog_TextAlertDialogActivity" parent="CenteredDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_alert</item>
-		<item name="DialogNegativeButtonStyle">@style/LongDialogNegativeButtonStyle</item>
-	</style>
-	-->
 	<style name="dialog_APMUnlockDialogActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_apm_unlock</item>
 	</style>
@@ -205,24 +173,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogContentLayout">@layout/dialog_content_audio_buffer</item>
 	</style>
 		
-	<!--
-	<style name="dialog_DialogActivity" parent="BottomsheetDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_generic</item>
-	</style>
-	<style name="dialog_DialogActivity_centered" parent="CenteredDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_generic</item>
-	</style>
-	<style name="dialog_DialogActivity_top" parent="TopsheetDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_generic</item>
-	</style>
-	-->
-			
 	<!-- Styles used in dialogs -->
-	
-	<style name="TextSmaller" parent="@style/Text">
-		<item name="android:textSize">14dp</item>
-	</style>
-	
 	
 	<style name="EqPresetAssignIcon">
 		<item name="android:layout_width">wrap_content</item>
@@ -255,21 +206,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">4dp</item>
 	</style>
 		
-	<!--  -->
-	
-	<!-- 
-	NOTE: standard dialog doesn't explicely derive from our custom theme (e.g. ActivityTheme_White), it derived from
-	some system (or AppCompat) theme.
-	
-	BUT Poweramp applies currently selected theme (e.g. ActivityTheme_White) on top of StandardDialog, thus
-	all the values/styles from main theme (ActivityTheme) are avable in standard dialogs as well.
-	
-	The difference vs Dialog theme is that we don't need to rollback all the customization to theme to make it look system-lie,
-	as StandardDialog styles are not overriden by ActivityTheme.
-	-->
-	
-	<!-- REVISIT -->
-	
-	
-	
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:right="12dp">
+ 		<bitmap android:src="?micro_top_rated" android:gravity="top|left" />	
+	</item>
+	<item>
+		<bitmap android:src="?micro_queue" android:gravity="top|right" />
+	</item>
+</layer-list>

@@ -71,7 +71,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="SelectionMenuSelectBox">
 		<item name="layout_widthPercent">30%</item>
-		<!-- <item name="layout_consumeSpace">horizontal</item> -->
 		<item name="android:layout_height">38dp</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
@@ -84,16 +83,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingBottom">0dp</item>
 		<item name="android:drawablePadding">4dp</item>
 		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:textAppearance">?SelectionMenu_Text</item>
 	</style>
 	
 	<style name="SelectionMenuCountText">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_gravity">center_horizontal</item>
-		<!-- <item name="layout_consumeSpace">horizontal</item> -->
 		<item name="android:layout_height">38dp</item>
 		<item name="android:gravity">center</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
+		<item name="android:textAppearance">?SelectionMenu_Text</item>
+	</style>
+	<style name="SelectionMenu_Text" parent="TextAppearance.AppCompat">
 	</style>
 	
 	<style name="SelectionMenuCloseButton">
@@ -109,6 +111,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawable">@drawable/close_stroke</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
+		<item name="android:textAppearance">?SelectionMenu_Text</item>
 	</style>
 	
 	<style name="SelectionMenuSeparator">
@@ -134,18 +137,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="layout_consumeSpace">horizontal|reset_auto</item>
-		<item name="android:textSize">12.5dp</item>
 		<item name="android:singleLine">true</item>
 		
 		<item name="drawablePosition">top</item>
 		<item name="drawableWidth">24dp</item>
 		<item name="drawableHeight">24dp</item>
 		<!-- <item name="android:disabledAlpha">0.5</item> -->
-		<!-- NOTE: important to avoid default android theme text colorlist with disabled text color, as we do own disabled processing 
-			 If we don't specify color explicetly, it's taken from theme, causing text color to jump to disabled, but we want alpha animation -->
-		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="drawableTint">?colorIconPrimary</item>
-
+		
+		<item name="android:textAppearance">?SelectionListContextButton_Text</item>
+		
 		<item name="android:gravity">center</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="animOnClick">true</item><!-- REVISIT: not needed if I hide toolbar on clicks -->
@@ -153,5 +154,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clickable">true</item><!-- Also enforces clickable state (FastButtons are not clickable by default) and ignores parent drawable hot spots -->
 		<item name="android:focusable">true</item>
 	</style>
-	<style name="SelectionListContextButton" parent="SelectionListContextButtonBase"></style>		
+	<style name="SelectionListContextButton_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">12.5dp</item>
+		<!-- NOTE: important to avoid default android theme text colorlist with disabled text color, as we do own disabled processing 
+			 If we don't specify color explicetly, it's taken from theme, causing text color to jump to disabled, but we want alpha animation -->
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	<style name="SelectionListContextButton" parent="SelectionListContextButtonBase">
+	</style>		
 </resources>

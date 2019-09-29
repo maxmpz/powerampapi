@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (C) 2010-2019 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!-- dp => sp 0.897 -->
+
+<!-- values-sw800dp-large -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- New styles -->
+	
+	<!-- NOTE: this sets font for quite specific cases, like Checkboxes (in SleepTimer dialog) -->
+	<style name="textAppearance_Tablet" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/textAppearance_textSize</item>
+	</style>
+	<style name="textAppearanceButton_Tablet" parent="TextAppearance.AppCompat.Widget.Button">
+		<item name="android:textSize">@dimen/textAppearanceButton_textSize</item>
+	</style>
+	<style name="textAppearanceMediumInverse_Tablet" parent="TextAppearance.AppCompat.Medium.Inverse">
+		<item name="android:textSize">@dimen/textAppearanceMediumInverse_textSize</item>
+	</style>
+	<style name="textAppearanceLargePopupMenu_Tablet" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+		<item name="android:textSize">@dimen/textAppearanceLargePopupMenu_textSize</item>
+	</style>
+	<!--
+	<style name="Dialog_textAppearance_Tablet" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/Dialog_textAppearance_textSize</item>
+	</style>
+	<style name="Dialog_textAppearanceSmall_Tablet" parent="TextAppearance.AppCompat.Small">
+		<item name="android:textSize">@dimen/Dialog_textAppearanceSmall_textSize</item>
+	</style>
+	-->
+	
+	<!-- Directly overriding styles -->
+	
+	<style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/textAppearance_textSize</item>
+	</style>
+	
+	<style name="TextAppearance.AppCompat.Widget.Button" parent="Base.TextAppearance.AppCompat.Widget.Button">
+		<item name="android:textSize">@dimen/textAppearanceButton_textSize</item>
+	</style>
+	
+	<style name="TextAppearance.AppCompat.Medium.Inverse" parent="Base.TextAppearance.AppCompat.Medium.Inverse">
+		<item name="android:textSize">@dimen/textAppearanceMediumInverse_textSize</item>
+	</style>
+	
+	<style name="TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Large">
+		<item name="android:textSize">@dimen/textAppearanceLargePopupMenu_textSize</item>
+	</style>
+	
+	<style name="TextAppearance.AppCompat.Small" parent="Base.TextAppearance.AppCompat.Small">
+		<item name="android:textSize">@dimen/textAppearanceSmall_textSize</item>
+	</style>
+	
+	<!-- appCompat	
+	<style name="TopListScrollerView_Text" parent="TextAppearance.AppCompat">
+	</style>
+	-->
+	<style name="TopTrackElapsedDuration_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/TopTrackElapsedDuration_Text_size</item>
+	</style>
+	<style name="TopSearchTarget_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate1_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	<style name="TopToastTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/medium3_textSize</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="TopToastLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate0_textSize</item>
+	</style>
+	<!-- textSize via TopMetaInfoLabel_textSize 
+	<style name="TopCounterLayout_Text_Tablet" parent="TopCounterLayout_Text">
+		<item name="android:textSize">9sp</item>
+	</style>
+	<style name="TopMetaInfoLabel_Text_Tablet" parent="TopMetaInfoLabel_Text">
+		<item name="android:textSize">9sp</item>
+	</style>
+	-->
+	<style name="TopHelp_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/medium1_textSize</item>
+	</style>
+	<!-- textSize via TopHelpSmaller_textSize
+	<style name="TopHelpSmaller_Text_Tablet" parent="TopHelpSmaller_Text">
+	</style>
+	-->
+	<!-- appCompat size
+	<style name="TopHelpButton_Text_Tablet" parent="TopHelpButton_Text">
+	</style>
+	-->
+	
+	<style name="NavbarExtensionLogoLabel_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textStyle">italic</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textSize">@dimen/moderate3_textSize</item>
+	</style>
+
+	<!-- appCompat	
+	<style name="NavbarExtensionMenuLine_Text_Tablet" parent="NavbarExtensionMenuLine_Text">
+	</style>
+	-->
+	
+	<style name="PopupButton_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/medium4_textSize</item>
+	</style>
+		
+	<style name="DialogTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/large4_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	<style name="DialogToastLine1_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/medium2_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	<style name="DialogToastLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate1_textSize</item>
+	</style>
+	<style name="DialogToastLineOnly1_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/medium4_textSize</item>
+	</style>
+	
+	<style name="ItemTrackCatImage_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/ItemTrackCatImage_Text_size</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="ItemTrackTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/large0_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	<style name="ItemTrackLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/medium1_textSize</item>
+	</style>
+	<style name="ItemTrackMeta_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/small1_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	<style name="ItemAALEDecorText_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate2_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	<style name="ItemMiniplayerPrevNextDecorText_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/small3_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	<style name="SeparatorWithButton_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate0_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	<style name="BlackButton_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/medium1_textSize</item>
+		<item name="android:textAllCaps">true</item>
+	</style>
+	<!--
+	<style name="WhiteButton_Text" parent="BlackButton_Text">
+	</style>
+	-->
+	<!--
+	<style name="WhiteStrokedListHeaderButton_Text" parent="BlackButton_Text">
+	</style>
+	-->
+	<style name="ItemTextTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/large3_textSize</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+	<style name="ItemTextLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/small2_textSize</item>
+	</style>
+	<!-- appCompat 
+	<style name="ItemEmptyListText_Text_Tablet" parent="ItemEmptyListText_Text">
+	</style>
+	-->
+	<style name="ItemGenericTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate1_textSize</item>
+	</style>
+	<style name="ItemGenericLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/small4_textSize</item>
+	</style>
+	<style name="ItemPopupSimpleTitle_Text" parent="ItemGenericTitle_Text">
+		<item name="android:textSize">@dimen/medium2_textSize</item>
+	</style>
+	<style name="ItemPopupSimpleLine2_Text" parent="ItemGenericLine2_Text">
+		<item name="android:textSize">@dimen/small4_textSize</item>
+	</style>
+	<style name="ItemPopupListTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate1_textSize</item>
+	</style>
+	<style name="ItemPopupListTitleLarger_Text" parent="ItemGenericTitle_Text">
+		<item name="android:textSize">@dimen/medium2_textSize</item>
+	</style>
+	<style name="ItemVisTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate1_textSize</item>
+	</style>
+	<style name="ItemVisLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/small4_textSize</item>
+	</style>
+	
+	<style name="PopupMenuItem_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textSize">@dimen/medium4_textSize</item>
+	</style>
+	<style name="PopupInfoTextTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/large2_textSize</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="SelectionListContextButton_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate0_textSize</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	
+	<!-- appCompat
+	<style name="SelectionMenu_Text_Tablet" parent="SelectionMenu_Text">
+	</style>
+	-->
+	
+	<style name="SleepTimerTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/large1_textSize</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+</resources>

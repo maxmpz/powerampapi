@@ -262,6 +262,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 this can be used to limit total album art width or height. NOTE: aaPadding* is accounted for max size calculation -->
 		<attr name="aaMaxSize" format="dimension"/>
 		
+		<!-- Optional min. size for album art (either width or height) -->
+		<attr name="aaMinSize" format="dimension"/>
+		
 		<!-- Number of additional AA items to render to the left / right of the main item. Usually this is 1, but for e.g. wide/landscape layouts, extra items may be needed -->
 		<attr name="aaSideItemNum" format="integer"/>
 		
@@ -391,6 +394,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="searchToAAAnimTime" format="integer"/>
 	</declare-styleable>
 	
+	<declare-styleable name="AABounds">
+		<!-- If true, we're matching all these aa* attributes. False is the default - for old skins -->
+		<attr name="matchAASubstyle" format="boolean"/>
+		<attr name="offsetWindowInsets"/>
+		<attr name="aaItemRatio"/>
+		<attr name="aaMaxSize"/>
+		<attr name="aaMinSize"/>
+		<attr name="aaGravity"/>
+		<attr name="aaItemBoundsMatchList"/>
+		<attr name="aaMarginLeft"/>
+		<attr name="aaMarginTop"/>
+		<attr name="aaMarginRight"/>
+		<attr name="aaMarginBottom"/>
+		<attr name="aaPaddingLeft"/>
+		<attr name="aaPaddingTop"/>
+		<attr name="aaPaddingRight"/>
+		<attr name="aaPaddingBottom"/>
+	</declare-styleable>
+	
 	<!-- Custom image view, used specifically to display Album Art/icons in list items -->
 	<declare-styleable name="AAImageView">
 		<!--
@@ -494,6 +516,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- If true, special lines background is rendered, android:background is ignored. EqLinesDrawable attributes can be used right in EqKnobsFastLayout styles -->
 		<attr name="linesBackground"/>
+		
+		<attr name="android:text"/>
+		<attr name="android:textAppearance"/>
+		<attr name="android:textSize"/>
+		<attr name="android:textColor"/>
+		<attr name="android:textStyle"/>
+		<attr name="android:fontFamily" />
+		<attr name="android:typeface" />
+		<attr name="android:textAllCaps" />
 	</declare-styleable>
 	
 	<!-- NOTE: also applies to DSPBusCheckButton -->
@@ -686,5 +717,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="drawableTint"/>
 	</declare-styleable>	
 	
+	<declare-styleable name="DSPInfo">
+		<attr name="AccentedText"/>
+		<attr name="Text"/>
+		<attr name="HeadText"/>
+		<attr name="SubheadText"/>
+		<attr name="Hint"/>
+		<attr name="dspInfoImage" format="reference"/><!-- The target view where we put our drawable info -->
+		<attr name="unknownIcon" format="reference"/>
+		<attr name="drawableTint"/>
+		
+		<attr name="arrowWidth"/>
+		<attr name="arrowHeight"/>
+		<attr name="arrowOffset"/>
+		<attr name="arrowStrokeWidth"/>
+		<attr name="arrowLineWeight"/>
+		<attr name="arrowFillColor"/>
+		<attr name="arrowStrokeColor"/>
+	</declare-styleable>
 	
+		
 </resources>

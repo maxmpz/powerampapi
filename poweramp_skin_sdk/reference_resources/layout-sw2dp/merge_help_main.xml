@@ -3,7 +3,7 @@
 <!-- NOTE: as HelpLayout is Scene by itself, it's own StateAnimParams (forId="parent") will be pushed into it, if placed inside -->
 <com.maxmpz.widget.player.HelpLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
 	android:id="@+id/help_main"
-	style="@style/TopHelpLayoutMain"
+	style="@style/TopHelpLayout"
 	w:enableStateAnim="true"
 >
 
@@ -25,6 +25,7 @@
 
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelp"
+		android:layout_marginTop="72dp"
 		
 		w:help_anchor="@id/aa_bounds"
 		w:help_position="bottom"

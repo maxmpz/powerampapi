@@ -20,9 +20,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
+	<!-- Text styles mostly for dialogs -->
 	<attr name="HeadText" format="reference"/>
 	<attr name="SubheadText" format="reference"/>
 	<attr name="Text" format="reference"/>
+	<attr name="LargerText" format="reference"/>		
 	<attr name="AccentedText" format="reference"/>
 	<attr name="Hint" format="reference"/>
 </resources>

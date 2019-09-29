@@ -33,13 +33,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_PlainSeekbar_buttons_offset">26dp</dimen>
 	
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">344dp</dimen>	
+	<!-- <dimen name="Alt_aaMaxSize">406dp</dimen> Not used anymore -->	
 	
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">0dp</dimen>
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">.85</item>
-	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
-	<dimen name="Alt_ListSubstyle_aaPaddingBottom">66dp</dimen>
-	<dimen name="Alt_TopAABounds_marginBottom">66dp</dimen>
+	<!--<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen> Not used anymore -->
+	<!--<dimen name="Alt_ListSubstyle_aaPaddingBottom">66dp</dimen> Not used anymore -->
+	<dimen name="Alt_TopAABounds_marginBottom">58dp</dimen>
+	<dimen name="Alt_TopListSubstyle_aaMarginBottom">208dp</dimen>
 	
 	
 </resources>

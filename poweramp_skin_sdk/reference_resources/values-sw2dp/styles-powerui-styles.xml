@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Applied to top activity and dialogs -->
 	<style name="BasePoweruiStyles">
 		<!-- Drawables -->
-		<!-- NOTE: for non default themes, these can be overriden in separate theme xmls -->
+		<!-- NOTE: for non default themes, these can be overridden in separate theme xmls -->
 		
 		<item name="repeat_none_32dp">@drawable/repeat_stroke_32dp_tinted</item>
 		<item name="repeat_32dp">@drawable/repeat_32dp_tinted</item>
@@ -66,6 +66,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Base dialogs -->
 		<item name="dialog_AlertDialogActivity">@style/dialog_AlertDialogActivity</item>
 		<item name="dialog_AlertDialogActivity_list">@style/dialog_AlertDialogActivity_list</item>
+		<item name="dialog_AlertDialogActivity_vertical_buttons">@style/dialog_AlertDialogActivity_vertical_buttons</item>
+		<item name="dialog_AlertDialogActivity_no_title">@style/dialog_AlertDialogActivity_no_title</item>
 		
 		<item name="azChars">@string/azChars</item><!-- public-string -->
 		
@@ -80,20 +82,51 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemPopupListImage">@style/ItemPopupListImage</item>
 		<item name="ItemPopupListSelectBox">@style/ItemPopupListSelectBox</item>
 		<item name="ItemPopupListTitle">@style/ItemPopupListTitle</item>
+		<item name="ItemPopupListTitle_Text">@style/ItemGenericTitle_Text</item>
 		<item name="ItemPopupListTitleLarger">@style/ItemPopupListTitleLarger</item>
+		<item name="ItemPopupListTitleLarger_Text">@style/ItemPopupListTitleLarger_Text</item>
 		<item name="ItemPopupListMicroIcon">@style/ItemPopupListMicroIcon</item>
 		<item name="ItemPopupListFrs">@style/ItemPopupListFrs</item>
 		<item name="ItemEqPreset">@style/ItemEqPreset</item>
 		<item name="ItemEqPresetSelectBox">@style/ItemEqPresetSelectBox</item>
-				
+		
+		<item name="ItemPopupSimpleTitle">@style/ItemPopupSimpleTitle</item>
+		<item name="ItemPopupSimpleTitle_Text">@style/ItemPopupSimpleTitle_Text</item>
+		<item name="ItemPopupSimpleLine2">@style/ItemPopupSimpleLine2</item>
+		<item name="ItemPopupSimpleLine2_Text">@style/ItemPopupSimpleLine2_Text</item>
+						
 		<item name="ItemPopupMenu_scene_item_menu">@style/ItemPopupMenu_scene_item_menu</item>
 		<item name="ItemPopupMenuSeparator">@style/ItemPopupMenuSeparator</item>
 		<item name="ItemPopupMenuItemsLayout">@style/ItemPopupMenuItemsLayout</item>
 		<item name="ItemPopupMenuTopSpacer">@style/ItemPopupMenuTopSpacer</item>
+		
+		<item name="PopupInfoTextTitle">@style/PopupInfoTextTitle</item>
+		<item name="PopupInfoTextTitle_Text">@style/PopupInfoTextTitle_Text</item>
+		<item name="PopupInfoText">@style/PopupInfoText</item>
+		<item name="PopupContent_scene_button_menu">@style/PopupContent_scene_button_menu</item>
+		<item name="PopupDSPInfoText">@style/PopupDSPInfoText</item>
+		<item name="PopupDSPInfoImage">@style/PopupDSPInfoImage</item>
+		
+		<item name="SmallerPopupButton">@style/SmallerPopupButton</item>
+		<item name="SmallerPopupButton_scene_button_menu">@style/SmallerPopupButton_scene_button_menu</item>
+		
+		<item name="PopupMenuItem">@style/PopupMenuItem</item>
+		<item name="PopupMenuItem_Text">@style/PopupMenuItem_Text</item>
+		<item name="PopupMenuItem50">@style/PopupMenuItem50</item>
+		
+		<item name="BlackButton_Text">@style/BlackButton_Text</item>
+		<item name="WhiteButton_Text">@style/WhiteButton_Text</item>
+		
+		<!-- NOTE: Eq text styles are here, as they can be used by non-top-activity derived contexts (e.g. VolumePanel) -->
+		<item name="EqLinearKnob_Text">@style/EqLinearKnob_Text</item>
+		<item name="EqKnobValue_Text">@style/EqKnobValue_Text</item>
+		<item name="EqKnobLabel_Text">@style/EqKnobLabel_Text</item>
 	</style>
 	
 	<!-- Applied to top activity only -->
 	<style name="TopPoweruiStyles">
+		<item name="WhiteStrokedListHeaderButton_Text">@style/WhiteStrokedListHeaderButton_Text</item>
+		
 		<item name="ItemTrack">@style/ItemTrack</item>
 		
 		<item name="ItemTrackSelectBox">@style/ItemTrackSelectBox</item>
@@ -125,8 +158,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackAAImage_scene_grid_1_alt">@style/ItemTrackAAImage_scene_grid_1_alt</item>
 		<item name="ItemTrackAAImage_scene_header">@style/ItemTrackAAImage_scene_header</item>
 		<item name="ItemTrackAAImage_scene_item_menu">@style/ItemTrackAAImage_scene_item_menu</item>
+		<item name="ItemTrackAAImage_scene_item_menu_lu">@style/ItemTrackAAImage_scene_item_menu_lu</item>
 
 		<item name="ItemTrackCatImage">@style/ItemTrackCatImage</item>
+		<item name="ItemTrackCatImage_Text">@style/ItemTrackCatImage_Text</item>
 		<item name="ItemTrackCatImage_scene_zoomed">@style/ItemTrackCatImage_scene_zoomed</item>
 		<item name="ItemTrackCatImage_scene_small">@style/ItemTrackCatImage_scene_small</item>
 		<item name="ItemTrackCatImage_scene_header">@style/ItemTrackCatImage_hidden</item>
@@ -138,6 +173,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackCatImage_scene_item_menu">@style/ItemTrackCatImage_hidden</item>
 		
 		<item name="ItemTrackTitle">@style/ItemTrackTitle</item>
+		<item name="ItemTrackTitle_Text">@style/ItemTrackTitle_Text</item>
 		<item name="ItemTrackTitle_scene_small">@style/ItemTrackTitle_scene_small</item>
 		<item name="ItemTrackTitle_scene_1">@style/ItemTrackTitle_scene_1</item>
 		<item name="ItemTrackTitle_scene_1_small">@style/ItemTrackTitle_scene_1_small</item>
@@ -158,6 +194,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackTitle_scene_header_1">@style/ItemTrackTitle_scene_header_1</item>
 				
 		<item name="ItemTrackLine2">@style/ItemTrackLine2</item>
+		<item name="ItemTrackLine2_Text">@style/ItemTrackLine2_Text</item>
 		<item name="ItemTrackLine2_scene_small">@style/ItemTrackLine2_scene_small</item>
 		<item name="ItemTrackLine2_scene_1">@style/ItemTrackLine2_scene_1</item>
 		<item name="ItemTrackLine2_scene_1_small">@style/ItemTrackLine2_scene_1</item><!-- NOTE: same visibility="gone" scene -->
@@ -177,6 +214,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackLine2_scene_header">@style/ItemTrackLine2_scene_header</item>
 		
 		<item name="ItemTrackMeta">@style/ItemTrackMeta</item>
+		<item name="ItemTrackMeta_Text">@style/ItemTrackMeta_Text</item>
 		<item name="ItemTrackMeta_scene_small">@style/ItemTrackMeta_scene_small</item>
 		<item name="ItemTrackMeta_scene_1">@style/ItemTrackMeta_scene_1</item>
 		<item name="ItemTrackMeta_scene_1_small">@style/ItemTrackMeta_scene_1_small</item>
@@ -205,10 +243,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMenu_scene_aa_vis">@style/ItemTrackMenu_scene_aa_vis</item>
 		<item name="ItemTrackMenu_scene_aa_playing">@style/ItemTrackMenu_scene_aa_playing</item>
 		
-		
-		
 		<item name="SeparatorWithButton">@style/SeparatorWithButton</item>
 		<item name="SeparatorWithButtonTitle">@style/SeparatorWithButtonTitle</item>
+		<item name="SeparatorWithButton_Text">@style/SeparatorWithButton_Text</item>
 		<item name="SeparatorWithButtonButton">@style/SeparatorWithButtonButton</item>
 		
 		<item name="ItemSubheadWithButton">@style/ItemSubheadWithButton</item><!-- Not used ATM -->
@@ -216,18 +253,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemSubheadWithButtonButton">@style/ItemSubheadWithButtonButton</item><!-- Not used ATM -->
 		
 		<item name="ItemText">@style/ItemText</item>
+		
 		<item name="ItemTextAAImage">@style/ItemTextAAImage</item>
 		<item name="ItemTextAAImage_scene_grid">@style/ItemTextAAImage_scene_grid</item>
 		<item name="ItemTextAAImage_scene_header">@style/ItemTextAAImage_scene_header</item>
 		<item name="ItemTextAAImage_scene_item_menu">@style/ItemTextAAImage_scene_item_menu</item>
 		
 		<item name="ItemTextTitle">@style/ItemTextTitle</item>
+		<item name="ItemTextTitle_Text">@style/ItemTextTitle_Text</item>
 		<item name="ItemTextTitle_scene_grid">@style/ItemTextTitle_scene_grid</item>
 		<item name="ItemTextTitle_scene_header">@style/ItemTextTitle_scene_header</item>
 		<item name="ItemTextTitle_scene_top_header">@style/ItemTextTitle_scene_top_header</item>
 		<item name="ItemTextTitle_scene_item_menu">@style/ItemTextTitle_scene_item_menu</item>
 		
 		<item name="ItemTextLine2">@style/ItemTextLine2</item>
+		<item name="ItemTextLine2_Text">@style/ItemTextLine2_Text</item>
 		<item name="ItemTextLine2_scene_grid">@style/ItemTextLine2_scene_grid</item>
 		<item name="ItemTextLine2_scene_header">@style/ItemTextLine2_scene_header</item>
 		<item name="ItemTextLine2_scene_item_menu">@style/ItemTextLine2_scene_item_menu</item>
@@ -271,6 +311,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemAALEDecorLayout">@style/ItemAALEDecorLayout</item>
 		<item name="ItemAALEDecorText">@style/ItemAALEDecorText</item>
+		<item name="ItemAALEDecorText_Text">@style/ItemAALEDecorText_Text</item>
 		
 		<item name="ItemTrackBackDecor">@style/ItemTrackBackDecor</item>
 		<item name="ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle</item>
@@ -279,37 +320,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemEmptyList">@style/ItemEmptyList</item>
 		<item name="ItemEmptyListText">@style/ItemEmptyListText</item>
+		<item name="ItemEmptyListText_Text">@style/ItemEmptyListText_Text</item>
 		<item name="ItemEmptyListSettingsButton">@style/ItemEmptyListSettingsButton</item>
 		<item name="ItemEmptyListScanProgress">@style/ItemEmptyListScanProgress</item>
 		<item name="ItemEmptyListScanProgressCenter">@style/ItemEmptyListScanProgressCenter</item>
 		
-		
 		<item name="ItemMiniplayer">@style/ItemMiniplayer</item>
 		<item name="ItemMiniplayerAAImage">@style/ItemMiniplayerAAImage</item>
 		<item name="ItemMiniplayerTitle">@style/ItemMiniplayerTitle</item>
+		<item name="ItemMiniplayerTitle_Text">@style/ItemGenericTitle_Text</item>
 		<item name="ItemMiniplayerLine2">@style/ItemMiniplayerLine2</item>
+		<item name="ItemMiniplayerLine2_Text">@style/ItemGenericLine2_Text</item>
 		<item name="ItemMiniplayerPlayButton">@style/ItemMiniplayerPlayButton</item>
 		<item name="ItemMiniplayerPrevNextDecorLayout">@style/ItemMiniplayerPrevNextDecorLayout</item>
 		<item name="ItemMiniplayerPrevNextDecorText">@style/ItemMiniplayerPrevNextDecorText</item>
+		<item name="ItemMiniplayerPrevNextDecorText_Text">@style/ItemMiniplayerPrevNextDecorText_Text</item>
 		
 		<item name="ItemVis">@style/ItemVis</item>
 		<item name="ItemVisImage">@style/ItemVisImage</item>
 		<item name="ItemVisLikeButton">@style/ItemVisLikeButton</item>
 		<item name="ItemVisTitle">@style/ItemVisTitle</item>
+		<item name="ItemVisTitle_Text">@style/ItemGenericTitle_Text</item>
 		<item name="ItemVisLine2">@style/ItemVisLine2</item>
+		<item name="ItemVisLine2_Text">@style/ItemGenericLine2_Text</item>
 		<item name="ItemVisActivatedCheck">@style/ItemVisActivatedCheck</item>
 		
-		
 		<item name="VisLockButtonLayout">@style/VisLockButtonLayout</item>
-		<item name="SmallerPopupButton">@style/SmallerPopupButton</item>
-		<item name="SmallerPopupButton_scene_button_menu">@style/SmallerPopupButton_scene_button_menu</item>
-		
-		<item name="PopupMenuItem">@style/PopupMenuItem</item>
-		<item name="PopupMenuItem50">@style/PopupMenuItem50</item>
-		
-		<item name="PopupInfoTextTitle">@style/PopupInfoTextTitle</item>
-		<item name="PopupInfoText">@style/PopupInfoText</item>
-		<item name="PopupContent_scene_button_menu">@style/PopupContent_scene_button_menu</item>
 		
 		<item name="ItemHeaderShuffleButton">@style/ItemHeaderShuffleButton</item>
 		<item name="ItemHeaderShuffleButton_scene_header">@style/ItemHeaderShuffleButton_scene_header</item>
@@ -348,8 +384,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemUnlike_scene_aa">@style/ItemUnlike_scene_aa</item>
 		<item name="ItemUnlike_scene_item_menu">@style/ItemUnlike_scene_item_menu</item>
 				
-		<item name="PopupButton">@style/PopupButton</item>
-		<item name="PopupButton_scene_button_menu">@style/PopupButton_scene_button_menu</item>
+		<item name="PopupButton">@style/PopupButtonNoTint</item>
+		<item name="PopupButton_Text">@style/PopupButton_Text</item>
+		<item name="PopupButton_scene_button_menu">@style/PopupButtonNoTint_scene_button_menu</item>
+		
 		<item name="PopupButtonLayoutDialogButton3">@style/PopupButtonLayoutDialogButton3</item>
 		<item name="PopupButtonLayoutDialogButton2">@style/PopupButtonLayoutDialogButton2</item>
 		<item name="PopupButtonLayoutDialogButton1">@style/PopupButtonLayoutDialogButton1</item>
@@ -359,7 +397,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="NavbarExtension">@style/NavbarExtension</item>
 		<item name="NavbarExtensionLogo">@style/NavbarExtensionLogo</item>
 		<item name="NavbarExtensionLogoLabel">@style/NavbarExtensionLogoLabel</item>
+		<item name="NavbarExtensionLogoLabel_Text">@style/NavbarExtensionLogoLabel_Text</item>
 		<item name="NavbarExtensionMenuLine">@style/NavbarExtensionMenuLine</item>
+		<item name="NavbarExtensionMenuLine_Text">@style/NavbarExtensionMenuLine_Text</item>
 		<item name="NavbarExtensionMenuLine50">@style/NavbarExtensionMenuLine50</item>
 		<item name="NavbarList">@style/NavbarList</item>
 		<item name="NavbarNavButtonsLayout">@style/NavbarNavButtonsLayout</item>
@@ -370,21 +410,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="SelectionMenuTopLineLayout">@style/SelectionMenuTopLineLayout</item>
 		<item name="SelectionMenuSelectBox">@style/SelectionMenuSelectBox</item>
 		<item name="SelectionMenuCountText">@style/SelectionMenuCountText</item>
+		<item name="SelectionMenu_Text">@style/SelectionMenu_Text</item>
 		<item name="SelectionMenuCloseButton">@style/SelectionMenuCloseButton</item>
 		<item name="SelectionMenuSeparator">@style/SelectionMenuSeparator</item>
 		<item name="SelectionMenuBottomLineLayout">@style/SelectionMenuBottomLineLayout</item>
 		<item name="SelectionListContextButton">@style/SelectionListContextButton</item>
+		<item name="SelectionListContextButton_Text">@style/SelectionListContextButton_Text</item>
 		<item name="SelectionMenuSubcontainer">@style/SelectionMenuSubcontainer</item>
 		<item name="SelectionMenuSubcontainer_scene_selection_menu">@style/SelectionMenuSubcontainer_scene_selection_menu</item>
 		<item name="SelectionMenuSubcontainer_scenes_hidden">@style/SelectionMenuSubcontainer_scenes_hidden</item>
 		
-		
 		<item name="TopContainer">@style/TopContainer</item>
 		<item name="TopMilk">@style/TopMilk</item>
 		<item name="TopListWidget">@style/TopListWidget</item>
-		<item name="TopAABounds">@style/TopAABounds</item>
+		<item name="TopAABounds">@style/TopAABounds2</item>
 		
 		<item name="TopListScrollerView">@style/TopListScrollerView</item>
+		<item name="TopListScrollerView_Text">@style/TopListScrollerView_Text</item>
 		<item name="TopListScrollerView_state_scrollbar_pressed">@style/TopListScrollerView_state_scrollbar_pressed</item>
 		
 		<item name="TopEqLayout">@style/TopEqLayout</item>
@@ -394,12 +436,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopSearchPanel">@style/TopSearchPanel</item>
 		<item name="TopSearchCloseButton">@style/TopSearchCloseButton</item>
 		<item name="TopListSearchEditText">@style/TopListSearchEditText</item>
+		<item name="TopSearchTarget">@style/TopSearchTarget</item>
+		<item name="TopSearchTarget_Text">@style/TopSearchTarget_Text</item>
 
 		<item name="TopNavbarBounds">@style/TopNavbarBounds</item>
 		<item name="TopNavbarContainer">@style/TopNavbarContainer</item>
 		<item name="TopSelectionMenuContainer">@style/TopSelectionMenuContainer</item>
 
 		<item name="TopListIndexerPopupView">@style/TopListIndexerPopupView</item>
+		<item name="TopListIndexerPopupView_Text">@style/TopListIndexerPopupView_Text</item>
 		<item name="TopListIndexerPopupView_state_scrollbar_pressed">@style/TopListIndexerPopupView_state_scrollbar_pressed</item>
 		
 		<item name="TopFitsStatusBarView">@style/TopFitsStatusBarView</item>
@@ -416,6 +461,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopWaveseekCursor">@style/TopWaveseekCursor</item>
 		<item name="TopWaveseekCursor_state_waveseek_pressed">@style/TopWaveseekCursor_state_waveseek_pressed</item>
 		<item name="TopTrackElapsed">@style/TopTrackElapsed</item>
+		<item name="TopTrackElapsedDuration_Text">@style/TopTrackElapsedDuration_Text</item>
 		<item name="TopTrackElapsed_scene_playing">@style/TopTrackElapsed_scene_playing</item>
 		<item name="TopTrackElapsed_state_seeking">@style/TopTrackElapsed_state_seeking</item>
 		<item name="TopTrackDuration">@style/TopTrackDuration</item>
@@ -436,8 +482,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopFf">@style/TopFf</item>
 		<item name="TopFf_scene_playing">@style/TopFf_scene_playing</item>
 		
-		
-		
 		<item name="TopSubAAButtons">@style/TopSubAAButtons</item>
 		<item name="TopSubAAButtons_scenes_playing">@style/TopSubAAButtons_scenes_playing</item>
 		<item name="TopSubAAButtons_scene_lib">@style/TopSubAAButtons_scene_lib</item>
@@ -445,7 +489,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopVisButtonLayout">@style/TopVisButtonLayout</item>
 		<item name="TopShuffleButtonLayout">@style/TopShuffleButtonLayout</item>
 		<item name="TopRepeatButtonLayout">@style/TopRepeatButtonLayout</item>
-		<!-- <item name="TopAudioInfoButton">@style/TopAudioInfoButton</item> -->
 		<item name="TopSleepTimerButtonLayout">@style/TopSleepTimerButtonLayout</item>
 		<item name="TopSleepTimerButtonLayout_scene_item_menu">@style/TopSleepTimerButtonLayout_scene_item_menu</item>
 		<item name="SleepTimerButton_scene_button_menu">@style/SleepTimerButton_scene_button_menu</item>
@@ -456,20 +499,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopToastFrame">@style/TopToastFrame</item>
 		<item name="TopToastFrame_scene_expanded">@style/TopToastFrame_scene_expanded</item>
 		<item name="TopToastIcon">@style/TopToastIcon</item>
-		<!-- <item name="TopToastTextContainer">@style/TopToastTextContainer</item> -->
-		<!-- <item name="TopToastSpacer">@style/TopToastSpacer</item> -->
 		<item name="TopToastTitle">@style/TopToastTitle</item>
+		<item name="TopToastTitle_Text">@style/TopToastTitle_Text</item>
 		<item name="TopToastLine2">@style/TopToastLine2</item>
+		<item name="TopToastLine2_Text">@style/TopToastLine2_Text</item>
 		<item name="TopToastTitle_no_icon">@style/TopToastTitle_no_icon</item>
 		<item name="TopToastLine2_no_icon">@style/TopToastLine2_no_icon</item>
 		
 		<item name="TopCounterLayout">@style/TopCounterLayout</item>
+		<item name="TopCounterLayout_Text">@style/TopCounterLayout_Text</item>
 		<item name="TopCounterLayout_scenes_playing">@style/TopMetaInfoLayout_scenes_playing</item><!-- NOTE: using same scene styles as TopMetaInfoLayout --> 
 		<item name="TopCounterLayout_scenes_invisible">@style/TopMetaInfoLayout_scenes_invisible</item>
 		<item name="TopCounterLayout_anim_seeking">@style/TopMetaInfoLayout_anim_seeking</item>
-		<!-- NOTE: not used from build 811, top counter now uses TopCounterLayout attr/style -->
-		<!-- <item name="TopCounter">@style/TopCounter</item> -->
-				
 		
 		<item name="TopMetaInfoLayout">@style/TopMetaInfoLayout</item>
 		<item name="TopMetaInfoLayout_scenes_playing">@style/TopMetaInfoLayout_scenes_playing</item>
@@ -478,6 +519,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopMetaInfo">@style/TopMetaInfo</item>
 		<item name="TopMetaInfo_scene_item_menu">@style/TopMetaInfo_scene_item_menu</item>
 		<item name="TopMetaInfoLabel">@style/TopMetaInfoLabel</item>
+		<item name="TopMetaInfoLabel_Text">@style/TopMetaInfoLabel_Text</item>
+		
+		<item name="TopHelp_Text">@style/TopHelp_Text</item>
+		<item name="TopHelpSmaller_Text">@style/TopHelpSmaller_Text</item>
+		<item name="TopHelpButton_Text">@style/TopHelpButton_Text</item>
+		
 		
 		<!-- Vis -->
 		
@@ -491,7 +538,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="VisPanelList">@style/VisPanelList</item>
 		<item name="VisPanelFrame_scene_vispanel_expanded">@style/VisPanelFrame_scene_vispanel_expanded</item>
 				
-		
 		<!-- Eq pages -->
 		
 		<item name="EqPagesLayout">@style/EqPagesLayout</item>
@@ -499,6 +545,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqTabLayout">@style/EqTabLayout</item>
 		
 		<!-- Equalizer tab -->
+		<item name="EqButton_Text">@style/EqButton_Text</item>
 		<item name="EqPreampKnobLayout">@style/EqPreampKnobLayout</item>
 		<item name="EqPreampLinearKnob">@style/EqPreampLinearKnob</item>
 		<item name="EqKnobsLayout">@style/EqKnobsLayout</item>
@@ -514,6 +561,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqEquPresetButtonLayout">@style/EqEquPresetButtonLayout</item>
 		<item name="EqEquPresetButtonLayout_scene_button_menu">@style/EqEquPresetButtonLayout_scene_button_menu</item>
 		<item name="EqEquPresetLabel">@style/EqEquPresetLabel</item>
+		<item name="EqEquPresetLabel_Text">@style/EqEquPresetLabel_Text</item>
 		<item name="EqEquSaveButton">@style/EqEquSaveButton</item>
 		<item name="EqEquResetButton">@style/EqEquResetButton</item>
 		<item name="EqBassToneKnobLayout">@style/EqBassToneKnobLayout</item>
@@ -554,20 +602,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Sleep timer -->
 		<item name="SleepTimerTitle">@style/SleepTimerTitle</item>
+		<item name="SleepTimerTitle_Text">@style/SleepTimerTitle_Text</item>
+		<item name="SleepTimerContent">@style/SleepTimerContent</item>
 		<item name="SleepTimerSeekbar">@style/SleepTimerSeekbar</item>
 		<item name="SleepTimerPTESelectBox">@style/SleepTimerPTESelectBox</item>
 		
-												
-		<!--
-		<item name="">@style/</item>
-		<item name="">@style/</item>
-		<item name="">@style/</item>
-		<item name="">@style/</item>
-		<item name="">@style/</item>
-		<item name="">@style/</item>
-		<item name="">@style/</item>
-		<item name="">@style/</item>
-		-->
+		<!-- PlainSeekbar -->
+		<item name="PlainSeekbar">@style/PlainSeekbar</item>
+		<item name="PlainSeekbar_anim_seeking">@style/PlainSeekbar_anim_seeking</item>
+		
+		
 	</style>
 	
 </resources>

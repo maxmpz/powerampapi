@@ -52,7 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: this is ignored, if animTime/animMainExitTime is set to 0. 
 		  	 Also, LARGE values apply for list => no list transition, which is currently only to Eq 
 			 For other list transitions, list takes control over blur animation duration (it's synced to list transition duration),
-			 and thus, if this time is aaBlurExitAnimTime, it's overriden by list, if aaBlurExitAnimTime is small, it may end animate befor
+			 and thus, if this time is aaBlurExitAnimTime, it's overridden by list, if aaBlurExitAnimTime is small, it may end animate befor
 			 list takes control
 		-->
 		<item name="aaBlurExitAnimTime">150</item>
@@ -60,7 +60,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="visExitAnimTime">100</item>
 		<item name="aaEnterAnimTime">250</item>
 		
-		<!-- The time new image blur animates over placeholder. Larger times (>~250) may be overriden by logic which ensures image is properly rendered -->
+		<!-- The time new image blur animates over placeholder. Larger times (>~250) may be overridden by logic which ensures image is properly rendered -->
 		<item name="aaBlurUpdateAnimTime">50</item>
 		<item name="aaBlurLongerUpdateAnimTime">250</item>
 		<item name="aaBlurNoAAToAAAnimTime">200</item>
@@ -84,10 +84,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 NOTE: colorAABgColor is also used by lock screen, thus, don't override color just here, instead, override colorAABgColor -->
 		<item name="aaBgColor">?colorAABgColor</item>
 		
-		<item name="aaBlurLevel">5</item><!-- 5. NOTE: overriden by user preferences -->
-		<item name="aaBlurSaturation">1.5</item><!-- 1.5. NOTE: overriden by user preferences -->
-		<item name="aaBlurScaleSize">32</item><!-- 32. NOTE: overriden by user preferences -->
-		<item name="aaBlurIntensity">1</item><!-- 1. NOTE: overriden by user preferences -->
+		<item name="aaBlurLevel">5</item><!-- 5. NOTE: overridden by user preferences -->
+		<item name="aaBlurSaturation">1.5</item><!-- 1.5. NOTE: overridden by user preferences -->
+		<item name="aaBlurScaleSize">32</item><!-- 32. NOTE: overridden by user preferences -->
+		<item name="aaBlurIntensity">1</item><!-- 1. NOTE: overridden by user preferences -->
 	</style>
 	
 	<style name="TopListWidget">
@@ -95,8 +95,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">match_parent</item>
 		
 		<!-- NOTE: offsetWindowInsets=statusBar below defines additional paddingTop matching status bar size -->
-		<item name="android:paddingTop">0dp</item>
-		<item name="android:paddingBottom">0dp</item>
 		
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item>
@@ -109,20 +107,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="moveableToolbar">@+id/navbar</item>
 		<item name="moveableToolbarExtraStates">false</item>
 		<item name="moveableToolbarAnchor">bottom</item><!-- NOTE: Poweramp can make this bottomFixed if bottom is here and user selectes static navbar in settings -->
-		<item name="bottomReservedSpace">100dp</item><!-- Should be ~ navbar height  + all its margins -->
-		<item name="selectionBottomReservedSpace">160dp</item><!-- Should be ~ selection bar height  + all its margins -->
+		<item name="bottomReservedSpace">?bottom_navbar_bounds_2lines_size</item><!-- Should be ~ navbar height (in expanded form) + all its margins -->
+		<item name="selectionBottomReservedExtraSpace">60dp</item><!-- Added to bottomReservedSpace to match ~ selection bar height + all its margins -->
 		
 		<item name="listMilkMode">mainAA</item>
 		<item name="listScroller">@+id/list_scroller</item>
 		<item name="listIndexer">@+id/list_indexer</item>
 		<item name="listMilkAA">@+id/milk</item>
 		<item name="menuPlaceholder">@+id/menu_placeholder</item>
-		<item name="listSubstyle">@style/ListSubstyle</item>
+		<item name="listSubstyle">@style/ListSubstyle2</item>
 		
-		<item name="offsetWindowInsets">statusBar|navigationBar</item>
+		<item name="offsetWindowInsets">statusBar|navigationBar</item><!-- NOTE: sync with TopAABounds2 -->
 	</style>
 	
-	<style name="ListSubstyleBase">
+	<style name="ListSubstyleBase2">
 		<item name="addStatusBarHeightToHeaders">true</item>
 		<item name="textHeaderSize">186dp</item>
 		<item name="headerSize">236dp</item>
@@ -132,7 +130,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="topTextHeaderSize">76dp</item>
 		
 		<item name="separatorSize">32dp</item>
-		<item name="aaItemRatio">@fraction/TopAAItemRatio</item><!-- NOTE: sync with TopAABounds -->
+		
+		<!-- This is minumum space on the bottom AA layout tries to maintain. Usually in portrait orientation there is enough space for other controls, but
+		     for split screen mode AA takes whole screen and there is no room for controls.
+		     aaMarginBottom forces AA to be keep some space
+		     NOTE: aaMinSize is still honored and takes priority over this
+		     NOTE: overridden in default-styles-alt.xml -->
+		<item name="aaMarginBottom">@dimen/ListSubstyleBase2_aaMarginBottom</item><!-- 200dp, larger on large screens -->
+		<item name="aaMinSize">130sp</item><!-- ~ 3 lines of text -->
+		
 		<item name="itemSize">96dp</item>
 		<item name="itemSizeZoomed">137dp</item>
 		<item name="itemSizeSmall">62dp</item>
@@ -156,6 +162,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="aaPosAnimTime">550</item>
 		<item name="aaPosSettleAnimTime">650</item>
 	</style>
+	<style name="ListSubstyle2" parent="ListSubstyleBase2">
+	</style>
+	
+	<!-- Keeping legacy styles for the old skins -->
+	<!-- @Deprecated -->
+	<style name="ListSubstyleBase" parent="ListSubstyleBase2">
+		<item name="aaItemRatio">100%</item>
+		<item name="aaMarginBottom">@null</item>
+	</style>
+	<!-- @Deprecated -->
 	<style name="ListSubstyle" parent="ListSubstyleBase">
 	</style>
 		
@@ -239,28 +255,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="TopTrackElapsed">
 		<item name="android:layout_gravity">center_vertical</item><!-- View gravity -->
-		<item name="android:gravity">center_vertical</item><!-- Text gravity -->
+		<item name="android:gravity">center</item><!-- Text gravity -->
+		<item name="android:clipToPadding">false</item>
 		
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">25dp</item><!-- Match pause button height in state_playing -->
+		<item name="android:layout_height">@dimen/TopTrackElapsedDuration_height</item><!-- Match pause button height in state_playing -->
 		<item name="layout_attachRight">@+id/play</item>
 		<item name="android:layout_marginRight">1dp</item>
 		
 		<item name="android:paddingLeft">6dp</item>
 		<item name="android:paddingRight">6dp</item>
 		<item name="android:ellipsize">none</item>
-		<item name="android:textSize">14dp</item> 
 		<item name="android:background">@drawable/ripple_inverse_rounded_small</item>
-		<item name="android:textColor">?android:textColorPrimaryInverse</item>
 		<item name="android:hapticFeedbackEnabled">true</item>
 		<item name="android:longClickable">true</item>
 		<item name="android:maxLines">1</item>
+		<item name="android:textAppearance">?TopTrackElapsedDuration_Text</item>
+		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+	</style>
+	<style name="TopTrackElapsedDuration_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">14dp</item>
 	</style>
 	<style name="TopTrackElapsed_scene_playing">
 		<item name="recalcChildren">on_start</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">25dp</item><!-- Match pause button height in state_playing -->
+		<item name="android:layout_height">@dimen/TopTrackElapsedDuration_height</item><!-- Match pause button height in state_playing -->
 		<item name="layout_attachRight">@+id/pause</item>
 		<item name="android:layout_marginRight">-1dp</item>
 	</style>
@@ -273,24 +293,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_vertical</item><!-- View gravity -->
 		<item name="android:gravity">center_vertical</item><!-- Text gravity -->
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">25dp</item><!-- Match pause button height in state_playing -->
+		<item name="android:layout_height">@dimen/TopTrackElapsedDuration_height</item><!-- Match pause button height in state_playing -->
 		<item name="layout_attachLeft">@+id/play</item>
 		<item name="android:layout_marginLeft">1dp</item>
 		<item name="android:paddingLeft">6dp</item>
 		<item name="android:paddingRight">6dp</item>
-		<!-- <item name="android:paddingTop">3dp</item> -->
-		<!-- <item name="android:paddingBottom">3dp</item> -->
 		<item name="android:ellipsize">none</item>
-		<item name="android:textSize">14dp</item> 
 		<item name="android:background">@drawable/inverse_rounded_small</item>
 		<item name="android:textColor">?android:textColorPrimaryInverse</item>
 		<item name="android:maxLines">1</item>
+		<item name="android:textAppearance">?TopTrackElapsedDuration_Text</item><!-- NOTE: shares it with TopTrackElapsed -->
 	</style>
 	<style name="TopTrackDuration_scene_playing">
 		<item name="recalcChildren">on_start</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">25dp</item><!-- Match pause button height in state_playing -->
+		<item name="android:layout_height">@dimen/TopTrackElapsedDuration_height</item><!-- Match pause button height in state_playing -->
 		<item name="layout_attachLeft">@+id/pause</item>
 		<item name="android:layout_marginLeft">-1dp</item>
 	</style>
@@ -330,7 +348,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopPause_scene_playing">
 		<item name="android:layout_width">60dp</item>
-		<item name="android:layout_height">25dp</item><!-- Match elasped/duration -->
+		<item name="android:layout_height">@dimen/TopPause_scene_playing_height</item><!-- Match elasped/duration -->
 		<item name="android:layout_gravity">center</item>
 		<item name="scale">1</item>		
 		<item name="android:visibility">visible</item>
@@ -339,7 +357,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopPause_state_seeking">
 		<item name="android:alpha">0</item>
 	</style>
-		
+			
 	<!-- NOTE: no point in ripple animation (animOnClick=true) as we transition play button quickly for animation to be noticeable -->
 	<!-- NOTE: avoiding overdraw and extra dimens with using single auto-scaled image + ripple -->
 	<style name="TopPlay">
@@ -355,6 +373,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">fill</item>
 		<item name="android:drawable">@drawable/ripple_play_round_100dp</item>
+		<item name="android:minWidth">20dp</item>
+		<item name="android:minHeight">20dp</item>
 		<!-- NOTE: elevation enabled layout requires round background
 		<item name="android:elevation">4dp</item>
 		<item name="android:background">@drawable/black_round</item>
@@ -374,8 +394,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Default drawable size is 40dp -->
 	<style name="TopSmallButton">
-		<item name="android:layout_width">@dimen/TopSmallButton_size</item> 
-		<item name="android:layout_height">@dimen/TopSmallButton_size</item>
+		<!-- NOTE: setting layout_maxWidth/layout_maxHeight, android:layout_height=match_parent, layout_matchDimension=widthToHeight 
+		     makes buttons kind of scallable for smaller parent, e.g. when we're shrinked due to the split window mode or due to the other window resize -->
+		<item name="layout_maxWidth">@dimen/TopSmallButton_size</item> 
+		<item name="layout_maxHeight">@dimen/TopSmallButton_size</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_width">0dp</item><!-- Provide some width => important for scenes as without layout_width scene won't apply layout params -->
+		<item name="layout_matchDimension">widthToHeight</item>
+		
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
@@ -476,8 +502,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottomToBottom">@id/waveseek</item>
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginBottom">@dimen/TopTrackElapsedMoreButtons_marginBottom</item>
-		<item name="android:scaleX">0.8</item>
-		<item name="android:scaleY">0.8</item>
+		<item name="android:scaleX">@dimen/TopTrackElapsedDurationMoreButtons_scale</item>
+		<item name="android:scaleY">@dimen/TopTrackElapsedDurationMoreButtons_scale</item>
 		<item name="android:background">@drawable/ripple_inverse_bg_rounded_small</item>
 	</style>
 	<style name="TopTrackElapsedMoreButtons_scene_playing" parent="TopTrackElapsed_scene_playing">
@@ -495,8 +521,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottomToBottom">@id/waveseek</item>
 		<item name="android:layout_marginBottom">@dimen/TopTrackElapsedMoreButtons_marginBottom</item>
 		<item name="android:layout_marginRight">12dp</item>
-		<item name="android:scaleX">0.8</item>
-		<item name="android:scaleY">0.8</item>
+		<item name="android:scaleX">@dimen/TopTrackElapsedDurationMoreButtons_scale</item>
+		<item name="android:scaleY">@dimen/TopTrackElapsedDurationMoreButtons_scale</item>
 		<item name="android:background">@drawable/inverse_bg_rounded_small</item>
 	</style>
 	<style name="TopTrackDurationMoreButtons_scene_playing" parent="TopTrackDuration_scene_playing">
@@ -547,7 +573,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">parent</item>
 		<item name="azBackground">@drawable/az_bg</item>
 		<item name="azTouchedBackground">?colorFastScrollerPressed</item><!-- #444 -->
-		<item name="android:textColor">@color/az_text_color_selector</item>
 		<item name="azPaddingTop">0dp</item>
 		<item name="azPaddingBottom">0dp</item>
 		<item name="azPaddingLeft">8dp</item>
@@ -556,6 +581,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- <item name="azChars">@string/azChars</item> --><!-- NOTE: always provided by Pages -->
 		<item name="azScrollUp">@drawable/scroll_up</item>
 		<item name="android:focusable">false</item><!-- Disable, as focusing it makes little sense -->
+		<item name="android:textAppearance">?TopListScrollerView_Text</item>
+		<item name="android:textColor">@color/az_text_color_selector</item>
+	</style>
+	<style name="TopListScrollerView_Text" parent="TextAppearance.AppCompat">
+		<!-- NOTE: ListScrollerView automatically sets text size -->
 	</style>
 	<style name="TopListScrollerView" parent="TopListScrollerViewBase">
 	</style>
@@ -638,11 +668,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="TopListSearchEditText" parent="@style/Widget.AppCompat.EditText">
+		<!-- NOTE: uses android:textAppearanceMediumInverse => TextAppearance.AppCompat.Medium.Inverse -->
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:padding">12dp</item>
 		
-		<item name="android:background">@empty</item>
+		<item name="android:background">@null</item>
 		<!-- NOTE: not supported until 6.0, thus, using separate tinted drawable -->
 		<item name="android:drawableLeft">@drawable/search_tinted</item>
 		<!-- <item name="android:drawableTint">?colorIconPrimary</item> -->
@@ -681,12 +712,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<item name="android:maxLines">1</item>
 		<item name="android:ellipsize">end</item>
-		<item name="android:textSize">13dp</item>
-		<item name="android:textStyle">bold</item>
 				
 		<item name="android:background">@drawable/ripple_bg_light_rounded_large</item>
-		<item name="android:disabledAlpha">0</item><!-- DEBUG -->
-	</style>		
+		<item name="android:disabledAlpha">0</item>
+		
+		<item name="android:textAppearance">?TopSearchTarget_Text</item>
+	</style>
+	<style name="TopSearchTarget_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">13dp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
 	
 	<style name="TopNavbarContainer">
 		<item name="android:layout_width">match_parent</item>
@@ -703,7 +738,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	-->
 	<style name="TopNavbarBounds">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_height">?bottom_navbar_bounds_size</item>
 		<!-- NOTE: it's possible to define navbar_bounds size with minHeight + paddings, but for consinstency, using bottom_navbar_bounds_size,
 		     as this is needed anyway for other unrelated components --> 
@@ -734,13 +768,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachRight">@+id/list_scroller</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginTop">-16dp</item>
-		<item name="android:textColor">?android:textColorPrimaryInverse</item>
-		<item name="android:textSize">80dp</item>
 		<item name="android:gravity">center</item>
 		<item name="indexerPopupMode">moveWithThumb</item>
 		<item name="thumbModeOffsetX">0dp</item>
 		<item name="android:translationZ">?modal_translationZ</item>
 		<item name="android:outlineProvider">none</item>
+		<item name="android:textAppearance">?TopListIndexerPopupView_Text</item>
+		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+	</style>
+	<style name="TopListIndexerPopupView_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">80dp</item>
 	</style>
 	<style name="TopListIndexerPopupView_state_scrollbar_pressed">
 		<item name="android:alpha">1</item>
@@ -755,10 +792,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:translationZ">?modal_translationZ</item>
 		<item name="android:outlineProvider">none</item>
 		<item name="shadeColor">?colorShade</item>
-		<!-- <item name="overscan">top|bottom</item> -->
 	</style>
 	
-	<!-- Overriden in values-sw2dp-land -->
+	<!-- Overridden in values-sw2dp-land -->
 	<style name="TopFitsStatusBarView">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
@@ -770,7 +806,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="TopFitsStatusBarView_scenes_non_main"></style><!-- NOTE: nothing changes for default skins -->
 	
-	<!-- Overriden in values-sw2dp-land -->
+	<!-- Overridden in values-sw2dp-land -->
 	<style name="TopFitsNavigationBarView">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
@@ -780,31 +816,48 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:elevation">0px</item>
 	</style>
 	<style name="TopFitsNavigationBarView_scenes_non_main"></style><!-- NOTE: nothing changes for default skins -->
-	
 
-	<!-- NOTE: overriden in values-sw1dp-land for landscape -->	
+	<!-- NOTE: old TopAABounds style used for compatibility with old skins. Not used anymore -->
+	<!-- @Deprecated -->
 	<style name="TopAABounds">
-		<item name="layout_widthPercent">@fraction/TopAAItemRatio</item><!-- NOTE: sync with ListSubstyle -->
-		<item name="layout_heightPercent">@fraction/TopAAItemRatio</item><!-- NOTE: sync with ListSubstyle -->
+		<item name="layout_widthPercent">100%</item><!-- NOTE: sync with legacy ListSubstyle -->
+		<item name="layout_heightPercent">100%</item><!-- NOTE: sync with legacy ListSubstyle -->
 		<!-- NOTE: AA LE uses width in portait orientation as base size for AA, and height as base size in landscape orientation.
 			 More strictly, AA LE uses the smallest screen dimension for AA size, thus layout_matchDimension here should be orientation dependent -->
 		<item name="layout_matchDimension">heightToWidth</item>
 		<item name="layout_attachTop">inset</item>
-		<!-- <item name="android:background">#5f00</item> --><!-- DEBUG -->
+		<!-- DEBUG -->
+		<!--<item name="android:background">#5f0f</item>-->
+	</style>
+	
+	<!-- NOTE: new AABounds style, now derived from ListSubstyle2 and using same AA layout logic -->
+	<!-- NOTE: overridden in values-sw1dp-land for landscape -->	
+	<style name="TopAABounds2" parent="ListSubstyle2">
+		<item name="matchAASubstyle">true</item>
+		
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="offsetWindowInsets">statusBar|navigationBar</item>--><!-- Sync with TopListWidget -->
+		
+		<!-- NOTE: needed, as by default, any margins applied to AABounds will "consume" available space for AA layout, thus, shrinking AABounds and making it
+		     smaller comparing to the actual list AA. This attribute forces FastLayout to ignore margins in size calculations -->
+		<item name="layout_wrapIgnoresMargins">true</item>
+		
+		<!-- DEBUG -->
+		<!--<item name="android:background">#5f00</item>-->
 	</style>
 	
 	<style name="TopToastContainer">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">120dp</item><!-- This defines top toast position -->
+		<item name="android:layout_height">@dimen/TopToastContainer_layout_height</item><!-- This defines top toast position -->
 		<item name="layout_attachBottom">parent</item>
-		
-		<!-- <item name="android:background">#5f00</item> --><!-- DEBUG -->
 		<item name="android:translationZ">?modal_translationZ</item><!-- Needed to be ~above vis panel and popup menu placeholder. Currently this is defined by view order -->
 		<item name="android:outlineProvider">none</item>
 	</style>
 	<style name="TopToastContainer_scenes_non_main">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">146dp</item><!-- This defines top toast position -->
+		<item name="android:layout_height">@dimen/TopToastContainer_scenes_non_main_layout_height</item><!-- This defines top toast position -->
 		<item name="layout_attachBottom">parent</item>
 	</style>
 		
@@ -814,7 +867,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		
 		<item name="android:minHeight">38dp</item>
-		<item name="layout_maxWidth">300dp</item>
+		<item name="layout_maxWidth">@dimen/TopToastFrame_maxWidth</item>
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:layout_gravity">center_horizontal|bottom</item>
@@ -823,10 +876,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">false</item><!-- Don't focus on this -->
 		<item name="android:elevation">?toast_elevation</item>
-		<item name="android:paddingLeft">16dp</item>
-		<item name="android:paddingRight">16dp</item>
-		<item name="android:paddingTop">10dp</item>
-		<item name="android:paddingBottom">10dp</item>
+		<item name="android:paddingLeft">@dimen/TopToastFrame_paddingLR</item>
+		<item name="android:paddingRight">@dimen/TopToastFrame_paddingLR</item>
+		<item name="android:paddingTop">@dimen/TopToastFrame_paddingTB</item>
+		<item name="android:paddingBottom">@dimen/TopToastFrame_paddingTB</item>
 		<item name="android:scaleX">1</item>
 		<item name="android:scaleY">1</item>
 		<item name="android:visibility">invisible</item>
@@ -870,16 +923,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:maxLines">2</item>
-		<item name="android:textSize">14sp</item>
-		<item name="android:textStyle">normal</item>
 		<item name="layout_consumeSpace">vertical</item>
-		<item name="android:layout_marginLeft">44dp</item>
+		<item name="android:layout_marginLeft">@dimen/TopToastTile_marginLeft</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
-		
-		<!-- <item name="android:background">#0f0</item> -->
+		<item name="android:textAppearance">?TopToastTitle_Text</item>
 	</style>
-	<style name="TopToastTitle_no_icon">
+	<style name="TopToastTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">14sp</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+	<style name="TopToastTitle_no_icon"><!-- NOTE: used in scenes -->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">vertical</item>
@@ -890,13 +944,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">2dp</item>
-		<item name="android:layout_marginLeft">44dp</item>
-		<item name="android:textSize">11sp</item>
+		<item name="android:layout_marginLeft">@dimen/TopToastTile_marginLeft</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="android:maxLines">2</item>
+		<item name="android:textAppearance">?TopToastLine2_Text</item>
 	</style>
-	<style name="TopToastLine2_no_icon">
+	<style name="TopToastLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">11sp</item>
+	</style>
+	<style name="TopToastLine2_no_icon"><!-- NOTE: used in scenes -->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_horizontal</item>
@@ -917,10 +974,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:longClickable">true</item>
 		<item name="android:hapticFeedbackEnabled">true</item>
 		
-		<item name="listItemSize">48dp</item>
+		<item name="listItemSize">48dp</item><!-- NOTE: we usually override this for real lists (e.g. presets), so this is not used ATM -->
 		
-		<item name="buttonStyle">@style/PopupButtonNoTint</item>
-		<item name="menuButtonStyle">@style/PopupButtonNoTint_scene_button_menu</item>
+		<item name="buttonStyle">?PopupButton</item>
+		<item name="menuButtonStyle">?PopupButton_scene_button_menu</item>
 		
 		<item name="popupListStyle">@style/PopupListLayoutList</item><!-- Used for e.g. eq/reverb presets (with the list inside) -->
 	</style>
@@ -940,7 +997,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopSleepTimerButtonLayout_scene_item_menu" parent="ItemPopupMenu_scene_item_menu">
 		<item name="android:layout_width">match_parent</item>
-		<item name="layout_maxWidth">340dp</item>
+		<item name="layout_maxWidth">@dimen/TopSleepTimerButtonLayout_scene_item_menu_width</item>
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">16dp</item>
 	</style>
@@ -971,23 +1028,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- NOTE: as top counter now uses TopCounterLayout style, TopCounterLayout is just derived from TopCounter style, which still exists for compatibility -->
 	<style name="TopCounter">
-		<!-- <item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item> -->
-		<!-- <item name="layout_unlimitedMeasure">true</item> -->
-		<!-- <item name="android:clipChildren">false</item> -->
-		<item name="android:textColor">?android:textColorPrimary</item>
-		<!-- <item name="layout_maxWidth">68dp</item> --><!-- 68 -->
-		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
 		<item name="android:paddingLeft">4dp</item>
 		<item name="android:paddingRight">4dp</item>
 		<item name="android:paddingTop">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
 		<item name="android:paddingBottom">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
 		<item name="android:lineSpacingExtra">1.75dp</item>
 		<item name="android:maxLines">2</item>
-		<item name="android:capitalize">characters</item>
 		<item name="android:ellipsize">end</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:gravity">center</item>
+		<item name="android:textAppearance">?TopCounterLayout_Text</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	<style name="TopCounterLayout" parent="TopCounter">
 		<item name="android:layout_width">wrap_content</item>
@@ -1000,6 +1051,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_gravityTarget">@id/sub_aa_buttons</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="lineBackground">@drawable/alpha_rounded_small</item>
+	</style>
+	<style name="TopCounterLayout_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
+		<item name="android:textAllCaps">true</item>
 	</style>
 	<style name="TopCounterLayout_scenes_playing">
 		<item name="android:visibility">visible</item>
@@ -1063,54 +1118,51 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopMetaInfo_scene_item_menu" parent="ItemPopupMenu_scene_item_menu">
 		<item name="android:layout_width">match_parent</item>
-		<item name="layout_maxWidth">380dp</item>
+		<item name="layout_maxWidth">@dimen/TopMetaInfo_scene_item_menu_maxWidth</item>
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">16dp</item>
 	</style>
 	
 	<style name="TopMetaInfoLabel">
-		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxWidth">300dp</item>
-		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
 		<item name="android:paddingLeft">10dp</item>
 		<item name="android:paddingRight">10dp</item>
 		<item name="android:paddingTop">@dimen/TopMetaInfoLabel_paddingTopBottom</item><!-- 3dp -->
 		<item name="android:paddingBottom">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
 		<item name="android:maxLines">1</item>
-		<item name="android:capitalize">characters</item>
 		<item name="android:ellipsize">end</item>
 		<item name="drawableWidth">@dimen/TopMetaInfoLabel_drawableSize</item><!-- 12dp -->
 		<item name="drawableHeight">@dimen/TopMetaInfoLabel_drawableSize</item>
 		<item name="drawablePaddingStart">8dp</item>
+		<!-- 8 dr -6 10 (no text) 10 => compensate -6dp to get 8dp padding to the right of drawable when no text -->
+		<item name="drawablePaddingEndNoText">-6dp</item>
 		<item name="android:drawablePadding">-6dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:textAppearance">?TopMetaInfoLabel_Text</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	<style name="TopMetaInfoLabel_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
+		<item name="android:textAllCaps">true</item>				
 	</style>
 	
-	
+	<!-- NOTE: TopHelp* styles are used directly in layouts and not meant for overriding, but still colors, backgrounds, textAppearance are overridable -->
 	<style name="TopHelpLayout">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
-		<!-- <item name="android:layout_marginBottom">?bottom_navbar_bounds_2lines_size</item> -->
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
-		<!-- <item name="android:background">#55000000</item> -->
-		<!-- <item name="android:clickable">true</item> -->
-	</style>
-	<style name="TopHelpLayoutMain" parent="TopHelpLayout">
-		<!-- <item name="android:layout_marginBottom">?bottom_navbar_bounds_size</item> -->
 	</style>
 		
-	
 	<style name="TopHelp">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxWidth">250dp</item>
-		<item name="android:textSize">14dp</item>
 		<item name="android:gravity">center</item>
-		<item name="android:layout_marginTop">16dp</item>
-		<item name="android:layout_marginBottom">16dp</item>
+		<item name="android:layout_marginTop">@dimen/TopHelpMarginTB</item>
+		<item name="android:layout_marginBottom">@dimen/TopHelpMarginTB</item>
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">16dp</item>
 		
@@ -1136,7 +1188,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scaleY">1.25</item>
 		<item name="android:alpha">0</item>
 		
+		<item name="android:textAppearance">?TopHelp_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	<style name="TopHelp_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">13sp</item>
 	</style>
 	<style name="TopHelp_anim_help_visible">
 		<item name="android:scaleX">1</item>
@@ -1153,14 +1209,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">@dimen/TopHelpSmaller_marginTB</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:textSize">@dimen/TopHelpSmaller_textSize</item>
 		<item name="arrowWidth">8dp</item>
 		<item name="arrowHeight">6dp</item>
 		<item name="arrowOffset">0.75dp</item>
 		<item name="arrowStrokeWidth">2px</item>
 		<item name="arrowLineWeight">3dp</item>
+		<item name="android:textAppearance">?TopHelpSmaller_Text</item>
 	</style>
-	
+	<style name="TopHelpSmaller_Text" parent="TopHelp_Text">
+		<item name="android:textSize">@dimen/TopHelpSmaller_textSize</item>
+	</style>
+		
 	<style name="TopHelpWider" parent="TopHelp">
 		<item name="layout_maxWidth">280dp</item>
 	</style>
@@ -1175,7 +1234,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">4dp</item>
 		<item name="android:layout_gravity">top</item>
 		
+		<item name="android:textAppearance">?TopHelpButton_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
+		
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_help_large</item>
 		<item name="android:paddingLeft">16dp</item>
@@ -1195,7 +1256,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- As we have 2 buttons, we need to apply h_position only to one axis - shift views just vertically. The other axis is calculated as usual by FastLayout -->
 		<item name="help_oneAxis">true</item>
 	</style>
-	<!-- NOTE: overriden in values-sw1dp-land -->
+	<style name="TopHelpButton_Text" parent="TextAppearance.AppCompat">
+	</style>
+	
+	<!-- NOTE: overridden in values-sw1dp-land -->
 	<style name="TopHelpButtonEq" parent="TopHelpButton">
 		<item name="help_anchor">@id/action_mode_bar</item>
 		<item name="help_position">bottom</item>
@@ -1204,21 +1268,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopHelpButton_anim_help_visible">
 		<item name="android:alpha">1</item>
 	</style>
-	
-	
-	<!--
-	<style name="">
-	</style>
-	<style name="">
-	</style>
-	<style name="">
-	</style>
-	<style name="">
-	</style>
-	<style name="">
-	</style>
-	<style name="">
-	</style>
-	-->
-		
+
 </resources>

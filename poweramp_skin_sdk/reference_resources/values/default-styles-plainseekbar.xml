@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -109,7 +109,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clickable">true</item><!-- Avoid setPressed propagation from parent clicks -->
 		<item name="android:focusable">true</item>
 	</style>
-	<style name="PlainSeekbar_scene_playing">
+	<style name="PlainSeekbar_anim_seeking">
+		<item name="android:scaleY">1.25</item>
 	</style>
 	
 	<style name="PlainSeekbar_TopPauseMoreButtons" parent="TopPauseMoreButtons">
@@ -185,7 +186,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">?PlainSeekbar_buttons_offset</item>
 	</style>
 		
-		
+	<!-- NOTE: avoiding setting text size here, instead using appropriate scaling. This is to allow top level text appearance text sizes. Was 13dp -->		
 	<style name="PlainSeekbar_TopTrackElapsedMoreButtons" parent="TopTrackElapsedMoreButtons">
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">wrap_content</item>
@@ -200,9 +201,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:background">@drawable/alpha_rounded_medium</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:textSize">13dp</item>
-		<item name="android:scaleX">0.9</item>		
-		<item name="android:scaleY">0.9</item>
+		<item name="android:scaleX">0.836</item>		
+		<item name="android:scaleY">0.836</item>
 		
 		<item name="android:paddingLeft">6dp</item>
 		<item name="android:paddingRight">6dp</item>
@@ -210,13 +210,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingBottom">2dp</item>
 	</style>
 	<style name="PlainSeekbar_TopTrackElapsedMoreButtons_scene_playing">
-		<item name="scale">1</item>
+		<item name="scale">0.928</item>
 	</style> 
 	<style name="PlainSeekbar_TopTrackElapsed_state_seeking">
-		<item name="android:scaleX">1.2</item>
-		<item name="android:scaleY">1.2</item>
-		<!-- <item name="android:translationY">-52dp</item>
-		<item name="android:translationX">8dp</item> -->
+		<item name="android:scaleX">1.114</item>
+		<item name="android:scaleY">1.114</item>
 	</style>
 	
 	<style name="PlainSeekbar_TopTrackDurationMoreButtons" parent="TopTrackDurationMoreButtons">
@@ -233,9 +231,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:background">@drawable/alpha_rounded_medium</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:textSize">13dp</item>
-		<item name="android:scaleX">0.9</item>		
-		<item name="android:scaleY">0.9</item>
+		<item name="android:scaleX">0.836</item>		
+		<item name="android:scaleY">0.836</item>
 		
 		<item name="android:paddingLeft">6dp</item>
 		<item name="android:paddingRight">6dp</item>
@@ -243,7 +240,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingBottom">2dp</item>
 	</style>
 	<style name="PlainSeekbar_TopTrackDurationMoreButtons_scene_playing">
-		<item name="scale">1</item>
+		<item name="scale">0.928</item>
 	</style> 
 	
 	<style name="PlainSeekbar_TopMetaInfoLayout" parent="TopMetaInfoLayout">

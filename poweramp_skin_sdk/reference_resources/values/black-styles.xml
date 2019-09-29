@@ -108,14 +108,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorPreampBg">#111</item>
 		
 		<item name="colorTrackMeta">#999</item>
-		<item name="colorSeparator">#FF888888</item>
+		<item name="colorSeparator">#F555</item>
 				
 		<item name="colorNavbarIcons">@color/navbar_icons_selector</item>
 		<item name="colorNavbarIconsLessContrast">#999</item><!-- NOTE: not used in default theme -->
 		<item name="colorBgNavbar">#181818</item>
 		<item name="colorBgTransparentNavbar">#88181818</item>		
 		
-		<item name="colorItemActive">#f00</item>
 		<item name="colorSeekbarThumb">#7eee</item>
 		
 		<item name="colorIconCC">#eee</item>
@@ -147,14 +146,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Android mediarouter icons -->
 		<item name="media_route">@drawable/mr_button_dark</item>
 		<item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_dark</item>
-        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_dark</item>
-        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_dark</item>
-        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_dark</item>
-        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
-        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_disconnected_dark</item>
-        <item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_dark</item>
-        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_dark</item>
-        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_dark</item>
+		<item name="mediaRoutePlayDrawable">@drawable/mr_media_play_dark</item>
+		<item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_dark</item>
+		<item name="mediaRouteStopDrawable">@drawable/mr_media_stop_dark</item>
+		<item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
+		<item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_disconnected_dark</item>
+		<item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_dark</item>
+		<item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_dark</item>
+		<item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_dark</item>
 		
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Blackpro_MoreButtons</item>
@@ -164,7 +163,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 		
-	<!-- NOTE: theme may be further overriden, e.g. in values-h700dp-port, etc. so keeping a separate base theme.
+	<!-- NOTE: theme may be further overridden, e.g. in values-h700dp-port, etc. so keeping a separate base theme.
 		 This helps with overriding specific styles for e.g. values-h700dp-port only, not overriding them here -->
 	<style name="ActivityTheme_Black" parent="Base_ActivityTheme_Black">
 	</style>
@@ -212,7 +211,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 		
 	<!-- An overlay style -->
-	<!-- Overriden for 26+ -->
+	<!-- Overridden for 26+ -->
 	<style name="ActivityTheme_Blackpro_TransparentNavbar">
 		<item name="android:windowTranslucentNavigation">true</item>
 		

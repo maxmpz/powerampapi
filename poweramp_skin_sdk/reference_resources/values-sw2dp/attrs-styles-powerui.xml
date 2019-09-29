@@ -24,7 +24,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Styles used for items/top views/etc. Applied to main theme style (for default skins - via  TopPoweruiStyles in styles-powerui-styles.xml).
 		 For custom skins, just override appropriate attribute directly in top skin theme style or in option style -->	
 	<declare-styleable name="TopPoweruiStyles">
+		<attr name="BlackButton_Text" format="reference"/>
+		<attr name="WhiteButton_Text" format="reference"/>
+		
+		<attr name="WhiteStrokedListHeaderButton_Text" format="reference"/>
+		
 		<attr name="ItemTrack" format="reference"/>
+		
 		
 		<attr name="ItemTrackSelectBox" format="reference"/>
 		<attr name="ItemTrackSelectBox_scene_grid" format="reference"/>
@@ -55,8 +61,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackAAImage_scene_grid_1_alt" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_header" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_item_menu" format="reference"/>
+		<attr name="ItemTrackAAImage_scene_item_menu_lu" format="reference"/>
 		
 		<attr name="ItemTrackCatImage" format="reference"/>
+		<attr name="ItemTrackCatImage_Text" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_zoomed" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_small" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_aa" format="reference"/>
@@ -68,6 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackCatImage_scene_item_menu" format="reference"/>
 		
 		<attr name="ItemTrackTitle" format="reference"/>
+		<attr name="ItemTrackTitle_Text" format="reference"/>
 		<attr name="ItemTrackTitle_scene_small" format="reference"/>
 		<attr name="ItemTrackTitle_scene_1" format="reference"/>
 		<attr name="ItemTrackTitle_scene_1_small" format="reference"/>
@@ -89,6 +98,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackTitle_scene_header_1" format="reference"/>
 				
 		<attr name="ItemTrackLine2" format="reference"/>
+		<attr name="ItemTrackLine2_Text" format="reference"/>
 		<attr name="ItemTrackLine2_scene_small" format="reference"/>
 		<attr name="ItemTrackLine2_scene_1" format="reference"/>
 		<attr name="ItemTrackLine2_scene_1_small" format="reference"/>
@@ -108,6 +118,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackLine2_scene_header" format="reference"/>
 
 		<attr name="ItemTrackMeta" format="reference"/>
+		<attr name="ItemTrackMeta_Text" format="reference"/>
 		<attr name="ItemTrackMeta_scene_small" format="reference"/>
 		<attr name="ItemTrackMeta_scene_1" format="reference"/>
 		<attr name="ItemTrackMeta_scene_1_small" format="reference"/>
@@ -140,14 +151,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackBackDecorTitle" format="reference"/>
 		<attr name="ItemTrackBackDecorTitle_scene_header_1" format="reference"/>
 		<attr name="ItemTrackBackDecorTitle_scene_header_back_decor" format="reference"/>
+		
 		<attr name="ItemAALEDecorLayout" format="reference"/>
 		<attr name="ItemAALEDecorText" format="reference"/>
+		<attr name="ItemAALEDecorText_Text" format="reference"/>
 		
 		<attr name="ItemMiniplayerPrevNextDecorLayout" format="reference"/>
 		<attr name="ItemMiniplayerPrevNextDecorText" format="reference"/>
+		<attr name="ItemMiniplayerPrevNextDecorText_Text" format="reference"/>
 		
 		<attr name="SeparatorWithButton" format="reference"/>
 		<attr name="SeparatorWithButtonTitle" format="reference"/>
+		<attr name="SeparatorWithButton_Text" format="reference"/>
 		<attr name="SeparatorWithButtonButton" format="reference"/>
 		
 		<attr name="ItemSubheadWithButton" format="reference"/><!-- Not used ATM -->
@@ -161,12 +176,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTextAAImage_scene_item_menu" format="reference"/>
 		
 		<attr name="ItemTextTitle" format="reference"/>
+		<attr name="ItemTextTitle_Text" format="reference"/>
 		<attr name="ItemTextTitle_scene_grid" format="reference"/>
 		<attr name="ItemTextTitle_scene_header" format="reference"/>
 		<attr name="ItemTextTitle_scene_top_header" format="reference"/>
 		<attr name="ItemTextTitle_scene_item_menu" format="reference"/>
 		
 		<attr name="ItemTextLine2" format="reference"/>
+		<attr name="ItemTextLine2_Text" format="reference"/>
 		<attr name="ItemTextLine2_scene_grid" format="reference"/>
 		<attr name="ItemTextLine2_scene_header" format="reference"/>
 		<attr name="ItemTextLine2_scene_item_menu" format="reference"/>
@@ -209,6 +226,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="ItemEmptyList" format="reference"/>
 		<attr name="ItemEmptyListText" format="reference"/>
+		<attr name="ItemEmptyListText_Text" format="reference"/>
 		<attr name="ItemEmptyListSettingsButton" format="reference"/>
 		<attr name="ItemEmptyListScanProgress" format="reference"/>
 		<attr name="ItemEmptyListScanProgressCenter" format="reference"/>
@@ -216,14 +234,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemMiniplayer" format="reference"/>
 		<attr name="ItemMiniplayerAAImage" format="reference"/>
 		<attr name="ItemMiniplayerTitle" format="reference"/>
+		<attr name="ItemMiniplayerTitle_Text" format="reference"/>
 		<attr name="ItemMiniplayerLine2" format="reference"/>
+		<attr name="ItemMiniplayerLine2_Text" format="reference"/>
 		<attr name="ItemMiniplayerPlayButton" format="reference"/>
 		
 		<attr name="ItemVis" format="reference"/>
 		<attr name="ItemVisImage" format="reference"/>
 		<attr name="ItemVisLikeButton" format="reference"/>
 		<attr name="ItemVisTitle" format="reference"/>
+		<attr name="ItemVisTitle_Text" format="reference"/>
 		<attr name="ItemVisLine2" format="reference"/>
+		<attr name="ItemVisLine2_Text" format="reference"/>
 		<attr name="ItemVisActivatedCheck" format="reference"/>
 		
 		
@@ -232,23 +254,34 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupListImage" format="reference"/>
 		<attr name="ItemPopupListSelectBox" format="reference"/>
 		<attr name="ItemPopupListTitle" format="reference"/>
+		<attr name="ItemPopupListTitle_Text" format="reference"/>
 		<attr name="ItemPopupListTitleLarger" format="reference"/>
+		<attr name="ItemPopupListTitleLarger_Text" format="reference"/>
 		<attr name="ItemPopupListMicroIcon" format="reference"/>
 		<attr name="ItemPopupListFrs" format="reference"/>
 		<attr name="ItemEqPreset" format="reference"/>
 		<attr name="ItemEqPresetSelectBox" format="reference"/>
+		<attr name="ItemPopupSimpleTitle" format="reference"/>
+		<attr name="ItemPopupSimpleTitle_Text" format="reference"/>
+		<attr name="ItemPopupSimpleLine2" format="reference"/>
+		<attr name="ItemPopupSimpleLine2_Text" format="reference"/>
+		
 		
 		<attr name="VisLockButtonLayout" format="reference"/>
 		<attr name="SmallerPopupButton" format="reference"/>
 		<attr name="SmallerPopupButton_scene_button_menu" format="reference"/>
 		
 		<attr name="PopupMenuItem" format="reference"/>
+		<attr name="PopupMenuItem_Text" format="reference"/>
 		<attr name="PopupMenuItem50" format="reference"/>
 		
 		<attr name="PopupInfoTextTitle" format="reference"/>
+		<attr name="PopupInfoTextTitle_Text" format="reference"/>
 		<attr name="PopupInfoText" format="reference"/>
 		<attr name="PopupContent_scene_button_menu" format="reference"/>
-		
+		<attr name="PopupDSPInfoText" format="reference"/>
+		<attr name="PopupDSPInfoImage" format="reference"/>
+				
 		<attr name="ItemHeaderButtonsBg" format="reference"/>
 		<attr name="ItemHeaderButtonsBg_scene_header" format="reference"/>
 		
@@ -299,20 +332,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupMenuTopSpacer" format="reference"/>
 		
 		<attr name="PopupButton" format="reference"/>
+		<attr name="PopupButton_Text" format="reference"/>
 		<attr name="PopupButton_scene_button_menu" format="reference"/>
+		
 		<attr name="PopupButtonLayoutDialogButton3" format="reference"/>
 		<attr name="PopupButtonLayoutDialogButton2" format="reference"/>
 		<attr name="PopupButtonLayoutDialogButton1" format="reference"/>
-	
-		
 		
 		<attr name="NavbarShim" format="reference"/>
 		<attr name="Navbar" format="reference"/>
 		<attr name="NavbarExtension" format="reference"/>
 		<attr name="NavbarExtensionLogo" format="reference"/>
 		<attr name="NavbarExtensionLogoLabel" format="reference"/>
+		<attr name="NavbarExtensionLogoLabel_Text" format="reference"/>
 		<attr name="NavbarExtensionMenuLine" format="reference"/>
-		<attr name="NavbarExtensionMenuLine50" format="reference"/>
+		<attr name="NavbarExtensionMenuLine_Text" format="reference"/>
+		<attr name="NavbarExtensionMenuLine50" format="reference"/><!-- Not used ATM -->
 		<attr name="NavbarList" format="reference"/>
 		<attr name="NavbarNavButtonsLayout" format="reference"/>
 		<attr name="NavBarButton" format="reference"/>
@@ -326,16 +361,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="SelectionMenuTopLineLayout" format="reference"/>
 		<attr name="SelectionMenuSelectBox" format="reference"/>
 		<attr name="SelectionMenuCountText" format="reference"/>
+		<attr name="SelectionMenu_Text" format="reference"/>
 		<attr name="SelectionMenuCloseButton" format="reference"/>
 		<attr name="SelectionMenuSeparator" format="reference"/>
 		<attr name="SelectionMenuBottomLineLayout" format="reference"/>
 		<attr name="SelectionListContextButton" format="reference"/>
+		<attr name="SelectionListContextButton_Text" format="reference"/>
 		
 		<attr name="TopContainer" format="reference"/>
 		<attr name="TopMilk" format="reference"/>
 		<attr name="TopListWidget" format="reference"/>
 		<attr name="TopAABounds" format="reference"/>
 		<attr name="TopListScrollerView" format="reference"/>
+		<attr name="TopListScrollerView_Text" format="reference"/>
 		<attr name="TopListScrollerView_state_scrollbar_pressed" format="reference"/>
 		<attr name="TopEqLayout" format="reference"/>
 		<attr name="TopActionModeBar" format="reference"/>
@@ -344,11 +382,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopSearchPanel" format="reference"/>
 		<attr name="TopSearchCloseButton" format="reference"/>
 		<attr name="TopListSearchEditText" format="reference"/>
+		<attr name="TopSearchTarget" format="reference"/>
+		<attr name="TopSearchTarget_Text" format="reference"/>
 		
 		<attr name="TopNavbarBounds" format="reference"/>		
 		<attr name="TopNavbarContainer" format="reference"/>
 		<attr name="TopSelectionMenuContainer" format="reference"/>
 		<attr name="TopListIndexerPopupView" format="reference"/>
+		<attr name="TopListIndexerPopupView_Text" format="reference"/>
 		<attr name="TopListIndexerPopupView_state_scrollbar_pressed" format="reference"/>
 		<attr name="TopMenuPlaceholderLayout" format="reference"/>
 		
@@ -365,6 +406,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopWaveseekCursor" format="reference"/>
 		<attr name="TopWaveseekCursor_state_waveseek_pressed" format="reference"/>
 		<attr name="TopTrackElapsed" format="reference"/>
+		<attr name="TopTrackElapsedDuration_Text" format="reference"/>
 		<attr name="TopTrackElapsed_scene_playing" format="reference"/>
 		<attr name="TopTrackElapsed_state_seeking" format="reference"/>
 		<attr name="TopTrackDuration" format="reference"/>
@@ -407,17 +449,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopToastTextContainer" format="reference"/>
 		<attr name="TopToastSpacer" format="reference"/>
 		<attr name="TopToastTitle" format="reference"/>
+		<attr name="TopToastTitle_Text" format="reference"/>
 		<attr name="TopToastLine2" format="reference"/>
+		<attr name="TopToastLine2_Text" format="reference"/>
 		<attr name="TopToastTitle_no_icon" format="reference"/>
 		<attr name="TopToastLine2_no_icon" format="reference"/>
 		<attr name="TopToastFrame_scene_expanded" format="reference"/>
 		
 		<attr name="TopCounterLayout" format="reference"/>
+		<attr name="TopCounterLayout_Text" format="reference"/>
 		<attr name="TopCounterLayout_scenes_playing" format="reference"/>
 		<attr name="TopCounterLayout_scenes_playing" format="reference"/>
 		<attr name="TopCounterLayout_anim_seeking" format="reference"/>
 		<attr name="TopCounterLayout_scenes_invisible" format="reference"/>
-		<attr name="TopCounter" format="reference"/>
+		<attr name="TopCounter" format="reference"/><!-- Not used ATM -->
 		
 		<attr name="TopMetaInfoLayout" format="reference"/>
 		<attr name="TopMetaInfoLayout_scenes_playing" format="reference"/>
@@ -426,6 +471,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopMetaInfo" format="reference"/>
 		<attr name="TopMetaInfo_scene_item_menu" format="reference"/>
 		<attr name="TopMetaInfoLabel" format="reference"/>
+		<attr name="TopMetaInfoLabel_Text" format="reference"/>
+		
+		<attr name="TopHelp_Text" format="reference"/>
+		<attr name="TopHelpSmaller_Text" format="reference"/>
+		<attr name="TopHelpButton_Text" format="reference"/>
 		
 		<!-- Vis -->
 		<attr name="VisPanelContainer" format="reference"/>
@@ -446,9 +496,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqTabLayout" format="reference"/>
 		
 		<!-- Equalizer tab -->
+		<attr name="EqButton_Text" format="reference"/>
 		<attr name="EqKnobsLayout" format="reference"/>
 		<attr name="EqPreampKnobLayout" format="reference"/>
 		<attr name="EqLinearKnob" format="reference"/><!-- NOTE: this attribute is used from the code for the dynamically generated eq bands -->
+		<attr name="EqLinearKnob_Text" format="reference"/>
+		<attr name="EqKnobValue_Text" format="reference"/>
+		<attr name="EqKnobLabel_Text" format="reference"/>
 		<attr name="EqPreampLinearKnob" format="reference"/>
 		<attr name="EqFrequencyResponseScroller" format="reference"/>
 		<attr name="EqMilkFrs" format="reference"/>
@@ -461,6 +515,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqEquPresetButtonLayout" format="reference"/>
 		<attr name="EqEquPresetButtonLayout_scene_button_menu" format="reference"/>
 		<attr name="EqEquPresetLabel" format="reference"/>
+		<attr name="EqEquPresetLabel_Text" format="reference"/>
 		<attr name="EqEquSaveButton" format="reference"/>
 		<attr name="EqEquResetButton" format="reference"/>
 		<attr name="EqBassToneKnobLayout" format="reference"/>
@@ -501,8 +556,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 		<!-- Sleep timer -->
 		<attr name="SleepTimerTitle" format="reference"/>
+		<attr name="SleepTimerTitle_Text" format="reference"/>
+		<attr name="SleepTimerContent" format="reference"/>
 		<attr name="SleepTimerSeekbar" format="reference"/>
 		<attr name="SleepTimerPTESelectBox" format="reference"/>
+		
+		<!-- PlainSeekbar -->
+		<attr name="PlainSeekbar" format="reference"/>
+		<attr name="PlainSeekbar_anim_seeking" format="reference"/>
 						
 		<!--
 		<attr name="" format="reference"/>

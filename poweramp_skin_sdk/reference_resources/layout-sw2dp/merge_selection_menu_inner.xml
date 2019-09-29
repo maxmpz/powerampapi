@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -57,7 +57,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:format="@string/d_slash_d"
 			android:importantForAccessibility="yes"
 		/>
-
+		<!-- NOTE: as text can change during load + state update, causing visual jump, scene params are needed + selected 0% point to reapply layout -->
+		<SceneParams w:scene="@+id/scene_selection_menu"
+			w:recalcChildren="0%"
+		/>
+		
 		<com.maxmpz.widget.BusActionButton
 			style="?SelectionMenuCloseButton"
 			android:text="@string/close"
@@ -66,11 +70,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 		
 	</com.maxmpz.widget.FastLayout>
-	
+			
 	<com.maxmpz.widget.NonOverlappingView android:id="@+id/separator"
 		style="?SelectionMenuSeparator"
 	/>
-	
+		
 	<com.maxmpz.widget.FastLayout android:id="@+id/selection_menu_items"
 		style="?SelectionMenuBottomLineLayout"
 	>

@@ -174,10 +174,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<!-- aa_image -->
 	<!-- NOTE: it's here VS menu layout, as we have different approaches for aa_image depending on item type - and menu layout is shared for all of them -->
-	<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+	<SceneParams w:scene="@+id/scene_item_menu" 
 		style="?ItemTrackAAImage_scene_item_menu"
 	/>
-	
+	<!-- Separate scene for scene_item_menu_lu where text lines are laid out bottom-top and we need to adjust AA size according to the lines total height -->
+	<SceneParams w:scene="@+id/scene_item_menu_lu"
+		style="?ItemTrackAAImage_scene_item_menu_lu"
+	/>
+		
 	<!-- NOTE: this can be completely GONE for items. This is controlled by code -->
 	<com.maxmpz.widget.player.list.CatImage android:id="@+id/cat_image" 
 		style="?ItemTrackCatImage"

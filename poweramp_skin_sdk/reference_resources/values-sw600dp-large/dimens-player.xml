@@ -19,20 +19,29 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<!-- TODO:
+- aa menu layout requies flexible sizes => use text lines as anchoring point and then scale AA to them as font sizes can vary for texts
+-->
+
 <resources>
 	<dimen name="TopTrackElapsedMoreButtons_marginBottom">0dp</dimen>
-	<dimen name="TopMetaInfoLabel_textSize">10dp</dimen>
+	<item name="TopTrackElapsedDurationMoreButtons_scale" type="dimen" format="float">0.90</item>
 	<dimen name="TopMetaInfoLabel_drawableSize">12dp</dimen>
 	<dimen name="TopMetaInfoLabel_paddingTopBottom">3dp</dimen>
+	<dimen name="TopMetaInfo_scene_item_menu_maxWidth">580dp</dimen>
 	
 	<dimen name="TopBaseButtonLayout_layout_width">68dp</dimen>
 	<dimen name="TopBaseButtonLayout_layout_height">36dp</dimen>
 	<dimen name="PopupButtons_drawableSize">32dp</dimen>
 	<dimen name="SmallerPopupButton_marginLeft">-12dp</dimen>
 	<dimen name="PopupButtons_paddingLeft">18dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
+		
 	<dimen name="SmallerPopupButtons_paddingLeft">20.5dp</dimen>
 	
 	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
+	
+	<dimen name="TopPause_scene_playing_height">32sp</dimen>
+	<dimen name="TopTrackElapsedDuration_height">32sp</dimen>
 	
 	<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>
 	
@@ -46,8 +55,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Same for overlap_navbar_offset -->
 	<dimen name="NavbarBounds_height_offset">60dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">112dp</dimen>
+	
+	
 		
-	<dimen name="ListMenu_drawableSize">24dp</dimen>
+	<dimen name="ListMenu_drawableSize">32dp</dimen>
 	
 		
 	<dimen name="TopSubAAButtons_marginTop">8dp</dimen><!-- NOTE: aa bounds already have visual margin on bottom == 8 dp -->
@@ -55,6 +66,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopWaveseek_maxHeight">160dp</dimen>
 	
 	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
+	<dimen name="ListSubstyleBase2_aaMarginBottom">280dp</dimen>
+	<dimen name="Alt_TopListSubstyle_aaMarginBottom">280dp</dimen>
 	
 	<dimen name="TopPlay_maxSize">90dp</dimen>
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
@@ -64,15 +77,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="TopPlayPauseBehind_size">45dp</dimen>
 	
-	<dimen name="TopHelpSmaller_textSize">11dp</dimen>
 	<dimen name="TopHelpSmaller_paddingLR">12dp</dimen>
 	<dimen name="TopHelpSmaller_paddingTB">6dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">12dp</dimen>
 	
+	<dimen name="TopHelpMarginTB">32dp</dimen>
+	
 	<dimen name="PopupLayoutList_height">400dp</dimen>
+	<dimen name="ItemTrackAAImage_scene_item_menu_size">108sp</dimen>
+	
 	
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">800dp</dimen>
+	<!--<dimen name="Alt_aaMaxSize">862dp</dimen> Not used anymore -->
 	
 	<dimen name="Alt_TopPlay_maxSize">90dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>

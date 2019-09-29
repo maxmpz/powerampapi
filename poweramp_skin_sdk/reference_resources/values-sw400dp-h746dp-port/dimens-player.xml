@@ -23,10 +23,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Pixel2 411x746, Nokia 7.1 411x750, A7 2018 411x773, Nokia 7.1 @ small 485x890
 		 OP6 small scale 454x926
 	-->
-	
-	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">1000dp</dimen><!-- Basically no limit -->
-	
 	<dimen name="Alt_TopPlay_maxSize">92dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">76dp</dimen>
 	<dimen name="Alt_TopPlayPauseBehind_size">80dp</dimen>

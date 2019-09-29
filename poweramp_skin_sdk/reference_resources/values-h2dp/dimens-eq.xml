@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqToneKnobs_marginTop">8dp</dimen>
 	<dimen name="EqSmallKnobLayout_marginTop">4dp</dimen>
 	  
-	<!-- Baseline values (for large scaling). Overriden by various resource specifiers, e.g. values-w400dp-port -->
+	<!-- Baseline values (for large scaling). Overridden by various resource specifiers, e.g. values-w400dp-port -->
 	<dimen name="EqKnobValueText_size">9.5sp</dimen>
 	<dimen name="EqKnobLabelText_size">11dp</dimen>
 	

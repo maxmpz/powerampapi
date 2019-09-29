@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:noUpdateInTransition="true"
 		/>
 	<!-- </com.maxmpz.widget.BgAnimFastLayout> -->
-	<!-- NOTE: alpha is overriden by user preference -->
+	<!-- NOTE: alpha is overridden by user preference -->
 	<SceneParams w:scene="@+id/scene_vis_w_ui" 
 		style="?TopCounterLayout_scenes_playing"
 	/>

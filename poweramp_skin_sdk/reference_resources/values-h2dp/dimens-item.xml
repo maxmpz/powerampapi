@@ -22,12 +22,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values-h1dp -->
 <resources>
 	<dimen name="ItemPopupMenu_scene_item_menu_maxHeight">380dp</dimen>
-	<fraction name="TopAAItemRatio">92.5%</fraction>
+	<dimen name="ItemPopupMenu_scene_item_menu_width">300dp</dimen><!-- NOTE: defines base popup button/list width -->
 
 	<!-- Reduced grid labels scale for smaller screens, @see values-sw400dp/dimens/player.xml -->
 	<item type="dimen" format="float" name="scale_title_scene_grid">.675</item>
 	<item type="dimen" format="float" name="scale_line2_scene_grid">.625</item>
 	
 	<dimen name="ItemLike_drawableSize">20dp</dimen>
+	<dimen name="ItemTrackAAImage_scene_item_menu_size">96dp</dimen>
 	
 </resources>

@@ -21,7 +21,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values-sw1dp-land -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- NOTE: for landscape, this defines visualization size for bars in non-full-screen-mode -->
+	<!-- Keeping legacy styles for the old skins -->
+	<!-- @Deprecated -->
+	<style name="ListSubstyle" parent="ListSubstyle2">
+		<item name="aaItemRatio">100%</item>
+	</style>
+	<!-- @Deprecated -->
 	<style name="TopAABounds">
 		<item name="android:layout_height">match_parent</item><!-- NOTE: sync with ListSubstyle / various AA related params -->
 		<item name="android:layout_width">match_parent</item>
@@ -30,17 +35,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachTop">inset</item>
 		<item name="layout_attachBottom">inset</item>
 		<item name="android:layout_marginBottom">?bottom_navbar_bounds_size</item>
-		
-		<!-- <item name="android:background">#5f00</item> --><!-- DEBUG -->
+		<!--<item name="android:background">#5f0f</item>--><!-- DEBUG -->
 	</style>
-	
-	<style name="ListSubstyle" parent="ListSubstyleBase">
+		
+			
+	<style name="ListSubstyle2" parent="ListSubstyleBase2">
 		<item name="textHeaderSize">158dp</item>
 		<item name="headerSize">168dp</item>
 		<item name="humanCatHeaderSize">148dp</item>
 		<item name="aaGravity">left</item>
 		<item name="aaMarginBottom">?bottom_navbar_bounds_size</item>
 		<item name="aaSideItemNum">2</item>
+	</style>
+	
+	<!-- NOTE: for landscape, this defines visualization size for bars in non-full-screen-mode -->
+	<style name="TopAABounds2" parent="ListSubstyle2">
+		<item name="matchAASubstyle">true</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="offsetWindowInsets">statusBar|navigationBar</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachBottom">parent</item><!-- NOTE: needed for proper calculations, but this way parent FastLayout ignores our wrap_content here and attaches us to bottom -->
+		
+		<!-- Swap android:layout_marginBottom and aaMarginBottom. Needed as otherwise FastLayout aligns us to the parent bottom -->
+		<item name="android:layout_marginBottom">?bottom_navbar_bounds_size</item>
+		<item name="aaMarginBottom">0px</item>
+
+		<!-- DEBUG -->
+		<!--<item name="android:background">#500f</item>-->
 	</style>
 	
 	<style name="TopWaveseekLayout">

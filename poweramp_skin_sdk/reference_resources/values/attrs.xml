@@ -76,6 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="overlap_transparent_navbar" format="reference"/>
 		<attr name="overlap_plain_seekbar" format="reference"/>
 		<attr name="overlap_navbar_offset" format="reference"/>
+		<attr name="overlap_alt_layout" format="reference"/>
 	</declare-styleable>
 	
 	<!-- Navbar margins moved to theme to allow easy overriding for overlap_navbar_offset option -->
@@ -102,6 +103,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="tickMark" format="reference"/>
 	</declare-styleable>
 	
+	<declare-styleable name="GenericList">
+		<!-- Size of normal item -->
+		<attr name="itemSize"/>
+	</declare-styleable>
+		
 	
 	<attr name="skin_ref1" format="reference"/>
 	<attr name="skin_ref2" format="reference"/>

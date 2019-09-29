@@ -39,8 +39,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpSmaller_textSize">12dp</dimen>
 	
 	<!-- Alt -->
-	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.9</item>
-	<dimen name="Alt_aaMaxSize">480dp</dimen>
+	<!--<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.9</item> Not used anymore -->
+	<!-- <dimen name="Alt_aaMaxSize">542dp</dimen> Not used anymore -->
 	
 	<dimen name="Alt_TopPlay_maxSize">104dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">86dp</dimen>

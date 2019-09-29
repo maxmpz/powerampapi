@@ -29,10 +29,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
-
-		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:textSize">16dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
+		
+		<item name="android:textAppearance">?PopupMenuItem_Text</item>
 				
 		<item name="android:paddingLeft">16dp</item>
 		<item name="android:paddingRight">16dp</item>
@@ -45,6 +44,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">left|center_vertical</item>
 		<item name="drawablePaddingStart">16dp</item>
 		<item name="android:background">?android:selectableItemBackground</item>
+	</style>
+	<style name="PopupMenuItem_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textSize">16dp</item>
 	</style>
 	<style name="PopupMenuItem50" parent="PopupMenuItem">
 		<item name="layout_widthPercent">50%</item>
@@ -68,7 +71,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:hapticFeedbackEnabled">true</item>
 		<item name="drawableTint">?colorLessContrast</item>
   		<item name="android:maxLines">1</item>
-		<item name="android:textSize">16dp</item>
+		
+  		<item name="android:textAppearance">?PopupButton_Text</item>
+  		
 		<item name="android:ellipsize">end</item>
 		<!-- NOTE: works only when button is in popup menu, in button mode it's not clickable
   			 NOTE: still, bg is actually there. For default selectableItemBackground it's not rendered in non-pressed state, though -->
@@ -84,7 +89,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   		<item name="recalcChildren">on_start</item>
   		<item name="android:visibility">gone</item>
   	</style>
-  	
+	<style name="PopupButton_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">16dp</item>
+	</style>
+	
 	<style name="PopupButtonNoTint" parent="PopupButton">
 		<item name="drawableTint">@null</item>
 	</style>
@@ -120,9 +128,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PopupContent_scene_button_menu">
 		<item name="recalcChildren">on_start</item>
 		<item name="android:visibility">visible</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_consumeSpace">vertical</item>
+		<item name="baseScene">@id/defaultScene</item>
+		<!-- NOTE: important, do not introduce layout here, keep baseScene layout -->
 	</style>
 	
 	
@@ -142,12 +149,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PopupListLayoutLabel">
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
-		<item name="android:textSize">12dp</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:ellipsize">end</item>
 		<item name="android:maxLines">1</item>
+		<item name="android:textAppearance">@style/PopupListLayoutLabel_Text</item><!-- NOTE: usually overridden by derived styles -->
+	</style>
+	<style name="PopupListLayoutLabel_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">12dp</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	
@@ -162,11 +172,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:drawable">@drawable/info_stroke_32dp</item>
 		<item name="android:drawablePadding">8dp</item>
-		<item name="android:textSize">18dp</item>
-		<item name="android:textStyle">bold</item>
 		<item name="android:gravity">center_vertical</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:textAppearance">?PopupInfoTextTitle_Text</item>
+	</style>
+	<style name="PopupInfoTextTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">18dp</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textStyle">bold</item>
 	</style>
 	
 	<style name="PopupInfoText">
@@ -177,6 +190,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">24dp</item>
 		<item name="android:paddingBottom">16dp</item>
 		<item name="android:defaultFocusHighlightEnabled">false</item><!-- Disable, as we allow internal links to be focused, not view itself -->
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="layout_unlimitedMeasure">true</item>
 	</style>		
+	
+	<style name="PopupDSPInfoImage">
+		<item name="android:layout_width">26dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachTopToTop">@+id/dsp_info_text</item>
+		<item name="layout_attachBottomToBottom">@+id/dsp_info_text</item>
+		<item name="android:layout_marginLeft">23dp</item>
+	</style>
+	
+	<style name="PopupDSPInfoText" parent="PopupInfoText">		
+		<item name="android:layout_marginLeft">38dp</item>
+		<item name="android:layout_marginTop">6dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="unknownIcon">@drawable/question_24dp</item>
+		
+		<item name="arrowWidth">10dp</item>
+		<item name="arrowHeight">8dp</item>
+		<item name="arrowOffset">1dp</item>
+		<!--<item name="arrowStrokeWidth">2px</item>-->
+		<item name="arrowLineWeight">2dp</item>
+		<!--<item name="arrowStrokeColor">?colorStrokeHelp</item>-->
+		<item name="arrowFillColor">?android:textColorSecondary</item>
+		<!-- NOTE: text styles are taken from theme -->
+	</style>
+	<style name="PopupDSPInfoText_HeadText" parent="HeadText">
+		<item name="android:textStyle">normal</item>
+	</style>
 	
 </resources>

@@ -26,5 +26,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- HTC U11 -->
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">356dp</dimen>	
+	<!-- <dimen name="Alt_aaMaxSize">418dp</dimen> Not used anymore -->	
 </resources>

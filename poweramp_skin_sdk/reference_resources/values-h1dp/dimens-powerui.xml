@@ -25,15 +25,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PopupLayoutList_height">320dp</dimen>
 		
 	<dimen name="TopBottomSheetDialogFrame_maxHeight">400dp</dimen>
+	<dimen name="TopBottomSheetDialogFrame_vertical_buttons_maxHeight">500dp</dimen>
 	<dimen name="CenterDialogFrame_maxHeight">500dp</dimen>
 	<dimen name="SmallerCenterDialogFrame_maxHeight">320dp</dimen>
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">600dp</dimen>
 	<dimen name="DialogFrame_maxWidth">780dp</dimen>
 	
-	<dimen name="HeadText_size">18sp</dimen>
+	<dimen name="CenterDialogFrame_maxWidth">380dp</dimen>
+	
+	<dimen name="TopToastContainer_layout_height">120dp</dimen>
+	<dimen name="TopToastContainer_scenes_non_main_layout_height">146dp</dimen>
+	<dimen name="TopToastFrame_maxWidth">300dp</dimen>
+	<dimen name="TopToastFrame_paddingLR">16dp</dimen>
+	<dimen name="TopToastFrame_paddingTB">10dp</dimen>
+	<dimen name="TopToastTile_marginLeft">44dp</dimen><!-- NOTE: defines space for icon + padding -->
+	
+	<dimen name="HeadText_size">17sp</dimen>
 	<dimen name="SubheadText_size">12sp</dimen>
 	<dimen name="Text_size">14sp</dimen>
 	<dimen name="Hint_size">10sp</dimen>
+	<dimen name="LargerText_size">16sp</dimen>
 	
 	<dimen name="TopBaseButtonLayout_layout_width">58dp</dimen>
 	<dimen name="TopBaseButtonLayout_layout_height">30dp</dimen>
@@ -42,6 +53,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="SmallerPopupButtons_drawableSize">24dp</dimen>
 	<dimen name="PopupButtons_paddingLeft">15dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
 	<dimen name="SmallerPopupButtons_paddingLeft">16.5dp</dimen>
+	
+	<dimen name="TopSleepTimerButtonLayout_scene_item_menu_width">340dp</dimen>
+	<dimen name="PopupButtonLayoutDialogButton_marginTop">0dp</dimen>
 
 	<integer name="selector_fade_ms">150</integer>
 	

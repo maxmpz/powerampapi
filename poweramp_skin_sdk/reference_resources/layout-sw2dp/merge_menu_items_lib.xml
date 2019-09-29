@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -29,8 +29,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/select_folders"
 		android:targetClass=".dialogs.MusicFoldersActivity"
 	/>	
-	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/list_options"
+	<!--	
+	<com.maxmpz.widget.BusActionButton android:id="@+id/list_settings"
 		style="?PopupMenuItem"
 		android:drawable="?settings_alt_24dp"
 	
@@ -40,6 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		android:text="@string/settings"
 	/>
+	-->
 	
 	<!-- arg1=0 => fastScan -->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/rescan"

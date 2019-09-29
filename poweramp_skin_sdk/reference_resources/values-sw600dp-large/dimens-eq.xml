@@ -28,12 +28,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="knob_thumb_radius">18dp</dimen>
 	<dimen name="EqLinearKnob_paddingLR">8dp</dimen>
 	
-	<dimen name="EqKnobValueText_size">12sp</dimen>
-	<dimen name="EqKnobLabelText_size">14dp</dimen>
-	
 	<dimen name="EqButton_layout_width">64dp</dimen>
 	<dimen name="EqButton_layout_height">32dp</dimen>
-	<dimen name="EqButton_textSize">14dp</dimen>
 	
 	<dimen name="eq_frs_height">62dp</dimen>
 	

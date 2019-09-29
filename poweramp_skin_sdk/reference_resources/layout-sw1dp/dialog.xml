@@ -96,7 +96,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			android:clickable="true"
 			android:focusable="false"
 		>
-				<!-- Title layout -->
+				<!-- Title layout
+				     NOTE: even if hidden, it still can consume space via margins (they are calculated even for gone vies) -->
 				<com.maxmpz.widget.FastLayout android:id="@+id/dialog_title_layout"
 					style="?DialogTitleLayout"
 				>

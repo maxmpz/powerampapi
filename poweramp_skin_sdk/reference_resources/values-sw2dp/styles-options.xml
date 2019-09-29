@@ -28,13 +28,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Applied (over main theme style) when rating is enabled and set to stars -->
 	<style name="OptionRatingStars">
 		<item name="ItemLikeUnlikeLayout_layout">@layout/merge_item_aa_rating_stars</item>
-		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overriden for Alt layout -->
+		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overridden for Alt layout -->
+		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa_w_rating</item>
+	</style>
+	
+	<!-- Applied (over main theme style) when rating is enabled and set to stars in menu/lists only.
+	     NOTE: overridden in default-styles-alt.xml
+	     NOTE: overlap_alt_layout works for skins marked with globalOptionsOverride="true" in <skin> xml -->
+	<style name="OptionRatingStarsMenu">
+		<item name="ItemLikeUnlikeLayout_layout">@layout/merge_item_aa_rating_stars</item>
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item>
+		<!-- NOTE: this requires modification to alt layout, as alt layout option modifies rating bar styling and we need it back -->
+		<item name="overlap_alt_layout">@style/ActivityTheme_Whitepro_AltLayout_StarsMenu</item>
 	</style>
 	
 	<!-- Applied (over main theme style) when rating is enabled and set to like/unlike thumbs -->
 	<style name="OptionRatingLikeUnlike">
 		<item name="ItemLikeUnlikeLayout_layout">@layout/merge_item_aa_rating_thumbs</item>
-		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overriden for Alt layout -->
+		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overridden for Alt layout -->
+		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa_w_rating</item>
 	</style>
 	
 	<style name="OptionCounter">

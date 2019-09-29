@@ -34,11 +34,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 		
 	<com.maxmpz.widget.FastTextView android:id="@+id/title"
-		style="@style/ItemGeneric2LineTitle"
+		style="?ItemPopupSimpleTitle"
 	/>
 	
 	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
-		style="@style/ItemGeneric2LineLine2"
+		style="?ItemPopupSimpleLine2"
 	/>
 		
 </com.maxmpz.widget.player.list.TextItemView>

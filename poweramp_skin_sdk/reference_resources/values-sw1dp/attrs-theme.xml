@@ -53,7 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorBgNavbar" format="color"/>
 	<attr name="colorBgTransparentNavbar" format="color"/>
 	
-	<attr name="colorItemActive" format="color"/><!-- Playing/currently loaded track in a list -->
+	<attr name="colorItemActive" format="color"/><!-- Not used ATM -->
 	
 	<attr name="colorIconCC" format="color"/><!-- Forced (white) color for Chromecast icon -->
 	
@@ -69,5 +69,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="dialog_AlertDialogActivity"/>
 	<attr name="dialog_AlertDialogActivity_list"/>
+	<attr name="dialog_AlertDialogActivity_vertical_buttons"/>
+	<attr name="dialog_AlertDialogActivity_no_title"/>
 
 </resources>

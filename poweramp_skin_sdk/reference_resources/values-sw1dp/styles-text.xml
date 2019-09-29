@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,29 +23,46 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<!-- Text -->
-	<style name="HeadText">
+	<!-- NOTE: @style/TextAppearance.AppCompat is android:TextAppearance.Material -->
+
+	<!-- Used in dialog content -->
+	<style name="HeadText" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:textSize">@dimen/HeadText_size</item>
-		<item name="android:textColor">?android:textColorSecondary</item>
 	</style>
 
-	<style name="SubheadText">
+	<!-- Used in dialog content -->
+	<style name="SubheadText" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">@dimen/SubheadText_size</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:textColor">?android:textColorSecondary</item>
 	</style>
 	
-	<style name="Text">
+	<!-- Used in dialog content -->
+	<style name="Text" parent="TextAppearance.AppCompat">
+		<!-- sp -->
 		<item name="android:textSize">@dimen/Text_size</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	
+	<!-- Currently, music folder selection text -->
+	<style name="LargerText" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/LargerText_size</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	
+	<!-- Used in dialog content -->
 	<style name="AccentedText" parent="Text">
+		<!-- sp -->
 		<item name="android:textColor">?android:colorAccent</item>
 	</style>
 	
-	<style name="Hint">
+	<!-- Used in dialog content -->
+	<style name="Hint" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">@dimen/Hint_size</item>
 		<item name="android:textColor">?android:textColorTertiary</item>
 	</style>
+	
+	<!-- See also styles-*.xml for specific *Text styles -->
+	
 </resources>

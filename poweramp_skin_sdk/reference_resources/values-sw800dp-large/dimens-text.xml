@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (C) 2010-2019 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values-sw800dp-large -->
+<resources>
+	<dimen name="textAppearance_textSize">17.5sp</dimen>
+	<dimen name="textAppearanceButton_textSize">20sp</dimen>
+	<dimen name="textAppearanceMediumInverse_textSize">18sp</dimen>
+	<dimen name="textAppearanceLargePopupMenu_textSize">25sp</dimen>
+	<dimen name="textAppearanceSmall_textSize">17.5sp</dimen>
+		
+	<dimen name="HeadText_size">21.25sp</dimen>
+	<dimen name="SubheadText_size">15sp</dimen>
+	<dimen name="Text_size">17.5sp</dimen><!-- -->
+	<dimen name="Hint_size">12.5sp</dimen>
+	<dimen name="LargerText_size">20sp</dimen><!-- -->
+	
+	<dimen name="TopMetaInfoLabel_textSize">14.5sp</dimen>
+	<dimen name="TopHelpSmaller_textSize">14sp</dimen>
+	<dimen name="TopTrackElapsedDuration_Text_size">19sp</dimen>
+	<dimen name="ItemTrackCatImage_Text_size">10.125sp</dimen>
+	<dimen name="linear_knob_text_size">15sp</dimen>
+	<dimen name="EqKnobValueText_size">12sp</dimen>
+	<dimen name="EqKnobLabelText_size">14sp</dimen>
+	<dimen name="EqButton_textSize">14sp</dimen>
+		
+	
+	<dimen name="small1_textSize">13.5sp</dimen>
+	<dimen name="small2_textSize">13.5sp</dimen>
+	<dimen name="small3_textSize">13.75sp</dimen>
+	<dimen name="small4_textSize">14sp</dimen>
+	
+	<dimen name="moderate0_textSize">15.5sp</dimen>
+	<dimen name="moderate1_textSize">15.75sp</dimen>
+	<dimen name="moderate2_textSize">16.5sp</dimen>
+	<dimen name="moderate3_textSize">17sp</dimen>
+	
+	<dimen name="medium1_textSize">18.25sp</dimen>
+	<dimen name="medium2_textSize">18.875sp</dimen>
+	<dimen name="medium3_textSize">19.5sp</dimen><!-- -->
+	<dimen name="medium4_textSize">20sp</dimen><!-- -->
+	
+	<dimen name="large0_textSize">22sp</dimen>
+	<dimen name="large1_textSize">19.125sp</dimen>
+	<dimen name="large2_textSize">20.25sp</dimen>
+	<dimen name="large3_textSize">21.25sp</dimen>
+	<dimen name="large4_textSize">22.5sp</dimen>
+	
+</resources>

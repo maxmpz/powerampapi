@@ -67,7 +67,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="thumb">@drawable/knob_thumb_selector</item>
 		<item name="thumbWidth">@dimen/EqLinearKnob_thumbWidth</item><!-- 32dp -->
 		<item name="thumbHeight">@dimen/EqLinearKnob_thumbHeight</item><!-- 64dp -->
-		<item name="android:textSize">@dimen/linear_knob_text_size</item>
 		<item name="android:background">@drawable/focusable_bg</item>
 				
 		<item name="android:paddingLeft">@dimen/EqLinearKnob_paddingLR</item>
@@ -77,17 +76,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="textPadding">0dp</item>
 		<item name="valuePadding">1.5dp</item>
 		
-		<item name="android:textStyle">normal</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
+		
 		<item name="android:disabledAlpha">1</item><!-- NOTE: keeping it full alpha - using xml drawable disabled state instead -->
 		<item name="android:elevation">?control_elevation</item>
 		<item name="layout_unlimitedMeasure">true</item>
 		<item name="android:clipToPadding">false</item>
 		
-		<item name="valueTextAppearance">@style/EqKnobValueText</item>
+		<item name="android:textAppearance">?EqLinearKnob_Text</item>
+		<item name="valueTextAppearance">?EqKnobValue_Text</item>
 		<item name="valueAnimTime">300</item>
 		<item name="valueAnimZoom">1.5</item>
 		
@@ -106,9 +105,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Total width == width of EqLinearKnob (40dp here). Though dashes centered horizontally -->
 		<!-- 0 = means no dash, 8 - space, 3 - dash, 18 - space, 3 - dash, 8 space --> 
 		<item name="dashes">0,8,3,18,3,8</item>
-		
 	</style>
-	
+	<style name="EqLinearKnob_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/linear_knob_text_size</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>	
+		
 	<style name="EqPreampKnobLayout">
 		<item name="android:background">@drawable/preamp_bg</item>
 		<item name="android:layout_width">@dimen/preamp_knob_width</item>
@@ -120,8 +122,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<style name="EqPreampLinearKnob" parent="EqLinearKnob">
 		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="layout_consumeSpace">@empty</item>
-		<item name="android:background">@empty</item>
+		<item name="layout_consumeSpace">@null</item>
+		<item name="android:background">@null</item>
 	</style>
 		
 	<style name="EqFrequencyResponseScrollerBase">
@@ -182,6 +184,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqInfo_scene_item_menu" parent="TopMetaInfo_scene_item_menu">
 	</style>
 	
+	<!-- NOTE: uses TopMetaInfoLabel_Text text appearance -->
 	<style name="EqInfoLabel" parent="TopMetaInfoLabel">
 		<item name="android:drawable">@drawable/info_stroke_24dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
@@ -190,36 +193,36 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableWidth">16dp</item>
 		<item name="drawableHeight">16dp</item>
 		<item name="android:gravity">center_vertical</item>
-		<item name="android:capitalize">characters</item>
 	</style>
 	
-	<style name="EqKnobValueText"><!-- styles-eq usage only -->
+	<style name="EqKnobValue_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textColor">@color/eq_value_text_color_selector</item>
 		<item name="android:textSize">@dimen/EqKnobValueText_size</item>
 		<item name="android:textStyle">normal</item>
 	</style>
 
-	<style name="EqKnobLabelText"><!-- styles-eq usage only -->
+	<style name="EqKnobLabel_Text" parent="TextAppearance.AppCompat">
 		<!-- used for text on layout - like equ knob labels -->
 		<item name="android:textSize">@dimen/EqKnobLabelText_size</item>
 		<item name="android:textColor">@color/button_text_color_selector</item> 
-		<item name="android:textStyle">normal</item>
-		<item name="android:typeface">normal</item>
 	</style>
 			
 
 	<!-- NOTE: EqPopupListLayoutLabel depends on this style, not being a button, so update EqPopupListLayoutLabel when this style changes (e.g. additional margins added, etc.) -->
 	<style name="EqButton" parent="WhiteButtonBase"><!-- styles-eq usage only -->
-		<item name="android:textSize">@dimen/EqButton_textSize</item>
 		<item name="android:gravity">center</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_height">@dimen/EqButton_layout_height</item><!-- 32dp -->
 		<item name="android:minWidth">@dimen/EqButton_layout_width</item><!-- 64dp -->
 		<item name="android:ellipsize">end</item>
+		<item name="android:textAppearance">?EqButton_Text</item>
+	</style>
+	<style name="EqButton_Text" parent="WhiteButton_Text">
+		<item name="android:textSize">@dimen/EqButton_textSize</item>
 	</style>
 	
 	<style name="EqCheckButton" parent="EqButton"><!-- styles-eq usage only -->
-		<item name="android:textColor">@color/button_text_color_selector</item>
+		<item name="android:textColor">@color/button_text_color_selector</item><!-- NOTE: keeping it out of textAppearance -->
 		<item name="android:background">@drawable/checkable_rounded_large</item>		
 	</style>
 			
@@ -247,11 +250,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:ellipsize">end</item>
 	</style>
 		
-	<!-- NOTE: style overriden in  -->
 	<style name="EqPresetButtonLayoutBase" parent="TopBaseButtonLayout">
 		<!-- Avoid paddings here as they apply to list as well -->
 		<item name="android:background">@drawable/rounded_stroke_button_layout_bg</item>
-		<!-- <item name="android:layout_width">wrap_content</item> --><!-- NOTE: can't use dynamic size due to current popup behavior, when we can't return to new size -->
+		<!-- NOTE: can't use dynamic size due to current popup behavior, when we can't return to new size -->
 		<item name="android:layout_height">@dimen/EqButton_layout_height</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
@@ -275,20 +277,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:gravity">right</item>
-		<item name="android:capitalize">characters</item>
 		<item name="android:ellipsize">end</item>
-		<item name="android:textSize">@dimen/EqButton_textSize</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
-		
 		<item name="android:ellipsize">end</item>
+		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
+	</style>
+	<style name="EqEquPresetLabel_Text" parent="PopupListLayoutLabel_Text">
+		<item name="android:textSize">@dimen/EqButton_textSize</item>
+		<item name="android:textAllCaps">true</item>		
 	</style>
 	
 	<style name="EqEquSaveButton" parent="EqButton">
 		<item name="layout_attachBottom">@+id/eq_bass_knob_layout</item>
 		<item name="layout_attachRight">@+id/reset_button</item>
 		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overriden for smaller screens -->
+		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overridden for smaller screens -->
 		
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
 	</style>
@@ -298,7 +302,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overriden for smaller screens -->
+		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overridden for smaller screens -->
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
 		<item name="android:ellipsize">end</item>
 	</style>
@@ -381,7 +385,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="EqRoundKnobLabelLeftTop">
 		<item name="android:id">@id/_label</item>
-		<item name="android:textAppearance">@style/EqKnobLabelText</item>
+		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="android:layout_width">@dimen/RoundKnobLabelLeftTop_width</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:minWidth">35dp</item><!-- Needed so value label (zoomed in, text="100%") could fit its place without overlapping anything -->
@@ -392,7 +396,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="EqRoundKnobValueLabelLeftTop">
 		<item name="android:id">@id/_value_label</item>
-		<item name="android:textAppearance">@style/EqKnobValueText</item>
+		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="android:gravity">left</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -402,7 +406,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="EqRoundKnobLabel">
-		<item name="android:textAppearance">@style/EqKnobLabelText</item>
+		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:gravity">center</item>
@@ -418,7 +422,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="EqRoundKnobValueLabel">
 		<item name="android:gravity">center</item>
-		<item name="android:textAppearance">@style/EqKnobValueText</item>
+		<item name="android:textAppearance">?EqKnobValue_Text</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_horizontal</item>
@@ -427,7 +431,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="EqRoundKnobLeftLabel">
-		<item name="android:textAppearance">@style/EqKnobLabelText</item>
+		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="layout_attachRight">@id/_knob</item>
 		<item name="layout_attachTop">@id/_knob</item>
 		<item name="android:layout_width">wrap_content</item>
@@ -438,7 +442,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="EqRoundKnobRightLabel">
-		<item name="android:textAppearance">@style/EqKnobLabelText</item>
+		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="layout_attachTop">@id/_knob</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -680,20 +684,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:gravity">right</item>
-		<item name="android:capitalize">characters</item>
 		<item name="android:ellipsize">end</item>
-		<item name="android:textSize">@dimen/EqButton_textSize</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
-		
 		<item name="android:ellipsize">end</item>
+		<item name="android:textAppearance">?EqEquPresetLabel_Text</item><!-- NOTE: no specific textAppearance for EqReverbPresetLabel -->
 	</style>
-	
+		
 	
 	<style name="EqReverbSaveButton" parent="EqButton">
 		<item name="layout_attachRight">@id/reverb_reset_button</item>
 		
-		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overriden for smaller screens -->
+		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overridden for smaller screens -->
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
 		<item name="android:ellipsize">end</item>
 	</style>
@@ -703,7 +705,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="layout_consumeSpace">vertical</item>
 		
-		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overriden for smaller screens -->
+		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overridden for smaller screens -->
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
 		<item name="android:ellipsize">end</item>
 	</style>
@@ -720,13 +722,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="EqRoundKnobLabelLeftTop2">
 		<item name="android:id">@id/_label</item>
-		<item name="android:textAppearance">@style/EqKnobLabelText</item>
+		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="android:layout_width">@dimen/RoundKnobLabelLeftTop_width</item>
 		<item name="android:layout_height">wrap_content</item>
-		<!-- <item name="android:gravity">left</item> -->
 		<item name="android:minWidth">35dp</item><!-- Needed so value label (zoomed in, text="100%") could fit its place without overlapping anything -->
-		<!-- <item name="layout_attachRight">@id/_knob</item> -->
-		<!-- <item name="layout_attachTopToTop">@id/_knob</item> -->
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_marginRight">@dimen/RoundKnobLabelLeftTop_marginRight</item>
 		<item name="android:layout_marginTop">@dimen/RoundKnobLabelLeftTop_marginTop</item>
@@ -737,7 +736,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="EqRoundKnobValueLabelLeftTop2">
 		<item name="android:id">@id/_value_label</item>
-		<item name="android:textAppearance">@style/EqKnobValueText</item>
+		<item name="android:textAppearance">?EqKnobValue_Text</item>
 		<item name="android:gravity">left</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>

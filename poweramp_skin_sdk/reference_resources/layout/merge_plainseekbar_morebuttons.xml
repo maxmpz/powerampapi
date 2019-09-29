@@ -27,14 +27,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Add our plain seekbar -->
 	<com.maxmpz.widget.player.Seek android:id="@+id/seekbar"
-		style="@style/PlainSeekbar"
-	/>
-	<SceneParams w:scene="@id/scene_playing"
-		style="@style/PlainSeekbar_scene_playing"
+		style="?PlainSeekbar"
 	/>
 	<StateAnimParams w:stateAnim="@id/anim_seeking"
-		android:scaleY="1.25"
+		style="?PlainSeekbar_anim_seeking"
 	/>
-		
-
 </merge>

@@ -36,11 +36,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PlainSeekbar_common_marginBottom">12dp</dimen>
 	
 	<!-- Alt -->
-	<dimen name="Alt_TopSubAAButtons_marginTop">7dp</dimen><!-- 8dp here is 1dp more than needed visually -->
+	<dimen name="Alt_TopSubAAButtons_marginTop">8dp</dimen>
 	
-	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.9</item>
+	<!--<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.9</item> Not used anymore -->
 		
-	<dimen name="Alt_aaMaxSize">480dp</dimen>
+	<!-- <dimen name="Alt_aaMaxSize">542dp</dimen> Not used anymore -->
 	<dimen name="Alt_TopWaveseek_paddingTB">12dp</dimen>
 	
 	<dimen name="Alt_TopPlay_maxSize">100dp</dimen>

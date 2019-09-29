@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -74,6 +74,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:clickDelay="@integer/activity_start_click_delay"
 	/>
 
+	<com.maxmpz.widget.BusActionButton android:id="@+id/add_url"
+		style="?PopupMenuItem"
+		android:drawable="?list_options"
+		
+		w:busId="@id/list" 
+		w:msgId="@id/cmd_list_add_url"
+		
+		android:text="@string/add_url"
+	/>
+	
 	<com.maxmpz.widget.BusActionButton android:id="@+id/list_options"
 		style="?PopupMenuItem"
 		android:drawable="?list_options"

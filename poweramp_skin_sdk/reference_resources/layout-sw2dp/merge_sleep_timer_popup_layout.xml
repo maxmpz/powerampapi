@@ -39,7 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<com.maxmpz.widget.FastLayout
-		style="?PopupContent_scene_button_menu"
+		style="?SleepTimerContent"
 	>
 		<SeekBar android:id="@+id/seekbar"
 			style="?SleepTimerSeekbar"

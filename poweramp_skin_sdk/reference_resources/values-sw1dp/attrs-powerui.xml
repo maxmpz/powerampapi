@@ -29,6 +29,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Applied (over main theme style) when rating is enabled and set to stars -->
 		<attr name="OptionRatingStars" format="reference"/>
 		
+		<!-- Applied (over main theme style) when rating is enabled and set to stars in menu only -->
+		<attr name="OptionRatingStarsMenu" format="reference"/>
+
 		<!-- Applied (over main theme style) when rating is enabled and set to like/unlike thumbs -->
 		<attr name="OptionRatingLikeUnlike" format="reference"/>
 		
@@ -87,13 +90,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Space to reserve for moveable toobar on bottom. Should be large enough so toolbar doesn't overlap last item -->
 		<attr name="bottomReservedSpace" format="dimension"/>
 
-		<!-- Space to reserve for selection bar on bottom. Should be large enough so selection doesn't overlap last item -->
+		<!-- Not used ATM. 
+		     Space to reserve for selection bar on bottom. Should be large enough so selection doesn't overlap last item.
+		     @deprecated use selectionBottomReservedExtraSpace instead -->
 		<attr name="selectionBottomReservedSpace" format="dimension"/>
+
+		<!-- The extra space to add to bottomReservedSpace for a selection mode. Allows space increase/decrease relative to bottomReservedSpace, 
+		     which can be dynamic due to the theme options  --> 	
+		<attr name="selectionBottomReservedExtraSpace" format="dimension"/>
 		
 		<attr name="android:colorEdgeEffect"/><!-- Defines overshoot edge effect color -->
 	</declare-styleable>
 	
-
+	
 	<!-- Main Poweramp list, i.e. main screen AA and all the Library lists and Library itself. 
 		 NOTE: derived from PowerList - accepts PowerList attributes as well -->
 	<declare-styleable name="ListWidget">
@@ -282,7 +291,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</attr>
 		
 		<!-- NOTE: placed here for technical reasons to detect if layout params exist for given scene params.
-			 If layout_width exists in attributes, we assume layout is set for this scene params, otherwise no layout is applied per this scene params -->
+			 If layout_width exists in the attributes, we assume layout is set for this scene params, otherwise no different layout is applied per this scene params -->
 		<attr name="android:layout_width"/>
 		
 		<!-- Defines point during transition when target view is re-layout. Layout is a costly operation for most views -->
@@ -306,13 +315,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Default is false. If true, visibility will be applied immediately, without alpha transition. Good for cases when view should not fade at all -->
 		<attr name="jumpVisibility" format="boolean"/>
 		
-		<!-- Apply scene params even if view is gone in both (from/to) scenes. Useful for views which are force-hidden by code, but still should differ in scenes -->
+		<!-- If true, apply scene params even if view is GONE in _both_ (from/to) scenes. 
+		     Useful for views which are force-hidden by code, but still should differ in scenes -->
 		<attr name="applyEvenIfGone" format="boolean|integer">
+			<!-- Don't apply scene params if view is GONE currently (in just current scene). If view is GONE, then it won't participate in scenes until set to non-gone by code.
+			     This is used mostly by views which can be shown/hidden by code -->
 			<enum name="dontApplyIfGone" value="2"/>
 		</attr>
-		
-		<!-- Don't apply scene params if view is gone currently. If view is gone, it then can't participate in scenes until set to non-gone by code -->
-		<!--<attr name="dontApplyIfGone" format="boolean"/>-->
 	</declare-styleable>
 	
 	
@@ -360,16 +369,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 	<!-- Used internally -->
-	<!-- NOTE: shared by various controls and TextUtils -->
+	<!-- NOTE: shared by various controls and TextWidgetUtils -->
 	<declare-styleable name="TextProps">
-		<attr name="android:text"/>	
-		<attr name="android:gravity"/>
+		<attr name="android:textAppearance"/>
 		<attr name="android:textSize"/>
 		<attr name="android:textColor"/>
 		<attr name="android:textStyle"/>
+		<attr name="android:typeface" />
+		<attr name="android:fontFamily" />
+		<attr name="android:textAllCaps"/>
+	</declare-styleable>
+	
+	<!-- Used internally -->
+	<!-- NOTE: similar to TextProps, but has no android:textAppearance -->
+	<!-- NOTE: there is already TextAppearance styleable from appcompat, so using own version here with the different name -->
+	<declare-styleable name="TextAppearanceMin">
+		<attr name="android:textSize" />
+		<attr name="android:textColor" />
+		<attr name="android:textStyle" />
+		<attr name="android:typeface" />
+		<attr name="android:fontFamily" />
+		<attr name="android:textAllCaps"/>
+	</declare-styleable>
+	
+	<declare-styleable name="TextViewFontFamily">
 		<attr name="android:textAppearance"/>
 		<attr name="android:fontFamily" />
-		<attr name="android:typeface" />
 	</declare-styleable>
 	
 	<!-- Simple view which applies disabledAlpha when disabled -->
@@ -379,7 +404,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 	<!-- FastTextView is TextView/Button/ImageButton replacement, which is designed for layout and drawing performance. Used for static text, labels, text with icons,
-		 and just icons (+ few derived classes e.g. for checkboxes)
+		 and just icons (+ few derived classes e.g. for the checkboxes)
 		 
 		 This is, in some parts, very limited widget, esp. compared to full blown TextView, but it's fast:
 		 - it doesn't use Android text layout code
@@ -389,12 +414,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 
 		 Nevertheless, additional features are:
 		 - support for line drawables (per line text background, independent from general view background)
-		 - support for additional SceneParams parameters: text color, max lines, drawable, line background, background 
+		 - support for additional animatable SceneParams parameters: text color, max lines, drawable, line background, background 
 
 		 Paddings:
-		 NOTE: fast text padding processing (with drawable) differs from standard Android approach.
-		 This is due to the requirement for consinstent padding around text, while padding around drawable is specific to drawable.
-		 This allows same styles to be used for buttons with/without drawables with consinstent text paddings  
+		 NOTE: fast text padding processing (with drawable) differs from the standard Android approach.
+		 This is due to the requirement for consinstent padding around text, while padding around drawable is specific to the drawable.
+		 This allows same styles to be used for buttons with or without drawables with consinstent text paddings  
 
 		 Horizontal FastTextView paddings when no drawable:
 		   paddingLeft text paddingRight
@@ -407,6 +432,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		 Horizontal FastTextView paddings when drawable is available and drawableOnly=true:
 		   drawablePaddingStart drawable drawablePadding paddingLeft paddingRight
+		   
+		 NOTE: when drawablePosition=GRAVITY (this is default for drawableOnly), no paddings applied as fixed size is assumed   
 		   
 		 Same approach is used for vertical paddings (drawblePosition=top)
 		 
@@ -440,7 +467,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="left" value="0"/>
 			<enum name="top" value="1"/>
 			<enum name="right" value="2"/>
-			<!-- Drawable will be positioned according to android:gravity. This makes sense only if drawableOnly=true, for pure icons without text -->
+			<!-- Drawable will be positioned according to android:gravity. This makes sense only if drawableOnly=true, for pure icons without text. No paddings applied, fixed size assumed -->
 			<enum name="forceGravity" value="-1"/>
 		</attr>
 		<!-- NOTE: android:drawableTint not supported by Android 5.0, thus using w:drawableTint -->
@@ -453,7 +480,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Default is false. If true, allow this view to have zero-height if no text (text=="" or null) nor drawable is in it.
 		     NOTE: minHeight is still honored -->
 		<attr name="allowZeroHeight" format="boolean"/>
-		
+		<!-- Extra drawable padding right when no text exists (empty or null). This can be negative value, it's summed with other paddings right to the drawable, i.e:
+		     drawablePaddingStart drawable (drawablePaddingEndNoText + drawablePadding + paddingLeft + paddingRight) -->
+		<attr name="drawablePaddingEndNoText" format="dimension"/>
+				
 		<!-- 
 		When drawable exists, paddings and backgrounds are distributed as follows:
 		  (bg starts) drawablePaddingStart <drawable> drawablePadding (line bg starts) paddingLeft <text> paddingRight (line bg ends) (bg ends)
@@ -463,7 +493,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Only "none" and "end" are supported ATM -->
 		<attr name="android:ellipsize"/>
-		<!-- Only "none" and "characters" are supported ATM -->
+		<!-- Only "none" and "characters" are supported ATM. It's preferable to use textAllCaps instead, as it's derived from TextAppearance -->
 		<attr name="android:capitalize"/>
 		<attr name="android:minWidth"/>
 		<attr name="android:minHeight"/>
@@ -476,19 +506,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:gravity"/>
 		<attr name="android:lineSpacingMultiplier"/>
 		<attr name="android:lineSpacingExtra"/>
-	</declare-styleable>
-	
-	<!-- Used internally -->
-	<declare-styleable name="TextAppearance">
-		<attr name="android:textColor" />
-		<attr name="android:textSize" />
-		<attr name="android:textStyle" />
-		<attr name="android:typeface" />
+		
+		<attr name="android:textAppearance"/>
+		<attr name="android:textSize"/>
+		<attr name="android:textColor"/>
+		<attr name="android:textStyle"/>
+		<attr name="android:textAppearance"/>
 		<attr name="android:fontFamily" />
+		<attr name="android:typeface" />
 		<attr name="android:textAllCaps"/>
 	</declare-styleable>
 	
-
 	<!-- Scene-overridable extra FastTextView params -->
 	<declare-styleable name="FastTextViewSceneParams">
 		<attr name="lineBackground"/>
@@ -552,7 +580,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 as replacement for very simple layouts as FrameLayout due to the minimal overhead
 		 
 		 FastLayout can replace:
-		 - FrameLayout (not slower than FrameLayout, or faster, as FastLayout never remeassures children for MATCH_PARENT)
+		 - FrameLayout (not slower than FrameLayout, or faster, as FastLayout never re-meassures children for MATCH_PARENT)
 		 - LinearLayout (can be implemented via layout_flex* or via layout_consumeSpace)
 		 - RelativeLayout (FastLayout is faster as it uses strictly one-pass, one measure per pass approach) 
 		 - partially ConstraintLayout (FastLayout is much faster) 
@@ -563,7 +591,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		   - if some view is referenced by other view that triggers immediate laying out of such referenced view
 		     - this may cause cycles and will throw StackOverflowException
 		 
-		 FastLayoutLP are attribures for FastLayout child views. FastLayout itself has no extra attribures
+		 FastLayoutLP are attribures for FastLayout child views. FastLayout itself has no extra attributes
 	--> 
 	<declare-styleable name="FastLayoutLP">
 		<!-- Gravity is applied if no attaching points are defined for the child at given axis 
@@ -752,11 +780,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="layout_compensateScale" format="float"/>
 		
 		<!-- If true, view will be given UNSPECIFIED measure spec when view size is wrap_content on given axis.
-			 By default, this is disabled, thus views measure requested size limited by this container size. 
-			 layout_unlimitedMeasure="true" may be required for cases when there is only one child view which should grow beyond this container size
-			 on the scrollable axis. Such behavior is close to Android ScrollableView children
+			 By default, this is disabled, thus view measures requested size limited by its container size. 
+			 layout_unlimitedMeasure="true" may be required for the cases when there is only one child view which should grow beyond its container size
+			 on the scrollable axis. Such behavior is close to Android ScrollableView children measuring
 		-->
 		<attr name="layout_unlimitedMeasure" format="boolean"/>
+		
+		<!-- If true, layout_width/height="wrap_content" won't take margins into account.
+		     NOTE: by default, when wrap_content is used, parent still limits view size based on parent available size minus view margins.
+		     Settings this attribute to true removes margins from the calculation, making whole space available for child -->
+		<attr name="layout_wrapIgnoresMargins" format="boolean"/>
+				
 
 		<!-- NOTE: basic MarginLayoutParams attrs are needed for programmatic LP creation based on style attr/res. MarginLayoutParams doesn't support that,
 			 so FastLayoutLP handles margin parsing on its own
@@ -835,6 +869,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Also, android:text* attributes are supported -->
 		<!-- NOTE: font size is automatically selected depending on space available in the cells -->
+		
+		<attr name="android:textAppearance"/>
+		<attr name="android:textSize"/>
+		<attr name="android:textColor"/>
+		<attr name="android:textStyle"/>
+		<attr name="android:textAppearance"/>
+		<attr name="android:fontFamily" />
+		<attr name="android:typeface" />
 	</declare-styleable>
 	
 	<!-- Poping out character shown when user actively scrolls in az mode -->
@@ -1001,11 +1043,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Message id to listen from state bus msgbus and set buttons to --> 
 		<attr name="msgId"/>
 		
-		<!-- If set, arg1 will be overriden for BusActionButtons inside when clicked NOT in popup mode -->
+		<!-- If set, arg1 will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
 		<attr name="arg1"/>
-		<!-- If set, arg2 will be overriden for BusActionButtons inside when clicked NOT in popup mode -->
+		<!-- If set, arg2 will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
 		<attr name="arg2"/>
-		<!-- If set, string will be overriden for BusActionButtons inside when clicked NOT in popup mode -->
+		<!-- If set, string will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
 		<attr name="string"/>
 		
 		<!-- Buttons message @id - the same command message id is used for all buttons -->
@@ -1242,9 +1284,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Button drawables @array -->
 		<attr name="buttonsDrawables" format="reference"/>
 		
-		<!-- Button style (e.g. PopupButton) -->
+		<!-- Button style (e.g. ?PopupButton) -->
 		<attr name="buttonStyle" format="reference"/>
-		<!-- Button style (e.g. PopupButton_scene_button_menu) -->
+		<!-- Button style (e.g. ?PopupButton_scene_button_menu) -->
 		<attr name="menuButtonStyle" format="reference"/>
 		
 		<!-- Default is true -->
@@ -1260,7 +1302,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Layout for toasts -->
 	<declare-styleable name="ToastFrameLayout">
-		<attr name="toastDuration" format="integer"/><!-- ms. This is default value, which is often overriden by code -->
+		<attr name="toastDuration" format="integer"/><!-- ms. This is default value, which is often overridden by code -->
 	</declare-styleable>
 	
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which enables scrolling in a layout.

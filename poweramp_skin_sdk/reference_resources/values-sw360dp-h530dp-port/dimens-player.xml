@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Nexus 5 360x568, LG V10 360x534 -->
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">290dp</dimen>
+	<!-- <dimen name="Alt_aaMaxSize">352dp</dimen> Not used anymore -->
 	
 	<dimen name="Alt_TopPlay_maxSize">74dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">64dp</dimen>

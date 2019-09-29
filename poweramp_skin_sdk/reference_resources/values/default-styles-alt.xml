@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -22,11 +22,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+	<!-- NOTE: this is not a theme, but skin option, which applied after skin theme and global optional styles -->
 	<style name="ActivityTheme_Whitepro_AltLayout">
 		<item name="VisPanelContainer">@style/Alt_VisPanelContainer</item>
 		
 		<item name="TopListWidget">@style/Alt_TopListWidget</item>
 		<item name="TopAABounds">@style/Alt_TopAABounds</item>
+		
+		<item name="CcButton_MainUI_scenes_vis_w_ui">@style/Alt_CcButton_MainUI_scenes_vis_w_ui</item>
 		
 		<item name="ItemTrackAAImage_scene_aa">@style/Alt_ItemTrackAAImage_scene_aa</item>
 		
@@ -78,7 +81,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_plain_seekbar">@style/ActivityTheme_Whitepro_PlainSeekbar_Alt</item>
 		
 		<!-- Lists -->
-		
 		<item name="ItemTrackTitle_scene_grid_1">@style/Alt_ItemTrackTitle_scene_grid_1</item>
 		<item name="ItemTrackTitle_scene_grid_1_zoomed">@style/Alt_ItemTrackTitle_scene_grid_1_zoomed</item>
 		<item name="ItemTrackTitle_scene_grid">@style/Alt_ItemTrackTitle_scene_grid</item>
@@ -90,10 +92,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackLine2_scene_grid_1">@style/Alt_ItemTrackLine2_scene_grid_1</item>
 		<item name="ItemTrackLine2_scene_grid_1_zoomed">@style/Alt_ItemTrackLine2_scene_grid_1_zoomed</item>
 		
-		
 		<item name="PlainSeekbar_buttons_offset">@dimen/Alt_PlainSeekbar_buttons_offset</item>
 		<item name="PlainSeekbar_marginBottom">@dimen/Alt_PlainSeekbar_marginBottom</item>
 		<item name="PlainSeekbar_common_marginBottom">@dimen/Alt_PlainSeekbar_common_marginBottom</item>
+	</style>
+	
+	<style name="ActivityTheme_Whitepro_AltLayout_StarsMenu" parent="ActivityTheme_Whitepro_AltLayout">
+		<!-- Here we should not have any rating bar in aa scene visible. As we overridden it in ActivityTheme_Whitepro_AltLayout,
+		     override it back to invisible style  -->
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item>
+	</style>
+	
+	<style name="Alt_OptionRatingStarsMenu">
+		<item name="ItemLikeUnlikeLayout_layout">@layout/merge_item_aa_rating_stars</item>
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item>
 	</style>
 	
 	<style name="Alt_VisPanelContainer" parent="VisPanelContainer">
@@ -116,9 +128,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_TopWaveseek" parent="TopWaveseek">
 	</style>
 	
-	
-		
-	
 	<style name="Alt_ItemTrackTitle" parent="ItemTrackTitle">
 	</style>
 	
@@ -137,8 +146,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
-		<item name="layout_attachBottom">@null</item>
-		<item name="layout_attachTop">@id/aa_image</item>
+		<item name="layout_attachBottom">@id/line2</item>
+		<item name="layout_attachTop">@null</item>
 		
 		<item name="android:layout_marginLeft">14dp</item>
 		<item name="android:layout_marginRight">14dp</item>
@@ -167,13 +176,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
-		<item name="layout_attachBottom">@null</item>
-		<item name="layout_attachTop">@id/title</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachTop">@null</item>
 
 		<item name="android:layout_marginLeft">14dp</item>
 		<item name="android:layout_marginRight">14dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
-		<item name="android:layout_marginTop">@dimen/Alt_ItemTrackLine_scene_aa_marginTop</item>
+		<item name="android:layout_marginTop">2dp</item>
 		
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
@@ -187,7 +196,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_compensateScale">0.9</item>
 		
 		<item name="android:layout_marginLeft">14dp</item>
-		<item name="android:layout_marginBottom">84dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="layout_attachBottom">@id/title</item>
 		
 	</style>
 	<style name="Alt_ItemLike_scene_aa" parent="ItemLike_scene_aa">
@@ -209,10 +219,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_ItemRatingBar_scene_aa" parent="ItemRatingBar_scene_aa">
 		<item name="scale">0.9</item>
 		<item name="layout_compensateScale">0.9</item>
-				
+		<item name="layout_attachBottom">@id/title</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginLeft">14dp</item>
-		<item name="android:layout_marginBottom">84dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
 		
 		<item name="drawableTint">?colorIconPrimaryForced</item>
 		<item name="lineBackground">@drawable/ripple_alpha_rounded_large</item>
@@ -230,8 +240,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="scale">0.9</item>
 		<item name="layout_compensateScale">0.9</item>
 		
+		<item name="layout_attachBottom">@id/title</item>
 		<item name="android:layout_marginRight">14dp</item>
-		<item name="android:layout_marginBottom">84dp</item><!-- Extra margin is needed due to AA item paddings -->
+		<item name="android:layout_marginBottom">16dp</item>
 	</style>
 	
 	<style name="Alt_ItemTrackMenu_scene_header" parent="ItemTrackMenu_scene_header">
@@ -289,12 +300,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxHeight">@dimen/Alt_TopMediumButton_size</item>
 		</style>
 	<style name="Alt_TopPrevCat" parent="TopPrevCat">
-		<item name="android:layout_width">@dimen/Alt_TopSmallButton_size</item> 
-		<item name="android:layout_height">@dimen/Alt_TopSmallButton_size</item>
+		<item name="layout_maxWidth">@dimen/Alt_TopSmallButton_size</item> 
+		<item name="layout_maxHeight">@dimen/Alt_TopSmallButton_size</item>
 	</style>	
 	<style name="Alt_TopNextCat" parent="TopNextCat">
-		<item name="android:layout_width">@dimen/Alt_TopSmallButton_size</item> 
-		<item name="android:layout_height">@dimen/Alt_TopSmallButton_size</item>
+		<item name="layout_maxWidth">@dimen/Alt_TopSmallButton_size</item> 
+		<item name="layout_maxHeight">@dimen/Alt_TopSmallButton_size</item>
 	</style>	
 		
 	<style name="Alt_PopupButtonNoTint" parent="PopupButtonNoTint">
@@ -339,35 +350,41 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_TopListWidget" parent="TopListWidget">
 		<item name="listSubstyle">@style/Alt_ListSubstyle</item>
 	</style>
-	<style name="Alt_ListSubstyle_Base" parent="ListSubstyle">
+	<style name="Alt_ListSubstyle_Base" parent="ListSubstyle2">
 		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
-		<item name="aaPaddingBottom">@dimen/Alt_ListSubstyle_aaPaddingBottom</item><!-- 70dp -->
-		
-		<item name="aaMaxSize">@dimen/Alt_aaMaxSize</item><!-- NOTE: sync with TopAABounds -->
-		<item name="aaItemRatio">100%</item><!-- NOTE: sync with TopAABounds -->
+		<item name="aaPaddingBottom">@dimen/Alt_TopAABounds_marginBottom</item><!-- Sync with Alt_TopAABounds -->
+		<!-- Minimum size we can shring AA to -->
+		<item name="aaMinSize">50dp</item><!-- Sync with Alt_TopAABounds -->
+		<!-- The space reserved below AA. We need some space there for sub aa buttons, controls, seekbar, etc.
+		     This affects splitsceen layout mostly or very short screens, as for the longer screens, there is always enough space -->
+		<item name="aaMarginBottom">@dimen/Alt_TopListSubstyle_aaMarginBottom</item><!-- Sync with Alt_TopAABounds -->
 		
 		<!-- Extra space grid cell layouts => so cell has non-square layout with extra space for title below image -->
-		<item name="gridItem1LineExtraSpace">30dp</item><!-- 1line 4x, 3x grids -->
-		<item name="gridZoomedItem1LineExtraSpace">38dp</item><!-- 1line 2x grids -->
+		<item name="gridItem1LineExtraSpace">@dimen/Alt_ListSubstyle_Base_gridItem1LineExtraSpace</item><!-- 1line 4x, 3x grids -->
+		<item name="gridZoomedItem1LineExtraSpace">@dimen/Alt_ListSubstyle_Base_gridZoomedItem1LineExtraSpace</item><!-- 1line 2x grids -->
 
-		<item name="gridItemExtraSpace">54dp</item><!-- 2line 4x, 3x grids -->
-		<item name="gridZoomedItemExtraSpace">60dp</item><!-- 2line 2x grids -->
+		<item name="gridItemExtraSpace">@dimen/Alt_ListSubstyle_Base_gridItemExtraSpace</item><!-- 2line 4x, 3x grids -->
+		<item name="gridZoomedItemExtraSpace">@dimen/Alt_ListSubstyle_Base_gridZoomedItemExtraSpace</item><!-- 2line 2x grids -->
 	</style>
 	<style name="Alt_ListSubstyle" parent="Alt_ListSubstyle_Base">
 	</style>
 	
-	<style name="Alt_TopAABounds" parent="TopAABounds">
-		<!-- This is the extra room for title / line2 / menu / rating below AA image. NOTE: need to add this to aa_bounds, so other views can properly attach to it with
-		     the aaPaddingBottom accounted for -->
+	<style name="Alt_TopAABounds" parent="TopAABounds2">
+		<item name="aaPaddingBottom">@dimen/Alt_TopAABounds_marginBottom</item><!-- NOTE: sync with Alt_ListSubstyle_Base -->
+		<item name="aaMinSize">50dp</item><!-- Sync with Alt_ListSubstyle_Base -->
+		<item name="aaMarginBottom">@dimen/Alt_TopListSubstyle_aaMarginBottom</item><!-- Sync with Alt_TopAABounds -->
+		
 		<item name="android:layout_marginBottom">@dimen/Alt_TopAABounds_marginBottom</item>
 		
-		<item name="layout_maxHeight">@dimen/Alt_aaMaxSize</item>
-		<item name="layout_widthPercent">100%</item>
-		<item name="layout_heightPercent">100%</item>
+		<!-- NOTE: the padding between labels and sub-aa buttons is defined by Alt_TopSubAAButtons_marginTop -->
 		
 		<!-- DEBUG -->
 		<!--<item name="android:background">#5f00</item>-->
 	</style>
+	
+	<style name="Alt_CcButton_MainUI_scenes_vis_w_ui" parent="CcButton_MainUI_scenes_vis_w_ui">
+	</style>	
+	
 		
 	<style name="Alt_ItemTrackTitle_scene_grid_1" parent="ItemTrackTitle_scene_grid_1">
 		<item name="lineBackground">@null</item>

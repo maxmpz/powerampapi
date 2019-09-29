@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -52,4 +52,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		android:text="@string/list_opts"
 	/>
+
+	<com.maxmpz.widget.BusActionButton android:id="@+id/add_new"
+		style="?PopupMenuItem"
+		android:drawable="?add_to_pl"
+	
+		w:busId="@id/bus_data_cmd" 
+		w:msgId="@id/cmd_data_add_playlist"
+		
+		android:text="@string/add_new_short"
+	/>
+	
 </merge>

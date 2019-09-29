@@ -33,5 +33,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- PF1 392x736. Redmi5+ 392x714 Enough vertical space -->
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">420dp</dimen>	
+	<!--<dimen name="Alt_aaMaxSize">482dp</dimen> Not used anymore -->	
 </resources>

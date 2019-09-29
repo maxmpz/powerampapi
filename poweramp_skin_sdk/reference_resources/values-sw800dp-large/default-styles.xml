@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (C) 2010-2019 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values-sw800dp-large -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<style name="Base_ActivityTheme_Default" parent="Base_ActivityTheme_Core">
+		<!-- NOTE: need to override default textAppearance* attributes, as even for app compat, they point to system styles -->
+		<item name="android:textAppearance">@style/textAppearance_Tablet</item>
+		<item name="android:textAppearanceButton">@style/textAppearanceButton_Tablet</item>
+		<item name="android:textAppearanceMediumInverse">@style/textAppearanceMediumInverse_Tablet</item>
+		<item name="android:textAppearanceLargePopupMenu">@style/textAppearanceLargePopupMenu_Tablet</item>
+		
+		<item name="corners_popup">7.5dp</item>
+		<item name="corners_medium">12dp</item>
+		<item name="corners_medium_plus">24dp</item>
+		<item name="corners_navbar">10dp</item>
+		<item name="corners_searchbar">10dp</item>
+		<item name="corners_mini">5dp</item>
+		<item name="corners_large">30dp</item>
+		<item name="corners_small">3dp</item>
+		<item name="corners_knob_thumb">@dimen/knob_thumb_radius</item>
+		
+		<item name="corners_aa_tracks">27dp</item>
+		<item name="corners_aa_albums">10dp</item>
+		<item name="corners_aa_other">matchHeight</item>
+		
+		<item name="corners_aa_tracks_zoomed">30dp</item>
+		<item name="corners_aa_albums_zoomed">15dp</item>
+		<item name="corners_aa_other_zoomed">matchHeight</item>
+		
+		<item name="corners_aa_tracks_grid">25dp</item>
+		<item name="corners_aa_albums_grid">10dp</item>
+		<item name="corners_aa_other_grid">matchHeight</item>
+		
+		<item name="corners_aa_tracks_grid_zoomed">30dp</item>
+		<item name="corners_aa_albums_grid_zoomed">20dp</item>
+		<item name="corners_aa_other_grid_zoomed">matchHeight</item>
+		
+		<item name="corners_aa_tracks_small">10dp</item>
+		<item name="corners_aa_scene_aa">10dp</item>
+		
+		<item name="corners_miniplayer_aa">5dp</item>
+	</style>
+	
+	
+	
+</resources>

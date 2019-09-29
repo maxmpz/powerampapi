@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">360dp</dimen>
+	<!-- <dimen name="Alt_aaMaxSize">422dp</dimen> Not used anymore -->
 	
 	<dimen name="Alt_TopPlay_maxSize">76dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">68dp</dimen>
@@ -39,7 +39,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-2dp</dimen>
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">1</item>
-	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">2dp</dimen>
-	<dimen name="Alt_ListSubstyle_aaPaddingBottom">70dp</dimen>
-	<dimen name="Alt_TopAABounds_marginBottom">70dp</dimen>
+	<!-- <dimen name="Alt_ItemTrackLine_scene_aa_marginTop">2dp</dimen> Not used anymore -->
+	<!-- <dimen name="Alt_ListSubstyle_aaPaddingBottom">70dp</dimen> Not used anymore -->
+	<dimen name="Alt_TopAABounds_marginBottom">64dp</dimen>
+	<dimen name="Alt_TopListSubstyle_aaMarginBottom">222dp</dimen>
 </resources>

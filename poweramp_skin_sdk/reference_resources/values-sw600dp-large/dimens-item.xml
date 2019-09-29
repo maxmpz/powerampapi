@@ -22,9 +22,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<item type="dimen" format="float" name="scale_title_scene_grid">.75</item>
 	<item type="dimen" format="float" name="scale_line2_scene_grid">.70</item>
-	<dimen name="ItemLike_drawableSize">24dp</dimen>
+	<dimen name="ItemLike_drawableSize">28dp</dimen>
 		
-	<fraction name="TopAAItemRatio">100%</fraction>
-	
-	<dimen name="ItemPopupMenu_scene_item_menu_maxHeight">400dp</dimen>
+	<dimen name="ItemPopupMenu_scene_item_menu_maxHeight">500dp</dimen><!-- Defines popup button/list max height, including meta info -->
+	<dimen name="ItemPopupMenu_scene_item_menu_width">400dp</dimen><!-- NOTE: defines base popup button/list width -->
 </resources>

@@ -32,18 +32,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">0dp</item>
 	</style>
 	
-	<style name="Alt_TopAABounds" parent="TopAABounds">
-		<!-- This is the extra room for title / line2 / menu / rating below AA image. NOTE: need to add this to aa_bounds, so other views can properly attach to it with
-		     the aaPaddingBottom accounted for -->
-		<!-- <item name="android:layout_marginBottom">70dp</item> -->
-		
-		<item name="layout_maxWidth">@dimen/Alt_aaMaxSize</item>
-		<item name="layout_widthPercent">100%</item>
-		<item name="layout_heightPercent">100%</item>
-		
-		<!-- DEBUG -->
-		<!--<item name="android:background">#5f00</item>-->
-	</style>
+	<style name="Alt_CcButton_MainUI_scenes_vis_w_ui">
+		<!-- Do nothing as in landscape for alt layout we have enough room -->
+	</style>	
 	
 	<style name="Alt_TopWaveseekLayout" parent="TopWaveseekLayout">
 		<item name="android:layout_height">160dp</item>		
@@ -78,9 +69,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="Alt_ListSubstyle" parent="Alt_ListSubstyle_Base">
 		<item name="aaItemBoundsMatchList">width</item>
-		
-		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
-		<item name="aaPaddingBottom">0dp</item>
+		<item name="aaMarginBottom">?bottom_navbar_bounds_size</item>
+		<item name="aaPaddingBottom">0dp</item><!-- No space below AA as we put labels to the right of AA -->
+	</style>
+	
+	<style name="Alt_TopAABounds" parent="TopAABounds2">
+		<!-- DEBUG -->
+		<!--<item name="android:background">#5f00</item>-->
 	</style>
 	
 	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
@@ -98,7 +93,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">@null</item>
 
 		<item name="android:layout_marginLeft">0dp</item><!-- Sync margins with AA image margins -->
-		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginRight">48dp</item><!-- Leave some space for Chromecast button -->
 		<item name="android:layout_marginTop">12dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		

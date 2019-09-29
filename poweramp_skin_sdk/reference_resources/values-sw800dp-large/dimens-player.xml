@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,9 +19,12 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<!-- values-sw800dp-large -->
 <resources>
 	<!-- Sony Tab 1280x726 -->
 	
+	<dimen name="ItemTrackAAImage_scene_item_menu_size">136sp</dimen>
+
 	<dimen name="TopWaveseek_maxHeight">200dp</dimen>
 	
 	<dimen name="TopPlay_maxSize">124dp</dimen>
@@ -29,10 +32,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMediumButton_size">78dp</dimen> 
 	<dimen name="TopSmallButton_size">66dp</dimen>
 	
+	<dimen name="ListSubstyleBase2_aaMarginBottom">400dp</dimen>
+	
+	<dimen name="TopBaseButtonLayout_layout_width">88dp</dimen>
+	<dimen name="TopBaseButtonLayout_layout_height">48dp</dimen>
+	<dimen name="PopupButtons_drawableSize">32dp</dimen>
+	<dimen name="SmallerPopupButton_marginLeft">-12dp</dimen>
+	<dimen name="PopupButtons_paddingLeft">28dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
+
+	<dimen name="Navbar_height">56dp</dimen>
+	<dimen name="NavbarNavButtonsLayout_height">52dp</dimen>
+	
+	<dimen name="NavbarBounds_height">64dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines">116dp</dimen>
+		
+	
 	<!-- Alt -->
 	<dimen name="Alt_TopPlay_maxSize">124dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">116dp</dimen>
 	<dimen name="Alt_TopMediumButton_size">78dp</dimen> 
 	<dimen name="Alt_TopSmallButton_size">66dp</dimen>
+		
+	<dimen name="Alt_ListSubstyle_Base_gridItem1LineExtraSpace">38sp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridZoomedItem1LineExtraSpace">48sp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridItemExtraSpace">64sp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridZoomedItemExtraSpace">72sp</dimen>
 		
 </resources>

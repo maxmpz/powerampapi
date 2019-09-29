@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,6 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- Need less margin for shorter screens -->
 	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
+	<dimen name="ListSubstyleBase2_aaMarginBottom">200dp</dimen>
 	
 	<dimen name="TopWaveseek_maxHeight">128dp</dimen>
 	
@@ -33,13 +34,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMediumButton_size">46dp</dimen>
 	
 	<dimen name="TopPlayPauseBehind_size">40dp</dimen>
+	<dimen name="TopPause_scene_playing_height">25dp</dimen>
+	<dimen name="TopTrackElapsedDuration_height">25dp</dimen>
 	
 	<dimen name="TopTrackElapsedMoreButtons_marginBottom">-8dp</dimen>
+	<item name="TopTrackElapsedDurationMoreButtons_scale" type="dimen" format="float">0.8</item>
+	
 	<dimen name="TopMetaInfoLabel_textSize">8dp</dimen>
 	<dimen name="TopMetaInfoLabel_drawableSize">10dp</dimen>
 	<dimen name="TopMetaInfoLabel_paddingTopBottom">2dp</dimen>
-	
 	<dimen name="TopMetaInfoLayout_marginBottom">4dp</dimen>		
+	<dimen name="TopMetaInfo_scene_item_menu_maxWidth">380dp</dimen>
 	
 	<dimen name="Navbar_height">40dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">36dp</dimen>
@@ -55,34 +60,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="ListMenu_drawableSize">20dp</dimen>
 	
-	<dimen name="TopHelpSmaller_textSize">10dp</dimen>
+	<dimen name="TopHelpSmaller_textSize">9sp</dimen>
 	<dimen name="TopHelpSmaller_paddingLR">10dp</dimen>
 	<dimen name="TopHelpSmaller_paddingTB">4dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">8dp</dimen>
-	
+	<dimen name="TopHelpMarginTB">16dp</dimen>
+		
 	<!-- Alt -->
-	<dimen name="Alt_TopSubAAButtons_marginTop">2dp</dimen>
+	<dimen name="Alt_TopSubAAButtons_marginTop">4dp</dimen>
 	
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-4dp</dimen>
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">.85</item>
-	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
-	<dimen name="Alt_ListSubstyle_aaPaddingBottom">62dp</dimen>
-	<dimen name="Alt_TopAABounds_marginBottom">62dp</dimen>
+	<dimen name="Alt_TopAABounds_marginBottom">50dp</dimen>
+	<dimen name="Alt_TopListSubstyle_aaMarginBottom">222dp</dimen>
+	
+	<dimen name="Alt_ListSubstyle_Base_gridItem1LineExtraSpace">30dp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridZoomedItem1LineExtraSpace">38dp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridItemExtraSpace">54dp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridZoomedItemExtraSpace">60dp</dimen>
 		
 	<dimen name="Alt_TopPlay_maxSize">64dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
 	<dimen name="Alt_TopSmallButton_size">36dp</dimen>
 	<dimen name="Alt_TopMediumButton_size">46dp</dimen>
 			
-	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.3</item>
 	<dimen name="Alt_TopWaveseek_paddingTB">4dp</dimen>
 		
-	<!-- Huge scaling -->
-	<dimen name="Alt_aaMaxSize">240dp</dimen>
-	
-	
-	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
-	
 	<dimen name="PlainSeekbar_buttons_offset">30dp</dimen>
 	<dimen name="Alt_PlainSeekbar_buttons_offset">30dp</dimen><!-- Keep it the same for smaller screens as otherwise buttons get too close to seekbar -->
 	
@@ -90,4 +93,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PlainSeekbar_common_marginBottom">6dp</dimen>
 	<dimen name="Alt_PlainSeekbar_common_marginBottom">6dp</dimen>
 	<dimen name="Alt_PlainSeekbar_marginBottom">-4dp</dimen>
+	
+	
+	<!-- @Deprecated -->
+	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
+	<!-- @Depeicated -->
+	<dimen name="Alt_ListSubstyle_aaPaddingBottom">62dp</dimen>
+	<!-- @Deprecated -->
+	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.3</item>
+	<!-- @Deprecated -->
+	<dimen name="Alt_aaMaxSize">302dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
+				
 </resources>

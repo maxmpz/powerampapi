@@ -36,6 +36,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_TopPlay_maxSize">72dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
 	
-	<dimen name="Alt_aaMaxSize">360dp</dimen><!-- We're good with rather larget Alt AA size for land -->
+	<!--<dimen name="Alt_aaMaxSize">422dp</dimen> Not used anymore -->
 		
 </resources>

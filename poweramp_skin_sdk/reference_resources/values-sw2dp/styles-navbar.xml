@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:outlineProvider">none</item>
 	</style>
 	
-	<style name="Navbar">
+	<style name="Base_Navbar">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/Navbar_height</item><!-- ~48dp -->
 		<item name="layout_attachBottom">parent</item>
@@ -43,10 +43,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">?navbar_marginB</item>
 		<item name="android:clipToPadding">false</item>
 		<item name="android:elevation">?navbar_elevation</item>
-		<!-- <item name="android:forceHasOverlappingRendering">@bool/v28_forceHasOverlappingRendering</item> --><!-- True for Android 9+ -->
 		<item name="android:background">@drawable/navbar_bg</item>
 	</style>
-	<style name="Navbar_scene_navbar_1line_sheet">
+	<!-- NOTE: overridden in values-sw2dp-v29 -->
+	<style name="Navbar" parent="Base_Navbar">
+	</style>
+	<style name="Base_Navbar_scene_navbar_1line_sheet">
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -55,7 +57,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">?navbar_marginLR</item>
 		<item name="android:layout_marginBottom">?navbar_marginB</item>
 	</style>
-	<style name="Navbar_scene_navbar_2lines">
+	<style name="Navbar_scene_navbar_1line_sheet" parent="Base_Navbar_scene_navbar_1line_sheet">
+	</style>
+	<style name="Base_Navbar_scene_navbar_2lines">
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -63,6 +67,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">?navbar_marginLR</item>
 		<item name="android:layout_marginRight">?navbar_marginLR</item>
 		<item name="android:layout_marginBottom">?navbar_marginB</item>
+	</style>
+	<style name="Navbar_scene_navbar_2lines" parent="Base_Navbar_scene_navbar_2lines">
 	</style>
 	
 	<style name="NavbarExtension">
@@ -88,7 +94,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scaleType">center</item>
 		<item name="android:paddingLeft">4dp</item>
 		<item name="android:paddingRight">4dp</item>
-		<!--<item name="android:layout_marginTop">4dp</item>-->
 		<item name="android:paddingTop">4dp</item>
 		
 		<item name="android:layout_gravity">top|center_horizontal</item>
@@ -103,11 +108,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="NavbarExtensionLogoLabel">
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">18dp</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:paddingLeft">8dp</item><!-- Needed to avoid fake-italic last char clipping -->
+		<item name="android:paddingRight">8dp</item>
 		<item name="android:layout_gravity">top|center_horizontal</item>
+		<item name="android:textAppearance">?NavbarExtensionLogoLabel_Text</item>
+	</style>
+	<style name="NavbarExtensionLogoLabel_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textStyle">italic</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:textSize">14dp</item><!-- Fixed size to avoid overflowing for large text scale -->
@@ -127,10 +137,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawablePaddingStart">28dp</item>
 		<item name="android:gravity">left|center_vertical</item>
 		<item name="android:background">?android:selectableItemBackground</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="clickDelay">@integer/activity_start_navbar_click_delay</item>
+		<item name="android:textAppearance">?NavbarExtensionMenuLine_Text</item>
 	</style>
+	<style name="NavbarExtensionMenuLine_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	<!-- NOTE: not used ATM -->
 	<style name="NavbarExtensionMenuLine50" parent="NavbarExtensionMenuLine">
 		<item name="android:layout_width">0px</item>
 		<item name="layout_widthPercent">50%</item>

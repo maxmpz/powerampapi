@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<!-- NOTE: this view uses drawable=?media_route implicitly. Don't set it directly --> 
+	<!-- NOTE: this view uses drawable=?media_route via code. Don't set it here (it may be slow to load) --> 
 	<style name="CcButton_MainUIBase">
 		<item name="layout_attachTop">inset</item>
 		<item name="layout_attachRight">inset</item>
@@ -32,7 +32,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 
-		<!--<item name="android:drawable">?media_route</item>-->
 		<item name="drawableWidth">20dp</item>
 		<item name="drawableHeight">20dp</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>

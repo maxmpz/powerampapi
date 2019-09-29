@@ -22,13 +22,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<!-- NOTE: dialog styles are in separate xml file (e.g. default_styles_dialogs.xml) -->		 
-	<!-- NOTE: using app compat theme to avoid unexpected OEM system theme overrides  -->
-	
-	<style name="Base_ActivityTheme_Default" parent="@style/Theme.AppCompat.Light">
-		<!--<item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item> NOTE: this may be required to support going under cutout hole on S10+ -->
-		
+	<!-- NOTE: dialog styles are in separate xml file (e.g. default_styles_dialogs.xml), but they still "derive" app theme		 
+	     NOTE: using app compat theme to avoid unexpected OEM system theme overrides (though, for SDK=21+, most such styles use system material theme anyway
+	     NOTE: main activity theme applied in multiple steps:
+	     
+	                  BasePoweruiStyles
+	                          |
+	                  TopPoweruiStyles
+	                          |
+         global Option* styles (if forceGlobalOptions=false) 
+	                          |
+                      ActivityTheme_*
+	                          |
+        global Option* styles (if forceGlobalOptions=true)
+                              |       
+                        skin options
+
+	-->
+	     
+
+	<style name="Base_ActivityTheme_Core" parent="@style/Theme.AppCompat.Light">
 		<item name="OptionRatingStars">@style/OptionRatingStars</item>
+		<item name="OptionRatingStarsMenu">@style/OptionRatingStarsMenu</item>
 		<item name="OptionRatingLikeUnlike">@style/OptionRatingLikeUnlike</item>
 		<item name="OptionCounter">@style/OptionCounter</item>
 		<item name="OptionCCDisabled">@style/OptionCCDisabled</item><!-- See also CcButton_MainUI/CcButton_NavbarExtensionMenuLine -->
@@ -41,6 +56,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogForcedStyle">@style/Default_BaseDialogForcedStyle</item>
 		<item name="DialogForceLightSystemUIStyle">@style/Default_DialogForceLightSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
 		<item name="DialogForceDarkSystemUIStyle">@style/Default_DialogForceDarkSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
+		<item name="Dialog_textAppearance">@style/TextAppearance.AppCompat</item>
+		<item name="Dialog_textAppearanceSmall">@style/TextAppearance.AppCompat.Small</item>
 				
 		<item name="android:windowNoTitle">true</item> 
 		<item name="windowNoTitle">true</item>
@@ -51,6 +68,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textColorAlertDialogListItem">?android:textColorPrimary</item>
 		<item name="android:textColorPrimaryDisableOnly">?android:textColorPrimary</item><!-- Needed by popups, e.g. spinner drop down item -->
 		
+		<!--<item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item> NOTE: this may be required to support going under cutout hole on S10+ -->
+
 		<!-- Poweramp also allows layout under statusbar if statusbar color is not solid, and under android navigation bar, if navigationBarColor is not solid
 			 Following logic is applied:
 			 - if FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS exists (==android:windowDrawsSystemBarBackgrounds=true)
@@ -92,6 +111,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: by default, text has ?textAppearanceSmall => TextAppearance.Material.Small => ?attr/textColorTertiary, thus, this is color for non-styled TextViews -->
 		<item name="android:textColorTertiary">#656565</item>
 		<item name="android:textColorPrimaryInverse">#fff</item>
+
 		<!-- <item name="android:textColorSecondaryInverse">#ccc</item> --><!-- Not used -->
 		<!-- <item name="android:textColorTertiaryInverse">#656565</item> --><!-- Not used -->
 				
@@ -161,8 +181,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorSeekbarThumb">#333</item>
 		
 		<item name="colorIconCC">#e8e8e8</item>
-		
-		
+				
 		<item name="prev_cat_round">@drawable/prev_cat_round</item>
 		<item name="rw_round">@drawable/rw_round</item>
 		<item name="ff_round">@drawable/ff_round</item>
@@ -210,7 +229,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="long_files">@drawable/long_files_colored</item>
 		
 		<item name="micro_all_songs">@drawable/song_12dp</item>
-		<!-- TODO: 12p sizes -->
 		<item name="micro_folders">@drawable/folders_12dp</item>
 		<item name="micro_folders_hier">@drawable/folders_hier_12dp</item>
 		<item name="micro_albums">@drawable/albums_12dp</item>
@@ -294,15 +312,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Android mediarouter icons -->
 		<item name="media_route">@drawable/mr_button_light</item>
-        <item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_light</item>
-        <item name="mediaRoutePlayDrawable">@drawable/mr_media_play_light</item>
-        <item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_light</item>
-        <item name="mediaRouteStopDrawable">@drawable/mr_media_stop_light</item>
-        <item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_light</item>
-        <item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_grey</item>
-        <item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_light</item>
-        <item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_light</item>
-        <item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_light</item>
+		<item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_light</item>
+		<item name="mediaRoutePlayDrawable">@drawable/mr_media_play_light</item>
+		<item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_light</item>
+		<item name="mediaRouteStopDrawable">@drawable/mr_media_stop_light</item>
+		<item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_light</item>
+		<item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_grey</item>
+		<item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_light</item>
+		<item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_light</item>
+		<item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_light</item>
 		
 		<!-- Android autocomplete items -->
 		<item name="android:listPreferredItemHeight">44dp</item>
@@ -311,6 +329,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="HeadText">@style/HeadText</item>
 		<item name="SubheadText">@style/SubheadText</item>
 		<item name="Text">@style/Text</item>
+		<item name="LargerText">@style/LargerText</item>
 		<item name="AccentedText">@style/AccentedText</item>
 		<item name="Hint">@style/Hint</item>
 		
@@ -405,6 +424,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_plain_seekbar">@style/ActivityTheme_Whitepro_PlainSeekbar</item>
 		<item name="overlap_transparent_navbar">@style/ActivityTheme_Whitepro_TransparentNavbar</item>
 		<item name="overlap_navbar_offset">@style/ActivityTheme_Whitepro_OffsetNavbar</item>
+		<!-- NOTE: this is further overridden by styles-options.xml OptionRatingStarsMenu (works with <skin> forceGlobalOptions=true) -->
+		<item name="overlap_alt_layout">@style/ActivityTheme_Whitepro_AltLayout</item>
 		
 		<!-- Navbar margins to allow easy overriding for overlap_navbar_offset option -->
 		<item name="navbar_marginLR">8dp</item>
@@ -413,7 +434,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>
 		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>
 		
-				
 		<!-- Used for ActivityTheme_Whitepro_PlainSeekbar, overridden by ActivityTheme_Whitepro_AltLayout  -->
 		<item name="PlainSeekbar_buttons_offset">@dimen/PlainSeekbar_buttons_offset</item>
 		<item name="PlainSeekbar_marginBottom">@dimen/PlainSeekbar_marginBottom</item>
@@ -426,7 +446,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="CcButton_MainUI_scenes_invisible">@style/CcButton_MainUI_scenes_invisible</item>
 		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine_disabled</item>
 	</style>
-	
+
+	<!-- NOTE: need additional level of indirection due to e.g. values-v29 overridding which should be used by skins which derive from Base_ActivityTheme_Default -->	
+	<style name="Base_ActivityTheme_Default" parent="Base_ActivityTheme_Core">
+	</style>
 	
 	<style name="ActivityTheme_White" parent="Base_ActivityTheme_Default">
 	</style>
@@ -446,7 +469,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:windowLightStatusBar">false</item>
 	</style>
 		
-	<!-- An overlay style -->
+	<!-- An overlap style -->
 	<!-- Inverses navbar -->
 	<style name="ActivityTheme_Whitepro_ForceLightNavbar">
 		<!-- The code below makes navigation bar light -->
@@ -457,8 +480,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_transparent_navbar">@style/ActivityTheme_Whitepro_TransparentLightNavbar</item>
 	</style>
 	
-	<!-- An overlay style -->
-	<!-- Overriden for 26+ -->
+	<!-- An overlap style -->
+	<!-- Overridden for 26+ -->
 	<style name="ActivityTheme_Whitepro_TransparentNavbar">
 		<item name="android:windowTranslucentNavigation">true</item>
 		
@@ -491,7 +514,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="jumpVisibility">false</item><!-- Avoid jumping visibility, let it properly fade -->
 	</style>
 		
-	<!-- An overlay style -->
+	<!-- An overlap style -->
 	<style name="ActivityTheme_Whitepro_OffsetNavbar">
 		<item name="navbar_marginLR">12dp</item>
 		<item name="navbar_marginB">12dp</item>
@@ -499,14 +522,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines_offset</item>
 	</style>
 	
-	<!-- An overlay style -->
+	<!-- An overlap style -->
 	<style name="ActivityTheme_Whitepro_StaticSeekbar">
 		<item name="waveseek_bar">@drawable/narrow_bar</item>
 		<item name="waveseek_elapsedbar">@drawable/narrow_elapsedbar</item>
 		<item name="TopWaveseek">@style/TopWaveseekStatic</item>
 	</style>
 	
-	<!-- An overlay style -->
+	<!-- An overlap style -->
 	<style name="ActivityTheme_Whitepro_LightButtons">
 		<item name="colorInverse">#000</item>
 		<item name="colorBgInverse">#fff</item>
@@ -524,7 +547,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: small pause is just tinted -->
 	</style>
 	
-	<!-- An overlay style -->
+	<!-- An overlap style -->
 	<style name="ActivityTheme_Whitepro_MoreButtons">
 		<!-- Additional layout which is otherwise missing -->
 		<item name="TopWaveseekLayout_extraLayout">@layout/merge_topwaveseeklayout_extralayout</item>
@@ -562,54 +585,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	
-	<!-- This style can be used to additionally override dialog forced styles. Dialog forced styles are styles which overrides main app theme --> 
-	<style name="Default_BaseDialogForcedStyle" parent="BaseDialogForcedStyle">
-	</style>
-	
-	
-	
 	<!-- Styles for Default theme -->
-	
-	<!-- Text -->
-	<style name="HeadText">
-		<item name="android:textSize">@dimen/HeadText_size</item>
-		<item name="android:textColor">?android:textColorSecondary</item>
-	</style>
-
-	<style name="SubheadText">
-		<item name="android:textSize">@dimen/SubheadText_size</item>
-		<item name="android:textStyle">bold</item>
-		<item name="android:textColor">?android:textColorSecondary</item>
-	</style>
-	
-	<style name="Text">
-		<item name="android:textSize">@dimen/Text_size</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
-	</style>
-	
-	<style name="AccentedText" parent="Text">
-		<item name="android:textColor">?colorAccent</item>
-	</style>
-	
-	<style name="Hint">
-		<item name="android:textSize">@dimen/Hint_size</item>
-		<item name="android:textColor">?android:textColorTertiary</item>
-	</style>
-	
 	
 	<style name="VolumePanelPopup">
 		<!-- NOTE: avoid non window attrs here, as they are applied to any views inside window (propagate as base styles to any view inside) -->
 		<item name="android:colorBackground">#0000</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
 
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-        
+		<item name="android:windowFrame">@null</item>
+		<item name="android:windowBackground">@null</item>
+		<item name="android:windowIsFloating">true</item>
+		<item name="android:backgroundDimEnabled">false</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+		<item name="android:windowSoftInputMode">adjustResize</item>
+
 		<item name="android:windowElevation">0dp</item>
 		<item name="android:windowCloseOnTouchOutside">true</item>
 	</style>
@@ -637,9 +627,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:visibility">gone</item>
 	</style>
 	
+	<!-- NOTE: while I can use styles like EqRoundKnobValueLabel directly, I can't use their textAppearance reference, as it depends on top-only theme (TopPoweruiStyles) -->
 	<style name="VolumePanelRoundKnobValueLabel" parent="EqRoundKnobValueLabel">
-		<item name="android:textColor">?android:attr/textColorPrimary</item><!-- Make volume panel text color more pronounced as panel itself is semitransparent -->
-		<item name="android:textSize">@dimen/EqKnobLabelText_size</item>
+		<!-- Make volume panel text color more pronounced as panel itself is semitransparent -->
+		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="android:layout_marginTop">14dp</item>
 	</style>
 	

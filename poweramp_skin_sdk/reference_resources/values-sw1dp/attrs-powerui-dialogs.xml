@@ -54,6 +54,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="DialogForceLightSystemUIStyle" format="reference"/>
 	<attr name="DialogForceDarkSystemUIStyle" format="reference"/>
 	
+	<!-- The forced dialog android:textAppearance value. Usually matches theme, but may be also overridden (via Dialog_textAppearance override in the theme) 
+	     to alter dialog default text style for some views, like RadioButtons -->
+	<attr name="Dialog_textAppearance" format="reference"/>
+	<!-- The forced dialog android:textAppearanceSmall value. Usually matches theme, but may be also overridden (via Dialog_textAppearanceSmall override in the theme) 
+	     to alter dialog default text style for e.g. plain TextViews/Alert dialog messages/etc. -->
+	<attr name="Dialog_textAppearanceSmall" format="reference"/>
+	
 	<!-- False by default. If true, alternative scene is used for manual drag out (e.g. as for Centered dialog, where default scene transition is just fade in/out,
 	     but manual dragging-out can be to the top.  -->
 	<attr name="dialogAltOutScene" format="boolean"/> 
@@ -83,18 +90,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="DialogFrame" format="reference"/>
 	<attr name="DialogFrame_scene_dialog_in" format="reference"/>
 
-	<attr name="DialogFrameContent" foramt="reference"/>
+	<attr name="DialogFrameContent" format="reference"/>
 	
 	<attr name="DialogTitleLayout" format="reference"/>
 	<attr name="DialogTitleLayout_scene_progress" format="reference"/>
 	<attr name="DialogTitle" format="reference"/>
+	<attr name="DialogTitle_Text" format="reference"/>
 	<attr name="DialogTitleProgress" format="reference"/>
 	
 	<attr name="DialogToast" format="reference"/>
 	<attr name="DialogToastImg" format="reference"/>
 	<attr name="DialogToastLine1" format="reference"/>
+	<attr name="DialogToastLine1_Text" format="reference"/>
 	<attr name="DialogToastLine2" format="reference"/>
+	<attr name="DialogToastLine2_Text" format="reference"/>
 	<attr name="DialogToastLineOnly1" format="reference"/>
+	<attr name="DialogToastLineOnly1_Text" format="reference"/>
 	
 	<attr name="DialogContent" format="reference"/>
 	<attr name="DialogContentNoPadding" format="reference"/>
@@ -106,5 +117,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="DialogButtonSpace" format="reference"/>
 	<attr name="DialogSeparator" format="reference"/>
 	<attr name="DialogMenuPlaceholderLayout" format="reference"/>
+	<attr name="DialogNeutralSeparator" format="reference"/>
+	<attr name="DialogPositiveSeparator" format="reference"/>
+	
+	<attr name="DialogSettingsGearIcon" format="reference"/>
 	
 </resources>

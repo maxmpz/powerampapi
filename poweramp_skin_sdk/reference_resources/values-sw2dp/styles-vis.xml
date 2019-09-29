@@ -29,10 +29,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:visibility">gone</item>
 		<item name="android:padding">8dp</item>
+		
+		<item name="android:forceHasOverlappingRendering">@bool/v28_forceHasOverlappingRendering</item><!-- Avoid "leaking" shadow during alpha animation on Android 9+ -->		
 	</style>
 	
 	<style name="VisPanelShim"><!-- NOTE: not drawing anything, just getting touch events -->
-		<item name="android:background">@empty</item>
+		<item name="android:background">@null</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:clickable">true</item>
@@ -147,12 +149,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="openOnClick">true</item>
 		<item name="modal">false</item>
 		
-		<item name="buttonStyle">@style/SmallerPopupButton</item>
-		<item name="menuButtonStyle">@style/SmallerPopupButton_scene_button_menu</item>
+		<item name="buttonStyle">?SmallerPopupButton</item>
+		<item name="menuButtonStyle">?SmallerPopupButton_scene_button_menu</item>
 	</style>
 	
 	<style name="VisLockButtonLayout" parent="VisButtonBase">
-		<item name="android:layout_marginTop">@empty</item>
+		<item name="android:layout_marginTop">@null</item>
 		<item name="android:layout_marginRight">4dp</item>
 		<item name="android:layout_gravity">center_vertical|right</item>
 				
@@ -162,8 +164,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="modal">false</item>
 		<item name="android:longClickable">true</item>
 		
-		<item name="buttonStyle">@style/SmallerPopupButton</item>
-		<item name="menuButtonStyle">@style/SmallerPopupButton_scene_button_menu</item>
+		<item name="buttonStyle">?SmallerPopupButton</item>
+		<item name="menuButtonStyle">?SmallerPopupButton_scene_button_menu</item>
 	</style>
 		
 	<style name="VisPanelList">

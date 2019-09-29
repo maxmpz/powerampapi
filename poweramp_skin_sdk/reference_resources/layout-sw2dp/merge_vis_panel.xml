@@ -131,7 +131,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="visible"
 		android:alpha="1"
 	/>
-	<!-- NOTE: alpha is overriden by user preference -->
+	<!-- NOTE: alpha is overridden by user preference -->
 	<SceneParams w:scene="@id/scene_vis_w_ui"
 		android:visibility="visible"
 		android:alpha="0.50"

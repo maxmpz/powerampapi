@@ -21,10 +21,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<!-- Mate20 @ Large scale 320x640 -->
-	<fraction name="TopAAItemRatio">100%</fraction>
 	
 	<dimen name="TopWaveseek_maxHeight">112dp</dimen>
 	
 	<!-- Alt -->
-	<dimen name="Alt_aaMaxSize">320dp</dimen>	
+	<!-- <dimen name="Alt_aaMaxSize">382dp</dimen> Not used anymore -->	
 </resources>
