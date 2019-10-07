@@ -82,6 +82,7 @@ public interface PipelineConsts {
 	public static final int PA_OUTPUT_CAP_RAW                      = 0x0008;
 	public static final int PA_OUTPUT_CAP_NO_MUSIC_STREAM_VOL      = 0x0004;
 	public static final int PA_OUTPUT_CAP_NO_AUDIO_FOCUS           = 0x100000;
+	public static final int PA_OUTPUT_CAP_USE_STREAM3              = 0x200000;
 
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only

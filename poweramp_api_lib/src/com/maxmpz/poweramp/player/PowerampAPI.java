@@ -228,7 +228,6 @@ public final class PowerampAPI {
 		 *
 		 * All queries support following params (added as URL encoded params, e.g. content://com.maxmpz.audioplayer.data/files?lim=10&flt=foo):<br>
 		 * {@code int lim} - SQL LIMIT, which limits number of rows returned<br>
-		 * {@code String flt} - filter substring. Poweramp will return only matching rows (the same way as returned in Poweramp lists UI when filter is used).<br>
 		 * {@code int shf} - shuffle mode (see ShuffleMode class)<br>
 		 * {@code int shs} - 1 if this is shuffle session (for internal use)<br><br>
 		 <pre>
