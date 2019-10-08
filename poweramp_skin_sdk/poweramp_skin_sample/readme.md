@@ -177,7 +177,7 @@ Please note that font files (.ttf/.otf) should be named with lowercase latin, 0-
 This is Android resources builder requirement.
 
 Poweramp control/view styles have separate layer of TextAppearance styling (same as core Android widgets do), which can be modified independently of other styles.
-See sample skin font option implementations: **[values/sample_skin_open_sans.xml](app/src/main/res/values/sample_skin_open_sans.xml)**, **[values/sample_skin_ununtu.xml](app/src/main/res/values/sample_skin_ubuntu.xml)** and Poppin
+See sample skin font option implementations: **[values/sample_skin_open_sans.xml](app/src/main/res/values/sample_skin_open_sans.xml)**, **[values/sample_skin_ubuntu.xml](app/src/main/res/values/sample_skin_ubuntu.xml)** and Poppin
 
  
 ### Difference vs Poweramp v2 skins
