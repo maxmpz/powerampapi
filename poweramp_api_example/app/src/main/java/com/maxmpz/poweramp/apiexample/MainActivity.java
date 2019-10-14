@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements
 	private final StringBuilder mElapsedBuffer = new StringBuilder();
 	private @Nullable Uri mLastCreatedPlaylistFilesUri;
 	private static boolean sPermissionAsked;
-	/** Use getPowerampBuildNumber to get build number */
+	/** Use getPowerampBuildNumber to get the build number */
 	private int mPowerampBuildNumber;
 
 
@@ -151,9 +151,9 @@ public class MainActivity extends AppCompatActivity implements
 		findViewById(R.id.pa_folders).setOnClickListener(this);
 		findViewById(R.id.pa_all_songs).setOnClickListener(this);
 
-		// Ask Poweramp for permission to access its data provider. Needed only if we want to make queries against Poweramp database, e.g. in FilesActivity/FoldersActivity
-		// NOTE: this will work only if Poweramp process is alive
-		// This actually should be done once per this app installation, for simplicity, we use per-process static field here
+		// Ask Poweramp for a permission to access its data provider. Needed only if we want to make queries against Poweramp database, e.g. in FilesActivity/FoldersActivity
+		// NOTE: this will work only if Poweramp process is alive.
+		// This actually should be done once per this app installation, but for the simplicity, we use per-process static field here
 		if(!sPermissionAsked) {
 			Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
 			intent.setPackage(PowerampAPI.PACKAGE_NAME);
@@ -165,12 +165,12 @@ public class MainActivity extends AppCompatActivity implements
 
 
 	/**
-	 * When screen is rotated, by default Android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
+	 * When screen is rotated, by default Android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus
 	 * on screen rotation some commands could be sent to Poweramp unintentionally.
-	 * As this activity always syncs everything with the actual state of Poweramp, this automatic restoring of state is just non needed.
+	 * As this activity always syncs everything with the actual state of Poweramp, the automatic restoring of state is non needed and harmful.
 	 * <br><br>
-	 * Nevertheless, the actual implementation should probably manipulate per view View.setSaveEnabled() for specific controls, as empty onSaveInstanceState here denies save
-	 * for everything
+	 * Nevertheless, the actual implementation should probably manipulate per view View.setSaveEnabled() for specific controls, use some Model pattern, or manage state otherwise,
+	 * as empty onSaveInstanceState here denies save for everything
 	 */
 	@Override
 	public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements
 	/**
 	 * This method unregister all broadcast receivers on activity pause. This is the correct way of handling things - we're
 	 * sure no unnecessary event processing will be done for paused activity, when screen is OFF, etc.
+	 * Alternatively, we may do this in onStop/onStart, esp. for latest Android versions and things like split screen
 	 */
 	@Override
 	protected void onPause() {
@@ -228,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	/**
 	 * NOTE: it's not necessary to set mStatusIntent/mPlayingModeIntent this way here,
-	 * but this approach can be used with null receiver to get current sticky intent without broadcast receiver.
+	 * but this approach can be used with a null receiver to get current sticky intent without broadcast receiver.
 	 */
 	private void registerAndLoadStatus() {
 		registerReceiver(mAAReceiver, new IntentFilter(PowerampAPI.ACTION_AA_CHANGED));
@@ -283,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements
 			mCurrentTrack = mTrackIntent.getBundleExtra(PowerampAPI.TRACK);
 			if(mCurrentTrack != null) {
 				int duration = mCurrentTrack.getInt(PowerampAPI.Track.DURATION);
-				mRemoteTrackTime.updateTrackDuration(duration); // Let RemoteTrackTime know about current song duration.
+				mRemoteTrackTime.updateTrackDuration(duration); // Let RemoteTrackTime know about the current song duration.
 			}
 
 			int pos = mTrackIntent.getIntExtra(PowerampAPI.Track.POSITION, -1); // Poweramp build-700+ sends position along with the track intent
@@ -360,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements
 
 			int state = mStatusIntent.getIntExtra(PowerampAPI.STATE, PowerampAPI.STATE_NO_STATE); // NOTE: not used here, provides STATE_* int
 
-			// Each status update can contain track position update as well.
+			// Each status update can contain track position update as well
 			int pos = mStatusIntent.getIntExtra(PowerampAPI.Track.POSITION, -1);
 			if(pos != -1) {
 				mRemoteTrackTime.updateTrackPosition(pos);
@@ -437,7 +438,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/**
-	 * Commands RemoteTrackTime to start or stop showing song progress
+	 * Commands RemoteTrackTime to start or stop showing the song progress
  	 */
 	void startStopRemoteTrackTime(boolean paused) {
 		if(!paused) {
@@ -448,7 +449,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/**
-	 * Find first mp3 in dir or in any sub-folder of it
+	 * Find first mp3 in a folder or in any sub-folder inside
 	 */
 	private String findFirstMP3(File dir) {
 		try {
@@ -508,7 +509,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
 	/**
-	 * Process button press. Demonstrates sending various commands to Poweramp
+	 * Process a button press. Demonstrates sending various commands to Poweramp
  	 */
 	@Override
 	public void onClick(View v) {
@@ -676,7 +677,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/**
-	 * Just play all library songs (starting from first)
+	 * Just play all library songs (starting from the first)
  	 */
 	private void playAllSongs() {
 		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
@@ -708,7 +709,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/**
-	 * Play first available album from first available artist in ARTIST_ALBUMs
+	 * Play first available album from the first available artist in ARTIST_ALBUMs
  	 */
 	private void playSecondArtistFirstAlbum() {
 		// Get first artist.
@@ -808,7 +809,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/**
-	 * Force seek when user ends seeking.
+	 * Force seek when user ends seeking
 	 */
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
@@ -817,7 +818,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/**
-	 * Send seek command
+	 * Send a seek command
  	 */
 	private void sendSeek(boolean ignoreThrottling) {
 
@@ -866,7 +867,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/**
-	 * Callback from RemoteTrackTime. Updates current song progress. Ensures extra event is not processed (mUpdatingSongSeekBar).
+	 * Callback from RemoteTrackTime. Updates the current song progress. Ensures extra event is not processed (mUpdatingSongSeekBar).
  	 */
 	@Override
 	public void onTrackPositionChanged(int position) {
@@ -911,7 +912,7 @@ public class MainActivity extends AppCompatActivity implements
 		ContentResolver cr = getContentResolver();
 		Uri playlistsUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("playlists").build();
 
-		// NOTE: we need raw column names for insert queries (without table name), thus using getRawColName()
+		// NOTE: we need raw column names for an insert query (without table name), thus using getRawColName()
 
 		ContentValues values = new ContentValues();
 		values.put(getRawColName(TableDefs.Playlists.PLAYLIST), "Sample Playlist " + System.currentTimeMillis());
@@ -973,7 +974,7 @@ public class MainActivity extends AppCompatActivity implements
 				Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
 				intent.setPackage(PowerampAPI.PACKAGE_NAME);
 				intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-				intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send changed table for adequate UI / PlayerService reloading
+				intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send the changed table for an adequate UI / PlayerService reloading
 				sendBroadcast(intent);
 			}
 
@@ -1000,7 +1001,7 @@ public class MainActivity extends AppCompatActivity implements
 		ContentResolver cr = getContentResolver();
 		Uri playlistsUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("playlists").build();
 
-		// NOTE: we need raw column names for insert queries (without table name), thus using getRawColName()
+		// NOTE: we need raw column names for an insert query (without table name), thus using getRawColName()
 		// NOTE: playlist with a stream doesn't differ from other (track based) playlists. Only playlist entries differ vs usual file tracks
 
 		String playlistName = "Stream Playlist " + System.currentTimeMillis();
@@ -1035,7 +1036,7 @@ public class MainActivity extends AppCompatActivity implements
 			Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
 			intent.setPackage(PowerampAPI.PACKAGE_NAME);
 			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-			intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send changed table for adequate UI / PlayerService reloading
+			intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send the changed table for an adequate UI / PlayerService reloading
 			sendBroadcast(intent);
 		}
 
@@ -1101,7 +1102,7 @@ public class MainActivity extends AppCompatActivity implements
 			Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
 			intent.setPackage(PowerampAPI.PACKAGE_NAME);
 			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-			intent.putExtra(PowerampAPI.TABLE, TableDefs.Queue.TABLE); // NOTE: important to send changed table for adequate UI / PlayerService reloading. This can also make Poweramp to go to Queue
+			intent.putExtra(PowerampAPI.TABLE, TableDefs.Queue.TABLE); // NOTE: important to send changed table for the adequate UI / PlayerService reloading. This can also make Poweramp to go to Queue
 			sendBroadcast(intent);
 
 			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(queueUri));
