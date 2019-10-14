@@ -35,6 +35,12 @@
 			checkedByDefault="false"
 		/>
 
+		<radio
+			key="alt_layout_radio"
+			name="@string/skin_alt_layout"
+			summary="@string/skin_summary_alt_layout"
+		>
+
 		<!-- Alternative layout which uses default Poweramp "alternative" layout styles.
 		     For the custom detailed alternative layout implementation, see SampleSkinAAA.
 
@@ -44,15 +50,18 @@
 
 		     You can check those styles in reference_resources.
 		     Alternative styles added then change main and items layout as needed - no further redefines are needed.
-		     If you want more control over alternative layout, see SampleSkinAAA -->
+		     If you want more control over alternative layout, see SampleSkinAAA or new SampleSkin_Alt -->
 		-->
-		<option
-			key="alt_layout"
-			name="@string/skin_alt_layout"
-			summary="@string/skin_summary_alt_layout"
-			overlapAttr="@com.maxmpz.audioplayer:attr/overlap_alt_layout"
-			checkedByDefault="false"
-		/>
+			<option
+				name="@string/skin_alt_layout_default"
+				overlapAttr="@com.maxmpz.audioplayer:attr/overlap_alt_layout"
+			/>
+
+			<option
+				name="@string/skin_alt_layout_centered"
+				overlapStyle="@style/SampleSkin_Alt_Centered"
+			/>
+		</radio>
 
 		<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
 		     See strings.xml for some examples.

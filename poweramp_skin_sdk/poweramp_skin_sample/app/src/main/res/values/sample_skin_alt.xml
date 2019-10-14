@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+
+	<!-- NOTE: see also values-land/sample_skin_alt.xml -->
+
+	<style name="SampleSkin_Alt_Centered_Base" parent="com.maxmpz.audioplayer:ActivityTheme_Whitepro_AltLayout">
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">@style/Alt_Centered_ItemTrackTitle_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">@style/Alt_ItemTrackLine2_scene_aa</item>
+	</style>
+	<!-- We'll override this for landscape -->
+	<style name="SampleSkin_Alt_Centered" parent="SampleSkin_Alt_Centered_Base">
+	</style>
+
+	<style name="Alt_Centered_ItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemTrackTitle_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@com.maxmpz.audioplayer:id/line2</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+
+	<style name="Alt_ItemTrackLine2_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemTrackLine2_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+
+
+</resources>

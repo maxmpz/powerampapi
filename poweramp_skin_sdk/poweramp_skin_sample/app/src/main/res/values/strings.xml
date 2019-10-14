@@ -66,5 +66,6 @@
 
 	<string name="skin_alt_layout">Alternative layout</string>
 	<string name="skin_summary_alt_layout">Moves track labels below cover, makes on-cover buttons smaller and faded</string>
-
+	<string name="skin_alt_layout_default">Left aligned labels</string>
+	<string name="skin_alt_layout_centered">Centered labels</string>
 </resources>
