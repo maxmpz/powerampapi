@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- NOTE: dialog styles are in separate xml file (e.g. default_styles_dialogs.xml), but they still "derive" app theme		 
 	     NOTE: using app compat theme to avoid unexpected OEM system theme overrides (though, for SDK=21+, most such styles use system material theme anyway
-	     NOTE: main activity theme applied in multiple steps:
+	     NOTE: main activity theme applied in the multiple steps:
 	     
 	                  BasePoweruiStyles
 	                          |
@@ -84,7 +84,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="statusBarBg">#5000</item><!-- Used by TopFitsStatusBarView -->
 		
 		<item name="navigationBarBg">#0000</item><!-- Used by TopFitsNavigationBarView. We don't actually draw android navigation bar by TopFitsNavigationBarView in this theme, but some color is needed -->
-
+		
 		<!-- The code below make status bar light -->
 		<!-- <item name="android:statusBarColor">#4fff</item>
 		<item name="statusBarBg">#0000</item>
@@ -301,6 +301,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="sort_author_24dp">@drawable/sort_author_24dp</item>
 		<item name="sort_source_24dp">@drawable/sort_source_24dp</item>
 		<item name="sort_rating_24dp">@drawable/sort_rating_24dp</item>
+		<item name="sort_added_24dp">@drawable/sort_added_24dp</item>
+		<item name="sort_modified_24dp">@drawable/sort_modified_24dp</item>
+		<item name="sort_num_tracks_24dp">@drawable/sort_num_tracks_24dp</item>
 		
 		<item name="shuffle_24dp">@drawable/shuffle_24dp</item>
 		

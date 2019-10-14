@@ -205,5 +205,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:layout_marginBottom">4dp</item>
 	</style>
+	
+	<style name="DialogTopButtonBase">
+		<item name="android:layout_gravity">top|right</item>
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="animOnClick">true</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:background">@drawable/ripple_rounded_medium</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:gravity">center</item>
+	</style>
+	
+	<!-- NOTE: button layouts can't adequately measure itself in collapsed (button) mode as inner contents is much larger, actuall, thus fixed size is required -->
+	<style name="PlaylistSortButtonLayout" parent="DialogTopButtonBase">
+		<item name="android:layout_width">42dp</item>
+		<item name="android:layout_height">32sp</item>
 		
+		<item name="menuPlaceholder">@+id/menu_placeholder</item>
+		<item name="android:background">@drawable/popup_button_layout_stroke_large_bg</item>
+		<item name="android:drawable">@null</item>
+		<item name="openOnClick">true</item>
+		<item name="modal">false</item>
+		
+		<item name="buttonStyle">@style/SmallerPopupButton</item>
+		<item name="menuButtonStyle">@style/SmallerPopupButton_scene_button_menu</item>
+	</style>
 </resources>

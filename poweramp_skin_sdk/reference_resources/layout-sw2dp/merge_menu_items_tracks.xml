@@ -76,7 +76,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<com.maxmpz.widget.BusActionButton android:id="@+id/add_url"
 		style="?PopupMenuItem"
-		android:drawable="?list_options"
+		android:visibility="gone"
+		android:drawable="?add_to_pl"
 		
 		w:busId="@id/list" 
 		w:msgId="@id/cmd_list_add_url"

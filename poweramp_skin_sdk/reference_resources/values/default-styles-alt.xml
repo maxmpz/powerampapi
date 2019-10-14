@@ -23,6 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<!-- NOTE: this is not a theme, but skin option, which applied after skin theme and global optional styles -->
+	<!-- NOTE: works fine for both default (white) and black styles as no color overrides exist here -->
 	<style name="ActivityTheme_Whitepro_AltLayout">
 		<item name="VisPanelContainer">@style/Alt_VisPanelContainer</item>
 		
@@ -138,12 +139,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		
 		<!-- Centered -->
-		<!-- <item name="layout_attachLeft">@null</item>
+		<!--
+		<item name="layout_attachLeft">@null</item>
 		<item name="layout_attachRight">@null</item>
-		<item name="layout_attachBottom">@null</item>
-		<item name="layout_attachTop">@id/aa_image</item>
-		<item name="android:layout_gravity">center_horizontal</item> --> 
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">@id/line2</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		--> 
 
+		<!-- Default: left aligned -->
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="layout_attachBottom">@id/line2</item>
@@ -168,12 +172,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		
 		<!-- Centered -->
-		<!-- <item name="layout_attachLeft">@null</item>
+		<!--
+		<item name="layout_attachLeft">@null</item>
 		<item name="layout_attachRight">@null</item>
-		<item name="layout_attachBottom">@null</item>
-		<item name="layout_attachTop">@id/title</item>
-		<item name="android:layout_gravity">center_horizontal</item> -->
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		-->
 		
+		<!-- Default: left aligned -->
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="layout_attachBottom">parent</item>

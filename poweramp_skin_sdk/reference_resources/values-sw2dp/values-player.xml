@@ -26,10 +26,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="bus_dsp"/><!-- Also a state bus -->
 	<item type="id" name="bus_dsp_cmd"/>
 
-	<!-- <item type="id" name="bus_data"/> Not used ATM -->
 	<item type="id" name="bus_data_cmd"/>
-	
-	
+
 	<!-- StateBus: bus_gui -->
 	<item type="id" name="state_nav"/><!-- integer, one of bus_nav* -->
 	<item type="id" name="state_prev_nav"/><!-- integer, one of bus_nav* -->
@@ -197,6 +195,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_gui_is_modal_now"/><!-- boolean, integer => @id of scene or view, identifying this model state, or 0 -->
 	<item type="id" name="state_gui_eq_tab"/><!-- integer EQ_TAB_* -->
 	<item type="id" name="state_gui_nav_allowed"/><!-- boolean -->
+	<item type="id" name="state_gui_nav_animating"/><!-- boolean -->
 	
 	<item type="id" name="state_gui_anim_durations"/><!-- obj -->
 	
@@ -466,8 +465,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<item type="id" name="cmd_data_set_milk_preset_rating"/><!-- arg1 => rating, obj => Long id -->
 
-		
-	
+	<item type="id" name="cmd_set_playlist_select_sort"/>
+	<item type="id" name="state_playlist_select_sort"/>
+
+
 	<!--
 	<item type="id" name=""/>
 	<item type="id" name=""/>
@@ -482,5 +483,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="_value_label"/>
 	<item type="id" name="_left_label"/>
 	<item type="id" name="_right_label"/>
+	
+	
 	
 </resources>

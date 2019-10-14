@@ -165,6 +165,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>?vis_advance_by_time_24dp</item>
 		<item>?vis_shuffle_24dp</item>
 	</array>
+	
+	<!-- NOTE: sync with RestPlaylists.getSortOptions and use order dictated by SORT_* values -->
+	<string-array name="playlist_select_sort_modes">
+		<item>@string/by_name</item><!-- SORT_TITLE=0 -->
+		<item>@string/by_date_added_to_lib</item><!-- SORT_TIME= 1 -->
+		<item>@string/by_date_added_modified</item><!-- SORT_MTIME=3 -->
+		<item>@string/by_num_tracks</item><!-- SORT_NUM_TRACKS=2 -->
+	</string-array>
+	<array name="playlist_select_icons_24dp">
+		<item>?sort_24dp</item>
+		<item>?sort_added_24dp</item>
+		<item>?sort_modified_24dp</item>
+		<item>?sort_num_tracks_24dp</item>
+	</array>
+	<integer-array name="playlist_select_sort_args1">
+		<item>0</item>
+		<item>0x40000001</item><!-- reverse -->
+		<item>0x40000003</item><!-- reverse -->
+		<item>0x40000002</item><!-- reverse -->
+	</integer-array>
+		
 		
 	
 </resources>

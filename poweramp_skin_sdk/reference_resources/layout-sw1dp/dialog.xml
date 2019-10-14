@@ -150,13 +150,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				/>
 				
 				
-				<com.maxmpz.widget.FastLayout
+				<com.maxmpz.widget.FastLayout android:id="@+id/dialog_toast_layout"
 					style="?DialogToast"
 				>
 					<com.maxmpz.widget.FastTextView android:id="@+id/dialog_toast_img"
 						style="?DialogToastImg"
 					/>
-					
+					<!-- NOTE: text views here to support styleable charsequences -->
 					<TextView android:id="@+id/dialog_toast_line1"
 						style="?DialogToastLine1"
 					/>

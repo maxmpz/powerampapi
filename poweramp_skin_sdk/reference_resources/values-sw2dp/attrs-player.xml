@@ -125,6 +125,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="sort_author_24dp" format="reference"/>
 	<attr name="sort_source_24dp" format="reference"/>
 	<attr name="sort_rating_24dp" format="reference"/>
+	<attr name="sort_added_24dp" format="reference"/>
+	<attr name="sort_modified_24dp" format="reference"/>
+	<attr name="sort_num_tracks_24dp" format="reference"/>
 	
 	<attr name="shuffle_24dp" format="reference"/>
 	

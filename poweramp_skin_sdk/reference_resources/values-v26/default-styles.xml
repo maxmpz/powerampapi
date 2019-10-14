@@ -21,6 +21,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values-v26 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="Base_ActivityTheme_Default" parent="Base_ActivityTheme_Core">
+		<item name="android:editTextBackground">@drawable/edit_text_material</item>
+	</style>
+	
 	<style name="ActivityTheme_Whitepro_TransparentNavbar">
 		<item name="navigationBarBg">#5000</item>
 		<item name="android:windowLightNavigationBar">false</item>

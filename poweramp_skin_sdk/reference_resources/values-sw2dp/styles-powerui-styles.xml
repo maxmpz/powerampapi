@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Applied to top activity and dialogs -->
 	<style name="BasePoweruiStyles">
 		<!-- Drawables -->
-		<!-- NOTE: for non default themes, these can be overridden in separate theme xmls -->
+		<!-- NOTE: for non default themes, these can be overridden in a theme xml -->
 		
 		<item name="repeat_none_32dp">@drawable/repeat_stroke_32dp_tinted</item>
 		<item name="repeat_32dp">@drawable/repeat_32dp_tinted</item>
@@ -107,9 +107,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PopupDSPInfoText">@style/PopupDSPInfoText</item>
 		<item name="PopupDSPInfoImage">@style/PopupDSPInfoImage</item>
 		
-		<item name="SmallerPopupButton">@style/SmallerPopupButton</item>
-		<item name="SmallerPopupButton_scene_button_menu">@style/SmallerPopupButton_scene_button_menu</item>
-		
 		<item name="PopupMenuItem">@style/PopupMenuItem</item>
 		<item name="PopupMenuItem_Text">@style/PopupMenuItem_Text</item>
 		<item name="PopupMenuItem50">@style/PopupMenuItem50</item>
@@ -121,6 +118,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqLinearKnob_Text">@style/EqLinearKnob_Text</item>
 		<item name="EqKnobValue_Text">@style/EqKnobValue_Text</item>
 		<item name="EqKnobLabel_Text">@style/EqKnobLabel_Text</item>
+		
+		<!-- NOTE: PopupButtons and related are possible in dialogs -->
+		<item name="PopupButton">@style/PopupButtonNoTint</item>
+		<item name="PopupButton_Text">@style/PopupButton_Text</item>
+		<item name="PopupButton_scene_button_menu">@style/PopupButtonNoTint_scene_button_menu</item>
+		
+		<item name="PopupButtonLayoutDialogButton3">@style/PopupButtonLayoutDialogButton3</item>
+		<item name="PopupButtonLayoutDialogButton2">@style/PopupButtonLayoutDialogButton2</item>
+		<item name="PopupButtonLayoutDialogButton1">@style/PopupButtonLayoutDialogButton1</item>
+		
+		<item name="SmallerPopupButton">@style/SmallerPopupButton</item>
+		<item name="SmallerPopupButton_scene_button_menu">@style/SmallerPopupButton_scene_button_menu</item>
 	</style>
 	
 	<!-- Applied to top activity only -->
@@ -384,14 +393,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemUnlike_scene_aa">@style/ItemUnlike_scene_aa</item>
 		<item name="ItemUnlike_scene_item_menu">@style/ItemUnlike_scene_item_menu</item>
 				
-		<item name="PopupButton">@style/PopupButtonNoTint</item>
-		<item name="PopupButton_Text">@style/PopupButton_Text</item>
-		<item name="PopupButton_scene_button_menu">@style/PopupButtonNoTint_scene_button_menu</item>
-		
-		<item name="PopupButtonLayoutDialogButton3">@style/PopupButtonLayoutDialogButton3</item>
-		<item name="PopupButtonLayoutDialogButton2">@style/PopupButtonLayoutDialogButton2</item>
-		<item name="PopupButtonLayoutDialogButton1">@style/PopupButtonLayoutDialogButton1</item>
-		
 		<item name="NavbarShim">@style/NavbarShim</item>
 		<item name="Navbar">@style/Navbar</item>
 		<item name="NavbarExtension">@style/NavbarExtension</item>

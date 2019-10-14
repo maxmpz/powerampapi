@@ -735,6 +735,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 
 		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
 		 This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
+		 
+		 NOTE: overridden in values-sw2dp-v29
 	-->
 	<style name="TopNavbarBounds">
 		<item name="android:layout_width">match_parent</item>
@@ -742,8 +744,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: it's possible to define navbar_bounds size with minHeight + paddings, but for consinstency, using bottom_navbar_bounds_size,
 		     as this is needed anyway for other unrelated components --> 
 		<!-- No padding top as we just indicate navbar top bound, no need for extra space there -->
-		<!--<item name="android:paddingBottom">?navbar_marginB</item>--><!-- Matches actual navbar bottom padding, which depends on theme and user preference/style overlap -->
-		<!--<item name="android:minHeight">@dimen/Navbar_height</item>-->
 		<item name="layout_attachBottom">inset</item>
 	</style>
 			

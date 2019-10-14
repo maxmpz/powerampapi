@@ -35,5 +35,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">?bottom_navbar_bounds_size</item>
 		<item name="layout_attachBottom">inset</item>
+		
+		<!-- DEBUG -->
+		<!--<item name="android:background">#5f00</item>-->
 	</style>
 </resources>

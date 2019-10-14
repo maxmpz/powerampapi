@@ -434,7 +434,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="gone"
 	/><!-- search_layout -->
 
-	<!-- NOTE: anchor invisible views which match Navbar dimensions. Navbar itself is rooted into independent scene/layout, thus, we need some anchor views
+	<!-- NOTE: invisible anchor view which matches Navbar dimensions. Navbar itself is rooted into independent scene/layout container, thus we need some anchor view
 		 in top container for other views to be aware of navbar size
 		 
 		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
@@ -443,7 +443,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 NOTE: these views can cause navbar shadow to be cut off on some devices if placed after navbar - looks like bug for some (actually quite many) hwui/driver implementations,
 		 thus it's View and it's visibility == VISIBLE (Note5, S6@7.0, S5@6.0). 
 		 There also other rendering artifacts possible due to no any visible view under navbar + gl surface reproducible up to Pie,
-		 e.g. background shim may fail to render below navbar, etc. 
+		 e.g. background shim may fail to render below navbar, etc.
+		 
+		 NOTE: this also captures clicks/touches/gestures through the paddings around navbar, so it's clickable 
 	-->
 
 	<com.maxmpz.widget.InvisibleView android:id="@+id/navbar_bounds"
