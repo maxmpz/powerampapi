@@ -27,6 +27,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -100,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements
 	private final StringBuilder mElapsedBuffer = new StringBuilder();
 	private @Nullable Uri mLastCreatedPlaylistFilesUri;
 	private static boolean sPermissionAsked;
+	/** Use getPowerampBuildNumber to get build number */
+	private int mPowerampBuildNumber;
 
 
 	@Override
@@ -876,14 +879,35 @@ public class MainActivity extends AppCompatActivity implements
 		mSongSeekBar.setProgress(position);
 	}
 
+	/** Retrieves Poweramp build number and normalizes it to ### form, e.g. 846002 => 846 */
+	private int getPowerampBuildNumber() {
+		int code = mPowerampBuildNumber;
+		if(code == 0) {
+			try {
+				code = getPackageManager().getPackageInfo(PowerampAPI.PACKAGE_NAME, 0).versionCode;
+			} catch(PackageManager.NameNotFoundException ex) {
+				code = 0;
+				Log.e(TAG, "", ex);
+			}
+			if(code > 1000) {
+				code = code / 1000;
+			}
+			mPowerampBuildNumber = code;
+		}
+		return code;
+	}
+
+
 	/**
 	 * NOTE: real code should run on some worker thread
  	 */
 	private void createPlaylistAndAddToIt() {
+		int buildNumber = getPowerampBuildNumber();
+
 		ContentResolver cr = getContentResolver();
 		Uri playlistsUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("playlists").build();
 
-		// NOTE: we need raw column names for insert queries, thus, using getRawColName()
+		// NOTE: we need raw column names for insert queries (without table name), thus using getRawColName()
 
 		ContentValues values = new ContentValues();
 		values.put(getRawColName(TableDefs.Playlists.PLAYLIST), "Sample Playlist " + System.currentTimeMillis());
@@ -900,17 +924,26 @@ public class MainActivity extends AppCompatActivity implements
 			// Select up to 10 random files
 			final int numFilesToInsert = 10;
 			Uri filesUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build();
-			Cursor c = getContentResolver().query(filesUri, new String[]{ TableDefs.Files._ID, TableDefs.Files.NAME }, null, null, "RANDOM() LIMIT " + numFilesToInsert);
+			Cursor c = getContentResolver().query(filesUri, new String[]{ TableDefs.Files._ID, TableDefs.Files.NAME, TableDefs.Folders.PATH }, null, null, "RANDOM() LIMIT " + numFilesToInsert);
 
 			int sort = 0;
 
 			if(c != null) {
 				while(c.moveToNext()) {
 					long fileId = c.getLong(0);
-					String name = c.getString(1);
+					String fileName = c.getString(1);
+					String folderPath = c.getString(2);
 
 					values.clear();
 					values.put(getRawColName(TableDefs.PlaylistEntries.FOLDER_FILE_ID), fileId);
+
+					// Playlist behavior changed in Poweramp build 842 - now each playlist entry should contain full path
+					// This restriction was uplifted in build 846, but anyway, it's preferable to fill playlist entry folder_path and file_name columns to allow
+					// easy resolution of playlist entries in case user changes music folders, storage, etc.
+					if(buildNumber >= 842) {
+						values.put(getRawColName(TableDefs.PlaylistEntries.FOLDER_PATH), folderPath);
+						values.put(getRawColName(TableDefs.PlaylistEntries.FILE_NAME), fileName);
+					}
 
 					// Playlist entries are always sorted by "sort" fields, so if we want them to be in order, we should provide it.
 					// If we're adding entries to existing playlist, it's a good idea to get MAX(sort) first from the given playlist
@@ -919,7 +952,7 @@ public class MainActivity extends AppCompatActivity implements
 
 					Uri entryUri = cr.insert(playlistEntriesUri, values);
 					if(entryUri != null) {
-						Log.w(TAG, "createPlaylistAndAddToIt inserted entry fileId=" + fileId + " sort=" + sort + " name=" + name + " entryUri=" + entryUri);
+						Log.w(TAG, "createPlaylistAndAddToIt inserted entry fileId=" + fileId + " sort=" + sort + " folderPath=" + folderPath + " fileName=" + fileName + " entryUri=" + entryUri);
 						sort++;
 					} else {
 						Log.e(TAG, "createPlaylistAndAddToIt FAILED to insert entry fileId=" + fileId);
