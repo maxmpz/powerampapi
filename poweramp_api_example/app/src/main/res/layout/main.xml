@@ -20,12 +20,12 @@
 			<TableRow>
 				<TextView
 					android:text="List Uri"
-					android:layout_width="60dip"
+					android:layout_width="60dp"
 					android:layout_height="wrap_content"
 					/>
 			</TableRow>
 			<TextView android:id="@+id/uri"
-				android:layout_width="200dip"
+				android:layout_width="200dp"
 				android:layout_height="wrap_content"
 				android:textStyle="bold"
 				android:lines="2"
@@ -34,7 +34,7 @@
 			<TableRow>
 				<TextView
 					android:text="Category Type"
-					android:layout_width="60dip"
+					android:layout_width="60dp"
 					android:layout_height="wrap_content"
 					/>
 				<TextView android:id="@+id/cat"
@@ -47,7 +47,7 @@
 			<TableRow>
 				<TextView
 					android:text="ID"
-					android:layout_width="60dip"
+					android:layout_width="60dp"
 					android:layout_height="wrap_content"
 					/>
 				<TextView android:id="@+id/id"
@@ -60,7 +60,7 @@
 			<TableRow>
 				<TextView
 					android:text="Title"
-					android:layout_width="60dip"
+					android:layout_width="60dp"
 					android:layout_height="wrap_content"
 					/>
 				<TextView android:id="@+id/title"
@@ -73,7 +73,7 @@
 			<TableRow>
 				<TextView
 					android:text="Album"
-					android:layout_width="60dip"
+					android:layout_width="60dp"
 					android:layout_height="wrap_content"
 					/>
 				<TextView android:id="@+id/album"
@@ -86,7 +86,7 @@
 			<TableRow>
 				<TextView
 					android:text="Artist"
-					android:layout_width="60dip"
+					android:layout_width="60dp"
 					android:layout_height="wrap_content"
 					/>
 				<TextView android:id="@+id/artist"
@@ -99,7 +99,7 @@
 			<TableRow>
 				<TextView
 					android:text="Path"
-					android:layout_width="60dip"
+					android:layout_width="60dp"
 					android:layout_height="wrap_content"
 					/>
 			</TableRow>
@@ -120,20 +120,20 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/info"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			/>
 		<TextView android:id="@+id/duration"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/info"
 			android:layout_alignParentRight="true"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			/>
 		<SeekBar android:id="@+id/song_seekbar"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/elapsed"
-			android:layout_marginBottom="4dip"
+			android:layout_marginBottom="4dp"
 			/>
 
 		<LinearLayout android:id="@+id/controls"
@@ -142,36 +142,36 @@
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
 			android:gravity="center"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			>
 			<Button android:id="@+id/prev_in_cat"
 				android:text="&lt;&lt;&lt;"
-				android:layout_width="60dip"
+				android:layout_width="60dp"
 				android:layout_height="wrap_content"
 				/>
 			<Button android:id="@+id/prev"
 				android:text="&lt;&lt;"
-				android:layout_width="60dip"
+				android:layout_width="60dp"
 				android:layout_height="wrap_content"
 				/>
 			<Button android:id="@+id/play"
 				android:text="&gt;"
-				android:layout_width="60dip"
+				android:layout_width="60dp"
 				android:layout_height="wrap_content"
 				/>
 			<Button android:id="@+id/pause"
 				android:text="||"
-				android:layout_width="60dip"
+				android:layout_width="60dp"
 				android:layout_height="wrap_content"
 				/>
 			<Button android:id="@+id/next"
 				android:text="&gt;&gt;"
-				android:layout_width="60dip"
+				android:layout_width="60dp"
 				android:layout_height="wrap_content"
 				/>
 			<Button android:id="@+id/next_in_cat"
 				android:text="&gt;&gt;&gt;"
-				android:layout_width="60dip"
+				android:layout_width="60dp"
 				android:layout_height="wrap_content"
 				/>
 		</LinearLayout>
@@ -180,7 +180,7 @@
 			android:layout_below="@+id/controls"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			/>
 
 		<ImageView android:id="@+id/album_art"
@@ -200,7 +200,7 @@
 			android:layout_height="wrap_content"
 			android:orientation="horizontal"
 			android:gravity="center"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			>
 			<TextView
 				android:layout_width="wrap_content"
@@ -251,10 +251,10 @@
 		</LinearLayout>
 
 		<EditText android:id="@+id/play_file_path"
-			android:layout_width="200dip"
+			android:layout_width="200dp"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/playing_mode2"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			android:singleLine="true"
 			/>
 		<Button android:id="@+id/play_file"
@@ -269,27 +269,37 @@
 			android:layout_below="@+id/play_file_path"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			android:text="Create Playlist And Add Something To It"
 			android:onClick="onClick"
 			/>
+
+
+		<Button android:id="@+id/create_playlist_w_streams"
+			android:layout_below="@+id/create_playlist"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="Create Playlist with Http Streams"
+			android:onClick="onClick"
+		/>
 
 		<Button android:id="@+id/goto_created_playlist"
 			android:layout_below="@+id/play_file_path"
 			android:layout_toRightOf="@id/create_playlist"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			android:text="Go To Created Playlist"
 			android:onClick="onClick"
 			android:enabled="false"
 			/>
 
 		<Button android:id="@+id/add_to_q_and_goto_q"
-			android:layout_below="@+id/create_playlist"
+			android:layout_below="@+id/create_playlist_w_streams"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="8dip"
+			android:layout_marginTop="8dp"
 			android:text="Add Something To Queue And Go To Queue"
 			android:onClick="onClick"
 			/>
@@ -303,14 +313,14 @@
 			<Button android:id="@+id/folders"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="8dip"
+				android:layout_marginTop="8dp"
 				android:text="Folders"
 				/>
 
 			<Button android:id="@+id/queue"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="8dip"
+				android:layout_marginTop="8dp"
 				android:text="Queue"
 				android:onClick="onClick"
 				/>
@@ -338,7 +348,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/category_buttons"
-			android:layout_marginTop="16dip"
+			android:layout_marginTop="16dp"
 			android:text="Open Eq"
 			/>
 
@@ -346,7 +356,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/eq"
-			android:layout_marginTop="16dip"
+			android:layout_marginTop="16dp"
 			android:textStyle="bold"
 			android:text="PA Current List"
 			/>
@@ -355,7 +365,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/eq"
-			android:layout_marginTop="16dip"
+			android:layout_marginTop="16dp"
 			android:layout_toRightOf="@+id/pa_current_list"
 			android:textStyle="bold"
 			android:text="PA Folders"
@@ -365,7 +375,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/eq"
-			android:layout_marginTop="16dip"
+			android:layout_marginTop="16dp"
 			android:layout_toRightOf="@+id/pa_folders"
 			android:textStyle="bold"
 			android:text="PA All Songs"

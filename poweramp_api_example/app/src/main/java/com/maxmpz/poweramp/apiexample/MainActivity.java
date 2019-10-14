@@ -613,6 +613,10 @@ public class MainActivity extends AppCompatActivity implements
 				createPlaylistAndAddToIt();
 				break;
 
+			case R.id.create_playlist_w_streams:
+				createPlaylistWStreams();
+				break;
+
 			case R.id.goto_created_playlist:
 				gotoCreatedPlaylist();
 				break;
@@ -979,6 +983,64 @@ public class MainActivity extends AppCompatActivity implements
 		} else {
 			Log.e(TAG, "createPlaylistAndAddToIt FAILED");
 		}
+	}
+
+	/**
+	 * Demonstrates a playlist with the http stream entries<br>
+	 * NOTE: real code should run on some worker thread
+	 */
+	private void createPlaylistWStreams() {
+		int buildNumber = getPowerampBuildNumber();
+		// We need at least 842 build
+		if(buildNumber < 842) {
+			Toast.makeText(this, "Poweramp build is too old", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		ContentResolver cr = getContentResolver();
+		Uri playlistsUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("playlists").build();
+
+		// NOTE: we need raw column names for insert queries (without table name), thus using getRawColName()
+		// NOTE: playlist with a stream doesn't differ from other (track based) playlists. Only playlist entries differ vs usual file tracks
+
+		String playlistName = "Stream Playlist " + System.currentTimeMillis();
+		ContentValues values = new ContentValues();
+		values.put(getRawColName(TableDefs.Playlists.PLAYLIST), playlistName);
+		Uri playlistInsertedUri = cr.insert(playlistsUri, values);
+
+		if(playlistInsertedUri == null) {
+			Toast.makeText(this, "Failed to create playlist", Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		Log.w(TAG, "createPlaylistAndAddToIt inserted=" + playlistInsertedUri);
+
+		// NOTE: we are inserting into /playlists/#/files, playlistInsertedUri (/playlists/#) is not valid for the entries insertion
+		Uri playlistEntriesUri = playlistInsertedUri.buildUpon().appendEncodedPath("files").build();
+		mLastCreatedPlaylistFilesUri = playlistEntriesUri;
+
+		// To create stream entry, we just provide the url. Entry is added as the last one
+		values.clear();
+		values.put(getRawColName(TableDefs.PlaylistEntries.FILE_NAME), "http://64.71.77.150:8000/stream");
+		Uri entryUri1 = cr.insert(playlistEntriesUri, values);
+
+		values.clear();
+		values.put(getRawColName(TableDefs.PlaylistEntries.FILE_NAME), "http://94.23.205.82:5726/;stream/1");
+		Uri entryUri2 = cr.insert(playlistEntriesUri, values);
+
+		if(entryUri1 != null && entryUri2 != null) {
+			Toast.makeText(this, "Inserted streams OK, playlist=" + playlistName, Toast.LENGTH_SHORT).show();
+
+			// Force Poweramp to reload data in UI / PlayerService as we changed something
+			Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
+			intent.setPackage(PowerampAPI.PACKAGE_NAME);
+			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
+			intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send changed table for adequate UI / PlayerService reloading
+			sendBroadcast(intent);
+		}
+
+		// Make open playlist button active
+		findViewById(R.id.goto_created_playlist).setEnabled(true);
 	}
 
 	private void gotoCreatedPlaylist() {
