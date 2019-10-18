@@ -572,10 +572,18 @@ public class MainActivity extends AppCompatActivity implements
 				break;
 
 			case R.id.play_file:
-				PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-						//.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
-						.setData(Uri.parse("file://" + ((TextView)findViewById(R.id.play_file_path)).getText().toString())));
+				try {
+					String uri = ((TextView) findViewById(R.id.play_file_path)).getText().toString();
+					if(uri.length() > "content://".length()) {
+						PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+								.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+								//.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
+								.setData(Uri.parse(uri)));
+					}
+				} catch(Throwable th) {
+					Log.e(TAG, "", th);
+					Toast.makeText(this, th.getMessage(), Toast.LENGTH_LONG).show();
+				}
 				break;
 
 			case R.id.folders:

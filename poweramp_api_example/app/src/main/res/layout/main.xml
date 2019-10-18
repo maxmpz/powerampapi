@@ -256,6 +256,7 @@
 			android:layout_below="@+id/playing_mode2"
 			android:layout_marginTop="8dp"
 			android:singleLine="true"
+			android:hint="content://"
 			/>
 		<Button android:id="@+id/play_file"
 			android:layout_width="wrap_content"
