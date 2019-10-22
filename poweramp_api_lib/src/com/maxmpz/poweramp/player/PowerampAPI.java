@@ -1293,26 +1293,37 @@ public final class PowerampAPI {
 	 * {@link PowerampAPI.Track} {@link PowerampAPI.Track.CAT} categories
 	 */
 	public static final class Cats {
-		public static final int ROOT = 0;
-		public static final int FOLDERS = 10;
-		public static final int FOLDERS_HIER = 20;
-		public static final int MOST_PLAYED = 43;
-		public static final int TOP_RATED = 48;
-		public static final int LOW_RATED = 50;
-		public static final int RECENTLY_ADDED = 53;
-		public static final int RECENTLY_PLAYED = 58;
-		public static final int LONG = 55;
-		public static final int PLAYLISTS = 100;
-		public static final int ALBUMS = 200;
-		public static final int GENRES_ID_ALBUMS = 210;
-		public static final int ARTISTS_ID_ALBUMS = 220;
-		public static final int ARTISTS__ALBUMS = 250;
-		public static final int COMPOSERS_ID_ALBUMS = 230;
-		public static final int GENRES = 320;
-		public static final int ARTISTS = 500;
-		public static final int COMPOSERS = 600;
-		public static final int QUEUE = 800;
-		
+		/** Root library category. Not used in Poweramp v3. */
+		@Deprecated
+		public static final int ROOT                    = 0;
+		/** All Songs */
+		public static final int FILES                   = 30;
+		public static final int FOLDERS                 = 10;
+		public static final int FOLDERS_HIER            = 20;
+		public static final int ALBUMS                  = 200;
+		public static final int ARTISTS                 = 500;
+		/** Albums for given artist id */
+		public static final int ARTISTS_ID_ALBUMS       = 220;
+		public static final int ALBUM_ARTISTS           = 520;
+		/** Albums for given album_artist id */
+		public static final int ALBUM_ARTISTS_ID_ALBUMS = 256;
+		/** Albums for given albums split by artists */
+		public static final int ARTISTS__ALBUMS         = 250;
+		public static final int GENRES                  = 320;
+		/** Albums for given genre id */
+		public static final int GENRES_ID_ALBUMS        = 210;
+		public static final int COMPOSERS               = 600;
+		/** Albums for given composer id */
+		public static final int COMPOSERS_ID_ALBUMS     = 230;
+		public static final int PLAYLISTS               = 100;
+		public static final int QUEUE                   = 800;
+		public static final int MOST_PLAYED             = 43;
+		public static final int TOP_RATED               = 48;
+		public static final int LOW_RATED               = 50;
+		public static final int RECENTLY_PLAYED         = 58;
+		public static final int RECENTLY_ADDED          = 53;
+		public static final int LONG                    = 55;
+
 		private Cats() {}
 	}
 
