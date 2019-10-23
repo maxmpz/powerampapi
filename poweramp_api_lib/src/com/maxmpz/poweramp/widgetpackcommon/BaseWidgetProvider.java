@@ -68,7 +68,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	/**
 	 * Min. AA image size to show (otherwise logo shown)
 	 */
-	protected static final int MIN_SIZE = 32;
+	protected static final int MIN_SIZE = 1; // NOTE: no reason not to show AA if it's handed by PA
 	
 	private @Nullable ComponentName mComponentName; // This provider component name
 	private @Nullable AppWidgetManager mAppWidgetManager;
