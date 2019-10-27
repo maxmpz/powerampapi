@@ -128,7 +128,15 @@ public final class PowerampAPI {
 	 * {@code int}
 	 */
 	public static final String COMMAND = "cmd";
-	
+
+	/**
+	 * Get all, one, or multiple preferences<br>
+	 * contentResolver().call => "preference" with extra bundle:<br>
+	 * - null for all preferences or non-null bundle with some keys - they appropriate values will be returned<br>
+	 * @since 849
+	 */
+	public static final String CALL_PREFERENCE = "preference";
+
 
 	/**
 	 * Common extras:

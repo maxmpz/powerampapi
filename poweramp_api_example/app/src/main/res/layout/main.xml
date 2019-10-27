@@ -351,7 +351,7 @@
 			android:layout_below="@+id/category_buttons"
 			android:layout_marginTop="16dp"
 			android:text="Open Eq"
-			/>
+		/>
 
 		<Button android:id="@+id/pa_current_list"
 			android:layout_width="wrap_content"
@@ -360,7 +360,7 @@
 			android:layout_marginTop="16dp"
 			android:textStyle="bold"
 			android:text="PA Current List"
-			/>
+		/>
 
 		<Button android:id="@+id/pa_folders"
 			android:layout_width="wrap_content"
@@ -370,7 +370,7 @@
 			android:layout_toRightOf="@+id/pa_current_list"
 			android:textStyle="bold"
 			android:text="PA Folders"
-			/>
+		/>
 
 		<Button android:id="@+id/pa_all_songs"
 			android:layout_width="wrap_content"
@@ -380,7 +380,43 @@
 			android:layout_toRightOf="@+id/pa_folders"
 			android:textStyle="bold"
 			android:text="PA All Songs"
-			/>
+		/>
+
+		<EditText android:id="@+id/pref"
+			android:layout_width="160dp"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/pa_all_songs"
+			android:layout_marginTop="16dp"
+			android:hint="Preference Name"
+		/>
+
+		<Button android:id="@+id/get_pref"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/pa_all_songs"
+			android:layout_marginTop="16dp"
+			android:layout_toRightOf="@+id/pref"
+			android:textStyle="bold"
+			android:text="Get Preference"
+			android:onClick="onClick"
+		/>
+
+		<Button android:id="@+id/get_all_prefs"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/get_pref"
+			android:layout_marginTop="16dp"
+			android:textStyle="bold"
+			android:text="Get All Prefs"
+			android:onClick="onClick"
+		/>
+		<TextView android:id="@+id/prefs"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="16dp"
+			android:layout_below="@+id/get_all_prefs"
+		/>
+
 	</RelativeLayout>
 
 </ScrollView>

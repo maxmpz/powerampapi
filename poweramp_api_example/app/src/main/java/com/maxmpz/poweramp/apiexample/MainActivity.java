@@ -47,7 +47,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TableLayout;
@@ -634,11 +636,58 @@ public class MainActivity extends AppCompatActivity implements
 				addToQAndGotoQ();
 				break;
 
-
 			case R.id.queue:
 				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("queue").build()));
 				break;
+
+			case R.id.get_all_prefs:
+				getAllPrefs();
+				break;
+
+			case R.id.get_pref:
+				getPref();
+				break;
 		}
+	}
+
+	/** Get the specified preference and show its name, type, value */
+	private void getPref() {
+		EditText prefET = findViewById(R.id.pref);
+		String prefName = prefET.getText().toString();
+		TextView prefsTV = findViewById(R.id.prefs);
+
+		if(prefName.length() > 0) {
+			Bundle bundle = new Bundle();
+			bundle.putString(prefName, null);
+
+			Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, bundle);
+
+			if(resultPrefs != null) {
+
+				Object value = resultPrefs.get(prefName);
+				if(value != null) {
+					prefsTV.setText(prefName + " (" + value.getClass().getSimpleName() + "): " + value);
+					prefsTV.setBackground(null);
+				} else {
+					prefsTV.setText(prefName + ": <no value>");
+					prefsTV.setBackgroundColor(0x55FF0000);
+				}
+				((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);;
+			} else {
+				prefsTV.setText("Call failed");
+				prefsTV.setBackgroundColor(0x55FF0000);
+			}
+		}
+	}
+
+	/** Get all available preferences and dump the resulting bundle */
+	private void getAllPrefs() {
+		TextView prefsTV = findViewById(R.id.prefs);
+
+		Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, null);
+
+		prefsTV.setText(dumpBundle(resultPrefs));
+		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);;
 	}
 
 	/**
