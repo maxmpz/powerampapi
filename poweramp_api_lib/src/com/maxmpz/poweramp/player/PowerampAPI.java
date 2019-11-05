@@ -24,18 +24,44 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 
-
 /**
  * Poweramp Intent based API.
  * <br><br>
- * NOTE: in addition to ACTION_* intent actions defined by PowerampAPI, Poweramp also supports:
- * android.content.Intent.ACTION_VIEW, android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH, android.content.Intent.ACTION_SEARCH.
+ * NOTE: in addition to ACTION_* intent actions defined by PowerampAPI, Poweramp also supports standard intents (these should be sent to ACTIVITY_STARTUP):<br>
+ * android.content.Intent.ACTION_VIEW (android.intent.action.VIEW"),<br>
+ * android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH (android.media.action.MEDIA_PLAY_FROM_SEARCH),<br>
+ * android.content.Intent.ACTION_SEARCH (android.intent.action.SEARCH),<br>
+ * android.intent.action.MEDIA_SEARCH<br><br>
+ * 
+ * Starting from build 853 Poweramp also supports android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH (android.media.action.MEDIA_PLAY_FROM_SEARCH) as PlayerService intent,
+ * so this can be sent directly to service without activity / Poweramp UI starting.<br>
+ * NOTE: this is supported for ACTIVITY_STARTUP from around 800<br><br>
+ * 
+ * INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH supports:<br>
+ * - <b>simple freeform query via SearchManager.QUERY (query) extra</b><br>
+ *   - Poweramp will attempt to play track matching query<br>
+ *   - Poweramp also looks to keywords such as playlist, album, artist, genre in the query in the local language and if found, Poweramp will attempt to play the found category<br><br>
+ *   
+ * - <b>focused query via MediaStore.EXTRA_MEDIA_FOCUS query (https://developer.android.com/reference/android/provider/MediaStore#EXTRA_MEDIA_FOCUS):</b><br>
+ *   - when EXTRA_MEDIA_FOCUS == MediaStore.Audio.GenresGenres.ENTRY_CONTENT_TYPE (vnd.android.cursor.item/genre):<br>
+ *   &nbsp;&nbsp;-> Poweramp plays genre indicated by MediaStore.EXTRA_MEDIA_GENRE (android.intent.extra.genre) extra<br>
+ *   - when EXTRA_MEDIA_FOCUS == MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE (vnd.android.cursor.item/artist):<br>
+ *   &nbsp;&nbsp;-> Poweramp plays artist indicated by MediaStore.EXTRA_MEDIA_ARTIST (android.intent.extra.artist) extra <br>
+ *   - when EXTRA_MEDIA_FOCUS == MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE (vnd.android.cursor.item/album):<br>
+ *   &nbsp;&nbsp;-> Poweramp plays album indicated by MediaStore.EXTRA_MEDIA_ALBUM (android.intent.extra.album) and MediaStore.EXTRA_MEDIA_ARTIST (android.intent.extra.artist) extras<br>
+ *   - when EXTRA_MEDIA_FOCUS == MediaStore.Audio.Media.ENTRY_CONTENT_TYPE (vnd.android.cursor.item/audio):<br>
+ *   &nbsp;&nbsp;-> Poweramp plays song indicated by MediaStore.EXTRA_MEDIA_TITLE (android.intent.extra.title), MediaStore.EXTRA_MEDIA_ALBUM (android.intent.extra.album), and MediaStore.EXTRA_MEDIA_ARTIST (android.intent.extra.artist) extras<br>
+ *   - when EXTRA_MEDIA_FOCUS == MediaStore.Audio.Playlists.ENTRY_CONTENT_TYPE (vnd.android.cursor.item/playlist):<br>
+ *   &nbsp;&nbsp;-> Poweramp plays playlist indicated by MediaStore.EXTRA_MEDIA_PLAYLIST (android.intent.extra.playlist) extra<br>
+ *   - when EXTRA_MEDIA_FOCUS is anything else:<br>
+ *   &nbsp;&nbsp;-> Poweramp tries to search for SearchManager.QUERY or MediaStore.EXTRA_MEDIA_TITLE in tracks, genres, and playlists and play the found result<br> 
+ * 
  */
 public final class PowerampAPI {
 	/**
 	 * Defines PowerampAPI version
 	 */
-	public static final int VERSION = 800;
+	public static final int VERSION = 853;
 
 	/**
 	 * No id value (for id-related fields, for example, {@link PowerampAPI.Track.ID})
