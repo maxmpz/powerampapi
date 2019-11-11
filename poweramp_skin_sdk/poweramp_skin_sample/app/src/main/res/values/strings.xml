@@ -68,4 +68,7 @@
 	<string name="skin_summary_alt_layout">Moves track labels below cover, makes on-cover buttons smaller and faded</string>
 	<string name="skin_alt_layout_default">Left aligned labels</string>
 	<string name="skin_alt_layout_centered">Centered labels</string>
+	<string name="skin_volume_knob">Volume Knob</string>
+	<string name="skin_summary_volume_knob">Show volume knob on main screen</string>
+	<string name="volume">Volume</string>
 </resources>

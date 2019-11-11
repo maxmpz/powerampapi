@@ -130,6 +130,21 @@
 		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1_zoomed">@style/ItemTrackPlayingMark_scene_grid_1_zoomed</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1_alt_zoomed">@style/ItemTrackPlayingMark_scene_grid_1_alt_zoomed</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scenes_hidden">@style/ItemTrackPlayingMark_scenes_hidden</item>
+
+		<!-- NOTE: override OptionCounter option attribute as we're overriding TopContainer_extraLayout with own layout, which will in turn
+			 include counter (when enabled), mini frequency response, volume knob -->
+		<item name="com.maxmpz.audioplayer:OptionCounter">@style/SampeSkin_OptionCounter</item>
+
+		<!-- Provide null default value for counter layout (so nothing is loaded by default) -->
+		<item name="SampleSkin_counterLayout">@null</item>
+
+		<!-- Provide null default value for main mini spectrum layout (so nothing is loaded by default) -->
+		<item name="SampleSkin_mainMiniSpectrumLayout">@null</item>
+
+		<!-- Provide null default value for main volume knob layout (so nothing is loaded by default) -->
+		<item name="SampleSkin_mainVolumeLayout">@null</item>
+
+		<item name="com.maxmpz.audioplayer:TopContainer_extraLayout">@layout/merge_extralayout_includes</item>
 	</style>
 
 	<!-- We need to change layout in all "scenes" for the target view, in this case, Navbar -->
@@ -449,7 +464,8 @@
 
 	<!-- Mini spectrum on main screen option -->
 	<style name="SampleSkin_mainMiniSpectrum">
-		<item name="com.maxmpz.audioplayer:TopContainer_extraLayout">@layout/merge_main_mini_spectrum</item>
+		<!-- NOTE: we override own attribute here (not a com.maxmpz.audioplayer attribute), which is included inside our merge_extralayout_inlcudes.xml -->
+		<item name="SampleSkin_mainMiniSpectrumLayout">@layout/merge_main_mini_spectrum</item>
 	</style>
 
 	<style name="SampleSkin_mainMiniSpectrum_MilkFRS_base">
@@ -510,5 +526,68 @@
 		<item name="android:visibility">gone</item>
 	</style>
 
+	<!-- As we override TopContainer_extraLayout with own layout which includes multiple other layout, this is redefinition of OptionCounter,
+		 which includes counter layout into our new extra layout -->
+	<style name="SampeSkin_OptionCounter">
+		<!-- Additional layout which is missing by default, but enabled by user (in Poweramp settings, non-skin) option.
+		     SampleSkin_counterLayout is our custom attribute (see attrs.xml) -->
+		<item name="SampleSkin_counterLayout">@com.maxmpz.audioplayer:layout/merge_top_extralayout</item><!-- This is default Poweramp counter layout -->
+	</style>
+
+	<style name="SampleSkin_VolumeKnob">
+		<!-- Additional layout which is missing by default, but enabled by skin option.
+			 SampleSkin_mainVolumeLayout is our custom attribute (see attrs.xml) -->
+		<item name="SampleSkin_mainVolumeLayout">@layout/merge_main_volume</item>
+	</style>
+
+	<!-- Style for the main volume round knob layout
+	     NOTE: this just injects small volume knob into main layout. This style demonstration doesn't try to actually make it proper size, position, or layout,
+	     - this is an exercise for the custom skin developer and the default Poweramp skins don't have place for a volume knob anyway -->
+	<style name="SampleSkin_mainRoundVolumeKnob" parent="com.maxmpz.audioplayer:EqVolumeKnobLayoutBase">
+		<!-- Redefine knob itself -->
+		<item name="com.maxmpz.audioplayer:roundKnobStyle">@style/MainVolumeRoundKnob</item>
+		<!-- Hide "Volume" label (but leave value as is) -->
+		<item name="com.maxmpz.audioplayer:labelStyle">@style/MainVolumeLabel</item>
+		<item name="android:layout_width">80dp</item><!-- NOTE: fixed width is required for proper gravity -->
+
+		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@com.maxmpz.audioplayer:id/sub_aa_buttons</item>
+		<item name="android:layout_gravity">center_horizontal|top</item>
+	</style>
+
+	<!-- Style for the main round volume knob itself.
+	     The knob drawables and style can be further redefined as needed -->
+	<style name="MainVolumeRoundKnob" parent="com.maxmpz.audioplayer:EqBigRoundKnob">
+		<item name="android:layout_width">80dp</item>
+		<item name="android:layout_height">80dp</item>
+	</style>
+	<style name="MainVolumeLabel" parent="com.maxmpz.audioplayer:EqRoundKnobLabel">
+		<!-- Hide "Volume" label (but leave value as is) -->
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<!-- Style for the main vertical volume knob itself.
+	     The knob drawables and style can be further redefined as needed -->
+	<style name="SampleSkin_mainLinearVolumeKnob" parent="com.maxmpz.audioplayer:EqPreampLinearKnob">
+		<!-- NOTE: at this time, Poweramp supports just vertical knobs (as in equalizer), horizontal knob may be possible via android:rotation, but layout gets complicated -->
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">inset</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">inset</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottomToBottom">@com.maxmpz.audioplayer:id/aa_bounds</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginBottom">48dp</item>
+
+		<!-- NOTE: by default linear knob (EqPreampLinearKnob style) uses own backround with ticks.
+			 If we want some custom background, we should disable that default lines background -->
+		<item name="com.maxmpz.audioplayer:linesBackground">false</item>
+		<item name="android:background">@drawable/ripple_alpha_always_rounded</item>
+		<item name="android:paddingBottom">12dp</item><!-- Need some extra padding due to the rounded background -->
+		<item name="android:scaleX">0.75</item><!-- NOTE: can't use different scaleX vs scaleY here as SceneParams doesn't support it, it supports fixed aspect ratio scale -->
+		<item name="android:scaleY">0.75</item>
+	</style>
+
+	<style name="SampleSkin_mainLinearVolumeKnobHidden">
+		<item name="com.maxmpz.audioplayer:scale">.70</item>
+		<item name="android:visibility">invisible</item>
+	</style>
 
 </resources>

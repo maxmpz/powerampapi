@@ -40,7 +40,8 @@ Open a shell and enter `./adb install poweramp.apk`)
 * build and run skin as a normal Android app
 * when skin activity is started, "Start Poweramp With * Skin" button can be pressed to force Poweramp immediately reload the skin
 * skin should appear in Poweramp skin selection settings page as well
-* **if skin fails, ensure Android Studio's "Instant Run" feature is turned off (Prefs > Build, Execution, Deployment > Instant Run**
+* **Android Studio "Apply Changes" feature most probably won't properly reload resources, so don't use it for skin development**
+* optionally enable **Always Reload Skin** in Poweramp Settings / Misc. This forces Poweramp to recheck skin on each activity start  
 
 ### How Poweramp v3 skins work
 

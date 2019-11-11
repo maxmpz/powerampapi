@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <skins xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- NOTE: forceGlobalOptions=true means global options (by default in styles-options.xml) will force-override base skin attributes.
+
+	     By default, global options do not override base skin theme, just add to it,
+	     but for more complicated cases, overriding may be required (e.g. for our own OptionCounter here)-->
 	<skin
 		name="@string/skin_sample"
 		author="@string/skin_author"
 		description="@string/skin_sample_description"
 		style="@style/SampleSkin"
+		forceGlobalOptions="true"
 	>
 		<!-- (build 842+) Custom loadable fonts -->
 		<radio
@@ -183,11 +188,21 @@
 			checkedByDefault="false"
 		/>
 
+		<!-- Demonstrates mini spectrum on main screen via custom merged layout -->
 		<option
 			key="main_mini_spectrum"
 			name="@string/skin_main_mini_spectrum"
 			summary="@string/skin_summary_main_mini_spectrum"
 			overlapStyle="@style/SampleSkin_mainMiniSpectrum"
+			checkedByDefault="false"
+		/>
+
+		<!-- Demonstrates volume knob on main screen via custom merged layout -->
+		<option
+			key="volume_knob"
+			name="@string/skin_volume_knob"
+			summary="@string/skin_summary_volume_knob"
+			overlapStyle="@style/SampleSkin_VolumeKnob"
 			checkedByDefault="false"
 		/>
 	</skin>
