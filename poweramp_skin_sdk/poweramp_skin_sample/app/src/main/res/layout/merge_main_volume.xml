@@ -23,7 +23,7 @@
 	/>
 	-->
 
-	<!-- Vertical linera knob variant -->
+	<!-- Vertical linear knob variant -->
 	<com.maxmpz.widget.player.DSPLinearKnob
 		style="@style/SampleSkin_mainLinearVolumeKnob"
 
