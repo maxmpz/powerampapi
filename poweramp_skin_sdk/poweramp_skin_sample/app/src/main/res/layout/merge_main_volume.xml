@@ -8,7 +8,6 @@
 	<!-- Show in main scene -->
 
 	<!-- Round knob variant -->
-	<!--
 	<com.maxmpz.widget.player.DSPRoundKnobLayout
 		style="@style/SampleSkin_mainRoundVolumeKnob"
 
@@ -21,10 +20,10 @@
 
 		w:labelText="@string/volume"
 	/>
-	-->
 
-	<!-- Vertical linear knob variant -->
-	<com.maxmpz.widget.player.DSPLinearKnob
+	<!-- Vertical linear knob variant. NOTE: Poweramp builds prior 854 require DSPPreampLinearKnob here. Later builds can use DSPLinearKnob.
+	     The difference between thos is that DSPPreampLinearKnob ignores value format attributes and uses the one set by user in settings for equalizer thumbs -->
+	<com.maxmpz.widget.player.DSPPreampLinearKnob
 		style="@style/SampleSkin_mainLinearVolumeKnob"
 
 		w:valueFormat="%.0f%%"
