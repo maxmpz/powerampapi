@@ -2,7 +2,7 @@
 Copyright (C) 2011-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
-modification, are permitted for widgets, plugins, applications and other software
+modification, are permitted for the widgets, plugins, applications and other software
 which communicate with Poweramp application on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -108,7 +108,7 @@ public final class PowerampAPI {
 	public static final String PARAM_AA_DOWNLOAD = "dl";
 	
 	/**
-	 * Uri query parameter - filter. Currently used only for search uri
+	 * Uri query parameter - filter. Currently used only for the search uri
 	 */
 	public static final String PARAM_FILTER = "flt";
 
@@ -118,17 +118,31 @@ public final class PowerampAPI {
 	public static final String PARAM_SHUFFLE = "shf";
 
 	/**
-	 * Poweramp Control action.
+	 * Poweramp Control action. This is executed by service.
 	 * Extras:<br>
 	 * {@code int cmd} - command to execute. See {@link #COMMAND}, 
-	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for debugging purposes
-	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for debugging purposes
+	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes
+	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes
 	 */
 	public static final String ACTION_API_COMMAND = "com.maxmpz.audioplayer.API_COMMAND";
+	
+	/**
+	 * Poweramp Control action. This is received by activity and then redirected to service.
+	 * As it's an activity which is the target of this action, it may be used in the intents where no service target is possible
+	 * Extras:<br>
+	 * {@code int cmd} - command to execute. See {@link #COMMAND}, 
+	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes
+	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes
+	 * @since 854
+	 */
+	public static final String ACTION_API_COMMAND_VIA_ACT = "com.maxmpz.audioplayer.API_COMMAND_VIA_ACT";
 
 	/**
-	 * Poweramp package name
+	 * Poweramp package name.<br>
+	 * NOTE: some Poweramp editions may have different package name (e.g. com.maxmpz.audioplayer.huawei)
+	 * @deprecated see PowerampAPIHelper.getPowerampPackageName
 	 */
+	@Deprecated
 	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
 
 	/**
@@ -138,12 +152,16 @@ public final class PowerampAPI {
 
 	/**
 	 * Poweramp service ComponentName
+	 * @deprecated see PowerampAPIHelper.getPlayerServiceComponentName
 	 */
+	@Deprecated
 	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
 
 	/**
 	 * @return ready to use Intent for Poweramp service
+	 * @deprecated see PowerampAPIHelper.getPlayerServiceComponentName, PowerampAPIHelper.newAPIIntent
 	 */
+	@Deprecated
 	public static Intent newAPIIntent() {
 		return new Intent(ACTION_API_COMMAND).setComponent(PLAYER_SERVICE_COMPONENT_NAME);
 	}

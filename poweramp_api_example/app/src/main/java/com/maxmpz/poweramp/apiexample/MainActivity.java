@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements
 		// This actually should be done once per this app installation, but for the simplicity, we use per-process static field here
 		if(!sPermissionAsked) {
 			Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
-			intent.setPackage(PowerampAPI.PACKAGE_NAME);
+			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
 			sendBroadcast(intent);
 			sPermissionAsked = true;
@@ -946,7 +946,7 @@ public class MainActivity extends AppCompatActivity implements
 		int code = mPowerampBuildNumber;
 		if(code == 0) {
 			try {
-				code = getPackageManager().getPackageInfo(PowerampAPI.PACKAGE_NAME, 0).versionCode;
+				code = getPackageManager().getPackageInfo(PowerampAPIHelper.getPowerampPackageName(this), 0).versionCode;
 			} catch(PackageManager.NameNotFoundException ex) {
 				code = 0;
 				Log.e(TAG, "", ex);
@@ -1029,7 +1029,7 @@ public class MainActivity extends AppCompatActivity implements
 			if(sort > 0) {
 				// Force Poweramp to reload data in UI / PlayerService as we changed something
 				Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
-				intent.setPackage(PowerampAPI.PACKAGE_NAME);
+				intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 				intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
 				intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send the changed table for an adequate UI / PlayerService reloading
 				sendBroadcast(intent);
@@ -1091,7 +1091,7 @@ public class MainActivity extends AppCompatActivity implements
 
 			// Force Poweramp to reload data in UI / PlayerService as we changed something
 			Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
-			intent.setPackage(PowerampAPI.PACKAGE_NAME);
+			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
 			intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send the changed table for an adequate UI / PlayerService reloading
 			sendBroadcast(intent);
@@ -1157,7 +1157,7 @@ public class MainActivity extends AppCompatActivity implements
 		if(inserted > 0) {
 			// Force Poweramp to reload data in UI / PlayerService as we changed something
 			Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
-			intent.setPackage(PowerampAPI.PACKAGE_NAME);
+			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
 			intent.putExtra(PowerampAPI.TABLE, TableDefs.Queue.TABLE); // NOTE: important to send changed table for the adequate UI / PlayerService reloading. This can also make Poweramp to go to Queue
 			sendBroadcast(intent);

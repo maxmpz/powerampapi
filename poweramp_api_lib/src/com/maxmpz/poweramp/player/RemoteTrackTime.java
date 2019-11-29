@@ -68,7 +68,7 @@ public class RemoteTrackTime {
 		IntentFilter filter = new IntentFilter(PowerampAPI.ACTION_TRACK_POS_SYNC);
 		mContext.registerReceiver(mTrackPosSyncReceiver, filter);
 		try {
-			mContext.startService(PowerampAPI.newAPIIntent().putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.POS_SYNC));
+			mContext.startService(PowerampAPIHelper.newAPIIntent(mContext).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.POS_SYNC));
 		} catch(Throwable th) {
 			Log.e(TAG, "", th);
 		}

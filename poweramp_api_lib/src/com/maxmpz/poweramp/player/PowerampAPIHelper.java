@@ -20,8 +20,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.player;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -37,10 +39,56 @@ import org.eclipse.jdt.annotation.Nullable;
 public class PowerampAPIHelper {
 	private static final String TAG = "PowerampAPIHelper";
 	private static final boolean LOG = false;
+	
+	private static String sPowerampPak;
+	private static ComponentName sPowerampPSComponentName;
+	
 
+	/** 
+	 * @return resolved and cached Poweramp package name or null if it's not installed
+	 * NOTE: can be called from any thread, though double initialization is possible, but it's OK
+	 */
+	public static String getPowerampPackageName(Context context) {
+		String pak = sPowerampPak;
+		if(pak == null) {
+			ComponentName compomentName = getPlayerServiceComponentName(context);
+			if(compomentName != null) {
+				pak = sPowerampPak = compomentName.getPackageName();
+			}
+		}
+		return pak;
+	}
+	
+	/**
+	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed
+	 * NOTE: can be called from any thread, though double initialization is possible, but it's OK
+	 */
+	public static ComponentName getPlayerServiceComponentName(Context context) {
+		ComponentName componentName = sPowerampPSComponentName;
+		if(componentName == null) {
+			try {
+				ResolveInfo info = context.getPackageManager().resolveService(new Intent(PowerampAPI.ACTION_API_COMMAND), 0);
+				if(info != null && info.serviceInfo != null) {
+					componentName = sPowerampPSComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
+				}
+			} catch(Throwable th) {
+				Log.e(TAG, "", th);
+			}
+		}
+		return componentName;
+	}
+	
+	/**
+	 * @return ready to use Intent for Poweramp service
+	 */
+	public static Intent newAPIIntent(Context context) {
+		return new Intent(PowerampAPI.ACTION_API_COMMAND).setComponent(getPlayerServiceComponentName(context));
+	}
+	
+	
 
 	public static void startPAService(Context context, Intent intent) {
-		intent.setComponent(PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME);
+		intent.setComponent(getPlayerServiceComponentName(context));
 		if(Build.VERSION.SDK_INT >= 26) {
 			context.startForegroundService(intent);
 		} else {
