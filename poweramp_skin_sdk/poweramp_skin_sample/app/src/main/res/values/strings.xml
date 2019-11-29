@@ -71,4 +71,5 @@
 	<string name="skin_volume_knob">Volume Knob</string>
 	<string name="skin_summary_volume_knob">Show volume knob on main screen</string>
 	<string name="volume">Volume</string>
+	<string name="skin_poweramp_not_installed">Poweramp is not installed</string>
 </resources>
