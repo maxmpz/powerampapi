@@ -23,6 +23,8 @@ package com.maxmpz.poweramp.player;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -42,11 +44,13 @@ public class PowerampAPIHelper {
 	
 	private static String sPowerampPak;
 	private static ComponentName sPowerampPSComponentName;
-	
+	private static int sPowerampBuild;
+	private static ComponentName sApiReceiverComponentName;
 
-	/** 
-	 * @return resolved and cached Poweramp package name or null if it's not installed
-	 * NOTE: can be called from any thread, though double initialization is possible, but it's OK
+
+	/**
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp package name or null if it's not installed<br>
 	 */
 	public static String getPowerampPackageName(Context context) {
 		String pak = sPowerampPak;
@@ -60,8 +64,8 @@ public class PowerampAPIHelper {
 	}
 	
 	/**
-	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed
-	 * NOTE: can be called from any thread, though double initialization is possible, but it's OK
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed<br>
 	 */
 	public static ComponentName getPlayerServiceComponentName(Context context) {
 		ComponentName componentName = sPowerampPSComponentName;
@@ -77,17 +81,68 @@ public class PowerampAPIHelper {
 		}
 		return componentName;
 	}
-	
+
+	public static ComponentName getApiReceiverComponentName(Context context) {
+		ComponentName componentName = sApiReceiverComponentName;
+		if(componentName == null) {
+			String pak = getPowerampPackageName(context);
+			if(pak != null) {
+				componentName = sApiReceiverComponentName = new ComponentName(pak, PowerampAPI.API_RECEIVER_NAME);
+			}
+		}
+		return componentName;
+	}
+
 	/**
-	 * @return ready to use Intent for Poweramp service
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp build number<br>
 	 */
-	public static Intent newAPIIntent(Context context) {
-		return new Intent(PowerampAPI.ACTION_API_COMMAND).setComponent(getPlayerServiceComponentName(context));
+	public static int getPowerampBuild(Context context) {
+		if(sPowerampBuild == 0) {
+			String pak = getPowerampPackageName(context);
+			if(pak != null) {
+				try {
+					PackageInfo pi = context.getPackageManager().getPackageInfo(pak, 0);
+					sPowerampBuild = pi.versionCode > 1000 ? pi.versionCode / 1000 : pi.versionCode;
+				} catch(Throwable th) {
+					Log.e(TAG, "", th);
+				}
+			}
+		}
+		return sPowerampBuild;
 	}
 	
-	
+	/**
+	 * THREADING: can be called from any thread<br>
+	 * @return intent to send with sendPAIntent
+	 */
+	public static Intent newAPIIntent(Context context) {
+		return new Intent(PowerampAPI.ACTION_API_COMMAND);
+	}
 
-	public static void startPAService(Context context, Intent intent) {
+
+	/**
+	 * If we have Poweramp build 855+, send broadcast, otherwise use startForegroundService/startService which may be prone to ANR errors
+	 * and are depricated for Poweramp builds 855+.<br><br>
+	 * THREADING: can be called from any thread
+	 */
+	public static void sendPAIntent(Context context, Intent intent) {
+		int buildNum = getPowerampBuild(context);
+		if(buildNum >= 855) {
+			intent.setComponent(getApiReceiverComponentName(context));
+			context.sendBroadcast(intent);
+		} else {
+			intent.setComponent(getPlayerServiceComponentName(context));
+			if(Build.VERSION.SDK_INT >= 26) {
+				context.startForegroundService(intent);
+			} else {
+				context.startService(intent);
+			}
+		}
+	}
+
+	@Deprecated
+	public static void startPAServiceOld(Context context, Intent intent) {
 		intent.setComponent(getPlayerServiceComponentName(context));
 		if(Build.VERSION.SDK_INT >= 26) {
 			context.startForegroundService(intent);

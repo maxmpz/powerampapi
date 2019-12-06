@@ -34,7 +34,11 @@
 			android:name=".FilesActivity"
 			android:label="Files" />
 
-		<receiver android:label="PowerampAPIReceiver" android:name=".PowerampAPIReceiver">
+		<!--
+			This receiver is registered in manifest and can be used to trigger some processing based on Poweramp broadcast intents.<br>
+			It's not needed for most scenarios where some activity or service exists, but may be needed for "passive" scenarios, when something should be done only on response to Poweramp events.
+		-->
+		<receiver android:label="APIReceiver" android:name=".APIReceiver">
 			<intent-filter>
 				<action android:name="com.maxmpz.audioplayer.STATUS_CHANGED_EXPLICIT"/>
 				<action android:name="com.maxmpz.audioplayer.TRACK_CHANGED_EXPLICIT"/>

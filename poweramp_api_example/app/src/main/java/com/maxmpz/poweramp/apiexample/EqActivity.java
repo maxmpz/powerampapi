@@ -29,9 +29,7 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -51,7 +49,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
-import com.maxmpz.poweramp.player.TableDefs;
 
 public class EqActivity extends Activity implements OnClickListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener {
 	private static final String TAG = "EqActivity";
@@ -351,7 +348,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 			case R.id.eq:
 				if(!mSettingEqu) {
-					PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
 							.putExtra(PowerampAPI.EQU, isChecked)
 					);
@@ -361,7 +358,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 			case R.id.tone:
 				if(!mSettingTone) {
-					PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
 							.putExtra(PowerampAPI.TONE, isChecked)
 					);
@@ -386,7 +383,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			presetString.append(name).append("=").append(value).append(";");
 		}
 
-		PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
 				.putExtra(PowerampAPI.VALUE, presetString.toString())
 		);
@@ -414,7 +411,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		if(((CheckBox)findViewById(R.id.dynamic)).isChecked()) {
 			String name = (String)bar.getTag();
 			float value = seekBarToValue(name, bar.getProgress());
-			PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_BAND)
 					.putExtra(PowerampAPI.NAME, name)
 					.putExtra(PowerampAPI.VALUE, value)
@@ -436,7 +433,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	@Override
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
-			PowerampAPIHelper.startPAService(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
 					.putExtra(PowerampAPI.ID, id)
 			);

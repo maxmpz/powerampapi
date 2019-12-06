@@ -61,20 +61,20 @@ public final class PowerampAPI {
 	/**
 	 * Defines PowerampAPI version
 	 */
-	public static final int VERSION = 853;
+	public static final int VERSION = 855;
 
 	/**
-	 * No id value (for id-related fields, for example, {@link PowerampAPI.Track.ID})
+	 * No id value (for id-related fields, for example, {@link PowerampAPI.Track#ID})
 	 */
 	public static final long NO_ID = 0L;
 
 	/**
-	 * Special {@link PowerampAPI.Track.ID} value indicating raw file - file opened from some file manager, which can't be matched against Poweramp database
+	 * Special {@link PowerampAPI.Track#ID} value indicating raw file - file opened from some file manager, which can't be matched against Poweramp database
 	 */
 	public static final long RAW_TRACK_ID = -2L;
 
 	/**
-	 * Special {@link PowerampAPI.Track.ID} value indicating missing file - for example playlist entry which can't be found
+	 * Special {@link PowerampAPI.Track#ID} value indicating missing file - for example playlist entry which can't be found
 	 */
 	public static final long MISSING_TRACK_ID = -3L;
 
@@ -118,7 +118,10 @@ public final class PowerampAPI {
 	public static final String PARAM_SHUFFLE = "shf";
 
 	/**
-	 * Poweramp Control action. This is executed by service.
+	 * Poweramp Control action.<br>
+	 * Starting from Poweramp build-855 this is now also a broadcast intent (which should be the primary target of this action).<br>
+	 * Previously this was executed directly by service and though this is still supported it's depricated.<br>
+	 * The issue with sending intents to service is foreground processing, which on current Androids 8-10 can't be 100% reliable processed and may cause unexpected ANR errors<br>
 	 * Extras:<br>
 	 * {@code int cmd} - command to execute. See {@link #COMMAND}, 
 	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes
@@ -135,7 +138,7 @@ public final class PowerampAPI {
 	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes
 	 * @since 854
 	 */
-	public static final String ACTION_API_COMMAND_VIA_ACT = "com.maxmpz.audioplayer.API_COMMAND_VIA_ACT";
+	//public static final String ACTION_API_COMMAND_VIA_ACT = "com.maxmpz.audioplayer.API_COMMAND_VIA_ACT";
 
 	/**
 	 * Poweramp package name.<br>
@@ -151,15 +154,27 @@ public final class PowerampAPI {
 	public static final String PLAYER_SERVICE_NAME = "com.maxmpz.audioplayer.player.PlayerService";
 
 	/**
+	 * Poweramp API receiver name. This is now preferable target of all command intents.
+	 * @since 855
+	 */
+	public static final String API_RECEIVER_NAME = "com.maxmpz.audioplayer.player.PowerampAPIReceiver";
+
+	/**
+	 * Poweramp API activity name. Can be used for intents which can't be sent as broadcast, where activity target is required
+	 * @since 855
+	 */
+	public static final String API_ACTIVITY_NAME = "com.maxmpz.audioplayer.player.PowerampAPIActivity";
+
+	/**
 	 * Poweramp service ComponentName
-	 * @deprecated see PowerampAPIHelper.getPlayerServiceComponentName
+	 * @deprecated see {@link PowerampAPIHelper#getPlayerServiceComponentName}
 	 */
 	@Deprecated
 	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
 
 	/**
 	 * @return ready to use Intent for Poweramp service
-	 * @deprecated see PowerampAPIHelper.getPlayerServiceComponentName, PowerampAPIHelper.newAPIIntent
+	 * @deprecated see {@link PowerampAPIHelper#getPlayerServiceComponentName}, {@link PowerampAPIHelper#newAPIIntent}
 	 */
 	@Deprecated
 	public static Intent newAPIIntent() {
@@ -403,8 +418,8 @@ public final class PowerampAPI {
 		 * Extras<br>
 		 * {@code boolean paused} - (optional) default false. OPEN_TO_PLAY command starts playing the file immediately, unless "paused" extra is true<br>
 		 * {@code int pos}- (optional) seek to this position in track before playing
-		 * @see PowerampAPI.Track.POSITION
-		 * @see PowerampAPI.PAUSED
+		 * @see PowerampAPI.Track#POSITION
+		 * @see PowerampAPI#PAUSED
 		 */
 		public static final int OPEN_TO_PLAY = 20;
 
@@ -417,7 +432,7 @@ public final class PowerampAPI {
 		/**
 		 * Extras:<br>
 		 * {@code String value} - equalizer values,
-		 * @see PowerampAPI.ACTION_EQU_CHANGED
+		 * @see PowerampAPI#ACTION_EQU_CHANGED
 		 */
 		public static final int SET_EQU_STRING = 51;
 
@@ -661,7 +676,7 @@ public final class PowerampAPI {
 	 * {@code int pos} - (optional) current in-track position in seconds<br>
 	 * {@code long ts} - timestamp of the event (System.currentTimeMillis())<br>
 	 * {@code int status} - one of the STATUS_* values (deprecated)<br><br>
-	 * (deprecated since 790) additional extras - not sent anymore
+	 * @since 790 - additional extras - not sent anymore
 	 */
 	public static final String ACTION_STATUS_CHANGED = "com.maxmpz.audioplayer.STATUS_CHANGED";
 
@@ -785,9 +800,8 @@ public final class PowerampAPI {
 	 * {@code int cmd} - some dsp unique command. cmd should be >= 0 (see COMMAND)<br>
 	 * {@code byte[] data} - the command data serialized as byte array (see CONTENT)
 	 * @since 700
-	 * @see PowerampAPI.PACKAGE
-	 * @see PowerampAPI.COMMAND
-	 * @see PowerampAPI.CONTENT
+	 * @see PowerampAPI#PACKAGE
+	 * @see PowerampAPI#COMMAND
 	 */
 	public static final String ACTION_NATIVE_PLUGIN_COMMAND = "com.maxmpz.audioplayer.NATIVE_PLUGIN_COMMAND";
 
@@ -798,7 +812,7 @@ public final class PowerampAPI {
 	 * Extras:<br>
 	 * {@code int api} - Poweramp API version
 	 * @since 700
-	 * @see PowerampAPI.API_VERSION
+	 * @see PowerampAPI#API_VERSION
 	 */
 	public static final String ACTION_NATIVE_PLUGIN_INIT = "com.maxmpz.audioplayer.NATIVE_PLUGIN_INIT";
 
@@ -843,29 +857,35 @@ public final class PowerampAPI {
 	/**
 	 * Extra
 	 * Int
-	 * @see PowerampAPI.ACTION_OPEN_EQ
-	 * @see PowerampAPI.EQ_TAB_DEFAULT, PowerampAPI.EQ_TAB_EQUALIZER, PowerampAPI.EQ_TAB_VOLUME, PowerampAPI.EQ_TAB_REVERB
+	 * @see PowerampAPI#ACTION_OPEN_EQ
+	 * @see PowerampAPI#EQ_TAB_DEFAULT
+	 * @see PowerampAPI#EQ_TAB_EQUALIZER
+	 * @see PowerampAPI#EQ_TAB_VOLUME
+	 * @see PowerampAPI#EQ_TAB_REVERB
 	 */
 	public static final String EXTRA_EQ_TAB = "eqTab";
 
 	/**
 	 * Open last user opened eq tab 
-	 * @see PowerampAPI.EXTRA_EQ_TAB
+	 * @see PowerampAPI#EXTRA_EQ_TAB
 	 */
 	public static final int EQ_TAB_DEFAULT = -1;
+
 	/**
 	 * Open equalizer tab 
-	 * @see PowerampAPI.EXTRA_EQ_TAB
+	 * @see PowerampAPI#EXTRA_EQ_TAB
 	 */
 	public static final int EQ_TAB_EQUALIZER = 0;
+
 	/**
 	 * Open volume tab 
-	 * @see PowerampAPI.EXTRA_EQ_TAB
+	 * @see PowerampAPI#EXTRA_EQ_TAB
 	 */
 	public static final int EQ_TAB_VOLUME = 1;
+
 	/**
 	 * Open reverb tab 
-	 * @see PowerampAPI.EXTRA_EQ_TAB
+	 * @see PowerampAPI#EXTRA_EQ_TAB
 	 */
 	public static final int EQ_TAB_REVERB = 2;
 
@@ -905,33 +925,33 @@ public final class PowerampAPI {
 	 * Extra<br>
 	 * {@code int}
 	 * @since 700
-	 * @see PowerampAPI.STATUS_CHANGED
+	 * @see PowerampAPI#ACTION_STATUS_CHANGED
 	 */
 	public static final String STATE = "state";
 
 	/**
 	 * Poweramp is probably not fully loaded, state is unknown
 	 * @since 705
-	 * @see PowerampAPI.STATUS_CHANGED
+	 * @see PowerampAPI#ACTION_STATUS_CHANGED
 	 */
 	public static final int STATE_NO_STATE = -1;
 
 	/**
 	 * Poweramp is in stopped state - finished playing some list and stopped, or explicitly stopped by user
 	 * @since 700
-	 * @see PowerampAPI.STATUS_CHANGED
+	 * @see PowerampAPI#ACTION_STATUS_CHANGED
 	 */
 	public static final int STATE_STOPPED = 0;
 	/**
 	 * Poweramp is playing
 	 * @since 700
-	 * @see PowerampAPI.STATUS_CHANGED
+	 * @see PowerampAPI#ACTION_STATUS_CHANGED
 	 */
 	public static final int STATE_PLAYING = 1;
 	/**
 	 * Poweramp is paused
 	 * @since 700
-	 * @see PowerampAPI.STATUS_CHANGED
+	 * @see PowerampAPI#ACTION_STATUS_CHANGED
 	 */
 	public static final int STATE_PAUSED = 2;
 
@@ -1118,10 +1138,9 @@ public final class PowerampAPI {
 		public static final String REAL_ID = "realId";
 
 		/**
-		 * Category type<br>
-		 * {@code int}
-		 * @see PowerampAPI.Track.Type
+		 * @deprecated not used anymore
 		 */
+		@Deprecated
 		public static final String TYPE = "type";
 
 		/**
@@ -1150,7 +1169,7 @@ public final class PowerampAPI {
 		/**
 		 * File type<br>
 		 * {@code integer}
-		 * @see PowerampAPI.Track.FileType
+		 * @see FileType
 		 */
 		public static final String FILE_TYPE = "fileType";
 
@@ -1321,7 +1340,7 @@ public final class PowerampAPI {
 			/** Track category was advanced backward */
 			public static final int FLAG_ADVANCE_BACKWARD_CAT    = 4;
 			/** Mask for FLAG_ADVANCE_* values */
-			public static final int FLAG_ADVANCE_MASK            = 0x7; // 111
+			public static final int FLAG_ADVANCE_MASK            = 0x7;
 			/** Track was advanced from the notification */
 			public static final int FLAG_NOTIFICATION_UI         = 0x20;
 			/** Indicates the track is the first in Poweramp service session */
@@ -1342,7 +1361,7 @@ public final class PowerampAPI {
 	}
 
 	/**
-	 * {@link PowerampAPI.Track} {@link PowerampAPI.Track.CAT} categories
+	 * {@link PowerampAPI.Track} {@link PowerampAPI.Track#CAT} categories
 	 */
 	public static final class Cats {
 		/** Root library category. Not used in Poweramp v3. */
@@ -1542,6 +1561,7 @@ public final class PowerampAPI {
 		 * Exports Poweramp settings
 		 */
 		public static final String ACTION_EXPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_EXPORT_SETTINGS";
+
 		/**
 		 * Imports Poweramp settings
 		 */
@@ -1555,7 +1575,7 @@ public final class PowerampAPI {
 
 		/**
 		 * Value for EXTRA_OPEN - opens skins list
-		 * @see PowerampAPI.ACTIVITY_SETTINGS
+		 * @see PowerampAPI#ACTIVITY_SETTINGS
 		 * @since 700
 		 */
 		public static final String OPEN_THEME = "theme";
@@ -1572,7 +1592,7 @@ public final class PowerampAPI {
 		/**
 		 * Extra for ACTIVITY_SETTINGS<br>
 		 * {@code String}
-		 * @see PowerampAPI.ACTIVITY_SETTINGS
+		 * @see PowerampAPI#ACTIVITY_SETTINGS
 		 * @since 700
 		 */
 		public static final String EXTRA_OPEN = "open";
@@ -1580,7 +1600,7 @@ public final class PowerampAPI {
 		/**
 		 * Extra for ACTIVITY_SETTINGS<br>
 		 * {@code String}
-		 * @see PowerampAPI.ACTIVITY_SETTINGS
+		 * @see PowerampAPI#ACTIVITY_SETTINGS
 		 * @since 820
 		 */
 		public static final String EXTRA_OPEN_PATH = "open_path";
@@ -1595,7 +1615,7 @@ public final class PowerampAPI {
 
 		/**
 		 * Value for EXTRA_OPEN - opens vis presets list
-		 * @see PowerampAPI.ACTIVITY_SETTINGS
+		 * @see PowerampAPI#ACTIVITY_SETTINGS
 		 * @since 700
 		 */
 		public static final String OPEN_VIS = "vis";
@@ -1606,7 +1626,7 @@ public final class PowerampAPI {
 		 * Can be also specified for com.maxmpz.audioplayer.SettingsActivity (with EXTRA_OPEN=theme) to scroll to that skin in skins list<br><br>
 		 *
 		 * {@code String} - Skin APK package name
-		 * @see PowerampAPI.ACTIVITY_STARTUP, PowerampAPI.ACTIVITY_SETTINGS
+		 * @see PowerampAPI#ACTIVITY_STARTUP, PowerampAPI.ACTIVITY_SETTINGS
 		 * @since 795
 		 */
 		public static final String EXTRA_SKIN_PACKAGE = "theme_pak";
@@ -1618,5 +1638,4 @@ public final class PowerampAPI {
 		 */
 		public static final String EXTRA_SKIN_STYLE_ID = "theme_id";
 	}
-
 }
