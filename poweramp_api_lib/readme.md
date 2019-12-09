@@ -7,6 +7,39 @@ While being simple Intent APIs provide almost complete control over Poweramp.
 
 See [src/com/maxmpz/poweramp/player/PowerampAPI.java](src/com/maxmpz/poweramp/player/PowerampAPI.java) comments for reference.
 
+## Tasker and Similar Apps Integration
+
+### Sending Commands
+You can send Poweramp commands as intents.
+The main command action here is `com.maxmpz.audioplayer.API_COMMAND`, which can be send to service (com.maxmpz.audioplayer.player.PlayerService), 
+activity (com.maxmpz.audioplayer.player.PowerampAPIActivity, build 855+), or broadcast receiver (com.maxmpz.audioplayer.player.PowerampAPIReceiver, build 855).
+
+Example of simple tasker action:
+- Task Edit / Add Action 
+- System / Send Intent
+- Action: com.maxmpz.audioplayer.API_COMMAND
+- Extra: cmd:1
+- Package: com.maxmpz.audioplayer
+- Target: service
+
+This will send TOGGLE_PLAY_PAUSE (1) command. See other commands here: [PowerampAPI.java around line 206](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#206). 
+
+### Receiving Status
+
+You can receive Poweramp status via broadcast intents.
+
+Example of simple tasker intent receiver:
+- Profile / Add Profile / Event
+- System / Intent Received
+- Action: com.maxmpz.audioplayer.STATUS_CHANGED
+- New Task / enter e.g. "Show Popup"
+- + / Alert / Popup 
+- Title: Status Changed
+- Text: State=%state Paused=%paused
+
+The %variables are taken directly from receive intent. See here for other extras: [PowerampAPI.java around line 667](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#667).
+
+
 ### Other Relevant Poweramp APIs
 
 * Poweramp v3 (**build 817+**) implements **MediaSessionCompat, MediaBrowserServiceCompat** APIs:

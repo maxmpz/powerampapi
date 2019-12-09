@@ -684,9 +684,10 @@ public final class PowerampAPI {
 	/**
 	 * This is explicit intent sent to your app to ensure it receives it on Android 8+ (with background execution limitations).
 	 * Differs from ACTION_STATUS_CHANGED which is sticky intent which won't be received by your app in the background.<br><br>
+	 * NOTE: this works only with the receivers registered via AndroidManifest.xml<br><br>
 	 *
 	 * <b>NOTE: Poweramp caches app list for this intent. Cache is updated when Poweramp is started or playback resumed.</b><br>
-	 * This means if your app just installed and Poweramp is playing, your app won't receive this action until next Poweramp pause/resume cycle or Poweramp service restart.<br><br>
+	 * It means if your app just installed and Poweramp is playing, your app won't receive this action until next Poweramp pause/resume cycle or Poweramp service restart.<br><br>
 	 *
 	 * Extras:<br>
 	 * {@code int state} - one of the STATE_* values<br>
