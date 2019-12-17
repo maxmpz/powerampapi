@@ -39,6 +39,21 @@ Example of simple tasker intent receiver:
 
 The %variables are taken directly from receive intent. See here for other extras: [PowerampAPI.java around line 667](src/com/maxmpz/poweramp/player/PowerampAPI.java#L667).
 
+### Example: parsing Poweramp track info and showing it in a toast popup
+(Courtesy of Clever_man)
+
+```
+Profile: TrackChanged (16)
+    Event: Intent Received [ Action:com.maxmpz.audioplayer.TRACK_CHANGED Cat:None Cat:None Scheme:* Mime Type:* ]
+   	
+    Enter: FlashInfo (19)
+    	A1: JavaScriptlet [ Code:var regex = new RegExp(/([A-Za-z]*)=(.*?),/g);
+    while (matcher = regex.exec(track)) {
+      setLocal(matcher[1].toLowerCase(), matcher[2]);
+    } Libraries: Auto Exit:On Timeout (Seconds):45 ] 
+    	A2: Flash [ Text:%artist %title Long:Off ]
+```
+
 
 ### Other Relevant Poweramp APIs
 
