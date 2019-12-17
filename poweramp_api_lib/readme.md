@@ -22,7 +22,7 @@ Example of simple tasker action:
 - Package: com.maxmpz.audioplayer
 - Target: service
 
-This will send TOGGLE_PLAY_PAUSE (1) command. See other commands here: [PowerampAPI.java around line 206](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#206). 
+This will send TOGGLE_PLAY_PAUSE (1) command. See other commands here: [PowerampAPI.java around line 206](src/com/maxmpz/poweramp/player/PowerampAPI.java#L206). 
 
 ### Receiving Status
 
@@ -37,7 +37,7 @@ Example of simple tasker intent receiver:
 - Title: Status Changed
 - Text: State=%state Paused=%paused
 
-The %variables are taken directly from receive intent. See here for other extras: [PowerampAPI.java around line 667](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#667).
+The %variables are taken directly from receive intent. See here for other extras: [PowerampAPI.java around line 667](src/com/maxmpz/poweramp/player/PowerampAPI.java#L667).
 
 
 ### Other Relevant Poweramp APIs
