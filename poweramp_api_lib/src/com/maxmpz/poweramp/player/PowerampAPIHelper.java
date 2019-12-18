@@ -46,6 +46,7 @@ public class PowerampAPIHelper {
 	private static ComponentName sPowerampPSComponentName;
 	private static int sPowerampBuild;
 	private static ComponentName sApiReceiverComponentName;
+	private static ComponentName sBrowserServiceComponentName;
 
 
 	/**
@@ -55,9 +56,9 @@ public class PowerampAPIHelper {
 	public static String getPowerampPackageName(Context context) {
 		String pak = sPowerampPak;
 		if(pak == null) {
-			ComponentName compomentName = getPlayerServiceComponentName(context);
-			if(compomentName != null) {
-				pak = sPowerampPak = compomentName.getPackageName();
+			ComponentName componentName = getPlayerServiceComponentName(context);
+			if(componentName != null) {
+				pak = sPowerampPak = componentName.getPackageName();
 			}
 		}
 		return pak;
@@ -65,7 +66,7 @@ public class PowerampAPIHelper {
 	
 	/**
 	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
-	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed<br>
+	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed
 	 */
 	public static ComponentName getPlayerServiceComponentName(Context context) {
 		ComponentName componentName = sPowerampPSComponentName;
@@ -74,6 +75,25 @@ public class PowerampAPIHelper {
 				ResolveInfo info = context.getPackageManager().resolveService(new Intent(PowerampAPI.ACTION_API_COMMAND), 0);
 				if(info != null && info.serviceInfo != null) {
 					componentName = sPowerampPSComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
+				}
+			} catch(Throwable th) {
+				Log.e(TAG, "", th);
+			}
+		}
+		return componentName;
+	}
+
+	/**
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp Media Browser Service component name, or null if not installed
+	 */
+	public static ComponentName getBrowserServiceComponentName(Context context) {
+		ComponentName componentName = sBrowserServiceComponentName;
+		if(componentName == null) {
+			try {
+				ResolveInfo info = context.getPackageManager().resolveService(new Intent("android.media.browse.MediaBrowserService").setPackage(getPowerampPackageName(context)), 0);
+				if(info != null && info.serviceInfo != null) {
+					componentName = sBrowserServiceComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
 				}
 			} catch(Throwable th) {
 				Log.e(TAG, "", th);

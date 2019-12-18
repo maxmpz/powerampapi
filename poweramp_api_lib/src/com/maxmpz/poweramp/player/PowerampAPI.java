@@ -21,6 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.player;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -149,7 +150,9 @@ public final class PowerampAPI {
 	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
 
 	/**
-	 * Poweramp service name
+	 * Poweramp service name<br>
+	 * See also {@link PowerampAPIHelper#getPlayerServiceComponentName(Context)} for a way of getting PlayerService component resolved according actual Poweramp package name<br>
+	 * NOTE: Poweramp PlayerService does not implement MediaBrowser API. For this, separate service is used. See {@link PowerampAPIHelper#getBrowserServiceComponentName(Context)}
 	 */
 	public static final String PLAYER_SERVICE_NAME = "com.maxmpz.audioplayer.player.PlayerService";
 

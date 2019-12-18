@@ -30,11 +30,17 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PersistableBundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -162,8 +168,9 @@ public class MainActivity extends AppCompatActivity implements
 			sendBroadcast(intent);
 			sPermissionAsked = true;
 		}
-	}
 
+		getComponentNames();
+	}
 
 	/**
 	 * When screen is rotated, by default Android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus
@@ -1163,9 +1170,18 @@ public class MainActivity extends AppCompatActivity implements
 
 			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(queueUri));
 		}
-
 	}
 
+	private void getComponentNames() {
+		TextView tv = findViewById(R.id.component_names);
+		SpannableStringBuilder sb = new SpannableStringBuilder();
+		appendWithSpan(sb, "Component Names\n", new StyleSpan(Typeface.BOLD));
+		appendWithSpan(sb, "Package: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getPowerampPackageName(this)).append("\n");
+		appendWithSpan(sb, "PlayerService: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getPlayerServiceComponentName(this).toString()).append("\n");
+		appendWithSpan(sb, "MediaBrowserService: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getBrowserServiceComponentName(this).toString()).append("\n");
+		appendWithSpan(sb, "API Receiver: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getApiReceiverComponentName(this).toString()).append("\n");
+		tv.setText(sb);
+	}
 
 	public static final @NonNull String getRawColName(@NonNull String col) {
 		int dot = col.indexOf('.');
@@ -1233,5 +1249,12 @@ public class MainActivity extends AppCompatActivity implements
 			sb.append("\n");
 		}
 		return sb.toString();
+	}
+
+	private static @NonNull SpannableStringBuilder appendWithSpan(@NonNull SpannableStringBuilder sb, @Nullable CharSequence str, @NonNull Object span) {
+		int start = sb.length();
+		sb.append(str != null ? str : "");
+		sb.setSpan(span, start, sb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		return sb;
 	}
 }

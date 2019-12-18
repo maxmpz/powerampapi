@@ -250,10 +250,17 @@
 				/>
 		</LinearLayout>
 
+		<TextView android:id="@+id/component_names"
+			android:padding="8dp"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/playing_mode2"
+		/>
+
 		<EditText android:id="@+id/play_file_path"
 			android:layout_width="200dp"
 			android:layout_height="wrap_content"
-			android:layout_below="@+id/playing_mode2"
+			android:layout_below="@+id/component_names"
 			android:layout_marginTop="8dp"
 			android:singleLine="true"
 			android:hint="content://"
