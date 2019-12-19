@@ -121,7 +121,7 @@ public final class PowerampAPI {
 	/**
 	 * Poweramp Control action.<br>
 	 * Starting from Poweramp build-855 this is now also a broadcast intent (which should be the primary target of this action).<br>
-	 * Previously this was executed directly by service and though this is still supported it's depricated.<br>
+	 * Previously this was executed directly by service and though this is still supported it's deprecated.<br>
 	 * The issue with sending intents to service is foreground processing, which on current Androids 8-10 can't be 100% reliable processed and may cause unexpected ANR errors<br>
 	 * Extras:<br>
 	 * {@code int cmd} - command to execute. See {@link #COMMAND}, 
@@ -342,6 +342,12 @@ public final class PowerampAPI {
 		 content://com.maxmpz.audioplayer.data/genres/#/files/#
 		 content://com.maxmpz.audioplayer.data/genres/files
 
+		 - Years
+		 content://com.maxmpz.audioplayer.data/years
+		 content://com.maxmpz.audioplayer.data/years/#/files
+		 content://com.maxmpz.audioplayer.data/years/#/files/#
+		 content://com.maxmpz.audioplayer.data/years/files
+
 		 - Artists
 		 content://com.maxmpz.audioplayer.data/artists
 		 content://com.maxmpz.audioplayer.data/artists/#
@@ -374,6 +380,13 @@ public final class PowerampAPI {
 		 content://com.maxmpz.audioplayer.data/genres/#/albums/#/files/#
 		 content://com.maxmpz.audioplayer.data/genres/#/albums/files
 		 content://com.maxmpz.audioplayer.data/genres/albums
+
+		 - Albums by Years
+		 content://com.maxmpz.audioplayer.data/genres/#/years
+		 content://com.maxmpz.audioplayer.data/genres/#/years/#/files
+		 content://com.maxmpz.audioplayer.data/genres/#/years/#/files/#
+		 content://com.maxmpz.audioplayer.data/genres/#/years/files
+		 content://com.maxmpz.audioplayer.data/genres/years
 
 		 - Albums by Artists
 		 content://com.maxmpz.audioplayer.data/artists/#/albums
@@ -1385,8 +1398,11 @@ public final class PowerampAPI {
 		/** Albums for given albums split by artists */
 		public static final int ARTISTS__ALBUMS         = 250;
 		public static final int GENRES                  = 320;
+		public static final int YEARS                   = 330;
 		/** Albums for given genre id */
 		public static final int GENRES_ID_ALBUMS        = 210;
+		/** Albums for given year id */
+		public static final int YEARS_ID_ALBUMS         = 340;
 		public static final int COMPOSERS               = 600;
 		/** Albums for given composer id */
 		public static final int COMPOSERS_ID_ALBUMS     = 230;

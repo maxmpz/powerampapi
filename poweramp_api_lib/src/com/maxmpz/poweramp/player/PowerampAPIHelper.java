@@ -143,7 +143,7 @@ public class PowerampAPIHelper {
 
 	/**
 	 * If we have Poweramp build 855+, send broadcast, otherwise use startForegroundService/startService which may be prone to ANR errors
-	 * and are depricated for Poweramp builds 855+.<br><br>
+	 * and are deprecated for Poweramp builds 855+.<br><br>
 	 * THREADING: can be called from any thread
 	 */
 	public static void sendPAIntent(Context context, Intent intent) {

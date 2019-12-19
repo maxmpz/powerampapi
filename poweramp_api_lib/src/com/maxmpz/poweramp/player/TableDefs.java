@@ -177,7 +177,7 @@ public interface TableDefs {
 		/**
 		 * INTEGER
 		 */
-		public static final @NonNull String YEAR = "year";
+		public static final @NonNull String YEAR = TABLE + ".year";
 
 		/**
 		 * Cue offset milliseconds<br>
@@ -999,6 +999,74 @@ public interface TableDefs {
 		public static final @NonNull String GENRE_ID = "genre_id";
 	}
 
+	
+	/** 
+	 * Since 856
+	 */
+	public interface Years {
+		public static final @NonNull String TABLE = "years";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+
+		/**
+		 * INTEGER
+		 */
+		public static final @NonNull String YEAR = TABLE + ".year";
+
+		/**
+		 * First seen time<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+
+		/**
+		 * Number of tracks in this category, excluding cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
+
+		/**
+		 * Number of tracks in this category, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
+
+		/**
+		 * Duration in milliseconds, excluding cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String DURATION = TABLE + ".duration";
+		
+		/**
+		 * Duration meta<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 */
+		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
+		
+		/**
+		 * Duration meta including cues<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 */
+		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
+		
+		/**
+		 * Duration in milliseconds, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
+
+		/**
+		 * Bitwise flag<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+	}
 
 	public interface PlaylistEntries {
 		public static final @NonNull String TABLE = "playlist_entries";
