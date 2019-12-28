@@ -1302,6 +1302,135 @@ public interface TableDefs {
 		 * INTEGER (boolean)
 		 */
 		public static final @NonNull String BIND_TO_CHROMECAST = "bind_to_cc";
+		
+		/**
+		 * Virtual field, used for insert/update contentValues.<br>
+		 * If set to 1 preset is bound to track specified by {@link #BOUND_TRACK_ID}, if set to 0, preset is unbound from that track<br>
+		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * Since 856<br>
+		 * INTEGER (boolean)<br>
+		 */
+		public static final @NonNull String BIND_TO_TRACK = "__bind_to_track";
+
+		/**
+		 * Virtual field, used for insert/update contentValues.<br>
+		 * Should be set to track id which should be bound/unbound with {@link #BIND_TO_TRACK}
+		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * Since 856<br>  
+		 * INTEGER
+		 */
+		public static final @NonNull String BOUND_TRACK_ID = "__bound_track_id";
+
+		/**
+		 * Virtual field, used for insert/update contentValues.<br>
+		 * If set to 1 preset is bound to all category tracks specified by {@link #BOUND_CAT_URI}, if set to 0, preset is unbound from these tracks<br>
+		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * Since 856<br>
+		 * INTEGER (boolean)
+		 */
+		public static final @NonNull String BIND_TO_CAT = "__bind_to_cat";
+
+		/**
+		 * Virtual field, used for insert/update contentValues.<br>
+		 * Should be set to category uri which should be bound/unbound with {@link #BIND_TO_CAT}<br>
+		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * Since 856<br>
+		 * TEXT  
+		 */
+		public static final @NonNull String BOUND_CAT_URI = "__bound_cat_uri";
+
+		/**
+		 * Virtual field, used for insert/update contentValues. If this is set, no other track bind/unbind assignments will be executed and preset is unbound from all tracks<br>
+		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * INTEGER (boolean) 
+		 */
+		public static final @NonNull String UNBIND_FROM_ALL_TRACK_IDS = "__unbind_from_all_track_ids";
+		
+		/**
+		 * Virtual field, used for insert/update contentValues. If this is set, no other device bind/unbind assignments will be executed and preset is unbound from all devices<br>
+		 * Since 856<br>
+		 * INTEGER (boolean) 
+		 */
+		public static final @NonNull String UNBIND_FROM_ALL_DEVICES = "__unbind_from_all_devices";
+	
+		/**
+		 * Virtual field, used for insert/update contentValues. <br>
+		 * If this is set to value > 0, * content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * will be checked and if all 4 are set to appropriate valid non-empty values, preset will be bound/unbound to that device according to the {@link #BIND_TO_DEVICE_PREFIX}#.<br>
+		 * # is number [0, NUM_BIND_DEVICES)<br>
+		 * Since 856<br>
+		 * INTEGER 
+		 */
+		public static final @NonNull String NUM_BIND_DEVICES = "__num_bind_devices";
+
+		/**
+		 * Prefix for virtual fields, used for insert/update contentValues.<br>
+		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
+		 * # is number [0, NUM_BIND_DEVICES)<br>
+		 * Since 856<br>
+		 * INTEGER (boolean) 
+		 */
+		public static final @NonNull String BIND_TO_DEVICE_PREFIX = "__bind_to_device_";
+
+		/**
+		 * Prefix for virtual fields, used for insert/update contentValues.<br>
+		 * Sets device type for device assignment. See {@link RouterConsts} DEVICE_* constants<br>
+		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
+		 * # is number [0, NUM_BIND_DEVICES)<br>
+		 * Since 856<br>
+		 * INTEGER 
+		 */
+		public static final @NonNull String DEVICE_PREFIX = "__device_";
+		
+		/**
+		 * Prefix for virtual fields, used for insert/update contentValues. Sets device address for given device assignment. Device address may match device name,
+		 * but for BT / Chromecast device this is usually mac address or some other unique identifier.<br>
+		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
+		 * # is number [0, NUM_BIND_DEVICES)<br>
+		 * Since 856<br>
+		 * TEXT 
+		 */
+		public static final @NonNull String DEVICE_ADDRESS_PREFIX = "__device_address_";
+		
+		/**
+		 * Prefix for virtual fields, used for insert/update contentValues. Sets visible device name for given device assignment.<br> 
+		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
+		 * # is number [0, NUM_BIND_DEVICES)<br>
+		 * Since 856<br>
+		 * TEXT 
+		 */
+		public static final @NonNull String DEVICE_NAME_PREFIX = "__device_name_";
+
+		/**
+		 * Virtual field, used for insert/update contentValues. If set, preset is bound to that track<br>
+		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * INTEGER
+		 * @deprecated see {@link #BIND_TO_TRACK} 
+		 */
+		@Deprecated
+		public static final @NonNull String BIND_TO_TRACK_ID = "__bind_to_track_id";
+		
+		/**
+		 * Virtual field, used for insert/update contentValues. If set, preset is unbound from that track<br>
+		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * INTEGER
+		 * @deprecated see {@link #BIND_TO_TRACK} 
+		 */
+		@Deprecated
+		public static final @NonNull String UNBIND_FROM_TRACK_ID = "__unbind_to_track_id";
+		
+		/**
+		 * Virtual field, used for insert/update contentValues. If set, appropriate category uri (string==getMassOpsItemsUri(false)) is bound for this track<br>
+		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * INTEGER (boolean) 
+		 * @deprecated see {@link #BIND_TO_CAT}
+		 */
+		@Deprecated
+		public static final @NonNull String BIND_TO_CAT_URI = "__bind_to_cat_uri";
 	}
 
 	public static final class EqPresetSongs implements BaseColumns {
@@ -1319,7 +1448,37 @@ public interface TableDefs {
 		 * Eq preset id<br>
 		 * INTEGER
 		 */
-		public static final @NonNull String PRESET_ID = "preset_id";
+		public static final @NonNull String PRESET_ID = TABLE + ".preset_id";
+	}
+
+	public static final class EqPresetDevices implements BaseColumns {
+		public static final @NonNull String TABLE = "eq_preset_devices";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+
+		/**
+		 * Eq preset id<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String PRESET_ID = TABLE + ".preset_id";
+
+		/**
+		 * Device type<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String DEVICE = "device";
+
+		/**
+		 * Device name<br>
+		 * TEXT
+		 */
+		public static final @NonNull String DEVICE_NAME = "device_name";
+
+		/**
+		 * Device address<br>
+		 * TEXT
+		 */
+		public static final @NonNull String DEVICE_ADDRESS = "device_address";
 	}
 
 	public class ReverbPresets {
