@@ -1099,22 +1099,31 @@ public final class PowerampAPI {
 		 * Repeat is disabled
 		 */
 		public static final int REPEAT_NONE	   = 0;
+		
 		/**
 		 * Current selected category repeated
 		 */
 		public static final int REPEAT_ON	   = 1;
+		
 		/**
 		 * Category will be advanced to next one after the last song played
 		 */
 		public static final int REPEAT_ADVANCE = 2;
+		
 		/**
 		 * Current song is repeated
 		 */
 		public static final int REPEAT_SONG    = 3;
+
+		/**
+		 * Current song is played once, then player pauses on next song
+		 */
+		public static final int SINGLE_SONG    = 4;
+
 		/**
 		 * Max possible repeat value
 		 */
-		public static final int MAX_REPEAT     = 3;
+		public static final int MAX_REPEAT     = 4;
 	}
 
 	/**
@@ -1125,10 +1134,12 @@ public final class PowerampAPI {
 		 * Visualization is disabled
 		 */
 		public static final int VIS_NONE        = 0;
+		
 		/**
 		 * Visualization with UI visible
 		 */
 		public static final int VIS_W_UI        = 1;
+		
 		/**
 		 * Full screen visualization
 		 */
