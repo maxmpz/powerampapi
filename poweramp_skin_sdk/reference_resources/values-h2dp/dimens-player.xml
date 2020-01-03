@@ -49,6 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Navbar_height">40dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">36dp</dimen>
 	<dimen name="NavBarButton_drawableSize">28dp</dimen>
+	<dimen name="Navbar_normal_marginB">8dp</dimen>
 		
 	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
 	<dimen name="NavbarBounds_height">48dp</dimen>

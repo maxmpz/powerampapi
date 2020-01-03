@@ -28,9 +28,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.SceneParams w:scene="defaultScene" w:baseScene="defaultScene" w:forId="@id/pause"
 		w:jumpVisibility="true"
 	/>
-	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/prev_cat"
+
+	<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s 
+	     w:morphArg2="2" x2 for duration for long press (10s, 40s) -->	
+	<com.maxmpz.widget.MorphableBusActionButton android:id="@+id/prev_cat"
 		style="?TopPrevCat"
+		
 		w:busId="@id/bus_player_cmd"
 		
 		w:msgId="@id/cmd_player_play_prev_category"
@@ -39,8 +42,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:disableForStateBusId="@id/bus_player"
 		w:disableForStateId="@id/state_player_category_not_navigable"
 		w:disableForStateMsgId="@id/msg_player_track_changed"
-		
 		android:contentDescription="@string/h_prev_list"
+		
+		w:morphWhenState="@id/state_player_long_seek"
+		w:morphMsgId="@id/cmd_player_seek_jump"
+		w:morphArg1="0"
+		w:morphArg2="2"
+		w:morphLongPressMsgId="@id/cmd_player_begin_seek_jumps"
+		w:morphLongPressEndMsgId="@id/cmd_player_end_seek_jumps"
+		w:morphContentDescription="@string/back_10s"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
 	
@@ -57,7 +67,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:longPressMsgId="@id/cmd_player_begin_seek_jumps"
 		w:longPressEndMsgId="@id/cmd_player_end_seek_jumps"
 		w:arg1="0"
-		
 		android:contentDescription="@string/previous_track"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
@@ -85,8 +94,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
-		
-	<com.maxmpz.widget.BusActionButton android:id="@+id/next_cat"
+
+		<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s -->
+	<com.maxmpz.widget.MorphableBusActionButton android:id="@+id/next_cat"
 		style="?TopNextCat"
 		w:busId="@id/bus_player_cmd"
 		w:msgId="@id/cmd_player_play_next_category"
@@ -96,7 +106,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:disableForStateId="@id/state_player_category_not_navigable"
 		w:disableForStateMsgId="@id/msg_player_track_changed"
 		
+		w:morphWhenState="@id/state_player_long_seek"
+		w:morphMsgId="@id/cmd_player_seek_jump"
+		w:morphArg1="1"
+		w:morphArg2="2"
+		w:morphLongPressMsgId="@id/cmd_player_begin_seek_jumps"
+		w:morphLongPressEndMsgId="@id/cmd_player_end_seek_jumps"
+		
 		android:contentDescription="@string/h_next_list"
+		w:morphContentDescription="@string/forward_10s"
 	/>
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
 	<com.maxmpz.widget.StateAnimParams w:stateAnim="@id/anim_seeking"

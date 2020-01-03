@@ -50,6 +50,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="OptionCCInMenu">@style/OptionCCInMenu</item>
 		<item name="OptionCCMainUIAndInMenu">@style/OptionCCMainUIAndInMenu</item>
 		<item name="OptionHeaderMeta">@style/OptionHeaderMeta</item>
+		<item name="OptionHideMenu">@style/OptionHideMenu</item>		
+		<item name="OptionAAKeepAspect">@style/OptionAAKeepAspect</item>
 		
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>			
 		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>		
@@ -59,6 +61,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="Dialog_textAppearance">@style/TextAppearance.AppCompat</item>
 		<item name="Dialog_textAppearanceSmall">@style/TextAppearance.AppCompat.Small</item>
 				
+		<item name="android:windowSoftInputMode">adjustPan</item><!-- NOTE: adjustResize issues onApplyWindowInsets for keyboard, otherwise there are no event -->
 		<item name="android:windowNoTitle">true</item> 
 		<item name="windowNoTitle">true</item>
 		<item name="android:windowActionBar">false</item>
@@ -67,10 +70,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="windowActionBarOverlay">false</item>
 		<item name="android:textColorAlertDialogListItem">?android:textColorPrimary</item>
 		<item name="android:textColorPrimaryDisableOnly">?android:textColorPrimary</item><!-- Needed by popups, e.g. spinner drop down item -->
-		
+		<item name="android:forceDarkAllowed">false</item><!-- We already properly implement dark theme, so this is not needed -->
 		<!--<item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item> NOTE: this may be required to support going under cutout hole on S10+ -->
 
-		<!-- Poweramp also allows layout under statusbar if statusbar color is not solid, and under android navigation bar, if navigationBarColor is not solid
+		<!-- Poweramp also allows layout under statusbar if statusBarColor is not solid, and under android navigation bar if navigationBarColor is not solid
 			 Following logic is applied:
 			 - if FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS exists (==android:windowDrawsSystemBarBackgrounds=true)
 			   - if android:navigationBarColor has alpha, go under navigation
@@ -174,7 +177,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorNavbarIconsLessContrast">#fff</item><!-- NOTE: not used in default theme -->
 		<item name="colorNavbarIcons">#FF585858</item>
 		<item name="colorBgNavbar">#fff</item>
-		<item name="colorBgTransparentNavbar">#7fff</item>
+		<item name="colorBgTransparentNavbar">#7fff</item><!-- REVISIT: doesn't look so great for Android 10 navbar-line, but still is OK for usual navbar there --> 
 		
 		<item name="colorSeekbarBg">#0000</item>
 		<item name="colorSeekbarProgress">#0000</item>
@@ -189,6 +192,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="pause_round">@drawable/pause_round</item>
 		<item name="play_round">@drawable/play_round_100dp</item>
 		<item name="pause_small_narrow">@drawable/pause_small_narrow</item>
+		<item name="back_10s_round">@drawable/back_10s_round</item>
+		<item name="forward_10s_round">@drawable/forward_10s_round</item>
 		
 		<item name="defaultHiResAA">@drawable/gl_poweramp_logo_hd</item>
 		<item name="defaultLowResAA">@drawable/gl_poweramp_logo</item>
@@ -220,6 +225,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="composers">@drawable/composers_colored</item>
 		<item name="playlists">@drawable/playlists_colored</item>
 		<item name="genres">@drawable/genres_colored</item>
+		<item name="years">@drawable/years_colored</item>
 		<item name="queue">@drawable/queue_colored</item>
 		<item name="top_rated">@drawable/top_rated_colored</item>
 		<item name="low_rated">@drawable/low_rated_colored</item>
@@ -227,6 +233,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="recently_played">@drawable/recently_played_colored</item>
 		<item name="recently_added">@drawable/recently_added_colored</item>
 		<item name="long_files">@drawable/long_files_colored</item>
+		<item name="streams">@drawable/streams_colored</item>
 		
 		<item name="micro_all_songs">@drawable/song_12dp</item>
 		<item name="micro_folders">@drawable/folders_12dp</item>
@@ -238,6 +245,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="micro_composers">@drawable/composers_12dp</item>
 		<item name="micro_playlists">@drawable/playlists_12dp</item>
 		<item name="micro_genres">@drawable/genres_12dp</item>
+		<item name="micro_years">@drawable/years_12dp</item>
 		<item name="micro_queue">@drawable/queue_12dp</item>
 		<item name="micro_top_rated">@drawable/like_12dp</item>
 		<item name="micro_low_rated">@drawable/unlike_12dp</item>
@@ -245,6 +253,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="micro_recently_played">@drawable/recently_played_12dp</item>
 		<item name="micro_recently_added">@drawable/recently_added_12dp</item>
 		<item name="micro_long_files">@drawable/long_files_12dp</item>
+		<item name="micro_raw_file">@drawable/song_12dp</item><!-- REVISIT -->
+		<item name="micro_streams">@drawable/streams_12dp</item>
 		
 		<item name="meta_next_12dp">@drawable/next_12dp</item>
 		<item name="meta_songs_12dp">@drawable/song_12dp</item><!-- Small song icon used for item_track meta -->
@@ -259,6 +269,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="toast_excl">@drawable/toast_exclamation_tinted</item><!-- Toast exlcamation sign -->
 		<item name="toast_queue">@drawable/toast_queue_tinted</item>
+		<item name="toast_info">@drawable/toast_info_tinted</item>
+		
 		<item name="button_selector">?android:attr/selectableItemBackgroundBorderless</item><!-- Background used for buttons -->
 		<item name="ar_down_selector">@drawable/ar_down</item><!-- Arrow down image used for combobox inputs, e.g. like in Edit Tags dialog/Genre -->
 		
@@ -304,8 +316,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="sort_added_24dp">@drawable/sort_added_24dp</item>
 		<item name="sort_modified_24dp">@drawable/sort_modified_24dp</item>
 		<item name="sort_num_tracks_24dp">@drawable/sort_num_tracks_24dp</item>
-		
 		<item name="shuffle_24dp">@drawable/shuffle_24dp</item>
+		<item name="stream_24dp">@drawable/stream_24dp</item>
 		
 		<item name="star_8dp">@drawable/star_8dp</item>
 		<item name="star_2_8dp">@drawable/star_2_8dp</item>
@@ -409,7 +421,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_EditNameActivity">@style/dialog_EditNameActivity</item>
 		<item name="dialog_MusicFoldersActivity">@style/dialog_MusicFoldersActivity</item>
 		<item name="dialog_AutoFindDialogActivity">@style/dialog_AutoFindDialogActivity</item>
-		<!--<item name="dialog_TextAlertDialogActivity">@style/dialog_TextAlertDialogActivity</item>-->
 		<item name="dialog_APMUnlockDialogActivity">@style/dialog_APMUnlockDialogActivity</item>
 		<item name="dialog_AudioBufferActivity">@style/dialog_AudioBufferActivity</item>
 		<item name="dialog_ListOptsActivity">@style/dialog_ListOptsActivity</item>
@@ -422,7 +433,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_MobirooDRMErrorActivity">@style/dialog_MobirooDRMErrorActivity</item>
 		<item name="dialog_PlaylistsExportActivity">@style/dialog_PlaylistsExportActivity</item>		
 		
-		<!-- Skin overlap -->
+		<!-- Skin overlaps -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Whitepro_MoreButtons</item>
 		<item name="overlap_plain_seekbar">@style/ActivityTheme_Whitepro_PlainSeekbar</item>
 		<item name="overlap_transparent_navbar">@style/ActivityTheme_Whitepro_TransparentNavbar</item>
@@ -432,7 +443,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Navbar margins to allow easy overriding for overlap_navbar_offset option -->
 		<item name="navbar_marginLR">8dp</item>
-		<item name="navbar_marginB">8dp</item>
+		<item name="navbar_marginB">@dimen/Navbar_normal_marginB</item><!-- NOTE: there is also increased margin, but we need exactly Navbar_normal_marginB value for TopContainer reduceBottomInset -->
 		<!-- NOTE: modified by overlap_navbar_offset -->
 		<item name="bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>
 		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>
@@ -448,6 +459,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="CcButton_MainUI_scenes_vis_w_ui">@style/CcButton_MainUI_scenes_vis_w_ui</item>
 		<item name="CcButton_MainUI_scenes_invisible">@style/CcButton_MainUI_scenes_invisible</item>
 		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine_disabled</item>
+		
+		<item name="ItemTrackMenu_scene_aa_visibility">visible</item>
+		<item name="AAImage_scaleType">centerCrop</item><!-- By default, (modified) centerCrop is used. Can be overriden by OptionAAKeepAspect -->
 	</style>
 
 	<!-- NOTE: need additional level of indirection due to e.g. values-v29 overridding which should be used by skins which derive from Base_ActivityTheme_Default -->	
@@ -548,6 +562,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="pause_round">@drawable/pause_round_inv</item>
 		<item name="play_round">@drawable/play_round_inv_100dp</item>
 		<!-- NOTE: small pause is just tinted -->
+		<item name="back_10s_round">@drawable/back_10s_round_inv</item>
+		<item name="forward_10s_round">@drawable/forward_10s_round_inv</item>
 	</style>
 	
 	<!-- An overlap style -->

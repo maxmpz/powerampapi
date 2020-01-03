@@ -27,8 +27,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	android:id="@+id/item_back_decor"
 	style="?ItemTextBackDecor"
 >
-	<!-- This view (in default scene) should visually match title in scene_header, but should be positioned EXACTLY at left/top for default scene. 
-		 item title and back_decor title should have same scale and font size -->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/title"
 		style="?ItemTextBackDecorTitle"
 		w:busId="@id/list"

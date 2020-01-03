@@ -24,6 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Huawei Mate 20, Mate20 Lite  -->
 	
 	<dimen name="TopWaveseek_maxHeight">160dp</dimen>
+	<dimen name="Alt_TopSubAAButtons_marginTop">8dp</dimen>
 	
 	<!-- Alt -->
 	<!-- <dimen name="Alt_aaMaxSize">542dp</dimen> Not used anymore -->

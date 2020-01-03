@@ -30,6 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="MyTheme">
 		<attr name="toast_excl" format="reference"/>
 		<attr name="toast_queue" format="reference"/>
+		<attr name="toast_info" format="reference"/>
 		
 		<attr name="button_selector" format="reference"/>
 		<attr name="ar_down_selector" format="reference"/>
@@ -56,7 +57,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="dialog_AddEqPresetActivity" format="reference"/>
 		<attr name="dialog_AddReverbPresetActivity" format="reference"/>
 		<attr name="dialog_MusicFoldersActivity" format="reference"/>
-		<attr name="dialog_TextAlertDialogActivity" format="reference"/>
 		<attr name="dialog_APMUnlockDialogActivity" format="reference"/>
 		<attr name="dialog_AudioBufferActivity" format="reference"/>
 		<attr name="dialog_SelectAlbumArtActivity" format="reference"/>
@@ -68,8 +68,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="dialog_MediaRouteControllerActivity" format="reference"/>
 		<attr name="dialog_LyricsActivity" format="reference"/>
 		<attr name="dialog_PlaylistsExportActivity" format="reference"/>		
-								
-		<!-- REVISIT -->		
 		<attr name="dialog_MobirooDRMErrorActivity" format="reference"/>
 		
 		<attr name="overlap_more_buttons" format="reference"/>
@@ -82,9 +80,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Navbar margins moved to theme to allow easy overriding for overlap_navbar_offset option -->
 	<attr name="navbar_marginLR" format="dimension"/>
 	<attr name="navbar_marginB" format="dimension"/>
+	
+	<!-- Needed for OptionHideMenu -->
+	<attr name="ItemTrackMenu_scene_aa_visibility">
+		<enum name="visible" value="0" />
+		<enum name="invisible" value="1" />
+		<enum name="gone" value="2" />
+	</attr>
+	
+	<!-- Needed for OptionAAKeepAspect -->
+	<attr name="AAImage_scaleType">
+		<enum name="fitCenter" value="3" />
+		<enum name="centerCrop" value="6" />
+		<enum name="centerInside" value="7" />
+	</attr>
+	
 		
-	
-	
 	<declare-styleable name="TextAppearance">
 		<attr name="android:textColor" />
 		<attr name="android:textSize" />

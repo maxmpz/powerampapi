@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Base_Navbar">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/Navbar_height</item><!-- ~48dp -->
-		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachBottom">inset</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginLeft">?navbar_marginLR</item>
 		<item name="android:layout_marginRight">?navbar_marginLR</item>
@@ -49,7 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Navbar" parent="Base_Navbar">
 	</style>
 	<style name="Base_Navbar_scene_navbar_1line_sheet">
-		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachBottom">inset</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">8dp</item>
@@ -60,7 +60,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Navbar_scene_navbar_1line_sheet" parent="Base_Navbar_scene_navbar_1line_sheet">
 	</style>
 	<style name="Base_Navbar_scene_navbar_2lines">
-		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachBottom">inset</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">8dp</item>
@@ -126,6 +126,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="NavbarExtensionMenuLine">
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">44dp</item>
 		<item name="layout_consumeSpace">vertical</item>
@@ -185,6 +186,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		
 		<item name="android:minWidth">24dp</item>

@@ -23,6 +23,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Used in <include>, if true, no any error happens if android:layout doesn't exist (set to @null for that <include>) -->
 	<attr name="optional" format="boolean"/>
 	
+	<attr name="windowLightNavigationBar" format="boolean"/><!-- Just for Android 8.0, which supports light navigation bar, but doesn't have attribute for that -->
+	
 	<!-- Optional styles. Applied based on user preferences. 
 	     Styles for these attributes should be defined in main skin theme, but these styles will be applied only if appropriate option is set in Poweramp settings  -->
 	<declare-styleable name="OptionalPoweruiStyles">
@@ -49,6 +51,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Applied (over main theme style) when meta should be shown in headers -->
 		<attr name="OptionHeaderMeta" format="reference"/>
+		
+		<!-- Applied (over main theme style) when hide menu option is enabled -->
+		<attr name="OptionHideMenu" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Keep Album Art / Images Aspect Ratio option is enabled -->
+		<attr name="OptionAAKeepAspect" format="reference"/>
 	</declare-styleable>
 	
 	<!-- Styles always applied for activities / dialogs -->
@@ -457,6 +465,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:maxLines"/>
 		<!-- NOTE: for compability reasons, singleLine=true just forces maxLines=1 (actual maxLines attribute is then ignored)-->
 		<attr name="android:singleLine"/>
+		
+		<!-- If true, no attempt to break text (on new line/overflow) will happen --> 
+		<attr name="noBreak" format="boolean"/>
 		<!-- Optional drawable -->
 		<attr name="android:drawable"/>
 		<!-- Padding before drawable when drawable is available. Can be negative. NOTE: paddingLeft is not applied to drawable (always applied to the text)-->
@@ -483,7 +494,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Extra drawable padding right when no text exists (empty or null). This can be negative value, it's summed with other paddings right to the drawable, i.e:
 		     drawablePaddingStart drawable (drawablePaddingEndNoText + drawablePadding + paddingLeft + paddingRight) -->
 		<attr name="drawablePaddingEndNoText" format="dimension"/>
-				
+		
 		<!-- 
 		When drawable exists, paddings and backgrounds are distributed as follows:
 		  (bg starts) drawablePaddingStart <drawable> drawablePadding (line bg starts) paddingLeft <text> paddingRight (line bg ends) (bg ends)
@@ -701,12 +712,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="parent" value="0"/>
 		</attr>
 		
-		<!-- Applies additional offsets for gravity on appripriate axis based on window insets -->
-		<attr name="layout_gravityOffset">
+		<!-- Applies additional offsets for gravity AND parent available size for this child on appripriate side based on window insets.
+		     By default, gravity aligns to the parent sides ignoring possible insets. Also, for match_parent size, %-percent size, or any other parent-related size, no
+		     insets are accounted for. With this attribute, appropriate side inset will be accounted.
+		     For example, view with layout_offsets=insets and match_parent/match_parent will fill parent according to window insets.
+		     This, of course, works if insets are propagated appropriately -->
+		<attr name="layout_offsets">
 			<flag name="insetLeft"   value="0x10000000"/>
 			<flag name="insetTop"    value="0x20000000"/>
 			<flag name="insetRight"  value="0x40000000"/>
 			<flag name="insetBottom" value="0x80000000"/>
+			<!-- All 4 inset sides -->
+			<flag name="insets"      value="0xF0000000"/>
 		</attr>
 		
 		
@@ -772,7 +789,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- if any of layout_attach* target ids are "gone", view is attached to appropriate parent side.
 			 NOTE: view is attached to parent side if no such target "attach to" view exists, even without this property set to true.
 			 layout_consumeSpace attribute is still processed -->
-		<attr name="layout_attachToParrentIfGone" format="boolean"/>
+		<attr name="layout_attachToParentIfGone" format="boolean"/>
 		
 		<!-- View margins are compensated for given scale (thus, margins are not affected by scaleX/scaleY/scale transformations)
 			 Requires pivot set to 0, 0 (i.e. android:transformPivotX=0, android:transformPivotY=0). Doesn't work with MATCH_PARENT,
@@ -1020,6 +1037,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="disableForStateMsgId_2" format="reference"/><!-- Can match stateIds or can be any other message -->
 	</declare-styleable>
 	
+	<!-- Extends BusDisabledForStateBehavior -->
+	<declare-styleable name="MorphableBusStateBehavior">
+		<attr name="morphWhenState" format="reference"/>
+		<attr name="morphDrawable" format="reference"/>
+		<attr name="morphMsgId" format="reference"/>
+		<attr name="morphArg1" format="integer"/>
+		<attr name="morphArg2" format="integer"/>
+		<attr name="morphString" format="string"/>
+		<attr name="morphLongPressMsgId" format="reference"/>
+		<attr name="morphLongPressEndMsgId" format="reference"/>
+		<attr name="morphContentDescription" format="string"/>
+		<attr name="android:drawable"/>
+	</declare-styleable>
+	
 	<!-- Number of attributes to show formatted text based on Poweramp state buses -->
 	<declare-styleable name="BusStateFormatValue">
 		<attr name="android:id"/>
@@ -1154,7 +1185,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="iconStateId" format="reference"/>
 		<!-- Optional scene in which no updates happen. This view should have SceneParams for such scene -->
 		<attr name="noUpdateInScene" format="reference"/>
+		<!-- Do not update if transition runs (and view is aware of that, i.e. view is animated by the scene) -->
 		<attr name="noUpdateInTransition" format="boolean"/>
+		<!-- Detect any parent scene transition, and update after transition ends -->
+		<attr name="updateOnTransitionEnd" format="boolean"/>
+		
 		<!-- Show the default (android:text) text if state is empty/null -->
 		<attr name="defaultTextOnNoState" format="boolean"/>
 	</declare-styleable>
@@ -1163,7 +1198,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="IntentActionButton">
 		<attr name="android:action"/>
 		<attr name="android:targetClass"/>
-		<attr name="android:targetPackage"/>
 		<attr name="string"/><!-- EXTRA_OBJ -->
 	</declare-styleable>
 		
@@ -1243,6 +1277,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     is not affected, and the only controlled time here is Eq to Main screen
 		 -->
 		<attr name="aaBlurNoAAToAAAnimTime" format="integer"/>
+		
+		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine and consinstent around it.
+		     Bassically we need to offset inset by our navbar bottom margin (normal margin, not overlap_navbar_offset).   
+		     TopContainer will try to adjust bottom inset when needed (Android 10+, only when small line-navbar is visible) -->
+		<attr name="reduceBottomInset" format="dimension"/>
 		
 	</declare-styleable>
 	
@@ -1412,5 +1451,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="drawableOff"/>
 		<attr name="lineBackground"/>
 	</declare-styleable>
+	
+	<declare-styleable name="InfoTextView">
+		<!-- InfoTextHelper class name to use. Can start with . to resolve class name vs package name --> 
+		<attr name="infoTextHelper" format="string"/>
+	</declare-styleable>
+	
 	
 </resources>

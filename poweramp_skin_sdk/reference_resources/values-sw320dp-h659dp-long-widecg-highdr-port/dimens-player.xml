@@ -19,12 +19,25 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- values-sw2dp-v29 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- NOTE: need to redefine it again, as core black-styles redefines default colors/sizes -->
-	<style name="ActivityTheme_Black" parent="Base_ActivityTheme_Black">
-		<item name="statusBarBg">#3000</item>
-		<item name="android:navigationBarColor">#0fff</item><!-- Makes big navbar button greyish so they are better visible on white -->
-		<item name="navbar_marginB">0dp</item>
-	</style>
+<!-- Fold small screen -->
+<resources>
+	<dimen name="TopPlay_maxSize">94dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
+	<dimen name="TopPlayPauseBehind_size">50dp</dimen>
+	<dimen name="TopMediumButton_size">64dp</dimen>
+	<dimen name="TopSmallButton_size">40dp</dimen>
+	
+	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
+	<dimen name="PlainSeekbar_common_marginBottom">16dp</dimen>
+
+	<!-- Alt -->
+	
+	<dimen name="Alt_TopPlay_maxSize">94dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">64dp</dimen>	
+	<dimen name="Alt_TopSmallButton_size">40dp</dimen>
+	
+	<dimen name="Alt_PlainSeekbar_marginBottom">0dp</dimen>
+	<dimen name="Alt_PlainSeekbar_common_marginBottom">16dp</dimen>
+		
 </resources>

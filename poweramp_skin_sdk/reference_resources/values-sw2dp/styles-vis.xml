@@ -96,6 +96,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachRight">parent</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 	</style>
 	

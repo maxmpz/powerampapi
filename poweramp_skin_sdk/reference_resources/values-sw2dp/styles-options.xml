@@ -80,4 +80,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle_w_meta</item>
 		<item name="ItemTrackBackDecorTitle_scene_header_1">@style/ItemTrackBackDecorTitle_scene_header_1_w_meta</item>
 	</style>
+	
+	<style name="OptionHideMenu">
+		<item name="ItemTrackMenu_scene_aa_visibility">gone</item>
+	</style>
+	
+	<style name="OptionAAKeepAspect">
+		<item name="AAImage_scaleType">fitCenter</item>
+	</style>
 </resources>

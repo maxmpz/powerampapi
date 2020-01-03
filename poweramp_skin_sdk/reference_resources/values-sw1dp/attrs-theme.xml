@@ -47,14 +47,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorFastScrollerPressed" format="color"/>
 	<attr name="colorFastScrollerTrack" format="color"/>
 	<attr name="colorScrollPopupBg" format="color"/>
-	
 	<attr name="colorNavbarIcons" format="color"/>
 	<attr name="colorNavbarIconsLessContrast" format="color"/>
 	<attr name="colorBgNavbar" format="color"/>
 	<attr name="colorBgTransparentNavbar" format="color"/>
-	
 	<attr name="colorItemActive" format="color"/><!-- Not used ATM -->
-	
 	<attr name="colorIconCC" format="color"/><!-- Forced (white) color for Chromecast icon -->
 	
 	<attr name="statusBarBg" format="color|reference"/><!-- Shade under status bar -->
@@ -71,5 +68,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="dialog_AlertDialogActivity_list"/>
 	<attr name="dialog_AlertDialogActivity_vertical_buttons"/>
 	<attr name="dialog_AlertDialogActivity_no_title"/>
+	<attr name="dialog_AlertDialogActivity_no_title_vertical_buttons"/>
 
 </resources>

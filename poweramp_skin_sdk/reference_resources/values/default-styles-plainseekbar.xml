@@ -108,6 +108,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:clickable">true</item><!-- Avoid setPressed propagation from parent clicks -->
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 	</style>
 	<style name="PlainSeekbar_anim_seeking">
 		<item name="android:scaleY">1.25</item>

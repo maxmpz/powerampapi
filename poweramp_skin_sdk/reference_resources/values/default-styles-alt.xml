@@ -22,8 +22,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<!-- NOTE: this is not a theme, but skin option, which applied after skin theme and global optional styles -->
-	<!-- NOTE: works fine for both default (white) and black styles as no color overrides exist here -->
+	<!-- NOTE: this is not a theme, but a skin option, which is applied after the skin theme and global optional styles -->
+	<!-- NOTE: works fine for both default (white) and black styles as no colors are overridden here -->
 	<style name="ActivityTheme_Whitepro_AltLayout">
 		<item name="VisPanelContainer">@style/Alt_VisPanelContainer</item>
 		

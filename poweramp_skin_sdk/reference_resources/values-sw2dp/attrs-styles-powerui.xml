@@ -252,12 +252,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupList" format="reference"/>
 		<attr name="ItemPopupListMorePadding" format="reference"/>
 		<attr name="ItemPopupListImage" format="reference"/>
+		<attr name="ItemPopupListAAImage" format="reference"/>
 		<attr name="ItemPopupListSelectBox" format="reference"/>
+		<attr name="ItemPopupListAASelectBox" format="reference"/>
 		<attr name="ItemPopupListTitle" format="reference"/>
 		<attr name="ItemPopupListTitle_Text" format="reference"/>
 		<attr name="ItemPopupListTitleLarger" format="reference"/>
 		<attr name="ItemPopupListTitleLarger_Text" format="reference"/>
+		<attr name="ItemPopupListTitleLarger_2line" format="reference"/>
 		<attr name="ItemPopupListMicroIcon" format="reference"/>
+		<attr name="ItemPopupListMicroIconSpace" format="reference"/>
 		<attr name="ItemPopupListFrs" format="reference"/>
 		<attr name="ItemEqPreset" format="reference"/>
 		<attr name="ItemEqPresetSelectBox" format="reference"/>

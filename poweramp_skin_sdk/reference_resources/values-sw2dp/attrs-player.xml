@@ -22,8 +22,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- Poweramp UI specific attributes (i.e. for com.maxmpz.widget.player.* packages). See also attrs-theme.xml -->
 
 <resources>
-	<attr name="windowLightNavigationBar" format="boolean"/><!-- Just for Android 8.0, which supports light navigation bar, but doesn't have attribute for that -->
-	
 	<!-- Player buttons -->
 	
 	<attr name="prev_cat_round" format="reference"/>
@@ -33,6 +31,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="pause_round" format="reference"/>
 	<attr name="play_round" format="reference"/>
 	<attr name="pause_small_narrow" format="reference"/>
+	<attr name="back_10s_round" format="reference"/>
+	<attr name="forward_10s_round" format="reference"/>
 
 	<!-- Navbar icons -->
 	<attr name="nav_lists" format="reference"/>
@@ -65,6 +65,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="repeat_32dp" format="reference"/>
 	<attr name="repeat_advance_32dp" format="reference"/>
 	<attr name="repeat_song_32dp" format="reference"/>
+	<attr name="single_song_32dp" format="reference"/>
 	
 	<attr name="shuffle_none_32dp"/>
 	<attr name="shuffle_all_32dp"/>
@@ -75,6 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="vis_none_32dp"/>
 	<attr name="vis_w_ui_32dp"/>
 	<attr name="vis_32dp"/>
+	
 	
 	<attr name="vis_lock_24dp"/>
 	<attr name="vis_advance_24dp"/>
@@ -128,8 +130,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="sort_added_24dp" format="reference"/>
 	<attr name="sort_modified_24dp" format="reference"/>
 	<attr name="sort_num_tracks_24dp" format="reference"/>
-	
 	<attr name="shuffle_24dp" format="reference"/>
+	<attr name="stream_24dp" format="reference"/><!-- This one should be preferable rendered for at least xxx and xx hdpi densities for best scaling -->
 	
 	<attr name="meta_next_12dp" format="reference"/>
 	<attr name="meta_songs_12dp" format="reference"/>

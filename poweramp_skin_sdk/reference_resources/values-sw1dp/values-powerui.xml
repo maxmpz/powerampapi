@@ -98,6 +98,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="scene_dialog_in_toast"/>
 	<item type="id" name="scene_dialog_out_toast"/>
 	<item type="id" name="scene_dialog_out_alt"/>
+	<item type="id" name="scene_dialog_in_w_buttons"/><!-- Scene created in code -->
 	
 	<!-- REVISIT: move bus/msgs/state/cmds ids to separate xml -->
 	<!-- Bus ids -->
@@ -168,7 +169,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="cmd_end_selection_mode"/><!-- this is sent to target bus by selection menu -->
 	
-	<item type="id" name="cmd_selection_menu_open"/><!-- arg1 == menu layout, arg2 == target bus for selection menu cmds -->
+	<item type="id" name="cmd_selection_menu_open"/><!-- arg1 == menu layout, arg2 == target bus for selection menu cmds, obj == optional int[] ids to hide -->
 	<item type="id" name="cmd_selection_menu_close"/><!-- no args => closes recent selection menu. Selective: arg1 == menu layout, arg2 == target bus => closes matching selection menu-->
 	<item type="id" name="cmd_selection_menu_focus"/>
 	

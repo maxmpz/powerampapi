@@ -24,6 +24,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_Black" parent="Base_ActivityTheme_Black">
 		<item name="statusBarBg">#3000</item>
 		<item name="android:navigationBarColor">#0fff</item>
-		<item name="navbar_marginB">0dp</item>
 	</style>
 </resources>

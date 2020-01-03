@@ -21,4 +21,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<dimen name="ItemPopupMenu_scene_item_menu_maxHeight">300dp</dimen>
+	<dimen name="ItemPopupMenu_larger_scene_item_menu_width">360dp</dimen>
 </resources>

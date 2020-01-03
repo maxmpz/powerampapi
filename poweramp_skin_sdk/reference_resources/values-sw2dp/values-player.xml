@@ -50,7 +50,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	 
 	<item type="id" name="msg_app_dir_scan_started"/>
 	<item type="id" name="msg_app_dir_scan_finished"/>
+	<item type="id" name="msg_app_dir_scan_progress"/><!-- arg1 => dirCount, arg2 => fileCount -->
 	<item type="id" name="msg_app_tag_scan_started"/>
+	<item type="id" name="msg_app_tag_scan_progress"/><!-- arg1 => fileCount -->
 	<item type="id" name="msg_app_tag_scan_finished"/><!-- arg1=boolean tracksChanged, arg2=boolean changedAfterFoldersScan -->
 	<item type="id" name="msg_app_data_changed"/><!-- bus_app. obj => RestEntity of data changed, or "settings"/null for global refresh, arg1 => RestLibrary.DATA_CHANGED_*, arg2 => rating for RestRatedFiles / TopRatedFiles -->
 	<item type="id" name="msg_app_milk_data_changed"/><!-- obj => RestMilkPreset. MilkRNP reloads, includes any milk data changes, sort, etc. Needed to avoid reacting to msg_player_milk_preset_changed on each preset change -->
@@ -167,6 +169,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_add"/><!-- bus_data_cmd, obj => UriAndIds -->
 	
 	<item type="id" name="cmd_data_search_and_play"/><!-- bus_data_cmd, obj => search String -->
+	<item type="id" name="cmd_data_play_intent"/><!-- bus_data_cmd, obj => Intent --> 
 	<item type="id" name="cmd_data_nav_to_lib_pos"/><!-- arg1 => pos hint, arg2 => extra TopNavHelper flags, obj => uri -->
 	<item type="id" name="cmd_data_nav_to_name"/><!-- obj => Uri + PARAM_NAME -->
 	
@@ -244,8 +247,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_player_np_ended"/>
 	
 	<!-- PlayerState states -->
-	<item type="id" name="state_player_service_connected"/>
+	<item type="id" name="state_player_service_connected"/><!-- boolean -->
 	<item type="id" name="state_player_service_started"/><!-- boolean -->
+	<item type="id" name="state_player_pipeline_started"/><!-- boolean -->
 
 	<item type="id" name="state_player_track"/><!-- Track obj -->
 	<item type="id" name="state_player_track_duration_ms"/><!-- int -->
@@ -284,6 +288,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_player_output_device"/><!-- string, int -->
 	<item type="id" name="state_player_output_device_flags"/><!-- int. Not used ATM -->
 	<item type="id" name="state_player_output_end_device"/><!-- string -->
+	<!--<item type="id" name="state_player_output_end_device_address"/>--><!-- string -->
 	<item type="id" name="state_player_output_end_device_meta"/><!-- string -->
 	<item type="id" name="state_player_track_decode_info"/><!-- string -->
 	<item type="id" name="state_player_output_info"/><!-- string -->
@@ -296,7 +301,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="state_player_media_session"/><!-- object => MediaSessionCompat -->
 	<item type="id" name="state_player_mediacontroller_for_vol"/><!-- object => MediaController (raw). NOTE: set only when such volume controller is actually needed (e.g. not for CC) -->
-	<item type="id" name="state_player_pipeline_info"/><!-- object => PipelineSessionInfo -->
+	<item type="id" name="state_player_pipeline_info"/><!-- object => PipelineSessionInfo. NOTE: see also OutputEndDeviceMetaInfo which may override end device name -->
+	<item type="id" name="state_player_long_seek"/><!-- boolean -->
 	
 	<item type="id" name="state_player_milk_preset"/><!-- MilkPreset obj -->
 	<item type="id" name="state_player_milk_mode_big_widgets"/><!-- int -->
@@ -304,6 +310,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_player_milk_fd_and_serial"/><!-- long -->
 	<item type="id" name="state_player_milk_sort"/><!-- int => RestMilkPreset.SORT_* -->
 	<item type="id" name="state_player_milk_advance"/><!-- int => MilkAPI.ADVANCE_* -->
+	
 	
 	
 	
@@ -318,9 +325,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_on_queue_updated"/><!-- obj = Boolean.TRUE if something is just enqueued -->
 	<item type="id" name="cmd_player_reload_pipeline"/><!-- arg1 => boolean allowResume, obj = optional OutputDeviceMapping -->
 	<item type="id" name="cmd_player_seek"/>
-	<item type="id" name="cmd_player_seek_step"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => long press duration ms -->
+	<item type="id" name="cmd_player_seek_step"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => step multiplier (if < 50, base=5000ms), seek jump ms, or 0 for 5000ms -->
 	<item type="id" name="cmd_player_seek_jump"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => step ms -->
-	<item type="id" name="cmd_player_begin_seek_jumps"/><!-- arg1 =>  STATE_TRUE => forward, STATE_FALSE => rewind -->
+	<item type="id" name="cmd_player_begin_seek_jumps"/><!-- arg1 =>  STATE_TRUE => forward, STATE_FALSE => rewind, arg2 => optional jump duration mult (base=5000ms) -->
 	<item type="id" name="cmd_player_end_seek_jumps"/><!-- -->
 	<item type="id" name="cmd_player_set_rg"/>
 	<item type="id" name="cmd_player_set_rg_levels"/>
@@ -353,10 +360,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_reregister_media_session"/><!-- Also resends external API AA to media session and widgets -->
 	<item type="id" name="cmd_player_resend_external_track"/>
 	<item type="id" name="cmd_player_no_search_results"/><!-- Inform player on no results for cmd_data_search_and_play, obj = incoming obj -->
+	<item type="id" name="cmd_player_output_meta_changed"/><!-- Inform player on output_meta_change. arg1 => routed device_id, obj => OutputEndDeviceMetaInfo|null. Reposted to msg_player_output_meta_changed -->
 	
 	<item type="id" name="cmd_player_remove_notif"/><!-- Ask player to remove notification -->
 	<item type="id" name="cmd_player_dont_resume_after_call"/><!-- arg1=> boolean - true - remove notification -->
-		
+	<item type="id" name="cmd_player_start_command"/>
 	
 	<!-- NOTE: used for cmd_set_repeat_mode -->
 	<!-- Sync with PowerampAPI.RepeatMode -->
@@ -364,6 +372,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<integer name="REPEAT_ON">1</integer>
 	<integer name="REPEAT_ADVANCE">2</integer>
 	<integer name="REPEAT_SONG">3</integer>
+	<integer name="SINGLE_SONG">4</integer>
 	
 	<!-- Sync with PowerampAPI.ShuffleMode -->
 	<integer name="SHUFFLE_NONE">0</integer>

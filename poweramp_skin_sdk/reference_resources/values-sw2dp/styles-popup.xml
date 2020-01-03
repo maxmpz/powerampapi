@@ -29,6 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		
 		<item name="android:textAppearance">?PopupMenuItem_Text</item>
@@ -136,6 +137,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PopupDialogListLayoutList"><!-- Used for separate dialogs with popup lists, e.g. for Playlist select dialog -->
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
+		<item name="android:scrollbars">vertical</item>
+		<item name="android:nestedScrollingEnabled">true</item>
+	</style>
+	
+	<style name="MediaRouterPopupDialogListLayoutList" parent="PopupDialogListLayoutList">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">192dp</item><!-- 64 * 3 -->
 		<item name="android:scrollbars">vertical</item>
 		<item name="android:nestedScrollingEnabled">true</item>
 	</style>

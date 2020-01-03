@@ -20,22 +20,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
-	<!--
-	<com.maxmpz.widget.BgAnimFastLayout 
-		android:id="@+id/counter_layout"
+	<!-- NOTE: this is a counter -->
+	<com.maxmpz.widget.player.BusStatusText
 		style="?TopCounterLayout"
-		w:privateScene="true"
-		android:clickable="true"
-	>-->
-		<com.maxmpz.widget.player.BusStatusText android:id="@id/_label"
-			style="?TopCounterLayout"
-			w:stateBusId="@id/bus_player"
-			w:labelStateId="@id/state_player_track_short_meta"
-			w:updateMsgId="@id/msg_player_track_changed"
-			w:updateMsgId_2="@id/msg_pipeline_started"
-			w:noUpdateInTransition="true"
-		/>
-	<!-- </com.maxmpz.widget.BgAnimFastLayout> -->
+		w:stateBusId="@id/bus_player"
+		w:labelStateId="@id/state_player_track_short_meta"
+		w:updateMsgId="@id/msg_player_track_changed"
+		w:updateMsgId_2="@id/msg_pipeline_started"
+		w:noUpdateInTransition="true"
+	/>
 	<!-- NOTE: alpha is overridden by user preference -->
 	<SceneParams w:scene="@+id/scene_vis_w_ui" 
 		style="?TopCounterLayout_scenes_playing"

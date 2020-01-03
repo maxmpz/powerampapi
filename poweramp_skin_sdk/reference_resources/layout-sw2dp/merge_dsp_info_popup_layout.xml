@@ -87,8 +87,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="gone"
 	/>
 	
-	<com.maxmpz.widget.player.DSPInfoTextView android:id="@+id/dsp_info_text"
+	<com.maxmpz.widget.player.InfoTextView android:id="@+id/dsp_info_text"
 		style="?PopupDSPInfoText"
+		w:infoTextHelper=".widget.DSPInfoHelper"
 		w:dspInfoImage="@+id/dsp_info_image"
 	/>
 	<SceneParams w:scene="@id/scene_button_menu"

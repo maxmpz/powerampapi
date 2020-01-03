@@ -20,7 +20,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- <dimen name="Alt_ListSubstyle_aaPaddingBottom">74dp</dimen> Not used anymore -->
+	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">1dp</dimen>
+	<dimen name="Alt_TopAABounds_marginBottom">70dp</dimen>
+	<dimen name="Alt_TopSubAAButtons_marginTop">12dp</dimen>
 	
 	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
 	<dimen name="PlainSeekbar_common_marginBottom">16dp</dimen>

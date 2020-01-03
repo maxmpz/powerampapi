@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -59,7 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:backgroundDimEnabled">false</item>
 		<item name="android:windowElevation">0px</item><!-- Forced no elevation -->
 		<item name="android:windowClipToOutline">false</item>
-		<item name="android:windowSoftInputMode">adjustResize</item>
+		<item name="android:windowSoftInputMode">adjustResize</item><!-- NOTE: adjustResize issues onApplyWindowInsets for keyboard, otherwise there are no event -->
 		
 		<item name="android:windowAnimationStyle">@null</item>
 		<item name="android:windowEnterTransition">@android:transition/no_transition</item>
@@ -71,12 +71,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="android:statusBarColor">#00000000</item>
 		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
-		<item name="android:windowOverscan">true</item>
 		
 		<!-- Used by some controls, like RadioButtons, but not TextView -->
 		<item name="android:textAppearance">?Dialog_textAppearance</item><!-- Usually == android:textAppearance, unless Dialog_textAppearance is overridden in main app theme -->
 		<!-- Used by TextView by default, e.g. for alert dialog messages -->
-		<item name="android:textAppearanceSmall">?Dialog_textAppearanceSmall</item> 
+		<item name="android:textAppearanceSmall">?Dialog_textAppearanceSmall</item>
+		
+		<!-- This should be force-synced to dialogFrame_elevation so our menu/toast/etc. in-dialog popus are on top of dialog frame itself -->
+		<item name="modal_translationZ">?dialogFrame_elevation</item>
 	</style>
 	
 	<!-- This style can be used to additionally override dialog forced styles. Dialog forced styles are styles which overrides main app theme --> 
@@ -85,6 +87,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="BaseDialog">
+		<item name="DialogOuterLayout">@style/DialogOuterLayout</item>
+		
 		<item name="DialogTitle_Text">@style/DialogTitle_Text</item>
 		<!-- NOTE: as textAppearance is already applied to app theme, we can't override it here -->
 	
@@ -149,6 +153,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogSettingsGearIcon">@style/DialogSettingsGearIcon</item>
 	</style>
 	
+	<style name="DialogOuterLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:clipChildren">false</item><!-- Avoid clipping e.g. dragged up toast -->
+		<item name="android:fitsSystemWindows">true</item><!-- NOTE: automatically disabled when needed, see dialog.xml, AdjustToSoftKeyboardBehavior -->
+	</style>
+	
 	<style name="BottomsheetDialog" parent="BaseDialog">
 		<item name="dragDirection">down</item>
 		<item name="DialogFrame">@style/BottomsheetDialogFrame</item>
@@ -200,20 +212,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="BottomsheetDialogFrame" parent="BaseDialogFrame">
 		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="layout_offsets">insetLeft|insetTop|insetRight</item><!-- NOTE: no bottom here, so we attach to the whole height and dialog initially is out of screen completely -->
 		<item name="layout_attachTop">100%</item>
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
 	</style>
 	<style name="BottomsheetDialogFrame_scene_dialog_in">
-		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="layout_offsets">insetLeft|insetTop|insetRight</item><!-- NOTE: no bottom here, as we attach to bottom inset -->
+		<item name="android:layout_gravity">center_horizontal|bottom</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
-		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachBottom">inset</item>
 	</style>
 	
 	<style name="TopsheetDialogFrame" parent="BaseDialogFrame">
+		<item name="layout_offsets">insets</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachBottom">0%</item>
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
@@ -221,6 +236,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">24dp</item><!-- Compensate for status bar slightly -->
 	</style>
 	<style name="TopsheetDialogFrame_scene_dialog_in">
+		<item name="layout_offsets">insets</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -230,6 +246,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="CenteredDialogFrame" parent="BaseDialogFrame">
+		<item name="layout_offsets">insets</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -241,6 +258,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- <item name="android:minWidth">300dp</item> --><!-- We don't want too narrow dialogs. Applied to all scenes (view property, not layout) -->
 	</style>
 	<style name="CenteredDialogFrame_scene_dialog_in">
+		<item name="layout_offsets">insets</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -476,7 +494,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
 	</style>
 		
-	
+	<style name="dialog_AlertDialogActivity_no_title_vertical_buttons" parent="dialog_AlertDialogActivity_vertical_buttons">
+		<!-- Larger paddings to sync vertical buttons -->
+		<item name="dialogContentPaddingTop">20dp</item>
+		<item name="dialogContentPaddingBottom">20dp</item>
+		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
+		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
+	</style>
+		
 	<style name="CenteredDialog_vertical_buttons" parent="CenteredDialog">
 		<item name="DialogButtonBar">@style/DialogButtonBar_vertical_buttons</item>
 		<item name="DialogNeutralButtonStyle">@style/DialogNeutralButtonStyle_vertical_buttons</item>
@@ -528,6 +553,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="animOnClick">true</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceButton</item>
 	</style>
 	
@@ -541,48 +567,45 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 - button1    DialogPositiveButtonStyle
 
 		 Layout order:
-		 - separator3 DialogNeutralSeparator
-		 - button3    DialogNeutralButtonStyle
 		 - separator  DialogPositiveSeparator
 		 - button1    DialogPositiveButtonStyle
+		 - separator3 DialogNeutralSeparator
+		 - button3    DialogNeutralButtonStyle
 		 - separator2 DialogButtonSpace
 		 - button2    DialogNegativeButtonStyle
 	
 	-->
 	
-	<style name="DialogNeutralSeparator_vertical_buttons">
+	<style name="DialogPositiveSeparator_vertical_buttons">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">1px</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:background">?colorSeparator</item>
-	</style>
-	<style name="DialogNeutralButtonStyle_vertical_buttons" parent="BaseDialogButtonStyle_vertical_buttons">
-		<item name="android:layout_width">match_parent</item>
-		<item name="layout_maxWidth">@null</item>
-		<item name="layout_consumeSpace">vertical</item>
-	</style>
-		
-	<style name="DialogPositiveSeparator_vertical_buttons" parent="DialogNeutralSeparator_vertical_buttons">
-		<item name="layout_attachTop">@id/button3</item>
-		<item name="layout_consumeSpace">@null</item>
+	
 	</style>
 	<style name="DialogPositiveButtonStyle_vertical_buttons" parent="BaseDialogButtonStyle_vertical_buttons">
-		<item name="android:layout_width">match_parent</item>
 		<item name="layout_maxWidth">@null</item>
 		<item name="layout_attachTop">@id/separator</item>
 	</style>
 	
-	<!-- Above negative button -->
-	<style name="DialogButtonSpace_vertical_buttons" parent="DialogNeutralSeparator_vertical_buttons">
+
+	<style name="DialogNeutralSeparator_vertical_buttons" parent="DialogPositiveSeparator_vertical_buttons">
 		<item name="layout_attachTop">@id/button1</item>
+		<item name="layout_consumeSpace">@null</item>
+	</style>
+	<style name="DialogNeutralButtonStyle_vertical_buttons" parent="BaseDialogButtonStyle_vertical_buttons">
+		<item name="layout_maxWidth">@null</item>
+		<item name="layout_attachTop">@id/separator3</item>
+	</style>
+		
+	<style name="DialogButtonSpace_vertical_buttons" parent="DialogNeutralSeparator_vertical_buttons">
+		<item name="layout_attachTop">@id/button3</item>
 		<item name="layout_consumeSpace">@null</item>
 	</style>
 	
 	<style name="DialogNegativeButtonStyle_vertical_buttons" parent="BaseDialogButtonStyle_vertical_buttons">
-		<item name="android:layout_width">match_parent</item>
 		<item name="layout_attachTop">@id/separator2</item>
 		<item name="layout_maxWidth">@null</item>
-		<item name="layout_consumeSpace">vertical</item>
    	</style>
 		
 	
@@ -616,6 +639,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawable">@drawable/settings_24dp</item>		
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 	</style>
 	
 	<style name="DialogButtonBarHidden" parent="@style/DialogButtonBar">
@@ -626,6 +650,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	
-		
-				
+	
 </resources>

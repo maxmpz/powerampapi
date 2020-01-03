@@ -24,6 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<bool name="app_large_heap">true</bool><!-- Up to SDK=24 -->
 	
    	<dimen name="dialog_info_separator_margin">5dp</dimen>
+   	<dimen name="dialog_info_separator_padding">10dp</dimen>
    	<dimen name="status_button_margin">-4dp</dimen>
    	<dimen name="status_content_marginTop">8dp</dimen>
    	<dimen name="status_icon_margin">0dp</dimen>

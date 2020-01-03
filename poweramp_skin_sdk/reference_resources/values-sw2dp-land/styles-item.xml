@@ -23,10 +23,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-
-	<style name="ItemTrackBackDecorTitle_w_meta" parent="ItemTrackBackDecorTitle">
-		<item name="android:layout_marginBottom">82dp</item>
-	</style>
 	<style name="ItemTrackMeta_scene_header_w_meta" parent="ItemTrackMeta_scene_header_w_meta_base">
 		<item name="layout_attachLeft">@null</item>
 		<item name="layout_attachRight">parent</item>
@@ -34,9 +30,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">24dp</item>
 		<item name="android:layout_marginTop">-29dp</item><!-- Compensate line2 attachment on top of this -->
 	</style>
-	<style name="ItemTrackBackDecorTitle_scene_header_1_w_meta" parent="ItemTrackBackDecorTitle">
-		<item name="android:layout_marginBottom">47.25dp</item>
-	</style>
-		
-		
+	
 </resources>

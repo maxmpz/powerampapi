@@ -75,15 +75,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		NOTE: no style needed, inline attributes always apply
 	-->
 	<com.maxmpz.widget.DialogOuterFastLayout android:id="@+id/dialog_outer_layout"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent" 
-		android:clipToPadding="false"
-		android:fitsSystemWindows="true"
+		style="?DialogOuterLayout"
 	>
 				
 		<!-- 
 			This behavior tries to manipulate parent layout scene params (bottom margin) the way it animates soft keyboard state. 
-			Also automatically disables fitsSystemWindows if needed and applies status bar offset via top margin 
+			Also automatically disables fitsSystemWindows if needed and applies status bar offset via top margin.
+			NOTE: this changes insets and should be compatible with possible inset/bounds changes due to themeing (e.g. pre-v29 vs v29) 
 		-->
 		<com.maxmpz.widget.AdjustToSoftKeyboardBehavior
 			android:enabled="?dialogAdjustToSoftKeyboard"	
@@ -225,36 +223,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</com.maxmpz.widget.FastLayout><!-- dialog_frame -->
 		<!-- Frame: on screen -->
 
-		<SceneParams
-			style="?DialogFrame_scene_dialog_in"
-			w:scene="@id/scene_dialog_in" 
-			w:scene_2="@id/scene_dialog_in_progress"
-			w:scene_3="@id/scene_dialog_in_toast" 
+		<SceneParams w:scene="@id/scene_dialog_in" w:scene_2="@id/scene_dialog_in_progress" w:scene_3="@id/scene_dialog_in_toast"
+			style="?DialogFrame_scene_dialog_in" 
 		/>
 		<!-- Frame: wrapping content -->
-		<SceneParams
+		<SceneParams w:scene="@id/scene_dialog_in_loading"
 			style="?DialogFrame_scene_dialog_in"
-			w:scene="@id/scene_dialog_in_loading" 
 		/>
 		<!-- Frame: out of screen -->
-		<SceneParams style="?DialogFrame"
-			w:scene="@id/scene_dialog_out_toast"
-			w:scene_2="@id/scene_dialog_out_progress"
+		<SceneParams w:scene="@id/scene_dialog_out_toast" w:scene_2="@id/scene_dialog_out_progress"
+			style="?DialogFrame"
 		/>
-		<SceneParams style="?DialogFrame"
+		<SceneParams w:scene="@id/scene_dialog_out_alt" 
+			style="?DialogFrame"
 			w:layout_attachBottom="0%"
 			android:visibility="visible"
-			w:scene="@id/scene_dialog_out_alt"
 		/>
 		
 		<!-- NOTE: this is the view where popup item view is moved and transitioned to popup menu and back -->
 		<!-- NOTE: translationZ is synced with dialog frame elevation -->
 		<com.maxmpz.widget.MenuPlaceholderLayout android:id="@+id/menu_placeholder"
 			style="?DialogMenuPlaceholderLayout"
-			android:translationZ="?dialogFrame_elevation"
 			w:privateScene="true"
 		/>
 		
+		<include android:layout="@layout/merge_toast"/>
+				
 	</com.maxmpz.widget.DialogOuterFastLayout>
 	<!-- NOTE: empty SceneParams for dialog-in scenes. Needed for AdjustToSoftKeyboardBehavior - it animates current scene for soft keyboard -->
 	<SceneParams

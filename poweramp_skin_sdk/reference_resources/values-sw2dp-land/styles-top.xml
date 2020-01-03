@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 	<style name="ListSubstyle2" parent="ListSubstyleBase2">
 		<item name="textHeaderSize">158dp</item>
-		<item name="headerSize">168dp</item>
+		<item name="headerSize">188dp</item><!-- NOTE: need enough space, including meta + larger fonts. REVISIT: use sp here? -->
 		<item name="humanCatHeaderSize">148dp</item>
 		<item name="aaGravity">left</item>
 		<item name="aaMarginBottom">?bottom_navbar_bounds_size</item>
@@ -132,13 +132,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopEqLayout" parent="TopEqLayoutBase">
 		<item name="layout_attachLeft">inset</item>
 		<item name="layout_attachRight">inset</item>
-	</style>
-	
-	<style name="TopNavbarContainer">
-		<item name="layout_attachLeft">inset</item>
-		<item name="layout_attachRight">inset</item>
-		<item name="layout_attachTop">parent</item>
-		<item name="layout_attachBottom">inset</item>
 	</style>
 	
 	<style name="TopHelpButtonEq" parent="TopHelpButton">

@@ -50,7 +50,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		w:msgId="@id/cmd_list_delete_dialog"
 	/>
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<!-- NOTE: this may be hidden for some editions -->
+	<com.maxmpz.widget.BusStateEnabledActionButton android:id="@+id/send"
 		style="?SelectionListContextButton"
 		android:drawable="?send"
 		

@@ -76,6 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:gravity">left|center_vertical</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
@@ -105,6 +106,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachRight">parent</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="android:gravity">center</item>
 		<item name="android:padding">8dp</item>
@@ -153,6 +155,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:duplicateParentState">false</item><!-- Parent can be clickable, but we don't want to duplicate presses on it -->
 		<item name="android:clickable">true</item><!-- Also enforces clickable state (FastButtons are not clickable by default) and ignores parent drawable hot spots -->
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 	</style>
 	<style name="SelectionListContextButton_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">12.5dp</item>

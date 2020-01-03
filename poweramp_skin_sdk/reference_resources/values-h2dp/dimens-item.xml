@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,6 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="ItemPopupMenu_scene_item_menu_maxHeight">380dp</dimen>
 	<dimen name="ItemPopupMenu_scene_item_menu_width">300dp</dimen><!-- NOTE: defines base popup button/list width -->
+	<dimen name="ItemPopupMenu_larger_scene_item_menu_width">320dp</dimen><!-- This is maximum minimum width for Android device in general -->
 
 	<!-- Reduced grid labels scale for smaller screens, @see values-sw400dp/dimens/player.xml -->
 	<item type="dimen" format="float" name="scale_title_scene_grid">.675</item>

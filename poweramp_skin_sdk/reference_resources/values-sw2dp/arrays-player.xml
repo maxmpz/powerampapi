@@ -56,6 +56,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>@string/repeat_on</item>
 		<item>@string/repeat_advance</item>
 		<item>@string/repeat_song</item>
+		<item>@string/single_song</item>
 	</string-array>
 	<!-- Extra line for repeat modes -->
 	<string-array name="repeat_modes_summary">
@@ -63,6 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>@string/jump_to_first_song</item>
 		<item>@string/jump_to_next_list</item>
 		<item>@string/repeat_one_song</item>
+		<item>@string/play_single_song_and_pause</item>
 		<item></item>
 	</string-array>
 	<array name="repeat_icons_32dp">
@@ -70,18 +72,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>?repeat_32dp</item>
 		<item>?repeat_advance_32dp</item>
 		<item>?repeat_song_32dp</item>
+		<item>?single_song_32dp</item>
 	</array>
 	<integer-array name="repeat_modes_enum">
 		<item>@integer/REPEAT_NONE</item>
 		<item>@integer/REPEAT_ON</item>
 		<item>@integer/REPEAT_ADVANCE</item>
 		<item>@integer/REPEAT_SONG</item>
+		<item>@integer/SINGLE_SONG</item>
 	</integer-array>
 	<array name="repeat_icons_raw_48dp"><!-- Raw values used for e.g. for mediasession - independently on theme -->
 		<item>@drawable/repeat_none_48dp</item>
 		<item>@drawable/repeat_48dp</item>
 		<item>@drawable/repeat_advance_48dp</item>
 		<item>@drawable/repeat_song_48dp</item>
+		<item>@drawable/single_song_48dp</item>
 	</array>
 		
 	

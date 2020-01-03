@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,9 +19,12 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<resources>
-	<dimen name="NavbarBounds_height">48dp</dimen>
-	<dimen name="NavbarBounds_height_scene_navbar_2lines">100dp</dimen>
-	<dimen name="NavbarBounds_height_offset">54dp</dimen>
-	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">106dp</dimen>
+<!-- values-sw2dp-v29 -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="Base_ActivityTheme_Default" parent="Base_ActivityTheme_Core">
+		<item name="android:editTextBackground">@drawable/edit_text_material</item>
+		
+		<item name="statusBarBg">#3000</item>
+		<item name="android:navigationBarColor">#0fff</item><!-- Makes big navbar button greyish so they are better visible on white -->
+	</style>
 </resources>

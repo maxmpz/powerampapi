@@ -24,6 +24,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	
 	<style name="Base_ActivityTheme_Default" parent="Base_ActivityTheme_Core">
+		<item name="android:editTextBackground">@drawable/edit_text_material</item><!-- NOTE: up to 26 this is wrapped edit_text_material, then drawable-v26/edit_text_material -->
+		
 		<!-- NOTE: need to override default textAppearance* attributes, as even for app compat, they point to system styles -->
 		<item name="android:textAppearance">@style/textAppearance_Tablet</item>
 		<item name="android:textAppearanceButton">@style/textAppearanceButton_Tablet</item>

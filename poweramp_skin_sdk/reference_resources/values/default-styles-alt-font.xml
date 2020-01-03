@@ -113,6 +113,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: this sets font for quite specific cases, like Checkboxes (in SleepTimer dialog) -->
 	<style name="textAppearance_AltFont" parent="TextAppearance.AppCompat">
 		<item name="android:fontFamily">?AltFont_font</item>
+		<item name="android:textSize">@dimen/moderate2_AltFont_textSize</item>
 	</style>
 	<style name="textAppearanceButton_AltFont" parent="TextAppearance.AppCompat.Widget.Button">
 		<item name="android:fontFamily">?AltFont_medium_font</item>
@@ -288,7 +289,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="ItemPopupListTitleLarger_Text_AltFont" parent="ItemPopupListTitleLarger_Text">
 		<item name="android:fontFamily">?AltFont_font</item>
-		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/medium3_AltFont_textSize</item>
 	</style>
 	<style name="ItemVisTitle_Text_AltFont" parent="ItemGenericTitle_Text">
 		<item name="android:fontFamily">?AltFont_medium_font</item>

@@ -87,8 +87,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="DialogBehavior" format="reference"/>	
 	<attr name="DialogShim" format="reference"/>
+	<attr name="DialogOuterLayout" format="reference"/>
 	<attr name="DialogFrame" format="reference"/>
 	<attr name="DialogFrame_scene_dialog_in" format="reference"/>
+	
 
 	<attr name="DialogFrameContent" format="reference"/>
 	

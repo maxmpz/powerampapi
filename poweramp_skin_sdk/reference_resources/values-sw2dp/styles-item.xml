@@ -52,6 +52,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:clipToPadding">false</item>
 		<item name="android:background">@drawable/item_bg</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		
 		<!-- DEBUG -->
 		<!--<item name="android:background">#5f00</item>-->
@@ -132,7 +133,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 								
 	
 	<style name="ItemTrackAAImage">
-		<item name="android:scaleType">centerCrop</item>
+		<item name="android:scaleType">?AAImage_scaleType</item>
 		<item name="android:cropToPadding">true</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="layout_matchDimension">widthToHeight</item>
@@ -444,7 +445,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:paddingTop">6dp</item>
 		<item name="android:paddingBottom">6dp</item>
-		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->		
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling from top/left -->		
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
@@ -1127,8 +1128,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<!-- When there is no rating, shift button a bit to match line2 vertical align -->
 	<style name="ItemTrackMenu_scene_aa" parent="BlackListMenu_scene_aa">
 		<item name="android:layout_marginBottom">16.5dp</item>
+		<item name="android:visibility">?ItemTrackMenu_scene_aa_visibility</item>
 	</style>
 	<style name="ItemTrackMenu_scene_aa_w_rating" parent="BlackListMenu_scene_aa">
+		<item name="android:visibility">?ItemTrackMenu_scene_aa_visibility</item>		
 	</style>
 	<style name="ItemTrackMenu_scene_aa_vis">
 		<item name="baseScene">@id/scene_aa</item>
@@ -1200,6 +1203,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemRatingBar">
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:longClickable">true</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -1289,6 +1293,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:gravity">center</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="android:disabledAlpha">0</item><!-- Usefull for e.g. raw files -->
 		<item name="android:layout_width">wrap_content</item>
@@ -1321,6 +1326,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:gravity">center</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="android:disabledAlpha">0</item><!-- Usefull for e.g. raw files -->
 		<item name="android:layout_width">wrap_content</item>
@@ -1352,7 +1358,14 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="privateScene">true</item>
 	</style>
 	
+	<!-- NOTE: drawable size mostly defines height of lineBackground here -->
+	<!-- This is initial position/style == matches scene_header title position/style -->
+	<!-- NOTE: maxLines="1" is required for proper animation (here in for title in item_track). 
+		 This is due to difference in rendering between 1-2 lines with and without drawable. As we use fixed marginBottom here
+		 to match it vs item_track position, it doesn't work reliable for 2 liner
+	-->
 	<!-- Should visually match title in scene_header ==> ItemTrackTitle_scene_header
+	     NOTE: Poweramp build 846+ automatically matches position of the back decor title to the header item view title in this (0) scene and in scene_header_1 
 	     NOTE: no separate textAppearance style - uses the one derived from ItemTrackTitle_scene_header => ItemTrackTitle -->
 	<style name="ItemTrackBackDecorTitle" parent="ItemTrackTitle_scene_header">
 		<item name="drawableWidth">24dp</item>
@@ -1364,24 +1377,23 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="drawableTint">#0000</item><!-- Invisible -->
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">false</item>
 		<item name="android:gravity">center_vertical</item>
-		<!-- NOTE: margins change as size of back title is different due to additional larger background and drawable -->
-		<item name="android:layout_marginLeft">-13dp</item>
 		<item name="layout_attachRight">@null</item>
 		<item name="layout_attachBottom">parent</item><!-- NOTE: ItemTrackBackDecorTitle lives in separate container, there is no any line2 to attach to -->
-		<item name="android:layout_marginBottom">84dp</item>
 		<item name="android:background">#0000</item>
 	</style>
 	<style name="ItemTrackBackDecorTitle_w_meta" parent="ItemTrackBackDecorTitle">
-		<item name="android:layout_marginBottom">112dp</item>
 	</style>
 	<style name="ItemTrackBackDecorTitle_scene_header_1" parent="ItemTrackBackDecorTitle">
-		<item name="android:layout_marginBottom">48.5dp</item>
 	</style>
 	<style name="ItemTrackBackDecorTitle_scene_header_1_w_meta" parent="ItemTrackBackDecorTitle">
-		<item name="android:layout_marginBottom">77.33dp</item>
 	</style>
+	<!-- NOTE: fixed height here will cause jump as inner layout (text vertical position) is not animated, but applied when layout is calculated
+		 e.g. on_start/end/dynamic, dynamic will work, but it's very heavy due to layout in each frame.
+	 	 NOTE: scene_header_back_decor is the scene where backdecor is in left-top corner (as back button)
+	 	 NOTE: position is required here, as this is the final back decor title position (top left corner) -->
 	<style name="ItemTrackBackDecorTitle_scene_header_back_decor" parent="ItemTopTextBackDecorTitle_scene_header_back_decor">
 		<item name="scale">1</item>
 		<item name="layout_compensateScale">1</item>
@@ -1470,6 +1482,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">right|center_vertical</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:paddingTop">6dp</item>
@@ -1678,6 +1691,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="drawableWidth">24dp</item> <!-- TODO: 32 for larger screens -->
 		<item name="drawableHeight">24dp</item>
@@ -1860,8 +1874,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	
 	<style name="ItemTextAAImage">
-		<!-- <item name="android:scaleType">fitCenter</item> --><!-- This is for AAImageView, not supported by IconView -->
-		<!-- <item name="android:cropToPadding">true</item> -->
 		<item name="android:layout_width">36dp</item>
 		<item name="android:layout_height">36dp</item>
 		<item name="layout_attachLeft">parent</item>
@@ -1891,7 +1903,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">48dp</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="android:layout_gravity">center_vertical</item>
-		<item name="layout_gravityOffset">insetTop</item>
+		<item name="layout_offsets">insetTop</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginLeft">12dp</item>
@@ -1949,7 +1961,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">@+id/aa_image</item>
 		<item name="android:layout_gravity">center_vertical</item>
-		<item name="layout_gravityOffset">insetTop</item><!-- Force gravity to account for window inset, so we're aligned with offset to the status bar -->
+		<item name="layout_offsets">insetTop</item><!-- Force gravity to account for window inset, so we're aligned with offset to the status bar -->
 		<item name="android:layout_marginLeft">0dp</item><!-- -4dp -->
 		<item name="android:layout_marginRight">0dp</item>
 		<item name="android:layout_marginTop">0dp</item>
@@ -1968,7 +1980,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="android:layout_gravity">center_vertical</item>
-		<item name="layout_gravityOffset">insetTop</item>
+		<item name="layout_offsets">insetTop</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">16dp</item>
 		<item name="android:layout_marginTop">0dp</item>
@@ -2080,7 +2092,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTextBackDecor" parent="ItemTrackBackDecor"><!-- Container -->
 	</style>
 	
-	<!-- This view should visually match title in scene_header.
+	<!-- This view should visually match title in scene_header, but may have no any location set, as Poweramp automatically syncs its location to the real title.
+	     NOTE: Poweramp build 846+ automatically matches position of the back decor title to the header item view title in this (0) scene and in scene_header_1
 	     NOTE: no textAppearance, instead using the derived style -->
 	<style name="ItemTextBackDecorTitle" parent="ItemTextTitle_scene_header">
 		<item name="android:paddingLeft">0dp</item>
@@ -2091,19 +2104,17 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachLeft">parent</item>
 		
-		<!-- Compensate horizontal margin (as no attach to image here and we have a bit different up image here) -->
-		<item name="android:layout_marginLeft">12dp</item> 
-		<item name="android:disabledAlpha">0</item>
-		<item name="drawableWidth">32dp</item>
-		<item name="drawableHeight">32dp</item>
 		<item name="android:gravity">center_vertical</item>
+		<item name="android:disabledAlpha">0</item>
+		<item name="drawableWidth">32dp</item><!-- NOTE: actual image is 24dp, but larger drawable size here defines overal background height -->
+		<item name="drawableHeight">32dp</item>
 		<item name="android:drawable">@drawable/up_nav</item>
 		<item name="drawableTint">#0000</item><!-- Invisible -->
 		<item name="animOnClick">false</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 	</style>
 	<style name="ItemTextBackDecorTitle_scene_header_back_decor" parent="ItemTopTextBackDecorTitle_scene_header_back_decor">
 		<item name="drawableTint">?colorIconInverseForced</item>
@@ -2111,9 +2122,11 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:background">@drawable/ripple_inverse_rounded_large</item>
 	</style>
 	
-	<style name="ItemTopTextBackDecor" parent="ItemTrackBackDecor"></style>
+	<style name="ItemTopTextBackDecor" parent="ItemTrackBackDecor">
+	</style>
 	
 	<!-- This view should visually match title in scene_top_header.
+	     NOTE: Poweramp build 846+ automatically matches position of the back decor title to the header item view title in this (0) scene and in scene_header_1
 	     NOTE: no textAppearance, instead using the derived style -->
 	<style name="ItemTopTextBackDecorTitle" parent="ItemTextTitle_scene_top_header">
 		<item name="android:paddingLeft">0dp</item>
@@ -2124,14 +2137,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">center_vertical</item>
-		<item name="layout_gravityOffset">insetTop</item>
-		<item name="layout_attachLeft">parent</item>
-		
-		<item name="android:layout_marginLeft">-40dp</item><!-- -40dp -->
-		<item name="android:layout_marginRight">0dp</item>
-		<item name="android:layout_marginTop">0dp</item>
-		<item name="android:layout_marginBottom">0dp</item>
 		
 		<item name="android:disabledAlpha">0</item>
 		<item name="drawableWidth">32dp</item>
@@ -2143,7 +2148,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="animOnClick">false</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 	</style>
+	<!-- NOTE: this is the final back decor title position (top left corner), position is required -->
 	<style name="ItemTopTextBackDecorTitle_scene_header_back_decor">
 		<item name="recalcChildren">on_start</item>
 		<item name="android:layout_width">wrap_content</item>
@@ -2186,7 +2193,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachTop">@id/aa_image</item>
-		<item name="layout_attachToParrentIfGone">true</item>
+		<item name="layout_attachToParentIfGone">true</item>
 		<item name="layout_unlimitedMeasure">true</item>	 
 	</style>
 	
@@ -2272,7 +2279,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 
 	<style name="ItemMiniplayerAAImage">
-		<item name="android:scaleType">centerCrop</item>
+		<item name="android:scaleType">?AAImage_scaleType</item>
 		<item name="android:cropToPadding">true</item>
 		<item name="android:layout_width">40dp</item>
 		<item name="android:layout_height">40dp</item>
@@ -2305,6 +2312,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="android:drawable">?miniplayer_play_pause</item>
@@ -2323,15 +2331,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<!-- <item name="animOnClick">true</item> NOTE: for most AAItemView derived views, this won't work anyway -->
 	</style>
 	
-	<!-- This can be either AAImageView or IconView, so we have attributes for both -->
+	<!-- IconView -->
 	<style name="ItemGenericImage">
-		<item name="android:scaleType">center</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_gravity">center_vertical</item>
-		<item name="hiRes">false</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">center</item>
 		<item name="drawableTint">?colorIconPrimary</item>
@@ -2424,6 +2430,23 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemPopupListImage" parent="ItemGenericImage">
 	</style>
 	
+	<style name="ItemPopupListAAImage" parent="ItemPopupListImage">
+		<item name="android:scaleType">?AAImage_scaleType</item>
+		<item name="android:cropToPadding">true</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_matchDimension">widthToHeight</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginBottom">2dp</item>
+		
+		<item name="cornerRadius">6dp</item><!-- Tracks -->
+		<item name="cornerRadius2">6dp</item><!-- Albums -->
+		<item name="cornerRadius3">6dp</item><!-- Others -->
+		<item name="android:elevation">?list_aa_elevation</item>
+		<item name="hiRes">false</item>
+	</style>
+		
+	
 	<style name="ItemPopupListTitle" parent="ItemGenericTitle">
 		<item name="layout_attachBottom">@null</item>
 		<item name="android:layout_gravity">center_vertical</item>
@@ -2439,7 +2462,15 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:textAppearance">?ItemPopupListTitleLarger_Text</item><!-- By default => ItemGenericTitle_Text -->
 	</style>
 	<style name="ItemPopupListTitleLarger_Text" parent="ItemGenericTitle_Text">
-		<item name="android:textSize">15dp</item>
+		<item name="android:textSize">15.5dp</item>
+	</style>
+	<style name="ItemPopupListTitleLarger_2line" parent="ItemPopupListTitleLarger">
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="layout_attachBottom">50%</item>
+		<item name="android:layout_marginBottom">-1dp</item>
+		<item name="android:layout_gravity">@null</item>
 	</style>
 	
 	<style name="ItemPopupListLine2" parent="ItemGenericLine2"><!-- NOTE: not used ATM -->
@@ -2508,6 +2539,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="android:drawable">@drawable/like_unlike_selector</item>
@@ -2535,13 +2567,27 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="toneGlowColor">#0000</item>
 	</style>
 	
+	<!-- Spacer used to align icons to ItemPopupListTitleLarger_2line padding -->
+	<style name="ItemPopupListMicroIconSpace">
+		<item name="android:layout_width">10dp</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+	
 	<style name="ItemPopupListMicroIcon">
-		<item name="drawableOnly">true</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">center_vertical|right</item>
+		<item name="layout_attachTop">50%</item>
+		<item name="android:layout_marginTop">3dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
-		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="drawableTint">?android:textColorSecondary</item>
+		<item name="android:textColor">?android:textColorSecondary</item>
+		<item name="android:textAppearance">?Hint</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:singleLine">true</item>
+		<item name="layout_maxWidth">100dp</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:drawablePadding">3dp</item>
 	</style>
 	
 	<style name="ItemPopupListSelectBox" parent="ItemTrackSelectBox">
@@ -2549,6 +2595,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachLeftToLeft">@id/aa_image</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_marginLeft">-4dp</item>
+	</style>
+	
+	<style name="ItemPopupListAASelectBox" parent="ItemPopupListSelectBox">
+		<item name="android:layout_marginLeft">8dp</item>
 	</style>
 	
 	<style name="ItemPopupSimpleImage" parent="ItemVisImage">

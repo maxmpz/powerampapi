@@ -19,17 +19,6 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- values-sw2dp-v29 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- NOTE: as for v29, TopNavbarContainer fills whole screen, we attach navbar to inset so it doesn't overlap Android navbar -->
-	<style name="Navbar" parent="Base_Navbar">
-		<item name="layout_attachBottom">inset</item>
-	</style>
-	<style name="Navbar_scene_navbar_1line_sheet" parent="Base_Navbar_scene_navbar_1line_sheet">
-		<item name="layout_attachBottom">inset</item>
-	</style>
-	<style name="Navbar_scene_navbar_2lines" parent="Base_Navbar_scene_navbar_2lines">
-		<item name="layout_attachBottom">inset</item>
-	</style>
-			
+<resources>
+	<dimen name="ItemPopupMenu_larger_scene_item_menu_width">340dp</dimen>
 </resources>

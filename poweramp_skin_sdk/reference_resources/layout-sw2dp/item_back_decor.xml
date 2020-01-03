@@ -31,12 +31,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	android:id="@+id/item_back_decor"
 	style="?ItemTrackBackDecor"
 >
-	<!-- NOTE: drawable size mostly defines height of lineBackground here -->
-	<!-- This is initial position/style == matches scene_header title position/style -->
-	<!-- NOTE: maxLines="1" is required for proper animation (here in for title in item_track). 
-		 This is due to difference in rendering between 1-2 lines with and without drawable. As we use fixed marginBottom here
-		 to match it vs item_track position, it doesn't work reliable for 2 liner
-	-->
 	<com.maxmpz.widget.BusActionButton android:id="@+id/title"
 		style="?ItemTrackBackDecorTitle"
 		w:busId="@id/list"
@@ -47,8 +41,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header_1"
 		style="?ItemTrackBackDecorTitle_scene_header_1"
 	/>
-	<!-- NOTE: fixed height here will cause jump as inner layout (text vertical position) is not animated, but applied when layout is calculated
-		 e.g. on_start/end/dynamic, dynamic will work, but it's very heavy due to layout in each frame -->
 	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header_back_decor"
 		style="?ItemTrackBackDecorTitle_scene_header_back_decor"
 	/>

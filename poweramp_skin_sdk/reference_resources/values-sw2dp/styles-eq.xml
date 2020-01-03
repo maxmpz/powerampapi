@@ -167,6 +167,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="innerScrolling">true</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:longClickable">true</item><!-- NOTE: making it also clickable=true here will cause ripple drawable in popup to activate -->
 				
 		<item name="lineBackground">@drawable/alpha_popup_button_layout_bg</item>
@@ -257,9 +258,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">@dimen/EqButton_layout_height</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		
-		<item name="listItemSize">50dp</item>
+		<item name="listItemSize">56dp</item>
 		<item name="disableParentLayoutForPopup">false</item>
 	</style>
 	<style name="EqEquPresetButtonLayout" parent="EqPresetButtonLayoutBase">
@@ -269,7 +271,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item>
 	</style>
-	<style name="EqEquPresetButtonLayout_scene_button_menu" parent="ItemPopupList_scene_item_menu">		
+	<style name="EqEquPresetButtonLayout_scene_button_menu" parent="ItemPopupList_scene_item_menu">
+		<item name="android:layout_width">@dimen/ItemPopupMenu_larger_scene_item_menu_width</item>		
 	</style>
 	
 	<!-- Text should be similar to EqButton -->
@@ -665,6 +668,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">@dimen/EqButton_layout_height</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="listItemSize">50dp</item>
 		<item name="disableParentLayoutForPopup">false</item>

@@ -75,7 +75,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					android:drawable="?settings_24dp"
 					android:text="@string/settings"
 					android:targetClass=".preference.SettingsActivity"
-					android:targetPackage="com.maxmpz.audioplayer"
 				/>
 								
 				<com.maxmpz.widget.IntentActionButton

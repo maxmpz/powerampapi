@@ -21,14 +21,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values-sw2dp-v29 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- NOTE: as for v29, TopNavbarContainer fills whole screen, we attach navbar to inset so it doesn't overlap Android navbar -->
+	<!-- NOTE: as for v29, TopNavbarContainer fills whole screen, we attach navbar to inset so it doesn't overlap Android navbar.
+	     Left/right insets are needed to, as in landscape, android navbar (if enabled) can be to the sides -->
 	<style name="Navbar" parent="Base_Navbar">
 		<item name="layout_attachBottom">inset</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachRight">inset</item>
 	</style>
 	<style name="Navbar_scene_navbar_1line_sheet" parent="Base_Navbar_scene_navbar_1line_sheet">
 		<item name="layout_attachBottom">inset</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachRight">inset</item>
 	</style>
 	<style name="Navbar_scene_navbar_2lines" parent="Base_Navbar_scene_navbar_2lines">
 		<item name="layout_attachBottom">inset</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachRight">inset</item>
 	</style>
 </resources>

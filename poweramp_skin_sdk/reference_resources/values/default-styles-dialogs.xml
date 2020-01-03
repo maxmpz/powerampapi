@@ -96,11 +96,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogContentLayout">@layout/dialog_content_text_input</item>
 	</style>
 	
-	<style name="dialog_EqPresetAssignActivity" parent="CenteredDialog">
+	<style name="dialog_EqPresetAssignActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_eq_preset_assign</item>
 	</style>
 	
-	<style name="dialog_AddEqPresetActivity" parent="CenteredDialog">
+	<style name="dialog_AddEqPresetActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_add_eq_preset</item>
 	</style>
 	<style name="dialog_AddReverbPresetActivity" parent="CenteredDialog">
@@ -135,7 +135,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="dialog_PlaylistSelectActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_playlist_select</item>
 		<item name="DialogContent">@style/DialogContentNoPadding</item>
-		<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>
+		<!--<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>-->
 	</style>
 	<style name="dialog_PlaylistShortcutActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_playlist_shortcut</item>
@@ -143,7 +143,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>
 	</style>
 	
-	<style name="dialog_MediaRouteChooserActivity" parent="SmallerCenteredDialog">
+	<style name="dialog_MediaRouteChooserActivity" parent="TopsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_mediaroute_chooser</item>
 		<item name="DialogContent">@style/CenteredDialogContentNoPadding</item>
 	</style>
@@ -167,13 +167,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogContentLayout">@layout/dialog_content_lyrics</item>
 	</style>
 		
-	<style name="dialog_MobirooDRMErrorActivity" parent="CenteredDialog"></style>
+	<style name="dialog_MobirooDRMErrorActivity" parent="CenteredDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
+	</style>
 	
 	<style name="dialog_AudioBufferActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_audio_buffer</item>
 	</style>
 		
 	<!-- Styles used in dialogs -->
+	
+	<style name="EqPresetAssignLabel">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<!--<item name="android:textSize">15sp</item>-->
+	</style>
 	
 	<style name="EqPresetAssignIcon">
 		<item name="android:layout_width">wrap_content</item>
@@ -185,7 +196,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center_vertical</item>
 		<item name="drawableOnly">true</item>
 	</style>
-	<style name="EqPresetAssignCheckbox">
+	<style name="EqPresetAssignCheckbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
 		<item name="android:layout_width">match_parent</item><!-- Consumes whole available width for better touch area -->
 		<item name="android:layout_height">30dp</item>
 		<item name="android:gravity">center_vertical</item>
@@ -194,8 +205,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">4dp</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+	<style name="EqPresetDeviceAssignIcon" parent="EqPresetAssignIcon">
+		<item name="android:layout_marginLeft">16dp</item>
+	</style>
+	<style name="EqPresetDeviceAssignCheckbox" parent="EqPresetAssignCheckbox">
 	</style>
 	
+	<style name="EqPresetCont">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
+	</style>
+
+	<!-- NOTE: not used ATM -->
+	<!--	
 	<style name="EqPresetAssignText">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -205,6 +230,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:layout_marginBottom">4dp</item>
 	</style>
+	-->
 	
 	<style name="DialogTopButtonBase">
 		<item name="android:layout_gravity">top|right</item>
@@ -212,6 +238,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>

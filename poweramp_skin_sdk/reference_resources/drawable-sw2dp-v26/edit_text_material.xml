@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: this fixes issue with EditText 9-patch rendering (which is not initially rendered on Androids 8-9 + also is a bit more lightweight and customizable vs 9-patches
+     NOTE: Android defines EditText paddings via background drawable. While that's weird, we do the same for the compatibility and same looks
+     NOTE: used just for v26+. Needed just Android 8-9, but we'll use it for 10 as well -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:paddingTop="8dp"
+	android:paddingLeft="4dp"
+	android:paddingRight="4dp"
+	android:paddingBottom="5dp"
+>
+	<item
+		android:left="4dp"
+		android:right="4dp"
+	>
+		<selector  
+			android:exitFadeDuration="350"
+			android:enterFadeDuration="150"
+			android:constantSize="true"
+		>
+			<item android:state_enabled="false">
+				<layer-list android:height="1dp" android:paddingBottom="0dp">
+					<item android:height="1dp" android:gravity="bottom"><!-- NOTE: just android:drawable="color" almost works here too, but causing strange animation/layout issues on some devices -->
+						<shape>
+							<solid android:color="?android:attr/colorControlNormal"/>
+						</shape>		
+					</item>
+				</layer-list>				
+			</item>
+			<item android:state_pressed="false" android:state_focused="false">
+				<layer-list android:height="1dp" android:paddingBottom="0dp">
+					<item android:height="1dp" android:gravity="bottom" >
+						<shape>
+							<solid android:color="?android:attr/colorControlNormal"/>
+						</shape>		
+					</item>
+				</layer-list>				
+			</item>
+			<item>
+				<layer-list android:height="2dp" android:paddingBottom="0dp">
+					<item android:height="2dp" android:gravity="bottom">
+						<shape>
+							<solid android:color="?android:attr/colorControlActivated"/>
+						</shape>		
+					</item>		
+				</layer-list>				
+			</item>
+		</selector>
+	</item>
+</layer-list>

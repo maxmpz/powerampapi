@@ -20,10 +20,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- values-sw2dp-v29 -->
-<resources>
-	<dimen name="NavbarBounds_height">40dp</dimen>
-	<dimen name="NavbarBounds_height_scene_navbar_2lines">90dp</dimen>
-	<!-- Same for overlap_navbar_offset -->
-	<dimen name="NavbarBounds_height_offset">46dp</dimen>
-	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">96dp</dimen>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- Force dialog to overlap navigation bar -->
+	<style name="Default_BaseDialogForcedStyle" parent="BaseDialogForcedStyle">
+		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
+		<item name="android:navigationBarColor">#0FFF</item><!-- Makes big navbar button greyish so they are better visible on white -->
+		<item name="android:enforceNavigationBarContrast">false</item><!-- Disables darker jumping color navbar for dialogs -->
+	</style>
+	
 </resources>

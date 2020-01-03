@@ -22,7 +22,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values-h1dp -->
 <resources>
 	<bool name="v28_forceHasOverlappingRendering">false</bool>
-	<dimen name="PopupLayoutList_height">320dp</dimen>
+	<dimen name="PopupLayoutList_height">340dp</dimen>
 		
 	<dimen name="TopBottomSheetDialogFrame_maxHeight">400dp</dimen>
 	<dimen name="TopBottomSheetDialogFrame_vertical_buttons_maxHeight">500dp</dimen>

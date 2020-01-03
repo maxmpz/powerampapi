@@ -19,12 +19,11 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- values-sw2dp-v29 -->
+<!-- values-v29 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- Force dialog to overlap navigation bar -->
-	<style name="Default_BaseDialogForcedStyle" parent="BaseDialogForcedStyle">
-		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
-		<item name="android:navigationBarColor">#0fff</item><!-- Makes big navbar button greyish so they are better visible on white -->
+	<!-- NOTE: need to redefine it again, as core black-styles redefines default colors -->
+	<style name="ActivityTheme_Black" parent="Base_ActivityTheme_Black">
+		<item name="statusBarBg">#3000</item>
+		<item name="android:navigationBarColor">#0fff</item>
 	</style>
-	
 </resources>
