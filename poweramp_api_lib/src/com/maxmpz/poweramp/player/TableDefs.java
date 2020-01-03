@@ -220,6 +220,14 @@ public interface TableDefs {
 		 * INTEGER
 		 */
 		public static final @NonNull String SHUFFLE_ORDER = TABLE + ".shuffle_order";
+		
+		/**
+		 * 1 if this item (most probably stream track) was manually added and shouldn't be removed by rescans<br>
+		 * Since 857<br>
+		 * INTEGER (boolean)
+		 */
+		public static final @NonNull String USER_ADDED = TABLE + ".user_added";
+		
 
 		/**
 		 * tag_status
