@@ -78,7 +78,7 @@ public final class PowerampAPI {
 	 * Special {@link PowerampAPI.Track#ID} value indicating missing file - for example playlist entry which can't be found
 	 */
 	public static final long MISSING_TRACK_ID = -3L;
-
+	
 	/**
 	 * Authority used for data provider
 	 */

@@ -33,7 +33,7 @@ public interface TableDefs {
 	 * Id used for all "unknown" categories. Also see {@link PowerampAPI.NO_ID}
 	 */
 	public static final long UNKNOWN_ID = 1000L;
-
+	
 	/**
 	 * Alias used for category aliased table _id
 	 */
@@ -43,6 +43,11 @@ public interface TableDefs {
 	 * Tracks
 	 */
 	public interface Files {
+		/** 
+		 * Special value for {@link #TRACK_NUMBER} - means no valid track number exists for given track 
+		 */
+		public static final int INVALID_TRACK_NUMBER = 10000;
+		
 		public static final @NonNull String TABLE = "folder_files";
 
 		public static final @NonNull String _ID = TABLE + "._id";
@@ -54,10 +59,18 @@ public interface TableDefs {
 		public static final @NonNull String NAME = TABLE + ".name";
 
 		/**
-		 * Track number (extracted from filename)<br>
+		 * Track number extracted from tag or filename. May include disc number (if >= 2) as thousands (2001, 2002, etc.). Can be {@link INVALID_TRACK_NUMBER}.<br>
+		 * Used for sorting<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String TRACK_NUMBER = "track_number";
+
+		/**
+		 * Track number for display purposes (since 858), prior 858 just track number from track tags. 0 or NULL if no track tag exists.<br> 
+		 * Never includes disc number (since 858)<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String TRACK_TAG = "track_tag";
 
 		/**
 		 * Track name without number. For streams - this is name of stream, if available<br>
@@ -70,12 +83,6 @@ public interface TableDefs {
 		 * INTEGER
 		 */
 		public static final @NonNull String TAG_STATUS = "tag_status";
-
-		/**
-		 * Track # tag<br>
-		 * INTEGER
-		 */
-		public static final @NonNull String TRACK_TAG = "track_tag";
 
 		/**
 		 * Parent folder id<br>
@@ -509,11 +516,15 @@ public interface TableDefs {
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 
 		/**
+		 * If 1 (true), this folder restores last played track<br>
+		 * Since 821<br>
 		 * INTEGER (boolean)
 		 */
 		public static final @NonNull String KEEP_LIST_POS = TABLE + ".keep_list_pos"; // Sync with RestLibraryListMemorizable
 
 		/**
+		 * If 1 (true), this folder restores last played track position<br>
+		 * Since 821<br>
 		 * INTEGER (boolean)
 		 */
 		public static final @NonNull String KEEP_TRACK_POS = TABLE + ".keep_track_pos"; // Sync with RestLibraryListMemorizable
