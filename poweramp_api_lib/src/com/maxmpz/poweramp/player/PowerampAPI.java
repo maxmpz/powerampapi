@@ -1089,6 +1089,14 @@ public final class PowerampAPI {
 		 * Pseudo mode just for UI, not used as mode directly (SHUFFLE_SONGS is used)
 		 */
 		public static final int SHUFFLE_SONGS_HIER     = 5;
+		
+		public static final boolean areSongsShuffled(int shuffle) {
+			return shuffle == SHUFFLE_ALL || shuffle == SHUFFLE_SONGS || shuffle == SHUFFLE_SONGS_AND_CATS;
+		}
+
+		public static final boolean areCatsShuffled(int shuffle) {
+			return shuffle == SHUFFLE_CATS || shuffle == SHUFFLE_SONGS_AND_CATS;
+		}
 	}
 
 	/**
