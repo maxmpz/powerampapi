@@ -71,6 +71,13 @@ public interface TableDefs {
 		 * INTEGER
 		 */
 		public static final @NonNull String TRACK_TAG = "track_tag";
+		
+		/**
+		 * Track disc or 0 if no such tag exists<br> 
+		 * Since 859<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String DISC = "disc";
 
 		/**
 		 * Track name without number. For streams - this is name of stream, if available<br>
