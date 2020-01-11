@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2019 Maksim Petrov
+Copyright (C) 2011-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for the widgets, plugins, applications and other software
@@ -21,7 +21,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.player;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -1160,6 +1159,16 @@ public final class PowerampAPI {
 	 */
 	@SuppressWarnings("hiding")
 	public static final class Track {
+		/**
+		 * Max number to use for filename numbers, e.g. 1-track.mp3 is considered a track #1, but 100-track.mp3 is not
+		 */
+		public static final int MAX_FILE_NUMBER = 99;
+		
+		/**
+		 * Max track tag number to use/show
+		 */
+		public static final int MAX_TRACK_NUMBER = 999;
+		
 		/**
 		 * Id of the current track.
 		 * Can be a playlist entry id<br>
