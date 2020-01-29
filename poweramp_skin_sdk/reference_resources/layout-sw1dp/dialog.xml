@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -46,13 +46,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: we're inside FrameLayout (sub-DecorView) here -->
 	
 	<!-- Setup scene for DecorView -->
-	<com.maxmpz.widget.RootSceneActivityBehavior/>
+	<com.maxmpz.widget.base.RootSceneActivityBehavior/>
 
 	<!-- Setup animation and touch/dragging dialog behavior. DialogBehavior is also a BackButtonHost -->
-	<com.maxmpz.widget.DialogBehavior android:id="@id/behavior_dialog"/>
+	<com.maxmpz.widget.base.DialogBehavior android:id="@id/behavior_dialog"/>
 
 	<!-- Set background shade shim -->
-	<com.maxmpz.widget.Shim
+	<com.maxmpz.widget.base.Shim
 		android:id="@+id/dialog_shim"
 		style="?DialogShim"
 		android:visibility="invisible" 
@@ -72,9 +72,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- 
 		Outer layout - matches full screen. Mostly used to intercept nested scroll events from content ScrollView
-		NOTE: no style needed, inline attributes always apply
-	-->
-	<com.maxmpz.widget.DialogOuterFastLayout android:id="@+id/dialog_outer_layout"
+		NOTE: no style needed, inline attributes always apply -->
+	<com.maxmpz.widget.base.DialogOuterFastLayout android:id="@+id/dialog_outer_layout"
 		style="?DialogOuterLayout"
 	>
 				
@@ -83,12 +82,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			Also automatically disables fitsSystemWindows if needed and applies status bar offset via top margin.
 			NOTE: this changes insets and should be compatible with possible inset/bounds changes due to themeing (e.g. pre-v29 vs v29) 
 		-->
-		<com.maxmpz.widget.AdjustToSoftKeyboardBehavior
+		<com.maxmpz.widget.base.AdjustToSoftKeyboardBehavior
 			android:enabled="?dialogAdjustToSoftKeyboard"	
 		/>
 
 		<!-- Inner layout - actual dialog frame -->
-		<com.maxmpz.widget.FastLayout
+		<com.maxmpz.widget.base.FastLayout
 			android:id="@+id/dialog_frame"
 			style="?DialogFrame"
 			android:clickable="true"
@@ -96,7 +95,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		>
 				<!-- Title layout
 				     NOTE: even if hidden, it still can consume space via margins (they are calculated even for gone vies) -->
-				<com.maxmpz.widget.FastLayout android:id="@+id/dialog_title_layout"
+				<com.maxmpz.widget.base.FastLayout android:id="@+id/dialog_title_layout"
 					style="?DialogTitleLayout"
 				>
 					<ProgressBar android:id="@+id/dialog_progress"
@@ -117,8 +116,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						w:recalcChildren="on_start"
 					/>	
 															
-					<!-- NOTE: FastText behaves a bit better here during animations, due to support for clipChildren=false -->
-					<com.maxmpz.widget.FastTextView android:id="@+id/title"
+					<!-- NOTE: FastText behaves a bit better here during animations, due to support for clipChildren=false --> 
+					<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 						style="?DialogTitle"
 					/>
 					<!-- Needed to make title animate between loading/progress state and normal one -->
@@ -127,7 +126,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						w:scene_3="@id/scene_dialog_in"
 						w:recalcChildren="on_start"
 					/>	
-				</com.maxmpz.widget.FastLayout>
+				</com.maxmpz.widget.base.FastLayout>
 				<!-- Left aligned title layout -->
 				<SceneParams
 					w:scene="@id/scene_dialog_in"
@@ -148,10 +147,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				/>
 				
 				
-				<com.maxmpz.widget.FastLayout android:id="@+id/dialog_toast_layout"
+				<com.maxmpz.widget.base.FastLayout android:id="@+id/dialog_toast_layout"
 					style="?DialogToast"
 				>
-					<com.maxmpz.widget.FastTextView android:id="@+id/dialog_toast_img"
+					<com.maxmpz.widget.base.FastTextView android:id="@+id/dialog_toast_img"
 						style="?DialogToastImg"
 					/>
 					<!-- NOTE: text views here to support styleable charsequences -->
@@ -164,7 +163,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					<TextView android:id="@+id/dialog_toast_line_only_1"
 						style="?DialogToastLineOnly1"
 					/>
-				</com.maxmpz.widget.FastLayout>
+				</com.maxmpz.widget.base.FastLayout>
 				<!-- Toast visible in those states. 5% - looks like relayout is needed, but not at "on_start" -->
 				<SceneParams
 					w:recalcChildren="5%"
@@ -220,7 +219,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				/>
 			<!-- </LinearLayout> -->
 			
-		</com.maxmpz.widget.FastLayout><!-- dialog_frame -->
+		</com.maxmpz.widget.base.FastLayout><!-- dialog_frame -->
 		<!-- Frame: on screen -->
 
 		<SceneParams w:scene="@id/scene_dialog_in" w:scene_2="@id/scene_dialog_in_progress" w:scene_3="@id/scene_dialog_in_toast"
@@ -242,14 +241,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- NOTE: this is the view where popup item view is moved and transitioned to popup menu and back -->
 		<!-- NOTE: translationZ is synced with dialog frame elevation -->
-		<com.maxmpz.widget.MenuPlaceholderLayout android:id="@+id/menu_placeholder"
+		<com.maxmpz.widget.base.MenuPlaceholderLayout android:id="@+id/menu_placeholder"
 			style="?DialogMenuPlaceholderLayout"
 			w:privateScene="true"
 		/>
 		
-		<include android:layout="@layout/merge_toast"/>
+		<include android:layout="@layout/merge_toast"/><!-- NOTE: for some project, can be empty -->
 				
-	</com.maxmpz.widget.DialogOuterFastLayout>
+	</com.maxmpz.widget.base.DialogOuterFastLayout>
 	<!-- NOTE: empty SceneParams for dialog-in scenes. Needed for AdjustToSoftKeyboardBehavior - it animates current scene for soft keyboard -->
 	<SceneParams
 		w:scene="@id/scene_dialog_in" 

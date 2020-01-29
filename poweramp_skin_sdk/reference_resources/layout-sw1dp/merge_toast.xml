@@ -21,7 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
 	<!-- NOTE: privateScene is important to avoid scene-animating toast contents with main scenes or other layouts -->
-	<com.maxmpz.widget.SceneFastLayout  
+	<com.maxmpz.widget.base.SceneFastLayout  
 		android:id="@+id/toast_container"
 		style="?TopToastContainer"
 		w:privateScene="true"
@@ -34,10 +34,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 - scene_collapsed_no_icon - collapsed, no icon
 			 - scene_expanded_no_icon - expanded, no icon
 		-->
-		<com.maxmpz.widget.player.PlayerToastFrameLayout android:id="@+id/toast_frame"
+		<com.maxmpz.widget.app.ToastFrameLayout android:id="@+id/toast_frame"
 			style="?TopToastFrame"
 		>
-			<com.maxmpz.widget.FastTextView android:id="@+id/icon"
+			<com.maxmpz.widget.base.FastTextView android:id="@+id/icon"
 				style="?TopToastIcon"
 			/>
 			<SceneParams w:scene="@+id/scene_expanded"
@@ -47,7 +47,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				android:visibility="gone"
 			/>
 									
-			<com.maxmpz.widget.FastTextView android:id="@+id/title"
+			<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 				style="?TopToastTitle"
 			/>
 			<SceneParams w:scene="@+id/scene_expanded"
@@ -57,7 +57,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				style="?TopToastTitle_no_icon"
 			/>
 			
-			<com.maxmpz.widget.FastTextView android:id="@+id/line2"
+			<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
 				style="?TopToastLine2"
 			/>
 			<SceneParams w:scene="defaultScene"/><!-- NOTE: needed so line2 scene is properly manipilated by code -->
@@ -67,12 +67,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<SceneParams w:scene="@+id/scene_expanded_no_icon" w:scene_2="@+id/scene_collapsed_no_icon"
 				style="?TopToastLine2_no_icon"
 			/>
-		</com.maxmpz.widget.player.PlayerToastFrameLayout>
+		</com.maxmpz.widget.app.ToastFrameLayout>
 		<SceneParams w:scene="@+id/scene_collapsed_no_icon"
 			w:baseScene="defaultScene"
 		/>
 		<SceneParams w:scene="@+id/scene_expanded" w:scene_2="@+id/scene_expanded_no_icon"
 			style="?TopToastFrame_scene_expanded"
 		/>
-	</com.maxmpz.widget.SceneFastLayout><!-- toast_container -->
+	</com.maxmpz.widget.base.SceneFastLayout><!-- toast_container -->
 </merge>

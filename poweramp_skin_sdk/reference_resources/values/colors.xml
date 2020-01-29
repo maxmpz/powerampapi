@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,33 +19,12 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-	<item android:id="@android:id/background" android:height="2dp" android:gravity="center_vertical|fill_horizontal">
-		<shape android:shape="rectangle">
-			<solid android:color="?colorSeekbarBg"/>
-			<corners android:radius="1dp"/>
-		</shape>
-	</item>
-
-	<item android:id="@android:id/progress" android:height="2dp" android:gravity="center_vertical|fill_horizontal">
-		<scale android:scaleWidth="100%">
-			<selector>
-				<item android:state_enabled="false" android:drawable="@android:color/transparent" />
-				<item>
-					<shape android:shape="rectangle">
-						<solid android:color="?colorSeekbarProgress"/>
-						<corners android:radius="1dp"/>
-					</shape>
-				</item>
-				<item>
-					<shape android:shape="rectangle">
-						<solid android:color="?colorSeekbarProgress"/>
-						<corners android:radius="1dp"/>
-					</shape>
-				</item>
-			</selector>
-		</scale>
-	</item>
-</layer-list>
-
+<resources>
+	
+	<color name="app_icon_bg">#ff404141</color>
+	
+	<color name="notification_white_1">#FFffffff</color>
+	<color name="notification_white_2">#FFaaaaaa</color>
+	<color name="notification_black_1">#FF000000</color>
+	<color name="notification_black_2">#FF555555</color>
+</resources>

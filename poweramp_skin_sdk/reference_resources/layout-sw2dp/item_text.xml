@@ -72,7 +72,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- aa_image -->
 	
 	
-	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 		style="?ItemTextTitle"
 		android:importantForAccessibility="yes"
 	/><!-- title -->
@@ -98,7 +98,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- NOTE: for now it's not used. NOTE: menu attaches to line2 so it's important to have proper layout for it anyway -->
 	<!-- NOTE: due to zoom on title, we can't reliable position line2 after title horizontally, as layout just doesn't know about zoom -->
-	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
 		style="?ItemTextLine2"
 	/><!-- line2 -->
 	<SceneParams w:scene="@+id/scene_grid"
@@ -112,15 +112,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/><!-- line2 -->
 	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header"
 		android:visibility="gone"
-	/><!-- line2 -->
-	
-	
-	<com.maxmpz.widget.FastButton android:id="@+id/menu"
+	/>
+	<!-- line2 -->
+	<com.maxmpz.widget.base.FastButton android:id="@+id/menu"
 		style="?ItemTextMenu"
 		android:contentDescription="@string/menu"
 	>
 		<tag android:id="@+id/header_button" android:value="1"/>
-	</com.maxmpz.widget.FastButton>
+	</com.maxmpz.widget.base.FastButton>
 	<SceneParams w:scene="@+id/scene_item_menu" 
 		style="?ItemTextMenu_scene_menu"
 	/><!-- menu -->
@@ -138,12 +137,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<!-- NOTE: programatically loaded -->
-	<com.maxmpz.widget.LoadableBehavior
+	<com.maxmpz.widget.base.LoadableBehavior
 		android:id="@+id/behavior_queue_counter"
 		android:layout="@layout/merge_item_queue_counter" 
 	/>
 		
-	<com.maxmpz.widget.LoadableBehavior android:id="@+id/behavior_header"
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_header"
 		android:layout="@layout/merge_item_text_header"
 		w:loadForScene="@id/scene_header"
 		w:loadForScene_2="@id/scene_search_header"
@@ -151,7 +150,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<!-- NOTE: programatically loaded for scene_item_menu -->
-	<com.maxmpz.widget.LoadableBehavior
+	<com.maxmpz.widget.base.LoadableBehavior
 		android:id="@+id/behavior_menu"
 		android:layout="@layout/merge_item_popup_menu" 
 	/>

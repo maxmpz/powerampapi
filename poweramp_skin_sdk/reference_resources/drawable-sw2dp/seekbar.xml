@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item android:id="@android:id/background" android:height="2dp" android:gravity="center_vertical|fill_horizontal">
+		<shape android:shape="rectangle">
+			<solid android:color="?colorSeekbarBg"/>
+			<corners android:radius="1dp"/>
+		</shape>
+	</item>
+
+	<item android:id="@android:id/progress" android:height="2dp" android:gravity="center_vertical|fill_horizontal">
+		<scale android:scaleWidth="100%">
+			<selector>
+				<item android:state_enabled="false" android:drawable="@android:color/transparent" />
+				<item>
+					<shape android:shape="rectangle">
+						<solid android:color="?colorSeekbarProgress"/>
+						<corners android:radius="1dp"/>
+					</shape>
+				</item>
+				<item>
+					<shape android:shape="rectangle">
+						<solid android:color="?colorSeekbarProgress"/>
+						<corners android:radius="1dp"/>
+					</shape>
+				</item>
+			</selector>
+		</scale>
+	</item>
+</layer-list>
+

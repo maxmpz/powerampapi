@@ -22,7 +22,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?add_to_pl"
 		android:text="@string/playlist"
@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		w:msgId="@id/cmd_list_add_to_pl_dialog"
 	/>
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?enqueue"
 		android:text="@string/queue"
@@ -40,7 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		w:msgId="@id/cmd_list_add_to_q"
 	/>
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?delete_24dp"
 		
@@ -51,7 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:msgId="@id/cmd_list_delete_dialog"
 	/>
 	<!-- NOTE: this may be hidden for some editions -->
-	<com.maxmpz.widget.BusStateEnabledActionButton android:id="@+id/send"
+	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/send"
 		style="?SelectionListContextButton"
 		android:drawable="?send"
 		

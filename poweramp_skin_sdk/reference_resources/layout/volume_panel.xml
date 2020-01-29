@@ -19,7 +19,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<com.maxmpz.widget.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
     android:id="@+id/content"
     style="?VolumePanelFrame"
     w:enableStateAnim="true"
@@ -35,4 +35,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:valueFormatMax="100"
 		w:animOnAttach="true"
 	/>
-</com.maxmpz.widget.SceneFastLayout>
+</com.maxmpz.widget.base.SceneFastLayout>

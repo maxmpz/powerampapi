@@ -20,7 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- NOTE: use this for library lists, don't modify anything as this item is not bound -->
-<com.maxmpz.widget.FastLayout
+<com.maxmpz.widget.base.FastLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	style="?ItemEmptyList"
@@ -30,15 +30,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemEmptyListScanProgress"
 		android:tag="item_empty_list_with_progress_and_config"
 	/>
-	<com.maxmpz.widget.FastTextView android:id="@+id/item_empty_list_text"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/item_empty_list_text"
 		style="?ItemEmptyListText"
 		android:text="@string/no_content"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/button"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/button"
 		style="?ItemEmptyListSettingsButton"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_empty_dialog"
 	/>
 		
-</com.maxmpz.widget.FastLayout> 
+</com.maxmpz.widget.base.FastLayout> 

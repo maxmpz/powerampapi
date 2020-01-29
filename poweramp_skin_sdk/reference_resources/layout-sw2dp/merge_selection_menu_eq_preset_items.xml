@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<!-- NOTE: SelectionMenuBehavior automatically sets target list msgBusIs/stateBusId on these buttons -->
 	
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?rename_24dp"
 		android:text="@string/rename"
@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:stateMatchArg="1"
 	/>
 	
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?assign_eq_24dp"
 		android:text="@string/assign"
@@ -48,7 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:stateMatchArg="1"
 	/>
 	
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?delete_24dp"
 		android:text="@string/delete"

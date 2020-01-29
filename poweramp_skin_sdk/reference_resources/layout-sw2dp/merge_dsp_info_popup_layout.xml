@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.FastTextView android:id="@+id/dsp_info_title"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/dsp_info_title"
 		style="?PopupInfoTextTitle"
 		android:text="@string/audio_info"
 		android:visibility="invisible"
@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 		
 	<!-- Put gear icon out of main content, next to title -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/configure_button"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/configure_button"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="top|right"
@@ -74,7 +74,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="gone"
 	/>
 		
-	<com.maxmpz.widget.NonOverlappingView android:id="@+id/dsp_info_image"
+	<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/dsp_info_image"
 		style="?PopupDSPInfoImage"
 		android:visibility="visible"
 	/>

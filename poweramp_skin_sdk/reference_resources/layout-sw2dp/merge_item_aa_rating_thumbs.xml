@@ -7,7 +7,7 @@
 	<com.maxmpz.widget.player.list.LikeUnlikeLayout android:id="@+id/rating"
 		style="?ItemLikeUnlikeLayout"
 	>
-		<com.maxmpz.widget.FastCheckBox android:id="@+id/like"
+		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/like"
 			style="?ItemLike"
 			android:contentDescription="@string/like"
 		/>
@@ -18,7 +18,7 @@
 			style="?ItemLike_scene_item_menu"
 		/>
 					
-		<com.maxmpz.widget.FastCheckBox android:id="@+id/unlike"
+		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/unlike"
 			style="?ItemUnlike"
 			android:contentDescription="@string/unlike"
 		/>

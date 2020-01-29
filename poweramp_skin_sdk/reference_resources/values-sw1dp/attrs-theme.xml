@@ -35,7 +35,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorShade" format="color"/><!-- Shade colors for popup menus -->
 	<attr name="colorSeparator" format="color"/><!-- E.g. menu separator -->
 	<attr name="colorBgLight" format="color"/><!-- Non-contrast bg. Used ATM for Search Frame bg -->
-	<attr name="colorItemPlayingMark" format="color"/><!-- Current playing item mark bg -->
 	
 	<attr name="colorIconPrimary" format="color"/><!-- Usually same as colorPrimary, but for black/#000 it should be #0000 to avoid tinting at all -->
 	<attr name="colorIconPrimaryForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
@@ -43,26 +42,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorIconInverseForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
 	<attr name="colorIconDisabled" format="color"/><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
 	
-	<attr name="colorFastScroller" format="color"/>
-	<attr name="colorFastScrollerPressed" format="color"/>
-	<attr name="colorFastScrollerTrack" format="color"/>
-	<attr name="colorScrollPopupBg" format="color"/>
-	<attr name="colorNavbarIcons" format="color"/>
-	<attr name="colorNavbarIconsLessContrast" format="color"/>
-	<attr name="colorBgNavbar" format="color"/>
-	<attr name="colorBgTransparentNavbar" format="color"/>
 	<attr name="colorItemActive" format="color"/><!-- Not used ATM -->
-	<attr name="colorIconCC" format="color"/><!-- Forced (white) color for Chromecast icon -->
-	
+
 	<attr name="statusBarBg" format="color|reference"/><!-- Shade under status bar -->
 	<attr name="navigationBarBg" format="color|reference"/><!-- Shade under Android navigation bar -->
 		
-	<attr name="defaultLowResAA" format="reference"/><!-- Default AA image. Strictly 512x512 bitmap -->
-	<attr name="defaultHiResAA" format="reference"/><!-- Default AA image. Strictly 1024x1024 bitmap -->
-	
-	<!-- Extra state for drawables -->
-	<attr name="state_toolbar_in_header" format="boolean" /><!-- REVISIT: not used ATM -->
-	<attr name="state_playing" format="boolean" />
 	
 	<attr name="dialog_AlertDialogActivity"/>
 	<attr name="dialog_AlertDialogActivity_list"/>

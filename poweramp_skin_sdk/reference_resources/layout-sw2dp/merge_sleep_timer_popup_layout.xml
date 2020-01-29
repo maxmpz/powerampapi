@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.FastTextView android:id="@+id/sleep_timer_title"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/sleep_timer_title"
 		style="?SleepTimerTitle"
 	/>
 	<SceneParams w:scene="@id/scene_button_menu"
@@ -38,33 +38,31 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="gone"
 	/>
 	
-	<com.maxmpz.widget.FastLayout
+	<com.maxmpz.widget.base.FastLayout
 		style="?SleepTimerContent"
 	>
 		<SeekBar android:id="@+id/seekbar"
 			style="?SleepTimerSeekbar"
 		/>
-			
-		<com.maxmpz.widget.FastCheckBox android:id="@+id/play_to_end"
+		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/play_to_end"
 			style="?SleepTimerPTESelectBox"
 			android:text="@string/play_last_song_to_end"
 		/>
-		
-		<com.maxmpz.widget.FastButton android:id="@+id/button3"
+		<com.maxmpz.widget.base.FastButton android:id="@+id/button3"
 			style="?PopupButtonLayoutDialogButton3"
 			android:text="@string/reset"
 		/>
-		<com.maxmpz.widget.FastButton android:id="@+id/button2"
+		<com.maxmpz.widget.base.FastButton android:id="@+id/button2"
 			style="?PopupButtonLayoutDialogButton2"
 			android:text="@string/cancel"
 		/>
-		<com.maxmpz.widget.FastButton android:id="@+id/button1"
+		<com.maxmpz.widget.base.FastButton android:id="@+id/button1"
 			style="?PopupButtonLayoutDialogButton1"
 			android:text="@string/OK"
 		/>
 		
 		
-	</com.maxmpz.widget.FastLayout>
+	</com.maxmpz.widget.base.FastLayout>
 	<SceneParams w:scene="@id/scene_button_menu"
 		style="?PopupContent_scene_button_menu"
 	/>

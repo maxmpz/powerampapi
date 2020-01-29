@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2019 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,12 +19,17 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<merge
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:w="http://schemas.android.com/apk/res-auto"
->
-	<!-- Add our plain seekbar -->
-	<com.maxmpz.widget.player.Seek android:id="@+id/seekbar"
-		style="@style/PlainSeekbar"
-	/>
-</merge>
+<!-- values-v29 -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="ActivityTheme_Settings" parent="Base_ActivityTheme_Settings">
+		<item name="android:listDivider">@null</item><!-- Android 10 device settings have no dividers (almost). Also, on Pixels they are too contrast by default -->
+		<item name="android:navigationBarColor">#0fff</item>
+		<item name="android:statusBarColor">?android:attr/textColorPrimaryInverse</item><!-- Fix Samsung 10 status bar color to match header -->
+	</style>
+	<style name="ActivityTheme_SettingsDark" parent="Base_ActivityTheme_SettingsDark">
+		<item name="android:navigationBarColor">#0fff</item>
+	</style>
+	<style name="ActivityTheme_SettingsLight" parent="Base_ActivityTheme_SettingsLight">
+		<item name="android:navigationBarColor">#0000</item>
+	</style>
+</resources>

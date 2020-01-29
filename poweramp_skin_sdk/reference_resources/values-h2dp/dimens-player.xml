@@ -36,6 +36,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopPlayPauseBehind_size">40dp</dimen>
 	<dimen name="TopPause_scene_playing_height">25dp</dimen>
 	<dimen name="TopTrackElapsedDuration_height">25dp</dimen>
+
+	<dimen name="ItemTrackNum_width">28sp</dimen>
 	
 	<dimen name="TopTrackElapsedMoreButtons_marginBottom">-8dp</dimen>
 	<item name="TopTrackElapsedDurationMoreButtons_scale" type="dimen" format="float">0.8</item>
@@ -68,7 +70,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpMarginTB">16dp</dimen>
 		
 	<!-- Alt -->
-	<dimen name="Alt_TopSubAAButtons_marginTop">4dp</dimen>
+	<dimen name="Alt_TopSubAAButtons_marginTop">5dp</dimen>
 	
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-4dp</dimen>
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">.85</item>

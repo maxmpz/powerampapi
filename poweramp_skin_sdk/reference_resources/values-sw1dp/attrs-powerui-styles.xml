@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- Some top styles which can be used with powerui -->
+	<attr name="TopToastContainer" format="reference"/>
+	<attr name="TopToastContainer_scenes_non_main" format="reference"/>
+	<attr name="TopToastFrame" format="reference"/>
+	<attr name="TopToastIcon" format="reference"/>
+	<attr name="TopToastTextContainer" format="reference"/>
+	<attr name="TopToastSpacer" format="reference"/>
+	<attr name="TopToastTitle" format="reference"/>
+	<attr name="TopToastTitle_Text" format="reference"/>
+	<attr name="TopToastLine2" format="reference"/>
+	<attr name="TopToastLine2_Text" format="reference"/>
+	<attr name="TopToastTitle_no_icon" format="reference"/>
+	<attr name="TopToastLine2_no_icon" format="reference"/>
+	<attr name="TopToastFrame_scene_expanded" format="reference"/>
+	
+	<attr name="PopupMenuItem" format="reference"/>
+	<attr name="PopupMenuItem_Text" format="reference"/>
+	<attr name="PopupMenuItem50" format="reference"/>
+	
+	<attr name="PopupButton" format="reference"/>
+	<attr name="PopupButton_Text" format="reference"/>
+	<attr name="PopupButton_scene_button_menu" format="reference"/>
+	
+	<attr name="ItemEmptyList" format="reference"/>
+	<attr name="ItemEmptyListScanProgressCenter" format="reference"/>
+</resources>

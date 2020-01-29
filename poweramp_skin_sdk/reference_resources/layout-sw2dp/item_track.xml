@@ -118,11 +118,66 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackPlayingMark_scenes_hidden"
 	/>
 	<!-- playing_mark -->
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemTrackPlayingMark_scene_item_menu"
 	/>
 	<!-- playing_mark -->
 	
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/num"
+		style="?ItemTrackNum"
+	/>
+	<SceneParams w:scene="@+id/scene_small"
+		style="?ItemTrackNum_scene_small"
+	/>
+	<SceneParams w:scene="@+id/scene_1"
+		style="?ItemTrackNum_scene_1"
+	/>
+	<SceneParams w:scene="@+id/scene_1_small"
+		style="?ItemTrackNum_scene_1_small"
+	/>
+	<SceneParams w:scene="@+id/scene_zoomed"
+		style="?ItemTrackNum_scene_zoomed"
+	/>
+	<SceneParams w:scene="@+id/scene_1_zoomed"
+		style="?ItemTrackNum_scene_1_zoomed"
+	/>
+	<SceneParams w:scene="@+id/scene_grid" 
+		style="?ItemTrackNum_scene_grid"
+	/>
+	<SceneParams w:scene="@+id/scene_grid_1" 
+		style="?ItemTrackNum_scene_grid_1"
+	/>
+	<SceneParams w:scene="@+id/scene_grid_1_alt" 
+		style="?ItemTrackNum_scene_grid_1_alt"
+	/>
+	<SceneParams w:scene="@+id/scene_grid_zoomed" 
+		style="?ItemTrackNum_scene_grid_zoomed"
+	/>
+	<SceneParams w:scene="@+id/scene_grid_1_zoomed" 
+		style="?ItemTrackNum_scene_grid_1_zoomed"
+	/>
+	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed" 
+		style="?ItemTrackNum_scene_grid_1_alt_zoomed"
+	/>
+	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
+		style="?ItemTrackNum_scene_header"
+	/>
+	<SceneParams w:scene="@+id/scene_aa"
+		style="?ItemTrackNum_scene_aa" 
+	/>
+	<SceneParams w:scene="@+id/scene_aa_vis"
+		style="?ItemTrackNum_scene_aa_vis" 
+	/>
+	<SceneParams w:scene="@+id/scene_aa_playing"
+		style="?ItemTrackNum_scene_aa_playing" 
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu"
+		style="?ItemTrackNum_scene_item_menu"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu_lu"
+		style="?ItemTrackNum_scene_item_menu_lu"
+	/>
+	<!-- num -->		
 	
 	<com.maxmpz.widget.player.list.AAImageView android:id="@+id/aa_image"
 		style="?ItemTrackAAImage"
@@ -195,7 +250,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small"
 		style="?ItemTrackCatImage_scene_small" 
 	/>
-		<!-- cat_image -->
+	<!-- cat_image -->
 	<SceneParams w:scene="@+id/scene_aa"
 		style="?ItemTrackCatImage_scene_aa"
 	/>
@@ -370,15 +425,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackLine2_scene_aa_playing" 
 	/><!-- line2 -->
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTrackLine2_scene_item_menu"
 	/><!-- line2 -->
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu_lu"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackLine2_scene_item_menu_lu"
 	/>
 		
 	
-	<com.maxmpz.widget.FastTextView android:id="@+id/meta"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/meta"
 		style="?ItemTrackMeta"
 	/>
 	<!-- meta -->
@@ -442,18 +497,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackMeta_scene_aa_playing" 
 	/>
 	<!-- meta -->
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTrackMeta_scene_item_menu"
 	/>
 	<!-- meta -->
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_item_menu_lu"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackMeta_scene_item_menu_lu"
 	/>
 	<!-- meta -->
 	
 	
 	<!-- NOTE: drag handler is force-hidden and will not appear when list doesn't support dragging -->
-	<com.maxmpz.widget.DragHandler android:id="@+id/drag_handler"
+	<com.maxmpz.widget.base.DragHandler android:id="@+id/drag_handler"
 		style="?ItemTrackDragHandler"
 	/>
 	<SceneParams w:scene="defaultScene" w:scene_2="@id/scene_zoomed" w:scene_3="@id/scene_1" w:scene_4="@id/scene_1_zoomed" w:scene_5="@+id/scene_small" w:scene_6="@+id/scene_1_small"
@@ -470,7 +525,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: not setting tint as default color is black -->
 	<!-- NOTE: _not_ clickable, so item instead is always clicked as we don't process checkbox clicks -->
 	<!-- Select box is force-hidden by code by default and programmatically made visible when needed -->
-	<com.maxmpz.widget.FastCheckBoxOnly android:id="@+id/select_box"
+	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/select_box"
 		style="?ItemTrackSelectBox"
 	/>
 	<!-- NOTE: IMPORTANT: defining defaultScene right here to avoid auto-default-scene creation with the default visibility - needed as we operate this view 
@@ -484,15 +539,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackSelectBox_scene_grid" 
 	/>
 
-	
 		
-	<!-- NOTE: each loadable behavior adds only extra layout pass when target scene is loaded -->
+	<!-- NOTE: each loadable behavior only adds extra layout pass when target scene is loaded -->
 	<!-- NOTE: while we have scene_item_menu here, it's never loaded for scene_item_menu, as behavior is attached to AAItemView, but
 		 popup scene runs in some outer container view.
 		 If behavior_aa is already loaded (as it is for AA LE), then it's there, otherwise it's not loaded, and that's what is exactly needed
 	-->
 	<!-- NOTE: menu is used in header + aa scenes -->
-	<com.maxmpz.widget.LoadableBehavior android:id="@+id/behavior_aa_and_header"
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_aa_and_header"
 		android:layout="@layout/merge_item_aa_and_header"
 		w:loadForScene="@id/scene_aa"
 		w:loadForScene_2="@id/scene_item_menu"
@@ -506,14 +560,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: scene_header here is needed for cases when we transition from header to menu
 		 If behavior_aa is loaded by PopupMenuHelper prior to actual transition start, then behavior_header loading forces current (scene_header) scene,
 		 and that causes unload for behavior_aa, unless scene_header is also set for it -->
-	<com.maxmpz.widget.LoadableBehavior android:id="@+id/behavior_header"
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_header"
 		android:layout="@layout/merge_item_header"
 		w:loadForScene="@id/scene_header"
 		w:loadForScene_2="@id/scene_header_1"
 	/>
 	
 	<!-- NOTE: programmatically loaded for menu -->	
-	<com.maxmpz.widget.LoadableBehavior android:id="@+id/behavior_menu"
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_menu"
 		android:layout="@layout/merge_item_popup_menu"
 	/>
 </com.maxmpz.widget.player.list.AAItemView>

@@ -25,13 +25,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 
 	<!-- Update default pause button scene with jumpVisibility=true -->
-	<com.maxmpz.widget.SceneParams w:scene="defaultScene" w:baseScene="defaultScene" w:forId="@id/pause"
+	<com.maxmpz.widget.base.SceneParams w:scene="defaultScene" w:baseScene="defaultScene" w:forId="@id/pause"
 		w:jumpVisibility="true"
 	/>
 
 	<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s 
 	     w:morphArg2="2" x2 for duration for long press (10s, 40s) -->	
-	<com.maxmpz.widget.MorphableBusActionButton android:id="@+id/prev_cat"
+	<com.maxmpz.widget.base.MorphableBusActionButton android:id="@+id/prev_cat"
 		style="?TopPrevCat"
 		
 		w:busId="@id/bus_player_cmd"
@@ -52,15 +52,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:morphLongPressEndMsgId="@id/cmd_player_end_seek_jumps"
 		w:morphContentDescription="@string/back_10s"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
 	
-	<com.maxmpz.widget.StateAnimParams w:stateAnim="@id/anim_seeking"
+	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
 			
 	<!-- arg1="0" - rewind -->
 	<!-- REVISIT: use start seek/stop seek cmds instead -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/rw"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/rw"
 		style="?TopRw"
 		w:busId="@id/bus_player_cmd"
 		w:msgId="@id/cmd_player_play_prev_track"
@@ -69,16 +69,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:arg1="0"
 		android:contentDescription="@string/previous_track"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 		style="?TopRw_scene_playing"
 	/>
-	<com.maxmpz.widget.StateAnimParams w:stateAnim="@id/anim_seeking"
+	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
 	
 	<!-- arg1="1" - forward -->	
 	<!-- REVISIT: use start seek/stop seek cmds instead -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/ff"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/ff"
 		style="?TopFf"
 		w:busId="@id/bus_player_cmd"
 		w:msgId="@id/cmd_player_play_next_track"
@@ -88,15 +88,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		android:contentDescription="@string/next_track"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 		style="?TopFf_scene_playing"
 	/>
-	<com.maxmpz.widget.StateAnimParams w:stateAnim="@id/anim_seeking"
+	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
 
 		<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s -->
-	<com.maxmpz.widget.MorphableBusActionButton android:id="@+id/next_cat"
+	<com.maxmpz.widget.base.MorphableBusActionButton android:id="@+id/next_cat"
 		style="?TopNextCat"
 		w:busId="@id/bus_player_cmd"
 		w:msgId="@id/cmd_player_play_next_category"
@@ -116,8 +116,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:contentDescription="@string/h_next_list"
 		w:morphContentDescription="@string/forward_10s"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
-	<com.maxmpz.widget.StateAnimParams w:stateAnim="@id/anim_seeking"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
+	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
 		

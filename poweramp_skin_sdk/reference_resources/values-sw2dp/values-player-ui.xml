@@ -25,8 +25,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<item type="id" name="aa_image"/>
-	<item type="id" name="title"/>
-	<item type="id" name="line2"/>
 	
 	<item type="id" name="list_scroller"/>
 	<item type="id" name="list_indexer"/>
@@ -35,7 +33,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="status_bar_bg"/>
 	
 	<item type="id" name="separator"/>
-	<item type="id" name="menu"/>
 	<item type="id" name="dialog_progress"/>
 	
 	<item type="id" name="navbar_bounds"/>

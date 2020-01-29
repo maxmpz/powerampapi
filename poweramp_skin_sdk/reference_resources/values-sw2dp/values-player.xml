@@ -37,7 +37,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- bus_app_cmd. arg1 == 1 don't refresh aa, otherwise clear in-memory AA caches and send msg_app_aa_refreshed -->
 	<item type="id" name="cmd_app_refresh_aa"/>
 	<item type="id" name="cmd_app_clean_aa"/><!-- arg1 => aa type, arg2 => boolean - send msg_app_aa_refreshed if cleared something, obj => LongArray with ids to clean cache for -->
-	<item type="id" name="cmd_app_open_settings"/><!-- obj => settings page -->
 	<item type="id" name="cmd_app_close_settings"/><!-- Closes all open setting activities -->
 	<item type="id" name="cmd_app_open"/><!-- arg2 => intent flags, obj => String uri -->
 	<item type="id" name="cmd_app_open_support"/>
@@ -54,7 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_app_tag_scan_started"/>
 	<item type="id" name="msg_app_tag_scan_progress"/><!-- arg1 => fileCount -->
 	<item type="id" name="msg_app_tag_scan_finished"/><!-- arg1=boolean tracksChanged, arg2=boolean changedAfterFoldersScan -->
-	<item type="id" name="msg_app_data_changed"/><!-- bus_app. obj => RestEntity of data changed, or "settings"/null for global refresh, arg1 => RestLibrary.DATA_CHANGED_*, arg2 => rating for RestRatedFiles / TopRatedFiles -->
+	<item type="id" name="msg_app_data_changed"/><!-- bus_app. obj => RestEntity of data changed, or "settings"/null for global refresh, arg1 => RestLibrary.DATA_CHANGED_* -->
 	<item type="id" name="msg_app_milk_data_changed"/><!-- obj => RestMilkPreset. MilkRNP reloads, includes any milk data changes, sort, etc. Needed to avoid reacting to msg_player_milk_preset_changed on each preset change -->
 	<item type="id" name="msg_app_settings_index_changed"/>
 	<item type="id" name="msg_app_data_added"/>
@@ -63,6 +62,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_app_mediabrowser_started"/>
 	<item type="id" name="msg_app_mediabrowser_stopped"/>
 	<item type="id" name="msg_app_mediabrowser_refresh"/><!-- Force BrowserSerivce to send refresh event, e.g. when some browser specific options are changed -->
+	<item type="id" name="msg_app_version_check"/><!-- arg1 => boolean started/ended, arg2 => response version code -->
 		
 	<item type="id" name="state_app_scanning"/><!-- boolean, true if there is a folders/library scan running -->
 
@@ -95,7 +95,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<integer name="EQ_TAB_VOL">1</integer>
 	<integer name="EQ_TAB_REVERB">2</integer>
 	
-	<item type="id" name="cmd_gui_show_toast"/><!-- bus_gui, arg1 = icon res, arg2 = optional duration ms (>0), obj = CharSequence or array[2] of CharSequence. Public -->
 	<item type="id" name="cmd_gui_show_toast_for_shuffle_mode"/><!-- obj => optional toast CharSequence for line2 -->
 	<item type="id" name="cmd_gui_open_help"/>	 
 	<item type="id" name="cmd_gui_close_help"/>
@@ -114,7 +113,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_album_art"/><!-- bus_data_cmd, arg1: 0 (default, show for current PS loaded track)/RestLibrary.AA_TYPE_*; obj => IdAndPath, Long fileId, String/Uri => file path/uri, null => current track  -->
 	<item type="id" name="cmd_data_track_rating"/><!-- bus_data_cmd, arg1 => rating, obj => Long fileId -->
 	<item type="id" name="cmd_data_reset_aa_status"/>
-	<item type="id" name="msg_app_data_rating_changed"/><!-- arg1 => rating, obj => Long fileId -->
+	<item type="id" name="msg_app_data_rating_changed"/><!-- arg1 => rating, arg2 => previous rating, obj => Long fileId -->
 	
 	
 	<item type="id" name="cmd_data_delete"/><!-- bus_data_cmd, obj => UriAndIds -->
@@ -195,10 +194,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_add_url"/><!-- Opens dialog -->
 	
 	<item type="id" name="state_gui_vis_mode"/><!-- integer VIS_* -->
-	<item type="id" name="state_gui_is_modal_now"/><!-- boolean, integer => @id of scene or view, identifying this model state, or 0 -->
 	<item type="id" name="state_gui_eq_tab"/><!-- integer EQ_TAB_* -->
 	<item type="id" name="state_gui_nav_allowed"/><!-- boolean -->
-	<item type="id" name="state_gui_nav_animating"/><!-- boolean -->
 	
 	<item type="id" name="state_gui_anim_durations"/><!-- obj -->
 	
@@ -488,7 +485,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="milk_frs"/>
 	
 	<item type="id" name="_knob"/>
-	<item type="id" name="_label"/>
 	<item type="id" name="_value_label"/>
 	<item type="id" name="_left_label"/>
 	<item type="id" name="_right_label"/>

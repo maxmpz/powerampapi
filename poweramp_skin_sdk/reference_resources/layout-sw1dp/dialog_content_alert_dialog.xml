@@ -20,9 +20,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- NOTE: used in AlertDialogActivity -->
-<com.maxmpz.widget.FastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+<com.maxmpz.widget.base.FastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
 	android:id="@+id/content"
 	style="?DialogContent"
 >
 	<!-- NOTE: empty. We'll inflate what's needed by alert dialog type -->
-</com.maxmpz.widget.FastLayout>
+</com.maxmpz.widget.base.FastLayout>

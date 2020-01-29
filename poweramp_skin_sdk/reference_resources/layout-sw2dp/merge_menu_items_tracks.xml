@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
- 	<com.maxmpz.widget.IntentActionButton android:id="@+id/folders"
+ 	<com.maxmpz.widget.base.IntentActionButton android:id="@+id/folders"
 		style="?PopupMenuItem"
 		android:drawable="?folders_24dp"
 		android:text="@string/select_folders"
@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
  	<!-- arg1=0 => fastScan -->
 	<!-- NOTE: label/args can be changed e.g. for Playlists -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/rescan"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/rescan"
 		style="?PopupMenuItem"
 		android:drawable="?rescan"
 
@@ -44,7 +44,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/pref_rescan_folders"
 	/>
 
-	<com.maxmpz.widget.BusActionButton android:id="@+id/album_art"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/album_art"
 		style="?PopupMenuItem"
 		android:drawable="?album_art" 
 		android:text="@string/album_art"
@@ -53,7 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:clickDelay="@integer/activity_start_click_delay"
 	/>
 
-	<com.maxmpz.widget.BusActionButton android:id="@+id/delete_dups"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/delete_dups"
 		style="?PopupMenuItem" 
 		android:drawable="?delete_dups"
 
@@ -64,7 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 
 	<!-- NOTE: gone by default -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/resort"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/resort"
 		style="?PopupMenuItem"
 		android:drawable="?resort"
 
@@ -74,7 +74,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:clickDelay="@integer/activity_start_click_delay"
 	/>
 
-	<com.maxmpz.widget.BusActionButton android:id="@+id/add_url"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/add_url"
 		style="?PopupMenuItem"
 		android:visibility="gone"
 		android:drawable="?add_to_pl"
@@ -85,7 +85,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/add_url"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/list_options"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/list_options"
 		style="?PopupMenuItem"
 		android:drawable="?list_options"
 		
@@ -95,7 +95,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/list_opts"
 	/>
 
-	<com.maxmpz.widget.BusActionButton android:id="@+id/clear_q"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/clear_q"
 		style="?PopupMenuItem"
 		android:visibility="gone"
 		android:drawable="?clear_q"
@@ -105,7 +105,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_clear_q"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/show_all"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/show_all"
 		style="?PopupMenuItem"
 		android:visibility="gone"
 		android:drawable="?redo"
@@ -116,7 +116,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/show_all"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/clear"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/clear"
 		style="?PopupMenuItem"
 		android:visibility="gone"
 		android:drawable="?clear"

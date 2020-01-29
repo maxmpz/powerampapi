@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.Shim android:id="@+id/vis_panel_shim"
+	<com.maxmpz.widget.base.Shim android:id="@+id/vis_panel_shim"
 		style="?VisPanelShim"
 	/>
 	
@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	-->
 	
-	<com.maxmpz.widget.SceneFastLayout android:id="@+id/vis_panel_container"
+	<com.maxmpz.widget.base.SceneFastLayout android:id="@+id/vis_panel_container"
 		style="?VisPanelContainer"
 		w:privateScene="true"
 		w:enableStateAnim="true"
@@ -42,14 +42,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?VisPanelFrame"
 		>
 			<!-- NOTE: buttons are aligned to the right, thus, reveresed -->
-			<com.maxmpz.widget.FastButton android:id="@+id/close_button"
+			<com.maxmpz.widget.base.FastButton android:id="@+id/close_button"
 				style="?VisCloseButton"
 			/>
 			<SceneParams w:scene="@+id/scene_vispanel_expanded"
 				android:visibility="visible"
 			/>
 			
-			<com.maxmpz.widget.BusActionButton android:id="@+id/settings_button"
+			<com.maxmpz.widget.base.BusActionButton android:id="@+id/settings_button"
 				style="?VisSettingsButton"
 				w:busId="@id/bus_app_cmd"
 				w:msgId="@id/cmd_app_open_settings"
@@ -59,7 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				android:visibility="visible"
 			/>
 
-			<com.maxmpz.widget.BusSelectablePopupButtonLayout
+			<com.maxmpz.widget.base.BusSelectablePopupButtonLayout
 				style="?VisSortButtonLayout"
 			
 				w:stateBusId="@id/bus_player"
@@ -89,14 +89,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 			
 						
-			<com.maxmpz.widget.PowerList android:id="@+id/vis_panel_list"
+			<com.maxmpz.widget.base.PowerList android:id="@+id/vis_panel_list"
 				style="?VisPanelList"
 			/>
 			<SceneParams w:scene="@+id/scene_vispanel_expanded"
 				w:recalcChildren="on_end"
 			/>
 	
-			<com.maxmpz.widget.BusSelectablePopupButtonLayout
+			<com.maxmpz.widget.base.BusSelectablePopupButtonLayout
 				style="?VisLockButtonLayout"
 			
 				w:stateBusId="@id/bus_player"
@@ -126,7 +126,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			android:alpha="0"
 		/>
 	
-	</com.maxmpz.widget.SceneFastLayout>
+	</com.maxmpz.widget.base.SceneFastLayout>
 	<SceneParams w:scene="@id/scene_vis_temp_ui"
 		android:visibility="visible"
 		android:alpha="1"

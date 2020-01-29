@@ -261,6 +261,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMeta_scene_item_menu">@style/ItemTrackMeta_scene_item_menu</item>
 		<item name="ItemTrackMeta_scene_item_menu_lu">@style/ItemTrackMeta_scene_item_menu_lu</item>
 		
+		<item name="ItemTrackNum">@style/ItemTrackNum</item>
+		<item name="ItemTrackNum_Text">@style/ItemTrackNum_Text</item>
+		<item name="ItemTrackNum_scene_small">@style/ItemTrackNum_scene_small</item>
+		<item name="ItemTrackNum_scene_1">@style/ItemTrackNum_scene_1</item>
+		<item name="ItemTrackNum_scene_1_small">@style/ItemTrackNum_scene_1_small</item>
+		<item name="ItemTrackNum_scene_zoomed">@style/ItemTrackNum_scene_zoomed</item>
+		<item name="ItemTrackNum_scene_1_zoomed">@style/ItemTrackNum_scene_1_zoomed</item>
+		<item name="ItemTrackNum_scene_grid">@style/ItemTrackNum_scene_grid</item>
+		<item name="ItemTrackNum_scene_grid_1">@style/ItemTrackNum_scene_grid_1</item>
+		<item name="ItemTrackNum_scene_grid_1_alt">@style/ItemTrackNum_scene_grid_1_alt</item>
+		<item name="ItemTrackNum_scene_grid_zoomed">@style/ItemTrackNum_scene_grid_zoomed</item>
+		<item name="ItemTrackNum_scene_grid_1_zoomed">@style/ItemTrackNum_scene_grid_1_zoomed</item>
+		<item name="ItemTrackNum_scene_grid_1_alt_zoomed">@style/ItemTrackNum_scene_grid_1_alt_zoomed</item>
+		<item name="ItemTrackNum_scene_header">@style/ItemTrackNum_scene_header</item>
+		<item name="ItemTrackNum_scene_aa">@style/ItemTrackNum_scene_aa</item>
+		<item name="ItemTrackNum_scene_aa_vis">@style/ItemTrackNum_scene_aa_vis</item>
+		<item name="ItemTrackNum_scene_aa_playing">@style/ItemTrackNum_scene_aa_playing</item>
+		<item name="ItemTrackNum_scene_item_menu">@style/ItemTrackNum_scene_item_menu</item>
+		<item name="ItemTrackNum_scene_item_menu_lu">@style/ItemTrackNum_scene_item_menu_lu</item>
+		
 		<item name="ItemTrackDragHandler">@style/ItemTrackDragHandler</item>
 		<item name="ItemTrackDragHandler_scene_grid">@style/ItemTrackDragHandler_scene_grid</item>
 		

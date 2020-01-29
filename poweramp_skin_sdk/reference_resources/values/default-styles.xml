@@ -172,6 +172,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorPreampBg">#ccc</item>
 		
 		<item name="colorTrackMeta">#999</item>
+		<item name="colorTrackNum">#999</item>
 		<item name="colorSeparator">#FF888888</item>
 				
 		<item name="colorNavbarIconsLessContrast">#fff</item><!-- NOTE: not used in default theme -->
@@ -471,21 +472,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_White" parent="Base_ActivityTheme_Default">
 	</style>
 	
-	<style name="Default_DialogForceLightSystemUIStyle">
-		<item name="android:navigationBarColor">@android:color/white</item>
-		<item name="android:windowLightNavigationBar">true</item>
-		<item name="windowLightNavigationBar">true</item> 
-		<item name="android:navigationBarDividerColor">#08ffffff</item>
-		<item name="android:windowLightStatusBar">true</item>
-	</style>
-	<style name="Default_DialogForceDarkSystemUIStyle">
-		<item name="android:navigationBarColor">@android:color/black</item>
-		<item name="android:windowLightNavigationBar">false</item>
-		<item name="windowLightNavigationBar">false</item> 
-		<item name="android:navigationBarDividerColor">#08000000</item>
-		<item name="android:windowLightStatusBar">false</item>
-	</style>
-		
 	<!-- An overlap style -->
 	<!-- Inverses navbar -->
 	<style name="ActivityTheme_Whitepro_ForceLightNavbar">

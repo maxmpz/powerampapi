@@ -36,7 +36,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<integer name="ITEM_BG_LEVEL_FEEDBACK">8</integer>
 	
 	<item type="id" name="_debug"/>
-	
+	<item type="id" name="_label"/>
+		
 	<item type="id" name="_tag_scene_zero"/>
 	<item type="id" name="_tag_stateAnims"/>
 	<item type="id" name="_tag_activeSceneAndState"/>
@@ -50,7 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="behavior_scrolling"/>
 		
 	<!-- REVISIT: move to better place - player related ids needed for styles - otherwise appt can crash -->
-	
+	<item type="id" name="anim_ratingbar_pressed" />
 	
 	<item type="id" name="scene_grid"/>
 	<item type="id" name="scene_zoomed"/>
@@ -58,6 +59,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="scene_button_menu"/>
 	<item type="id" name="scene_button_menu_closed"/>
 	
+	<item type="id" name="scene_header_1"/><!-- REVISIT -->
+	<item type="id" name="scene_header_back_decor" /><!-- REVISIT: required by PowerListItemToHeaderTransition -->
+
+	<!-- Optional toast -->	
+	<item type="id" name="scene_collapsed_no_icon"/>
+	<item type="id" name="scene_expanded_no_icon"/>
+	<item type="id" name="scene_expanded"/>
+		
 	<item type="id" name="_item_type_null_content"/><!-- No content placeholder for NullLayoutEngine --> 
 	<item type="id" name="_item_type_track"/>
 	<item type="id" name="_item_type_separator"/><!-- NOTE: includes line2 button -->
@@ -66,8 +75,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="_item_type_menu"/>
 	<item type="id" name="_item_type_menu_shade"/>
 	
+	<item type="id" name="list"/>
+	<item type="id" name="icon"/>
+	<item type="id" name="title"/>
+	<item type="id" name="line2"/>
+	<item type="id" name="waveseek_cursor"/><!-- REVISIT: required by Waveseek -->
+		
 	<item type="id" name="anim_scrollbar_pressed"/>
-	
+	<item type="id" name="anim_waveseek_pressed"/><!-- REVISIT: required by Waveseek -->
+		
 	<item type="id" name="scene_dialog_scrollable"/>
 	<item type="id" name="scene_selection_menu"/>
 	
@@ -84,6 +100,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="scene_navbar_2lines_sheet"/>
 	
 	<!-- Popup menu -->
+	<item type="id" name="menu"/>
 	<item type="id" name="menu_placeholder_scene_menu"/>
 	<item type="id" name="popup_menu"/><!-- Modality id: any non-item popups -->
 	<item type="id" name="popup_menu_item"/><!-- Modality id: item popups -->
@@ -147,10 +164,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- int=type. Also a msg. Msg arg1=type, arg2=ListWidgetBase.FLAG_TRANS_TYPE_* -->
 	<item type="id" name="state_list_transition"/>
 	
+	<item type="id" name="state_gui_nav_animating"/><!-- boolean -->
+	<item type="id" name="state_gui_is_modal_now"/><!-- boolean, integer => @id of scene or view, identifying this model state, or 0 -->
+	
+	
 	<!-- Sets gui to modal mode: used for popups and other modal-like use cases -->
 	<item type="id" name="cmd_gui_set_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
 	<item type="id" name="cmd_gui_unset_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
 	<item type="id" name="cmd_gui_reset_modal"/><!-- bus_gui, no anim by default, optional boolean arg = anim (PopupMenuHelper only) -->
+	<item type="id" name="cmd_gui_show_toast"/><!-- bus_gui, arg1 = icon res, arg2 = optional duration ms (>0), obj = CharSequence or array[2] of CharSequence. Public -->
 	
 	<item type="id" name="cmd_list_select_all"/>
 	<item type="id" name="cmd_list_select_none"/>
@@ -160,6 +182,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_search_text"/>
 	<item type="id" name="cmd_list_delete"/>
 	
+	<item type="id" name="cmd_app_open_settings"/><!-- obj => settings page -->
 	
 	
 	<item type="id" name="cmd_list_prefer_aa_scene"/><!-- arg1 == scene_aa, scene_aa_playing, scene_aa_vis -->
@@ -191,5 +214,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Other bus msgs -->
 	<item type="id" name="msg_version_info_changed"/><!-- bus_app -->
+	
+	
+	<string name="close">Close</string>
 </resources>
 	

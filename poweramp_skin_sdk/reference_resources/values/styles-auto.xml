@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="AutoTheme" parent="Base_ActivityTheme_Default">
+		<!-- See http://androidxref.com/9.0.0_r3/xref/packages/apps/Car/libs/car-media-common/src/com/android/car/media/common/MediaSource.java#472 -->
+		<item name="colorAccent">#4586e2</item>
+		<item name="colorPrimary">#000</item>
+		<item name="colorPrimaryDark">#000</item>
+	</style>
+</resources>

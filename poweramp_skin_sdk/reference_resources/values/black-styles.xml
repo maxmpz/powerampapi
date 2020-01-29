@@ -108,6 +108,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorPreampBg">#111</item>
 		
 		<item name="colorTrackMeta">#999</item>
+		<item name="colorTrackNum">#999</item>
 		<item name="colorSeparator">#F555</item>
 				
 		<item name="colorNavbarIcons">@color/navbar_icons_selector</item>

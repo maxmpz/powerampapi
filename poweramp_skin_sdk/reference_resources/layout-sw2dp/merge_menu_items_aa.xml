@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.BusActionButton android:id="@+id/delete"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/delete"
 		style="?PopupMenuItem"
 		android:drawable="?delete"
 
@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list" w:msgId="@id/cmd_list_delete_dialog"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/lyrics"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/lyrics"
 		style="?PopupMenuItem"
 		android:drawable="?lyrics"
 
@@ -42,7 +42,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/add_to_pl"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/add_to_pl"
 		style="?PopupMenuItem"
 		android:drawable="?add_to_pl"
 		android:text="@string/add_to_playlist"
@@ -51,7 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:msgId="@id/cmd_list_add_to_pl_dialog"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/info"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/info"
 		style="?PopupMenuItem"
 		android:drawable="?info"
 		
@@ -60,7 +60,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:clickDelay="@integer/activity_start_click_delay"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/album_art"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/album_art"
 		style="?PopupMenuItem"
 		android:drawable="?album_art"
 
@@ -70,21 +70,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:clickDelay="@integer/activity_start_click_delay"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/artist"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/artist"
 		style="?PopupMenuItem"
 		android:drawable="?artists_24dp"
 		android:text="@string/artist"
 		
 		w:busId="@id/list" w:msgId="@id/cmd_list_current_artist"
 	/>
-	<com.maxmpz.widget.BusActionButton android:id="@+id/folder"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/folder"
 		style="?PopupMenuItem50"
 		android:text="@string/folder_short"
 		android:drawable="?folder_24dp"
 
 		w:busId="@id/list" w:msgId="@id/cmd_list_current_folder"
 	/>
-	<com.maxmpz.widget.BusActionButton android:id="@+id/album"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/album"
 		style="?PopupMenuItem50"
 		android:drawable="?albums_24dp"
 		android:text="@string/album_short"

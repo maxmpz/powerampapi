@@ -30,44 +30,44 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemPopupListFrs"
 	/>
 	
-	<com.maxmpz.widget.FastCheckBoxOnly android:id="@+id/select_box"
+	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/select_box"
 		style="?ItemEqPresetSelectBox"
 	/>
 	
-	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 		style="?ItemPopupListTitleLarger_2line"
 	/>
 	
 	<!-- Spacer used to align icons to ItemPopupListTitleLarger_2line padding -->
-	<com.maxmpz.widget.InvisibleView
+	<com.maxmpz.widget.base.InvisibleView
 		style="?ItemPopupListMicroIconSpace"
 	/>
 	
-	<com.maxmpz.widget.FastTextView android:id="@+id/speaker"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/speaker"
 		android:drawable="?pre_speaker"
 		style="?ItemPopupListMicroIcon"
 	/>
-	<com.maxmpz.widget.FastTextView android:id="@+id/wired"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/wired"
 		android:drawable="?pre_wired"
 		style="?ItemPopupListMicroIcon"
 	/>
-	<com.maxmpz.widget.FastTextView android:id="@+id/bt"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/bt"
 		android:drawable="?pre_bt"
 		style="?ItemPopupListMicroIcon"
 	/>
-	<com.maxmpz.widget.FastTextView android:id="@+id/usb"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/usb"
 		android:drawable="?pre_usb"
 		style="?ItemPopupListMicroIcon"		
 	/>
-	<com.maxmpz.widget.FastTextView android:id="@+id/chromecast"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/chromecast"
 		android:drawable="?pre_chromecast"
 		style="?ItemPopupListMicroIcon"
 	/>
-	<com.maxmpz.widget.FastTextView android:id="@+id/other"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/other"
 		android:drawable="?pre_other"
 		style="?ItemPopupListMicroIcon"
 	/>
-	<com.maxmpz.widget.FastTextView android:id="@+id/song"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/song"
 		android:drawable="?pre_song"
 		style="?ItemPopupListMicroIcon"
 	/>

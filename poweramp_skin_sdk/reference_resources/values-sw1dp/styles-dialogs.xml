@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -503,6 +503,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 		
 	<style name="CenteredDialog_vertical_buttons" parent="CenteredDialog">
+		<item name="dialogContentPaddingBottom">16dp</item><!-- Introduce some content bottom padding -->
+		
 		<item name="DialogButtonBar">@style/DialogButtonBar_vertical_buttons</item>
 		<item name="DialogNeutralButtonStyle">@style/DialogNeutralButtonStyle_vertical_buttons</item>
 		<item name="DialogNegativeButtonStyle">@style/DialogNegativeButtonStyle_vertical_buttons</item>
@@ -649,6 +651,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:visibility">gone</item>
 	</style>
 	
-	
-	
+	<style name="Default_DialogForceLightSystemUIStyle">
+		<item name="android:navigationBarColor">@android:color/white</item>
+		<item name="android:windowLightNavigationBar">true</item>
+		<item name="windowLightNavigationBar">true</item> 
+		<item name="android:navigationBarDividerColor">#08ffffff</item>
+		<item name="android:windowLightStatusBar">true</item>
+	</style>
+	<style name="Default_DialogForceDarkSystemUIStyle">
+		<item name="android:navigationBarColor">@android:color/black</item>
+		<item name="android:windowLightNavigationBar">false</item>
+		<item name="windowLightNavigationBar">false</item> 
+		<item name="android:navigationBarDividerColor">#08000000</item>
+		<item name="android:windowLightStatusBar">false</item>
+	</style>
 </resources>

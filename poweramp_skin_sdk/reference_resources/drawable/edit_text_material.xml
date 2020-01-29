@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: not using this for phones, but using for tablets up to sdk=26 (where drawablew-26/edit_text_material exists -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:drawable="@drawable/abc_edit_text_material"/>
+</layer-list>

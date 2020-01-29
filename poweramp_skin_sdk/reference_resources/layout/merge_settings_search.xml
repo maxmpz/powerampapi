@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.maxmpz.audioplayer.preference.SearchLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	
+	style="@style/SettingsSearchLayout"
+>
+	<!-- NOTE: height is set programatically -->
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/search_panel"
+		style="@style/SettingsSearchPanel"
+	>
+		<com.maxmpz.widget.base.FastButton android:id="@+id/search_back_button"
+			style="@style/SettingsSearchBackButton"
+		/>
+		
+		<com.maxmpz.widget.base.FastButton android:id="@+id/search_close_button"
+			style="@style/SettingsSearchCloseButton"
+		/>
+		
+		<com.maxmpz.audioplayer.preference.SearchEditText android:id="@+id/search_edit"
+			android:hint="@string/search"
+			style="@style/SettingsSearchEdit"
+		/>
+		
+				
+	</com.maxmpz.widget.base.FastLayout>
+	<SceneParams w:scene="@+id/scene_search"
+		style="@style/SettingsSearchPanel_scene_search" 
+	/>
+		
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/search_content"
+		style="@style/SettingsSearchContent"
+	>
+		<!-- NOTE: all available public colors/backgrounds which can be actually resolved. 
+		     TextView used for colors which can be used only as colors (for shape/text) and will crash when used as direct view background -->
+		<!--
+		<View style="@style/DebugColor" android:background="?android:attr/colorPrimaryDark"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorPrimary"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorSecondary"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorAccent"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorEdgeEffect"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/colorControlHighlight"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/colorControlNormal"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorForeground"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorForegroundInverse"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorBackground"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorBackgroundFloating"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/colorBackgroundCacheHint"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorError"/>
+		<View android:layout_width="20dp" android:layout_height="20dp" w:layout_consumeSpace="vertical|reset_horizontal"/>
+		
+		<View style="@style/DebugColor" android:background="?android:attr/colorPressedHighlight"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorLongPressedHighlight"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorFocusedHighlight"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorActivatedHighlight"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorMultiSelectHighlight"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/fastScrollTextColor"/>
+		<View style="@style/DebugColor" android:background="?android:attr/colorMultiSelectHighlight"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorPrimaryInverseDisableOnly"/>
+		<View android:layout_width="20dp" android:layout_height="20dp" w:layout_consumeSpace="vertical|reset_horizontal"/>
+		
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorPrimary"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorPrimaryDisableOnly"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorPrimaryNoDisable"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorPrimaryInverseNoDisable"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorPrimaryInverse"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorSecondary"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorSecondaryNoDisable"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorSecondaryInverseNoDisable"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorSecondaryInverse"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorTertiary"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorTertiaryInverse"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorHint"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorHintInverse"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorHighlight"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorHighlightInverse"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorLink"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorLinkInverse"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/textColorAlertDialogListItem"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/editTextColor"/>
+		<View style="@style/DebugColor" android:background="?android:attr/editTextBackground"/>
+		<View android:layout_width="20dp" android:layout_height="20dp" w:layout_consumeSpace="vertical|reset_horizontal"/>
+		
+		<View style="@style/DebugColor" android:background="?android:attr/windowBackground"/>
+		<View style="@style/DebugColor" android:background="?android:attr/statusBarColor"/>
+		<View style="@style/DebugColor" android:background="?android:attr/navigationBarColor"/>
+		<View style="@style/DebugColor" android:background="?android:attr/galleryItemBackground"/>
+		<View style="@style/DebugColor" android:background="?android:attr/panelBackground"/>
+		<View style="@style/DebugColor" android:background="?android:attr/panelFullBackground"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/panelColorBackground"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/panelColorForeground"/>
+		<View android:layout_width="20dp" android:layout_height="20dp" w:layout_consumeSpace="vertical|reset_horizontal"/>
+		
+		<View style="@style/DebugColor" android:background="?android:attr/actionModeBackground"/>
+		<View style="@style/DebugColor" android:background="?android:attr/actionModeSplitBackground"/>
+		<TextView style="@style/DebugTextColor" android:textColor="?android:attr/actionMenuTextColor"/>
+		<View style="@style/DebugColor" android:background="?android:attr/actionBarItemBackground"/>
+		<View style="@style/DebugColor" android:background="?android:attr/windowBackgroundFallback"/>
+		-->
+		
+		
+		<com.maxmpz.widget.base.PowerList android:id="@+id/search_list"
+			style="@style/SettingsSearchList"
+		/>
+				
+		
+	</com.maxmpz.widget.base.FastLayout>
+	<SceneParams w:scene="@+id/scene_search" 
+		android:visibility="visible"
+	/>
+		
+</com.maxmpz.audioplayer.preference.SearchLayout>

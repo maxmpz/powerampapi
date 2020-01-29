@@ -27,14 +27,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	android:id="@+id/item_back_decor"
 	style="?ItemTextBackDecor"
 >
-	<com.maxmpz.widget.BusActionButton android:id="@+id/title"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/title"
 		style="?ItemTextBackDecorTitle"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_up_nav"
 		w:disableForStateBusId="@id/list"
 		w:disableForStateId="@id/state_list_selection_mode"
 	/><!-- Same as item_top_text_back_decor -->
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header_back_decor"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header_back_decor"
 		style="?ItemTextBackDecorTitle_scene_header_back_decor"
 	/>
 </com.maxmpz.widget.player.list.BackDecorItemView> 

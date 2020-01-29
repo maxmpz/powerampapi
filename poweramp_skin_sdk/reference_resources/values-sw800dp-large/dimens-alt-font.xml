@@ -39,6 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="medium1_AltFont_textSize">@dimen/medium1_textSize</dimen>
 	<dimen name="medium2_AltFont_textSize">@dimen/medium2_textSize</dimen>
+	<dimen name="medium3_AltFont_textSize">@dimen/medium3_textSize</dimen>
 	<dimen name="medium4_AltFont_textSize">@dimen/medium4_textSize</dimen>
 	
 	<dimen name="large0_AltFont_textSize">@dimen/large0_textSize</dimen>

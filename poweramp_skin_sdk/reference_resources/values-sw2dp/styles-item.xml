@@ -131,6 +131,129 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">invisible</item>
 	</style>
 								
+	<!-- The track number -->
+	<style name="ItemTrackNum">
+		<item name="android:layout_width">@dimen/ItemTrackNum_width</item><!-- Should be enough for "999", i.e. 3 symbols -->
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginRight">-14dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="layout_goneWhenEmpty">true</item>
+
+		<item name="android:visibility">visible</item>
+
+		<item name="android:textAppearance">?ItemTrackNum_Text</item>
+		<item name="android:textColor">?colorTrackNum</item>
+		<item name="android:gravity">center</item>
+		
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+		
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
+		<item name="android:transformPivotY">0px</item>
+		<item name="android:translationZ">?over_aa_elevation</item>
+		<item name="android:outlineProvider">none</item>
+		
+		<item name="android:scaleX">.85</item>
+		<item name="android:scaleY">.85</item>
+		<item name="scale">.85</item>
+		<item name="layout_compensateScale">0.85</item>
+	</style>
+	<style name="ItemTrackNum_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">14.5dp</item>
+	</style>
+	<style name="ItemTrackNum_scene_small">
+		<item name="baseScene">defaultScene</item>
+		
+		<item name="android:layout_width">@dimen/ItemTrackNum_width</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginRight">-20dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="layout_goneWhenEmpty">true</item>
+		
+		<item name="scale">.75</item>
+		<item name="layout_compensateScale">0.75</item>
+	</style>
+	<style name="ItemTrackNum_scene_1">
+		<item name="baseScene">defaultScene</item>
+	</style>
+	<style name="ItemTrackNum_scene_1_small" parent="ItemTrackNum_scene_small">
+		<item name="baseScene">@id/scene_small</item>
+	</style>
+	<style name="ItemTrackNum_scene_zoomed">
+		<item name="android:layout_width">@dimen/ItemTrackNum_width</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginLeft">6dp</item>
+		<item name="android:layout_marginRight">-12dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="layout_goneWhenEmpty">true</item>
+
+		<item name="android:visibility">visible</item>
+		
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
+	</style>
+	<style name="ItemTrackNum_scene_1_zoomed">
+		<item name="baseScene">@id/scene_zoomed</item>
+	</style>
+	<style name="ItemTrackNum_scene_grid">
+		<!-- Don't consume anything -->
+		<item name="android:layout_width">@dimen/ItemTrackNum_width</item><!-- Should be enough for "99.", i.e. 3 symbols -->
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">-12dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_goneWhenEmpty">true</item>
+		
+		<item name="android:visibility">invisible</item>
+	</style>
+	<style name="ItemTrackNum_scene_grid_1">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_grid_1_alt">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_grid_zoomed">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_grid_1_zoomed">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_grid_1_alt_zoomed">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_aa">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_header_w_meta">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_header">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_aa_vis">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_aa_playing">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_item_menu">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	<style name="ItemTrackNum_scene_item_menu_lu">
+		<item name="baseScene">@id/scene_grid</item>
+	</style>
+	
 	
 	<style name="ItemTrackAAImage">
 		<item name="android:scaleType">?AAImage_scaleType</item>
@@ -559,8 +682,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTrackTitle_scene_grid_zoomed" parent="ItemTrackTitle_scene_grid">
 		<item name="scale">.90</item>
 		<item name="layout_compensateScale">.90</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
 	</style>
 	<style name="ItemTrackTitle_scene_grid_1_zoomed" parent="ItemTrackTitle_scene_grid_zoomed">
 		<item name="layout_attachBottom">parent</item>
@@ -772,9 +895,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTrackLine2_scene_grid_zoomed" parent="ItemTrackLine2_scene_grid">
 		<item name="scale">.86</item>
 		<item name="layout_compensateScale">.86</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginBottom">8dp</item>
-		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginBottom">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
 	</style>
 	<style name="ItemTrackLine2_scene_grid_1">
 		<item name="android:visibility">gone</item>
@@ -1078,7 +1201,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<!--<item name="layout_attachBottom">@+id/rating</item>-->
 	</style>
 		
-
+	
 	<!-- Should be gone/invisible in all scenes. Programmatically set to gone/visible as needed, don't set visibility in scenes as it will interfere with the code -->
 	<style name="ItemTrackDragHandler">
 		<!-- <item name="android:visibility">visible</item> --><!-- DEBUG -->
@@ -2462,7 +2585,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:textAppearance">?ItemPopupListTitleLarger_Text</item><!-- By default => ItemGenericTitle_Text -->
 	</style>
 	<style name="ItemPopupListTitleLarger_Text" parent="ItemGenericTitle_Text">
-		<item name="android:textSize">15.5dp</item>
+		<item name="android:textSize">15dp</item>
 	</style>
 	<style name="ItemPopupListTitleLarger_2line" parent="ItemPopupListTitleLarger">
 		<item name="layout_attachLeft">@null</item>

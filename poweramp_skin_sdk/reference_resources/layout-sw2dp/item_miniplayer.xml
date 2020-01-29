@@ -29,12 +29,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>	
 	
 
-	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 		style="?ItemMiniplayerTitle"
 		android:importantForAccessibility="yes"
 	/>
 	
-	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
 		style="?ItemMiniplayerLine2"
 		android:importantForAccessibility="yes"
 	/>

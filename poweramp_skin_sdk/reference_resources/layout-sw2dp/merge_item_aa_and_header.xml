@@ -24,12 +24,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.FastButton android:id="@+id/menu"
+	<com.maxmpz.widget.base.FastButton android:id="@+id/menu"
 		style="?ItemTrackMenu"
 		android:contentDescription="@string/menu"
 	>
 		<tag android:id="@+id/header_button" android:value="1"/>
-	</com.maxmpz.widget.FastButton>
+	</com.maxmpz.widget.base.FastButton>
 	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_small" w:scene_3="@+id/scene_grid_1_alt" w:scene_4="@+id/scene_grid_1_alt_zoomed" w:scene_5="@+id/scene_1_small"
 		w:baseScene="defaultScene" 
 	/>
@@ -53,7 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<!-- NOTE: this view is never visible in default themes, but can be used in 3rd party skins -->
-	<com.maxmpz.widget.NonOverlappingView android:id="@+id/aa_panel"
+	<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/aa_panel"
 		style="?ItemTrackAAPanel"
 	/>
 	<SceneParams w:scene="@+id/scene_aa"

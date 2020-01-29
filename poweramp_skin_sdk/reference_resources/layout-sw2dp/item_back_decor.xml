@@ -31,17 +31,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	android:id="@+id/item_back_decor"
 	style="?ItemTrackBackDecor"
 >
-	<com.maxmpz.widget.BusActionButton android:id="@+id/title"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/title"
 		style="?ItemTrackBackDecorTitle"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_up_nav"
 		w:disableForStateBusId="@id/list"
 		w:disableForStateId="@id/state_list_selection_mode"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header_1"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header_1"
 		style="?ItemTrackBackDecorTitle_scene_header_1"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header_back_decor"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header_back_decor"
 		style="?ItemTrackBackDecorTitle_scene_header_back_decor"
 	/>
 </com.maxmpz.widget.player.list.BackDecorItemView> 

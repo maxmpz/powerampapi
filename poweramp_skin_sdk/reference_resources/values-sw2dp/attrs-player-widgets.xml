@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+		
+	<!-- Main Poweramp list, i.e. main screen AA and all the Library lists and Library itself. 
+		 NOTE: derived from PowerList - accepts PowerList attributes as well -->
+	<declare-styleable name="ListWidget">
+		<!-- ListWidget popup menu animation time -->
+		<attr name="popupEnterAnimTime"/><!-- ms -->
+		<!-- ListWidget popup menu animation time -->
+		<attr name="popupExitAnimTime"/><!-- ms -->
+		<attr name="menuPlaceholder"/><!-- Some top level MenuHelper-enabled layout (poped-out item transformed into menu and attached there) -->
+		
+		<!-- Animation time between AA states (playing/paused) -->
+		<attr name="preferedAAAnimTime" format="integer"/><!-- ms -->
+		
+		<!-- Controls AA blur background --> 
+		<attr name="listMilkMode" format="integer">
+			<flag name="none" value="0"/><!-- No any AA images are applied to background -->
+			<flag name="mainAA" value="1"/><!-- Default. AA from main screen is applied to background --> 
+			<flag name="listHeader" value="2"/><!-- AA from list headers is applied -->
+		</attr>
+		
+		<!-- Milk (visualization) AA widget id --> 
+		<attr name="listMilkAA" format="reference"/>
+		
+		<!-- Number of styles to apply to list internals -->
+		<attr name="listSubstyle" format="reference"/>
+		
+		<!-- Automaticaly set top padding and add to bottomReservedSpace from status bar or/and android navigation bar.
+			 NOTE: only top padding is modified for statusBar and bottomReservedSpace for navigationBar
+		 -->
+		<attr name="offsetWindowInsets">
+			<flag name="none" value="0"/>
+			<flag name="statusBar" value="0x1"/>
+			<flag name="navigationBar" value="0x2"/>
+		</attr>
+	</declare-styleable>
+	<!-- NOTE: see attrs-player.xml for ListSubstyle -->
+	
+	<!-- Expandable Navbar area -->			
+	<declare-styleable name="NavbarExtension">
+		<attr name="shim" format="reference"/><!-- id of shim view which covers whole screen when NavbarExtension is expanded -->
+		<attr name="content" format="reference"/><!-- id of the content layout. If null/not specified - navbar_extension is the content view itself -->
+		<attr name="twoLineEnterAnimTime" format="integer"/><!-- Miniplayer enter time -->
+		<attr name="twoLineExitAnimTime" format="integer"/><!-- Miniplayer exit  time -->
+	</declare-styleable>
+	
+	<!-- List item view - heading with small button --> 
+	<declare-styleable name="SeparatorItemView">
+		<!-- Extra padding (can be negative) to apply when this is the first item in list -->
+		<attr name="paddingTopWhenFirst" format="dimension"/>
+	</declare-styleable>
+	
+
+	<!-- Behavior, which is currently integrated into com.maxmpz.widget.player.TopNavSceneFastLayout (=> @style/TopContainer) 
+	     Defines and controls all the top-level navigation -->
+	<declare-styleable name="TopNavBehavior">
+		<!-- Main screen enter animation duration. Applied to UI, but not inside List. List has own animation durations -->
+		<attr name="animMainEnterTime" format="integer"/>
+		<!-- Main screen exit animation duration. Applied to UI, but not inside List. List has own animation durations -->
+		<attr name="animMainExitTime" format="integer"/>
+		<!-- Play <-> pause animation duration -->		
+		<attr name="playStateAnimTime" format="integer"/>
+		<!-- Other screes animation durations. Applied to UI, but not inside List. List has own animation durations -->
+		<attr name="animTime"/>
+		<!-- Alternative animation time to apply when animTime=0 and code still requires some forced anim (as for search results anim) -->
+		<attr name="forcedAnimTime" format="integer"/>
+		<!-- State anim duration, e.g. for state_seeking anim -->
+		<attr name="stateAnimTime" format="integer"/>
+		<!-- Vis enter/exit anim duration -->
+		<attr name="visAnimTime" format="integer"/>
+		<!-- NOTE: not used anymore, instead now defined by user option. Temporary UI (on touch, when vis is enabled) duration -->
+		<attr name="tempUITime" format="integer"/>
+		
+		<!-- 
+			 AA background hide anim duration during navigation 
+			 NOTE: this duration works for main => eq navigation. 
+			 Main => lib and main => search navigation are different, as navigation is withing the list itself.
+			 List has own animation durations
+		-->
+		<attr name="aaBlurExitAnimTime" format="integer"/>
+		<!-- Vis entering anim duration during navigation -->
+		<attr name="visEnterAnimTime" format="integer"/>
+		<!-- Vis exiting anim duration during navigation -->
+		<attr name="visExitAnimTime" format="integer"/>
+		<!-- AA entering anim duration during navigation -->
+		<attr name="aaEnterAnimTime" format="integer"/>
+		
+		<!-- Fast time to change AA blur e.g. when new bitmap is loaded. Should be fast
+			 NOTE: transition time between different bitmaps blurs generally is defined by actual AA animation time, which depends on many things,
+			 or can be e.g. manual, thus controlled by user
+		-->
+		<attr name="aaBlurUpdateAnimTime" format="integer"/>
+		
+		<!-- Anim time to use if AA blur loaded with the delay -->
+		<attr name="aaBlurLongerUpdateAnimTime" format="integer"/>
+		
+		<!-- Anim time to use for cases as no-AA (null/solid color) to AA transition happens.
+		     NOTE: in-list transitions override this time to sync blur transition to in-list transition, so Search to Main screen
+		     is not affected, and the only controlled time here is Eq to Main screen
+		 -->
+		<attr name="aaBlurNoAAToAAAnimTime" format="integer"/>
+		
+		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine and consinstent around it.
+		     Bassically we need to offset inset by our navbar bottom margin (normal margin, not overlap_navbar_offset).   
+		     TopContainer will try to adjust bottom inset when needed (Android 10+, only when small line-navbar is visible) -->
+		<attr name="reduceBottomInset" format="dimension"/>
+		
+	</declare-styleable>
+	
+	<!-- Visualization panel layout -->	
+	<declare-styleable name="VisPanelFrame">
+		<!-- Size of normal item -->
+		<attr name="itemSize" format="dimension"/>
+		<!-- Size of list item -->
+		<attr name="listItemSize"/>
+	</declare-styleable>
+		
+	<declare-styleable name="InfoTextView">
+		<!-- InfoTextHelper class name to use. Can start with . to resolve class name vs package name --> 
+		<attr name="infoTextHelper" format="string"/>
+	</declare-styleable>
+	
+</resources>

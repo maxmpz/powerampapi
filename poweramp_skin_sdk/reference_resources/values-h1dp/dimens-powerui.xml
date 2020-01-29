@@ -60,4 +60,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<integer name="selector_fade_ms">150</integer>
 	
 	<dimen name="ListMenu_drawableSize">20dp</dimen>
+	
 </resources>

@@ -28,14 +28,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	style="?ItemTopTextBackDecor"
 >
 	<!-- This view should visually match title in scene_header -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/title"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/title"
 		style="?ItemTopTextBackDecorTitle"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_up_nav"
 		w:disableForStateBusId="@id/list"
 		w:disableForStateId="@id/state_list_selection_mode"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header_back_decor"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header_back_decor"
 		style="?ItemTopTextBackDecorTitle_scene_header_back_decor"
 	/>
 </com.maxmpz.widget.player.list.BackDecorItemView> 

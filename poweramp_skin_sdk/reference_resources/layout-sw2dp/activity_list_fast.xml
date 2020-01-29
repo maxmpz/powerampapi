@@ -107,13 +107,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		
 	<!-- NOTE: layout for a waveseek is needed so the waveseek can be centered vertically between sub aa buttons and nav bar + have max height -->
-	<com.maxmpz.widget.FastLayout android:id="@+id/waveseek_layout"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/waveseek_layout"
 		style="?TopWaveseekLayout"
 	>
 	 	<com.maxmpz.widget.player.Waveseek android:id="@+id/waveseek"
 			style="?TopWaveseek"
 		>
-			<com.maxmpz.widget.NonOverlappingView android:id="@id/waveseek_cursor"
+			<com.maxmpz.widget.base.NonOverlappingView android:id="@id/waveseek_cursor"
 				style="?TopWaveseekCursor"
 			/>
 			<StateAnimParams w:stateAnim="@+id/anim_waveseek_pressed" w:stateAnim_2="@id/anim_seeking"
@@ -122,7 +122,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</com.maxmpz.widget.player.Waveseek>
 		
 		<!-- An invisible "button" behind play/pause. Used to capture presses for (probably) visually small pay/pause buttons -->
-		<com.maxmpz.widget.BusActionButton android:id="@+id/play_pause_behind"
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/play_pause_behind"
 			style="?TopPlayPauseBehind"
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
@@ -151,7 +151,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 		
 		
-		<com.maxmpz.widget.BusActionButton android:id="@+id/pause"
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/pause"
 			style="?TopPause"
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
@@ -165,7 +165,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?TopPause_state_seeking"
 		/>
 		
-		<com.maxmpz.widget.BusActionButton android:id="@+id/play"
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/play"
 			style="?TopPlay"
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
@@ -182,7 +182,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- See @layout/merge_topwaveseeklayout_extralayout -->
 		<include android:layout="?TopWaveseekLayout_extraLayout" w:optional="true"/>
 		
-	</com.maxmpz.widget.FastLayout><!-- waveseek_layout -->
+	</com.maxmpz.widget.base.FastLayout><!-- waveseek_layout -->
 	<SceneParams w:scene="@+id/scene_lib"
 		style="?TopWaveseekLayout_scene_lib"
 	/><!-- waveseek_layout -->
@@ -203,10 +203,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<include android:layout="?TopContainer_extraLayout" w:optional="true"/>
 	
 	<!-- NOTE: extra container is needed for the proper animations during top scene running - e.g. vis_mode => touch => scene to temp vis ui + label change relayout -->	
-	<com.maxmpz.widget.PrivateNonSceneFastLayout android:id="@+id/meta_info_layout"
+	<com.maxmpz.widget.base.PrivateNonSceneFastLayout android:id="@+id/meta_info_layout"
 		style="?TopMetaInfoLayout"
 	>
-		<com.maxmpz.widget.BusActionPopupLayout android:id="@+id/meta_info"
+		<com.maxmpz.widget.base.BusActionPopupLayout android:id="@+id/meta_info"
 			style="?TopMetaInfo"
 			w:menuItemsLayout="@layout/merge_dsp_info_popup_layout"
 			w:busId="@id/bus_player_cmd"
@@ -233,11 +233,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<SceneParams w:scene="@+id/scene_button_menu_closed"
 				android:visibility="visible"
 			/>
-		</com.maxmpz.widget.BusActionPopupLayout>
+		</com.maxmpz.widget.base.BusActionPopupLayout>
 		<SceneParams w:scene="@+id/scene_button_menu" 
 			style="?TopMetaInfo_scene_item_menu" 
 		/>
-	</com.maxmpz.widget.PrivateNonSceneFastLayout>
+	</com.maxmpz.widget.base.PrivateNonSceneFastLayout>
 	<!-- NOTE: alpha is overridden by user preference -->
 	<!-- NOTE: dynamic is needed here as BusStatusText can be updated at any time, even during running scene -->
 	<SceneParams w:scene="@+id/scene_vis_w_ui" 
@@ -259,7 +259,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		Also, horizontal scrollbar will require larger width (==parent width), but now width is set to narrow value => for a-z and vertical thumb modes only
 	--> 
 	<!-- NOTE: extra padding left for extra touchable area. Padding is not visible -->
-	<com.maxmpz.widget.ListScrollerView android:id="@+id/list_scroller"
+	<com.maxmpz.widget.base.ListScrollerView android:id="@+id/list_scroller"
 		style="?TopListScrollerView"
 	/>
 	<StateAnimParams w:stateAnim="@+id/anim_scrollbar_pressed"
@@ -281,11 +281,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- SubAA -->
 	
-	<com.maxmpz.widget.SceneFastLayout android:id="@+id/sub_aa_buttons"
+	<com.maxmpz.widget.base.SceneFastLayout android:id="@+id/sub_aa_buttons"
 		style="?TopSubAAButtons"
 		w:privateScene="true"
 	>
-		<com.maxmpz.widget.BusSelectablePopupButtonLayout android:id="@+id/vis_button_layout"
+		<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/vis_button_layout"
 			style="?TopVisButtonLayout"
 			
 			w:stateBusId="@id/bus_gui"
@@ -301,7 +301,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 			android:contentDescription="@string/visualization"
 		>
-		</com.maxmpz.widget.BusSelectablePopupButtonLayout>
+		</com.maxmpz.widget.base.BusSelectablePopupButtonLayout>
 		<SceneParams w:scene="@+id/scene_button_menu" 
 			style="?ItemPopupMenu_scene_item_menu" 
 		/>
@@ -311,7 +311,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:menuItemsLayout="@layout/merge_sleep_timer_popup_layout"
 			android:contentDescription="@string/sleep_timer"
 		>
-			<com.maxmpz.widget.PopupButton
+			<com.maxmpz.widget.base.PopupButton
 				style="?TopSleepTimerButton"
 			/>
 			<SceneParams w:scene="@+id/scene_button_menu"
@@ -328,7 +328,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: arg2="1" means we override arg2 when sending message by chaning modes by pressing BusSelectablePopupButtonLayout.
 			 This only applied (and overrides possible button arg2) ONLY when BusSelectablePopupButtonLayout is pressed, 
 			 otherwise, while in popup menu buttons send their (or buttons* based) messages/args -->
-		<com.maxmpz.widget.BusSelectablePopupButtonLayout android:id="@+id/shuffle_button_layout"
+		<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/shuffle_button_layout"
 			style="?TopShuffleButtonLayout"
 		
 			w:stateBusId="@id/bus_player"
@@ -346,7 +346,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?ItemPopupMenu_scene_item_menu" 
 		/>
 		
-		<com.maxmpz.widget.BusSelectablePopupButtonLayout android:id="@+id/repeat_button_layout"
+		<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/repeat_button_layout"
 			style="?TopRepeatButtonLayout"
 		
 			w:stateBusId="@id/bus_player"
@@ -363,7 +363,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<SceneParams w:scene="@+id/scene_button_menu" 
 			style="?ItemPopupMenu_scene_item_menu" 
 		/>
-	</com.maxmpz.widget.SceneFastLayout><!-- sub_aa_buttons -->
+	</com.maxmpz.widget.base.SceneFastLayout><!-- sub_aa_buttons -->
 	<SceneParams w:scene="@+id/scene_playing"
 		style="?TopSubAAButtons_scenes_playing"
 	/><!-- sub_aa_buttons -->
@@ -387,7 +387,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- eq -->
-	<com.maxmpz.widget.LoadableBehavior android:id="@+id/behavior_eq_layout"
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_eq_layout"
 		android:layout="@layout/merge_eq_layout"
 		w:loadForScene="@+id/scene_eq" 
 		w:insertAt="thisPosition"
@@ -396,36 +396,36 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 		
 	
-	<com.maxmpz.widget.FastLayout android:id="@+id/search_layout"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/search_layout"
 		style="?TopSearchLayout"
 	>
-		<com.maxmpz.widget.FastLayout
+		<com.maxmpz.widget.base.FastLayout
 			style="?TopSearchPanel"
 		>
 			<!-- NOTE: we consume space from right here, so search text view is not taking full width -->
-			<com.maxmpz.widget.BusActionButton
+			<com.maxmpz.widget.base.BusActionButton
 				style="?TopSearchCloseButton"
 				w:busId="@id/list"
 				w:msgId="@id/cmd_list_search_text"
 				w:string=""
 			/>
-			<com.maxmpz.widget.ListSearchEditText android:id="@+id/search_edit"
+			<com.maxmpz.audioplayer.widget.ListSearchEditText android:id="@+id/search_edit"
 				style="?TopListSearchEditText"
 				android:hint="@string/search"
 			/>
-		</com.maxmpz.widget.FastLayout>
+		</com.maxmpz.widget.base.FastLayout>
 		
 		<!--
 			w:disableForStateBusId="@id/list"
 			w:disableForStateId="@id/state_list_selection_mode"
 		-->
-		<com.maxmpz.widget.ListSearchTargetButton android:id="@+id/search_target"
+		<com.maxmpz.audioplayer.widget.ListSearchTargetButton android:id="@+id/search_target"
 			style="?TopSearchTarget"
 			w:busId="@id/list"
 			w:msgId="@id/cmd_list_clear_target_search"
 		/>
 					
-	</com.maxmpz.widget.FastLayout><!-- search_layout -->
+	</com.maxmpz.widget.base.FastLayout><!-- search_layout -->
 	<SceneParams w:scene="@+id/scene_search"
 		android:visibility="visible"
 	/><!-- search_layout -->
@@ -450,14 +450,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 NOTE: this also captures clicks/touches/gestures through the paddings around navbar, so it's clickable 
 	-->
 
-	<com.maxmpz.widget.InvisibleView android:id="@+id/navbar_bounds"
+	<com.maxmpz.widget.base.InvisibleView android:id="@+id/navbar_bounds"
 		style="?TopNavbarBounds"
 	/>
 	
 	<include android:layout="@layout/merge_navbar"/>
 	
 	<!-- NOTE: loaded once and never unloaded. NOTE: TopNavHelper assumes vis panel is loaded via behavior, otherwise change vis_panel_faded_alpha logic there -->
-	<com.maxmpz.widget.LoadableBehavior android:id="@+id/vis_panel_loadable_beahvior"
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/vis_panel_loadable_beahvior"
 		android:layout="@layout/merge_vis_panel"
 		w:loadForScene="@+id/scene_vis_temp_ui"
 		w:loadForScene_2="@+id/scene_vis"
@@ -467,7 +467,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<!-- Putting indexer popup view above possible selection menus but below navbar (so we hiding it with our shade) -->
-	<com.maxmpz.widget.ListIndexerPopupView android:id="@+id/list_indexer"
+	<com.maxmpz.widget.base.ListIndexerPopupView android:id="@+id/list_indexer"
 		style="?TopListIndexerPopupView"
 	/>
 	<StateAnimParams w:stateAnim="@+id/anim_scrollbar_pressed"
@@ -475,7 +475,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<!-- NOTE: this is the view where popup item view is moved and transitioned to popup menu and back -->
-	<com.maxmpz.widget.MenuPlaceholderLayout android:id="@+id/menu_placeholder"
+	<com.maxmpz.widget.base.MenuPlaceholderLayout android:id="@+id/menu_placeholder"
 		style="?TopMenuPlaceholderLayout"
 		w:privateScene="true"
 	/>
@@ -502,7 +502,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 By default, status_bar_bg/navigation_bar_bg don't change anything for scenes, but SceneParams are provided for skins, which can change them -->
 	 -->
 
-	<com.maxmpz.widget.FitsStatusBarView android:id="@+id/status_bar_bg"
+	<com.maxmpz.widget.base.FitsStatusBarView android:id="@+id/status_bar_bg"
 		style="?TopFitsStatusBarView"
 	/>
 	<!-- All main screen scenes match default scene, thus, not transitions for these scenes -->
@@ -517,8 +517,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@id/scene_lib" w:scene_2="@id/scene_search" w:scene_3="@id/scene_eq"
 		style="?TopFitsStatusBarView_scenes_non_main"
 	/>
-		
-	<com.maxmpz.widget.FitsNavigationBarView android:id="@+id/navigation_bar_bg"
+	<com.maxmpz.widget.base.FitsNavigationBarView android:id="@+id/navigation_bar_bg"
 		style="?TopFitsNavigationBarView"
 	/>
 	<!-- NOTE: all main screen scenes match default scene, thus, not transitions for these scenes -->

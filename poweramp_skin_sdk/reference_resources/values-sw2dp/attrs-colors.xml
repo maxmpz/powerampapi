@@ -20,7 +20,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
+	<attr name="colorFastScroller" format="color"/>
+	<attr name="colorFastScrollerPressed" format="color"/>
+	<attr name="colorFastScrollerTrack" format="color"/>
+	<attr name="colorScrollPopupBg" format="color"/>
+	<attr name="colorNavbarIcons" format="color"/>
+	<attr name="colorNavbarIconsLessContrast" format="color"/>
+	<attr name="colorBgNavbar" format="color"/>
+	<attr name="colorBgTransparentNavbar" format="color"/>
+	<attr name="colorIconCC" format="color"/><!-- Forced (white) color for Chromecast icon -->
+	
 	<attr name="colorAABgColor" format="color"/><!-- NOTE: this is basically main background color for application, as Milk + AA blur is used as background -->
+	<attr name="colorItemPlayingMark" format="color"/><!-- Current playing item mark bg -->
 	
 	<attr name="colorFrsSelectionBg" format="color"/>
 	<attr name="colorFrsSelectionBgPressed" format="color"/>
@@ -46,6 +57,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorKnobDisabled" format="color"/>
 	<attr name="colorPreampBg" format="color"/>
 	<attr name="colorTrackMeta" format="color"/>
+	<attr name="colorTrackNum" format="color"/>
 	
 	<attr name="colorSeekbarBg" format="color"/>	
 	<attr name="colorSeekbarProgress" format="color"/>

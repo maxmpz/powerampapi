@@ -22,19 +22,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- Top layout for eq/vol/reverb pages -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
 	
-	<com.maxmpz.widget.PrivateNonSceneFastLayout android:id="@+id/eq_layout"
+	<com.maxmpz.widget.base.PrivateNonSceneFastLayout android:id="@+id/eq_layout"
 		style="?TopEqLayout"
 	>
-		<com.maxmpz.widget.FastLayout android:id="@+id/action_mode_bar"
+		<com.maxmpz.widget.base.FastLayout android:id="@+id/action_mode_bar"
 			style="?TopActionModeBar"
 		>
-			<com.maxmpz.widget.BusSelectableBehavior
+			<com.maxmpz.widget.base.BusSelectableBehavior
 				w:stateBusId="@id/bus_gui"
 				w:msgId="@id/nav_eq"
 				w:stateId="@id/state_gui_eq_tab"
 			/>
 			
-			<com.maxmpz.widget.BusActionButton
+			<com.maxmpz.widget.base.BusActionButton
 				style="?TopActionModeBarButton"
 				android:drawable="?eq_equalizer"
 				
@@ -45,7 +45,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				android:contentDescription="@string/equ"
 			/>
 
-			<com.maxmpz.widget.BusActionButton
+			<com.maxmpz.widget.base.BusActionButton
 				style="?TopActionModeBarButton"
 				android:drawable="?eq_vol"
 				
@@ -56,7 +56,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				android:contentDescription="@string/volume"
 			/>
 
-			<com.maxmpz.widget.BusActionButton
+			<com.maxmpz.widget.base.BusActionButton
 				style="?TopActionModeBarButton"
 				android:drawable="?eq_reverb"
 				
@@ -66,9 +66,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 				android:contentDescription="@string/reverb"
 			/>
-		</com.maxmpz.widget.FastLayout>
+		</com.maxmpz.widget.base.FastLayout>
 		
-		<com.maxmpz.widget.FastLayout
+		<com.maxmpz.widget.base.FastLayout
 			style="?EqPagesLayout"
 		>
 			<include android:layout="@layout/merge_eq_equalizer_tab"/>
@@ -79,15 +79,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						
 			<!-- NOTE: need to be at the end of view group so other views already added -->
 			<!-- REVISIT: use max overshoot theme attr -->
-			<com.maxmpz.widget.BusAAScrollingBehavior
+			<com.maxmpz.widget.base.BusAAScrollingBehavior
 				style="?EqPagesScrollingBehavior"
 				w:msgId="@id/nav_eq"
 				w:stateBusId="@id/bus_gui"
-				w:stateId="@id/state_gui_eq_tab" 
+				w:stateId="@id/state_gui_eq_tab"
+				w:onPosChangedMsgId="@id/cmd_nav_to_eq" 
 			/>
 			
-		</com.maxmpz.widget.FastLayout>
-	</com.maxmpz.widget.PrivateNonSceneFastLayout><!-- eq_layout -->
+		</com.maxmpz.widget.base.FastLayout>
+	</com.maxmpz.widget.base.PrivateNonSceneFastLayout><!-- eq_layout -->
 	<SceneParams w:scene="@+id/scene_eq"
 		android:visibility="visible"
 	/><!-- eq_layout -->

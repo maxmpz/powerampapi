@@ -19,7 +19,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<com.maxmpz.widget.FastLayout
+<com.maxmpz.widget.base.FastLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	style="?ItemMiniplayerPrevNextDecorLayout"
@@ -27,4 +27,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<TextView 
 		style="?ItemMiniplayerPrevNextDecorText"
 	/>
-</com.maxmpz.widget.FastLayout> 
+</com.maxmpz.widget.base.FastLayout> 

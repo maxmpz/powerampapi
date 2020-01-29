@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -136,6 +136,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="meta_next_12dp" format="reference"/>
 	<attr name="meta_songs_12dp" format="reference"/>
 	
+	<attr name="defaultLowResAA" format="reference"/><!-- Default AA image. Strictly 512x512 bitmap -->
+	<attr name="defaultHiResAA" format="reference"/><!-- Default AA image. Strictly 1024x1024 bitmap -->
+	
+	<!-- Extra state for drawables -->
+	<attr name="state_playing" format="boolean" />
+
+		
 	<declare-styleable name="ListMetaIcons">
 		<attr name="meta_songs_12dp"/>
 		<attr name="keep_list_pos_12dp" format="reference"/>
@@ -643,19 +650,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					..(parent DSPRoundKnobLayout view attributes are passed here)..
 				/>
 				
-				<com.maxmpz.widget.FastTextView android:id="@id/_left_label"
+				<com.maxmpz.widget.base.FastTextView android:id="@id/_left_label"
 					android:text="leftLabelText"
 					style="leftLabelStyle"
 				/>
-				<com.maxmpz.widget.FastTextView android:id="@id/_right_label"
+				<com.maxmpz.widget.base.FastTextView android:id="@id/_right_label"
 					android:text="rightLabelText"
 					style="rightLabelStyle"
 				/>
-				<com.maxmpz.widget.FastTextView android:id="@id/_label"
+				<com.maxmpz.widget.base.FastTextView android:id="@id/_label"
 					android:text="labelText"
 					style="labelStyle"
 				/>
-				<com.maxmpz.widget.FastTextView android:id="@id/_value_label" 
+				<com.maxmpz.widget.base.FastTextView android:id="@id/_value_label" 
 					style="valueLabelStyle"
 				/>
 				

@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<!-- This view (in default scene) should visually match title in scene_header, but should be positioned EXACTLY at left/top for default scene. 
 		 item title and back_decor title should have same scale and font size -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/title"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/title"
 		style="?ItemTextBackDecorTitle"
 		android:visibility="invisible"
 		android:scaleX="1.0"
@@ -39,7 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:disableForStateBusId="@id/list"
 		w:disableForStateId="@id/state_list_selection_mode"
 	/><!-- Same as item_top_text_back_decor -->
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_header_back_decor"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header_back_decor"
 		style="?ItemTextBackDecorTitle_scene_header_back_decor"
 		android:visibility="visible"
 		w:jumpVisibility="false"

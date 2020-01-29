@@ -4,9 +4,11 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.RatingBar android:id="@+id/rating"
+	<com.maxmpz.widget.base.RatingBar android:id="@+id/rating"
 		style="?ItemRatingBar"
 		android:contentDescription="@string/rating"
+		w:busId="@id/bus_data_cmd"
+		w:msgId="@id/cmd_data_track_rating"
 	/>
 	<SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_aa_vis" w:scene_3="@+id/scene_aa_playing"
 		style="?ItemRatingBar_scene_aa"

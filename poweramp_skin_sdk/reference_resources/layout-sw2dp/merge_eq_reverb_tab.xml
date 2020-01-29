@@ -19,13 +19,13 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<com.maxmpz.widget.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
 	style="?EqTabLayout"
 	w:enableStateAnim="true"
 	w:privateScene="true"
 >
 	<!-- NOTE: additional panels are not requires for layout, but still are here to allow e.g. backgrounds for skin makers --> 
-	<com.maxmpz.widget.FastLayout android:id="@+id/reverb_panel1"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/reverb_panel1"
 		style="?EqReverbPanel1"
 	>
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@id/dsp_reverb_param7"
@@ -57,9 +57,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:updateMsgId="@id/msg_dsp_reverb_changed"
 			w:valueFormat="@string/format_2f"
 		/>
-	</com.maxmpz.widget.FastLayout>
+	</com.maxmpz.widget.base.FastLayout>
 	
-	<com.maxmpz.widget.FastLayout android:id="@+id/reverb_panel2"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/reverb_panel2"
 		style="?EqReverbPanel2"
 	>
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@id/dsp_reverb_param4"
@@ -91,9 +91,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:updateMsgId="@id/msg_dsp_reverb_changed"
 			w:valueFormat="@string/format_2f"
 		/>
-	</com.maxmpz.widget.FastLayout>
+	</com.maxmpz.widget.base.FastLayout>
 	
-	<com.maxmpz.widget.FastLayout android:id="@+id/reverb_panel3"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/reverb_panel3"
 		style="?EqReverbPanel3"
 	>
 		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/reverb_button"
@@ -130,7 +130,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 		
 				
-		<com.maxmpz.widget.BusActionButton android:id="@+id/reverb_save_button"
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/reverb_save_button"
 			style="?EqReverbSaveButton"
 			android:text="@string/save"
 			
@@ -138,7 +138,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:msgId="@id/cmd_data_add_reverb_preset_dialog"
 		/>
 				
-		<com.maxmpz.widget.BusActionButton android:id="@+id/reverb_reset_button"
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/reverb_reset_button"
 			style="?EqReverbResetButton"
 			w:busId="@id/bus_dsp_cmd"
 			w:msgId="@id/cmd_dsp_reset_reverb"
@@ -157,6 +157,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:updateMsgId="@id/msg_dsp_reverb_changed"
 			w:valueFormat="@string/format_2f"
 		/>
-	</com.maxmpz.widget.FastLayout>				
+	</com.maxmpz.widget.base.FastLayout>				
 	
-</com.maxmpz.widget.SceneFastLayout>
+</com.maxmpz.widget.base.SceneFastLayout>

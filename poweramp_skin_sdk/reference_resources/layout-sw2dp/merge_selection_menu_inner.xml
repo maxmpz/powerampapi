@@ -35,11 +35,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: SelectionMenuBehavior assumes this behavior unloads and thus no additional cleanup is made on unload -->
 			
 	<!-- Top line -->
-	<com.maxmpz.widget.FastLayout android:id="@+id/selection_menu_top_line_layout"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/selection_menu_top_line_layout"
 		style="?SelectionMenuTopLineLayout"
 	>
 		<!-- NOTE: stateBusId is set dynamically by SelectionMenuBehavior -->
-		<com.maxmpz.widget.BusCheckBox android:id="@+id/select_box"
+		<com.maxmpz.widget.base.BusCheckBox android:id="@+id/select_box"
 			style="?SelectionMenuSelectBox"
 			android:text="@string/select_all_short"			
 			w:stateMsgId="@id/state_list_all_selected"
@@ -49,7 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 		
 		<!-- NOTE: busId is set dynamically by SelectionMenuBehavior -->
-		<com.maxmpz.widget.BusStateText android:id="@+id/selection_menu_count_text"
+		<com.maxmpz.widget.base.BusStateText android:id="@+id/selection_menu_count_text"
 			style="?SelectionMenuCountText"
 			w:busId="@id/list"
 			w:stateId="@id/state_list_selection_count"
@@ -62,23 +62,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:recalcChildren="0%"
 		/>
 		
-		<com.maxmpz.widget.BusActionButton
+		<com.maxmpz.widget.base.BusActionButton
 			style="?SelectionMenuCloseButton"
 			android:text="@string/close"
 			w:busId="@id/bus_gui"
 			w:msgId="@id/cmd_selection_menu_close"
 		/>
 		
-	</com.maxmpz.widget.FastLayout>
+	</com.maxmpz.widget.base.FastLayout>
 			
-	<com.maxmpz.widget.NonOverlappingView android:id="@+id/separator"
+	<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/separator"
 		style="?SelectionMenuSeparator"
 	/>
 		
-	<com.maxmpz.widget.FastLayout android:id="@+id/selection_menu_items"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/selection_menu_items"
 		style="?SelectionMenuBottomLineLayout"
 	>
 		<!-- Menu items are inflated here -->
-	</com.maxmpz.widget.FastLayout>
+	</com.maxmpz.widget.base.FastLayout>
 		
 </merge>

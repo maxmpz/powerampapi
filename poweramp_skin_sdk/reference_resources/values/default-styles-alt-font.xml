@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -75,6 +75,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogToastLineOnly1_Text">@style/DialogToastLineOnly1_Text_AltFont</item>
 		
 		<item name="ItemTrackCatImage_Text">@style/ItemTrackCatImage_Text_AltFont</item>
+		<item name="ItemTrackNum_Text">@style/ItemTrackNum_Text_AltFont</item>
 		<item name="ItemTrackTitle_Text">@style/ItemTrackTitle_Text_AltFont</item>
 		<item name="ItemTrackLine2_Text">@style/ItemTrackLine2_Text_AltFont</item>
 		<item name="ItemTrackMeta_Text">@style/ItemTrackMeta_Text_AltFont</item>
@@ -218,6 +219,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ItemTrackCatImage_Text_AltFont" parent="ItemTrackCatImage_Text">
 		<item name="android:textSize">@dimen/ItemTrackCatImage_Text_AltFont_size</item>
 	</style>
+	<style name="ItemTrackNum_Text_AltFont" parent="ItemTrackNum_Text">
+		<item name="android:fontFamily">?AltFont_font</item>
+		<item name="android:textSize">@dimen/medium3_AltFont_textSize</item>
+	</style>
 	<style name="ItemTrackTitle_Text_AltFont" parent="ItemTrackTitle_Text">
 		<item name="android:fontFamily">?AltFont_font</item>
 		<item name="android:textSize">@dimen/large0_AltFont_textSize</item>
@@ -289,7 +294,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="ItemPopupListTitleLarger_Text_AltFont" parent="ItemPopupListTitleLarger_Text">
 		<item name="android:fontFamily">?AltFont_font</item>
-		<item name="android:textSize">@dimen/medium3_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
 	</style>
 	<style name="ItemVisTitle_Text_AltFont" parent="ItemGenericTitle_Text">
 		<item name="android:fontFamily">?AltFont_medium_font</item>

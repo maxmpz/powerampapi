@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: popup menu item view is detached from list and attached to @id/menu_placeholder -->
 	<!-- NOTE: defines scene params for the item which is detached from list and attached to menu_placeholder -->
 	<!-- NOTE: PopupMenuHelper creates "returning" scene params programatically as needed to match initial item position -->
-	<com.maxmpz.widget.SceneParams w:forId="parent" w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+	<com.maxmpz.widget.base.SceneParams w:forId="parent" w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemPopupMenu_scene_item_menu"
 />
 
@@ -43,40 +43,40 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		layout_consumeSpace="*_reset" on it, as it resets space before title then
 	 -->
 	<!--
-	<com.maxmpz.widget.SmartSpacer android:id="@+id/item_menu_top_spacer"
+	<com.maxmpz.widget.base.SmartSpacer android:id="@+id/item_menu_top_spacer"
 		style="?ItemPopupMenuTopSpacer"
 	/>
 	-->
 	
-	<com.maxmpz.widget.InvisibleView w:layout_consumeSpace="reset_horizontal"/>	
+	<com.maxmpz.widget.base.InvisibleView w:layout_consumeSpace="reset_horizontal"/>	
 	
 		
 	<!-- NOTE: this is usually attached to aa_image, but for item_text + scene_top_header, there may be no visible aa_image, thus
 		 layout_attachToParrentIfGone="true" is used to attach to parent. item_text title consumes space in item_text, so separator is properly positioned below.
 	 -->
-	<com.maxmpz.widget.FastLayout android:id="@+id/menu_items"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/menu_items"
 		style="?ItemPopupMenuItemsLayout"
 	>
-		<com.maxmpz.widget.NonOverlappingView android:id="@+id/separator"
+		<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/separator"
 			style="?ItemPopupMenuSeparator"
 		/>
 			
-	</com.maxmpz.widget.FastLayout>		
+	</com.maxmpz.widget.base.FastLayout>		
 	<!-- NOTE: SceneParams is also needed so menu LinearLayout is tracked/animated vs jumping around --> 
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_header" w:scene_3="@+id/scene_top_header" w:scene_4="@+id/scene_aa_vis" 
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_header" w:scene_3="@+id/scene_top_header" w:scene_4="@+id/scene_aa_vis" 
 										w:scene_5="@+id/scene_aa_playing" w:scene_6="@+id/scene_header_1"
 		android:visibility="invisible"
 		w:recalcChildren="on_start"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_search_header"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_search_header"
 		android:visibility="invisible"
 		w:recalcChildren="on_start"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@id/_tag_scene_zero"
+	<com.maxmpz.widget.base.SceneParams w:scene="@id/_tag_scene_zero"
 		android:visibility="invisible"
 		w:recalcChildren="on_end"
 	/>
-	<com.maxmpz.widget.SceneParams w:scene="@id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+	<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		android:visibility="visible"
 		w:recalcChildren="on_start"
 	/>

@@ -20,7 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- PORTRAIT -->
-<com.maxmpz.widget.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
 	style="?EqTabLayout"
 	w:enableStateAnim="true"
 	w:privateScene="true"
@@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?EqKnobsLayout"
 	>
 		<!-- NOTE: EqPreampKnobLayout is needed for background as if background is applied to the DSPLinearKnob itself, knob outline shadow is rendered behind background --> 
-		<com.maxmpz.widget.FastLayout
+		<com.maxmpz.widget.base.FastLayout
 			style="?EqPreampKnobLayout"
 		>
 			<com.maxmpz.widget.player.DSPPreampLinearKnob android:id="@+id/preamp_knob"
@@ -39,9 +39,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:param="@id/dsp_preamp"
 				w:updateMsgId="@id/msg_dsp_eq_changed"
 			/>
-		</com.maxmpz.widget.FastLayout>
+		</com.maxmpz.widget.base.FastLayout>
 		
-		<com.maxmpz.widget.ScrollingBehavior w:disallowParentScroll="true" w:noScrollbars="true"/>
+		<com.maxmpz.widget.base.ScrollingBehavior w:disallowParentScroll="true" w:noScrollbars="true"/>
 	</com.maxmpz.widget.player.EqKnobsFastLayout>
 		
 	<com.maxmpz.widget.player.MilkFRS android:id="@+id/milk_frs"
@@ -54,7 +54,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:useDSPBus="true"
 	/>
 	
-	<com.maxmpz.widget.BusActionPopupLayout android:id="@+id/frs_info_label"
+	<com.maxmpz.widget.base.BusActionPopupLayout android:id="@+id/frs_info_label"
 		style="?EqInfo"
 		w:menuItemsLayout="@layout/merge_dsp_info_popup_layout"
 		w:busId="@id/bus_dsp_cmd"
@@ -78,7 +78,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<SceneParams w:scene="@+id/scene_button_menu_closed"
 			android:visibility="visible"
 		/>
-	</com.maxmpz.widget.BusActionPopupLayout>
+	</com.maxmpz.widget.base.BusActionPopupLayout>
 	<SceneParams w:scene="@+id/scene_button_menu" 
 		style="?EqInfo_scene_item_menu" 
 	/>
@@ -131,14 +131,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?EqEquPresetButtonLayout_scene_button_menu"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/save_button"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/save_button"
 		style="?EqEquSaveButton"
 		android:text="@string/save"
 
 		w:busId="@id/bus_data_cmd"
 		w:msgId="@id/cmd_data_add_eq_preset_dialog"
 	/>
-	<com.maxmpz.widget.BusActionButton android:id="@+id/reset_button"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/reset_button"
 		style="?EqEquResetButton"
 
 		w:busId="@id/bus_dsp_cmd"
@@ -178,4 +178,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		android:importantForAccessibility="yes"
 	/>
-</com.maxmpz.widget.SceneFastLayout>
+</com.maxmpz.widget.base.SceneFastLayout>

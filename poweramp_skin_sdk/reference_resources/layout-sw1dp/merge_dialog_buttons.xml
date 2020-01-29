@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -27,31 +27,31 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	? Do I really need that left aligned button at all? 
 	! Material.io doesn't provide such use case and explicitly forbids right aligned 3rd dialog button
 	-->
-	<com.maxmpz.widget.FastLayout android:id="@+id/buttons_layout"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/buttons_layout"
 		style="?DialogButtonBar"
 	>
-		<com.maxmpz.widget.NonOverlappingView android:id="@+id/separator3"
+		<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/separator3"
 			style="?DialogNeutralSeparator"
 		/>
-		<com.maxmpz.widget.FastButton android:id="@+id/button3"
+		<com.maxmpz.widget.base.FastButton android:id="@+id/button3"
 			style="?DialogNeutralButtonStyle"
 		/>
 		
-		<com.maxmpz.widget.Space android:id="@+id/separator2"
+		<com.maxmpz.widget.base.Space android:id="@+id/separator2"
 			style="?DialogButtonSpace"
 		/>
 		
-		<com.maxmpz.widget.FastButton android:id="@+id/button2"
+		<com.maxmpz.widget.base.FastButton android:id="@+id/button2"
 			style="?DialogNegativeButtonStyle"
 		/>
 		
-		<com.maxmpz.widget.NonOverlappingView android:id="@+id/separator"
+		<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/separator"
 			style="?DialogPositiveSeparator"
 		/>
 				
-		<com.maxmpz.widget.FastButton android:id="@+id/button1"
+		<com.maxmpz.widget.base.FastButton android:id="@+id/button1"
 			style="?DialogPositiveButtonStyle"
 		/>				
 		
-	</com.maxmpz.widget.FastLayout>
+	</com.maxmpz.widget.base.FastLayout>
 </merge>

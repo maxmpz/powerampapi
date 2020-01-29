@@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemVisImage"
 	/>	
 	
-	<com.maxmpz.widget.FastCheckBoxOnly android:id="@+id/like"
+	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/like"
 		style="?ItemVisLikeButton"
 		w:tristate="true"
 	/>
@@ -40,24 +40,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 			
 	<!-- NOTE: SceneParams are needed for title/line2 for a bit better transition (otherwise they can jump due to non-processing by Scene) -->
-	
-	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 		style="?ItemVisTitle"
 	/>
 	<SceneParams w:scene="@+id/scene_vis_item_list"
 		android:visibility="visible"
 		w:recalcChildren="on_start"
 	/>
-	
-	<com.maxmpz.widget.FastTextView android:id="@+id/line2"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
 		style="?ItemVisLine2"
 	/>
 	<SceneParams w:scene="@+id/scene_vis_item_list"
 		android:visibility="visible"
 		w:recalcChildren="on_start"
 	/>
-	
-	<com.maxmpz.widget.FastTextView
+	<com.maxmpz.widget.base.FastTextView
 		style="?ItemVisActivatedCheck"
 	/>
 	<SceneParams w:scene="@+id/scene_vis_item_list"

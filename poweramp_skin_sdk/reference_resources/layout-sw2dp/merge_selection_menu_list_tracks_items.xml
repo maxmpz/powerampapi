@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<include android:layout="@layout/merge_selection_menu_list_base_items"/>
 		
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?info"
 		
@@ -35,7 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:msgId="@id/cmd_list_info_dialog"
 	/>
 	
-	<com.maxmpz.widget.BusStateEnabledActionButton
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?album_art"
 		

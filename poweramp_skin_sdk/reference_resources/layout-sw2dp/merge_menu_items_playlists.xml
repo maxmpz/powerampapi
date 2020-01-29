@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.IntentActionButton 
+	<com.maxmpz.widget.base.IntentActionButton 
 		style="?PopupMenuItem"
 		android:drawable="?export"
 		android:targetClass=".dialogs.PlaylistsExportActivity"		
@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<!-- arg1=0 => fastScan, arg2=1 => resolve playlists -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/rescan"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/rescan"
 		style="?PopupMenuItem"
 		android:drawable="?rescan"
 		w:busId="@id/bus_app_cmd"
@@ -43,7 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/rescan_resolve_playlists"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/list_options"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/list_options"
 		style="?PopupMenuItem"
 		android:drawable="?list_options"
 	
@@ -53,7 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/list_opts"
 	/>
 
-	<com.maxmpz.widget.BusActionButton android:id="@+id/add_new"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/add_new"
 		style="?PopupMenuItem"
 		android:drawable="?add_to_pl"
 	

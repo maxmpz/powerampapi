@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
 	<!-- NOTE: top scene layout generally requires some non zero layout now before scene runs, thus it can't be wrap_content in this case (==0px for default scene) -->
-	<com.maxmpz.widget.SceneFastLayout android:id="@+id/selection_menu_container"
+	<com.maxmpz.widget.base.SceneFastLayout android:id="@+id/selection_menu_container"
 		style="?TopSelectionMenuContainer"
 	>
 		<!-- NOTE: layout_attachTop="100%" attaches top to bottom of parent (so we can slide in from bottom and back) -->
@@ -32,11 +32,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		>
 			
 			<!-- NOTE: SelectionMenuBehavior assumes this behavior unloads and thus no additional cleanup is made on unload -->
-			<com.maxmpz.widget.LoadableBehavior android:id="@+id/behavior_selection_menu"
+			<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_selection_menu"
 				android:layout="@layout/merge_selection_menu_inner"
 				w:loadForScene="@+id/scene_selection_menu" 
 				w:insertAt="thisPosition"
 			/>
 		</com.maxmpz.widget.player.SelectionMenuLayout>
-	</com.maxmpz.widget.SceneFastLayout>	
+	</com.maxmpz.widget.base.SceneFastLayout>	
 </merge>

@@ -30,11 +30,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemPopupListFrs"
 	/>
 	
-	<com.maxmpz.widget.FastCheckBoxOnly android:id="@+id/select_box"
+	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/select_box"
 		style="?ItemEqPresetSelectBox"
 	/>
-
-	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 		style="?ItemPopupListTitleLarger"
 	/>
 	

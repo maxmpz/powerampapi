@@ -25,10 +25,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	style="?SeparatorWithButton"
 >
-	<com.maxmpz.widget.FastTextView android:id="@+id/title"
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 		style="?SeparatorWithButtonTitle"
 	/>
-	<com.maxmpz.widget.FastButton android:id="@+id/line2"
+	<com.maxmpz.widget.base.FastButton android:id="@+id/line2"
 		style="?SeparatorWithButtonButton"
 	/>
 	

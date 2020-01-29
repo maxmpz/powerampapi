@@ -34,6 +34,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="ListSubstyleBase2_aaMarginBottom">240dp</dimen><!-- Increase area below AA as our aspect is close to 1:1 -->
 	
+	<dimen name="ItemTrackNum_width">40sp</dimen>
+	
 	<!-- Alt -->
 	
 	<dimen name="Alt_TopPlay_maxSize">90dp</dimen>

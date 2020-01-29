@@ -19,12 +19,12 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<com.maxmpz.widget.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
 	style="?EqTabLayout"
 	w:enableStateAnim="true"
 	w:privateScene="true"
 >	
-	<com.maxmpz.widget.FastLayout android:id="@+id/vol_panel1"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/vol_panel1"
 		style="?EqVolPanel1"
 	>
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/balance_knob_layout"
@@ -51,10 +51,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:valueFormatMax="100"
 			w:labelText="@string/stereo_x"			
 		/>
-	</com.maxmpz.widget.FastLayout>
+	</com.maxmpz.widget.base.FastLayout>
 	
 	<!-- Tempo -->
-	<com.maxmpz.widget.FastLayout android:id="@+id/vol_panel2"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/vol_panel2"
 		style="?EqVolPanel2"
 	>
 		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/tempo_button"
@@ -84,11 +84,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:rightLabelText="@string/tempo_2x"
 		/>
 	
-	</com.maxmpz.widget.FastLayout><!-- tempo_knob_outer_layout -->
+	</com.maxmpz.widget.base.FastLayout><!-- tempo_knob_outer_layout -->
 	
 	<!-- Mono + Volume -->
 	
-	<com.maxmpz.widget.FastLayout android:id="@+id/vol_panel3"
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/vol_panel3"
 		style="?EqVolPanel3"
 	>
 		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/mono_button"
@@ -109,7 +109,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:longPressCmdId="@id/cmd_dsp_open_platform_fx"
 		/>
 		
-		<com.maxmpz.widget.BusActionButton android:id="@+id/other_reset_button"
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/other_reset_button"
 			style="?EqOtherResetButton"
 			w:busId="@id/bus_dsp_cmd"
 			w:msgId="@id/cmd_dsp_reset_other"
@@ -132,6 +132,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 			w:labelText="@string/volume"
 		/>
-	</com.maxmpz.widget.FastLayout>
+	</com.maxmpz.widget.base.FastLayout>
 		
-</com.maxmpz.widget.SceneFastLayout>
+</com.maxmpz.widget.base.SceneFastLayout>

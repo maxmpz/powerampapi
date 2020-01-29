@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
-	<com.maxmpz.widget.BusActionButton
+	<com.maxmpz.widget.base.BusActionButton
 		style="@style/TopHelpButton"
 		w:layout_attachRight="50%"
 
@@ -15,7 +15,7 @@
 		style="@style/TopHelpButton_anim_help_visible" 
 	/>
 		
-	<com.maxmpz.widget.BusActionButton
+	<com.maxmpz.widget.base.BusActionButton
 		style="@style/TopHelpButton"
 		w:layout_attachLeft="50%"
 		

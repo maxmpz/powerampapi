@@ -137,6 +137,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackMeta_scene_item_menu_lu" format="reference"/>
 		<attr name="ItemTrackMeta_scene_header" format="reference"/>
 				
+		<attr name="ItemTrackNum" format="reference"/>
+		<attr name="ItemTrackNum_Text" format="reference"/>
+		<attr name="ItemTrackNum_scene_small" format="reference"/>
+		<attr name="ItemTrackNum_scene_1" format="reference"/>
+		<attr name="ItemTrackNum_scene_1_small" format="reference"/>
+		<attr name="ItemTrackNum_scene_zoomed" format="reference"/>
+		<attr name="ItemTrackNum_scene_1_zoomed" format="reference"/>
+		<attr name="ItemTrackNum_scene_grid" format="reference"/>
+		<attr name="ItemTrackNum_scene_grid_1" format="reference"/>
+		<attr name="ItemTrackNum_scene_grid_1_alt" format="reference"/>
+		<attr name="ItemTrackNum_scene_grid_zoomed" format="reference"/>
+		<attr name="ItemTrackNum_scene_grid_1_zoomed" format="reference"/>
+		<attr name="ItemTrackNum_scene_grid_1_alt_zoomed" format="reference"/>
+		<attr name="ItemTrackNum_scene_aa" format="reference"/>
+		<attr name="ItemTrackNum_scene_aa_vis" format="reference"/>
+		<attr name="ItemTrackNum_scene_aa_playing" format="reference"/>
+		<attr name="ItemTrackNum_scene_item_menu" format="reference"/>
+		<attr name="ItemTrackNum_scene_item_menu_lu" format="reference"/>
+		<attr name="ItemTrackNum_scene_header" format="reference"/>
+		
 		<attr name="ItemTrackDragHandler" format="reference"/>
 		<attr name="ItemTrackDragHandler_scene_grid" format="reference"/>
 		
@@ -224,12 +244,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemHeaderScanProgress_scene_item_menu" format="reference"/>
 		<attr name="ItemHeaderScanProgress_scene_header" format="reference"/>
 		
-		<attr name="ItemEmptyList" format="reference"/>
+		<attr name="ItemEmptyList"/>
 		<attr name="ItemEmptyListText" format="reference"/>
 		<attr name="ItemEmptyListText_Text" format="reference"/>
 		<attr name="ItemEmptyListSettingsButton" format="reference"/>
 		<attr name="ItemEmptyListScanProgress" format="reference"/>
-		<attr name="ItemEmptyListScanProgressCenter" format="reference"/>
+		<attr name="ItemEmptyListScanProgressCenter"/>
 		
 		<attr name="ItemMiniplayer" format="reference"/>
 		<attr name="ItemMiniplayerAAImage" format="reference"/>
@@ -270,14 +290,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupSimpleLine2" format="reference"/>
 		<attr name="ItemPopupSimpleLine2_Text" format="reference"/>
 		
-		
 		<attr name="VisLockButtonLayout" format="reference"/>
 		<attr name="SmallerPopupButton" format="reference"/>
 		<attr name="SmallerPopupButton_scene_button_menu" format="reference"/>
 		
-		<attr name="PopupMenuItem" format="reference"/>
-		<attr name="PopupMenuItem_Text" format="reference"/>
-		<attr name="PopupMenuItem50" format="reference"/>
+		<attr name="PopupMenuItem"/>
+		<attr name="PopupMenuItem_Text"/>
+		<attr name="PopupMenuItem50"/>
 		
 		<attr name="PopupInfoTextTitle" format="reference"/>
 		<attr name="PopupInfoTextTitle_Text" format="reference"/>
@@ -335,9 +354,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupMenuItemsLayout" format="reference"/>
 		<attr name="ItemPopupMenuTopSpacer" format="reference"/>
 		
-		<attr name="PopupButton" format="reference"/>
-		<attr name="PopupButton_Text" format="reference"/>
-		<attr name="PopupButton_scene_button_menu" format="reference"/>
+		<attr name="PopupButton"/>
+		<attr name="PopupButton_Text"/>
+		<attr name="PopupButton_scene_button_menu"/>
 		
 		<attr name="PopupButtonLayoutDialogButton3" format="reference"/>
 		<attr name="PopupButtonLayoutDialogButton2" format="reference"/>
@@ -446,19 +465,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="TopBaseButtonLayout" format="reference"/><!-- E.g. edit tag dialog genres popup -->
 		
-		<attr name="TopToastContainer" format="reference"/>
-		<attr name="TopToastContainer_scenes_non_main" format="reference"/>
-		<attr name="TopToastFrame" format="reference"/>
-		<attr name="TopToastIcon" format="reference"/>
-		<attr name="TopToastTextContainer" format="reference"/>
-		<attr name="TopToastSpacer" format="reference"/>
-		<attr name="TopToastTitle" format="reference"/>
-		<attr name="TopToastTitle_Text" format="reference"/>
-		<attr name="TopToastLine2" format="reference"/>
-		<attr name="TopToastLine2_Text" format="reference"/>
-		<attr name="TopToastTitle_no_icon" format="reference"/>
-		<attr name="TopToastLine2_no_icon" format="reference"/>
-		<attr name="TopToastFrame_scene_expanded" format="reference"/>
+		<attr name="TopToastContainer"/>
+		<attr name="TopToastContainer_scenes_non_main"/>
+		<attr name="TopToastFrame"/>
+		<attr name="TopToastIcon"/>
+		<attr name="TopToastTextContainer"/>
+		<attr name="TopToastSpacer"/>
+		<attr name="TopToastTitle"/>
+		<attr name="TopToastTitle_Text"/>
+		<attr name="TopToastLine2"/>
+		<attr name="TopToastLine2_Text"/>
+		<attr name="TopToastTitle_no_icon"/>
+		<attr name="TopToastLine2_no_icon"/>
+		<attr name="TopToastFrame_scene_expanded"/>
 		
 		<attr name="TopCounterLayout" format="reference"/>
 		<attr name="TopCounterLayout_Text" format="reference"/>

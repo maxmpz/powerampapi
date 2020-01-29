@@ -25,7 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<!-- arg1=0 => fastScan -->
 	<!-- NOTE: label/args can be changed e.g. by PlaylistPage -->
-	<com.maxmpz.widget.BusActionButton android:id="@+id/rescan"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/rescan"
 		style="?PopupMenuItem"
 		android:drawable="?rescan"
 		w:busId="@id/bus_app_cmd"
@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/pref_rescan_folders"
 	/>
 	
-	<com.maxmpz.widget.BusActionButton android:id="@+id/list_options"
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/list_options"
 		style="?PopupMenuItem"
 		android:drawable="?list_options"
 	
