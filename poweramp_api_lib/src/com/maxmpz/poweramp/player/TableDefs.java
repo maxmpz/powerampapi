@@ -343,26 +343,28 @@ public interface TableDefs {
 		public static final @NonNull String _ID = TABLE + "._id";
 
 		/**
-		 * Name of the folder. Can be long for roots (e.g. can include storage description)<br>
+		 * Display (label) name of the folder. Can be long for roots (e.g. can include storage description).<br>
+		 * May or may not match actual filesystem folder name<br> 
 		 * TEXT
 		 */
 		public static final @NonNull String NAME = TABLE + ".name";
 
 		/**
-		 * (Always) short name of the folder<br>
+		 * (Always) short name of the folder. Always matches actual filesystem folder name<br>
 		 * Since 828<br>
 		 * TEXT
 		 */
 		public static final @NonNull String SHORT_NAME = TABLE + ".short_name";
 
 		/**
-		 * Short path of the parent folder<br>
+		 * Short path of the parent folder. Always matches parent short_name which is parent actual filesystem folder name<br>
 		 * TEXT
 		 */
 		public static final @NonNull String PARENT_NAME = TABLE + ".parent_name";
 
 		/**
-		 * Parent folder label (which can be much longer than just PARENT_NAME, e.g. include storage description) to display in the UI<br>
+		 * Parent folder display label (which can be much longer than just PARENT_NAME, e.g. include storage description) to display in the UI.<br>
+		 * Corresponds to parent name<br>
 		 * TEXT
 		 */
 		public static final @NonNull String PARENT_LABEL = TABLE + ".parent_label";
@@ -539,13 +541,17 @@ public interface TableDefs {
 		/**
 		 * Calculated subquery column which retrieves parent name<br>
 		 * TEXT
+		 * @deprecated use {@link #PARENT_LABEL}
 		 */
+		@Deprecated
 		public static final @NonNull String PARENT_NAME_SUBQUERY = "(SELECT name FROM folders AS f2 WHERE f2._id=folders.parent_id) AS parent_name_subquery";
 		
 		/**
 		 * Calculated subquery column which retrieves short parent name<br>
-		 * TEXT 
+		 * TEXT
+		 * @deprecated use {@link #PARENT_NAME} 
 		 */
+		@Deprecated
 		public static final @NonNull String PARENT_SHORT_NAME_SUBQUERY = "(SELECT short_name FROM folders AS f2 WHERE f2._id=folders.parent_id) AS parent_short_name_subquery";
 	}
 
