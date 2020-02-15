@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2018 Maksim Petrov
+Copyright (C) 2011-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -24,7 +24,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,10 +32,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.eclipse.jdt.annotation.Nullable;
+
 
 public class PowerampAPIHelper {
 	private static final String TAG = "PowerampAPIHelper";
@@ -44,6 +43,7 @@ public class PowerampAPIHelper {
 	
 	private static String sPowerampPak;
 	private static ComponentName sPowerampPSComponentName;
+	private static ComponentName sPowerampScannerComponentName;
 	private static int sPowerampBuild;
 	private static ComponentName sApiReceiverComponentName;
 	private static ComponentName sBrowserServiceComponentName;
@@ -75,6 +75,25 @@ public class PowerampAPIHelper {
 				ResolveInfo info = context.getPackageManager().resolveService(new Intent(PowerampAPI.ACTION_API_COMMAND), 0);
 				if(info != null && info.serviceInfo != null) {
 					componentName = sPowerampPSComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
+				}
+			} catch(Throwable th) {
+				Log.e(TAG, "", th);
+			}
+		}
+		return componentName;
+	}
+
+	/**
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed
+	 */
+	public static ComponentName getScannerServiceComponentName(Context context) {
+		ComponentName componentName = sPowerampScannerComponentName;
+		if(componentName == null) {
+			try {
+				ResolveInfo info = context.getPackageManager().resolveService(new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS), 0);
+				if(info != null && info.serviceInfo != null) {
+					componentName = sPowerampScannerComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
 				}
 			} catch(Throwable th) {
 				Log.e(TAG, "", th);
@@ -144,6 +163,7 @@ public class PowerampAPIHelper {
 	/**
 	 * If we have Poweramp build 855+, send broadcast, otherwise use startForegroundService/startService which may be prone to ANR errors
 	 * and are deprecated for Poweramp builds 855+.<br><br>
+	 * NOTE: scanner intents
 	 * THREADING: can be called from any thread
 	 */
 	public static void sendPAIntent(Context context, Intent intent) {
