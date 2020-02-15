@@ -2,6 +2,7 @@ package com.maxmpz.powerampproviderexample;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -39,6 +40,16 @@ public class MainActivity extends Activity {
 		intentFilter.addAction(PowerampAPI.Scanner.ACTION_TAGS_SCAN_STARTED);
 		intentFilter.addAction(PowerampAPI.Scanner.ACTION_TAGS_SCAN_FINISHED);
 		registerReceiver(mScanEventsReceiver, intentFilter);
+	}
+
+	public void openPAMusicFolders(View view) {
+		if(LOG) Log.w(TAG, "openPAMusicFolders");
+
+		Intent intent = new Intent();
+		intent.setComponent(new ComponentName(PowerampAPIHelper.getPowerampPackageName(this), PowerampAPI.ACTIVITY_SETTINGS));
+		intent.putExtra(PowerampAPI.Settings.EXTRA_OPEN_PATH, "folders_library/music_folders_button");
+		intent.putExtra(PowerampAPI.Settings.EXTRA_NO_BACKSTACK, true);
+		startActivity(intent);
 	}
 
 	public void sendScan(View view) {

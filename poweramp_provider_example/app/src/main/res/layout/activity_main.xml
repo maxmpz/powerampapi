@@ -5,6 +5,12 @@
 	android:padding="16sp"
 	android:orientation="vertical"
 >
+	<Button
+		android:onClick="openPAMusicFolders"
+		android:text="Open Poweramp Music Folders Dialog"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
 
 	<Button
 		android:onClick="sendScan"
