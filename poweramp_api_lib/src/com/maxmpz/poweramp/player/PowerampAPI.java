@@ -1479,14 +1479,17 @@ public final class PowerampAPI {
 		 * {@link #ACTION_FAST_TAGS_SCAN_FINISHED}<br><br>
 		 *
 		 * Extras:<br>
-		 * {@code boolean fastScan} - Poweramp will not check folders and scan files which hasn't been modified from previous scan. Based on files last modified timestamp<br>
+		 * {@code boolean fastScan} - Poweramp will not check folders and scan files which hasn't been modified from previous scan. Based on files last modified timestamp<br><br>
 		 * {@code boolean eraseTags} - Poweramp will clean all tags from exisiting songs. This causes each song to be re-scanned for tags.
 		 *			   Warning: as a side effect, cleans CUE tracks from user created playlists. 
 		 *			   This is because scanner can't incrementaly re-scan CUE sheets, so they are deleted from DB, causing their
-		 *			   deletion from user playlists as well<br>
+		 *			   deletion from user playlists as well<br><br>
 		 * {@code boolean fullRescan} - Poweramp will also check for folders/files from missing/unmounted storages and will remove them from DB.
 		 *				Warning: removed songs also disappear from user created playlists.
-		 *				Used in Poweramp only when user specificaly goes to Settings and does Full Rescan (after e.g. SD card change)<br>
+		 *				Used in Poweramp only when user specificaly goes to Settings and does Full Rescan (after e.g. SD card change)<br><br>
+		 * {@code boolean scanProviders} - if true, Poweramp scans 3rd party providers<br><br>
+		 * {@code String provider} - if set, Poweramp will scan only folders matching this provider authority. scanProviders extra should be set to true  (or can be missing) in this case<br>
+		 *              Warning: don't use this with fullRescan, as only the provider tracks will appear after rescan<br><br>
 		 *
 		 */
 		public static final String ACTION_SCAN_DIRS = "com.maxmpz.audioplayer.ACTION_SCAN_DIRS";
@@ -1542,7 +1545,7 @@ public final class PowerampAPI {
 		public static final String ACTION_FAST_TAGS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_FAST_TAGS_SCAN_FINISHED";
 
 		/**
-		 * If true, FolderScanner tries to skip unmodified folders/files
+		 * If true, FolderScanner tries to skip unmodified folders/files<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 */
@@ -1554,34 +1557,34 @@ public final class PowerampAPI {
 		public static final String EXTRA_PROGRESS = "progress";
 		/**
 		 * Extra<br>
-		 * {@code boolean} - true if at least on track has been scanned, false if no tags scanned (probably, because all files are up-to-date)
+		 * {@code boolean} - true if at least on track has been scanned, false if no tags scanned (probably, because all files are up-to-date)<br>
 		 */
 		public static final String EXTRA_TRACK_CONTENT_CHANGED = "trackContentChanged";
 
 		/**
-		 * If true, LibraryScanner will first clear all track scanned tags prior scan, causing total tags rescanning.
-		 * FolderScanner will force-parse statndalone CUEs
+		 * If true, LibraryScanner will first clear all track scanned tags prior scan, causing total tags rescanning<br>
+		 * FolderScanner will force-parse statndalone CUEs<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 */
 		public static final String EXTRA_ERASE_TAGS = "eraseTags";
 
 		/**
-		 * If true, FolderScanner will scan unmounted storages (removing track entries which were previously scanned from them)
+		 * If true, FolderScanner will scan unmounted storages (removing track entries which were previously scanned from them)<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 */
 		public static final String EXTRA_FULL_RESCAN = "fullRescan";
 
 		/**
-		 * If true, force LibraryScanner to resolve playlists
+		 * If true, force LibraryScanner to resolve playlists<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 */
 		public static final String EXTRA_RESOLVE_PLAYLISTS = "resolvePlaylists";
 
 		/**
-		 * If true, force LibraryScanner to import system playlists
+		 * If true, force LibraryScanner to import system playlists<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 * @since 841
@@ -1589,12 +1592,29 @@ public final class PowerampAPI {
 		public static final String EXTRA_IMPORT_SYSTEM_PLAYLISTS= "importSystemPlaylists";
 
 		/**
-		 * If true, force file based playlist re-parsing
+		 * If true, force file based playlist re-parsing<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 * @since 842
 		 */
 		public static final String EXTRA_REPARSE_PLAYLISTS= "reparsePlaylists";
+		
+		/**
+		 * If true, Poweramp scans 3rd party providers. Default is true (if extra is missing)<br>
+		 * Extra for {@link #ACTION_SCAN_DIRS}<br>
+		 * {@code boolean}
+		 * @since 862
+		 */
+		public static final String EXTRA_SCAN_PROVIDERS = "scanProviders";
+
+		/**
+		 * If set, Poweramp will scan only folders matching this provider authority. scanProviders extra should be set to true (or can be missing) in this case<br>
+		 * Warning: don't use this with fullRescan, as only the provider tracks will appear after rescan<br>
+		 * Extra for {@link #ACTION_SCAN_DIRS}<br>
+		 * {@code String}
+		 * @since 862
+		 */
+		public static final String EXTRA_PROVIDER = "provider";
 
 		/**
 		 * Extra<br>
@@ -1618,7 +1638,7 @@ public final class PowerampAPI {
 		public static final String ACTION_IMPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_IMPORT_SETTINGS";
 
 		/**
-		 * Extra<br/>
+		 * Extra<br>
 		 * {@code boolean} if true, UI may be shown for import / export errors, otherwise import / export may fail silently
 		 */
 		public static final String EXTRA_UI = "ui";

@@ -41,9 +41,19 @@ public class MainActivity extends Activity {
 		registerReceiver(mScanEventsReceiver, intentFilter);
 	}
 
-	public void sendRefresh(View view) {
-		if(LOG) Log.w(TAG, "sendRefresh");
+	public void sendScan(View view) {
+		if(LOG) Log.w(TAG, "sendScan");
 		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS);
+		intent.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan");
+		intent.setComponent(PowerampAPIHelper.getScannerServiceComponentName(this));
+		startService(intent);
+	}
+
+	public void sendScanThis(View view) {
+		if(LOG) Log.w(TAG, "sendScanThis");
+		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS);
+		intent.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan");
+		intent.putExtra(PowerampAPI.Scanner.EXTRA_PROVIDER, "com.maxmpz.powerampproviderexample"); // Our provider authority (matches pak name in this case)
 		intent.setComponent(PowerampAPIHelper.getScannerServiceComponentName(this));
 		startService(intent);
 	}

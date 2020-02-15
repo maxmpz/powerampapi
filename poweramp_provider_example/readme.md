@@ -1,7 +1,7 @@
 # Poweramp Track Provider API
 ============================================
 
-Poweramp v3 (build 862+) supports externally provided tracks which are shown along other tracks in Poweramp Library categories including Folders Hierarchy.
+Poweramp v3 (build 862+) supports externally provided tracks which are shown along other tracks in Poweramp Library categories, including Folders and Folders Hierarchy.
 
 This API enables scenarios like providing cloud-based tracks, streamed cached tracks, file system, or virtual track hierarchies into Poweramp Library.
 Poweramp treats such tracks as usual tracks within Poweramp Library categories, they appear the same way the file system tracks appear
@@ -89,6 +89,9 @@ This is configurable in the Poweramp settings: for example, only manual rescan m
 
 Please note that the Scanner intents sent to Poweramp will be only processed if your app is on the foreground, or Poweramp is a foreground process (either Poweramp UI is visible or Poweramp is playing). If not,
 scan service is a subject to the Android 8+ background services policy and intent will be ignored.
+
+Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1615) for fine-grained scan just for your provider. If not specified,
+Poweramp will do all known folders and providers scan.
 
 ### Provider Crashes
 

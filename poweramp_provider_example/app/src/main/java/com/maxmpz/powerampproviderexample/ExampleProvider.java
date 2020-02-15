@@ -181,7 +181,7 @@ public class ExampleProvider extends DocumentsProvider {
 			// or from filesystem
 
 			// If this is root, just return static root data
-			if(documentId.startsWith("root")) {
+			if(!documentId.contains("/") && documentId.startsWith("root")) {
 				final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
 				MatrixCursor.RowBuilder row = c.newRow();
 				fillFolderRow(documentId, row);
@@ -513,9 +513,11 @@ public class ExampleProvider extends DocumentsProvider {
 	private <T> boolean arrayContains(@NonNull T[] array, T needle) {
 		for(T item : array) {
 			if(Objects.equals(item, needle)) {
+				Log.w(TAG, "arrayContains FOUND needle=" + needle);
 				return true;
 			}
 		}
+		Log.w(TAG, "arrayContains FAILED needle=" + needle + " array=" + Arrays.toString(array));
 		return false;
 	}
 
