@@ -40,4 +40,10 @@ public class TrackProviderConsts {
 	 * Integer
 	 */
 	public static final String COLUMN_BITS_PER_SAMPLE = "bits_per_sample";
+
+	/**
+	 * Column for http track url<br>
+	 * String
+	 */
+	public static final String COLUMN_URL = "url";
 }

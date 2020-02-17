@@ -14,7 +14,6 @@ import android.provider.DocumentsContract.Root;
 import android.provider.DocumentsContract.Document;
 import android.provider.DocumentsProvider;
 import android.provider.MediaStore;
-import android.system.ErrnoException;
 import android.system.Os;
 import android.system.OsConstants;
 import android.util.Log;
@@ -29,9 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Objects;
-import java.util.TreeMap;
 
 
 public class ExampleProvider extends DocumentsProvider {
@@ -43,6 +40,19 @@ public class ExampleProvider extends DocumentsProvider {
 	 * end of file can't be properly detected for many formats without proper length header
 	 */
 	private static final boolean USE_MP3_COPY = true;
+
+	/** Link to mp3 track to demonstrate http track with the duration */
+	private static final String DUBSTEP_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-dubstep.mp3";
+	/** Link to mp3 track to demonstrate http track with the duration */
+	private static final String SUMMER_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-summer.mp3";
+	/** Docid suffix for http tracks */
+	private static final String DOCID_HTTP_SUFFIX = ".http";
+
+	private static final long DUBSTEP_SIZE = 2044859L;
+	private static final long DUBSTEP_DURATION = 125000L;
+	private static final long SUMMER_SIZE = 4620151L;
+	private static final long SUMMER_DURATION = 217000L;
+
 
 	/** Default columns returned for roots */
 	private static final String[] DEFAULT_ROOT_PROJECTION =	new String[] {
@@ -97,6 +107,7 @@ public class ExampleProvider extends DocumentsProvider {
 			TrackProviderConsts.COLUMN_BITS_PER_SAMPLE
 	};
 
+
 	private long mApkInstallTime;
 
 
@@ -134,6 +145,7 @@ public class ExampleProvider extends DocumentsProvider {
 			MatrixCursor c = new MatrixCursor(resolveRootProjection(projection));
 			MatrixCursor.RowBuilder row;
 
+			// Items without metadata (Poweramp reads track metadata from track itself)
 			row = c.newRow();
 			row.add(Root.COLUMN_ROOT_ID, "rootId1");
 			row.add(Root.COLUMN_TITLE, "Root 1");
@@ -142,6 +154,7 @@ public class ExampleProvider extends DocumentsProvider {
 			row.add(Root.COLUMN_ICON, R.mipmap.ic_launcher);
 			row.add(Root.COLUMN_DOCUMENT_ID, "root1");
 
+			// Items with metadata (Poweramp gets metadata from cursor and doesn't try to read tags from tracks)
 			row = c.newRow();
 			row.add(Root.COLUMN_ROOT_ID, "rootId2");
 			row.add(Root.COLUMN_TITLE, "Root 2");
@@ -150,6 +163,7 @@ public class ExampleProvider extends DocumentsProvider {
 			row.add(Root.COLUMN_ICON, R.mipmap.ic_launcher);
 			row.add(Root.COLUMN_DOCUMENT_ID, "root2");
 
+			// Streams: m3u8 playlist, http stream with the duration, http no-duration stream (radio)
 			row = c.newRow();
 			row.add(Root.COLUMN_ROOT_ID, "rootId3");
 			row.add(Root.COLUMN_TITLE, "Root 3 (Streams)");
@@ -190,6 +204,17 @@ public class ExampleProvider extends DocumentsProvider {
 				row.add(Document.COLUMN_DISPLAY_NAME, capitalize(documentId));
 				return c;
 
+			} else if(documentId.startsWith("root3") && documentId.endsWith(DOCID_HTTP_SUFFIX)) { // Http link to mp3 with a duration. We must provide duration here to avoid endless/non-seekable stream
+
+				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
+				int trackNum = extractTrackNum(documentId);
+				if(documentId.contains("dubstep")) {
+					fillStreamRow(documentId, c.newRow(), DUBSTEP_HTTP_URL, DUBSTEP_SIZE, "Dubstep", trackNum == 1 ? 0 : DUBSTEP_DURATION);
+				} else {
+					fillStreamRow(documentId, c.newRow(), SUMMER_HTTP_URL, SUMMER_SIZE, "Summer", trackNum == 1 ? 0 : SUMMER_DURATION);
+				}
+				return c;
+
 			} else if(documentId.endsWith(".mp3")) { // Seems like a track
 				// We are adding metadata for root2 and check if it's actually requested as a small optimization (which can be big if track metadata retrieval requires additional processing)
 				boolean addMetadata = documentId.startsWith("root2/") && projection != null && arrayContains(projection, MediaStore.MediaColumns.TITLE);
@@ -214,11 +239,61 @@ public class ExampleProvider extends DocumentsProvider {
 		return null;
 	}
 
+	private void fillStreamRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, @NonNull String url, long size, @NonNull String title, long duration) {
+		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
+		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
+		row.add(Document.COLUMN_MIME_TYPE, "audio/mpeg");
+		// Poweramp doesn't use display name for tracks. It uses either last segment from documentId (as a filename) or MediaStore.MediaColumns.TITLE. This is still used by Android picker
+		row.add(Document.COLUMN_DISPLAY_NAME, getShortName(documentId));
+		// As our assets data is always static, we just return own apk installation time. For real folder structure, preferable last modified for given folder should be returned.
+		// This ensures Poweramp incremental scanning process. If we return <= 0 value here, Poweramp will be forced to rescan whole provider hierarchy each time it scans
+		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
+		// Optional, real provider should preferable return real track file size here or 0
+		row.add(Document.COLUMN_SIZE, size);
+		// Setting this will cause Poweramp to ask for track album art via getDocumentThumbnail, but only if other metadata (MediaStore.MediaColumns.TITLE/MediaStore.MediaColumns.DURATION) exists
+		row.add(Document.COLUMN_FLAGS, Document.FLAG_SUPPORTS_THUMBNAIL);
+
+		row.add(TrackProviderConsts.COLUMN_URL, url);
+
+		String prefix = title + " ";
+
+		// Some dump tags logic - as we have 2 static files here as an example, but they have docId like dubstep1.mp3, summer2.mp3, etc.
+		// Real provider should get this info from network or extract from the file
+		int trackNum = extractTrackNum(documentId);
+
+		row.add(MediaStore.MediaColumns.TITLE, prefix + "Http Track " + trackNum);
+		row.add(MediaStore.Audio.AudioColumns.ARTIST, prefix + "Http Artist");
+		row.add(MediaStore.MediaColumns.DURATION, duration); // Milliseconds, long. If duration <= 0, this is endless non-seekable stream (e.g. radio)
+		row.add(MediaStore.Audio.AudioColumns.ALBUM, prefix + "Http Album");
+		row.add(MediaStore.Audio.AudioColumns.YEAR, 2020); // Integer
+		row.add(TrackProviderConsts.COLUMN_ALBUM_ARTIST, prefix + "Http Album Artist");
+		row.add(MediaStore.Audio.AudioColumns.COMPOSER, prefix + "Http Composer");
+		row.add(TrackProviderConsts.COLUMN_GENRE, prefix + "Http Genre");
+		// Track number. Optional, but needed for proper sorting in albums
+		row.add(MediaStore.Audio.AudioColumns.TRACK, trackNum);
+		// Optional, used just for Info/Tags
+		row.add(MediaFormat.KEY_SAMPLE_RATE, 44100);
+		// Optional, used just for Info/Tags
+		row.add(MediaFormat.KEY_CHANNEL_COUNT, 2);
+		// Optional, used just for Info/Tags
+		row.add(MediaFormat.KEY_BIT_RATE, 128000);
+		// Optional, used just for Info/Tags and lists  (for hi-res)
+		row.add(TrackProviderConsts.COLUMN_BITS_PER_SAMPLE, 16);
+	}
+
+	private void fillFolderRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row) {
+		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
+		row.add(Document.COLUMN_MIME_TYPE, Document.MIME_TYPE_DIR);
+		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
+		row.add(Document.COLUMN_DISPLAY_NAME, getShortDirName(documentId));
+		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
+	}
+
 	private void fillPlaylistRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row) {
 		// NOTE: for playlists, the playlist documentId should preferable end with extension. If not, Poweramp assumes that is .m3u8 playlist
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, "audio/mpegurl");
-		// Poweramp doesn't use display name for tracks. It uses either last segment from documentId (as a filename) or MediaStore.MediaColumns.TITLE. This still used by Android picker
+		// Poweramp doesn't use display name for tracks. It uses either last segment from documentId (as a filename) or MediaStore.MediaColumns.TITLE. This still is used by Android picker
 		row.add(Document.COLUMN_DISPLAY_NAME, getShortName(documentId));
 		// As our assets data is always static, we just return own apk installation time. For real folder structure, preferable last modified for given folder should be returned.
 		// This ensures Poweramp incremental scanning process. If we return <= 0 value here, Poweramp will be forced to rescan whole provider hierarchy each time it scans
@@ -268,27 +343,12 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 	}
 
-	private void fillFolderRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row) {
-		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
-		row.add(Document.COLUMN_MIME_TYPE, Document.MIME_TYPE_DIR);
-		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
-		row.add(Document.COLUMN_DISPLAY_NAME, getShortDirName(documentId));
-		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
-	}
 
 	@Override
 	public Cursor queryChildDocuments(String parentDocumentId, String[] projection, String sortOrder) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "queryChildDocuments parentDocumentId=" + parentDocumentId + " projection=" + Arrays.toString(projection));
 
 		try {
-			if(parentDocumentId.equals("root3")) {
-				// For root3 return just single playlist entry
-				final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
-				fillPlaylistRow(parentDocumentId + "/" + "streams-playlist.m3u8", c.newRow());
-				return c;
-			}
-
-
 			AssetManager assets = getContext().getResources().getAssets();
 			String[] filesAndDirs = assets.list(parentDocumentId);
 
@@ -303,8 +363,7 @@ public class ExampleProvider extends DocumentsProvider {
 				String path = parentDocumentId + "/" + fileOrDir; // Path is our documentId
 
 				if(isAssetDir(assets, path)) {
-					MatrixCursor.RowBuilder row = c.newRow();
-					fillFolderRow(path, row);
+					fillFolderRow(path, c.newRow());
 
 				} // Else this is empty.txt file, we skip it
 			}
@@ -315,12 +374,30 @@ public class ExampleProvider extends DocumentsProvider {
 			// - parent folder lastModified changed
 			// - full rescan required by user or external intent
 
-			int count = 1 + (int)Math.round(Math.random() * 19.0);
-			for(int i = 0; i < count; i++) {
-				MatrixCursor.RowBuilder row = c.newRow();
-				// Generate docId like root1/Folder2/dubstep-10.mp3
-				String docId = parentDocumentId + "/" + ((i & 1) != 0 ? "dubstep" : "summer") + "-" + (i + 1) + ".mp3";
-				fillTrackRow(docId, row, addMetadata);
+			int count = 1 + (int) Math.round(Math.random() * 19.0);
+
+			if(parentDocumentId.equals("root3")) {
+				// For root3 add m3u8 playlist
+				fillPlaylistRow(parentDocumentId + "/" + "streams-playlist.m3u8", c.newRow());
+
+				// And fill with random number of http links to the tracks
+				for(int i = 0; i < count; i++) {
+					boolean isDubstep = (i & 1) != 0;
+					boolean isStream = i == 0; // First track here will be a "stream" - non seekable, no duration
+					String docId = parentDocumentId + "/" + (isDubstep ? "dubstep" : "summer") + "-" + (i + 1) + DOCID_HTTP_SUFFIX;
+					fillStreamRow(docId, c.newRow(),
+							isDubstep ? DUBSTEP_HTTP_URL : SUMMER_HTTP_URL,
+							isDubstep ? DUBSTEP_SIZE : SUMMER_SIZE,
+							isDubstep ? "Dubstep" : "Summer",
+							isStream ? 0 : (isDubstep ? DUBSTEP_DURATION : SUMMER_DURATION));
+				}
+
+			} else {
+				// For root1 and root2 generate docId like root1/Folder2/dubstep-10.mp3
+				for(int i = 0; i < count; i++) {
+					String docId = parentDocumentId + "/" + ((i & 1) != 0 ? "dubstep" : "summer") + "-" + (i + 1) + ".mp3";
+					fillTrackRow(docId, c.newRow(), addMetadata);
+				}
 			}
 
 			if(LOG) Log.w(TAG, "queryChildDocuments generated files=" + count);
@@ -336,7 +413,7 @@ public class ExampleProvider extends DocumentsProvider {
 	@Override
 	public AssetFileDescriptor openDocumentThumbnail(String documentId, Point sizeHint, CancellationSignal signal) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "openDocumentThumbnail documentId=" + documentId + " sizeHint=" + sizeHint);
-		if(!documentId.endsWith(".mp3")) throw new FileNotFoundException(documentId);
+		if(!documentId.endsWith(".mp3") && !documentId.endsWith(DOCID_HTTP_SUFFIX)) throw new FileNotFoundException(documentId);
 
 		// We have just 2 images here and we ignore sizeHint. Poweramp preferred image size is 1024x1024px
 
@@ -356,6 +433,8 @@ public class ExampleProvider extends DocumentsProvider {
 		int accessMode = ParcelFileDescriptor.parseMode(mode);
 		if((accessMode & ParcelFileDescriptor.MODE_READ_ONLY) == 0) throw new IllegalAccessError("documentId=" + documentId + " mode=" + mode);
 		String filePath;
+
+		if(documentId.endsWith(DOCID_HTTP_SUFFIX)) throw new FileNotFoundException(documentId);
 
 		if(documentId.endsWith(".m3u8")) {
 			filePath = "streams-playlist.m3u8";
@@ -389,7 +468,7 @@ public class ExampleProvider extends DocumentsProvider {
 	public boolean isChildDocument(String parentDocumentId, String documentId) {
 		try {
 			// As our hierarchy is defined by assets/, we could just return true here, but for a sake of example, let's verify that given documentId is inside the folder
-			if(documentId.endsWith(".mp3") || documentId.endsWith(".m3u8")) {
+			if(documentId.endsWith(".mp3") || documentId.endsWith(".m3u8") || documentId.endsWith(DOCID_HTTP_SUFFIX)) {
 				return true; // This is track, we randomly generate track entries, so we can't verify them
 			}
 
@@ -399,8 +478,6 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 		return false;
 	}
-
-
 
 	/**
 	 * Very inefficient way of checking folders vs files in assets, but Android SDK doesn't provide anything better.

@@ -3,12 +3,17 @@
 
 Poweramp v3 (build 862+) supports externally provided tracks which are shown along other tracks in Poweramp Library categories, including Folders and Folders Hierarchy.
 
-This API enables scenarios like providing cloud-based tracks, streamed cached tracks, file system, or virtual track hierarchies into Poweramp Library.
+This API enables scenarios like providing cloud-based tracks, streamed/cached tracks, file system, http hosted tracks, or other virtual track hierarchies into Poweramp Library.
 Poweramp treats such tracks as usual tracks within Poweramp Library categories, they appear the same way the file system tracks appear
 (Poweramp just adds the provider app name label to such tracks).
 
-Please note that currently only file-backed tracks are supported - track file should be on the file system somewhere on the device, or in other words seekable file descriptor to a track file is required.
-It's technically possible to add seekable http(s) streaming or/and other types of file descriptors - please open issue here on github if such request arises.
+Please note that file-backed tracks have the best support: if track file is on the file system somewhere on the device, or in other words has seekable file descriptor,
+then features like wave-seekbar, seeking in general, local tag reading are enabled.
+
+It's also possible to have URLs to http/https - that can be almost any supported file format on http(s) or or hls stream.
+
+Please create github issue if other streaming formats are needed,
+or URL is not enought to access a track and custom headers and/or cookies are required as well.
 
 Your provider still can provide m3u8/pls playlists and those will be appropriately processed, providing http stream tracks in the Poweramp Streams category and in the Playlists.
 
@@ -52,9 +57,19 @@ Poweramp shows Provider app icon where appropriate (e.g. Music Folders dialog, I
 Poweramp categorizes provider tracks the same way it does that for the usual file system tracks - tracks are available in All Songs, Folders, Folders Hierarchy, and other categories, according
 to the tags/track metadata, playlists and playlist stream entries are available in the Playlist and Streams categories.
 
+### URL Tracks
+Poweramp looks for non-standard TrackProviderConsts.COLUMN_URL column in provider returned cursors. If url exists, the track is assumed to be remote file or stream.
+Either it's processed as stream (no duration, non seekable) or remote file (duration and seekable), depends on MediaStore.MediaColumns.DURATION for given track:
+DURATION <= 0 defines track as a stream.
+
+Note, at this moment streamed URL tracks (without duration) are shown by Poweramp in appropriate Folders Hierarchy in your provider folders. This is different vs Poweramp scanned
+m3u8 playlists, where streams only visible in Streams, Playlists (incl. smart playlists), and Queue categories.  
+Provider stream tracks also shown in appropriate Album/Artist/Genre/etc. categories
+
 ### Metadata And Album Art
 Poweramp supports 2 approaches to provider track metadata (tags) and album art:
 * metadata and album art image is provided by the Provider
+  * this is the only option for URL-based tracks
 * metadata and album art is retrieved from track file (file descriptor) by Poweramp
 
 #### Metadata And Album Art Provided By Provider
@@ -92,6 +107,9 @@ scan service is a subject to the Android 8+ background services policy and inten
 
 Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1615) for fine-grained scan just for your provider. If not specified,
 Poweramp will do all known folders and providers scan.
+
+### Deletion
+Poweramp will issue standard delete call when user tries to delete one or multiple files. Either delete the track or throw appropriate "not supported" exception to ignore deletion.
 
 ### Provider Crashes
 
