@@ -350,7 +350,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 				if(!mSettingEqu) {
 					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
-							.putExtra(PowerampAPI.EQU, isChecked)
+							.putExtra(PowerampAPI.EQU, isChecked),
+							MainActivity.DEBUG_FORCE_API_ACTIVITY
 					);
 				}
 				mSettingEqu = false;
@@ -360,7 +361,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 				if(!mSettingTone) {
 					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
-							.putExtra(PowerampAPI.TONE, isChecked)
+							.putExtra(PowerampAPI.TONE, isChecked),
+							MainActivity.DEBUG_FORCE_API_ACTIVITY
 					);
 				}
 				mSettingTone = false;
@@ -385,7 +387,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
-				.putExtra(PowerampAPI.VALUE, presetString.toString())
+				.putExtra(PowerampAPI.VALUE, presetString.toString()),
+				MainActivity.DEBUG_FORCE_API_ACTIVITY
 		);
 	}
 
@@ -414,7 +417,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_BAND)
 					.putExtra(PowerampAPI.NAME, name)
-					.putExtra(PowerampAPI.VALUE, value)
+					.putExtra(PowerampAPI.VALUE, value),
+					MainActivity.DEBUG_FORCE_API_ACTIVITY
 			);
 		}
 	}
@@ -435,7 +439,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		if(!mSettingPreset) {
 			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
-					.putExtra(PowerampAPI.ID, id)
+					.putExtra(PowerampAPI.ID, id),
+					MainActivity.DEBUG_FORCE_API_ACTIVITY
 			);
 		} else {
 			mSettingPreset = false;

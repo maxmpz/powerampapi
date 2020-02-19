@@ -85,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements
 {
 	private static final String TAG = "MainActivity";
 
+	/** If set to true, we send all our intents to API activity */
+	static final boolean DEBUG_FORCE_API_ACTIVITY = true;
+
 	private static final char[] NO_TIME = new char[]{ '-', ':', '-', '-' };
 	private static final int SEEK_THROTTLE = 500;
 
@@ -164,7 +167,12 @@ public class MainActivity extends AppCompatActivity implements
 			Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
 			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-			sendBroadcast(intent);
+			if(DEBUG_FORCE_API_ACTIVITY) {
+				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
+				startActivity(intent);
+			} else {
+				sendBroadcast(intent);
+			}
 			sPermissionAsked = true;
 		}
 
@@ -491,6 +499,7 @@ public class MainActivity extends AppCompatActivity implements
 			}
 		});
 	}
+
 	void updateAlbumArt(Bundle track) {
 		Log.w(TAG, "updateAlbumArt");
 
@@ -522,56 +531,59 @@ public class MainActivity extends AppCompatActivity implements
 	public void onClick(View v) {
 		switch(v.getId()) {
 			case R.id.play:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE),
+						DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.pause:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PAUSE));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PAUSE), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.prev:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.next:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.prev_in_cat:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT),
+						DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.next_in_cat:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT_IN_CAT));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT_IN_CAT), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.repeat:
 				// No toast for this button just for demo.
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT).putExtra(PowerampAPI.SHOW_TOAST, false));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
+						.putExtra(PowerampAPI.SHOW_TOAST, false), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.shuffle:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.repeat_all:
 				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
-						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_ON));
+						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_ON), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.repeat_off:
 				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
-						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE));
+						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.shuffle_all:
 				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
-						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_ALL));
+						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_ALL), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.shuffle_off:
 				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
-						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE));
+						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.commit_eq:
@@ -585,7 +597,7 @@ public class MainActivity extends AppCompatActivity implements
 						PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 								.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 								//.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
-								.setData(Uri.parse(uri)));
+								.setData(Uri.parse(uri)), DEBUG_FORCE_API_ACTIVITY);
 					}
 				} catch(Throwable th) {
 					Log.e(TAG, "", th);
@@ -655,6 +667,18 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
+	public void exportPrefs(View view) {
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.Settings.ACTION_EXPORT_SETTINGS)
+				.putExtra(PowerampAPI.Settings.EXTRA_UI, true)
+				, DEBUG_FORCE_API_ACTIVITY);
+	}
+
+	public void importPrefs(View view) {
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.Settings.ACTION_IMPORT_SETTINGS)
+						.putExtra(PowerampAPI.Settings.EXTRA_UI, true)
+				, DEBUG_FORCE_API_ACTIVITY);
+	}
+
 	/** Get the specified preference and show its name, type, value */
 	private void getPref() {
 		EditText prefET = findViewById(R.id.pref);
@@ -702,15 +726,15 @@ public class MainActivity extends AppCompatActivity implements
 	public boolean onLongClick(View v) {
 		switch(v.getId()) {
 			case R.id.play:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.STOP));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.STOP), DEBUG_FORCE_API_ACTIVITY);
 				return true;
 
 			case R.id.next:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD), DEBUG_FORCE_API_ACTIVITY);
 				return true;
 
 			case R.id.prev:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_REWIND));
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_REWIND), DEBUG_FORCE_API_ACTIVITY);
 				return true;
 		}
 
@@ -726,11 +750,11 @@ public class MainActivity extends AppCompatActivity implements
 		if(event.getAction() == MotionEvent.ACTION_UP) {
 			switch(v.getId()) {
 				case R.id.next:
-					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD));
+					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD), DEBUG_FORCE_API_ACTIVITY);
 					break;
 
 				case R.id.prev:
-					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND));
+					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND), DEBUG_FORCE_API_ACTIVITY);
 					break;
 			}
 		}
@@ -744,7 +768,8 @@ public class MainActivity extends AppCompatActivity implements
 	private void playAllSongs() {
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-				.setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
+				.setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()),
+				DEBUG_FORCE_API_ACTIVITY);
 	}
 
 	/**
@@ -764,7 +789,8 @@ public class MainActivity extends AppCompatActivity implements
 								.appendEncodedPath("albums")
 								.appendEncodedPath(Long.toString(albumId))
 								.appendEncodedPath("files")
-								.build()));
+								.build()),
+						DEBUG_FORCE_API_ACTIVITY);
 			}
 			c.close();
 		}
@@ -802,7 +828,7 @@ public class MainActivity extends AppCompatActivity implements
 										.appendEncodedPath(Long.toString(albumId))
 										.appendEncodedPath("files")
 										.build()
-								));
+								), DEBUG_FORCE_API_ACTIVITY);
 					}
 					c2.close();
 				}
@@ -836,7 +862,10 @@ public class MainActivity extends AppCompatActivity implements
 			presetString.append(name).append("=").append(value).append(";");
 		}
 
-		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING).putExtra(PowerampAPI.VALUE, presetString.toString()));
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
+				.putExtra(PowerampAPI.VALUE, presetString.toString()),
+				DEBUG_FORCE_API_ACTIVITY);
 	}
 
 	/**
@@ -890,7 +919,10 @@ public class MainActivity extends AppCompatActivity implements
 		// Apply some throttling to avoid too many intents to be generated.
 		if(ignoreThrottling || mLastSeekSentTime == 0 || System.currentTimeMillis() - mLastSeekSentTime > SEEK_THROTTLE) {
 			mLastSeekSentTime = System.currentTimeMillis();
-			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SEEK).putExtra(PowerampAPI.Track.POSITION, position));
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SEEK)
+					.putExtra(PowerampAPI.Track.POSITION, position),
+					DEBUG_FORCE_API_ACTIVITY);
 			Log.w(TAG, "sent");
 		} else {
 			Log.w(TAG, "throttled");
@@ -904,7 +936,10 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
-			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET).putExtra(PowerampAPI.ID, id));
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
+					.putExtra(PowerampAPI.ID, id),
+					DEBUG_FORCE_API_ACTIVITY);
 		} else {
 			mSettingPreset = false;
 		}
@@ -1037,7 +1072,12 @@ public class MainActivity extends AppCompatActivity implements
 				intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 				intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
 				intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send the changed table for an adequate UI / PlayerService reloading
-				sendBroadcast(intent);
+				if(DEBUG_FORCE_API_ACTIVITY) {
+					intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
+					startActivity(intent);
+				} else {
+					sendBroadcast(intent);
+				}
 			}
 
 			// Make open playlist button active
@@ -1099,7 +1139,12 @@ public class MainActivity extends AppCompatActivity implements
 			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
 			intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send the changed table for an adequate UI / PlayerService reloading
-			sendBroadcast(intent);
+			if(DEBUG_FORCE_API_ACTIVITY) {
+				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
+				startActivity(intent);
+			} else {
+				sendBroadcast(intent);
+			}
 		}
 
 		// Make open playlist button active
@@ -1165,7 +1210,12 @@ public class MainActivity extends AppCompatActivity implements
 			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
 			intent.putExtra(PowerampAPI.TABLE, TableDefs.Queue.TABLE); // NOTE: important to send changed table for the adequate UI / PlayerService reloading. This can also make Poweramp to go to Queue
-			sendBroadcast(intent);
+			if(DEBUG_FORCE_API_ACTIVITY) {
+				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
+				startActivity(intent);
+			} else {
+				sendBroadcast(intent);
+			}
 
 			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(queueUri));
 		}

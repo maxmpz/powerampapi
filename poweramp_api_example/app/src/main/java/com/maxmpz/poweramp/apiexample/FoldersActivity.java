@@ -78,7 +78,8 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-				.setData(uriB.build())
+				.setData(uriB.build()),
+				MainActivity.DEBUG_FORCE_API_ACTIVITY
 		);
 		finish();
 		return true;
