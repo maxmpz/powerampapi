@@ -20,6 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.player;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -43,9 +44,9 @@ public class PowerampAPIHelper {
 	
 	private static String sPowerampPak;
 	private static ComponentName sPowerampPSComponentName;
-	private static ComponentName sPowerampScannerComponentName;
 	private static int sPowerampBuild;
 	private static ComponentName sApiReceiverComponentName;
+	private static ComponentName sApiActivityComponentName;
 	private static ComponentName sBrowserServiceComponentName;
 
 
@@ -67,7 +68,9 @@ public class PowerampAPIHelper {
 	/**
 	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
 	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed
+	 * @deprecated use {@link #getApiReceiverComponentName(Context)}
 	 */
+	@Deprecated
 	public static ComponentName getPlayerServiceComponentName(Context context) {
 		ComponentName componentName = sPowerampPSComponentName;
 		if(componentName == null) {
@@ -75,25 +78,6 @@ public class PowerampAPIHelper {
 				ResolveInfo info = context.getPackageManager().resolveService(new Intent(PowerampAPI.ACTION_API_COMMAND), 0);
 				if(info != null && info.serviceInfo != null) {
 					componentName = sPowerampPSComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
-				}
-			} catch(Throwable th) {
-				Log.e(TAG, "", th);
-			}
-		}
-		return componentName;
-	}
-
-	/**
-	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
-	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed
-	 */
-	public static ComponentName getScannerServiceComponentName(Context context) {
-		ComponentName componentName = sPowerampScannerComponentName;
-		if(componentName == null) {
-			try {
-				ResolveInfo info = context.getPackageManager().resolveService(new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS), 0);
-				if(info != null && info.serviceInfo != null) {
-					componentName = sPowerampScannerComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
 				}
 			} catch(Throwable th) {
 				Log.e(TAG, "", th);
@@ -121,12 +105,31 @@ public class PowerampAPIHelper {
 		return componentName;
 	}
 
+	/**
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp API receiver component name, or null if not installed
+	 */
 	public static ComponentName getApiReceiverComponentName(Context context) {
 		ComponentName componentName = sApiReceiverComponentName;
 		if(componentName == null) {
 			String pak = getPowerampPackageName(context);
 			if(pak != null) {
 				componentName = sApiReceiverComponentName = new ComponentName(pak, PowerampAPI.API_RECEIVER_NAME);
+			}
+		}
+		return componentName;
+	}
+
+	/**
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp API activity component name, or null if not installed
+	 */
+	public static ComponentName getApiActivityComponentName(Context context) {
+		ComponentName componentName = sApiActivityComponentName;
+		if(componentName == null) {
+			String pak = getPowerampPackageName(context);
+			if(pak != null) {
+				componentName = sApiActivityComponentName = new ComponentName(pak, PowerampAPI.API_ACTIVITY_NAME);
 			}
 		}
 		return componentName;
@@ -167,8 +170,25 @@ public class PowerampAPIHelper {
 	 * THREADING: can be called from any thread
 	 */
 	public static void sendPAIntent(Context context, Intent intent) {
+		sendPAIntent(context, intent, false);
+	}
+
+	/**
+	 * If we have Poweramp build 855+, send broadcast, otherwise use startForegroundService/startService which may be prone to ANR errors
+	 * and are deprecated for Poweramp builds 855+.<br><br>
+	 * NOTE: scanner intents
+	 * THREADING: can be called from any thread
+	 * @sendToActivity if true, we're sending intent to the activity (build 862+)
+	 */
+	public static void sendPAIntent(Context context, Intent intent, boolean sendToActivity) {
 		int buildNum = getPowerampBuild(context);
-		if(buildNum >= 855) {
+		if(sendToActivity && buildNum >= 862) {
+			intent.setComponent(getApiActivityComponentName(context));
+			if(!(context instanceof Activity)) {
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			}
+			context.startActivity(intent);;
+		} else if(buildNum >= 855) {
 			intent.setComponent(getApiReceiverComponentName(context));
 			context.sendBroadcast(intent);
 		} else {
