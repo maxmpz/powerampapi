@@ -56,8 +56,12 @@ public class MainActivity extends Activity {
 		if(LOG) Log.w(TAG, "sendScan");
 		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS);
 		intent.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan");
-		intent.setComponent(PowerampAPIHelper.getScannerServiceComponentName(this));
-		startService(intent);
+		intent.setComponent(PowerampAPIHelper.getApiReceiverComponentName(this));
+		try {
+			sendBroadcast(intent);
+		} catch(Throwable th) {
+			Log.w(TAG, "", th); // Can throw app is in background
+		}
 	}
 
 	public void sendScanThis(View view) {
@@ -65,8 +69,37 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS);
 		intent.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan");
 		intent.putExtra(PowerampAPI.Scanner.EXTRA_PROVIDER, "com.maxmpz.powerampproviderexample"); // Our provider authority (matches pak name in this case)
-		intent.setComponent(PowerampAPIHelper.getScannerServiceComponentName(this));
-		startService(intent);
+		intent.setComponent(PowerampAPIHelper.getApiReceiverComponentName(this));
+		try {
+			sendBroadcast(intent);
+		} catch(Throwable th) {
+			Log.w(TAG, "", th); // Can throw app is in background
+		}
+	}
+
+	public void sendScanAct(View view) {
+		if(LOG) Log.w(TAG, "sendScanAct");
+		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS);
+		intent.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan");
+		intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
+		try {
+			startActivity(intent);
+		} catch(Throwable th) {
+			Log.w(TAG, "", th); // Can throw app is in background
+		}
+	}
+
+	public void sendScanThisAct(View view) {
+		if(LOG) Log.w(TAG, "sendScanThisAct");
+		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS);
+		intent.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan");
+		intent.putExtra(PowerampAPI.Scanner.EXTRA_PROVIDER, "com.maxmpz.powerampproviderexample"); // Our provider authority (matches pak name in this case)
+		intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
+		try {
+			startActivity(intent);
+		} catch(Throwable th) {
+			Log.w(TAG, "", th); // Can throw app is in background
+		}
 	}
 
 	@Override
