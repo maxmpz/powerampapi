@@ -59,6 +59,22 @@ public class TrackProviderConsts {
 	 */
 	public static final String COLUMN_TRACK_WAVE = "track_wave";
 
+	/**
+	 * Column for {@link #CALL_GET_URL} call result bundle. Sets/overrides headers. This is single string with headers separated by \r\n, e.g.:<br>
+	 * "Debug-header1: some header value\r\nDebug-header2: another header value\r\n"
+	 */
+	public static final String COLUMN_HEADERS = "headers";
+
+	/**
+	 * Column for {@link #CALL_GET_URL} call result bundle. Sets cookies for the request. This is single string with cookies separated by \n, e.g.:<br>
+	 * "cookie1=value1; Secure\ncookie2=value; SameSite=Strict"
+	 */
+	public static final String COLUMN_COOKIES = "cookies";
+
+	/**
+	 * Column for {@link #CALL_GET_URL} call result bundle. Sets method for http request, e.g. POST
+	 */
+	public static final String COLUMN_HTTP_METHOD = "method";
 
 	/**
 	 * Special value for #COLUMN_URL to use with dynamic url - an url which is dynamically retrieved at the moment of playback with #CALL_GET_URL
@@ -69,5 +85,6 @@ public class TrackProviderConsts {
 	 * Method name for DocumentProvider.call - used to retrieve actual dynamic url for given track
 	 */
 	public static final String CALL_GET_URL = "com.maxmpz.audioplayer:get_url";
+
 
 }

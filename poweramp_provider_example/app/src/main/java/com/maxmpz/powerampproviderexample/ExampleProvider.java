@@ -564,6 +564,16 @@ public class ExampleProvider extends DocumentsProvider {
 					res = new Bundle();
 					String url = isDubstep ? DUBSTEP_HTTP_URL :  SUMMER_HTTP_URL;
 					res.putString(TrackProviderConsts.COLUMN_URL, url);
+
+					// Optionally add some headers to send with given url. These headers are used just once for this track playback and are not persisted
+					res.putString(TrackProviderConsts.COLUMN_HEADERS, "Debug-header1: some\r\nDebug-header2: another\r\n");
+
+					// Optionally add some cookies. These cookies are used just once for this track playback and are not persisted
+					res.putString(TrackProviderConsts.COLUMN_COOKIES, "cookie1=value1; Secure\\ncookie2=value; SameSite=Strict");
+
+					// Optionally set some http method. By default it's GET, setting GET here for the demonstration purpose
+					res.putString(TrackProviderConsts.COLUMN_HTTP_METHOD, "GET");
+
 					if(LOG) Log.w(TAG, "call CALL_GET_URL url=>" + url);
 					return res;
 				} else Log.e(TAG, "call CALL_GET_URL bad documentId=" + documentId, new Exception());
