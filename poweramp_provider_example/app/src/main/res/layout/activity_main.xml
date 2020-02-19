@@ -26,6 +26,20 @@
 		android:layout_height="wrap_content"
 	/>
 
+	<Button
+		android:onClick="sendScanAct"
+		android:text="Send Data Refresh (All) via Activity"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
+	<Button
+		android:onClick="sendScanThisAct"
+		android:text="Send Data Refresh (This Provider Only) via Activity"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
+
 	<TextView android:id="@+id/status"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

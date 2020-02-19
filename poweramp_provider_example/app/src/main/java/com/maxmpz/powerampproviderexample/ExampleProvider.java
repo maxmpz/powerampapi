@@ -1,5 +1,6 @@
 package com.maxmpz.powerampproviderexample;
 
+import android.annotation.SuppressLint;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
@@ -8,19 +9,25 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.graphics.Point;
 import android.media.MediaFormat;
+import android.net.Uri;
+import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.ParcelFileDescriptor;
+import android.provider.DocumentsContract;
 import android.provider.DocumentsContract.Root;
 import android.provider.DocumentsContract.Document;
 import android.provider.DocumentsProvider;
 import android.provider.MediaStore;
 import android.system.Os;
 import android.system.OsConstants;
+import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.maxmpz.poweramp.player.TrackProviderConsts;
+import com.maxmpz.poweramp.player.TrackProviderHelper;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -45,8 +52,10 @@ public class ExampleProvider extends DocumentsProvider {
 	private static final String DUBSTEP_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-dubstep.mp3";
 	/** Link to mp3 track to demonstrate http track with the duration */
 	private static final String SUMMER_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-summer.mp3";
-	/** Docid suffix for http tracks */
-	private static final String DOCID_HTTP_SUFFIX = ".http";
+	/** Docid suffix for static url tracks */
+	private static final String DOCID_STATIC_URL_SUFFIX = ".url";
+	/** Docid suffix for dynamic url tracks */
+	private static final String DOCID_DYNAMIC_URL_SUFFIX = ".dynamicurl";
 
 	private static final long DUBSTEP_SIZE = 2044859L;
 	private static final long DUBSTEP_DURATION = 125000L;
@@ -204,14 +213,28 @@ public class ExampleProvider extends DocumentsProvider {
 				row.add(Document.COLUMN_DISPLAY_NAME, capitalize(documentId));
 				return c;
 
-			} else if(documentId.startsWith("root3") && documentId.endsWith(DOCID_HTTP_SUFFIX)) { // Http link to mp3 with a duration. We must provide duration here to avoid endless/non-seekable stream
+			} else if(documentId.startsWith("root3") && documentId.endsWith(DOCID_STATIC_URL_SUFFIX)) {
+				// Url mp3 with a duration. We must provide duration here to avoid endless/non-seekable stream
 
 				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
 				int trackNum = extractTrackNum(documentId);
 				if(documentId.contains("dubstep")) {
-					fillStreamRow(documentId, c.newRow(), DUBSTEP_HTTP_URL, DUBSTEP_SIZE, "Dubstep", trackNum == 1 ? 0 : DUBSTEP_DURATION);
+					fillURLRow(documentId, c.newRow(), DUBSTEP_HTTP_URL, DUBSTEP_SIZE, "Dubstep", trackNum == 1 ? 0 : DUBSTEP_DURATION, true, true); // Send wave
 				} else {
-					fillStreamRow(documentId, c.newRow(), SUMMER_HTTP_URL, SUMMER_SIZE, "Summer", trackNum == 1 ? 0 : SUMMER_DURATION);
+					fillURLRow(documentId, c.newRow(), SUMMER_HTTP_URL, SUMMER_SIZE, "Summer", trackNum == 1 ? 0 : SUMMER_DURATION, true, false); // No wave
+				}
+				return c;
+
+			} else if(documentId.startsWith("root3") && documentId.endsWith(DOCID_DYNAMIC_URL_SUFFIX)) {
+				// Dynamic url to mp3 with a duration. We must provide duration here to avoid endless/non-seekable stream
+				// NOTE: we use TrackProviderConsts.DYNAMIC_URL as URL here to indicate dynamic url track
+
+				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
+				int trackNum = extractTrackNum(documentId);
+				if(documentId.contains("dubstep")) {
+					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, DUBSTEP_SIZE, "Dubstep", DUBSTEP_DURATION, true, true); // Send wave
+				} else {
+					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, SUMMER_SIZE, "Summer", SUMMER_DURATION, true, false); // No wave
 				}
 				return c;
 
@@ -219,7 +242,8 @@ public class ExampleProvider extends DocumentsProvider {
 				// We are adding metadata for root2 and check if it's actually requested as a small optimization (which can be big if track metadata retrieval requires additional processing)
 				boolean addMetadata = documentId.startsWith("root2/") && projection != null && arrayContains(projection, MediaStore.MediaColumns.TITLE);
 				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
-				fillTrackRow(documentId, c.newRow(), addMetadata);
+				boolean addLyrics = projection != null && arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_LYRICS);
+				fillTrackRow(documentId, c.newRow(), addMetadata, addMetadata, addLyrics); // Adding wave as well to root2 tracks
 				return c;
 
 			} else if(documentId.endsWith(".m3u")) { // Seems like a playlist
@@ -239,7 +263,9 @@ public class ExampleProvider extends DocumentsProvider {
 		return null;
 	}
 
-	private void fillStreamRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, @NonNull String url, long size, @NonNull String title, long duration) {
+	private void fillURLRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, @NonNull String url, long size, @NonNull String title,
+	                        long duration, boolean sendMetadata, boolean sendWave
+	) {
 		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, "audio/mpeg");
@@ -254,31 +280,51 @@ public class ExampleProvider extends DocumentsProvider {
 		row.add(Document.COLUMN_FLAGS, Document.FLAG_SUPPORTS_THUMBNAIL);
 
 		row.add(TrackProviderConsts.COLUMN_URL, url);
-
-		String prefix = title + " ";
-
-		// Some dump tags logic - as we have 2 static files here as an example, but they have docId like dubstep1.mp3, summer2.mp3, etc.
-		// Real provider should get this info from network or extract from the file
-		int trackNum = extractTrackNum(documentId);
-
-		row.add(MediaStore.MediaColumns.TITLE, prefix + "Http Track " + trackNum);
-		row.add(MediaStore.Audio.AudioColumns.ARTIST, prefix + "Http Artist");
 		row.add(MediaStore.MediaColumns.DURATION, duration); // Milliseconds, long. If duration <= 0, this is endless non-seekable stream (e.g. radio)
-		row.add(MediaStore.Audio.AudioColumns.ALBUM, prefix + "Http Album");
-		row.add(MediaStore.Audio.AudioColumns.YEAR, 2020); // Integer
-		row.add(TrackProviderConsts.COLUMN_ALBUM_ARTIST, prefix + "Http Album Artist");
-		row.add(MediaStore.Audio.AudioColumns.COMPOSER, prefix + "Http Composer");
-		row.add(TrackProviderConsts.COLUMN_GENRE, prefix + "Http Genre");
-		// Track number. Optional, but needed for proper sorting in albums
-		row.add(MediaStore.Audio.AudioColumns.TRACK, trackNum);
-		// Optional, used just for Info/Tags
-		row.add(MediaFormat.KEY_SAMPLE_RATE, 44100);
-		// Optional, used just for Info/Tags
-		row.add(MediaFormat.KEY_CHANNEL_COUNT, 2);
-		// Optional, used just for Info/Tags
-		row.add(MediaFormat.KEY_BIT_RATE, 128000);
-		// Optional, used just for Info/Tags and lists  (for hi-res)
-		row.add(TrackProviderConsts.COLUMN_BITS_PER_SAMPLE, 16);
+
+		if(sendMetadata) { // NOTE: Poweramp doesn't need extra metadata (except COLUMN_URL/DURATION for streams) for queryDocuments, but requires that for queryDocument
+			if(TrackProviderConsts.DYNAMIC_URL.equals(url)) {
+				title += " Dynamic";
+			}
+
+			String prefix = title + " ";
+
+			// Some dump tags logic - as we have 2 static files here as an example, but they have docId like dubstep1.mp3, summer2.mp3, etc.
+			// Real provider should get this info from network or extract from the file
+			int trackNum = extractTrackNum(documentId);
+
+			row.add(MediaStore.MediaColumns.TITLE, prefix + "URL Track " + trackNum);
+			row.add(MediaStore.Audio.AudioColumns.ARTIST, prefix + "URL Artist");
+			row.add(MediaStore.Audio.AudioColumns.ALBUM, prefix + "URL Album");
+			row.add(MediaStore.Audio.AudioColumns.YEAR, 2020); // Integer
+			row.add(TrackProviderConsts.COLUMN_ALBUM_ARTIST, prefix + "URL Album Artist");
+			row.add(MediaStore.Audio.AudioColumns.COMPOSER, prefix + "URL Composer");
+			row.add(TrackProviderConsts.COLUMN_GENRE, prefix + "URL Genre");
+			// Track number. Optional, but needed for proper sorting in albums
+			row.add(MediaStore.Audio.AudioColumns.TRACK, trackNum);
+			// Optional, used just for Info/Tags
+			row.add(MediaFormat.KEY_SAMPLE_RATE, 44100);
+			// Optional, used just for Info/Tags
+			row.add(MediaFormat.KEY_CHANNEL_COUNT, 2);
+			// Optional, used just for Info/Tags
+			row.add(MediaFormat.KEY_BIT_RATE, 128000);
+			// Optional, used just for Info/Tags and lists  (for hi-res)
+			row.add(TrackProviderConsts.COLUMN_BITS_PER_SAMPLE, 16);
+			if(sendWave && duration > 0) {
+				row.add(TrackProviderConsts.COLUMN_TRACK_WAVE, TrackProviderHelper.floatsToBytes(genRandomWave())); // We must put byte[] array here
+			} else {
+				// Add this if you don't want your URL to be pre-scanned for wave-seek
+				row.add(TrackProviderConsts.COLUMN_TRACK_WAVE, new byte[0]);
+			}
+		}
+	}
+
+	private float[] genRandomWave() {
+		float[] wave = new float[100];
+		for(int i = 0; i < wave.length; i++) {
+			wave[i] = (float)(Math.random() * 2.0 - 1.0);
+		}
+		return wave;
 	}
 
 	private void fillFolderRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row) {
@@ -300,7 +346,7 @@ public class ExampleProvider extends DocumentsProvider {
 		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
 	}
 
-	private void fillTrackRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, boolean addMetadata) {
+	private void fillTrackRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, boolean addMetadata, boolean sendWave, boolean sendLyrics) {
 		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, "audio/mpeg");
@@ -312,7 +358,7 @@ public class ExampleProvider extends DocumentsProvider {
 		// Optional, real provider should preferable return real track file size here or 0
 		row.add(Document.COLUMN_SIZE, getAssetFileSize(getContext().getResources().getAssets(), documentId));
 
-		if(addMetadata) {
+		if(addMetadata) { // NOTE: Poweramp doesn't need extra metadata (except COLUMN_URL/DURATION for streams) for queryDocuments, but requires that for queryDocument
 			// Setting this will cause Poweramp to ask for track album art via getDocumentThumbnail, but only if other metadata (MediaStore.MediaColumns.TITLE/MediaStore.MediaColumns.DURATION) exists
 			row.add(Document.COLUMN_FLAGS, Document.FLAG_SUPPORTS_THUMBNAIL);
 
@@ -340,6 +386,16 @@ public class ExampleProvider extends DocumentsProvider {
 			row.add(MediaFormat.KEY_BIT_RATE, isDubstep ? 128000 : 192000);
 			// Optional, used just for Info/Tags and lists  (for hi-res)
 			row.add(TrackProviderConsts.COLUMN_BITS_PER_SAMPLE, 16);
+
+			if(sendWave) {
+				row.add(TrackProviderConsts.COLUMN_TRACK_WAVE, TrackProviderHelper.floatsToBytes(genRandomWave()));
+			}
+
+			if(sendLyrics) {
+				row.add(TrackProviderConsts.COLUMN_TRACK_LYRICS, "La la la\nLyrics for track " + prefix + "Track " + trackNum);
+			}
+
+
 		}
 	}
 
@@ -376,27 +432,46 @@ public class ExampleProvider extends DocumentsProvider {
 
 			int count = 1 + (int) Math.round(Math.random() * 19.0);
 
+			String docId;
+
 			if(parentDocumentId.equals("root3")) {
 				// For root3 add m3u8 playlist
 				fillPlaylistRow(parentDocumentId + "/" + "streams-playlist.m3u8", c.newRow());
+
+				// Add dynamic URL tracks
+				docId = parentDocumentId + "/" + "dubstep" + "-" + 1 + DOCID_DYNAMIC_URL_SUFFIX;
+				fillURLRow(docId, c.newRow(),
+						TrackProviderConsts.DYNAMIC_URL,
+						DUBSTEP_SIZE,
+						null, // NOTE: titles not sent here
+						DUBSTEP_DURATION,
+						false, false);
+
+				docId = parentDocumentId + "/" + "summer" + "-" + 2 + DOCID_DYNAMIC_URL_SUFFIX;
+				fillURLRow(docId, c.newRow(),
+						TrackProviderConsts.DYNAMIC_URL,
+						SUMMER_SIZE,
+						null, // NOTE: titles not sent here
+						SUMMER_DURATION,
+						false, false);
 
 				// And fill with random number of http links to the tracks
 				for(int i = 0; i < count; i++) {
 					boolean isDubstep = (i & 1) != 0;
 					boolean isStream = i == 0; // First track here will be a "stream" - non seekable, no duration
-					String docId = parentDocumentId + "/" + (isDubstep ? "dubstep" : "summer") + "-" + (i + 1) + DOCID_HTTP_SUFFIX;
-					fillStreamRow(docId, c.newRow(),
+					docId = parentDocumentId + "/" + (isDubstep ? "dubstep" : "summer") + "-" + (i + 3) + DOCID_STATIC_URL_SUFFIX;
+					fillURLRow(docId, c.newRow(),
 							isDubstep ? DUBSTEP_HTTP_URL : SUMMER_HTTP_URL,
 							isDubstep ? DUBSTEP_SIZE : SUMMER_SIZE,
-							isDubstep ? "Dubstep" : "Summer",
-							isStream ? 0 : (isDubstep ? DUBSTEP_DURATION : SUMMER_DURATION));
+							null, // NOTE: titles not sent here
+							isStream ? 0 : (isDubstep ? DUBSTEP_DURATION : SUMMER_DURATION), false, false);
 				}
 
 			} else {
 				// For root1 and root2 generate docId like root1/Folder2/dubstep-10.mp3
 				for(int i = 0; i < count; i++) {
-					String docId = parentDocumentId + "/" + ((i & 1) != 0 ? "dubstep" : "summer") + "-" + (i + 1) + ".mp3";
-					fillTrackRow(docId, c.newRow(), addMetadata);
+					docId = parentDocumentId + "/" + ((i & 1) != 0 ? "dubstep" : "summer") + "-" + (i + 1) + ".mp3";
+					fillTrackRow(docId, c.newRow(), addMetadata, false, false);
 				}
 			}
 
@@ -413,7 +488,7 @@ public class ExampleProvider extends DocumentsProvider {
 	@Override
 	public AssetFileDescriptor openDocumentThumbnail(String documentId, Point sizeHint, CancellationSignal signal) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "openDocumentThumbnail documentId=" + documentId + " sizeHint=" + sizeHint);
-		if(!documentId.endsWith(".mp3") && !documentId.endsWith(DOCID_HTTP_SUFFIX)) throw new FileNotFoundException(documentId);
+		if(!documentId.endsWith(".mp3") && !documentId.endsWith(DOCID_STATIC_URL_SUFFIX) && !documentId.endsWith(DOCID_DYNAMIC_URL_SUFFIX)) throw new FileNotFoundException(documentId);
 
 		// We have just 2 images here and we ignore sizeHint. Poweramp preferred image size is 1024x1024px
 
@@ -434,8 +509,6 @@ public class ExampleProvider extends DocumentsProvider {
 		if((accessMode & ParcelFileDescriptor.MODE_READ_ONLY) == 0) throw new IllegalAccessError("documentId=" + documentId + " mode=" + mode);
 		String filePath;
 
-		if(documentId.endsWith(DOCID_HTTP_SUFFIX)) throw new FileNotFoundException(documentId);
-
 		if(documentId.endsWith(".m3u8")) {
 			filePath = "streams-playlist.m3u8";
 
@@ -443,7 +516,18 @@ public class ExampleProvider extends DocumentsProvider {
 			boolean isDubstep = documentId.contains("dubstep");
 			filePath = isDubstep ? "bensound-dubstep.mp3" : "bensound-summer.mp3"; // We only have 2 real mp3s here for many "virtual" tracks
 
+		} else if(documentId.endsWith(DOCID_STATIC_URL_SUFFIX)) {
+
+			try {
+				ParcelFileDescriptor pfd = ParcelFileDescriptor.fromFd(0);
+				pfd.detachFd();
+				return pfd;
+			} catch(IOException ex) {
+				Log.e(TAG, documentId, ex);
+				return null;
+			}
 		} else throw new FileNotFoundException(documentId);
+
 		// NOTE: we can't open in any write modes here, so we always open in read mode and ignore write modes
 
 		try {
@@ -463,12 +547,37 @@ public class ExampleProvider extends DocumentsProvider {
 		throw new FileNotFoundException(documentId);
 	}
 
+	/**
+	 * Implementing CALL_GET_URL here to return dynamic URL for given track. Document uri is passed as string in arg
+	 */
+	@Override
+	public Bundle call(String method, String arg, Bundle extras) {
+		Bundle res = super.call(method, arg, extras);
+		if(res == null) {
+			if(TrackProviderConsts.CALL_GET_URL.equals(method)) {
+				if(TextUtils.isEmpty(arg)) throw new IllegalArgumentException(arg);
+				Uri uri = Uri.parse(arg);
+				enforceTree(uri);
+				String documentId = DocumentsContract.getDocumentId(uri);
+				if(documentId.endsWith(DOCID_DYNAMIC_URL_SUFFIX)) {
+					boolean isDubstep = documentId.contains("dubstep");
+					res = new Bundle();
+					String url = isDubstep ? DUBSTEP_HTTP_URL :  SUMMER_HTTP_URL;
+					res.putString(TrackProviderConsts.COLUMN_URL, url);
+					if(LOG) Log.w(TAG, "call CALL_GET_URL url=>" + url);
+					return res;
+				} else Log.e(TAG, "call CALL_GET_URL bad documentId=" + documentId, new Exception());
+			} else Log.e(TAG, "call bad method=" + method, new Exception());
+		}
+		return res;
+	}
+
 	/** Important method, which is called by DocumentProvider to check if documentId is a correct child of given parent */
 	@Override
 	public boolean isChildDocument(String parentDocumentId, String documentId) {
 		try {
 			// As our hierarchy is defined by assets/, we could just return true here, but for a sake of example, let's verify that given documentId is inside the folder
-			if(documentId.endsWith(".mp3") || documentId.endsWith(".m3u8") || documentId.endsWith(DOCID_HTTP_SUFFIX)) {
+			if(documentId.endsWith(".mp3") || documentId.endsWith(".m3u8") || documentId.endsWith(DOCID_STATIC_URL_SUFFIX)) {
 				return true; // This is track, we randomly generate track entries, so we can't verify them
 			}
 
@@ -605,4 +714,18 @@ public class ExampleProvider extends DocumentsProvider {
 		return documentId;
 	}
 
+	@SuppressLint("NewApi")
+	private void enforceTree(Uri documentUri) {
+		if(DocumentsContract.isTreeUri(documentUri)) { // Exists in SDK=21, but hidden there
+			final String parent = DocumentsContract.getTreeDocumentId(documentUri);
+			final String child = DocumentsContract.getDocumentId(documentUri);
+			if (Objects.equals(parent, child)) {
+				return;
+			}
+			if (!isChildDocument(parent, child)) {
+				throw new SecurityException(
+						"Document " + child + " is not a descendant of " + parent);
+			}
+		}
+	}
 }

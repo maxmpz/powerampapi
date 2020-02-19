@@ -27,16 +27,32 @@ import android.net.Uri;
 /**
  * Poweramp Intent based API.
  * <br><br>
- * NOTE: in addition to ACTION_* intent actions defined by PowerampAPI, Poweramp also supports standard intents (these should be sent to ACTIVITY_STARTUP):<br>
- * android.content.Intent.ACTION_VIEW (android.intent.action.VIEW"),<br>
- * android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH (android.media.action.MEDIA_PLAY_FROM_SEARCH),<br>
- * android.content.Intent.ACTION_SEARCH (android.intent.action.SEARCH),<br>
- * android.intent.action.MEDIA_SEARCH<br><br>
  * 
- * Starting from build 853 Poweramp also supports android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH (android.media.action.MEDIA_PLAY_FROM_SEARCH) as PlayerService intent,
+ * Most API intents defined here can be sent to various targets:
+ * <ul>
+ * <li>broadcast receiver via Context.sendBroadcast to {@link #API_RECEIVER_NAME}
+ * <li>redirecting activity via Context.startActivity to {@link #API_ACTIVITY_NAME}<br>
+ *     This activity immediately closes itself and it's useful if activity target is required or Poweramp app should be brought to foreground
+ * <li>Player service via Context.startService to {@link #PLAYER_SERVICE_NAME}<br>
+ *     Not recommended as services are subject to background execution limitation and your code may fail with "app is in background" exception<br>
+ *     NOTE: Poweramp doesn't use Context.startForegroundService and if you call Poweramp service with startForegroundService app will crash
+ * <li>ScanDispatcher service via Context.startService with {@link Scanner#ACTION_SCAN_DIRS}, {@link Scanner#ACTION_SCAN_TAGS} actions<br>
+ *     Not recommended as services are subject to background execution limitation and your code may fail with "app is in background" exception<br>
+ * </ul>
+ * <br>
+ * NOTE: in addition to ACTION_* intent actions defined by PowerampAPI, Poweramp also supports standard intents (these should be sent to {@link #ACTIVITY_STARTUP}):
+ * <ul>
+ * <li>android.content.Intent.ACTION_VIEW (android.intent.action.VIEW")
+ * <li>android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH (android.media.action.MEDIA_PLAY_FROM_SEARCH)
+ * <li>android.content.Intent.ACTION_SEARCH (android.intent.action.SEARCH)
+ * <li>android.intent.action.MEDIA_SEARCH
+ * </ul>
+ * 
+ * Starting from build 853 Poweramp also supports android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH (android.media.action.MEDIA_PLAY_FROM_SEARCH) as 
+ * broadcast intent for {@link #API_RECEIVER_NAME} (recommended), or PlayerService intent {@link #PLAYER_SERVICE_NAME},
  * so this can be sent directly to service without activity / Poweramp UI starting.<br>
- * NOTE: this is supported for ACTIVITY_STARTUP from around 800<br><br>
- * 
+ * NOTE: this is supported for {@link #ACTIVITY_STARTUP} from around build 800<br><br>
+ * 2
  * INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH supports:<br>
  * - <b>simple freeform query via SearchManager.QUERY (query) extra</b><br>
  *   - Poweramp will attempt to play track matching query<br>
@@ -54,8 +70,26 @@ import android.net.Uri;
  *   - when EXTRA_MEDIA_FOCUS == MediaStore.Audio.Playlists.ENTRY_CONTENT_TYPE (vnd.android.cursor.item/playlist):<br>
  *   &nbsp;&nbsp;-> Poweramp plays playlist indicated by MediaStore.EXTRA_MEDIA_PLAYLIST (android.intent.extra.playlist) extra<br>
  *   - when EXTRA_MEDIA_FOCUS is anything else:<br>
- *   &nbsp;&nbsp;-> Poweramp tries to search for SearchManager.QUERY or MediaStore.EXTRA_MEDIA_TITLE in tracks, genres, and playlists and play the found result<br> 
- * 
+ *   &nbsp;&nbsp;-> Poweramp tries to search for SearchManager.QUERY or MediaStore.EXTRA_MEDIA_TITLE in tracks, genres, and playlists and play the found result<br><br>
+ *   
+ * Actions supported (name -> target components):
+ * <ul>
+ * <li>{@link #ACTION_API_COMMAND} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}
+ * <li>{@link #ACTION_ASK_FOR_DATA_PERMISSION} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
+ * <li>{@link #ACTION_NATIVE_PLUGIN_COMMAND} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}
+ * <li>{@link #ACTION_RELOAD_DATA} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}
+ * <li>{@link #ACTION_OPEN_EQ} -> {@link #ACTIVITY_STARTUP}
+ * <li>{@link #ACTION_OPEN_LIBRARY} -> {@link #ACTIVITY_STARTUP}
+ * <li>{@link #ACTION_OPEN_MAIN} -> {@link #ACTIVITY_STARTUP}
+ * <li>{@link #ACTION_OPEN_SEARCH} -> {@link #ACTIVITY_STARTUP}
+ * <li>{@link #ACTION_SHOW_CURRENT} -> {@link #ACTIVITY_STARTUP}
+ * <li>{@link #ACTION_SHOW_LIST} -> {@link #ACTIVITY_STARTUP}
+ * <li>{@link #INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH} -> {@link #ACTIVITY_STARTUP}, {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}
+ * <li>{@link Scanner#ACTION_SCAN_DIRS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
+ * <li>{@link Scanner#ACTION_SCAN_TAGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
+ * <li>{@link Settings#ACTION_EXPORT_SETTINGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
+ * <li>{@link Settings#ACTION_IMPORT_SETTINGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
+ * </ul>
  */
 public final class PowerampAPI {
 	/**
@@ -118,7 +152,9 @@ public final class PowerampAPI {
 	public static final String PARAM_SHUFFLE = "shf";
 
 	/**
+	 * Sent by your app to Poweramp.<br>
 	 * Poweramp Control action.<br>
+	 * Can be sent to {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}<br>
 	 * Starting from Poweramp build-855 this is now also a broadcast intent (which should be the primary target of this action).<br>
 	 * Previously this was executed directly by service and though this is still supported it's deprecated.<br>
 	 * The issue with sending intents to service is foreground processing, which on current Androids 8-10 can't be 100% reliable processed and may cause unexpected ANR errors<br>
@@ -129,17 +165,6 @@ public final class PowerampAPI {
 	 */
 	public static final String ACTION_API_COMMAND = "com.maxmpz.audioplayer.API_COMMAND";
 	
-	/**
-	 * Poweramp Control action. This is received by activity and then redirected to service.
-	 * As it's an activity which is the target of this action, it may be used in the intents where no service target is possible
-	 * Extras:<br>
-	 * {@code int cmd} - command to execute. See {@link #COMMAND}, 
-	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes
-	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes
-	 * @since 854
-	 */
-	//public static final String ACTION_API_COMMAND_VIA_ACT = "com.maxmpz.audioplayer.API_COMMAND_VIA_ACT";
-
 	/**
 	 * Poweramp package name.<br>
 	 * NOTE: some Poweramp editions may have different package name (e.g. com.maxmpz.audioplayer.huawei)
@@ -156,16 +181,17 @@ public final class PowerampAPI {
 	public static final String PLAYER_SERVICE_NAME = "com.maxmpz.audioplayer.player.PlayerService";
 
 	/**
-	 * Poweramp API receiver name. This is now preferable target of all command intents.
+	 * Poweramp API broadcast receiver name. This is now a preferable target of all command intents as it's free from background service limitation issues
 	 * @since 855
 	 */
 	public static final String API_RECEIVER_NAME = "com.maxmpz.audioplayer.player.PowerampAPIReceiver";
 
 	/**
-	 * Poweramp API activity name. Can be used for intents which can't be sent as broadcast, where activity target is required
+	 * Poweramp API activity name. Can be used for intents which can't be sent as broadcast, where activity target is required.<br>
+	 * Supports {@link #ACTION_API_COMMAND}, {@link Scanner#ACTION_SCAN_DIRS}, {@link Scanner#ACTION_SCAN_TAGS}  
 	 * @since 855
 	 */
-	public static final String API_ACTIVITY_NAME = "com.maxmpz.audioplayer.player.PowerampAPIActivity";
+	public static final String API_ACTIVITY_NAME = "com.maxmpz.audioplayer.PowerampAPIActivity";
 
 	/**
 	 * Poweramp service ComponentName
@@ -275,6 +301,7 @@ public final class PowerampAPI {
 		 * {@code int pos} - seek position in seconds
 		 */
 		public static final int SEEK = 15;
+		
 		/**
 		 * Request for Poweramp current track position. In response, {@link #ACTION_TRACK_POS_SYNC} is sent
 		 */
@@ -638,7 +665,8 @@ public final class PowerampAPI {
 	public static final String TABLE = "table";
 
 	/**
-	 * Poweramp track changed.<br>
+	 * Sent by Poweramp to your app<br>
+	 * Poweramp track changed intent<br>
 	 * Sticky intent (can be queried for permanently stored data).<br><br>
 	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br>
 	 * Use *_EXPLICIT version to receive this action in background app.<br><br>
@@ -650,6 +678,7 @@ public final class PowerampAPI {
 	public static final String ACTION_TRACK_CHANGED = "com.maxmpz.audioplayer.TRACK_CHANGED";
 
 	/**
+	 * Sent by Poweramp to your app<br>
 	 * This is explicit intent sent to your app to ensure it receives it on Android 8+ (with background execution limitations).<br>
 	 * Differs from ACTION_TRACK_CHANGED which is sticky intent which won't be received by your app in the background.<br><br>
 	 *
@@ -665,6 +694,7 @@ public final class PowerampAPI {
 	public static final String ACTION_TRACK_CHANGED_EXPLICIT = "com.maxmpz.audioplayer.TRACK_CHANGED_EXPLICIT";
 
 	/**
+	 * Sent by Poweramp to your app<br>
 	 * Album art was changed. Album art can be the same for whole album/folder, thus usually it will be updated less frequently comparing to TRACK_CHANGE.
 	 * If both aaPath and aaBitmap extras are missing that means no album art exists for the current track(s).<br>
 	 * Note that there is no direct Album Art to track relation, i.e. both track and album art can change independently from each other -
@@ -679,6 +709,7 @@ public final class PowerampAPI {
 	public static final String ACTION_AA_CHANGED = "com.maxmpz.audioplayer.AA_CHANGED";
 
 	/**
+	 * Sent by Poweramp to your app<br>
 	 * Poweramp playing state changed (paused/resumed/ended).<br>
 	 * Sticky intent (can be queried for permanently stored data).<br><br>
 	 *
@@ -697,6 +728,7 @@ public final class PowerampAPI {
 
 
 	/**
+	 * Sent by Poweramp to your app<br>
 	 * This is explicit intent sent to your app to ensure it receives it on Android 8+ (with background execution limitations).
 	 * Differs from ACTION_STATUS_CHANGED which is sticky intent which won't be received by your app in the background.<br><br>
 	 * NOTE: this works only with the receivers registered via AndroidManifest.xml<br><br>
@@ -714,13 +746,16 @@ public final class PowerampAPI {
 	public static final String ACTION_STATUS_CHANGED_EXPLICIT = "com.maxmpz.audioplayer.STATUS_CHANGED_EXPLICIT";
 
 	/**
+	 * Sent by Poweramp to your app<br>
 	 * NON sticky intent<br>
+	 * Sent by Poweramp to your app<br>
 	 * Extras:<br>
 	 * {@code int pos} - current in-track position in seconds
 	 */
 	public static final String ACTION_TRACK_POS_SYNC = "com.maxmpz.audioplayer.TPOS_SYNC";
 
 	/**
+	 * Sent by Poweramp to your app<br>
 	 * Poweramp repeat or shuffle mode changed.<br>
 	 * Sticky intent (can be queried for permanently stored data).<br><br>
 	 *
@@ -735,6 +770,7 @@ public final class PowerampAPI {
 	public static final String ACTION_PLAYING_MODE_CHANGED = "com.maxmpz.audioplayer.PLAYING_MODE_CHANGED";
 
 	/**
+	 * Sent by Poweramp to your app<br>
 	 * Poweramp equalizer settings changed.<br>
 	 * Sticky intent (can be queried for permanently stored data).<br><br>
 	 *
@@ -753,40 +789,54 @@ public final class PowerampAPI {
 	public static final String ACTION_EQU_CHANGED = "com.maxmpz.audioplayer.EQU_CHANGED";
 
 	/**
-	 * Opens a category list for the current track, or library - if no track is loaded
+	 * Sent by your app to Poweramp<br>
+	 * Opens a category list for the current track, or library - if no track is loaded<br>
+	 * Should be sent with Context.startActivity
 	 */
 	public static final String ACTION_SHOW_CURRENT = "com.maxmpz.audioplayer.ACTION_SHOW_CURRENT";
 
 	/**
-	 * Opens library
-	 * @deprecated. Use ACTION_OPEN_LIBRARY
+	 * Sent by your app to Poweramp<br>
+	 * Opens library<br>
+	 * Should be sent with Context.startActivity
+	 * @deprecated. Use {@link #ACTION_OPEN_LIBRARY}
 	 */
 	@Deprecated
 	public static final String ACTION_SHOW_LIST = "com.maxmpz.audioplayer.ACTION_SHOW_LIST";
 
 	/**
-	 * Opens library
+	 * Sent by your app to Poweramp<br>
+	 * Opens library<br>
+	 * Should be sent with Context.startActivity
 	 */
 	public static final String ACTION_OPEN_LIBRARY = "com.maxmpz.audioplayer.ACTION_OPEN_LIBRARY";
 
 	/**
-	 * Opens search
+	 * Sent by your app to Poweramp<br>
+	 * Opens search<br>
+	 * Should be sent with Context.startActivity
 	 */
 	public static final String ACTION_OPEN_SEARCH = "com.maxmpz.audioplayer.ACTION_OPEN_SEARCH";
 
 	/**
-	 * Opens equalizer screen
+	 * Sent by your app to Poweramp<br>
+	 * Opens equalizer screen<br>
+	 * Should be sent with Context.startActivity
 	 * @see #EXTRA_EQ_TAB
 	 */
 	public static final String ACTION_OPEN_EQ = "com.maxmpz.audioplayer.ACTION_OPEN_EQ";
 
 	/**
-	 * Opens main screen
+	 * Sent by your app to Poweramp<br>
+	 * Opens main screen<br>
+	 * Should be sent with Context.startActivity
 	 */
 	public static final String ACTION_OPEN_MAIN = "com.maxmpz.audioplayer.ACTION_OPEN_MAIN";
 	
 	/**
+	 * Sent by your app to Poweramp<br>
 	 * Grants sender a permission for content provider data access<br>
+	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME} with the appropriate methods (sendBroadcast, startActivity)
 	 * Extras:<br>
 	 * {@code String package} - the package name of app trying to get access<br>
 	 * @since 797
@@ -794,7 +844,9 @@ public final class PowerampAPI {
 	public static final String ACTION_ASK_FOR_DATA_PERMISSION = "com.maxmpz.audioplayer.ACTION_ASK_FOR_DATA_PERMISSION";
 
 	/**
+	 * Sent by your app to Poweramp<br>
 	 * Forces Poweramp UI and PlayerService to reload data from DB<br>
+	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME} with the appropriate methods (sendBroadcast, startActivity)
 	 * Extras:<br>
 	 * {@code String package} - the package name of app asking for the reload
 	 * {@code String table} - the changed table, e.g. "playlists", "queue". Gives Poweramp a hint regarding data reloading, e.g. when queue is changed, queue UI stats should be probably updated
@@ -810,7 +862,9 @@ public final class PowerampAPI {
 	public static final String DATA = "data";
 
 	/**
+	 * Sent by your app to Poweramp<br>
 	 * Poweramp native plugin command<br>
+	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME}, or {@link #PLAYER_SERVICE_NAME} with the appropriate methods (sendBroadcast, startActivity, startService)
 	 * Extras:<br>
 	 * {@code String pak} - plugin package (see PACKAGE)<br>
 	 * {@code int cmd} - some dsp unique command. cmd should be >= 0 (see COMMAND)<br>
@@ -820,10 +874,20 @@ public final class PowerampAPI {
 	 * @see PowerampAPI#COMMAND
 	 */
 	public static final String ACTION_NATIVE_PLUGIN_COMMAND = "com.maxmpz.audioplayer.NATIVE_PLUGIN_COMMAND";
-
+	
+	/**
+	 * Sent by your app to Poweramp<br>
+	 * Generic search command<br>
+	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME}, or {@link #ACTIVITY_STARTUP}, or {@link #PLAYER_SERVICE_NAME} with the appropriate methods (sendBroadcast, startActivity, startService)
+	 * Extras:<br>
+	 * @see https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH
+	 * @since 853
+	 */
+	public static final String INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH = android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
 
 	/**
-	 * Poweramp initiated broadcast. Sent by Poweramp when it loads/reloads its audio kernel and loads plugin.<br>
+	 * Sent by Poweramp to your app.<br>
+	 * Sent when Poweramp loads/reloads its audio engine and loads the plugin.<br>
 	 * In response, plugin apps should send NATIVE_PLUGIN_COMMAND to Poweramp with the initial or restored plugin parameters.<br>
 	 * Extras:<br>
 	 * {@code int api} - Poweramp API version
@@ -857,8 +921,8 @@ public final class PowerampAPI {
 	public static final String ACTIVITY_SETTINGS = "com.maxmpz.audioplayer.preference.SettingsActivity";
 
 	/**
-	 * Poweramp startup activity. This activity always tries to pass incoming intent to main activity. Calling StartupActivity instead of main activity is preferable due
-	 * to activity animation and possible first-run setup
+	 * Poweramp startup activity. This activity always tries to pass incoming intent to the main activity. Calling StartupActivity instead of main activity is preferred due
+	 * to the activity animation and possible first time run setup
 	 */
 	public static final String ACTIVITY_STARTUP = "com.maxmpz.audioplayer.StartupActivity";
 
@@ -1454,6 +1518,7 @@ public final class PowerampAPI {
 	public static final class Scanner {
 
 		/**
+		 * Sent by your app to Poweramp.<br>
 		 * Poweramp Scanner action.<br><br>
 		 *
 		 * Poweramp Scanner scanning process is 2 step:<br>
@@ -1495,6 +1560,7 @@ public final class PowerampAPI {
 		public static final String ACTION_SCAN_DIRS = "com.maxmpz.audioplayer.ACTION_SCAN_DIRS";
 
 		/**
+		 * Sent by your app to Poweramp.<br>
 		 * Poweramp Scanner action.<br>
 		 * Secondary action, only checks songs with TAG_STATUS set to TAG_NOT_SCANNED. Useful for rescanning just songs (which are already in Poweramp DB) with editied file tag info.<br><br>
 		 *
@@ -1507,36 +1573,47 @@ public final class PowerampAPI {
 
 
 		/**
+		 * Sent by Poweramp to your app.<br>
 		 * Broadcast<br>
 		 * Poweramp Scanner started folders scan<br>
 		 * Sticky intent (can be queried for permanently stored data)<br>
 		 */
 		public static final String ACTION_DIRS_SCAN_STARTED = "com.maxmpz.audioplayer.ACTION_DIRS_SCAN_STARTED";
+
 		/**
+		 * Sent by Poweramp to your app.<br>
 		 * Broadcast<br>
 		 * Poweramp Scanner finished folders scan<br>
 		 */
 		public static final String ACTION_DIRS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_DIRS_SCAN_FINISHED";
+
 		/**
+		 * Sent by Poweramp to your app.<br>
 		 * Broadcast<br>
 		 * Poweramp Scanner started tag scan<br>
 		 * Sticky intent (can be queried for permanently stored data)
 		 */
 		public static final String ACTION_TAGS_SCAN_STARTED = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_STARTED";
+
 		/**
+		 * Sent by Poweramp to your app.<br>
 		 * Broadcast<br>
 		 * @Deprecated not used anymore
 		 */
 		@Deprecated
 		public static final String ACTION_TAGS_SCAN_PROGRESS = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_PROGRESS";
+
 		/**
+		 * Sent by Poweramp to your app.<br>
 		 * Broadcast<br>
 		 * Poweramp Scanner finished tag scan<br>
 		 * Extras:<br>
 		 * {@code boolean track_content_changed} - true if at least on track has been scanned, false if no tags scanned (probably, because all files are up-to-date)
 		 */
 		public static final String ACTION_TAGS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_FINISHED";
+
 		/**
+		 * Sent by Poweramp to your app.<br>
 		 * Broadcast<br>
 		 * Poweramp Scanner finished fast tag scan. Only fired when ACTION_SCAN_TAGS is called with extra fastScan = true<br>
 		 * Extras:<br>
@@ -1628,17 +1705,21 @@ public final class PowerampAPI {
 	 */
 	public static final class Settings {
 		/**
+		 * Sent by your app to Poweramp.<br>
 		 * Exports Poweramp settings
+		 * @since 862
 		 */
 		public static final String ACTION_EXPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_EXPORT_SETTINGS";
 
 		/**
+		 * Sent by your app to Poweramp.<br>
 		 * Imports Poweramp settings
+		 * @since 862
 		 */
 		public static final String ACTION_IMPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_IMPORT_SETTINGS";
 
 		/**
-		 * Extra<br>
+		 * Extra for {@link #ACTION_EXPORT_SETTINGS}, {@link #ACTION_IMPORT_SETTINGS}<br>
 		 * {@code boolean} if true, UI may be shown for import / export errors, otherwise import / export may fail silently
 		 */
 		public static final String EXTRA_UI = "ui";

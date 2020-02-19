@@ -58,13 +58,26 @@ Poweramp categorizes provider tracks the same way it does that for the usual fil
 to the tags/track metadata, playlists and playlist stream entries are available in the Playlist and Streams categories.
 
 ### URL Tracks
-Poweramp looks for non-standard TrackProviderConsts.COLUMN_URL column in provider returned cursors. If url exists, the track is assumed to be remote file or stream.
-Either it's processed as stream (no duration, non seekable) or remote file (duration and seekable), depends on MediaStore.MediaColumns.DURATION for given track:
-DURATION <= 0 defines track as a stream.
+Poweramp supports static and dynamic URL tracks, which can be streams or just remote or proxied track files.
+
+Poweramp looks for non-standard `TrackProviderConsts.COLUMN_URL` column in the provider returned cursor. If some url exists, the track is assumed to be remote file or stream.
+Either it's processed as stream (no duration, non seekable) or remote file (duration and seekable), depends on `MediaStore.MediaColumns.DURATION` for given track:
+`DURATION` <= 0 defines track as a stream.
+
+Static URL track has URL defined once when provider is scanned by Poweramp for tracks. URL then is used as is to open the track.
+You still need to provide `TrackProviderConsts.COLUMN_URL` with special value
+Poweramp doesn't do openDocument in this case.
+
+Dynamic URL tracks force Poweramp to query actual URL to use when given track is started in Poweramp. Poweramp does additional call with method `TrackProviderConsts.CALL_GET_URL`.
+See [ExampleProvider.java around line 511](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L551) for the example method implementation.
+
+For URL Tracks with the duration, Poweramp will try to pre-scan it for seek-wave. As this can increase traffic and server load, you can disable this with `TrackProviderConsts.COLUMN_TRACK_WAVE`
+set to float array with zero size: `new float[0]`.
 
 Note, at this moment streamed URL tracks (without duration) are shown by Poweramp in appropriate Folders Hierarchy in your provider folders. This is different vs Poweramp scanned
-m3u8 playlists, where streams only visible in Streams, Playlists (incl. smart playlists), and Queue categories.  
+m3u8 playlists, where streams only visible in Streams, Playlists (incl. smart playlists), and Queue categories.
 Provider stream tracks also shown in appropriate Album/Artist/Genre/etc. categories
+
 
 ### Metadata And Album Art
 Poweramp supports 2 approaches to provider track metadata (tags) and album art:
@@ -74,30 +87,47 @@ Poweramp supports 2 approaches to provider track metadata (tags) and album art:
 
 #### Metadata And Album Art Provided By Provider
 
-See DEFAULT_TRACK_AND_METADATA_PROJECTION in [ExampleProvider.java around line 74](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L74).
+See `DEFAULT_TRACK_AND_METADATA_PROJECTION` in [ExampleProvider.java around line 74](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L74).
 
-If MediaStore.MediaColumns.TITLE or MediaStore.MediaColumns.DURATION columns exist in the resulting cursor, Poweramp assumes metadata is provided by the Provider and track is not scanned
+If `MediaStore.MediaColumns.TITLE` or `MediaStore.MediaColumns.DURATION` columns exist in the resulting cursor, Poweramp assumes metadata is provided by the Provider and track is not scanned
 for the tags or the album art.
 
-In this case album art image is retrieved if Document.COLUMN_FLAGS column has Document.FLAG_SUPPORTS_THUMBNAIL flag.
+In this case album art image is retrieved if `Document.COLUMN_FLAGS` column has `Document.FLAG_SUPPORTS_THUMBNAIL` flag.
 
-Poweramp then requests album art via openDocumentThumbnail. See [ExampleProvider.java around line 258](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L258)
+Poweramp then requests album art via `openDocumentThumbnail`. See [ExampleProvider.java around line 258](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L258)
+
+Lyrics can be also provided via `TrackProviderConsts.COLUMN_TRACK_LYRICS`.
 
 #### Metadata And Album Art From Track File
 
-If MediaStore.MediaColumns.TITLE or/and MediaStore.MediaColumns.DURATION are missing from the resulting cursor, Poweramp assumes no metadata is provided and tries to open track file and
+If `MediaStore.MediaColumns.TITLE` or/and `MediaStore.MediaColumns.DURATION` are missing from the resulting cursor, Poweramp assumes no metadata is provided and tries to open track file and
 scan tags / retrieve embedded album art.
+
+
+### Track Wave
+
+Poweramp uses up to 100 float track amplitude values (-1.0 .. 1.0 range) to show "seek wave" - rough approximation of the track volume over the track duration.
+The wave values can be passed by Provider along other metainformation in case the metainformation is provided by Provider.
+
+Send 100 float values in range -1.0 .. 1.0 as float[] or byte[] array in `TrackProviderConsts.COLUMN_TRACK_WAVE` column.
+If array size is 0, Poweramp assumes default wave (same as used for Streams) is required.
+If array size is not 100, Poweramp will resample that to 100 values internally.
+
+You can send either float[] array (easier to manipulate/generate) or byte[] array (float array represented as bytes, easier to store/retrieve as BLOB in/from the database).  
+See [TrackProviderHelper.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderHelper.java#L13) for `bytesToFloats`, `floatsToBytes` methods if you need to convert
+from one format to the another.
+
 
 ### Roots
 
-For your Provider to be selectable in the Android system picker, the roots should have Root.FLAG_SUPPORTS_IS_CHILD flag set. Also, isChildDocument method should be overridden and, at least,
-it should return true or do a full documentid hierarchy check as needed.
+For your Provider to be selectable in the Android system picker, the roots should have `Root.FLAG_SUPPORTS_IS_CHILD` flag set. Also, `isChildDocument` method should be overridden and, at least,
+it should return true or do a full documentId hierarchy check as needed.
 
 See [ExampleProvider.java around line 126](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L126).
 
 ### Data Refresh
 
-Poweramp handles this automatically based on the Document.COLUMN_LAST_MODIFIED column for the folders and files. Data is refreshed on app first start, or when appropriate event or intent received  
+Poweramp handles this automatically based on the `Document.COLUMN_LAST_MODIFIED` column for the folders and files. Data is refreshed on app first start, or when appropriate event or intent received  
 (see [Scanner intents in PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1454)), etc.
 
 This is configurable in the Poweramp settings: for example, only manual rescan may work depending on settings.
@@ -114,5 +144,5 @@ Poweramp will issue standard delete call when user tries to delete one or multip
 ### Provider Crashes
 
 Android closes client apps "connected" to your Provider if your Provider process crashes. That means even minor exception in the Provider may cause complete unexpected Poweramp shutdown.  
-To avoid that, wrap your Provider public methods with try/catch(Throwable) with the appropriate logging.
-Note that you still need to throw checked exceptions, such as FileNotFoundException from openDocumentThumbnail.
+To avoid that, wrap your Provider public methods with `try/catch(Throwable)` with the appropriate logging.
+Note that you still need to throw checked exceptions, such as `FileNotFoundException` from `openDocumentThumbnail`.
