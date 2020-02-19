@@ -46,4 +46,28 @@ public class TrackProviderConsts {
 	 * String
 	 */
 	public static final String COLUMN_URL = "url";
+
+	/**
+	 * Column for optional lyrics<br>
+	 * String
+	 */
+	public static final String COLUMN_TRACK_LYRICS = "lyrics";
+
+	/**
+	 * Column for track wave<br>
+	 * float[] array of size 0..100 saved as bytes, if size == 0 no further attempt to scan track wave will happen.
+	 */
+	public static final String COLUMN_TRACK_WAVE = "track_wave";
+
+
+	/**
+	 * Special value for #COLUMN_URL to use with dynamic url - an url which is dynamically retrieved at the moment of playback with #CALL_GET_URL
+	 */
+	public static final String DYNAMIC_URL = "__dynamic_url";
+
+	/**
+	 * Method name for DocumentProvider.call - used to retrieve actual dynamic url for given track
+	 */
+	public static final String CALL_GET_URL = "com.maxmpz.audioplayer:get_url";
+
 }
