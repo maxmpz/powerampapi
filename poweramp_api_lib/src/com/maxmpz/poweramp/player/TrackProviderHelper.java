@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import org.eclipse.jdt.annotation.NonNull;
 
+/**
+ * Some useful track provider related helper methods
+ */
 public class TrackProviderHelper {
 	private static final String TAG = "TrackProviderHelper";
 	private static final boolean LOG = false;

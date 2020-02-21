@@ -27,17 +27,26 @@ import androidx.annotation.Nullable;
 
 import com.maxmpz.poweramp.player.TrackProviderConsts;
 import com.maxmpz.poweramp.player.TrackProviderHelper;
+import com.maxmpz.poweramp.player.TrackProviderProto;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.channels.FileChannel;
 import java.util.Arrays;
 import java.util.Objects;
 
-
+/**
+ * Example provider demonstrating:
+ * - providing tracks hierarchy for the Poweramp scanner
+ * - providing tracks via direct file discriptor and via seekable socket protocol
+ */
 public class ExampleProvider extends DocumentsProvider {
 	private static final String TAG = "ExampleProvider";
 	private static final boolean LOG = true;
@@ -50,10 +59,13 @@ public class ExampleProvider extends DocumentsProvider {
 
 	/** Link to mp3 track to demonstrate http track with the duration */
 	private static final String DUBSTEP_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-dubstep.mp3";
+
 	/** Link to mp3 track to demonstrate http track with the duration */
 	private static final String SUMMER_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-summer.mp3";
+
 	/** Docid suffix for static url tracks */
 	private static final String DOCID_STATIC_URL_SUFFIX = ".url";
+
 	/** Docid suffix for dynamic url tracks */
 	private static final String DOCID_DYNAMIC_URL_SUFFIX = ".dynamicurl";
 
@@ -102,7 +114,7 @@ public class ExampleProvider extends DocumentsProvider {
 			Document.COLUMN_SIZE,
 
 			MediaStore.MediaColumns.TITLE,
-			MediaStore.MediaColumns.DURATION,
+			MediaStore.Audio.AudioColumns.DURATION,
 			MediaStore.Audio.AudioColumns.ARTIST,
 			MediaStore.Audio.AudioColumns.ALBUM,
 			MediaStore.Audio.AudioColumns.YEAR,
@@ -136,7 +148,8 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 
 		if(USE_MP3_COPY) {
-			// Extract our mp3s to storage as Poweramp won't properly play asset apk fd (fd points to apk itself, so Poweramp tries to play apk file, basically playing first found mp3 from it)
+			// Extract our mp3s to storage as Poweramp won't properly play asset apk fd (fd points to apk itself, so Poweramp tries to play the apk file itself,
+			// basically playing first found mp3 from it)
 			File dir = getContext().getFilesDir();
 			copyAsset("bensound-dubstep.mp3", dir, false);
 			copyAsset("bensound-summer.mp3", dir, false);
@@ -219,9 +232,10 @@ public class ExampleProvider extends DocumentsProvider {
 				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
 				int trackNum = extractTrackNum(documentId);
 				if(documentId.contains("dubstep")) {
-					fillURLRow(documentId, c.newRow(), DUBSTEP_HTTP_URL, DUBSTEP_SIZE, "Dubstep", trackNum == 1 ? 0 : DUBSTEP_DURATION, true, true); // Send wave
+					fillURLRow(documentId, c.newRow(), DUBSTEP_HTTP_URL, DUBSTEP_SIZE, "Dubstep", trackNum == 1 ? 0 : DUBSTEP_DURATION, true, true, true); // Send wave
 				} else {
-					fillURLRow(documentId, c.newRow(), SUMMER_HTTP_URL, SUMMER_SIZE, "Summer", trackNum == 1 ? 0 : SUMMER_DURATION, true, false); // No wave
+					boolean emptyWave = trackNum < 4; // 1..4 summer tracks with empty wave, for the others - allow Poweramp to scan them
+					fillURLRow(documentId, c.newRow(), SUMMER_HTTP_URL, SUMMER_SIZE, "Summer", trackNum == 1 ? 0 : SUMMER_DURATION, true, false, emptyWave);
 				}
 				return c;
 
@@ -232,9 +246,10 @@ public class ExampleProvider extends DocumentsProvider {
 				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
 				int trackNum = extractTrackNum(documentId);
 				if(documentId.contains("dubstep")) {
-					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, DUBSTEP_SIZE, "Dubstep", DUBSTEP_DURATION, true, true); // Send wave
+					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, DUBSTEP_SIZE, "Dubstep", DUBSTEP_DURATION, true, true, true); // Send wave
 				} else {
-					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, SUMMER_SIZE, "Summer", SUMMER_DURATION, true, false); // No wave
+					boolean emptyWave = trackNum < 4; // 1..4 summer tracks with empty wave, for the others - allow Poweramp to scan them
+					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, SUMMER_SIZE, "Summer", SUMMER_DURATION, true, false, emptyWave);
 				}
 				return c;
 
@@ -242,8 +257,10 @@ public class ExampleProvider extends DocumentsProvider {
 				// We are adding metadata for root2 and check if it's actually requested as a small optimization (which can be big if track metadata retrieval requires additional processing)
 				boolean addMetadata = documentId.startsWith("root2/") && projection != null && arrayContains(projection, MediaStore.MediaColumns.TITLE);
 				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
+
 				boolean addLyrics = projection != null && arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_LYRICS);
-				fillTrackRow(documentId, c.newRow(), addMetadata, addMetadata, addLyrics); // Adding wave as well to root2 tracks
+				boolean sendWave = documentId.contains("dubstep") && projection != null && arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_WAVE);
+				fillTrackRow(documentId, c.newRow(), addMetadata, sendWave, addLyrics); // Adding wave as well to root2 tracks
 				return c;
 
 			} else if(documentId.endsWith(".m3u")) { // Seems like a playlist
@@ -264,7 +281,7 @@ public class ExampleProvider extends DocumentsProvider {
 	}
 
 	private void fillURLRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, @NonNull String url, long size, @NonNull String title,
-	                        long duration, boolean sendMetadata, boolean sendWave
+	                        long duration, boolean sendMetadata, boolean sendWave, boolean sendEmptyWave
 	) {
 		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
@@ -276,11 +293,11 @@ public class ExampleProvider extends DocumentsProvider {
 		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
 		// Optional, real provider should preferable return real track file size here or 0
 		row.add(Document.COLUMN_SIZE, size);
-		// Setting this will cause Poweramp to ask for track album art via getDocumentThumbnail, but only if other metadata (MediaStore.MediaColumns.TITLE/MediaStore.MediaColumns.DURATION) exists
+		// Setting this will cause Poweramp to ask for the track album art via getDocumentThumbnail, but only if other metadata (MediaStore.MediaColumns.TITLE/MediaStore.MediaColumns.DURATION) exists
 		row.add(Document.COLUMN_FLAGS, Document.FLAG_SUPPORTS_THUMBNAIL);
 
 		row.add(TrackProviderConsts.COLUMN_URL, url);
-		row.add(MediaStore.MediaColumns.DURATION, duration); // Milliseconds, long. If duration <= 0, this is endless non-seekable stream (e.g. radio)
+		row.add(MediaStore.Audio.AudioColumns.DURATION, duration); // Milliseconds, long. If duration <= 0, this is endless non-seekable stream (e.g. radio)
 
 		if(sendMetadata) { // NOTE: Poweramp doesn't need extra metadata (except COLUMN_URL/DURATION for streams) for queryDocuments, but requires that for queryDocument
 			if(TrackProviderConsts.DYNAMIC_URL.equals(url)) {
@@ -312,10 +329,10 @@ public class ExampleProvider extends DocumentsProvider {
 			row.add(TrackProviderConsts.COLUMN_BITS_PER_SAMPLE, 16);
 			if(sendWave && duration > 0) {
 				row.add(TrackProviderConsts.COLUMN_TRACK_WAVE, TrackProviderHelper.floatsToBytes(genRandomWave())); // We must put byte[] array here
-			} else {
-				// Add this if you don't want your URL to be pre-scanned for wave-seek
+			} else if(sendEmptyWave) {
+				// Add this for the default waveseek if you don't want URL to be downloaded one more time and scanned for the wave
 				row.add(TrackProviderConsts.COLUMN_TRACK_WAVE, new byte[0]);
-			}
+			} // Else we allow Poweramp to scan URL for wave
 		}
 	}
 
@@ -355,22 +372,29 @@ public class ExampleProvider extends DocumentsProvider {
 		// As our assets data is always static, we just return own apk installation time. For real folder structure, preferable last modified for given folder should be returned.
 		// This ensures Poweramp incremental scanning process. If we return <= 0 value here, Poweramp will be forced to rescan whole provider hierarchy each time it scans
 		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
-		// Optional, real provider should preferable return real track file size here or 0
+		// Optional, real provider should preferable return real track file size here or 0.
 		row.add(Document.COLUMN_SIZE, getAssetFileSize(getContext().getResources().getAssets(), documentId));
 
-		if(addMetadata) { // NOTE: Poweramp doesn't need extra metadata (except COLUMN_URL/DURATION for streams) for queryDocuments, but requires that for queryDocument
-			// Setting this will cause Poweramp to ask for track album art via getDocumentThumbnail, but only if other metadata (MediaStore.MediaColumns.TITLE/MediaStore.MediaColumns.DURATION) exists
-			row.add(Document.COLUMN_FLAGS, Document.FLAG_SUPPORTS_THUMBNAIL);
+		// NOTE: Poweramp doesn't need extra metadata (except COLUMN_URL/DURATION for streams) for queryDocuments,
+		// but requires that for queryDocument for tracks, which are not direct fd. Direct fd tracks still can be quickly scanned by Poweramp, but
+		// socket/pipe/url tracks won't be scanned and thus metadata is required for them
 
+		if(addMetadata) {
 			// Some dump tags logic - as we have 2 static files here as an example, but they have docId like dubstep1.mp3, summer2.mp3, etc.
 			// Real provider should get this info from network or extract from the file
 			boolean isDubstep = documentId.contains("dubstep");
 			String prefix = isDubstep ? "Dubstep " : "Summer ";
 			int trackNum = extractTrackNum(documentId);
 
+			int flags = 0;
+
+			// Setting this will cause Poweramp to ask for track album art via getDocumentThumbnail, but only if other metadata (MediaStore.MediaColumns.TITLE/MediaStore.MediaColumns.DURATION) exists
+			flags |= Document.FLAG_SUPPORTS_THUMBNAIL;
+
+			row.add(Document.COLUMN_FLAGS, flags);
 			row.add(MediaStore.MediaColumns.TITLE, prefix + "Track " + trackNum);
 			row.add(MediaStore.Audio.AudioColumns.ARTIST, prefix + "Artist");
-			row.add(MediaStore.MediaColumns.DURATION, isDubstep ? 125000L : 217000L); // Milliseconds, long
+			row.add(MediaStore.Audio.AudioColumns.DURATION, isDubstep ? 125000L : 217000L); // Milliseconds, long
 			row.add(MediaStore.Audio.AudioColumns.ALBUM, prefix + "Album");
 			row.add(MediaStore.Audio.AudioColumns.YEAR, isDubstep ? 2020 : 2019); // Integer
 			row.add(TrackProviderConsts.COLUMN_ALBUM_ARTIST, prefix + "Album Artist");
@@ -394,8 +418,6 @@ public class ExampleProvider extends DocumentsProvider {
 			if(sendLyrics) {
 				row.add(TrackProviderConsts.COLUMN_TRACK_LYRICS, "La la la\nLyrics for track " + prefix + "Track " + trackNum);
 			}
-
-
 		}
 	}
 
@@ -430,7 +452,7 @@ public class ExampleProvider extends DocumentsProvider {
 			// - parent folder lastModified changed
 			// - full rescan required by user or external intent
 
-			int count = 1 + (int) Math.round(Math.random() * 19.0);
+			int count = 3 + (int) Math.round(Math.random() * 19.0);
 
 			String docId;
 
@@ -445,7 +467,7 @@ public class ExampleProvider extends DocumentsProvider {
 						DUBSTEP_SIZE,
 						null, // NOTE: titles not sent here
 						DUBSTEP_DURATION,
-						false, false);
+						false, false, false); // Not sending metadata here
 
 				docId = parentDocumentId + "/" + "summer" + "-" + 2 + DOCID_DYNAMIC_URL_SUFFIX;
 				fillURLRow(docId, c.newRow(),
@@ -453,7 +475,7 @@ public class ExampleProvider extends DocumentsProvider {
 						SUMMER_SIZE,
 						null, // NOTE: titles not sent here
 						SUMMER_DURATION,
-						false, false);
+						false, false, false); // Not sending metadata here
 
 				// And fill with random number of http links to the tracks
 				for(int i = 0; i < count; i++) {
@@ -464,7 +486,8 @@ public class ExampleProvider extends DocumentsProvider {
 							isDubstep ? DUBSTEP_HTTP_URL : SUMMER_HTTP_URL,
 							isDubstep ? DUBSTEP_SIZE : SUMMER_SIZE,
 							null, // NOTE: titles not sent here
-							isStream ? 0 : (isDubstep ? DUBSTEP_DURATION : SUMMER_DURATION), false, false);
+							isStream ? 0 : (isDubstep ? DUBSTEP_DURATION : SUMMER_DURATION),
+							false, false, false);
 				}
 
 			} else {
@@ -485,6 +508,7 @@ public class ExampleProvider extends DocumentsProvider {
 		return null;
 	}
 
+	/** Send album art for tracks with track-provided metadata */
 	@Override
 	public AssetFileDescriptor openDocumentThumbnail(String documentId, Point sizeHint, CancellationSignal signal) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "openDocumentThumbnail documentId=" + documentId + " sizeHint=" + sizeHint);
@@ -502,34 +526,156 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 	}
 
+	/** Send actual track data as direct file descriptor or seekable socket protocol */
 	@Override
 	public ParcelFileDescriptor openDocument(String documentId, String mode, CancellationSignal signal) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "openDocument documentId=" + documentId + " mode=" + mode);
 		int accessMode = ParcelFileDescriptor.parseMode(mode);
 		if((accessMode & ParcelFileDescriptor.MODE_READ_ONLY) == 0) throw new IllegalAccessError("documentId=" + documentId + " mode=" + mode);
-		String filePath;
 
+		// Poweramp provides CancellationSignal, so we may want to check that on open and periodically (for example, in case of using pipe here)
+		if(signal != null) {
+			signal.throwIfCanceled();
+		}
+
+		String filePath;
+		boolean isDubstep = documentId.contains("dubstep");
 		if(documentId.endsWith(".m3u8")) {
 			filePath = "streams-playlist.m3u8";
 
 		} else if(documentId.endsWith(".mp3")) {
-			boolean isDubstep = documentId.contains("dubstep");
 			filePath = isDubstep ? "bensound-dubstep.mp3" : "bensound-summer.mp3"; // We only have 2 real mp3s here for many "virtual" tracks
 
-		} else if(documentId.endsWith(DOCID_STATIC_URL_SUFFIX)) {
-
-			try {
-				ParcelFileDescriptor pfd = ParcelFileDescriptor.fromFd(0);
-				pfd.detachFd();
-				return pfd;
-			} catch(IOException ex) {
-				Log.e(TAG, documentId, ex);
-				return null;
+			// Let's send root2 "dubstep" via seekable socket and other files - via direct fd. Don't do this for root1 where no metadata given and Poweramp expects direct fd tracks
+			if(documentId.startsWith("root2/") && documentId.endsWith(".mp3") && documentId.contains("dubstep")) {
+				return openViaSeekableSocket(documentId, filePath, signal);
 			}
 		} else throw new FileNotFoundException(documentId);
 
-		// NOTE: we can't open in any write modes here, so we always open in read mode and ignore write modes
+		return openViaDirectFD(documentId, filePath);
+	}
 
+	private ParcelFileDescriptor openViaSeekableSocket(final String documentId, String filePath, final CancellationSignal signal) throws FileNotFoundException {
+		if(LOG) Log.w(TAG, "openViaSeekableSocket documentId=" + documentId + " filePath=" + filePath);
+		try {
+			final ParcelFileDescriptor[] fds = ParcelFileDescriptor.createSocketPair();
+			final File file = new File(getContext().getFilesDir(), filePath);
+			final long fileLength = file.length();
+
+			// NOTE: it's not possible to use timeouts on this side of the socket as Poweramp may open and hold the socket for an indefinite time while in the paused state
+
+			new Thread(new Runnable() {
+				public void run() {
+					// NOTE: we can use arbitrary buffer size here >0, but increasing buffer will increase non-seekable "window" at the end of file
+					// Using buffer size > MAX_DATA_SIZE will cause buffer to be split into multiple packets
+					ByteBuffer buf = ByteBuffer.allocateDirect(TrackProviderProto.MAX_DATA_SIZE);
+					buf.order(ByteOrder.nativeOrder());
+
+					try(FileInputStream fis = new FileInputStream(file)) {
+						FileChannel fc = fis.getChannel(); // We'll be using nio for the buffer loading
+						try(TrackProviderProto proto = new TrackProviderProto(fds[1], fileLength)) {
+
+							proto.sendHeader(); // Send initial header
+
+							while(true) {
+								int len;
+								while((len = fc.read(buf)) > 0) {
+									buf.flip();
+
+									// Send some data to Poweramp and optionally receive seek request
+									// NOTE: avoid sending empty buffers here (!buf.hasRemaining()), as this will cause premature EOF
+									long seekRequestPos = proto.sendData(buf);
+
+									handleSeekRequest(proto, seekRequestPos, fc, fileLength); // May be handle seek request
+
+									buf.clear();
+								}
+
+								// Here we're almost done with the file and hit EOF. Still keep file and socket opened until Poweramp closes socket
+								//
+								// As we may send number of pre-loaded buffers to Poweramp we may hit EOF much earlier prior track actually finishes playing:
+								// - we hit EOF here and may attempt to exit this thread/close socket
+								// - Poweramp plays some buffered data
+								// - user seeks the track. Poweramp will fail to seek it as our provider is done with the track and socket is closed
+								//
+								// Solution to this is to keep file and socket opened here and to continue seek commands processing until Poweramp actually closes socket on its end
+								//
+								// NOTE: this scenario can be easily tested by pausing Poweramp close to the track end and seeking while paused
+
+								long seekRequestPos = proto.sendEOFAndWaitForSeekOrClose();
+								if(handleSeekRequest(proto, seekRequestPos, fc, fileLength)) {
+									if(LOG) Log.w(TAG, "openViaSeekableSocket file seek past EOF documentId=" + documentId);
+									continue; // We've just processed extra seek request, continue sending buffers
+								} else {
+									break; // We done here, Poweramp closed socket
+								}
+							}
+
+							if(LOG) Log.w(TAG, " openViaSeekableSocket file DONE documentId=" + documentId);
+						}
+					} catch(TrackProviderProto.TrackProviderProtoClosed ex) {
+						Log.e(TAG, "documentId=" + documentId + " " + ex.getMessage());
+					} catch(Throwable th) {
+						// If we're here, we can't do much - close connection, release resources, and exit
+						Log.e(TAG, "documentId=" + documentId, th);
+					}
+				}
+			}).start();
+
+			return fds[0];
+
+		} catch(Throwable th) {
+			Log.e(TAG, "documentId=" + documentId, th);
+			throw new FileNotFoundException(documentId);
+		}
+	}
+
+	/**
+	 * THREADING: worker thread
+	 * @return true if we actually handled seek request, false otherwise
+	 */
+	private boolean handleSeekRequest(@NonNull TrackProviderProto proto, long seekRequestPos, @NonNull FileChannel fc, long fileLength) {
+		if(seekRequestPos != TrackProviderProto.INVALID_SEEK_POS) {
+			// We have a seek request.
+			// Your code may take any reasonable time to fulfil the seek request, e.g. it can reopen http connection with appropriate offset, etc.
+			// Poweramp just waits for the seek result packet (the waiting is limited by the user-set timeout).
+			// Now we should either send appropriate seek result packet or close the connection (e.g. on some error).
+			// Poweramp ignores any other packets sent before the seek result packet.
+
+			long newPos = seekTrack(fc, seekRequestPos, fileLength);
+			proto.sendSeekResult(newPos);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * THREADING: worker thread.
+	 * @return new position within the track, or <0 on error
+	 * */
+	private long seekTrack(@NonNull FileChannel channel, long seekPosBytes, long fileLength) {
+		// Out seeking is simple as we just seek the FileChannel
+		try {
+			if(seekPosBytes >= 0) {
+				channel.position(seekPosBytes);
+			} else { // If seekPos < 0, this is a seek request from the end of the file
+				channel.position(fileLength + seekPosBytes);
+			}
+
+			return channel.position();
+
+		} catch(IOException ex) {
+			Log.e(TAG, "seekPosBytes=" + seekPosBytes, ex);
+			return -1;
+		}
+	}
+
+	/**
+	 * For tracks available on the device as file, it's much easier to send direct file descriptor pointing to the file itself. The file descriptor is seekable
+	 * and track can be reopened multiple times in this case, e.g. if tags, seek-wave, or album art scanning is needed.
+	 */
+	private ParcelFileDescriptor openViaDirectFD(@NonNull String documentId, @NonNull String filePath) throws FileNotFoundException {
+		if(LOG) Log.w(TAG, "openViaDirectFD documentId=" + documentId + " filePath=" + filePath);
 		try {
 			if(USE_MP3_COPY) {
 				File file = new File(getContext().getFilesDir(), filePath);
@@ -543,9 +689,10 @@ public class ExampleProvider extends DocumentsProvider {
 			}
 		} catch(Throwable th) {
 			Log.e(TAG, "documentId=" + documentId, th);
+			throw new FileNotFoundException(documentId);
 		}
-		throw new FileNotFoundException(documentId);
 	}
+
 
 	/**
 	 * Implementing CALL_GET_URL here to return dynamic URL for given track. Document uri is passed as string in arg
@@ -555,34 +702,44 @@ public class ExampleProvider extends DocumentsProvider {
 		Bundle res = super.call(method, arg, extras);
 		if(res == null) {
 			if(TrackProviderConsts.CALL_GET_URL.equals(method)) {
-				if(TextUtils.isEmpty(arg)) throw new IllegalArgumentException(arg);
-				Uri uri = Uri.parse(arg);
-				enforceTree(uri);
-				String documentId = DocumentsContract.getDocumentId(uri);
-				if(documentId.endsWith(DOCID_DYNAMIC_URL_SUFFIX)) {
-					boolean isDubstep = documentId.contains("dubstep");
-					res = new Bundle();
-					String url = isDubstep ? DUBSTEP_HTTP_URL :  SUMMER_HTTP_URL;
-					res.putString(TrackProviderConsts.COLUMN_URL, url);
+				return handleGetUrl(arg, extras);
 
-					// Optionally add some headers to send with given url. These headers are used just once for this track playback and are not persisted
-					res.putString(TrackProviderConsts.COLUMN_HEADERS, "Debug-header1: some\r\nDebug-header2: another\r\n");
-
-					// Optionally add some cookies. These cookies are used just once for this track playback and are not persisted
-					res.putString(TrackProviderConsts.COLUMN_COOKIES, "cookie1=value1; Secure\\ncookie2=value; SameSite=Strict");
-
-					// Optionally set some http method. By default it's GET, setting GET here for the demonstration purpose
-					res.putString(TrackProviderConsts.COLUMN_HTTP_METHOD, "GET");
-
-					if(LOG) Log.w(TAG, "call CALL_GET_URL url=>" + url);
-					return res;
-				} else Log.e(TAG, "call CALL_GET_URL bad documentId=" + documentId, new Exception());
 			} else Log.e(TAG, "call bad method=" + method, new Exception());
 		}
 		return res;
 	}
 
-	/** Important method, which is called by DocumentProvider to check if documentId is a correct child of given parent */
+	/**
+	 * Returns dynamic URL for given track. Document uri is passed as string in arg
+	 */
+	private Bundle handleGetUrl(String arg, Bundle extras) {
+		if(TextUtils.isEmpty(arg)) throw new IllegalArgumentException(arg);
+		Uri uri = Uri.parse(arg);
+		enforceTree(uri);
+		String documentId = DocumentsContract.getDocumentId(uri);
+		if(documentId.endsWith(DOCID_DYNAMIC_URL_SUFFIX)) {
+			boolean isDubstep = documentId.contains("dubstep");
+			Bundle res = new Bundle();
+			String url = isDubstep ? DUBSTEP_HTTP_URL :  SUMMER_HTTP_URL;
+			res.putString(TrackProviderConsts.COLUMN_URL, url);
+
+			// Optionally add some headers to send with given url. These headers are used just once for this track playback and are not persisted
+			res.putString(TrackProviderConsts.COLUMN_HEADERS, "Debug-header1: some\r\nDebug-header2: another\r\n");
+
+			// Optionally add some cookies. These cookies are used just once for this track playback and are not persisted
+			res.putString(TrackProviderConsts.COLUMN_COOKIES, "cookie1=value1; Secure\\ncookie2=value; SameSite=Strict");
+
+			// Optionally set some http method. By default it's GET, setting GET here for the demonstration purpose
+			res.putString(TrackProviderConsts.COLUMN_HTTP_METHOD, "GET");
+
+			if(LOG) Log.w(TAG, "call CALL_GET_URL url=>" + url);
+			return res;
+		} else Log.e(TAG, "call CALL_GET_URL bad documentId=" + documentId, new Exception());
+		return null;
+	}
+
+
+	/** We need to override this DocumentProvider API method, which is called by super class to check if given documentId is a correct child of parentDocumentId */
 	@Override
 	public boolean isChildDocument(String parentDocumentId, String documentId) {
 		try {
@@ -684,6 +841,7 @@ public class ExampleProvider extends DocumentsProvider {
 		return path.substring(ix + 1);
 	}
 
+	/** To provide direct file descriptors, we need to have tracks extracted to local filesystem files */
 	private void copyAsset(String assetFile, File targetDir, boolean overwrite) {
 		File outFile = new File(targetDir, getShortName(assetFile));
 		if(!overwrite && outFile.exists()) {
@@ -709,11 +867,11 @@ public class ExampleProvider extends DocumentsProvider {
 	private <T> boolean arrayContains(@NonNull T[] array, T needle) {
 		for(T item : array) {
 			if(Objects.equals(item, needle)) {
-				Log.w(TAG, "arrayContains FOUND needle=" + needle);
+				//if(LOG) Log.w(TAG, "arrayContains FOUND needle=" + needle);
 				return true;
 			}
 		}
-		Log.w(TAG, "arrayContains FAILED needle=" + needle + " array=" + Arrays.toString(array));
+		//if(LOG) Log.w(TAG, "arrayContains FAILED needle=" + needle + " array=" + Arrays.toString(array));
 		return false;
 	}
 

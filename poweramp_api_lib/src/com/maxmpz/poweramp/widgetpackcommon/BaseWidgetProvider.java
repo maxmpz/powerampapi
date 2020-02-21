@@ -75,19 +75,12 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	
 	/**
 	 * Creates and caches widgetupdater suitable for updating this provider. Called when provider is called by system or by widget configure. Implmentation should be thread safe
-	 * @param context
-	 * @return
 	 */
 	// REVISIT: threading - actually always called on gui thread 
 	protected abstract @NonNull WidgetUpdater getWidgetUpdater(Context context);
 
 	/**
 	 * THREADING: any
-	 * @param context
-	 * @param data
-	 * @param prefs
-	 * @param id
-	 * @return
 	 */
 	public abstract @NonNull RemoteViews update(Context context, @NonNull WidgetUpdateData data, @NonNull SharedPreferences prefs, int id);
 

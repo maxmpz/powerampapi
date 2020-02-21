@@ -7,17 +7,19 @@ This API enables scenarios like providing cloud-based tracks, streamed/cached tr
 Poweramp treats such tracks as usual tracks within Poweramp Library categories, they appear the same way the file system tracks appear
 (Poweramp just adds the provider app name label to such tracks).
 
-Please note that file-backed tracks have the best support: if track file is on the file system somewhere on the device, or in other words has seekable file descriptor,
+Please note that file-backed tracks are most easy to implement in provider: if track file is on the file system somewhere on the device, or in other words has seekable file descriptor,
 then features like wave-seekbar, seeking in general, local tag reading are enabled.
 
-It's also possible to have URLs to http/https - that can be almost any supported file format on http(s) or or hls stream.
+It's also possible to have URLs to http/https - that can be almost any supported file format on http(s) or or hls stream. It's also possible to generate URL right in time of playback,
+provide custom headers, cookies, etc.
 
-Please create github issue if other streaming formats are needed,
-or URL is not enought to access a track and custom headers and/or cookies are required as well.
+Provider may also support sending track data to Poweramp via seekable sockets - similar to sending data via pipe, but with seek support via custom protocol.
+
+*Please create github issue if other streaming formats are needed.*
 
 Your provider still can provide m3u8/pls playlists and those will be appropriately processed, providing http stream tracks in the Poweramp Streams category and in the Playlists.
 
-The API is not completely custom and based on combination of the standard Android APIs:
+The Provider API is not completely custom and based on the combination of the standard Android APIs:
 * [Storage Access Framework/SAF](https://developer.android.com/guide/topics/providers/document-provider)
 * [DocumentsContract](https://developer.android.com/reference/android/provider/DocumentsContract)
 
@@ -78,6 +80,25 @@ Note, at this moment streamed URL tracks (without duration) are shown by Poweram
 m3u8 playlists, where streams only visible in Streams, Playlists (incl. smart playlists), and Queue categories.
 Provider stream tracks also shown in appropriate Album/Artist/Genre/etc. categories
 
+### Seekable Sockets, Pipes, File Descriptors, openDocument, CancellationSignal
+
+SAF API provides access to data via openDocument method which in turn returns file descriptor (wrapped as ParcelFileDescriptor). Poweramp accepts file descriptors pointing to file
+somewhere on the local filesystem, or socket file descriptor. Pipe file descriptor is also accepted, but not recommended, as no seeking is possible then.
+
+The direct file descriptor is the file pointing file descriptor which is seekable with no extra efforts, Poweramp is also able
+to read tags directly from the track, read embedded album art from it.
+
+The seekable socket descriptor requires special Track support ([TrackProviderProtocol.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderProto.java)), but
+resulting code is very close to the code that woulb be used for pipe file descriptors.
+
+See [ExampleProvider.java openDocument implementation](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L527) for the both file pointing
+file descriptor and seekable socket code examples.
+
+Please note that socket is read by Poweramp as much as needed for track playback, and the total reading time from the start to the end of the track is close to the track duration itself.  
+If you download the data you may need to adjust your timeouts or you may download track to local file cache and/or feed Poweramp with the file pointing file descriptor instead.
+
+CancellationSignal is also provided and can be used to monitor Poweramp closing the file due to user requesting some other file or due to any other track-ending scenario,
+nevertheless in most cases you'll receive IOException anyway due to the blockin writes on Provider side.
 
 ### Metadata And Album Art
 Poweramp supports 2 approaches to provider track metadata (tags) and album art:

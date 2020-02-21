@@ -85,6 +85,4 @@ public class TrackProviderConsts {
 	 * Method name for DocumentProvider.call - used to retrieve actual dynamic url for given track
 	 */
 	public static final String CALL_GET_URL = "com.maxmpz.audioplayer:get_url";
-
-
 }
