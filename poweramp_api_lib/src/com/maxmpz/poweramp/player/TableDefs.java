@@ -73,9 +73,9 @@ public interface TableDefs {
 		public static final @NonNull String TRACK_TAG = "track_tag";
 		
 		/**
-		 * Track disc or 0 if no such tag exists<br> 
-		 * Since 859<br>
-		 * INTEGER
+		 * Track disc or 0 if no such tag exists<br>
+		 * INTEGER 
+		 * @since 859<br>
 		 */
 		public static final @NonNull String DISC = "disc";
 
@@ -151,12 +151,6 @@ public interface TableDefs {
 		 * INTEGER
 		 */
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
-
-		/**
-		 * Full path. Works only if the query is joined with the folders, otherwise this will fail<br>
-		 * TEXT
-		 */
-		public static final @NonNull String FULL_PATH = "COALESCE(" + Folders.PATH + "||" + NAME + "," + NAME + ")";
 
 		/**
 		 * INTEGER
@@ -237,11 +231,39 @@ public interface TableDefs {
 		
 		/**
 		 * 1 if this item (most probably stream track) was manually added and shouldn't be removed by rescans<br>
-		 * Since 857<br>
 		 * INTEGER (boolean)
+		 * @since 857<br>
 		 */
 		public static final @NonNull String USER_ADDED = TABLE + ".user_added";
 		
+		/**
+		 * Optional http(s) URL pointing to the target track. If exists, this will be prefered over path (== folder.path + file_name.name)<br>
+		 * Can be {@link TrackProviderConsts#DYNAMIC_URL}<br> 
+		 * TEXT
+		 */
+		public static final @NonNull String URL = TABLE + ".url";
+		
+		/**
+		 * Optional full path to the file. This file_path always overrides parent folder path + filename. Used for the cases when actual file path
+		 * can't be derived from the parent folder due to non-hierarchial or opaque paths, e.g. for tracks providers<br>
+		 * TEXT
+		 * @since 862
+		 */
+		public static final @NonNull String FILE_PATH = TABLE + ".file_path";
+		
+		/**
+		 * Optional bitrate of the file. Currently set only for the provider tracks if provided in the appropiate metadata<br>
+		 * INTEGER
+		 * @since 862
+		 */
+		public static final @NonNull String BIT_RATE = TABLE + ".bit_rate";
+
+		/**
+		 * Full path. Works only if the query is joined with the folders, otherwise this may fail<br>
+		 * TEXT
+		 */
+		public static final @NonNull String FULL_PATH = "COALESCE(" + FILE_PATH + ","+ Folders.PATH + "||" + NAME + "," + NAME + ")";
+
 
 		/**
 		 * tag_status
@@ -351,8 +373,8 @@ public interface TableDefs {
 
 		/**
 		 * (Always) short name of the folder. Always matches actual filesystem folder name<br>
-		 * Since 828<br>
 		 * TEXT
+		 * @since 828
 		 */
 		public static final @NonNull String SHORT_NAME = TABLE + ".short_name";
 
@@ -441,80 +463,80 @@ public interface TableDefs {
 		/**
 		 * Number of tracks in the whole folder hierarchy, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829
 		 */
 		public static final @NonNull String HIER_NUM_FILES = TABLE + ".hier_num_files";
 
 		/**
 		 * Number of tracks in the whole folder hierarchy, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829
 		 */
 		public static final @NonNull String HIER_NUM_ALL_FILES = TABLE + ".hier_num_all_files";
 
 		/**
 		 * Duration in milliseconds for the tracks inside this folder only, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration in milliseconds for the tracks inside this folder only, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
 		/**
 		 * Duration in milliseconds for the whole hierarchy inside this folder, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String HIER_DURATION = TABLE + ".hier_duration";
 		
 		/**
 		 * Duration in milliseconds for the whole hierarchy inside this folder, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String HIER_DURATION_ALL = TABLE + ".hier_duration_all";
 
 		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 
 		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 
 		/**
 		 * Hierarchy duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String HIER_DUR_META = TABLE + ".hier_dur_meta";
 
 		/**
 		 * Hierarchy duration meta including cues<br> 
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String HIER_DUR_ALL_META = TABLE + ".hier_dur_all_meta";
 
@@ -526,15 +548,15 @@ public interface TableDefs {
 
 		/**
 		 * If 1 (true), this folder restores last played track<br>
-		 * Since 821<br>
 		 * INTEGER (boolean)
+		 * @since 821<br>
 		 */
 		public static final @NonNull String KEEP_LIST_POS = TABLE + ".keep_list_pos"; // Sync with RestLibraryListMemorizable
 
 		/**
 		 * If 1 (true), this folder restores last played track position<br>
-		 * Since 821<br>
 		 * INTEGER (boolean)
+		 * @since 821<br>
 		 */
 		public static final @NonNull String KEEP_TRACK_POS = TABLE + ".keep_track_pos"; // Sync with RestLibraryListMemorizable
 		
@@ -614,32 +636,32 @@ public interface TableDefs {
 		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
 		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 
 		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 	}
@@ -689,32 +711,32 @@ public interface TableDefs {
 		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
 		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 		
 		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 	}
@@ -765,32 +787,32 @@ public interface TableDefs {
 		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 		
 		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 		
 		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 	}
@@ -838,32 +860,32 @@ public interface TableDefs {
 		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
 		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 		
 		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 	}
@@ -913,32 +935,32 @@ public interface TableDefs {
 		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
 		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 		
 		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 	}
@@ -976,32 +998,32 @@ public interface TableDefs {
 		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 		
 		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * TEXT
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 		
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 829<br>
 		 * INTEGER
+		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
@@ -1033,7 +1055,7 @@ public interface TableDefs {
 
 	
 	/** 
-	 * Since 856
+	 * @since 856
 	 */
 	public interface Years {
 		public static final @NonNull String TABLE = "years";
@@ -1125,22 +1147,22 @@ public interface TableDefs {
 		
 		/**
 		 * Filename or the stream uri<br>
-		 * Since 842<br>
 		 * TEXT
+		 * @since 842<br>
 		 */
 		public static final @NonNull String FILE_NAME = "file_name";
 		
 		/**
 		 * Parent folder path or NULL for streams<br>
-		 * Since 842<br>
 		 * TEXT
+		 * @since 842<br>
 		 */
 		public static final @NonNull String FOLDER_PATH = "folder_path";
 		
 		/**
 		 * Cue offset for .cue tracks<br>
-		 * Since 842<br>
 		 * INTEGER
+		 * @since 842<br>
 		 */
 		public static final @NonNull String CUE_OFFSET_MS = TABLE + ".cue_offset_ms";
 
@@ -1197,8 +1219,8 @@ public interface TableDefs {
 		 * Poweramp can insert CUE images into playlists if appropriate option enabled, or it skips them completely. In anycase, playlist should show # of all possible entries in it,
 		 * without filtering for CUE images<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 796<br>
 		 * INTEGER
+		 * @since 796<br>
 		 */
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
 
@@ -1221,16 +1243,16 @@ public interface TableDefs {
 		/**
 		 * Duration in milliseconds<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 826<br>
 		 * INTEGER
+		 * @since 826<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
-		 * Since 826<br>
 		 * TEXT
+		 * @since 826<br>
 		 */
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 
@@ -1339,8 +1361,8 @@ public interface TableDefs {
 		 * Virtual field, used for insert/update contentValues.<br>
 		 * If set to 1 preset is bound to track specified by {@link #BOUND_TRACK_ID}, if set to 0, preset is unbound from that track<br>
 		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
-		 * Since 856<br>
 		 * INTEGER (boolean)<br>
+		 * @since 856<br>
 		 */
 		public static final @NonNull String BIND_TO_TRACK = "__bind_to_track";
 
@@ -1348,7 +1370,7 @@ public interface TableDefs {
 		 * Virtual field, used for insert/update contentValues.<br>
 		 * Should be set to track id which should be bound/unbound with {@link #BIND_TO_TRACK}
 		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
-		 * Since 856<br>  
+		 * @since 856<br>  
 		 * INTEGER
 		 */
 		public static final @NonNull String BOUND_TRACK_ID = "__bound_track_id";
@@ -1357,7 +1379,7 @@ public interface TableDefs {
 		 * Virtual field, used for insert/update contentValues.<br>
 		 * If set to 1 preset is bound to all category tracks specified by {@link #BOUND_CAT_URI}, if set to 0, preset is unbound from these tracks<br>
 		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
-		 * Since 856<br>
+		 * @since 856<br>
 		 * INTEGER (boolean)
 		 */
 		public static final @NonNull String BIND_TO_CAT = "__bind_to_cat";
@@ -1366,7 +1388,7 @@ public interface TableDefs {
 		 * Virtual field, used for insert/update contentValues.<br>
 		 * Should be set to category uri which should be bound/unbound with {@link #BIND_TO_CAT}<br>
 		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
-		 * Since 856<br>
+		 * @since 856<br>
 		 * TEXT  
 		 */
 		public static final @NonNull String BOUND_CAT_URI = "__bound_cat_uri";
@@ -1380,7 +1402,7 @@ public interface TableDefs {
 		
 		/**
 		 * Virtual field, used for insert/update contentValues. If this is set, no other device bind/unbind assignments will be executed and preset is unbound from all devices<br>
-		 * Since 856<br>
+		 * @since 856<br>
 		 * INTEGER (boolean) 
 		 */
 		public static final @NonNull String UNBIND_FROM_ALL_DEVICES = "__unbind_from_all_devices";
@@ -1390,7 +1412,7 @@ public interface TableDefs {
 		 * If this is set to value > 0, * content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
 		 * will be checked and if all 4 are set to appropriate valid non-empty values, preset will be bound/unbound to that device according to the {@link #BIND_TO_DEVICE_PREFIX}#.<br>
 		 * # is number [0, NUM_BIND_DEVICES)<br>
-		 * Since 856<br>
+		 * @since 856
 		 * INTEGER 
 		 */
 		public static final @NonNull String NUM_BIND_DEVICES = "__num_bind_devices";
@@ -1400,7 +1422,7 @@ public interface TableDefs {
 		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
 		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
 		 * # is number [0, NUM_BIND_DEVICES)<br>
-		 * Since 856<br>
+		 * @since 856<br>
 		 * INTEGER (boolean) 
 		 */
 		public static final @NonNull String BIND_TO_DEVICE_PREFIX = "__bind_to_device_";
@@ -1411,7 +1433,7 @@ public interface TableDefs {
 		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
 		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
 		 * # is number [0, NUM_BIND_DEVICES)<br>
-		 * Since 856<br>
+		 * @since 856<br>
 		 * INTEGER 
 		 */
 		public static final @NonNull String DEVICE_PREFIX = "__device_";
@@ -1422,7 +1444,7 @@ public interface TableDefs {
 		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
 		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
 		 * # is number [0, NUM_BIND_DEVICES)<br>
-		 * Since 856<br>
+		 * @since 856<br>
 		 * TEXT 
 		 */
 		public static final @NonNull String DEVICE_ADDRESS_PREFIX = "__device_address_";
@@ -1432,7 +1454,7 @@ public interface TableDefs {
 		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
 		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
 		 * # is number [0, NUM_BIND_DEVICES)<br>
-		 * Since 856<br>
+		 * @since 856<br>
 		 * TEXT 
 		 */
 		public static final @NonNull String DEVICE_NAME_PREFIX = "__device_name_";
@@ -1529,7 +1551,7 @@ public interface TableDefs {
 		public static final @NonNull String NAME = TABLE + ".name";
 	}
 
-	/** Since 841 */
+	/** @since 841 */
 	public class PrefSearch {
 		public static final @NonNull String TABLE = "pref_search";
 		public static final @NonNull String _ID = TABLE + "._id";
@@ -1539,7 +1561,7 @@ public interface TableDefs {
 		public static final @NonNull String ICON = "icon";
 	}
 
-	/** Since 841 */
+	/** @since 841 */
 	public class PrefSearchFts {
 		public static final @NonNull String TABLE = "pref_search_fts";
 		public static final @NonNull String DOCID = "docid";
