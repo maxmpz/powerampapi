@@ -283,10 +283,10 @@ public class ExampleProvider extends DocumentsProvider {
 	private void fillURLRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, @NonNull String url, long size, @NonNull String title,
 	                        long duration, boolean sendMetadata, boolean sendWave, boolean sendEmptyWave
 	) {
-		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, "audio/mpeg");
-		// Poweramp doesn't use display name for tracks. It uses either last segment from documentId (as a filename) or MediaStore.MediaColumns.TITLE. This is still used by Android picker
+		// The display name defines name of the track "file" in "Show File Names" mode. There is also a title via MediaStore.MediaColumns.TITLE.
+		// It's up to you how you define display name, it can be anything filename alike, or it can just match track title
 		row.add(Document.COLUMN_DISPLAY_NAME, getShortName(documentId));
 		// As our assets data is always static, we just return own apk installation time. For real folder structure, preferable last modified for given folder should be returned.
 		// This ensures Poweramp incremental scanning process. If we return <= 0 value here, Poweramp will be forced to rescan whole provider hierarchy each time it scans
@@ -347,16 +347,17 @@ public class ExampleProvider extends DocumentsProvider {
 	private void fillFolderRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row) {
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, Document.MIME_TYPE_DIR);
-		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
+		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to the documentId or path.
 		row.add(Document.COLUMN_DISPLAY_NAME, getShortDirName(documentId));
 		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
 	}
 
 	private void fillPlaylistRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row) {
-		// NOTE: for playlists, the playlist documentId should preferable end with extension. If not, Poweramp assumes that is .m3u8 playlist
+		// NOTE: for playlists, the playlist documentId should preferable end with some extension. Poweramp also looks into mime type, or assumes it's .m3u8 playlist if no mime type
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, "audio/mpegurl");
-		// Poweramp doesn't use display name for tracks. It uses either last segment from documentId (as a filename) or MediaStore.MediaColumns.TITLE. This still is used by Android picker
+		// The display name defines name of the track "file" in "Show File Names" mode. There is also a title via MediaStore.MediaColumns.TITLE.
+		// It's up to you how you define display name, it can be anything filename alike, or it can just match track title
 		row.add(Document.COLUMN_DISPLAY_NAME, getShortName(documentId));
 		// As our assets data is always static, we just return own apk installation time. For real folder structure, preferable last modified for given folder should be returned.
 		// This ensures Poweramp incremental scanning process. If we return <= 0 value here, Poweramp will be forced to rescan whole provider hierarchy each time it scans
@@ -364,10 +365,10 @@ public class ExampleProvider extends DocumentsProvider {
 	}
 
 	private void fillTrackRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, boolean addMetadata, boolean sendWave, boolean sendLyrics) {
-		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to documentId or path
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, "audio/mpeg");
-		// Poweramp doesn't use display name for tracks. It uses either last segment from documentId (as a filename) or MediaStore.MediaColumns.TITLE. This still used by Android picker
+		// The display name defines name of the track "file" in "Show File Names" mode. There is also a title via MediaStore.MediaColumns.TITLE.
+		// It's up to you how you define display name, it can be anything filename alike, or it can just match track title
 		row.add(Document.COLUMN_DISPLAY_NAME, getShortName(documentId));
 		// As our assets data is always static, we just return own apk installation time. For real folder structure, preferable last modified for given folder should be returned.
 		// This ensures Poweramp incremental scanning process. If we return <= 0 value here, Poweramp will be forced to rescan whole provider hierarchy each time it scans

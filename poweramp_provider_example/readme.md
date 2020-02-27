@@ -25,10 +25,26 @@ The Provider API is not completely custom and based on the combination of the st
 
 Due to the standard APIs used the resulting provider plugin can be potentially used by other apps, provided they implement SAF/DocumentsContract APIs.
 
-## Implementing Poweramp Track Provider Plugin
+[TOC levels=3]:# "#Implementing Poweramp Track Provider Plugin"
+
+# Implementing Poweramp Track Provider Plugin
+- [Basics](#basics)
+- [Scanning](#scanning)
+- [EXTRA_LOADING](#extra-loading)
+- [Icon](#icon)
+- [Provider Tracks In The Poweramp Library](#provider-tracks-in-the-poweramp-library)
+- [URL Tracks](#url-tracks)
+- [Seekable Sockets, Pipes, File Descriptors, openDocument, CancellationSignal](#seekable-sockets-pipes-file-descriptors-opendocument-cancellationsignal)
+- [Playback](#playback)
+- [Metadata And Album Art](#metadata-and-album-art)
+- [Track Wave](#track-wave)
+- [Roots](#roots)
+- [Cue Sheets](#cue-sheets)
+- [Data Refresh](#data-refresh)
+- [Deletion](#deletion)
+- [Provider Crashes](#provider-crashes)
 
 ### Basics
-
 Please be sure to review the
 [Storage Access Framework/SAF](https://developer.android.com/guide/topics/providers/document-provider)
 API basics that defines *Document Provider* (the plugin to be implemented), and *Client app* (Poweramp), and [this Document Provider guide](https://developer.android.com/guide/topics/providers/create-document-provider).
@@ -44,11 +60,21 @@ Poweramp scans Track Provider Plugin tracks in two phases:
   * establishes folder and tracks hierarchy
   * adds new tracks, removes deleted tracks to/from Poweramp Library
   * updates last modified timestaps
+  * projection columns are limited to a few columns
 * metadata scan
   * metadata retrieved for the new or modified tracks (based on last modified timestamp)
+  * projection columns include most metadata columns, but still exclude some metadata columns, such as lyrics
 
-**Important:** each scan is executed in multithreaded manner, thus all related API Provider code should be thread safe  
+**Important:** each scan is executed in multithreaded manner, thus all related API Provider code should be thread safe
 (Android SAF Provider architecture already implies that and requires thread safe implementation).
+
+###  EXTRA_LOADING
+"Loading" cursors are not supported. Your provider should provide ready to use cursor with the data. There is little point in scanning data yet to be loaded.
+Instead just load data as needed and when needed by your code and issue appropriate Poweramp rescan command instead.
+
+Alternatively, if data loading is fast enough, just block your appropriate provider method (e.g. queryChildDocuments/queryDocument) and do loading there, but please note that Poweramp scanning  
+has timeouts. Timeout for openDocument is defined by user in Poweramp settings as "Network Timeout" option).
+
 
 ### Icon
 
@@ -85,26 +111,33 @@ Provider stream tracks also shown in appropriate Album/Artist/Genre/etc. categor
 SAF API provides access to data via openDocument method which in turn returns file descriptor (wrapped as ParcelFileDescriptor). Poweramp accepts file descriptors pointing to file
 somewhere on the local filesystem, or socket file descriptor. Pipe file descriptor is also accepted, but not recommended, as no seeking is possible then.
 
-The direct file descriptor is the file pointing file descriptor which is seekable with no extra efforts, Poweramp is also able
-to read tags directly from the track, read embedded album art from it.
+* the direct file descriptor is the file pointing file descriptor which is seekable with no extra effort. Poweramp is also able
+to read tags directly from the track and read embedded album art from it
 
-The seekable socket descriptor requires special Track support ([TrackProviderProtocol.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderProto.java)), but
-resulting code is very close to the code that woulb be used for pipe file descriptors.
+* the seekable socket descriptor requires special Track support ([TrackProviderProtocol.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderProto.java)), but
+resulting code is very close to the code for pipe file descriptors
+
+* pipe file descriptor is also accepted, but not recommended: no seeking is possible, no tag reading, no embedded album art extraction, file is represented as "stream"
 
 See [ExampleProvider.java openDocument implementation](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L527) for the both file pointing
 file descriptor and seekable socket code examples.
 
-Please note that socket is read by Poweramp as much as needed for track playback, and the total reading time from the start to the end of the track is close to the track duration itself.  
-If you download the data you may need to adjust your timeouts or you may download track to local file cache and/or feed Poweramp with the file pointing file descriptor instead.
+Please note that socket is read by Poweramp as much as needed for the track playback, and the total reading time from the start to the end of the track is close to the track duration itself.  
+If you download the data you may need to adjust your timeouts or you may download track to a local file cache and/or feed Poweramp with a file pointing file descriptor instead.
 
-CancellationSignal is also provided and can be used to monitor Poweramp closing the file due to user requesting some other file or due to any other track-ending scenario,
-nevertheless in most cases you'll receive IOException anyway due to the blockin writes on Provider side.
+CancellationSignal is also provided and can be used to monitor Poweramp closing a file due to the user requesting some other file or due to any other track-ending scenario,
+nevertheless in most cases you'll receive IOException anyway (and Provider should handle it properly)  due to the blocking writes on Provider side.
+
+### Playback
+
+Poweramp may open 2 tracks concurrently via your Provider. This is needed to support short and long crossfade. Same track may be also opened concurrently, for example when  
+track is the last in a list - Poweramp opens same track again for the next possible playback while finishing playing it.
 
 ### Metadata And Album Art
 Poweramp supports 2 approaches to provider track metadata (tags) and album art:
 * metadata and album art image is provided by the Provider
-  * this is the only option for URL-based tracks
-* metadata and album art is retrieved from track file (file descriptor) by Poweramp
+  * this is the only option for URL-based tracks and pipe file descriptors
+* metadata and album art is retrieved from track file (direct file descriptor) by Poweramp
 
 #### Metadata And Album Art Provided By Provider
 
@@ -117,7 +150,8 @@ In this case album art image is retrieved if `Document.COLUMN_FLAGS` column has 
 
 Poweramp then requests album art via `openDocumentThumbnail`. See [ExampleProvider.java around line 258](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L258)
 
-Lyrics can be also provided via `TrackProviderConsts.COLUMN_TRACK_LYRICS`.
+Lyrics can be also provided via `TrackProviderConsts.COLUMN_TRACK_LYRICS`. Poweramp adds this column to `projection` columns only when Info/Tags or Lyrics dialog is shown, and
+your Provider may take time to extract/download/obtain lyrics as needed.
 
 #### Metadata And Album Art From Track File
 
@@ -134,9 +168,13 @@ Send 100 float values in range -1.0 .. 1.0 as float[] or byte[] array in `TrackP
 If array size is 0, Poweramp assumes default wave (same as used for Streams) is required.
 If array size is not 100, Poweramp will resample that to 100 values internally.
 
-You can send either float[] array (easier to manipulate/generate) or byte[] array (float array represented as bytes, easier to store/retrieve as BLOB in/from the database).  
+You can have either a float[] array (easier to manipulate/generate) or a byte[] array (float array represented as bytes, easier to store/retrieve as BLOB in/from the database).  
 See [TrackProviderHelper.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderHelper.java#L13) for `bytesToFloats`, `floatsToBytes` methods if you need to convert
 from one format to the another.
+
+In any case, you must put `TrackProviderConsts.COLUMN_TRACK_WAVE` as bytes, as Android cursor doesn't support other BLOB types.
+
+Track wave `TrackProviderConsts.COLUMN_TRACK_WAVE` column is added to projection columns during 2nd phase of scanning (the metadata scan).
 
 
 ### Roots
@@ -145,6 +183,11 @@ For your Provider to be selectable in the Android system picker, the roots shoul
 it should return true or do a full documentId hierarchy check as needed.
 
 See [ExampleProvider.java around line 126](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L126).
+
+### Cue Sheets
+
+At this moment, .cue sheet files are not support for track providers. Please create issue here on github if this functionality is needed for your project.
+
 
 ### Data Refresh
 
@@ -160,10 +203,10 @@ Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/po
 Poweramp will do all known folders and providers scan.
 
 ### Deletion
-Poweramp will issue standard delete call when user tries to delete one or multiple files. Either delete the track or throw appropriate "not supported" exception to ignore deletion.
+Poweramp will issue standard delete call when user tries to delete one or multiple files. Either delete the track or throw an appropriate "not supported" exception to ignore deletion.
 
 ### Provider Crashes
 
-Android closes client apps "connected" to your Provider if your Provider process crashes. That means even minor exception in the Provider may cause complete unexpected Poweramp shutdown.  
+Android closes client apps "connected" to your Provider if your Provider process crashes. That means even minor exception in the Provider may cause complete unexpected Poweramp shutdown.
 To avoid that, wrap your Provider public methods with `try/catch(Throwable)` with the appropriate logging.
-Note that you still need to throw checked exceptions, such as `FileNotFoundException` from `openDocumentThumbnail`.
+Note that you still need to throw specific API-defined checked exceptions, such as `FileNotFoundException` from `openDocumentThumbnail`.
