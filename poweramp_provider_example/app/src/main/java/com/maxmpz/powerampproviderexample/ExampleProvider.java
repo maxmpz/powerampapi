@@ -25,6 +25,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.TrackProviderConsts;
 import com.maxmpz.poweramp.player.TrackProviderHelper;
 import com.maxmpz.poweramp.player.TrackProviderProto;
@@ -373,8 +374,12 @@ public class ExampleProvider extends DocumentsProvider {
 		// As our assets data is always static, we just return own apk installation time. For real folder structure, preferable last modified for given folder should be returned.
 		// This ensures Poweramp incremental scanning process. If we return <= 0 value here, Poweramp will be forced to rescan whole provider hierarchy each time it scans
 		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
+
+		boolean isDubstep = documentId.contains("dubstep");
+		String filePath = isDubstep ? "bensound-dubstep.mp3" : "bensound-summer.mp3"; // We only have 2 real mp3s here for many "virtual" tracks
+
 		// Optional, real provider should preferable return real track file size here or 0.
-		row.add(Document.COLUMN_SIZE, getAssetFileSize(getContext().getResources().getAssets(), documentId));
+		row.add(Document.COLUMN_SIZE, getAssetFileSize(getContext().getResources().getAssets(), filePath));
 
 		// NOTE: Poweramp doesn't need extra metadata (except COLUMN_URL/DURATION for streams) for queryDocuments,
 		// but requires that for queryDocument for tracks, which are not direct fd. Direct fd tracks still can be quickly scanned by Poweramp, but
@@ -383,7 +388,6 @@ public class ExampleProvider extends DocumentsProvider {
 		if(addMetadata) {
 			// Some dump tags logic - as we have 2 static files here as an example, but they have docId like dubstep1.mp3, summer2.mp3, etc.
 			// Real provider should get this info from network or extract from the file
-			boolean isDubstep = documentId.contains("dubstep");
 			String prefix = isDubstep ? "Dubstep " : "Summer ";
 			int trackNum = extractTrackNum(documentId);
 
@@ -527,10 +531,12 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 	}
 
-	/** Send actual track data as direct file descriptor or seekable socket protocol */
+	/**
+	 * Send actual track data as direct file descriptor or seekable socket protocol (mode == "rr")
+	 */
 	@Override
 	public ParcelFileDescriptor openDocument(String documentId, String mode, CancellationSignal signal) throws FileNotFoundException {
-		if(LOG) Log.w(TAG, "openDocument documentId=" + documentId + " mode=" + mode);
+		if(LOG) Log.w(TAG, "openDocument documentId=" + documentId + " mode=" + mode + " callingPak=" + getCallingPackage());
 		int accessMode = ParcelFileDescriptor.parseMode(mode);
 		if((accessMode & ParcelFileDescriptor.MODE_READ_ONLY) == 0) throw new IllegalAccessError("documentId=" + documentId + " mode=" + mode);
 
@@ -547,8 +553,11 @@ public class ExampleProvider extends DocumentsProvider {
 		} else if(documentId.endsWith(".mp3")) {
 			filePath = isDubstep ? "bensound-dubstep.mp3" : "bensound-summer.mp3"; // We only have 2 real mp3s here for many "virtual" tracks
 
+			// TrackProviderConsts.OPEN_FILE_SOCKET_MODE defines custom socket-enabled seekable read only mode
+			String pak = getCallingPackage();
+
 			// Let's send root2 "dubstep" via seekable socket and other files - via direct fd. Don't do this for root1 where no metadata given and Poweramp expects direct fd tracks
-			if(documentId.startsWith("root2/") && documentId.endsWith(".mp3") && documentId.contains("dubstep")) {
+			if(pak != null && pak.equals(PowerampAPIHelper.getPowerampPackageName(getContext())) && documentId.startsWith("root2/") && documentId.endsWith(".mp3") && documentId.contains("dubstep")) {
 				return openViaSeekableSocket(documentId, filePath, signal);
 			}
 		} else throw new FileNotFoundException(documentId);
@@ -564,6 +573,9 @@ public class ExampleProvider extends DocumentsProvider {
 			final long fileLength = file.length();
 
 			// NOTE: it's not possible to use timeouts on this side of the socket as Poweramp may open and hold the socket for an indefinite time while in the paused state
+			// NOTE: don't use AsyncTask or other short-time thread pools here, as:
+			// - this thread will be alive as long as Poweramp holds the file
+			// - this can take an indefinite time, as Poweramp can be paused on the file
 
 			new Thread(new Runnable() {
 				public void run() {
@@ -594,14 +606,13 @@ public class ExampleProvider extends DocumentsProvider {
 
 								// Here we're almost done with the file and hit EOF. Still keep file and socket opened until Poweramp closes socket
 								//
-								// As we may send number of pre-loaded buffers to Poweramp we may hit EOF much earlier prior track actually finishes playing:
+								// As we may send number of pre-loaded buffers to Poweramp we may hit EOF much earlier prior the track actually finishes playing:
 								// - we hit EOF here and may attempt to exit this thread/close socket
 								// - Poweramp plays some buffered data
 								// - user seeks the track. Poweramp will fail to seek it as our provider is done with the track and socket is closed
 								//
-								// Solution to this is to keep file and socket opened here and to continue seek commands processing until Poweramp actually closes socket on its end
-								//
-								// NOTE: this scenario can be easily tested by pausing Poweramp close to the track end and seeking while paused
+								// Solution to this is to keep file and socket opened here and to continue seek commands processing until Poweramp actually closes socket.
+								// This scenario can be easily tested by pausing Poweramp close to the track end and seeking while paused
 
 								long seekRequestPos = proto.sendEOFAndWaitForSeekOrClose();
 								if(handleSeekRequest(proto, seekRequestPos, fc, fileLength)) {

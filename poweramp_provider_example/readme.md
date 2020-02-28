@@ -44,6 +44,7 @@ Due to the standard APIs used the resulting provider plugin can be potentially u
 - [Deletion](#deletion)
 - [Provider Crashes](#provider-crashes)
 
+
 ### Basics
 Please be sure to review the
 [Storage Access Framework/SAF](https://developer.android.com/guide/topics/providers/document-provider)
@@ -52,6 +53,7 @@ Document Provider provides information about tracks hierarchy and the metainform
 
 Track Provider is added to Poweramp via Poweramp *Music Folders* dialog with the plus (+) button. The + button opens standard Android *Picker* dialog which allows user to select the Tracks Provider Plugin *Root* and
 optionally sub-folder.
+
 
 ### Scanning
 
@@ -68,6 +70,7 @@ Poweramp scans Track Provider Plugin tracks in two phases:
 **Important:** each scan is executed in multithreaded manner, thus all related API Provider code should be thread safe
 (Android SAF Provider architecture already implies that and requires thread safe implementation).
 
+
 ###  EXTRA_LOADING
 "Loading" cursors are not supported. Your provider should provide ready to use cursor with the data. There is little point in scanning data yet to be loaded.
 Instead just load data as needed and when needed by your code and issue appropriate Poweramp rescan command instead.
@@ -80,12 +83,15 @@ has timeouts. Timeout for openDocument is defined by user in Poweramp settings a
 
 Poweramp shows Provider app icon where appropriate (e.g. Music Folders dialog, Info/Tags dialog, etc.)
 
+
 ### Provider Tracks In The Poweramp Library
 
 Poweramp categorizes provider tracks the same way it does that for the usual file system tracks - tracks are available in All Songs, Folders, Folders Hierarchy, and other categories, according
 to the tags/track metadata, playlists and playlist stream entries are available in the Playlist and Streams categories.
 
+
 ### URL Tracks
+
 Poweramp supports static and dynamic URL tracks, which can be streams or just remote or proxied track files.
 
 Poweramp looks for non-standard `TrackProviderConsts.COLUMN_URL` column in the provider returned cursor. If some url exists, the track is assumed to be remote file or stream.
@@ -106,6 +112,7 @@ Note, at this moment streamed URL tracks (without duration) are shown by Poweram
 m3u8 playlists, where streams only visible in Streams, Playlists (incl. smart playlists), and Queue categories.
 Provider stream tracks also shown in appropriate Album/Artist/Genre/etc. categories
 
+
 ### Seekable Sockets, Pipes, File Descriptors, openDocument, CancellationSignal
 
 SAF API provides access to data via openDocument method which in turn returns file descriptor (wrapped as ParcelFileDescriptor). Poweramp accepts file descriptors pointing to file
@@ -115,7 +122,8 @@ somewhere on the local filesystem, or socket file descriptor. Pipe file descript
 to read tags directly from the track and read embedded album art from it
 
 * the seekable socket descriptor requires special Track support ([TrackProviderProtocol.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderProto.java)), but
-resulting code is very close to the code for pipe file descriptors
+resulting code is very close to the code for pipe file descriptors.  
+When Poweramp needs such seekable socket, it passes custom (but otherwise compatible) TrackProviderConsts.OPEN_FILE_SOCKET_MODE value as openDocument mode parameter
 
 * pipe file descriptor is also accepted, but not recommended: no seeking is possible, no tag reading, no embedded album art extraction, file is represented as "stream"
 
@@ -128,16 +136,20 @@ If you download the data you may need to adjust your timeouts or you may downloa
 CancellationSignal is also provided and can be used to monitor Poweramp closing a file due to the user requesting some other file or due to any other track-ending scenario,
 nevertheless in most cases you'll receive IOException anyway (and Provider should handle it properly)  due to the blocking writes on Provider side.
 
+
 ### Playback
 
 Poweramp may open 2 tracks concurrently via your Provider. This is needed to support short and long crossfade. Same track may be also opened concurrently, for example when  
 track is the last in a list - Poweramp opens same track again for the next possible playback while finishing playing it.
 
+
 ### Metadata And Album Art
+
 Poweramp supports 2 approaches to provider track metadata (tags) and album art:
 * metadata and album art image is provided by the Provider
   * this is the only option for URL-based tracks and pipe file descriptors
 * metadata and album art is retrieved from track file (direct file descriptor) by Poweramp
+
 
 #### Metadata And Album Art Provided By Provider
 
@@ -152,6 +164,7 @@ Poweramp then requests album art via `openDocumentThumbnail`. See [ExampleProvid
 
 Lyrics can be also provided via `TrackProviderConsts.COLUMN_TRACK_LYRICS`. Poweramp adds this column to `projection` columns only when Info/Tags or Lyrics dialog is shown, and
 your Provider may take time to extract/download/obtain lyrics as needed.
+
 
 #### Metadata And Album Art From Track File
 
@@ -184,6 +197,7 @@ it should return true or do a full documentId hierarchy check as needed.
 
 See [ExampleProvider.java around line 126](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L126).
 
+
 ### Cue Sheets
 
 At this moment, .cue sheet files are not support for track providers. Please create issue here on github if this functionality is needed for your project.
@@ -202,8 +216,10 @@ scan service is a subject to the Android 8+ background services policy and inten
 Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1615) for fine-grained scan just for your provider. If not specified,
 Poweramp will do all known folders and providers scan.
 
+
 ### Deletion
 Poweramp will issue standard delete call when user tries to delete one or multiple files. Either delete the track or throw an appropriate "not supported" exception to ignore deletion.
+
 
 ### Provider Crashes
 
