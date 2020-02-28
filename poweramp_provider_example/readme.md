@@ -1,36 +1,36 @@
 # Poweramp Track Provider API
 ============================================
 
-Poweramp v3 (build 862+) supports externally provided tracks which are shown along other tracks in Poweramp Library categories, including Folders and Folders Hierarchy.
+Poweramp v3 (build 862+) supports externally provided tracks which are shown along other tracks in the Poweramp Library categories, including Folders and Folders Hierarchy.
 
 This API enables scenarios like providing cloud-based tracks, streamed/cached tracks, file system, http hosted tracks, or other virtual track hierarchies into Poweramp Library.
-Poweramp treats such tracks as usual tracks within Poweramp Library categories, they appear the same way the file system tracks appear
-(Poweramp just adds the provider app name label to such tracks).
+Poweramp treats such tracks as usual tracks within Poweramp Library categories, they appear the same way the file system tracks appear - Poweramp adds the provider app name label  
+to such tracks and may treat such tracks slightly differently, as documented here.
 
-Please note that file-backed tracks are most easy to implement in provider: if track file is on the file system somewhere on the device, or in other words has seekable file descriptor,
+Please note that file-backed tracks are most easy to implement in provider: if track file is on the file system somewhere on a device, or, in other words track has a seekable file descriptor,
 then features like wave-seekbar, seeking in general, local tag reading are enabled.
 
-It's also possible to have URLs to http/https - that can be almost any supported file format on http(s) or or hls stream. It's also possible to generate URL right in time of playback,
+It's also possible to provide URLs - these can be almost any supported file format on http(s) or hls stream. It's also possible to generate an URL right in the time of the playback,
 provide custom headers, cookies, etc.
 
-Provider may also support sending track data to Poweramp via seekable sockets - similar to sending data via pipe, but with seek support via custom protocol.
+Your Provider may also support sending track data to Poweramp via seekable sockets - similar to sending data via a pipe, but with a seek support via custom protocol.
 
 *Please create github issue if other streaming formats are needed.*
 
 Your provider still can provide m3u8/pls playlists and those will be appropriately processed, providing http stream tracks in the Poweramp Streams category and in the Playlists.
 
-The Provider API is not completely custom and based on the combination of the standard Android APIs:
+The Provider API is not completely custom and based on a combination of the standard Android APIs:
 * [Storage Access Framework/SAF](https://developer.android.com/guide/topics/providers/document-provider)
 * [DocumentsContract](https://developer.android.com/reference/android/provider/DocumentsContract)
 
-Due to the standard APIs used the resulting provider plugin can be potentially used by other apps, provided they implement SAF/DocumentsContract APIs.
+Due to the standard APIs used, the resulting provider plugin can be potentially used by other apps, provided they implement SAF/DocumentsContract APIs.
 
 [TOC levels=3]:# "#Implementing Poweramp Track Provider Plugin"
 
 # Implementing Poweramp Track Provider Plugin
 - [Basics](#basics)
 - [Scanning](#scanning)
-- [EXTRA_LOADING](#extra-loading)
+- [EXTRA_LOADING](#extra_loading)
 - [Icon](#icon)
 - [Provider Tracks In The Poweramp Library](#provider-tracks-in-the-poweramp-library)
 - [URL Tracks](#url-tracks)
@@ -103,7 +103,7 @@ You still need to provide `TrackProviderConsts.COLUMN_URL` with special value
 Poweramp doesn't do openDocument in this case.
 
 Dynamic URL tracks force Poweramp to query actual URL to use when given track is started in Poweramp. Poweramp does additional call with method `TrackProviderConsts.CALL_GET_URL`.
-See [ExampleProvider.java around line 511](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L551) for the example method implementation.
+See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L713) for the example method implementation.
 
 For URL Tracks with the duration, Poweramp will try to pre-scan it for seek-wave. As this can increase traffic and server load, you can disable this with `TrackProviderConsts.COLUMN_TRACK_WAVE`
 set to float array with zero size: `new float[0]`.
@@ -153,14 +153,14 @@ Poweramp supports 2 approaches to provider track metadata (tags) and album art:
 
 #### Metadata And Album Art Provided By Provider
 
-See `DEFAULT_TRACK_AND_METADATA_PROJECTION` in [ExampleProvider.java around line 74](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L74).
+See `DEFAULT_TRACK_AND_METADATA_PROJECTION` in [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L80).
 
 If `MediaStore.MediaColumns.TITLE` or `MediaStore.MediaColumns.DURATION` columns exist in the resulting cursor, Poweramp assumes metadata is provided by the Provider and track is not scanned
 for the tags or the album art.
 
 In this case album art image is retrieved if `Document.COLUMN_FLAGS` column has `Document.FLAG_SUPPORTS_THUMBNAIL` flag.
 
-Poweramp then requests album art via `openDocumentThumbnail`. See [ExampleProvider.java around line 258](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L258)
+Poweramp then requests album art via `openDocumentThumbnail`. See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L518)
 
 Lyrics can be also provided via `TrackProviderConsts.COLUMN_TRACK_LYRICS`. Poweramp adds this column to `projection` columns only when Info/Tags or Lyrics dialog is shown, and
 your Provider may take time to extract/download/obtain lyrics as needed.
@@ -182,7 +182,7 @@ If array size is 0, Poweramp assumes default wave (same as used for Streams) is 
 If array size is not 100, Poweramp will resample that to 100 values internally.
 
 You can have either a float[] array (easier to manipulate/generate) or a byte[] array (float array represented as bytes, easier to store/retrieve as BLOB in/from the database).  
-See [TrackProviderHelper.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderHelper.java#L13) for `bytesToFloats`, `floatsToBytes` methods if you need to convert
+See [TrackProviderHelper.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderHelper.java#L15) for `bytesToFloats`, `floatsToBytes` methods if you need to convert
 from one format to the another.
 
 In any case, you must put `TrackProviderConsts.COLUMN_TRACK_WAVE` as bytes, as Android cursor doesn't support other BLOB types.
@@ -195,7 +195,7 @@ Track wave `TrackProviderConsts.COLUMN_TRACK_WAVE` column is added to projection
 For your Provider to be selectable in the Android system picker, the roots should have `Root.FLAG_SUPPORTS_IS_CHILD` flag set. Also, `isChildDocument` method should be overridden and, at least,
 it should return true or do a full documentId hierarchy check as needed.
 
-See [ExampleProvider.java around line 126](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L126).
+See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L164).
 
 
 ### Cue Sheets
@@ -206,14 +206,14 @@ At this moment, .cue sheet files are not support for track providers. Please cre
 ### Data Refresh
 
 Poweramp handles this automatically based on the `Document.COLUMN_LAST_MODIFIED` column for the folders and files. Data is refreshed on app first start, or when appropriate event or intent received  
-(see [Scanner intents in PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1454)), etc.
+(see [Scanner intents in PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1560)), etc.
 
 This is configurable in the Poweramp settings: for example, only manual rescan may work depending on settings.
 
 Please note that the Scanner intents sent to Poweramp will be only processed if your app is on the foreground, or Poweramp is a foreground process (either Poweramp UI is visible or Poweramp is playing). If not,
 scan service is a subject to the Android 8+ background services policy and intent will be ignored.
 
-Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1615) for fine-grained scan just for your provider. If not specified,
+Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1694) for fine-grained scan just for your provider. If not specified,
 Poweramp will do all known folders and providers scan.
 
 
