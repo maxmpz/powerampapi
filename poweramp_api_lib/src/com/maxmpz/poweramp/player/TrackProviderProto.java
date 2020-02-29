@@ -20,13 +20,14 @@ import java.nio.ByteOrder;
  * Simple "seekable" socket protocol:
  * - unix domain socket is used instead of the pipe for the duplex communication
  * - seek command exposed from {@link #sendData} and can be processed as needed
- * - {@link #sendData} is blocking almost in the same way as the standard ParcelFileDescriptor pipe write
+ * - {@link #sendData} is blocking almost in the same way as standard ParcelFileDescriptor pipe write is
  *
  * NOTE: it's not possible to use timeouts on this side of the socket as Poweramp may open and hold the socket while in paused state for indefinite time
  */
 public class TrackProviderProto implements AutoCloseable {
 	private static final String TAG = "TrackProviderProto";
-	private static final boolean LOG = true;
+	private static final boolean LOG = false;
+	/** If true, a bit more checks happen. Disable for production builds */
 	private static final boolean DEBUG_CHECKS = true;
 
 	/** Invalid seek position */
@@ -69,6 +70,8 @@ public class TrackProviderProto implements AutoCloseable {
 	private int mState = STATE_INITIAL;
 	private final @NonNull StructPollfd[] mStructPollFds;
 
+
+	/** Raised if we failed with the connection/action and can't continue anymore */
 	public static class TrackProviderProtoException extends RuntimeException {
 		public TrackProviderProtoException(Throwable ex) {
 			super(ex);
@@ -81,6 +84,7 @@ public class TrackProviderProto implements AutoCloseable {
 			super(ex);
 		}
 	}
+
 
 	/**
 	 * @param pfd the socket pfd created by ParcelFileDescriptor.createSocketPair
