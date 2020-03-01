@@ -50,6 +50,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements
 		findViewById(R.id.pa_current_list).setOnClickListener(this);
 		findViewById(R.id.pa_folders).setOnClickListener(this);
 		findViewById(R.id.pa_all_songs).setOnClickListener(this);
+		((SeekBar)findViewById(R.id.sleep_timer_seekbar)).setOnSeekBarChangeListener(this);
 
 		// Ask Poweramp for a permission to access its data provider. Needed only if we want to make queries against Poweramp database, e.g. in FilesActivity/FoldersActivity
 		// NOTE: this will work only if Poweramp process is alive.
@@ -536,11 +538,13 @@ public class MainActivity extends AppCompatActivity implements
 				break;
 
 			case R.id.pause:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PAUSE), DEBUG_FORCE_API_ACTIVITY);
+				// NOTE: sending String command instead of int
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, "PAUSE"), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.prev:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS), DEBUG_FORCE_API_ACTIVITY);
+				// NOTE: sending lowcase String command instead of int
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, "previous"), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.next:
@@ -892,6 +896,9 @@ public class MainActivity extends AppCompatActivity implements
 					sendSeek(false);
 				}
 				break;
+			case R.id.sleep_timer_seekbar:
+				updateSleepTimer(progress);
+				break;
 		}
 	}
 
@@ -980,6 +987,20 @@ public class MainActivity extends AppCompatActivity implements
 
 		mSongSeekBar.setProgress(position);
 	}
+
+
+	public void setSleepTimer(View view) {
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SLEEP_TIMER)
+						.putExtra(PowerampAPI.EXTRA_SECONDS, ((SeekBar)findViewById(R.id.sleep_timer_seekbar)).getProgress())
+						.putExtra(PowerampAPI.EXTRA_PLAY_TO_END, ((CheckBox)findViewById(R.id.sleep_timer_play_to_end)).isChecked()),
+				DEBUG_FORCE_API_ACTIVITY);
+	}
+
+	private void updateSleepTimer(int progress) {
+		((TextView)findViewById(R.id.sleep_timer_value)).setText("Seep in " + progress + "s");
+	}
+
 
 	/** Retrieves Poweramp build number and normalizes it to ### form, e.g. 846002 => 846 */
 	private int getPowerampBuildNumber() {
@@ -1220,6 +1241,7 @@ public class MainActivity extends AppCompatActivity implements
 			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(queueUri));
 		}
 	}
+
 
 	private void getComponentNames() {
 		TextView tv = findViewById(R.id.component_names);

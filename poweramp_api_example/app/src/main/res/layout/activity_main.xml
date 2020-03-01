@@ -445,6 +445,37 @@
 			android:layout_below="@+id/get_all_prefs"
 		/>
 
+		<SeekBar android:id="@+id/sleep_timer_seekbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/prefs"
+			android:layout_margin="8dp"
+			android:max="360"
+		/>
+		<Button android:id="@+id/sleep_timer_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/sleep_timer_seekbar"
+			android:layout_marginTop="4dp"
+			android:text="Set Sleep Timer"
+			android:onClick="setSleepTimer"
+		/>
+		<CheckBox android:id="@+id/sleep_timer_play_to_end"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Play To End"
+		/>
+		<TextView android:id="@+id/sleep_timer_value"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="16dp"
+			android:layout_below="@+id/sleep_timer_seekbar"
+			android:layout_toRightOf="@id/sleep_timer_button"
+			android:text="Sleep in ..."
+		/>
+
+
+
 	</RelativeLayout>
 
 </ScrollView>

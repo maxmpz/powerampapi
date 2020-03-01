@@ -157,11 +157,12 @@ public final class PowerampAPI {
 	 * Can be sent to {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}<br>
 	 * Starting from Poweramp build-855 this is now also a broadcast intent (which should be the primary target of this action).<br>
 	 * Previously this was executed directly by service and though this is still supported it's deprecated.<br>
-	 * The issue with sending intents to service is foreground processing, which on current Androids 8-10 can't be 100% reliable processed and may cause unexpected ANR errors<br>
+	 * The issue with sending intents to service is foreground processing, which on current Androids 8-10 can't be 100% reliable processed and may cause unexpected ANR errors<br><br>
+	 * 
 	 * Extras:<br>
-	 * {@code int cmd} - command to execute. See {@link #COMMAND}, 
-	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes
-	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes
+	 * {@link #COMMAND} - command to execute<br>
+	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes. Poweramp will log appropriate command details if specified<br>
+	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes<br>
 	 */
 	public static final String ACTION_API_COMMAND = "com.maxmpz.audioplayer.API_COMMAND";
 	
@@ -212,23 +213,15 @@ public final class PowerampAPI {
 	/**
 	 * ACTION_API_COMMAND extra
 	 * <br>
-	 * {@code int}
+	 * {@code int} - see {@link Commands}<br> 
+	 * or {@code String} (since 862) with values like "TOGGLE_PLAY_PAUSE", "RESUME", "PAUSE", etc. matching field names from {@link Commands}
 	 */
 	public static final String COMMAND = "cmd";
 
-	/**
-	 * Get all, one, or multiple preferences<br>
-	 * contentResolver().call => "preference" with extra bundle:<br>
-	 * - null for all preferences or non-null bundle with some keys - they appropriate values will be returned<br>
-	 * @since 849
-	 */
-	public static final String CALL_PREFERENCE = "preference";
-
 
 	/**
-	 * Common extras:
-	 * <br>
-	 *
+	 * Command values for {@link #COMMAND} extra.<br>
+	 * Alternatively, Commands field name can be used instead of integer value, e.g. "PAUSE", instead of 2
 	 */
 	@SuppressWarnings("hiding")
 	public static final class Commands {
@@ -238,67 +231,98 @@ public final class PowerampAPI {
 		 * {@code boolean beep} - (optional) if true, Poweramp will beep on playback command
 		 */
 		public static final int TOGGLE_PLAY_PAUSE = 1;
+
 		/**
 		 * Extras:<br>
 		 * {@code boolean keepService} - (optional) if true, Poweramp won't unload player service. Notification will be appropriately updated<br>
 		 * {@code boolean beep} - (optional) if true, Poweramp will beep on playback command
 		 */
 		public static final int PAUSE = 2;
+
 		/**
 		 * Extras:<br>
 		 * {@code int shuffle} - (optional) if set, shuffle mode to set (even if Poweramp is already playing)
 		 */
 		public static final int RESUME = 3;
+
+		/**
+		 * Same as {@link #RESUME}
+		 */
+		public static final int PLAY = 3;
+
 		/**
 		 * NOTE: subject to 200ms throttling
 		 */
 		public static final int NEXT = 4;
+
 		/**
 		 * NOTE: subject to 200ms throttling
 		 */
 		public static final int PREVIOUS = 5;
+
 		/**
+		 * Same as {@link #PREVIOUS}
+		 */
+		public static final int PREV = 5;
+
+		/**
+		 * Next category<br>
 		 * NOTE: subject to 200ms throttling
 		 */
 		public static final int NEXT_IN_CAT = 6;
+
 		/**
+		 * Previous category<br>
 		 * NOTE: subject to 200ms throttling
 		 */
 		public static final int PREVIOUS_IN_CAT = 7;
+
 		/**
+		 * Set repeat mode<br>
 		 * Extras:<br>
-		 * {@code boolean showToast} - (optional) if false, no toast will be shown. Applied for cycle only<br>
-		 * {@code int repeat} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
+		 * {@code boolean showToast} {@link #SHOW_TOAST} - (optional) if false, no toast will be shown. Applied for cycle only<br>
+		 * {@code int repeat} {@link #REPEAT} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
 		 * @see PowerampAPI.RepeatMode
 		 */
 		public static final int REPEAT = 8;
+
 		/**
+		 * Set shuffle mode<br>
 		 * Extras:<br>
 		 * {@code boolean showToast} - (optional) if false, no toast will be shown. Applied for cycle only<br>
 		 * {@code int shuffle} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
 		 * @see PowerampAPI.ShuffleMode
 		 */
 		public static final int SHUFFLE = 9;
+
 		/**
 		 * Poweramp starts constantly seeking forward until {@link #END_FAST_FORWARD} received
 		 */
 		public static final int BEGIN_FAST_FORWARD = 10;
+
 		/**
 		 * Stops {@link #BEGIN_FAST_FORWARD} or {@link #BEGIN_REWIND}
 		 */
 		public static final int END_FAST_FORWARD = 11;
+
 		/**
 		 * Poweramp starts constantly seeking backward until {@link #END_REWIND} received
 		 */
 		public static final int BEGIN_REWIND = 12;
+
 		/**
 		 * Stops {@link #BEGIN_REWIND} or {@link #BEGIN_FAST_FORWARD}
 		 */
 		public static final int END_REWIND = 13;
+
+		/**
+		 * Stops playback, resets progress, unloads track
+		 */
 		public static final int STOP = 14;
+
 		/**
 		 * Extras:<br>
-		 * {@code int pos} - seek position in seconds
+		 * {@code int pos} {@link #EXTRA_POSITION} - seek position in seconds
 		 */
 		public static final int SEEK = 15;
 		
@@ -311,7 +335,16 @@ public final class PowerampAPI {
 		 * Stops {@link #BEGIN_FAST_FORWARD} or {@link #BEGIN_REWIND}
 		 */
 		public static final int END_FF_OR_RW = 11;
-
+		
+		/**
+		 * Sets or disables sleep timer<br>
+		 * Extras:<br>
+		 * {@link PowerampAPI#EXTRA_SECONDS} - if 0, disables sleep timer<br>
+		 * {@link PowerampAPI#EXTRA_PLAY_TO_END} - if true, Poweramp will play last track to end prior pausing<br>
+		 * @since 862
+		 */
+		public static final int SLEEP_TIMER = 17;
+	
 		 /**
 		 * Data:<br>
 		 * - uri, following URIs are recognized:<br>
@@ -466,6 +499,11 @@ public final class PowerampAPI {
 		public static final int OPEN_TO_PLAY = 20;
 
 		/**
+		 * Same as @{link #OPEN_TO_PLAY}
+		 */
+		public static final int OPEN = 20;
+
+		/**
 		 * Extras:<br>
 		 * {@code long id} - preset ID
 		 */
@@ -544,6 +582,8 @@ public final class PowerampAPI {
 					return "SET_EQU_ENABLED";
 				case STOP_SERVICE:
 					return "STOP_SERVICE";
+				case SLEEP_TIMER:
+					return "SLEEP_TIMER";
 				default:
 					return "unknown cmd=" + cmd;
 			}
@@ -554,6 +594,14 @@ public final class PowerampAPI {
 	 * Minimum allowed time between seek commands
 	 */
 	public static int MIN_TIME_BETWEEN_SEEKS_MS = 200;
+
+	/**
+	 * Get all, one, or multiple preferences<br>
+	 * contentResolver().call => "preference" with extra bundle:<br>
+	 * - null for all preferences or non-null bundle with some keys - they appropriate values will be returned<br>
+	 * @since 849
+	 */
+	public static final String CALL_PREFERENCE = "preference";
 
 	/**
 	 * Extra<br>
@@ -671,8 +719,8 @@ public final class PowerampAPI {
 	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br>
 	 * Use *_EXPLICIT version to receive this action in background app.<br><br>
 	 * Extras:<br>
-	 * {@code Bundle track} - Track bundle<br>
-	 * {@code long ts} - timestamp of the event (System.currentTimeMillis())
+	 * {@code Bundle track} {@link #TRACK} - Track bundle<br>
+	 * {@code long ts} {@link #TIMESTAMP} - timestamp of the event (System.currentTimeMillis())
 	 * @see PowerampAPI.Track
 	 */
 	public static final String ACTION_TRACK_CHANGED = "com.maxmpz.audioplayer.TRACK_CHANGED";
@@ -880,7 +928,7 @@ public final class PowerampAPI {
 	 * Generic search command<br>
 	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME}, or {@link #ACTIVITY_STARTUP}, or {@link #PLAYER_SERVICE_NAME} with the appropriate methods (sendBroadcast, startActivity, startService)
 	 * Extras:<br>
-	 * @see https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH
+	 * @see <a href="https://developer.android.com/reference/android/provider/MediaStore#INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH">MediaStore#INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH</a>
 	 * @since 853
 	 */
 	public static final String INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH = android.provider.MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH;
@@ -994,7 +1042,6 @@ public final class PowerampAPI {
 	@Deprecated
 	public static final String DELAYED = "delayed";
 
-
 	/**
 	 * Extra<br>
 	 * {@code long}
@@ -1034,7 +1081,6 @@ public final class PowerampAPI {
 	 * @see PowerampAPI#ACTION_STATUS_CHANGED
 	 */
 	public static final int STATE_PAUSED = 2;
-
 
 	/**
 	 * STATUS_CHANGED extra<br>
@@ -1094,18 +1140,17 @@ public final class PowerampAPI {
 
 	/**
 	 * PLAYING_MODE_CHANGED extra<br>
-	 * {@code integer}
+	 * {@code int}
 	 * @see PowerampAPI.ShuffleMode
 	 */
 	public static final String SHUFFLE = "shuffle";
 
 	/**
 	 * PLAYING_MODE_CHANGED extra<br>
-	 * {@code integer}
+	 * {@code int}
 	 * @see PowerampAPI.RepeatMode
 	 */
 	public static final String REPEAT = "repeat";
-
 
 	/**
 	 * Extra<br>
@@ -1118,6 +1163,24 @@ public final class PowerampAPI {
 	 * {@code Bundle}
 	 */
 	public static final String TRACK = "track";
+
+	/**
+	 * Extra<br>
+	 * {@code int}
+	 */
+	public static final String EXTRA_SECONDS = "seconds";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 */
+	public static final String EXTRA_PLAY_TO_END = "play_to_end";
+
+	/**
+	 * Extra<br>
+	 * {@code int}
+	 */
+	public static final String EXTRA_POSITION = "pos";
 
 	/**
 	 * Shuffle extras values
