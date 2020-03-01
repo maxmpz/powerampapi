@@ -429,10 +429,29 @@
 			android:onClick="onClick"
 		/>
 
-		<Button android:id="@+id/get_all_prefs"
+		<EditText android:id="@+id/pref_value"
+			android:layout_width="160dp"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/pref"
+			android:layout_marginTop="16dp"
+			android:hint="Preference Value"
+			/>
+
+		<Button android:id="@+id/set_pref"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/get_pref"
+			android:layout_marginTop="16dp"
+			android:layout_toRightOf="@+id/pref_value"
+			android:textStyle="bold"
+			android:text="Set Preference"
+			android:onClick="setPref"
+			/>
+
+		<Button android:id="@+id/get_all_prefs"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/set_pref"
 			android:layout_marginTop="16dp"
 			android:textStyle="bold"
 			android:text="Get All Prefs"
@@ -450,7 +469,8 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/prefs"
 			android:layout_margin="8dp"
-			android:max="360"
+			android:min="0"
+			android:max="7200"
 		/>
 		<Button android:id="@+id/sleep_timer_button"
 			android:layout_width="wrap_content"
@@ -463,6 +483,8 @@
 		<CheckBox android:id="@+id/sleep_timer_play_to_end"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_below="@+id/sleep_timer_seekbar"
+			android:layout_toRightOf="@id/sleep_timer_button"
 			android:text="Play To End"
 		/>
 		<TextView android:id="@+id/sleep_timer_value"
@@ -470,7 +492,7 @@
 			android:layout_height="wrap_content"
 			android:layout_margin="16dp"
 			android:layout_below="@+id/sleep_timer_seekbar"
-			android:layout_toRightOf="@id/sleep_timer_button"
+			android:layout_toRightOf="@id/sleep_timer_play_to_end"
 			android:text="Sleep in ..."
 		/>
 

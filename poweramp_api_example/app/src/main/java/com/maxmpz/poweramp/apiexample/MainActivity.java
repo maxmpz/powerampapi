@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2019 Maksim Petrov
+Copyright (C) 2011-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -39,6 +39,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -72,6 +73,7 @@ import org.eclipse.jdt.annotation.Nullable;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.lang.reflect.Field;
 import java.util.Set;
 
 
@@ -718,6 +720,70 @@ public class MainActivity extends AppCompatActivity implements
 		TextView prefsTV = findViewById(R.id.prefs);
 
 		Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, null);
+
+		prefsTV.setText(dumpBundle(resultPrefs));
+		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);;
+	}
+
+	public void setPref(View view) {
+		EditText pref = (EditText)findViewById(R.id.pref);
+		String name = pref.getText().toString().trim();
+		if(TextUtils.isEmpty(name)) {
+			pref.setError("Empty");
+			return;
+		}
+
+		Field prefFiled;
+		try {
+			prefFiled = PowerampAPI.Settings.Preferences.class.getDeclaredField(name);
+		} catch(Throwable th) {
+			pref.setError("Bad pref name");
+			Log.e(TAG, "", th);
+			return;
+		}
+
+		pref.setError(null);
+
+		EditText prefValue = (EditText)findViewById(R.id.pref_value);
+		String value = prefValue.getText().toString().trim();
+
+		final Class<?> type = prefFiled.getType();
+
+		if(TextUtils.isEmpty(value) && type != String.class) { // Check if we can send empty values => String
+			prefValue.setError("Empty");
+			return;
+		}
+
+		Bundle request = new Bundle();
+
+		try {
+			// Check if we can parse value
+			if(type == String.class) {
+				request.putString(name, value);
+
+			} else if(type == Boolean.TYPE) {
+				request.putBoolean(name, Boolean.parseBoolean(value));
+
+			} else if(type == Integer.TYPE) {
+				request.putInt(name, Integer.parseInt(value, 10));
+
+			} else if(type == Long.TYPE) {
+				request.putLong(name, Long.parseLong(value, 10));
+
+			} else if(type == Float.TYPE) {
+				request.putFloat(name, Float.parseFloat(value));
+			} else throw new AssertionError("Bad field type=" + type);
+
+			prefValue.setError(null);
+		} catch(NumberFormatException ex) {
+			prefValue.setError(ex.getMessage());
+		}
+
+		TextView prefsTV = findViewById(R.id.prefs);
+
+		// OK, let's call it
+
+		Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_SET_PREFERENCE, null, request);
 
 		prefsTV.setText(dumpBundle(resultPrefs));
 		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);;

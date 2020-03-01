@@ -23,6 +23,7 @@ package com.maxmpz.poweramp.player;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 
 /**
  * Poweramp Intent based API.
@@ -596,12 +597,24 @@ public final class PowerampAPI {
 	public static int MIN_TIME_BETWEEN_SEEKS_MS = 200;
 
 	/**
-	 * Get all, one, or multiple preferences<br>
-	 * contentResolver().call => "preference" with extra bundle:<br>
-	 * - null for all preferences or non-null bundle with some keys - they appropriate values will be returned<br>
+	 * Get all, one, or multiple Poweramp preferences<br>
+	 * contentResolver().call => CALL_PREFERENCE with optional extra bundle:<br>
+	 * - null for all preferences or non-null bundle with some keys - the appropriate preferences will be returned<br>
 	 * @since 849
 	 */
 	public static final String CALL_PREFERENCE = "preference";
+
+	/**
+	 * Set one, or multiple preferences<br>
+	 * contentResolver().call => CALL_SET_PREFERENCE with extra bundle, containing preference names and values to set<br>
+	 * NOTE: Poweramp allows limited subset of preferences to be set this way<br>
+	 * Depending on preference Poweramp may immediately apply it, apply for the next track, for the next activity restart, or for the next Poweramp process restart.<br>
+	 * <b>Experimental: this part of API is currently under development and may change in the future</b><br>
+	 * See {@link Settings.Preferences}<br>
+	 * Returns bundle with the old values for the preferences which were set, or null on error<br>
+	 * @since 862
+	 */
+	public static final String CALL_SET_PREFERENCE = "set_preference";
 
 	/**
 	 * Extra<br>
@@ -1851,5 +1864,260 @@ public final class PowerampAPI {
 		 * @since 795
 		 */
 		public static final String EXTRA_SKIN_STYLE_ID = "theme_id";
+
+		/**
+		 * Limited subset of preferences allowed to be set by {@link #CALL_SET_PREFERENCE}.<br>
+		 * NOTE: preferences defined as static field with the preference name and type as a reference<br>
+		 * This <b>can't</b> be used for actual preference reading/writing, i.e.:<br>
+		 * {@code Poweramp.Preferences.dvc_enabled = true;}<br>
+		 * will do nothing<br><br>
+		 *
+		 * <b>Experimental: this part of API is currently under development and may/will change in the future</b><br>
+		 * This class entries/types/values may/will change in next Poweramp builds without prior warning/deprication<br>
+		 * @since 862
+		 */
+		public static class Preferences {
+			public static boolean dvc_enabled;
+			public static boolean no_dvc_bt_absvol; // NOTE: this effectively works like bt dvc switch for devices w/o absvol detection
+			public static int stream_timeout_ms; // ms
+			public static int volume_levels;
+			public static boolean dsp_border_gain;
+			public static boolean force_no_speaker;
+			public static boolean force_audio_on_focus;
+			public static boolean allow_platform_fx;
+			public static int rg_default_mb;
+			public static int rg_preamp_mb;
+			public static int rg_type;
+			public static int rg_source;
+			public static boolean aa_always;
+			public static boolean aa_force_default;
+			public static boolean prefer_downloaded_aa;
+			public static boolean download_aa_wifi_only;
+			public static boolean aa_anim;
+			public static boolean aa_mobile_agent;
+			public static boolean aa_download_hd;
+			public static boolean aa_8888;
+			public static boolean aa_hi_res_for_apis;
+			public static boolean keep_service;
+			public static boolean keep_notification;
+			public static boolean keep_notification_always; // NOTE: both keep_notification/keep_notification_always should be checked, as keep_notification_always is not disable dwhen keep_notification is
+			public static boolean no_keep_notif_on_dscn;
+			public static int queue_start;
+			public static int queue_end;
+			public static int search_cats;
+			public static boolean hier_flat_shf; // Shuffle all songs inside folders hier files
+			public static boolean no_reshuffle;
+			public static boolean enable_deletion;
+			public static int list_item_action;
+			public static boolean list_action_resets;
+			public static boolean list_shf_cat_songs;
+			public static boolean previous_resets;
+			public static boolean scrobble_to_last_fm;
+			public static boolean scrobble_to_simple_last_fm;
+			public static boolean af_permanent;
+			public static boolean af_short;
+			public static boolean af_short_duck;
+			public static boolean ls_enable;
+			public static boolean direct_unlock;
+			public static boolean ics_ls_aa;
+			public static boolean ls_enable_land;
+			public static boolean ls_aa_blur;
+			public static boolean ls_default_aa;
+			public static boolean ls_force_timeout;
+			public static boolean resume_on_headset;
+			public static boolean resume_on_bt;
+			public static boolean resume_on_start;
+			public static boolean resume_on_mount;
+			public static boolean pause_on_headset;
+			public static boolean resume_after_call;
+			public static boolean pause_in_call;
+			public static boolean enable_headset_controls;
+			public static boolean headset_beep;
+			public static boolean headset_vibrate;
+			public static int headset_controls; // type
+			public static int avrcp_controls;
+			public static boolean no_android_long_press;
+			public static boolean long_volume_controls;
+			public static int notification_colors;
+			public static int notification_type;
+			public static int library_lists;
+			public static int library_home;
+			public static boolean menu_nav_to_folders;
+			public static int settings_theme; // Enum int, not res
+			public static boolean search_play_tracks;
+			public static boolean auto_scan;
+			public static boolean scan_no_wait;
+			public static boolean initial_scan;
+			public static boolean scan_post_usb_mount;
+			public static boolean scan_post_system;
+			public static boolean scan_providers;
+			public static int scan_min_track_duration;
+			public static boolean skip_video;
+			public static String genres_split_chars;
+			public static String artists_split_chars;
+			public static boolean m3u_utf8;
+			public static String tag_encoding;
+			public static boolean status_lib;
+			public static boolean send_metachanged;
+			public static int notify_prio;
+			public static boolean notify_colorize;
+			public static boolean notify_prefer_nav;
+			public static boolean send_old_api_aa;
+			public static boolean az_scroll;
+			public static boolean restore_pos; // per track position
+			public static int restore_pos_min_dur; // minutes
+			public static boolean send_mediasession_q;
+			public static boolean pl_auto_resolve;
+			public static boolean check_updates;
+			public static boolean check_beta_updates; // Only valid if check_updates is valid
+
+			public static String folders;
+			public static boolean join_albums;
+			public static boolean show_cue_source;
+			public static boolean process_cues;
+			public static boolean pl_no_dups;
+			public static boolean pl_del_entry_w_track;
+			public static boolean no_sort_field;
+			public static boolean use_albumartist;
+			public static boolean use_albumartist_albums;
+			public static boolean use_albumartist_albumartists;
+			public static boolean queue_no_shuffle;
+			public static boolean queue_clear_on_add;
+			public static boolean title_filename;
+			public static boolean hide_unknown_album;
+			public static boolean download_artist_art;
+			public static boolean download_album_art;
+			public static boolean download_if_no_tags;
+			public static long root_hier_id;
+			public static boolean root_hier_immediate;
+			public static int files_sort; // all files
+			public static int folders_sort;
+			public static int folders_files_sort;
+			// NOTE: no sort for folders_hier
+			public static int folders_hier_files_sort;
+			public static int albums_sort;
+			public static int album_files_sort;
+			public static int artists_sort;
+			public static int artists_files_sort;
+			public static int artists_albums_sort;
+			public static int artists_albums_files_sort;
+			public static int album_artists_sort;
+			public static int album_artists_files_sort;
+			public static int album_artists_albums_sort;
+			public static int album_artists_albums_files_sort;
+			public static int albums_by_artist_sort;
+			public static int albums_by_artist_files_sort;
+			public static int genres_sort;
+			public static int genres_files_sort;
+			public static int genres_albums_sort;
+			public static int genres_albums_files_sort;
+			public static int composers_sort;
+			public static int composers_files_sort;
+			public static int composers_albums_sort;
+			public static int composers_albums_files_sort;
+			public static int playlists_sort;
+			public static int most_played_files_sort;
+			public static int recently_added_files_sort;
+			public static int recently_played_files_sort;
+			public static int long_files_sort;
+			public static int years_sort;
+			public static int years_files_sort;
+			public static int years_albums_sort;
+			public static int years_albums_files_sort;
+			public static int streams_sort;
+			public static int most_played_files_limit;
+			public static int top_rated_files_limit;
+			public static int low_rated_files_limit;
+			public static int recently_added_files_limit;
+			public static int recently_played_files_limit;
+			public static int folders_view;
+			public static int list_zoom_library;
+			public static int list_zoom_files; // all files, top playlists, queue, artist/genre/composer all files
+			public static int list_zoom_folders;
+			public static int list_zoom_folder_files;
+			public static int list_zoom_folders_hier; // NOTE: shared by folder hier files as well
+			public static int list_zoom_albums;
+			public static int list_zoom_album_files;
+			public static int list_zoom_albums_by_artist;
+			public static int list_zoom_albums_by_artist_files;
+			public static int list_zoom_album_artists;
+			public static int list_zoom_album_artists_files;
+			public static int list_zoom_album_artists_albums;
+			public static int list_zoom_album_artists_albums_files;
+			public static int list_zoom_artists;
+			public static int list_zoom_artist_files;
+			public static int list_zoom_artists_albums;
+			public static int list_zoom_artists_albums_files;
+			public static int list_zoom_genres;
+			public static int list_zoom_genres_files;
+			public static int list_zoom_genres_albums;
+			public static int list_zoom_genres_albums_files;
+			public static int list_zoom_composers;
+			public static int list_zoom_composers_files;
+			public static int list_zoom_composers_albums;
+			public static int list_zoom_composers_albums_files;
+			public static int list_zoom_playlists;
+			public static int list_zoom_playlists_files;
+			public static int list_zoom_queue;
+			public static int list_zoom_most_played_files;
+			public static int list_zoom_top_rated_files;
+			public static int list_zoom_low_rated_files;
+			public static int list_zoom_recently_added_files;
+			public static int list_zoom_recently_played_files;
+			public static int list_zoom_long_files;
+			public static int list_zoom_years;
+			public static int list_zoom_years_files;
+			public static int list_zoom_years_albums;
+			public static int list_zoom_years_albums_files;
+			public static int list_zoom_streams;
+			public static int list_zoom_search;
+			public static int long_files_min_duration; // ms
+			public static long recently_played_from; // ms. As played_at is milliseconds
+			public static long recently_added_from;  // seconds. As created_at/updated_at/file_udpated_at are mtime based in seconds timebase
+			public static long most_played_ts_from; // ms. As played_at is ms
+
+			public static String lang;
+			public static int orientation;
+			public static boolean hide_status_bar;
+			public static boolean keep_screen_on;
+			public static boolean check_for_skin_reload;
+			public static boolean volume_popup;
+			public static boolean start_at_lib;
+			public static int rating_type;
+			public static boolean show_counter;
+			public static boolean static_navbar;
+			public static boolean long_skip_rewind;
+			public static boolean vis_frs_equ;
+			public static int vis_mode;
+			public static boolean vis_in_lib; // Also, search
+			public static boolean milk_hd;
+			public static boolean milk_crop_aspect;
+			public static boolean milk_30_fps;
+			public static boolean milk_strict;
+			public static int milk_presets_sort;
+			public static boolean milk_hide_unliked;
+			public static boolean aa_blur_enabled;
+			public static int aa_blur; // 0..15
+			public static int aa_blur_intensity; // 0+. Percent. Float value = /100
+			public static int aa_blur_scale; // 1..512
+			public static int aa_blur_saturation; // 0+. Percent.
+			public static boolean aa_keep_aspect;
+			public static int vis_controls_faded_alpha; // 0..100
+			public static int vis_panel_faded_alpha; // 0..100
+			public static float vis_list_faded_alpha; // 0..1f
+			public static boolean vis_aa_visible;
+			public static int vis_preset_change_sec;
+			public static boolean vis_use_compact_bars;
+			public static int vis_temp_ui_ms;
+			public static int cc_button;
+			public static boolean hide_menu;
+			public static boolean anim_long_labels;
+			public static boolean headers_meta;
+			public static int eq_labels;
+			public static int tone_labels;
+			public static int track_num_type;
+			public static boolean track_disc_meta;
+		}
 	}
+
 }
