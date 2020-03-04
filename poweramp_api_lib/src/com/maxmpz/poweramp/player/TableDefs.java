@@ -237,7 +237,7 @@ public interface TableDefs {
 		public static final @NonNull String USER_ADDED = TABLE + ".user_added";
 		
 		/**
-		 * Optional http(s) URL pointing to the target track. If exists, this will be prefered over path (== folder.path + file_name.name)<br>
+		 * Optional http(s) URL pointing to the target track. If exists, this will be preferred over path (== folder.path + file_name.name)<br>
 		 * Can be {@link TrackProviderConsts#DYNAMIC_URL}<br> 
 		 * TEXT
 		 */

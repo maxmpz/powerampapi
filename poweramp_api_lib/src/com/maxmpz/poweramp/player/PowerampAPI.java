@@ -347,19 +347,24 @@ public final class PowerampAPI {
 		public static final int SLEEP_TIMER = 17;
 	
 		 /**
-		 * Data:<br>
-		 * - uri, following URIs are recognized:<br>
-		 * 	- file://path<br>
-		 * 	- content://com.maxmpz.audioplayer.data/... (see below)<br><br>
-		 *
-		 * # means some numeric id (track id for queries ending with /files, otherwise - appropriate category id).<br>
-		 * If track id (in place of #) is not specified, Poweramp plays whole list starting from the specified track,<br>
-		 * or from first one, or from random one in shuffle mode.<br><br>
-		 *
-		 * All queries support following params (added as URL encoded params, e.g. content://com.maxmpz.audioplayer.data/files?lim=10&flt=foo):<br>
-		 * {@code int lim} - SQL LIMIT, which limits number of rows returned<br>
-		 * {@code int shf} - shuffle mode (see ShuffleMode class)<br>
-		 * {@code int shs} - 1 if this is shuffle session (for internal use)<br><br>
+		  * Data:<br>
+		  * - uri, following URIs are recognized:<br>
+		  * 	- file://path (NOTE: depending on Android version, uris like this can fail due to missing filesystem permissions)<br>
+		  * 	- content://com.maxmpz.audioplayer.data/... (see below)<br><br>
+		  *  - any other content:// uri compatible with ContentResolver.openFile<br>
+		  *  - http/https url (stream or remote track file)<br><br>
+		  *
+		  * # means some numeric id (track id for queries ending with /files, otherwise - appropriate category id).<br>
+		  * If track id (in place of #) is not specified, Poweramp plays whole list starting from the specified track,<br>
+		  * or from first one, or from random one in shuffle mode.<br><br>
+		  *
+		  * NOTE: for Playlist and Queue tracks the item id differs from other file categories. As the same track be added into Playlist or Queue multiple times,
+		  * folder_files._id can't be used as unique id there. Instead, playlist_entries._id and queue._id are used.
+		  * Make sure to pass playlist_entries._id/queue._id as id to start track from, not the folder_files._id<br><br>
+		  *
+		  * All queries support following params (added as URL encoded params, e.g. content://com.maxmpz.audioplayer.data/files?lim=10):<br>
+		  * {@code int lim} - SQL LIMIT, which limits number of rows returned<br>
+		  * {@code int shf} - shuffle mode (see ShuffleMode class)<br>
 		 <pre>
 		 - All tracks:
 		 content://com.maxmpz.audioplayer.data/files
