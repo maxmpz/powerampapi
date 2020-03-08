@@ -28,7 +28,7 @@ public class TrackProviderProto implements AutoCloseable {
 	private static final String TAG = "TrackProviderProto";
 	private static final boolean LOG = false;
 	/** If true, a bit more checks happen. Disable for production builds */
-	private static final boolean DEBUG_CHECKS = true;
+	private static final boolean DEBUG_CHECKS = false;
 
 	/** Invalid seek position */
 	public static final long INVALID_SEEK_POS = Long.MIN_VALUE;
