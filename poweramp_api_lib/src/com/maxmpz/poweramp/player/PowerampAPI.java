@@ -1787,8 +1787,10 @@ public final class PowerampAPI {
 	public static final class Settings {
 		/**
 		 * Sent by your app to Poweramp.<br>
-		 * Exports Poweramp settings
-		 * @since 862
+		 * Exports Poweramp settings<br>
+		 * Target URI for file should be set via {@link Intent#setData} with the appropriate permissions given to Poweramp process
+		 * Extras: {@link #EXTRA_UI}
+		 * @since 863
 		 */
 		public static final String ACTION_EXPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_EXPORT_SETTINGS";
 

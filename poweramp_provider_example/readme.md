@@ -31,6 +31,7 @@ Due to the standard APIs used, the resulting provider plugin can be potentially 
 
 # Implementing Poweramp Track Provider Plugin
 - [Basics](#basics)
+- [AndroidManifest.xml](#androidmanifestxml)
 - [Scanning](#scanning)
 - [EXTRA_LOADING](#extra_loading)
 - [Icon](#icon)
@@ -55,6 +56,10 @@ Document Provider provides information about tracks hierarchy and the metainform
 
 Track Provider is added to Poweramp via Poweramp *Music Folders* dialog with the plus (+) button. The + button opens standard Android *Picker* dialog which allows user to select the Tracks Provider Plugin *Root* and,
 optionally, a sub-folder.
+
+### AndroidManifest.xml
+Your provider should be marked with `com.maxmpz.PowerampTrackProvider` metadata. See [AndroidManifest.xml](app/src/main/AndroidManifest.xml#L23).
+Currently (builds 863+) Poweramp loads and uses any document provider available, but this metadata allows Poweramp to understand your Provider fully supports API defined here.
 
 
 ### Scanning
