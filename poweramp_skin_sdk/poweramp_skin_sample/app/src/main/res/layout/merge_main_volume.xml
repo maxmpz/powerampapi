@@ -20,13 +20,68 @@
 
 		w:labelText="@string/volume"
 	/>
+	<!-- Show in playing scene -->
+	<SceneParams
+		w:baseScene="defaultScene"
+		android:visibility="visible"
+		w:scene="@com.maxmpz.audioplayer:id/scene_playing"
+	/>
+	<!-- Hide in all other scenes -->
+	<SceneParams
+		w:baseScene="defaultScene"
+		android:visibility="invisible"
+
+		w:scene="@com.maxmpz.audioplayer:id/scene_lib"
+		w:scene_2="@com.maxmpz.audioplayer:id/scene_search"
+		w:scene_3="@com.maxmpz.audioplayer:id/scene_vis_w_ui"
+		w:scene_4="@com.maxmpz.audioplayer:id/scene_vis_temp_ui"
+		w:scene_5="@com.maxmpz.audioplayer:id/scene_vis"
+	/>
+	<SceneParams
+		w:baseScene="defaultScene"
+		android:visibility="gone"
+		w:scene="@com.maxmpz.audioplayer:id/scene_eq"
+	/>
 
 	<!-- Vertical linear knob variant. NOTE: Poweramp builds prior 854 require DSPPreampLinearKnob here. Later builds can use DSPLinearKnob.
-	     The difference between thos is that DSPPreampLinearKnob ignores value format attributes and uses the one set by user in settings for equalizer thumbs -->
-	<com.maxmpz.widget.player.DSPPreampLinearKnob
+	     The difference between those is that DSPPreampLinearKnob ignores value format attributes and uses the one set by user in settings for equalizer thumbs.
+	     This is vertical knob. -->
+	<com.maxmpz.widget.player.DSPLinearKnob
 		style="@style/SampleSkin_mainLinearVolumeKnob"
 
 		w:valueFormat="%.0f%%"
+		w:valueFormatMin="0"
+		w:valueFormatMax="100"
+		android:text="@string/volume"
+
+		w:param="@com.maxmpz.audioplayer:id/dsp_master_volume"
+		w:updateMsgId="@com.maxmpz.audioplayer:id/msg_dsp_other_changed"
+	/>
+	<!-- Show in playing scene -->
+	<SceneParams
+		w:scene="@com.maxmpz.audioplayer:id/scene_playing"
+		w:baseScene="defaultScene"
+		android:visibility="visible"
+	/>
+	<!-- Hide in all other scenes -->
+	<SceneParams
+		style="@style/SampleSkin_mainLinearVolumeKnobHidden"
+
+		w:scene="@com.maxmpz.audioplayer:id/scene_lib"
+		w:scene_2="@com.maxmpz.audioplayer:id/scene_search"
+		w:scene_3="@com.maxmpz.audioplayer:id/scene_eq"
+		w:scene_4="@com.maxmpz.audioplayer:id/scene_vis_w_ui"
+		w:scene_5="@com.maxmpz.audioplayer:id/scene_vis_temp_ui"
+		w:scene_6="@com.maxmpz.audioplayer:id/scene_vis"
+		android:visibility="invisible"
+	/>
+
+	<!-- This is horizontal knob (863+). paddingLeft=0 and valueFormat=0 forces no labels -->
+	<com.maxmpz.widget.player.DSPLinearKnob
+		style="@style/SampleSkin_mainLinearVolumeKnob_horiz"
+		android:orientation="horizontal"
+
+		w:valueFormat=""
 		w:valueFormatMin="0"
 		w:valueFormatMax="100"
 
@@ -34,14 +89,12 @@
 		w:updateMsgId="@com.maxmpz.audioplayer:id/msg_dsp_other_changed"
 	/>
 
-
 	<!-- Show in playing scene -->
 	<SceneParams
 		w:scene="@com.maxmpz.audioplayer:id/scene_playing"
 		w:baseScene="defaultScene"
 		android:visibility="visible"
 	/>
-
 	<!-- Hide in all other scenes -->
 	<SceneParams
 		style="@style/SampleSkin_mainLinearVolumeKnobHidden"

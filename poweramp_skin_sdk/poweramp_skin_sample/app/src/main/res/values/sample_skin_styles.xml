@@ -568,20 +568,62 @@
 	<!-- Style for the main vertical volume knob itself.
 	     The knob drawables and style can be further redefined as needed -->
 	<style name="SampleSkin_mainLinearVolumeKnob" parent="com.maxmpz.audioplayer:EqPreampLinearKnob">
-		<!-- NOTE: at this time, Poweramp supports just vertical knobs (as in equalizer), horizontal knob may be possible via android:rotation, but layout gets complicated -->
-		<item name="com.maxmpz.audioplayer:layout_attachLeft">inset</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">parent</item>
 		<item name="com.maxmpz.audioplayer:layout_attachTop">inset</item>
 		<item name="com.maxmpz.audioplayer:layout_attachBottomToBottom">@com.maxmpz.audioplayer:id/aa_bounds</item>
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginLeft">16dp</item>
-		<item name="android:layout_marginBottom">48dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
 
 		<!-- NOTE: by default linear knob (EqPreampLinearKnob style) uses own backround with ticks.
 			 If we want some custom background, we should disable that default lines background -->
 		<item name="com.maxmpz.audioplayer:linesBackground">false</item>
 		<item name="android:background">@drawable/ripple_alpha_always_rounded</item>
-		<item name="android:paddingBottom">12dp</item><!-- Need some extra padding due to the rounded background -->
+
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+
 		<item name="android:scaleX">0.75</item><!-- NOTE: can't use different scaleX vs scaleY here as SceneParams doesn't support it, it supports fixed aspect ratio scale -->
+		<item name="android:scaleY">0.75</item>
+
+		<!-- Following forces FastLayout to compensate scaled size and layout this view like no scale applied -->
+		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotY">0px</item>
+		<item name="com.maxmpz.audioplayer:layout_compensateScale">0.75</item>
+	</style>
+
+	<style name="SampleSkin_mainLinearVolumeKnob_horiz" parent="com.maxmpz.audioplayer:EqPreampLinearKnob">
+		<!-- Change thumb drawable to horizontal one -->
+		<item name="com.maxmpz.audioplayer:thumb">@drawable/knob_thumb_selector_horiz</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">inset</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+
+		<!-- Set proper size for horizontally aligned thumb -->
+		<item name="com.maxmpz.audioplayer:thumbWidth">64dp</item>
+		<item name="com.maxmpz.audioplayer:thumbHeight">32dp</item>
+
+
+		<!-- NOTE: by default linear knob (EqPreampLinearKnob style) uses own backround with ticks.
+			 If we want some custom background, we should disable that default lines background -->
+		<item name="com.maxmpz.audioplayer:linesBackground">false</item>
+		<item name="android:background">@drawable/ripple_alpha_always_rounded</item>
+
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+
+		<!-- NOTE: can't use different scaleX vs scaleY here as SceneParams doesn't support it, it supports fixed aspect ratio scale -->
+		<item name="android:scaleX">0.75</item>
 		<item name="android:scaleY">0.75</item>
 	</style>
 
