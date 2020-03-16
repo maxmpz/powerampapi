@@ -1122,6 +1122,79 @@ public interface TableDefs {
 		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 	}
 
+
+	/** 
+	 * Used for specific dynamic subcategories, such as Artist Albums, where data subset is dynamically generated, thus, no table for stats otherwise exist<br>
+	 * TYPE + REF_ID is an unique index
+	 * @since 863
+	 */
+	public interface CatStats {
+		public static final @NonNull String TABLE = "cat_stats";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+
+		/**
+		 * Matches category numeric type ({@link PowerampAPI#Cats})<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String TYPE = TABLE + ".type";
+
+		/**
+		 * First referenced target id, e.g. genre _id<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String REF_ID = TABLE + ".ref_id";
+
+		/**
+		 * Second referenced target id, e.g. album _id<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String REF_ID2 = TABLE + ".ref_id2";
+
+		/**
+		 * Number of tracks in this category, excluding cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
+
+		/**
+		 * Number of tracks in this category, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
+
+		/**
+		 * Duration in milliseconds, excluding cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String DURATION = TABLE + ".duration";
+		
+		/**
+		 * Duration meta<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 */
+		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
+		
+		/**
+		 * Duration meta including cues<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 */
+		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
+		
+		/**
+		 * Duration in milliseconds, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
+	}
+
+	
 	public interface PlaylistEntries {
 		public static final @NonNull String TABLE = "playlist_entries";
 
