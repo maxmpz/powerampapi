@@ -23,7 +23,6 @@ package com.maxmpz.poweramp.player;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 
 /**
  * Poweramp Intent based API.
