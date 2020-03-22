@@ -72,4 +72,7 @@
 	<string name="skin_summary_volume_knob">Show volume knob on main screen</string>
 	<string name="volume">Volume</string>
 	<string name="skin_poweramp_not_installed">Poweramp is not installed</string>
+	<string name="skin_basic_options">Basic</string>
+	<string name="skin_page_1">Skin Sub-Page</string>
+	<string name="skin_page_1_summary">More skin options here</string>
 </resources>

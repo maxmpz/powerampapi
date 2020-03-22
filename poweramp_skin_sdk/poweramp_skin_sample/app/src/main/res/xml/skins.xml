@@ -12,71 +12,76 @@
 		style="@style/SampleSkin"
 		forceGlobalOptions="true"
 	>
-		<!-- (build 842+) Custom loadable fonts -->
-		<radio
-			key="font"
-			name="@string/skin_font"
-			defaultValue=""
+		<!-- Since 865. The category and page tags define 2 types of option categories. The <category> tag is just a grouping header in skin settings.
+		     The <page> tag defines settings sub-page.
+		     Both <category> and <page> tags are ignored prior build 865 (just plain list of options is shown) -->
+		<category name="@string/skin_basic_options">
+			<!-- (build 842+) Custom loadable fonts -->
+			<radio
+				key="font"
+				name="@string/skin_font"
+				defaultValue=""
+				>
+				<option
+					name="@string/_default"
+					overlapStyle=""
+					/>
+				<option
+					name="@string/skin_opensans_font"
+					overlapStyle="@style/SampleSkin_OpenSansFont"
+					/>
+				<option
+					name="@string/skin_ubuntu_font"
+					overlapStyle="@style/SampleSkin_UbuntuFont"
+					/>
+			</radio>
+
+			<!-- Checkable option. In this case we use built-in ActivityTheme_Whitepro_StaticSeekbar substyle. We may need own substyle if we modify theme more -->
+			<option
+				key="static_seekbar"
+				name="@string/skin_static_seekbar"
+				overlapStyle="@com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_StaticSeekbar"
+				checkedByDefault="false"
+			/>
+
+			<radio
+				key="alt_layout_radio"
+				name="@string/skin_alt_layout"
+				summary="@string/skin_summary_alt_layout"
 			>
+
+			<!-- Alternative layout which uses default Poweramp "alternative" layout styles.
+			     For the custom detailed alternative layout implementation, see SampleSkinAAA.
+
+			     overlapAttr here means we'll add extra style based on current overlap_alt_layout attribute value, which is:
+			     - @com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_AltLayout - by default
+			     - @com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_AltLayout_StarsMenu - for OptionRatingStarsMenu
+
+			     You can check those styles in reference_resources.
+			     Alternative styles added then change main and items layout as needed - no further redefines are needed.
+			     If you want more control over alternative layout, see SampleSkinAAA or new SampleSkin_Alt -->
+			-->
+				<option
+					name="@string/skin_alt_layout_default"
+					overlapAttr="@com.maxmpz.audioplayer:attr/overlap_alt_layout"
+				/>
+
+				<option
+					name="@string/skin_alt_layout_centered"
+					overlapStyle="@style/SampleSkin_Alt_Centered"
+				/>
+			</radio>
+
+			<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
+			     See strings.xml for some examples.
+			-->
 			<option
-				name="@string/_default"
-				overlapStyle=""
+				key="color1"
+				name="@string/skin_text_color1"
+				overlapStyle="@style/SampleSkin_color1"
+				checkedByDefault="false"
 			/>
-			<option
-				name="@string/skin_opensans_font"
-				overlapStyle="@style/SampleSkin_OpenSansFont"
-			/>
-			<option
-				name="@string/skin_ubuntu_font"
-				overlapStyle="@style/SampleSkin_UbuntuFont"
-			/>
-		</radio>
-
-		<!-- Checkable option. In this case we use built-in ActivityTheme_Whitepro_StaticSeekbar substyle. We may need own substyle if we modify theme more -->
-		<option
-			key="static_seekbar"
-			name="@string/skin_static_seekbar"
-			overlapStyle="@com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_StaticSeekbar"
-			checkedByDefault="false"
-		/>
-
-		<radio
-			key="alt_layout_radio"
-			name="@string/skin_alt_layout"
-			summary="@string/skin_summary_alt_layout"
-		>
-
-		<!-- Alternative layout which uses default Poweramp "alternative" layout styles.
-		     For the custom detailed alternative layout implementation, see SampleSkinAAA.
-
-		     overlapAttr here means we'll add extra style based on current overlap_alt_layout attribute value, which is:
-		     - @com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_AltLayout - by default
-		     - @com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_AltLayout_StarsMenu - for OptionRatingStarsMenu
-
-		     You can check those styles in reference_resources.
-		     Alternative styles added then change main and items layout as needed - no further redefines are needed.
-		     If you want more control over alternative layout, see SampleSkinAAA or new SampleSkin_Alt -->
-		-->
-			<option
-				name="@string/skin_alt_layout_default"
-				overlapAttr="@com.maxmpz.audioplayer:attr/overlap_alt_layout"
-			/>
-
-			<option
-				name="@string/skin_alt_layout_centered"
-				overlapStyle="@style/SampleSkin_Alt_Centered"
-			/>
-		</radio>
-
-		<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
-		     See strings.xml for some examples.
-		-->
-		<option
-			key="color1"
-			name="@string/skin_text_color1"
-			overlapStyle="@style/SampleSkin_color1"
-			checkedByDefault="false"
-		/>
+		</category>
 
 		<!-- (build 810+) radio / popup - an option selectable from the number of available options -->
 
@@ -154,32 +159,38 @@
 			/>
 		</popup>
 
-		<!-- Option to make app background transparent in main player UI -->
-		<option
-			key="trans_bg_main"
-			name="@string/skin_trans_bg_main"
-			summary="@string/skin_summary_trans_bg_main"
-			overlapStyle="@style/SampleSkin_transBgMain"
-			checkedByDefault="false"
-		/>
+		<page
+			name="@string/skin_page_1"
+			summary="@string/skin_page_1_summary"
+			icon="@drawable/app_icon"
+		>
+			<!-- Option to make app background transparent in main player UI -->
 
-		<!-- Let's add our skin unique option which makes navigation bars fully transparent -->
-		<option
-			key="trans_navbar"
-			name="@string/skin_transparent_navbar"
-			summary="@string/skin_summary_transparent_navbar"
-			overlapStyle="@style/SampleSkin_transparentNavbar"
-			checkedByDefault="false"
-		/>
+			<option
+				key="trans_bg_main"
+				name="@string/skin_trans_bg_main"
+				summary="@string/skin_summary_trans_bg_main"
+				overlapStyle="@style/SampleSkin_transBgMain"
+				checkedByDefault="false"
+			/>
 
-		<option
-			key="divided_waveseek"
-			name="@string/skin_divided_waveseek"
-			summary="@string/skin_summary_divided_waveseek"
-			overlapStyle="@style/SampleSkin_dividedWaveseek"
-			checkedByDefault="false"
-		/>
+			<!-- Let's add our skin unique option which makes navigation bars fully transparent -->
+			<option
+				key="trans_navbar"
+				name="@string/skin_transparent_navbar"
+				summary="@string/skin_summary_transparent_navbar"
+				overlapStyle="@style/SampleSkin_transparentNavbar"
+				checkedByDefault="false"
+			/>
 
+			<option
+				key="divided_waveseek"
+				name="@string/skin_divided_waveseek"
+				summary="@string/skin_summary_divided_waveseek"
+				overlapStyle="@style/SampleSkin_dividedWaveseek"
+				checkedByDefault="false"
+			/>
+		</page>
 		<option
 			key="no_aa_blur"
 			name="@string/skin_no_aa_blur"
@@ -205,6 +216,42 @@
 			overlapStyle="@style/SampleSkin_VolumeKnob"
 			checkedByDefault="false"
 		/>
+
+		<!-- Pages and categories can be organized in hierarchies, though for categories this makes little sense as category visually is just a header -->
+		<page
+			name="Another sub page"
+			summary="Demonstrating sub pages and sub categories"
+			icon="@drawable/app_icon"
+		>
+			<category name="Sub page category">
+			</category>
+			<page name="Another sub-sub page">
+				<page name="Another sub-sub-sub page">
+					<category name="Sub-sub-sub page category">
+						<option
+							key="_dummy"
+							name="Some dummy sub-sub-sub page option"
+							overlapStyle="@style/SampleSkin_VolumeKnob"
+						/>
+					</category>
+				</page>
+				<category name="Sub-sub page category">
+				</category>
+			</page>
+
+		</page>
+		<page
+			name="Another sub page 2"
+			summary="Demonstrating sub pages and sub categories"
+		>
+			<category name="Sub page category">
+			</category>
+			<page name="Another sub-sub page 2">
+				<category name="Sub-sub page 2 empty category">
+				</category>
+			</page>
+
+		</page>
 	</skin>
 
 	<!-- Custom "alternative" layout. NOTE: it's recommended to use Poweramp alternative style based option instead.

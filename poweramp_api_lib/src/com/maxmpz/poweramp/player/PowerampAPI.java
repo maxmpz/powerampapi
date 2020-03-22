@@ -1865,11 +1865,18 @@ public final class PowerampAPI {
 		public static final String EXTRA_SKIN_PACKAGE = "theme_pak";
 
 		/**
-		 * Can be specified for com.maxmpz.audioplayer.SettingsActivity and open/theme extras top scroll to given skin in skins list<Br>
+		 * Can be specified for com.maxmpz.audioplayer.SettingsActivity and open/theme extras to scroll to given skin in skins list<Br>
 		 * {@code integer} - theme resource id
 		 * @since 795
 		 */
 		public static final String EXTRA_SKIN_STYLE_ID = "theme_id";
+
+		/**
+		 * Can be specified for com.maxmpz.audioplayer.SettingsActivity and open/theme extras to open given page <br>
+		 * {@code String} - page path. Each page on each level indexed starting from 0. For example, 0/2 means page #3 inside page #1
+		 * @since 865
+		 */
+		public static final String EXTRA_SKIN_PAGE_PATH = "theme_page_path";
 
 		/**
 		 * Limited subset of preferences allowed to be set by {@link #CALL_SET_PREFERENCE}.<br>
