@@ -1,6 +1,21 @@
-# Poweramp v3 Skin Sample
-============================================
+[TOC levels=3]:# "#Poweramp v3 Skin Sample"
 
+# Poweramp v3 Skin Sample
+- [Introduction](#introduction)
+- [Poweramp v3 Skin](#poweramp-v3-skin)
+- [How to Start Own Skin (Based on Sample Skin)](#how-to-start-own-skin-based-on-sample-skin)
+- [How Poweramp v3 Skins Work](#how-poweramp-v3-skins-work)
+- [Poweramp Skin styles.xml](#poweramp-skin-stylesxml)
+- [Poweramp v3 Skin Theme Specifics](#poweramp-v3-skin-theme-specifics)
+- [Poweramp v3 Skin Options](#poweramp-v3-skin-options)
+- [Skin Options Persistence](#skin-options-persistence)
+- [Custom/Loadable Fonts](#customloadable-fonts)
+- [Errors](#errors)
+- [Difference vs Poweramp v2 Skins](#difference-vs-poweramp-v2-skins)
+- [Reference Resources](#reference-resources)
+- [License](#license)
+
+### Introduction
 This is a sample skin source that demonstrates two separate skins in one project.
 This project can be directly used to build APK which can be installed on the device and recognized by
 Poweramp v3.
@@ -9,8 +24,7 @@ Poweramp v3.
 and unpolished when all such features combined in one skin**
 
 
-### Poweramp v3 skin
-
+### Poweramp v3 Skin
 Poweramp skin is a pretty much standard Android app in APK which includes:
 * meta entry in AndroidManifest.xml which points to **[xml/skins.xml](app/src/main/res/xml/skins.xml)**:
 ```xml
@@ -22,18 +36,16 @@ Poweramp skin is a pretty much standard Android app in APK which includes:
 opens Poweramp skin settings or directly start Poweramp with target skin applied
     * the activity is also used for skin development to force Poweramp to reload skin under development
     * the activity can be further customized as needed
-
 * one or multiple skins style definitions (see **[values/sample_skin_styles.xml](app/src/main/res/values/sample_skin_styles.xml)**, **[values/sample_skin_aaa_styles.xml](app/src/main/res/values/sample_skin_aaa_styles.xml)**)
 * all the required skin drawables, extra layouts, dimens, and other resources
 
-### How to start own skin (based on sample skin)
-
+### How to Start Own Skin (Based on Sample Skin)
 Skin development is done directly from Android Studio (3.2 was used for these skins development).
 * clone this repository, rename appropriately and change **[values/strings.xml](app/src/main/res/values/strings.xml)** labels and **[xml/skins.xml](app/src/main/res/xml/skins.xml)** entries
 * change application package, preferable to something containing **".poweramp.v3.skins."** as this is the substring that will be used in Poweramp to search for skin APKs in Play
 * edit app/build.gradle, replace ../../../audioplayer/bin/audioplayer.apk with path to your Poweramp v3 APK (**build 795** and above)
 ```
-additionalParameters "--shared-lib", "-I", "path to your Poweramp v3 APK"
+additionalParameters "--stable-ids", "stable-ids.txt", "--emit-ids", "stable-ids.txt", "--package-id", "0x80",  "-I", "path to your Poweramp v3 APK"
 ```
 * your emulated device needs to have Poweramp v3 installed (e.g. locate your Android\Sdk\platform-tools folder and copy the poweramp.apk into it.
 Open a shell and enter `./adb install poweramp.apk`)
@@ -43,15 +55,13 @@ Open a shell and enter `./adb install poweramp.apk`)
 * **Android Studio "Apply Changes" feature most probably won't properly reload resources, so don't use it for skin development**
 * optionally enable **Always Reload Skin** in Poweramp Settings / Misc. This forces Poweramp to recheck skin on each activity start  
 
-### How Poweramp v3 skins work
-
+### How Poweramp v3 Skins Work
 Poweramp loads skin APK resources and applies skin theme style directly to its main player activity (there is only one player activity in Poweramp v3).
 To ensure future skin compatibility (and to reuse existing default skin styles), skin styles **must extend** default Poweramp styles.
 
 See [values/sample_skin_styles.xml](app/src/main/res/values/sample_skin_styles.xml), [values/sample_skin_aaa_styles.xml](app/src/main/res/values/sample_skin_aaa_styles.xml) for commented skin style definitions.
 
-### Poweramp skin styles.xml
-
+### Poweramp Skin styles.xml
 The main skin styles is defined via [xml/skins.xml](app/src/main/res/xml/skins.xml) (in this example, SampleSkin):
 ```xml
 <skins xmlns:android="http://schemas.android.com/apk/res/android">
@@ -66,7 +76,6 @@ The main skin styles is defined via [xml/skins.xml](app/src/main/res/xml/skins.x
     ...
 </skins>
 ```
-
 
 In this sample skin, SampleSkin style is defined in **[values/sample_skin_styles.xml](app/src/main/res/values/sample_skin_styles.xml)**.
 This is standard Android theme style definition, with couple additional requirements:
@@ -94,7 +103,7 @@ This is standard Android theme style definition, with couple additional requirem
 
 * overridden styles **should always be derived** from Poweramp styles, otherwise almost any Poweramp update will break skin, due to possible base styles changes
 
-### Poweramp v3 skin theme specifics
+### Poweramp v3 Skin Theme Specifics
 Poweramp v3 has concept of a scene. A view can be rendered in the target scene (e.g. scene_aa for main player UI large album art item) and can be animated from one scene to another
 (e.g. item can be animated from scene_aa to scene_grid when transition happens from main screen to the library playlist).
 
@@ -104,7 +113,7 @@ Also, almost all Poweramp views are custom views, including layout (FastLayout) 
 but faster, strictly one-pass per layout, and optimized for animations; and FastText is a fast text rendering view optimized for transitions. See **[reference_resources/values-sw1dp/attrs-powerui.xml](/poweramp_skin_sdk/reference_resources/values-sw1dp/attrs-powerui.xml)** for the commented attributes definitions
 for these views.
 
-### Poweramp v3 skin options
+### Poweramp v3 Skin Options
 Poweramp v3 supports unique feature allowing user selectable skin options to be defined by skin author. Option is an "overlap" style which is applied in addition to the main skin theme.
 See sample skin **[xml/skins.xml](app/src/main/res/xml/skins.xml)** for reference.
 
@@ -116,7 +125,9 @@ Options include:
     name="[visible name]"
     summary="[optional summary]"
     overlapStyle="[overlap style reference]"
-    checkedByDefault="[true|false]"/>
+    checkedByDefault="[true|false]"
+    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+/>
 ```
 * set of a radio buttons (build 810+). Only one selected value from the set of options is applied:
 ```xml
@@ -124,7 +135,9 @@ Options include:
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary]"
-    defaultValue="[optional default overlap style reference]">
+    defaultValue="[optional default overlap style reference]"
+    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+>
         <option
             name="[visible name]"
             summary="[optional summary]"
@@ -139,7 +152,9 @@ Options include:
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
-    defaultValue="[optional default overlap style reference]">
+    defaultValue="[optional default overlap style reference]"
+    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+>
         <option
             name="[visible name]"
             overlapStyle="[overlap style reference, can be an empty string]"
@@ -161,6 +176,74 @@ where skin_text_color1 is defined in strings.xml with html tags inside:
 ```xml
 <string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>
 ```
+* seekbar option (build 865+). The seekbar preference always manipulates integer values (e.g. 1, 100, 1000), but still can store float value (e.g. 0.5, 1.5) if needed.  
+The seekbar preference is ignored completely by builds prior 865.
+```xml
+<seekbar
+    key="[preference unique key. Used to store/retrieve key name, for dependencies, etc.]"
+    id="[unique id for the option. Referenced from skin styles]"
+    name="[visible name]"
+    floatScale="[if set, then float value = value / floatScale is persisted]"
+    defaultValue="[integer default value. If floatScale is set, actual default value = defaultValue / floatScale]"
+    max="[integer max possible value]"
+    min="[integer min possible value]"
+    step="[integer step between values]"
+    scale="[float. If set, this scale (= value / scale) is applied to displayed value (e.g. in summary). The actual stored value is not changed]"
+    snapTo="[integer value where thumb may stick to (if in a close proximity). NOTE: doesn't work well if step is large and ticks are used]"
+    leftLabel="[string - the label to the left]"
+    centerLabel="[string - the label at the center]"
+    rightLabel="[string - the label to the right]"
+    ticks="[boolean - if true tick marks are used (positioned according to the step attribute)]"
+    summary="[string - summary may include %d (or if floatScale is used: %.1f or similar format values. Here %.1f means 1 digit after point, %.2f - 2 digits, etc.)]"
+    summary2="[string - same as summary. Allows independent string resource to be used. Works only if just summary exists]"
+    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+/>
+```
+At this moment the seekbar preference can be used only for the subset of properties:
+* text size multiplier  
+  This is silently ignored prior build 865
+
+  Set to appropriate views via textSizeMultiplierPref attribute.
+  ```xml
+  <item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/yourSeekbarId</item>
+  ```
+  The _float_ value taken from this seekbar is applied as an additional font size scale value.
+  _float_ value means we need to set floatScale for the seekbar preference.
+* AAImage corner radius  
+  This will silently fail to work prior build 865 - corners will be == 0px and requires substyle + some message to user not to enable on older versions of Poweramp.
+
+  Set via directly assigning seekbar *id* to the appropriate corner value, e.g.:
+    ```xml
+    <item name="com.maxmpz.audioplayer:corners_aa_scene_aa">@+id/yourSeekbarId</item>
+    ```
+  The _float_ value taken from this seekbar is applied as an additional font size scale value.  
+  _float_ value means we need to set floatScale for the seekbar preference.
+
+* category (build 865+). The category is a subset of options displayed with a header.
+The category tag is ignored by builds prior 865, all inner options still shown.
+```xml
+    <category
+        name="[category header text]"
+    >
+        [options. Other category tags can't be placed here]
+        ...
+    </category>
+```
+
+* page (build 865+). Page is a subset of options on their own separate page.
+The page tag is ignored by builds prior 865, all inner options still shown.
+```xml
+    <page
+        name="[category name]"
+        summary="[optional summary]"
+        dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+        icon="[optional icon drawable resource]"
+    >
+        [options. You can put more pages inside parent pages, creating hierarchy of option pages]
+        ...
+    </page>
+```
+
 
 ### Skin Options Persistence
 Poweramp persists skin option to own preferences based on skin generated IDs for the styles/attributes. Re-generating such IDs (e.g. in case of Clean build) will reset some
@@ -180,15 +263,17 @@ This is Android resources builder requirement.
 Poweramp control/view styles have separate layer of TextAppearance styling (same as core Android widgets do), which can be modified independently of other styles.
 See sample skin font option implementations: **[values/sample_skin_open_sans_font.xml](app/src/main/res/values/sample_skin_open_sans_font.xml)**, **[values/sample_skin_ubuntu_font.xml](app/src/main/res/values/sample_skin_ubuntu_font.xml)** and Poppin
 
+### Errors
+Poweramp logs as much error info as possible during initial skin loading. Also, errors/fails in skin xml or resources may crash/restart Poweramp resulting in some default skin restored.
+Check Logcat for Poweramp errors.
  
-### Difference vs Poweramp v2 skins
+### Difference vs Poweramp v2 Skins
 * Poweramp v2 skins are not compatible with Poweramp v3, Poweramp v3 skins are not compatible with Poweramp v2
 * Poweramp v2 skins relied on skin provided layout xmls, v3 skins rely on style redefinitions, layouts xmls can't be changed by skin (except for few injected specific **merge_** layouts)
 * less bitmap graphics in default skins, but this is open for skin author, there is no any limitation on bitmap images
 
 
-### Reference resources
-
+### Reference Resources
 For skin authoring, some Poweramp v3 resources (attribute definitions, styles, drawables, etc.) are provided for the reference - see **[/reference_resources](/poweramp_skin_sdk/reference_resources)** directory.
 
 The most important files are:
@@ -201,8 +286,7 @@ The most important files are:
 * res/values-sw1db/styles-*.xml - various default skin styles, grouped by style name prefix (all of them combined into default style inside Poweramp)
 
 ### License
-
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software

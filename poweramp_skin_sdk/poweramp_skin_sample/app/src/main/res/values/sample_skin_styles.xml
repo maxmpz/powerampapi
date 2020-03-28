@@ -158,10 +158,10 @@
 	</style>
 
 	<style name="ItemTrackTitle_Text" parent="com.maxmpz.audioplayer:ItemTrackTitle_Text">
-		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">titleLine2FontSize</item>
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
 	</style>
 	<style name="ItemTrackLine2_Text" parent="com.maxmpz.audioplayer:ItemTrackLine2_Text">
-		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">titleLine2FontSize</item>
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
 	</style>
 
 
@@ -186,7 +186,7 @@
 		     Different text or view styles may have different textSizePref values. We use multiplier here instead of the fixed font size value
 		     to allow all the default text sizes (defined by default theme/styles) to be valid without extra configuration.
 		 -->
-		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">searchEditFontSize</item>
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/searchEditFontSize</item>
 		<item name="android:layout_marginRight">24dp</item><!-- Give some space to the close button -->
 	</style>
 
@@ -654,8 +654,7 @@
 		<item name="com.maxmpz.audioplayer:thumbWidth">64dp</item>
 		<item name="com.maxmpz.audioplayer:thumbHeight">32dp</item>
 
-
-		<!-- NOTE: by default linear knob (EqPreampLinearKnob style) uses own backround with ticks.
+		<!-- NOTE: by default linear knob (EqPreampLinearKnob style) uses own background with ticks.
 			 If we want some custom background, we should disable that default lines background -->
 		<item name="com.maxmpz.audioplayer:linesBackground">false</item>
 		<item name="android:background">@drawable/ripple_alpha_always_rounded</item>
@@ -678,25 +677,25 @@
 	<style name="SampleSkin_dynamicCorners">
 		<!-- Applying corners taken from appropriate seekbar prefs
 		     WARNING: this is not backward compatible, thus this style should be applied only for build 865+. Add appropriate message/explanation for users -->
-		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">cornersAA</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_tracks">cornersTracks</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_albums">cornersAlbums</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_other">cornersOthers</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">@+id/cornersAA</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks">@+id/cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums">@+id/cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other">@+id/cornersOthers</item>
 
 		<!-- NOTE: we apply same seekbar values for all possible zoom levels, but skin can add more seekbar options as needed -->
-		<item name="com.maxmpz.audioplayer:corners_aa_tracks_zoomed">cornersTracks</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_albums_zoomed">cornersAlbums</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_other_zoomed">cornersOthers</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_zoomed">@+id/cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_zoomed">@+id/cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_zoomed">@+id/cornersOthers</item>
 
-		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid">cornersTracks</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid">cornersAlbums</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_other_grid">cornersOthers</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid">@+id/cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid">@+id/cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid">@+id/cornersOthers</item>
 
-		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid_zoomed">cornersTracks</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid_zoomed">cornersAlbums</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_other_grid_zoomed">cornersOthers</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid_zoomed">@+id/cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid_zoomed">@+id/cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid_zoomed">@+id/cornersOthers</item>
 
-		<item name="com.maxmpz.audioplayer:corners_aa_tracks_small">cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_small">@+id/cornersTracks</item>
 
 	</style>
 
