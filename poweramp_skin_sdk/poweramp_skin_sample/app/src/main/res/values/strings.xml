@@ -24,8 +24,22 @@
 	<string name="_default">Default</string>
 	<string name="skin_opensans_font">OpenSans</string>
 	<string name="skin_ubuntu_font">Ubuntu</string>
+	<string name="skin_fontSize">Font Size</string>
+	<string name="skin_searchEditFontSize">Search Edit Font Size</string>
+	<string name="skin_title_line2_fontSize">Title/Line2 Font Size</string>
+	<string name="skin_summary_fontSize">Font size applied to some controls</string>
+	<string name="skin_smaller">Smaller</string>
+	<string name="skin_normal">Normal</string>
+	<string name="skin_larger">Larger</string>
+	<string name="skin_size_2f">Size: %.2f</string>
 
-
+	<string name="skin_corners">Corners</string>
+	<string name="skin_dynamicCorners">Dynamic Corners</string>
+	<string name="skin_summary_dynamicCorners">Dynamic corners work only with Poweramp build 865+. Corner radius set to -1 results in round image</string>
+	<string name="skin_cornerRadiusAA">Corners For Main Screen Cover</string>
+	<string name="skin_cornerRadiusTracks">Corners For Tracks</string>
+	<string name="skin_cornerRadiusAlbums">Corners For Albums</string>
+	<string name="skin_cornerRadiusOther">Corners For Other Items</string>
 
 	<!-- Color rectangle (simple ⬤ symbol + color). NOTE: extra backslash is needed before quotes (\") -->
 	<string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>

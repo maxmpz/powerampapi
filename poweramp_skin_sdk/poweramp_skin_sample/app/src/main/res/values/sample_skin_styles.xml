@@ -145,6 +145,49 @@
 		<item name="SampleSkin_mainVolumeLayout">@null</item>
 
 		<item name="com.maxmpz.audioplayer:TopContainer_extraLayout">@layout/merge_extralayout_includes</item>
+
+		<!-- NOTE: to make scalable font sizes work even in this isolated case, many additional styles are needed to properly scale also parent containers,
+		     some attached views, etc. Still, stuff like header sizes, etc. can't be scaled based on fonts inside, so we can't use too large fonts in some places -->
+		<item name="com.maxmpz.audioplayer:TopSearchPanel">@style/TopSearchPanel</item>
+		<item name="com.maxmpz.audioplayer:TopSearchCloseButton">@style/TopSearchCloseButton</item>
+		<item name="com.maxmpz.audioplayer:TopListSearchEditText">@style/TopListSearchEditText</item>
+
+		<!-- NOTE: we override this for OpenSansFont/UnbuntuFont as well -->
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_Text">@style/ItemTrackTitle_Text</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_Text">@style/ItemTrackLine2_Text</item>
+	</style>
+
+	<style name="ItemTrackTitle_Text" parent="com.maxmpz.audioplayer:ItemTrackTitle_Text">
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">titleLine2FontSize</item>
+	</style>
+	<style name="ItemTrackLine2_Text" parent="com.maxmpz.audioplayer:ItemTrackLine2_Text">
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">titleLine2FontSize</item>
+	</style>
+
+
+	<style name="TopSearchPanel" parent="com.maxmpz.audioplayer:TopSearchPanel">
+		<item name="android:layout_height">wrap_content</item><!-- Make height scalable according to the text size -->
+	</style>
+	<style name="TopSearchCloseButton" parent="com.maxmpz.audioplayer:TopSearchCloseButton">
+		<!-- Make gravity relative to edit text now as we have scalable container height now -->
+		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@com.maxmpz.audioplayer:id/search_edit</item>
+	</style>
+
+	<style name="TopListSearchEditText" parent="com.maxmpz.audioplayer:TopListSearchEditText">
+		<!-- The seekbar preference key we want to use here.
+		     The preference key containing float size _multiplier_.
+		     The multipler is applied to android:textSize set for given textview or other view with the text.
+
+		     Resulting text size in pixels will be:
+		       android:textSize in dp * textSizePref preference float value
+		       or
+		       android:textSize in sp * user system text size preference * textSizePref preference float value.
+
+		     Different text or view styles may have different textSizePref values. We use multiplier here instead of the fixed font size value
+		     to allow all the default text sizes (defined by default theme/styles) to be valid without extra configuration.
+		 -->
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">searchEditFontSize</item>
+		<item name="android:layout_marginRight">24dp</item><!-- Give some space to the close button -->
 	</style>
 
 	<!-- We need to change layout in all "scenes" for the target view, in this case, Navbar -->
@@ -630,6 +673,31 @@
 	<style name="SampleSkin_mainLinearVolumeKnobHidden">
 		<item name="com.maxmpz.audioplayer:scale">.70</item>
 		<item name="android:visibility">invisible</item>
+	</style>
+
+	<style name="SampleSkin_dynamicCorners">
+		<!-- Applying corners taken from appropriate seekbar prefs
+		     WARNING: this is not backward compatible, thus this style should be applied only for build 865+. Add appropriate message/explanation for users -->
+		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">cornersAA</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks">cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums">cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other">cornersOthers</item>
+
+		<!-- NOTE: we apply same seekbar values for all possible zoom levels, but skin can add more seekbar options as needed -->
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_zoomed">cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_zoomed">cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_zoomed">cornersOthers</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid">cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid">cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid">cornersOthers</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid_zoomed">cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid_zoomed">cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid_zoomed">cornersOthers</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_small">cornersTracks</item>
+
 	</style>
 
 </resources>
