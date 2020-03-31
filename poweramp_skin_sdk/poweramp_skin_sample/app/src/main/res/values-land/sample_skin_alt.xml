@@ -14,6 +14,7 @@
 
 	<style name="SampleSkin_Alt_ItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemTrackAAImage_scene_aa">
 		<item name="com.maxmpz.audioplayer:layout_consumeSpace">horizontal</item>
+		<item name="com.maxmpz.audioplayer:scale">?SampleSkin_ItemTrackAAImage_scene_aa_scale</item>
 	</style>
 
 	<style name="SampleSkin_Alt_ItemLikeUnlikeLayout_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemLikeUnlikeLayout_scene_aa">

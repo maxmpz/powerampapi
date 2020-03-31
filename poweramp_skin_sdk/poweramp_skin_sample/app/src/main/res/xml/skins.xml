@@ -85,6 +85,7 @@
 			key="alt_layout_radio"
 			name="@string/skin_alt_layout"
 			summary="@string/skin_summary_alt_layout"
+			defaultValue=""
 		>
 
 		<!-- Alternative layout which uses default Poweramp "alternative" layout styles.
@@ -95,9 +96,13 @@
 		     - @com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_AltLayout_StarsMenu - for OptionRatingStarsMenu
 
 		     You can check those styles in reference_resources.
-		     Alternative styles added then change main and items layout as needed - no further redefines are needed.
+		     Alternative styles change main and items layout as needed - no further redefines are needed.
 		     If you want more control over alternative layout, see SampleSkinAAA or new SampleSkin_Alt -->
 		-->
+			<option
+				name="@string/skin_disabled"
+				overlapStyle=""
+			/>
 			<option
 				name="@string/skin_alt_layout_default"
 				overlapAttr="@com.maxmpz.audioplayer:attr/overlap_alt_layout"
