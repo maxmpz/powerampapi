@@ -194,12 +194,12 @@
 	<style name="ItemTrackTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTrackTitle_Text">
 		<item name="android:fontFamily">?OpenSans_font</item>
 		<item name="android:textSize">15sp</item>
-		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">titleLine2FontSize</item>
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
 	</style>
 	<style name="ItemTrackLine2_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTrackLine2_Text">
 		<item name="android:fontFamily">?OpenSans_font</item>
 		<item name="android:textSize">13sp</item>
-		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">titleLine2FontSize</item>
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
 	</style>
 	<style name="ItemTrackMeta_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTrackMeta_Text">
 		<item name="android:textSize">9sp</item>

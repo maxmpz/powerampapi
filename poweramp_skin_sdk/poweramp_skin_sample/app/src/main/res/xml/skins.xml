@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<skins xmlns:android="http://schemas.android.com/apk/res/android">
+<skins>
 	<!-- NOTE: forceGlobalOptions=true means global options (by default in styles-options.xml) will force-override base skin attributes.
 
 	     By default, global options do not override base skin theme, just add to it,
 	     but for more complicated cases, overriding may be required (e.g. for our own OptionCounter here)-->
+
 	<skin
 		name="@string/skin_sample"
 		author="@string/skin_author"
@@ -56,19 +57,19 @@
 				key="font"
 				name="@string/skin_font"
 				defaultValue=""
-				>
+			>
 				<option
 					name="@string/_default"
 					overlapStyle=""
-					/>
+				/>
 				<option
 					name="@string/skin_opensans_font"
 					overlapStyle="@style/SampleSkin_OpenSansFont"
-					/>
+				/>
 				<option
 					name="@string/skin_ubuntu_font"
 					overlapStyle="@style/SampleSkin_UbuntuFont"
-					/>
+				/>
 			</radio>
 		</category>
 
@@ -108,7 +109,9 @@
 			/>
 		</radio>
 
-		<category name="@string/skin_corners">
+		<page name="@string/skin_corners">
+			<!-- It's recommended to use switch to enable/disable the new seekbar based style as they are not supported prior build 865.
+			     Alternatively, <include> can be used to include this page just for builds 865+ (prior builds ignore <include>) -->
 			<option
 				key="dynamicCorners"
 				name="@string/skin_dynamicCorners"
@@ -156,6 +159,7 @@
 				max="64"
 				step="1"
 			/>
+
 			<seekbar
 				key="cornersOther"
 				id="@+id/cornersOther"
@@ -169,7 +173,139 @@
 				max="64"
 				step="1"
 			/>
-		</category>
+		</page>
+
+		<page
+			name="@string/skin_aa_options"
+		>
+			<!-- It's recommended to use switch to enable/disable the new seekbar based style as they are not supported prior build 865.
+			      Alternatively, <include> can be used to include this page just for builds 865+ (prior builds ignore <include>) -->
+			<option
+				key="aaOptions"
+				name="@string/skin_aa_options"
+				summary="@string/skin_summary_865only"
+				overlapStyle="@style/SampleSkin_aaOptions"
+			/>
+
+			<!-- (build 865+) new aa-related seekbar controlled options -->
+			<seekbar
+				key="aaMaxYRotation"
+				id="@+id/aaMaxYRotation"
+				dependency="aaOptions"
+				name="@string/skin_aaMaxYRotation"
+				summary="@string/skin_summary_aaMaxYRotation"
+				summary2="%.2f"
+				floatScale="100"
+				scale="100"
+				defaultValue="-1000"
+				min="-3000"
+				max="3000"
+				step="10"
+			/>
+			<seekbar
+				key="aaMaxZRotation"
+				id="@+id/aaMaxZRotation"
+				dependency="aaOptions"
+				name="@string/skin_aaMaxZRotation"
+				summary="@string/skin_summary_aaMaxZRotation"
+				summary2="%.2f"
+				floatScale="100"
+				scale="100"
+				defaultValue="550"
+				min="-3000"
+				max="3000"
+				step="10"
+			/>
+			<seekbar
+				key="aaDenseFactor"
+				id="@+id/aaDenseFactor"
+				dependency="aaOptions"
+				name="@string/skin_aaDenseFactor"
+				summary="@string/skin_summary_aaDenseFactor"
+				summary2="%.2f"
+				floatScale="100"
+				scale="100"
+				defaultValue="75"
+				min="-200"
+				max="200"
+				step="5"
+			/>
+			<!-- (build 865+). Same as <radio>, but uses seekbar with ticks to select the style from the fixed set of options.
+			     NOTE: summary2 requires string placeholder (%s) as value is inserted as string from the child option name attribute-->
+			<seekbarOptions
+				key="aaScaleStyle"
+				name="@string/skin_aaScale"
+				dependency="aaOptions"
+				summary="@string/skin_summary_aaScale"
+				summary2="%s"
+				leftLabel="@string/skin_smaller"
+				centerLabel="@string/skin_normal"
+				rightLabel="@string/skin_larger"
+				defaultValue="@style/SampleSkin_aaScale_1"
+			>
+				<option
+					name="0.75"
+					overlapStyle="@style/SampleSkin_aaScale_075"
+				/>
+				<option
+					name="0.8"
+					overlapStyle="@style/SampleSkin_aaScale_08"
+				/>
+				<option
+					name="0.85"
+					overlapSt5yle="@style/SampleSkin_aaScale_085"
+				/>
+				<option
+					name="0.9"
+					overlapStyle="@style/SampleSkin_aaScale_09"
+				/>
+				<option
+					name="0.95"
+					overlapStyle="@style/SampleSkin_aaScale_095"
+				/>
+
+				<option
+					name="1.00"
+					overlapStyle="@style/SampleSkin_aaScale_1"
+				/>
+
+				<option
+					name="1.1"
+					overlapStyle="@style/SampleSkin_aaScale_11"
+				/>
+				<option
+					name="1.15"
+					overlapStyle="@style/SampleSkin_aaScale_115"
+				/>
+				<option
+					name="1.25"
+					overlapStyle="@style/SampleSkin_aaScale_125"
+				/>
+				<option
+					name="1.33"
+					overlapStyle="@style/SampleSkin_aaScale_133"
+				/>
+				<option
+					name="1.5"
+					overlapStyle="@style/SampleSkin_aaScale_15"
+				/>
+
+			</seekbarOptions>
+
+			<seekbar
+				key="aaMaxScale"
+				id="@+id/aaMaxScale"
+				dependency="aaOptions"
+				name="@string/skin_aaMaxScale"
+				summary="@string/skin_summary_aaMaxScale"
+				summary2="%.2f"
+				floatScale="100"
+				scale="100"
+				defaultValue="50"
+				min="25"
+				max="200"
+			/>
+		</page>
 
 		<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
 		     See strings.xml for some examples.
@@ -320,7 +456,7 @@
 			key="useless_option"
 			name="Useless option"
 			summary="Some useless option which controls availability of the page below"
-			overlapStyle="@style/SampleSkin_VolumeKnob"
+			overlapStyle="@style/SampleSkin_Useless"
 		/>
 
 		<!-- Pages and categories can be organized in hierarchies, though for categories this makes little sense as category visually is just a header -->
@@ -347,43 +483,14 @@
 			</page>
 
 		</page>
-		<page
-			name="Another sub page 2"
-			summary="Demonstrating sub pages and sub categories"
-		>
-			<category name="Sub page category">
-			</category>
-			<page name="Another sub-sub page 2">
-				<category name="Sub-sub page 2 empty category">
-				</category>
-			</page>
 
-		</page>
+		<!-- Include tag includes skin definition from other xml files.
+		     Include is supported by build 865+ and ignored by the builds prior that -->
+		<include file="@xml/skin_sample_subpage2"/>
 	</skin>
 
-	<!-- Custom "alternative" layout. NOTE: it's recommended to use Poweramp alternative style based option instead.
-	     Still this theme demonstrates how to change layout with own styles without reusing Poweramp builtin "alternative" layout styles -->
-	<skin
-		name="@string/skin_sample_aaa"
-		author="@string/skin_author"
-		description="@string/skin_sample_aaa_description"
-		style="@style/SampleSkinAAA"
-	>
-		<!-- NOTE: noAABlur option for SampleSkinAAA requires another style as SampleSkinAAA overrides list styles -->
-		<option
-			key="no_aa_blur"
-			name="@string/skin_no_aa_blur"
-			summary="@string/skin_summary_no_aa_blur"
-			overlapStyle="@style/SampleSkinAAA_noAABlur"
-			checkedByDefault="false"
-		/>
+	<!-- Include is supported by build 865+ and ignored by the builds prior that -->
+	<include file="@xml/skin_sample_aaa"/>
 
-		<option
-			key="seekbar_and_waveseek"
-			name="@string/skin_seekbar_and_waveseek"
-			summary="@string/skin_summart_seekbar_and_waveseek"
-			overlapStyle="@style/SampleSkinAAA_seekbar_and_waveseek"
-			checkedByDefault="false"
-		/>
-	</skin>
+
 </skins>

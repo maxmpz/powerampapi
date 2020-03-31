@@ -83,12 +83,6 @@
 		<!-- Override menu button in just scene_header scene -->
 		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_header">@style/ItemTrackMenu_scene_header</item>
 
-		<!-- As we added buttons background, let's move title / album artist a bit to the top -->
-		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_header">@style/ItemTrackLine2_scene_header</item>
-		<!-- Same adjustment is needed for ItemTrackTitle_scene_header_1, as in scene_header_1 only title is shown, attached to bottom, no line2 displayed.
-		     scene_header_1 is used for e.g. Artists / Genres / etc. 1-line layout headers -->
-		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_header_1">@style/ItemTrackTitle_scene_header_1</item>
-
 		<!-- Few more adjustments are needed for "back decors" as they should have same layout as title for proper animations -->
 		<!-- Also, we override all possible backdecor styles/scenes here just to demonstrate how to apply some styles too all possible
 		     backdecor combinations:
@@ -105,11 +99,6 @@
 		<item name="com.maxmpz.audioplayer:ItemTextBackDecorTitle">@style/ItemTextBackDecorTitle</item>
 		<item name="com.maxmpz.audioplayer:ItemTextBackDecorTitle_scene_header_back_decor">@style/ItemTextBackDecorTitle_scene_header_back_decor</item>
 		-->
-
-		<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle</item>
-		<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_1">@style/ItemTrackBackDecorTitle_scene_header_1</item>
-		<!--<item name="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_back_decor">@style/ItemTrackBackDecorTitle_scene_header_back_decor</item>-->
-
 
 		<!-- Change volume panel slightly (optional panel, can be enabled in Poweramp Audio settings -->
 		<item name="com.maxmpz.audioplayer:VolumePanelFrame">@style/VolumePanelFrame</item>
@@ -155,6 +144,12 @@
 		<!-- NOTE: we override this for OpenSansFont/UnbuntuFont as well -->
 		<item name="com.maxmpz.audioplayer:ItemTrackTitle_Text">@style/ItemTrackTitle_Text</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackLine2_Text">@style/ItemTrackLine2_Text</item>
+
+		<!-- Add style to manipilate AA image scale while playing and paused -->
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">@style/ItemTrackAAImage_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa_playing">@style/ItemTrackAAImage_scene_aa_playing</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.975</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.0</item>
 	</style>
 
 	<style name="ItemTrackTitle_Text" parent="com.maxmpz.audioplayer:ItemTrackTitle_Text">
@@ -288,13 +283,6 @@
 		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
 	</style>
 
-	<style name="ItemTrackLine2_scene_header" parent="com.maxmpz.audioplayer:ItemTrackLine2_scene_header">
-		<item name="android:layout_marginBottom">52.5dp</item>
-	</style>
-	<style name="ItemTrackTitle_scene_header_1" parent="com.maxmpz.audioplayer:ItemTrackTitle_scene_header_1">
-		<item name="android:layout_marginBottom">52.5dp</item>
-	</style>
-
 	<!--
 	<style name="ItemTopTextBackDecorTitle" parent="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle">
 		<item name="android:textColor">#f00</item>
@@ -310,21 +298,6 @@
 		<item name="android:textColor">#f00</item>
 	</style>
 	-->
-
-	<style name="ItemTrackBackDecorTitle" parent="com.maxmpz.audioplayer:ItemTrackBackDecorTitle">
-		<item name="android:layout_marginBottom">86dp</item>
-		<!--<item name="android:textColor">#f00</item>-->
-	</style>
-	<style name="ItemTrackBackDecorTitle_scene_header_1" parent="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_1">
-		<item name="android:layout_marginBottom">52.5dp</item>
-		<!--<item name="android:textColor">#f00</item>-->
-	</style>
-	<!--
-	<style name="ItemTrackBackDecorTitle_scene_header_back_decor" parent="com.maxmpz.audioplayer:ItemTrackBackDecorTitle_scene_header_back_decor">
-		<item name="android:textColor">#f00</item>
-	</style>
-	-->
-
 
 	<!-- Optional styles for color1 option, color2 option select, and bg_color popup -->
 	<style name="SampleSkin_color1">
@@ -697,6 +670,88 @@
 
 		<item name="com.maxmpz.audioplayer:corners_aa_tracks_small">@+id/cornersTracks</item>
 
+	</style>
+
+	<style name="SampleSkin_aaOptions">
+		<!-- NOTE: to apply aa options, we're redefinining TopListWidget style to tweak listSubstyle -->
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/TopListWidget_aaOptions</item>
+
+		<!-- Also, force non-overlapping rendering (to fix issue with Android 9+ forced clipping for scaling > 1.0 when image bleeds out of parent bounds)
+		     NOTE: this can cause small shadow glitches on some devices -->
+		<item name="com.maxmpz.audioplayer:ItemTrack">@style/ItemTrack_aaOptions</item>
+	</style>
+	<style name="ItemTrack_aaOptions" parent="com.maxmpz.audioplayer:ItemTrack">
+		<item name="android:forceHasOverlappingRendering">false</item>
+	</style>
+
+	<style name="TopListWidget_aaOptions" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listSubstyle">@style/ListSubstyle_aaOptions</item>
+	</style>
+	<style name="ListSubstyle_aaOptions" parent="com.maxmpz.audioplayer:ListSubstyle">
+		<!-- Setting seekbars ids to the appropriate attributes
+		     WARNING: this is not backward compatible, thus this style should be applied only for build 865+. Add appropriate message/explanation for users -->
+		<item name="com.maxmpz.audioplayer:aaMaxYRotation">@+id/aaMaxYRotation</item>
+		<item name="com.maxmpz.audioplayer:aaMaxZRotation">@+id/aaMaxZRotation</item>
+		<item name="com.maxmpz.audioplayer:aaMaxScale">@+id/aaMaxScale</item>
+		<item name="com.maxmpz.audioplayer:aaDenseFactor">@+id/aaDenseFactor</item>
+	</style>
+
+	<style name="ItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">
+		<item name="com.maxmpz.audioplayer:scale">?SampleSkin_ItemTrackAAImage_scene_aa_scale</item>
+	</style>
+	<style name="ItemTrackAAImage_scene_aa_playing" parent="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa_playing">
+		<item name="com.maxmpz.audioplayer:scale">?SampleSkin_ItemTrackAAImage_scene_aa_scale_playing</item>
+	</style>
+	<style name="SampleSkin_aaScale_075">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.73</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.75</item>
+	</style>
+	<style name="SampleSkin_aaScale_08">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.78</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.8</item>
+	</style>
+	<style name="SampleSkin_aaScale_085">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.82</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.85</item>
+	</style>
+	<style name="SampleSkin_aaScale_09">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.88</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.9</item>
+	</style>
+	<style name="SampleSkin_aaScale_095">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.92</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.95</item>
+	</style>
+
+	<style name="SampleSkin_aaScale_1">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.975</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.0</item>
+	</style>
+
+	<style name="SampleSkin_aaScale_11">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.0</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.1</item>
+	</style>
+	<style name="SampleSkin_aaScale_115">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.2</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.15</item>
+	</style>
+	<style name="SampleSkin_aaScale_125">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.22</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.25</item>
+	</style>
+	<style name="SampleSkin_aaScale_133">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.29</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.33</item>
+	</style>
+	<style name="SampleSkin_aaScale_15">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.46</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.5</item>
+	</style>
+
+
+	<style name="SampleSkin_Useless">
+		<!-- Empty -->
 	</style>
 
 </resources>

@@ -103,6 +103,14 @@ This is standard Android theme style definition, with couple additional requirem
 
 * overridden styles **should always be derived** from Poweramp styles, otherwise almost any Poweramp update will break skin, due to possible base styles changes
 
+* include tag (build 865+) allows inclusion of sub-sections from other res/xml files
+```xml
+...
+<include file="@xml/skin_sample_subpage2"/>
+...
+```
+Included file should be a valid well formed xml. Include tag is supported at any level inside <skins>.
+
 ### Poweramp v3 Skin Theme Specifics
 Poweramp v3 has concept of a scene. A view can be rendered in the target scene (e.g. scene_aa for main player UI large album art item) and can be animated from one scene to another
 (e.g. item can be animated from scene_aa to scene_grid when transition happens from main screen to the library playlist).
@@ -163,7 +171,28 @@ Options include:
 </popup>
 ```
 
-Radio/popup options support limited set of html tags inside **name** and **summary** attributes. These allow e.g. specifying color:
+* option with a seekbar option chooser list (build 865+). Only one selected value from the set of options is applied:
+```xml
+<seekbarOptions
+    key="[preference unique key]"
+    name="[visible name]"
+    summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
+    summary2="[string - same as summary. Allows independent string resource to be used. Works only if just summary exists]"
+    defaultValue="[optional default overlap style reference]"
+    leftLabel="[string - the label to the left]"
+    centerLabel="[string - the label at the center]"
+    rightLabel="[string - the label to the right]"
+    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+>
+        <option
+            name="[visible name]"
+            overlapStyle="[overlap style reference, can be an empty string]"
+        />
+        ...
+</popup>
+```
+
+Radio/popup/seekbarOptions options support limited set of html tags inside **name** and **summary** attributes. These allow e.g. specifying color:
 ```xml
 <option
     ...
@@ -218,6 +247,12 @@ At this moment the seekbar preference can be used only for the subset of propert
     ```
   The _float_ value taken from this seekbar is applied as an additional font size scale value.  
   _float_ value means we need to set floatScale for the seekbar preference.
+
+* listSubstyle aaMaxYRotation
+* listSubstyle aaMaxZRotation
+* listSubstyle aaMaxScale
+* listSubstyle aaDenseFactor
+
 
 * category (build 865+). The category is a subset of options displayed with a header.
 The category tag is ignored by builds prior 865, all inner options still shown.
