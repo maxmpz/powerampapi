@@ -231,7 +231,7 @@
 				floatScale="100"
 				scale="100"
 				defaultValue="75"
-				min="-200"
+				min="25"
 				max="200"
 				step="5"
 			/>
