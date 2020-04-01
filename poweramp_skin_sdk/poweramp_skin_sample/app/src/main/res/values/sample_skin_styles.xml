@@ -649,7 +649,7 @@
 
 	<style name="SampleSkin_dynamicCorners">
 		<!-- Applying corners taken from appropriate seekbar prefs
-		     WARNING: this is not backward compatible, thus this style should be applied only for build 865+. Add appropriate message/explanation for users -->
+		     WARNING: this is not backward compatible, thus this style should be applied only for build 866+. Add appropriate message/explanation for users -->
 		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">@+id/cornersAA</item>
 		<item name="com.maxmpz.audioplayer:corners_aa_tracks">@+id/cornersTracks</item>
 		<item name="com.maxmpz.audioplayer:corners_aa_albums">@+id/cornersAlbums</item>
@@ -689,7 +689,7 @@
 	</style>
 	<style name="ListSubstyle_aaOptions" parent="com.maxmpz.audioplayer:ListSubstyle">
 		<!-- Setting seekbars ids to the appropriate attributes
-		     WARNING: this is not backward compatible, thus this style should be applied only for build 865+. Add appropriate message/explanation for users -->
+		     WARNING: this is not backward compatible, thus this style should be applied only for build 866+. Add appropriate message/explanation for users -->
 		<item name="com.maxmpz.audioplayer:aaMaxYRotation">@+id/aaMaxYRotation</item>
 		<item name="com.maxmpz.audioplayer:aaMaxZRotation">@+id/aaMaxZRotation</item>
 		<item name="com.maxmpz.audioplayer:aaMaxScale">@+id/aaMaxScale</item>

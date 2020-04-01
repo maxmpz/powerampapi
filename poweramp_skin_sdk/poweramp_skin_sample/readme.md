@@ -103,7 +103,7 @@ This is standard Android theme style definition, with couple additional requirem
 
 * overridden styles **should always be derived** from Poweramp styles, otherwise almost any Poweramp update will break skin, due to possible base styles changes
 
-* include tag (build 865+) allows inclusion of sub-sections from other res/xml files
+* include tag (build 866+) allows inclusion of sub-sections from other res/xml files
 ```xml
 ...
 <include file="@xml/skin_sample_subpage2"/>
@@ -134,7 +134,7 @@ Options include:
     summary="[optional summary]"
     overlapStyle="[overlap style reference]"
     checkedByDefault="[true|false]"
-    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    dependency="[build 866+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
 />
 ```
 * set of a radio buttons (build 810+). Only one selected value from the set of options is applied:
@@ -144,7 +144,7 @@ Options include:
     name="[visible name]"
     summary="[optional summary]"
     defaultValue="[optional default overlap style reference]"
-    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    dependency="[build 866+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
 >
         <option
             name="[visible name]"
@@ -161,7 +161,7 @@ Options include:
     name="[visible name]"
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
     defaultValue="[optional default overlap style reference]"
-    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    dependency="[build 866+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
 >
         <option
             name="[visible name]"
@@ -171,7 +171,7 @@ Options include:
 </popup>
 ```
 
-* option with a seekbar option chooser list (build 865+). Only one selected value from the set of options is applied:
+* option with a seekbar option chooser list (build 866+). Only one selected value from the set of options is applied:
 ```xml
 <seekbarOptions
     key="[preference unique key]"
@@ -182,7 +182,7 @@ Options include:
     leftLabel="[string - the label to the left]"
     centerLabel="[string - the label at the center]"
     rightLabel="[string - the label to the right]"
-    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    dependency="[build 866+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
 >
         <option
             name="[visible name]"
@@ -205,8 +205,8 @@ where skin_text_color1 is defined in strings.xml with html tags inside:
 ```xml
 <string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>
 ```
-* seekbar option (build 865+). The seekbar preference always manipulates integer values (e.g. 1, 100, 1000), but still can store float value (e.g. 0.5, 1.5) if needed.  
-The seekbar preference is ignored completely by builds prior 865.
+* seekbar option (build 866+). The seekbar preference always manipulates integer values (e.g. 1, 100, 1000), but still can store float value (e.g. 0.5, 1.5) if needed.  
+The seekbar preference is ignored completely by builds prior 866.
 ```xml
 <seekbar
     key="[preference unique key. Used to store/retrieve key name, for dependencies, etc.]"
@@ -225,12 +225,12 @@ The seekbar preference is ignored completely by builds prior 865.
     ticks="[boolean - if true tick marks are used (positioned according to the step attribute)]"
     summary="[string - summary may include %d (or if floatScale is used: %.1f or similar format values. Here %.1f means 1 digit after point, %.2f - 2 digits, etc.)]"
     summary2="[string - same as summary. Allows independent string resource to be used. Works only if just summary exists]"
-    dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    dependency="[build 866+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
 />
 ```
 At this moment the seekbar preference can be used only for the subset of properties:
 * text size multiplier  
-  This is silently ignored prior build 865
+  This is silently ignored prior build 866
 
   Set to appropriate views via textSizeMultiplierPref attribute.
   ```xml
@@ -239,7 +239,7 @@ At this moment the seekbar preference can be used only for the subset of propert
   The _float_ value taken from this seekbar is applied as an additional font size scale value.
   _float_ value means we need to set floatScale for the seekbar preference.
 * AAImage corner radius  
-  This will silently fail to work prior build 865 - corners will be == 0px and requires substyle + some message to user not to enable on older versions of Poweramp.
+  This will silently fail to work prior build 866 - corners will be == 0px and requires substyle + some message to user not to enable on older versions of Poweramp.
 
   Set via directly assigning seekbar *id* to the appropriate corner value, e.g.:
     ```xml
@@ -254,8 +254,8 @@ At this moment the seekbar preference can be used only for the subset of propert
 * listSubstyle aaDenseFactor
 
 
-* category (build 865+). The category is a subset of options displayed with a header.
-The category tag is ignored by builds prior 865, all inner options still shown.
+* category (build 866+). The category is a subset of options displayed with a header.
+The category tag is ignored by builds prior 866, all inner options still shown.
 ```xml
     <category
         name="[category header text]"
@@ -265,13 +265,13 @@ The category tag is ignored by builds prior 865, all inner options still shown.
     </category>
 ```
 
-* page (build 865+). Page is a subset of options on their own separate page.
-The page tag is ignored by builds prior 865, all inner options still shown.
+* page (build 866+). Page is a subset of options on their own separate page.
+The page tag is ignored by builds prior 866, all inner options still shown.
 ```xml
     <page
         name="[category name]"
         summary="[optional summary]"
-        dependency="[build 865+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+        dependency="[build 866+. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
         icon="[optional icon drawable resource]"
     >
         [options. You can put more pages inside parent pages, creating hierarchy of option pages]

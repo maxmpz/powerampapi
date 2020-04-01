@@ -35,8 +35,8 @@
 
 	<string name="skin_corners">Corners</string>
 	<string name="skin_dynamicCorners">Dynamic Corners</string>
-	<string name="skin_summary_dynamicCorners">These options work only with Poweramp build 865+. Corner radius set to -1 results in round image</string>
-	<string name="skin_summary_865only">These options work only with Poweramp build 865+</string>
+	<string name="skin_summary_dynamicCorners">These options work only with Poweramp build 866+. Corner radius set to -1 results in round image</string>
+	<string name="skin_summary_866only">These options work only with Poweramp build 866+</string>
 	<string name="skin_cornerRadiusAA">Corners For Main Screen Cover</string>
 	<string name="skin_cornerRadiusTracks">Corners For Tracks</string>
 	<string name="skin_cornerRadiusAlbums">Corners For Albums</string>

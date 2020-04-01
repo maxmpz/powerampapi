@@ -12,9 +12,9 @@
 		style="@style/SampleSkin"
 		forceGlobalOptions="true"
 	>
-		<!-- Since 865. The category and page tags define 2 types of option categories. The <category> tag is just a grouping header in skin settings.
+		<!-- Since 866. The category and page tags define 2 types of option categories. The <category> tag is just a grouping header in skin settings.
 		     The <page> tag defines settings sub-page.
-		     Both <category> and <page> tags are ignored prior build 865 (just plain list of options is shown) -->
+		     Both <category> and <page> tags are ignored prior build 866 (just plain list of options is shown) -->
 		<category name="@string/skin_basic_options">
 			<!-- We set floatScale 100 here, meaning 100 = 1.0, 50 = 0.5, 200 = 2.0 -->
 			<seekbar
@@ -115,8 +115,8 @@
 		</radio>
 
 		<page name="@string/skin_corners">
-			<!-- It's recommended to use switch to enable/disable the new seekbar based style as they are not supported prior build 865.
-			     Alternatively, <include> can be used to include this page just for builds 865+ (prior builds ignore <include>) -->
+			<!-- It's recommended to use switch to enable/disable the new seekbar based style as they are not supported prior build 866.
+			     Alternatively, <include> can be used to include this page just for builds 866+ (prior builds ignore <include>) -->
 			<option
 				key="dynamicCorners"
 				name="@string/skin_dynamicCorners"
@@ -183,16 +183,16 @@
 		<page
 			name="@string/skin_aa_options"
 		>
-			<!-- It's recommended to use switch to enable/disable the new seekbar based style as they are not supported prior build 865.
-			      Alternatively, <include> can be used to include this page just for builds 865+ (prior builds ignore <include>) -->
+			<!-- It's recommended to use switch to enable/disable the new seekbar based style as they are not supported prior build 866.
+			      Alternatively, <include> can be used to include this page just for builds 866+ (prior builds ignore <include>) -->
 			<option
 				key="aaOptions"
 				name="@string/skin_aa_options"
-				summary="@string/skin_summary_865only"
+				summary="@string/skin_summary_866only"
 				overlapStyle="@style/SampleSkin_aaOptions"
 			/>
 
-			<!-- (build 865+) new aa-related seekbar controlled options -->
+			<!-- (build 866+) new aa-related seekbar controlled options -->
 			<seekbar
 				key="aaMaxYRotation"
 				id="@+id/aaMaxYRotation"
@@ -235,7 +235,7 @@
 				max="200"
 				step="5"
 			/>
-			<!-- (build 865+). Same as <radio>, but uses seekbar with ticks to select the style from the fixed set of options.
+			<!-- (build 866+). Same as <radio>, but uses seekbar with ticks to select the style from the fixed set of options.
 			     NOTE: summary2 requires string placeholder (%s) as value is inserted as string from the child option name attribute-->
 			<seekbarOptions
 				key="aaScaleStyle"
@@ -490,11 +490,11 @@
 		</page>
 
 		<!-- Include tag includes skin definition from other xml files.
-		     Include is supported by build 865+ and ignored by the builds prior that -->
+		     Include is supported by build 866+ and ignored by the builds prior that -->
 		<include file="@xml/skin_sample_subpage2"/>
 	</skin>
 
-	<!-- Include is supported by build 865+ and ignored by the builds prior that -->
+	<!-- Include is supported by build 866+ and ignored by the builds prior that -->
 	<include file="@xml/skin_sample_aaa"/>
 
 
