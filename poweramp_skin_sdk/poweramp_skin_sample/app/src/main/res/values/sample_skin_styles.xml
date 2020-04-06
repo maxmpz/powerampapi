@@ -653,23 +653,21 @@
 		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">@+id/cornersAA</item>
 		<item name="com.maxmpz.audioplayer:corners_aa_tracks">@+id/cornersTracks</item>
 		<item name="com.maxmpz.audioplayer:corners_aa_albums">@+id/cornersAlbums</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_other">@+id/cornersOthers</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other">@+id/cornersOther</item>
 
 		<!-- NOTE: we apply same seekbar values for all possible zoom levels, but skin can add more seekbar options as needed -->
 		<item name="com.maxmpz.audioplayer:corners_aa_tracks_zoomed">@+id/cornersTracks</item>
 		<item name="com.maxmpz.audioplayer:corners_aa_albums_zoomed">@+id/cornersAlbums</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_other_zoomed">@+id/cornersOthers</item>
-
+		<item name="com.maxmpz.audioplayer:corners_aa_other_zoomed">@+id/cornersOther</item>
 		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid">@+id/cornersTracks</item>
 		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid">@+id/cornersAlbums</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_other_grid">@+id/cornersOthers</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid">@+id/cornersOther</item>
 
 		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid_zoomed">@+id/cornersTracks</item>
 		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid_zoomed">@+id/cornersAlbums</item>
-		<item name="com.maxmpz.audioplayer:corners_aa_other_grid_zoomed">@+id/cornersOthers</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid_zoomed">@+id/cornersOther</item>
 
 		<item name="com.maxmpz.audioplayer:corners_aa_tracks_small">@+id/cornersTracks</item>
-
 	</style>
 
 	<style name="SampleSkin_aaOptions">
