@@ -1095,6 +1095,23 @@ public class MainActivity extends AppCompatActivity implements
 				DEBUG_FORCE_API_ACTIVITY);
 	}
 
+	public void rescan(View view) {
+		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS)
+				.setComponent(PowerampAPIHelper.getScannerServiceComponentName(this))
+				.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " user requested");
+		startService(intent);
+	}
+
+	public void milkRescan(View view) {
+		Intent intent = new Intent(PowerampAPI.MilkScanner.ACTION_SCAN)
+				.setComponent(PowerampAPIHelper.getMilkScannerServiceComponentName(this))
+				.putExtra(PowerampAPI.MilkScanner.EXTRA_CAUSE, getPackageName() + " user requested");
+		startService(intent);
+	}
+
+
+	// =================================================
+
 	private void updateSleepTimer(int progress) {
 		((TextView)findViewById(R.id.sleep_timer_value)).setText("Seep in " + progress + "s");
 	}
@@ -1349,8 +1366,11 @@ public class MainActivity extends AppCompatActivity implements
 		appendWithSpan(sb, "PlayerService: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getPlayerServiceComponentName(this).toString()).append("\n");
 		appendWithSpan(sb, "MediaBrowserService: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getBrowserServiceComponentName(this).toString()).append("\n");
 		appendWithSpan(sb, "API Receiver: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getApiReceiverComponentName(this).toString()).append("\n");
+		appendWithSpan(sb, "Scanner: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getScannerServiceComponentName(this).toString()).append("\n");
+		appendWithSpan(sb, "Milk Scanner: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getMilkScannerServiceComponentName(this).toString()).append("\n");
 		tv.setText(sb);
 	}
+
 
 	public static final @NonNull String getRawColName(@NonNull String col) {
 		int dot = col.indexOf('.');

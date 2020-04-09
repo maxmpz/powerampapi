@@ -48,6 +48,8 @@ public class PowerampAPIHelper {
 	private static ComponentName sApiReceiverComponentName;
 	private static ComponentName sApiActivityComponentName;
 	private static ComponentName sBrowserServiceComponentName;
+	private static ComponentName sScanServiceComponentName;
+	private static ComponentName sMilkScanServiceComponentName;
 
 
 	/**
@@ -97,6 +99,44 @@ public class PowerampAPIHelper {
 				ResolveInfo info = context.getPackageManager().resolveService(new Intent("android.media.browse.MediaBrowserService").setPackage(getPowerampPackageName(context)), 0);
 				if(info != null && info.serviceInfo != null) {
 					componentName = sBrowserServiceComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
+				}
+			} catch(Throwable th) {
+				Log.e(TAG, "", th);
+			}
+		}
+		return componentName;
+	}
+
+	/**
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp Media Browser Service component name, or null if not installed
+	 */
+	public static ComponentName getScannerServiceComponentName(Context context) {
+		ComponentName componentName = sScanServiceComponentName;
+		if(componentName == null) {
+			try {
+				ResolveInfo info = context.getPackageManager().resolveService(new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS).setPackage(getPowerampPackageName(context)), 0);
+				if(info != null && info.serviceInfo != null) {
+					componentName = sScanServiceComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
+				}
+			} catch(Throwable th) {
+				Log.e(TAG, "", th);
+			}
+		}
+		return componentName;
+	}
+
+	/**
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp Media Browser Service component name, or null if not installed
+	 */
+	public static ComponentName getMilkScannerServiceComponentName(Context context) {
+		ComponentName componentName = sMilkScanServiceComponentName;
+		if(componentName == null) {
+			try {
+				ResolveInfo info = context.getPackageManager().resolveService(new Intent(PowerampAPI.MilkScanner.ACTION_SCAN).setPackage(getPowerampPackageName(context)), 0);
+				if(info != null && info.serviceInfo != null) {
+					componentName = sMilkScanServiceComponentName = new ComponentName(info.serviceInfo.packageName, info.serviceInfo.name);
 				}
 			} catch(Throwable th) {
 				Log.e(TAG, "", th);

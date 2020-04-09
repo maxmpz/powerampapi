@@ -1779,6 +1779,30 @@ public final class PowerampAPI {
 		 */
 		public static final String EXTRA_CAUSE = "cause";
 	}
+	
+	/**
+	 * Describes Poweramp Milk (visualization) scanner related actions.<br>
+	 * Use {@link PowerampAPIHelper#getScannerServiceComponentName} to get component name for the intent. Intents should be send with Context#startService<br>
+	 * Please note that service won't start/scan if your application is not foreground, or if Poweramp is not in the foreground, or if Poweramp is not actively playing. 
+	 */
+	public static final class MilkScanner {
+		/**
+		 * Sent by your app to Poweramp.<br>
+		 * Poweramp Scanner action.<br>
+		 * Secondary action, only checks songs with TAG_STATUS set to TAG_NOT_SCANNED. Useful for rescanning just songs (which are already in Poweramp DB) with editied file tag info.<br><br>
+		 *
+		 * Extras:<br>
+		 * {@link #EXTRA_CAUSE}
+		 */
+		public static final String ACTION_SCAN = "com.maxmpz.milk.ACTION_SCAN";
+
+		/**
+		 * Extra<br>
+		 * {@code String} - cause of the scan (e.g. user request, auto scan, etc.). Useful for debugging, visible in logcat
+		 */
+		public static final String EXTRA_CAUSE = "cause";
+	}
+	
 
 	/**
 	 * Settings related actions

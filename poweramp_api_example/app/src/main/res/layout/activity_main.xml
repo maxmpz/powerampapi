@@ -497,7 +497,25 @@
 		/>
 
 
+		<Button android:id="@+id/rescan_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/sleep_timer_value"
+			android:layout_marginTop="4dp"
+			android:text="Rescan"
+			android:onClick="rescan"
+		/>
 
+		<Button android:id="@+id/milk_rescan_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/sleep_timer_value"
+			android:layout_toRightOf="@+id/rescan_button"
+			android:layout_marginTop="4dp"
+			android:layout_marginLeft="4dp"
+			android:text="Milk Rescan"
+			android:onClick="milkRescan"
+		/>
 	</RelativeLayout>
 
 </ScrollView>
