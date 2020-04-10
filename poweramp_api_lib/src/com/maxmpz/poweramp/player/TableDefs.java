@@ -30,7 +30,7 @@ public interface TableDefs {
 	public static final @NonNull String CATEGORY_ALIAS = "cat";
 
 	/** 
-	 * Id used for all "unknown" categories. Also see {@link PowerampAPI.NO_ID}
+	 * Id used for all "unknown" categories. Also see {@link PowerampAPI#NO_ID}
 	 */
 	public static final long UNKNOWN_ID = 1000L;
 	
@@ -59,7 +59,7 @@ public interface TableDefs {
 		public static final @NonNull String NAME = TABLE + ".name";
 
 		/**
-		 * Track number extracted from tag or filename. May include disc number (if >= 2) as thousands (2001, 2002, etc.). Can be {@link INVALID_TRACK_NUMBER}.<br>
+		 * Track number extracted from tag or filename. May include disc number (if >= 2) as thousands (2001, 2002, etc.). Can be {@link #INVALID_TRACK_NUMBER}.<br>
 		 * Used for sorting<br>
 		 * INTEGER
 		 */
@@ -1186,7 +1186,7 @@ public interface TableDefs {
 		public static final @NonNull String _ID = TABLE + "._id";
 
 		/**
-		 * Matches category numeric type ({@link PowerampAPI#Cats})<br>
+		 * Matches category numeric type ({@link PowerampAPI.Cats})<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String TYPE = TABLE + ".type";
@@ -1525,7 +1525,7 @@ public interface TableDefs {
 
 		/**
 		 * Prefix for virtual fields, used for insert/update contentValues.<br>
-		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * Content values named BIND_TO_DEVICE_PREFIX, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
 		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
 		 * # is number [0, NUM_BIND_DEVICES)<br>
 		 * @since 856<br>
@@ -1536,7 +1536,7 @@ public interface TableDefs {
 		/**
 		 * Prefix for virtual fields, used for insert/update contentValues.<br>
 		 * Sets device type for device assignment. See {@link RouterConsts} DEVICE_* constants<br>
-		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, DEVICE_PREFIX, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
 		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
 		 * # is number [0, NUM_BIND_DEVICES)<br>
 		 * @since 856<br>
@@ -1547,7 +1547,7 @@ public interface TableDefs {
 		/**
 		 * Prefix for virtual fields, used for insert/update contentValues. Sets device address for given device assignment. Device address may match device name,
 		 * but for BT / Chromecast device this is usually mac address or some other unique identifier.<br>
-		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, DEVICE_ADDRESS_PREFIX, {@link #DEVICE_NAME_PREFIX}#,
 		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
 		 * # is number [0, NUM_BIND_DEVICES)<br>
 		 * @since 856<br>
@@ -1557,7 +1557,7 @@ public interface TableDefs {
 		
 		/**
 		 * Prefix for virtual fields, used for insert/update contentValues. Sets visible device name for given device assignment.<br> 
-		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * Content values named {@link #BIND_TO_DEVICE_PREFIX}, {@link #DEVICE_PREFIX}, {@link #DEVICE_ADDRESS_PREFIX}, DEVICE_NAME_PREFIX,
 		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
 		 * # is number [0, NUM_BIND_DEVICES)<br>
 		 * @since 856<br>

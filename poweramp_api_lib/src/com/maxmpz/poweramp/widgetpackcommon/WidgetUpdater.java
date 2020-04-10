@@ -45,6 +45,7 @@ public abstract class WidgetUpdater {
 	 * loadDefaultOrPersistantUpdateData should be able to retrieve all the data needed + album art
 	 */
 	private static final boolean ALWAYS_USE_PERSISTANT_DATA = true;
+
 	/**
 	 * NOTE: as of v3 betas, no album art event is sent anymore
 	 */
@@ -59,7 +60,6 @@ public abstract class WidgetUpdater {
 
 	private final Context mContext;
 
-	//private static boolean sMediaRemoved; // REVISIT: never true, remove
 	private static @Nullable SharedPreferences sCachedPrefs;
 
 	private final @NonNull PowerManager mPowerManager;
@@ -108,14 +108,7 @@ public abstract class WidgetUpdater {
 				return;
 			}
 
-//			int[] ids = appWidgetIds;
-//			if(intent != null && updateByOs/*intent.getBooleanExtra(EXTRA_UPDATE_BY_OS, false)*/) {
-//				// Check if media is removed. In this case PowerampAPI status can be in stale "playing" state (as Poweramp process could be killed by ripper).
-//				sMediaRemoved = !Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-//				// If update by OS, some Androids 2.x require new AA to be set again.
-//			}
-
-			WidgetUpdateData data = generateUpdateData(mContext/*, sMediaRemoved*/);
+			WidgetUpdateData data = generateUpdateData(mContext);
 
 			if(LOG) Log.w(TAG, "========== updateSafe UPDATE data=" + data);
 
@@ -142,8 +135,6 @@ public abstract class WidgetUpdater {
 
 	/**
 	 * Called by ExternalAPI
-	 * @param data
-	 * @param ignorePowerState
 	 * @return true if update happened, false if power state doesn't allow update now
 	 */
 	public boolean updateDirectSafe(@NonNull WidgetUpdateData data, boolean ignorePowerState, boolean isScreenOn) {
@@ -184,19 +175,14 @@ public abstract class WidgetUpdater {
 
 	/**
 	 * Called when generateUpdateData is not able to find any sticky intents (e.g. after reboot), so default or previously stored data should be retrieved
-	 * @param context
-	 * @param data
 	 */
 	protected abstract void loadDefaultOrPersistantUpdateData(Context context, @NonNull WidgetUpdateData data);
 
 	/**
 	 * Generates WidgetUpdateData from sticky intents
-	 * @param context
-	 * @param mediaRemoved
-	 * @return
 	 */
 	// Data should be always the same for any type of widgets as data is reused by other widgets, thus method is final.
-	public @NonNull WidgetUpdateData generateUpdateData(Context context/*, boolean mediaRemoved*/) {
+	public @NonNull WidgetUpdateData generateUpdateData(Context context) {
 		WidgetUpdateData data = new WidgetUpdateData();
 
 		if(ALWAYS_USE_PERSISTANT_DATA) {

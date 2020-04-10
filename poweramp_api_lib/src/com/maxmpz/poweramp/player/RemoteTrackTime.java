@@ -101,6 +101,7 @@ public class RemoteTrackTime {
 	}
 
 	// REVISIT: not used to update duration here ATM
+	@Deprecated
 	public void updateTrackDuration(int duration) {
 		if(mTrackTimeListener != null) {
 			mTrackTimeListener.onTrackDurationChanged(duration);

@@ -91,6 +91,7 @@ import android.net.Uri;
  * <li>{@link Settings#ACTION_IMPORT_SETTINGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * </ul>
  */
+@SuppressWarnings({"WeakerAccess", "Unused"})
 public final class PowerampAPI {
 	/**
 	 * Defines PowerampAPI version
@@ -100,6 +101,7 @@ public final class PowerampAPI {
 	/**
 	 * No id value (for id-related fields, for example, {@link PowerampAPI.Track#ID})
 	 */
+	@SuppressWarnings({"Unused"})
 	public static final long NO_ID = 0L;
 
 	/**
@@ -176,8 +178,8 @@ public final class PowerampAPI {
 
 	/**
 	 * Poweramp service name<br>
-	 * See also {@link PowerampAPIHelper#getPlayerServiceComponentName(Context)} for a way of getting PlayerService component resolved according actual Poweramp package name<br>
-	 * NOTE: Poweramp PlayerService does not implement MediaBrowser API. For this, separate service is used. See {@link PowerampAPIHelper#getBrowserServiceComponentName(Context)}
+	 * See also {@link PowerampAPIHelper#getPlayerServiceComponentName} for a way of getting PlayerService component resolved according actual Poweramp package name<br>
+	 * NOTE: Poweramp PlayerService does not implement MediaBrowser API. For this, separate service is used. See {@link PowerampAPIHelper#getBrowserServiceComponentName}
 	 */
 	public static final String PLAYER_SERVICE_NAME = "com.maxmpz.audioplayer.player.PlayerService";
 
@@ -281,7 +283,7 @@ public final class PowerampAPI {
 		 * Set repeat mode<br>
 		 * Extras:<br>
 		 * {@code boolean showToast} {@link #SHOW_TOAST} - (optional) if false, no toast will be shown. Applied for cycle only<br>
-		 * {@code int repeat} {@link #REPEAT} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
+		 * {@code int repeat} {@link PowerampAPI#REPEAT} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
 		 * @see PowerampAPI.RepeatMode
 		 */
 		public static final int REPEAT = 8;
@@ -290,7 +292,7 @@ public final class PowerampAPI {
 		 * Set shuffle mode<br>
 		 * Extras:<br>
 		 * {@code boolean showToast} - (optional) if false, no toast will be shown. Applied for cycle only<br>
-		 * {@code int shuffle} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
+		 * {@code int shuffle} {@link PowerampAPI#SHUFFLE}- (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
 		 * @see PowerampAPI.ShuffleMode
 		 */
 		public static final int SHUFFLE = 9;
@@ -629,7 +631,7 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code Mixed}
-	 * @Deprecated not used now
+	 * @deprecated not used now
 	 */
 	@Deprecated
 	public static final String CONTENT = "content";
@@ -650,7 +652,7 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code String}
-	 * @Deprecated not used now
+	 * @deprecated not used now
 	 */
 	@Deprecated
 	public static final String LABEL = "label";
@@ -658,7 +660,7 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code boolean}
-	 * @Deprecated not used now
+	 * @deprecated not used now
 	 */
 	@Deprecated
 	public static final String AUTO_HIDE = "autoHide";
@@ -666,7 +668,7 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code Bitmap}
-	 * @Deprecated not used now
+	 * @deprecated not used now
 	 */
 	@Deprecated
 	public static final String ICON = "icon";
@@ -674,7 +676,7 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code boolean}
-	 * @Deprecated not used now
+	 * @deprecated not used now
 	 */
 	@Deprecated
 	public static final String MATCH_FILE = "matchFile";
@@ -1143,7 +1145,7 @@ public final class PowerampAPI {
 	/**
 	 * STATUS_CHANGED trackEnded extra<br>
 	 * {@code boolean} - true if track failed to play
-	 * @Deprecated (since 790) not sent anymore
+	 * @deprecated (since 790) not sent anymore
 	 */
 	@Deprecated
 	public static final String FAILED = "failed";
@@ -1233,11 +1235,11 @@ public final class PowerampAPI {
 		 */
 		public static final int SHUFFLE_SONGS_HIER     = 5;
 		
-		public static final boolean areSongsShuffled(int shuffle) {
+		public static boolean areSongsShuffled(int shuffle) {
 			return shuffle == SHUFFLE_ALL || shuffle == SHUFFLE_SONGS || shuffle == SHUFFLE_SONGS_AND_CATS;
 		}
 
-		public static final boolean areCatsShuffled(int shuffle) {
+		public static boolean areCatsShuffled(int shuffle) {
 			return shuffle == SHUFFLE_CATS || shuffle == SHUFFLE_SONGS_AND_CATS;
 		}
 	}
@@ -1678,7 +1680,7 @@ public final class PowerampAPI {
 		/**
 		 * Sent by Poweramp to your app.<br>
 		 * Broadcast<br>
-		 * @Deprecated not used anymore
+		 * @deprecated not used anymore
 		 */
 		@Deprecated
 		public static final String ACTION_TAGS_SCAN_PROGRESS = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_PROGRESS";
@@ -1808,6 +1810,11 @@ public final class PowerampAPI {
 	 * Settings related actions
 	 */
 	public static final class Settings {
+		/**
+		 * Poweramp settings activity
+		 */
+		public static final String ACTIVITY_SETTINGS = PowerampAPI.ACTIVITY_SETTINGS;
+
 		/**
 		 * Sent by your app to Poweramp.<br>
 		 * Exports Poweramp settings<br>

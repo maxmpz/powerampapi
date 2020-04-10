@@ -132,7 +132,7 @@ public class PluginMsgHelper {
 		buf.position(0);
 		IntBuffer intBuf = buf.asIntBuffer();
 		buf.position(pos);
-		int ar[] = new int[intBuf.capacity()];
+		int[] ar = new int[intBuf.capacity()];
 		intBuf.get(ar);
 		return toString(ar);
 	}

@@ -59,7 +59,7 @@ public class PowerampAPIHelper {
 	public static String getPowerampPackageName(Context context) {
 		String pak = sPowerampPak;
 		if(pak == null) {
-			ComponentName componentName = getPlayerServiceComponentName(context);
+			ComponentName componentName = getPlayerServiceComponentNameImpl(context);
 			if(componentName != null) {
 				pak = sPowerampPak = componentName.getPackageName();
 			}
@@ -74,6 +74,10 @@ public class PowerampAPIHelper {
 	 */
 	@Deprecated
 	public static ComponentName getPlayerServiceComponentName(Context context) {
+		return getPlayerServiceComponentNameImpl(context);
+	}
+
+	private static ComponentName getPlayerServiceComponentNameImpl(Context context) {
 		ComponentName componentName = sPowerampPSComponentName;
 		if(componentName == null) {
 			try {
@@ -161,6 +165,7 @@ public class PowerampAPIHelper {
 	}
 
 	/**
+	 * NOTE: this is API activity - invisible activity to receive API commands. This one doesn't show any Poweramp UI.
 	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
 	 * @return resolved and cached Poweramp API activity component name, or null if not installed
 	 */
@@ -218,7 +223,7 @@ public class PowerampAPIHelper {
 	 * and are deprecated for Poweramp builds 855+.<br><br>
 	 * NOTE: scanner intents
 	 * THREADING: can be called from any thread
-	 * @sendToActivity if true, we're sending intent to the activity (build 862+)
+	 * @param sendToActivity if true, we're sending intent to the activity (build 862+)
 	 */
 	public static void sendPAIntent(Context context, Intent intent, boolean sendToActivity) {
 		int buildNum = getPowerampBuild(context);
@@ -233,7 +238,7 @@ public class PowerampAPIHelper {
 			intent.setComponent(getApiReceiverComponentName(context));
 			context.sendBroadcast(intent);
 		} else {
-			intent.setComponent(getPlayerServiceComponentName(context));
+			intent.setComponent(getPlayerServiceComponentNameImpl(context));
 			if(Build.VERSION.SDK_INT >= 26) {
 				context.startForegroundService(intent);
 			} else {
@@ -244,7 +249,7 @@ public class PowerampAPIHelper {
 
 	@Deprecated
 	public static void startPAServiceOld(Context context, Intent intent) {
-		intent.setComponent(getPlayerServiceComponentName(context));
+		intent.setComponent(getPlayerServiceComponentNameImpl(context));
 		if(Build.VERSION.SDK_INT >= 26) {
 			context.startForegroundService(intent);
 		} else {
