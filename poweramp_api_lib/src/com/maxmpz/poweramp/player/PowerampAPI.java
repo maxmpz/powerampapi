@@ -101,7 +101,6 @@ public final class PowerampAPI {
 	/**
 	 * No id value (for id-related fields, for example, {@link PowerampAPI.Track#ID})
 	 */
-	@SuppressWarnings({"Unused"})
 	public static final long NO_ID = 0L;
 
 	/**
@@ -512,7 +511,7 @@ public final class PowerampAPI {
 
 		/**
 		 * Extras:<br>
-		 * {@code long id} - preset ID
+		 * {@link #ID} - long - preset ID
 		 */
 		public static final int SET_EQU_PRESET = 50;
 
@@ -532,8 +531,8 @@ public final class PowerampAPI {
 
 		/**
 		 * Extras:<br>
-		 * {@code boolean equ}- if exists and true, equalizer is enabled
-		 * {@code boolean tone} - if exists and true, tone is enabled
+		 * {@code boolean equ}- if exists and true, equalizer is enabled<br>
+		 * {@code boolean tone} - if exists and true, tone is enabled<br>
 		 */
 		public static final int SET_EQU_ENABLED = 53;
 
@@ -541,6 +540,24 @@ public final class PowerampAPI {
 		 * Used by Notification controls to stop pending/paused service/playback and unload/remove notification
 		 */
 		public static final int STOP_SERVICE = 100;
+		
+		/**
+		 * Set as active and/or import visualization preset<br><br>
+		 * Depending on extras, preset will be:<br>
+ 		 * - EXTRA_ID - set the preset identified by ID as active (selected)<br>
+ 		 * - EXTRA_NAME - set the preset identified by NAME as active (selected)<br>
+		 * - EXTRA_NAME (no such preset exists) and EXTRA_DATA - import EXTRA_DATA preset text into the newly created preset named EXTRA_NAME<br>
+		 * - EXTRA_NAME (preset exists) and EXTRA_DATA - import EXTRA_DATA preset text into the preset identified by EXTRA_NAME<br><br>
+		 * 
+		 * Imported presets are stored as file in Poweramp app data directory<br><br> 
+		 * Extras:<br>
+		 * {@link #EXTRA_ID} - long - if exists, the preset identified by this id will be set as active and/or imported into. If this extra is missing, a new visualization preset will be added<br>
+		 * {@link #EXTRA_NAME} - String - preset file name. Should follow "[artist name] - [preset name].milk" format. ".milk" extension is optional<br>
+		 * {@link #EXTRA_DATA} - String - the preset data to import<br>
+		 * @since 867
+		 */
+		public static final int SET_VIS_PRESET = 200;
+		
 		
 		
 		public static String cmdToString(int cmd) {
@@ -591,6 +608,8 @@ public final class PowerampAPI {
 					return "STOP_SERVICE";
 				case SLEEP_TIMER:
 					return "SLEEP_TIMER";
+				case SET_VIS_PRESET:
+					return "SET_VIS_PRESET";
 				default:
 					return "unknown cmd=" + cmd;
 			}
@@ -690,8 +709,16 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code String}
+	 * @deprecated use {@link #EXTRA_NAME}
 	 */
+	@Deprecated
 	public static final String NAME = "name";
+
+	/**
+	 * Extra<br>
+	 * {@code String}
+	 */
+	public static final String EXTRA_NAME = "name";
 
 	/**
 	 * Extra<br>
@@ -925,8 +952,15 @@ public final class PowerampAPI {
 	 * Extra<br>
 	 * {@code Mixed}
 	 * @since 700
+	 * @deprecated Use {@link #EXTRA_DATA}
 	 */
 	public static final String DATA = "data";
+
+	/**
+	 * Extra<br>
+	 * {@code Mixed}
+	 */
+	public static final String EXTRA_DATA = "data";
 
 	/**
 	 * Sent by your app to Poweramp<br>
@@ -1174,8 +1208,16 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code long}
+	 * @deprecated Use {@link #EXTRA_ID}
 	 */
+	@Deprecated
 	public static final String ID = "id";
+
+	/**
+	 * Extra
+	 * {@code long}
+	 */
+	public static final String EXTRA_ID = "id";
 
 	/**
 	 * STATUS_CHANGED track extra<br>
@@ -2161,6 +2203,28 @@ public final class PowerampAPI {
 			public static int tone_labels;
 			public static int track_num_type;
 			public static boolean track_disc_meta;
+		}
+		
+		public static class PreferencesConsts {
+			/** 
+			 * Don't show vis<br>
+			 * {@link Preferences#vis_mode}
+			 */
+			public static final int VIS_MODE_VIS_NONE = 0; 
+			/** 
+			 * Vis + UI<br>
+			 * {@link Preferences#vis_mode}
+			 */
+			public static final int VIS_MODE_VIS_W_UI = 1; 
+			/** 
+			 * Just Vis<br>
+			 * {@link Preferences#vis_mode}
+			 */
+			public static final int VIS_MODE_VIS      = 2;
+			/** 
+			 * {@link Preferences#vis_mode}
+			 */
+			public static final int VIS_MODE_MAX      = 2;
 		}
 	}
 
