@@ -67,7 +67,7 @@ public class InfoActivity extends Activity {
 
     public void sendPreset(View view) {
         // Issue SET_VIS_PRESET
-        
+
         Intent intent = new Intent(PowerampAPI.ACTION_API_COMMAND)
                         .setComponent(PowerampAPIHelper.getApiActivityComponentName(this))
                         .putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_VIS_PRESET)
