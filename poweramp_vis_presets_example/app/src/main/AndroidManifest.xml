@@ -12,7 +12,7 @@
 
 		<meta-data android:name="com.maxmpz.PowerampVisPresets" android:value="true"/>
 
-		<activity android:name=".InfoActivity">
+		<activity android:name=".InfoActivity" android:windowSoftInputMode="adjustNothing">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 

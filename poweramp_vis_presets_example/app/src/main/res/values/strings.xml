@@ -5,4 +5,5 @@
 
 	<string name="start_with_presets">Start Poweramp\nwith this Presets</string>
 	<string name="open_vis_settings">Open Vis Settings</string>
+	<string name="send_preset">Send Preset Text To Poweramp</string>
 </resources>
