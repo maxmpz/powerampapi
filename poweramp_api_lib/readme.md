@@ -73,7 +73,7 @@ Profile: TrackChanged (16)
   * inaccurate data updates may corrupt Poweramp database or break Library consistency
   * **Android 8+**: permission should be requested from Poweramp: see *PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION*
 * Poweramp v3 exposes current playing track album art via **content://com.maxmpz.audioplayer.aa/** URIs. Album art is delivered in its original form "as is"
-  (*ParcelFileDescriptor* eitger to the cached image file or to the embedded album art)
+  (*ParcelFileDescriptor* either to the cached image file or to the embedded album art)
   * Poweramp v3 (**build 817+**) also provides album art, artist, genres, etc. images for any "entity" (track, album, genre, artist, etc.) in their original form via REST like URIs.
     (These uris are used for MediaBrowserCompat resulting lists via *MediaBrowserCompat.MediaItem.getDescription().getIconUri()*)
 
