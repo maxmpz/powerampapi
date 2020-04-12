@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements
 		if(!sPermissionAsked) {
 			Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
 			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
-			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
+			intent.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName());
 			if(DEBUG_FORCE_API_ACTIVITY) {
 				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
 				startActivity(intent);
@@ -193,7 +193,8 @@ public class MainActivity extends AppCompatActivity implements
 	 * on screen rotation some commands could be sent to Poweramp unintentionally.
 	 * As this activity always syncs everything with the actual state of Poweramp, the automatic restoring of state is non needed and harmful.
 	 * <br><br>
-	 * Nevertheless, the actual implementation should probably manipulate per view View.setSaveEnabled() for specific controls, use some Model pattern, or manage state otherwise,
+	 * Nevertheless, the actual implementation should probably manipulate per view View.setSaveEnabled() for specific controls, use some Model pattern, or manage
+	 * state otherwise,
 	 * as empty onSaveInstanceState here denies save for everything
 	 */
 	@Override
@@ -305,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements
 		mCurrentTrack = null;
 
 		if(mTrackIntent != null) {
-			mCurrentTrack = mTrackIntent.getBundleExtra(PowerampAPI.TRACK);
+			mCurrentTrack = mTrackIntent.getBundleExtra(PowerampAPI.EXTRA_TRACK);
 			if(mCurrentTrack != null) {
 				int duration = mCurrentTrack.getInt(PowerampAPI.Track.DURATION);
 				mRemoteTrackTime.updateTrackDuration(duration); // Let RemoteTrackTime know about the current song duration.
@@ -383,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements
 		if(mStatusIntent != null) {
 			boolean paused;
 
-			int state = mStatusIntent.getIntExtra(PowerampAPI.STATE, PowerampAPI.STATE_NO_STATE); // NOTE: not used here, provides STATE_* int
+			int state = mStatusIntent.getIntExtra(PowerampAPI.EXTRA_STATE, PowerampAPI.STATE_NO_STATE); // NOTE: not used here, provides STATE_* int
 
 			// Each status update can contain track position update as well
 			int pos = mStatusIntent.getIntExtra(PowerampAPI.Track.POSITION, -1);
@@ -419,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements
 	void updatePlayingModeUI() {
 		Log.w(TAG, "updatePlayingModeUI");
 		if(mPlayingModeIntent != null) {
-			int shuffle = mPlayingModeIntent.getIntExtra(PowerampAPI.SHUFFLE, -1);
+			int shuffle = mPlayingModeIntent.getIntExtra(PowerampAPI.EXTRA_SHUFFLE, -1);
 			String shuffleStr;
 			switch(shuffle) {
 				case PowerampAPI.ShuffleMode.SHUFFLE_ALL:
@@ -440,7 +441,7 @@ public class MainActivity extends AppCompatActivity implements
 			}
 			((Button)findViewById(R.id.shuffle)).setText(shuffleStr);
 
-			int repeat = mPlayingModeIntent.getIntExtra(PowerampAPI.REPEAT, -1);
+			int repeat = mPlayingModeIntent.getIntExtra(PowerampAPI.EXTRA_REPEAT, -1);
 			String repeatStr;
 			switch(repeat) {
 				case PowerampAPI.RepeatMode.REPEAT_ON:
@@ -542,72 +543,75 @@ public class MainActivity extends AppCompatActivity implements
 		switch(v.getId()) {
 			case R.id.play:
 				Log.w(TAG, "play");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE),
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE),
 						DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.pause:
 				Log.w(TAG, "pause");
 				// NOTE: sending String command instead of int
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, "PAUSE"), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, "PAUSE"), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.prev:
 				Log.w(TAG, "prev");
 				// NOTE: sending lowcase String command instead of int
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, "previous"), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, "previous"), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.next:
 				Log.w(TAG, "next");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.NEXT),
+						DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.prev_in_cat:
 				Log.w(TAG, "prev_in_cat");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT),
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT),
 						DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.next_in_cat:
 				Log.w(TAG, "next_in_cat");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.NEXT_IN_CAT), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.NEXT_IN_CAT),
+						DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.repeat:
 				Log.w(TAG, "repeat");
 				// No toast for this button just for demo.
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
-						.putExtra(PowerampAPI.SHOW_TOAST, false), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT)
+						.putExtra(PowerampAPI.EXTRA_SHOW_TOAST, false), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.shuffle:
 				Log.w(TAG, "shuffle");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE),
+						DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.repeat_all:
 				Log.w(TAG, "repeat_all");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
-						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_ON), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT)
+						.putExtra(PowerampAPI.EXTRA_REPEAT, PowerampAPI.RepeatMode.REPEAT_ON), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.repeat_off:
 				Log.w(TAG, "repeat_off");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.REPEAT)
-						.putExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT)
+						.putExtra(PowerampAPI.EXTRA_REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.shuffle_all:
 				Log.w(TAG, "shuffle_all");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
-						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_ALL), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE)
+						.putExtra(PowerampAPI.EXTRA_SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_ALL), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.shuffle_off:
 				Log.w(TAG, "shuffle_all");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SHUFFLE)
-						.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE)
+						.putExtra(PowerampAPI.EXTRA_SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE), DEBUG_FORCE_API_ACTIVITY);
 				break;
 
 			case R.id.commit_eq:
@@ -621,7 +625,7 @@ public class MainActivity extends AppCompatActivity implements
 					String uri = ((TextView) findViewById(R.id.play_file_path)).getText().toString();
 					if(uri.length() > "content://".length()) {
 						PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-								.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+								.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 								//.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
 								.setData(Uri.parse(uri)), DEBUG_FORCE_API_ACTIVITY);
 					}
@@ -816,16 +820,19 @@ public class MainActivity extends AppCompatActivity implements
 	public boolean onLongClick(View v) {
 		switch(v.getId()) {
 			case R.id.play:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.STOP), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.STOP),
+						DEBUG_FORCE_API_ACTIVITY);
 				return true;
 
 			case R.id.next:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD),
+						DEBUG_FORCE_API_ACTIVITY);
 				mProcessingLongPress = true;
 				return true;
 
 			case R.id.prev:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.BEGIN_REWIND), DEBUG_FORCE_API_ACTIVITY);
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.BEGIN_REWIND),
+						DEBUG_FORCE_API_ACTIVITY);
 				mProcessingLongPress = true;
 				return true;
 		}
@@ -846,14 +853,16 @@ public class MainActivity extends AppCompatActivity implements
 					case R.id.next:
 						Log.e(TAG, "onTouch next ACTION_UP");
 						if(mProcessingLongPress) {
-							PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_FAST_FORWARD), DEBUG_FORCE_API_ACTIVITY);
+							PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND,
+									PowerampAPI.Commands.END_FAST_FORWARD), DEBUG_FORCE_API_ACTIVITY);
 							mProcessingLongPress = false;
 						}
 						return false;
 
 					case R.id.prev:
 						if(mProcessingLongPress) {
-							PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.END_REWIND), DEBUG_FORCE_API_ACTIVITY);
+							PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND,
+									PowerampAPI.Commands.END_REWIND), DEBUG_FORCE_API_ACTIVITY);
 							mProcessingLongPress = false;
 						}
 						return false;
@@ -869,7 +878,7 @@ public class MainActivity extends AppCompatActivity implements
  	 */
 	private void playAllSongs() {
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 				.setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()),
 				DEBUG_FORCE_API_ACTIVITY);
 	}
@@ -886,7 +895,7 @@ public class MainActivity extends AppCompatActivity implements
 				Toast.makeText(this, "Playing album: " + name, Toast.LENGTH_SHORT).show();
 
 				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 						.setData(PowerampAPI.ROOT_URI.buildUpon()
 								.appendEncodedPath("albums")
 								.appendEncodedPath(Long.toString(albumId))
@@ -922,7 +931,7 @@ public class MainActivity extends AppCompatActivity implements
 						Toast.makeText(this, "Playing artist: " + artist + " album: " + album, Toast.LENGTH_SHORT).show();
 
 						PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-								.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+								.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 								.setData(PowerampAPI.ROOT_URI.buildUpon()
 										.appendEncodedPath("artists")
 										.appendEncodedPath(Long.toString(artistId))
@@ -965,8 +974,8 @@ public class MainActivity extends AppCompatActivity implements
 		}
 
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
-				.putExtra(PowerampAPI.VALUE, presetString.toString()),
+				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
+				.putExtra(PowerampAPI.EXTRA_VALUE, presetString.toString()),
 				DEBUG_FORCE_API_ACTIVITY);
 	}
 
@@ -1025,7 +1034,7 @@ public class MainActivity extends AppCompatActivity implements
 		if(ignoreThrottling || mLastSeekSentTime == 0 || System.currentTimeMillis() - mLastSeekSentTime > SEEK_THROTTLE) {
 			mLastSeekSentTime = System.currentTimeMillis();
 			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SEEK)
+					.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SEEK)
 					.putExtra(PowerampAPI.Track.POSITION, position),
 					DEBUG_FORCE_API_ACTIVITY);
 			Log.w(TAG, "sent");
@@ -1042,8 +1051,8 @@ public class MainActivity extends AppCompatActivity implements
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
 			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
-					.putExtra(PowerampAPI.ID, id),
+					.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
+					.putExtra(PowerampAPI.EXTRA_ID, id),
 					DEBUG_FORCE_API_ACTIVITY);
 		} else {
 			mSettingPreset = false;
@@ -1089,7 +1098,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	public void setSleepTimer(View view) {
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SLEEP_TIMER)
+						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SLEEP_TIMER)
 						.putExtra(PowerampAPI.EXTRA_SECONDS, ((SeekBar)findViewById(R.id.sleep_timer_seekbar)).getProgress())
 						.putExtra(PowerampAPI.EXTRA_PLAY_TO_END, ((CheckBox)findViewById(R.id.sleep_timer_play_to_end)).isChecked()),
 				DEBUG_FORCE_API_ACTIVITY);
@@ -1162,7 +1171,8 @@ public class MainActivity extends AppCompatActivity implements
 			// Select up to 10 random files
 			final int numFilesToInsert = 10;
 			Uri filesUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build();
-			Cursor c = getContentResolver().query(filesUri, new String[]{ TableDefs.Files._ID, TableDefs.Files.NAME, TableDefs.Folders.PATH }, null, null, "RANDOM() LIMIT " + numFilesToInsert);
+			Cursor c = getContentResolver().query(filesUri, new String[]{ TableDefs.Files._ID, TableDefs.Files.NAME, TableDefs.Folders.PATH }, null, null,
+					"RANDOM() LIMIT " + numFilesToInsert);
 
 			int sort = 0;
 
@@ -1190,7 +1200,8 @@ public class MainActivity extends AppCompatActivity implements
 
 					Uri entryUri = cr.insert(playlistEntriesUri, values);
 					if(entryUri != null) {
-						Log.w(TAG, "createPlaylistAndAddToIt inserted entry fileId=" + fileId + " sort=" + sort + " folderPath=" + folderPath + " fileName=" + fileName + " entryUri=" + entryUri);
+						Log.w(TAG, "createPlaylistAndAddToIt inserted entry fileId=" + fileId + " sort=" + sort + " folderPath=" + folderPath + " fileName=" + fileName +
+								" entryUri=" + entryUri);
 						sort++;
 					} else {
 						Log.e(TAG, "createPlaylistAndAddToIt FAILED to insert entry fileId=" + fileId);
@@ -1206,8 +1217,9 @@ public class MainActivity extends AppCompatActivity implements
 				// Force Poweramp to reload data in UI / PlayerService as we changed something
 				Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
 				intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
-				intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-				intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send the changed table for an adequate UI / PlayerService reloading
+				intent.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName());
+				// NOTE: important to send the changed table for an adequate UI / PlayerService reloading
+				intent.putExtra(PowerampAPI.EXTRA_TABLE, TableDefs.PlaylistEntries.TABLE);
 				if(DEBUG_FORCE_API_ACTIVITY) {
 					intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
 					startActivity(intent);
@@ -1273,8 +1285,9 @@ public class MainActivity extends AppCompatActivity implements
 			// Force Poweramp to reload data in UI / PlayerService as we changed something
 			Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
 			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
-			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-			intent.putExtra(PowerampAPI.TABLE, TableDefs.PlaylistEntries.TABLE); // NOTE: important to send the changed table for an adequate UI / PlayerService reloading
+			intent.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName());
+			// NOTE: important to send the changed table for an adequate UI / PlayerService reloading
+			intent.putExtra(PowerampAPI.EXTRA_TABLE, TableDefs.PlaylistEntries.TABLE);
 			if(DEBUG_FORCE_API_ACTIVITY) {
 				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
 				startActivity(intent);
@@ -1344,8 +1357,9 @@ public class MainActivity extends AppCompatActivity implements
 			// Force Poweramp to reload data in UI / PlayerService as we changed something
 			Intent intent = new Intent(PowerampAPI.ACTION_RELOAD_DATA);
 			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
-			intent.putExtra(PowerampAPI.PACKAGE, getPackageName());
-			intent.putExtra(PowerampAPI.TABLE, TableDefs.Queue.TABLE); // NOTE: important to send changed table for the adequate UI / PlayerService reloading. This can also make Poweramp to go to Queue
+			intent.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName());
+			// NOTE: important to send changed table for the adequate UI / PlayerService reloading. This can also make Poweramp to go to Queue
+			intent.putExtra(PowerampAPI.EXTRA_TABLE, TableDefs.Queue.TABLE);
 			if(DEBUG_FORCE_API_ACTIVITY) {
 				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
 				startActivity(intent);
@@ -1411,7 +1425,7 @@ public class MainActivity extends AppCompatActivity implements
 	public static void debugDumpIntent(@NonNull String tag, @NonNull String description, @Nullable Intent intent) {
 		if(intent != null) {
 			Log.w(tag, description + " debugDumpIntent action=" + intent.getAction() + " extras=" + dumpBundle(intent.getExtras()));
-			Bundle track = intent.getBundleExtra(PowerampAPI.TRACK);
+			Bundle track = intent.getBundleExtra(PowerampAPI.EXTRA_TRACK);
 			if(track != null) {
 				Log.w(tag, "track=" + dumpBundle(track));
 			}

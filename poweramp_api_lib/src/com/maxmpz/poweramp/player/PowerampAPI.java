@@ -161,19 +161,12 @@ public final class PowerampAPI {
 	 * The issue with sending intents to service is foreground processing, which on current Androids 8-10 can't be 100% reliable processed and may cause unexpected ANR errors<br><br>
 	 * 
 	 * Extras:<br>
-	 * {@link #COMMAND} - command to execute<br>
-	 * {@link #PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes. Poweramp will log appropriate command details if specified<br>
-	 * {@link #SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes<br>
+	 * {@link #EXTRA_COMMAND} - command to execute<br>
+	 * {@link #EXTRA_PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes. Poweramp will log appropriate command details if specified<br>
+	 * {@link #EXTRA_SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes<br>
 	 */
 	public static final String ACTION_API_COMMAND = "com.maxmpz.audioplayer.API_COMMAND";
 	
-	/**
-	 * Poweramp package name.<br>
-	 * NOTE: some Poweramp editions may have different package name (e.g. com.maxmpz.audioplayer.huawei)
-	 * @deprecated see PowerampAPIHelper.getPowerampPackageName
-	 */
-	@Deprecated
-	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
 
 	/**
 	 * Poweramp service name<br>
@@ -195,33 +188,19 @@ public final class PowerampAPI {
 	 */
 	public static final String API_ACTIVITY_NAME = "com.maxmpz.audioplayer.PowerampAPIActivity";
 
-	/**
-	 * Poweramp service ComponentName
-	 * @deprecated see {@link PowerampAPIHelper#getPlayerServiceComponentName}
-	 */
-	@Deprecated
-	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
 
-	/**
-	 * @return ready to use Intent for Poweramp service
-	 * @deprecated see {@link PowerampAPIHelper#getPlayerServiceComponentName}, {@link PowerampAPIHelper#newAPIIntent}
-	 */
-	@Deprecated
-	public static Intent newAPIIntent() {
-		return new Intent(ACTION_API_COMMAND).setComponent(PLAYER_SERVICE_COMPONENT_NAME);
-	}
+
 
 	/**
 	 * ACTION_API_COMMAND extra
 	 * <br>
-	 * {@code int} - see {@link Commands}<br> 
+	 * {@code int} - see {@link Commands}<br>
 	 * or {@code String} (since 862) with values like "TOGGLE_PLAY_PAUSE", "RESUME", "PAUSE", etc. matching field names from {@link Commands}
 	 */
-	public static final String COMMAND = "cmd";
-
+	public static final String EXTRA_COMMAND = "cmd";
 
 	/**
-	 * Command values for {@link #COMMAND} extra.<br>
+	 * Command values for {@link #EXTRA_COMMAND} extra.<br>
 	 * Alternatively, Commands field name can be used instead of integer value, e.g. "PAUSE", instead of 2
 	 */
 	@SuppressWarnings("hiding")
@@ -281,8 +260,8 @@ public final class PowerampAPI {
 		/**
 		 * Set repeat mode<br>
 		 * Extras:<br>
-		 * {@code boolean showToast} {@link #SHOW_TOAST} - (optional) if false, no toast will be shown. Applied for cycle only<br>
-		 * {@code int repeat} {@link PowerampAPI#REPEAT} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
+		 * {@code boolean showToast} {@link #EXTRA_SHOW_TOAST} - (optional) if false, no toast will be shown. Applied for cycle only<br>
+		 * {@code int repeat} {@link PowerampAPI#EXTRA_REPEAT} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
 		 * @see PowerampAPI.RepeatMode
 		 */
 		public static final int REPEAT = 8;
@@ -291,7 +270,7 @@ public final class PowerampAPI {
 		 * Set shuffle mode<br>
 		 * Extras:<br>
 		 * {@code boolean showToast} - (optional) if false, no toast will be shown. Applied for cycle only<br>
-		 * {@code int shuffle} {@link PowerampAPI#SHUFFLE}- (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
+		 * {@code int shuffle} {@link PowerampAPI#EXTRA_SHUFFLE}- (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
 		 * @see PowerampAPI.ShuffleMode
 		 */
 		public static final int SHUFFLE = 9;
@@ -500,7 +479,7 @@ public final class PowerampAPI {
 		 * {@code boolean paused} - (optional) default false. OPEN_TO_PLAY command starts playing the file immediately, unless "paused" extra is true<br>
 		 * {@code int pos}- (optional) seek to this position in track before playing
 		 * @see PowerampAPI.Track#POSITION
-		 * @see PowerampAPI#PAUSED
+		 * @see PowerampAPI#EXTRA_PAUSED
 		 */
 		public static final int OPEN_TO_PLAY = 20;
 
@@ -511,13 +490,13 @@ public final class PowerampAPI {
 
 		/**
 		 * Extras:<br>
-		 * {@link #ID} - long - preset ID
+		 * {@link #EXTRA_ID} - long - preset ID
 		 */
 		public static final int SET_EQU_PRESET = 50;
 
 		/**
 		 * Extras:<br>
-		 * {@code String value} - equalizer values,
+		 * {@link #EXTRA_VALUE} - String - equalizer values,
 		 * @see PowerampAPI#ACTION_EQU_CHANGED
 		 */
 		public static final int SET_EQU_STRING = 51;
@@ -617,6 +596,12 @@ public final class PowerampAPI {
 	}
 
 	/**
+	 * Extra<br>
+	 * {@code Mixed}
+	 */
+	public static final String EXTRA_API_VERSION = "api";
+
+	/**
 	 * Minimum allowed time between seek commands
 	 */
 	public static int MIN_TIME_BETWEEN_SEEKS_MS = 200;
@@ -645,74 +630,32 @@ public final class PowerampAPI {
 	 * Extra<br>
 	 * {@code Mixed}
 	 */
-	public static final String API_VERSION = "api";
-
-	/**
-	 * Extra<br>
-	 * {@code Mixed}
-	 * @deprecated not used now
-	 */
-	@Deprecated
-	public static final String CONTENT = "content";
+	public static final String EXTRA_CONTENT = "content";
 
 	/**
 	 * Extra<br>
 	 * {@code String}
 	 */
-	public static final String PACKAGE = "pak";
+	public static final String EXTRA_PACKAGE = "pak";
 
 	/**
 	 * ACTION_API_COMMAND extra
 	 * <br>
 	 * {@code int}
 	 */
-	public static final String SOURCE = "src";
+	public static final String EXTRA_SOURCE = "src";
 
 	/**
 	 * Extra<br>
 	 * {@code String}
-	 * @deprecated not used now
 	 */
-	@Deprecated
-	public static final String LABEL = "label";
-
-	/**
-	 * Extra<br>
-	 * {@code boolean}
-	 * @deprecated not used now
-	 */
-	@Deprecated
-	public static final String AUTO_HIDE = "autoHide";
-
-	/**
-	 * Extra<br>
-	 * {@code Bitmap}
-	 * @deprecated not used now
-	 */
-	@Deprecated
-	public static final String ICON = "icon";
-
-	/**
-	 * Extra<br>
-	 * {@code boolean}
-	 * @deprecated not used now
-	 */
-	@Deprecated
-	public static final String MATCH_FILE = "matchFile";
+	public static final String EXTRA_LABEL = "label";
 
 	/**
 	 * Extra<br>
 	 * {@code boolean}
 	 */
-	public static final String SHOW_TOAST = "showToast";
-
-	/**
-	 * Extra<br>
-	 * {@code String}
-	 * @deprecated use {@link #EXTRA_NAME}
-	 */
-	@Deprecated
-	public static final String NAME = "name";
+	public static final String EXTRA_SHOW_TOAST = "showToast";
 
 	/**
 	 * Extra<br>
@@ -724,39 +667,32 @@ public final class PowerampAPI {
 	 * Extra<br>
 	 * {@code Mixed}
 	 */
-	public static final String VALUE = "value";
+	public static final String EXTRA_VALUE = "value";
 
 	/**
 	 * Extra<br>
 	 * {@code boolean}
 	 */
-	public static final String EQU = "equ";
+	public static final String EXTRA_EQU = "equ";
 
 	/**
 	 * Extra<br>
 	 * {@code boolean}
 	 */
-	public static final String TONE = "tone";
+	public static final String EXTRA_TONE = "tone";
 
 	/**
 	 * Extra<br>
 	 * {@code boolean}
 	 */
-	public static final String KEEP_SERVICE = "keepService";
-
-	/**
-	 * Extra<br>
-	 * {@code boolean}
-	 */
-	public static final String BEEP = "beep";
-
+	public static final String EXTRA_BEEP = "beep";
 
 	/**
 	 * Extra<br>
 	 * {@code String}
 	 * @since 795
 	 */
-	public static final String TABLE = "table";
+	public static final String EXTRA_TABLE = "table";
 
 	/**
 	 * Sent by Poweramp to your app<br>
@@ -765,8 +701,8 @@ public final class PowerampAPI {
 	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br>
 	 * Use *_EXPLICIT version to receive this action in background app.<br><br>
 	 * Extras:<br>
-	 * {@code Bundle track} {@link #TRACK} - Track bundle<br>
-	 * {@code long ts} {@link #TIMESTAMP} - timestamp of the event (System.currentTimeMillis())
+	 * {@link #EXTRA_TRACK} - Bundle - Track bundle<br>
+	 * {@link #EXTRA_TIMESTAMP} - long - timestamp of the event (System.currentTimeMillis())
 	 * @see PowerampAPI.Track
 	 */
 	public static final String ACTION_TRACK_CHANGED = "com.maxmpz.audioplayer.TRACK_CHANGED";
@@ -893,15 +829,6 @@ public final class PowerampAPI {
 	 * Sent by your app to Poweramp<br>
 	 * Opens library<br>
 	 * Should be sent with Context.startActivity
-	 * @deprecated. Use {@link #ACTION_OPEN_LIBRARY}
-	 */
-	@Deprecated
-	public static final String ACTION_SHOW_LIST = "com.maxmpz.audioplayer.ACTION_SHOW_LIST";
-
-	/**
-	 * Sent by your app to Poweramp<br>
-	 * Opens library<br>
-	 * Should be sent with Context.startActivity
 	 */
 	public static final String ACTION_OPEN_LIBRARY = "com.maxmpz.audioplayer.ACTION_OPEN_LIBRARY";
 
@@ -952,27 +879,18 @@ public final class PowerampAPI {
 	 * Extra<br>
 	 * {@code Mixed}
 	 * @since 700
-	 * @deprecated Use {@link #EXTRA_DATA}
-	 */
-	public static final String DATA = "data";
-
-	/**
-	 * Extra<br>
-	 * {@code Mixed}
 	 */
 	public static final String EXTRA_DATA = "data";
 
 	/**
 	 * Sent by your app to Poweramp<br>
 	 * Poweramp native plugin command<br>
-	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME}, or {@link #PLAYER_SERVICE_NAME} with the appropriate methods (sendBroadcast, startActivity, startService)
+	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME}, or {@link #PLAYER_SERVICE_NAME} with the appropriate methods (sendBroadcast, startActivity, startService)<br><br>
 	 * Extras:<br>
-	 * {@code String pak} - plugin package (see PACKAGE)<br>
-	 * {@code int cmd} - some dsp unique command. cmd should be >= 0 (see COMMAND)<br>
-	 * {@code byte[] data} - the command data serialized as byte array (see CONTENT)
+	 * {@link #EXTRA_PACKAGE} - String - plugin package<br>
+	 * {@link #EXTRA_COMMAND} - int - some dsp unique command. cmd should be >= 0<br>
+	 * {@link #EXTRA_CONTENT} - byte[] - the command data serialized as byte array<br>
 	 * @since 700
-	 * @see PowerampAPI#PACKAGE
-	 * @see PowerampAPI#COMMAND
 	 */
 	public static final String ACTION_NATIVE_PLUGIN_COMMAND = "com.maxmpz.audioplayer.NATIVE_PLUGIN_COMMAND";
 	
@@ -991,30 +909,10 @@ public final class PowerampAPI {
 	 * Sent when Poweramp loads/reloads its audio engine and loads the plugin.<br>
 	 * In response, plugin apps should send NATIVE_PLUGIN_COMMAND to Poweramp with the initial or restored plugin parameters.<br>
 	 * Extras:<br>
-	 * {@code int api} - Poweramp API version
+	 * {@link #EXTRA_API_VERSION} - int - Poweramp API version
 	 * @since 700
-	 * @see PowerampAPI#API_VERSION
 	 */
 	public static final String ACTION_NATIVE_PLUGIN_INIT = "com.maxmpz.audioplayer.NATIVE_PLUGIN_INIT";
-
-	/**
-	 * @deprecated there is no PlayerUIActivity anymore
-	 */
-	@Deprecated
-	public static final String ACTIVITY_PLAYER_UI = "com.maxmpz.audioplayer.PlayerUIActivity";
-
-	/**
-	 * @deprecated there is no EqActivity anymore
-	 */
-	@Deprecated
-	public static final String ACTIVITY_EQ = "com.maxmpz.audioplayer.EqActivity";
-
-	/**
-	 * @deprecated there is no PlayListActivity anymore
-	 */
-	@Deprecated
-	public static final String ACTIVITY_PLAYLIST = "com.maxmpz.audioplayer.PlayListActivity";
-
 
 	/**
 	 * Poweramp settings activity
@@ -1028,7 +926,7 @@ public final class PowerampAPI {
 	public static final String ACTIVITY_STARTUP = "com.maxmpz.audioplayer.StartupActivity";
 
 	/**
-	 * Extra for ACTION_API_COMMAND and RESUME command<Br>
+	 * Extra for ACTION_API_COMMAND, RESUME command, ACTION_PLAYING_MODE_CHANGED message<br>
 	 * {@code int}
 	 * @see PowerampAPI.ShuffleMode
 	 * @since 797
@@ -1073,33 +971,9 @@ public final class PowerampAPI {
 
 	/**
 	 * Extra<br>
-	 * {@code String}
-	 * @deprecated not used anymore
-	 */
-	@Deprecated
-	public static final String ALBUM_ART_PATH = "aaPath";
-
-	/**
-	 * Extra<br>
-	 * {@code Bitmap}
-	 * @deprecated not used anymore
-	 */
-	@Deprecated
-	public static final String ALBUM_ART_BITMAP = "aaBitmap";
-
-	/**
-	 * Extra<br>
-	 * {@code boolean}
-	 * @deprecated not used anymore
-	 */
-	@Deprecated
-	public static final String DELAYED = "delayed";
-
-	/**
-	 * Extra<br>
 	 * {@code long}
 	 */
-	public static final String TIMESTAMP = "ts";
+	public static final String EXTRA_TIMESTAMP = "ts";
 
 	/**
 	 * Extra<br>
@@ -1107,7 +981,7 @@ public final class PowerampAPI {
 	 * @since 700
 	 * @see PowerampAPI#ACTION_STATUS_CHANGED
 	 */
-	public static final String STATE = "state";
+	public static final String EXTRA_STATE = "state";
 
 	/**
 	 * Poweramp is probably not fully loaded, state is unknown
@@ -1137,81 +1011,17 @@ public final class PowerampAPI {
 
 	/**
 	 * STATUS_CHANGED extra<br>
-	 * {@code int}
-	 * @deprecated use ACTION_STATUS_CHANGED
-	 */
-	@Deprecated
-	public static final String STATUS = "status";
-
-	/**
-	 * STATUS extra values
-	 * @deprecated use ACTION_STATUS_CHANGED
-	 */
-	@Deprecated
-	public static final class Status {
-		/**
-		 * STATUS_CHANGED status value - track has been started to play or has been paused.<br>
-		 * Note that Poweramp will start track immediately into this state when it's just loaded to avoid STARTED => PAUSED transition.<br>
-		 * Additional extras - deprecated since 790 - not sent anymore:<br>
-		 * 	(deprecated) {@code Bundle track} - bundle - track info<br>
-		 * 	{@code boolean paused} - true if track paused, false if track resumed
-		 */
-		@Deprecated
-		public static final int TRACK_PLAYING = 1;
-
-		/**
-		 * STATUS_CHANGED status value - track has been ended. Note, this intent will NOT be sent for just finished track IF Poweramp advances to the next track.<br>
-		 * Additional extras:<br>
-		 * 	(deprecated) {@code Bundle track} - track info<br>
-		 *  (deprecated) {@code boolean failed} - true if track failed to play
-		 */
-		@Deprecated
-		public static final int TRACK_ENDED = 2;
-
-		/**
-		 * STATUS_CHANGED status value - Poweramp finished playing some list and stopped
-		 */
-		@Deprecated
-		public static final int PLAYING_ENDED = 3;
-	}
-
-
-	/**
-	 * STATUS_CHANGED trackEnded extra<br>
-	 * {@code boolean} - true if track failed to play
-	 * @deprecated (since 790) not sent anymore
-	 */
-	@Deprecated
-	public static final String FAILED = "failed";
-
-	/**
-	 * STATUS_CHANGED extra<br>
 	 * {@code boolean} - true if track is paused
 	 * @see #ACTION_STATUS_CHANGED
 	 */
-	public static final String PAUSED = "paused";
+	public static final String EXTRA_PAUSED = "paused";
 
 	/**
-	 * PLAYING_MODE_CHANGED extra<br>
-	 * {@code int}
-	 * @see PowerampAPI.ShuffleMode
-	 */
-	public static final String SHUFFLE = "shuffle";
-
-	/**
-	 * PLAYING_MODE_CHANGED extra<br>
+	 * ACTION_PLAYING_MODE_CHANGED extra<br>
 	 * {@code int}
 	 * @see PowerampAPI.RepeatMode
 	 */
-	public static final String REPEAT = "repeat";
-
-	/**
-	 * Extra<br>
-	 * {@code long}
-	 * @deprecated Use {@link #EXTRA_ID}
-	 */
-	@Deprecated
-	public static final String ID = "id";
+	public static final String EXTRA_REPEAT = "repeat";
 
 	/**
 	 * Extra
@@ -1220,10 +1030,10 @@ public final class PowerampAPI {
 	public static final String EXTRA_ID = "id";
 
 	/**
-	 * STATUS_CHANGED track extra<br>
+	 * ACTION_TRACK_CHANGED track extra<br>
 	 * {@code Bundle}
 	 */
-	public static final String TRACK = "track";
+	public static final String EXTRA_TRACK = "track";
 
 	/**
 	 * Extra<br>
@@ -1369,12 +1179,6 @@ public final class PowerampAPI {
 		 * {@code long}
 		 */
 		public static final String REAL_ID = "realId";
-
-		/**
-		 * @deprecated not used anymore
-		 */
-		@Deprecated
-		public static final String TYPE = "type";
 
 		/**
 		 * Category URI match<br>
@@ -1579,6 +1383,14 @@ public final class PowerampAPI {
 			/** Indicates the track is the first in Poweramp service session */
 			public static final int FLAG_FIRST_IN_PLAYER_SESSION = 0x40;
 		}
+
+		// Deprecated
+
+		/**
+		 * @deprecated not used anymore
+		 */
+		@Deprecated
+		public static final String TYPE = "type";
 	}
 	
 	public interface PauseFlags {
@@ -1663,7 +1475,6 @@ public final class PowerampAPI {
 		 * {@link #ACTION_DIRS_SCAN_STARTED} (sticky),
 		 * {@link #ACTION_DIRS_SCAN_FINISHED},
 		 * {@link #ACTION_TAGS_SCAN_STARTED} (sticky),
-		 * {@link #ACTION_TAGS_SCAN_PROGRESS},
 		 * {@link #ACTION_TAGS_SCAN_FINISHED}, or
 		 * {@link #ACTION_FAST_TAGS_SCAN_FINISHED}<br><br>
 		 *
@@ -1718,14 +1529,6 @@ public final class PowerampAPI {
 		 * Sticky intent (can be queried for permanently stored data)
 		 */
 		public static final String ACTION_TAGS_SCAN_STARTED = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_STARTED";
-
-		/**
-		 * Sent by Poweramp to your app.<br>
-		 * Broadcast<br>
-		 * @deprecated not used anymore
-		 */
-		@Deprecated
-		public static final String ACTION_TAGS_SCAN_PROGRESS = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_PROGRESS";
 
 		/**
 		 * Sent by Poweramp to your app.<br>
@@ -1822,6 +1625,17 @@ public final class PowerampAPI {
 		 * {@code String} - cause of the scan (e.g. user request, auto scan, etc.). Useful for debugging, visible in logcat
 		 */
 		public static final String EXTRA_CAUSE = "cause";
+
+
+		// Deprecated
+
+		/**
+		 * Sent by Poweramp to your app.<br>
+		 * Broadcast<br>
+		 * @deprecated not used anymore
+		 */
+		@Deprecated
+		public static final String ACTION_TAGS_SCAN_PROGRESS = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_PROGRESS";
 	}
 	
 	/**
@@ -2227,5 +2041,335 @@ public final class PowerampAPI {
 			public static final int VIS_MODE_MAX      = 2;
 		}
 	}
+
+
+	// Deprecated =============================================
+
+	/**
+	 * Poweramp package name.<br>
+	 * NOTE: some Poweramp editions may have different package name (e.g. com.maxmpz.audioplayer.huawei)
+	 * @deprecated see PowerampAPIHelper.getPowerampPackageName
+	 */
+	@Deprecated
+	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
+
+	/**
+	 * Poweramp service ComponentName
+	 * @deprecated see {@link PowerampAPIHelper#getPlayerServiceComponentName}
+	 */
+	@Deprecated
+	public static final ComponentName PLAYER_SERVICE_COMPONENT_NAME = new ComponentName(PACKAGE_NAME, PLAYER_SERVICE_NAME);
+
+	/**
+	 * @return ready to use Intent for Poweramp service
+	 * @deprecated see {@link PowerampAPIHelper#getPlayerServiceComponentName}, {@link PowerampAPIHelper#newAPIIntent}
+	 */
+	@Deprecated
+	public static Intent newAPIIntent() {
+		return new Intent(ACTION_API_COMMAND).setComponent(PLAYER_SERVICE_COMPONENT_NAME);
+	}
+
+	/**
+	 * @deprecated use {@link #EXTRA_COMMAND}
+	 */
+	@Deprecated
+	public static final String COMMAND = "cmd";
+
+	/**
+	 * Extra<br>
+	 * {@code Mixed}
+	 * @deprecated use {@link #EXTRA_API_VERSION}
+	 */
+	public static final String API_VERSION = "api";
+
+	/**
+	 * Extra<br>
+	 * {@code Mixed}
+	 * @deprecated use {@link #EXTRA_CONTENT}
+	 */
+	@Deprecated
+	public static final String CONTENT = "content";
+
+	/**
+	 * Extra<br>
+	 * {@code String}
+	 * @deprecated use {@link #EXTRA_PACKAGE}
+	 */
+	@Deprecated
+	public static final String PACKAGE = "pak";
+
+	/**
+	 * ACTION_API_COMMAND extra
+	 * <br>
+	 * {@code int}
+	 * @deprecated use {@link #EXTRA_SOURCE}
+	 */
+	@Deprecated
+	public static final String SOURCE = "src";
+
+	/**
+	 * Extra<br>
+	 * {@code String}
+	 * @deprecated use {@link #EXTRA_LABEL}
+	 */
+	@Deprecated
+	public static final String LABEL = "label";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @deprecated not used now
+	 */
+	@Deprecated
+	public static final String AUTO_HIDE = "autoHide";
+
+	/**
+	 * Extra<br>
+	 * {@code Bitmap}
+	 * @deprecated not used now
+	 */
+	@Deprecated
+	public static final String ICON = "icon";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @deprecated not used now
+	 */
+	@Deprecated
+	public static final String MATCH_FILE = "matchFile";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @deprecated use {@link #EXTRA_SHOW_TOAST}
+	 */
+	@Deprecated
+	public static final String SHOW_TOAST = "showToast";
+
+	/**
+	 * Extra<br>
+	 * {@code String}
+	 * @deprecated use {@link #EXTRA_NAME}
+	 */
+	@Deprecated
+	public static final String NAME = "name";
+
+	/**
+	 * Extra<br>
+	 * {@code Mixed}
+	 * @deprecated use {@link #EXTRA_VALUE}
+	 */
+	@Deprecated
+	public static final String VALUE = "value";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @deprecated use {@link #EXTRA_EQU}
+	 */
+	@Deprecated
+	public static final String EQU = "equ";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @deprecated use {@link #EXTRA_TONE}
+	 */
+	@Deprecated
+	public static final String TONE = "tone";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @deprecated use {@link #EXTRA_VALUE}
+	 */
+	@Deprecated
+	public static final String KEEP_SERVICE = "keepService";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @deprecated use {@link #EXTRA_BEEP}
+	 */
+	@Deprecated
+	public static final String BEEP = "beep";
+
+	/**
+	 * Extra<br>
+	 * {@code String}
+	 * @since 795
+	 * @deprecated use {@link #EXTRA_TABLE}
+	 */
+	@Deprecated
+	public static final String TABLE = "table";
+
+	/**
+	 * Sent by your app to Poweramp<br>
+	 * Opens library<br>
+	 * Should be sent with Context.startActivity
+	 * @deprecated. Use {@link #ACTION_OPEN_LIBRARY}
+	 */
+	@Deprecated
+	public static final String ACTION_SHOW_LIST = "com.maxmpz.audioplayer.ACTION_SHOW_LIST";
+
+	/**
+	 * Extra<br>
+	 * {@code Mixed}
+	 * @deprecated Use {@link #EXTRA_DATA}
+	 */
+	public static final String DATA = "data";
+
+	/**
+	 * @deprecated there is no PlayerUIActivity anymore
+	 */
+	@Deprecated
+	public static final String ACTIVITY_PLAYER_UI = "com.maxmpz.audioplayer.PlayerUIActivity";
+
+	/**
+	 * @deprecated there is no EqActivity anymore
+	 */
+	@Deprecated
+	public static final String ACTIVITY_EQ = "com.maxmpz.audioplayer.EqActivity";
+
+	/**
+	 * @deprecated there is no PlayListActivity anymore
+	 */
+	@Deprecated
+	public static final String ACTIVITY_PLAYLIST = "com.maxmpz.audioplayer.PlayListActivity";
+
+
+	/**
+	 * Extra<br>
+	 * {@code String}
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
+	public static final String ALBUM_ART_PATH = "aaPath";
+
+	/**
+	 * Extra<br>
+	 * {@code Bitmap}
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
+	public static final String ALBUM_ART_BITMAP = "aaBitmap";
+
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
+	public static final String DELAYED = "delayed";
+
+	/**
+	 * Extra<br>
+	 * {@code long}
+	 * @deprecated use {@link #EXTRA_TIMESTAMP}
+	 */
+	@Deprecated
+	public static final String TIMESTAMP = "ts";
+
+	/**
+	 * Extra<br>
+	 * {@code int}
+	 * @since 700
+	 * @see PowerampAPI#ACTION_STATUS_CHANGED
+	 * @deprecated use {@link #EXTRA_STATE}
+	 */
+	@Deprecated
+	public static final String STATE = "state";
+
+	/**
+	 * STATUS_CHANGED extra<br>
+	 * {@code int}
+	 * @deprecated use ACTION_STATUS_CHANGED
+	 */
+	@Deprecated
+	public static final String STATUS = "status";
+
+	/**
+	 * STATUS extra values
+	 * @deprecated use ACTION_STATUS_CHANGED
+	 */
+	@Deprecated
+	public static final class Status {
+		/**
+		 * STATUS_CHANGED status value - track has been started to play or has been paused.<br>
+		 * Note that Poweramp will start track immediately into this state when it's just loaded to avoid STARTED => PAUSED transition.<br>
+		 * Additional extras - deprecated since 790 - not sent anymore:<br>
+		 * 	(deprecated) {@code Bundle track} - bundle - track info<br>
+		 * 	{@code boolean paused} - true if track paused, false if track resumed
+		 */
+		@Deprecated
+		public static final int TRACK_PLAYING = 1;
+
+		/**
+		 * STATUS_CHANGED status value - track has been ended. Note, this intent will NOT be sent for just finished track IF Poweramp advances to the next track.<br>
+		 * Additional extras:<br>
+		 * 	(deprecated) {@code Bundle track} - track info<br>
+		 *  (deprecated) {@code boolean failed} - true if track failed to play
+		 */
+		@Deprecated
+		public static final int TRACK_ENDED = 2;
+
+		/**
+		 * STATUS_CHANGED status value - Poweramp finished playing some list and stopped
+		 */
+		@Deprecated
+		public static final int PLAYING_ENDED = 3;
+	}
+
+	/**
+	 * STATUS_CHANGED trackEnded extra<br>
+	 * {@code boolean} - true if track failed to play
+	 * @deprecated (since 790) not sent anymore
+	 */
+	@Deprecated
+	public static final String FAILED = "failed";
+
+	/**
+	 * STATUS_CHANGED extra<br>
+	 * {@code boolean} - true if track is paused
+	 * @see #ACTION_STATUS_CHANGED
+	 * @deprecated use {@link #EXTRA_PAUSED}
+	 */
+	@Deprecated
+	public static final String PAUSED = "paused";
+
+	/**
+	 * ACTION_PLAYING_MODE_CHANGED extra<br>
+	 * {@code int}
+	 * @see PowerampAPI.ShuffleMode
+	 * @deprecated use {@link #EXTRA_SHUFFLE}
+	 */
+	@Deprecated
+	public static final String SHUFFLE = "shuffle";
+
+	/**
+	 * ACTION_PLAYING_MODE_CHANGED extra<br>
+	 * {@code int}
+	 * @see PowerampAPI.RepeatMode
+	 * @deprecated use {@link #EXTRA_REPEAT}
+	 */
+	@Deprecated
+	public static final String REPEAT = "repeat";
+
+	/**
+	 * Extra<br>
+	 * {@code long}
+	 * @deprecated Use {@link #EXTRA_ID}
+	 */
+	@Deprecated
+	public static final String ID = "id";
+
+	/**
+	 * STATUS_CHANGED track extra<br>
+	 * {@code Bundle}
+	 * @deprecated use {@link #EXTRA_TRACK}
+	 */
+	@Deprecated
+	public static final String TRACK = "track";
 
 }

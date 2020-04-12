@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2018 Maksim Petrov
+Copyright (C) 2011-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -203,7 +203,7 @@ public abstract class WidgetUpdater {
 
 
 		if(trackIntent != null) {
-			track = trackIntent.getParcelableExtra(PowerampAPI.TRACK);
+			track = trackIntent.getParcelableExtra(PowerampAPI.EXTRA_TRACK);
 
 			if(track != null) {
 				data.hasTrack = true;
@@ -233,7 +233,7 @@ public abstract class WidgetUpdater {
 				try {
 					data.albumArtBitmap = PowerampAPIHelper.getAlbumArt(context, track, 512, 512);
 					if(LOG) Log.w(TAG, "generateUpdateData got aa=" + data.albumArtBitmap);
-					data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.TIMESTAMP, 0);
+					data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.EXTRA_TIMESTAMP, 0);
 					if(LOG) Log.w(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
 				} catch(OutOfMemoryError oom) {
 					Log.e(TAG, "", oom);
@@ -245,8 +245,8 @@ public abstract class WidgetUpdater {
 
 		Intent modeIntent = context.registerReceiver(null, WidgetUpdater.sModeFilter);
 		if(modeIntent != null) {
-			data.shuffle = modeIntent.getIntExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE);
-			data.repeat = modeIntent.getIntExtra(PowerampAPI.REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE);
+			data.shuffle = modeIntent.getIntExtra(PowerampAPI.EXTRA_SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE);
+			data.repeat = modeIntent.getIntExtra(PowerampAPI.EXTRA_REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE);
 			if(LOG) Log.w(TAG, "repeat=" + data.repeat + " shuffle=" + data.shuffle);
 		}
 		return data;
@@ -257,10 +257,10 @@ public abstract class WidgetUpdater {
 		Intent statusIntent = context.registerReceiver(null, WidgetUpdater.sStatusFilter);
 		if(statusIntent != null) {
 
-			boolean paused = statusIntent.getBooleanExtra(PowerampAPI.PAUSED, true);
+			boolean paused = statusIntent.getBooleanExtra(PowerampAPI.EXTRA_PAUSED, true);
 			data.playing = !paused;
 
-			data.apiVersion = statusIntent.getIntExtra(PowerampAPI.API_VERSION, 0);
+			data.apiVersion = statusIntent.getIntExtra(PowerampAPI.EXTRA_API_VERSION, 0);
 
 			if(LOG) Log.w(TAG, "getPlayingState statusIntent=" + statusIntent + " paused=" + paused + " playing=" + data.playing);
 		} else if(LOG)  Log.e(TAG, "getPlayingState statusIntent==null");

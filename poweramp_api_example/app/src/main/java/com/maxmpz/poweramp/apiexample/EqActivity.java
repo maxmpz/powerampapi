@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2018 Maksim Petrov
+Copyright (C) 2011-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -160,7 +160,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		if(mEquReceiver != null) {
 			try {
 				unregisterReceiver(mEquReceiver);
-			} catch(Exception ex){}
+			} catch(Exception ex) { }
 		}
 	}
 
@@ -183,20 +183,20 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 
 		final CheckBox eq = (CheckBox)findViewById(R.id.eq);
-		boolean equEnabled = mEquIntent.getBooleanExtra(PowerampAPI.EQU, false);
+		boolean equEnabled = mEquIntent.getBooleanExtra(PowerampAPI.EXTRA_EQU, false);
 		if(eq.isChecked() != equEnabled) {
 			mSettingEqu = true;
 			eq.setChecked(equEnabled);
 		}
 
 		final CheckBox tone = (CheckBox)findViewById(R.id.tone);
-		boolean toneEnabled = mEquIntent.getBooleanExtra(PowerampAPI.TONE, false);
+		boolean toneEnabled = mEquIntent.getBooleanExtra(PowerampAPI.EXTRA_TONE, false);
 		if(tone.isChecked() != toneEnabled) {
 			mSettingTone = true;
 			tone.setChecked(toneEnabled);
 		}
 
-		String presetString = mEquIntent.getStringExtra(PowerampAPI.VALUE);
+		String presetString = mEquIntent.getStringExtra(PowerampAPI.EXTRA_VALUE);
 		if(presetString == null || presetString.length() == 0) {
 			return;
 		}
@@ -208,9 +208,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			updateEquUI(presetString);
 		}
 
-		//String presetName = mEquIntent.getStringExtra(PowerampAPI.NAME);
-
-		long id = mEquIntent.getLongExtra(PowerampAPI.ID, PowerampAPI.NO_ID);
+		long id = mEquIntent.getLongExtra(PowerampAPI.EXTRA_ID, PowerampAPI.NO_ID);
 		Log.w(TAG, "updateEqu id=" + id);
 
 		Spinner presetSpinner = (Spinner)findViewById(R.id.preset_spinner);
@@ -269,7 +267,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	}
 
 	/**
-	 * Preamp, bass/treble and equ bands have different scalling. This method ensures correct scalling is applied.
+	 * Preamp, bass/treble and equ bands have different scaling. This method ensures correct scaling is applied.
  	 */
 	void setBandValue(String name, float value, SeekBar bar) {
 		//Log.w(TAG, "name=" + name + " value=" + value);
@@ -301,7 +299,6 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 					float value = Float.parseFloat(nameValue[1]);
 
 					SeekBar bar = (SeekBar)((ViewGroup)equLayout.getChildAt(i)).getChildAt(1);
-					//SeekBar bar = (SeekBar)equLayout.findViewWithTag(name);
 					if(bar == null) {
 						Log.w(TAG, "no bar=" + name);
 						continue;
@@ -317,9 +314,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 	void debugDumpEquIntent(Intent intent) {
 		if(intent != null) {
-			String presetName = intent.getStringExtra(PowerampAPI.NAME);
-			String presetString = intent.getStringExtra(PowerampAPI.VALUE);
-			long id = mEquIntent.getLongExtra(PowerampAPI.ID, PowerampAPI.NO_ID);
+			String presetName = intent.getStringExtra(PowerampAPI.EXTRA_NAME);
+			String presetString = intent.getStringExtra(PowerampAPI.EXTRA_VALUE);
+			long id = mEquIntent.getLongExtra(PowerampAPI.EXTRA_ID, PowerampAPI.NO_ID);
 			Log.w(TAG, "debugDumpEquIntent presetName=" + presetName + " presetString=" + presetString + " id=" + id);
 		} else {
 			Log.e(TAG, "debugDumpEquIntent: intent is null");
@@ -349,8 +346,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			case R.id.eq:
 				if(!mSettingEqu) {
 					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
-							.putExtra(PowerampAPI.EQU, isChecked),
+							.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
+							.putExtra(PowerampAPI.EXTRA_EQU, isChecked),
 							MainActivity.DEBUG_FORCE_API_ACTIVITY
 					);
 				}
@@ -360,8 +357,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			case R.id.tone:
 				if(!mSettingTone) {
 					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-							.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
-							.putExtra(PowerampAPI.TONE, isChecked),
+							.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
+							.putExtra(PowerampAPI.EXTRA_TONE, isChecked),
 							MainActivity.DEBUG_FORCE_API_ACTIVITY
 					);
 				}
@@ -386,8 +383,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
-				.putExtra(PowerampAPI.VALUE, presetString.toString()),
+				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
+				.putExtra(PowerampAPI.EXTRA_VALUE, presetString.toString()),
 				MainActivity.DEBUG_FORCE_API_ACTIVITY
 		);
 	}
@@ -415,9 +412,9 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			String name = (String)bar.getTag();
 			float value = seekBarToValue(name, bar.getProgress());
 			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_BAND)
-					.putExtra(PowerampAPI.NAME, name)
-					.putExtra(PowerampAPI.VALUE, value),
+					.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_BAND)
+					.putExtra(PowerampAPI.EXTRA_NAME, name)
+					.putExtra(PowerampAPI.EXTRA_VALUE, value),
 					MainActivity.DEBUG_FORCE_API_ACTIVITY
 			);
 		}
@@ -438,8 +435,8 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	public void onItemSelected(AdapterView<?> adapter, View item, int pos, long id) {
 		if(!mSettingPreset) {
 			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-					.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
-					.putExtra(PowerampAPI.ID, id),
+					.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
+					.putExtra(PowerampAPI.EXTRA_ID, id),
 					MainActivity.DEBUG_FORCE_API_ACTIVITY
 			);
 		} else {

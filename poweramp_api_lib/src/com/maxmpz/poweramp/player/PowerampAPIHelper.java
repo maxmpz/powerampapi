@@ -227,7 +227,7 @@ public class PowerampAPIHelper {
 	 */
 	public static void sendPAIntent(Context context, Intent intent, boolean sendToActivity) {
 		int buildNum = getPowerampBuild(context);
-		intent.putExtra(PowerampAPI.PACKAGE, context.getPackageName());
+		intent.putExtra(PowerampAPI.EXTRA_PACKAGE, context.getPackageName());
 		if(sendToActivity && buildNum >= 862) {
 			intent.setComponent(getApiActivityComponentName(context));
 			if(!(context instanceof Activity)) {

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2018 Maksim Petrov
+Copyright (C) 2011-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -77,7 +77,7 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 				.appendQueryParameter(PowerampAPI.PARAM_SHUFFLE, Integer.toString(PowerampAPI.ShuffleMode.SHUFFLE_SONGS));
 
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 				.setData(uriB.build()),
 				MainActivity.DEBUG_FORCE_API_ACTIVITY
 		);

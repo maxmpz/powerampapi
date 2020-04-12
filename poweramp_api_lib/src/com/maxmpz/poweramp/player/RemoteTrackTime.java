@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2018 Maksim Petrov
+Copyright (C) 2011-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -69,7 +69,7 @@ public class RemoteTrackTime {
 		mContext.registerReceiver(mTrackPosSyncReceiver, filter);
 
 		PowerampAPIHelper.sendPAIntent(mContext, new Intent(PowerampAPI.ACTION_API_COMMAND)
-						.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.POS_SYNC));
+						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.POS_SYNC));
 
 		if(mPlaying) {
 			mHandler.removeCallbacks(mTickRunnable);
