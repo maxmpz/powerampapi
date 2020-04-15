@@ -348,7 +348,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
 							.putExtra(PowerampAPI.EXTRA_EQU, isChecked),
-							MainActivity.DEBUG_FORCE_API_ACTIVITY
+							MainActivity.FORCE_API_ACTIVITY
 					);
 				}
 				mSettingEqu = false;
@@ -359,7 +359,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
 							.putExtra(PowerampAPI.EXTRA_TONE, isChecked),
-							MainActivity.DEBUG_FORCE_API_ACTIVITY
+							MainActivity.FORCE_API_ACTIVITY
 					);
 				}
 				mSettingTone = false;
@@ -385,7 +385,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_STRING)
 				.putExtra(PowerampAPI.EXTRA_VALUE, presetString.toString()),
-				MainActivity.DEBUG_FORCE_API_ACTIVITY
+				MainActivity.FORCE_API_ACTIVITY
 		);
 	}
 
@@ -415,7 +415,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 					.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_BAND)
 					.putExtra(PowerampAPI.EXTRA_NAME, name)
 					.putExtra(PowerampAPI.EXTRA_VALUE, value),
-					MainActivity.DEBUG_FORCE_API_ACTIVITY
+					MainActivity.FORCE_API_ACTIVITY
 			);
 		}
 	}
@@ -437,7 +437,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 					.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_PRESET)
 					.putExtra(PowerampAPI.EXTRA_ID, id),
-					MainActivity.DEBUG_FORCE_API_ACTIVITY
+					MainActivity.FORCE_API_ACTIVITY
 			);
 		} else {
 			mSettingPreset = false;

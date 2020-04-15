@@ -80,7 +80,7 @@ public class FilesActivity extends ListActivity implements OnItemClickListener {
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
 				.setData(uriB.build()),
-				MainActivity.DEBUG_FORCE_API_ACTIVITY
+				MainActivity.FORCE_API_ACTIVITY
 		);
 
 		finish();

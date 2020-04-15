@@ -161,7 +161,7 @@ public final class PowerampAPI {
 	 * The issue with sending intents to service is foreground processing, which on current Androids 8-10 can't be 100% reliable processed and may cause unexpected ANR errors<br><br>
 	 * 
 	 * Extras:<br>
-	 * {@link #EXTRA_COMMAND} - command to execute<br>
+	 * {@link #EXTRA_COMMAND} - command to execute. Since build 867 can be a string matching {@link #Commands} field name, e.g. "TOGGLE_PLAY_PAUSE" (case insensitive)<br>
 	 * {@link #EXTRA_PACKAGE} - optional - the command issuing plugin/app package name - for the debugging purposes. Poweramp will log appropriate command details if specified<br>
 	 * {@link #EXTRA_SOURCE} - optional - the source of command, e.g. "widget", "UI", etc. - for the debugging purposes<br>
 	 */
