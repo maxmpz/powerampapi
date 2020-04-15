@@ -260,7 +260,6 @@ public final class PowerampAPI {
 		/**
 		 * Set repeat mode<br>
 		 * Extras:<br>
-		 * {@code boolean showToast} {@link #EXTRA_SHOW_TOAST} - (optional) if false, no toast will be shown. Applied for cycle only<br>
 		 * {@code int repeat} {@link PowerampAPI#EXTRA_REPEAT} - (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
 		 * @see PowerampAPI.RepeatMode
 		 */
@@ -269,7 +268,6 @@ public final class PowerampAPI {
 		/**
 		 * Set shuffle mode<br>
 		 * Extras:<br>
-		 * {@code boolean showToast} - (optional) if false, no toast will be shown. Applied for cycle only<br>
 		 * {@code int shuffle} {@link PowerampAPI#EXTRA_SHUFFLE}- (optional) if exists, appropriate mode will be directly selected, otherwise modes will be cycled
 		 * @see PowerampAPI.ShuffleMode
 		 */
@@ -653,12 +651,6 @@ public final class PowerampAPI {
 
 	/**
 	 * Extra<br>
-	 * {@code boolean}
-	 */
-	public static final String EXTRA_SHOW_TOAST = "showToast";
-
-	/**
-	 * Extra<br>
 	 * {@code String}
 	 */
 	public static final String EXTRA_NAME = "name";
@@ -680,6 +672,12 @@ public final class PowerampAPI {
 	 * {@code boolean}
 	 */
 	public static final String EXTRA_TONE = "tone";
+	
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 */
+	public static final String EXTRA_KEEP_SERVICE = "keepService";
 
 	/**
 	 * Extra<br>
@@ -1883,6 +1881,7 @@ public final class PowerampAPI {
 			public static boolean use_albumartist_albumartists;
 			public static boolean queue_no_shuffle;
 			public static boolean queue_clear_on_add;
+			public static boolean queue_never_clear_on_add;
 			public static boolean title_filename;
 			public static boolean hide_unknown_album;
 			public static boolean download_artist_art;
@@ -2142,7 +2141,7 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code boolean}
-	 * @deprecated use {@link #EXTRA_SHOW_TOAST}
+	 * @deprecated not used anymore
 	 */
 	@Deprecated
 	public static final String SHOW_TOAST = "showToast";
@@ -2182,7 +2181,7 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code boolean}
-	 * @deprecated use {@link #EXTRA_VALUE}
+	 * @deprecated use {@link #EXTRA_KEEP_SERVICE}
 	 */
 	@Deprecated
 	public static final String KEEP_SERVICE = "keepService";
@@ -2218,6 +2217,7 @@ public final class PowerampAPI {
 	 * {@code Mixed}
 	 * @deprecated Use {@link #EXTRA_DATA}
 	 */
+	@Deprecated
 	public static final String DATA = "data";
 
 	/**
@@ -2250,7 +2250,7 @@ public final class PowerampAPI {
 	/**
 	 * Extra<br>
 	 * {@code Bitmap}
-	 * @deprecated not used anymore
+	 * @deprecated not used anymore by default
 	 */
 	@Deprecated
 	public static final String ALBUM_ART_BITMAP = "aaBitmap";
