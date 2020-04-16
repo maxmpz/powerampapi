@@ -195,7 +195,7 @@ public final class PowerampAPI {
 	 * ACTION_API_COMMAND extra
 	 * <br>
 	 * {@code int} - see {@link Commands}<br>
-	 * or {@code String} (since 862) with values like "TOGGLE_PLAY_PAUSE", "RESUME", "PAUSE", etc. matching field names from {@link Commands}
+	 * or {@code String} (since 867) with values like "TOGGLE_PLAY_PAUSE", "RESUME", "PAUSE", etc. matching field names from {@link Commands}
 	 */
 	public static final String EXTRA_COMMAND = "cmd";
 

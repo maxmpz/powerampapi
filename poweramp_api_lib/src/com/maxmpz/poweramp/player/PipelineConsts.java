@@ -30,7 +30,7 @@ public interface PipelineConsts {
 
 	// For queueMsg()
 	public static final int PLUGIN_ID_SUBSYSTEM_PIPELINE   = 0;
-	public static final int PLUGIN_ID_SUBSYSTEM_DECODER_TH = 1; // NOTE: sync with NativePlguinManager.PLUGIN_ID_SUBSYSTEM_LAST
+	public static final int PLUGIN_ID_SUBSYSTEM_DECODER_TH = 1; // NOTE: sync with NativePluginManager.PLUGIN_ID_SUBSYSTEM_LAST
 	public static final int PLUGIN_ID_SUBSYSTEM_DSP_TH     = 2;
 
 	/*
