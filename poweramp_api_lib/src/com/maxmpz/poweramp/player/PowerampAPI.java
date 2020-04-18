@@ -1397,10 +1397,17 @@ public final class PowerampAPI {
 		 */
 		@SuppressWarnings("hiding")
 		public static final int KEEP_SERVICE      = 0x0001;
+		
 		/**
 		 * Specifically ask not to keep service/notification. Has priority over KEEP_SERVICE
 		 */
 		public static final int DONT_KEEP_SERVICE = 0x0002;
+
+		/**
+		 * Don't fade out pause 
+		 * @since 867
+		 */
+		public static final int NO_FADE = 0x0004;
 	}
 
 	/**
