@@ -517,7 +517,7 @@ public class MainActivity extends AppCompatActivity implements
 		TextView albumArtInfo = (TextView)findViewById(R.id.album_art_info);
 
 		if(track == null) {
-			Log.w(TAG, "no AA");
+			Log.w(TAG, "no track");
 			aaImage.setImageBitmap(null);
 			albumArtInfo.setText("no AA");
 			return;

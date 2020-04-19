@@ -273,16 +273,20 @@ public class PowerampAPIHelper {
 		try {
 			pfd = context.getContentResolver().openFileDescriptor(aaUri, "r");
 			if(pfd != null) {
-				// Get original bitmap size
 				BitmapFactory.Options opts = new BitmapFactory.Options();
-				opts.inJustDecodeBounds = true;
-				BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
+				// If this pfd is pipe, we can't reuse it for decoding, so don't do the subsample then
+				if(pfd.getStatSize() > 0) {
+					// Get original bitmap size
+					opts.inJustDecodeBounds = true;
+					BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
 
-				// Calculate subsample and load subsampled image
-				opts.inJustDecodeBounds = false;
-				if(subsampleWidth > 0 && subsampleHeight > 0) {
-					opts.inSampleSize = calcSubsample(subsampleWidth, subsampleHeight, opts.outWidth, opts.outHeight); // Subsamples images up to 2047x2047, should be safe, though this is up to 16mb per bitmap
+					// Calculate subsample and load subsampled image
+					opts.inJustDecodeBounds = false;
+					if(subsampleWidth > 0 && subsampleHeight > 0) {
+						opts.inSampleSize = calcSubsample(subsampleWidth, subsampleHeight, opts.outWidth, opts.outHeight); // Subsamples images up to 2047x2047, should be safe, though this is up to 16mb per bitmap
+					}
 				}
+
 
 				Bitmap b = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
 
