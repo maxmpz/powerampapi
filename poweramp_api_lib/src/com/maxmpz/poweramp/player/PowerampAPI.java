@@ -1664,6 +1664,12 @@ public final class PowerampAPI {
 		 * {@code String} - cause of the scan (e.g. user request, auto scan, etc.). Useful for debugging, visible in logcat
 		 */
 		public static final String EXTRA_CAUSE = "cause";
+
+		/**
+		 * Extra<br>
+		 * {@code String} - your app package name
+		 */
+		public static final String EXTRA_PACKAGE = "pak";
 	}
 	
 

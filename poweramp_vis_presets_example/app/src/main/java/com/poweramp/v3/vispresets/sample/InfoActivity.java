@@ -46,15 +46,22 @@ public class InfoActivity extends Activity {
         }
     }
 
+    /**
+     * This opens Poweramp and rescans appropriate preset APK - as specified in {@link PowerampAPI.Settings#EXTRA_VIS_PRESETS_PAK} extra
+     */
     public void startWithVisPresets(View view) {
         Intent intent = new Intent(Intent.ACTION_MAIN)
-                .setClassName(PowerampAPIHelper.getPowerampPackageName(this), PowerampAPI.Settings.ACTIVITY_SETTINGS)
+                .setClassName(PowerampAPIHelper.getPowerampPackageName(this), PowerampAPI.ACTIVITY_STARTUP)
                 .putExtra(PowerampAPI.Settings.EXTRA_VIS_PRESETS_PAK, getPackageName())
                 ;
         startActivity(intent);
         finish();
     }
 
+    /**
+     * This opens Poweramp settings and scrolls to the appropriate preset APK - as specified in {@link PowerampAPI.Settings#EXTRA_VIS_PRESETS_PAK} extra,
+     * but this doesn't rescan presets
+     */
     public void openPowerampVisSettings(View view) {
         Intent intent = new Intent(Intent.ACTION_MAIN)
                 .setClassName(PowerampAPIHelper.getPowerampPackageName(this), PowerampAPI.Settings.ACTIVITY_SETTINGS)
@@ -63,6 +70,20 @@ public class InfoActivity extends Activity {
                 ;
         startActivity(intent);
         finish();
+    }
+
+    /**
+     * This asks Poweramp to rescan all presets. At this moment (build 867) all presets are rescanned, not just the given package.<br>
+     * This works only if current application is foreground, meaning this can't be used from the background service (Android 8+), as
+     * Android will block background service execution.
+     */
+    public void rescanVisPresets(View view) {
+        Intent intent = new Intent(PowerampAPI.MilkScanner.ACTION_SCAN)
+                .setComponent(PowerampAPIHelper.getMilkScannerServiceComponentName(this))
+                .putExtra(PowerampAPI.MilkScanner.EXTRA_CAUSE, "Manual rescan")
+                .putExtra(PowerampAPI.MilkScanner.EXTRA_PACKAGE, getPackageName())
+                ;
+        startService(intent);
     }
 
     public void sendPreset(View view) {

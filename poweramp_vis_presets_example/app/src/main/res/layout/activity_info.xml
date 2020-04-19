@@ -71,13 +71,21 @@
 		/>
 
 		<Button
+			android:onClick="rescanVisPresets"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/rescan_presets"
+			android:layout_marginLeft="8dp"
+			android:layout_marginRight="8dp"
+		/>
+
+		<Button
 			android:onClick="openPowerampVisSettings"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/open_vis_settings"
 			android:layout_marginLeft="8dp"
 			android:layout_marginRight="8dp"
-			android:layout_marginBottom="8dp"
 		/>
 	</LinearLayout>
 </LinearLayout>
