@@ -175,9 +175,30 @@
 				android:layout_height="wrap_content"
 				/>
 		</LinearLayout>
+		<LinearLayout android:id="@+id/controls2"
+			android:layout_below="@+id/controls"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginTop="8dp"
+		>
+			<Button
+				android:text="-10s"
+				android:layout_width="60dp"
+				android:layout_height="wrap_content"
+				android:onClick="seekBackward10s"
+			/>
+			<Button
+				android:text="+10s"
+				android:layout_width="60dp"
+				android:layout_height="wrap_content"
+				android:onClick="seekForward10s"
+			/>
+		</LinearLayout>
 
 		<TextView android:id="@+id/album_art_info"
-			android:layout_below="@+id/controls"
+			android:layout_below="@+id/controls2"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"

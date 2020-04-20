@@ -697,6 +697,20 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
+	public void seekBackward10s(View view) {
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SEEK)
+						.putExtra(PowerampAPI.EXTRA_RELATIVE_POSITION, -10),
+				FORCE_API_ACTIVITY);
+	}
+
+	public void seekForward10s(View view) {
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SEEK)
+						.putExtra(PowerampAPI.EXTRA_RELATIVE_POSITION, 10),
+				FORCE_API_ACTIVITY);
+	}
+
 	public void exportPrefs(View view) {
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.Settings.ACTION_EXPORT_SETTINGS)
 				.putExtra(PowerampAPI.Settings.EXTRA_UI, true)
