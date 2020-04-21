@@ -304,7 +304,9 @@ public final class PowerampAPI {
 		 * Extras:<br>
 		 * {@link #EXTRA_POSITION} - int - seek position in seconds<br>
 		 * {@link #EXTRA_RELATIVE_POSITION} - int - (since 868) if exists, defines relative seek position in seconds and can be both a negative and a positive value.
-		 * EXTRA_POSITION is ignored. Seeking past track end or prior track start will cause track change to the next/previous one.
+		 * EXTRA_POSITION is ignored. Seeking past track end or prior track start will cause track change to the next/previous one<br>
+		 * {@link #EXTRA_LOCK} - boolean - if true, seeking start of track with {@link #EXTRA_RELATIVE_POSITION} will just reset track position to 0, and seeking past end will do nothing 
+		 * (track continues to play normally) 
 		 */
 		public static final int SEEK = 15;
 		
@@ -1061,6 +1063,13 @@ public final class PowerampAPI {
 	 * @since 868
 	 */
 	public static final String EXTRA_RELATIVE_POSITION = "rel_pos";
+	
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @since 868
+	 */
+	public static final String EXTRA_LOCK = "lock";
 
 	/**
 	 * Shuffle extras values

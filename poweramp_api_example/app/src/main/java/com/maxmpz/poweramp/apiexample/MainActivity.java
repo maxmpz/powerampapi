@@ -700,14 +700,18 @@ public class MainActivity extends AppCompatActivity implements
 	public void seekBackward10s(View view) {
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SEEK)
-						.putExtra(PowerampAPI.EXTRA_RELATIVE_POSITION, -10),
+						.putExtra(PowerampAPI.EXTRA_RELATIVE_POSITION, -10)
+						.putExtra(PowerampAPI.EXTRA_LOCK, true) // If EXTRA_LOCK=true, we don't change track by seeking past start/end
+						,
 				FORCE_API_ACTIVITY);
 	}
 
 	public void seekForward10s(View view) {
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SEEK)
-						.putExtra(PowerampAPI.EXTRA_RELATIVE_POSITION, 10),
+						.putExtra(PowerampAPI.EXTRA_RELATIVE_POSITION, 10)
+						.putExtra(PowerampAPI.EXTRA_LOCK, true) // If EXTRA_LOCK=true, we don't change track by seeking past start/end
+						,
 				FORCE_API_ACTIVITY);
 	}
 
