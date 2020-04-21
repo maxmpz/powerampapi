@@ -102,8 +102,10 @@ public class PluginMsgHelper {
 		return buf;
 	}
 
-	// NOTE: returned ByteBuffer is positioned to the first data position
-	// NOTE: direct buffer makes no sense in our case and is slower.
+	/**
+	 * NOTE: returned ByteBuffer is positioned to the first data position<br>
+	 * NOTE: direct buffer makes no sense in our case and is slower<br>
+	 */
 	public static @NonNull ByteBuffer createBufferMsgBuffer(int pluginID, int msgID, int flags, int desiredSizeBytes) {
 		if(desiredSizeBytes > MAX_SIZE_BYTES) {
 			throw new PluginMsgException("bad desiredSizeBytes=" + MAX_SIZE_BYTES + " MAX_SIZE_BYTES=" + MAX_SIZE_BYTES);

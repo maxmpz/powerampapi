@@ -21,6 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.player;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -89,6 +90,7 @@ import android.net.Uri;
  * <li>{@link Scanner#ACTION_SCAN_TAGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * <li>{@link Settings#ACTION_EXPORT_SETTINGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * <li>{@link Settings#ACTION_IMPORT_SETTINGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
+ * <li>{@link MilkScanner#ACTION_SCAN} -> {@link PowerampAPIHelper#getMilkScannerServiceComponentName}, since 868 -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * </ul>
  */
 @SuppressWarnings({"WeakerAccess", "Unused"})
@@ -1659,10 +1661,8 @@ public final class PowerampAPI {
 	 */
 	public static final class MilkScanner {
 		/**
-		 * Sent by your app to Poweramp.<br>
-		 * Poweramp Scanner action.<br>
-		 * Secondary action, only checks songs with TAG_STATUS set to TAG_NOT_SCANNED. Useful for rescanning just songs (which are already in Poweramp DB) with editied file tag info.<br><br>
-		 *
+		 * Sent by your app to Poweramp. Should be sent to {@link PowerampAPIHelper#getMilkScannerServiceComponentName} service via startService (deprecated),
+		 * or (since 868) to {@link #API_ACTIVITY_NAME} via startActivity or {@link #API_RECEIVER_NAME} via sendBroadcast<br>
 		 * Extras:<br>
 		 * {@link #EXTRA_CAUSE}
 		 */
