@@ -1127,9 +1127,15 @@ public class MainActivity extends AppCompatActivity implements
 
 	public void milkRescan(View view) {
 		Intent intent = new Intent(PowerampAPI.MilkScanner.ACTION_SCAN)
-				.setComponent(PowerampAPIHelper.getMilkScannerServiceComponentName(this))
 				.putExtra(PowerampAPI.MilkScanner.EXTRA_CAUSE, getPackageName() + " user requested");
-		startService(intent);
+		if(PowerampAPIHelper.getPowerampBuild(this) >= 868) {
+
+			PowerampAPIHelper.sendPAIntent(this, intent, FORCE_API_ACTIVITY); // Since 868
+
+		} else {
+			intent.setComponent(PowerampAPIHelper.getMilkScannerServiceComponentName(this)); // Used prior build 868
+			startService(intent);
+		}
 	}
 
 
