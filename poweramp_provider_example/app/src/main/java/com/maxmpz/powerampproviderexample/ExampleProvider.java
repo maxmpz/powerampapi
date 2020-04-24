@@ -1,6 +1,7 @@
 package com.maxmpz.powerampproviderexample;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
@@ -10,27 +11,36 @@ import android.database.MatrixCursor;
 import android.graphics.Point;
 import android.media.MediaFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.ParcelFileDescriptor;
+import android.os.ProxyFileDescriptorCallback;
+import android.os.storage.StorageManager;
 import android.provider.DocumentsContract;
 import android.provider.DocumentsContract.Root;
 import android.provider.DocumentsContract.Document;
 import android.provider.DocumentsProvider;
 import android.provider.MediaStore;
+import android.system.ErrnoException;
 import android.system.Os;
 import android.system.OsConstants;
 import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.TrackProviderConsts;
 import com.maxmpz.poweramp.player.TrackProviderHelper;
 import com.maxmpz.poweramp.player.TrackProviderProto;
 
+import java.io.Closeable;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -57,6 +67,12 @@ public class ExampleProvider extends DocumentsProvider {
 	 * end of file can't be properly detected for many formats without proper length header
 	 */
 	private static final boolean USE_MP3_COPY = true;
+
+	/**
+	 * If true, use {@link android.os.storage.StorageManager#openProxyFileDescriptor} on Android 8+ which provides seekable file descriptors implemented by Android Framework.<br>
+	 * It's much easier to implement vs Seekable sockets protocol and recommended for apps targeting Android 8+
+	 */
+	private static final boolean USE_OPEN_PROXY_FILE_DESCRIPTOR = true;
 
 	/** Link to mp3 track to demonstrate http track with the duration */
 	private static final String DUBSTEP_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-dubstep.mp3";
@@ -172,7 +188,7 @@ public class ExampleProvider extends DocumentsProvider {
 			MatrixCursor c = new MatrixCursor(resolveRootProjection(projection));
 			MatrixCursor.RowBuilder row;
 
-			// Items without metadata (Poweramp reads track metadata from track itself)
+			// Items without metadata provided by the provider (Poweramp reads track metadata from track itself)
 			row = c.newRow();
 			row.add(Root.COLUMN_ROOT_ID, "rootId1");
 			row.add(Root.COLUMN_TITLE, "Root 1");
@@ -556,9 +572,15 @@ public class ExampleProvider extends DocumentsProvider {
 		if(filePath == null) throw new FileNotFoundException(documentId);
 
 		// Let's send root2 "dubstep" via seekable socket and other files - via direct fd. Don't do this for root1 where no metadata given and Poweramp expects direct fd tracks
+		// Check package name for Poweramp (or other known client) which supports this fd protocol
 		String pak = getCallingPackage();
 		if(pak != null && pak.equals(PowerampAPIHelper.getPowerampPackageName(getContext())) && documentId.startsWith("root2/") && documentId.contains("dubstep")) {
 			return openViaSeekableSocket(documentId, filePath, signal);
+		}
+
+		// Let's send root2 "summer" via seekable proxy file descriptors. No need to check for client package as these file descriptors should be supported everywhere
+		if(Build.VERSION.SDK_INT >= 26 && USE_OPEN_PROXY_FILE_DESCRIPTOR && documentId.startsWith("root2/") && documentId.contains("summer")) {
+			return openViaProxyFd(documentId, filePath, signal);
 		}
 
 		return openViaDirectFD(documentId, filePath);
@@ -653,6 +675,72 @@ public class ExampleProvider extends DocumentsProvider {
 
 		} catch(Throwable th) {
 			Log.e(TAG, "documentId=" + documentId, th);
+			throw new FileNotFoundException(documentId);
+		}
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	private ParcelFileDescriptor openViaProxyFd(final String documentId, final String filePath, final CancellationSignal signal) throws FileNotFoundException {
+		if(LOG) Log.w(TAG, "openViaProxyFd documentId=" + documentId + " filePath=" + filePath);
+		FileInputStream fis = null;
+		try {
+			final File file = new File(getContext().getFilesDir(), filePath);
+			final long fileLength = file.length();
+			fis = new FileInputStream(file);
+			final FileDescriptor fd = fis.getFD();
+
+			final HandlerThread thread = new HandlerThread(documentId);
+			thread.start();
+			Handler handler = new Handler(thread.getLooper());
+
+			StorageManager storageManager = (StorageManager)getContext().getSystemService(Context.STORAGE_SERVICE);
+
+			final FileInputStream finalFis = fis;
+
+			ParcelFileDescriptor pfd = storageManager.openProxyFileDescriptor(ParcelFileDescriptor.MODE_READ_ONLY, new ProxyFileDescriptorCallback() {
+				@Override
+				public long onGetSize() throws ErrnoException {
+					if(LOG) Log.w(TAG, "onGetSize fileLength=" + fileLength + " documentId=" + documentId);
+					return fileLength;
+				}
+
+				public int onRead(long offset, int size, byte[] data) throws ErrnoException {
+					try {
+						// NOTE: doing direct low level reads on file descriptor
+						// Real provider, for example, for http streaming, could track offset and request remote seek if needed,
+						// then read data from http stream to byte[] data
+
+						if(LOG) Log.w(TAG, "onRead documentId=" + documentId + " offset=" + offset + " size=" + size);
+
+						Os.lseek(fd, offset, OsConstants.SEEK_SET);
+						return Os.read(fd, data, 0, size);
+
+					} catch(ErrnoException errno) {
+						Log.e(TAG, "documentId=" + documentId + " filePath=" + filePath, errno);
+						throw errno; // Rethrow
+
+					} catch(Throwable e) {
+						Log.e(TAG, "documentId=" + documentId + " filePath=" + filePath, e);
+						throw new ErrnoException("onRead", OsConstants.EBADF);
+					}
+				}
+
+				@Override
+				public void onRelease() {
+					if(LOG) Log.w(TAG, "openViaProxyFd onRelease");
+
+					thread.quitSafely();
+
+					closeSilently(finalFis);
+
+					if(LOG) Log.w(TAG, "openViaProxyFd DONE");
+				}
+			}, handler);
+
+			return pfd;
+		} catch(Throwable th) {
+			Log.e(TAG, "documentId=" + documentId, th);
+			closeSilently(fis); // If we here, we failed with or prior the proxy, so close everything
 			throw new FileNotFoundException(documentId);
 		}
 	}
@@ -922,6 +1010,16 @@ public class ExampleProvider extends DocumentsProvider {
 			if (!isChildDocument(parent, child)) {
 				throw new SecurityException(
 						"Document " + child + " is not a descendant of " + parent);
+			}
+		}
+	}
+
+	private static void closeSilently(@Nullable Closeable c) {
+		if(c != null) {
+			try {
+				c.close();
+			} catch(IOException ex) {
+				Log.e(TAG, "", ex);
 			}
 		}
 	}
