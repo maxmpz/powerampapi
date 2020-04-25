@@ -689,7 +689,7 @@ public class ExampleProvider extends DocumentsProvider {
 			fis = new FileInputStream(file);
 			final FileDescriptor fd = fis.getFD();
 
-			final HandlerThread thread = new HandlerThread(documentId);
+			final HandlerThread thread = new HandlerThread(documentId); // This is the thread we're handling fd reading on
 			thread.start();
 			Handler handler = new Handler(thread.getLooper());
 
@@ -710,10 +710,9 @@ public class ExampleProvider extends DocumentsProvider {
 						// Real provider, for example, for http streaming, could track offset and request remote seek if needed,
 						// then read data from http stream to byte[] data
 
-						if(LOG) Log.w(TAG, "onRead documentId=" + documentId + " offset=" + offset + " size=" + size);
+						if(LOG) Log.w(TAG, "onRead documentId=" + documentId + " offset=" + offset + " size=" + size + " thread=" + Thread.currentThread());
 
-						Os.lseek(fd, offset, OsConstants.SEEK_SET);
-						return Os.read(fd, data, 0, size);
+						return Os.pread(fd, data, 0, size, offset);
 
 					} catch(ErrnoException errno) {
 						Log.e(TAG, "documentId=" + documentId + " filePath=" + filePath, errno);
