@@ -11,6 +11,7 @@
 		description="@string/skin_sample_description"
 		style="@style/SampleSkin"
 		forceGlobalOptions="true"
+		darkMode="@style/SampleSkinDark"
 	>
 		<!-- Since 866. The category and page tags define 2 types of option categories. The <category> tag is just a grouping header in skin settings.
 		     The <page> tag defines settings sub-page.
@@ -492,6 +493,19 @@
 		<!-- Include tag includes skin definition from other xml files.
 		     Include is supported by build 866+ and ignored by the builds prior that -->
 		<include file="@xml/skin_sample_subpage2"/>
+	</skin>
+
+	<skin
+		name="@string/skin_sample_dark"
+		author="@string/skin_author"
+		description="@string/skin_sample_description"
+		style="@style/SampleSkinDark"
+		forceGlobalOptions="true"
+		lightMode="@style/SampleSkin"
+	>
+		<!-- Empty skin just to demonstrate follow system light/dark mode.
+		     Real skin will include same options as light version, options can differ (and should, e.g. in colors/backgrounds) as needed.
+		     Also, common options can be shared between skins by using include tag -->
 	</skin>
 
 	<!-- Include is supported by build 866+ and ignored by the builds prior that -->
