@@ -427,7 +427,11 @@ public class ExampleProvider extends DocumentsProvider {
 			row.add(TrackProviderConsts.COLUMN_ALBUM_ARTIST, prefix + "Album Artist");
 			row.add(MediaStore.Audio.AudioColumns.COMPOSER, prefix + " Composer");
 			row.add(TrackProviderConsts.COLUMN_GENRE, prefix + " Genre");
-			// Track number. Optional, but needed for proper sorting in albums
+			// Track number. Optional, but needed for proper sorting in albums.
+			// If not defined (or set to <= 0), Poweramp will use cursor position for track - this may be useful for folders where we want default cursor based ordering of items -
+			// exactly as provided by cursor. Just don't send MediaStore.Audio.AudioColumns.TRACK column for such tracks.
+			// NOTE: Poweramp won't scan track number from filename for provider provided tracks, nor it will cut number (e.g. "01-" from "01-trackname") from displayName
+			// as it does by default for normal filesystem tracks
 			row.add(MediaStore.Audio.AudioColumns.TRACK, trackNum);
 			// Optional, used just for Info/Tags
 			row.add(MediaFormat.KEY_SAMPLE_RATE, isDubstep ? 44100 : 48000);
@@ -448,7 +452,10 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 	}
 
-
+	/**
+	 * @param sortOrder this field is not used directly as sorting order as Poweramp always use some user defined sorting which is based on track # or other user selected
+	 * criteria. Instead, we use sortOrder as optional additional parameter for things like
+	 */
 	@Override
 	public Cursor queryChildDocuments(String parentDocumentId, String[] projection, String sortOrder) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "queryChildDocuments parentDocumentId=" + parentDocumentId + " projection=" + Arrays.toString(projection));
