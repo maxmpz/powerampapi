@@ -29,10 +29,13 @@ import android.system.Os;
 import android.system.OsConstants;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.TrackProviderConsts;
 import com.maxmpz.poweramp.player.TrackProviderHelper;
@@ -52,6 +55,7 @@ import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Example provider demonstrating:
@@ -472,7 +476,7 @@ public class ExampleProvider extends DocumentsProvider {
 			final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
 
 			for(String fileOrDir : filesAndDirs) {
-				String path = parentDocumentId + "/" + fileOrDir; // Path is our documentId
+				String path = parentDocumentId + "/" + fileOrDir; // Path is our documentId. Note that this provider defines paths/documentIds format. Poweramp treats them as opaque string
 
 				if(isAssetDir(assets, path)) {
 					fillFolderRow(path, c.newRow());
@@ -480,13 +484,13 @@ public class ExampleProvider extends DocumentsProvider {
 				} // Else this is empty.txt file, we skip it
 			}
 
-			// Generate random # of files (1-20) for given folder
+			// Generate some number of files for given folder
 
 			// NOTE: Poweramp scans each directly once for its normal scans, and never rescans them again, until:
 			// - parent folder lastModified changed
 			// - full rescan required by user or external intent
 
-			int count = 3 + (int) Math.round(Math.random() * 19.0);
+			int count = parentDocumentId.length(); // Just various number based on parent document path length
 
 			String docId;
 
@@ -532,7 +536,7 @@ public class ExampleProvider extends DocumentsProvider {
 				}
 			}
 
-			if(LOG) Log.w(TAG, "queryChildDocuments generated files=" + count);
+			if(LOG) Log.w(TAG, "queryChildDocuments generated files=" + count + " lastModified=" + mApkInstallTime);
 
 			return c;
 		} catch(Throwable th) {
@@ -827,6 +831,9 @@ public class ExampleProvider extends DocumentsProvider {
 			if(TrackProviderConsts.CALL_GET_URL.equals(method)) {
 				return handleGetUrl(arg, extras);
 
+			} else if(TrackProviderConsts.CALL_RESCAN.equals(method)) {
+				return handleRescan(arg, extras);
+
 			} else Log.e(TAG, "call bad method=" + method, new Exception());
 		}
 		return res;
@@ -834,6 +841,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 	/**
 	 * Returns dynamic URL for given track. Document uri is passed as string in arg
+	 * @return bundle with the appropriate data is expected, or null error
 	 */
 	private Bundle handleGetUrl(String arg, Bundle extras) {
 		if(TextUtils.isEmpty(arg)) throw new IllegalArgumentException(arg);
@@ -861,6 +869,62 @@ public class ExampleProvider extends DocumentsProvider {
 		return null;
 	}
 
+	/**
+	 * Provider is informed regarding the automatic or user initiated scan.<br>
+	 * This is called prior Poweramp calls any {@link android.provider.DocumentsProvider#queryChildDocuments} and other methods to rescan the actual files hierarchy and metadata.<br><br>
+	 *
+	 * Depending on ths passed arguments, provider may do some refresh on data - if absolutely needed. Poweramp (and user) waits until this method returns, so in most cases,
+	 * it should return as soon as possible.<br><br>
+	 *
+	 * If we're sending the rescan intent from this app (see {@link MainActivity#sendScanThisSubdir(View)}), we're getting the extras we sent.
+	 */
+	private Bundle handleRescan(String arg, Bundle extras) {
+		if(LOG) Log.w(TAG, "handleRescan extras=" + dumpBundle(extras));
+
+		// Analyze optional EXTRA_PROVIDER, EXTRA_PATH here.
+		// If EXTRA_PROVIDER matches this provider, we may update the cached remote data
+		String targetProvider = extras.getString(PowerampAPI.Scanner.EXTRA_PROVIDER);
+
+		if(TextUtils.equals(targetProvider, getContext().getPackageName())) { // Assuming authority == package name for this provider
+
+			String path = extras.getString(PowerampAPI.Scanner.EXTRA_PATH);
+
+			if(!TextUtils.isEmpty(path)) {
+
+				// - update data just for the EXTRA_PATH sub-directory hierarchy
+
+				if(LOG) Log.w(TAG, "handleRescan targeted rescan path=" + path);
+
+			} else {
+
+				// - update data from the remote server
+
+				if(LOG) Log.w(TAG, "handleRescan targeted provider rescan");
+
+			}
+		} else if(TextUtils.isEmpty(targetProvider)) {
+
+			// This is non-targeted scan request:
+			// - from the Poweramp UI for categories outside this provider folders
+			// - from the Poweramp Settings, including Full Rescan
+			// We can ignore those, or we can handle specific cases, e.g. we may want to reload everything from the remote server if this is a Full Rescan
+			// (Poweramp indicates this with both EXTRA_ERASE_TAGS and EXTRA_FULL_RESCAN set)
+
+			if(extras.getBoolean(PowerampAPI.Scanner.EXTRA_ERASE_TAGS) && extras.getBoolean(PowerampAPI.Scanner.EXTRA_FULL_RESCAN)) {
+
+				// - force update all data
+
+				if(LOG) Log.w(TAG, "handleRescan forced full update");
+
+			}
+
+		} else {
+			// This is targeted to some other provider, ignore
+		}
+
+		return null;
+	}
+
 
 	/** We need to override this DocumentProvider API method, which is called by super class to check if given documentId is a correct child of parentDocumentId */
 	@Override
@@ -883,13 +947,8 @@ public class ExampleProvider extends DocumentsProvider {
 	 * This shouldn't be used in production providers anyway
 	 */
 	private boolean isAssetDir(AssetManager assets, @NonNull String path) {
-		try {
-			AssetFileDescriptor afd = assets.openFd(path);
-			afd.close();
-			return false; // If we successfully opened it, it's a file
-		} catch(IOException ex) {
-			return true; // This is a folder or may be it's missing completely
-		}
+		// Ignore empty.txt
+		return !path.endsWith("/empty.txt");
 	}
 
 	private long getAssetFileSize(AssetManager assets, String path) {
@@ -1028,5 +1087,25 @@ public class ExampleProvider extends DocumentsProvider {
 				Log.e(TAG, "", ex);
 			}
 		}
+	}
+
+	@SuppressWarnings("null")
+	private static @NonNull String dumpBundle(@Nullable Bundle bundle) {
+		if(bundle == null) {
+			return "null bundle";
+		}
+		StringBuilder sb = new StringBuilder();
+		Set<String> keys = bundle.keySet();
+		sb.append("\n");
+		for(String key : keys) {
+			sb.append('\t').append(key).append("=");
+			Object val = bundle.get(key);
+			sb.append(val);
+			if(val != null) {
+				sb.append(" ").append(val.getClass().getSimpleName());
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }

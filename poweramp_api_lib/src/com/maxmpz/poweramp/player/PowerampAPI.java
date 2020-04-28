@@ -1574,7 +1574,8 @@ public final class PowerampAPI {
 		public static final String ACTION_FAST_TAGS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_FAST_TAGS_SCAN_FINISHED";
 
 		/**
-		 * If true, FolderScanner tries to skip unmodified folders/files<br>
+		 * If true, FolderScanner tries to skip unmodified folders/files. Either folder/file is scanned or not is based on last modified time for that folder or file.<br>
+		 * If given folder is not modified, Poweramp won't further look into that folder files.<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 */
@@ -1591,15 +1592,15 @@ public final class PowerampAPI {
 		public static final String EXTRA_TRACK_CONTENT_CHANGED = "trackContentChanged";
 
 		/**
-		 * If true, LibraryScanner will first clear all track scanned tags prior scan, causing total tags rescanning<br>
-		 * FolderScanner will force-parse statndalone CUEs<br>
+		 * If true, LibraryScanner will first clear all track metadata prior the scan, causing total tags rescanning.<br>
+		 * That will also force re-parse standalone CUEs and file based playlists<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 */
 		public static final String EXTRA_ERASE_TAGS = "eraseTags";
 
 		/**
-		 * If true, FolderScanner will scan unmounted storages (removing track entries which were previously scanned from them)<br>
+		 * If true, FolderScanner will scan unmounted storages - removing folders, playlists, tracks entries which were located on them, but now missing due to the missing storage<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 */
@@ -1629,7 +1630,7 @@ public final class PowerampAPI {
 		public static final String EXTRA_REPARSE_PLAYLISTS= "reparsePlaylists";
 		
 		/**
-		 * If true, Poweramp scans 3rd party providers. Default is true (if extra is missing)<br>
+		 * If true, Poweramp scans 3rd party providers. Default is true (if the extra is missing)<br>
 		 * Extra for {@link #ACTION_SCAN_DIRS}<br>
 		 * {@code boolean}
 		 * @since 862
@@ -1638,12 +1639,26 @@ public final class PowerampAPI {
 
 		/**
 		 * If set, Poweramp will scan only folders matching this provider authority. scanProviders extra should be set to true (or can be missing) in this case<br>
-		 * Warning: don't use this with fullRescan, as only the provider tracks will appear after rescan<br>
+		 * Warning: don't use this with {@link #EXTRA_FULL_RESCAN}, as only the provider tracks will appear after rescan<br>
 		 * Extra for {@link #ACTION_SCAN_DIRS}<br>
 		 * {@code String}
 		 * @since 862
 		 */
 		public static final String EXTRA_PROVIDER = "provider";
+
+		/**
+		 * If set, and {@link #EXTRA_PROVIDER} is specified, Poweramp will scan only sub-hierarchy of folders matching this folder path for the given provider.<br><br>
+		 *
+		 * The path format is {@code /opaque-treeId/opaque-documentId/}:<br>
+		 * - {@code opaque-treeId} is Uri.encoded treeId as returned from tree uri by Uri.encode({@link android.provider.DocumentsContract#getTreeDocumentId})<br>
+		 * - {@code opaque-documentId} is Uri.encoded documentId as returned from documentId uri by Uri.encode({@link android.provider.DocumentsContract#getDocumentId})<br><br>
+		 *
+		 * The path is case-sensitive.<br><br>
+		 *
+		 * For example, for the folder URI {@code content://provider/tree/root1/my%2Fpath}, EXTRA_PATH is "root1/my%2Fpath/"
+		 * @since 869
+		 */
+		public static final String EXTRA_PATH = "path";
 
 		/**
 		 * Extra<br>

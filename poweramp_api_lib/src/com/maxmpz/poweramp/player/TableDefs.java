@@ -245,7 +245,8 @@ public interface TableDefs {
 		
 		/**
 		 * Optional full path to the file. This file_path always overrides parent folder path + filename. Used for the cases when actual file path
-		 * can't be derived from the parent folder due to non-hierarchial or opaque paths, e.g. for tracks providers<br>
+		 * can't be derived from the parent folder due to non-hierarchical or opaque paths, e.g. for tracks providers.<br>
+		 * Path is in Poweramp internal path format<br>
 		 * TEXT
 		 * @since 862
 		 */

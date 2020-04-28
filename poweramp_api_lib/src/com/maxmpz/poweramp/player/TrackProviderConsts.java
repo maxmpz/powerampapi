@@ -85,4 +85,15 @@ public class TrackProviderConsts {
 	 * Method name for DocumentProvider.call - used to retrieve actual dynamic url for given track
 	 */
 	public static final String CALL_GET_URL = "com.maxmpz.audioplayer:get_url";
+
+	/**
+	 * Method name for DocumentProvider.call - informs provider regarding automatic or user initiated scan.<br>
+	 * This is called prior Poweramp calls any {@link android.provider.DocumentsProvider#queryChildDocuments} and other methods to rescan the actual files hierarchy and metadata.<br><br>
+	 *
+	 * Depending on ths passed arguments, provider may do some refresh on data - if absolutely needed. Poweramp (and user) waits until this method returns, so in most cases,
+	 * it should return as soon as possible.<br><br>
+	 *
+	 * The provided extras bundle contains the same arguments as passed to Poweramp scanner in the request. See {@link PowerampAPI.Scanner} extras for the details.
+	 */
+	public static final String CALL_RESCAN = "com.maxmpz.audioplayer:rescan";
 }
