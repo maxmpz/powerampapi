@@ -109,7 +109,7 @@ Static URL track has URL defined once when provider is scanned by Poweramp for t
 Poweramp doesn't do openDocument in this case.
 
 Dynamic URL track forces Poweramp to query actual URL to use when the track is started in Poweramp. Poweramp does additional call to the method `TrackProviderConsts.CALL_GET_URL`.
-See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L713) for the example method implementation.
+See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L831) for the example method implementation.
 
 For URL Tracks with the duration, Poweramp will try to pre-scan it for a seek-wave. As this can increase traffic and server load, you can disable this behavior with  
 `TrackProviderConsts.COLUMN_TRACK_WAVE` set to a zero sized float array: `new float[0]`.
@@ -129,12 +129,14 @@ A pipe file descriptor is also accepted, but is not recommended as no seeking is
 to read tags directly from the track and read embedded album art from it
 
 * the seekable socket descriptor requires a special support ([TrackProviderProtocol.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderProto.java)), but
-resulting code is very close to the code for a pipe file descriptor.
+resulting code is very close to the code for a pipe file descriptor. This works on all supported Android versions (5.0+)
+
+* the seekable proxy file descriptor created by StorageManager.openProxyFileDescriptor. Works for Android 8+. Recommended if you're targeting Android 8+
 
 * the pipe file descriptor is also accepted, but is not recommended: no seeking is possible, no tag reading, no embedded album art extraction, file is represented as "stream"
 
-See [ExampleProvider.java openDocument implementation](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L527) for both: the file pointing
-file descriptor and the seekable socket code examples.
+See [ExampleProvider.java openDocument implementation](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L572) for the file pointing
+file descriptor, the seekable socket, and proxy file descriptor code examples.
 
 Please note that socket is read by Poweramp as much as needed for the track playback and the total reading time from the start to the end of the track is close to the track duration itself.  
 If you download the data you may need to adjust your timeouts or you may download track to a local file cache and/or feed Poweramp with a file pointing file descriptor instead.
@@ -154,22 +156,26 @@ track is the last in a list - Poweramp opens same track again in advance for the
 Poweramp supports 2 approaches to the Provider track metadata (tags) and album art:
 * metadata and album art image is provided by the Provider
   * this is the only option for URL-based tracks and pipe file descriptors
+  * also supported for directories (since 869)
 * metadata and album art is retrieved from the track file (direct file descriptor) by Poweramp
 
 
 #### Metadata And Album Art Provided By Provider
 
-See `DEFAULT_TRACK_AND_METADATA_PROJECTION` in [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L80).
+See `DEFAULT_TRACK_AND_METADATA_PROJECTION` in [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L132).
 
 If `MediaStore.MediaColumns.TITLE` or `MediaStore.MediaColumns.DURATION` columns exist in the resulting cursor, Poweramp assumes metadata is provided by the Provider and track is not scanned
 for the tags or the album art.
 
 In this case the album art image is retrieved if `Document.COLUMN_FLAGS` column has `Document.FLAG_SUPPORTS_THUMBNAIL` flag.
 
-Poweramp then requests the album art via `openDocumentThumbnail`. See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L518)
+Poweramp then requests the album art via `openDocumentThumbnail`. See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L551)
 
 Lyrics can be also provided via `TrackProviderConsts.COLUMN_TRACK_LYRICS`. Poweramp adds this column to the `projection` columns only when Info/Tags or Lyrics dialog is shown, and
 your Provider may take time to extract/download/obtain the lyrics as needed.
+
+(Since 869) Directories may have thumbnail as well, if appropriate `Document.FLAG_SUPPORTS_THUMBNAIL` flag is set for the directory.
+See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L381) and [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L570)
 
 #### Metadata And Album Art From Track File
 
@@ -200,7 +206,7 @@ Track wave `TrackProviderConsts.COLUMN_TRACK_WAVE` column is added by Poweramp t
 For your Provider to be selectable in the Android system picker, the Roots should have `Root.FLAG_SUPPORTS_IS_CHILD` flag set. Also, `isChildDocument` method should be overridden and, at least,
 it should return true or do a full documentId hierarchy check as needed.
 
-See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L164).
+See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L188).
 
 
 ### Cue Sheets

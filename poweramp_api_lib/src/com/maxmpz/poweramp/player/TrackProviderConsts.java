@@ -87,13 +87,40 @@ public class TrackProviderConsts {
 	public static final String CALL_GET_URL = "com.maxmpz.audioplayer:get_url";
 
 	/**
-	 * Method name for DocumentProvider.call - informs provider regarding automatic or user initiated scan.<br>
-	 * This is called prior Poweramp calls any {@link android.provider.DocumentsProvider#queryChildDocuments} and other methods to rescan the actual files hierarchy and metadata.<br><br>
+	 * Method name for DocumentProvider.call - Poweramp informs provider regarding automatic or user initiated scan.<br>
+	 * This is called before Poweramp calls any {@link android.provider.DocumentsProvider#queryChildDocuments} and other methods to rescan the actual files hierarchy and metadata.<br><br>
 	 *
 	 * Depending on ths passed arguments, provider may do some refresh on data - if absolutely needed. Poweramp (and user) waits until this method returns, so in most cases,
 	 * it should return as soon as possible.<br><br>
 	 *
-	 * The provided extras bundle contains the same arguments as passed to Poweramp scanner in the request. See {@link PowerampAPI.Scanner} extras for the details.
+	 * The provided extras bundle contains the same arguments as passed to Poweramp scanner in the request. See {@link PowerampAPI.Scanner} extras for the details.<br>
+	 * @since 869
 	 */
 	public static final String CALL_RESCAN = "com.maxmpz.audioplayer:rescan";
+
+	/**
+	 * Called by Poweramp before scanning on folders, which are selected by user as root folders in Music Folders dialog.<br><br>
+	 * CALL_GET_DIR_METADATA is called with the string argument, containing directory (tree) uri.<br>
+	 * Returns bundle with extras:<br>
+	 * {@link #EXTRA_ANCESTORS}<br>
+	 * @since 869
+	 */
+	public static final String CALL_GET_DIR_METADATA = "com.maxmpz.audioplayer:get_dir_metadata";
+
+	/**
+	 * Extra for {@link #CALL_GET_DIR_METADATA} return value.<br><br>
+	 *
+	 * This extra can be optionally provided if provider wants Poweramp to display full directory hierarchy, even if user selected/gave permission only for some sub-folder
+	 * in Music Folders.<br>
+	 * For example, if user selected Root1/Folder2/SubFolder3 and this extra contains document ids for Root1, Folder2, SubFolder3, Poweramp Folders Hierarchy category will
+	 * contain Root1 with Folder2 inside with SubFolder3 inside.<br>
+	 * Otherwise just SubFolder3 is shown in Folders Hierarchy.<br><br>
+	 *
+	 * Poweramp calls {@link android.provider.DocumentsProvider#queryDocument} per each ancestor document id to get display name and other data.<br><br>
+	 *
+	 * {@code String[]} - if provided, this is the full hierarchy paths from the root to the given dir, excluding the dir itself.
+	 * Segments are separated by '/' as in usual paths.
+	 * @since 869
+	 */
+	public static final String EXTRA_ANCESTORS = "ancestors";
 }

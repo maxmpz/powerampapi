@@ -1655,7 +1655,9 @@ public final class PowerampAPI {
 		 *
 		 * The path is case-sensitive.<br><br>
 		 *
-		 * For example, for the folder URI {@code content://provider/tree/root1/my%2Fpath}, EXTRA_PATH is "root1/my%2Fpath/"
+		 * For example, for the folder URI {@code content://provider/tree/root1/my%2Fpath}, EXTRA_PATH is "root1/my%2Fpath/".<br><br>
+		 *
+		 * Note, that EXTRA_PATH assumes provider paths have some sort of hierarchy in them as GLOB pattern matching is used to match subfolders.
 		 * @since 869
 		 */
 		public static final String EXTRA_PATH = "path";

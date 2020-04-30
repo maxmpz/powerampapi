@@ -375,6 +375,11 @@ public class ExampleProvider extends DocumentsProvider {
 		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to the documentId or path.
 		row.add(Document.COLUMN_DISPLAY_NAME, getShortDirName(documentId));
 		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
+
+		boolean hasThumb = documentId.endsWith("1");
+		if(hasThumb) {
+			row.add(Document.COLUMN_FLAGS, Document.FLAG_SUPPORTS_THUMBNAIL); // Thumbnails for folders are supported since build 869
+		}
 	}
 
 	private void fillPlaylistRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row) {
@@ -475,6 +480,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 			final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
 
+			int ix = 0;
 			for(String fileOrDir : filesAndDirs) {
 				String path = parentDocumentId + "/" + fileOrDir; // Path is our documentId. Note that this provider defines paths/documentIds format. Poweramp treats them as opaque string
 
@@ -549,14 +555,25 @@ public class ExampleProvider extends DocumentsProvider {
 	/** Send album art for tracks with track-provided metadata */
 	@Override
 	public AssetFileDescriptor openDocumentThumbnail(String documentId, Point sizeHint, CancellationSignal signal) throws FileNotFoundException {
-		if(LOG) Log.w(TAG, "openDocumentThumbnail documentId=" + documentId + " sizeHint=" + sizeHint);
-		if(!documentId.endsWith(".mp3") && !documentId.endsWith(".flac") && !documentId.endsWith(DOCID_STATIC_URL_SUFFIX)
-				&& !documentId.endsWith(DOCID_DYNAMIC_URL_SUFFIX)) throw new FileNotFoundException(documentId);
 
-		// We have just 2 images here and we ignore sizeHint. Poweramp preferred image size is 1024x1024px
+		String imageSrc = null;
 
-		boolean isDubstep = documentId.contains("dubstep");
-		String imageSrc = isDubstep ? "cover-1.jpg" : "cover-2.jpg";
+		if(documentId.endsWith(".mp3") || documentId.endsWith(".flac") || documentId.endsWith(DOCID_STATIC_URL_SUFFIX)
+			|| documentId.endsWith(DOCID_DYNAMIC_URL_SUFFIX)
+		) {
+			// We have just 2 images here and we ignore sizeHint. Poweramp preferred image size is 1024x1024px
+			boolean isDubstep = documentId.contains("dubstep");
+			imageSrc = isDubstep ? "cover-1.jpg" : "cover-2.jpg";
+
+		} else {
+			// Assume this is a folder. Real provider should verify if documentId is a real folder
+			imageSrc = "folder-1.jpg";
+		}
+
+		if(LOG) Log.w(TAG, "openDocumentThumbnail documentId=" + documentId + " sizeHint=" + sizeHint + " imageSrc=" + imageSrc);
+
+		if(imageSrc == null) throw new FileNotFoundException(documentId);
+
 
 		try {
 			return getContext().getResources().getAssets().openFd(imageSrc);
@@ -820,7 +837,6 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 	}
 
-
 	/**
 	 * Implementing CALL_GET_URL here to return dynamic URL for given track. Document uri is passed as string in arg
 	 */
@@ -833,6 +849,9 @@ public class ExampleProvider extends DocumentsProvider {
 
 			} else if(TrackProviderConsts.CALL_RESCAN.equals(method)) {
 				return handleRescan(arg, extras);
+
+			} else if(TrackProviderConsts.CALL_GET_DIR_METADATA.equals(method)) {
+				return handleGetDirMetadata(arg, extras);
 
 			} else Log.e(TAG, "call bad method=" + method, new Exception());
 		}
@@ -881,7 +900,7 @@ public class ExampleProvider extends DocumentsProvider {
 	private Bundle handleRescan(String arg, Bundle extras) {
 		if(LOG) Log.w(TAG, "handleRescan extras=" + dumpBundle(extras));
 
-		// Analyze optional EXTRA_PROVIDER, EXTRA_PATH here.
+		// Analyze optional EXTRA_PROVIDER and EXTRA_PATH here.
 		// If EXTRA_PROVIDER matches this provider, we may update the cached remote data
 		String targetProvider = extras.getString(PowerampAPI.Scanner.EXTRA_PROVIDER);
 
@@ -923,6 +942,44 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 
 		return null;
+	}
+
+	/**
+	 * @param arg the directory uri
+	 * @return bundle filled with extras: {@link TrackProviderConsts#EXTRA_ANCESTORS}
+	 */
+	private Bundle handleGetDirMetadata(String arg, Bundle extras) {
+		Uri uri = Uri.parse(arg);
+		enforceTree(uri);
+
+		// DocumentId for the directory which hierarchy (up to the root) Poweramp wants to retrieve
+		String docId = DocumentsContract.getDocumentId(uri);
+
+		// We should return array of ancestor documentIds for given documentId from root to the direct parent of the given documentId
+
+		// As for this provider, we have full path information in the document id itself, we just provide at as is.
+		// Real provider may additionally specifically process the directory docId as needed to generate the valid hierarchy path
+
+		String[] segments = docId.split("/");
+
+		if(segments.length <= 1) { // If we have just one segment, this is a root documentId and no parents exist
+			if(LOG) Log.w(TAG, "handleGetDirMetadata IGNORE ROOT docId=" + docId + " uri=" + uri);
+			return Bundle.EMPTY;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		String[] ancestors = new String[segments.length - 1]; // We want to return all ancestor document ids from root to parent dir, not including the dir in question
+		for(int i = 0; i < ancestors.length; i++) {
+			sb.append(segments[i]);
+			ancestors[i] = sb.toString(); // Return full documentId for each ancestor
+			sb.append('/');
+		}
+
+		Bundle res =  new Bundle();
+		res.putStringArray(TrackProviderConsts.EXTRA_ANCESTORS, ancestors);
+
+		if(LOG) Log.w(TAG, "handleGetDirMetadata uri=" + uri + " docId=" + docId + " res=" + dumpBundle(res));
+		return res;
 	}
 
 
