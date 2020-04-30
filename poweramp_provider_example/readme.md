@@ -42,10 +42,12 @@ Due to the standard APIs used, the resulting provider plugin can be potentially 
 - [Metadata And Album Art](#metadata-and-album-art)
 - [Track Wave](#track-wave)
 - [Roots](#roots)
+- [Folders Hierarchy And User Selected Sub-folders](#folders-hierarchy-and-user-selected-sub-folders)
 - [Cue Sheets](#cue-sheets)
 - [Data Refresh](#data-refresh)
 - [Deletion](#deletion)
 - [Provider Crashes](#provider-crashes)
+
 
 
 ### Basics
@@ -207,6 +209,16 @@ For your Provider to be selectable in the Android system picker, the Roots shoul
 it should return true or do a full documentId hierarchy check as needed.
 
 See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L188).
+
+### Folders Hierarchy And User Selected Sub-folders
+
+Poweramp Music Folders dialog allows sub-folders selection, meaning user may select some provider folder in the hierarchy under the appropriate root.
+Such folder by default is shown on top level in the Folders Hierarchy category.
+
+If you want such folders to be in the hierarchy despite user selection, implement [TrackProviderConsts.CALL_GET_DIR_METADATA](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderConsts.java#L108).
+See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L951) for the example implementation.
+
+Supported since 869.
 
 
 ### Cue Sheets
