@@ -43,11 +43,11 @@ Due to the standard APIs used, the resulting provider plugin can be potentially 
 - [Track Wave](#track-wave)
 - [Roots](#roots)
 - [Folders Hierarchy And User Selected Sub-folders](#folders-hierarchy-and-user-selected-sub-folders)
+- [Sorting](#sorting)
 - [Cue Sheets](#cue-sheets)
 - [Data Refresh](#data-refresh)
 - [Deletion](#deletion)
 - [Provider Crashes](#provider-crashes)
-
 
 
 ### Basics
@@ -219,6 +219,18 @@ If you want such folders to be in the hierarchy despite user selection, implemen
 See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L951) for the example implementation.
 
 Supported since 869.
+
+### Sorting
+
+Generally, categories sorting is set by user, but if sorting is set to the track number Poweramp looks into few sources of data:
+- track meta information (MediaStore.Audio.AudioColumns.TRACK), if provided
+- track tag, if no meta information provided
+- track position in the cursor, if meta information is provided, but track # is not specified (MediaStore.Audio.AudioColumns.TRACK is not defined in the cursor)
+
+For providers, Poweramp doesn't infer track number from track filename as it does for filesystem based tracks.
+
+For folders in Folder Hierarchy, Poweramp always uses folder cursor position (build 869+). For flat Folders category sorting is set by user.
+
 
 
 ### Cue Sheets
