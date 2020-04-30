@@ -572,6 +572,13 @@ public interface TableDefs {
 		public static final @NonNull String KEEP_TRACK_POS = TABLE + ".keep_track_pos"; // Sync with RestLibraryListMemorizable
 		
 		/**
+		 * Non-null for provider folders, where provider wants to control default sorting order in Folders Hierarchy<br>
+		 * INTEGER<br>
+		 * @since 869
+		 */
+		public static final @NonNull String SORT_ORDER = "sort_order";
+		
+		/**
 		 * Calculated subquery column which retrieves parent name<br>
 		 * TEXT
 		 * @deprecated use {@link #PARENT_LABEL}

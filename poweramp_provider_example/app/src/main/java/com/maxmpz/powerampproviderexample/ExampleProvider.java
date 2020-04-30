@@ -54,6 +54,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -472,6 +473,16 @@ public class ExampleProvider extends DocumentsProvider {
 		try {
 			AssetManager assets = getContext().getResources().getAssets();
 			String[] filesAndDirs = assets.list(parentDocumentId);
+
+			// To demonstrate folders and files sorting based on cursor position, sort and reverse the array. Do this for Root1
+			if(parentDocumentId.equals("root1")) {
+				Arrays.sort(filesAndDirs, 0, filesAndDirs.length, new Comparator<String>() {
+					@Override
+					public int compare(String o1, String o2) {
+						return o2.compareToIgnoreCase(o1);
+					}
+				});
+			}
 
 			// We are adding metadata for root2 and check if it's actually requested as a small optimization (which can be big if track metadata retrieval requires additional processing)
 			boolean addMetadata = parentDocumentId.startsWith("root2") && projection != null && arrayContains(projection, MediaStore.MediaColumns.TITLE);
