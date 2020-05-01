@@ -989,7 +989,7 @@ public class ExampleProvider extends DocumentsProvider {
 		Bundle res =  new Bundle();
 		res.putStringArray(TrackProviderConsts.EXTRA_ANCESTORS, ancestors);
 
-		if(LOG) Log.w(TAG, "handleGetDirMetadata uri=" + uri + " docId=" + docId + " res=" + dumpBundle(res));
+		if(LOG) Log.w(TAG, "handleGetDirMetadata uri=" + uri + " docId=" + docId + " ancestors=" + Arrays.toString(ancestors) + " res=" + dumpBundle(res));
 		return res;
 	}
 
@@ -999,11 +999,13 @@ public class ExampleProvider extends DocumentsProvider {
 	public boolean isChildDocument(String parentDocumentId, String documentId) {
 		try {
 			// As our hierarchy is defined by assets/, we could just return true here, but for a sake of example, let's verify that given documentId is inside the folder
-			if(documentId.endsWith(".mp3") || documentId.endsWith(".m3u8") || documentId.endsWith(DOCID_STATIC_URL_SUFFIX)) {
-				return true; // This is track, we randomly generate track entries, so we can't verify them
-			}
+			// This is track, we randomly generate track entries, so we can't verify them
+			boolean res = documentId.endsWith(".mp3") || documentId.endsWith(".m3u8") || documentId.endsWith(DOCID_STATIC_URL_SUFFIX)
+					|| documentId.startsWith(parentDocumentId) && isAssetDir(getContext().getResources().getAssets(), documentId);
 
-			return isAssetDir(getContext().getResources().getAssets(), parentDocumentId + "/" + documentId);
+			if(LOG) Log.w(TAG, "isChildDocument =>" + res + " parentDocumentId=" + parentDocumentId + " documentId=" + documentId);
+
+			return res;
 		} catch(Throwable th) {
 			Log.e(TAG, "parentDocumentId=" + parentDocumentId + " documentId=" + documentId, th);
 		}
