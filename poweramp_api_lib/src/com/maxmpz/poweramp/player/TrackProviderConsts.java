@@ -36,6 +36,13 @@ public class TrackProviderConsts {
 	public static final String COLUMN_GENRE = "genre";
 
 	/**
+	 * Column for optional track order in folders/folders hierarchy<br>
+	 * Integer
+	 * Since 870
+	 */
+	public static final String COLUMN_TRACK_ALT = "track_alt";
+
+	/**
 	 * Column for optional bits per sample tag<br>
 	 * Integer
 	 */

@@ -227,6 +227,12 @@ Generally, categories sorting is set by user, but if sorting is set to the track
 - track tag, if no meta information provided
 - track position in the cursor, if meta information is provided, but track # is not specified (MediaStore.Audio.AudioColumns.TRACK is not defined in the cursor)
 
+Since 870 Poweramp will apply optional TrackProviderConsts.COLUMN_TRACK_ALT track position in the cursor for Folders and Folders Hierarchy tracks
+(for the "By Track #" user selected sorting only).
+This is to allow provider flexible ordering control in these categories.
+Other categories, such as Album tracks will continue to use ordering by track number tag.
+TrackProviderConsts.COLUMN_TRACK_ALT is accepted for the queryChildDocuments returned cursors only and ignored e.g. in queryDocument.
+
 For providers, Poweramp doesn't infer track number from track filename as it does for filesystem based tracks.
 
 For folders in Folder Hierarchy, Poweramp always uses folder cursor position (build 869+). For flat Folders category sorting is set by user.

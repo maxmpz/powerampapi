@@ -147,6 +147,7 @@ public class ExampleProvider extends DocumentsProvider {
 			MediaStore.Audio.AudioColumns.COMPOSER,
 			TrackProviderConsts.COLUMN_GENRE,
 			MediaStore.Audio.AudioColumns.TRACK,
+			TrackProviderConsts.COLUMN_TRACK_ALT,
 			MediaFormat.KEY_SAMPLE_RATE,
 			MediaFormat.KEY_CHANNEL_COUNT,
 			MediaFormat.KEY_BIT_RATE,
@@ -286,7 +287,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 				boolean addLyrics = projection != null && arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_LYRICS);
 				boolean sendWave = documentId.contains("dubstep") && projection != null && arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_WAVE);
-				fillTrackRow(documentId, c.newRow(), addMetadata, sendWave, addLyrics); // Adding wave as well to root2 tracks
+				fillTrackRow(documentId, c.newRow(), addMetadata, sendWave, addLyrics, extractTrackNum(documentId), 0); // Adding wave as well to root2 tracks
 				return c;
 
 			} else if(documentId.endsWith(".m3u")) { // Seems like a playlist
@@ -395,7 +396,9 @@ public class ExampleProvider extends DocumentsProvider {
 		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
 	}
 
-	private void fillTrackRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, boolean addMetadata, boolean sendWave, boolean sendLyrics) {
+	private void fillTrackRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, boolean addMetadata, boolean sendWave, boolean sendLyrics,
+	                          int trackNum, int trackNumAlt
+	) {
 		boolean isFlac = documentId.endsWith(".flac");
 		boolean isDubstep = documentId.contains("dubstep");
 
@@ -421,7 +424,6 @@ public class ExampleProvider extends DocumentsProvider {
 			// Some dump tags logic - as we have 2 static files here as an example, but they have docId like dubstep1.mp3, summer2.mp3, etc.
 			// Real provider should get this info from network or extract from the file
 			String prefix = isDubstep ? "Dubstep " : "Summer ";
-			int trackNum = extractTrackNum(documentId);
 
 			int flags = 0;
 
@@ -443,6 +445,10 @@ public class ExampleProvider extends DocumentsProvider {
 			// NOTE: Poweramp won't scan track number from filename for provider provided tracks, nor it will cut number (e.g. "01-" from "01-trackname") from displayName
 			// as it does by default for normal filesystem tracks
 			row.add(MediaStore.Audio.AudioColumns.TRACK, trackNum);
+			// If provided, COLUMN_TRACK_ALT will sort tracks differently (for "by track #" sorting) in Folders/Folders Hierarchy
+			if(trackNumAlt > 0) {
+				row.add(TrackProviderConsts.COLUMN_TRACK_ALT, trackNumAlt);
+			}
 			// Optional, used just for Info/Tags
 			row.add(MediaFormat.KEY_SAMPLE_RATE, isDubstep ? 44100 : 48000);
 			// Optional, used just for Info/Tags
@@ -547,9 +553,17 @@ public class ExampleProvider extends DocumentsProvider {
 
 			} else {
 				// For root1 and root2 generate docId like root1/Folder2/dubstep-10.mp3
+
+				// For root1, demonstrate Folders/Folders Hierarchy sorting based on alternative track number
+				// We reverse number positions of tracks here, but still providing non-reversed track number to use as tag number in albums and other non-folder categories
 				for(int i = 0; i < count; i++) {
 					docId = parentDocumentId + "/" + ((i & 1) != 0 ? "dubstep" : "summer") + "-" + (i + 1) + (i == 1 ? ".flac" : ".mp3"); // First dubstep track will be flac
-					fillTrackRow(docId, c.newRow(), addMetadata, false, false);
+					int sort = i + 1;
+					int sortAlt = 0;
+					if(parentDocumentId.equals("root1")) {
+						sortAlt = count - i;
+					}
+					fillTrackRow(docId, c.newRow(), addMetadata, false, false, sort, sortAlt);
 				}
 			}
 
