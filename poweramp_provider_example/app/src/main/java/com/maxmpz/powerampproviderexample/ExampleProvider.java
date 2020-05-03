@@ -420,6 +420,11 @@ public class ExampleProvider extends DocumentsProvider {
 		// but requires that for queryDocument for tracks, which are not direct fd. Direct fd tracks still can be quickly scanned by Poweramp, but
 		// socket/pipe/url tracks won't be scanned and thus metadata is required for them
 
+		// If provided, COLUMN_TRACK_ALT will sort tracks differently (for "by track #" sorting) in Folders/Folders Hierarchy
+		if(trackNumAlt > 0) {
+			row.add(TrackProviderConsts.COLUMN_TRACK_ALT, trackNumAlt);
+		}
+
 		if(addMetadata) {
 			// Some dump tags logic - as we have 2 static files here as an example, but they have docId like dubstep1.mp3, summer2.mp3, etc.
 			// Real provider should get this info from network or extract from the file
@@ -445,10 +450,6 @@ public class ExampleProvider extends DocumentsProvider {
 			// NOTE: Poweramp won't scan track number from filename for provider provided tracks, nor it will cut number (e.g. "01-" from "01-trackname") from displayName
 			// as it does by default for normal filesystem tracks
 			row.add(MediaStore.Audio.AudioColumns.TRACK, trackNum);
-			// If provided, COLUMN_TRACK_ALT will sort tracks differently (for "by track #" sorting) in Folders/Folders Hierarchy
-			if(trackNumAlt > 0) {
-				row.add(TrackProviderConsts.COLUMN_TRACK_ALT, trackNumAlt);
-			}
 			// Optional, used just for Info/Tags
 			row.add(MediaFormat.KEY_SAMPLE_RATE, isDubstep ? 44100 : 48000);
 			// Optional, used just for Info/Tags
