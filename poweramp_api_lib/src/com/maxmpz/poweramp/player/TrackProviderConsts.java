@@ -130,4 +130,10 @@ public class TrackProviderConsts {
 	 * @since 869
 	 */
 	public static final String EXTRA_ANCESTORS = "ancestors";
+
+	/**
+	 * Value for {@link PowerampAPI#EXTRA_SOURCE} which is sent to your app launcher activity when track "link" is clicked in it
+	 * @since 870
+	 */
+	public static final String SOURCE_INFO_TAGS = "info_tags";
 }
