@@ -84,9 +84,26 @@ public class TrackProviderConsts {
 	public static final String COLUMN_HTTP_METHOD = "method";
 
 	/**
+	 * Extra flags column.<br>
+	 * Integer<br>
+	 * @since 871
+	 */
+	public static final String COLUMN_FLAGS = "__flags";
+	
+	/**
+	 * If set for directories: hint for Poweramp to avoid extra sub-directory lookup, especially useful for first time Music Folder selection
+	 * and first time loading, e.g. via non-yet cached network requests.<br>
+	 * @since 871
+	 */
+	public static final int FLAG_NO_SUBDIRS = 0x0001;
+	
+	
+
+	/**
 	 * Special value for #COLUMN_URL to use with dynamic url - an url which is dynamically retrieved at the moment of playback with #CALL_GET_URL
 	 */
 	public static final String DYNAMIC_URL = "__dynamic_url";
+	
 
 	/**
 	 * Method name for DocumentProvider.call - used to retrieve actual dynamic url for given track

@@ -247,7 +247,7 @@ public class ExampleProvider extends DocumentsProvider {
 			if(!documentId.contains("/") && documentId.startsWith("root")) {
 				final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
 				MatrixCursor.RowBuilder row = c.newRow();
-				fillFolderRow(documentId, row);
+				fillFolderRow(documentId, row, 0);
 				// NOTE: we return display name derived from documentId here VS returning the same label as used for Root.COLUMN_TITLE
 				// Real app should use same labels in both places (roots and queryDocument) for same root
 				row.add(Document.COLUMN_DISPLAY_NAME, capitalize(documentId));
@@ -297,7 +297,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 			} else { // This must be a directory
 				final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
-				fillFolderRow(documentId, c.newRow());
+				fillFolderRow(documentId, c.newRow(), 0);
 				return c;
 			}
 
@@ -371,7 +371,7 @@ public class ExampleProvider extends DocumentsProvider {
 		return wave;
 	}
 
-	private void fillFolderRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row) {
+	private void fillFolderRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, int flags) {
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, Document.MIME_TYPE_DIR);
 		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to the documentId or path.
@@ -381,6 +381,10 @@ public class ExampleProvider extends DocumentsProvider {
 		boolean hasThumb = documentId.endsWith("1");
 		if(hasThumb) {
 			row.add(Document.COLUMN_FLAGS, Document.FLAG_SUPPORTS_THUMBNAIL); // Thumbnails for folders are supported since build 869
+		}
+		// If asked to add the subfolders hint, add it
+		if(flags != 0) {
+			row.add(TrackProviderConsts.COLUMN_FLAGS, flags);
 		}
 	}
 
@@ -503,7 +507,7 @@ public class ExampleProvider extends DocumentsProvider {
 				String path = parentDocumentId + "/" + fileOrDir; // Path is our documentId. Note that this provider defines paths/documentIds format. Poweramp treats them as opaque string
 
 				if(isAssetDir(assets, path)) {
-					fillFolderRow(path, c.newRow());
+					fillFolderRow(path, c.newRow(), hasSubDirs(assets, path) ? 0 : TrackProviderConsts.FLAG_NO_SUBDIRS);
 
 				} // Else this is empty.txt file, we skip it
 			}
@@ -576,6 +580,25 @@ public class ExampleProvider extends DocumentsProvider {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Simple method to check our assets directory structure for children folders. We have only folders and empty.txt files there
+	 */
+	private boolean hasSubDirs(AssetManager assets, String path) {
+		try {
+			String[] filesAndDirs = assets.list(path);
+			if(filesAndDirs != null && filesAndDirs.length > 0) {
+				for(String child : filesAndDirs) {
+					if(!child.endsWith(".txt")) {
+						return true;
+					}
+				}
+			}
+		} catch(IOException e) {
+			Log.e(TAG, path, e);
+		}
+		return false;
 	}
 
 	/** Send album art for tracks with track-provided metadata */
