@@ -247,7 +247,8 @@ public class ExampleProvider extends DocumentsProvider {
 			if(!documentId.contains("/") && documentId.startsWith("root")) {
 				final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
 				MatrixCursor.RowBuilder row = c.newRow();
-				fillFolderRow(documentId, row, 0);
+				AssetManager assets = getContext().getResources().getAssets();
+				fillFolderRow(documentId, row, hasSubDirs(assets, documentId) ? TrackProviderConsts.FLAG_HAS_SUBDIRS : TrackProviderConsts.FLAG_NO_SUBDIRS);
 				// NOTE: we return display name derived from documentId here VS returning the same label as used for Root.COLUMN_TITLE
 				// Real app should use same labels in both places (roots and queryDocument) for same root
 				row.add(Document.COLUMN_DISPLAY_NAME, capitalize(documentId));
@@ -297,7 +298,8 @@ public class ExampleProvider extends DocumentsProvider {
 
 			} else { // This must be a directory
 				final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
-				fillFolderRow(documentId, c.newRow(), 0);
+				AssetManager assets = getContext().getResources().getAssets();
+				fillFolderRow(documentId, c.newRow(), hasSubDirs(assets, documentId) ? TrackProviderConsts.FLAG_HAS_SUBDIRS : TrackProviderConsts.FLAG_NO_SUBDIRS);
 				return c;
 			}
 
@@ -507,7 +509,7 @@ public class ExampleProvider extends DocumentsProvider {
 				String path = parentDocumentId + "/" + fileOrDir; // Path is our documentId. Note that this provider defines paths/documentIds format. Poweramp treats them as opaque string
 
 				if(isAssetDir(assets, path)) {
-					fillFolderRow(path, c.newRow(), hasSubDirs(assets, path) ? 0 : TrackProviderConsts.FLAG_NO_SUBDIRS);
+					fillFolderRow(path, c.newRow(), hasSubDirs(assets, path) ? TrackProviderConsts.FLAG_HAS_SUBDIRS : TrackProviderConsts.FLAG_NO_SUBDIRS);
 
 				} // Else this is empty.txt file, we skip it
 			}
@@ -571,8 +573,6 @@ public class ExampleProvider extends DocumentsProvider {
 					fillTrackRow(docId, c.newRow(), addMetadata, false, false, sort, sortAlt);
 				}
 			}
-
-			if(LOG) Log.w(TAG, "queryChildDocuments generated files=" + count + " lastModified=" + mApkInstallTime);
 
 			return c;
 		} catch(Throwable th) {

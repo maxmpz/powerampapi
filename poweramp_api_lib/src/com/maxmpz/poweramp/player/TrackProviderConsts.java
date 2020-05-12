@@ -96,8 +96,14 @@ public class TrackProviderConsts {
 	 * @since 871
 	 */
 	public static final int FLAG_NO_SUBDIRS = 0x0001;
-	
-	
+
+	/**
+	 * If set for directories: hint for Poweramp to avoid extra sub-directory lookup, especially useful for first time Music Folder selection
+	 * and first time loading, e.g. via non-yet cached network requests.<br>
+	 * @since 871
+	 */
+	public static final int FLAG_HAS_SUBDIRS = 0x0002;
+
 
 	/**
 	 * Special value for #COLUMN_URL to use with dynamic url - an url which is dynamically retrieved at the moment of playback with #CALL_GET_URL

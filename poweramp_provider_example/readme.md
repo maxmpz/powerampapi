@@ -48,6 +48,7 @@ Due to the standard APIs used, the resulting provider plugin can be potentially 
 - [Data Refresh](#data-refresh)
 - [Deletion](#deletion)
 - [Provider Crashes](#provider-crashes)
+- [Music Folders Selection Optimization](#music-folders-selection-optimization)
 
 
 ### Basics
@@ -271,3 +272,15 @@ Android may close client app "connected" to your Provider if your Provider proce
 That means even minor exception in the Provider may cause complete unexpected Poweramp shutdown.
 To avoid that, wrap your Provider public methods with `try/catch(Throwable)` with the appropriate logging.
 Note that you still need to throw specific API-defined checked exceptions, such as `FileNotFoundException` from `openDocumentThumbnail`.
+
+
+### Music Folders Selection Optimization
+
+Poweramp adds small optimization for Music Folders selection dialog, where user can choose folders from filesystem or various providers.
+To avoid loading all the provider possible folders (even assuming just first level folders loaded), Poweramp looks into additional custom
+`TrackProviderConsts.COLUMN_FLAGS` column (note, that is NOT `Document.COLUMN_FLAGS`), which can be filled either with `TrackProviderConsts.FLAG_HAS_SUBDIRS` or `TrackProviderConsts.HAS_NO_SUBDIRS`.
+
+If one or another flag is set for given folder (filled by provider in `queryDocuments` or `queryChildrenDocuments`), Poweramp won't further load anything
+until user expands folders tree.
+
+The TrackProviderConsts.COLUMN_FLAGS should be supported for both `queryDocument` (including root folders) and `queryChildrenDocuments`.
