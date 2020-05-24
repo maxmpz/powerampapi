@@ -2048,7 +2048,8 @@ public final class PowerampAPI {
 			public static int aa_blur_intensity; // 0+. Percent. Float value = /100
 			public static int aa_blur_scale; // 1..512
 			public static int aa_blur_saturation; // 0+. Percent.
-			public static boolean aa_keep_aspect;
+			/** @since 873 */
+			public static int aa_aspect;
 			public static int vis_controls_faded_alpha; // 0..100
 			public static int vis_panel_faded_alpha; // 0..100
 			public static float vis_list_faded_alpha; // 0..1f
