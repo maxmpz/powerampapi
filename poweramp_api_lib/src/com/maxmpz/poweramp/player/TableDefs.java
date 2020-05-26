@@ -407,7 +407,7 @@ public interface TableDefs {
 		public static final @NonNull String PATH = "path";
 
 		/**
-		 * This is the same as path for usual folders, but for cue virtual folders, this is path + name<br>
+		 * This is the same as path for usual folders, but for the cue virtual folders, this is path + name<br>
 		 * Used for proper folders/subfolders sorting<br>
 		 * TEXT
 		 */
