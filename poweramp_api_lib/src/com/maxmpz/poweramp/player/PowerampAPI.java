@@ -823,6 +823,20 @@ public final class PowerampAPI {
 	public static final String ACTION_EQU_CHANGED = "com.maxmpz.audioplayer.EQU_CHANGED";
 
 	/**
+	 * <b>Experimental!</b><br>
+	 * Sent by Poweramp to your app<br>
+	 * Poweramp just ignored media button press due to the Respond To Buttons option disabled.<br><br>
+	 *
+	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br><br>
+	 *
+	 * Extras:<br>
+	 * - same extras as in {@link Intent#ACTION_MEDIA_BUTTON}
+	 * @since 875
+	 * 
+	 */
+	public static final String ACTION_MEDIA_BUTTON_IGNORED = "com.maxmpz.audioplayer.MEDIA_BUTTON_IGNORED";
+
+	/**
 	 * Sent by your app to Poweramp<br>
 	 * Opens a category list for the current track, or library - if no track is loaded<br>
 	 * Should be sent with Context.startActivity

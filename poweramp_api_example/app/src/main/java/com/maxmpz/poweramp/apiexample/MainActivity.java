@@ -261,6 +261,7 @@ public class MainActivity extends AppCompatActivity implements
 		mTrackIntent = registerReceiver(mTrackReceiver, new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED));
 		mStatusIntent = registerReceiver(mStatusReceiver, new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED));
 		mPlayingModeIntent = registerReceiver(mPlayingModeReceiver, new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED));
+		registerReceiver(mMediaButtonIgnoredReceiver, new IntentFilter(PowerampAPI.ACTION_MEDIA_BUTTON_IGNORED));
 	}
 
 	private void unregister() {
@@ -282,6 +283,11 @@ public class MainActivity extends AppCompatActivity implements
 				unregisterReceiver(mPlayingModeReceiver);
 			} catch(Exception ex){}
 		}
+		if(mMediaButtonIgnoredReceiver != null) {
+			try {
+				unregisterReceiver(mMediaButtonIgnoredReceiver);
+			} catch(Exception ex){}
+		}
 	}
 
 	private BroadcastReceiver mTrackReceiver = new BroadcastReceiver() {
@@ -299,6 +305,14 @@ public class MainActivity extends AppCompatActivity implements
 			updateAlbumArt(mCurrentTrack);
 
 			if(LOG_VERBOSE) Log.w(TAG, "mAAReceiver " + intent);
+		}
+	};
+
+	private BroadcastReceiver mMediaButtonIgnoredReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			debugDumpIntent(TAG, "mMediaButtonIgnoredReceiver", intent);
+			Toast.makeText(MainActivity.this, intent.getAction() + " " + dumpBundle(intent.getExtras()), Toast.LENGTH_SHORT).show();
 		}
 	};
 
