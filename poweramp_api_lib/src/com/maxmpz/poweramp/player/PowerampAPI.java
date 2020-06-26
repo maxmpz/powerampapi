@@ -1718,6 +1718,7 @@ public final class PowerampAPI {
 		 * Extra<br>
 		 * {@code String} - your app package name
 		 */
+		@SuppressWarnings("hiding")
 		public static final String EXTRA_PACKAGE = "pak";
 	}
 	
@@ -1729,6 +1730,7 @@ public final class PowerampAPI {
 		/**
 		 * Poweramp settings activity
 		 */
+		@SuppressWarnings("hiding")
 		public static final String ACTIVITY_SETTINGS = PowerampAPI.ACTIVITY_SETTINGS;
 
 		/**

@@ -92,13 +92,19 @@ public class TrackProviderProto implements AutoCloseable {
 
 
 	/** Raised if we failed with the connection/action and can't continue anymore */
+	@SuppressWarnings("serial")
 	public static class TrackProviderProtoException extends RuntimeException {
 		public TrackProviderProtoException(Throwable ex) {
 			super(ex);
 		}
+
+		public TrackProviderProtoException(String msg) {
+			super(msg);
+		}
 	}
 
 	/** Raised when connection is closed by Poweramp */
+	@SuppressWarnings("serial")
 	public static class TrackProviderProtoClosed extends RuntimeException {
 		public TrackProviderProtoClosed(Throwable ex) {
 			super(ex);
@@ -113,15 +119,18 @@ public class TrackProviderProto implements AutoCloseable {
 	@SuppressLint("NewApi")
 	public TrackProviderProto(@NonNull ParcelFileDescriptor pfd, long fileLength) {
 		if(fileLength <= 0) throw new IllegalArgumentException("bad fileLength=" + fileLength);
-		mSocket = pfd.getFileDescriptor();
+		FileDescriptor socket = pfd.getFileDescriptor();
 		try {
-			if(mSocket == null || !OsConstants.S_ISSOCK(Os.fstat(mSocket).st_mode)) throw new IllegalArgumentException("bad pfd=" + pfd);
+			if(socket == null || !OsConstants.S_ISSOCK(Os.fstat(socket).st_mode)) throw new IllegalArgumentException("bad pfd=" + pfd);
 		} catch(ErrnoException ex) {
 			throw new TrackProviderProtoException(ex);
 		}
+		mSocket = socket;
 		mFileLength = fileLength;
 
-		mHeaderBuffer = ByteBuffer.allocateDirect(INITIAL_PACKET_SIZE);
+		ByteBuffer headerBuffer = ByteBuffer.allocateDirect(INITIAL_PACKET_SIZE);;
+		if(headerBuffer == null) throw new TrackProviderProtoException("headerBuffer");
+		mHeaderBuffer = headerBuffer;
 		mHeaderBuffer.order(ByteOrder.nativeOrder());
 
 		mStructPollFds = new StructPollfd[] {
@@ -202,6 +211,7 @@ public class TrackProviderProto implements AutoCloseable {
 	public long sendData(@NonNull ByteBuffer data) {
 		if(LOG) Log.w(TAG, "sendDataPackets data.remaining=" + data.remaining());
 		if(mState == STATE_DATA) {
+			@SuppressWarnings("unused")
 			int packetsSent = 0;
 			final int originalDataLimit = data.limit(); // Keep original limit as we'll modify it to send up to MAX_DATA_SIZE bytes per packet
 			while(data.hasRemaining()) {
@@ -359,7 +369,7 @@ public class TrackProviderProto implements AutoCloseable {
 	/**
 	 * @return packetType > 0, or -1 on failure
 	 */
-	private int getPacketType(@NonNull ByteBuffer buf) {
+	private static int getPacketType(@NonNull ByteBuffer buf) {
 		// Packet header is TAG(4) + PACKET_TYPE(2) + DATA_SIZE(2) + DATA_SERIAL(4) => 12
 		if(buf.limit() >= MAX_PACKET_HEADER_SIZE && buf.getInt(0) ==  PACKET_TAG) {
 			int type = buf.getShort(4);
@@ -374,7 +384,7 @@ public class TrackProviderProto implements AutoCloseable {
 	/**
 	 * @return packet data size
 	 */
-	private int getPacketDataSize(@NonNull ByteBuffer buf) {
+	private static int getPacketDataSize(@NonNull ByteBuffer buf) {
 		return buf.getShort(PACKET_DATA_SIZE_IX);
 	}
 
