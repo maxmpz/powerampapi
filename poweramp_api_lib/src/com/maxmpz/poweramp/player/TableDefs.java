@@ -1582,7 +1582,7 @@ public interface TableDefs {
 
 		/**
 		 * Virtual field, used for insert/update contentValues. If set, preset is bound to that track<br>
-		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * NOTE: track related assigments requires preset id in uri, for example uri path should end with /eq_presets/123<br>
 		 * INTEGER
 		 * @deprecated see {@link #BIND_TO_TRACK} 
 		 */
@@ -1591,7 +1591,7 @@ public interface TableDefs {
 		
 		/**
 		 * Virtual field, used for insert/update contentValues. If set, preset is unbound from that track<br>
-		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * NOTE: track related assignents requires preset id in uri, for example uri path should end with /eq_presets/123<br>
 		 * INTEGER
 		 * @deprecated see {@link #BIND_TO_TRACK} 
 		 */
@@ -1600,7 +1600,7 @@ public interface TableDefs {
 		
 		/**
 		 * Virtual field, used for insert/update contentValues. If set, appropriate category uri (string==getMassOpsItemsUri(false)) is bound for this track<br>
-		 * NOTE: track related assignents required preset id in uri, for example uri path should end with /eq_presets/123<br>
+		 * NOTE: track related assigments requires preset id in uri, for example uri path should end with /eq_presets/123<br>
 		 * INTEGER (boolean) 
 		 * @deprecated see {@link #BIND_TO_CAT}
 		 */
