@@ -477,6 +477,15 @@ public final class PowerampAPI {
 		 - Queue
 		 content://com.maxmpz.audioplayer.data/queue
 		 content://com.maxmpz.audioplayer.data/queue/#
+		 
+		 - Streams
+		 content://com.maxmpz.audioplayer.data/streams
+		 content://com.maxmpz.audioplayer.data/streams/#
+
+		 - Bookmarks
+		 content://com.maxmpz.audioplayer.data/bookmarks
+		 content://com.maxmpz.audioplayer.data/bookmarks/#
+		 
 		 </pre><br>
 
 		 * Extras<br>
@@ -1475,6 +1484,9 @@ public final class PowerampAPI {
 		public static final int COMPOSERS_ID_ALBUMS     = 230;
 		public static final int PLAYLISTS               = 100;
 		public static final int QUEUE                   = 800;
+		/** @since 877 */
+		public static final int BOOKMARKS               = 810;
+		public static final int STREAM_FILES            = 60;
 		public static final int MOST_PLAYED             = 43;
 		public static final int TOP_RATED               = 48;
 		public static final int LOW_RATED               = 50;

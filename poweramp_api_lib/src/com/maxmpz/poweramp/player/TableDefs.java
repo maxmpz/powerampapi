@@ -191,7 +191,7 @@ public interface TableDefs {
 		 * Cue offset milliseconds<br>
 		 * INTEGER
 		 */
-		public static final @NonNull String OFFSET_MS = "offset_ms";
+		public static final @NonNull String OFFSET_MS = TABLE + ".offset_ms";
 
 		/**
 		 * If non-null - this is cue "source" (big uncut image) file with that given virtual folder id<br>
@@ -1410,6 +1410,43 @@ public interface TableDefs {
 		
 		public static final @NonNull String CALC_PLAYED = "folder_files.played_at >= queue.created_at"; // If played at is the same as queue entry time, consider it played already 
 		public static final @NonNull String CALC_UNPLAYED = "folder_files.played_at < queue.created_at";
+	}
+
+	/**
+	 * @since 877
+	 */
+	public class Bookmarks {
+		public static final @NonNull String TABLE = "bookmarks";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+
+		/**
+		 * Folder file id<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String FOLDER_FILE_ID = TABLE + ".folder_file_id";
+
+		/**
+		 * Milliseconds<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String OFFSET_MS = TABLE + ".offset_ms";
+
+		/**
+		 * INTEGER
+		 */
+		public static final @NonNull String SORT = TABLE + ".sort";
+
+		/**
+		 * TEXT
+		 */
+		public static final @NonNull String META = TABLE + ".meta";
+
+		/**
+		 * Milliseconds<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 	}
 
 	public class ShuffleSessionIds {
