@@ -27,11 +27,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMediumButton_size">64dp</dimen>
 	<dimen name="TopSmallButton_size">48dp</dimen>
 	
-	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
-	<dimen name="PlainSeekbar_common_marginBottom">16dp</dimen>
-		
+	<dimen name="PlainSeekbar_marginBottom">-2dp</dimen>
+	<dimen name="PlainSeekbar_common_marginBottom">18dp</dimen>
+	<dimen name="PlainSeekbar_metaInfo_marginBottom">10dp</dimen>
 	
-	<!-- PF1 392x736. Redmi5+ 392x714 Enough vertical space -->
-	<!-- Alt -->
-	<!--<dimen name="Alt_aaMaxSize">482dp</dimen> Not used anymore -->	
+	<dimen name="Alt_PlainSeekbar_marginBottom">-2dp</dimen><!-- Alt + seekbar: From elapsed/duration to seekbar -->
+	<dimen name="Alt_PlainSeekbar_common_marginBottom">18dp</dimen><!-- Alt + seekbar: From navbar to elapsed/duration -->
+	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">10dp</dimen>
 </resources>

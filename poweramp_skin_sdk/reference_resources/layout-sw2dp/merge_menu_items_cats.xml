@@ -28,8 +28,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/rescan"
 		style="?PopupMenuItem"
 		android:drawable="?rescan"
-		w:busId="@id/bus_app_cmd"
-		w:msgId="@id/cmd_app_rescan"
+		w:busId="@id/list"
+		w:msgId="@id/cmd_list_rescan"
 		w:arg1="0"
 		w:string="menu click"
 		

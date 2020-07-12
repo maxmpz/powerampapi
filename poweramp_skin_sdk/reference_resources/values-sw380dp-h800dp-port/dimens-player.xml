@@ -24,8 +24,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_TopAABounds_marginBottom">70dp</dimen>
 	<dimen name="Alt_TopSubAAButtons_marginTop">12dp</dimen>
 	
-	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
-	<dimen name="PlainSeekbar_common_marginBottom">16dp</dimen>
-	<dimen name="Alt_PlainSeekbar_marginBottom">0dp</dimen>
-	<dimen name="Alt_PlainSeekbar_common_marginBottom">16dp</dimen>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2018 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -70,6 +70,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine</item>
 	</style>
 	
+	<style name="OptionCCMainUIButton">
+		<item name="CcButton_MainUI">@style/CcButton_MainUIButton</item>
+	</style>
+	
 	<style name="OptionCCMainUIAndInMenu">
 		<!-- NOTE: keeping default CcButton_MainUI* styles - it shows it in main UI by default -->
 		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine</item>
@@ -88,4 +92,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="OptionAAKeepAspect">
 		<item name="AAImage_scaleType">fitCenter</item>
 	</style>
+	
+	<style name="OptionAACrop">
+		<item name="AAImage_scaleType">centerCropXY</item>
+	</style>
+		
 </resources>

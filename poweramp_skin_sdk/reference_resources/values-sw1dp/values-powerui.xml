@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -108,6 +108,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Dialogs -->
 	<item type="id" name="dialog_shim"/>
 	<item type="id" name="buttons_layout"/>
+	<item type="id" name="dialog_toast_button"/>
 	<item type="id" name="scene_dialog_in"/>
 	<item type="id" name="scene_dialog_in_loading"/>
 	<item type="id" name="scene_dialog_in_progress"/>
@@ -128,6 +129,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_app_active_activities"/><!-- int. Number of started activities in state between start and stop -->
 	<item type="id" name="state_app_last_non_temp_activity"/><!-- object. Check for isFinishing() -->
 	<item type="id" name="state_app_last_activity"/><!-- object. Check for isFinishing() -->
+	<item type="id" name="state_app_last_alert"/><!-- object -->
 	
 	<item type="id" name="msg_app_active_activities_change"/><!-- bus_app, arg1 => num of active activities, arg2 => boolean STATE_TRUE if it's activity start, false otherwise -->
 	
@@ -199,7 +201,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_popup_menu_focus"/>
 	
 	
-	<item type="id" name="cmd_alert_dialog"/><!-- To alert dialog -->
+	<item type="id" name="cmd_alert_dialog"/><!-- To alert dialog. NOTE: bus_app -->
 	<item type="id" name="msg_alert_dialog"/><!-- From alert dialog -->
 
 	<item type="id" name="msg_activity_on_create"/><!-- bus_gui -->

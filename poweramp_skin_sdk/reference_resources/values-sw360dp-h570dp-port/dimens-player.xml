@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -21,11 +21,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<!-- Huawei l293 60x578, Meizu pro7+ 360x576 -->
-	
-	<!-- <dimen name="TopPlay_maxSize">86dp</dimen>
-	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">80dp</dimen>
-	<dimen name="TopMediumButton_size">58dp</dimen> 
-	<dimen name="TopSmallButton_size">42dp</dimen> -->
 	
 	<!-- Huawei l29360x578, Meizu pro7+ 360x576 -->	
 	<dimen name="TopTrackElapsedMoreButtons_marginBottom">0dp</dimen>
@@ -66,8 +61,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Alt -->
 	<!-- NOTE: port still requires reduced size (e.g. Meizu pro5) -->
 	<!-- Huawei l29360x578, Meizu pro7+ 360x576 -->
-	<!-- <dimen name="Alt_aaMaxSize">362dp</dimen> Not used anymore -->
-
 
 	<dimen name="Alt_TopPlay_maxSize">66dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">60dp</dimen>

@@ -13,6 +13,7 @@
 		description="@string/skin_lightpro_description"
 		style="@style/ActivityTheme_White"
 		forceGlobalOptions="true"
+		darkMode="@style/ActivityTheme_Black"
 	>
 		<option
 			key="alt_layout"
@@ -103,6 +104,7 @@
 		description="@string/skin_blackpro_description"
 		style="@style/ActivityTheme_Black"
 		forceGlobalOptions="true"
+		lightMode="@style/ActivityTheme_White"
 	>
 		<option
 			key="alt_layout"

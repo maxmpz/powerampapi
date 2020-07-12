@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -103,6 +103,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						
 		<item name="ItemPopupMenu_scene_item_menu">@style/ItemPopupMenu_scene_item_menu</item>
 		<item name="ItemPopupMenuSeparator">@style/ItemPopupMenuSeparator</item>
+		<item name="ItemPopupMenuSeparator2">@style/ItemPopupMenuSeparator2</item>
 		<item name="ItemPopupMenuItemsLayout">@style/ItemPopupMenuItemsLayout</item>
 		<item name="ItemPopupMenuTopSpacer">@style/ItemPopupMenuTopSpacer</item>
 		
@@ -159,6 +160,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemTrackSelectBox">@style/ItemTrackSelectBox</item>
 		<item name="ItemTrackSelectBox_scene_grid">@style/ItemTrackSelectBox_scene_grid</item>
+		<item name="ItemTrackSelectBox_scene_small_no_aa">@style/ItemTrackSelectBox_scene_small_no_aa</item>
 		
 		<item name="ItemTrackPlayingMark">@style/ItemTrackPlayingMark</item>
 		<item name="ItemTrackPlayingMark_scene_small">@style/ItemTrackPlayingMark_scene_small</item>
@@ -176,6 +178,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemTrackAAImage">@style/ItemTrackAAImage</item>
 		<item name="ItemTrackAAImage_scene_small">@style/ItemTrackAAImage_scene_small</item>
+		<item name="ItemTrackAAImage_scene_small_no_aa">@style/ItemTrackAAImage_scene_small_no_aa</item>
 		<item name="ItemTrackAAImage_scene_zoomed">@style/ItemTrackAAImage_scene_zoomed</item>
 		<item name="ItemTrackAAImage_scene_aa">@style/ItemTrackAAImage_scene_aa</item>
 		<item name="ItemTrackAAImage_scene_aa_vis">@style/ItemTrackAAImage_scene_aa_vis</item>
@@ -283,6 +286,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemTrackDragHandler">@style/ItemTrackDragHandler</item>
 		<item name="ItemTrackDragHandler_scene_grid">@style/ItemTrackDragHandler_scene_grid</item>
+		<item name="ItemTrackDragHandler_scene_small_no_aa">@style/ItemTrackDragHandler_scene_small_no_aa</item>
 		
 		<item name="ItemTrackMenu">@style/ItemTrackMenu</item>
 		<item name="ItemTrackMenu_scene_menu">@style/ItemTrackMenu_scene_menu</item>
@@ -603,6 +607,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqSFXKnobLayout">@style/EqSFXKnobLayout</item>
 		<item name="EqTempoCheckButton">@style/EqTempoCheckButton</item>
 		<item name="EqTempoKnobLayout">@style/EqTempoKnobLayout</item>
+		<item name="EqTempoPlusButton">@style/EqTempoPlusButton</item>
+		<item name="EqTempoMinusButton">@style/EqTempoMinusButton</item>
 		<item name="EqMonoCheckButton">@style/EqMonoCheckButton</item>
 		<item name="EqPlatformFXCheckButton">@style/EqPlatformFXCheckButton</item>
 		<item name="EqOtherResetButton">@style/EqOtherResetButton</item>
@@ -632,6 +638,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="SleepTimerTitle">@style/SleepTimerTitle</item>
 		<item name="SleepTimerTitle_Text">@style/SleepTimerTitle_Text</item>
 		<item name="SleepTimerContent">@style/SleepTimerContent</item>
+		<item name="SleepTimerValue">@style/SleepTimerValue</item>
+		<item name="SleepTimerValue_Text">@style/SleepTimerValue_Text</item>
 		<item name="SleepTimerSeekbar">@style/SleepTimerSeekbar</item>
 		<item name="SleepTimerPTESelectBox">@style/SleepTimerPTESelectBox</item>
 		

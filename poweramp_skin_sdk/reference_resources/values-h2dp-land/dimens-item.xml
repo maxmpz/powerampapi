@@ -21,6 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values-h1dp-land. Baseline values for scaled screens -->
 <resources>
+	<dimen name="ItemPopupMenu_scene_item_menu_width">340dp</dimen>
 	<dimen name="ItemPopupMenu_scene_item_menu_maxHeight">270dp</dimen>
 	<dimen name="ItemPopupMenu_larger_scene_item_menu_width">340dp</dimen>
 </resources>

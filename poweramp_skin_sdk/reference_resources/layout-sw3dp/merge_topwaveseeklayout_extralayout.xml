@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+
+	<!-- Update default pause button scene with jumpVisibility=true -->
+	<com.maxmpz.widget.base.SceneParams w:scene="defaultScene" w:baseScene="defaultScene" w:forId="@id/pause"
+		w:jumpVisibility="true"
+	/>
+
+	<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s 
+	     w:morphArg2="2" x2 for duration for long press (10s, 40s) -->	
+	<com.maxmpz.widget.base.MorphableBusActionButton android:id="@+id/prev_cat"
+		style="?TopPrevCat"
+		
+		w:busId="@id/bus_player_cmd"
+		
+		w:msgId="@id/cmd_player_play_prev_category"
+		w:longPressMsgId="@id/cmd_player_play_first_category"
+		
+		w:disableForStateBusId="@id/bus_player"
+		w:disableForStateId="@id/state_player_category_not_navigable"
+		w:disableForStateMsgId="@id/msg_player_track_changed"
+		android:contentDescription="@string/h_prev_list"
+		
+		w:morphWhenState="@id/state_player_long_seek"
+		w:morphMsgId="@id/cmd_player_seek_jump"
+		w:morphArg1="0"
+		w:morphArg2="2"
+		w:morphLongPressMsgId="@id/cmd_player_begin_seek_jumps"
+		w:morphLongPressEndMsgId="@id/cmd_player_end_seek_jumps"
+		w:morphContentDescription="@string/back_10s"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
+	
+	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
+		style="?TopPlay_state_seeking"
+	/>
+			
+	<!-- arg1="0" - rewind -->
+	<!-- REVISIT: use start seek/stop seek cmds instead -->
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/rw"
+		style="?TopRw"
+		w:busId="@id/bus_player_cmd"
+		w:msgId="@id/cmd_player_play_prev_track"
+		w:longPressMsgId="@id/cmd_player_begin_seek_jumps"
+		w:longPressEndMsgId="@id/cmd_player_end_seek_jumps"
+		w:arg1="0"
+		android:contentDescription="@string/previous_track"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+		style="?TopRw_scene_playing"
+	/>
+	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
+		style="?TopPlay_state_seeking"
+	/>
+	
+	<!-- arg1="1" - forward -->	
+	<!-- REVISIT: use start seek/stop seek cmds instead -->
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/ff"
+		style="?TopFf"
+		w:busId="@id/bus_player_cmd"
+		w:msgId="@id/cmd_player_play_next_track"
+		w:longPressMsgId="@id/cmd_player_begin_seek_jumps"
+		w:longPressEndMsgId="@id/cmd_player_end_seek_jumps"
+		w:arg1="1"
+		
+		android:contentDescription="@string/next_track"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+		style="?TopFf_scene_playing"
+	/>
+	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
+		style="?TopPlay_state_seeking"
+	/>
+
+		<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s -->
+	<com.maxmpz.widget.base.MorphableBusActionButton android:id="@+id/next_cat"
+		style="?TopNextCat"
+		w:busId="@id/bus_player_cmd"
+		w:msgId="@id/cmd_player_play_next_category"
+		w:longPressMsgId="@id/cmd_player_play_last_category"
+
+		w:disableForStateBusId="@id/bus_player"
+		w:disableForStateId="@id/state_player_category_not_navigable"
+		w:disableForStateMsgId="@id/msg_player_track_changed"
+		
+		w:morphWhenState="@id/state_player_long_seek"
+		w:morphMsgId="@id/cmd_player_seek_jump"
+		w:morphArg1="1"
+		w:morphArg2="2"
+		w:morphLongPressMsgId="@id/cmd_player_begin_seek_jumps"
+		w:morphLongPressEndMsgId="@id/cmd_player_end_seek_jumps"
+		
+		android:contentDescription="@string/h_next_list"
+		w:morphContentDescription="@string/forward_10s"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
+	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
+		style="?TopPlay_state_seeking"
+	/>
+		
+	
+</merge>

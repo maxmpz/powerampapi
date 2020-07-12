@@ -34,6 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="ItemTrackSelectBox" format="reference"/>
 		<attr name="ItemTrackSelectBox_scene_grid" format="reference"/>
+		<attr name="ItemTrackSelectBox_scene_small_no_aa" format="reference"/>
 		
 		<attr name="ItemTrackPlayingMark" format="reference"/>
 		<attr name="ItemTrackPlayingMark_scene_small" format="reference"/>
@@ -52,6 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackAAImage" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_zoomed" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_small" format="reference"/>
+		<attr name="ItemTrackAAImage_scene_small_no_aa" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_aa" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_aa_vis" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_aa_playing" format="reference"/>
@@ -159,6 +161,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="ItemTrackDragHandler" format="reference"/>
 		<attr name="ItemTrackDragHandler_scene_grid" format="reference"/>
+		<attr name="ItemTrackDragHandler_scene_small_no_aa" format="reference"/>
 		
 		<attr name="ItemTrackMenu" format="reference"/>
 		<attr name="ItemTrackMenu_scene_menu" format="reference"/>
@@ -351,6 +354,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<attr name="ItemPopupMenu_scene_item_menu" format="reference"/>
 		<attr name="ItemPopupMenuSeparator" format="reference"/>
+		<attr name="ItemPopupMenuSeparator2" format="reference"/>
 		<attr name="ItemPopupMenuItemsLayout" format="reference"/>
 		<attr name="ItemPopupMenuTopSpacer" format="reference"/>
 		
@@ -552,6 +556,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqSFXKnobLayout" format="reference"/>
 		<attr name="EqTempoCheckButton" format="reference"/>
 		<attr name="EqTempoKnobLayout" format="reference"/>
+		<attr name="EqTempoPlusButton" format="reference"/>
+		<attr name="EqTempoMinusButton" format="reference"/>
 		<attr name="EqMonoCheckButton" format="reference"/>
 		<attr name="EqPlatformFXCheckButton" format="reference"/>
 		<attr name="EqOtherResetButton" format="reference"/>
@@ -581,6 +587,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="SleepTimerTitle" format="reference"/>
 		<attr name="SleepTimerTitle_Text" format="reference"/>
 		<attr name="SleepTimerContent" format="reference"/>
+		<attr name="SleepTimerValue" format="reference"/>
+		<attr name="SleepTimerValue_Text" format="reference"/>
 		<attr name="SleepTimerSeekbar" format="reference"/>
 		<attr name="SleepTimerPTESelectBox" format="reference"/>
 		

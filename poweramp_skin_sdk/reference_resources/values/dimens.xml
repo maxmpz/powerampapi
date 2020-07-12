@@ -38,7 +38,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="tree_item_indent_per_level">20dp</dimen>
    	<!--<dimen name="dialog_music_folders_labelPaddingLR">20.33dip</dimen>-->
 	<dimen name="dir_tree_item_checkbox_width">@dimen/WRAP_CONTENT</dimen><!-- WRAP_CONTENT -->
-	<dimen name="dir_tree_item_checkbox_paddingLeft">10dp</dimen><!-- add some padding to help with touch presses -->
    	<dimen name="dir_tree_item_paddingLeft">16dp</dimen>
-   	<dimen name="dir_tree_item_checkbox_paddingRight">4dp</dimen><!-- NOTE: some difference in checkbox default padding -->
 </resources>

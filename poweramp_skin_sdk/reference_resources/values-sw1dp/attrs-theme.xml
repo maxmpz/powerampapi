@@ -34,6 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorLessContrast" format="color"/><!-- Tint/foreground color for a bit less contrast icons/buttons -->
 	<attr name="colorShade" format="color"/><!-- Shade colors for popup menus -->
 	<attr name="colorSeparator" format="color"/><!-- E.g. menu separator -->
+	<attr name="colorSeparatorLight" format="color"/><!-- E.g. menu separator (lighter) -->
 	<attr name="colorBgLight" format="color"/><!-- Non-contrast bg. Used ATM for Search Frame bg -->
 	
 	<attr name="colorIconPrimary" format="color"/><!-- Usually same as colorPrimary, but for black/#000 it should be #0000 to avoid tinting at all -->

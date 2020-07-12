@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -22,7 +22,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<!-- Pixel1 411x659, Nexus6 411x659 wider screens which has no enough height -->
 	<!-- Alt -->
-	<!--<dimen name="Alt_aaMaxSize">432dp</dimen> Not used anymore -->
+	<dimen name="ItemPopupMenu_scene_item_menu_width">320dp</dimen><!-- NOTE: defines base popup button/list width -->
 	
 	<dimen name="Alt_TopPlay_maxSize">68dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">60dp</dimen>

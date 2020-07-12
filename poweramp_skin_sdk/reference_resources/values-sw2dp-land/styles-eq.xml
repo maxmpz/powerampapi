@@ -194,6 +194,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_horizontal|bottom</item>
 	</style>
 	
+	<style name="EqTempoKnobLayout" parent="BaseEqTempoKnobLayout">
+		<item name="layout_attachBottom">@id/tempo_plus_button</item>
+		<item name="android:layout_marginBottom">8dp</item>
+	</style>
+	
+	<style name="EqTempoPlusButton" parent="EqButton">
+		<item name="android:minWidth">52dp</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="layout_attachLeft">50%</item>
+		<item name="layout_attachBottom">@id/tempo_button</item>
+	</style>
+	
+	<style name="EqTempoMinusButton" parent="EqButton">
+		<item name="android:minWidth">52dp</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="layout_attachRight">50%</item>
+		<item name="layout_attachBottom">@id/tempo_button</item>
+	</style>
+		
 	<style name="EqMonoCheckButton" parent="EqCheckButton">
 		<item name="android:layout_gravity">left|bottom</item>
 	</style>

@@ -130,7 +130,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="SelectionListContextButtonBase">		
-		<item name="layout_widthPercent">33.333%</item> 
+		<item name="layout_widthPercent">33.333%</item>
+		<!--<item name="layout_widthPercent">25%</item>-->
 		<item name="android:layout_height">wrap_content</item>
 		<item name="drawablePaddingStart">4dp</item><!-- The padding on top, before drawable -->
 		<item name="android:drawablePadding">2dp</item><!-- The padding between drawable and text -->

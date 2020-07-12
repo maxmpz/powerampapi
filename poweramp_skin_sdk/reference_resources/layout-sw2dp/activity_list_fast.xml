@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -311,7 +311,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:menuItemsLayout="@layout/merge_sleep_timer_popup_layout"
 			android:contentDescription="@string/sleep_timer"
 		>
-			<com.maxmpz.widget.base.PopupButton
+			<com.maxmpz.widget.base.PopupButton android:id="@+id/sleep_timer_button"
 				style="?TopSleepTimerButton"
 			/>
 			<SceneParams w:scene="@+id/scene_button_menu"
@@ -437,7 +437,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/><!-- search_layout -->
 
 	<!-- NOTE: invisible anchor view which matches Navbar dimensions. Navbar itself is rooted into independent scene/layout container, thus we need some anchor view
-		 in top container for other views to be aware of navbar size
+		 in the top container for other views to be aware of the navbar size
 		 
 		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
 		 This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
@@ -499,7 +499,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- NOTE: status bar bg should be atop of everything, so putting it here as last, thus higher z-index. Helps with e.g. header => popup menu poping over status bar bg.
-		 By default, status_bar_bg/navigation_bar_bg don't change anything for scenes, but SceneParams are provided for skins, which can change them -->
+		 By default, status_bar_bg/navigation_bar_bg don't change anything for scenes, but SceneParams are provided for skins, which can change them
+		 NOTE: automatically hidden if user hides status bar via settings
 	 -->
 
 	<com.maxmpz.widget.base.FitsStatusBarView android:id="@+id/status_bar_bg"

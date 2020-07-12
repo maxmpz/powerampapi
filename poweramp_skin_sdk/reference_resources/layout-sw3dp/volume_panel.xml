@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content"
+    style="?VolumePanelFrame"
+    w:enableStateAnim="true"
+>
+	<!-- NOTE: 100.5 rounding helps with 0-100 (101 items) to 100 steps rounding, especially around 50% (where by default rounded 0.5050 value is ~51%) -->
+	<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/volume_knob_layout"
+		style="?VolumePanelKnobLayout"
+		
+		w:param="@+id/dsp_master_volume"
+		w:updateMsgId="@+id/msg_dsp_other_changed"
+		
+		w:valueFormat="@string/f0_percent"
+		w:valueFormatMin="0"
+		w:valueFormatMax="100"
+		w:rounding="100.5"
+		w:animOnAttach="true"
+	/>
+</com.maxmpz.widget.base.SceneFastLayout>

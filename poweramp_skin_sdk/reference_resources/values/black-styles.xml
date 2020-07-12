@@ -19,7 +19,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res/com.maxmpz.audioplayer">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res-auto">
 	<style name="Base_ActivityTheme_Black" parent="Base_ActivityTheme_Default">
 		<!-- NOTE: any alpha value in this color enables transparent Android status bar and appropriate Poweramp layout changes, i.e. layout spans behind that bar.
 			 Poweramp places id/status_bar_bg view under status bar, with statusBarBg drawable, which can be any drawable, not just color.
@@ -110,6 +110,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorTrackMeta">#999</item>
 		<item name="colorTrackNum">#999</item>
 		<item name="colorSeparator">#F555</item>
+		<item name="colorSeparatorLight">#2A2A2A</item>
 				
 		<item name="colorNavbarIcons">@color/navbar_icons_selector</item>
 		<item name="colorNavbarIconsLessContrast">#999</item><!-- NOTE: not used in default theme -->

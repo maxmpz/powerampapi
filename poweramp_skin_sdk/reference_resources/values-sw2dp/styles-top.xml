@@ -107,7 +107,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="popupEnterAnimTime">400</item>
 		<item name="popupExitAnimTime">200</item><!-- Sync with drawable/item_bg exitFadeDuration If this is increased, tune activity_start_click_delay as well, esp. on low-end devices. -->
 		
-		<item name="preferedAAAnimTime">350</item>
+		<item name="preferredAAAnimTime">350</item>
 		
 		<item name="moveableToolbar">@+id/navbar</item>
 		<item name="moveableToolbarExtraStates">false</item>
@@ -147,6 +147,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="itemSize">96dp</item>
 		<item name="itemSizeZoomed">137dp</item>
 		<item name="itemSizeSmall">62dp</item>
+		<item name="itemSizeSmallNoAA">58dp</item>
 		<item name="textItemSize">64dp</item>
 		
 		<item name="allTracksSubheadSize">88dp</item><!-- Size of all-tracks subheader, e.g. Artists/Albums all songs -->
@@ -160,6 +161,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="pageAnimTime">250</item><!-- NOTE: also see styles-navbar.xml => twoLineEnterAnimTime, which should be synced with this -->
 		<item name="aaToTopLibAnimTime">250</item>
+		<item name="topLibToAAAnimTime">250</item>
 		<item name="libSearchAnimTime">0</item>
 		<item name="aaToSearchAnimTime">0</item>
 		<item name="searchToAAAnimTime">250</item>
@@ -810,7 +812,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="shadeColor">?colorShade</item>
 	</style>
 	
-	<!-- Overridden in values-sw2dp-land -->
+	<!-- Overridden in values-sw2dp-land.
+	     NOTE: automatically hidden if user hides status bar via settings -->
 	<style name="TopFitsStatusBarView">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
@@ -846,7 +849,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!--<item name="android:background">#5f0f</item>-->
 	</style>
 	
-	<!-- NOTE: new AABounds style, now derived from ListSubstyle2 and using same AA layout logic -->
+	<!-- NOTE: new AABounds style, now derived from ListSubstyle2 and uses the same AA layout logic -->
 	<!-- NOTE: overridden in values-sw1dp-land for landscape -->	
 	<style name="TopAABounds2" parent="ListSubstyle2">
 		<item name="matchAASubstyle">true</item>
@@ -854,7 +857,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="offsetWindowInsets">statusBar|navigationBar</item>--><!-- Sync with TopListWidget -->
+		<item name="offsetWindowInsets">statusBar|navigationBar</item><!-- Sync with TopListWidget -->
 		
 		<!-- NOTE: needed, as by default, any margins applied to AABounds will "consume" available space for AA layout, thus, shrinking AABounds and making it
 		     smaller comparing to the actual list AA. This attribute forces FastLayout to ignore margins in size calculations -->
@@ -978,7 +981,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	
-	
+	<!-- NOTE: see also default-styles-plainseekbar.xml -->
 	<style name="TopMetaInfoLayout">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>

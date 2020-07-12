@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -261,7 +261,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		
-		<item name="listItemSize">56dp</item>
+		<item name="listItemSize">@dimen/EqPresetButtonLayoutBase_listItemSize</item>
 		<item name="disableParentLayoutForPopup">false</item>
 	</style>
 	<style name="EqEquPresetButtonLayout" parent="EqPresetButtonLayoutBase">
@@ -525,7 +525,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">8dp</item>
 	</style>
 	
-	<style name="EqTempoKnobLayout">
+	<style name="BaseEqTempoKnobLayout">
 		<item name="android:clipChildren">false</item>
 		<item name="android:layout_width">@dimen/EqTempoKnobLayout_width</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -536,7 +536,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="rightLabelStyle">@style/EqRoundKnobRightLabel</item>
 		<item name="valueLabelStyle">@style/EqTempoValueLabel</item>
 		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
+		</style>
+	<style name="EqTempoKnobLayout" parent="BaseEqTempoKnobLayout">
 	</style>
+	<style name="EqTempoPlusButton" parent="EqButton">
+		<item name="android:minWidth">52dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="layout_attachLeft">@id/tempo_knob_layout</item>
+		<item name="layout_attachBottom">50%</item>
+	</style>
+	<style name="EqTempoMinusButton" parent="EqButton">
+		<item name="android:minWidth">52dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginTop">-8dp</item>
+		<item name="layout_attachLeft">@id/tempo_knob_layout</item>
+		<item name="layout_attachTop">50%</item>
+	</style>
+			
 	
 	<style name="EqTempoValueLabel" parent="EqRoundKnobValueLabel">
 		<item name="layout_attachTop">@id/_knob</item>

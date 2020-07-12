@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -34,6 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:baseScene="defaultScene"
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
+		w:scene_5="@+id/scene_1_small_no_aa" w:scene_6="@+id/scene_small_no_aa"
 		w:baseScene="defaultScene"
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" 

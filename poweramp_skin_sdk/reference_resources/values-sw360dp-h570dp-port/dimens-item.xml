@@ -23,4 +23,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="dimen" format="float" name="scale_title_scene_grid">.75</item>
 	<item type="dimen" format="float" name="scale_line2_scene_grid">.70</item>
 	<dimen name="ItemLike_drawableSize">24dp</dimen>
+	<dimen name="ItemPopupMenu_scene_item_menu_maxHeight">450dp</dimen>
 </resources>

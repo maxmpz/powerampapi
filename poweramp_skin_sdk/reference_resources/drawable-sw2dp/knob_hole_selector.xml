@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- NOTE: can't change size of drawable, thus, emulating bolder hole when pressed with invisile (#0000) stroke -->
+<!-- NOTE: can't change size of drawable, thus, emulating bolder hole when pressed with invisile (#0000) stroke.
+     Also, width/height=3dp defines min size for appropriate axis. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
 	android:exitFadeDuration="300"
 >
 	<item android:state_enabled="false">
 		<shape>
-			<size android:width="3dp"/>
+			<size android:width="3dp" android:height="3dp"/>
 			<padding android:left="18dp" android:right="18dp" android:top="20dp" android:bottom="20dp"/>
 			<corners android:radius="3dp"/>
 			<solid android:color="?colorKnobHoleDisabled"/>
@@ -16,7 +17,7 @@
 	
 	<item android:state_pressed="true">
 		<shape>
-			<size android:width="3dp"/>
+			<size android:width="3dp" android:height="3dp"/>
 			<padding android:left="18dp" android:right="18dp" android:top="20dp" android:bottom="20dp"/>
 			<corners android:radius="3dp"/>
 			<solid android:color="?colorKnobHolePressed"/>
@@ -26,7 +27,7 @@
 		
 	<item>
 		<shape>
-			<size android:width="3dp"/>
+			<size android:width="3dp" android:height="3dp"/>
 			<padding android:left="18dp" android:right="18dp" android:top="20dp" android:bottom="20dp"/>
 			<corners android:radius="3dp"/>
 			<solid android:color="?colorKnobHole"/>

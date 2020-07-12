@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="menuPlaceholder"/><!-- Some top level MenuHelper-enabled layout (poped-out item transformed into menu and attached there) -->
 		
 		<!-- Animation time between AA states (playing/paused) -->
-		<attr name="preferedAAAnimTime" format="integer"/><!-- ms -->
+		<attr name="preferredAAAnimTime" format="integer"/><!-- ms -->
 		
 		<!-- Controls AA blur background --> 
 		<attr name="listMilkMode" format="integer">

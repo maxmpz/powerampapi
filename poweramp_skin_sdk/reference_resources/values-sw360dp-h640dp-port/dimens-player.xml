@@ -21,7 +21,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<dimen name="PlainSeekbar_common_marginBottom">8dp</dimen>
+	<dimen name="PlainSeekbar_metaInfo_marginBottom">8dp</dimen>
 	<dimen name="Alt_PlainSeekbar_common_marginBottom">8dp</dimen>
+	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">8dp</dimen>
 	<dimen name="Alt_PlainSeekbar_marginBottom">-2dp</dimen>
 	
 	<!-- HTC U11 -->

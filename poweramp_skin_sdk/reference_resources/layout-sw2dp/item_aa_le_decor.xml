@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	style="?ItemAALEDecorLayout"
 >
-	<TextView 
+	<com.maxmpz.widget.base.FastTextView 
 		style="?ItemAALEDecorText"
 	/>
 </com.maxmpz.widget.base.FastLayout> 

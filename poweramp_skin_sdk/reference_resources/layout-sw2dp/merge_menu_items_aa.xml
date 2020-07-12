@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -30,36 +30,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/delete"
 		w:busId="@id/list" w:msgId="@id/cmd_list_delete_dialog"
 	/>
-	
-	<com.maxmpz.widget.base.BusActionButton android:id="@+id/lyrics"
-		style="?PopupMenuItem"
-		android:drawable="?lyrics"
-
-
-		android:text="@string/lyrics"
-		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_lyrics"
-		w:clickDelay="@integer/activity_start_click_delay"
-	/>
-	
-	
+	<!-- NOTE: when bookmarks enabled, add_to_pl is hidden, and add_to_pl50 and bookmark are shown -->
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/add_to_pl"
 		style="?PopupMenuItem"
 		android:drawable="?add_to_pl"
 		android:text="@string/add_to_playlist"
 		
-		w:busId="@id/list" 
-		w:msgId="@id/cmd_list_add_to_pl_dialog"
+		w:busId="@id/list" w:msgId="@id/cmd_list_add_to_pl_dialog"
 	/>
-	
-	<com.maxmpz.widget.base.BusActionButton android:id="@+id/info"
-		style="?PopupMenuItem"
-		android:drawable="?info"
+	<!-- NOTE: using shorter label here -->
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/add_to_pl50"
+		style="?PopupMenuItem50"
+		android:drawable="?add_to_pl"
+		android:text="@string/playlist"
+		android:visibility="gone"
 		
-		android:text="@string/info"
-		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_info_tags"
-		w:clickDelay="@integer/activity_start_click_delay"
+		w:busId="@id/list" w:msgId="@id/cmd_list_add_to_pl_dialog"
 	/>
-	
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/bookmark"
+		style="?PopupMenuItem50"
+		android:drawable="?bookmark"
+		android:text="@string/bookmark"
+		android:visibility="gone"
+		
+		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_bookmark_now"
+	/>
+		
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/album_art"
 		style="?PopupMenuItem"
 		android:drawable="?album_art"
@@ -70,19 +66,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:clickDelay="@integer/activity_start_click_delay"
 	/>
 	
+	
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/info"
+		style="?PopupMenuItem50"
+		android:drawable="?info"
+		
+		android:text="@string/info_short"
+		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_info_tags"
+		w:clickDelay="@integer/activity_start_click_delay"
+	/>
+	
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/lyrics"
+		style="?PopupMenuItem50"
+		android:drawable="?lyrics"
+
+		android:text="@string/lyrics_short"
+		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_lyrics"
+		w:clickDelay="@integer/activity_start_click_delay"
+	/>
+	
+	<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/separator2" 
+		style="?ItemPopupMenuSeparator2"
+	/>
+	
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/artist"
-		style="?PopupMenuItem"
+		style="?PopupMenuItem50"
 		android:drawable="?artists_24dp"
-		android:text="@string/artist"
+		android:text="@string/artist_short"
 		
 		w:busId="@id/list" w:msgId="@id/cmd_list_current_artist"
-	/>
-	<com.maxmpz.widget.base.BusActionButton android:id="@+id/folder"
-		style="?PopupMenuItem50"
-		android:text="@string/folder_short"
-		android:drawable="?folder_24dp"
-
-		w:busId="@id/list" w:msgId="@id/cmd_list_current_folder"
 	/>
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/album"
 		style="?PopupMenuItem50"
@@ -90,5 +102,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/album_short"
 
 		w:busId="@id/list" w:msgId="@id/cmd_list_current_album"
+	/>
+		
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/folder"
+		style="?PopupMenuItem50"
+		android:text="@string/folder_short"
+		android:drawable="?folder_24dp"
+
+		w:busId="@id/list" w:msgId="@id/cmd_list_current_folder"
+	/>
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/genre"
+		style="?PopupMenuItem50"
+		android:drawable="?genres_24dp"
+		android:text="@string/genre_short"
+		
+		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_request_current_genre"
 	/>
 </merge>

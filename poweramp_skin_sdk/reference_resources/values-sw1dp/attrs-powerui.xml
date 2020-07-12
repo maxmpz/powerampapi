@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -209,15 +209,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 	<!-- Used internally -->
-	<!-- NOTE: shared by various controls and TextWidgetUtils -->
-	<declare-styleable name="TextProps">
-		<attr name="android:textAppearance"/>
+	<declare-styleable name="TextPropsMin">
 		<attr name="android:textSize"/>
 		<attr name="android:textColor"/>
-		<attr name="android:textStyle"/>
-		<attr name="android:typeface" />
-		<attr name="android:fontFamily" />
-		<attr name="android:textAllCaps"/>
+	</declare-styleable>
+	
+	<declare-styleable name="TextSizeMin">
+		<!-- 
+		     Some preference key containing float size _multiplier_ id, for example, from skin seekbar preference id. 
+		     The multipler is applied to android:textSize set for given textview or other view with the text.
+
+		     Resulting text size in pixels will be:
+		       android:textSize in dp * textSizePref preference float value
+		       or
+		       android:textSize in sp * user system text size preference * textSizePref preference float value.
+		       
+		     Different text or view styles may have different textSizePref values. We use multiplier here instead of the fixed font size value
+		     to allow all the default text sizes (defined by default themes) to be valid without extra configuration.
+		     
+		     NOTE: the value should be some id in the format "@id/your_id_name"
+		-->
+		<attr name="textSizeMultiplierPref" format="reference"/>
 	</declare-styleable>
 	
 	<!-- Used internally -->
@@ -230,11 +242,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:typeface" />
 		<attr name="android:fontFamily" />
 		<attr name="android:textAllCaps"/>
+		<attr name="textSizeMultiplierPref"/>
 	</declare-styleable>
 	
 	<declare-styleable name="TextViewFontFamily">
 		<attr name="android:textAppearance"/>
 		<attr name="android:fontFamily" />
+		<attr name="textSizeMultiplierPref"/>
 	</declare-styleable>
 	
 	<!-- Simple view which applies disabledAlpha when disabled -->
@@ -358,6 +372,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:fontFamily" />
 		<attr name="android:typeface" />
 		<attr name="android:textAllCaps"/>
+		<attr name="textSizeMultiplierPref"/>
 	</declare-styleable>
 	
 	<!-- Scene-overridable extra FastTextView params -->
@@ -420,19 +435,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 layout paradigms within single layout, allowing major child layout manipulation with styles without editing actual layout xmls.
 		 Most of the design decisions for FastLayout and its FastLayoutParams are dictated by performance. The resulting layouts
 		 are faster vs Android basic layouts (LinearLayout/RelativeLayout), much faster than ConstraintLayout, and can be also used
-		 as replacement for very simple layouts as FrameLayout due to the minimal overhead
+		 as direct replacement even for very simple layouts as FrameLayout due to the minimal overhead
 		 
 		 FastLayout can replace:
 		 - FrameLayout (not slower than FrameLayout, or faster, as FastLayout never re-meassures children for MATCH_PARENT)
-		 - LinearLayout (can be implemented via layout_flex* or via layout_consumeSpace)
+		 - LinearLayout (can be implemented via layout_flex* or most commonly via layout_consumeSpace)
 		 - RelativeLayout (FastLayout is faster as it uses strictly one-pass, one measure per pass approach) 
 		 - partially ConstraintLayout (FastLayout is much faster) 
 		 - or combination of those in one layout
 		 
+		 Mostly every layout you're seeing in Poweramp main UI is FastLayout
+		 
 		 FastLayout is focused on performance and thus has limitations due to strict "no-remeasure" approach:
 		 - views are layed-out in xml order (some layout params may override the layout direction)
 		   - if some view is referenced by other view that triggers immediate laying out of such referenced view
-		     - this may cause cycles and will throw StackOverflowException
+		     - if this causes cycle StackOverflowException is thrown
 		 
 		 FastLayoutLP are attribures for FastLayout child views. FastLayout itself has no extra attributes
 	--> 
@@ -492,7 +509,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			   Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be layed out first (xml order is ignored).
 			 - "parent" attaches to parent side, accounting for any "consumed" space (if any) from side(s) where view is attached or "gravitated" to 
 			 - percent value (e.g. 50%) positions view by offset calculated form parent width/height * percent.
-			   This works only if width/height is fixed on the FastLayout (i.e. not WRAP_CONTENT).
+			   This works only if appropriate width or height is fixed for the parent FastLayout (i.e. not WRAP_CONTENT).
 			 - "inset" - like parent, but offsets by window inset on given side. Makes sense only for parent views which align with
 			   the appropriate screen side
 			 - "none" - resets any previous value (e.g. set by theme style)
@@ -532,7 +549,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="layout_attachTopToTop" format="reference"/>
 		
 		<!-- By default, view gravitates to its parent (via standard android:layout_gravity). If layout_gravityTarget is some non-parent view id, 
-			 that view becomes the point of gravitaion. E.g. if android:gravity="center" and layout_gravityTarget="@id/some_view", this view
+			 that view becomes the point of gravitaion. E.g. if android:layout_gravity="center" and layout_gravityTarget="@id/some_view", this view
 			 will be centered relatively to "some_view".
 			 If gravity target view doesn't exist, or is GONE, view gravitates to parent.
 			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be layed out first (xml order is ignored).
@@ -777,8 +794,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="disableForStateId" format="reference"/><!-- E.g. @id/state_list_selection_mode -->
 		<attr name="disableForStateId_2" format="reference"/><!-- Valid only if stateId defined -->
 		<attr name="enableForStateId" format="reference"/><!-- E.g. @id/state_list_selection_mode -->
-		<attr name="disableForStateMsgId" format="reference"/><!-- Can match stateIds or can be any other message -->
-		<attr name="disableForStateMsgId_2" format="reference"/><!-- Can match stateIds or can be any other message -->
+		<attr name="disableForStateMsgId" format="reference"/><!-- Can match stateIds or can be any other message. When msg received, the appropriate disable/enable ids are checked -->
+		<attr name="disableForStateMsgId_2" format="reference"/><!-- Can match stateIds or can be any other message. When msg received, the appropriate disable/enable ids are checked -->
 	</declare-styleable>
 	
 	<!-- Extends BusDisabledForStateBehavior -->
@@ -1008,7 +1025,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="popupExitAnimTime"/><!-- ms -->
 		<attr name="buttonAnimTime" format="integer"/><!-- ms -->
 		<attr name="menuPlaceholder"/>
-		<attr name="menuItemsLayout"/>
+		<!--<attr name="menuItemsLayout"/>--><!-- NOTE: not supported here ATM -->
 		
 		<!-- Button labels string @array --> 
 		<attr name="buttonsLabels" format="reference"/>
@@ -1204,6 +1221,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:textAppearance"/>
 		<attr name="android:fontFamily" />
 		<attr name="android:typeface" />
+		<attr name="textSizeMultiplierPref"/>
 	</declare-styleable>
 	
 	<declare-styleable name="RatingBarSceneParams">

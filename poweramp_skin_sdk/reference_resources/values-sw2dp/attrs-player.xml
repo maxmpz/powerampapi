@@ -104,9 +104,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="clear" format="reference"/>
 	<attr name="redo" format="reference"/>
 	<attr name="export" format="reference"/>
+	<attr name="bookmark" format="reference"/>
 
 	<attr name="clear_q_24dp" format="reference"/>
 	<attr name="artists_24dp" format="reference"/>
+	<attr name="genres_24dp" format="reference"/>
 	<attr name="albums_24dp" format="reference"/>
 	<attr name="folders_24dp" format="reference"/>
 	<attr name="folder_24dp" format="reference"/>
@@ -183,57 +185,58 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- AA corners for various scenes and item types:
 		 - tracks => any tracks lists and big AA on main screen
 		 - albums => includes Albums, Genres, Playlists, etc. non-human categories
-		 - other => human categories (Artists, Album Artists, Composers) 
+		 - other => human categories (Artists, Album Artists, Composers)
+		 
+		 Can be "matchHeight" - makes it round
+		 Can be @id/some_id reference to the skin <seekbar> option controled float value 
 	-->
 	
-	<attr name="corners_aa_scene_aa" format="dimension"><!-- Main screen big AA corners -->
+	<attr name="corners_aa_scene_aa" format="dimension|reference"><!-- Main screen big AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-
-	<attr name="corners_aa_tracks" format="dimension"><!-- List / menu AA corners -->
+	<attr name="corners_aa_tracks" format="dimension|reference"><!-- List / menu AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_albums" format="dimension"><!-- List / menu AA corners -->
+	<attr name="corners_aa_albums" format="dimension|reference"><!-- List / menu AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_other" format="dimension"><!-- List / menu AA corners -->
+	<attr name="corners_aa_other" format="dimension|reference"><!-- List / menu AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_tracks_zoomed" format="dimension"><!-- Zoomed list AA corners -->
+	<attr name="corners_aa_tracks_zoomed" format="dimension|reference"><!-- Zoomed list AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_albums_zoomed" format="dimension"><!-- Zoomed list AA corners -->
+	<attr name="corners_aa_albums_zoomed" format="dimension|reference"><!-- Zoomed list AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_other_zoomed" format="dimension"><!-- Zoomed list AA corners -->
+	<attr name="corners_aa_other_zoomed" format="dimension|reference"><!-- Zoomed list AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_tracks_grid" format="dimension"><!-- Grid AA corners -->
+	<attr name="corners_aa_tracks_grid" format="dimension|reference"><!-- Grid AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_albums_grid" format="dimension"><!-- Grid AA corners -->
+	<attr name="corners_aa_albums_grid" format="dimension|reference"><!-- Grid AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_other_grid" format="dimension"><!-- Grid AA corners -->
+	<attr name="corners_aa_other_grid" format="dimension|reference"><!-- Grid AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_tracks_grid_zoomed" format="dimension"><!-- Zoomed grid AA corners -->
+	<attr name="corners_aa_tracks_grid_zoomed" format="dimension|reference"><!-- Zoomed grid AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_albums_grid_zoomed" format="dimension"><!-- Zoomed grid AA corners -->
+	<attr name="corners_aa_albums_grid_zoomed" format="dimension|reference"><!-- Zoomed grid AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-	<attr name="corners_aa_other_grid_zoomed" format="dimension"><!-- Zoomed grid AA corners -->
+	<attr name="corners_aa_other_grid_zoomed" format="dimension|reference"><!-- Zoomed grid AA corners -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-				
-	<attr name="corners_aa_tracks_small" format="dimension"><!-- Compact list => possible only for tracks -->
+	<attr name="corners_aa_tracks_small" format="dimension|reference"><!-- Compact list => possible only for tracks -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
-		
-
 	<!-- AA corners for miniplayer -->
-	<attr name="corners_miniplayer_aa" format="dimension"/>
+	<attr name="corners_miniplayer_aa" format="dimension|reference">
+		<enum name="matchHeight" value="-1"/>
+	</attr>
 	
 	<attr name="EqMilkFrs_presetUri" format="string"/>
 	
@@ -261,6 +264,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="PlainSeekbar_common_marginBottom" format="dimension"/>
 	<!-- This depends on theme opts, e.g. this may be different for Alt + PlainSeekbar vs just PlainSeekbar -->
 	<attr name="PlainSeekbar_marginBottom" format="dimension"/>
+	<attr name="PlainSeekbar_metaInfo_marginBottom" format="dimension"/>
 						
 			
 	<!-- Styles, applied to ListWidget internals (e.g. LayoutEngines/HeaderEngines/etc.) -->
@@ -314,20 +318,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Additional padding to apply to AA layout. Usuful e.g. for landscape or extra views inside AA "frame" -->
 		<attr name="aaPaddingBottom" format="dimension"/>
 		
-		<!-- Max Y rotation for AA item when swiped left/right. Default value is -10.0 -->
-		<attr name="aaMaxYRotation" format="float"/>
-		<!-- Max Z rotation for AA item when swiped left/right. Default value is 5.5 -->
-		<attr name="aaMaxZRotation" format="float"/>
-		<!-- Max scale to use for hidden (out of screen) items. Default value is 0.5 -->
-		<attr name="aaMaxScale" format="float"/>
-		<!-- Dense factor > 0.0f. Values < 1 will make AA items closer to each other. Default value is 0.75 -->
-		<attr name="aaDenseFactor" format="float"/>
+		<!-- Max Y rotation for AA item when swiped left/right. Default value is -10.0.
+		     Supports <seekbar> option id reference -->
+		<attr name="aaMaxYRotation" format="float|reference"/>
+		<!-- Max Z rotation for AA item when swiped left/right. Default value is 5.5
+		     Supports <seekbar> option id reference -->
+		<attr name="aaMaxZRotation" format="float|reference"/>
+		<!-- Max scale to use for the hidden (out of the screen) items. Default value is 0.5
+		     NOTE: normal (center of the screen) scale is always 1.0. The item image, text, and buttons are scaled.
+		     Supports <seekbar> option id reference -->		
+		<attr name="aaMaxScale" format="float|reference"/>
+		<!-- Dense factor > 0.0f. Values < 1 will make AA items closer to each other. Default value is 0.75
+		     Supports <seekbar> option id reference -->		
+		<attr name="aaDenseFactor" format="float|reference"/>
 		
 		
 		<!-- Normal list item size. NOTE: grid layouts have automatic cell size, which depends on screen width and number of columns -->
 		<attr name="itemSize"/>
 		<!-- Small scene_small item size -->
 		<attr name="itemSizeSmall" format="dimension"/>
+		<!-- Small scene_small item size w/o AA -->
+		<attr name="itemSizeSmallNoAA" format="dimension"/>
 		<!-- List item size for +1 zoom level -->
 		<attr name="itemSizeZoomed" format="dimension"/>
 		
@@ -515,20 +526,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="textPadding" format="dimension"/>
 		<!-- Vertical padding between value and text -->
 		<attr name="valuePadding" format="dimension"/>
-		
 		<attr name="valueFormat" format="string"/>
 		<attr name="valueTextAppearance" format="reference"/>
 		<attr name="valueAnimZoom" format="float"/>
 		<attr name="valueAnimTime" format="integer"/>
-		
 		<attr name="valueFormatMin" format="float"/>
 		<attr name="valueFormatMax" format="float"/>
 		<attr name="valueFormatMid" format="float"/>
 		<attr name="valueFormatMidPos" format="float"/>
-		
 		<!-- If true, special lines background is rendered, android:background is ignored. EqLinesDrawable attributes can be used right in EqKnobsFastLayout styles -->
 		<attr name="linesBackground"/>
-		
+		<!-- Default is vertical. Appropriate inner drawables should be also provided rotated as needed -->
+		<attr name="android:orientation"/>
 		<attr name="android:text"/>
 		<attr name="android:textAppearance"/>
 		<attr name="android:textSize"/>
@@ -537,6 +546,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:fontFamily" />
 		<attr name="android:typeface" />
 		<attr name="android:textAllCaps" />
+		<attr name="textSizeMultiplierPref"/>
 	</declare-styleable>
 	
 	<!-- NOTE: also applies to DSPBusCheckButton -->
@@ -594,6 +604,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="valueFormatMax"/>
 		<attr name="valueFormatMid"/>
 		<attr name="valueFormatMidPos"/>
+		
+		<!-- Additional value to round to/from values prior setting. Resulting value is Math.round(value * rounding) / rounding --> 
+		<attr name="rounding" format="float"/>
 	</declare-styleable>
 	
 	

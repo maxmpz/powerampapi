@@ -98,6 +98,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogTitleProgress">@style/DialogTitleProgress</item>
 		<item name="DialogToast">@style/DialogToast</item>
 		<item name="DialogToastImg">@style/DialogToastImg</item>
+		<item name="DialogToastButton">@style/DialogToastButton</item>
 		<item name="DialogToastLine1">@style/DialogToastLine1</item>
 		<item name="DialogToastLine1_Text">@style/DialogToastLine1_Text</item>
 		<item name="DialogToastLine2">@style/DialogToastLine2</item>
@@ -329,22 +330,29 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="DialogToast">
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">40sp</item><!-- NOTE: sp to scale with the text better. Wrap content doesn't work well here due to icon + text vertically aligned -->
+		<!-- NOTE: sp to scale with the text better. Wrap content doesn't work well here due to icon + text vertically aligned
+		     REVISIT: this makes only 2 lines max allowed (each line can fit only 1 line) -->
+		<!--<item name="android:layout_height">42sp</item>-->
+		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_flexAxis">vertical</item>
 		<item name="android:layout_marginTop">5dp</item>
 		<item name="android:layout_marginBottom">5dp</item>
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">6dp</item>
 		<item name="android:minWidth">300dp</item>
-		<item name="android:minHeight">48dp</item>
+		<item name="android:minHeight">48sp</item>
 		<item name="android:visibility">gone</item>
 	</style>
 	
 	<style name="DialogToastImg">
+		<!-- NOTE: this doesn't control size of image, but size of placeholder. Image is not scaled by FastTextView -->
+		<item name="android:layout_marginTop">2sp</item>
+		<item name="android:layout_marginBottom">2sp</item>
 		<item name="android:layout_width">48dp</item>
-		<item name="android:layout_height">48dp</item>
+		<item name="android:layout_height">42sp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:gravity">center_vertical</item>
+		<!--<item name="android:layout_gravity">center_vertical</item>-->
 		<item name="android:drawable">?check_48dp</item><!-- Also ?fail_48dp can be used -->
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableOnly">true</item>
@@ -355,13 +363,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: due to consume space by image, match_parent matches the space left to the right -->
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachBottom">50%</item>
-				
-		<item name="android:maxLines">1</item>
+		<item name="android:layout_marginTop">7sp</item>
 		<item name="android:textAppearance">?DialogToastLine1_Text</item>
 	</style>
 	<style name="DialogToastLine1_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">15dp</item>
+		<item name="android:textSize">13sp</item>
 		<item name="android:textStyle">bold</item>
 	</style>
 	
@@ -370,21 +376,57 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachTop">@+id/dialog_toast_line1</item>
-		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginTop">2sp</item>
+		<item name="android:layout_marginBottom">7sp</item>
 		<item name="android:textAppearance">?DialogToastLine2_Text</item>
 	</style>
 	<style name="DialogToastLine2_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">13dp</item>
+		<item name="android:textSize">11.5sp</item>
 	</style>
 	
-	<style name="DialogToastLineOnly1" parent="DialogToastLine1">
-		<item name="android:layout_marginTop">0dp</item>
+	<!-- NOTE: this stays invisible, not gone and used as anchor for line1/2 when line1/2 is shown -->
+	<style name="DialogToastLineOnly1">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachBottom">@null</item>
 		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityTarget">@+id/dialog_toast_img</item>
+		<item name="layout_attachLeft">@+id/dialog_toast_img</item>
 		<item name="android:textAppearance">?DialogToastLineOnly1_Text</item>
 	</style>
 	<style name="DialogToastLineOnly1_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">16dp</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+	
+	<style name="DialogToastButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginTop">1sp</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityTarget">@+id/dialog_toast_img</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:textAppearance">@style/DialogToastButton_Text</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:drawablePadding">4dp</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
+		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="animOnClick">true</item>
+		<item name="android:visibility">gone</item>
+	</style>
+	<style name="DialogToastButton_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">13sp</item>
 	</style>
 	
 	<style name="DialogContent">
@@ -436,6 +478,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxWidth">148dp</item>
 		<item name="animOnClick">true</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceButton</item>
+		<item name="drawableTint">?colorIconPrimary</item>
 	</style>
 	
 	<style name="DialogNeutralButtonStyle" parent="DialogButtonStyle">
@@ -502,7 +545,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
 	</style>
 		
-	<style name="CenteredDialog_vertical_buttons" parent="CenteredDialog">
+	<!-- NOTE: forced this to normal dialog buttons for land, but again vertical for tablets -->
+	<style name="BaseCenteredDialog_vertical_buttons" parent="CenteredDialog">
 		<item name="dialogContentPaddingBottom">16dp</item><!-- Introduce some content bottom padding -->
 		
 		<item name="DialogButtonBar">@style/DialogButtonBar_vertical_buttons</item>
@@ -514,7 +558,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogButtonSpace">@style/DialogButtonSpace_vertical_buttons</item>
 		<item name="DialogPositiveSeparator">@style/DialogPositiveSeparator_vertical_buttons</item>
 	</style>
-	<style name="BottomsheetDialog_vertical_buttons" parent="BottomsheetDialog">
+	<style name="CenteredDialog_vertical_buttons" parent="BaseCenteredDialog_vertical_buttons">
+	</style>
+	
+	<!-- NOTE: forced this to normal dialog buttons for land, but again vertical for tablets -->
+	<style name="BaseBottomsheetDialog_vertical_buttons" parent="BottomsheetDialog">
 		<item name="dialogContentPaddingBottom">16dp</item><!-- Introduce some content bottom padding -->
 		
 		<item name="DialogFrame">@style/BottomsheetDialogFrame_vertical_buttons</item>
@@ -529,6 +577,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogButtonSpace">@style/DialogButtonSpace_vertical_buttons</item>
 		<item name="DialogPositiveSeparator">@style/DialogPositiveSeparator_vertical_buttons</item>
 	</style>
+	<style name="BottomsheetDialog_vertical_buttons" parent="BaseBottomsheetDialog_vertical_buttons">
+	</style>
+	
 	<style name="BottomsheetDialogFrame_vertical_buttons" parent="BottomsheetDialogFrame">
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_vertical_buttons_maxHeight</item>
 	</style>
@@ -664,5 +715,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="windowLightNavigationBar">false</item> 
 		<item name="android:navigationBarDividerColor">#08000000</item>
 		<item name="android:windowLightStatusBar">false</item>
+	</style>
+	
+	<style name="DialogRadioHalfWidth">
+		<item name="layout_widthPercent">50%</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:textSize">13sp</item>
+		<item name="android:minHeight">44sp</item>
+		<item name="android:maxLines">3</item>
+		<item name="android:minLines">3</item>
 	</style>
 </resources>

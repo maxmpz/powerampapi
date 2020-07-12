@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -43,11 +43,12 @@ name="
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
-		<item name="android:layout_marginTop">16dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityTarget">@+id/sleep_timer_button</item>
+		<item name="layout_attachLeft">@+id/sleep_timer_button</item>
 		<item name="android:visibility">invisible</item>
 		<item name="android:textAppearance">?SleepTimerTitle_Text</item>
 	</style>
@@ -61,6 +62,21 @@ name="
 		<item name="android:layout_height">wrap_content</item>
 	</style>
 	
+	<style name="SleepTimerValue">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textAppearance">@style/SleepTimerValue_Text</item>
+	</style>
+	<style name="SleepTimerValue_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">24dp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+		
 	<style name="SleepTimerSeekbar">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>

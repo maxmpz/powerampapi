@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2018 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<item type="id" name="_knob"/>
+	<item type="id" name="_label"/>
+	<item type="id" name="_value_label"/>
+	<item type="id" name="_skin_option"/>
+	<item type="id" name="menu_more_button"/>
+	<item type="id" name="perm_panel"/>
+	<item type="id" name="track_seek" />
+	<item type="id" name="play_pause" />
+	<item type="id" name="track_duration" />
+	<item type="id" name="track_elapsed" />
+	<item type="id" name="behavior_help"/>
+	<item type="id" name="search"/>
+	<item type="id" name="link"/>
+	
+	<!-- Styles -->
+	<item type="id" name="buttons1" />
+	<item type="id" name="button1"/>
+	<item type="id" name="button2"/>
+	<item type="id" name="button3"/>
+	<item type="id" name="separator3"/>
+	<item type="id" name="separator2"/>
+	<item type="id" name="separator"/>
+	<item type="id" name="navbar" />
+	<item type="id" name="aa_image" />
+	<item type="id" name="list_scroller" />
+	<item type="id" name="buttlist_indexerons1" />
+	<item type="id" name="menu_placeholder" />
+	<item type="id" name="milk" />
+	<item type="id" name="list_indexer" />
+	<item type="id" name="status_bar_bg" />
+	<item type="id" name="navigation_bar_bg"/>
+	<item type="id" name="cat_image"/>
+	<item type="id" name="num"/>
+	
+	<!-- Some old ids keeped for compatibility with skins -->
+	
+	<!--
+	<item type="id" name="" />
+	<item type="id" name="" />
+	<item type="id" name="" />
+	<item type="id" name="" />
+	<item type="id" name="" />
+	<item type="id" name="" />
+	<item type="id" name="" />
+	<item type="id" name="" />
+	<item type="id" name="" />
+	>-->
+</resources>

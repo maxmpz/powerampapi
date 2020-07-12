@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -31,13 +31,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		w:msgId="@id/cmd_list_add_to_pl_dialog"
 	/>
-	<com.maxmpz.widget.base.BusStateEnabledActionButton
+	<!-- NOTE: when queue_as_next enabled, enqueue is hidden, otherwise queue_as_next is hidden --> 
+	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/enqueue"
 		style="?SelectionListContextButton"
 		android:drawable="?enqueue"
 		android:text="@string/queue"
 		w:stateId="@id/state_list_something_selected"
 		w:stateMsgId="@id/state_list_selection_count"
 		
+		w:msgId="@id/cmd_list_add_to_q"
+	/>
+	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/queue_as_next"
+		style="?SelectionListContextButton"
+		android:drawable="?enqueue"
+		android:text="@string/queue_as_next"
+		w:stateId="@id/state_list_something_selected"
+		w:stateMsgId="@id/state_list_selection_count"
+
 		w:msgId="@id/cmd_list_add_to_q"
 	/>
 	<com.maxmpz.widget.base.BusStateEnabledActionButton

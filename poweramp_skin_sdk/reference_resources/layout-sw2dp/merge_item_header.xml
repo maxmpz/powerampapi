@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -57,6 +57,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
 		w:baseScene="defaultScene"
 	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_small_no_aa" w:scene_2="@+id/scene_1_small_no_aa"
+		w:baseScene="defaultScene"
+	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" 
 		android:visibility="gone"
 	/>
@@ -64,20 +67,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemHeaderButtonsBg_scene_header"
 	/>
 		
-
+	<!-- Handled by code, no <tag> is needed -->
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/shuffle_button" 
 		style="?ItemHeaderShuffleButton"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_shuffle"
-	>
-		<!--<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/> NOTE: ATM shuffle button is specifically handled-->
-	</com.maxmpz.widget.base.BusActionButton>
+		android:contentDescription="@string/shuffle"
+	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_small"
 		w:scene_5="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_1_small_no_aa" w:scene_2="@+id/scene_small_no_aa"
 		w:baseScene="defaultScene"
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" 
@@ -91,6 +96,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemHeaderPlayButton"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_play"
+		android:contentDescription="@string/play"
 	>
 		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
 	</com.maxmpz.widget.base.BusActionButton>
@@ -102,6 +108,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
 		w:baseScene="defaultScene"
 	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_1_small_no_aa" w:scene_2="@+id/scene_small_no_aa"
+		w:baseScene="defaultScene"
+	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemHeaderPlayButton_scene_menu"
 	/>
@@ -109,11 +118,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemHeaderPlayButton_scene_header"
 	/>
 	
-	<!-- NOTE: invisible by default -->
+	<!-- NOTE: invisible by default, handled by code, no <tag> needed -->
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/search_button"
 		style="?ItemHeaderSearchButton"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_target_search"
+		android:contentDescription="@string/search"
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_small"
 		w:scene_5="@+id/scene_1_small"
@@ -122,6 +132,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
+		w:baseScene="defaultScene"
+		w:applyEvenIfGone="dontApplyIfGone"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_1_small_no_aa" w:scene_2="@+id/scene_small_no_aa"
 		w:baseScene="defaultScene"
 		w:applyEvenIfGone="dontApplyIfGone"
 	/>
@@ -149,6 +163,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
 		w:baseScene="defaultScene"
 	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_1_small_no_aa" w:scene_2="@+id/scene_small_no_aa"
+		w:baseScene="defaultScene"
+	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemHeaderSelectButton_scene_menu"
 	/>
@@ -169,6 +186,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_1_small"
+		w:baseScene="defaultScene"
+		android:visibility="invisible"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_1_small_no_aa" w:scene_2="@+id/scene_small_no_aa"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<attr name="all_songs" format="reference"/>
+	<attr name="folders" format="reference"/>
+	<attr name="folders_hier" format="reference"/>
+	<attr name="albums" format="reference"/>
+	<attr name="artists" format="reference"/>
+	<attr name="album_artists" format="reference"/>
+	<attr name="albums_by_artist" format="reference"/>
+	<attr name="composers" format="reference"/>
+	<attr name="playlists" format="reference"/>
+	<attr name="genres" format="reference"/>
+	<attr name="queue" format="reference"/>
+	<attr name="most_played" format="reference"/>
+	<attr name="top_rated" format="reference"/>
+	<attr name="low_rated" format="reference"/>
+	<attr name="recently_played" format="reference"/>
+	<attr name="recently_added" format="reference"/>
+	<attr name="long_files" format="reference"/>
+	<attr name="years" format="reference"/>
+	<attr name="streams" format="reference"/>
+	<attr name="bookmarks" format="reference"/>
+	<!-- 20 -->
+	
+	<attr name="micro_all_songs" format="reference"/>
+	<attr name="micro_folders" format="reference"/>
+	<attr name="micro_folders_hier" format="reference"/>
+	<attr name="micro_albums" format="reference"/>
+	<attr name="micro_artists" format="reference"/>
+	<attr name="micro_album_artists" format="reference"/>
+	<attr name="micro_albums_by_artist" format="reference"/>
+	<attr name="micro_composers" format="reference"/>
+	<attr name="micro_playlists" format="reference"/>
+	<attr name="micro_genres" format="reference"/>
+	<attr name="micro_queue" format="reference"/>
+	<attr name="micro_most_played" format="reference"/>
+	<attr name="micro_top_rated" format="reference"/>
+	<attr name="micro_low_rated" format="reference"/>
+	<attr name="micro_recently_played" format="reference"/>
+	<attr name="micro_recently_added" format="reference"/>
+	<attr name="micro_long_files" format="reference"/>
+	<attr name="micro_years" format="reference"/>
+	<attr name="micro_streams" format="reference"/>
+	<attr name="micro_bookmarks" format="reference"/>
+	<!-- 20 -->
+	
+	<attr name="micro_raw_file" format="reference"/>
+	<!-- + 1 -->
+	
+	<attr name="folder_cat_icon" format="reference"/>
+	
+	<!-- Sync to RestLibraryItems -->
+	<declare-styleable name="ListIcons">
+		<attr name="all_songs"/>
+		<attr name="folders"/>
+		<attr name="folders_hier"/>
+		<attr name="albums"/>
+		<attr name="artists"/>
+		<attr name="album_artists"/>
+		<attr name="albums_by_artist"/>
+		<attr name="genres"/>
+		<attr name="composers"/>
+		<attr name="playlists"/>
+		<attr name="queue"/>
+		<attr name="most_played"/>
+		<attr name="top_rated"/>
+		<attr name="low_rated"/>
+		<attr name="recently_played"/>
+		<attr name="recently_added"/>
+		<attr name="long_files"/>
+		<attr name="years"/>
+		<attr name="streams"/>
+		<attr name="bookmarks"/>
+		<!-- 20 -->
+	</declare-styleable>
+</resources>

@@ -153,15 +153,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					<com.maxmpz.widget.base.FastTextView android:id="@+id/dialog_toast_img"
 						style="?DialogToastImg"
 					/>
+					<com.maxmpz.widget.base.FastButton android:id="@+id/dialog_toast_button"
+						style="?DialogToastButton"
+					/>
+					<TextView android:id="@+id/dialog_toast_line_only_1"
+						style="?DialogToastLineOnly1"
+					/>
 					<!-- NOTE: text views here to support styleable charsequences -->
 					<TextView android:id="@+id/dialog_toast_line1"
 						style="?DialogToastLine1"
 					/>
 					<TextView android:id="@+id/dialog_toast_line2"
 						style="?DialogToastLine2"
-					/>
-					<TextView android:id="@+id/dialog_toast_line_only_1"
-						style="?DialogToastLineOnly1"
 					/>
 				</com.maxmpz.widget.base.FastLayout>
 				<!-- Toast visible in those states. 5% - looks like relayout is needed, but not at "on_start" -->
@@ -246,7 +249,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:privateScene="true"
 		/>
 		
-		<include android:layout="@layout/merge_toast"/><!-- NOTE: for some project, can be empty -->
+		<include android:layout="@layout/merge_toast"/><!-- NOTE: for some projects can be empty -->
 				
 	</com.maxmpz.widget.base.DialogOuterFastLayout>
 	<!-- NOTE: empty SceneParams for dialog-in scenes. Needed for AdjustToSoftKeyboardBehavior - it animates current scene for soft keyboard -->

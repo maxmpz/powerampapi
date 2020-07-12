@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -60,7 +60,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/tempo_button"
 			style="?EqTempoCheckButton"
 			w:param="@id/dsp_tempo_enabled"
-			w:updateMsgId="@id/msg_dsp_other_changed"
+			w:updateMsgId="@id/msg_dsp_tempo_state_changed"
 			android:text="@string/tempo"
 		/>
 			
@@ -69,20 +69,48 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 			w:param="@id/dsp_tempo"
 			w:enablingParam="@id/dsp_tempo_enabled"
-			w:updateMsgId="@id/msg_dsp_other_changed"
+			w:updateMsgId="@id/msg_dsp_tempo_state_changed"
 			
 			w:snapTo="0.5"
 			w:dependentLabel="@+id/tempo_label1"
 			w:dependentLabel2="@+id/tempo_label2"
 			w:valueFormat="@string/format_2f_x"
 			w:valueFormatMin="0.5"
-			w:valueFormatMax="2.0"
+			w:valueFormatMax="3.0"
 			w:valueFormatMid="1.0"
 			w:valueFormatMidPos="0.5"
 			
 			w:leftLabelText="@string/tempo_05x"
-			w:rightLabelText="@string/tempo_2x"
+			w:rightLabelText="@string/tempo_3x"
+			android:contentDescription="@string/tempo"
 		/>
+		
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/tempo_plus_button"
+			style="?EqTempoPlusButton"
+			w:busId="@id/bus_dsp_cmd"
+			w:msgId="@id/cmd_dsp_tempo_plus_minus"
+			w:arg1="1"
+			
+			w:disableForStateBusId="@id/bus_dsp"
+			w:enableForStateId="@id/dsp_tempo_plus_enabled"
+			w:disableForStateMsgId="@id/msg_dsp_tempo_state_changed"
+			
+			android:text="+"
+		/>
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/tempo_minus_button"
+			style="?EqTempoMinusButton"
+			w:busId="@id/bus_dsp_cmd"
+			w:msgId="@id/cmd_dsp_tempo_plus_minus"
+			w:arg1="-1"
+			
+			w:disableForStateBusId="@id/bus_dsp"
+			w:enableForStateId="@id/dsp_tempo_minus_enabled"
+			w:disableForStateMsgId="@id/msg_dsp_tempo_state_changed"
+
+			android:text="-"
+		/>
+		
+						
 	
 	</com.maxmpz.widget.base.FastLayout><!-- tempo_knob_outer_layout -->
 	
@@ -120,6 +148,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 				
 			
+		<!-- NOTE: 100.5 rounding helps with 0-100 (101 items) to 100 steps rounding, especially around 50% (where by default rounded 0.5050 value is ~51%) -->
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/volume_knob_layout"
 			style="?EqVolumeKnobLayout"
 			
@@ -129,6 +158,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:valueFormat="@string/f0_percent"
 			w:valueFormatMin="0"
 			w:valueFormatMax="100"
+			w:rounding="100.5"
 			
 			w:labelText="@string/volume"
 		/>

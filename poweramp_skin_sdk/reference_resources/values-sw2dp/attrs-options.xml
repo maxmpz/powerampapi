@@ -38,7 +38,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Applied (over main theme style) when Chromecast buttons should be disabled completely. NOTE: default style shows CC button on top of main screen AA -->
 		<attr name="OptionCCDisabled" format="reference"/>
 		
-		<!-- Applied (over main theme style) when Chromecast should be shown in main menu. NOTE: default style shows CC button on top of main screen AA -->
+		<!-- Applied (over main theme style) when Chromecast should be shown as main UI button. NOTE: default style shows CC button on top of main screen AA -->
+		<attr name="OptionCCMainUIButton" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Chromecast should be shown in the main menu. NOTE: default style shows CC button on top of main screen AA -->
 		<attr name="OptionCCInMenu" format="reference"/>
 		
 		<!-- Applied (over main theme style) when Chromecast should be shown in main UI AND main menu -->
@@ -50,7 +53,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Applied (over main theme style) when hide menu option is enabled -->
 		<attr name="OptionHideMenu" format="reference"/>
 		
-		<!-- Applied (over main theme style) when Keep Album Art / Images Aspect Ratio option is enabled -->
+		<!-- Applied (over main theme style) when Keep Aspect Ratio option is enabled -->
 		<attr name="OptionAAKeepAspect" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Crop Album Art option is enabled -->
+		<attr name="OptionAACrop" format="reference"/>
 	</declare-styleable>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -46,12 +46,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<com.maxmpz.widget.player.MilkFRS android:id="@+id/milk_frs"
 		style="?EqMilkFrs"
+		android:contentDescription="@string/h_frs_drag_to_scroll"
 	/>
 	
 	<com.maxmpz.widget.player.FrequencyResponseScroller android:id="@+id/frequency_response_scroller"
 		style="?EqFrequencyResponseScroller"
 		w:scrollable="@id/eq_knobs_layout"
 		w:useDSPBus="true"
+		android:importantForAccessibility="yes"
 	/>
 	
 	<com.maxmpz.widget.base.BusActionPopupLayout android:id="@+id/frs_info_label"
@@ -161,7 +163,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:valueFormatMin="0"
 		w:valueFormatMax="100"
 		
-		android:importantForAccessibility="yes"
 	/>
 	
 	<com.maxmpz.widget.player.DSPToneRoundKnobLayout android:id="@+id/eq_treble_knob_layout"
@@ -175,7 +176,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:valueFormat="@string/f0_percent"
 		w:valueFormatMin="0"
 		w:valueFormatMax="100"
-		
-		android:importantForAccessibility="yes"
 	/>
 </com.maxmpz.widget.base.SceneFastLayout>

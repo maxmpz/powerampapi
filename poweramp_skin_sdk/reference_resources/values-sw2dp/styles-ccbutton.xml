@@ -73,6 +73,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:visibility">gone</item>
 	</style>
 	
+	<!-- Mostly same as usual CcButton_MainUI but with the background --> 
+	<style name="CcButton_MainUIButtonBase" parent="CcButton_MainUIBase">
+		<item name="android:background">@drawable/alpha_popup_button_layout_bg</item>
+		<item name="android:padding">8dp</item>
+		<item name="drawableTint">?colorLessContrast</item>
+	</style>
+	<!-- Overriden in values-sw2dp-land -->
+	<style name="CcButton_MainUIButton" parent="CcButton_MainUIButtonBase">
+	</style>
+	
+	
 	<style name="CcButton_MainUI_disabled">
 		<item name="android:enabled">false</item>
 		<item name="android:visibility">gone</item>

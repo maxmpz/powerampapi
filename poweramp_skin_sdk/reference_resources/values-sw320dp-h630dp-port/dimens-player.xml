@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -24,6 +24,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="TopWaveseek_maxHeight">112dp</dimen>
 	
-	<!-- Alt -->
-	<!-- <dimen name="Alt_aaMaxSize">382dp</dimen> Not used anymore -->	
 </resources>

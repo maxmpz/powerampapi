@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -74,6 +74,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:clickable">false</item>
 		
 		<item name="applyEvenIfGone">true</item><!-- NOTE: as select_box is almost always force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
+	</style>
+	<style name="ItemTrackSelectBox_scene_small_no_aa" parent="ItemTrackSelectBox">
+		<item name="android:layout_gravity">right|center_vertical</item>
+		<item name="android:layout_marginRight">16dp</item>
 	</style>
 	<style name="ItemTrackSelectBox_scene_grid">
 		<item name="android:layout_gravity">top</item>
@@ -311,6 +315,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="hiRes">false</item>
 		<item name="android:visibility">visible</item>
 	</style>
+	<style name="ItemTrackAAImage_scene_small_no_aa" parent="ItemTrackAAImage_scene_small">
+		<!-- NOTE: instead of making AA gone, we're just making it invisible and shifting margin negatively so 
+		     other views take it place. Setting width/height to 0 is an alternative.
+		     Just visibility=gone here will not result in smooth animation between main screen and lists --> 
+		<item name="android:visibility">invisible</item>
+		<item name="android:layout_marginRight">-48dp</item>
+	</style>
 	<style name="ItemTrackAAImage_scene_aa">
 		<item name="recalcChildren">dynamic</item>
 		<item name="android:layout_width">match_parent</item>
@@ -439,7 +450,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">visible</item>
 		<item name="android:elevation">?list_aa_elevation</item><!-- NOTE: using list elevation for menu -->
 	</style>
-	<!-- NOTE: in scene_item_menu_lue layout of items views is:
+	<!-- NOTE: in scene_item_menu_lu layout of items views is:
 	     
 	     aa_image (fixed height which is always > total title + line2 + meta height)
 	     +-~-+  title -> aa_image top 
@@ -607,7 +618,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">@+id/cat_image</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">0dp</item>
-		<item name="android:layout_marginBottom">-3dp</item><!-- Make title closer to line2 - by default distance is too large due to the paddings for line background -->
+		<item name="android:layout_marginBottom">-4.5dp</item><!-- Make title closer to line2 - by default distance is too large due to the paddings for line background -->
 		<item name="layout_attachBottom">50%</item>
 		<item name="layout_attachTop">@null</item>
 	</style>
@@ -838,7 +849,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachLeft">@id/aa_image</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">-8dp</item><!-- Compensate for padding -->
-		<item name="android:layout_marginTop">-3dp</item>
+		<item name="android:layout_marginTop">-1.5dp</item>
 		<item name="layout_attachRight">@id/meta</item>
 		<item name="layout_attachTop">50%</item>
 	</style>
@@ -1225,6 +1236,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="drawablePaddingStart">5dp</item>
 		
 		<item name="applyEvenIfGone">true</item><!-- NOTE: as this is view is generaly force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
+	</style>
+	<style name="ItemTrackDragHandler_scene_small_no_aa" parent="ItemTrackDragHandler">
+		<item name="android:layout_gravity">right|center_vertical</item>
+		<item name="android:layout_marginRight">56dp</item><!-- Some space for selectbox to the right -->
 	</style>
 	<style name="ItemTrackDragHandler_scene_grid">
 		<!-- <item name="android:visibility">visible</item> --><!-- DEBUG -->
@@ -1724,6 +1739,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachTop">inset</item>
 		<item name="android:layout_gravity">right</item>
 		<item name="android:visibility">visible</item>
+		<item name="android:background">@drawable/ripple_rounded_large</item>
+		<item name="android:clickable">true</item>
 	</style>
 	<style name="ItemHeaderScanProgress_scene_header" parent="ItemHeaderScanProgress">
 		<item name="recalcChildren">on_start</item>
@@ -1747,6 +1764,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">center_vertical|right</item>
 		<item name="android:layout_marginTop">12dp</item>
 		<item name="android:layout_marginRight">24dp</item>
+		<item name="android:background">@drawable/ripple_rounded_large</item>
+		<item name="android:clickable">true</item>
 	</style>
 	<style name="ItemTextHeaderScanProgress_scene_header" parent="ItemTextHeaderScanProgress">
 		<item name="layout_attachTop">inset</item>
@@ -2310,6 +2329,14 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">1dp</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
+	</style>
+	<style name="ItemPopupMenuSeparator2" parent="ItemPopupMenuSeparator"><!-- Just a space -->
+		<item name="android:background">?colorSeparatorLight</item>
+		<item name="android:layout_marginBottom">3dp</item>
+		<item name="android:layout_marginTop">3dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item>
 	</style>
 	
 	<style name="ItemPopupMenuItemsLayout">

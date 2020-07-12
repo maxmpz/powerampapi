@@ -30,6 +30,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="PlainSeekbar_common_marginBottom">0dp</dimen>
 	<dimen name="Alt_PlainSeekbar_common_marginBottom">0dp</dimen>
+	<dimen name="PlainSeekbar_metaInfo_marginBottom">0dp</dimen>
+	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">0dp</dimen>
 		
 	
 	<!-- Alt -->

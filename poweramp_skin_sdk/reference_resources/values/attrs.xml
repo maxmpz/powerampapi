@@ -66,6 +66,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="dialog_PlaylistShortcutActivity" format="reference"/>
 		<attr name="dialog_MediaRouteChooserActivity" format="reference"/>
 		<attr name="dialog_MediaRouteControllerActivity" format="reference"/>
+		<attr name="dialog_EqPresetsActivity" format="reference"/>
 		<attr name="dialog_LyricsActivity" format="reference"/>
 		<attr name="dialog_PlaylistsExportActivity" format="reference"/>		
 		<attr name="dialog_MobirooDRMErrorActivity" format="reference"/>
@@ -93,18 +94,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<enum name="fitCenter" value="3" />
 		<enum name="centerCrop" value="6" />
 		<enum name="centerInside" value="7" />
+		<enum name="centerCropXY" value="8" />
 	</attr>
-	
-		
-	<declare-styleable name="TextAppearance">
-		<attr name="android:textColor" />
-		<attr name="android:textSize" />
-		<attr name="android:textStyle" />
-		<attr name="android:typeface" />
-		<attr name="android:fontFamily" />
-		<attr name="android:textAllCaps"/>
-	</declare-styleable>
- 
 	
 	<declare-styleable name="SelectPluginPreference">
 		<attr name="types" format="string"/>

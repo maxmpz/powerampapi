@@ -28,6 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<com.maxmpz.widget.player.FrequencyResponseScroller android:id="@+id/frs"
 		style="?ItemPopupListFrs"
+		android:importantForAccessibility="no"
 	/>
 	
 	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/select_box"

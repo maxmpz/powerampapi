@@ -102,6 +102,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="DialogToast" format="reference"/>
 	<attr name="DialogToastImg" format="reference"/>
+	<attr name="DialogToastButton" format="reference"/>
 	<attr name="DialogToastLine1" format="reference"/>
 	<attr name="DialogToastLine1_Text" format="reference"/>
 	<attr name="DialogToastLine2" format="reference"/>

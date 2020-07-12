@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -43,8 +43,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_app_rescan"/><!-- arg1 => boolean, slow scan if true, obj => String cause of rescan -->
 	<item type="id" name="cmd_app_milk_rescan"/><!-- arg1 => boolean, slow scan if true, arg2 => boolean, force resolve playlists, obj => String cause of rescan -->
 	<item type="id" name="cmd_app_storage_perm_dialog"/><!-- obj => PermissionRequest. NOTE: dialogs can intercept result if dialog activity sets itself as registerLastStartedNonDialogActivity() in onStart -->
-	
 	<item type="id" name="msg_app_storage_perm_granted"/>
+	<item type="id" name="msg_app_storage_perm_failed"/>
+	
+	<item type="id" name="cmd_app_create_file_dialog"/><!-- obj => CreateFileRequest -->
+	<item type="id" name="msg_app_create_file_dialog_res"/><!-- obj => uri or null -->
+	<item type="id" name="cmd_app_open_file_dialog"/><!-- obj => OpenFileRequest -->
+	<item type="id" name="msg_app_open_file_dialog_res"/><!-- obj => uri or null -->
+	
 	<item type="id" name="msg_app_aa_refreshed"/><!-- bus_app. Refretch AA. Should be sent by AppAAProvider after cmd_app_refresh_aa  -->
 	 
 	<item type="id" name="msg_app_dir_scan_started"/>
@@ -52,23 +58,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_app_dir_scan_progress"/><!-- arg1 => dirCount, arg2 => fileCount -->
 	<item type="id" name="msg_app_tag_scan_started"/>
 	<item type="id" name="msg_app_tag_scan_progress"/><!-- arg1 => fileCount -->
-	<item type="id" name="msg_app_tag_scan_finished"/><!-- arg1=boolean tracksChanged, arg2=boolean changedAfterFoldersScan -->
+	<item type="id" name="msg_app_tag_scan_finished"/><!-- arg1=boolean tracksChanged, arg2=int flags -->
 	<item type="id" name="msg_app_data_changed"/><!-- bus_app. obj => RestEntity of data changed, or "settings"/null for global refresh, arg1 => RestLibrary.DATA_CHANGED_* -->
 	<item type="id" name="msg_app_milk_data_changed"/><!-- obj => RestMilkPreset. MilkRNP reloads, includes any milk data changes, sort, etc. Needed to avoid reacting to msg_player_milk_preset_changed on each preset change -->
 	<item type="id" name="msg_app_settings_index_changed"/>
 	<item type="id" name="msg_app_data_added"/>
-	<item type="id" name="cmd_app_on_mediabrowser_started"/><!-- NOTE: needed to track browser state -->
-	<item type="id" name="cmd_app_on_mediabrowser_stopped"/>
+	<item type="id" name="cmd_app_on_mediabrowser_started"/><!-- NOTE: needed to track browser state, obj = broswer client pak. Sent for browser onCreate with __unknown__ and for every getRoot with client package -->
+	<item type="id" name="cmd_app_on_mediabrowser_stopped"/><!-- obj = broswer client pak -->
 	<item type="id" name="msg_app_mediabrowser_started"/>
 	<item type="id" name="msg_app_mediabrowser_stopped"/>
 	<item type="id" name="msg_app_mediabrowser_refresh"/><!-- Force BrowserSerivce to send refresh event, e.g. when some browser specific options are changed -->
 	<item type="id" name="msg_app_version_check"/><!-- arg1 => boolean started/ended, arg2 => response version code -->
 		
-	<item type="id" name="state_app_scanning"/><!-- boolean, true if there is a folders/library scan running -->
+	<item type="id" name="state_app_scanning"/><!-- boolean, true if there is a folders/library scan running, int - state of the scanning -->
 
 	<item type="id" name="cmd_app_on_lockscreen_mode"/><!-- arg1 => 1 - ls active, 0 - ls not active -->
 	<item type="id" name="state_app_lockscreen_active"/><!-- boolean --> 
-	<item type="id" name="state_app_browser_started"/><!-- boolean -->
+	<item type="id" name="state_app_browser_started"/><!-- boolean or String == browser last connected package -->
+	<item type="id" name="state_app_shutdown"/><!-- boolean, true => device shutdown is in effect -->
 			
 	<!-- <item type="id" name="cmd_disable_nav"/> NOTE: not used ATM --><!-- bus_gui -->
 	<!-- <item type="id" name="cmd_enable_nav"/>  NOTE: not used ATM --><!-- bus_gui -->
@@ -100,7 +107,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_gui_close_help"/>
 	
 	<item type="id" name="cmd_gui_set_vis_mode"/><!-- bus_gui, integer VIS_* -->
-	<!-- <item type="id" name="cmd_gui_sleep_timer"/> --><!-- bus_data_cmd REVISIT: data bus? -->
 	<item type="id" name="cmd_gui_apply_aa_blur_prefs"/><!-- bus_gui -->
 	<item type="id" name="cmd_gui_show_hide_milk"/><!-- bus_gui, arg1 => STATE_TRUE => show, STATE_FALSE => hide -->
 	
@@ -156,9 +162,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_current_artist"/>
 	<item type="id" name="cmd_list_current_album"/>
 	<item type="id" name="cmd_list_current_folder"/><!-- If folders_hier is active, goes to folders hierarchy, just to folders otherwise -->
-	<item type="id" name="cmd_list_current_genre"/>
+	<item type="id" name="cmd_list_current_genre"/><!-- Requires obj => Long - the genre id -->
+	<item type="id" name="cmd_request_current_genre"/><!-- Calls => cmd_list_current_genre with appropriate current track first picked genre id -->
+	<item type="id" name="cmd_data_bookmark_now"/>
+	<item type="id" name="cmd_list_rescan"/>
+	<item type="id" name="cmd_data_request_rescan"/><!-- Resolves obj => uri to extra info as needed for the rescan and starts it -->
 	
 	<item type="id" name="cmd_data_mass_add_to_q"/><!-- arg1 => boolean, 0 - just add to q, 1 - clear q, add and play (forced for queue_clear_on_add pref), arg2 - shuffle mode for playing q, obj => UriAndIds -->
+	
 	
 	
 	<item type="id" name="cmd_data_add_eq_preset_dialog"/><!-- bus_data_cmd -->
@@ -192,6 +203,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_play"/>
 	<item type="id" name="cmd_list_shuffle"/>
 	<item type="id" name="cmd_list_add_url"/><!-- Opens dialog -->
+	<item type="id" name="cmd_list_bookmark"/>
 	
 	<item type="id" name="state_gui_vis_mode"/><!-- integer VIS_* -->
 	<item type="id" name="state_gui_eq_tab"/><!-- integer EQ_TAB_* -->
@@ -233,7 +245,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_player_track_seek"/><!-- arg1 => posMs -->
 	<item type="id" name="msg_player_repeat_mode_changed"/><!-- arg1 => @integer/REPEAT_*, arg2 = boolean - show toast, obj = MetaTrackInfo (if it's changed) -->
 	<item type="id" name="msg_player_shuffle_mode_changed"/><!-- arg1 => @integer/SHUFFLE_*, arg2 = boolean - show toast -->
-	<item type="id" name="msg_player_sleep_timer"/><!-- arg1 => SystemClock.uptimeMilli() base seconds when to sleep, or 0 if sleep timer is disabled -->
+	<item type="id" name="msg_player_sleep_timer"/><!-- arg1 => seconds to sleep in, or 0 if sleep timer is disabled -->
 	<item type="id" name="msg_player_track_meta_switched"/>
 	<item type="id" name="msg_player_track_wave_changed"/>
 	<!-- NOTE: this is called after cmd_player_on_queue_updated, but on bus_player, and only if PS is alive --> 
@@ -294,7 +306,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<item type="id" name="state_player_folder_info"/><!-- string -->
 	<item type="id" name="state_player_next_track_info"/><!-- string -->
-	<item type="id" name="state_player_sleep_timer"/><!-- int. SystemClock.uptimeMilli() base seconds when to sleep, or 0 if sleep timer is disabled. boolean => enabled/disabled -->
+	<!-- int => seconds to sleep in, or 0 if sleep timer is disabled. 
+		 boolean => enabled/disabled.
+		 long => future sleep time in SystemClock.uptimeMillis base or 0 if no future time is set yet 
+		         (sleep timer may be enabled, but pending) -->
+	<item type="id" name="state_player_sleep_timer"/>
 	
 	<item type="id" name="state_player_media_session"/><!-- object => MediaSessionCompat -->
 	<item type="id" name="state_player_mediacontroller_for_vol"/><!-- object => MediaController (raw). NOTE: set only when such volume controller is actually needed (e.g. not for CC) -->
@@ -312,7 +328,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- PS inbounds commands -->
-	<item type="id" name="cmd_player_play_uri"/><!-- arg1 => STATE_TRUE=>pause, STATE_FALSE/default=>play, arg2 => optional int PrefsConsts.PLAYLIST_ACTION_*, obj => Uri -->
+	<item type="id" name="cmd_player_play_uri"/><!-- arg1 => STATE_TRUE=>pause, STATE_FALSE/default=>play, arg2 => optional int PrefsConsts.PLAYLIST_ACTION_*, obj => Uri or Intent with the uri -->
 	<item type="id" name="cmd_player_play_pos"/><!-- arg1 => pos in current list to play -->
 	<item type="id" name="cmd_player_pause_playing"/><!-- arg1 => STATE_TRUE - no fade, arg2 => PowerampAPI.PauseFlags. Public -->
 	<item type="id" name="cmd_player_resume_playing"/>
@@ -401,6 +417,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_dsp_param"/><!-- arg1=> param id (dsp_*), arg2 => float, obj => DSPState -->
 	<item type="id" name="msg_dsp_boolean_param"/><!-- arg1=> param id (dsp_*), arg2 => boolean, obj => DSPState -->
 	<item type="id" name="msg_dsp_eq_band_gain"/><!-- arg1 => band index, arg2 => float -->
+	<item type="id" name="msg_dsp_tempo_state_changed"/><!-- Send on tempo state changes (e.g. enabled/disabled, plus/minus enabled/disabled)-->
 	
 	<!-- <item type="id" name="msg_dsp_eq_preset_changed"/> -->
 	<!-- <item type="id" name="msg_dsp_reverb_preset_changed"/> -->
@@ -416,6 +433,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_dsp_volume_may_be_changed"/><!-- arg1 => boolean isTransient -->
 	<item type="id" name="cmd_dsp_switch_dsp_meta"/><!-- NOTE: handled in PlayerState -->
 	<item type="id" name="cmd_dsp_open_platform_fx"/>
+	<item type="id" name="cmd_dsp_tempo_plus_minus"/><!-- arg1 >= 0 - plus, arg1 < 0 - minus -->
+	
 	
 	<!-- DSP bus params and states. Short for state_* as dsp_* prefix is enough --> 
 	<item type="id" name="dsp_started"/><!-- boolean -->
@@ -426,6 +445,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="dsp_tone_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_limiter_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_tempo_enabled"/><!-- boolean -->
+	<item type="id" name="dsp_tempo_plus_enabled"/><!-- boolean -->
+	<item type="id" name="dsp_tempo_minus_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_mono_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_reverb_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_balance_enabled"/><!-- boolean, only sent when balance changes from/to 0.5f -->

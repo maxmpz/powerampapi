@@ -141,11 +141,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:nestedScrollingEnabled">true</item>
 	</style>
 	
-	<style name="MediaRouterPopupDialogListLayoutList" parent="PopupDialogListLayoutList">
+	<style name="ExpandedListLayoutBase" parent="PopupDialogListLayoutList">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">192dp</item><!-- 64 * 3 -->
 		<item name="android:scrollbars">vertical</item>
 		<item name="android:nestedScrollingEnabled">true</item>
+	</style>
+	
+	<style name="MediaRouterPopupDialogListLayoutList" parent="ExpandedListLayoutBase">
+		<item name="android:layout_height">192dp</item><!-- 64 * 3 -->
+	</style>
+	
+	<style name="EqPresetListLayout" parent="ExpandedListLayoutBase">
+		<item name="android:layout_height">@dimen/PopupLayoutList_height</item>
 	</style>
 	
 	<style name="PopupListLayoutList">

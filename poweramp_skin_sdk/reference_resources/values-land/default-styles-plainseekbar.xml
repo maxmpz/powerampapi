@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="PlainSeekbar_TopMetaInfoLayout" parent="TopMetaInfoLayout">
-		<item name="android:layout_marginBottom">?PlainSeekbar_common_marginBottom</item>
+		<item name="android:layout_marginBottom">?PlainSeekbar_metaInfo_marginBottom</item>
 		<item name="layout_attachBottomToBottom">@id/waveseek_layout</item>
 	</style>
 	
