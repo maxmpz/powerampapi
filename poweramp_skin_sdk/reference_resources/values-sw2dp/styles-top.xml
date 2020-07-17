@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -127,13 +127,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="ListSubstyleBase2">
 		<item name="addStatusBarHeightToHeaders">true</item>
-		<item name="textHeaderSize">186dp</item>
 		<item name="headerSize">236dp</item>
+		<item name="humanCatHeaderSize">276dp</item>
+		<item name="textHeaderSize">186dp</item>
+		<item name="topTextHeaderSize">76dp</item>
 		<item name="searchHeaderSize">106dp</item><!-- Includes margin for status bar and search field -->
 		<item name="targetSearchHeaderSize">142dp</item><!-- Includes margin for status bar, search field, and target button -->
-		<item name="humanCatHeaderSize">276dp</item>
-		<item name="topTextHeaderSize">76dp</item>
 		
+		<item name="maxFontScaleForCompact">1.3</item>
+		
+		<item name="compactHeaderSize">200dp</item>
+		<item name="compactHumanCatHeaderSize">160dp</item>
+		<item name="compactTextHeaderSize">166dp</item>
+
 		<item name="separatorSize">32dp</item>
 		
 		<!-- This is minumum space on the bottom AA layout tries to maintain. Usually in portrait orientation there is enough space for other controls, but
@@ -146,9 +152,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="itemSize">96dp</item>
 		<item name="itemSizeZoomed">137dp</item>
-		<item name="itemSizeSmall">62dp</item>
-		<item name="itemSizeSmallNoAA">58dp</item>
+		
+		<!-- NOTE: small item layouts use sp to better fit user scalable text inside. 
+		     This is needed due to the tight paddings there and as compact (but still fitting all text) height as possible --> 
+		<item name="itemSizeSmall">56.36sp</item><!-- 62dp normalized -->
+		<item name="itemSizeSmallNoAA">49.09sp</item><!-- 54dp normalized -->
+		<item name="itemSize1SmallNoAA">43.64sp</item><!-- 48dp normalized -->
+		<item name="itemSize1SmallNoAAExtraSmall">34.55sp</item><!-- 38dp normalized -->
+		
 		<item name="textItemSize">64dp</item>
+		<item name="compactTextItemSize">52dp</item>
 		
 		<item name="allTracksSubheadSize">88dp</item><!-- Size of all-tracks subheader, e.g. Artists/Albums all songs -->
 		<item name="metaSubheadSize">24dp</item><!-- Size of meta subheader, e.g. for any Files --><!-- Not used ATM --> 

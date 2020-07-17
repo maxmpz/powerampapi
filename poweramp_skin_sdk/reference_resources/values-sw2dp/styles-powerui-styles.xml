@@ -195,13 +195,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackCatImage_Text">@style/ItemTrackCatImage_Text</item>
 		<item name="ItemTrackCatImage_scene_zoomed">@style/ItemTrackCatImage_scene_zoomed</item>
 		<item name="ItemTrackCatImage_scene_small">@style/ItemTrackCatImage_scene_small</item>
+		<item name="ItemTrackCatImage_scene_1_small">@style/ItemTrackCatImage_scene_1_small</item>
 		<item name="ItemTrackCatImage_scene_header">@style/ItemTrackCatImage_hidden</item>
 		<item name="ItemTrackCatImage_scene_grid">@style/ItemTrackCatImage_scene_grid</item>
 		<item name="ItemTrackCatImage_scene_grid_zoomed">@style/ItemTrackCatImage_scene_grid_zoomed</item>
-		<item name="ItemTrackCatImage_scene_aa">@style/ItemTrackCatImage_hidden</item>
-		<item name="ItemTrackCatImage_scene_aa_vis">@style/ItemTrackCatImage_hidden</item>
-		<item name="ItemTrackCatImage_scene_aa_playing">@style/ItemTrackCatImage_hidden</item>
-		<item name="ItemTrackCatImage_scene_item_menu">@style/ItemTrackCatImage_hidden</item>
+		<item name="ItemTrackCatImage_scene_aa">@style/ItemTrackCatImage_gone</item>
+		<item name="ItemTrackCatImage_scene_aa_vis">@style/ItemTrackCatImage_gone</item>
+		<item name="ItemTrackCatImage_scene_aa_playing">@style/ItemTrackCatImage_gone</item>
+		<item name="ItemTrackCatImage_scene_item_menu">@style/ItemTrackCatImage_gone</item>
 		
 		<item name="ItemTrackTitle">@style/ItemTrackTitle</item>
 		<item name="ItemTrackTitle_Text">@style/ItemTrackTitle_Text</item>
@@ -228,7 +229,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackLine2_Text">@style/ItemTrackLine2_Text</item>
 		<item name="ItemTrackLine2_scene_small">@style/ItemTrackLine2_scene_small</item>
 		<item name="ItemTrackLine2_scene_1">@style/ItemTrackLine2_scene_1</item>
-		<item name="ItemTrackLine2_scene_1_small">@style/ItemTrackLine2_scene_1</item><!-- NOTE: same visibility="gone" scene -->
+		<item name="ItemTrackLine2_scene_1_small">@style/ItemTrackLine2_scene_1_small</item>
 		<item name="ItemTrackLine2_scene_zoomed">@style/ItemTrackLine2_scene_zoomed</item>
 		<item name="ItemTrackLine2_scene_1_zoomed">@style/ItemTrackLine2_scene_1_zoomed</item>
 		<item name="ItemTrackLine2_scene_grid">@style/ItemTrackLine2_scene_grid</item>

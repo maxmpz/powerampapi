@@ -157,7 +157,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_show_all"/>
 	<item type="id" name="cmd_data_show_all"/>
 
-	<item type="id" name="cmd_list_update_zoom"/>
+	<item type="id" name="cmd_list_update_zoom"/><!-- arg1 => boolean force, arg2 => zoomType -->
 	
 	<item type="id" name="cmd_list_current_artist"/>
 	<item type="id" name="cmd_list_current_album"/>

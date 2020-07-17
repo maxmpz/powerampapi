@@ -79,7 +79,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 						
 			
-			
 			<EditText android:id="@+id/vis_panel_edittext"
 				style="?VisFilterEditText"
 				android:hint="@string/filter"

@@ -76,7 +76,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackPlayingMark"	
 	/>
 	<!-- playing_mark -->
-	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small" w:scene_3="@+id/scene_small_no_aa"
+	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small" w:scene_3="@+id/scene_small_no_aa" w:scene_4="@+id/scene_1_small_no_aa"
 		style="?ItemTrackPlayingMark_scene_small"
 	/>
 	<!-- playing_mark -->
@@ -134,7 +134,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_1"
 		style="?ItemTrackNum_scene_1"
 	/>
-	<SceneParams w:scene="@+id/scene_1_small"
+	<SceneParams w:scene="@+id/scene_1_small" w:scene_2="@+id/scene_1_small_no_aa"
 		style="?ItemTrackNum_scene_1_small"
 	/>
 	<SceneParams w:scene="@+id/scene_zoomed"
@@ -254,8 +254,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackCatImage_scene_zoomed" 
 	/>
 	<!-- cat_image -->
-	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small" w:scene_3="@+id/scene_small_no_aa" w:scene_4="@+id/scene_1_small_no_aa" 
+	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_small_no_aa" 
 		style="?ItemTrackCatImage_scene_small" 
+	/>
+	<!-- cat_image -->
+	<SceneParams w:scene="@+id/scene_1_small" w:scene_2="@+id/scene_1_small_no_aa" 
+		style="?ItemTrackCatImage_scene_1_small" 
 	/>
 	<!-- cat_image -->
 	<SceneParams w:scene="@+id/scene_aa"

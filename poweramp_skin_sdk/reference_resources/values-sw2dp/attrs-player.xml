@@ -337,8 +337,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="itemSize"/>
 		<!-- Small scene_small item size -->
 		<attr name="itemSizeSmall" format="dimension"/>
-		<!-- Small scene_small item size w/o AA -->
+		<!-- Small scene_small_no_aa item size w/o AA -->
 		<attr name="itemSizeSmallNoAA" format="dimension"/>
+		<!-- Small 1-line scene_1_small item size w/o AA -->
+		<attr name="itemSize1SmallNoAA" format="dimension"/>
+		<!-- Extra small 1-line scene_1_small item size w/o AA -->
+		<attr name="itemSize1SmallNoAAExtraSmall" format="dimension"/>
 		<!-- List item size for +1 zoom level -->
 		<attr name="itemSizeZoomed" format="dimension"/>
 		
@@ -347,10 +351,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 Works only if offsetWindowInsets is specified for the list -->
 		<attr name="addStatusBarHeightToHeaders" format="boolean"/>
 		 
-		<!-- if headerSize<=0, headerSize will be list width/2 -->
+		<!-- If headerSize<=0, headerSize will be list width/2 -->
 		<attr name="headerSize" format="dimension"/>
+		<!-- Compact header size. If headerSize<=0, headerSize will be list width/2 -->
+		<attr name="compactHeaderSize" format="dimension"/>
 		<!-- Larger header size for "human" categories, i.e. artists/composers --> 
 		<attr name="humanCatHeaderSize" format="dimension"/>
+		<!-- Maximum system font scale setting to allow apply "compact" header sizes. 
+		     If user sets font scale larger than that, compact header option is disabled -->
+		<attr name="maxFontScaleForCompact" format="float"/>
+		<!-- Compact header size for "human" categories, i.e. artists/composers --> 
+		<attr name="compactHumanCatHeaderSize" format="dimension"/>
 		<!-- Size for header in search page -->
 		<attr name="searchHeaderSize" format="dimension"/>
 		<!-- Size for header in target search page -->
@@ -359,8 +370,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="separatorSize" format="dimension"/>
 		<!-- Text item size (first level library items) -->
 		<attr name="textItemSize" format="dimension"/>
+		<!-- Smaller text item size (first level library items) -->
+		<attr name="compactTextItemSize" format="dimension"/>
 		<!-- Text item size (first level library items as headers) -->
 		<attr name="textHeaderSize" format="dimension"/>
+		<!-- Compact text item size (first level library items as headers) -->
+		<attr name="compactTextHeaderSize" format="dimension"/>
 		<!-- Top text header size (basically, the Library header itself) -->
 		<attr name="topTextHeaderSize" format="dimension"/>
 		
