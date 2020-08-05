@@ -156,7 +156,7 @@ track is the last in a list - Poweramp opens same track again in advance for the
 
 ### Metadata And Album Art
 
-Poweramp supports 2 approaches to the Provider track metadata (tags) and album art:
+Poweramp supports 2 approaches for the Provider track metadata (tags) and album art:
 * metadata and album art image is provided by the Provider
   * this is the only option for URL-based tracks and pipe file descriptors
   * also supported for directories (since 869)
