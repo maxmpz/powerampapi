@@ -52,7 +52,6 @@ public class RemoteTrackTime {
 
 
 	public interface TrackTimeListener {
-		@Deprecated
 		public void onTrackDurationChanged(int duration);
 		public void onTrackPositionChanged(int position);
 	}
@@ -100,8 +99,6 @@ public class RemoteTrackTime {
 		mTrackTimeListener = l;
 	}
 
-	// REVISIT: not used to update duration here ATM
-	@Deprecated
 	public void updateTrackDuration(int duration) {
 		if(mTrackTimeListener != null) {
 			mTrackTimeListener.onTrackDurationChanged(duration);

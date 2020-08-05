@@ -194,8 +194,7 @@ public class MainActivity extends AppCompatActivity implements
 	 * As this activity always syncs everything with the actual state of Poweramp, the automatic restoring of state is non needed and harmful.
 	 * <br><br>
 	 * Nevertheless, the actual implementation should probably manipulate per view View.setSaveEnabled() for specific controls, use some Model pattern, or manage
-	 * state otherwise,
-	 * as empty onSaveInstanceState here denies save for everything
+	 * state otherwise, as empty onSaveInstanceState here denies save for everything
 	 */
 	@Override
 	public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
