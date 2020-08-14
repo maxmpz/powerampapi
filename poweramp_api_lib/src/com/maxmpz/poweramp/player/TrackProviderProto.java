@@ -30,6 +30,7 @@ import android.system.StructPollfd;
 import android.util.Log;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import java.io.FileDescriptor;
 import java.net.SocketException;
@@ -89,6 +90,7 @@ public class TrackProviderProto implements AutoCloseable {
 	private final long mFileLength;
 	private int mState = STATE_INITIAL;
 	private final @NonNull StructPollfd[] mStructPollFds;
+	private final @NonNull SeekRequest mTempSeekRequest = new SeekRequest();
 
 
 	/** Raised if we failed with the connection/action and can't continue anymore */
@@ -108,6 +110,25 @@ public class TrackProviderProto implements AutoCloseable {
 	public static class TrackProviderProtoClosed extends RuntimeException {
 		public TrackProviderProtoClosed(Throwable ex) {
 			super(ex);
+		}
+	}
+
+	/**
+	 * Simple data structure with seek offsetBytes and seek milliseconds.<br>
+	 * NOTE: there is only on instance of SeekRequest per TrackProviderProto instance, don't share or use from other threads
+	 */
+	public static class SeekRequest {
+		/** >=0 for seek from start of the file, < 0 for seek from the end of the file */
+		public long offsetBytes;
+		/*
+		 *If >=0, provides a hint for the seek request in milliseconds timebase
+		 * @since 883
+		 */
+		public int ms = Integer.MIN_VALUE;
+
+		@Override
+		public String toString() {
+			return super.toString() + " offsetBytes=" + offsetBytes + " ms=" + ms;
 		}
 	}
 
@@ -209,7 +230,27 @@ public class TrackProviderProto implements AutoCloseable {
 	 * @return request for the new seek position, or INVALID_SEEK_POS(==Long.MIN_VALUE) if none requested
 	 */
 	public long sendData(@NonNull ByteBuffer data) {
-		if(LOG) Log.w(TAG, "sendDataPackets data.remaining=" + data.remaining());
+		SeekRequest request = sendData2(data);
+		if(request != null) {
+			return request.offsetBytes;
+		}
+		return INVALID_SEEK_POS;
+	}
+
+	/**
+	 * Send the data to Poweramp. This will block until Poweramp is resumed, playing, and requires more data<br>
+	 * If Poweramp is paused this may be blocked for a very long time, until Poweramp resumes, exists, force-closes, etc.<br><br>
+	 *
+	 * When Poweramp request seek, this method returns appropriate long seek position (>= 0 for seek from start, < 0 for seek from end)<br>
+	 * Poweramp then waits for the PACKET_TYPE_SEEK_RES packet type, ignoring any other packets, so it's required to send PACKET_TYPE_SEEK_RES packet,
+	 * or close the connection.
+	 *
+	 * @param data buffer to send. Should be properly flipped prior sending
+	 * @return request for the new seek position, or null if none requested
+	 */
+	public @Nullable SeekRequest sendData2(@NonNull ByteBuffer data) {
+		boolean LOG = true;
+		if(LOG) Log.w(TAG, "sendData2 data.remaining=" + data.remaining());
 		if(mState == STATE_DATA) {
 			@SuppressWarnings("unused")
 			int packetsSent = 0;
@@ -251,8 +292,8 @@ public class TrackProviderProto implements AutoCloseable {
 					int fdsReady = Os.poll(mStructPollFds, 0); // Check for possible incoming packet header
 
 					if(fdsReady == 1) {
-						long seekPosEncoded = readSeekRequest(true); // This shouldn't block as we checked we have some incoming data
-						if(seekPosEncoded != INVALID_SEEK_POS) {
+						SeekRequest seekPosEncoded = readSeekRequest(true); // This shouldn't block as we checked we have some incoming data
+						if(seekPosEncoded != null) {
 							return seekPosEncoded; // Got valid seek request, return it
 						}
 					}
@@ -265,7 +306,7 @@ public class TrackProviderProto implements AutoCloseable {
 
 		} else if(DEBUG_CHECKS) throw new AssertionError(mState);
 
-		return INVALID_SEEK_POS;
+		return null;
 	}
 
 	/**
@@ -273,6 +314,23 @@ public class TrackProviderProto implements AutoCloseable {
 	 * @return request for the new seek position, or INVALID_SEEK_POS(==Long.MIN_VALUE) if none requested, socket closed, error happened, etc.
 	 */
 	public long sendEOFAndWaitForSeekOrClose() {
+		final boolean LOG = true;
+		if(LOG) Log.w(TAG, "sendEOFAndWaitForSeekOrClose");
+
+		SeekRequest seekRequest = sendEOFAndWaitForSeekOrClose2();
+		if(seekRequest != null) {
+			if(LOG) Log.w(TAG, "sendEOFAndWaitForSeekOrClose got seek=>" + seekRequest.offsetBytes);
+			return seekRequest.offsetBytes;
+		}
+		if(LOG) Log.w(TAG, "sendEOFAndWaitForSeekOrClose DONE");
+		return INVALID_SEEK_POS;
+	}
+
+	/**
+	 * Wait until Poweramp sends seek request or closes socket
+	 * @return request for the new seek position, or null if none requested, socket closed, error happened, etc.
+	 */
+	public @Nullable SeekRequest sendEOFAndWaitForSeekOrClose2() {
 		if(LOG) Log.w(TAG, "waitForSeekOrClose");
 
 		try {
@@ -291,15 +349,16 @@ public class TrackProviderProto implements AutoCloseable {
 		try {
 			return readSeekRequest(false);
 		} catch(TrackProviderProtoException ex) {
-			return INVALID_SEEK_POS;
+			return null;
 		}
 	}
 
 	/**
 	 * Try to read Poweramp sends seek request. Blocks until socket has some data
-	 * @return request for the new seek position, or INVALID_SEEK_POS(==Long.MIN_VALUE) if none requested
+	 * @return request for the new seek position, or null if none requested
 	 */
-	private long readSeekRequest(boolean noBlock) {
+	private @Nullable SeekRequest readSeekRequest(boolean noBlock) {
+		final boolean LOG = true;
 		if(LOG) Log.w(TAG, "readSeekRequest");
 		try {
 			ByteBuffer buf = mHeaderBuffer;
@@ -312,16 +371,24 @@ public class TrackProviderProto implements AutoCloseable {
 			if(res == MAX_PACKET_HEADER_SIZE) {
 				int type = getPacketType(buf);
 				int dataSize = getPacketDataSize(buf);
-				if(type == PACKET_TYPE_SEEK && dataSize == LONG_BYTES) {
-					buf.limit(buf.limit() + LONG_BYTES);
+				if(type == PACKET_TYPE_SEEK && dataSize >= LONG_BYTES) {
+					if(LOG) Log.w(TAG, "readSeekRequest got PACKET_TYPE_SEEK dataSize=>" + dataSize);
+					buf.limit(buf.limit() + dataSize);
 
 					res = Os.recvfrom(mSocket, buf, noBlock ? OsConstants.O_NONBLOCK : 0, null); // Read seek position
 					if(Build.VERSION.SDK_INT == 21) maybeUpdateBufferPosition(buf, res);
 
 					if(res >= LONG_BYTES) {
-						long seekPosEncoded = buf.getLong(PACKET_DATA_IX);
-						if(LOG) Log.w(TAG, "readSeekRequest got seekPosEncoded=>" + seekPosEncoded);
-						return seekPosEncoded;
+						SeekRequest seekRequest = mTempSeekRequest;
+						seekRequest.offsetBytes = buf.getLong(PACKET_DATA_IX);
+						if(LOG) Log.w(TAG, "readSeekRequest got offsetBytes=>" + seekRequest.offsetBytes);
+						if(res >= LONG_BYTES + INTEGER_BYTES) {
+							seekRequest.ms = buf.getInt(PACKET_DATA_IX + LONG_BYTES);
+							if(LOG) Log.w(TAG, "readSeekRequest got ms=>" + seekRequest.ms);
+						} else {
+							seekRequest.ms = Integer.MIN_VALUE;
+						}
+						return seekRequest;
 
 					} else Log.e(TAG, "readSeekRequest FAIL recvfrom data res=" + res);
 				} else
@@ -329,20 +396,20 @@ public class TrackProviderProto implements AutoCloseable {
 			} else if(res == 0) {
 				// EOF
 				if(LOG) Log.w(TAG, "readSeekRequest EOF");
-				return INVALID_SEEK_POS;
+				return null;
 			} else Log.e(TAG, "readSeekRequest FAIL recvfrom res=" + res);
 		} catch(ErrnoException ex) {
 			if(LOG) Log.e(TAG, "", ex);
 			if(ex.errno == OsConstants.ECONNRESET || ex.errno == OsConstants.EPIPE) throw new TrackProviderProtoClosed(ex);
 			if(ex.errno == OsConstants.EAGAIN) { // Timed out
-				return INVALID_SEEK_POS;
+				return null;
 			}
 			throw new TrackProviderProtoException(ex);
 		} catch(SocketException ex) {
 			if(LOG) Log.e(TAG, "", ex);
 			throw new TrackProviderProtoException(ex);
 		}
-		return INVALID_SEEK_POS;
+		return null;
 	}
 
 	/**

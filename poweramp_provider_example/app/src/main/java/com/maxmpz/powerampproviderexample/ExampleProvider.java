@@ -95,9 +95,14 @@ public class ExampleProvider extends DocumentsProvider {
 	private static final String DOCID_DYNAMIC_URL_SUFFIX = ".dynamicurl";
 
 	private static final long DUBSTEP_SIZE = 2044859L;
-	private static final long DUBSTEP_DURATION = 125000L;
+	private static final long DUBSTEP_DURATION_MS = 125000L;
 	private static final long SUMMER_SIZE = 4620151L;
-	private static final long SUMMER_DURATION = 217000L;
+	private static final long SUMMER_DURATION_MS = 217000L;
+
+	private static final long DUBSTEP_FAKE_FLAC_SIZE = 14000000;
+
+	// ~116 bytes per ms in the real bensound-dubstep.flac, but "fake" value is an approximation
+	private static final long DUBSTEP_FAKE_AVERAGE_BYTES_PER_MS = Math.round((float)DUBSTEP_FAKE_FLAC_SIZE / (float) DUBSTEP_DURATION_MS);
 
 
 	/** Default columns returned for roots */
@@ -260,10 +265,10 @@ public class ExampleProvider extends DocumentsProvider {
 				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
 				int trackNum = extractTrackNum(documentId);
 				if(documentId.contains("dubstep")) {
-					fillURLRow(documentId, c.newRow(), DUBSTEP_HTTP_URL, DUBSTEP_SIZE, "Dubstep", trackNum == 1 ? 0 : DUBSTEP_DURATION, true, true, true); // Send wave
+					fillURLRow(documentId, c.newRow(), DUBSTEP_HTTP_URL, DUBSTEP_SIZE, "Dubstep", trackNum == 1 ? 0 : DUBSTEP_DURATION_MS, true, true, true); // Send wave
 				} else {
 					boolean emptyWave = trackNum < 4; // 1..4 summer tracks with empty wave, for the others - allow Poweramp to scan them
-					fillURLRow(documentId, c.newRow(), SUMMER_HTTP_URL, SUMMER_SIZE, "Summer", trackNum == 1 ? 0 : SUMMER_DURATION, true, false, emptyWave);
+					fillURLRow(documentId, c.newRow(), SUMMER_HTTP_URL, SUMMER_SIZE, "Summer", trackNum == 1 ? 0 : SUMMER_DURATION_MS, true, false, emptyWave);
 				}
 				return c;
 
@@ -274,10 +279,10 @@ public class ExampleProvider extends DocumentsProvider {
 				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
 				int trackNum = extractTrackNum(documentId);
 				if(documentId.contains("dubstep")) {
-					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, DUBSTEP_SIZE, "Dubstep", DUBSTEP_DURATION, true, true, true); // Send wave
+					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, DUBSTEP_SIZE, "Dubstep", DUBSTEP_DURATION_MS, true, true, true); // Send wave
 				} else {
 					boolean emptyWave = trackNum < 4; // 1..4 summer tracks with empty wave, for the others - allow Poweramp to scan them
-					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, SUMMER_SIZE, "Summer", SUMMER_DURATION, true, false, emptyWave);
+					fillURLRow(documentId, c.newRow(), TrackProviderConsts.DYNAMIC_URL, SUMMER_SIZE, "Summer", SUMMER_DURATION_MS, true, false, emptyWave);
 				}
 				return c;
 
@@ -534,7 +539,7 @@ public class ExampleProvider extends DocumentsProvider {
 						TrackProviderConsts.DYNAMIC_URL,
 						DUBSTEP_SIZE,
 						null, // NOTE: titles not sent here
-						DUBSTEP_DURATION,
+						DUBSTEP_DURATION_MS,
 						false, false, false); // Not sending metadata here
 
 				docId = parentDocumentId + "/" + "summer" + "-" + 2 + DOCID_DYNAMIC_URL_SUFFIX;
@@ -542,7 +547,7 @@ public class ExampleProvider extends DocumentsProvider {
 						TrackProviderConsts.DYNAMIC_URL,
 						SUMMER_SIZE,
 						null, // NOTE: titles not sent here
-						SUMMER_DURATION,
+						SUMMER_DURATION_MS,
 						false, false, false); // Not sending metadata here
 
 				// And fill with random number of http links to the tracks
@@ -554,7 +559,7 @@ public class ExampleProvider extends DocumentsProvider {
 							isDubstep ? DUBSTEP_HTTP_URL : SUMMER_HTTP_URL,
 							isDubstep ? DUBSTEP_SIZE : SUMMER_SIZE,
 							null, // NOTE: titles not sent here
-							isStream ? 0 : (isDubstep ? DUBSTEP_DURATION : SUMMER_DURATION),
+							isStream ? 0 : (isDubstep ? DUBSTEP_DURATION_MS : SUMMER_DURATION_MS),
 							false, false, false);
 				}
 
@@ -651,8 +656,15 @@ public class ExampleProvider extends DocumentsProvider {
 		// Let's send root2 "dubstep" via seekable socket and other files - via direct fd. Don't do this for root1 where no metadata given and Poweramp expects direct fd tracks
 		// Check package name for Poweramp (or other known client) which supports this fd protocol
 		String pak = getCallingPackage();
-		if(pak != null && pak.equals(PowerampAPIHelper.getPowerampPackageName(getContext())) && documentId.startsWith("root2/") && documentId.contains("dubstep")) {
-			return openViaSeekableSocket(documentId, filePath, signal);
+		if(pak != null && pak.equals(PowerampAPIHelper.getPowerampPackageName(getContext()))
+				&& documentId.startsWith("root2/") && documentId.contains("dubstep")
+		) {
+			// Let's open dubstep-2 via milliseconds based seekbable sockets, and other dubsteps - via byte offset seekable sockets
+			if(documentId.endsWith("-2.flac")) {
+				return openViaSeekableSocket2(documentId, filePath, signal);
+			} else {
+				return openViaSeekableSocket(documentId, filePath, signal);
+			}
 		}
 
 		// Let's send root2 "summer" via seekable proxy file descriptors. No need to check for client package as these file descriptors should be supported everywhere
@@ -679,6 +691,7 @@ public class ExampleProvider extends DocumentsProvider {
 		return null;
 	}
 
+	/** This version of the method uses byte offset based seeks */
 	private ParcelFileDescriptor openViaSeekableSocket(final String documentId, String filePath, final CancellationSignal signal) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "openViaSeekableSocket documentId=" + documentId + " filePath=" + filePath);
 		try {
@@ -741,6 +754,90 @@ public class ExampleProvider extends DocumentsProvider {
 						}
 					} catch(TrackProviderProto.TrackProviderProtoClosed ex) {
 						if(LOG) Log.w(TAG, "openViaSeekableSocket closed documentId=" + documentId + " " + ex.getMessage());
+					} catch(Throwable th) {
+						// If we're here, we can't do much - close connection, release resources, and exit
+						Log.e(TAG, "documentId=" + documentId, th);
+					}
+				}
+			}).start();
+
+			return fds[0];
+
+		} catch(Throwable th) {
+			Log.e(TAG, "documentId=" + documentId, th);
+			throw new FileNotFoundException(documentId);
+		}
+	}
+
+	/** This version of the method uses milliseconds offset based seek requests */
+	private ParcelFileDescriptor openViaSeekableSocket2(final String documentId, String filePath, final CancellationSignal signal) throws FileNotFoundException {
+		if(LOG) Log.w(TAG, "openViaSeekableSocket2 documentId=" + documentId + " filePath=" + filePath);
+		try {
+			final ParcelFileDescriptor[] fds = ParcelFileDescriptor.createSocketPair();
+			final File file = new File(getContext().getFilesDir(), filePath);
+
+			//long fileLength = file.length();
+
+			// NOTE: for the sake of testing, let's send some approximation of the file instead, based on
+			// duration and average bytes per ms
+			// The real DUBSTEP_AVERAGE_BYTES_PER_MS depends on compression and file format
+			final long fileLength = DUBSTEP_FAKE_AVERAGE_BYTES_PER_MS * DUBSTEP_DURATION_MS;
+
+			// NOTE: it's not possible to use timeouts on this side of the socket as Poweramp may open and hold the socket for an indefinite time while in the paused state
+			// NOTE: don't use AsyncTask or other short-time thread pools here, as:
+			// - this thread will be alive as long as Poweramp holds the file
+			// - this can take an indefinite time, as Poweramp can be paused on the file
+
+			new Thread(new Runnable() {
+				public void run() {
+					// NOTE: we can use arbitrary buffer size here >0, but increasing buffer will increase non-seekable "window" at the end of file
+					// Using buffer size > MAX_DATA_SIZE will cause buffer to be split into multiple packets
+					ByteBuffer buf = ByteBuffer.allocateDirect(TrackProviderProto.MAX_DATA_SIZE);
+					buf.order(ByteOrder.nativeOrder());
+
+					try(FileInputStream fis = new FileInputStream(file)) {
+						FileChannel fc = fis.getChannel(); // We'll be using nio for the buffer loading
+						try(TrackProviderProto proto = new TrackProviderProto(fds[1], fileLength)) {
+
+							proto.sendHeader(); // Send initial header
+
+							while(true) {
+								int len;
+								while((len = fc.read(buf)) > 0) {
+									buf.flip();
+
+									// Send some data to Poweramp and optionally receive seek request
+									// NOTE: avoid sending empty buffers here (!buf.hasRemaining()), as this will cause premature EOF
+									TrackProviderProto.SeekRequest seekRequest = proto.sendData2(buf);
+
+									handleSeekRequest2(proto, seekRequest, fc, fileLength); // May be handle seek request
+
+									buf.clear();
+								}
+
+								// Here we're almost done with the file and hit EOF. Still keep file and socket opened until Poweramp closes socket
+								//
+								// As we may send number of pre-loaded buffers to Poweramp we may hit EOF much earlier prior the track actually finishes playing:
+								// - we hit EOF here and may attempt to exit this thread/close socket
+								// - Poweramp plays some buffered data
+								// - user seeks the track. Poweramp will fail to seek it as our provider is done with the track and socket is closed
+								//
+								// Solution to this is to keep file and socket opened here and to continue seek commands processing until Poweramp actually closes socket.
+								// This scenario can be easily tested by pausing Poweramp close to the track end and seeking while paused
+
+								TrackProviderProto.SeekRequest seekRequest = proto.sendEOFAndWaitForSeekOrClose2();
+								if(handleSeekRequest2(proto, seekRequest, fc, fileLength)) {
+									if(LOG) Log.w(TAG, "openViaSeekableSocket2 file seek past EOF documentId=" + documentId);
+									continue; // We've just processed extra seek request, continue sending buffers
+								} else {
+									break; // We done here, Poweramp closed socket
+								}
+							}
+
+							if(LOG) Log.w(TAG, " openViaSeekableSocket2 file DONE documentId=" + documentId);
+						}
+					} catch(TrackProviderProto.TrackProviderProtoClosed ex) {
+						if(LOG) Log.w(TAG, "openViaSeekableSocket2 closed documentId=" + documentId + " " + ex.getMessage());
 					} catch(Throwable th) {
 						// If we're here, we can't do much - close connection, release resources, and exit
 						Log.e(TAG, "documentId=" + documentId, th);
@@ -837,6 +934,41 @@ public class ExampleProvider extends DocumentsProvider {
 
 			long newPos = seekTrack(fc, seekRequestPos, fileLength);
 			proto.sendSeekResult(newPos);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * THREADING: worker thread<br>
+	 * NOTE: this version handles seek request based on byte offset BUT it can also handle it based on milliseconds.<br>
+	 * Still, we need to send some byte based newPos offset back to Poweramp. The resulting byte offset may be an approximation
+	 * @return true if we actually handled seek request, false otherwise
+	 */
+	private boolean handleSeekRequest2(@NonNull TrackProviderProto proto, @Nullable TrackProviderProto.SeekRequest seekRequest,
+	                                   @NonNull FileChannel fc, long fileLength
+	) {
+		if(seekRequest != null && seekRequest.offsetBytes != TrackProviderProto.INVALID_SEEK_POS) {
+			// We have a seek request.
+			// Your code may take any reasonable time to fulfil the seek request, e.g. it can reopen http connection with appropriate offset, etc.
+			// Poweramp just waits for the seek result packet (the waiting is limited by the user-set timeout).
+			// Now we should either send appropriate seek result packet or close the connection (e.g. on some error).
+			// Poweramp ignores any other packets sent before the seek result packet.
+
+			if(LOG) Log.w(TAG, "handleSeekRequest seekRequestPos=" + seekRequest + " fileLength=" + fileLength);
+
+			// NOTE: we could seek track here based on seekRequest.ms field.
+			// In this case we still need to send back newPos as new byte offset.
+			// This may be a rough approximation, e.g. something like: newPos = seekRequest.ms * averageBytesPerMsInThisFile
+
+			// For the sake of testing, we'll seek track properly here, but will send "fake" newPos
+
+			long newPos = seekTrack(fc, seekRequest.offsetBytes, fileLength);
+
+			final long fakeAverageBytesPerMs = 116; // ~116 bytes per ms in bensound-dubstep.flac
+			long fakeNewPos = seekRequest.ms * fakeAverageBytesPerMs;
+
+			proto.sendSeekResult(fakeNewPos);
 			return true;
 		}
 		return false;
