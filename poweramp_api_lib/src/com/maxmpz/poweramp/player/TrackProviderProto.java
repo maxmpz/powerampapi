@@ -249,7 +249,6 @@ public class TrackProviderProto implements AutoCloseable {
 	 * @return request for the new seek position, or null if none requested
 	 */
 	public @Nullable SeekRequest sendData2(@NonNull ByteBuffer data) {
-		boolean LOG = true;
 		if(LOG) Log.w(TAG, "sendData2 data.remaining=" + data.remaining());
 		if(mState == STATE_DATA) {
 			@SuppressWarnings("unused")
@@ -314,7 +313,6 @@ public class TrackProviderProto implements AutoCloseable {
 	 * @return request for the new seek position, or INVALID_SEEK_POS(==Long.MIN_VALUE) if none requested, socket closed, error happened, etc.
 	 */
 	public long sendEOFAndWaitForSeekOrClose() {
-		final boolean LOG = true;
 		if(LOG) Log.w(TAG, "sendEOFAndWaitForSeekOrClose");
 
 		SeekRequest seekRequest = sendEOFAndWaitForSeekOrClose2();
@@ -358,7 +356,6 @@ public class TrackProviderProto implements AutoCloseable {
 	 * @return request for the new seek position, or null if none requested
 	 */
 	private @Nullable SeekRequest readSeekRequest(boolean noBlock) {
-		final boolean LOG = true;
 		if(LOG) Log.w(TAG, "readSeekRequest");
 		try {
 			ByteBuffer buf = mHeaderBuffer;
