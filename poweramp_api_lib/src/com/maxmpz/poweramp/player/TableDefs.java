@@ -21,7 +21,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.player;
 
 import org.eclipse.jdt.annotation.NonNull;
-import android.provider.BaseColumns;
 
 public interface TableDefs {
 	/**
@@ -1645,7 +1644,7 @@ public interface TableDefs {
 		public static final @NonNull String BIND_TO_CAT_URI = "__bind_to_cat_uri";
 	}
 
-	public static final class EqPresetSongs implements BaseColumns {
+	public static final class EqPresetSongs {
 		public static final @NonNull String TABLE = "eq_preset_songs";
 
 		public static final @NonNull String _ID = TABLE + "._id";
@@ -1663,7 +1662,7 @@ public interface TableDefs {
 		public static final @NonNull String PRESET_ID = TABLE + ".preset_id";
 	}
 
-	public static final class EqPresetDevices implements BaseColumns {
+	public static final class EqPresetDevices {
 		public static final @NonNull String TABLE = "eq_preset_devices";
 
 		public static final @NonNull String _ID = TABLE + "._id";
