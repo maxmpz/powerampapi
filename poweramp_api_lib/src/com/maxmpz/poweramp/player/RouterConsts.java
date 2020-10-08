@@ -21,6 +21,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.player;
 
 import org.eclipse.jdt.annotation.NonNull;
+import android.annotation.TargetApi;
+import android.media.AudioDeviceInfo;
 
 public interface RouterConsts {
 	// Sync with output-internal.h
@@ -45,4 +47,25 @@ public interface RouterConsts {
 	public static final @NonNull String DEVICE_NAME_USB = "usb";
 	public static final @NonNull String DEVICE_NAME_OTHER = "other";
 	public static final @NonNull String DEVICE_NAME_CHROMECAST = "chromecast";
+	
+	public final class Helper {
+		private Helper() {}
+
+		@TargetApi(23)
+		public static int toAndroidDeviceType(int device) {
+			switch(device) {
+				default:
+				case DEVICE_HEADSET:
+					return AudioDeviceInfo.TYPE_WIRED_HEADSET; // 3
+				case DEVICE_SPEAKER:
+					return AudioDeviceInfo.TYPE_BUILTIN_SPEAKER; // 2
+				case DEVICE_BT:
+					return AudioDeviceInfo.TYPE_BLUETOOTH_A2DP; // 8
+				case DEVICE_USB:
+					return AudioDeviceInfo.TYPE_USB_DEVICE; // 11
+				case DEVICE_CHROMECAST:
+					return AudioDeviceInfo.TYPE_IP; // 20
+			}
+		}
+	}
 }
