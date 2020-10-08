@@ -91,4 +91,7 @@ public interface PipelineConsts {
 	
 	
 	public static final int UI_FLAG_NO_DVC_DUE_TO_BT_ABSVOL      = 0x0001;
+	
+	
+	public static final int MSG_SET_NO_DVC_HEADROOM_MB   = 0x0009; // NOTE: immediately applies this. NOTE: public - can be used by java code
 }
