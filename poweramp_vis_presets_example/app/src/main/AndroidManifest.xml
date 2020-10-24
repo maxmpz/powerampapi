@@ -2,6 +2,9 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	package="com.poweramp.v3.vispresets.sample">
 
+
+	<uses-permission android:name="com.maxmpz.audioplayer.permission.ACCESS_MILK_PRESETS"/>
+
 	<application
 		android:icon="@mipmap/app_icon"
 		android:roundIcon="@mipmap/app_icon"

@@ -59,6 +59,46 @@
 			android:layout_marginRight="8dp"
 		/>
 
+		<!-- Debug buttons -->
+		<HorizontalScrollView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/colorAccent"
+		>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:paddingLeft="8dp"
+				android:paddingRight="8dp"
+			>
+				<Button
+					android:onClick="listMilkPresets"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="listMilkPresets"
+					android:textSize="10sp"
+				/>
+				<Button
+					android:onClick="pushFile"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="pushFile"
+					android:layout_marginLeft="4dp"
+					android:textSize="10sp"
+				/>
+				<Button
+					android:onClick="deleteFile"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="deleteFile"
+					android:layout_marginLeft="4dp"
+					android:textSize="10sp"
+				/>
+			</LinearLayout>
+		</HorizontalScrollView>
+
+
 		<Button
 			android:onClick="startWithVisPresets"
 			android:layout_width="match_parent"

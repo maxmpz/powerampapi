@@ -189,8 +189,30 @@ public final class PowerampAPI {
 	 */
 	public static final String API_ACTIVITY_NAME = "com.maxmpz.audioplayer.PowerampAPIActivity";
 
+	/**
+	 * Permission allowing ContentProvider based access to milk preset files<br>
+	 * On Android 6+ (SDK=23+) this should be explicitly requested via {@link android.app.Activity#requestPermissions}
+	 * @since 885
+	 */
+	public static final String PERMISSION_ACCESS_MILK_PRESETS = "com.maxmpz.audioplayer.permission.ACCESS_MILK_PRESETS";
 
-
+	/**
+	 * ContentProvider based access to milk preset files<br><br>
+	 * Supported actions:
+	 * <ul>
+	 * <li>query<br>
+	 *     Poweramp looks into uri only and ignores possible project, selection, selectionArgs arguments to query call<br>
+	 *     Poweramp always returns same columns: Document.COLUMN_DISPLAY_NAME, Document.COLUMN_LAST_MODIFIED, Document.COLUMN_SIZE<br>
+	 *     Uri may be empty to query all files, uri may include GLOB pattern (*, ?, {a|b|c}, [abc]) or uri can be a file name
+	 *     to query just one file
+	 * <li>openFile<br>
+	 *     The uri should include desired file to open, e.g. content://com.maxmpz.audioplayer.milk_presets/preset.milk
+	 * <li>delete<br>
+	 *     The uri should include desired file to delete, e.g. content://com.maxmpz.audioplayer.milk_presets/preset.milk
+	 * </ul>
+	 * @since 885
+	 */
+	public static final Uri MILK_PRESETS_URI = Uri.parse("content://com.maxmpz.audioplayer.milk_presets/");
 
 	/**
 	 * ACTION_API_COMMAND extra
@@ -2116,6 +2138,8 @@ public final class PowerampAPI {
 			public static final int VIS_MODE_MAX      = 2;
 		}
 	}
+
+
 
 
 	// Deprecated =============================================

@@ -1,3 +1,15 @@
+[TOC levels=3]:# "#Poweramp v3 Visualization Presets Example"
+
+# Poweramp v3 Visualization Presets Example
+- [Poweramp v3 visualization presets](#poweramp-v3-visualization-presets)
+- [How Poweramp v3 visualization works?](#how-poweramp-v3-visualization-works)
+- [Poweramp v3 visualization presets APK](#poweramp-v3-visualization-presets-apk)
+- [How to start own presets APK (based on this example project)](#how-to-start-own-presets-apk-based-on-this-example-project)
+- [Poweramp .milk format extentensions](#poweramp-milk-format-extentensions)
+- [Android 10 and access to the Poweramp presets directory](#android-10-and-access-to-the-poweramp-presets-directory)
+- [License](#license)
+
+
 # Poweramp v3 Visualization Presets APK Example
 ============================================
 
@@ -107,9 +119,36 @@ Poweramp supports extra rendering object - spectrum bars - which is defined via 
    * for non reflected bars: optional right threshold color overlay in 0xAARRGGBB format
    * for reflected bars: 2nd half optional right color overlay in 0xAARRGGBB format
 
+### Android 10 and access to the Poweramp presets directory
+
+Android 10 and above started to apply restrictions to the direct directory/file access. It's not possible to manipulate preset files in Poweramp
+app files directory directly anymore.
+
+To allow such manipulation Poweramp build 885+ adds ContentProvider access to the presets directory.
+
+#### Legacy directories
+Some additional logic should be applied in your code to handle Android 9 -> Android 10 upgrade, as
+Poweramp on Android 10 always uses /Android/data/com.maxmpz.audioplayer/milk_presets directory. The ContentProvider should be used to access that.
+On Androids 5-9 it used /Android/data/_com.maxmpz.audioplayer/milk_presets (note the underscore _ prefix). Usual direct file access can be used
+or ContentProvider may be used as well.
+Poweramp doesn't migrate preset files during Android upgrade.
+
+#### Permission
+Your app should request com.maxmpz.audioplayer.permission.ACCESS_MILK_PRESETS permission.
+
+#### ContentProvider
+Poweramp implements very simple ContentProvider which allows:
+- listing of all files in /milk_presets, or files matching GLOB pattern (e.g. *.milk)
+- adding file, modifying the file, or deleting the preset or texture file
+
+Please see PowerampAPI.PERMISSION_ACCESS_MILK_PRESETS, PowerampAPI.MILK_PRESETS_URI documentation and  
+**[poweramp_vis_presets_example InfoActivity.java](app/src/main/java/com/poweramp/v3/vispresets/sample/InfoActivity.java)**
+methods listMilkPresets, pushFile, deleteFile.
+
+
 ### License
 
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
