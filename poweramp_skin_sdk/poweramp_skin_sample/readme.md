@@ -121,8 +121,8 @@ Included file should be a valid well formed xml. Include tag is supported at any
 ### Automatic Dark/Light Modes
 Supported since build 869. Poweramp will switch skin to the dark/light version if appropriate option is enabled in Poweramp settings and current skin supports dark/light mode.
 The support is indicated by the lightMode and darkMode attributes.
-If Poweramp needs to switch to dark mode and the current skin has darkMode attribute, the skin defined by darkMode will be selected.
-If Poweramp needs to switch to light mode and the current skin has lightMode attribute, the skin defined by lightMode will be selected.
+If Poweramp needs to switch to the dark mode and current skin has darkMode attribute, skin defined by darkMode will be selected.
+If Poweramp needs to switch to the light mode and current skin has lightMode attribute, skin defined by lightMode will be selected.
 
 Note that both attributes on same skin will result in an undefined behavior. Also, switching light/dark mode is two way only, meaning once the skin switched to the dark one,
 switching back to light mode will switch to the initial skin, not the skin possibly defined as lightMode attribute for the dark skin.
@@ -273,7 +273,7 @@ At this moment the seekbar preference can be used only for the subset of propert
 
 
 * category (since build 866). The category is a subset of options displayed with a header.
-The category tag is ignored by builds prior 866, all inner options still shown.
+The category tag is ignored by builds prior 866, all inner options are still shown.
 ```xml
     <category
         name="[category header text]"
@@ -284,7 +284,7 @@ The category tag is ignored by builds prior 866, all inner options still shown.
 ```
 
 * page (since build 866). Page is a subset of options on their own separate page.
-The page tag is ignored by builds prior 866, all inner options still shown.
+The page tag is ignored by builds prior 866, all inner options are still shown.
 ```xml
     <page
         name="[category name]"
@@ -325,7 +325,7 @@ Check Logcat for Poweramp errors.
 
 ### Difference vs Poweramp v2 Skins
 * Poweramp v2 skins are not compatible with Poweramp v3, Poweramp v3 skins are not compatible with Poweramp v2
-* Poweramp v2 skins relied on skin provided layout xmls, v3 skins rely on style redefinitions, layouts xmls can't be changed by skin (except for few injected specific **merge_** layouts)
+* Poweramp v2 skins relied on skin provided layout xmls, v3 skins rely on style redefinitions, layouts xmls can't be changed by skin (except for a few injected specific **merge_** layouts)
 * less bitmap graphics in default skins, but this is open for skin author, there is no any limitation on bitmap images
 
 
