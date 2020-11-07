@@ -3,6 +3,7 @@
 <merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:w="http://schemas.android.com/apk/res/com.maxmpz.audioplayer"
 	>
 	<!-- Show in main scene -->
@@ -19,7 +20,8 @@
 		w:valueFormatMax="100"
 
 		w:labelText="@string/volume"
-	/>
+		tools:ignore="MissingClass"
+		/>
 	<!-- Show in playing scene -->
 	<SceneParams
 		w:baseScene="defaultScene"
@@ -56,6 +58,7 @@
 
 		w:param="@com.maxmpz.audioplayer:id/dsp_master_volume"
 		w:updateMsgId="@com.maxmpz.audioplayer:id/msg_dsp_other_changed"
+		tools:ignore="MissingClass"
 	/>
 	<!-- Show in playing scene -->
 	<SceneParams
@@ -87,7 +90,8 @@
 
 		w:param="@com.maxmpz.audioplayer:id/dsp_master_volume"
 		w:updateMsgId="@com.maxmpz.audioplayer:id/msg_dsp_other_changed"
-	/>
+		tools:ignore="MissingClass"
+		/>
 
 	<!-- Show in playing scene -->
 	<SceneParams
