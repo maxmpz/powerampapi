@@ -861,6 +861,7 @@ public final class PowerampAPI {
 	 *
 	 * Extras:<br>
 	 * - same extras as in {@link Intent#ACTION_MEDIA_BUTTON}
+	 * - or just single boolean {@link #EXTRA_LONG_PRESS} extra, when Poweramp is set to receive long presses instead of voice search AND Poweramp is on background
 	 * @since 875
 	 * 
 	 */
@@ -1114,6 +1115,13 @@ public final class PowerampAPI {
 	 * @since 868
 	 */
 	public static final String EXTRA_LOCK = "lock";
+	
+	/**
+	 * Extra<br>
+	 * {@code boolean}
+	 * @since 887
+	 */
+	public static final String EXTRA_LONG_PRESS = "long_press";
 
 	/**
 	 * Shuffle extras values
