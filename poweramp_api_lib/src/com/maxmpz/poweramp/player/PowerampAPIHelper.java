@@ -132,7 +132,7 @@ public class PowerampAPIHelper {
 
 	/**
 	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
-	 * @return resolved and cached Poweramp Media Browser Service component name, or null if not installed
+	 * @return resolved and cached Poweramp milk scanner service component name, or null if not installed
 	 */
 	public static ComponentName getMilkScannerServiceComponentName(Context context) {
 		ComponentName componentName = sMilkScanServiceComponentName;

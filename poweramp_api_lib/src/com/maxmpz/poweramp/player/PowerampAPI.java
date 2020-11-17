@@ -1767,7 +1767,7 @@ public final class PowerampAPI {
 	/**
 	 * Settings related actions
 	 */
-	public static final class Settings {
+	public static class Settings {
 		/**
 		 * Poweramp settings activity
 		 */
