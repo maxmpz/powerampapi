@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values-sw2dp-land -->
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>	
+
+	<style name="PeqVisButtonLayout" parent="PeqVisButtonLayoutBase">
+		<item name="android:layout_width">64dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		
+		<item name="layout_attachBottom">@+id/equ_button</item>
+		<item name="layout_attachLeftToLeft">@+id/preset_button</item>
+	</style>
+		
+	
+	<!-- vol tab -->
+	
+	<style name="PeqEqVolPanel1" parent="EqVolPanel1">
+		<item name="android:paddingLeft">8dp</item>
+		<item name="layout_widthPercent">48%</item>
+	</style>
+	
+	<style name="PeqEqVolPanel2" parent="EqVolPanel2">
+		<item name="layout_widthPercent">26%</item>
+	</style>
+	
+	<style name="PeqEqVolPanel3" parent="EqVolPanel3">
+		<item name="layout_widthPercent">26%</item>
+	</style>
+	
+	<style name="PeqEqCompressorCheckButton" parent="PeqEqCompressorCheckButtonBase">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_gravity">center_horizontal|bottom</item>
+	</style>
+	
+	<!-- NOTE: size of these knobs are limited mostly by paddings/margings -->
+	<style name="PeqEqCompressKnobLayout">
+		<item name="android:layout_marginTop">@dimen/PeqEqVolPanel_paddings</item>
+		<item name="android:layout_marginBottom">@dimen/PeqEqVolPanel_paddings</item>
+		<item name="android:layout_marginRight">@dimen/PeqEqVolPanel_paddings</item>
+		<item name="android:layout_marginLeft">@dimen/PeqEqVolPanel_paddings</item>
+		<item name="android:layout_gravity">top|left</item>
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="layout_widthPercent">33.33%</item>
+		<item name="layout_heightPercent">50%</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item>
+		<item name="layout_maxHeight">@dimen/EqSmallRoundKnobLayout_maxSize</item>
+		
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+		
+		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
+		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
+		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
+	</style>
+		
+	
+	<style name="PeqOtherResetButton" parent="EqButton">
+		<item name="android:layout_gravity">center_horizontal|bottom</item>
+		<item name="android:layout_marginLeft">0px</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+	
+	
+	<style name="PeqEqBalanceKnobLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		
+		<item name="android:paddingTop">@dimen/EqKnob_spacing</item>
+		<item name="android:paddingBottom">@dimen/EqKnob_spacing</item>
+		<item name="android:paddingLeft">@dimen/EqKnob_spacing</item>
+		<item name="android:paddingRight">@dimen/EqKnob_spacing</item>
+				
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+		
+		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
+		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
+		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
+		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
+	</style>
+	
+	<style name="PeqVolumeKnobLayout" parent="EqVolumeKnobLayout">
+	</style>
+	
+
+		
+		
+		
+</resources>

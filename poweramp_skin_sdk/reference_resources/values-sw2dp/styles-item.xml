@@ -1906,7 +1906,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="WhiteButtonBase" parent="BlackButtonBase">
 		<item name="android:textAppearance">?WhiteButton_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+		<item name="android:background">@drawable/ripple_inverse_stroke_bg_rounded_large</item>
 	</style>
 	<style name="WhiteButton_Text" parent="BlackButton_Text">
 	</style>

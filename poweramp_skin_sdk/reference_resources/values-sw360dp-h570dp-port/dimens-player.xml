@@ -20,7 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Huawei l293 60x578, Meizu pro7+ 360x576 -->
+	<!-- Huawei l293 360x578, Meizu pro7+ 360x576 -->
 	
 	<!-- Huawei l29360x578, Meizu pro7+ 360x576 -->	
 	<dimen name="TopTrackElapsedMoreButtons_marginBottom">0dp</dimen>
@@ -28,20 +28,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfoLabel_drawableSize">12dp</dimen>
 	<dimen name="TopMetaInfoLabel_paddingTopBottom">3dp</dimen>
 	
-	
 	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
 	
-	<dimen name="Navbar_height">48dp</dimen>
-	<dimen name="NavbarNavButtonsLayout_height">44dp</dimen>
-	
-	<dimen name="NavBarButton_drawableSize">@null</dimen>
-
-	<dimen name="NavbarBounds_height">56dp</dimen>
-	<dimen name="NavbarBounds_height_scene_navbar_2lines">108dp</dimen>
-	<!-- Same for overlap_navbar_offset -->
-	<dimen name="NavbarBounds_height_offset">60dp</dimen>
-	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">112dp</dimen>
-		
 	<dimen name="ListMenu_drawableSize">24dp</dimen>
 		
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- NOTE: aa bounds already have visual margin on bottom == 8 dp -->

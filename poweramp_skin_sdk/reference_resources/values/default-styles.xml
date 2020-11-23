@@ -4,7 +4,7 @@ Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
-which communicate with Poweramp music player application on Android platform.
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -56,7 +56,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="OptionAACrop">@style/OptionAACrop</item>
 		
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>			
-		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>		
+		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>
+		<!-- Additional theme styles applied for Poweramp Equalizer. Can be overridden by skins as required -->		
+		<item name="PeqStyles">@style/PeqStyles</item>
+		
 		<item name="DialogForcedStyle">@style/Default_BaseDialogForcedStyle</item>
 		<item name="DialogForceLightSystemUIStyle">@style/Default_DialogForceLightSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
 		<item name="DialogForceDarkSystemUIStyle">@style/Default_DialogForceDarkSystemUIStyle</item><!-- Used to invert system ui in dialogs to dark -->
@@ -141,6 +144,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorIconInverseForced">#fff</item>
 		<item name="colorIconDisabled">#7777</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
 		
+		<item name="colorTextDisabled">#d6d6d6</item><!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob -->
+		
 		<!-- Basically, the main background color for Poweramp main activity, as Milk visualization/AA blur is always on background, except lock screen mode.
 		     Though, in lock screen mode, this color is also used as background color by lock screen code -->
 		<item name="colorAABgColor">#fff</item>
@@ -189,7 +194,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorSeekbarThumb">#333</item>
 		
 		<item name="colorIconCC">#e8e8e8</item>
-				
+		
+		<item name="arcStartColor">@null</item>
+		<item name="arcEndColor">@null</item>
+		<item name="arcGlowStartColor">@null</item>
+		<item name="arcGlowEndColor">@null</item>
+		
+		<item name="arcWidth">@dimen/RoundKnob_arcWidth</item>
+		<item name="arcOffset">@dimen/RoundKnob_arcOffset</item>
+		<item name="arcGlowWidth">0dp</item><!-- Increaded for Dark. Doesn't look good for Light -->
+		
+		<item name="holeStartColor">@null</item>
+		<item name="holeEndColor">@null</item>
+		<item name="holeGlowStartColor">@null</item>
+		<item name="holeGlowEndColor">@null</item>
+		
+		<item name="holeColorWidth">2.5dp</item>
+		<item name="holeGlowWidth">0dp</item><!-- Increased for Dark. Doesn't look good for Light -->
+		<item name="holeColorRadius">1.25dp</item>
+						
 		<item name="prev_cat_round">@drawable/prev_cat_round</item>
 		<item name="rw_round">@drawable/rw_round</item>
 		<item name="ff_round">@drawable/ff_round</item>
@@ -288,6 +311,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="info">@drawable/info</item>
 		<item name="send">@drawable/send_stroke</item>
 		<item name="enqueue">@drawable/enqueue_stroke</item>
+		<item name="add_next">@drawable/add_next_stroke</item>
 		<item name="lyrics">@drawable/lyrics</item>
 		<item name="album_art">@drawable/image</item>
 		<item name="delete">@drawable/delete_stroke_24dp</item>
@@ -376,6 +400,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Corners -->
 		<item name="corners_popup">6dp</item>
+		<item name="corners_medium_minus">6dp</item>
 		<item name="corners_medium">8dp</item>
 		<item name="corners_medium_plus">16dp</item>
 		<item name="corners_navbar">8dp</item>
@@ -473,6 +498,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemTrackMenu_scene_aa_visibility">visible</item>
 		<item name="AAImage_scaleType">centerCrop</item><!-- By default, (modified) centerCrop is used. Can be overriden by OptionAAKeepAspect/OptionAACrop -->
+		
+		<!-- Not themeable functional attributes -->
+		
+		<item name="milk_advance_modes">@array/milk_advance_modes</item>
+		<item name="milk_advance_icons">@array/milk_advance_icons_24dp</item>
+		<item name="milk_advance_enum">@null</item>
+		<item name="settings_target_audio">audio</item>
+		<item name="settings_target_equ">audio_equ</item>
 	</style>
 
 	<!-- NOTE: need additional level of indirection due to e.g. values-v29 overridding which should be used by skins which derive from Base_ActivityTheme_Default -->	

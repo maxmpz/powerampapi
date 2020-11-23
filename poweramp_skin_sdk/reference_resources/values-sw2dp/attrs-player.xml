@@ -95,6 +95,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="info" format="reference"/>
 	<attr name="send" format="reference"/>
 	<attr name="enqueue" format="reference"/>
+	<attr name="add_next" format="reference"/>
 	<attr name="lyrics" format="reference"/>
 	<attr name="album_art" format="reference"/>
 	<attr name="delete" format="reference"/>
@@ -141,9 +142,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="defaultLowResAA" format="reference"/><!-- Default AA image. Strictly 512x512 bitmap -->
 	<attr name="defaultHiResAA" format="reference"/><!-- Default AA image. Strictly 1024x1024 bitmap -->
 	
-	<!-- Extra state for drawables -->
-	<attr name="state_playing" format="boolean" />
-
+	<!-- Not themeable functional attributes -->
+	<attr name="state_playing" format="boolean" /><!-- Extra state for drawables -->
+	<attr name="milk_advance_modes" format="reference"/>
+	<attr name="milk_advance_icons" format="reference"/>
+	<attr name="milk_advance_enum" format="reference"/>
+	<attr name="settings_target_audio" format="string"/>
+	<attr name="settings_target_equ" format="string"/>
+	
+	<!-- -->
 		
 	<declare-styleable name="ListMetaIcons">
 		<attr name="meta_songs_12dp"/>
@@ -536,18 +543,48 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="hole" format="reference" />
 		<attr name="pos" format="integer" />
 		<attr name="value" format="float"/>
+		
+		<!-- If defined (and hole drawable defined as well), the value color is drawn instead of hole drawable. 
+		     If just start color is defined - this is the color for whole shape, othersiwe color changes from start color to the appropriate end color -->
+		<attr name="holeStartColor" format="color|reference"/>
+		<attr name="holeMidColor" format="color|reference"/>
+		<attr name="holeEndColor" format="color|reference"/>
+		<!-- If defined, the value glow color is drawn. Same as holeStartColor, but applied to the glow.
+		     If just start color is defined - this is the color for whole shape, othersiwe color changes from start color to the appropriate end color.
+		     Applied on Androids 9+ (SDK=28+) -->
+		<attr name="holeGlowStartColor" format="color|reference"/>
+		<attr name="holeGlowMidColor" format="color|reference"/>
+		<attr name="holeGlowEndColor" format="color|reference"/>
+		<attr name="holeColorWidth" format="dimension"/>
+		<attr name="holeColorRadius" format="dimension"/>
+		<attr name="holeGlowWidth" format="dimension"/>
+		<!-- Sets color starting point, e.g. 0.5 for middle as for Preamp -->
+		<attr name="holeColorStartPoint" format="float"/>
+		
 		<!-- <attr name="android:disabledAlpha"/> -->
 		<!-- Vertical padding between linear knob text and knob drawables -->
 		<attr name="textPadding" format="dimension"/>
 		<!-- Vertical padding between value and text -->
 		<attr name="valuePadding" format="dimension"/>
+		
+		<attr name="labelBackground" format="reference"/>
+		<attr name="labelBackgroundPaddingLeft" format="dimension"/>
+		<attr name="labelBackgroundPaddingRight" format="dimension"/>
+		<attr name="labelBackgroundPaddingTop" format="dimension"/>
+		<attr name="labelBackgroundPaddingBottom" format="dimension"/>
+		<attr name="labelBackgroundAnimZoom" format="float"/>
+		
 		<attr name="valueFormat" format="string"/>
 		<attr name="valueTextAppearance" format="reference"/>
 		<attr name="valueAnimZoom" format="float"/>
 		<attr name="valueAnimTime" format="integer"/>
 		<attr name="valueFormatMin" format="float"/>
 		<attr name="valueFormatMax" format="float"/>
+		<!-- The "middle" value to use for visible value scaling. This middle position can be anywhere within round  knob range, as defined by valueFormatMidPos.
+		     NOTE: this doesn't affect actual knob value which is always uniformally in range [0..1] -->
 		<attr name="valueFormatMid" format="float"/>
+		<!-- The actial "middle" position location in internal scale of knob: [0..1].
+		     NOTE: this doesn't affect actual knob value which is always uniformally in range [0..1] -->
 		<attr name="valueFormatMidPos" format="float"/>
 		<!-- If true, special lines background is rendered, android:background is ignored. EqLinesDrawable attributes can be used right in EqKnobsFastLayout styles -->
 		<attr name="linesBackground"/>
@@ -572,6 +609,60 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="updateMsgId"/>
 	</declare-styleable>
 	
+	<declare-styleable name="RoundKnob">
+		<attr name="knob" format="reference"/>
+		<attr name="indicator" format="reference"/>
+		<!-- Optional indicator drawable scale. Default is 1.0 
+			 NOTE: this also scales possible drawable top padding - the padding which offsets indicator from round knob edge
+		-->
+		<attr name="indicatorScale" format="float"/>
+		<!-- Default is false. If true, also rotates knob image to the same angle as indicator  -->
+		<attr name="rotateKnob" format="boolean"/>
+		
+		<!-- If defined (with arcWidth > 0), arc is drawn.
+		     If just start color is defined - this is the color for whole shape, othersiwe color changes from start color to the appropriate end color -->
+		<attr name="arcStartColor" format="color|reference"/>
+		<attr name="arcMidColor" format="color|reference"/>
+		<!-- The arc color when value is 1.0 (max value) -->
+		<attr name="arcEndColor" format="color|reference"/>
+
+		<!-- NOTE: "arc*" non color attribures are also directly used in app theme (via appropriate styles-eq) to allow easy changes with theme attribute w/o changing 
+		     the styles.
+		     If > 0 value arc is drawn of given width. Value arc reduces knob size by arcWidth + arcOffset from each side -->
+		<attr name="arcWidth" format="dimension"/>
+		<!-- The distance between arc and knob -->
+		<attr name="arcOffset" format="dimension"/>
+		
+		<!-- If defined toghether with arc (with arcGlowWidth > 0), arc glow is drawn. 
+			 If just start color is defined - this is the color for whole shape, othersiwe color changes from start color to the appropriate end color.
+			 Applied on Androids 9+ (SDK=28+) -->
+		<attr name="arcGlowStartColor" format="color|reference"/>
+		<attr name="arcGlowMidColor" format="color|reference"/>
+		<!-- The arc glow color when value is 1.0 (max value) -->
+		<attr name="arcGlowEndColor" format="color|reference"/>				
+		<!-- If > 0, additional "glow" is applied to arc. This doesn't take space thus requires parent views not to clip children -->
+		<attr name="arcGlowWidth" format="dimension"/>
+		
+		<!-- Default is 0 - arc grows from 0 value, but can be e.g. 0.5 - arc grows to both sides (e.g. for the balance) -->
+		<attr name="arcStartPoint" format="float"/>
+				
+		<!-- If non @null/@empty, snap will be automatically enabled -->
+		<attr name="snapTo" format="float"/>
+		<attr name="dependentLabel" format="reference"/>
+		<attr name="dependentLabel2" format="reference"/>
+		<attr name="dependentLabel3" format="reference"/>
+		<attr name="valueLabel" format="reference"/>
+		<attr name="valueFormat"/>
+
+		<attr name="valueFormatMin"/>
+		<attr name="valueFormatMax"/>
+		<attr name="valueFormatMid"/>
+		<attr name="valueFormatMidPos"/>
+		
+		<!-- Additional value to round to/from values prior setting. Resulting value is Math.round(value * rounding) / rounding --> 
+		<attr name="rounding" format="float"/>
+	</declare-styleable>
+	
 	<declare-styleable name="DSPRoundKnob">
 		<!-- @id/dsp_* parameter -->
 		<attr name="param"/>
@@ -591,39 +682,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- One of msg_dsp_eq_changed/msg_dsp_other_changed/msg_dsp_reverb_changed to listen to --> 
 		<attr name="updateMsgId"/>
 		
+		<!-- If defined, this view will send appropriate cmd to dsp instead of enabling/disabling the param.
+		     Param will be enabled/disabled by a long press (longPress* attrs are ignored then) -->
+		<attr name="pressCmdId" format="reference"/>
+		<attr name="pressBusId" format="reference"/>
+		
+		<attr name="firstPressToast"/>
+		
 		<attr name="longPressCmdId" format="reference"/>
-		<attr name="longPressBusId" format="reference"/>
+		<!-- Optional string argument for pressCmdId or longRessCmdId -->
+		<attr name="string"/>
+		<!-- bus_dsp_cmd by default -->
+		<attr name="longPressBusId" format="reference"/>		
+		
 		<attr name="toastOnPress"/>
 		<attr name="toastHeaderOnPress" format="reference"/>
+		<attr name="toastIconOnPress" format="reference"/>
 	</declare-styleable>
-	
-	<declare-styleable name="RoundKnob">
-		<attr name="knob" format="reference"/>
-		<attr name="indicator" format="reference"/>
-		<!-- Optional indicator drawable scale. Default is 1.0 
-			 NOTE: this also scales possible drawable top padding - the padding which offsets indicator from round knob edge
-		-->
-		<attr name="indicatorScale" format="float"/>
-		<!-- Default is false. If true, also rotates knob image to the same angle as indicator  -->
-		<attr name="rotateKnob" format="boolean"/>
-		<!-- If non @null/@empty, snap will be automatically enabled -->
-		<attr name="snapTo" format="float"/>
-		<!-- <attr name="android:disabledAlpha"/> -->
-		<attr name="dependentLabel" format="reference"/>
-		<attr name="dependentLabel2" format="reference"/>
-		<attr name="dependentLabel3" format="reference"/>
-		<attr name="valueLabel" format="reference"/>
-		<attr name="valueFormat"/>
-
-		<attr name="valueFormatMin"/>
-		<attr name="valueFormatMax"/>
-		<attr name="valueFormatMid"/>
-		<attr name="valueFormatMidPos"/>
-		
-		<!-- Additional value to round to/from values prior setting. Resulting value is Math.round(value * rounding) / rounding --> 
-		<attr name="rounding" format="float"/>
-	</declare-styleable>
-	
 	
 	<declare-styleable name="MilkFRS">
 		<attr name="roundRectClipRadius" format="dimension"/>
@@ -713,6 +788,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Round knob style -->
 		<attr name="roundKnobStyle" format="reference"/>
+		
+		<!-- Id for a object state with dsp param definition -->
+		<attr name="dspParamDef" format="reference"/>
 	</declare-styleable>
 	
 	<declare-styleable name="PlayingMark">
@@ -730,12 +808,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="right" value="1"/>
 			<enum name="bottom" value="2"/>
 			<enum name="left" value="3"/>
+			<enum name="center" value="4"/>
 		</attr>
 		<attr name="help_inside" format="boolean"/>
 		<!-- If true, view will be positioned by one axis (depending on help_position) -->
 		<attr name="help_oneAxis" format="boolean"/>
-		
-		
 	</declare-styleable>
 	<declare-styleable name="Help">
 		<attr name="arrowWidth" format="dimension"/>
@@ -775,6 +852,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="arrowFillColor"/>
 		<attr name="arrowStrokeColor"/>
 	</declare-styleable>
+	
+	
 	
 		
 </resources>

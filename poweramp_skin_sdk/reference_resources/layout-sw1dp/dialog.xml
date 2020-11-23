@@ -70,9 +70,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="invisible"
 	/>
 	
-	<!-- 
-		Outer layout - matches full screen. Mostly used to intercept nested scroll events from content ScrollView
-		NOTE: no style needed, inline attributes always apply -->
+	<!-- Outer layout - matches full screen. Mostly used to intercept nested scroll events from content ScrollView -->
 	<com.maxmpz.widget.base.DialogOuterFastLayout android:id="@+id/dialog_outer_layout"
 		style="?DialogOuterLayout"
 	>

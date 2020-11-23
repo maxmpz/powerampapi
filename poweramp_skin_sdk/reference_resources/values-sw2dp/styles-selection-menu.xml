@@ -130,13 +130,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="SelectionListContextButtonBase">		
-		<item name="layout_widthPercent">33.333%</item>
-		<!--<item name="layout_widthPercent">25%</item>-->
+		<!--<item name="layout_widthPercent">33.333%</item>-->
+		<item name="layout_widthPercent">25%</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="drawablePaddingStart">4dp</item><!-- The padding on top, before drawable -->
 		<item name="android:drawablePadding">2dp</item><!-- The padding between drawable and text -->
-		<item name="android:paddingTop">0dp</item><!-- In this case this adds to distance between drawable and text -->
-		<item name="android:paddingBottom">4dp</item>
+		<item name="android:paddingTop">0dp</item><!-- In this case this padding adds to distance between drawable and text -->
+		<item name="android:paddingBottom">6dp</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="layout_consumeSpace">horizontal|reset_auto</item>
@@ -159,11 +159,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:focusableInTouchMode">false</item>
 	</style>
 	<style name="SelectionListContextButton_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">12.5dp</item>
+		<item name="android:textSize">12dp</item>
 		<!-- NOTE: important to avoid default android theme text colorlist with disabled text color, as we do own disabled processing 
 			 If we don't specify color explicetly, it's taken from theme, causing text color to jump to disabled, but we want alpha animation -->
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	<style name="SelectionListContextButton" parent="SelectionListContextButtonBase">
 	</style>		
+	<style name="SelectionListContextButton33" parent="SelectionListContextButtonBase">
+		<item name="layout_widthPercent">33.333%</item>
+	</style>
 </resources>

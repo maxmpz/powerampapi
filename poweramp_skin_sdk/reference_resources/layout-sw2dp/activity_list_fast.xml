@@ -518,6 +518,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@id/scene_lib" w:scene_2="@id/scene_search" w:scene_3="@id/scene_eq"
 		style="?TopFitsStatusBarView_scenes_non_main"
 	/>
+	
 	<com.maxmpz.widget.base.FitsNavigationBarView android:id="@+id/navigation_bar_bg"
 		style="?TopFitsNavigationBarView"
 	/>

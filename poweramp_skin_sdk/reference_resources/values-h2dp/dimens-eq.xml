@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
-which communicate with Poweramp music player application on Android platform.
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -25,25 +25,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopActionModeBar_marginTop">4dp</dimen>
 	<dimen name="TopActionModeBar_marginBottom">0dp</dimen>
 	
+	<dimen name="EqRoundKnobValueLabel_marginTop">1dp</dimen><!-- Overridden for scripts with tall characters, such as Chinese -->
+	
+	<dimen name="EqInfoLabel_maxWidth">300dp</dimen>
+	
 	<dimen name="preamp_knob_width">56dp</dimen>
 	<dimen name="eq_frs_height">32dp</dimen>
 	<dimen name="EqFrequencyResponseScroller_marginTop">4dp</dimen><!-- Increased for longer screens -->
+	<dimen name="EqInfoBase_marginTB">4dp</dimen><!-- Increased for longer screens -->
 	
 	<dimen name="linear_knob_text_size">12sp</dimen>
+	<dimen name="EqKnobsLayout_marginTop">4dp</dimen>
 	<dimen name="EqLinearKnob_paddingLR">4dp</dimen>
 	  	
-	  	
-	<dimen name="EqToneKnobs_marginTop">8dp</dimen>
-	<dimen name="EqSmallKnobLayout_marginTop">4dp</dimen>
-	  
 	<!-- Baseline values (for large scaling). Overridden by various resource specifiers, e.g. values-w400dp-port -->
 	<dimen name="EqKnobValueText_size">9.5sp</dimen>
 	<dimen name="EqKnobLabelText_size">11dp</dimen>
 	
-	<dimen name="EqToneRoundKnob_size">70dp</dimen>
-	<dimen name="MediumRoundKnob_size">76dp</dimen>
-	<dimen name="BigRoundKnob_size">80dp</dimen>
-	<dimen name="SmallRoundKnob_size">70dip</dimen>
+	<dimen name="RoundKnob_arcWidth">3dp</dimen>
+	<dimen name="RoundKnob_arcOffset">3dp</dimen>
 	
 	<dimen name="EqLinearKnob_thumbWidth">24dp</dimen>
 	<dimen name="EqLinearKnob_thumbHeight">48dp</dimen>
@@ -57,21 +57,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_marginSide">4dp</dimen>
 	<dimen name="EqButton_textSize">10dp</dimen>
 	
+	<dimen name="EqEquButton_maxWidth">70dp</dimen>
+	<dimen name="EqTonePanel_offsetTB">8dp</dimen><!-- Increased for longer screens -->
+	<dimen name="EqTonePanel_offsetLeft">16dp</dimen>
+	
 	
 	<dimen name="EqVolPanel1_paddingTop">0px</dimen>
-	<dimen name="EqVolPanel1_paddingBottom">0px</dimen>
-	<dimen name="EqTempoKnobLayout_width">160dp</dimen>
 	
+	<dimen name="EqRoundKnobLabel_maxWidth">100dp</dimen>
+	<dimen name="EqToneRoundKnobLabel_maxWidth">50dp</dimen>
 	
-	<dimen name="EqRoundKnobLabel_maxWidth">90dp</dimen>
-	
-	<dimen name="RoundKnobLabelLeftTop_marginRight">0dp</dimen>
+	<dimen name="RoundKnobLabelLeftTop_marginRight">4dp</dimen>
 	<dimen name="RoundKnobLabelLeftTop_marginTop">8dp</dimen>
-	<dimen name="RoundKnobLabelLeftTop_width">@dimen/WRAP_CONTENT</dimen>
-	<dimen name="EqReverbParam5KnobLayout_margin">8dp</dimen>
+	<dimen name="RoundKnobLabelLeftTop_minWidth">72dp</dimen>
 	<dimen name="EqEquPresetButtonLayout_layout_width">70dp</dimen>
 
-	<dimen name="EqReverbPresetButtonLayout_width">64dp</dimen><!-- land only -->
-	<dimen name="EqPresetButtonLayout_width">72dp</dimen><!-- land only -->
+	<dimen name="EqKnob_spacing">4dp</dimen>
+	<dimen name="EqReverbPanel3_paddingTop">8dp</dimen><!-- == EqKnob_spacing*2 --> 
 	
+	<dimen name="EqPresetButtonLayout_width">72dp</dimen><!-- land only -->
+
+	<!-- NOTE: includes labels, some paddings -->
+	<dimen name="EqSmallRoundKnobLayout_maxSize">120dp</dimen>
+	<dimen name="EqToneRoundKnobLayout_maxSize">200dp</dimen>
+	<dimen name="EqRoundKnobLayout_maxSize">200dp</dimen>
+	<dimen name="EqLargerRoundKnobLayout_maxSize">220dp</dimen>
+	
+	<dimen name="EqSmallRoundKnob_maxSize">80dp</dimen>
+	<dimen name="EqToneRoundKnob_maxSize">140dp</dimen>
+	<dimen name="EqRoundKnob_maxSize">140dp</dimen>
+	<dimen name="EqLargerRoundKnob_maxSize">180dp</dimen>
+		
 </resources>

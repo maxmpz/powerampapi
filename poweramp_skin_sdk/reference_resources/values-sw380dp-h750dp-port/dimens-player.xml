@@ -38,16 +38,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Alt -->
 	<dimen name="Alt_TopSubAAButtons_marginTop">8dp</dimen>
-	
-	<!--<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.9</item> Not used anymore -->
-		
-	<!-- <dimen name="Alt_aaMaxSize">542dp</dimen> Not used anymore -->
 	<dimen name="Alt_TopWaveseek_paddingTB">12dp</dimen>
-	
 	<dimen name="Alt_TopPlay_maxSize">100dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">92dp</dimen>
 	<dimen name="Alt_TopPlayPauseBehind_size">55dp</dimen>
 	<dimen name="Alt_TopWaveseek_maxHeight">184dp</dimen>
-	
-		
 </resources>

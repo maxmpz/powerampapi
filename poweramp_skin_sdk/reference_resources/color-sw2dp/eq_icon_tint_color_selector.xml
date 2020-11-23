@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:state_enabled="false" android:color="#0000"/>
+	<!-- NOTE: PopupButtonLayout uses selected state to indicate the popup layout is checked (and thus probably changed background color) -->
+	<item android:state_selected="true" android:color="?colorIconInverse"/>
+	<item android:color="?android:textColorSecondary"/>
+</selector>
+

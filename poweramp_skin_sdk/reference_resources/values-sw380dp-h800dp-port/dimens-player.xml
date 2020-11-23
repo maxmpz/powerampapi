@@ -23,5 +23,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">1dp</dimen>
 	<dimen name="Alt_TopAABounds_marginBottom">70dp</dimen>
 	<dimen name="Alt_TopSubAAButtons_marginTop">12dp</dimen>
-	
 </resources>

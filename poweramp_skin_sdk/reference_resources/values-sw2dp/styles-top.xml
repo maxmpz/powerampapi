@@ -636,7 +636,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopEqLayout" parent="TopEqLayoutBase">
 	</style>
+
+	<style name="TopPeqEqLayoutBase" parent="TopEqLayoutBase">
+		<item name="android:visibility">visible</item>
+		<item name="layout_attachBottom">@id/navbar_bounds</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachRight">inset</item>
+	</style>
+	<style name="TopPeqEqLayout" parent="TopPeqEqLayoutBase">
+	</style>
 	
+	<style name="TopPeqEqLayoutBase_scenes_vis" parent="TopPeqEqLayout"><!-- NOTE: TopPeqEqLayout modified for lang -->
+		<!-- Margin top: 48dp + 8dp -->
+		<item name="android:layout_marginTop">56dp</item>
+	</style>
+	<style name="TopPeqEqLayout_scenes_vis" parent="TopPeqEqLayoutBase_scenes_vis">
+	</style>
+				
 	
 	<style name="TopActionModeBarBase">
 		<item name="android:layout_marginTop">@dimen/TopActionModeBar_marginTop</item><!-- Increased for longer screens -->
@@ -650,7 +667,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopActionModeBar" parent="TopActionModeBarBase">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">48dp</item>
+		<item name="android:layout_height">@dimen/Navbar_height</item>
 		<item name="layout_consumeSpace">vertical</item>
 	</style>
 	
@@ -900,7 +917,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="buttonStyle">?PopupButton</item>
 		<item name="menuButtonStyle">?PopupButton_scene_button_menu</item>
 		
-		<item name="popupListStyle">@style/PopupListLayoutList</item><!-- Used for e.g. eq/reverb presets (with the list inside) -->
+		<item name="popupListStyle">@style/PopupListLayoutList</item><!-- Used for e.g. eq/reverb presets (with the PowerList inside) -->
 	</style>
 	
 	
@@ -1189,8 +1206,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="help_position">bottom</item>
 	</style>
 	
+	<style name="TopHelpButtonPeqEq" parent="TopHelpButton">
+		<item name="layout_attachTop">parent</item>
+		<item name="help_position">bottom</item>
+	</style>
+		
 	<style name="TopHelpButton_anim_help_visible">
 		<item name="android:alpha">1</item>
+	</style>
+	
+	<style name="TopHelpButtonVis" parent="TopHelpButton">
 	</style>
 
 </resources>

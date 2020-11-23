@@ -51,7 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		
 		<item name="reverb_24dp">@drawable/reverb_24dp</item>
-		<item name="vis_24dp">@drawable/vis_stroke_32dp</item><!-- Vis panel list item icon -->
+		<item name="vis_24dp">@drawable/vis_32dp</item><!-- Vis panel list item icon -->
 		
 		<item name="sleep_timer_32dp">@drawable/sleep_timer_stroke_32dp_tinted</item>
 				
@@ -124,6 +124,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: Eq text styles are here, as they can be used by non-top-activity derived contexts (e.g. VolumePanel) -->
 		<item name="EqLinearKnob_Text">@style/EqLinearKnob_Text</item>
 		<item name="EqKnobValue_Text">@style/EqKnobValue_Text</item>
+		<item name="EqKnobValueLarger_Text">@style/EqKnobValueLarger_Text</item>
+		
 		<item name="EqKnobLabel_Text">@style/EqKnobLabel_Text</item>
 		
 		<!-- NOTE: PopupButtons and related are possible in dialogs -->
@@ -441,6 +443,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="Navbar">@style/Navbar</item>
 		<item name="NavbarExtension">@style/NavbarExtension</item>
 		<item name="NavbarExtensionLogo">@style/NavbarExtensionLogo</item>
+		<item name="NavbarPeqExtensionLogo">@style/NavbarPeqExtensionLogo</item>
 		<item name="NavbarExtensionLogoLabel">@style/NavbarExtensionLogoLabel</item>
 		<item name="NavbarExtensionLogoLabel_Text">@style/NavbarExtensionLogoLabel_Text</item>
 		<item name="NavbarExtensionMenuLine">@style/NavbarExtensionMenuLine</item>
@@ -460,6 +463,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="SelectionMenuSeparator">@style/SelectionMenuSeparator</item>
 		<item name="SelectionMenuBottomLineLayout">@style/SelectionMenuBottomLineLayout</item>
 		<item name="SelectionListContextButton">@style/SelectionListContextButton</item>
+		<item name="SelectionListContextButton33">@style/SelectionListContextButton33</item>
 		<item name="SelectionListContextButton_Text">@style/SelectionListContextButton_Text</item>
 		<item name="SelectionMenuSubcontainer">@style/SelectionMenuSubcontainer</item>
 		<item name="SelectionMenuSubcontainer_scene_selection_menu">@style/SelectionMenuSubcontainer_scene_selection_menu</item>
@@ -475,6 +479,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopListScrollerView_state_scrollbar_pressed">@style/TopListScrollerView_state_scrollbar_pressed</item>
 		
 		<item name="TopEqLayout">@style/TopEqLayout</item>
+		<item name="TopPeqEqLayout">@style/TopPeqEqLayout</item>
+		<item name="TopPeqEqLayout_scenes_vis">@style/TopPeqEqLayout_scenes_vis</item>
 		<item name="TopActionModeBar">@style/TopActionModeBar</item>
 		<item name="TopActionModeBarButton">@style/TopActionModeBarButton</item>
 		<item name="TopSearchLayout">@style/TopSearchLayout</item>
@@ -562,6 +568,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Vis -->
 		
 		<item name="VisPanelContainer">@style/VisPanelContainer</item>
+		<item name="PeqVisPanelContainer">@style/PeqVisPanelContainer</item>
 		<item name="VisPanelShim">@style/VisPanelShim</item>
 		<item name="VisPanelFrame">@style/VisPanelFrame</item>
 		<item name="VisCloseButton">@style/VisCloseButton</item>
@@ -599,6 +606,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqEquResetButton">@style/EqEquResetButton</item>
 		<item name="EqBassToneKnobLayout">@style/EqBassToneKnobLayout</item>
 		<item name="EqTrebleToneKnobLayout">@style/EqTrebleToneKnobLayout</item>
+		<item name="PeqVisButtonLayout">@style/PeqVisButtonLayout</item>
+		<item name="PeqEqEnableVisFrs">@style/PeqEqEnableVisFrs</item>
 		
 		<!-- Vol tab -->
 		<item name="EqVolPanel1">@style/EqVolPanel1</item>
@@ -613,7 +622,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqMonoCheckButton">@style/EqMonoCheckButton</item>
 		<item name="EqPlatformFXCheckButton">@style/EqPlatformFXCheckButton</item>
 		<item name="EqOtherResetButton">@style/EqOtherResetButton</item>
+		<item name="PeqOtherResetButton">@style/PeqOtherResetButton</item>
 		<item name="EqVolumeKnobLayout">@style/EqVolumeKnobLayout</item>
+		<item name="PeqVolumeKnobLayout">@style/PeqVolumeKnobLayout</item>
+		<item name="PeqEqVolPanel1">@style/PeqEqVolPanel1</item>
+		<item name="PeqEqVolPanel2">@style/PeqEqVolPanel2</item>
+		<item name="PeqEqVolPanel3">@style/PeqEqVolPanel3</item>
+		<item name="PeqEqBalanceKnobLayout">@style/PeqEqBalanceKnobLayout</item>
+		<item name="PeqEqCompressorCheckButton">@style/PeqEqCompressorCheckButton</item>
+		<item name="PeqEqCompressKnobLayout1">@style/PeqEqCompressKnobLayout1</item>
+		<item name="PeqEqCompressKnobLayout2">@style/PeqEqCompressKnobLayout2</item>
+		<item name="PeqEqCompressKnobLayout3">@style/PeqEqCompressKnobLayout3</item>
+		<item name="PeqEqCompressKnobLayout4">@style/PeqEqCompressKnobLayout4</item>
+		<item name="PeqEqCompressKnobLayout5">@style/PeqEqCompressKnobLayout5</item>
+		<item name="PeqEqCompressKnobLayout6">@style/PeqEqCompressKnobLayout6</item>
+				
 		
 		<!-- Reverb tab -->
 		<item name="EqReverbPanel1">@style/EqReverbPanel1</item>
@@ -627,13 +650,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqReverbParam1KnobLayout">@style/EqReverbParam1KnobLayout</item>
 		<item name="EqReverbParam5KnobLayout">@style/EqReverbParam5KnobLayout</item>
 		<item name="EqReverbCheckButton">@style/EqReverbCheckButton</item>
-		
 		<item name="EqReverbPresetButtonLayout">@style/EqReverbPresetButtonLayout</item>
 		<item name="EqReverbPresetButtonLayout_scene_button_menu">@style/EqReverbPresetButtonLayout_scene_button_menu</item>
 		<item name="EqReverbPresetLabel">@style/EqReverbPresetLabel</item>
-		
 		<item name="EqReverbSaveButton">@style/EqReverbSaveButton</item>
 		<item name="EqReverbResetButton">@style/EqReverbResetButton</item>
+		<item name="PeqEqReverbParamKnobLayout">@style/PeqEqReverbParamKnobLayout</item>
 		
 		<!-- Sleep timer -->
 		<item name="SleepTimerTitle">@style/SleepTimerTitle</item>
@@ -649,6 +671,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PlainSeekbar_anim_seeking">@style/PlainSeekbar_anim_seeking</item>
 		
 		
+		<item name="TopUpperToastContainer">@style/TopUpperToastContainer</item>
+		<item name="TopUpperToastFrame">@style/TopUpperToastFrame</item>
+		<item name="TopUpperToastFrame_scene_expanded">@style/TopUpperToastFrame_scene_expanded</item>
+		<item name="TopUpperToastCloseButton">@style/TopUpperToastCloseButton</item>
+		<item name="TopUpperToastIcon">@style/TopUpperToastIcon</item>
+		<item name="TopUpperToastTitle">@style/TopUpperToastTitle</item>
+		<item name="TopUpperToastTitle_Text">@style/TopUpperToastTitle_Text</item>
+		<item name="TopUpperToastLine2">@style/TopUpperToastLine2</item>
+		<item name="TopUpperToastLine2_Text">@style/TopUpperToastLine2_Text</item>
+		<item name="TopUpperToastTitle_no_icon">@style/TopUpperToastTitle_no_icon</item>
+		<item name="TopUpperToastLine2_no_icon">@style/TopUpperToastLine2_no_icon</item>
 	</style>
 	
 </resources>

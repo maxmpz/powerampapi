@@ -12,5 +12,5 @@
 		</shape>
 	</item>
 	
-	<item android:minLevel="0" android:maxLevel="0" android:drawable="@drawable/ripple_inverse_stroke_rounded_large"/>
+	<item android:minLevel="0" android:maxLevel="0" android:drawable="@drawable/ripple_inverse_stroke_bg_rounded_large"/>
 </level-list>

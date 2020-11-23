@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
-which communicate with Poweramp music player application on Android platform.
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -55,6 +55,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorKnobPressed" format="color"/>
 	<attr name="colorKnobBg" format="color"/>
 	<attr name="colorKnobDisabled" format="color"/>
+	
+	
 	<attr name="colorPreampBg" format="color"/>
 	<attr name="colorTrackMeta" format="color"/>
 	<attr name="colorTrackNum" format="color"/>

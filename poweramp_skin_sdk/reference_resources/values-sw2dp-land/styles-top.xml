@@ -109,18 +109,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 		
 	<style name="TopActionModeBar" parent="TopActionModeBarBase">
-		<item name="android:layout_width">48dp</item>
+		<item name="android:layout_width">@dimen/Navbar_height</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="layout_consumeSpace">horizontal</item>
 	</style>
 	
 	<style name="TopActionModeBarButton" parent="NavBarButton">
-		<item name="layout_heightPercent">33.33%</item>
-		<item name="layout_consumeSpace">vertical</item>
-		<item name="android:layout_width">44dp</item>
+		<item name="layout_flexAxis">vertical</item>
+		<item name="layout_flexWeight">1</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">0px</item><!-- Overridden by flex -->
 		
-		<item name="layout_widthPercent">@null</item>
+		<!--
 		<item name="android:layout_height">@null</item>
+		<item name="layout_widthPercent">@null</item>
+		
+		<item name="layout_heightPercent">33.33%</item>
+		<item name="android:layout_width">44dp</item>
+		<item name="layout_consumeSpace">vertical</item>-->
+				
 	</style>
 	
 	<style name="TopListScrollerView" parent="TopListScrollerViewBase">
@@ -133,6 +140,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachLeft">inset</item>
 		<item name="layout_attachRight">inset</item>
 	</style>
+	
+	<style name="TopPeqEqLayout" parent="TopPeqEqLayoutBase">
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+	</style>
+		
 	
 	<style name="TopHelpButtonEq" parent="TopHelpButton">
 	</style>

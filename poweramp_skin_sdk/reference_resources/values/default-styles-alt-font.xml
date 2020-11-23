@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
 Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
-which communicate with Poweramp music player application on Android platform.
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,6 +18,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
+
 <!-- dp => sp 0.897 -->
 <!-- values -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
@@ -108,6 +108,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqLinearKnob_Text">@style/EqLinearKnob_Text_AltFont</item>
 		<item name="EqKnobLabel_Text">@style/EqKnobLabel_Text_AltFont</item>
 		<item name="EqKnobValue_Text">@style/EqKnobValue_Text_AltFont</item>
+		<item name="EqKnobValueLarger_Text">@style/EqKnobValueLarger_Text_AltFont</item>
 		<item name="EqButton_Text">@style/EqButton_Text_AltFont</item>
 		<item name="EqEquPresetLabel_Text">@style/EqEquPresetLabel_Text_AltFont</item>
 	</style>
@@ -189,7 +190,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="NavbarExtensionLogoLabel_Text_AltFont" parent="NavbarExtensionLogoLabel_Text">
-		<item name="android:textSize">@dimen/moderate3_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
 	</style>
 	
 	<style name="NavbarExtensionMenuLine_Text_AltFont" parent="NavbarExtensionMenuLine_Text">
@@ -347,6 +348,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:fontFamily">?AltFont_font</item>
 		<item name="android:textSize">@dimen/small3_AltFont_textSize</item>
 	</style>
+	<style name="EqKnobValueLarger_Text_AltFont" parent="EqKnobValue_Text">
+		<item name="android:fontFamily">?AltFont_font</item>
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+		
 	<style name="EqButton_Text_AltFont" parent="EqButton_Text">
 		<item name="android:fontFamily">?AltFont_font</item>
 		<item name="android:textSize">@dimen/moderate2_AltFont_textSize</item>

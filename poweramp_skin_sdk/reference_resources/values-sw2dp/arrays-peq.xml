@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<!-- NOTE: removed change with track -->
+	<string-array name="peq_milk_advance_modes"><!-- Sync with MilkAPI.ADVANCE_* -->
+		<item>@string/lock</item>
+		<item>@string/change_by_time</item>
+		<item>@string/shuffle_by_time</item>
+	</string-array>
+	<array name="peq_milk_advance_icons">
+		<item>?vis_lock_24dp</item>
+		<item>?vis_advance_by_time_24dp</item>
+		<item>?vis_shuffle_24dp</item>
+	</array>
+	<integer-array name="peq_milk_advance_enum">
+		<item>0</item>
+		<item>2</item>
+		<item>3</item>
+	</integer-array>
+	
+	<integer-array name="pref_blocksize_values">
+		<item>2048</item>
+		<item>4096</item>
+		<item>8192</item>
+		<item>16384</item>
+	</integer-array>
+	
+	<integer-array name="pref_peq_equ_bands">
+		<item>5</item>
+		<item>10</item>
+		<item>12</item>
+		<item>15</item>
+		<item>16</item>	
+		<item>24</item>
+		<item>31</item>
+		<item>32</item>
+	</integer-array>
+	<string-array  name="pref_peq_equ_bands_entries">
+		<item>5</item>
+		<item>10 (ISO)</item>
+		<item>12</item>
+		<item>15 (ISO)</item>
+		<item>16</item>	
+		<item>24</item>
+		<item>31 (ISO)</item>
+		<item>32</item>
+	</string-array>
+		
+</resources>

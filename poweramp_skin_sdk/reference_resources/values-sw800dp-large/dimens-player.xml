@@ -40,11 +40,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="SmallerPopupButton_marginLeft">-12dp</dimen>
 	<dimen name="PopupButtons_paddingLeft">28dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
 
-	<dimen name="Navbar_height">56dp</dimen>
-	<dimen name="NavbarNavButtonsLayout_height">52dp</dimen>
+	<dimen name="Navbar_height">60dp</dimen>
+	<dimen name="NavbarNavButtonsLayout_height">56dp</dimen>
 	
-	<dimen name="NavbarBounds_height">64dp</dimen>
-	<dimen name="NavbarBounds_height_scene_navbar_2lines">116dp</dimen>
+	<dimen name="NavbarBounds_height">68dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines">120dp</dimen>
 		
 	
 	<!-- Alt -->

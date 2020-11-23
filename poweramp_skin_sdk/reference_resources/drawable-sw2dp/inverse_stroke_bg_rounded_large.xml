@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+	<corners android:radius="?corners_large"/>
+	<stroke android:color="?colorStroke" android:width="2px"/><!-- NOTE: 0.5dp or 1px has some drawing artifacts for stroke e.g. on S9+@8.0 -->
+	<solid android:color="?colorAABgColor" />
+</shape>

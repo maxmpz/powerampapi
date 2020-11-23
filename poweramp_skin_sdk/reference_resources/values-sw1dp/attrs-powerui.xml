@@ -4,7 +4,7 @@ Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
-which communicate with Poweramp music player application on Android platform.
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -23,7 +23,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Used in <include>, if true, no any error happens if android:layout doesn't exist (set to @null for that <include>) -->
 	<attr name="optional" format="boolean"/>
 	
-	<attr name="windowLightNavigationBar" format="boolean"/><!-- Just for Android 8.0, which supports light navigation bar, but doesn't have attribute for that -->
+	<!-- Just for Android 8.0, which supports light navigation bar, but doesn't have attribute for that -->
+	<attr name="windowLightNavigationBar" format="boolean"/>
 	
 	<!-- Styles always applied for activities / dialogs -->
 	<declare-styleable name="PoweruiStyles">
@@ -80,30 +81,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="state_toolbar_in_header" format="boolean" /><!-- REVISIT: not used ATM -->
 		
 	
-	<!-- Scene params is a pseudo-view-tag (xml tag without actual view) which defines attributes for one or multiple scenes -->
+	<!-- Scene params is a pseudo-view-tag (xml tag without the actual view) which defines attributes for one or multiple scenes -->
 	<declare-styleable name="SceneParams">
 		<!-- If visibility is missing from the given SceneParams, visibility is not changed -->
 		<attr name="android:visibility"/>
 		
-		<!-- NOTE: manipulating visibility, alpha + StateAnim alpha is hard, and some scenarios may not work properly due to conflicting or overlapping alpha values --> 
+		<!-- NOTE: manipulating visibility, alpha + StateAnim alpha is hard, and some scenarios may not work properly due to the conflicting or overlapping alpha values --> 
 	
-		<!-- If alpha is missing from given SceneParams, alpha=1.0 is assumed -->
+		<!-- If alpha is missing from the SceneParams, alpha=1.0 is assumed -->
 		<attr name="android:alpha"/>
 
 		<!-- Uniform scale. Separate scaleX/Y are not supported.
-			 If scale is missing from given ScenePArams, scale=1.0 is assumed -->
+			 If scale is missing from the SceneParams, scale=1.0 is assumed -->
 		<attr name="scale" format="float"/>
 		
-		<!-- Elevation is apply with "jump", as animated elevation change has large overhead. 
-			 Appropriate outline provider, etc. valid elevation properties should be set on view.
-			 If elevation is missing from given SceneParams, elevation value is kept as is.
-			 Due to high overhead for elevation change, this property behavior, thus, differs from other SceneParams attributes like scale or alpha) -->
+		<!-- Elevation is applied with a "jump", as animated elevation change has large overhead. 
+			 Appropriate outline provider and other required elevation properties should be set on view.
+			 If elevation is missing from the SceneParams, elevation value is kept as is.
+			 Due to the high overhead for elevation changes, this property behavior, thus, differs from other SceneParams attributes like scale or alpha) -->
 		<attr name="android:elevation"/>
 		
-		<!-- Optional attribute, if missing, SceneParams is attached to previous view -->
+		<!-- Optional attribute, if missing, SceneParams is attached to the previous view -->
 		<attr name="forId" format="reference|integer">
-			<!-- NOTE: parent generally won't work when SceneParams is put into same XML layout which defines "parent", as during XML inflation,
-				 that "parent" is not yet attached to upper parent, thus, it's not possible to create layout params for it, thus, not possible
+			<!-- NOTE: parent generally won't work when SceneParams is put into the same XML layout which defines "parent", as during XML inflation,
+				 that "parent" is not yet attached to the upper parent, thus it's not possible to create layout params for it and it's not possible
 				 to create SceneParams.
 				 "parent" is used for loadable / merged XML layouts, when extra SceneParams should be added to parent view, where XML is added to
 			--> 
@@ -115,7 +116,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Target scene id which this SceneParams is for -->
 		<attr name="scene" format="reference|integer">
 			<!-- NOTE: scene can be set to defaultScene, so that will redefine the default scene (or update, if baseScene="defaultScene" is used 
-				 Only first "scene" attribute supports that -->
+				 Only first "scene" attribute supports this -->
 			<enum name="defaultScene" value="0"/>
 		</attr>
 		<attr name="scene_2" format="reference"/><!-- valid only if scene exists in tag -->
@@ -131,11 +132,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</attr>
 		
 		<!-- NOTE: placed here for technical reasons to detect if layout params exist for the given scene params.
-			 If layout_width exists in the attributes, we assume layout is set for this scene params, otherwise no different layout is applied per this scene params -->
+			 If layout_width exists in the attributes, we assume layout is set for this scene params, otherwise no different layout is applied for this scene params -->
 		<attr name="android:layout_width"/>
 		
-		<!-- Defines point during transition when target view is re-layout. Layout is a costly operation for the most views,
-		     so we want to keep it as rare as possible, still getting the smooth animation.
+		<!-- Defines point during transition when target view is re-laid out. Layout is a costly operation for the most views,
+		     so we want to keep it as rare as possible, still getting smooth animation.
 		     NOTE: this option changes only "layout" processing in terms of Android UI framework. 
 		     The bounds of views are always transitioned/animated (unless view is GONE) -->
 		<attr name="recalcChildren" format="fraction|integer">
@@ -145,7 +146,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<!-- Final child layout is used for the transition (jumps in the beggining) -->
 			<enum name="on_start" value="1" /><!-- Sync with SceneParams -->
 			 
-			<!-- Dynamically recalculate layout of children, can be slow, but may be required for images and some other views
+			<!-- Dynamically recalculate layout of children, this is costly and can be slow, but may be required for images and some other views that
 			     we want to constantly relayout during transition -->
 			<enum name="dynamic" value="2" /><!-- Sync with SceneParams -->
 		</attr>
@@ -157,11 +158,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     If true, per view params will be applied for this scene (if supported by view), such as background, textColor, etc. -->
 		<attr name="applyViewParams" format="boolean"/> 
 		
-		<!-- Default is false. If true, visibility will be applied immediately without an alpha transition. Good for cases when view should not fade at all -->
+		<!-- Default is false. If true, visibility will be applied immediately without an alpha transition. Good for the cases when view should not fade at all -->
 		<attr name="jumpVisibility" format="boolean"/>
 		
 		<!-- If true, apply scene params even if view is GONE in _both_ (from/to) scenes. 
-		     Useful for views which are force-hidden by code, but still should have different layout in scenes.
+		     Useful for the views which are force-hidden by code, but still should have different layout in scenes.
 		     This can be further optimized with dontApplyIfGone -->
 		<attr name="applyEvenIfGone" format="boolean|integer">
 			<!-- Don't apply scene params if view is GONE currently (only in the current scene). If view is GONE, then it won't participate in scenes until set to non-gone by code.
@@ -171,7 +172,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 	
-	<!-- StateAnim is pseudo-view-tag which defines animation attribures, orthogonal to Scene animated params, used for small temporary transforms -->
+	<!-- StateAnim is pseudo-view-tag that defines animation attribures, orthogonal to Scene animated params, used for small temporary animations -->
 	<declare-styleable name="StateAnimParams">
 		<!-- Target view id -->
 		<attr name="forId"/>
@@ -278,8 +279,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		 Paddings:
 		 NOTE: fast text padding processing (with drawable) differs from the standard Android TextView.
-		 This is due to the requirement for consinstent padding around text, while padding around drawable is specific to the drawable.
-		 This allows same styles to be used for buttons with or without drawables with consinstent text paddings  
+		 This is due to the requirement for consinstent padding around text, while padding around drawable may be specific to that drawable.
+		 This allows same styles for buttons with or without drawables and consinstent text paddings as a result  
 
 		 Horizontal FastTextView paddings when no drawable:
 		   paddingLeft text paddingRight
@@ -340,7 +341,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Forced drawable height. Default is drawable original height -->
 		<attr name="drawableHeight" format="dimension"/>
 		
-		<!-- Default is false. If true, allow this view to have zero-height if no text (text=="" or null) nor drawable is in it.
+		<!-- Default is false. If true, allow this view to have zero-height if no text (text=="" or null) nor drawable is set for it.
 		     NOTE: minHeight is still honored -->
 		<attr name="allowZeroHeight" format="boolean"/>
 		<!-- Extra drawable padding right when no text exists (empty or null). This can be negative value, it's summed with other paddings right to the drawable, i.e:
@@ -390,7 +391,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     For now, use #00000000 (#0000) color instead to indicate transition to no-background -->
 		<attr name="android:background"/>
 		<attr name="drawableTint"/>
-		<!-- NOTE: limited support for drawable transitions. For new drawable to appear, default scene should have some default drawable set
+		<!-- NOTE: limited support for drawable transitions. For the new drawable to appear, default scene should have some default drawable set
 			 Basically, that means we can transition between drawables, but we can't transition between no-drawable and drawable and vice-versa -->
 		<attr name="android:drawable"/>
 		
@@ -448,12 +449,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 - LinearLayout (can be implemented via layout_flex* or most commonly via layout_consumeSpace)
 		 - RelativeLayout (FastLayout is faster as it uses strictly one-pass, one measure per pass approach) 
 		 - partially ConstraintLayout (FastLayout is much faster) 
-		 - or combination of those in one layout
+		 - or combination of those in the one layout
 		 
 		 Mostly every layout you're seeing in Poweramp main UI is FastLayout
 		 
-		 FastLayout is focused on performance and thus has limitations due to strict "no-remeasure" approach:
-		 - views are layed-out in xml order (some layout params may override the layout direction)
+		 FastLayout is focused on performance and thus has limitations due to the strict "no-remeasure" approach:
+		 - views are laid out in xml order (some layout params may override the layout direction)
 		   - if some view is referenced by other view that triggers immediate laying out of such referenced view
 		     - if this causes cycle StackOverflowException is thrown
 		 
@@ -466,9 +467,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 		<attr name="android:layout_gravity" />
 		
-		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT) -->
+		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT)
+		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size.
+		     This allows multiple views with same relative size (e.g. 4 views with layout_widthPercent="25%" in a row) also to consume
+		     space and being laid out as expeted in a sequence.
+		     The views which consume space still my reduce the available size by using -->
 		<attr name="layout_widthPercent" format="fraction"/>
-		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT) -->
+		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT)
+		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size -->
 		<attr name="layout_heightPercent" format="fraction"/>
 		
 		<!-- Defines max possible width for the child -->
@@ -488,12 +494,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</attr>
 		
 		<!-- 
-			Flex axis views are layed out and expanded (if layout_flexWeight is specified) along the vertical or horizontal axis
+			Flex axis views are laid out and expanded (if layout_flexWeight is specified) along the vertical or horizontal axis
 			
-			NOTE: flex layout views are measured/layed out _before_ any other "normal" children. Thus, if FastLayout width/height is set to WRAP_CONTENT,
+			NOTE: flex layout views are measured/laid out _before_ any other "normal" children. Thus, if FastLayout width/height is set to WRAP_CONTENT,
 			intermediate FastLayout width/height is used for gravity (e.g. gravity=center or gravity=right/bottom), not the final dimensions
 
-			NOTE: any other w:layout_* properties are ignored for "flex" views 
+			NOTE: any other non-flex w:layout_* properties are ignored for "flex" views 
 		-->
 		<attr name="layout_flexAxis">
 			<enum name="horizontal" value="0x0400"/><!-- NOTE: should match FastLayoutParams.FLAG_FLEX_* -->
@@ -503,16 +509,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- 
 			NOTE: FastLayout uses weightSum=num of flexWeight children
 			Basically this means, layout_flexWeight=1 children always expands uniformely.
-			Also, if no layout_flexWeight attribute is specified for a view, it's never stretched/shrinked, just stays as layout_width/height commands. 
+			Also, if no layout_flexWeight attribute is specified for a view, it's never stretched/shrinked, just stays as layout_width/height attributes command. 
 		--> 
 		<attr name="layout_flexWeight" format="float"/>
 		
-		<!-- If true, this and all next flex views are layed out bottom-up in the xml order -->
+		<!-- If true, this and all next flex views are laid out bottom-up in the xml order -->
 		<attr name="layout_flexReverse" format="boolean"/>
 		
 		<!-- layout_attach* attribute can attach view to:
 			 - any other child view, including flex layout child.
-			   Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be layed out first (xml order is ignored).
+			   Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
 			 - "parent" attaches to parent side, accounting for any "consumed" space (if any) from side(s) where view is attached or "gravitated" to 
 			 - percent value (e.g. 50%) positions view by offset calculated form parent width/height * percent.
 			   This works only if appropriate width or height is fixed for the parent FastLayout (i.e. not WRAP_CONTENT).
@@ -535,18 +541,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
 			<enum name="inset" value="-2"/>
+			<!-- Attaches to the right parent side, calculated prior laying out of this view. If parent has a fixed width, that is the same as "parent",
+			     otherwise the right side grows appropriately with every child laid out -->
+			<enum name="side" value="-3"/>
 		</attr>
 		<attr name="layout_attachBottom" format="reference|integer|fraction">
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
 			<enum name="inset" value="-2"/>
+			<!-- Attaches to the bottom parent side, calculated prior laying out of this view. If parent has a fixed height, that is the same as "parent",
+			     otherwise the bottom side grows appropriately with every child laid out -->
+			<enum name="side" value="-3"/>
 		</attr>
 		
 		<!-- layout_attachRightToRight => attaches right edge of view to right edge of target view. No fraction or parent here, 
 			 as layout_attachRightToRight="fraction %" would be the same as layout_attachRight="fraction %",
 			 and layout_attachRightToRight="parent" would be the same as layout_attachRight="parent".
 			 layout_attachRightToRight and layout_attachRight are mutually exclusive. The last parsed attribute is in effect.
-			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be layed out first (xml order is ignored).
+			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
 		-->
 		 
 		<attr name="layout_attachRightToRight" format="reference"/>
@@ -555,16 +567,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="layout_attachTopToTop" format="reference"/>
 		
 		<!-- By default, view gravitates to its parent (via standard android:layout_gravity). If layout_gravityTarget is some non-parent view id, 
-			 that view becomes the point of gravitaion. E.g. if android:layout_gravity="center" and layout_gravityTarget="@id/some_view", this view
-			 will be centered relatively to "some_view".
+			 that target view becomes the point of gravitaion. E.g. if android:layout_gravity="center" and layout_gravityTarget="@id/some_view", this view
+			 will be centered relatively to the target "some_view". 
+			 The gravity target view should be in the same parent as this view.
 			 If gravity target view doesn't exist, or is GONE, view gravitates to parent.
-			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be layed out first (xml order is ignored).
-			 Not supported for layout_flex views
+			 Not supported for layout_flex views.
+			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
+
 			 NOTE: this disables accounting for gravity based consumed parent space, as gravityTarget view bounds become the reference bounds for this view
 			 Consume space still works if layout_attach*="parent" is used
 		-->
 		<attr name="layout_gravityTarget" format="reference|integer">
 			<enum name="parent" value="0"/>
+		</attr>
+		
+		<!-- The axis to use for the layout_gravityTarget -->
+		<attr name="layout_gravityTargetAxis">
+			<enum name="horizontal" value="0x0100"/>
+			<enum name="vertical" value="0x0200"/>
+			<enum name="both" value="0x0300"/><!-- Default -->
 		</attr>
 		
 		<!-- Applies additional offsets for gravity AND parent available size for this child on appripriate side based on window insets.
@@ -583,15 +604,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		
 		<!-- layout_consumeSpace "consumes" space within parent from one or two sides, or both (layout_consumeSpace="both").
-			 If parent space is consumed, any subsequent child will be layed out with offset. Gravity is also affected.
+			 If parent space is consumed, any subsequent child will be laid out with offset. Gravity is also affected, but not the\
+			 layout_widthPercent/layout_heightPercent.
 			 There are 4 sides in parent view which can be consumed - left, top, right, bottom.
 			 
 			 Views aligned to left (or left and right), consume left space, view aligned to top - top space, views aligned
 			 to right - right space, and aligned to bottom - bottom space.
-			 The alignment here means either layout_gravity (per appropiate axis), or layout_attach* attribute, if layout_gravity is missing for given axis.
+			 The alignment here means either layout_gravity (per appropiate axis), or layout_attach* attribute, if layout_gravity is missing for the axis.
 			 
-			 layout_consumeSpace=reset_* resets such layout consumption (works similar to new line in textor <br/> in html).
-			 By default, only the side, which view is aligned to is reset. 
+			 layout_consumeSpace=reset_* resets such layout consumption (works similar to new line in text or to <br/> in html).
+			 By default, only the side (e.g. just left, for horizontally consumed space), which view is aligned to is reset. 
 			 Special reset_full_* values can reset both sides.
 			 
 			 For example: 2 columns 50%|50% height=200dp, then 2 rows (width=100%) height=100dp
@@ -601,13 +623,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 	<view android:layout_width="match_parent" android:layout_height="100dp" w:layout_consumeSpace="vertical"/>
 			 	<view android:layout_width="match_parent" android:layout_height="100dp" w:layout_consumeSpace="vertical"/>
 			 
-			 
 		-->
 		<attr name="layout_consumeSpace">
 			<flag name="none" value="0"/>
 			<flag name="horizontal" value="0x1000000"/><!-- NOTE: should match FastLayoutParams.FLAG_CONSUME_* -->
 			<flag name="vertical" value="0x2000000"/>
 			<flag name="both" value="0x3000000"/>
+			
+			<!-- Also consume parent size available for children for width/heightPercent and other parent size dependent proprerties. Size is consumed
+			     on the exises we consume space -->
+			<flag name="size" value="0x80000000"/>
+
 			<!-- Resets appropriate horizontal consumed space on one side (depending on view gravity, e.g. view attached to left will reset left side consumed space) -->
 			<!-- Works like <br/> -->
 			<flag name="reset_horizontal" value="0x4000000"/>
@@ -626,10 +652,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 			<!-- Automatically resets appropriate axis as soon as no more space on this axis exists and consumes other axis on such reset.
 				 This results in automatic layout break to new "line" (or column, for vertical layout).
-				 E.g. if multiple views have layout_consumeSpace="horizontal|reset_auto", they will be layed out in rows.
-				 NOTE: layout_consumeSpace is processed after given view is layed out. Thus, if there is no enough space for view due to consumed space,
+				 E.g. if multiple views have layout_consumeSpace="horizontal|reset_auto", they will be laid out in rows.
+				 NOTE: layout_consumeSpace is processed after given view is laid out. Thus, if there is no enough space for view due to consumed space,
 				 view will "overshoot" or will be shrinked. Thus, reset_auto works best with predefined percent view dimensions, e.g.
-				 multiple views with w:layout_widthPercent="25%" w:layout_consumeSpace="horizontal|reset_auto" will be layed out
+				 multiple views with w:layout_widthPercent="25%" w:layout_consumeSpace="horizontal|reset_auto" will be laid out
 				 in rows, 4 view per row
 				 NOTE: reset_auto by default resets horizontal axis and consumes vertical.
 				 Only if vertical (without also horizontal) is specified for given view, vertical axis will be reset, and horizontal consumed.
@@ -662,6 +688,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     NOTE: by default, when wrap_content is used, parent still limits view size based on parent available size minus view margins.
 		     Setting this attribute to true removes margins from the calculation, making whole space available for the child -->
 		<attr name="layout_wrapIgnoresMargins" format="boolean"/>
+		
+		<!-- If true, applied gravity ignores this view margings. Note that gravity may be applied by one axis, both axises, or none,
+		     and margins are ignored for the applied gravity axis. Note that also if no other layout_attach* attributes defined for the axis,
+		     gravity is applied on this axis --> 
+		<attr name="layout_gravityIgnoresMargins" format="boolean"/>
 		
 		<!-- If true, this view gets width=0 height=0 (like GONE view) when the view is empty. Actual visibility is not changed.
 		     NOTE: currently works only for FastTextView and derived classes
@@ -786,6 +817,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Optional confirmation dialog text -->
 		<attr name="confirmText" format="string|reference"/>
 		
+		<!-- Optional confirmation dialog title for long press. Should be set for dialog to show -->
+		<attr name="longPressConfirmTitle" format="string|reference"/>
+		<!-- Optional confirmation dialog text for long press -->
+		<attr name="longPressConfirmText" format="string|reference"/>
+		
 		<!-- Delay for sending message in ms -->
 		<attr name="clickDelay" format="integer"/>
 		
@@ -818,28 +854,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:drawable"/>
 	</declare-styleable>
 	
-	<!-- Number of attributes to show formatted text based on Poweramp state buses -->
-	<declare-styleable name="BusStateFormatValue">
-		<attr name="android:id"/>
-		<attr name="busId"/><!-- E.g. @id/list -->
-		<attr name="stateId" format="reference"/><!-- E.g. @id/state_list_selection_count -->
-		<attr name="secondaryStateId" format="reference"/><!-- E.g. @id/state_list_selectable_item_count -->
-		<!-- String like "Count: %d" or array with multiple values. Array also works with boolean-like values (index=0 - false value, index=1 - true value) -->
-		<attr name="format" format="string|reference"/> 
-		<attr name="type"><!-- Type of state to format -->
-			<enum name="integer" value="0"/>
-			<enum name="string" value="1"/>
-		</attr>
-	</declare-styleable>
-	
 	<!-- SelectablePopupButtonLayout attributes which define list selection workflow -->  
 	<declare-styleable name="BusSelectablePopupButtonLayout">
 		<!-- State bus to listen/query to -->
 		<attr name="stateBusId" format="reference"/>
 		<!-- State id to set buttons to -->
 		<attr name="stateId"/>
-		<!-- Message id to listen from state bus msgbus and set buttons to --> 
+		<!-- Message id to listen from state bus msgbus and set buttons to arg1 --> 
 		<attr name="msgId"/>
+		<!-- If true, state bus will be queried on message when received instead of using arg1 for msgId message -->
+		<attr name="getStateOnMsg" format="boolean"/>
 		
 		<!-- If set, arg1 will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
 		<attr name="arg1"/>
@@ -852,8 +876,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="buttonsMsgId" format="reference"/>
 		<!-- Buttons bus id - the same msg bus is used for all buttons -->
 		<attr name="buttonsBusId" format="reference"/>
-		<!-- Integer-array of arg1 for each button -->
+		<!-- Integer-array of arg1 for each button. If defined, this array is used to remap index for the reported selected index -->
 		<attr name="buttonsArg1" format="reference"/>
+		
+		<!-- If defined, BusDisabledForStateBehavior is created for this button layout --> 
+		<attr name="disableForStateBusId"/>
+		
+		<!-- Disabled alpha will be used for given view + BusDisabledForStateBehavior -->
+		<attr name="android:disabledAlpha"/>
 	</declare-styleable>
 		
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which selectes child view based on Poweramp state/msg bus -->
@@ -880,7 +910,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="stateBusId"/>
 		<!-- State id to set buttons to -->
 		<attr name="stateId"/>
-		<!-- Message id to listen from state bus msgbus and set buttons to --> 
+		<!-- Message id to listen from state bus msgbus and set current page to --> 
 		<attr name="msgId"/>
 		<!-- Message id to send for on pos changed --> 
 		<attr name="onPosChangedMsgId" format="reference"/>
@@ -912,6 +942,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Used to set matching value for stateEnabledLogic=matchInteger/dontMatchInteger -->
 		<attr name="stateMatchArg" format="reference|integer"/>
+		
+		<!-- If true, when msg is received we still check stateBus instead of looking into msg arg1 as state -->
+		<attr name="alwaysCheckState" format="boolean"/>
 	</declare-styleable>
 		
 	<!-- Extra options for BusCheckableStateBehavior, BusCheckableStateHelper, BusCheckBox which allow checking/unchecking view based on state -->  
@@ -930,6 +963,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="uncheckCmdId" format="reference"/>
 	</declare-styleable>
 	
+	<!-- Number of attributes to show formatted text based on Poweramp state buses -->
+	<!-- NOTE: not used anymore, use BusStatusText instead -->
+	<declare-styleable name="BusStateFormatValue">
+		<attr name="android:id"/>
+		<attr name="busId"/><!-- E.g. @id/list -->
+		<attr name="stateId" format="reference"/><!-- E.g. @id/state_list_selection_count -->
+		<attr name="secondaryStateId" format="reference"/><!-- E.g. @id/state_list_selectable_item_count -->
+		<!-- String like "Count: %d" or array with multiple values. Array also works with boolean-like values (index=0 - false value, index=1 - true value) -->
+		<attr name="format" format="string|reference"/> 
+		<attr name="type"><!-- Type of state to format -->
+			<enum name="integer" value="0"/>
+			<enum name="string" value="1"/>
+		</attr>
+	</declare-styleable>
+	
 	<!-- Extra options for BusStatusText which update text based on bus msg/state -->
 	<declare-styleable name="BusText">
 		<!-- State bus to listen/query to -->
@@ -946,21 +994,31 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="updateMsgId_5" format="reference"/>
 		<!-- Msg id to listen to -->
 		<attr name="updateMsgId_6" format="reference"/>
-		<!-- String state for label to display  -->
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_7" format="reference"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_8" format="reference"/>
+		<!-- String state for label to format/display  -->
 		<attr name="labelStateId" format="reference"/>
-		<!-- Optional format string like "Preset: %s" or array with multiple values. Array also works with boolean-like values (index=0 - false value, index=1 - true value) -->
-		<attr name="labelFormat" format="string"/>
+		<!-- Secondary string state for label to format/display  -->
+		<attr name="labelStateId_2" format="reference"/>
+		<!-- Format string like "Count: %d" or array with multiple values. Array works for type=integer and also with the boolean-like values 
+		     (index=0 - false value, index=1 - true value) -->
+		<attr name="labelFormat" format="string|reference"/>
 		<!-- Int state for icon to display  -->
 		<attr name="iconStateId" format="reference"/>
 		<!-- Optional scene in which no updates happen. This view should have SceneParams for such scene -->
 		<attr name="noUpdateInScene" format="reference"/>
 		<!-- Do not update if transition runs (and view is aware of that, i.e. view is animated by the scene) -->
 		<attr name="noUpdateInTransition" format="boolean"/>
-		<!-- Detect any parent scene transition, and update after transition ends -->
-		<attr name="updateOnTransitionEnd" format="boolean"/>
 		
 		<!-- Show the default (android:text) text if state is empty/null -->
 		<attr name="defaultTextOnNoState" format="boolean"/>
+		
+		<attr name="stateType"><!-- Type of state to format -->
+			<enum name="string" value="0"/><!-- Default -->
+			<enum name="integer" value="1"/>
+		</attr>
 	</declare-styleable>
 	
 	<!-- FastButton which is able to start specified Activity -->
@@ -1038,6 +1096,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Button drawables @array -->
 		<attr name="buttonsDrawables" format="reference"/>
 		
+		<!-- Tint is applied to buttons drawables -->
+		<attr name="drawableTint"/>
+		
 		<!-- Button style (e.g. ?PopupButton) -->
 		<attr name="buttonStyle" format="reference"/>
 		<!-- Button style (e.g. ?PopupButton_scene_button_menu) -->
@@ -1057,6 +1118,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Layout for toasts -->
 	<declare-styleable name="ToastFrameLayout">
 		<attr name="toastDuration" format="integer"/><!-- ms. This is default value, which is often overridden by code -->
+		<attr name="cmdId" format="reference"/><!-- By default - cmd_gui_show_toast -->
+		<!-- If set, this layout will queue and show toasts in order. If queueMinMs == 0, toasts will be shown with their duration, otherwise new toast will reduce 
+		     previous toast duration to queueMinMs ms -->
+		<attr name="queueMinMs" format="integer"/>
 	</declare-styleable>
 	
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which enables scrolling in a layout.
@@ -1103,8 +1168,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- String state for label to display. If not set, label text is not change/updated -->
 		<attr name="labelStateId" format="reference"/>
 		
-		<!-- Optional format string like "Preset: %s" or array with multiple values. Array also works with boolean-like values (index=0 - false value, index=1 - true value) -->
-		<attr name="labelFormat" format="string"/>
+		<!-- Optional format string like "Preset: %s". NOTE: only strings supported here -->
+		<attr name="labelFormat"/>
 				
 		<!-- Height of list row -->
 		<attr name="listItemSize"/>

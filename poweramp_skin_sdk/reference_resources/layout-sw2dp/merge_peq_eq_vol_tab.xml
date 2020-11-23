@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+	style="?EqTabLayout"
+	w:enableStateAnim="true"
+	w:privateScene="true"
+>	
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/vol_panel1"
+		style="?PeqEqVolPanel1"
+	>
+			<!-- NOTE: this is located within panel bottom padding -->
+			<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/compressor_button" 
+				style="?PeqEqCompressorCheckButton"
+				w:param="@id/dsp_compressor_enabled"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				android:text="@string/compressor"
+				
+				w:longPressCmdId="@id/cmd_app_open_settings"
+				w:longPressBusId="@id/bus_app_cmd"
+				w:string="peq_compr"
+			/>
+				
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout1"
+				w:param="@id/dsp_commpressor_attack"
+				w:dspParamDef="@id/dsp_commpressor_attack"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+			
+			
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout2"
+				w:param="@id/dsp_commpressor_release"
+				w:dspParamDef="@id/dsp_commpressor_release"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+					
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout3"
+				w:param="@id/dsp_commpressor_ratio"
+				w:dspParamDef="@id/dsp_commpressor_ratio"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+			
+
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout4"
+				w:param="@id/dsp_commpressor_freq"
+				w:dspParamDef="@id/dsp_commpressor_freq"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+			<!--
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout4"
+				w:param="@id/dsp_commpressor_knee"
+				w:dspParamDef="@id/dsp_commpressor_knee"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+			-->
+			
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout5"
+				w:param="@id/dsp_commpressor_thr"
+				w:dspParamDef="@id/dsp_commpressor_thr"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+			
+			<!--
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout5"
+				w:param="@id/dsp_commpressor_expand_ratio"
+				w:dspParamDef="@id/dsp_commpressor_expand_ratio"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout5"
+				w:param="@id/dsp_commpressor_noise_gate_thr"
+				w:dspParamDef="@id/dsp_commpressor_noise_gate_thr"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+			-->
+			
+			<com.maxmpz.widget.player.DSPRoundKnobLayout 
+				style="?PeqEqCompressKnobLayout6"
+				w:param="@id/dsp_commpressor_post_gain"
+				w:dspParamDef="@id/dsp_commpressor_post_gain"
+				w:updateMsgId="@id/msg_dsp_compressor_changed"
+				w:enablingParam="@id/dsp_compressor_enabled"
+			/>
+		
+
+	</com.maxmpz.widget.base.FastLayout>
+	
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/vol_panel2"
+		style="?PeqEqVolPanel2"
+	>
+		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/balance_knob_layout"
+			style="?PeqEqBalanceKnobLayout"
+			w:param="@id/dsp_balance"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			w:valueFormat="@string/format_2f"
+			w:valueFormatMin="-1"
+			w:valueFormatMax="1"
+			w:valueFormatMid="0"
+			w:valueFormatMidPos="0.5"
+			w:snapTo="0.5"
+			w:arcStartPoint="0.5"
+			w:leftLabelText="@string/balance_L"
+			w:labelText="@string/balance"
+			w:rightLabelText="@string/balance_R"
+		/>
+			
+	</com.maxmpz.widget.base.FastLayout>
+	
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/vol_panel3"
+		style="?PeqEqVolPanel3"
+	>
+		<com.maxmpz.widget.base.BusActionButton android:id="@+id/other_reset_button"
+			style="?PeqOtherResetButton"
+			w:busId="@id/bus_dsp_cmd"
+			w:msgId="@id/cmd_dsp_reset_other"
+			
+			android:text="@string/reset"
+			w:confirmTitle="@string/reset"
+			w:confirmText="@string/reset_knobs_on_screen"
+		/>
+				
+			
+		<!-- NOTE: 100.5 rounding helps with 0-100 (101 items) to 100 steps rounding, especially around 50% (where by default rounded 0.5050 value is ~51%) -->
+		<!-- NOTE: this knob may take whole width and thus will intercept clicks on it, put buttons and other controls after it in xml order -->
+		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/volume_knob_layout"
+			style="?PeqVolumeKnobLayout"
+			
+			w:param="@id/dsp_master_volume"
+			w:updateMsgId="@id/msg_dsp_other_changed"
+			
+			w:valueFormat="@string/f0_percent"
+			w:valueFormatMin="0"
+			w:valueFormatMax="100"
+			w:rounding="100.5"
+			
+			w:labelText="@string/volume"
+		/>
+	</com.maxmpz.widget.base.FastLayout>
+		
+</com.maxmpz.widget.base.SceneFastLayout>

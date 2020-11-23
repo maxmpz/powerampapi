@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
-which communicate with Poweramp music player application on Android platform.
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -19,12 +19,8 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+
 <resources>
-	<dimen name="EqToneRoundKnob_size">88dp</dimen>
-	<dimen name="MediumRoundKnob_size">88dp</dimen>
-	<dimen name="BigRoundKnob_size">108dp</dimen>
-	<dimen name="SmallRoundKnob_size">88dp</dimen>
-	
 	<dimen name="EqLinearKnob_thumbWidth">32dp</dimen>
 	<dimen name="EqLinearKnob_thumbHeight">64dp</dimen>
 	<dimen name="knob_thumb_indicator_top_bottom">31dp</dimen>	
@@ -40,8 +36,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqButton_layout_maxWidth">100dp</dimen>
 	<dimen name="EqButton_marginSide">8dp</dimen>
-	<dimen name="EqRoundKnobLabel_maxWidth">100dp</dimen>
 	
 	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
-	
 </resources>

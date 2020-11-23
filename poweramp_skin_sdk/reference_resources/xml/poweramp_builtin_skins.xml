@@ -72,6 +72,26 @@
 			overlapStyle="@style/ActivityTheme_Whitepro_LightButtons"
 		/>
 		
+		<popup
+			key="knob_hilite"
+			name="@string/skin_knob_hilite"
+			summary="@string/skin_summary_knob_hilite_s"
+			defaultValue="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
+		>
+			<option
+				name="@string/none"
+				overlapStyle=""
+			/>
+			<option
+				name="@string/monochromatic"
+				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic"
+			/>
+			<option
+				name="@string/colorful"
+				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
+			/>
+		</popup>		
+		
 		<option
 			key="force_light_navbar"
 			name="@string/skin_force_light_navbar"
@@ -150,7 +170,27 @@
 			overlapAttr="@attr/overlap_more_buttons"
 			checkedByDefault="false"
 		/>
-
+		
+		<popup
+			key="knob_hilite"
+			name="@string/skin_knob_hilite"
+			summary="@string/skin_summary_knob_hilite_s"
+			defaultValue="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
+		>
+			<option
+				name="@string/none"
+				overlapStyle=""
+			/>
+			<option
+				name="@string/monochromatic"
+				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic"
+			/>
+			<option
+				name="@string/colorful"
+				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
+			/>
+		</popup>		
+		
 		<option
 			key="trans_navbar"
 			name="@string/skin_transparent_navbar"

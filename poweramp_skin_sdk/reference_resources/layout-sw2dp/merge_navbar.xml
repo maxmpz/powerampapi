@@ -62,8 +62,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				<!-- NOTE: wrap content items shrink too much and causes jumps when we resize parent container to small height/GONE.
 					 This is why fixed heights are used here -->
 					 
-				<com.maxmpz.widget.base.FastTextView android:id="@+id/navbar_extension_logo_label"
+				<com.maxmpz.widget.player.BusStatusText
 					style="?NavbarExtensionLogoLabel"
+					w:stateBusId="@id/bus_app"
+					w:updateMsgId="@id/msg_version_info_changed"
+					w:labelStateId="@id/state_app_edition_name"
 				/>
 				
 				<com.maxmpz.audioplayer.widget.MediaRouteButton
@@ -76,13 +79,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					android:text="@string/settings"
 					android:targetClass=".preference.SettingsActivity"
 				/>
-								
+				
+				<!--				
 				<com.maxmpz.widget.base.IntentActionButton
 					style="?NavbarExtensionMenuLine"
 					android:drawable="?changelog_24dp"
 					android:text="@string/about_poweramp_changelog"
 					android:targetClass=".dialogs.ChangelogActivity"
 				/>
+				-->
+				<com.maxmpz.widget.base.BusActionButton
+					style="?NavbarExtensionMenuLine"
+					android:drawable="?changelog_24dp"
+					android:text="@string/about_poweramp_changelog"
+					w:busId="@id/bus_app_cmd"
+					w:msgId="@id/cmd_app_open"
+					w:string="activity/dialogs.ChangelogActivity"
+				/>
+				
 								
 				<com.maxmpz.widget.base.BusActionButton
 					style="?NavbarExtensionMenuLine"

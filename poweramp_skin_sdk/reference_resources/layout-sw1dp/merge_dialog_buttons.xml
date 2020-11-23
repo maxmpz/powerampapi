@@ -37,10 +37,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?DialogNeutralButtonStyle"
 		/>
 		
-		<com.maxmpz.widget.base.Space android:id="@+id/separator2"
+		<com.maxmpz.widget.base.Space android:id="@+id/button_space"
 			style="?DialogButtonSpace"
 		/>
-		
+		<com.maxmpz.widget.base.Space android:id="@+id/separator2"
+			style="?DialogNegativeSeparator"
+		/>
+				
 		<com.maxmpz.widget.base.FastButton android:id="@+id/button2"
 			style="?DialogNegativeButtonStyle"
 		/>

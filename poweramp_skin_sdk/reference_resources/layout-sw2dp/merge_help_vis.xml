@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: as HelpLayout is Scene by itself, it's own StateAnimParams (forId="parent") will be pushed into it, if placed inside -->
+<com.maxmpz.widget.player.HelpLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+	android:id="@+id/help_vis"
+	style="@style/TopHelpLayout"
+	w:enableStateAnim="true"
+>
+
+	
+	
+	<!-- NOTE: specific order of help views so navbar help has higher priority and positions on top of navbar -->
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+		w:layout_maxWidth="150dp"
+
+		w:help_anchor="@+id/vis_panel_frame"
+		w:showArrow="false"
+		w:help_position="center"
+		
+		w:html="@string/h_vis_swipe"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+	<com.maxmpz.widget.player.Help android:id="@+id/h_vis_advance_mode"
+		style="@style/TopHelpSmaller"
+		w:layout_maxWidth="150dp"
+		w:help_anchor="@+id/state_player_milk_advance"
+		w:help_position="bottom"
+		w:showArrow="true"
+		
+		android:text="@string/h_vis_advance_mode"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+		
+
+	
+	
+	
+	<com.maxmpz.widget.base.BusActionButton
+		style="@style/TopHelpButtonVis"
+		w:layout_attachRight="50%"
+		w:layout_attachTop="@id/h_vis_advance_mode"
+
+		android:text="@string/h_hide_hints"
+		android:drawable="@drawable/close_stroke"
+
+		w:busId="@id/bus_gui"
+		w:msgId="@id/cmd_gui_close_help"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelpButton_anim_help_visible" 
+	/>
+		
+	<com.maxmpz.widget.base.BusActionButton
+		style="@style/TopHelpButtonVis"
+		w:layout_attachLeft="50%"
+		w:layout_attachTop="@id/h_vis_advance_mode"
+		
+		android:text="@string/get_support"
+		android:drawable="@drawable/support"
+		
+		w:busId="@id/bus_app_cmd"
+		w:msgId="@id/cmd_app_open_support"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelpButton_anim_help_visible" 
+	/>
+	
+</com.maxmpz.widget.player.HelpLayout>

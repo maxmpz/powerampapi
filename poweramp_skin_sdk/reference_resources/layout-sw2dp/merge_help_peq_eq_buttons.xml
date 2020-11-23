@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
+	<com.maxmpz.widget.base.BusActionButton
+		style="@style/TopHelpButtonPeqEq"
+		w:layout_attachRight="50%"
+
+		android:text="@string/h_hide_hints"
+		android:drawable="@drawable/close_stroke"
+
+		w:busId="@id/bus_gui"
+		w:msgId="@id/cmd_gui_close_help"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelpButton_anim_help_visible" 
+	/>
+		
+	<com.maxmpz.widget.base.BusActionButton
+		style="@style/TopHelpButtonPeqEq"
+		w:layout_attachLeft="50%"
+		
+		android:text="@string/get_support"
+		android:drawable="@drawable/support"
+		
+		w:busId="@id/bus_app_cmd"
+		w:msgId="@id/cmd_app_open_support"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelpButton_anim_help_visible" 
+	/>
+	
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+		
+		w:help_anchor="@id/eq_tab_eq"
+		android:text="@string/equalizer"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+		
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+		
+		w:help_anchor="@id/eq_tab_vol"
+		android:text="@string/volume_and_tweaks"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+		
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+		
+		w:help_anchor="@id/eq_tab_reverb"
+		android:text="@string/reverb"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+		
+		w:help_anchor="@id/cmd_nav_more"
+		android:text="@string/settings"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+		
+</merge>

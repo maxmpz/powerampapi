@@ -295,7 +295,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
 		style="?ItemTrackTitle"
 		android:importantForAccessibility="yes"
-		android:tag="_DEBUG_"
 	/>
 	<!-- title -->
 	<SceneParams w:scene="@+id/scene_1"

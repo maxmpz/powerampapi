@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+
+<com.maxmpz.equalizer.widget.PeqCoreConnectionBehavior/>
+
+<!--
+	Top scenes:
+	- 0 == default. Paused. Scene with large AA
+	- scene_playing. Playing. Scene with large AA 
+	- scene_lib
+	- scene_search
+	- scene_eq
+	- scene_vis_w_ui (playing implied) - scene with small AA (internal list scene) + vis controls, optionally alpha faded. Should be separate <SceneParams> as it's modified by code
+	- scene_vis_temp_ui (playing implied) - scene with both AA + vis controls, alpha == 1 (to allow all UI use cases, e.g. popup menus)
+	- scene_vis (playing implied, nothing is visible except vis surface)
+	
+	NOTE: for main screen TOP containers, scene_vis_w_ui should be ALWAYS separated from other scenes, i.e. scene_vis_w_ui  
+	should be the only scene in SceneParams tag. This is due to alpha value set by code based on user preference for these SceneParams. If multiple scenes co-exist 
+	with scene_vis_w_ui in same SceneParams, all of them will be affected by the user preference alpha value
+
+	NOTE: it's OK to combine any scenes in non-TOP containers/views and in non main containers/views as user preference code affects only
+	_main_ screen _top_ containers
+	
+	NOTE: styles are located in files named styles-[prefix].xml, where [prefix] is first word of the style, e.g. TopContainer style is in styles-top.xml,
+	and NavbarShim style is in styles-navbar.xml  
+-->
+
+<!-- NOTE: this handles navigation between top scenes/pages -->
+<com.maxmpz.equalizer.widget.PeqTopNavSceneFastLayout android:id="@+id/top_container"
+	style="?TopContainer"
+>
+	<com.maxmpz.widget.player.MilkWidget android:id="@+id/milk"
+		style="?TopMilk"
+	/>
+	<!-- Simple lightweight background which understands some MilkWidget styles -->
+	<!--
+	<com.maxmpz.equalizer.widget.BgWidget android:id="@+id/milk"
+		style="?TopMilk"
+	/>
+	-->
+
+	<!-- eq -->
+	<com.maxmpz.widget.base.PrivateNonSceneFastLayout android:id="@+id/eq_layout"
+		style="?TopPeqEqLayout"
+	>
+		<com.maxmpz.widget.base.FastLayout
+			style="?EqPagesLayout"
+		>
+			<include android:layout="@layout/merge_peq_eq_equalizer_tab"/>
+			
+			<include android:layout="@layout/merge_peq_eq_vol_tab"/>
+
+			<!--
+			<include android:layout="@layout/merge_peq_eq_reverb_tab"/>
+			-->
+						
+			<!-- NOTE: need to be at the end of view group when other views are already added -->
+			<com.maxmpz.widget.base.BusAAScrollingBehavior
+				style="?EqPagesScrollingBehavior"
+				w:msgId="@id/nav_eq"
+				w:stateBusId="@id/bus_gui"
+				w:stateId="@id/state_gui_eq_tab"
+				w:onPosChangedMsgId="@id/cmd_nav_to_eq" 
+			/>
+			
+		</com.maxmpz.widget.base.FastLayout>
+	</com.maxmpz.widget.base.PrivateNonSceneFastLayout><!-- eq_layout -->
+	<SceneParams w:scene="@id/scene_vis_temp_ui"
+		style="?TopPeqEqLayout_scenes_vis"
+		w:recalcChildren="dynamic"
+		android:visibility="visible"
+		android:alpha="1"
+	/>
+	<!-- NOTE: alpha is overridden by user preference -->
+	<SceneParams w:scene="@+id/scene_vis_w_ui"
+		style="?TopPeqEqLayout_scenes_vis"
+		w:recalcChildren="dynamic"
+		android:alpha="0.25"
+		android:visibility="visible"
+	/>
+	<SceneParams w:scene="@+id/scene_vis"
+		android:visibility="gone"
+	/>
+	
+	
+	<!-- NOTE: loaded once and never unloaded. NOTE: TopNavHelper assumes vis panel is loaded via behavior, otherwise change vis_panel_faded_alpha logic there -->
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/vis_panel_loadable_beahvior"
+		android:layout="@layout/merge_vis_panel"
+		w:loadForScene="@+id/scene_vis_temp_ui"
+		w:loadForScene_2="@+id/scene_vis"
+		w:loadForScene_3="@+id/scene_vis_w_ui"
+		w:insertAt="thisPosition"
+		w:unload="never"
+	/>
+
+	
+	<!-- NOTE: invisible anchor view which matches Navbar dimensions. Navbar itself is rooted into independent scene/layout container, thus we need some anchor view
+		 in the top container for other views to be aware of the navbar size
+		 
+		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
+		 This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
+
+		 NOTE: these views can cause navbar shadow to be cut off on some devices if placed after navbar - looks like bug for some (actually quite many) hwui/driver implementations,
+		 thus it's View and it's visibility == VISIBLE (Note5, S6@7.0, S5@6.0). 
+		 There also other rendering artifacts possible due to no any visible view under navbar + gl surface reproducible up to Pie,
+		 e.g. background shim may fail to render below navbar, etc.
+		 
+		 NOTE: this also captures clicks/touches/gestures through the paddings around navbar, so it's clickable 
+	-->
+
+	<com.maxmpz.widget.base.InvisibleView android:id="@+id/navbar_bounds"
+		style="?TopNavbarBounds"
+	/>
+	
+	<include android:layout="@layout/merge_peq_navbar"/>
+	
+	<!-- NOTE: this is the view where popup item view is moved and transitioned to popup menu and back -->
+	<com.maxmpz.widget.base.MenuPlaceholderLayout android:id="@+id/menu_placeholder"
+		style="?TopMenuPlaceholderLayout"
+		w:privateScene="true"
+	/>
+	
+	<!-- NOTE: for now, need selection menu over menu placeholder, as we use selection menu for popup lists -->
+	<include android:layout="@layout/merge_selection_menu"/>
+	
+	<include android:layout="@layout/merge_upper_toast"/>
+	<!-- This is for toast_container -->
+	<SceneParams w:scene="@id/scene_vis_temp_ui" w:scene_2="@id/scene_vis"
+		w:baseScene="defaultScene"
+	/>
+	<!-- Alpha is overridden for this scene -->
+	<SceneParams w:scene="@id/scene_vis_w_ui"
+		w:baseScene="defaultScene"
+	/>
+	
+	<include android:layout="@layout/merge_toast"/>
+	<!-- This is for toast_container -->
+	<SceneParams w:scene="@id/scene_vis_temp_ui" w:scene_2="@id/scene_vis"
+		w:baseScene="defaultScene"
+	/>
+	<!-- Alpha is overridden for this scene -->
+	<SceneParams w:scene="@id/scene_vis_w_ui"
+		w:baseScene="defaultScene"
+	/>
+	
+	
+	<!-- NOTE: status bar bg should be atop of everything, so putting it here as last, thus higher z-index. Helps with e.g. header => popup menu poping over status bar bg.
+		 By default, status_bar_bg/navigation_bar_bg don't change anything for scenes, but SceneParams are provided for skins, which can change them -->
+
+	<com.maxmpz.widget.base.FitsStatusBarView android:id="@+id/status_bar_bg"
+		style="?TopFitsStatusBarView"
+	/>
+	<!-- All main screen scenes match default scene, thus, not transitions for these scenes -->
+	<SceneParams w:scene="@id/scene_vis_temp_ui" w:scene_2="@id/scene_vis"
+		w:baseScene="defaultScene"
+	/>
+	<!-- Alpha is overridden for this scene -->
+	<SceneParams w:scene="@id/scene_vis_w_ui"
+		w:baseScene="defaultScene"
+	/>
+		
+	<com.maxmpz.widget.base.FitsNavigationBarView android:id="@+id/navigation_bar_bg"
+		style="?TopFitsNavigationBarView"
+	/>
+	<!-- NOTE: all main screen scenes match default scene, thus, not transitions for these scenes -->
+	<SceneParams w:scene="@id/scene_vis_temp_ui" w:scene_2="@id/scene_vis"
+		w:baseScene="defaultScene"
+		w:applyViewParams="true"
+	/>
+	<!-- Alpha is overridden for this scene -->
+	<SceneParams w:scene="@id/scene_vis_w_ui"
+		w:baseScene="defaultScene"
+	/>
+		
+	
+</com.maxmpz.equalizer.widget.PeqTopNavSceneFastLayout><!-- top_container -->
+		
+
+</merge>		

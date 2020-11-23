@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -32,6 +32,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:forceHasOverlappingRendering">@bool/v28_forceHasOverlappingRendering</item><!-- Avoid "leaking" shadow during alpha animation on Android 9+ -->		
 	</style>
+	<!-- NOTE: overridden for land -->
+	<style name="PeqVisPanelContainer" parent="VisPanelContainer">
+	</style>
 	
 	<style name="VisPanelShim"><!-- NOTE: not drawing anything, just getting touch events -->
 		<item name="android:background">@null</item>
@@ -46,10 +49,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="VisPanelFrame">
 		<!-- NOTE: no padding for seamless list placement -->
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">48dp</item>
+		<item name="android:layout_height">@dimen/VisPanelFrame_height</item>
 		
 		<item name="android:elevation">?VisPanelFrame_elevation</item>
-		<item name="android:background">@drawable/rounded_medium</item>
+		<item name="android:background">@drawable/rounded_mini</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">false</item><!-- Don't focus on this -->
 		

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	<!-- NOTE: aligned on Pixel4XL@11, like 0.5dp off for OP8P@11 -->
+	<dimen name="peq_micro_notification_icon_marginLeft">14.5dp</dimen>
+</resources>

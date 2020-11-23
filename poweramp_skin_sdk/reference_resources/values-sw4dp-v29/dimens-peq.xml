@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	<!-- NOTE: aligned on PixelL@10 -->
+	<dimen name="peq_micro_notification_icon_marginLeft">16dp</dimen>
+	
+	<dimen name="peq_micro_notification_muiu11_icon_marginLeft">4.5dp</dimen>
+	
+	<dimen name="peq_micro_notification_muiu12_icon_marginLeft">6dp</dimen>
+</resources>

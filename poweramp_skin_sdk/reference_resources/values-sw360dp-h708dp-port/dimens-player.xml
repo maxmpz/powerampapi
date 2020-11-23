@@ -27,11 +27,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_TopSubAAButtons_marginTop">8dp</dimen>
 	
 	<!-- Alt -->
-	<!-- <dimen name="Alt_aaMaxSize">542dp</dimen> Not used anymore -->
-	
 	<dimen name="Alt_TopPlay_maxSize">74dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">68dp</dimen>
 	<dimen name="Alt_TopMediumButton_size">52dp</dimen> 
 	<dimen name="Alt_TopSmallButton_size">42dp</dimen>
-		
 </resources>

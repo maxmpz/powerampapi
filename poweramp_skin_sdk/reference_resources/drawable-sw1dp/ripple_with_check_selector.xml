@@ -4,7 +4,7 @@
 	android:color="?attr/colorControlHighlight">
 	
 	<item android:id="@android:id/mask"
-			android:drawable="@drawable/rounded_medium" />
+			android:drawable="@drawable/rounded_mini" />
 
 	<item android:right="16dp">
 		<selector android:exitFadeDuration="250">

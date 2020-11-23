@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -32,5 +32,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:paddingBottom">8dp</item>
 	</style>
-	
+
+	<style name="PeqVisPanelContainer">
+		<item name="layout_attachTop">@+id/status_bar_bg</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_width">0px</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachRight">inset</item>
+		<item name="android:visibility">gone</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:paddingBottom">4dp</item>
+	</style>
+		
 </resources>

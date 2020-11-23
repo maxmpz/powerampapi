@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<item type="id" name="eq_tab_eq"/>
+	<item type="id" name="eq_tab_vol"/>
+	<item type="id" name="eq_tab_reverb"/>
+	
+	<item type="id" name="cmd_gui_show_upper_toast"/><!-- bus_gui -->
+	
+	<!-- PEQ states -->	
+	<!-- bus_player. boolean, integer (1 - requires permission, 0 - doesn't require, -1 requires permission, but hide button). 
+	     Also a msg on player_bus with arg1=boolean, arg2=-1 for hide button -->
+	<item type="id" name="state_peq_requires_vis_perm"/>
+		
+	<item type="id" name="state_app_is_peq"/><!-- Bus app. boolean -->
+	
+	<!-- PEQ inbound commands - sent to bus_player_cmd -->
+	<item type="id" name="cmd_peq_new_control_session"/>
+	<item type="id" name="cmd_peq_close_control_session"/>
+	<item type="id" name="cmd_peq_enable_pak"/><!-- arg1 => boolean, obj => String pak -->
+	<item type="id" name="cmd_peq_enable_dvc"/><!-- arg1 => boolean, obj => String pak -->
+	<item type="id" name="cmd_peq_request_vis_perm"/>
+	<item type="id" name="cmd_peq_close"/><!-- arg1 => boolean, true => disable  -->
+	<item type="id" name="cmd_peq_reopen"/><!-- Always re-enables -->
+	<item type="id" name="cmd_peq_vis_latency_changed"/><!-- arg1 => latency ms -->
+	
+	<item type="id" name="state_closed"/><!-- bus_player, boolean/int, also a message -->
+	
+	<item type="id" name="msg_peq_headset_disconnected"/><!-- arg1 => boolean, isBT -->
+	
+	<item type="id" name="cmd_dsp_peq_pipeline_started"/><!-- bus_dsp_cmd -->
+	<item type="id" name="cmd_dsp_peq_pipeline_stopped"/><!-- bus_dsp_cmd -->
+	<item type="id" name="dsp_peq_pipelines"/><!-- Gui thread only -->
+	
+	<item type="id" name="dsp_apps"/><!-- string -->
+	
+	<item type="id" name="msg_dsp_compressor_changed"/>
+	<item type="id" name="dsp_compressor_enabled"/><!-- boolean -->
+	<item type="id" name="dsp_commpressor_attack"/>
+	<item type="id" name="dsp_commpressor_release"/>
+	<item type="id" name="dsp_commpressor_knee"/>
+	<item type="id" name="dsp_commpressor_ratio"/>
+	<item type="id" name="dsp_commpressor_expand_ratio"/>
+	<item type="id" name="dsp_commpressor_thr"/>
+	<item type="id" name="dsp_commpressor_noise_gate_thr"/>
+	<item type="id" name="dsp_commpressor_pre_gain"/>
+	<item type="id" name="dsp_commpressor_post_gain"/>
+	<item type="id" name="dsp_commpressor_freq"/>
+</resources>

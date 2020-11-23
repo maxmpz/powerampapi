@@ -38,11 +38,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpSmaller_textSize">11sp</dimen>
 	
 	<!-- Alt: PF1 492x736 -->
-	<!-- <dimen name="Alt_aaMaxSize">482dp</dimen> Not used anymore -->
-	
 	<dimen name="Alt_TopPlay_maxSize">80dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
 	<dimen name="Alt_TopSmallButton_size">40dp</dimen>
 	<dimen name="Alt_TopMediumButton_size">60dp</dimen>
-	
 </resources>

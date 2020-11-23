@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- 
+	Scenes:
+	- default - 1 line (toolbar)
+	- scene_navbar_1line_sheet - 1 line (toolbar) + menu extended
+	- not used - scene_navbar_2lines - 2 lines (toolbar + mini player) 
+	- not used - scene_navbar_2lines_sheet - 2 lines (toolbar + mini player) + menu extended
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<com.maxmpz.widget.base.SceneFastLayout android:id="@+id/navbar_container"
+		style="?TopNavbarContainer"
+		w:privateScene="true"
+	>
+		<!-- NOTE: ATM navbar shim is not covering android navigation bar. It's not obviously noticeable if android navigation bar is also shaded -->
+		<com.maxmpz.widget.base.Shim android:id="@+id/navbar_shim"
+			style="?NavbarShim"
+		/>
+		<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet" w:scene_2="@id/scene_navbar_2lines_sheet"
+			android:visibility="visible"
+		/>
+		<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines"
+			android:visibility="gone"
+		/>
+			
+		<com.maxmpz.equalizer.widget.Navbar android:id="@id/navbar"
+			style="?Navbar"
+		>
+			<com.maxmpz.widget.player.NavbarExtension android:id="@id/navbar_extension"
+				style="?NavbarExtension"
+			>
+				<com.maxmpz.widget.base.BusActionButton
+					style="?NavbarPeqExtensionLogo" 
+					w:busId="@id/bus_app_cmd"
+					w:msgId="@id/cmd_app_open_settings"
+					w:string="general"
+				/>
+				
+				<!-- NOTE: wrap content items shrink too much and causes jumps when we resize parent container to small height/GONE.
+					 This is why fixed heights are used here -->
+					 
+				<com.maxmpz.widget.player.BusStatusText
+					style="?NavbarExtensionLogoLabel"
+					w:stateBusId="@id/bus_app"
+					w:updateMsgId="@id/msg_version_info_changed"
+					w:labelStateId="@id/state_app_edition_name"
+				/>
+				
+				<com.maxmpz.audioplayer.widget.MediaRouteButton
+					style="?CcButton_NavbarExtensionMenuLine"
+				/>
+				
+				<com.maxmpz.widget.base.IntentActionButton android:id="@+id/navbar_ext_settings"
+					style="?NavbarExtensionMenuLine"
+					android:drawable="?settings_24dp"
+					android:text="@string/settings"
+					android:targetClass=".preference.SettingsActivity"
+				/>
+								
+				<com.maxmpz.widget.base.BusActionButton
+					style="?NavbarExtensionMenuLine"
+					android:drawable="?changelog_24dp"
+					android:text="@string/about_poweramp_changelog"
+					w:busId="@id/bus_app_cmd"
+					w:msgId="@id/cmd_app_open"
+					w:string="activity/dialogs.ChangelogActivity?content=peq_changelog_content&amp;content2=peq_changelog_top"
+				/>
+								
+				<com.maxmpz.widget.base.BusActionButton
+					style="?NavbarExtensionMenuLine"
+					android:drawable="?support_24dp"
+					android:text="@string/help"
+					w:busId="@id/bus_gui"
+					w:msgId="@id/cmd_gui_open_help"
+				/>
+			</com.maxmpz.widget.player.NavbarExtension>
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet" w:scene_2="@id/scene_navbar_2lines_sheet"
+				android:visibility="visible"
+			/>
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines"
+				android:visibility="gone"
+			/>
+			
+			<!-- Always invisible anchor view in place of list -->
+			<com.maxmpz.widget.base.InvisibleView android:id="@+id/navbar_list"
+				style="?NavbarList"
+			/>
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"
+				android:visibility="visible"
+			/>
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
+				android:visibility="gone"
+			/>
+			
+			<!-- NOTE: extra view group is needed to attach sceneparams to, so it's tracked/animated as one entity (vs scene params per button). Also helps with fast button search -->
+			
+			<com.maxmpz.widget.base.FastLayout android:id="@+id/navbar_nav_buttons"
+				style="?NavbarNavButtonsLayout"
+			>
+				<!-- NOTE: buttons selected here by NavbarBase based on msgId/arg1, but ids are still used, e.g. for help -->
+								
+				<com.maxmpz.widget.base.BusActionButton android:id="@+id/eq_tab_eq"
+					style="?NavBarButton"
+					android:drawable="?nav_equ"
+					android:contentDescription="@string/equ"
+
+					w:busId="@id/bus_gui"
+					w:msgId="@id/cmd_nav_to_eq"
+					w:arg1="@integer/EQ_TAB_EQ"
+				/>
+				<com.maxmpz.widget.base.BusActionButton android:id="@+id/eq_tab_vol"
+					style="?NavBarButton"
+					android:drawable="?eq_vol"
+					android:contentDescription="@string/volume"
+					
+					w:busId="@id/bus_gui"
+					w:msgId="@id/cmd_nav_to_eq" 
+					w:arg1="@integer/EQ_TAB_VOL"
+				/>
+				<!--
+				<com.maxmpz.widget.base.BusActionButton android:id="@+id/eq_tab_reverb"
+					style="?NavBarButton"
+					android:drawable="?eq_reverb"
+					android:contentDescription="@string/reverb"
+					
+					w:arg1="@integer/EQ_TAB_REVERB"
+					w:busId="@id/bus_gui"
+					w:msgId="@id/cmd_nav_to_eq" 
+				/>
+				-->
+				<com.maxmpz.widget.base.FastButton android:id="@id/cmd_nav_more"
+					style="?NavBarButton"
+					android:longClickable="true"
+					android:drawable="?nav_hamburger"
+					android:contentDescription="@string/settings"
+				/>
+				
+			</com.maxmpz.widget.base.FastLayout>
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"
+				android:visibility="visible"
+			/>
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
+				android:visibility="visible"
+			/>
+			
+		</com.maxmpz.equalizer.widget.Navbar>
+		<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
+			style="?Navbar_scene_navbar_1line_sheet"
+		/>
+		<!-- w:layout_attachBottom="parent" -->
+		<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"
+			style="?Navbar_scene_navbar_2lines"
+		/>
+	
+	</com.maxmpz.widget.base.SceneFastLayout>
+	<SceneParams w:scene="@id/scene_vis"
+		android:visibility="gone"
+	/>		
+	<!-- NOTE: alpha is overridden by user preference -->
+	<SceneParams w:scene="@id/scene_vis_w_ui"
+		android:visibility="visible"
+		android:alpha="0.55"
+	/>		
+	<SceneParams w:scene="@id/scene_vis_temp_ui" 
+		android:alpha="1"
+		android:visibility="visible"
+	/>		
+		
+	
+</merge>

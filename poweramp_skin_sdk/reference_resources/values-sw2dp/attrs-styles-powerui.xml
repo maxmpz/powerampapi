@@ -371,6 +371,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="Navbar" format="reference"/>
 		<attr name="NavbarExtension" format="reference"/>
 		<attr name="NavbarExtensionLogo" format="reference"/>
+		<attr name="NavbarPeqExtensionLogo" format="reference"/>
 		<attr name="NavbarExtensionLogoLabel" format="reference"/>
 		<attr name="NavbarExtensionLogoLabel_Text" format="reference"/>
 		<attr name="NavbarExtensionMenuLine" format="reference"/>
@@ -394,6 +395,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="SelectionMenuSeparator" format="reference"/>
 		<attr name="SelectionMenuBottomLineLayout" format="reference"/>
 		<attr name="SelectionListContextButton" format="reference"/>
+		<attr name="SelectionListContextButton33" format="reference"/>
 		<attr name="SelectionListContextButton_Text" format="reference"/>
 		
 		<attr name="TopContainer" format="reference"/>
@@ -404,6 +406,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopListScrollerView_Text" format="reference"/>
 		<attr name="TopListScrollerView_state_scrollbar_pressed" format="reference"/>
 		<attr name="TopEqLayout" format="reference"/>
+		<attr name="TopPeqEqLayout" format="reference"/>
+		<attr name="TopPeqEqLayout_scenes_vis" format="reference"/>
 		<attr name="TopActionModeBar" format="reference"/>
 		<attr name="TopActionModeBarButton" format="reference"/>
 		<attr name="TopSearchLayout" format="reference"/>
@@ -507,6 +511,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Vis -->
 		<attr name="VisPanelContainer" format="reference"/>
+		<attr name="PeqVisPanelContainer" format="reference"/>
 		<attr name="VisPanelShim" format="reference"/>
 		<attr name="VisPanelFrame" format="reference"/>
 		<attr name="VisCloseButton" format="reference"/>
@@ -530,6 +535,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqLinearKnob" format="reference"/><!-- NOTE: this attribute is used from the code for the dynamically generated eq bands -->
 		<attr name="EqLinearKnob_Text" format="reference"/>
 		<attr name="EqKnobValue_Text" format="reference"/>
+		<attr name="EqKnobValueLarger_Text" format="reference"/>
 		<attr name="EqKnobLabel_Text" format="reference"/>
 		<attr name="EqPreampLinearKnob" format="reference"/>
 		<attr name="EqFrequencyResponseScroller" format="reference"/>
@@ -548,6 +554,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqEquResetButton" format="reference"/>
 		<attr name="EqBassToneKnobLayout" format="reference"/>
 		<attr name="EqTrebleToneKnobLayout" format="reference"/>
+		<attr name="PeqVisButtonLayout" format="reference"/>
+		<attr name="PeqEqEnableVisFrs" format="reference"/>
 		
 		<!-- Vol tab -->
 		<attr name="EqVolPanel1" format="reference"/>
@@ -562,8 +570,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqMonoCheckButton" format="reference"/>
 		<attr name="EqPlatformFXCheckButton" format="reference"/>
 		<attr name="EqOtherResetButton" format="reference"/>
+		<attr name="PeqOtherResetButton" format="reference"/>
 		<attr name="EqVolumeKnobLayout" format="reference"/>
-		
+		<attr name="PeqVolumeKnobLayout" format="reference"/>
+		<attr name="PeqEqVolPanel1" format="reference"/>
+		<attr name="PeqEqVolPanel2" format="reference"/>
+		<attr name="PeqEqVolPanel3" format="reference"/>
+		<attr name="PeqEqBalanceKnobLayout" format="reference"/>
+		<attr name="PeqEqCompressorCheckButton" format="reference"/>
+		<attr name="PeqEqCompressKnobLayout1" format="reference"/>
+		<attr name="PeqEqCompressKnobLayout2" format="reference"/>
+		<attr name="PeqEqCompressKnobLayout3" format="reference"/>
+		<attr name="PeqEqCompressKnobLayout4" format="reference"/>
+		<attr name="PeqEqCompressKnobLayout5" format="reference"/>
+		<attr name="PeqEqCompressKnobLayout6" format="reference"/>
+				
+				
 		<!-- Reverb tab -->
 		<attr name="EqReverbPanel1" format="reference"/>
 		<attr name="EqReverbPanel2" format="reference"/>
@@ -576,13 +598,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqReverbParam1KnobLayout" format="reference"/>
 		<attr name="EqReverbParam5KnobLayout" format="reference"/>
 		<attr name="EqReverbCheckButton" format="reference"/>
-		
 		<attr name="EqReverbPresetButtonLayout" format="reference"/>
 		<attr name="EqReverbPresetButtonLayout_scene_button_menu" format="reference"/>
 		<attr name="EqReverbPresetLabel" format="reference"/>
-		
 		<attr name="EqReverbSaveButton" format="reference"/>
 		<attr name="EqReverbResetButton" format="reference"/>
+		<attr name="PeqEqReverbParamKnobLayout" format="reference"/>
 			
 		<!-- Sleep timer -->
 		<attr name="SleepTimerTitle" format="reference"/>

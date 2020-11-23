@@ -31,7 +31,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		w:msgId="@id/cmd_list_add_to_pl_dialog"
 	/>
-	<!-- NOTE: when queue_as_next enabled, enqueue is hidden, otherwise queue_as_next is hidden --> 
 	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/enqueue"
 		style="?SelectionListContextButton"
 		android:drawable="?enqueue"
@@ -43,12 +42,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/queue_as_next"
 		style="?SelectionListContextButton"
-		android:drawable="?enqueue"
-		android:text="@string/queue_as_next"
+		android:drawable="?add_next"
+		android:text="@string/queue_as_next_short"
 		w:stateId="@id/state_list_something_selected"
 		w:stateMsgId="@id/state_list_selection_count"
 
-		w:msgId="@id/cmd_list_add_to_q"
+		w:msgId="@id/cmd_list_add_as_next_to_q"
 	/>
 	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"

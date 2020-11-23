@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	<dimen name="peq_micro_notification_icon_marginLeft">14.5dp</dimen>
+	
+	<dimen name="peq_micro_notification_muiu11_icon_marginLeft">4.5dp</dimen>
+	<dimen name="peq_micro_notification_muiu_icon_size">18dp</dimen>
+	
+	<dimen name="peq_micro_notification_muiu12_icon_marginLeft">6dp</dimen>
+</resources>

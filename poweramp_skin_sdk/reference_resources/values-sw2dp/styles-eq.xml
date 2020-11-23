@@ -23,6 +23,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
+	<style name="ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic">
+		<item name="arcStartColor">@color/peq_eq_arc_start_mono_selector</item>
+		<item name="arcEndColor">@color/peq_eq_arc_end_mono_selector</item>
+		
+		<item name="holeStartColor">@color/peq_eq_arc_start_mono_selector</item>
+		<item name="holeEndColor">@color/peq_eq_arc_end_mono_selector</item>
+	</style>
+	
+	<style name="ActivityTheme_Whitepro_EqKnobsHiliteColorful">
+		<item name="arcStartColor">@color/eq_arc_start_colorful_selector</item>
+		<!--<item name="arcMidColor">@color/eq_arc_mid_colorful_selector</item>-->
+		<item name="arcEndColor">@color/eq_arc_end_colorful_selector</item>
+		
+		<item name="arcGlowStartColor">@color/eq_arc_start_colorful_selector</item>
+		<!--<item name="arcGlowMidColor">@color/eq_arc_mid_colorful_selector</item>-->
+		<item name="arcGlowEndColor">@color/eq_arc_end_colorful_selector</item>
+		
+		<item name="holeStartColor">@color/eq_arc_start_colorful_selector</item>
+		<!--<item name="holeMidColor">@color/eq_arc_mid_colorful_selector</item>-->
+		<item name="holeEndColor">@color/eq_arc_end_colorful_selector</item>
+		
+		<item name="holeGlowStartColor">@color/eq_arc_start_colorful_selector</item>
+		<!--<item name="holeGlowMidColor">@color/eq_arc_mid_colorful_selector</item>-->
+		<item name="holeGlowEndColor">@color/eq_arc_end_colorful_selector</item>
+	</style>
+	
+	
 	<style name="EqPagesLayout">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
@@ -44,6 +71,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">match_parent</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:clipChildren">false</item><!-- Needed, otherwise shadow is cut for bottom views, e.g. tone knobs -->
+		<item name="android:clipToPadding">false</item>
 	</style>
 	
 	<style name="EqKnobsLayoutBase">
@@ -56,19 +84,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqKnobsLayout" parent="EqKnobsLayoutBase">
 		<item name="android:layout_width">match_parent</item>
 		<item name="layout_heightPercent">50%</item>
-		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginTop">@dimen/EqKnobsLayout_marginTop</item>
 		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottom">@+id/frequency_response_scroller</item>
 		<item name="android:clipChildren">false</item>
 	</style>
 	
 	<style name="EqLinearKnob">
-		<item name="hole">@drawable/knob_hole_selector</item> 
-		<item name="thumb">@drawable/knob_thumb_selector</item>
-		<item name="thumbWidth">@dimen/EqLinearKnob_thumbWidth</item><!-- 32dp -->
-		<item name="thumbHeight">@dimen/EqLinearKnob_thumbHeight</item><!-- 64dp -->
-		<item name="android:background">@drawable/focusable_bg</item>
-				
 		<item name="android:paddingLeft">@dimen/EqLinearKnob_paddingLR</item>
 		<item name="android:paddingRight">@dimen/EqLinearKnob_paddingLR</item>
 		<item name="android:paddingBottom">4dp</item>
@@ -83,6 +105,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:disabledAlpha">1</item><!-- NOTE: keeping it full alpha - using xml drawable disabled state instead -->
 		<item name="android:elevation">?control_elevation</item>
 		<item name="layout_unlimitedMeasure">true</item>
+		
 		<item name="android:clipToPadding">false</item>
 		
 		<item name="android:textAppearance">?EqLinearKnob_Text</item>
@@ -90,13 +113,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="valueAnimTime">300</item>
 		<item name="valueAnimZoom">1.5</item>
 		
-		<!-- NOTE: this is set by code depending on user preference -->
-		<!--<item name="valueFormat">%.1fdB</item>
-		<item name="valueFormatMid">0</item>
-		<item name="valueFormatMidPos">0.5</item>
-		<item name="valueFormatMax">15</item>
-		<item name="valueFormatMin">-15</item>
-		-->
+		<item name="hole">@drawable/knob_hole_selector</item> 
+		<item name="thumb">@drawable/knob_thumb_selector</item>
+		<item name="thumbWidth">@dimen/EqLinearKnob_thumbWidth</item><!-- 32dp -->
+		<item name="thumbHeight">@dimen/EqLinearKnob_thumbHeight</item><!-- 64dp -->
+		<item name="android:background">@drawable/focusable_bg</item>
+		
+		<!-- NOTE: theme-wide holeColor*/holeGlow* attributes are resolved automatically for EqLinearKnob -->
+		
+		<!-- NOTE: valeu format  is set by code depending on user preference -->
+		
+		<item name="labelBackground">@drawable/rounded_bg_medium_minus</item>
+		<item name="labelBackgroundPaddingTop">-2dp</item>
+		<item name="labelBackgroundPaddingBottom">2.5dp</item>
+		<item name="labelBackgroundPaddingLeft">1dp</item>
+		<item name="labelBackgroundPaddingRight">1dp</item>
+		<item name="labelBackgroundAnimZoom">1.1</item>
 		
 		<item name="linesBackground">true</item>
 		<item name="line13Color">?colorEqKnobsLines1</item>
@@ -108,15 +140,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="EqLinearKnob_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">@dimen/linear_knob_text_size</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textColor">@color/eq_linear_knob_text_color_selector</item>
 	</style>	
 		
 	<style name="EqPreampKnobLayout">
-		<item name="android:background">@drawable/preamp_bg</item>
 		<item name="android:layout_width">@dimen/preamp_knob_width</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_marginRight">4dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
+		
+		<item name="android:background">@drawable/preamp_bg</item>
 		<item name="android:clipChildren">false</item>
 	</style>
 		
@@ -124,6 +157,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_consumeSpace">@null</item>
 		<item name="android:background">@null</item>
+		<item name="labelBackground">@null</item>
+		
+		<item name="holeColorStartPoint">0.5</item>				
 	</style>
 		
 	<style name="EqFrequencyResponseScrollerBase">
@@ -147,9 +183,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">@+id/frs_info_label</item>
 	</style>
 	
+	<!-- NOTE: style overridden in values-sw2dp-v28 for roundRectClipRadius -->
 	<style name="EqMilkFrsBase">
 		<item name="bgColor">?colorBgPrimary</item>
-		<!-- <item name="roundRectClipRadius">4dp</item> --><!-- TODO: slow on slow/old devices e.g. Android 5 -->
+		<item name="roundRectClipRadius">0px</item><!-- NOTE: slow on slow/old devices e.g. Android 5 -->
 		<item name="presetUri">?EqMilkFrs_presetUri</item>
 	</style>
 	<style name="EqMilkFrs" parent="EqMilkFrsBase">
@@ -172,8 +209,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<item name="lineBackground">@drawable/alpha_popup_button_layout_bg</item>
 		
-		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_marginTop">@dimen/EqInfoBase_marginTB</item>
+		<item name="android:layout_marginBottom">@dimen/EqInfoBase_marginTB</item>
 		<!-- NOTE: avoid paddings here as they propagate top popup -->
 	</style>
 	<style name="EqInfo" parent="EqInfoBase">
@@ -194,12 +231,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableWidth">16dp</item>
 		<item name="drawableHeight">16dp</item>
 		<item name="android:gravity">center_vertical</item>
+		<item name="layout_maxWidth">@dimen/EqInfoLabel_maxWidth</item>
 	</style>
 	
 	<style name="EqKnobValue_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textColor">@color/eq_value_text_color_selector</item>
 		<item name="android:textSize">@dimen/EqKnobValueText_size</item>
 		<item name="android:textStyle">normal</item>
+	</style>
+	<style name="EqKnobValueLarger_Text" parent="EqKnobValue_Text"><!-- Larger size matching EqKnobLabel_Text-->
+		<item name="android:textSize">@dimen/EqKnobLabelText_size</item>
 	</style>
 
 	<style name="EqKnobLabel_Text" parent="TextAppearance.AppCompat">
@@ -224,30 +265,38 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="EqCheckButton" parent="EqButton"><!-- styles-eq usage only -->
 		<item name="android:textColor">@color/button_text_color_selector</item><!-- NOTE: keeping it out of textAppearance -->
-		<item name="android:background">@drawable/checkable_rounded_large</item>		
+		<item name="android:background">@drawable/checkable_rounded_large</item>
 	</style>
 			
 	
 	<style name="EqEquButton" parent="EqCheckButton">
 		<item name="android:layout_marginBottom">0dp</item>
-		<item name="layout_attachBottom">@+id/eq_bass_knob_layout</item>
+		<item name="layout_attachBottom">@+id/tone_panel</item>
+		<item name="layout_attachLeft">parent</item>
 		
-		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item><!-- NOTE: important - defines offset of tone panel and thus, space for knobs -->
 		<item name="android:ellipsize">end</item>
 	</style>
 	
 	<style name="EqToneButton" parent="EqCheckButton">
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginTop">6dp</item>
 		<item name="layout_attachTop">@+id/equ_button</item>
-		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item>
 		<item name="android:ellipsize">end</item>
 	</style>
-	
+	<!-- NOTE: hidden for PEQ -->
+	<style name="EqToneButtonHidden" parent="EqToneButton">
+		<item name="android:visibility">gone</item>
+		<item name="android:layout_marginTop">0dp</item>
+	</style>
+		
 	<style name="EqLimiterButton" parent="EqCheckButton">
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginTop">6dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="layout_attachTop">@+id/tone_button</item>
-		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item>
 		<item name="android:ellipsize">end</item>
 	</style>
 		
@@ -267,7 +316,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqEquPresetButtonLayout" parent="EqPresetButtonLayoutBase">
 		<item name="android:layout_width">@dimen/EqEquPresetButtonLayout_layout_width</item>
 		<item name="layout_attachRight">@+id/save_button</item>
-		<item name="layout_attachBottom">@+id/eq_bass_knob_layout</item>
+		<item name="layout_attachBottom">@+id/tone_panel</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item>
 	</style>
@@ -279,29 +328,36 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqEquPresetLabel" parent="PopupListLayoutLabel">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
-		<item name="android:gravity">right</item>
+		<item name="android:gravity">center</item>
 		<item name="android:ellipsize">end</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:ellipsize">end</item>
 		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
+		
+		<item name="drawableWidth">16dp</item>
+		<item name="drawableHeight">16dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:drawablePadding">-3dp</item>		
+		<item name="drawableTint">?colorIconPrimary</item>
 	</style>
 	<style name="EqEquPresetLabel_Text" parent="PopupListLayoutLabel_Text">
 		<item name="android:textSize">@dimen/EqButton_textSize</item>
 		<item name="android:textAllCaps">true</item>		
 	</style>
 	
-	<style name="EqEquSaveButton" parent="EqButton">
-		<item name="layout_attachBottom">@+id/eq_bass_knob_layout</item>
+	<style name="EqEquSaveButton" parent="EqCheckButton">
+		<item name="layout_attachBottom">@+id/tone_panel</item>
 		<item name="layout_attachRight">@+id/reset_button</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginLeft">@dimen/EqButton_marginSide</item><!-- Specifically overridden for smaller screens -->
 		
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+		<item name="android:textColor">@color/button_primary_text_color_selector</item>
 	</style>
 	
 	<style name="EqEquResetButton" parent="EqButton">
-		<item name="layout_attachBottom">@+id/eq_bass_knob_layout</item>
+		<item name="layout_attachBottom">@+id/tone_panel</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
@@ -311,129 +367,211 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 		
 	
-	<style name="EqToneKnobLayoutBase">
-		<item name="android:clipChildren">false</item>
-		<item name="android:layout_width">wrap_content</item>
+	<!-- TonePanel contains bass and treble knob layouts. Size of TonePanel (calculated from the size of inner knobs) defines size of other components.
+		 layout_marginLeft offsets panel by the size of the left buttons (equ/tone/limit).
+		 We also compensate implicit bottom navbar padding with marginTop 
+	 -->
+	<style name="EqTonePanel">
+		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">@dimen/EqToneKnobs_marginTop</item>
+		<item name="layout_attachBottom">parent</item>
+		
+		<item name="android:layout_marginLeft">@dimen/EqEquButton_maxWidth</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:paddingLeft">@dimen/EqTonePanel_offsetLeft</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:paddingTop">@dimen/EqTonePanel_offsetTB</item>
+		<item name="android:paddingBottom">@dimen/EqTonePanel_offsetTB</item>
 				
-		<item name="roundKnobStyle">@style/EqToneRoundKnob</item>
-		<item name="labelStyle">@style/EqToneRoundKnobLabel</item>
-		<item name="valueLabelPressedAnimStyle">@style/EqToneLabelPressedAnim</item>
-		<item name="valueLabelStyle">@style/EqToneRoundKnobValueLabel</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
 	</style>
 	
-	<style name="EqToneLabelPressedAnim">
-		<!-- <item name="stateAnim">@id/anim_knob_pressed</item> -->
-		<item name="android:scaleX">1.5</item>
-		<item name="android:scaleY">1.5</item>
-		<!-- <item name="android:translationX">0dp</item>
-		<item name="android:translationY">10dp</item> translationY was broken and now fixed - it's not needed -->
-		<item name="android:duration">300</item>
-	</style>
+	
+	<style name="EqToneKnobLayoutBase">
+		<!-- Can't use vertical alignment here as we attached to bottom -->
+		<item name="roundKnobStyle">@style/EqToneRoundKnob</item>
+		<item name="labelStyle">@style/EqToneRoundKnobLabel</item>
+		<item name="valueLabelStyle">@style/EqToneRoundKnobValueLabel</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqToneLabelPressedAnim</item>
 		
-	<style name="EqLabelPressedAnim">
-		<!-- <item name="stateAnim">@id/anim_knob_pressed</item> -->
-		<item name="android:scaleX">1.5</item>
-		<item name="android:scaleY">1.5</item>
-		<!-- <item name="android:translationY">10dp</item> translationY was broken and now fixed - it's not needed -->
-		<item name="android:duration">300</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
 	</style>
-		
+	
 	<style name="EqBassToneKnobLayout" parent="EqToneKnobLayoutBase">
-		<item name="layout_attachBottom">parent</item>
-		<item name="layout_attachRight">@+id/eq_treble_knob_layout</item>
+		<item name="android:layout_width">0px</item>
+		<item name="layout_widthPercent">50%</item>
+		<item name="layout_attachRight">50%</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_maxHeight">@dimen/EqToneRoundKnobLayout_maxSize</item>
+		<item name="android:layout_marginRight">4dp</item>
 	</style>
 	
 	<style name="EqTrebleToneKnobLayout" parent="EqToneKnobLayoutBase">
-		<item name="layout_attachBottom">parent</item>
-		<item name="layout_attachRight">parent</item>
+		<!--<item name="android:layout_marginRight">8dp</item>-->
+		<item name="android:layout_width">0px</item>
+		<item name="layout_widthPercent">50%</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">50%</item>
+				
+		<item name="layout_maxHeight">@dimen/EqToneRoundKnobLayout_maxSize</item>
+		
+		<item name="android:layout_marginLeft">4dp</item>
 	</style>
 		
 	
-	<style name="EqRoundKnob">
-		<item name="android:id">@id/_knob</item>
-		<item name="knob">@drawable/round_knob</item>
-		<item name="indicator">@drawable/round_knob_indicator</item>
-		<item name="android:disabledAlpha">1</item><!-- NOTE: keeping it full alpha - using xml drawable state instead for disabled -->
-		<item name="android:elevation">?control_elevation</item>
+	<!-- NOTE: size of the tone round knob defines size of the parent layouts, location of buttons, position of frs and size of linear knobs.
+	     Tone knobs will try to fit available width (minus labels and buttons to the left) or size will be maxed up to EqRoundKnobLayout_maxSize -->
+	<style name="EqToneRoundKnob" parent="EqRoundKnob">
+		<item name="android:layout_width">match_parent</item><!-- Tries to get max avail width (minus labels and paddings/margins) -->
+		<item name="android:layout_height">0px</item>
+		<item name="layout_matchDimension">heightToWidth</item>
+		<!-- We use fixed offset for knob, as it's unknown what will be the actual label (bass/treble) width as it depends on many factors (font, screen scale, translation, etc.),
+		     but we need a fixed margin here, as otherwise size of knob depends on label width -->
+		<!--<item name="android:layout_marginLeft">@dimen/EqToneRoundKnobLabel_maxWidth</item>-->
+		<item name="layout_maxWidth">@dimen/EqToneRoundKnob_maxSize</item>
+		<item name="layout_maxHeight">@dimen/EqToneRoundKnob_maxSize</item>
+		<item name="android:layout_gravity">right</item>
 	</style>
 	
-	<style name="EqMediumRoundKnob" parent="EqRoundKnob">
-		<item name="android:layout_width">@dimen/MediumRoundKnob_size</item>
-		<item name="android:layout_height">@dimen/MediumRoundKnob_size</item>
-		<item name="android:id">@id/_knob</item>
-		<item name="valueLabel">@id/_value_label</item>
-		<item name="dependentLabel">@id/_label</item>
-	</style>
-	<style name="EqMediumCenteredRoundKnob" parent="EqMediumRoundKnob">
-		<item name="android:layout_gravity">center_horizontal</item>
-	</style>
-	
-	<style name="EqBigRoundKnob" parent="EqMediumRoundKnob">
-		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="android:layout_width">@dimen/BigRoundKnob_size</item>
-		<item name="android:layout_height">@dimen/BigRoundKnob_size</item>
-	</style>
+	<style name="EqToneRoundKnobLabel" parent="EqLabelBg">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">@dimen/RoundKnobLabelLeftTop_marginTop</item>
+		<item name="layout_maxWidth">@dimen/EqToneRoundKnobLabel_maxWidth</item>
+		<item name="layout_consumeSpace">horizontal</item>
 		
-	
-	
-	<style name="EqToneRoundKnob" parent="EqMediumRoundKnob">
-		<item name="android:layout_gravity">left</item>
-	 	<item name="android:layout_marginRight">10dp</item><!-- NOTE: slightly offset tone round knob within its layout for better horizontal distribution -->
-		<item name="android:layout_width">@dimen/EqToneRoundKnob_size</item>
-		<item name="android:layout_height">@dimen/EqToneRoundKnob_size</item>
-	 </style>
-	
-	
-	<style name="EqRoundKnobLabelLeftTop">
 		<item name="android:id">@id/_label</item>
 		<item name="android:textAppearance">?EqKnobLabel_Text</item>
-		<item name="android:layout_width">@dimen/RoundKnobLabelLeftTop_width</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:minWidth">35dp</item><!-- Needed so value label (zoomed in, text="100%") could fit its place without overlapping anything -->
-		<item name="layout_consumeSpace">horizontal</item>
-		<item name="android:layout_marginRight">@dimen/RoundKnobLabelLeftTop_marginRight</item>
-		<item name="android:layout_marginTop">@dimen/RoundKnobLabelLeftTop_marginTop</item>
 	</style>
 	
-	<style name="EqRoundKnobValueLabelLeftTop">
-		<item name="android:id">@id/_value_label</item>
-		<item name="android:textAppearance">?EqKnobLabel_Text</item>
-		<item name="android:gravity">left</item>
+	<style name="EqToneRoundKnobValueLabel" parent="EqLabelBg">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachTop">@id/_label</item>
 		<item name="layout_attachLeftToLeft">@id/_label</item>
 		<item name="android:layout_marginRight">@dimen/RoundKnobLabelLeftTop_marginRight</item>
+		<item name="android:layout_marginTop">@dimen/EqRoundKnobValueLabel_marginTop</item>
+		
+		<item name="android:id">@id/_value_label</item>
+		<item name="android:gravity">left</item>
+		<item name="android:textAppearance">?EqKnobValueLarger_Text</item>
+	</style>
+		
+		
+	
+	
+	
+	<style name="EqToneLabelPressedAnim">
+		<item name="android:scaleX">1.5</item>
+		<item name="android:scaleY">1.5</item>
+		<item name="android:translationY">1dp</item>
+		<item name="android:translationZ">5dp</item>
+		<item name="android:duration">300</item>
+	</style>
+		
+	<style name="EqLabelPressedAnim">
+		<item name="android:scaleX">1.5</item>
+		<item name="android:scaleY">1.5</item>
+		<item name="android:translationY">1dp</item>
+		<item name="android:translationZ">5dp</item>
+		<item name="android:duration">300</item>
+	</style>
+		
+	<style name="EqRoundKnob">
+		<item name="android:id">@id/_knob</item>
+		<item name="valueLabel">@id/_value_label</item>
+		<item name="dependentLabel">@id/_label</item>
+				
+		<item name="knob">@drawable/round_knob</item>
+		<item name="indicator">@drawable/round_knob_indicator</item>
+		<item name="android:disabledAlpha">1</item><!-- NOTE: keeping it full alpha - using xml drawable state instead for disabled -->
+		<item name="android:elevation">?control_elevation</item>
+		
+		<!-- Setting some default arc properties. Those are not applied w/o colors defined (colors are optionally defined via skin options) -->
+		<item name="arcWidth">?arcWidth</item>
+		<item name="arcOffset">?arcOffset</item>
+		<item name="arcGlowWidth">?arcGlowWidth</item>
+		
+		<!-- NOTE: color attributes are set per skin option -->
 	</style>
 	
-	<style name="EqRoundKnobLabel">
-		<item name="android:textAppearance">?EqKnobLabel_Text</item>
+	<style name="EqResizableRoundKnobBase" parent="EqRoundKnob">
+		<!-- Wrap content means here take minumum available parent dimension and be a rectangle -->
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+
+		<item name="layout_attachTop">parent</item><!-- This doesn't look well when we have too much vertical space. That's why we have overal max size -->
+		<item name="layout_attachBottom">@id/_label</item>
+	</style>
+	
+	<style name="EqSmallResizableRoundKnob" parent="EqResizableRoundKnobBase">
+		<item name="layout_maxHeight">@dimen/EqSmallRoundKnob_maxSize</item>
+	</style>
+	<style name="EqResizableRoundKnob" parent="EqResizableRoundKnobBase">
+		<item name="layout_maxHeight">@dimen/EqRoundKnob_maxSize</item>
+	</style>
+	<style name="EqToneResizableRoundKnob" parent="EqResizableRoundKnobBase">
+		<item name="layout_maxHeight">@dimen/EqToneRoundKnob_maxSize</item>
+	</style>
+	<style name="EqLargerResizableRoundKnob" parent="EqResizableRoundKnobBase">
+		<item name="layout_maxHeight">@dimen/EqLargerRoundKnob_maxSize</item>
+	</style>
+				
+		
+	<style name="EqResizableRoundKnobLabel" parent="EqRoundKnobLabel">
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">@id/_value_label</item>
+	</style>
+	<style name="EqResizableRoundKnobValueLabel" parent="EqRoundKnobValueLabel">
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">parent</item>
+	</style>
+		
+	<style name="EqLabelBg">
+		<item name="android:background">@drawable/rounded_bg_medium_minus</item>
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:paddingBottom">1dp</item>
+		<item name="android:paddingTop">1dp</item>
+	</style>
+	
+	
+	<style name="EqRoundKnobLabel" parent="EqLabelBg">
+		<item name="android:id">@id/_label</item>
+		
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:gravity">center</item>
-		<item name="android:id">@id/_label</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachTop">@id/_knob</item>
 		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:singleLine">true</item>
-		
 		<item name="layout_maxWidth">@dimen/EqRoundKnobLabel_maxWidth</item>
+		
+		<item name="allowZeroHeight">true</item>
+		<item name="android:textAppearance">?EqKnobLabel_Text</item>
+		<item name="android:singleLine">true</item>
 		<item name="android:ellipsize">end</item>
 	</style>
 	
-	<style name="EqRoundKnobValueLabel">
-		<item name="android:gravity">center</item>
-		<item name="android:textAppearance">?EqKnobValue_Text</item>
+	<style name="EqRoundKnobValueLabel" parent="EqLabelBg">
+		<item name="android:id">@id/_value_label</item>
+		<item name="layout_attachTop">@id/_label</item>
+		<item name="android:layout_marginTop">@dimen/EqRoundKnobValueLabel_marginTop</item><!-- Extra margin applied for scripts with tall characters, such as Chinese -->
+				
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="layout_attachTop">@id/_label</item>
-		<item name="android:id">@id/_value_label</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textAppearance">?EqKnobValue_Text</item><!-- NOTE: disappears when disabled -->
 	</style>
-	
-	<style name="EqRoundKnobLeftLabel">
+	<style name="EqRoundKnobValueLargerLabel" parent="EqRoundKnobValueLabel">
+		<item name="android:textAppearance">?EqKnobValueLarger_Text</item>
+	</style>
+		
+	<style name="EqRoundKnobLeftLabel" parent="EqLabelBg">
 		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="layout_attachRight">@id/_knob</item>
 		<item name="layout_attachTop">@id/_knob</item>
@@ -444,7 +582,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:singleLine">true</item>
 	</style>
 	
-	<style name="EqRoundKnobRightLabel">
+	<style name="EqRoundKnobRightLabel" parent="EqLabelBg">
 		<item name="android:textAppearance">?EqKnobLabel_Text</item>
 		<item name="layout_attachTop">@id/_knob</item>
 		<item name="android:layout_width">wrap_content</item>
@@ -455,70 +593,70 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	
-	<style name="EqToneRoundKnobLabel" parent="EqRoundKnobLabelLeftTop">
-		<item name="layout_maxWidth">65dp</item>
-	</style>
-	
-	<style name="EqToneRoundKnobValueLabel" parent="EqRoundKnobValueLabelLeftTop">
-	</style>
-	
-	
 	<!-- vol tab -->
 	
 	<style name="EqVolPanel1">
-		<item name="android:clipChildren">false</item>
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:paddingTop">@dimen/EqVolPanel1_paddingTop</item>
-		<item name="android:paddingBottom">@dimen/EqVolPanel1_paddingBottom</item>
+		<item name="android:layout_height">0px</item>
+		<item name="layout_heightPercent">30%</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:clipChildren">false</item>
 	</style>
 
 	<style name="EqVolPanel2">
-		<item name="android:clipChildren">false</item>
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">200dp</item>
-		<item name="layout_attachTop">@+id/vol_panel1</item>
-		<item name="layout_attachBottom">@+id/vol_panel3</item>
+		<item name="android:layout_height">0px</item>
+		<item name="layout_heightPercent">30%</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:clipChildren">false</item>
 	</style>
 	
 	<style name="EqVolPanel3">
-		<item name="android:clipChildren">false</item>
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_height">0px</item>
+		<item name="layout_heightPercent">40%</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:clipChildren">false</item>
 	</style>
 		
 	<style name="EqBalanceKnobLayoutBase">
-		<item name="android:clipChildren">false</item>
-		
-		<item name="roundKnobStyle">@style/EqMediumCenteredRoundKnob</item>
-		<item name="leftLabelStyle">@style/EqRoundKnobLeftLabel</item>
-		<item name="rightLabelStyle">@style/EqRoundKnobRightLabel</item>
-		<item name="labelStyle">@style/EqRoundKnobLabel</item>
-		
-		<item name="valueLabelStyle">@style/EqRoundKnobValueLabel</item>
+		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
+		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
+		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
 		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
+		
+		<item name="android:clipChildren">false</item>		
 	</style>
+	
 	<style name="EqBalanceKnobLayout" parent="EqBalanceKnobLayoutBase">
+		<item name="android:layout_width">0px</item>
 		<item name="layout_widthPercent">50%</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachRight">50%</item>
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		
+		<item name="android:paddingTop">@dimen/EqKnob_spacing</item>
+		<item name="android:paddingBottom">@dimen/EqKnob_spacing</item>
 	</style>
 	
 	<style name="EqSFXKnobLayoutBase">
 		<item name="android:clipChildren">false</item>
-		
-		<item name="roundKnobStyle">@style/EqMediumCenteredRoundKnob</item>
-		<item name="labelStyle">@style/EqRoundKnobLabel</item>
-		<item name="valueLabelStyle">@style/EqRoundKnobValueLabel</item>
+		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
+		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
+		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
 		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
 	</style>
 	<style name="EqSFXKnobLayout" parent="EqSFXKnobLayoutBase">
+		<item name="android:layout_width">0px</item>
 		<item name="layout_widthPercent">50%</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachLeft">50%</item>
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		
+		<item name="android:paddingTop">@dimen/EqKnob_spacing</item>
+		<item name="android:paddingBottom">@dimen/EqKnob_spacing</item>
 	</style>
 	
 	<style name="EqTempoCheckButton" parent="EqCheckButton">
@@ -526,39 +664,53 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="BaseEqTempoKnobLayout">
-		<item name="android:clipChildren">false</item>
-		<item name="android:layout_width">@dimen/EqTempoKnobLayout_width</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">center</item>
-		
-		<item name="roundKnobStyle">@style/EqMediumCenteredRoundKnob</item>
-		<item name="leftLabelStyle">@style/EqRoundKnobLeftLabel</item>
-		<item name="rightLabelStyle">@style/EqRoundKnobRightLabel</item>
+		<item name="roundKnobStyle">@style/EqTempoRoundKnob</item>
+		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
 		<item name="valueLabelStyle">@style/EqTempoValueLabel</item>
 		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
-		</style>
-	<style name="EqTempoKnobLayout" parent="BaseEqTempoKnobLayout">
+		
+		<item name="android:clipChildren">false</item>
 	</style>
+	
+	<style name="EqTempoKnobLayout" parent="BaseEqTempoKnobLayout">
+		<item name="android:layout_width">0px</item>
+		<item name="layout_widthPercent">50%</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
+		<item name="android:layout_gravity">center</item>
+		
+		<item name="android:paddingTop">@dimen/EqKnob_spacing</item>
+		<item name="android:paddingBottom">@dimen/EqKnob_spacing</item>
+	</style>
+	<style name="EqTempoValueLabel" parent="EqResizableRoundKnobValueLabel">
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	<style name="EqTempoRoundKnob" parent="EqResizableRoundKnob">
+		<item name="layout_attachTop">@null</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_attachBottom">@id/_value_label</item>
+	</style>
+		
+	
 	<style name="EqTempoPlusButton" parent="EqButton">
 		<item name="android:minWidth">52dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginBottom">16dp</item>
-		<item name="layout_attachLeft">@id/tempo_knob_layout</item>
-		<item name="layout_attachBottom">50%</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginTop">-16dp</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_gravityTarget">@id/tempo_knob_layout</item>
+		<item name="android:layout_gravity">center_vertical</item>
 	</style>
 	<style name="EqTempoMinusButton" parent="EqButton">
 		<item name="android:minWidth">52dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginTop">-8dp</item>
-		<item name="layout_attachLeft">@id/tempo_knob_layout</item>
-		<item name="layout_attachTop">50%</item>
-	</style>
-			
-	
-	<style name="EqTempoValueLabel" parent="EqRoundKnobValueLabel">
-		<item name="layout_attachTop">@id/_knob</item>
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginTop">4dp</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachTop">@id/tempo_plus_button</item>
 	</style>
+	
 		
 	<style name="EqMonoCheckButton" parent="EqCheckButton">
 	</style>
@@ -576,102 +728,77 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqOtherResetButton" parent="EqButton">
 		<item name="android:layout_gravity">right</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="layout_consumeSpace">vertical</item>
 	</style>
 		
-	
 	<style name="EqVolumeKnobLayoutBase">
 		<item name="android:clipChildren">false</item>
-		<item name="android:layout_width">140dp</item>
-		<item name="android:layout_height">wrap_content</item>
+		<item name="android:clipToPadding">false</item>
 		
-		<item name="roundKnobStyle">@style/EqBigRoundKnob</item>
-		<item name="labelStyle">@style/EqRoundKnobLabel</item>
-		
-		<item name="valueLabelStyle">@style/EqRoundKnobValueLabel</item>
+		<item name="roundKnobStyle">@style/EqLargerResizableRoundKnob</item>
+		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
+		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
 		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
 	</style>
+	
 	<style name="EqVolumeKnobLayout" parent="EqVolumeKnobLayoutBase">
-		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:paddingTop">@dimen/EqKnob_spacing</item>
+		<item name="layout_maxHeight">@dimen/EqLargerRoundKnobLayout_maxSize</item>
+		<item name="android:layout_gravity">center_vertical</item>
 	</style>
+	
+	
 	
 	
 	<!-- Reverb -->
 	<style name="EqReverbPanel1">
 		<item name="android:layout_width">match_parent</item>
-		<item name="layout_heightPercent">33%</item>
+		<item name="layout_heightPercent">32%</item>
 		<item name="layout_consumeSpace">vertical</item>
 	</style>
 	
 	<style name="EqReverbPanel2">
 		<item name="android:layout_width">match_parent</item>
-		<item name="layout_heightPercent">33%</item>
-		<item name="layout_attachTop">@id/reverb_panel1</item>
-		<item name="layout_attachBottom">@id/reverb_panel3</item>
+		<item name="layout_heightPercent">32%</item>
+		<item name="layout_consumeSpace">vertical</item>
 	</style>
 	
 	<style name="EqReverbPanel3">
 		<item name="android:layout_width">match_parent</item>
-		<item name="layout_heightPercent">34%</item>
-		<item name="layout_attachBottom">parent</item>
+		<item name="layout_heightPercent">36%</item>
+		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clipChildren">false</item>
+		<item name="android:paddingTop">@dimen/EqReverbPanel3_paddingTop</item>
 	</style>
 	
-			
-	<style name="EqSmallKnobLayout">
-		<item name="android:clipChildren">false</item>
-		<item name="android:layout_width">110dp</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">@dimen/EqSmallKnobLayout_marginTop</item>
+	<style name="EqReberbKnobLayoutBase">
+		<item name="android:layout_width">0px</item>
+		<item name="layout_widthPercent">33.33%</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
 		<item name="android:layout_gravity">center_vertical</item>
-
-		<item name="roundKnobStyle">@style/EqSmallRoundKnob</item>
-		<item name="labelStyle">@style/EqRoundKnobLabel</item>
-		<item name="valueLabelStyle">@style/EqRoundKnobValueLabel</item>
+		<item name="android:paddingTop">@dimen/EqKnob_spacing</item>
+		<item name="android:paddingLeft">@dimen/EqKnob_spacing</item>
+		<item name="android:paddingRight">@dimen/EqKnob_spacing</item>		
+		
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+		
+		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
+		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
+		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
 		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
 	</style>
 	
-	<style name="EqSmallRoundKnob" parent="EqMediumCenteredRoundKnob">
-		<item name="android:layout_width">@dimen/SmallRoundKnob_size</item>
-		<item name="android:layout_height">@dimen/SmallRoundKnob_size</item>
+	<style name="EqReverbParam7KnobLayout" parent="EqReberbKnobLayoutBase">
 	</style>
-	
-	<!-- reverb_panel1 -->
-	
-	<style name="EqReverbParam7KnobLayout" parent="EqSmallKnobLayout">
-		<item name="layout_widthPercent">33.33%</item>
-		<item name="layout_consumeSpace">horizontal</item>
-	</style>
-		
-	<style name="EqReverbParam2KnobLayout" parent="EqSmallKnobLayout">
-		<item name="layout_widthPercent">33.33%</item>
-		<item name="layout_consumeSpace">horizontal</item>
-	</style>
-	
-	<style name="EqReverbParam3KnobLayout" parent="EqSmallKnobLayout">
-		<item name="layout_widthPercent">33.33%</item>
-		<item name="layout_consumeSpace">horizontal</item>
-	</style>
-	
-	<!-- reverb_panel2 -->
-	
-	<style name="EqReverbParam4KnobLayout" parent="EqSmallKnobLayout">
-		<item name="layout_widthPercent">33.33%</item>
-		<item name="layout_consumeSpace">horizontal</item>
-		<item name="android:layout_gravity">center_vertical</item>
-	</style>
-		
-	<style name="EqReverbParam6KnobLayout" parent="EqSmallKnobLayout">
-		<item name="layout_widthPercent">33.33%</item>
-		<item name="layout_consumeSpace">horizontal</item>
-		<item name="android:layout_gravity">center_vertical</item>
-	</style>
-	
-	<style name="EqReverbParam1KnobLayout" parent="EqSmallKnobLayout">
-		<item name="layout_widthPercent">33.33%</item>
-		<item name="layout_consumeSpace">horizontal</item>
-		<item name="android:layout_gravity">center_vertical</item>
-	</style>
+	<style name="EqReverbParam2KnobLayout" parent="EqReberbKnobLayoutBase"></style>
+	<style name="EqReverbParam3KnobLayout" parent="EqReberbKnobLayoutBase"></style>
+	<style name="EqReverbParam4KnobLayout" parent="EqReberbKnobLayoutBase"></style>
+	<style name="EqReverbParam6KnobLayout" parent="EqReberbKnobLayoutBase"></style>
+	<style name="EqReverbParam1KnobLayout" parent="EqReberbKnobLayoutBase"></style>
 	
 	<!-- reverb_panel3 -->
 	
@@ -683,14 +810,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqReverbPresetButtonLayoutBase" parent="EqPresetButtonLayoutBase">
 		<item name="android:background">@drawable/rounded_stroke_button_layout_bg</item>
 		<item name="android:layout_height">@dimen/EqButton_layout_height</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+				
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="listItemSize">50dp</item>
 		<item name="disableParentLayoutForPopup">false</item>
-		
-		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
 	</style>
 	<style name="EqReverbPresetButtonLayout" parent="EqReverbPresetButtonLayoutBase">
 		<!-- Avoid paddings here as they apply to list as well -->
@@ -731,31 +858,39 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:ellipsize">end</item>
 	</style>
 		
-	<style name="EqMediumRoundKnob2" parent="EqRoundKnob">
-		<item name="android:layout_width">@dimen/MediumRoundKnob_size</item>
-		<item name="android:layout_height">@dimen/MediumRoundKnob_size</item>
-		<!-- <item name="android:layout_gravity">center_horizontal</item> -->
-		<item name="android:id">@id/_knob</item>
-		<item name="valueLabel">@id/_value_label</item>
-		<item name="dependentLabel">@id/_label</item>
-		<!-- <item name="layout_consumeSpace">vertical</item> -->
+	<!-- Mix param - larger knob -->
+	<style name="EqReverbParam5KnobLayout">
+		<item name="android:clipChildren">false</item>
+
+		<item name="roundKnobStyle">@style/EqReverbParam5RoundKnob</item>
+		<item name="labelStyle">@style/EqReverbRoundKnobLabelLeftTop</item>
+		<item name="valueLabelStyle">@style/EqReverbRoundKnobValueLabelLeftTop</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqToneLabelPressedAnim</item>
+		
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		
+		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
 	</style>
 	
-	<style name="EqRoundKnobLabelLeftTop2">
+	<!-- This is a label attached to the left side of the knob -->
+	<style name="EqReverbRoundKnobLabelLeftTop">
 		<item name="android:id">@id/_label</item>
 		<item name="android:textAppearance">?EqKnobLabel_Text</item>
-		<item name="android:layout_width">@dimen/RoundKnobLabelLeftTop_width</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:minWidth">@dimen/RoundKnobLabelLeftTop_minWidth</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:minWidth">35dp</item><!-- Needed so value label (zoomed in, text="100%") could fit its place without overlapping anything -->
-		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_marginRight">@dimen/RoundKnobLabelLeftTop_marginRight</item>
 		<item name="android:layout_marginTop">@dimen/RoundKnobLabelLeftTop_marginTop</item>
 		
-		<item name="layout_maxWidth">64dp</item>
 		<item name="android:ellipsize">end</item>
 	</style>
 	
-	<style name="EqRoundKnobValueLabelLeftTop2">
+	<!-- This is a value attached to the left side of the knob -->
+	<style name="EqReverbRoundKnobValueLabelLeftTop">
 		<item name="android:id">@id/_value_label</item>
 		<item name="android:textAppearance">?EqKnobValue_Text</item>
 		<item name="android:gravity">left</item>
@@ -763,20 +898,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachTop">@id/_label</item>
 		<item name="layout_attachLeftToLeft">@id/_label</item>
-		<item name="android:layout_marginRight">@dimen/RoundKnobLabelLeftTop_marginRight</item>
+	</style>
+		
+	<style name="EqReverbParam5RoundKnob" parent="EqRoundKnob">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_matchDimension">widthToHeight</item>
+		<item name="layout_attachLeft">@id/_label</item>
+		<item name="layout_maxHeight">@dimen/EqRoundKnob_maxSize</item>
+		<item name="layout_maxWidth">@dimen/EqRoundKnob_maxSize</item>
 	</style>
 	
-	<style name="EqReverbParam5KnobLayoutBase">
-		<item name="android:clipChildren">false</item>
-
-		<item name="roundKnobStyle">@style/EqMediumRoundKnob</item>
-		<item name="labelStyle">@style/EqRoundKnobLabelLeftTop2</item>
-		<item name="valueLabelStyle">@style/EqRoundKnobValueLabelLeftTop2</item>
-		<item name="valueLabelPressedAnimStyle">@style/EqToneLabelPressedAnim</item>
-	</style>
-	<style name="EqReverbParam5KnobLayout" parent="EqReverbParam5KnobLayoutBase">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">center_horizontal|bottom</item>
-	</style>
+	
+		
 </resources>

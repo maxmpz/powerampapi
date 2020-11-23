@@ -121,7 +121,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:layout_marginBottom="8dp"
 		android:text="@string/apply_to_songs_colon"
 	/>
-	<TextView
+	
+	<TextView android:id="@+id/per_song_preset_hint"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		w:layout_consumeSpace="vertical"

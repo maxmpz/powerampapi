@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
-which communicate with Poweramp music player application on Android platform.
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -59,13 +59,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorIconInverseForced">#fff</item>
 		<item name="colorIconDisabled">#7eee</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
 		
+		<item name="colorTextDisabled">#282828</item><!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob -->
+		
 		<item name="colorBgPrimary">#222</item>
 		<item name="colorBgPrimaryAlpha">#4333</item>
 		<item name="colorBgLessAlpha">#d000</item>
 		<item name="colorInverse">#fff</item>
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#222</item>
-		<item name="colorStroke">#aaa</item>
+		<item name="colorStroke">#5f5f5f</item>
 		<item name="colorLessContrast">#eee</item>
 		
 		<item name="colorStrokeHelp">#555</item>
@@ -96,7 +98,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorKnobHolePressed">#ccc</item>
 		<item name="colorKnobHole">#555</item>
 		<item name="colorKnobRipple">#676767</item>
-		<item name="colorKnob">#444</item>
+		<item name="colorKnob">#484848</item>
 		<item name="colorKnobIndicator">#ccc</item>
 		<item name="colorKnobIndicatorPressed">#fff</item>
 		<item name="colorKnobIndicatorDisabled">#333</item>
@@ -128,7 +130,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="waveseek_elapsedbar">@drawable/inverse_elapsedbar</item>
 		
 		<item name="nav_lists">@drawable/lists</item>
-		<item name="nav_equ">@drawable/equ</item>
+		<item name="nav_equ">@drawable/equ_24dp</item>
 		<item name="nav_search">@drawable/search</item>
 		<item name="nav_hamburger">@drawable/hamburger</item>
 		
@@ -162,6 +164,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="DialogForceLightSystemUIStyle">@style/ActivityTheme_Black_DialogForceLightSystemUIStyle</item>
 		<item name="DialogForceDarkSystemUIStyle">@style/ActivityTheme_Black_DialogForceDarkSystemUIStyle</item>
+		
+		<item name="arcGlowWidth">6dp</item><!-- Increased for black -->
+		<item name="holeGlowWidth">6dp</item><!-- Increased for black -->
+		
+		<item name="control_elevation">0dp</item><!-- Not visible on black + improves performance -->
 	</style>
 
 		

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,15 +23,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
+	<!-- NOTE: as shim now outside of vis_panel_container, can't control it with scenes - controlled by code now -->
 	<com.maxmpz.widget.base.Shim android:id="@+id/vis_panel_shim"
 		style="?VisPanelShim"
 	/>
-	
-	<!-- NOTE: as shim now outside of vis_panel_container, can't control it with scenes - controlled by code now
-	<SceneParams w:scene="@+id/scene_vispanel_expanded"
-		android:visibility="visible"
-	/>
-	-->
 	
 	<com.maxmpz.widget.base.SceneFastLayout android:id="@+id/vis_panel_container"
 		style="?VisPanelContainer"
@@ -95,14 +90,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:recalcChildren="on_end"
 			/>
 	
-			<com.maxmpz.widget.base.BusSelectablePopupButtonLayout
+			<!-- NOTE: id is used as help anchor -->
+			<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@id/state_player_milk_advance"
 				style="?VisLockButtonLayout"
 			
 				w:stateBusId="@id/bus_player"
-				w:stateId="@id/state_player_milk_advance"			
+				w:stateId="@id/state_player_milk_advance"
+				w:msgId="@id/msg_player_milk_preset_changed"
+				w:getStateOnMsg="true"			
 				
-				w:buttonsLabels="@array/milk_advance_modes"
-				w:buttonsDrawables="@array/milk_advance_icons_24dp"
+				w:buttonsLabels="?milk_advance_modes"
+				w:buttonsDrawables="?milk_advance_icons"
+				w:buttonsArg1="?milk_advance_enum"
 
 				w:buttonsBusId="@id/bus_player_cmd"
 				w:buttonsMsgId="@id/cmd_player_set_milk_advance"

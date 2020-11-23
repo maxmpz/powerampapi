@@ -33,9 +33,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	
 	<!-- Redmi5+ 392x714 Enough vertical space -->
-	<!-- Alt -->
-	<!--<dimen name="Alt_aaMaxSize">482dp</dimen> Not used anymore -->
-	
 	<dimen name="Alt_TopPlay_maxSize">90dp</dimen>
-		
 </resources>

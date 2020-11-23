@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="500">
+	<!-- Transparent, but with the color for better anim -->
+	<item android:state_enabled="false" android:color="#000F"/>
+	<item android:state_pressed="true" android:color="#88F"/>
+	<item android:color="#00F"/>
+</selector>
+

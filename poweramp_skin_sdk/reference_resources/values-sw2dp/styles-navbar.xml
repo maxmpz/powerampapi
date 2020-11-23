@@ -105,6 +105,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="clickDelay">@integer/activity_start_navbar_click_delay</item>
 		<item name="android:background">?android:selectableItemBackground</item>
 	</style>
+	<style name="NavbarPeqExtensionLogo" parent="NavbarExtensionLogo">
+		<item name="android:drawable">@drawable/logo_navbar_peq</item>
+		<item name="android:layout_height">25dp</item>
+	</style>
 
 	<style name="NavbarExtensionLogoLabel">
 		<item name="android:layout_width">wrap_content</item>
@@ -155,7 +159,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="NavbarList">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">48dp</item>
-		<!-- Slightly move to navbar buttons territory by offseting bottom. This is for better paddings distribution inside miniplayer list item => better background positioning when pressed -->
+		<!-- Slightly move to navbar buttons territory by offseting bottom. 
+		     This is for the better paddings distribution inside miniplayer list item => better background positioning when pressed -->
 		<item name="android:layout_marginBottom">-4dp</item>
 		<item name="android:visibility">gone</item>
 		<item name="layout_attachTop">@id/navbar_extension</item>
@@ -173,9 +178,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="NavBarButton">
-		<item name="layout_widthPercent">25%</item>
+		<!--<item name="layout_widthPercent">25%</item>
 		<item name="layout_consumeSpace">horizontal</item>
+		-->
+		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>
+		<item name="layout_flexAxis">horizontal</item>
+		<item name="layout_flexWeight">1</item>
 		
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
 		<item name="drawableWidth">@dimen/NavBarButton_drawableSize</item>
@@ -192,4 +201,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:minWidth">24dp</item>
 		<item name="android:minHeight">24dp</item>
 	</style>
+	
 </resources>

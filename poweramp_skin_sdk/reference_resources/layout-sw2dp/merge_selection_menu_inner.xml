@@ -49,12 +49,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 		
 		<!-- NOTE: busId is set dynamically by SelectionMenuBehavior -->
-		<com.maxmpz.widget.base.BusStateText android:id="@+id/selection_menu_count_text"
+		<com.maxmpz.widget.player.BusStatusText android:id="@+id/selection_menu_count_text"
 			style="?SelectionMenuCountText"
-			w:busId="@id/list"
-			w:stateId="@id/state_list_selection_count"
-			w:secondaryStateId="@id/state_list_selectable_item_count"
-			w:format="@string/d_slash_d"
+			w:stateBusId="@id/list"
+			w:labelStateId="@id/state_list_selection_count"
+			w:labelStateId_2="@id/state_list_selectable_item_count"
+			w:updateMsgId="@id/state_list_selection_count"
+			w:labelFormat="@string/d_slash_d"
+			w:stateType="integer"
+			
 			android:importantForAccessibility="yes"
 		/>
 		<!-- NOTE: as text can change during load + state update, causing visual jump, scene params are needed + selected 0% point to reapply layout -->

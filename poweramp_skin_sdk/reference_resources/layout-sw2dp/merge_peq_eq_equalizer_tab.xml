@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+	style="?EqTabLayout"
+	w:enableStateAnim="true"
+	w:privateScene="true"
+>
+	<include android:layout="@layout/merge_eq_equalizer_tab_common"/>
+	
+	<!-- Button should hide if int state_peq_requires_vis_perm != 1  or state_peq_requires_vis_perm message is received -->
+	<!-- TODO: attr -->
+	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/eq_vis_perm_button"
+		style="?PeqEqEnableVisFrs"
+		
+		android:drawable="@drawable/q_16dp"
+		android:text="@string/enable_vis"
+		
+		w:stateBusId="@id/bus_player"
+		w:busId="@id/bus_player_cmd"
+		w:msgId="@id/cmd_peq_request_vis_perm"
+
+		w:stateId="@id/state_peq_requires_vis_perm"
+		w:enableByState="matchInteger"
+		w:stateMatchArg="1"
+		w:alwaysCheckState="true"
+	/>
+	
+	<!-- Button should be visible if permission was given and should be hidden otherwise -->
+	<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/eq_vis_button_layout"
+		style="?PeqVisButtonLayout"
+		
+		w:stateBusId="@id/bus_gui"
+		w:stateId="@id/state_gui_vis_mode"			
+		w:msgId="@id/msg_gui_vis_mode_changed"
+		w:arg2="1"
+		
+		w:buttonsLabels="@array/vis_modes"
+		w:buttonsDrawables="@array/vis_icons_32dp"
+		w:buttonsBusId="@id/bus_gui"
+		w:buttonsMsgId="@id/cmd_gui_set_vis_mode"
+		w:buttonsArg1="@array/vis_modes_enum"
+		
+		w:disableForStateBusId="@id/bus_player"
+		w:disableForStateId="@id/state_peq_requires_vis_perm"
+		
+		android:contentDescription="@string/visualization"
+	>
+	</com.maxmpz.widget.base.BusSelectablePopupButtonLayout>
+	<SceneParams w:scene="@+id/scene_button_menu" 
+		style="?ItemPopupMenu_scene_item_menu" 
+	/>
+	
+
+	<!--	
+	<com.maxmpz.widget.player.DSPLinearKnob
+		style="?EqPreampLinearKnob"
+		
+		android:layout_width="0px"
+		w:layout_widthPercent="75%"
+		android:layout_height="40dp"
+
+		w:valueFormat="%.0f%%"
+		w:valueFormatMin="0"
+		w:valueFormatMax="100"
+		android:text="@string/volume"
+		android:orientation="horizontal"
+
+		w:param="@id/dsp_master_volume"
+		w:updateMsgId="@id/msg_dsp_other_changed"
+		
+		w:holeStartColor="#f00"
+		w:holeColorStartPoint="0.5"
+	/>
+	-->		
+</com.maxmpz.widget.base.SceneFastLayout>

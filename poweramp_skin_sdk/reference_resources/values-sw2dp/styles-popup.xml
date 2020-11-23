@@ -73,9 +73,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="arrowWidth">10dp</item>
 		<item name="arrowHeight">8dp</item>
 		<item name="arrowOffset">1dp</item>
-		<!--<item name="arrowStrokeWidth">2px</item>-->
 		<item name="arrowLineWeight">2dp</item>
-		<!--<item name="arrowStrokeColor">?colorStrokeHelp</item>-->
 		<item name="arrowFillColor">?android:textColorSecondary</item>
 		<!-- NOTE: text styles are taken from theme -->
 	</style>

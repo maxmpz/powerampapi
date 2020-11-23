@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
-which communicate with Poweramp music player application on Android platform.
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -29,7 +29,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="CenterDialogFrame_maxHeight">500dp</dimen>
 	<dimen name="SmallerCenterDialogFrame_maxHeight">320dp</dimen>
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">600dp</dimen>
-	<dimen name="DialogFrame_maxWidth">780dp</dimen>
+	<dimen name="DialogFrame_maxWidth">680dp</dimen>
+	
+	<dimen name="DialogButtonStyle_layout_maxWidth">148dp</dimen>
 	
 	<dimen name="CenterDialogFrame_maxWidth">380dp</dimen>
 	
@@ -40,10 +42,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopToastFrame_paddingTB">10dp</dimen>
 	<dimen name="TopToastTile_marginLeft">44dp</dimen><!-- NOTE: defines space for icon + padding -->
 	
+	<dimen name="TopUpperToastFrame_maxWidth">9999dp</dimen><!-- Not limited in portrait, limited in land -->
+	
 	<dimen name="HeadText_size">17sp</dimen>
 	<dimen name="SubheadText_size">12sp</dimen>
 	<dimen name="Text_size">14sp</dimen>
-	<dimen name="Hint_size">10sp</dimen>
+	<dimen name="Hint_size">11sp</dimen>
 	<dimen name="LargerText_size">16sp</dimen>
 	
 	<dimen name="TopBaseButtonLayout_layout_width">58dp</dimen>
@@ -59,6 +63,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<integer name="selector_fade_ms">150</integer>
 	
-	<dimen name="ListMenu_drawableSize">20dp</dimen>
-	
+	<dimen name="ListMenu_drawableSize">20dp</dimen>	
 </resources>

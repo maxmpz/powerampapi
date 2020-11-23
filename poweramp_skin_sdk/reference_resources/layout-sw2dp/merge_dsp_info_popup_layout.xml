@@ -63,7 +63,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:focusable="true"
 		w:busId="@id/bus_app_cmd"
 		w:msgId="@id/cmd_app_open_settings"
-		w:string="audio"
+		w:string="?settings_target_audio"
 	/>
 	<SceneParams w:scene="@id/scene_button_menu"
 		w:recalcChildren="on_start"

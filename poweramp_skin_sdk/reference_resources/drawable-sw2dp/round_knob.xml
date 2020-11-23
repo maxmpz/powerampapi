@@ -7,7 +7,7 @@
 			<!-- NOTE: solid is needed for ripple -->
 			<item android:state_enabled="false">
 				<shape android:shape="oval">
-					<stroke android:color="?colorKnobDisabled" android:width="1dp"/>
+					<!--<stroke android:color="?colorKnobDisabled" android:width="1dp"/>-->
 					<solid android:color="?colorKnobBg"/>
 				</shape>
 			</item>
