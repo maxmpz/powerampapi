@@ -80,6 +80,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: includes labels, some paddings -->
 	<dimen name="EqSmallRoundKnobLayout_maxSize">120dp</dimen>
 	<dimen name="EqToneRoundKnobLayout_maxSize">200dp</dimen>
+	<dimen name="EqToneRoundKnobLayout_maxWidth">220dp</dimen><!-- Further limit width for large tablets -->
+	
 	<dimen name="EqRoundKnobLayout_maxSize">200dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">220dp</dimen>
 	

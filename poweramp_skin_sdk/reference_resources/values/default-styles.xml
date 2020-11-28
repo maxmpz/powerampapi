@@ -663,24 +663,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">@drawable/less_alpha_rounded_medium</item>
 	</style>
 	
-	<style name="VolumePanelKnobLayout" parent="EqVolumeKnobLayout">
-		<item name="android:layout_marginTop">16dp</item>
+	<style name="VolumePanelKnobLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
+		<item name="android:layout_gravity">top</item>
 		<item name="android:layout_marginBottom">16dp</item>
-		<item name="android:layout_width">140dp</item>
-		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">16dp</item>
+				
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+		
 		<item name="labelStyle">@style/VolumePanelRoundKnobLabel</item>
-		<item name="valueLabelStyle">@style/VolumePanelRoundKnobValueLabel</item>
+		<item name="valueLabelStyle">@style/VolumePanelRoundKnobValue</item>
+		<item name="roundKnobStyle">@style/VolumePanelRoundKnob</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
 	</style>
 	
-	<style name="VolumePanelRoundKnobLabel" parent="EqRoundKnobLabel">
-		<item name="android:visibility">gone</item>
+	<style name="VolumePanelRoundKnob" parent="EqResizableRoundKnob">
+		<item name="layout_attachBottom">@id/_value_label</item>
+	</style>		
+	
+	<style name="VolumePanelRoundKnobLabel" parent="EqResizableRoundKnobLabel">
 	</style>
 	
 	<!-- NOTE: while I can use styles like EqRoundKnobValueLabel directly, I can't use their textAppearance reference, as it depends on top-only theme (TopPoweruiStyles) -->
-	<style name="VolumePanelRoundKnobValueLabel" parent="EqRoundKnobValueLabel">
+	<style name="VolumePanelRoundKnobValue" parent="EqResizableRoundKnobValue">
 		<!-- Make volume panel text color more pronounced as panel itself is semitransparent -->
 		<item name="android:textAppearance">?EqKnobLabel_Text</item>
-		<item name="android:layout_marginTop">14dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 	</style>
 	
 	<style name="Queue_RatingStars_8dp">

@@ -126,29 +126,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginTop">4dp</item>
 		
-		<!--<item name="android:layout_marginLeft">@dimen/EqEquButton_maxWidth</item>-->
-		<!--
-		<item name="android:paddingLeft">@dimen/EqTonePanel_offsetLeft</item>
-		<item name="android:paddingRight">8dp</item>
-		<item name="android:paddingTop">@dimen/EqTonePanel_offsetTB</item>
-		<item name="android:paddingBottom">@dimen/EqTonePanel_offsetTB</item>-->
-				
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 	</style>
 
-	<!-- land -->
-		
 	<style name="EqToneKnobLayoutBase">
-		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
-		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
-		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
-		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
-		
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
-
+		
+		<item name="roundKnobStyle">@style/EqToneKnobLayoutBaseRoundKnob</item>
+		<item name="labelStyle">@style/EqToneKnobLayoutBaseLabel</item>
+		<item name="valueLabelStyle">@style/EqToneKnobLayoutBaseValue</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqToneKnobLayoutBaseLabelAnim</item>
 	</style>
+	<!-- NOTE: more indirection needed for future updates that are compatible with skins - as we can change styles independently then -->
+	<style name="EqToneKnobLayoutBaseRoundKnob" parent="EqResizableRoundKnob"></style>
+	<style name="EqToneKnobLayoutBaseLabel" parent="EqResizableRoundKnobLabel"></style>
+	<style name="EqToneKnobLayoutBaseValue" parent="EqResizableRoundKnobValue"></style>
+	<style name="EqToneKnobLayoutBaseLabelAnim" parent="EqLabelPressedAnim"></style>
 	
 	<style name="EqTrebleToneKnobLayout" parent="EqToneKnobLayoutBase">
 		<item name="android:layout_height">0px</item>
@@ -353,11 +348,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="valueFormat">@string/format_2f</item>
 				
+		<item name="roundKnobStyle">@style/EqReverbRoundKnobLand</item>
 		<item name="labelStyle">@style/EqReverbRoundKnobLabelLeftTop</item>
 		<item name="valueLabelStyle">@style/EqReverbRoundKnobValueLabelLeftTop</item>
-		<item name="valueLabelPressedAnimStyle">@style/EqToneLabelPressedAnim</item>
-		<item name="roundKnobStyle">@style/EqReverbRoundKnobLand</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqReberbKnobLabelAnim</item>
 	</style>
+	<style name="EqReberbKnobLabelAnim" parent="EqToneLabelPressedAnim"></style>
 	
 	<!-- In landscape, force knob to be exactly rectangle with the width defined by height -->
 	<style name="EqReverbRoundKnobLand" parent="EqRoundKnob">
@@ -410,11 +406,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 				
-		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
-		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
-		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
-		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
+		<item name="roundKnobStyle">@style/EqReverbParam5Knob</item>
+		<item name="labelStyle">@style/EqReverbParam5KnobLabel</item>
+		<item name="valueLabelStyle">@style/EqReverbParam5KnobValue</item>
+		<item name="valueLabelPressedAnimStyle">@style/EqReverbParam5KnobLabelAnim</item>
 	</style>
+	<!-- NOTE: more indirection needed for future updates that are compatible with skins - as we can change styles independently then -->
+	<style name="EqReverbParam5Knob" parent="EqResizableRoundKnob"></style>
+	<style name="EqReverbParam5KnobLabel" parent="EqResizableRoundKnobLabel"></style>
+	<style name="EqReverbParam5KnobValue" parent="EqResizableRoundKnobValue"></style>
+	<style name="EqReverbParam5KnobLabelAnim" parent="EqLabelPressedAnim"></style>
+	
 		
 	<style name="EqReverbCheckButton" parent="EqCheckButton">
 		<item name="android:layout_marginTop">4dp</item>
@@ -445,5 +447,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_marginRight">4dp</item>
 		<item name="android:layout_marginLeft">4dp</item>
+	</style>
+	
+	
+	<!-- Used for skin compatibility -->
+	<!-- NOTE: EqToneRoundKnob is not used for PA/Peq tone knobs, but it was previously used by skins for reverb param 5 knob -->  
+	<style name="EqSmallRoundKnob" parent="EqReverbRoundKnobLand">
+	</style>
+	
+	<style name="EqSmallKnobLayoutLand" parent="EqReberbKnobLayoutBase">
+		<item name="android:background">#00f</item>
+	</style>
+	<style name="EqToneKnobLayoutBaseLand" parent="EqToneKnobLayoutBase">
 	</style>
 </resources>

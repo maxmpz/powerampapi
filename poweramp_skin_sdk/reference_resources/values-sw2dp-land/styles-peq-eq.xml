@@ -74,11 +74,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 		
-		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
-		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
-		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
-		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
+		<item name="roundKnobStyle">@style/PeqEqCompressRoundKnob</item>
+		<item name="labelStyle">@style/PeqEqCompressLabel</item>
+		<item name="valueLabelStyle">@style/PeqEqCompressValue</item>
+		<item name="valueLabelPressedAnimStyle">@style/PeqEqCompressLabelAnim</item>
 	</style>
+	<!-- NOTE: more indirection needed for future updates that are compatible with skins - as we can change styles independently then -->
+	<style name="PeqEqCompressRoundKnob" parent="EqResizableRoundKnob"></style>
+	<style name="PeqEqCompressLabel" parent="EqResizableRoundKnobLabel"></style>
+	<style name="PeqEqCompressValue" parent="EqResizableRoundKnobValue"></style>
+	<style name="PeqEqCompressLabelAnim" parent="EqLabelPressedAnim"></style>
 		
 	
 	<style name="PeqOtherResetButton" parent="EqButton">
@@ -93,7 +98,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_vertical</item>
-		
+		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
+				
 		<item name="android:paddingTop">@dimen/EqKnob_spacing</item>
 		<item name="android:paddingBottom">@dimen/EqKnob_spacing</item>
 		<item name="android:paddingLeft">@dimen/EqKnob_spacing</item>
@@ -102,18 +108,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 		
-		<item name="layout_maxHeight">@dimen/EqRoundKnobLayout_maxSize</item>
-		<item name="roundKnobStyle">@style/EqResizableRoundKnob</item>
-		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
-		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
-		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
+		<item name="roundKnobStyle">@style/PeqEqBalanceRoundKnob</item>
+		<item name="labelStyle">@style/PeqEqBalanceLabel</item>
+		<item name="valueLabelStyle">@style/PeqEqBalanceValue</item>
+		<item name="valueLabelPressedAnimStyle">@style/PeqEqBalanceLabelAnim</item>
 	</style>
+	<!-- NOTE: more indirection needed for future updates that are compatible with skins - as we can change styles independently then -->
+	<style name="PeqEqBalanceRoundKnob" parent="EqResizableRoundKnob"></style>
+	<style name="PeqEqBalanceLabel" parent="EqResizableRoundKnobLabel"></style>
+	<style name="PeqEqBalanceValue" parent="EqResizableRoundKnobValue"></style>
+	<style name="PeqEqBalanceLabelAnim" parent="EqLabelPressedAnim"></style>
+		
 	
 	<style name="PeqVolumeKnobLayout" parent="EqVolumeKnobLayout">
 	</style>
-	
-
-		
-		
-		
 </resources>

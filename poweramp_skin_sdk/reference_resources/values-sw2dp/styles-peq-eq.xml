@@ -154,14 +154,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 				
-		<item name="roundKnobStyle">@style/EqSmallResizableRoundKnob</item>
-		<item name="labelStyle">@style/EqResizableRoundKnobLabel</item>
-		<item name="valueLabelStyle">@style/EqResizableRoundKnobValueLabel</item>
-		<item name="valueLabelPressedAnimStyle">@style/EqLabelPressedAnim</item>
+		<item name="roundKnobStyle">@style/PeqEqCompressKnobLayoutKnob</item>
+		<item name="labelStyle">@style/PeqEqCompressKnobLayoutLabel</item>
+		<item name="valueLabelStyle">@style/PeqEqCompressKnobLayoutValue</item>
+		<item name="valueLabelPressedAnimStyle">@style/PeqEqCompressKnobLayoutLabelAnim</item>
 	</style>
+	<style name="PeqEqCompressKnobLayoutKnob" parent="EqSmallResizableRoundKnob"/>
+	<style name="PeqEqCompressKnobLayoutLabel" parent="EqResizableRoundKnobLabel"/>
+	<style name="PeqEqCompressKnobLayoutValue" parent="EqResizableRoundKnobValue"/>
+	<style name="PeqEqCompressKnobLayoutLabelAnim" parent="EqLabelPressedAnim"/>
 	
-	<style name="PeqEqCompressKnobLayout1" parent="PeqEqCompressKnobLayout">
-	</style>
+	<style name="PeqEqCompressKnobLayout1" parent="PeqEqCompressKnobLayout"></style>
 	<style name="PeqEqCompressKnobLayout2" parent="PeqEqCompressKnobLayout"></style>
 	<style name="PeqEqCompressKnobLayout3" parent="PeqEqCompressKnobLayout"></style>
 	<style name="PeqEqCompressKnobLayout4" parent="PeqEqCompressKnobLayout"></style>

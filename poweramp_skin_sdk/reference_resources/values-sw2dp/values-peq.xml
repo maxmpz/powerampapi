@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_peq_requires_vis_perm"/>
 		
 	<item type="id" name="state_app_is_peq"/><!-- Bus app. boolean -->
+	<item type="id" name="state_app_notification_listener_started"/><!-- Boolean -->
+	<item type="id" name="cmd_app_on_notification_listener_state"/><!-- arg1 = true=> started, false=> stopped -->
 	
 	<!-- PEQ inbound commands - sent to bus_player_cmd -->
 	<item type="id" name="cmd_peq_new_control_session"/>
