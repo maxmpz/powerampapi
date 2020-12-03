@@ -37,6 +37,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 		</com.maxmpz.widget.base.FastLayout>
 		
+		<!-- NOTE: knobs add here -->
+		
 		<com.maxmpz.widget.base.ScrollingBehavior w:disallowParentScroll="true" w:noScrollbars="true"/>
 	</com.maxmpz.widget.player.EqKnobsFastLayout>
 		

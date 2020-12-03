@@ -604,13 +604,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:layout_marginBottom">-6dp</item><!-- Make title closer to line2 - by default distance is too large due to paddings for line background -->
+		<item name="android:layout_marginBottom">?ItemTrackTitle_marginBottom</item><!-- Make title closer to line2 - by default distance is too large due to paddings for line background -->
 		<item name="layout_attachBottom">@+id/line2</item>
 		
-		<item name="android:paddingLeft">8dp</item>
-		<item name="android:paddingRight">8dp</item>
-		<item name="android:paddingTop">6dp</item>
-		<item name="android:paddingBottom">6dp</item>
+		<item name="android:paddingLeft">?ItemTrackTitle_paddingLR</item>
+		<item name="android:paddingRight">?ItemTrackTitle_paddingLR</item>
+		<item name="android:paddingTop">?ItemTrackTitle_paddingTB</item>
+		<item name="android:paddingBottom">?ItemTrackTitle_paddingTB</item>
 		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling from top/left -->		
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
@@ -620,10 +620,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:textColor">?android:textColorPrimary</item>
 		
 		<item name="android:lineSpacingMultiplier">1.1</item>
-		<item name="android:scaleX">.85</item>
-		<item name="android:scaleY">.85</item>
-		<item name="scale">.85</item>
-		<item name="layout_compensateScale">0.85</item>
+		<item name="android:scaleX">?ItemTrackTitle_scale</item>
+		<item name="android:scaleY">?ItemTrackTitle_scale</item>
+		<item name="scale">?ItemTrackTitle_scale</item>
+		<item name="layout_compensateScale">?ItemTrackTitle_scale</item>
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:maxLines">1</item>
@@ -643,7 +643,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="baseScene">defaultScene</item>
 		<item name="recalcChildren">dynamic</item>
 		
-		<item name="layout_compensateScale">0.85</item><!-- Needed here, as it's a layout param, thus, not copied by baseScene=defaultScene, layout params always copied as a whole -->
+		<item name="scale">?ItemTrackTitle_scene_small_scale</item>
+		<item name="layout_compensateScale">?ItemTrackTitle_scene_small_scale</item><!-- 0.85. Needed here, as it's a layout param, thus, not copied by baseScene=defaultScene, layout params always copied as a whole -->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">@+id/aa_image</item>
@@ -675,8 +676,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachBottom">@+id/line2</item>
 		<item name="android:layout_marginBottom">-6dp</item><!-- Make title closer to line2 - by default distance is too large due to paddings for line background -->
 		
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="scale">?ItemTrackTitle_scene_zoomed_scale</item>
+		<item name="layout_compensateScale">?ItemTrackTitle_scene_zoomed_scale</item>
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">end</item>
@@ -698,8 +699,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachBottom">@+id/line2</item>
 		<item name="android:layout_marginLeft">11dp</item>
 		<item name="android:layout_marginRight">11dp</item>
-		<item name="scale">@dimen/scale_title_scene_grid</item><!-- @dimen/scale_title_scene_grid => .75 -->
-		<item name="layout_compensateScale">@dimen/scale_title_scene_grid</item>
+		<item name="scale">?ItemTrackTitle_scene_grid_scale</item><!-- @dimen/scale_title_scene_grid => .75 -->
+		<item name="layout_compensateScale">?ItemTrackTitle_scene_grid_scale</item>
 				
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">end</item>
@@ -722,8 +723,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="lineBackground">@null</item>
 	</style>
 	<style name="ItemTrackTitle_scene_grid_zoomed" parent="ItemTrackTitle_scene_grid">
-		<item name="scale">.90</item>
-		<item name="layout_compensateScale">.90</item>
+		<item name="scale">?ItemTrackTitle_scene_grid_zoomed_scale</item>
+		<item name="layout_compensateScale">?ItemTrackTitle_scene_grid_zoomed_scale</item>
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">12dp</item>
 	</style>
@@ -739,8 +740,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginBottom">8dp</item><!-- Leave some space on bottom for better inter row spacing -->
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachBottom">parent</item>
-		<item name="scale">.95</item>
-		<item name="layout_compensateScale">.95</item>
+		<item name="scale">?ItemTrackTitle_scene_grid_1_alt_zoomed_scale</item>
+		<item name="layout_compensateScale">?ItemTrackTitle_scene_grid_1_alt_zoomed_scale</item>
 		<item name="lineBackground">@null</item>
 	</style>
 	<!-- NOTE: parent is explicitly set to ItemTrackTitle to allow ItemTrackBackDecorTitle to derive from ItemTrackTitle_scene_header and have
@@ -758,10 +759,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<!-- NOTE: scaleX/Y needed for ItemTrackBackDecorTitle -->
-		<item name="android:scaleX">1</item> 
-		<item name="android:scaleY">1</item>
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="android:scaleX">?ItemTrackTitle_scene_header_scale</item> 
+		<item name="android:scaleY">?ItemTrackTitle_scene_header_scale</item>
+		<item name="scale">?ItemTrackTitle_scene_header_scale</item>
+		<item name="layout_compensateScale">?ItemTrackTitle_scene_header_scale</item>
 	
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">marquee</item>
@@ -783,8 +784,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">24dp</item>
 		<item name="android:layout_marginRight">24dp</item>
 		<item name="android:layout_marginBottom">1dp</item>
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>		
+		
+		<item name="scale">?ItemTrackTitle_scene_aa_scale</item>
+		<item name="layout_compensateScale">?ItemTrackTitle_scene_aa_scale</item>		
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">marquee</item>
@@ -805,8 +807,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginBottom">-12dp</item>
 		<item name="layout_attachBottom">@id/line2</item>
 		
-		<item name="scale">.95</item>
-		<item name="layout_compensateScale">.95</item>
+		<item name="scale">?ItemTrackTitle_scene_item_menu_scale</item>
+		<item name="layout_compensateScale">?ItemTrackTitle_scene_item_menu_scale</item>
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">marquee</item>
@@ -839,15 +841,15 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:ellipsize">end</item>
 		<item name="android:lineSpacingMultiplier">1.1</item>
 		
-		<item name="android:scaleX">.86</item>
-		<item name="android:scaleY">.86</item>
-		<item name="scale">.86</item>
-		<item name="layout_compensateScale">0.86</item>
+		<item name="android:scaleX">?ItemTrackLine2_scale</item>
+		<item name="android:scaleY">?ItemTrackLine2_scale</item>
+		<item name="scale">?ItemTrackLine2_scale</item>
+		<item name="layout_compensateScale">?ItemTrackLine2_scale</item>
 				
-		<item name="android:paddingLeft">9dp</item>
-		<item name="android:paddingRight">9dp</item>
-		<item name="android:paddingTop">7dp</item>
-		<item name="android:paddingBottom">7dp</item>
+		<item name="android:paddingLeft">?ItemTrackLine2_paddingLR</item>
+		<item name="android:paddingRight">?ItemTrackLine2_paddingLR</item>
+		<item name="android:paddingTop">?ItemTrackLine2_paddingTB</item>
+		<item name="android:paddingBottom">?ItemTrackLine2_paddingTB</item>
 		
 		<item name="allowZeroHeight">true</item><!-- This view will have height=minHeight if empty, allowing attached views to take its place (i.e. title will be shifted down) -->
 		<item name="android:minHeight">12dp</item>
@@ -871,7 +873,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		
 		<item name="baseScene">defaultScene</item>
 		
-		<item name="layout_compensateScale">0.86</item>
+		<item name="scale">?ItemTrackLine2_scene_small_scale</item>
+		<item name="layout_compensateScale">?ItemTrackLine2_scene_small_scale</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">@id/aa_image</item>
@@ -910,8 +913,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_marginTop">0dp</item>
 		
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="scale">?ItemTrackLine2_scene_zoomed_scale</item>
+		<item name="layout_compensateScale">?ItemTrackLine2_scene_zoomed_scale</item>
 		
 		<item name="android:visibility">visible</item>
 		
@@ -937,8 +940,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">11dp</item>
 		<item name="android:layout_marginRight">11dp</item>
 		<item name="android:layout_marginBottom">11dp</item>
-		<item name="scale">@dimen/scale_line2_scene_grid</item><!-- .70 scale_line2_scene_grid -->
-		<item name="layout_compensateScale">@dimen/scale_line2_scene_grid</item>
+		<item name="scale">?ItemTrackLine2_scene_grid_scale</item><!-- .70 scale_line2_scene_grid -->
+		<item name="layout_compensateScale">?ItemTrackLine2_scene_grid_scale</item>
 		<item name="android:visibility">visible</item>
 
 		<item name="applyViewParams">true</item>
@@ -947,8 +950,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	<style name="ItemTrackLine2_scene_grid_zoomed" parent="ItemTrackLine2_scene_grid">
-		<item name="scale">.86</item>
-		<item name="layout_compensateScale">.86</item>
+		<item name="scale">?ItemTrackLine2_scene_grid_zoomed_scale</item>
+		<item name="layout_compensateScale">?ItemTrackLine2_scene_grid_zoomed_scale</item>
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginBottom">12dp</item>
 		<item name="android:layout_marginRight">12dp</item>
@@ -978,8 +981,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:layout_marginTop">2dp</item>
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="scale">?ItemTrackLine2_scene_header_scale</item>
+		<item name="layout_compensateScale">?ItemTrackLine2_scene_header_scale</item>
 		<item name="android:visibility">visible</item>
 		
 		<item name="applyViewParams">true</item>
@@ -999,8 +1002,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">4dp</item>
 		<item name="android:layout_marginLeft">24dp</item>
 		<item name="android:layout_marginBottom">20dp</item>
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="scale">?ItemTrackLine2_scene_aa_scale</item>
+		<item name="layout_compensateScale">?ItemTrackLine2_scene_aa_scale</item>
 		<item name="android:visibility">visible</item>
 		
 		<item name="applyViewParams">true</item>
@@ -1023,8 +1026,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">parent</item><!-- NOTE: needed, as we have layout_gravityTarget here -->
-		<item name="scale">.90</item>
-		<item name="layout_compensateScale">.90</item>
+		<item name="scale">?ItemTrackLine2_scene_item_menu_scale</item>
+		<item name="layout_compensateScale">?ItemTrackLine2_scene_item_menu_scale</item>
 		<item name="layout_gravityTarget">@+id/aa_image</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		
@@ -1053,14 +1056,14 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">12dp</item>
 		
 		<item name="layout_attachTop">@+id/line2</item>
-		<item name="android:layout_marginTop">-8.5dp</item><!-- Make meta closer to line2 - by default distance is too large due to paddings for line background -->
+		<item name="android:layout_marginTop">?ItemTrackMeta_marginTop</item><!-- Make meta closer to line2 - by default distance is too large due to paddings for line background -->
 		<item name="android:visibility">visible</item>
 
 		<item name="android:textAppearance">?ItemTrackMeta_Text</item>
 		<item name="android:textColor">?colorTrackMeta</item>
 		
-		<item name="android:paddingLeft">10dp</item>
-		<item name="android:paddingRight">9dp</item>
+		<item name="android:paddingLeft">?ItemTrackMeta_paddingLR</item>
+		<item name="android:paddingRight">?ItemTrackMeta_paddingLR</item>
 		<item name="android:paddingTop">7dp</item>
 		<item name="android:paddingBottom">7dp</item>
 		<item name="drawablePaddingStart">8.5dp</item>
@@ -1072,10 +1075,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
 		
-		<item name="android:scaleX">.9</item>
-		<item name="android:scaleY">.9</item>
-		<item name="scale">.9</item>
-		<item name="layout_compensateScale">0.9</item>
+		<item name="android:scaleX">?ItemTrackMeta_scale</item>
+		<item name="android:scaleY">?ItemTrackMeta_scale</item>
+		<item name="scale">?ItemTrackMeta_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scale</item>
 				
 		<item name="applyViewParams">true</item>
 		<item name="android:maxLines">1</item>
@@ -1098,8 +1101,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachTop">50%</item>
 		<item name="android:layout_marginTop">0dp</item>
 						
-		<item name="scale">.9</item>
-		<item name="layout_compensateScale">.9</item>
+		<item name="scale">?ItemTrackMeta_scene_small_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scene_small_scale</item>
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:textColor">?colorTrackMeta</item>
@@ -1118,8 +1121,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">10dp</item>
 		<item name="android:layout_marginLeft">-12dp</item><!-- Reduce distance between title and meta -->
 				
-		<item name="scale">.9</item>
-		<item name="layout_compensateScale">.9</item>
+		<item name="scale">?ItemTrackMeta_scene_small_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scene_small_scale</item>
 		<item name="android:visibility">visible</item>
 		<item name="applyViewParams">true</item>
 		<item name="android:textColor">?colorTrackMeta</item>
@@ -1138,8 +1141,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		
 		<item name="android:visibility">visible</item>
 		
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="scale">?ItemTrackMeta_scene_zoomed_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scene_zoomed_scale</item>
 
 		<item name="applyViewParams">true</item>
 		<item name="android:textColor">?colorTrackMeta</item>
@@ -1159,8 +1162,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">10dp</item>
 		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:layout_marginBottom">-8dp</item><!-- meta is invisible in scene_grid, but keeping meaningful offets from line2 position -->
-		<item name="scale">0.85</item>
-		<item name="layout_compensateScale">0.85</item>
+		<item name="scale">?ItemTrackMeta_scene_grid_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scene_grid_scale</item>
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:textColor">?colorTrackMeta</item>
@@ -1174,8 +1177,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginTop">0dp</item>
 	</style>
 	<style name="ItemTrackMeta_scene_grid_zoomed" parent="ItemTrackMeta_scene_grid">
-		<item name="scale">.85</item>
-		<item name="layout_compensateScale">.85</item>
+		<item name="scale">?ItemTrackMeta_scene_grid_zoomed_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scene_grid_zoomed_scale</item>
 	</style>
 	<style name="ItemTrackMeta_scene_grid_1_zoomed" parent="ItemTrackMeta_scene_grid_zoomed">
 		<item name="android:layout_marginTop">0dp</item>
@@ -1194,7 +1197,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">24dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginBottom">36dp</item>
-		<item name="scale">1</item>
+		<item name="scale">1</item><!-- NOTE: invisible, so keeping scale=1 here -->
 		<item name="layout_compensateScale">1</item>
 		
 		<item name="applyViewParams">true</item>
@@ -1212,8 +1215,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginBottom">48.5dp</item>
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="scale">?ItemTrackMeta_scene_header_w_meta_base_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scene_header_w_meta_base_scale</item>
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:background">@drawable/inverse_rounded_small</item>
@@ -1234,8 +1237,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginBottom">48.5dp</item>
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="scale">?ItemTrackMeta_scene_header_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scene_header_scale</item>
 	</style>
 	<style name="ItemTrackMeta_scene_aa_vis">
 		<item name="baseScene">@id/scene_aa</item>
@@ -1252,8 +1255,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginTop">-12dp</item>
 		<item name="android:layout_marginLeft">-2dp</item>
 
-		<item name="scale">1</item>
-		<item name="layout_compensateScale">1</item>
+		<item name="scale">?ItemTrackMeta_scene_item_menu_scale</item>
+		<item name="layout_compensateScale">?ItemTrackMeta_scene_item_menu_scale</item>
 		
 		<item name="applyViewParams">true</item>
 		<item name="android:textColor">?colorTrackMeta</item>

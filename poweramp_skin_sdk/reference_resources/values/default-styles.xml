@@ -431,6 +431,44 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="corners_miniplayer_aa">4dp</item>
 		
+		<!-- Item label scale -->
+		<item name="ItemTrackTitle_scale">0.85</item>
+		<item name="ItemTrackTitle_scene_small_scale">0.85</item>
+		<item name="ItemTrackTitle_scene_zoomed_scale">1.0</item>
+		<item name="ItemTrackTitle_scene_grid_scale">@dimen/scale_title_scene_grid</item>
+		<item name="ItemTrackTitle_scene_grid_zoomed_scale">.90</item>
+		<item name="ItemTrackTitle_scene_grid_1_alt_zoomed_scale">.95</item>
+		<item name="ItemTrackTitle_scene_header_scale">1</item>
+		<item name="ItemTrackTitle_scene_aa_scale">1</item>
+		<item name="ItemTrackTitle_scene_item_menu_scale">.95</item>
+		<item name="Alt_ItemTrackTitle_scene_aa_scale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
+		<item name="ItemTrackTitle_marginBottom">-6dp</item>
+		<item name="ItemTrackTitle_paddingLR">8dp</item>
+		<item name="ItemTrackTitle_paddingTB">6dp</item>
+		
+		<item name="ItemTrackLine2_scale">.86</item>
+		<item name="ItemTrackLine2_scene_small_scale">.86</item>
+		<item name="ItemTrackLine2_scene_zoomed_scale">1</item>		
+		<item name="ItemTrackLine2_scene_grid_scale">@dimen/scale_line2_scene_grid</item>
+		<item name="ItemTrackLine2_scene_grid_zoomed_scale">.86</item>
+		<item name="ItemTrackLine2_scene_header_scale">1</item>
+		<item name="ItemTrackLine2_scene_aa_scale">1</item>
+		<item name="ItemTrackLine2_scene_item_menu_scale">.90</item>
+		<item name="Alt_ItemTrackLine2_scene_aa_scale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
+		<item name="ItemTrackLine2_paddingLR">9dp</item>
+		<item name="ItemTrackLine2_paddingTB">7dp</item>
+				
+		<item name="ItemTrackMeta_scale">.9</item>
+		<item name="ItemTrackMeta_scene_small_scale">.9</item>
+		<item name="ItemTrackMeta_scene_zoomed_scale">1</item>
+		<item name="ItemTrackMeta_scene_grid_scale">0.85</item>
+		<item name="ItemTrackMeta_scene_grid_zoomed_scale">0.85</item>
+		<item name="ItemTrackMeta_scene_header_w_meta_base_scale">1</item>
+		<item name="ItemTrackMeta_scene_header_scale">1</item>
+		<item name="ItemTrackMeta_scene_item_menu_scale">1</item>
+		<item name="ItemTrackMeta_marginTop">-8.5dp</item>
+		<item name="ItemTrackMeta_paddingLR">10dp</item>
+		
 		<item name="VolumePanelPopup">@style/VolumePanelPopup</item>
 		<item name="VolumePanelFrame">@style/VolumePanelFrame</item>
 		<item name="VolumePanelKnobLayout">@style/VolumePanelKnobLayout</item>

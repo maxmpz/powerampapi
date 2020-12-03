@@ -165,8 +165,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:visibility">visible</item>
 		
-		<item name="scale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
-		<item name="layout_compensateScale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
+		<item name="scale">?Alt_ItemTrackTitle_scene_aa_scale</item>
+		<item name="layout_compensateScale">?Alt_ItemTrackTitle_scene_aa_scale</item>
 	</style>
 	
 	<style name="Alt_ItemTrackLine2_scene_aa" parent="ItemTrackLine2_scene_aa">
@@ -196,8 +196,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
 		
-		<item name="scale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
-		<item name="layout_compensateScale">@dimen/Alt_ItemTrackTitle_scene_aa_scale</item>
+		<item name="scale">?Alt_ItemTrackLine2_scene_aa_scale</item>
+		<item name="layout_compensateScale">?Alt_ItemTrackLine2_scene_aa_scale</item>
 	</style>
 	
 	<style name="Alt_ItemLikeUnlikeLayout_scene_aa" parent="ItemLikeUnlikeLayout_scene_aa">
@@ -365,7 +365,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Minimum size we can shring AA to -->
 		<item name="aaMinSize">50dp</item><!-- Sync with Alt_TopAABounds -->
 		<!-- The space reserved below AA. We need some space there for sub aa buttons, controls, seekbar, etc.
-		     This affects splitsceen layout mostly or very short screens, as for the longer screens, there is always enough space -->
+		     This affects split screen layout mostly or very short screens, as for the longer screens, there is always enough space -->
 		<item name="aaMarginBottom">@dimen/Alt_TopListSubstyle_aaMarginBottom</item><!-- Sync with Alt_TopAABounds -->
 		
 		<!-- Extra space grid cell layouts => so cell has non-square layout with extra space for title below image -->

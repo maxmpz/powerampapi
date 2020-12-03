@@ -892,9 +892,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: needed, as by default, any margins applied to AABounds will "consume" available space for AA layout, thus, shrinking AABounds and making it
 		     smaller comparing to the actual list AA. This attribute forces FastLayout to ignore margins in size calculations -->
 		<item name="layout_wrapIgnoresMargins">true</item>
-		
-		<!-- DEBUG -->
-		<!--<item name="android:background">#5f00</item>-->
 	</style>
 	
 	
@@ -1134,6 +1131,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopHelp_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">13sp</item>
 	</style>
+	<!-- Used for text preferable with the "normal" font style for larger block of text -->
+	<style name="TopHelpNormal" parent="TopHelp">
+		<item name="android:textAppearance">?TopHelpNormal_Text</item>
+	</style>
+	<style name="TopHelpNormal_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">13sp</item>
+	</style>
+		
 	<style name="TopHelp_anim_help_visible">
 		<item name="android:scaleX">1</item>
 		<item name="android:scaleY">1</item>
@@ -1176,6 +1181,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:textAppearance">?TopHelpButton_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
+		
 		
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_help_large</item>

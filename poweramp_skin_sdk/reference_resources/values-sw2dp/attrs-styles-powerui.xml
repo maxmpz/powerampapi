@@ -506,6 +506,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopMetaInfoLabel_Text" format="reference"/>
 		
 		<attr name="TopHelp_Text" format="reference"/>
+		<attr name="TopHelpNormal_Text" format="reference"/>
 		<attr name="TopHelpSmaller_Text" format="reference"/>
 		<attr name="TopHelpButton_Text" format="reference"/>
 		
@@ -556,6 +557,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqTrebleToneKnobLayout" format="reference"/>
 		<attr name="PeqVisButtonLayout" format="reference"/>
 		<attr name="PeqEqEnableVisFrs" format="reference"/>
+		<attr name="PeqEqEnableVisFrs_Text" format="reference"/>
 		
 		<!-- Vol tab -->
 		<attr name="EqVolPanel1" format="reference"/>

@@ -272,6 +272,50 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- This depends on theme opts, e.g. this may be different for Alt + PlainSeekbar vs just PlainSeekbar -->
 	<attr name="PlainSeekbar_marginBottom" format="dimension"/>
 	<attr name="PlainSeekbar_metaInfo_marginBottom" format="dimension"/>
+	
+	<!--
+		<item name="ItemTrackTitle_scale">0.85</item>
+		<item name="ItemTrackTitle_scene_zoomed_scale">1.0</item>
+		<item name="ItemTrackTitle_scene_grid_scale">@dimen/scale_title_scene_grid</item>
+		<item name="ItemTrackTitle_scene_grid_zoomed_scale"></item>
+	-->
+	
+	<attr name="ItemTrackTitle_scale" format="float"/>
+	<attr name="ItemTrackTitle_scene_small_scale" format="float"/>
+	<attr name="ItemTrackTitle_scene_zoomed_scale" format="float"/>
+	<attr name="ItemTrackTitle_scene_grid_scale" format="float"/>
+	<attr name="ItemTrackTitle_scene_grid_zoomed_scale" format="float"/>
+	<attr name="ItemTrackTitle_scene_grid_1_alt_zoomed_scale" format="float"/>
+	<attr name="ItemTrackTitle_scene_header_scale" format="float"/>
+	<attr name="ItemTrackTitle_scene_aa_scale" format="float"/>
+	<attr name="ItemTrackTitle_scene_item_menu_scale" format="float"/>
+	<attr name="Alt_ItemTrackTitle_scene_aa_scale" format="float"/>
+	<attr name="ItemTrackTitle_marginBottom" format="dimension"/>
+	<attr name="ItemTrackTitle_paddingLR" format="dimension"/>
+	<attr name="ItemTrackTitle_paddingTB" format="dimension"/>
+	
+	<attr name="ItemTrackLine2_scale" format="float"/>
+	<attr name="ItemTrackLine2_scene_small_scale" format="float"/>
+	<attr name="ItemTrackLine2_scene_zoomed_scale" format="float"/>
+	<attr name="ItemTrackLine2_scene_grid_scale" format="float"/>
+	<attr name="ItemTrackLine2_scene_grid_zoomed_scale" format="float"/>
+	<attr name="ItemTrackLine2_scene_header_scale" format="float"/>
+	<attr name="ItemTrackLine2_scene_aa_scale" format="float"/>
+	<attr name="ItemTrackLine2_scene_item_menu_scale" format="float"/>
+	<attr name="Alt_ItemTrackLine2_scene_aa_scale" format="float"/>
+	<attr name="ItemTrackLine2_paddingLR" format="dimension"/>
+	<attr name="ItemTrackLine2_paddingTB" format="dimension"/>
+		
+	<attr name="ItemTrackMeta_scale" format="float"/>
+	<attr name="ItemTrackMeta_scene_small_scale" format="float"/>
+	<attr name="ItemTrackMeta_scene_zoomed_scale" format="float"/>
+	<attr name="ItemTrackMeta_scene_grid_scale" format="float"/>
+	<attr name="ItemTrackMeta_scene_grid_zoomed_scale" format="float"/>
+	<attr name="ItemTrackMeta_scene_header_w_meta_base_scale" format="float"/>
+	<attr name="ItemTrackMeta_scene_header_scale" format="float"/>
+	<attr name="ItemTrackMeta_scene_item_menu_scale" format="float"/>
+	<attr name="ItemTrackMeta_marginTop" format="dimension"/>
+	<attr name="ItemTrackMeta_paddingLR" format="dimension"/>
 						
 			
 	<!-- Styles, applied to ListWidget internals (e.g. LayoutEngines/HeaderEngines/etc.) -->
@@ -335,7 +379,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     NOTE: normal (center of the screen) scale is always 1.0. The item image, text, and buttons are scaled.
 		     Supports <seekbar> option id reference -->		
 		<attr name="aaMaxScale" format="float|reference"/>
-		<!-- Dense factor > 0.0f. Values < 1 will make AA items closer to each other. Default value is 0.75
+		<!-- Dense factor > 0.0f. Values < 1 will make AA items closer to each other. Default value is 0.75 
 		     Supports <seekbar> option id reference -->		
 		<attr name="aaDenseFactor" format="float|reference"/>
 		
@@ -354,7 +398,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="itemSizeZoomed" format="dimension"/>
 		
 		<!-- If true, list automatically adds status bar height to all headers, thus, in this case, all header sizes should exclude default Android status bar height.
-			 While Android status bar height is usually 24dp, it may be different on devices with notch and pixel-size fixed status bar height matching the notch. 
+			 While Android status bar height is usually 24dp, it may be different on devices with notch and absolute pixel size fixed status bar height matching the notch. 
 			 Works only if offsetWindowInsets is specified for the list -->
 		<attr name="addStatusBarHeightToHeaders" format="boolean"/>
 		 

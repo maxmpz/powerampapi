@@ -62,6 +62,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopCounterLayout_Text">@style/TopCounterLayout_Text_AltFont</item>
 		<item name="TopMetaInfoLabel_Text">@style/TopMetaInfoLabel_Text_AltFont</item>
 		<item name="TopHelp_Text">@style/TopHelp_Text_AltFont</item>
+		<item name="TopHelpNormal_Text">@style/TopHelp_Text_AltFont</item>
 		<item name="TopHelpSmaller_Text">@style/TopHelpSmaller_Text_AltFont</item>
 		<item name="TopHelpButton_Text">@style/TopHelpButton_Text_AltFont</item>
 
@@ -111,6 +112,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqKnobValueLarger_Text">@style/EqKnobValueLarger_Text_AltFont</item>
 		<item name="EqButton_Text">@style/EqButton_Text_AltFont</item>
 		<item name="EqEquPresetLabel_Text">@style/EqEquPresetLabel_Text_AltFont</item>
+		<item name="PeqEqEnableVisFrs_Text">@style/PeqEqEnableVisFrs_Text_AltFont</item>
 	</style>
 	
 	<!-- NOTE: this sets font for quite specific cases, like Checkboxes (in SleepTimer dialog) -->
@@ -363,5 +365,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textSize">@dimen/moderate2_AltFont_textSize</item>
 		<item name="android:textAllCaps">false</item>
 	</style>
+	
+	<style name="PeqEqEnableVisFrs_Text_AltFont" parent="EqButton_Text">
+		<item name="android:fontFamily">?AltFont_font</item>
+		<item name="android:textSize">@dimen/small2_AltFont_textSize</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+		
 				
 </resources>

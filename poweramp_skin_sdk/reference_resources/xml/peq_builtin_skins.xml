@@ -16,13 +16,25 @@
 		forceGlobalOptions="true"
 		darkMode="@style/ActivityTheme_Black"
 	>
-		<option
-			key="alt_font"
-			name="@string/skin_alt_font"
-			summary="@string/skin_summary_alt_font"
-			overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
-			checkedByDefault="false"
-		/>
+		<popup
+			key="font_variant"
+			name="@string/font"
+			summary="%s"
+			defaultValue="@style/ActivityTheme_Whitepro_AltFont"
+		>
+			<option
+				name="@string/classic"
+				overlapStyle=""
+			/>
+			<option
+				name="@string/skin_alt_font"
+				overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
+			/>
+			<option
+				name="@string/bold"
+				overlapStyle="@style/ActivityTheme_BoldFont"
+			/>
+		</popup>		
 		
 		<popup
 			key="knob_hilite"
@@ -88,13 +100,26 @@
 		forceGlobalOptions="true"
 		lightMode="@style/ActivityTheme_White"
 	>
-		<option
-			key="alt_font"
-			name="@string/skin_alt_font"
-			summary="@string/skin_summary_alt_font"
-			overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
-			checkedByDefault="false"
-		/>
+		<popup
+			key="font_variant"
+			name="@string/font"
+			summary="%s"
+			defaultValue="@style/ActivityTheme_Whitepro_AltFont"
+		>
+			<option
+				name="@string/classic"
+				overlapStyle=""
+			/>
+			<option
+				name="@string/skin_alt_font"
+				overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
+			/>
+			<option
+				name="@string/bold"
+				overlapStyle="@style/ActivityTheme_BoldFont"
+			/>
+		</popup>		
+				
 		
 		<popup
 			key="knob_hilite"

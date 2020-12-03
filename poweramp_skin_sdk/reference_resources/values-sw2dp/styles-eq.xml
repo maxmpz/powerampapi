@@ -80,6 +80,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scrollbars">horizontal</item><!-- NOTE: need scrollbars=horizontal to enable scrolling -->
 		<item name="android:scrollbarThumbHorizontal">@null</item><!-- NOTE: but disable default android scroll thumb drawing -->
 		<item name="android:clipToPadding">false</item>
+		<item name="android:clipChildren">false</item>
 	</style>
 	<style name="EqKnobsLayout" parent="EqKnobsLayoutBase">
 		<item name="android:layout_width">match_parent</item>
@@ -151,6 +152,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:background">@drawable/preamp_bg</item>
 		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
 	</style>
 		
 	<style name="EqPreampLinearKnob" parent="EqLinearKnob">
@@ -246,7 +248,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqKnobLabel_Text" parent="TextAppearance.AppCompat">
 		<!-- used for text on layout - like equ knob labels -->
 		<item name="android:textSize">@dimen/EqKnobLabelText_size</item>
-		<item name="android:textColor">@color/button_text_color_selector</item> 
+		<item name="android:textColor">@color/button_primary_text_color_selector</item> 
 	</style>
 			
 
@@ -258,6 +260,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:minWidth">@dimen/EqButton_layout_width</item><!-- 64dp -->
 		<item name="android:ellipsize">end</item>
 		<item name="android:textAppearance">?EqButton_Text</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
 	</style>
 	<style name="EqButton_Text" parent="WhiteButton_Text">
 		<item name="android:textSize">@dimen/EqButton_textSize</item>

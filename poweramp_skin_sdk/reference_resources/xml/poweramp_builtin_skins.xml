@@ -22,6 +22,7 @@
 			overlapAttr="@attr/overlap_alt_layout"
 			checkedByDefault="false"
 		/>
+		<!--
 		<option
 			key="alt_font"
 			name="@string/skin_alt_font"
@@ -29,6 +30,26 @@
 			overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
 			checkedByDefault="false"
 		/>
+		-->
+		<popup
+			key="font_variant"
+			name="@string/font"
+			summary="%s"
+			defaultValue="@style/ActivityTheme_Whitepro_AltFont"
+		>
+			<option
+				name="@string/classic"
+				overlapStyle=""
+			/>
+			<option
+				name="@string/skin_alt_font"
+				overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
+			/>
+			<option
+				name="@string/bold"
+				overlapStyle="@style/ActivityTheme_BoldFont"
+			/>
+		</popup>		
 				
 		<popup
 			key="seekbar"
@@ -133,6 +154,8 @@
 			overlapAttr="@attr/overlap_alt_layout"
 			checkedByDefault="false"
 		/>
+		
+		<!--
 		<option
 			key="alt_font"
 			name="@string/skin_alt_font"
@@ -140,6 +163,28 @@
 			overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
 			checkedByDefault="false"
 		/>
+		-->
+		
+		<popup
+			key="font_variant"
+			name="@string/font"
+			summary="%s"
+			defaultValue="@style/ActivityTheme_Whitepro_AltFont"
+		>
+			<option
+				name="@string/classic"
+				overlapStyle=""
+			/>
+			<option
+				name="@string/skin_alt_font"
+				overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
+			/>
+			<option
+				name="@string/bold"
+				overlapStyle="@style/ActivityTheme_BoldFont"
+			/>
+		</popup>		
+				
 		<popup
 			key="seekbar"
 			name="@string/skin_seekbar_style"

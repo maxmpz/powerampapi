@@ -48,7 +48,7 @@
 	/>
 	
 	<com.maxmpz.widget.player.Help
-		style="@style/TopHelp"
+		style="@style/TopHelpNormal"
 		w:layout_maxWidth="380dp"
 		
 		w:help_anchor="@id/eq_knobs_layout"

@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- eqtab  -->
 		
 	<style name="PeqEqEnableVisFrs" parent="WhiteButtonBase">
-		<item name="android:gravity">center</item>
+		<item name="android:gravity">center_vertical</item>
 		<item name="android:layout_marginLeft">4dp</item>
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_height">wrap_content</item><!-- 32dp -->
@@ -58,11 +58,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="drawablePosition">left</item>
 		<item name="android:ellipsize">end</item>
-		<item name="android:textAppearance">?Hint</item><!-- TODO: attr -->
+		<item name="android:textAppearance">?PeqEqEnableVisFrs_Text</item>
 	</style>
-	<style name="PeqEqEnableVisFrs_Text" parent="WhiteButton_Text">
-		<item name="android:textSize">@dimen/EqButton_textSize</item>
-		<item name="android:textAllCaps">false</item>
+	<style name="PeqEqEnableVisFrs_Text" parent="EqButton_Text">
 	</style>
 	
 	<style name="PeqVisButtonLayoutBase" parent="EqPresetButtonLayoutBase">

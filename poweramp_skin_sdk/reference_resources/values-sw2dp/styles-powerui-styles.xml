@@ -561,6 +561,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopMetaInfoLabel_Text">@style/TopMetaInfoLabel_Text</item>
 		
 		<item name="TopHelp_Text">@style/TopHelp_Text</item>
+		<item name="TopHelpNormal_Text">@style/TopHelp_Text</item>
 		<item name="TopHelpSmaller_Text">@style/TopHelpSmaller_Text</item>
 		<item name="TopHelpButton_Text">@style/TopHelpButton_Text</item>
 		
@@ -608,6 +609,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqTrebleToneKnobLayout">@style/EqTrebleToneKnobLayout</item>
 		<item name="PeqVisButtonLayout">@style/PeqVisButtonLayout</item>
 		<item name="PeqEqEnableVisFrs">@style/PeqEqEnableVisFrs</item>
+		<item name="PeqEqEnableVisFrs_Text">@style/PeqEqEnableVisFrs_Text</item>
 		
 		<!-- Vol tab -->
 		<item name="EqVolPanel1">@style/EqVolPanel1</item>
