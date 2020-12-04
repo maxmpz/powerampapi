@@ -48,15 +48,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackTitle_scene_grid_1_alt_zoomed_scale">.75</item>
 		<item name="ItemTrackTitle_marginBottom">-5sp</item>
 		<item name="ItemTrackTitle_paddingTB">3dp</item>
+		<item name="ItemTrackTitle_scene_item_menu_scale">.9</item>
+		<item name="ItemTrackTitle_scene_item_menu_marginBottom">-11.625dp</item>
 				
 		<item name="ItemTrackLine2_scene_small_scale">.725</item>
 		<item name="ItemTrackLine2_scene_grid_scale">.65</item>
 		<item name="ItemTrackLine2_scene_grid_zoomed_scale">.75</item>
 		<item name="ItemTrackLine2_paddingTB">4dp</item>
 		<item name="ItemTrackLine2_paddingLR">8.125dp</item>
+		<item name="ItemTrackLine2_scene_item_menu_scale">.93</item>
 		
 		<item name="ItemTrackMeta_marginTop">-9sp</item>
 		<item name="ItemTrackMeta_paddingLR">8.5dp</item>
+		<item name="ItemTrackMeta_scene_item_menu_scale">.9</item>
+		<item name="ItemTrackMeta_scene_item_menu_marginLeft">.5sp</item>
 				
 		<item name="android:textAppearance">@style/textAppearance_BoldFont</item>
 		<item name="android:textAppearanceButton">@style/textAppearanceButton_BoldFont</item><!-- Apply font for few buttons which use textAppearanceButton, e.g. dialog buttons -->

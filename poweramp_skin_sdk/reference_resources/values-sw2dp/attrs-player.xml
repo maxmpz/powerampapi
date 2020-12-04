@@ -293,6 +293,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="ItemTrackTitle_marginBottom" format="dimension"/>
 	<attr name="ItemTrackTitle_paddingLR" format="dimension"/>
 	<attr name="ItemTrackTitle_paddingTB" format="dimension"/>
+	<attr name="ItemTrackTitle_scene_item_menu_marginBottom" format="dimension"/>
 	
 	<attr name="ItemTrackLine2_scale" format="float"/>
 	<attr name="ItemTrackLine2_scene_small_scale" format="float"/>
@@ -316,6 +317,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="ItemTrackMeta_scene_item_menu_scale" format="float"/>
 	<attr name="ItemTrackMeta_marginTop" format="dimension"/>
 	<attr name="ItemTrackMeta_paddingLR" format="dimension"/>
+	<attr name="ItemTrackMeta_scene_item_menu_marginLeft" format="dimension"/>
 						
 			
 	<!-- Styles, applied to ListWidget internals (e.g. LayoutEngines/HeaderEngines/etc.) -->

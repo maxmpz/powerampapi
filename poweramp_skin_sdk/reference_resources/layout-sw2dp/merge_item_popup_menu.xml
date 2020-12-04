@@ -30,27 +30,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemPopupMenu_scene_item_menu"
 	/>
 
-	
-	<!-- This smart spacer changes its height depending on rating visibility:
-		 - if rating is visible, height is set to minumum, so @id/title is on top
-		 - if rating is gone, height is set to align @id/title right above middle of menu heading
-		 NOTE: 
-		 - @id/title is set attachBottomToBottom to item_menu_top_spacer in scene_item_menu
-		 - @id/line2 is below @id/title
-	-->
-	<!-- 
-		NOTE: layout_consumeSpace is in effect at the moment the view is first time referenced, in this case, by title, thus, can't do 
-		layout_consumeSpace="*_reset" on it, as it resets space before title then
-	 -->
-	<!--
-	<com.maxmpz.widget.base.SmartSpacer android:id="@+id/item_menu_top_spacer"
+	<com.maxmpz.widget.base.InvisibleView android:id="@+id/spacer"
 		style="?ItemPopupMenuTopSpacer"
 	/>
-	-->
-	
-	<com.maxmpz.widget.base.InvisibleView w:layout_consumeSpace="reset_horizontal"/>	
-	
-		
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu"
+		w:baseScene="defaultScene"
+	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu_lu"
+		style="?ItemPopupMenuTopSpacer_scene_item_menu_lu"
+	/>
+			
 	<!-- NOTE: this is usually attached to aa_image, but for item_text + scene_top_header, there may be no visible aa_image, thus
 		 layout_attachToParrentIfGone="true" is used to attach to parent. item_text title consumes space in item_text, so separator is properly positioned below.
 	 -->

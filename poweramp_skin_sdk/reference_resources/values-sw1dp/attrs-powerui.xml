@@ -482,6 +482,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Defines max possible height for the child -->
 		<attr name="layout_maxHeight" format="dimension"/>
 		
+		<!-- Defines min possible width for the child. Always force applied (compare to view.minWidth which applied only in specific cases) -->
+		<attr name="layout_minWidth" format="dimension"/>
+		<!-- Defines min possible height for the child. Always force applied (compare to view.minHeight which applied only in specific cases) -->
+		<attr name="layout_minHeight" format="dimension"/>
+		
 		<!-- If set, one view dimension will be matched against another, basically making view square. This works only if the source dimension has defined value, 
 			 e.g. fixed dp value, MATCH_PARENT, attachLeft + attachRight, etc.
 			 If source dimension is WRAP_CONTENT, layout_matchDimension is ignored.

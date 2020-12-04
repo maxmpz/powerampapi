@@ -53,6 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PopupMenuItem50" parent="PopupMenuItem">
 		<item name="layout_widthPercent">50%</item>
 		<item name="layout_consumeSpace">horizontal|reset_auto</item>
+		<item name="android:maxLines">1</item>
 	</style>
 	
 	<!-- Popup Buttons -->
