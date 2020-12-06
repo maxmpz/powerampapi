@@ -105,7 +105,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemPopupMenuSeparator">@style/ItemPopupMenuSeparator</item>
 		<item name="ItemPopupMenuSeparator2">@style/ItemPopupMenuSeparator2</item>
 		<item name="ItemPopupMenuItemsLayout">@style/ItemPopupMenuItemsLayout</item>
+		<item name="ItemTextPopupMenuItemsLayout">@style/ItemTextPopupMenuItemsLayout</item>
 		<item name="ItemPopupMenuTopSpacer">@style/ItemPopupMenuTopSpacer</item>
+		<item name="ItemTextPopupMenuTopSpacer">@style/ItemTextPopupMenuTopSpacer</item>
 		<item name="ItemPopupMenuTopSpacer_scene_item_menu_lu">@style/ItemPopupMenuTopSpacer_scene_item_menu_lu</item>
 		
 		<item name="PopupInfoTextTitle">@style/PopupInfoTextTitle</item>

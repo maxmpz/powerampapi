@@ -317,6 +317,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="ItemTrackMeta_scene_item_menu_scale" format="float"/>
 	<attr name="ItemTrackMeta_marginTop" format="dimension"/>
 	<attr name="ItemTrackMeta_paddingLR" format="dimension"/>
+	<attr name="ItemTrackMeta_drawablePadding" format="dimension"/>
+	<attr name="ItemTrackMeta_drawablePaddingStart" format="dimension"/>
 	<attr name="ItemTrackMeta_scene_item_menu_marginLeft" format="dimension"/>
 						
 			

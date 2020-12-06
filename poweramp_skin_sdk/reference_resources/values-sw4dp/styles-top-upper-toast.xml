@@ -144,7 +144,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">32dp</item>
 		<item name="layout_consumeSpace">reset_vertical</item>
 		
-		<item name="android:maxLines">2</item>
+		<item name="android:maxLines">4</item>
 		<item name="android:textAppearance">?TopToastLine2_Text</item>
 		<item name="allowZeroHeight">true</item>
 	</style>

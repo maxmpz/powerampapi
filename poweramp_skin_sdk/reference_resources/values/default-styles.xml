@@ -470,6 +470,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMeta_scene_item_menu_scale">1</item>
 		<item name="ItemTrackMeta_marginTop">-8.5dp</item>
 		<item name="ItemTrackMeta_paddingLR">10dp</item>
+		<item name="ItemTrackMeta_drawablePadding">-10dp</item>
+		<item name="ItemTrackMeta_drawablePaddingStart">8.5dp</item>
 		<item name="ItemTrackMeta_scene_item_menu_marginLeft">-2dp</item>
 		
 		<item name="VolumePanelPopup">@style/VolumePanelPopup</item>

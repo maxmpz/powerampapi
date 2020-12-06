@@ -152,7 +152,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: programatically loaded for scene_item_menu -->
 	<com.maxmpz.widget.base.LoadableBehavior
 		android:id="@+id/behavior_menu"
-		android:layout="@layout/merge_item_popup_menu" 
+		android:layout="@layout/merge_item_text_popup_menu" 
 	/>
 
 </com.maxmpz.widget.player.list.TextItemView>

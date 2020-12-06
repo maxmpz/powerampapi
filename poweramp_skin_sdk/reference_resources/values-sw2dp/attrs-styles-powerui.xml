@@ -359,6 +359,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupMenuItemsLayout" format="reference"/>
 		<attr name="ItemPopupMenuTopSpacer" format="reference"/>
 		<attr name="ItemPopupMenuTopSpacer_scene_item_menu_lu" format="reference"/>
+		<attr name="ItemTextPopupMenuItemsLayout" format="reference"/>
+		<attr name="ItemTextPopupMenuTopSpacer" format="reference"/>
 		
 		<attr name="PopupButton"/>
 		<attr name="PopupButton_Text"/>

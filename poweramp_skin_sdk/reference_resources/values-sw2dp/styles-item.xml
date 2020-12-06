@@ -1066,8 +1066,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:paddingRight">?ItemTrackMeta_paddingLR</item>
 		<item name="android:paddingTop">7dp</item>
 		<item name="android:paddingBottom">7dp</item>
-		<item name="drawablePaddingStart">8.5dp</item>
-		<item name="android:drawablePadding">-10dp</item>
+		<item name="drawablePaddingStart">?ItemTrackMeta_drawablePaddingStart</item>
+		<item name="android:drawablePadding">?ItemTrackMeta_drawablePadding</item>
 		<item name="drawableHeight">12dp</item>
 		
 		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
@@ -2393,7 +2393,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	
 	<!-- Spacer top is aligned exactly as AA, bottom is aligned either exactly bottomToBottom to rating/meta or minSize=ItemTrackAAImage_scene_item_menu_size maintained -->
 	<style name="ItemPopupMenuTopSpacer">
-		<item name="android:layout_width">10dp</item>
+		<item name="android:layout_width">0px</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottomToBottom">@id/meta</item>
@@ -2407,6 +2407,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachBottomToBottom">@id/rating</item>
 	</style>
 	
+	<style name="ItemTextPopupMenuTopSpacer">
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">0px</item>
+		<item name="layout_consumeSpace">reset_horizontal</item>
+	</style>
+	
 	<style name="ItemPopupMenuItemsLayout">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -2414,6 +2420,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<!-- Should match bottom margin for AA. As spacer can't set bottom margin due to the bottomToBottom attachment (which should match exactly w/o margins),
 		     we apply that margin here -->
 		<item name="android:layout_marginTop">8dp</item>	 
+	</style>
+	
+	<style name="ItemTextPopupMenuItemsLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_unlimitedMeasure">true</item>
+		<item name="layout_consumeSpace">reset_horizontal</item>
 	</style>
 	
 	<!-- item_empty_list -->

@@ -60,6 +60,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemTrackMeta_marginTop">-9sp</item>
 		<item name="ItemTrackMeta_paddingLR">8.5dp</item>
+		<item name="ItemTrackMeta_drawablePadding">-7dp</item>
+		<item name="ItemTrackMeta_drawablePaddingStart">6dp</item>		
 		<item name="ItemTrackMeta_scene_item_menu_scale">.9</item>
 		<item name="ItemTrackMeta_scene_item_menu_marginLeft">.5sp</item>
 				
