@@ -23,7 +23,7 @@ android {
     }
     aaptOptions {
         additionalParameters "--stable-ids", "stable-ids.txt", "--emit-ids", "stable-ids.txt", "--package-id", "0x80",
-                                "-I", "../../../audioplayer/bin/audioplayer.apk"
+                                "-I", "../../../audioplayer/dist/893-uni/Poweramp-build-893-uni.apk"
     }
 
     useLibrary 'android.test.runner'
