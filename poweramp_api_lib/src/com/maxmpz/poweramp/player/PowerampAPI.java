@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2020 Maksim Petrov
+Copyright (C) 2011-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for the widgets, plugins, applications and other software
@@ -962,6 +962,13 @@ public final class PowerampAPI {
 	 * @since 700
 	 */
 	public static final String ACTION_NATIVE_PLUGIN_INIT = "com.maxmpz.audioplayer.NATIVE_PLUGIN_INIT";
+
+	/**
+	 * This action should be used by skin apps for their main activity intent-filter element in AndroidManifest.xml.<br>
+	 * Helps future Poweramp builds (targeting Android 11/SDK=30) to find skins, as Android 11 requires some explicit action to be
+	 * defined by the "plugin" apps, such as skins.
+	 */
+	public static final String ACTION_SKIN_MAIN = "com.maxmpz.audioplayer.SKIN_MAIN";
 
 	/**
 	 * Poweramp settings activity
