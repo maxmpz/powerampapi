@@ -256,7 +256,6 @@ public class MainActivity extends AppCompatActivity implements
 	 * but this approach can be used with a null receiver to get current sticky intent without broadcast receiver.
 	 */
 	private void registerAndLoadStatus() {
-		registerReceiver(mAAReceiver, new IntentFilter(PowerampAPI.ACTION_AA_CHANGED));
 		mTrackIntent = registerReceiver(mTrackReceiver, new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED));
 		mStatusIntent = registerReceiver(mStatusReceiver, new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED));
 		mPlayingModeIntent = registerReceiver(mPlayingModeReceiver, new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED));
@@ -269,9 +268,6 @@ public class MainActivity extends AppCompatActivity implements
 				unregisterReceiver(mTrackReceiver);
 			} catch(Exception ex){} // Can throw exception if for some reason broadcast receiver wasn't registered.
 		}
-		try {
-			unregisterReceiver(mAAReceiver);
-		} catch(Exception ex){} // Can throw exception if for some reason broadcast receiver wasn't registered.
 		if(mStatusReceiver != null) {
 			try {
 				unregisterReceiver(mStatusReceiver);
@@ -295,15 +291,6 @@ public class MainActivity extends AppCompatActivity implements
 			mTrackIntent = intent;
 			processTrackIntent();
 			if(LOG_VERBOSE) Log.w(TAG, "mTrackReceiver " + intent);
-		}
-	};
-
-	private BroadcastReceiver mAAReceiver = new BroadcastReceiver() {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			updateAlbumArt(mCurrentTrack);
-
-			if(LOG_VERBOSE) Log.w(TAG, "mAAReceiver " + intent);
 		}
 	};
 
