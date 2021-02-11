@@ -758,18 +758,21 @@ public final class PowerampAPI {
 	public static final String ACTION_TRACK_CHANGED_EXPLICIT = "com.maxmpz.audioplayer.TRACK_CHANGED_EXPLICIT";
 
 	/**
+	 * NOTE: this intent is only sent when send_old_api_aa option (Send Album Art for old API) is enabled for compatibility with the old Poweramp APIs<br>
 	 * Sent by Poweramp to your app<br>
 	 * Album art was changed. Album art can be the same for whole album/folder, thus usually it will be updated less frequently comparing to TRACK_CHANGE.
 	 * If both aaPath and aaBitmap extras are missing that means no album art exists for the current track(s).<br>
 	 * Note that there is no direct Album Art to track relation, i.e. both track and album art can change independently from each other -
-	 * for example - when new album art asynchronously downloaded from internet or selected by user.<br><br>
+	 * for example - when new album art asynchronously downloaded from Internet or selected by the user.<br><br>
 	 *
 	 * Sticky intent (can be queried for permanently stored data).<br><br>
 	 *
 	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br><br>
 	 * Extras:<br>
 	 * {@code long ts} - timestamp of the event (System.currentTimeMillis())
+	 * @deprecated since 829
 	 */
+	@Deprecated
 	public static final String ACTION_AA_CHANGED = "com.maxmpz.audioplayer.AA_CHANGED";
 
 	/**
