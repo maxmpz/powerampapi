@@ -98,7 +98,7 @@ public interface TableDefs {
 
 		/**
 		 * Title tag<br>
-		 * NOTE: important to have it w/o table for headers-enabled compound selects<br>
+		 * NOTE: important to have it w/o table name for the header-enabled compound selects<br>
 		 * TEXT
 		 */
 		public static final @NonNull String TITLE_TAG = "title_tag";
@@ -731,14 +731,6 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
-		/**
-		 * Number of tracks in this category, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
 		
 		/**
 		 * Duration in milliseconds, excluding cue source images<br>
@@ -748,6 +740,32 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
+		/**
+		 * Duration meta<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 * @since 829<br>
+		 */
+		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
+		
+		/**
+		 * If true (1) this is unsplit combined multi-artist<br>
+		 * INTEGER (boolean)
+		 * @since 899<br>
+		 */
+		public static final @NonNull String IS_UNSPLIT = TABLE + ".is_unsplit";
+
+		// Deprecated fields
+		
+		/**
+		 * Number of tracks in this category, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
+		 */
+		@Deprecated
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
+
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
@@ -759,14 +777,6 @@ public interface TableDefs {
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
 		/**
-		 * Duration meta<br>
-		 * Dynamically recalculated on rescans<br>
-		 * TEXT
-		 * @since 829<br>
-		 */
-		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
-		
-		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
 		 * TEXT
@@ -777,6 +787,18 @@ public interface TableDefs {
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 	}
 
+	/** 
+	 * One-to-many relation table for track artists<br> 
+	 * This is only used if track has multiple artists
+	 * @since 899
+	 * */
+	public interface MultiArtists {
+		public static final @NonNull String TABLE = "multi_artists";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+		public static final @NonNull String ARTIST_ID = TABLE + ".artist_id";
+		public static final @NonNull String FILE_ID = TABLE + ".file_id";
+	}
 
 	/** This is similar to Artists, but uses Album Artist tag, where available */
 	public interface AlbumArtists {
@@ -814,31 +836,12 @@ public interface TableDefs {
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
 		/**
-		 * Number of tracks in this category, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-		
-		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
 		 * INTEGER
 		 * @since 829<br>
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
-		
-		/**
-		 * Duration in milliseconds, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @since 829
-		 * @deprecated since 864
-		 */
-		@Deprecated
-		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 		
 		/**
 		 * Duration meta<br>
@@ -849,6 +852,15 @@ public interface TableDefs {
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 		
 		/**
+		 * If true (1) this is combined unsplit multi-artist<br>
+		 * INTEGER (boolean)
+		 * @since 899<br>
+		 */
+		public static final @NonNull String IS_UNSPLIT = TABLE + ".is_unsplit";
+
+		// Deprecated fields
+		
+		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
 		 * TEXT
@@ -857,8 +869,39 @@ public interface TableDefs {
 		 */
 		@Deprecated
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
+		/**
+		 * Duration in milliseconds, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @since 829
+		 * @deprecated since 864
+		 */
+
+		@Deprecated
+		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
+		
+		/**
+		 * Number of tracks in this category, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
+		 */
+		@Deprecated
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
 	}
 
+	/** 
+	 * One-to-many relation table for track album artists<br> 
+	 * This is only used if track has multiple album artists
+	 * @since 899
+	 * */
+	public interface MultiAlbumArtists {
+		public static final @NonNull String TABLE = "multi_album_artists";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+		public static final @NonNull String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
+		public static final @NonNull String FILE_ID = TABLE + ".file_id";
+	}
 
 	/**
 	 * Album => artist 1:1 binding table<br>
@@ -972,6 +1015,31 @@ public interface TableDefs {
 		 * INTEGER
 		 */
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
+		
+		/**
+		 * Duration in milliseconds, excluding cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @since 829<br>
+		 */
+		public static final @NonNull String DURATION = TABLE + ".duration";
+		
+		/**
+		 * Duration meta<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 * @since 829<br>
+		 */
+		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
+		
+		/**
+		 * If true (1) this is combined unsplit multi-composer<br>
+		 * INTEGER (boolean)
+		 * @since 899<br>
+		 */
+		public static final @NonNull String IS_UNSPLIT = TABLE + ".is_unsplit";
+
+		// Deprecated fields
 
 		/**
 		 * Number of tracks in this category, including cue source images<br>
@@ -981,14 +1049,6 @@ public interface TableDefs {
 		 */
 		@Deprecated
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-		
-		/**
-		 * Duration in milliseconds, excluding cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @since 829<br>
-		 */
-		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
 		 * Duration in milliseconds, including cue source images<br>
@@ -1001,14 +1061,6 @@ public interface TableDefs {
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
 		/**
-		 * Duration meta<br>
-		 * Dynamically recalculated on rescans<br>
-		 * TEXT
-		 * @since 829<br>
-		 */
-		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
-		
-		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
 		 * TEXT
@@ -1018,6 +1070,21 @@ public interface TableDefs {
 		@Deprecated
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
 	}
+	
+
+	/** 
+	 * One-to-many relation table for track album artists<br> 
+	 * This is only used if track has multiple album artists
+	 * @since 899
+	 * */
+	public interface MultiComposers {
+		public static final @NonNull String TABLE = "multi_composers";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+		public static final @NonNull String COMPOSER_ID = TABLE + ".composer_id";
+		public static final @NonNull String FILE_ID = TABLE + ".file_id";
+	}
+	
 
 	public interface Genres {
 		public static final @NonNull String TABLE = "genres";
