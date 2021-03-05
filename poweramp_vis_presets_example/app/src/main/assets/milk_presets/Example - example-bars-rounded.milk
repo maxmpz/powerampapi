@@ -7,14 +7,7 @@ warp=0
 sx=1.00000
 sy=1.00000
 
-fZoomExponent = 0.9
-fDecay=0.980000
-
-zoom=1.009006
-cx=0.500000
-cy=0.500000
-dx=0.000000
-
+fDecay=0.95
 
 sx = 1.0
 sy = 1.0
@@ -35,8 +28,6 @@ wave_y = 0.5
 # FftQuadBarsReflected7 = 7
 bars_mode = 6
 
-bars_rot=90 # Bars Rotation
-
 bars_thr = 0.5
 bars_thr_color_t = 0xFFFF0000
 bars_thr_color_b = 0xFFFF0000
@@ -48,9 +39,11 @@ bars_color_r = 0x00000000
 bars_color_l = 0x00000000
 bars_sx = 1.0
 bars_sy = 1.0
-bars_num_x = 256
+bars_num_x = 32
 bars_num_y = 24
 bars_smooth = 0.85
 bars_sensitivity = 0.5
 bars_spacing_y = 0.3
-bars_spacing_x = 0.0
+bars_spacing_x = 0.2
+
+bars_rounding=1 # Bars rounding

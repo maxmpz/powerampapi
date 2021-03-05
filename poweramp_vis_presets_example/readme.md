@@ -1,7 +1,7 @@
-[TOC levels=3]:# "#Poweramp v3 Visualization Presets Example"
+[TOC levels=3]:# "#Poweramp v3 / Poweramp Equalizer Visualization Presets Example"
 
-# Poweramp v3 Visualization Presets Example
-- [Poweramp v3 visualization presets](#poweramp-v3-visualization-presets)
+# Poweramp v3 / Poweramp Equalizer Visualization Presets Example
+- [Poweramp v3 / Poweramp Equalizer visualization presets](#poweramp-v3--poweramp-equalizer-visualization-presets)
 - [How Poweramp v3 visualization works?](#how-poweramp-v3-visualization-works)
 - [Poweramp v3 visualization presets APK](#poweramp-v3-visualization-presets-apk)
 - [How to start own presets APK (based on this example project)](#how-to-start-own-presets-apk-based-on-this-example-project)
@@ -10,14 +10,22 @@
 - [License](#license)
 
 
-# Poweramp v3 Visualization Presets APK Example
+# Poweramp Visualization Presets APK Example
 ============================================
 
-This is an example visualization presets project source that demonstrates .milk presets loading into Poweramp via APK.
+This is an example visualization presets project source that demonstrates .milk presets loading into Poweramp or Poweramp Equalizer via APK.
 This project can be directly used to build APK which can be installed on the device and recognized by
-Poweramp v3 (**build 796+** is required for the correct APK handling).
+Poweramp v3 (**build 796+** is required for the correct APK handling) or Poweramp Equalizer.
 
-### Poweramp v3 visualization presets
+### Recent changes
+
+* build 899 now supports bar peaks animation via bars_peak* options
+* build 899 now renders bar visualization with the screen resolution
+  * previously it rendered it to 512x512 or 1024x1024 (HD) target
+  * presets without bars still rendered with the 512x512/1024x1024 target, and presets with bars are rendered to the screen size target
+  * this increases bars fidelity, but may cause frame drops if preset also contains complicated animations/shaders
+
+### Poweramp v3 / Poweramp Equalizer visualization presets
 
 Poweramp v3 supports Milkdrop v1 and v2 (with shaders) presets (.milk). In addition, Poweramp also supports spectrum bars rendering defined in .milk presets with the extended syntax.
 
@@ -118,6 +126,32 @@ Poweramp supports extra rendering object - spectrum bars - which is defined via 
 * **bars_thr_color_r**
    * for non reflected bars: optional right threshold color overlay in 0xAARRGGBB format
    * for reflected bars: 2nd half optional right color overlay in 0xAARRGGBB format
+* **bars_rounding**
+  * since build 899
+  * 0 - disabled
+  * 1 - bars are rounded without the minimal size. Bars can disappear completely if no signal
+  * 2 - bars are rounded with the minimal size, so bar is a circle for a zero signal
+  * works with bars_mode: 1 - long bars, 3 - long bars centered, 6 long bars reflected to left/right
+  * renders rounded rectangles
+* **bars_peak_height**
+  * since build 899
+  * defines the peak size in range 0..1, if > 0 peaks are renderer
+  * works with bars_mode: 1 (long bars), 2 (rectangles)
+* **bars_peak_color_t**
+  * since build 899
+  * peaks top color
+* **bars_peak_color_b**
+  * since build 899
+  * peaks bottom color
+* **bars_peak_spacing**
+  * since build 899
+  * defines spacing between bar and peak in bars_mode: 1 (long bars)
+* **bars_peak_delay**
+  * since build 899
+  * delay in seconds before peak begins dropping animation
+* **bars_peak_accel**
+  * since build 899
+  * peak drop acceleration (in screen heights per second^2)
 
 ### Android 10 and access to the Poweramp presets directory
 
