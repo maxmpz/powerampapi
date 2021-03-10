@@ -577,6 +577,8 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String KEEP_TRACK_POS = TABLE + ".keep_track_pos"; // Sync with RestLibraryListMemorizable
 		
+		public static final @NonNull String KEEP_LIST_AND_TRACK_POS_COMBINED = "(" + KEEP_TRACK_POS + "<<1)+" + KEEP_LIST_POS; 
+		
 		/**
 		 * Non-null for provider folders, where provider wants to control default sorting order in Folders Hierarchy<br>
 		 * INTEGER<br>
@@ -1426,6 +1428,8 @@ public interface TableDefs {
 		 * INTEGER (boolean)
 		 */
 		public static final @NonNull String KEEP_TRACK_POS = TABLE + ".keep_track_pos"; // Sync with RestLibraryListMemorizable
+		
+		public static final @NonNull String KEEP_LIST_AND_TRACK_POS_COMBINED = "(" + KEEP_TRACK_POS + "<<1)+" + KEEP_LIST_POS;
 		
 		/**
 		 * Duration in milliseconds<br>
