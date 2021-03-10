@@ -117,10 +117,12 @@ public class MainActivity extends AppCompatActivity implements
 	/** Use getPowerampBuildNumber to get the build number */
 	private int mPowerampBuildNumber;
 	private boolean mProcessingLongPress;
+	private int mLastSentSeekPosition;
 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		if(LOG_VERBOSE) Log.w(TAG, "onCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -155,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements
 		mRemoteTrackTime = new RemoteTrackTime(this);
 		mRemoteTrackTime.setTrackTimeListener(this);
 
-		((TextView)findViewById(R.id.play_file_path)).setText(findFirstMP3(Environment.getExternalStorageDirectory()));
+		//((TextView)findViewById(R.id.play_file_path)).setText(findFirstMP3(Environment.getExternalStorageDirectory())); // This can be slow, disabled
 		findViewById(R.id.play_file).setOnClickListener(this);
 
 		findViewById(R.id.folders).setOnClickListener(this);
@@ -173,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements
 		// NOTE: this will work only if Poweramp process is alive.
 		// This actually should be done once per this app installation, but for the simplicity, we use per-process static field here
 		if(!sPermissionAsked) {
+			if(LOG_VERBOSE) Log.w(TAG, "onCreate askin permission");
 			Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
 			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 			intent.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName());
@@ -186,6 +189,8 @@ public class MainActivity extends AppCompatActivity implements
 		}
 
 		getComponentNames();
+
+		if(LOG_VERBOSE) Log.w(TAG, "onCreate DONE");
 	}
 
 	/**
@@ -1049,15 +1054,18 @@ public class MainActivity extends AppCompatActivity implements
 		mRemoteTrackTime.updateTrackPosition(position);
 
 		// Apply some throttling to avoid too many intents to be generated.
-		if(ignoreThrottling || mLastSeekSentTime == 0 || System.currentTimeMillis() - mLastSeekSentTime > SEEK_THROTTLE) {
+		if((mLastSeekSentTime == 0 || System.currentTimeMillis() - mLastSeekSentTime > SEEK_THROTTLE)
+			|| ignoreThrottling && mLastSentSeekPosition != position // Do not send same position for cases like quick seekbar touch
+		) {
 			mLastSeekSentTime = System.currentTimeMillis();
 			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 					.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SEEK)
 					.putExtra(PowerampAPI.Track.POSITION, position),
 					FORCE_API_ACTIVITY);
-			Log.w(TAG, "sent");
+			mLastSentSeekPosition = position;
+			Log.w(TAG, "sendSeek sent position=" + position);
 		} else {
-			Log.w(TAG, "throttled");
+			Log.w(TAG, "sendSeek throttled");
 		}
 	}
 
@@ -1397,6 +1405,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
 	private void getComponentNames() {
+		if(LOG_VERBOSE) Log.w(TAG, "getComponentNames");
 		TextView tv = findViewById(R.id.component_names);
 		SpannableStringBuilder sb = new SpannableStringBuilder();
 		appendWithSpan(sb, "Component Names\n", new StyleSpan(Typeface.BOLD));
@@ -1407,6 +1416,7 @@ public class MainActivity extends AppCompatActivity implements
 		appendWithSpan(sb, "Scanner: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getScannerServiceComponentName(this).toString()).append("\n");
 		appendWithSpan(sb, "Milk Scanner: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getMilkScannerServiceComponentName(this).toString()).append("\n");
 		tv.setText(sb);
+		if(LOG_VERBOSE) Log.w(TAG, "getComponentNames DONE");
 	}
 
 
