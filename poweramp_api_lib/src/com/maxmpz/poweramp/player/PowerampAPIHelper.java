@@ -41,7 +41,9 @@ import org.eclipse.jdt.annotation.Nullable;
 public class PowerampAPIHelper {
 	private static final String TAG = "PowerampAPIHelper";
 	private static final boolean LOG = false;
-	
+	/** Used to test PA vs older service starting appropach */
+	private static final boolean DEBUG_ALWAYS_SEND_TO_SERVICE = false;
+
 	private static String sPowerampPak;
 	private static ComponentName sPowerampPSComponentName;
 	private static int sPowerampBuild;
@@ -228,6 +230,17 @@ public class PowerampAPIHelper {
 	public static void sendPAIntent(Context context, Intent intent, boolean sendToActivity) {
 		int buildNum = getPowerampBuild(context);
 		intent.putExtra(PowerampAPI.EXTRA_PACKAGE, context.getPackageName());
+
+		if(DEBUG_ALWAYS_SEND_TO_SERVICE) {
+			intent.setComponent(getPlayerServiceComponentNameImpl(context));
+			if(Build.VERSION.SDK_INT >= 26) {
+				context.startForegroundService(intent);
+			} else {
+				context.startService(intent);
+			}
+			return;
+		}
+
 		if(sendToActivity && buildNum >= 862) {
 			intent.setComponent(getApiActivityComponentName(context));
 			if(!(context instanceof Activity)) {
