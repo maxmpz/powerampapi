@@ -133,10 +133,17 @@ public interface TableDefs {
 		public static final @NonNull String FILE_TYPE = "file_type";
 
 		/**
-		 * Milliseconds<br>
+		 * Milliseconds, updated when track started<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		/**
+		 * Milliseconds, updated with play start time (=played_at) when and only if track is counted as played<br>
+		 * INTEGER
+		 * @since 900
+		 */
+		public static final @NonNull String PLAYED_FULLY_AT = TABLE + ".played_fully_at";
 
 		/**
 		 * Seconds<br>
