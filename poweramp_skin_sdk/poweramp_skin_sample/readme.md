@@ -1,4 +1,4 @@
-[TOC levels=3]:# "#Poweramp v3 Skin Sample"
+[TOC]: # "Poweramp v3 Skin Sample"
 
 # Poweramp v3 Skin Sample
 - [Introduction](#introduction)
@@ -115,7 +115,7 @@ This is standard Android theme style definition, with couple additional requirem
 <include file="@xml/skin_sample_subpage2"/>
 ...
 ```
-Included file should be a valid well formed xml. Include tag is supported at any level inside <skins>.
+Included file should be a valid well formed xml. Include tag is supported at any level inside &lt;skins&gt;.
 
 
 ### Automatic Dark/Light Modes
@@ -180,6 +180,7 @@ Options include:
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
     defaultValue="[optional default overlap style reference]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    allowMulti="[since 900 - boolean - true|false - optional, default is true. If set to false, disables conversion to the multiSwitch]"
 >
         <option
             name="[visible name]"
@@ -210,7 +211,27 @@ Options include:
 </popup>
 ```
 
-Radio/popup/seekbarOptions options support limited set of html tags inside **name** and **summary** attributes. These allow e.g. specifying color:
+* option with the multiple switchable inline options (since build 900). Only one selected value from the set of options is applied.  
+Note: &lt;popup&gt; option are automatically converted to &lt;multiSwitch&gt; unless allowMulti is set to false for the &lt;popup&gt;.
+The automatic conversion happens if number of &lt;popup&gt; options is less than 5, options don't have html and are shorter than 24 characters.
+Converted option won't have summary, if the summary contains formatting symbols (%s).
+```xml
+<multiSwitch
+    key="[preference unique key]"
+    name="[visible name]"
+    summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
+    defaultValue="[optional default overlap style reference]"
+    dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+>
+        <option
+            name="[visible name]"
+            overlapStyle="[overlap style reference, can be an empty string]"
+        />
+        ...
+</multiSwitch>
+```
+
+Radio/popup/seekbarOptions (but not multiSwitch) tags support limited set of html tags inside **name** and **summary** attributes. These allow e.g. specifying color:
 ```xml
 <option
     ...
