@@ -387,6 +387,7 @@ public interface TableDefs {
 
 		/**
 		 * (Always) short name of the folder. Always matches actual filesystem folder name<br>
+		 * For CUE - name of the file (either CUE or the target track with the embedded CUE)
 		 * TEXT
 		 * @since 828
 		 */
@@ -414,7 +415,7 @@ public interface TableDefs {
 
 		/**
 		 * This is the same as path for usual folders, but for the cue virtual folders, this is path + name<br>
-		 * Used for proper folders/subfolders sorting<br>
+		 * Used for proper folders/subfolders hiearachy sorting and it's ciritcal for correct hieararchy playing/reshuffle<br>
 		 * TEXT
 		 */
 		public static final @NonNull String SORT_PATH = "sort_path";
