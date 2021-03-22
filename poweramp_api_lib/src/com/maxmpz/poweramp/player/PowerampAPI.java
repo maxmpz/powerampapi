@@ -1404,42 +1404,8 @@ public final class PowerampAPI {
 			public static final int TYPE_MKA        = 21;
 			public static final int TYPE_TAK        = 22;
 			public static final int TYPE_STREAM     = 23;
-			public static final int LAST_TYPE       = 23;
-
-			@Deprecated
-			public static final int mp3 = 0;
-			@Deprecated
-			public static final int flac = 1;
-			@Deprecated
-			public static final int m4a = 2;
-			@Deprecated
-			public static final int mp4 = 3;
-			@Deprecated
-			public static final int ogg = 4;
-			@Deprecated
-			public static final int wma = 5;
-			@Deprecated
-			public static final int wav = 6;
-			@Deprecated
-			public static final int tta = 7;
-			@Deprecated
-			public static final int ape = 8;
-			@Deprecated
-			public static final int wv = 9;
-			@Deprecated
-			public static final int aac = 10;
-			@Deprecated
-			public static final int mpga = 11;
-			@Deprecated
-			public static final int amr = 12;
-			@Deprecated
-			public static final int _3gp = 13;
-			@Deprecated
-			public static final int mpc = 14;
-			@Deprecated
-			public static final int aiff = 15;
-			@Deprecated
-			public static final int aif = 16;
+			public static final int TYPE_MKV        = 24;
+			public static final int LAST_TYPE       = 24;
 		}
 
 		/**
