@@ -60,9 +60,6 @@ public class PluginMsgHelper {
 
 	public static int FLAG_BROADCAST_GROUP_MASK = 0x003F;
 
-	// Volume updates
-	public static int PA_BROADCAST_VOLUME       = 1;
-
 	public static int MSG_ID_BROADCAST          = -1;
 
 
