@@ -343,8 +343,15 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="8dp"
-				android:text="Folders"
-				/>
+				android:text="Retrieve Folders"
+			/>
+			<Button
+				android:onClick="openNowPlayingTracks"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:text="Retrieve Currently Playing Category"
+			/>
 
 			<Button android:id="@+id/queue"
 				android:layout_width="wrap_content"

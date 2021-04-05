@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2020 Maksim Petrov
+Copyright (C) 2011-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -43,7 +43,7 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.folders);
+		setContentView(R.layout.activity_folders);
 
 		Cursor c = this.getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build(),
 				new String[]{ "folders._id AS _id", "folders.name AS name", "folders.parent_name AS parent_name" }, null, null, "folders.name COLLATE NOCASE");
@@ -66,11 +66,6 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
 		Log.w(TAG, "folder long press=" + id);
 
-//		startService(new Intent(PowerampAPI.ACTION_API_COMMAND)
-//				.putExtra(PowerampAPI.COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-//				.putExtra(PowerampAPI.SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_SONGS)
-//				.setData(Uri.parse("content://com.maxmpz.audioplayer/folders/" + id)));
-
 		Uri.Builder uriB = PowerampAPI.ROOT_URI.buildUpon()
 				.appendEncodedPath("folders")
 				.appendEncodedPath(Long.toString(id))
@@ -89,6 +84,8 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
 		Log.w(TAG, "folder press=" + id);
 
-		startActivity(new Intent(this, FilesActivity.class).putExtra("id", id));
+		Uri filesUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").appendEncodedPath(Long.toString(id)).appendEncodedPath("files").build();
+
+		startActivity(new Intent(this, TrackListActivity.class).setData(filesUri));
 	}
 }

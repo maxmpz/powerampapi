@@ -65,7 +65,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.eq);
+		setContentView(R.layout.activity_eq);
 
 		((CheckBox)findViewById(R.id.dynamic)).setOnCheckedChangeListener(this);
 		findViewById(R.id.commit_eq).setOnClickListener(this);

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2020 Maksim Petrov
+Copyright (C) 2011-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -20,9 +20,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.apiexample;
 
-import com.maxmpz.poweramp.player.PowerampAPI;
-import com.maxmpz.poweramp.player.PowerampAPIHelper;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -35,29 +32,37 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class FilesActivity extends ListActivity implements OnItemClickListener {
-	private static final String TAG = "FilesActivity";
-	private long mFolderId;
+import com.maxmpz.poweramp.player.PowerampAPI;
+import com.maxmpz.poweramp.player.PowerampAPIHelper;
+import com.maxmpz.poweramp.player.TableDefs;
+
+public class TrackListActivity extends ListActivity implements OnItemClickListener {
+	private static final String TAG = "TrackListActivity";
+	private Uri mUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.files);
+		setContentView(R.layout.activity_tracklist);
 
-		mFolderId = getIntent().getLongExtra("id", 0);
+		mUri = getIntent().getData();
 
-		Cursor c = this.getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").appendEncodedPath(Long.toString(mFolderId)).appendEncodedPath("files").build(),
+		Cursor c = this.getContentResolver().query(mUri,
 				new String[]{ "folder_files._id AS _id",
-						"folder_files.name AS name",
-						"folder_files.title_tag AS title_tag"}, null, null, "folder_files.name COLLATE NOCASE");
+						TableDefs.Files.TITLE_TAG + " AS title_tag", // NOTE: AS ... is needed for SimpleCursorAdapter, we probably don't need for our real custom adapters
+						TableDefs.Artists.ARTIST + " AS artist"
+				},
+				null,
+				null,
+				null); // NOTE: using null as order argument - this results in user selected sorting - the same way as shown in Poweramp list
 		startManagingCursor(c);
 
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(
 				this, // Context.
 				android.R.layout.two_line_list_item,
 				c,
-				new String[] { "name", "title_tag" },
+				new String[] { "title_tag", "artist" },
 				new int[] {android.R.id.text1, android.R.id.text2},
 				0);
 		setListAdapter(adapter);
@@ -68,21 +73,16 @@ public class FilesActivity extends ListActivity implements OnItemClickListener {
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long id) {
-		Log.w(TAG, "file press=" + id);
-
-		Uri.Builder uriB = PowerampAPI.ROOT_URI.buildUpon()
-				.appendEncodedPath("folders")
-				.appendEncodedPath(Long.toString(mFolderId))
-				.appendEncodedPath("files")
+		Uri uri = mUri.buildUpon()
 				.appendEncodedPath(Long.toString(id))
-				.appendQueryParameter(PowerampAPI.PARAM_SHUFFLE, Integer.toString(PowerampAPI.ShuffleMode.SHUFFLE_SONGS));
+				.build();
+				;
+		Log.w(TAG, "onItemClick uri=>" + uri);
 
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-				.setData(uriB.build()),
+				.setData(uri),
 				MainActivity.FORCE_API_ACTIVITY
 		);
-
-		finish();
 	}
 }

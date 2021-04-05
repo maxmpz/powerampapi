@@ -1255,7 +1255,7 @@ public final class PowerampAPI {
 		public static final String ID = "id";
 
 		/**
-		 * "Real" id. In case of playlist entry, this is always resolved to Poweramp folder_files table row ID or System Library MediaStorage.Audio._ID<nt>
+		 * "Real" id. In case of playlist entry, this is always resolved to Poweramp folder_files table row ID<nt>
 		 * {@code long}
 		 */
 		public static final String REAL_ID = "realId";

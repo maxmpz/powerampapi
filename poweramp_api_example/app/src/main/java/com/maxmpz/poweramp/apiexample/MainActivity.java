@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2020 Maksim Petrov
+Copyright (C) 2011-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -700,6 +700,23 @@ public class MainActivity extends AppCompatActivity implements
 				getPref();
 				break;
 		}
+	}
+
+	public void openNowPlayingTracks(View view) {
+		if(mCurrentTrack != null) {
+			Uri catUri = mCurrentTrack.getParcelable(PowerampAPI.Track.CAT_URI);
+			if(catUri != null) {
+				// NOTE: Poweramp may include query parameters such as shs=[SHUFFLE MODE], etc. into the CAT_URI
+				// To avoid shuffled and otherwise modified list, we're clearing query parameters here
+				Uri uri = catUri.buildUpon().clearQuery().build();
+
+				Log.w(TAG, "openNowPlayingTracks catUri=" + catUri + " uri=>" + uri);
+
+				startActivity(new Intent(this, TrackListActivity.class).setData(uri));
+				return; // Done here
+			}
+		}
+		Toast.makeText(this, "No current category available", Toast.LENGTH_SHORT).show();
 	}
 
 	public void seekBackward10s(View view) {

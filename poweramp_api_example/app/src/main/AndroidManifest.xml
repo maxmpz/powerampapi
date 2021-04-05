@@ -31,8 +31,8 @@
 			android:label="Folders" />
 
 		<activity
-			android:name=".FilesActivity"
-			android:label="Files" />
+			android:name=".TrackListActivity"
+			android:label="Tracks" />
 
 		<!--
 			This receiver is registered in manifest and can be used to trigger some processing based on Poweramp broadcast intents.<br>
