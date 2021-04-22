@@ -1142,11 +1142,11 @@ public final class PowerampAPI {
 		 */
 		public static final int SHUFFLE_NONE		   = 0;
 		/**
-		 * All songs global category shuffle
+		 * "All Songs" global category shuffle
 		 */
 		public static final int SHUFFLE_ALL			   = 1;
 		/**
-		 * Just songs from current category shuffled
+		 * Just songs from current category shuffled, categories in order
 		 */
 		public static final int SHUFFLE_SONGS		   = 2;
 		/**
@@ -1154,7 +1154,7 @@ public final class PowerampAPI {
 		 */
 		public static final int SHUFFLE_CATS		   = 3;
 		/**
-		 * Songs shuffled, categories in order
+		 * Songs shuffled, categories are also shuffled
 		 */
 		public static final int SHUFFLE_SONGS_AND_CATS = 4;
 		/**
@@ -1163,7 +1163,7 @@ public final class PowerampAPI {
 		public static final int MAX_SHUFFLE			   = 4;
 		
 		/**
-		 * Pseudo mode just for UI, not used as mode directly (SHUFFLE_SONGS is used)
+		 * Pseudo mode just for the UI, not used as mode directly (SHUFFLE_SONGS is used internally)
 		 */
 		public static final int SHUFFLE_SONGS_HIER     = 5;
 		
