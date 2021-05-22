@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.poweramp.v3.sampleskin"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -23,7 +23,7 @@ android {
     }
     aaptOptions {
         additionalParameters "--stable-ids", "stable-ids.txt", "--emit-ids", "stable-ids.txt", "--package-id", "0x80",
-                                "-I", "../../../audioplayer/dist/893-uni/Poweramp-build-893-uni.apk"
+                                "-I", "../../../audioplayer/dist/905-uni/Poweramp-build-905-uni.apk"
     }
 
     useLibrary 'android.test.runner'
