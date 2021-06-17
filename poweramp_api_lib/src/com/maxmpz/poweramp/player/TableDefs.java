@@ -1540,22 +1540,43 @@ public interface TableDefs {
 		public static final @NonNull String _ID = TABLE + "._id";
 
 		/**
-		 * Predefined preset number (see res/values/arrays/eq_preset_labels) or NULL for custom preset<br>
+		 * Predefined preset number (see res/values/arrays/eq_preset_labels) or NULL for a custom preset<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String PRESET = "preset";
 
 		/**
-		 * Eq preset string<br>
-		 * TEXT 
+		 * Eq preset string. Either this or data_blob is used for the preset data<br>
+		 * The text version of data is supported for the graphic mode only (since 906)
+		 * TEXT
 		 */
 		public static final @NonNull String _DATA = TABLE + "._data";
+
+		/**
+		 * Eq preset string. Either this or _data is used for the preset data<br>
+		 * The blob data format supports both graphic and parametric modes
+		 * BLOB
+		 * @since 906
+		 */
+		public static final @NonNull String DATA_BLOB = TABLE + ".data_blob";
+		
+		/**
+		 * 1 if preset is parametric<br>
+		 * INTEGER (boolean)
+		 */
+		public static final @NonNull String PARAMETRIC = "parametric";
 
 		/**
 		 * Custom preset name or null for predefined preset<br>
 		 * TEXT
 		 */
 		public static final @NonNull String NAME = TABLE + ".name";
+
+		/**
+		 * Extra sort field<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String SORT = "sort";
 
 		/**
 		 * 1 if preset is bound to speaker, 0 otherwise<br>

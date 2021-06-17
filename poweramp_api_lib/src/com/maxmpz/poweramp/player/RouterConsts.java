@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2020 Maksim Petrov
+Copyright (C) 2011-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -25,7 +25,7 @@ import android.annotation.TargetApi;
 import android.media.AudioDeviceInfo;
 
 public interface RouterConsts {
-	// Sync with output-internal.h
+	// Sync with plugininterface-output.h
 	public static final int DEVICE_HEADSET    = 0;
 	public static final int DEVICE_SPEAKER    = 1;
 	public static final int DEVICE_BT         = 2;
@@ -66,6 +66,11 @@ public interface RouterConsts {
 				case DEVICE_CHROMECAST:
 					return AudioDeviceInfo.TYPE_IP; // 20
 			}
+		}
+		
+		/** @return true if the device is a valid known device (excluding {@link #DEVICE_UNKNOWN}) */ 
+		public static boolean isValidKnownDevice(int device) {
+			return device >= 0 && device < DEVICE_COUNT;
 		}
 	}
 }
