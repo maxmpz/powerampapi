@@ -150,7 +150,6 @@ public class PeqAPIHelper {
 	 * @param sendToActivity if true, we're sending intent to the activity
 	 */
 	public static void sendPAIntent(Context context, Intent intent, boolean sendToActivity) {
-		int buildNum = getPowerampBuild(context);
 		intent.putExtra(PeqAPI.EXTRA_PACKAGE, context.getPackageName());
 		if(sendToActivity) {
 			intent.setComponent(getApiActivityComponentName(context));
