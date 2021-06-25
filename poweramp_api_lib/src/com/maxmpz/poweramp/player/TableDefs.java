@@ -1563,6 +1563,7 @@ public interface TableDefs {
 		/**
 		 * 1 if preset is parametric<br>
 		 * INTEGER (boolean)
+		 * @since 906
 		 */
 		public static final @NonNull String PARAMETRIC = "parametric";
 
@@ -1575,8 +1576,28 @@ public interface TableDefs {
 		/**
 		 * Extra sort field<br>
 		 * INTEGER
+		 * @since 906
 		 */
-		public static final @NonNull String SORT = "sort";
+		public static final @NonNull String SORT = TABLE + ".sort";
+
+		/**
+		 * Seconds. Updated automatically when name, _data, data_blob, parametric are updated, other fields ignored<br>
+		 * INTEGER
+		 * @since 906
+		 */
+		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
+
+		/**
+		 * BLOB
+		 * @since 906
+		 */
+		public static final @NonNull String SHARE_BLOB = "share_blob";
+
+		/**
+		 * INTEGER
+		 * @since 906
+		 */
+		public static final @NonNull String SHARE_BLOB_UPDATED_AT = "share_blob_updated_at";
 
 		/**
 		 * 1 if preset is bound to speaker, 0 otherwise<br>
