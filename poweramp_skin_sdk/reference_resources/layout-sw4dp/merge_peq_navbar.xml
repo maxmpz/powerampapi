@@ -67,6 +67,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					w:stateBusId="@id/bus_app"
 					w:updateMsgId="@id/msg_version_info_changed"
 					w:labelStateId="@id/state_app_edition_name"
+					w:iconStateId="@id/state_app_edition_icon"
 				/>
 				
 				<com.maxmpz.audioplayer.widget.MediaRouteButton

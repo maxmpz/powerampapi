@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -68,27 +68,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_button_menu" 
 		style="?ItemPopupMenu_scene_item_menu" 
 	/>
-	
-
-	<!--	
-	<com.maxmpz.widget.player.DSPLinearKnob
-		style="?EqPreampLinearKnob"
-		
-		android:layout_width="0px"
-		w:layout_widthPercent="75%"
-		android:layout_height="40dp"
-
-		w:valueFormat="%.0f%%"
-		w:valueFormatMin="0"
-		w:valueFormatMax="100"
-		android:text="@string/volume"
-		android:orientation="horizontal"
-
-		w:param="@id/dsp_master_volume"
-		w:updateMsgId="@id/msg_dsp_other_changed"
-		
-		w:holeStartColor="#f00"
-		w:holeColorStartPoint="0.5"
-	/>
-	-->		
 </com.maxmpz.widget.base.SceneFastLayout>

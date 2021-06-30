@@ -38,6 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_navbar">10dp</item>
 		<item name="corners_searchbar">10dp</item>
 		<item name="corners_mini">5dp</item>
+		<item name="corners_equ_frs">5dp</item>
 		<item name="corners_large">30dp</item>
 		<item name="corners_small">3dp</item>
 		<item name="corners_knob_thumb">@dimen/knob_thumb_radius</item>

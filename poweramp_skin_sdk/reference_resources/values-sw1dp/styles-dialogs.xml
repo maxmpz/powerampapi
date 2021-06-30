@@ -133,7 +133,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- NOTE: optically the same as padding left/right due to optical extra padding on text view -->
 		<!-- NOTE: this is always consumed by title layout view, even if it's gone - as this is set as it's marginTop and those consumes height -->
-		<item name="dialogPaddingTop">18dp</item>
+		<item name="dialogPaddingTop">16dp</item>
 		<item name="dialogContentPaddingLR">24dp</item>
 		<item name="dialogContentPaddingTop">12dp</item>
 		<item name="dialogContentPaddingBottom">0dp</item><!-- NOTE: usually it's 0, but can be overridden, e.g. for vertical_buttons -->
@@ -334,14 +334,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: sp to scale with the text better. Wrap content doesn't work well here due to icon + text vertically aligned
 		     REVISIT: this makes only 2 lines max allowed (each line can fit only 1 line) -->
 		<!--<item name="android:layout_height">42sp</item>-->
+		<item name="android:minWidth">300dp</item>
+		<item name="android:minHeight">42sp</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_flexAxis">vertical</item>
 		<item name="android:layout_marginTop">5dp</item>
 		<item name="android:layout_marginBottom">5dp</item>
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">6dp</item>
-		<item name="android:minWidth">300dp</item>
-		<item name="android:minHeight">48sp</item>
 		<item name="android:visibility">gone</item>
 	</style>
 	
@@ -353,7 +353,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">42sp</item>
 		<item name="android:layout_marginRight">16dp</item>
 		<item name="android:gravity">center_vertical</item>
-		<!--<item name="android:layout_gravity">center_vertical</item>-->
 		<item name="android:drawable">?check_48dp</item><!-- Also ?fail_48dp can be used -->
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableOnly">true</item>
@@ -366,6 +365,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">7sp</item>
 		<item name="android:textAppearance">?DialogToastLine1_Text</item>
+		<item name="android:visibility">gone</item><!-- NOTE: should be initially gone to avoid expanding the parent layout -->
 	</style>
 	<style name="DialogToastLine1_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">13sp</item>
@@ -380,6 +380,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">2sp</item>
 		<item name="android:layout_marginBottom">7sp</item>
 		<item name="android:textAppearance">?DialogToastLine2_Text</item>
+		<item name="android:visibility">gone</item><!-- NOTE: should be initially gone to avoid expanding the parent layout -->		
 	</style>
 	<style name="DialogToastLine2_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">11.5sp</item>
@@ -394,6 +395,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_gravityTarget">@+id/dialog_toast_img</item>
 		<item name="layout_attachLeft">@+id/dialog_toast_img</item>
 		<item name="android:textAppearance">?DialogToastLineOnly1_Text</item>
+		<item name="android:visibility">gone</item><!-- NOTE: should be initially gone to avoid expanding the parent layout -->
 	</style>
 	<style name="DialogToastLineOnly1_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">13sp</item>
@@ -522,7 +524,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="dialog_AlertDialogActivity" parent="BottomsheetAlertDialog"/>
 	
+	<!-- NOTE: supporting just normal centered dialog currently -->
+	<style name="dialog_AlertDialogActivity_centered" parent="CenteredAlertDialog"/>
+	
+	<!-- NOTE: also used for custom view with no padding -->
 	<style name="dialog_AlertDialogActivity_list" parent="BottomsheetAlertDialog">
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
+		<item name="dragByNestedScroll">false</item>
+	</style>
+	<!-- NOTE: also used for custom view with no padding -->
+	<style name="dialog_AlertDialogActivity_list_centered" parent="CenteredAlertDialog">
 		<item name="DialogContent">@style/DialogContentNoPadding</item>
 		<item name="dragByNestedScroll">false</item>
 	</style>

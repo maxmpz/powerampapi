@@ -35,7 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="CenterDialogFrame_maxWidth">380dp</dimen>
 	
-	<dimen name="TopToastContainer_layout_height">120dp</dimen>
+	<dimen name="TopToastContainer_layout_height">140dp</dimen><!-- Ensure 2-3 line fits -->
 	<dimen name="TopToastContainer_scenes_non_main_layout_height">146dp</dimen>
 	<dimen name="TopToastFrame_maxWidth">300dp</dimen>
 	<dimen name="TopToastFrame_paddingLR">16dp</dimen>
@@ -63,5 +63,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<integer name="selector_fade_ms">150</integer>
 	
-	<dimen name="ListMenu_drawableSize">20dp</dimen>	
+	<dimen name="ListMenu_drawableSize">20dp</dimen>
+	<dimen name="knob_thumb_radius">9dp</dimen>	
 </resources>

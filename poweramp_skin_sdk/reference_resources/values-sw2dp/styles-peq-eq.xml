@@ -156,6 +156,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="labelStyle">@style/PeqEqCompressKnobLayoutLabel</item>
 		<item name="valueLabelStyle">@style/PeqEqCompressKnobLayoutValue</item>
 		<item name="valueLabelPressedAnimStyle">@style/PeqEqCompressKnobLayoutLabelAnim</item>
+		<item name="lockLabelStyle">?EqLockLabelStyle</item>
 	</style>
 	<style name="PeqEqCompressKnobLayoutKnob" parent="EqSmallResizableRoundKnob"/>
 	<style name="PeqEqCompressKnobLayoutLabel" parent="EqResizableRoundKnobLabel"/>
@@ -183,7 +184,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PeqVolumeKnobLayout" parent="EqVolumeKnobLayout">
 	</style>
 	
-	
+	<style name="PeqLockLabel">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">?EqKnobValueLarger_Text</item>
+		<item name="layout_gravityTarget">@id/_knob</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:id">@id/_lock_label</item>
+		<item name="android:translationZ">10dp</item>
+		<item name="android:drawable">@drawable/lock_24dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:padding">4dp</item>
+		<item name="android:background">@drawable/ripple_rounded_medium</item>
+		<item name="android:elevation">?control_elevation</item>
+		<item name="android:clickable">true</item>
+		<item name="animOnClick">true</item>
+		<item name="busId">@id/bus_app_cmd</item>
+		<item name="msgId">@id/cmd_app_open_settings</item>
+		<item name="string">peq_singlepane#buy_stub</item>
+	</style>
+		
 	<!-- Reverb -->
 	<!-- NOTE: not used -->
 	<style name="PeqEqReverbParamKnobLayout" parent="PeqEqCompressKnobLayout">

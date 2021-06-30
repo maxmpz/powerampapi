@@ -21,6 +21,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res-auto">
 	<style name="Base_ActivityTheme_Black" parent="Base_ActivityTheme_Default">
+		<item name="OptionEquFRSRounded">@style/OptionEquFRSRounded_Dark</item>
+		
 		<!-- NOTE: any alpha value in this color enables transparent Android status bar and appropriate Poweramp layout changes, i.e. layout spans behind that bar.
 			 Poweramp places id/status_bar_bg view under status bar, with statusBarBg drawable, which can be any drawable, not just color.
 			 Use either android:statusBarColor for just color, or statusBarBg, but avoid using both to limit overdraw (set other to transparent/#0000)-->

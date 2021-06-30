@@ -36,4 +36,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PopupButtons_paddingLeft">11dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
 	
 	<dimen name="PopupLayoutList_height">270dp</dimen>
+	
+	<dimen name="TopToastFrame_maxWidth">380dp</dimen>
 </resources>

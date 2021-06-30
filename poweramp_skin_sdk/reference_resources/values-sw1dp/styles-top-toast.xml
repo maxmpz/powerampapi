@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopToastContainer_scenes_non_main">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">@dimen/TopToastContainer_scenes_non_main_layout_height</item><!-- This defines top toast position -->
+		<item name="android:layout_height">@dimen/TopToastContainer_scenes_non_main_layout_height</item><!-- This defines top-most possible toast position -->
 		<item name="layout_attachBottom">parent</item>
 	</style>
 		
@@ -71,10 +71,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopToastFrame_scene_expandedBase" parent="TopToastFrame">
 		<item name="android:visibility">visible</item>
 			
-		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachBottom">inset</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_marginBottom">48dp</item>
 			
 		<item name="scale">1</item>
 	</style>

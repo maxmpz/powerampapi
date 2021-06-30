@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -52,20 +52,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 			<SceneParams w:scene="@+id/scene_expanded"
 				w:baseScene="defaultScene"
+				w:applyEvenIfGone="true"
 			/>
 			<SceneParams w:scene="@+id/scene_expanded_no_icon" w:scene_2="@+id/scene_collapsed_no_icon"
 				style="?TopToastTitle_no_icon"
+				w:applyEvenIfGone="true"
 			/>
 			
 			<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
 				style="?TopToastLine2"
 			/>
-			<SceneParams w:scene="defaultScene"/><!-- NOTE: needed so line2 scene is properly manipilated by code -->
 			<SceneParams w:scene="@+id/scene_expanded"
 				w:baseScene="defaultScene"
+				w:applyEvenIfGone="true"
 			/>
 			<SceneParams w:scene="@+id/scene_expanded_no_icon" w:scene_2="@+id/scene_collapsed_no_icon"
 				style="?TopToastLine2_no_icon"
+				w:applyEvenIfGone="true"
 			/>
 		</com.maxmpz.widget.app.ToastFrameLayout>
 		<SceneParams w:scene="@+id/scene_collapsed_no_icon"

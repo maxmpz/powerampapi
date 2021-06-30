@@ -25,7 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<style name="EqMilkFrsBase">
 		<item name="bgColor">?colorBgPrimary</item>
-		<item name="roundRectClipRadius">?corners_mini</item><!-- Overridden -->
+		<item name="roundRectClipRadius">?corners_equ_frs</item><!-- This can be also overridden by OptionEquFRSRounded* -->
 		<item name="presetUri">?EqMilkFrs_presetUri</item>
 	</style>
 </resources>

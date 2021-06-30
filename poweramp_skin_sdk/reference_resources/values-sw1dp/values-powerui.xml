@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -134,6 +134,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_app_last_non_temp_activity"/><!-- object. Check for isFinishing() -->
 	<item type="id" name="state_app_last_activity"/><!-- object. Check for isFinishing() -->
 	<item type="id" name="state_app_last_alert"/><!-- object -->
+	<item type="id" name="state_app_settings_shown"/><!-- boolean -->
 	
 	<item type="id" name="msg_app_active_activities_change"/><!-- bus_app, arg1 => num of active activities, arg2 => boolean STATE_TRUE if it's activity start, false otherwise -->
 	
@@ -160,7 +161,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_view_cache"/><!-- obj=>ViewCache -->
 	<item type="id" name="state_list_current_uri"/><!-- (main list) obj=>Uri which describes current loaded list state -->
 	<item type="id" name="state_list_current_pos"/>
-	<!-- <item type="id" name="state_list_aa_cursor"/> --><!-- obj=>BaseCursorQueryArgs -->
+
+	<item type="id" name="state_list_preset_rename_allowed"/><!-- boolean, currently for EqPrestPopupListLayout only -->
+	<item type="id" name="state_list_preset_delete_allowed"/><!-- boolean, currently for EqPrestPopupListLayout only -->
 
 	<!-- float, also a msg. Msg arg1=float ratio -->
 	<item type="id" name="state_list_transition_ratio"/>
@@ -180,6 +183,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_gui_show_toast"/><!-- bus_gui, arg1 = icon res, arg2 = optional duration ms (>0), obj = CharSequence or array[2] of CharSequence. Public -->
 	<item type="id" name="msg_toast_closed"/><!-- bus_gui, arg1 => id of the toast, arg2 => true if closed by user, obj => same CharSequence/[] that was used to open toast. NOTE: can be sent by different toasts -->
 	<item type="id" name="cmd_gui_close_toast"/><!-- bus_gui. Closes toast/all toasts. If obj is provided, only the text-matching toast CharSequence[2] is closed -->
+	<item type="id" name="cmd_gui_show_upper_toast"/><!-- bus_gui -->
 	
 	<item type="id" name="cmd_list_select_all"/>
 	<item type="id" name="cmd_list_select_none"/>

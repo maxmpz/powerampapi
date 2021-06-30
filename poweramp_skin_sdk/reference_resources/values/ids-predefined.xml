@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,7 +23,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="_knob"/>
 	<item type="id" name="_label"/>
 	<item type="id" name="_value_label"/>
+	<item type="id" name="_lock_label"/>
 	<item type="id" name="_skin_option"/>
+	<item type="id" name="_preamp"/>
+	<item type="id" name="_param"/>
+	<item type="id" name="_gain"/>
+	<item type="id" name="_q"/>
+	<item type="id" name="_q_label"/>
+	<item type="id" name="_q_value"/>
+	<item type="id" name="_placeholder1"/>
+	<item type="id" name="_placeholder2"/>
+	<item type="id" name="_lr"/>
+	<item type="id" name="_type"/>
+	<item type="id" name="_freq"/>
+	<item type="id" name="_controls"/>
+	<item type="id" name="_empty_controls"/>	
+	<item type="id" name="_freq_value"/>
+	<item type="id" name="_freq_label_and_value"/>
+	<item type="id" name="_q_label_and_value"/>
 	<item type="id" name="menu_more_button"/>
 	<item type="id" name="perm_panel"/>
 	<item type="id" name="track_seek" />
@@ -33,8 +50,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="behavior_help"/>
 	<item type="id" name="search"/>
 	<item type="id" name="link"/>
-	
-	<!-- Styles -->
+	<item type="id" name="select"/>
+	<item type="id" name="add_new"/>
 	<item type="id" name="buttons1" />
 	<item type="id" name="button1"/>
 	<item type="id" name="button2"/>
@@ -54,18 +71,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cat_image"/>
 	<item type="id" name="num"/>
 	<item type="id" name="frequency_response_scroller"/>
+	<item type="id" name="tags_edit"/>
+	<item type="id" name="frs_info_label"/>
+	<item type="id" name="equ_button"/>
+	<item type="id" name="tone_panel"/>
+	<item type="id" name="save_button"/>
+	<item type="id" name="reset_button"/>
+	<item type="id" name="mono_button"/>
 	
 	<!-- Some old ids keeped for compatibility with skins -->
 	
 	<!--
-	<item type="id" name="" />
-	<item type="id" name="" />
-	<item type="id" name="" />
-	<item type="id" name="" />
-	<item type="id" name="" />
-	<item type="id" name="" />
-	<item type="id" name="" />
-	<item type="id" name="" />
-	<item type="id" name="" />
+	<item type="id" name=""/>
+	<item type="id" name=""/>
+	<item type="id" name=""/>
+	<item type="id" name=""/>
+	<item type="id" name=""/>
+	<item type="id" name=""/>
+	<item type="id" name=""/>
+	<item type="id" name=""/>
+	<item type="id" name=""/>
 	>-->
 </resources>

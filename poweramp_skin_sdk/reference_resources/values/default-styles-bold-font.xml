@@ -68,6 +68,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textAppearance">@style/textAppearance_BoldFont</item>
 		<item name="android:textAppearanceButton">@style/textAppearanceButton_BoldFont</item><!-- Apply font for few buttons which use textAppearanceButton, e.g. dialog buttons -->
 		<item name="android:textAppearanceMediumInverse">@style/textAppearanceMediumInverse_BoldFont</item><!-- Used by e.g. TopListSearchEditText and other possible EditTexts -->
+		<item name="android:textAppearanceMedium">@style/textAppearanceMedium_BoldFont</item><!-- Radio buttons in alert dialog -->
 		<item name="android:textAppearanceLargePopupMenu">@style/textAppearanceLargePopupMenu_BoldFont</item><!-- Used by some popups, like Eq Preset autocomplete --> 
 		<item name="Dialog_textAppearance">@style/Dialog_textAppearance_BoldFont</item>
 		<item name="Dialog_textAppearanceSmall">@style/Dialog_textAppearanceSmall_BoldFont</item><!-- Used by alert dialog messages -->
@@ -154,6 +155,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="textAppearanceMediumInverse_BoldFont" parent="TextAppearance.AppCompat.Medium.Inverse">
 		<item name="android:fontFamily">?BoldFont_font</item>
 	</style>
+	<style name="textAppearanceMedium_BoldFont" parent="TextAppearance.AppCompat.Medium">
+		<item name="android:fontFamily">?BoldFont_font</item>
+	</style>
 	<style name="textAppearanceLargePopupMenu_BoldFont" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
 		<item name="android:fontFamily">?BoldFont_font</item>
 	</style>
@@ -229,8 +233,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="NavbarExtensionLogoLabel_Text_BoldFont" parent="NavbarExtensionLogoLabel_Text">
+		<item name="android:textStyle">normal</item>
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/moderate0_AltFont_textSize</item>
 	</style>
 	
 	<style name="NavbarExtensionMenuLine_Text_BoldFont" parent="NavbarExtensionMenuLine_Text">

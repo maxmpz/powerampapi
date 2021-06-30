@@ -45,7 +45,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">@+id/preset_button</item>
 		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginRight">4dp</item>
 	</style>
 	
 	<style name="EqFrequencyResponseScroller" parent="EqFrequencyResponseScrollerBase">
@@ -55,8 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">parent</item>
 		<item name="layout_attachRight">@+id/preset_button</item>
 		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">0dp</item>
-
+		<item name="android:layout_marginRight">4dp</item>
 	</style>
 		
 	<style name="EqInfo" parent="EqInfoBase">
@@ -69,7 +68,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 		
 		
-	
 	<style name="EqEquPresetButtonLayout" parent="EqPresetButtonLayoutBase">
 		<item name="android:layout_marginLeft">4dp</item>
 		<item name="android:layout_marginRight">4dp</item>
@@ -460,4 +458,97 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="EqToneKnobLayoutBaseLand" parent="EqToneKnobLayoutBase">
 	</style>
+	
+	
+	<!-- EqParam -->
+	
+	<style name="EqParamPlaceholder1">
+		<item name="android:id">@+id/_placeholder1</item>
+		
+		<item name="android:layout_height">10dp</item>
+		<item name="android:layout_width">100dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+	</style>
+	<style name="EqParamPlaceholder2">
+		<item name="android:id">@+id/_placeholder2</item>
+		
+		<item name="android:layout_height">10dp</item>
+		<item name="android:layout_width">100dp</item>
+		<item name="layout_attachLeft">@+id/_placeholder1</item>
+	</style>
+	
+	<style name="EqParamQRoundKnob" parent="EqSmallResizableRoundKnob">
+		<item name="android:id">@+id/_q</item>
+
+		<item name="android:layout_width">90dp</item>
+		<item name="layout_attachTop">45%</item>
+		<item name="layout_attachBottom">@+id/_q_label_and_value</item>
+		<item name="android:layout_marginBottom">12dp</item>
+		<item name="layout_gravityTarget">@+id/_placeholder2</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		
+		<item name="valueLabel">@null</item>
+		<item name="dependentLabel">@null</item>
+	</style>
+
+	<style name="EqParamQLabelAndValue" parent="KnobLabelAndValueBase">
+		<item name="android:id">@+id/_q_label_and_value</item>
+		
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_gravityTarget">@id/_placeholder2</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginBottom">2dp</item>
+	</style>
+	
+	
+	<style name="EqParamFreqRoundKnob" parent="EqSmallResizableRoundKnob">
+		<item name="android:id">@+id/_freq</item>
+		<item name="android:layout_width">90dp</item>
+
+		<item name="layout_attachTop">45%</item>
+		<item name="layout_attachBottom">@+id/_freq_label_and_value</item>
+		<item name="android:layout_marginBottom">12dp</item>
+		<item name="layout_gravityTarget">@+id/_placeholder1</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+				
+		<item name="valueLabel">@null</item>
+		<item name="dependentLabel">@null</item>
+	</style>
+	
+	<style name="EqParamFreqLabelAndValue" parent="KnobLabelAndValueBase">
+		<item name="android:id">@+id/_freq_label_and_value</item>
+		
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_gravityTarget">@id/_placeholder1</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginBottom">2dp</item>
+	</style>
+		
+	<style name="EqParamLRPopupButtonLayout" parent="EqParamLRPopupButtonLayoutBase">
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">@+id/_type</item>
+
+		<item name="layout_gravityTarget">@+id/_placeholder1</item>
+		<item name="android:layout_gravity">center_horizontal|top</item>
+		<item name="layout_consumeSpace">@null</item>
+		
+		<item name="android:layout_marginBottom">8dp</item>
+		
+	</style>
+	
+	<style name="EqParamTypePopupButtonLayout" parent="EqParamTypePopupButtonLayoutBase">
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">@+id/_freq</item>
+
+		<item name="layout_gravityTarget">@+id/_placeholder1</item>
+		<item name="android:layout_gravity">center_horizontal|top</item>
+		<item name="layout_consumeSpace">@null</item>
+				
+		<item name="android:layout_marginBottom">16dp</item>
+	</style>
+
 </resources>

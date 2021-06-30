@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -77,7 +77,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="vis_w_ui_32dp"/>
 	<attr name="vis_32dp"/>
 	
-	
 	<attr name="vis_lock_24dp"/>
 	<attr name="vis_advance_24dp"/>
 	<attr name="vis_advance_by_time_24dp"/>
@@ -105,7 +104,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="clear" format="reference"/>
 	<attr name="redo" format="reference"/>
 	<attr name="export" format="reference"/>
+	<attr name="import_24dp" format="reference"/>
 	<attr name="bookmark" format="reference"/>
+	<attr name="share_24dp" format="reference"/>
 
 	<attr name="clear_q_24dp" format="reference"/>
 	<attr name="artists_24dp" format="reference"/>
@@ -136,8 +137,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="shuffle_24dp" format="reference"/>
 	<attr name="stream_24dp" format="reference"/><!-- This one should be preferable rendered for at least xxx and xx hdpi densities for best scaling -->
 	
+	<attr name="l_plus_r_ch_24dp" format="reference"/>
+	<attr name="l_ch_24dp" format="reference"/>
+	<attr name="r_ch_24dp" format="reference"/>
+	
+	<attr name="low_pass_24dp" format="reference"/>
+	<attr name="high_pass_24dp" format="reference"/>
+	<attr name="band_pass_24dp" format="reference"/>
+	<attr name="peaking_band_24dp" format="reference"/>
+	<attr name="lsf_24dp" format="reference"/>
+	<attr name="hsf_24dp" format="reference"/>
+	
 	<attr name="meta_next_12dp" format="reference"/>
 	<attr name="meta_songs_12dp" format="reference"/>
+	
+	<attr name="list_drag_24dp" format="reference"/>
+	<attr name="list_drag_hor_24dp" format="reference"/>
 	
 	<attr name="defaultLowResAA" format="reference"/><!-- Default AA image. Strictly 512x512 bitmap -->
 	<attr name="defaultHiResAA" format="reference"/><!-- Default AA image. Strictly 1024x1024 bitmap -->
@@ -149,6 +164,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="milk_advance_enum" format="reference"/>
 	<attr name="settings_target_audio" format="string"/>
 	<attr name="settings_target_equ" format="string"/>
+	
+	<attr name="logo_navbar" format="reference"/>
+	
+	<attr name="EqLockLabelStyle" format="reference"/>
 	
 	<!-- -->
 		
@@ -581,6 +600,43 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="dashesPhase" format="dimension"/>
 	</declare-styleable>
 		
+	<declare-styleable name="KnobLabelAndValue">
+		<attr name="labelBackground" format="reference|color"/>
+		<attr name="labelBackgroundPaddingLeft" format="dimension"/>
+		<attr name="labelBackgroundPaddingRight" format="dimension"/>
+		<attr name="labelBackgroundPaddingTop" format="dimension"/>
+		<attr name="labelBackgroundPaddingBottom" format="dimension"/>
+		<attr name="labelBackgroundAnimZoom" format="float"/>
+		<attr name="labelBackgroundAnimZoomY" format="float"/>
+		
+		<!-- Padding between value and text -->
+		<attr name="valuePadding" format="dimension"/>
+		
+		<attr name="valueTextAppearance" format="reference"/>
+		<attr name="valueAnimZoom" format="float"/>
+		<attr name="valueAnimTime" format="integer"/>
+		
+		<!-- If set, dialog for manual entry is shown -->
+		<attr name="dialogTitle" format="string"/>
+		<attr name="dialogMsg" format="string"/>
+				
+		<!-- Default is vertical. Appropriate inner drawables should be also provided rotated as needed -->
+		<attr name="android:orientation"/>
+		<!-- Default is center_horizontal. left and center_horizontal supported only -->
+		<attr name="android:gravity"/>
+		
+		<attr name="android:text"/>
+		<attr name="android:textAppearance"/>
+		<attr name="android:textSize"/>
+		<attr name="android:textColor"/>
+		<attr name="android:textStyle"/>
+		<attr name="android:fontFamily" />
+		<attr name="android:typeface" />
+		<attr name="android:textAllCaps" />
+		<attr name="textSizeMultiplierPref"/>
+	</declare-styleable>
+	
+	<!-- NOTE: all KnobLabelAndValue attributes are also supported -->
 	<declare-styleable name="LinearKnob">
 		<attr name="thumb" format="reference" />
 		<!-- Optional thumb width, required for cases when drawable is xml and it's not possible to calculate desired size from that drawable -->
@@ -609,23 +665,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Sets color starting point, e.g. 0.5 for middle as for Preamp -->
 		<attr name="holeColorStartPoint" format="float"/>
 		
-		<!-- <attr name="android:disabledAlpha"/> -->
 		<!-- Vertical padding between linear knob text and knob drawables -->
 		<attr name="textPadding" format="dimension"/>
-		<!-- Vertical padding between value and text -->
-		<attr name="valuePadding" format="dimension"/>
-		
-		<attr name="labelBackground" format="reference"/>
-		<attr name="labelBackgroundPaddingLeft" format="dimension"/>
-		<attr name="labelBackgroundPaddingRight" format="dimension"/>
-		<attr name="labelBackgroundPaddingTop" format="dimension"/>
-		<attr name="labelBackgroundPaddingBottom" format="dimension"/>
-		<attr name="labelBackgroundAnimZoom" format="float"/>
 		
 		<attr name="valueFormat" format="string"/>
-		<attr name="valueTextAppearance" format="reference"/>
-		<attr name="valueAnimZoom" format="float"/>
-		<attr name="valueAnimTime" format="integer"/>
 		<attr name="valueFormatMin" format="float"/>
 		<attr name="valueFormatMax" format="float"/>
 		<!-- The "middle" value to use for visible value scaling. This middle position can be anywhere within round  knob range, as defined by valueFormatMidPos.
@@ -634,19 +677,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- The actial "middle" position location in internal scale of knob: [0..1].
 		     NOTE: this doesn't affect actual knob value which is always uniformally in range [0..1] -->
 		<attr name="valueFormatMidPos" format="float"/>
+		
 		<!-- If true, special lines background is rendered, android:background is ignored. EqLinesDrawable attributes can be used right in EqKnobsFastLayout styles -->
 		<attr name="linesBackground"/>
-		<!-- Default is vertical. Appropriate inner drawables should be also provided rotated as needed -->
-		<attr name="android:orientation"/>
-		<attr name="android:text"/>
-		<attr name="android:textAppearance"/>
-		<attr name="android:textSize"/>
-		<attr name="android:textColor"/>
-		<attr name="android:textStyle"/>
-		<attr name="android:fontFamily" />
-		<attr name="android:typeface" />
-		<attr name="android:textAllCaps" />
-		<attr name="textSizeMultiplierPref"/>
 	</declare-styleable>
 	
 	<!-- NOTE: also applies to DSPBusCheckButton -->
@@ -706,6 +739,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="valueFormatMax"/>
 		<attr name="valueFormatMid"/>
 		<attr name="valueFormatMidPos"/>
+		<attr name="dialogPrecision" format="integer"/>
 		
 		<!-- Additional value to round to/from values prior setting. Resulting value is Math.round(value * rounding) / rounding --> 
 		<attr name="rounding" format="float"/>
@@ -756,13 +790,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="FrequencyResponseScroller">
 		<attr name="selectionDrawable" format="reference"/>
 		<attr name="lineColor" format="color"/>
+		<!-- Extra glow color. If not set/0 - not rendered. May be used only in graphical (non-parametric) mode -->
 		<attr name="glowColor" format="color"/>
+		<!-- Graphical mode line width -->
 		<attr name="lineWidth" format="dimension"/>
-		<!-- <attr name="lineWidth" /> --><!-- vpi -->
+		<!-- Parametric mode line width -->
+		<attr name="parametricLineWidth" format="dimension"/>
+		
+		<attr name="cornerRadius"/>
 		
 		<attr name="toneLineWidth" format="dimension"/>
 		<attr name="toneFillColor" format="color"/>
 		<attr name="toneLineColor" format="color"/>
+		<!-- Extra tone curve glow color. If not set/0 - not rendered -->
 		<attr name="toneGlowColor" format="color"/>
 		
 		<attr name="glowWidth" format="dimension"/>
@@ -772,17 +812,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="miniMode" format="boolean"/>
 		
-		<!-- <attr name="textShadowColor" format="color"/> -->
-		<!-- <attr name="textShadowWidth" format="float"/> -->
-
 		<attr name="android:orientation"/>
 		<attr name="inset" format="dimension"/>
 				
-		<!-- <attr name="infoTextAppearance" format="reference"/> -->
-		<!-- <attr name="presetTextAppearance" format="reference"/> -->
-		
-		<!-- <attr name="showInfo" format="boolean"/> -->
-		
 		<!-- Optional. If set, will scroll given scrollable view -->
 		<attr name="scrollable" format="reference"/>
 		
@@ -829,10 +861,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Defines label style. If this attribute is missing, no label rendered -->
 		<attr name="labelStyle" format="reference"/>
 		<attr name="labelText" format="string"/>
-		<!-- Defines vaue label style. If this attribute is missing, no value label rendered -->
+		<!-- Defines value label style. If this attribute is missing, no value label rendered -->
 		<attr name="valueLabelStyle" format="reference"/>
 		<!-- Defines StateAnimParam style, activated for valueLabel on press  --> 
 		<attr name="valueLabelPressedAnimStyle" format="reference"/>
+		<!-- Defines lock label style -->
+		<attr name="lockLabelStyle" format="reference"/>
 		
 		<!-- Round knob style -->
 		<attr name="roundKnobStyle" format="reference"/>
@@ -901,7 +935,51 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="arrowStrokeColor"/>
 	</declare-styleable>
 	
+	<declare-styleable name="EqKnobParamLayout">
+		<!-- Defines StateAnimParam style, activated for valueLabel on press  --> 
+		<attr name="valueLabelPressedAnimStyle" format="reference"/>
+		<!-- Background left padding -->
+		<attr name="bgPaddingLeft" format="dimension"/>
+		<!-- Background right padding -->
+		<attr name="bgPaddingRight" format="dimension"/>
+		<!-- Background top padding -->
+		<attr name="bgPaddingTop" format="dimension"/>
+		<!-- Background bottom padding -->
+		<attr name="bgPaddingBottom" format="dimension"/>
+		<!-- Background corner radius -->
+		<attr name="bgCorners" format="dimension"/>
+		
+		<!-- Dotted separator line color. Drawn to the right of the item -->
+		<attr name="separatorColor" format="color"/>
+		<!-- Dotted separator line width -->
+		<attr name="separatorWidth" format="dimension"/>
+		<!-- Ribght separator line padding -->
+		<attr name="separatorPaddingRight" format="dimension"/>
+		<!-- Top separator line padding -->
+		<attr name="separatorPaddingTop" format="dimension"/>
+		<!-- Bottom separator line padding -->
+		<attr name="separatorPaddingBottom" format="dimension"/>
+	</declare-styleable>
 	
+	<declare-styleable name="VericalSeparatorView">
+		<attr name="lineColor"/>
+	</declare-styleable>
+	
+	<declare-styleable name="ColorCircleSelector">
+		<!-- integer-array of colors (in hex format as 0xAARRGGBB or 0xRRGGBB. Special 0x0 value means "new line". 0x000001 color means "nothing" -->
+		<attr name="colorSet" format="reference"/>
+		<!-- Size of the color circle (diameter). The border is added to this size -->
+		<attr name="colorSize" format="dimension"/>
+		<!-- Border width for the normal (not selected) state -->
+		<attr name="borderWidth" format="dimension"/>
+		<attr name="borderColor" format="color"/>
+		<!-- Selected border width -->
+		<attr name="selectedBorderWidth" format="dimension"/>
+		<attr name="selectedBorderColor" format="color"/>
+		<!-- Minumum padding for color circles. Horizontal padding can be increased to distribute circles horizontally. 
+		     Padding should be enough to fit color borders as borders are drawn on paddings -->   
+		<attr name="colorPadding" format="dimension"/>
+	</declare-styleable>
 	
 		
 </resources>

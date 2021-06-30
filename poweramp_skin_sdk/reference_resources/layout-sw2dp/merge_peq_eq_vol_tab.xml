@@ -37,6 +37,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:longPressCmdId="@id/cmd_app_open_settings"
 				w:longPressBusId="@id/bus_app_cmd"
 				w:string="peq_compr"
+				
+				w:enablingParam="@id/dsp_compressor_switch_enabled"
 			/>
 				
 			<com.maxmpz.widget.player.DSPRoundKnobLayout 
@@ -72,15 +74,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:updateMsgId="@id/msg_dsp_compressor_changed"
 				w:enablingParam="@id/dsp_compressor_enabled"
 			/>
-			<!--
-			<com.maxmpz.widget.player.DSPRoundKnobLayout 
-				style="?PeqEqCompressKnobLayout4"
-				w:param="@id/dsp_commpressor_knee"
-				w:dspParamDef="@id/dsp_commpressor_knee"
-				w:updateMsgId="@id/msg_dsp_compressor_changed"
-				w:enablingParam="@id/dsp_compressor_enabled"
-			/>
-			-->
 			
 			<com.maxmpz.widget.player.DSPRoundKnobLayout 
 				style="?PeqEqCompressKnobLayout5"
@@ -89,23 +82,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:updateMsgId="@id/msg_dsp_compressor_changed"
 				w:enablingParam="@id/dsp_compressor_enabled"
 			/>
-			
-			<!--
-			<com.maxmpz.widget.player.DSPRoundKnobLayout 
-				style="?PeqEqCompressKnobLayout5"
-				w:param="@id/dsp_commpressor_expand_ratio"
-				w:dspParamDef="@id/dsp_commpressor_expand_ratio"
-				w:updateMsgId="@id/msg_dsp_compressor_changed"
-				w:enablingParam="@id/dsp_compressor_enabled"
-			/>
-			<com.maxmpz.widget.player.DSPRoundKnobLayout 
-				style="?PeqEqCompressKnobLayout5"
-				w:param="@id/dsp_commpressor_noise_gate_thr"
-				w:dspParamDef="@id/dsp_commpressor_noise_gate_thr"
-				w:updateMsgId="@id/msg_dsp_compressor_changed"
-				w:enablingParam="@id/dsp_compressor_enabled"
-			/>
-			-->
 			
 			<com.maxmpz.widget.player.DSPRoundKnobLayout 
 				style="?PeqEqCompressKnobLayout6"
@@ -124,6 +100,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/balance_knob_layout"
 			style="?PeqEqBalanceKnobLayout"
 			w:param="@id/dsp_balance"
+			w:enablingParam="@id/dsp_balance"
 			w:updateMsgId="@id/msg_dsp_other_changed"
 			w:valueFormat="@string/format_2f"
 			w:valueFormatMin="-1"

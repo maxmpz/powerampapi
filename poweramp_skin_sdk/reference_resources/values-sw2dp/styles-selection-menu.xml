@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -42,7 +42,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:focusable">false</item><!-- Clickable just to avoid touch-through -->
 		<item name="animTime">500</item>
 		<item name="animExitTime">200</item>
-		
 	</style>
 	<!-- NOTE: this is added to SelectionMenuSubcontainer scene params for defaultScene, so avoid layout params here -->
 	<style name="SelectionMenuSubcontainer_scenes_hidden">
@@ -56,7 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
-		<item name="android:layout_gravity">bottom</item>
+		<item name="layout_attachBottom">inset</item><!-- Attach to inset to position menu above navbar -->
 		<item name="android:visibility">visible</item>
 		<item name="recalcChildren">on_start</item>
 		<item name="jumpVisibility">true</item>

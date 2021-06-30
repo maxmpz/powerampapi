@@ -20,7 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!--
-	Dialog layout. Same layout is used for topsheet/bottomsheet/centered dialogs, the actual behavior is defined by styles.
+	Dialog layout. Same layout is used for topsheet/bottomsheet/centered dialogs, the actual behavior is defined by the styles.
 	Layout selection happens via:
 	- ThemeManager.getDialogTheme(this) -> finds style/theme for given activity based on its name => e.g. dialog_SomeActivity for SomeActivityDialog 
 	  That style/theme is used for given Activity. Style/theme can be derived from skin theme or it can be derived from anything, as it's force-filled with skin theme

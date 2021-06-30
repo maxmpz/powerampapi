@@ -66,7 +66,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Base dialogs -->
 		<item name="dialog_AlertDialogActivity">@style/dialog_AlertDialogActivity</item>
+		<item name="dialog_AlertDialogActivity_centered">@style/dialog_AlertDialogActivity_centered</item>
 		<item name="dialog_AlertDialogActivity_list">@style/dialog_AlertDialogActivity_list</item>
+		<item name="dialog_AlertDialogActivity_list_centered">@style/dialog_AlertDialogActivity_list_centered</item>
 		<item name="dialog_AlertDialogActivity_vertical_buttons">@style/dialog_AlertDialogActivity_vertical_buttons</item>
 		<item name="dialog_AlertDialogActivity_no_title">@style/dialog_AlertDialogActivity_no_title</item>
 		<item name="dialog_AlertDialogActivity_no_title_vertical_buttons">@style/dialog_AlertDialogActivity_no_title_vertical_buttons</item>
@@ -128,8 +130,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqLinearKnob_Text">@style/EqLinearKnob_Text</item>
 		<item name="EqKnobValue_Text">@style/EqKnobValue_Text</item>
 		<item name="EqKnobValueLarger_Text">@style/EqKnobValueLarger_Text</item>
-		
 		<item name="EqKnobLabel_Text">@style/EqKnobLabel_Text</item>
+		
+		<!-- Used in preset assignment dialog -->
+		<item name="EqPresetDeviceAssignIcon">@style/EqPresetDeviceAssignIcon</item>
+		<item name="EqPresetDeviceAssignCheckbox">@style/EqPresetDeviceAssignCheckbox</item>
 		
 		<!-- NOTE: PopupButtons and related are possible in dialogs -->
 		<item name="PopupButton">@style/PopupButtonNoTint</item>
@@ -379,6 +384,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemEmptyList">@style/ItemEmptyList</item>
 		<item name="ItemEmptyListText">@style/ItemEmptyListText</item>
 		<item name="ItemEmptyListText_Text">@style/ItemEmptyListText_Text</item>
+		<item name="ItemEmptyListSettingsButtonBase">@style/ItemEmptyListSettingsButtonBase</item>
 		<item name="ItemEmptyListSettingsButton">@style/ItemEmptyListSettingsButton</item>
 		<item name="ItemEmptyListScanProgress">@style/ItemEmptyListScanProgress</item>
 		<item name="ItemEmptyListScanProgressCenter">@style/ItemEmptyListScanProgressCenter</item>
@@ -591,9 +597,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Equalizer tab -->
 		<item name="EqButton_Text">@style/EqButton_Text</item>
 		<item name="EqPreampKnobLayout">@style/EqPreampKnobLayout</item>
+		<item name="EqListControlsLayout">@style/EqListControlsLayout</item>
+		<item name="EqListControlsAdd">@style/EqListControlsAdd</item>
+		<item name="EqListEmptyControlsAdd">@style/EqListEmptyControlsAdd</item>
+		<item name="EqListControlsSelect">@style/EqListControlsSelect</item>		
 		<item name="EqPreampLinearKnob">@style/EqPreampLinearKnob</item>
 		<item name="EqKnobsLayout">@style/EqKnobsLayout</item>
-		<item name="EqLinearKnob">@style/EqLinearKnob</item>		
+		<item name="EqLinearKnob">@style/EqLinearKnob</item>
+		<item name="EqParamLayout">@style/EqParamLayout</item>		
 		<item name="EqFrequencyResponseScroller">@style/EqFrequencyResponseScroller</item>
 		<item name="EqMilkFrs">@style/EqMilkFrs</item>
 		<item name="EqInfo">@style/EqInfo</item>
@@ -608,6 +619,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqEquPresetLabel_Text">@style/EqEquPresetLabel_Text</item>
 		<item name="EqEquSaveButton">@style/EqEquSaveButton</item>
 		<item name="EqEquResetButton">@style/EqEquResetButton</item>
+		<item name="EqTonePanel">@style/EqTonePanel</item>
 		<item name="EqBassToneKnobLayout">@style/EqBassToneKnobLayout</item>
 		<item name="EqTrebleToneKnobLayout">@style/EqTrebleToneKnobLayout</item>
 		<item name="PeqVisButtonLayout">@style/PeqVisButtonLayout</item>
@@ -641,6 +653,29 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PeqEqCompressKnobLayout4">@style/PeqEqCompressKnobLayout4</item>
 		<item name="PeqEqCompressKnobLayout5">@style/PeqEqCompressKnobLayout5</item>
 		<item name="PeqEqCompressKnobLayout6">@style/PeqEqCompressKnobLayout6</item>
+
+		<!-- Parametric -->
+		<item name="EqParamColorCircleSelector">@style/EqParamColorCircleSelector</item>
+		<item name="EqParamGainLinearKnob">@style/EqParamGainLinearKnob</item>
+		<item name="EqParamGainLinearKnob">@style/EqParamGainLinearKnob</item>
+		<item name="EqParamPlaceholder1">@style/EqParamPlaceholder1</item>
+		<item name="EqParamPlaceholder2">@style/EqParamPlaceholder2</item>
+		<item name="EqParamColorPopupLayout">@style/EqParamColorPopupLayout</item>
+		<item name="EqParamColorPopupLayout_scene_item_menu">@style/EqParamColorPopupLayout_scene_item_menu</item>
+		<item name="EqParamColorPopupIcon">@style/EqParamColorPopupIcon</item>
+		<item name="EqParamLRPopupButtonLayout">@style/EqParamLRPopupButtonLayout</item>
+		<item name="EqParamTypePopupButtonLayout">@style/EqParamTypePopupButtonLayout</item>
+		<item name="EqParamQRoundKnob">@style/EqParamQRoundKnob</item>
+		<item name="EqParamQLabelAndValue">@style/EqParamQLabelAndValue</item>
+		<item name="EqParamFreqRoundKnob">@style/EqParamFreqRoundKnob</item>
+		<item name="EqParamFreqLabelAndValue">@style/EqParamFreqLabelAndValue</item>
+		<item name="EqParamSelectBox">@style/EqParamSelectBox</item>
+		<item name="EqParamDragHandler">@style/EqParamDragHandler</item>
+		<item name="EqListControlsHint">@style/EqListControlsHint</item>
+		
+		<!--<item name="">@style/</item>
+		<item name="">@style/</item>-->
+				
 				
 		
 		<!-- Reverb tab -->

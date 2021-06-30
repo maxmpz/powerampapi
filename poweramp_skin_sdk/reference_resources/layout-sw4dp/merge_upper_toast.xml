@@ -62,7 +62,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<TextView android:id="@+id/line2"
 				style="?TopUpperToastLine2"
 			/>
-			<SceneParams w:scene="defaultScene"/><!-- NOTE: needed so line2 scene is properly manipilated by code -->
 			<SceneParams w:scene="@+id/scene_expanded"
 				w:baseScene="defaultScene"
 			/>

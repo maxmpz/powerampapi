@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -116,7 +116,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Target scene id which this SceneParams is for -->
 		<attr name="scene" format="reference|integer">
 			<!-- NOTE: scene can be set to defaultScene, so that will redefine the default scene (or update, if baseScene="defaultScene" is used 
-				 Only first "scene" attribute supports this -->
+				 Only the first "scene" attribute supports this -->
 			<enum name="defaultScene" value="0"/>
 		</attr>
 		<attr name="scene_2" format="reference"/><!-- valid only if scene exists in tag -->
@@ -471,10 +471,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size.
 		     This allows multiple views with same relative size (e.g. 4 views with layout_widthPercent="25%" in a row) also to consume
 		     space and being laid out as expeted in a sequence.
-		     The views which consume space still my reduce the available size by using -->
+		     The views which consume space still may reduce the available size by using appropriate consume flags
+		     NOTE: this view horizontal margins reduce resulting width for layout_widthPercent.
+		     This is to match behavior of "match_parent" which is equal to layout_widthPercent="100%". Horizontal margins always reduce size of the view 
+		     with layout_width="match_parent". Use layout_percentIngoresMargin to override this behavior -->
 		<attr name="layout_widthPercent" format="fraction"/>
 		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT)
-		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size -->
+		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size
+		     NOTE: this view vertical margins reduce resulting height for layout_heightPercent. Use layout_percentIngoresMargin to override this behavior -->
 		<attr name="layout_heightPercent" format="fraction"/>
 		
 		<!-- Defines max possible width for the child -->
@@ -547,7 +551,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="none" value="-1"/>
 			<enum name="inset" value="-2"/>
 			<!-- Attaches to the right parent side, calculated prior laying out of this view. If parent has a fixed width, that is the same as "parent",
-			     otherwise the right side grows appropriately with every child laid out -->
+			     otherwise the right side may grow appropriately with every child laid out prior this view -->
 			<enum name="side" value="-3"/>
 		</attr>
 		<attr name="layout_attachBottom" format="reference|integer|fraction">
@@ -555,7 +559,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="none" value="-1"/>
 			<enum name="inset" value="-2"/>
 			<!-- Attaches to the bottom parent side, calculated prior laying out of this view. If parent has a fixed height, that is the same as "parent",
-			     otherwise the bottom side grows appropriately with every child laid out -->
+			     otherwise the bottom side may grow appropriately with every child laid out prior this view -->
 			<enum name="side" value="-3"/>
 		</attr>
 		
@@ -595,7 +599,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Applies additional offsets for gravity AND parent available size for this child on appripriate side based on window insets.
 		     By default, gravity aligns to the parent sides ignoring possible insets. Also, for match_parent size, %-percent size, or any other parent-related size, no
-		     insets are accounted for. With this attribute, appropriate side inset will be accounted.
+		     insets are accounted for. With this attribute, appropriate side inset will be accounted for.
 		     For example, view with layout_offsets=insets and match_parent/match_parent will fill parent according to window insets.
 		     This, of course, works if insets are propagated appropriately -->
 		<attr name="layout_offsets">
@@ -636,7 +640,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<flag name="both" value="0x3000000"/>
 			
 			<!-- Also consume parent size available for children for width/heightPercent and other parent size dependent proprerties. Size is consumed
-			     on the exises we consume space -->
+			     on the axises where we consume space -->
 			<flag name="size" value="0x80000000"/>
 
 			<!-- Resets appropriate horizontal consumed space on one side (depending on view gravity, e.g. view attached to left will reset left side consumed space) -->
@@ -667,6 +671,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				 Other reset_* flags are processed as usual, thus, can cause double consuption and other side effects, if used together with reset_auto
 			 -->
 			<flag name="reset_auto" value="0x40000000"/>
+			
+			<!-- This shouldn't be combined with the other layout_consumeSpace flags. Causes items to be positioned one by one as horizontal
+			     stacks with the auto wrapping to the next "line".
+			     Views are measured with the whole available container width (other horizontal consumed space is ignored) -->
+			<flag name="stack_horizontal" value="0x800000"/>
 		</attr>
 		
 		<!-- android:layout_gravity will be used if layout_forceGravityIfGone="@id/some_view_id" view is missing or GONE --> 
@@ -674,6 +683,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- if any of layout_attach* target ids are "gone", view is attached to appropriate parent side.
 			 NOTE: view is attached to parent side if no such target "attach to" view exists, even without this property set to true.
+		     This attribute ensures view is attached to parent when the attach target visibility is GONE.
 			 layout_consumeSpace attribute is still processed -->
 		<attr name="layout_attachToParentIfGone" format="boolean"/>
 		
@@ -699,8 +709,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     gravity is applied on this axis --> 
 		<attr name="layout_gravityIgnoresMargins" format="boolean"/>
 		
+		<!-- If set, layout_percentWidth/layout_percentHeight, or both properties ignore this view margins -->
+		<attr name="layout_percentIgnoresMargins">
+			<flag name="width"  value="0x200000"/><!-- Sync with FLAG2_PERCENT_WIDTH_IGNORES_MARGIN -->
+			<flag name="height" value="0x400000"/><!-- Sync with FLAG2_PERCENT_HEIGHT_IGNORES_MARGIN -->
+			<flag name="both"   value="0x600000"/>
+		</attr>
+		
+		
 		<!-- If true, this view gets width=0 height=0 (like GONE view) when the view is empty. Actual visibility is not changed.
-		     NOTE: currently works only for FastTextView and derived classes
+		     NOTE: currently works only for FastTextView, TextViews, and the derived classes
 		-->
 		<attr name="layout_goneWhenEmpty" format="boolean"/>
 				

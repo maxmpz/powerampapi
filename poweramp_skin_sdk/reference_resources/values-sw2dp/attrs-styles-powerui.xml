@@ -251,6 +251,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemEmptyList"/>
 		<attr name="ItemEmptyListText" format="reference"/>
 		<attr name="ItemEmptyListText_Text" format="reference"/>
+		<attr name="ItemEmptyListSettingsButtonBase" format="reference"/>
 		<attr name="ItemEmptyListSettingsButton" format="reference"/>
 		<attr name="ItemEmptyListScanProgress" format="reference"/>
 		<attr name="ItemEmptyListScanProgressCenter"/>
@@ -536,11 +537,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqButton_Text" format="reference"/>
 		<attr name="EqKnobsLayout" format="reference"/>
 		<attr name="EqPreampKnobLayout" format="reference"/>
+		<attr name="EqListControlsLayout" format="reference"/>
+		<attr name="EqListControlsAdd" format="reference"/>
+		<attr name="EqListEmptyControlsAdd" format="reference"/>
+		<attr name="EqListControlsSelect" format="reference"/>
 		<attr name="EqLinearKnob" format="reference"/><!-- NOTE: this attribute is used from the code for the dynamically generated eq bands -->
 		<attr name="EqLinearKnob_Text" format="reference"/>
 		<attr name="EqKnobValue_Text" format="reference"/>
 		<attr name="EqKnobValueLarger_Text" format="reference"/>
 		<attr name="EqKnobLabel_Text" format="reference"/>
+		<attr name="EqParamLayout" format="reference"/>
 		<attr name="EqPreampLinearKnob" format="reference"/>
 		<attr name="EqFrequencyResponseScroller" format="reference"/>
 		<attr name="EqMilkFrs" format="reference"/>
@@ -556,6 +562,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqEquPresetLabel_Text" format="reference"/>
 		<attr name="EqEquSaveButton" format="reference"/>
 		<attr name="EqEquResetButton" format="reference"/>
+		<attr name="EqTonePanel" format="reference"/>
 		<attr name="EqBassToneKnobLayout" format="reference"/>
 		<attr name="EqTrebleToneKnobLayout" format="reference"/>
 		<attr name="PeqVisButtonLayout" format="reference"/>
@@ -589,6 +596,34 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="PeqEqCompressKnobLayout4" format="reference"/>
 		<attr name="PeqEqCompressKnobLayout5" format="reference"/>
 		<attr name="PeqEqCompressKnobLayout6" format="reference"/>
+		
+		<!-- Parametric -->
+		<attr name="EqParamColorCircleSelector" format="reference"/>
+		<attr name="EqParamGainLinearKnob" format="reference"/>
+		<attr name="EqParamGainLinearKnob" format="reference"/>
+		<attr name="EqParamPlaceholder1" format="reference"/>
+		<attr name="EqParamPlaceholder2" format="reference"/>
+		<attr name="EqParamColorPopupLayout" format="reference"/>
+		<attr name="EqParamColorPopupLayout_scene_item_menu" format="reference"/>
+		<attr name="EqParamColorPopupIcon" format="reference"/>
+		<attr name="EqParamLRPopupButtonLayout" format="reference"/>
+		<attr name="EqParamTypePopupButtonLayout" format="reference"/>
+		<attr name="EqParamQRoundKnob" format="reference"/>
+		<attr name="EqParamQLabelAndValue" format="reference"/>
+		<attr name="EqParamFreqRoundKnob" format="reference"/>
+		<attr name="EqParamFreqLabelAndValue" format="reference"/>
+		<attr name="EqParamSelectBox" format="reference"/>
+		<attr name="EqParamDragHandler" format="reference"/>
+		<attr name="EqListControlsHint" format="reference"/>
+		
+		<attr name="EqPresetDeviceAssignIcon" format="reference"/>
+		<attr name="EqPresetDeviceAssignCheckbox" format="reference"/>
+		<!--<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>-->
 				
 				
 		<!-- Reverb tab -->

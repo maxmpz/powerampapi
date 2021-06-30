@@ -783,8 +783,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 
 		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
 		 This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
-		 
-		 NOTE: overridden in values-sw2dp-v29
 	-->
 	<style name="TopNavbarBounds">
 		<item name="android:layout_width">match_parent</item>
@@ -798,8 +796,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: top scene layout generally requires some non zero layout now before scene runs, thus it can't be wrap_content in this case (==0px for default scene) -->
 	<style name="TopSelectionMenuContainer">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">200dp</item>
-		<item name="layout_attachBottom">inset</item> 
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachRight">inset</item>
+				
+		<item name="android:layout_height">300dp</item><!-- Height should be enough for 2 row selection menu -->
+		<item name="layout_attachBottom">parent</item><!-- Attaching to bottom, not to inset, thus we allow animation behind the navbar -->
 		<item name="android:translationZ">?modal_translationZ</item>
 		<item name="android:outlineProvider">none</item>
 	</style>
@@ -936,7 +937,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">16dp</item>
 	</style>
-		
 	
 	<style name="TopSleepTimerButton" parent="PopupButtonNoTint">
 		<item name="android:drawable">?sleep_timer_32dp</item><!-- NOTE: tint is applied via drawable xml -->
@@ -948,7 +948,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">0dp</item>
 		<item name="android:visibility">visible</item>
 	</style>
-	
 		
 		
 	<style name="TopShuffleButtonLayout" parent="TopBaseButtonLayout">
@@ -1032,7 +1031,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:visibility">gone</item>
 	</style>
 	<style name="TopMetaInfoLayout_anim_seeking">
-		<item name="android:alpha">0.55</item>
+		<item name="android:alpha">0.45</item>
 		<item name="android:scaleX">0.85</item>
 		<item name="android:scaleY">0.85</item>
 	</style>

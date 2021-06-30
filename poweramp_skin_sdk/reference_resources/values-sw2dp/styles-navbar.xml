@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -120,11 +120,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:layout_gravity">top|center_horizontal</item>
 		<item name="android:textAppearance">?NavbarExtensionLogoLabel_Text</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:drawablePadding">-2dp</item>
 	</style>
 	<style name="NavbarExtensionLogoLabel_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textStyle">italic</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:textSize">14dp</item><!-- Fixed size to avoid overflowing for large text scale -->
+		<item name="android:textSize">12.5dp</item><!-- Fixed size to avoid overflowing for large text scale -->
 	</style>
 	
 	<style name="NavbarExtensionMenuLine">

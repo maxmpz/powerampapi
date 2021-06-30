@@ -190,7 +190,39 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>0x40000003</item><!-- reverse -->
 		<item>0x40000002</item><!-- reverse -->
 	</integer-array>
-		
+	
+	<!-- Sync with Band.java -->
+	<string-array name="eq_param_lr_modes">
+		<item>@string/left_and_right_ch</item>
+		<item>@string/left_ch</item>
+		<item>@string/right_ch</item>
+	</string-array>
+	<array name="eq_param_lr_icons_24dp">
+		<item>@drawable/l_plus_r_ch_24dp</item><!-- REVISIT: attr -->
+		<item>@drawable/l_ch_24dp</item>
+		<item>@drawable/r_ch_24dp</item>
+	</array>
+	
+	<!-- Sync with Band.java -->
+	<string-array name="eq_param_type_modes">
+		<item>@string/low_pass</item>
+		<item>@string/high_pass</item>
+		<item>@string/band_pass</item>
+		<item>@string/peaking_band</item>
+		<item>@string/low_shelf</item>
+		<item>@string/high_shelf</item>
+		<!-- 6 -->
+	</string-array>
+	<array name="eq_param_type_icons_24dp">
+		<item>?low_pass_24dp</item>
+		<item>?high_pass_24dp</item>
+		<item>?band_pass_24dp</item>
+		<item>?peaking_band_24dp</item>
+		<item>?lsf_24dp</item>
+		<item>?hsf_24dp</item>
+		<!-- 6 -->
+	</array>
+				
 		
 	
 </resources>

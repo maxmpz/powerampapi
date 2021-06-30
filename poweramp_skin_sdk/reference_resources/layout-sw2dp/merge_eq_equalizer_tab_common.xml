@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -21,10 +21,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
 	<!-- EqKnobsFastLayout generates LinearKnobs with style="?EqLinearKnob -->
+	<!-- NOTE: EqPreampKnobLayout is needed for background as if background is applied to the DSPLinearKnob itself, knob outline shadow is rendered behind background -->
+	 
+	<!--
 	<com.maxmpz.widget.player.EqKnobsFastLayout android:id="@+id/eq_knobs_layout"
 		style="?EqKnobsLayout"
 	>
-		<!-- NOTE: EqPreampKnobLayout is needed for background as if background is applied to the DSPLinearKnob itself, knob outline shadow is rendered behind background --> 
 		<com.maxmpz.widget.base.FastLayout
 			style="?EqPreampKnobLayout"
 		>
@@ -36,20 +38,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:updateMsgId="@id/msg_dsp_eq_changed"
 			/>
 		</com.maxmpz.widget.base.FastLayout>
-		
-		<!-- NOTE: knobs add here -->
-		
 		<com.maxmpz.widget.base.ScrollingBehavior w:disallowParentScroll="true" w:noScrollbars="true"/>
 	</com.maxmpz.widget.player.EqKnobsFastLayout>
+	-->
+	
+	<!-- PowerList based bands -->
+	<com.maxmpz.widget.player.EqKnobsList android:id="@+id/eq_knobs_layout"
+		style="?EqKnobsLayout"
+		w:listScroller="@+id/frequency_response_scroller"
+	/>
 		
 	<com.maxmpz.widget.player.MilkFRS android:id="@+id/milk_frs"
 		style="?EqMilkFrs"
 		android:contentDescription="@string/h_frs_drag_to_scroll"
 	/>
 	
+	<!-- NOTE: for the EqKnobsList (based on PowerList) the list scroller is set for in the list attributes, not vice versa as for EqKnobsFastLayout -->
+	<!-- w:scrollable="@id/eq_knobs_layout" -->
 	<com.maxmpz.widget.player.FrequencyResponseScroller android:id="@+id/frequency_response_scroller"
 		style="?EqFrequencyResponseScroller"
-		w:scrollable="@id/eq_knobs_layout"
 		w:useDSPBus="true"
 		android:importantForAccessibility="yes"
 	/>
@@ -169,7 +176,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/tone_panel"
-		style="@style/EqTonePanel"
+		style="?EqTonePanel"
 	>
 		
 		<!-- NOTE: format is set by code depending on user prefs -->

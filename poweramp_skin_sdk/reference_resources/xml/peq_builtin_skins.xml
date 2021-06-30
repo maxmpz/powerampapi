@@ -20,7 +20,7 @@
 			key="font_variant"
 			name="@string/font"
 			summary="%s"
-			defaultValue="@style/ActivityTheme_Whitepro_AltFont"
+			defaultValue="@style/ActivityTheme_BoldFont"
 		>
 			<option
 				name="@string/classic"
@@ -100,11 +100,12 @@
 		forceGlobalOptions="true"
 		lightMode="@style/ActivityTheme_White"
 	>
+		
 		<popup
 			key="font_variant"
 			name="@string/font"
 			summary="%s"
-			defaultValue="@style/ActivityTheme_Whitepro_AltFont"
+			defaultValue="@style/ActivityTheme_BoldFont"
 		>
 			<option
 				name="@string/classic"

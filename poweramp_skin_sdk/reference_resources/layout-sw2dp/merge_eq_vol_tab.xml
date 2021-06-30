@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -64,13 +64,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:updateMsgId="@id/msg_dsp_tempo_state_changed"
 			android:text="@string/tempo"
 		/>
-			
+		<!-- NOTE: labelText is required for the dialog, but we remove label with labelStyle -->
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/tempo_knob_layout"
 			style="?EqTempoKnobLayout"
-
+			
 			w:param="@id/dsp_tempo"
 			w:enablingParam="@id/dsp_tempo_enabled"
 			w:updateMsgId="@id/msg_dsp_tempo_state_changed"
+			w:labelText="@string/tempo"
+			w:labelStyle="@null"
 			
 			w:dependentLabel="@+id/tempo_label1"
 			w:dependentLabel2="@+id/tempo_label2"
@@ -160,6 +162,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:valueFormatMin="0"
 			w:valueFormatMax="100"
 			w:rounding="100.5"
+			w:dialogPrecision="0"
 			
 			w:labelText="@string/volume"
 		/>

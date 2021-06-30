@@ -94,7 +94,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:drawable="?artists_24dp"
 		android:text="@string/artist_short"
 		
-		w:busId="@id/list" w:msgId="@id/cmd_list_current_artist"
+		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_request_current_artist"
 	/>
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/album"
 		style="?PopupMenuItem50"

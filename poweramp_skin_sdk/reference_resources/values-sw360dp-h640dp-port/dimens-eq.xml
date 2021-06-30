@@ -33,4 +33,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_layout_height">32dp</dimen>
 	<dimen name="EqButton_textSize">12dp</dimen>
 	<dimen name="eq_frs_height">48dp</dimen>
+	
 </resources>

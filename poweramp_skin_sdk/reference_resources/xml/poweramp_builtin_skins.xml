@@ -22,20 +22,10 @@
 			overlapAttr="@attr/overlap_alt_layout"
 			checkedByDefault="false"
 		/>
-		<!--
-		<option
-			key="alt_font"
-			name="@string/skin_alt_font"
-			summary="@string/skin_summary_alt_font"
-			overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
-			checkedByDefault="false"
-		/>
-		-->
-		<popup
+		<multiSwitch
 			key="font_variant"
 			name="@string/font"
-			summary="%s"
-			defaultValue="@style/ActivityTheme_Whitepro_AltFont"
+			defaultValue="@style/ActivityTheme_BoldFont"
 		>
 			<option
 				name="@string/classic"
@@ -49,12 +39,11 @@
 				name="@string/bold"
 				overlapStyle="@style/ActivityTheme_BoldFont"
 			/>
-		</popup>		
+		</multiSwitch>		
 				
-		<popup
+		<multiSwitch
 			key="seekbar"
 			name="@string/skin_seekbar_style"
-			summary="%s"
 			defaultValue=""
 		>
 			<!-- 0 -->
@@ -72,7 +61,7 @@
 				name="@string/pref_plain_seekbar_with_buttons"
 				overlapAttr="@attr/overlap_plain_seekbar"
 			/>
-		</popup>
+		</multiSwitch>
 				
 		<option
 			key="more_buttons"
@@ -93,10 +82,9 @@
 			overlapStyle="@style/ActivityTheme_Whitepro_LightButtons"
 		/>
 		
-		<popup
+		<multiSwitch
 			key="knob_hilite"
 			name="@string/skin_knob_hilite"
-			summary="@string/skin_summary_knob_hilite_s"
 			defaultValue="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
 		>
 			<option
@@ -111,7 +99,7 @@
 				name="@string/colorful"
 				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
 			/>
-		</popup>		
+		</multiSwitch>		
 		
 		<option
 			key="force_light_navbar"
@@ -155,21 +143,10 @@
 			checkedByDefault="false"
 		/>
 		
-		<!--
-		<option
-			key="alt_font"
-			name="@string/skin_alt_font"
-			summary="@string/skin_summary_alt_font"
-			overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
-			checkedByDefault="false"
-		/>
-		-->
-		
-		<popup
+		<multiSwitch
 			key="font_variant"
 			name="@string/font"
-			summary="%s"
-			defaultValue="@style/ActivityTheme_Whitepro_AltFont"
+			defaultValue="@style/ActivityTheme_BoldFont"
 		>
 			<option
 				name="@string/classic"
@@ -183,12 +160,11 @@
 				name="@string/bold"
 				overlapStyle="@style/ActivityTheme_BoldFont"
 			/>
-		</popup>		
+		</multiSwitch>		
 				
-		<popup
+		<multiSwitch
 			key="seekbar"
 			name="@string/skin_seekbar_style"
-			summary="%s"
 			defaultValue=""
 		>
 			<!-- 0 -->
@@ -206,7 +182,7 @@
 				name="@string/pref_plain_seekbar_with_buttons"
 				overlapAttr="@attr/overlap_plain_seekbar"
 			/>
-		</popup>
+		</multiSwitch>
 		
 		<option
 			key="more_buttons"
@@ -216,10 +192,9 @@
 			checkedByDefault="false"
 		/>
 		
-		<popup
+		<multiSwitch
 			key="knob_hilite"
 			name="@string/skin_knob_hilite"
-			summary="@string/skin_summary_knob_hilite_s"
 			defaultValue="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
 		>
 			<option
@@ -234,7 +209,7 @@
 				name="@string/colorful"
 				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
 			/>
-		</popup>		
+		</multiSwitch>		
 		
 		<option
 			key="trans_navbar"

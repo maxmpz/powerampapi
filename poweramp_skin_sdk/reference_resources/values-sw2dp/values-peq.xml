@@ -24,8 +24,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="eq_tab_vol"/>
 	<item type="id" name="eq_tab_reverb"/>
 	
-	<item type="id" name="cmd_gui_show_upper_toast"/><!-- bus_gui -->
-	
 	<!-- PEQ states -->	
 	<!-- bus_player. boolean, integer (1 - requires permission, 0 - doesn't require, -1 requires permission, but hide button). 
 	     Also a msg on player_bus with arg1=boolean, arg2=-1 for hide button -->
@@ -57,6 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="msg_dsp_compressor_changed"/>
 	<item type="id" name="dsp_compressor_enabled"/><!-- boolean -->
+	<item type="id" name="dsp_compressor_switch_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_commpressor_attack"/>
 	<item type="id" name="dsp_commpressor_release"/>
 	<item type="id" name="dsp_commpressor_knee"/>

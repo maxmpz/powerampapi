@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -39,24 +39,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogContentLayout">@layout/dialog_content_info</item>
 	</style>
 	
-	<style name="dialog_WelcomeActivity" parent="@style/CenteredDialog">
+	<style name="dialog_WelcomeActivity" parent="CenteredDialog_vertical_buttons">
 		<item name="dialogContentLayout">@layout/dialog_content_welcome</item>
 		<item name="DialogTitleLayout">@style/dialog_WelcomeActivity_DialogTitleLayout</item>
 		<item name="DialogTitle">@style/dialog_WelcomeActivity_DialogTitle</item>
 		<item name="DialogContent">@style/dialog_WelcomeActivity_DialogContent</item>
 	</style>
 	<style name="dialog_WelcomeActivity_DialogTitleLayout" parent="DialogTitleLayout">
-		<item name="android:layout_marginTop">24dp</item>
+		<item name="android:layout_marginTop">20dp</item>
 	</style>
 	<style name="dialog_WelcomeActivity_DialogTitle" parent="DialogTitle">
-		<item name="android:drawable">@drawable/logo_navbar_hamburger</item>
+		<item name="android:drawable">?logo_navbar</item>
 		<item name="drawableOnly">true</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		
 	</style>
 	<style name="dialog_WelcomeActivity_DialogContent" parent="DialogContent">
-		<item name="android:layout_marginTop">12dp</item>
-		<!-- <item name="android:layout_marginBottom">4dp</item> --><!-- Needs some vertical symmetry vs larger header -->
+		<!-- Increase paddings for better content distribution -->
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginBottom">6dp</item>
 	</style>
 	
 
@@ -173,7 +174,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="dialog_AutoFindDialogActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_auto_find</item>
 	</style>
-	<style name="dialog_APMUnlockDialogActivity" parent="CenteredDialog">
+	<style name="dialog_APMUnlockDialogActivity" parent="CenteredDialog_vertical_buttons">
 		<item name="dialogContentLayout">@layout/dialog_content_apm_unlock</item>
 	</style>
 	
@@ -181,9 +182,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogContentLayout">@layout/dialog_content_lyrics</item>
 	</style>
 		
+	<!--
 	<style name="dialog_MobirooDRMErrorActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
 	</style>
+	-->
 	
 	<style name="dialog_AudioBufferActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_audio_buffer</item>

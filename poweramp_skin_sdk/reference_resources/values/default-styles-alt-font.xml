@@ -43,6 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textAppearance">@style/textAppearance_AltFont</item>
 		<item name="android:textAppearanceButton">@style/textAppearanceButton_AltFont</item><!-- Apply font for few buttons which use textAppearanceButton, e.g. dialog buttons -->
 		<item name="android:textAppearanceMediumInverse">@style/textAppearanceMediumInverse_AltFont</item><!-- Used by e.g. TopListSearchEditText and other possible EditTexts -->
+		<item name="android:textAppearanceMedium">@style/textAppearanceMedium_AltFont</item><!-- Radio buttons in alert dialog -->
 		<item name="android:textAppearanceLargePopupMenu">@style/textAppearanceLargePopupMenu_AltFont</item><!-- Used by some popups, like Eq Preset autocomplete --> 
 		<item name="Dialog_textAppearance">@style/Dialog_textAppearance_AltFont</item>
 		<item name="Dialog_textAppearanceSmall">@style/Dialog_textAppearanceSmall_AltFont</item><!-- Used by alert dialog messages -->
@@ -126,6 +127,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textAllCaps">false</item>
 	</style>
 	<style name="textAppearanceMediumInverse_AltFont" parent="TextAppearance.AppCompat.Medium.Inverse">
+		<item name="android:fontFamily">?AltFont_font</item>
+	</style>
+	<style name="textAppearanceMedium_AltFont" parent="TextAppearance.AppCompat.Medium">
 		<item name="android:fontFamily">?AltFont_font</item>
 	</style>
 	<style name="textAppearanceLargePopupMenu_AltFont" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">

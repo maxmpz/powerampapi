@@ -4,5 +4,10 @@
 	android:color="?colorPrimary"
 >
 	<item android:id="@android:id/mask" android:drawable="@drawable/rounded_large" />	
-	<item android:drawable="@drawable/inverse_stroke_bg_rounded_large" />
+	<item>
+		<selector android:exitFadeDuration="300">
+			<item android:state_enabled="false" android:drawable="@drawable/rounded_large"/>
+			<item android:drawable="@drawable/inverse_stroke_bg_rounded_large"/> 
+		</selector>
+	</item>
 </ripple>

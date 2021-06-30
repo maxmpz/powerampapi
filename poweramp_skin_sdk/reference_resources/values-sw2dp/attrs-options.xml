@@ -58,5 +58,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Applied (over main theme style) when Crop Album Art option is enabled -->
 		<attr name="OptionAACrop" format="reference"/>
+		
+		<!-- Applied (over main theme style) when equalizer frs visualization set to rounded -->
+		<attr name="OptionEquFRSRounded" format="reference"/>
+				
 	</declare-styleable>
 </resources>

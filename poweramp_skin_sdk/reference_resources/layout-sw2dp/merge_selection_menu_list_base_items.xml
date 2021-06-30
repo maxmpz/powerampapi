@@ -62,9 +62,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: this may be hidden for some editions -->
 	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/send"
 		style="?SelectionListContextButton"
-		android:drawable="?send"
+		android:drawable="?share_24dp"
 		
-		android:text="@string/send"
+		android:text="@string/share"
 		w:stateId="@id/state_list_something_selected"
 		w:stateMsgId="@id/state_list_selection_count"
 		

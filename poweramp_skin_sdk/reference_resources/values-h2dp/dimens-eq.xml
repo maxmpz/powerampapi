@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -30,13 +30,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqInfoLabel_maxWidth">300dp</dimen>
 	
 	<dimen name="preamp_knob_width">56dp</dimen>
-	<dimen name="eq_frs_height">32dp</dimen>
+	<dimen name="eq_frs_height">38dp</dimen>
 	<dimen name="EqFrequencyResponseScroller_marginTop">4dp</dimen><!-- Increased for longer screens -->
 	<dimen name="EqInfoBase_marginTB">4dp</dimen><!-- Increased for longer screens -->
 	
 	<dimen name="linear_knob_text_size">12sp</dimen>
 	<dimen name="EqKnobsLayout_marginTop">4dp</dimen>
-	<dimen name="EqLinearKnob_paddingLR">4dp</dimen>
+	<dimen name="EqLinearKnob_paddingLR">4dp</dimen> 
 	  	
 	<!-- Baseline values (for large scaling). Overridden by various resource specifiers, e.g. values-w400dp-port -->
 	<dimen name="EqKnobValueText_size">9.5sp</dimen>
@@ -64,7 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqVolPanel1_paddingTop">0px</dimen>
 	
-	<dimen name="EqRoundKnobLabel_maxWidth">100dp</dimen>
+	<dimen name="EqRoundKnobLabel_maxWidth">110dp</dimen>
 	<dimen name="EqToneRoundKnobLabel_maxWidth">50dp</dimen>
 	
 	<dimen name="RoundKnobLabelLeftTop_marginRight">4dp</dimen>
@@ -89,5 +89,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqToneRoundKnob_maxSize">140dp</dimen>
 	<dimen name="EqRoundKnob_maxSize">140dp</dimen>
 	<dimen name="EqLargerRoundKnob_maxSize">180dp</dimen>
+	
+	<!-- NOTE: should be enough space in vis modes -->
+	<fraction name="EqParamQRoundKnob_heightPercent">17%</fraction>
+	<dimen name="EqParamTypePopupButtonLayout_marginBottom">12dp</dimen>
+	<dimen name="EqParamQKnobValue_marginBottom">4dp</dimen>
+	<dimen name="EqParamRoundKnob_marginBottom">4dp</dimen>
 		
 </resources>

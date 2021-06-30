@@ -32,7 +32,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_nav"/><!-- integer, one of bus_nav* -->
 	<item type="id" name="state_prev_nav"/><!-- integer, one of bus_nav* -->
 	
-	<item type="id" name="cmd_app_recheck_license"/>
 	<item type="id" name="cmd_app_disable_scan"/><!-- arg1 == 1 disable, 0 == enable. Disable state is counted -->
 	<!-- bus_app_cmd. arg1 == 1 don't refresh aa, otherwise clear in-memory AA caches and send msg_app_aa_refreshed -->
 	<item type="id" name="cmd_app_refresh_aa"/>
@@ -43,6 +42,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_app_rescan"/><!-- arg1 => boolean, slow scan if true, obj => String cause of rescan -->
 	<item type="id" name="cmd_app_milk_rescan"/><!-- arg1 => boolean, slow scan if true, arg2 => boolean, force resolve playlists, obj => String cause of rescan -->
 	<item type="id" name="cmd_app_storage_perm_dialog"/><!-- obj => PermissionRequest. NOTE: dialogs can intercept result if dialog activity sets itself as registerLastStartedNonDialogActivity() in onStart -->
+	<item type="id" name="cmd_app_close_activities"/><!-- Not closing settings activities - see cmd_app_close_settings -->
 	<item type="id" name="msg_app_storage_perm_granted"/>
 	<item type="id" name="msg_app_storage_perm_failed"/>
 	
@@ -77,6 +77,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_app_browser_started"/><!-- boolean or String == browser last connected package -->
 	<item type="id" name="state_app_shutdown"/><!-- boolean, true => device shutdown is in effect -->
 	<item type="id" name="state_app_edition_name"/><!-- String -->
+	<item type="id" name="state_app_edition_icon"/><!-- int -->
 			
 	<!-- <item type="id" name="cmd_disable_nav"/> NOTE: not used ATM --><!-- bus_gui -->
 	<!-- <item type="id" name="cmd_enable_nav"/>  NOTE: not used ATM --><!-- bus_gui -->
@@ -110,6 +111,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_gui_set_vis_mode"/><!-- bus_gui, integer VIS_* -->
 	<item type="id" name="cmd_gui_apply_aa_blur_prefs"/><!-- bus_gui -->
 	<item type="id" name="cmd_gui_show_hide_milk"/><!-- bus_gui, arg1 => STATE_TRUE => show, STATE_FALSE => hide -->
+	<item type="id" name="cmd_gui_refresh_milk_aa"/><!-- bus_gui -->
 	
 	
 	<item type="id" name="cmd_data_info_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track -->
@@ -134,6 +136,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_mass_send"/><!-- bus-data_cmd, obj =>UriAndIds -->
 	
 	<item type="id" name="cmd_list_rename_dialog"/>
+	<item type="id" name="cmd_list_export"/>
+	<item type="id" name="cmd_data_export"/><!-- bus-data_cmd, obj =>UriAndIds -->
+	<item type="id" name="cmd_list_import"/>
+	<item type="id" name="cmd_data_import"/><!-- bus-data_cmd, obj =>UriAndIds -->
+	<item type="id" name="cmd_list_share"/>
+	<item type="id" name="cmd_data_share"/><!-- bus-data_cmd, obj =>UriAndIds -->
 	
 	<item type="id" name="cmd_data_update"/><!-- bus_data_cmd, obj => UriAndIds, arg1 => true/1 - don't send msg_app_data_changed -->
 	<item type="id" name="cmd_data_rename"/><!-- bus_data_cmd, obj => UriAndIds. Like cmd_data_update, but also handles RestLibraryEntityRenameSupport -->
@@ -162,11 +170,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<item type="id" name="cmd_list_update_zoom"/><!-- arg1 => boolean force, arg2 => zoomType -->
 	
-	<item type="id" name="cmd_list_current_artist"/>
+	<item type="id" name="cmd_list_current_artist"/><!-- May have obj => Long - the artist id -->
 	<item type="id" name="cmd_list_current_album"/>
 	<item type="id" name="cmd_list_current_folder"/><!-- If folders_hier is active, goes to folders hierarchy, just to folders otherwise -->
 	<item type="id" name="cmd_list_current_genre"/><!-- Requires obj => Long - the genre id -->
-	<item type="id" name="cmd_request_current_genre"/><!-- Calls => cmd_list_current_genre with appropriate current track first picked genre id -->
+	<item type="id" name="cmd_request_current_genre"/><!-- bus_data_cmd. Calls => cmd_list_current_genre with appropriate current track first picked genre id -->
+	<item type="id" name="cmd_request_current_artist"/><!-- bus_data_cmd. Calls => cmd_list_current_artist with the appropriate artists, probably taken from db for multi-artists -->
+	
 	<item type="id" name="cmd_data_bookmark_now"/>
 	<item type="id" name="cmd_list_rescan"/>
 	<item type="id" name="cmd_data_request_rescan"/><!-- Resolves obj => uri to extra info as needed for the rescan and starts it -->
@@ -182,7 +192,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_add"/><!-- bus_data_cmd, obj => UriAndIds -->
 	
 	<item type="id" name="cmd_data_search_and_play"/><!-- bus_data_cmd, obj => search String -->
-	<item type="id" name="cmd_data_play_intent"/><!-- bus_data_cmd, obj => Intent --> 
+	<item type="id" name="cmd_data_play_intent"/><!-- bus_data_cmd, obj => Intent. arg1 => allow flags. Handles various types of ACTION_VIEW intents, such as uri playback, playlist import, preset import --> 
 	<item type="id" name="cmd_data_nav_to_lib_pos"/><!-- arg1 => pos hint, arg2 => extra TopNavHelper flags, obj => uri -->
 	<item type="id" name="cmd_data_nav_to_name"/><!-- obj => Uri + PARAM_NAME -->
 	
@@ -199,6 +209,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="cmd_data_add_playlist"/><!-- obj => default title -->
 	<item type="id" name="cmd_data_update_track_info"/>
+	
+	<item type="id" name="cmd_data_update_eq_preset"/>
 
 	<item type="id" name="cmd_list_add_to_q"/>
 	<item type="id" name="cmd_list_add_as_next_to_q"/>
@@ -316,7 +328,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		         (sleep timer may be enabled, but pending) -->
 	<item type="id" name="state_player_sleep_timer"/>
 	
-	<item type="id" name="state_player_media_session"/><!-- object => MediaSessionCompat -->
+	<item type="id" name="state_player_media_session"/><!-- object => MediaSessionWrapper -->
 	<item type="id" name="state_player_mediacontroller_for_vol"/><!-- object => MediaController (raw). NOTE: set only when such volume controller is actually needed (e.g. not for CC) -->
 	<item type="id" name="state_player_pipeline_info"/><!-- object => PipelineSessionInfo. NOTE: see also OutputEndDeviceMetaInfo which may override end device name -->
 	<item type="id" name="state_player_long_seek"/><!-- boolean -->
@@ -339,7 +351,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_play_next_track"/><!-- arg1 => flags, arg2 => trackFlags -->
 	<item type="id" name="cmd_player_play_prev_track"/><!-- arg1 => boolean forceMove, arg2 => flags -->
 	<item type="id" name="cmd_player_on_queue_updated"/><!-- obj = Boolean.TRUE if something is just enqueued -->
-	<item type="id" name="cmd_player_reload_pipeline"/><!-- arg1 => boolean allowResume, obj = optional OutputDeviceMapping -->
+	<item type="id" name="cmd_player_reload_pipeline"/><!-- arg1 => boolean allowResume (PA), arg2 => int delay (Peq), obj = optional OutputDeviceMapping -->
 	<item type="id" name="cmd_player_seek"/>
 	<item type="id" name="cmd_player_seek_step"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => step multiplier (if < 50, base=5000ms), seek jump ms, or 0 for 5000ms -->
 	<item type="id" name="cmd_player_seek_jump"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => step ms -->
@@ -418,12 +430,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<item type="id" name="msg_dsp_started"/><!-- obj => DSPState -->
 	<item type="id" name="msg_dsp_stopped"/><!-- obj => DSPState -->
-	<item type="id" name="msg_dsp_eq_changed"/><!-- Send on eq reset, initial eq loading, eq preset setting/unsetting (not on values changing) obj => DSPState -->
+	
+	<!-- Send on eq reset, initial eq loading, eq preset setting/unsetting (not on values changing) -->
+	<item type="id" name="msg_dsp_eq_changed"/><!-- arg1 => boolean - number or order of parametric bands changed, arg2 => boolean - preset changed, obj => DSPState -->
+	
 	<item type="id" name="msg_dsp_other_changed"/><!-- Send on other reset, obj => DSPState -->
 	<item type="id" name="msg_dsp_reverb_changed"/><!-- Send on reverb reset, obj => DSPState -->
 	<item type="id" name="msg_dsp_param"/><!-- arg1=> param id (dsp_*), arg2 => float, obj => DSPState -->
 	<item type="id" name="msg_dsp_boolean_param"/><!-- arg1=> param id (dsp_*), arg2 => boolean, obj => DSPState -->
-	<item type="id" name="msg_dsp_eq_band_gain"/><!-- arg1 => band index, arg2 => float -->
+	
+	<item type="id" name="msg_dsp_eq_band_gain"/><!-- arg1 => band index, arg2 => float  -->
+	<item type="id" name="msg_dsp_eq_band_freq"/><!-- arg1 => band index, arg2 => float. Also an object state for DSPParamDef -->
+	<item type="id" name="msg_dsp_eq_band_q"/><!-- arg1 => band index, arg2 => float. Also an object state for DSPParamDef -->
+	<item type="id" name="msg_dsp_eq_band_color"/><!-- arg1 => band index, arg2 => value -->
+	<item type="id" name="msg_dsp_eq_band_type"/><!-- arg1 => band index, arg2 => value -->
+	<item type="id" name="msg_dsp_eq_band_ch"/><!-- arg1 => band index, arg2 => value -->	
+	
 	<item type="id" name="msg_dsp_tempo_state_changed"/><!-- Send on tempo state changes (e.g. enabled/disabled, plus/minus enabled/disabled)-->
 	
 	<!-- <item type="id" name="msg_dsp_eq_preset_changed"/> -->
@@ -431,7 +453,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_dsp_meta_changed"/>
 	
 	<item type="id" name="cmd_dsp_set_param"/><!-- arg1 => param id (dsp_*), arg2 => float -->
-	<item type="id" name="cmd_dsp_set_eq_gain"/><!-- arg1 => band ix, arg2 => float. NOTE: assumes band gain is set from gui (no gui update happens) -->
+	
+	<item type="id" name="cmd_dsp_set_eq_gain"/><!-- arg1 => band ix, arg2 => float -->
+	<item type="id" name="cmd_dsp_set_eq_freq"/><!-- arg1 => band ix, arg2 => float -->
+	<item type="id" name="cmd_dsp_set_eq_q"/><!-- arg1 => band ix, arg2 => float -->
+	<item type="id" name="cmd_dsp_set_eq_color"/><!-- arg1 => band ix, arg2 => int -->
+	<item type="id" name="cmd_dsp_set_eq_type"/><!-- arg1 => band ix, arg2 => int -->
+	<item type="id" name="cmd_dsp_set_eq_ch"/><!-- arg1 => band ix, arg2 => int -->
+	<item type="id" name="cmd_dsp_reorder_eq_bands"/><!-- obj => poses[] -->
+	<item type="id" name="cmd_dsp_add_eq_band"/>
+	<item type="id" name="cmd_dsp_delete_eq_bands"/><!-- obj => serials[] --> 
+	
 	<item type="id" name="cmd_dsp_reset_eq"/>
 	<item type="id" name="cmd_dsp_reset_reverb"/>
 	<item type="id" name="cmd_dsp_reset_other"/><!-- Resets balance, sfx, tempo, mono. arg1 => optional additional argument to reset just one parameter/plugin -->
@@ -465,8 +497,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="dsp_has_platform_fx"/><!-- boolean -->
 	
 	<item type="id" name="dsp_eq_band_freqs"/><!-- obj -->
-	<item type="id" name="dsp_eq_band_gains"/><!-- obj -->
+	<item type="id" name="dsp_eq_band_gains"/><!-- obj => float[] in 0..1 UI range -->
+	<item type="id" name="dsp_eq_band_gains_raw"/><!-- obj => float[] in -1..0..1 raw range -->
 	<item type="id" name="dsp_eq_band_names"/><!-- obj -->
+	<!-- Returns bands deep copy snapshot of the bands - effectively the current snapshot which is consinstent and safe to use anywhere.
+		 NOTE: new snapshot is created for each getObjectState call
+		 NOTE: the snapshot bands are never further updated or tracked otherwise by the DSPI -->
+	<item type="id" name="dsp_eq_bands_snapshot"/><!-- obj => Band[] -->
+	<!--  Returns "live" bands shallow copy. Containing array is created for each getObjectState call, band instances are the actual DSPI instances -->
+	<item type="id" name="dsp_eq_live_bands_snapshot"/><!-- obj => Band[] -->
+	<item type="id" name="dsp_eq_parametric"/><!-- boolean -->
 
 	<item type="id" name="dsp_balance"/><!-- float, boolean (true==enabled) -->
 	<item type="id" name="dsp_stereo_fx"/><!-- float, boolean (true==enabled) -->
@@ -478,7 +518,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="dsp_eq_preset_device"/><!-- int -->
 	<item type="id" name="dsp_eq_preset_device_address"/><!-- String -->
 	<item type="id" name="dsp_eq_preset_id"/><!-- long -->
-	<item type="id" name="dsp_eq_preset_data"/><!-- String -->
+	<item type="id" name="dsp_eq_preset_data"/><!-- Object -->
 	<item type="id" name="dsp_reverb_preset_name"/><!-- String -->
 	<item type="id" name="dsp_reverb_preset_id"/><!-- long -->
 	<item type="id" name="dsp_reverb_preset_data"/><!-- String -->

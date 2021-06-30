@@ -1280,7 +1280,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">center_vertical|right</item>
 		<item name="android:layout_marginRight">20dp</item>
 		<item name="android:background">@drawable/rounded_large</item>
-		<item name="android:drawable">@drawable/list_drag</item>
+		<item name="android:drawable">?list_drag_24dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableWidth">22dp</item>
 		<item name="drawableHeight">22dp</item>
@@ -1868,8 +1868,11 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTextHeaderSelectButton" parent="WhiteStrokedListHeaderButton">
 		<!-- NOTE: disabledAlpha=0 here makes it too different vs other lists where it's not 0 -->
 		<item name="layout_consumeSpace">reset_horizontal</item>		
+		<item name="android:ellipsize">end</item>
 	</style>
-	<style name="ItemTextHeaderSelectButton_scene_header" parent="WhiteStrokedListHeaderButton_scene_header"></style>
+	<style name="ItemTextHeaderSelectButton_scene_header" parent="WhiteStrokedListHeaderButton_scene_header">
+		<item name="layout_maxWidth">@dimen/ItemHeaderSelectButton_maxWidth</item><!-- NOTE: quite narrow for low end screens, relaxed for sw360dp and land -->
+	</style>
 	<style name="ItemTextHeaderSelectButton_scene_menu" parent="WhiteStrokedListHeaderButton_scene_menu"></style>
 	
 	<style name="BlackButtonBase">
@@ -2476,22 +2479,30 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>	
 	
 	
-	<style name="ItemEmptyListSettingsButton" parent="WhiteButtonBase">
+	<style name="ItemEmptyListSettingsButtonBase" parent="WhiteButtonBase">
 		<item name="android:layout_height">wrap_content</item>	
 		<item name="android:layout_width">wrap_content</item>
-	
-		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="android:drawable">@drawable/settings_24dp</item>
+		
+		<item name="android:drawable">@null</item>
 		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="drawableOnly">true</item>
 		<item name="android:paddingTop">8dp</item>
 		<item name="android:paddingBottom">8dp</item>
 		<item name="android:paddingLeft">16dp</item>
 		<item name="android:paddingRight">16dp</item>
 		<item name="android:background">@drawable/ripple_rounded_large</item>
+				
+		<item name="android:layout_gravity">@null</item>
+		<item name="layout_consumeSpace">@null</item>
+		<item name="drawableOnly">false</item>
+	</style>
+	
+	<style name="ItemEmptyListSettingsButton" parent="ItemEmptyListSettingsButtonBase">
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:drawable">@drawable/settings_24dp</item>
+		<item name="drawableOnly">true</item>
 	</style>
 
-
+	
 	<!-- item_miniplayer -->
 
 	<style name="ItemMiniplayer" parent="ItemGenericBase">
@@ -2687,7 +2698,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">@null</item>
 		<item name="android:layout_gravity">left</item>
 		<item name="layout_attachBottom">50%</item>
-		<item name="android:layout_marginBottom">-1dp</item>
+		<item name="android:layout_marginBottom">-6dp</item>
 		<item name="android:layout_gravity">@null</item>
 	</style>
 	

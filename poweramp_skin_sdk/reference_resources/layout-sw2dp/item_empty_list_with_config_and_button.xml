@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- NOTE: rebind button onclick and string on each bind, as those are modified -->
+<!-- REVISIT: use a separate bindable top layout -->
+<com.maxmpz.widget.base.FastLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	style="?ItemEmptyList"
+>
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/button2"
+		style="?ItemEmptyListSettingsButtonBase"
+		android:layout_gravity="center_horizontal"
+		w:layout_attachBottom="50%"
+		w:layout_consumeSpace="vertical"
+	/>
+	<!-- Opens settings by default -->
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/button"
+		style="?ItemEmptyListSettingsButtonBase"
+		android:layout_gravity="center_horizontal"
+		w:layout_attachTop="50%"
+		w:busId="@id/bus_app_cmd"
+		w:msgId="@id/cmd_app_open_settings"
+		android:drawable="@drawable/settings_24dp"
+	/>
+</com.maxmpz.widget.base.FastLayout> 

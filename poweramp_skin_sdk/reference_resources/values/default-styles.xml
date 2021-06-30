@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -54,6 +54,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="OptionHideMenu">@style/OptionHideMenu</item>		
 		<item name="OptionAAKeepAspect">@style/OptionAAKeepAspect</item>
 		<item name="OptionAACrop">@style/OptionAACrop</item>
+		<item name="OptionEquFRSRounded">@style/OptionEquFRSRounded_Light</item>
 		
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>			
 		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>
@@ -288,9 +289,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="meta_next_12dp">@drawable/next_12dp</item>
 		<item name="meta_songs_12dp">@drawable/song_12dp</item><!-- Small song icon used for item_track meta -->
+		
 		<item name="keep_list_pos_12dp">@drawable/keep_list_pos_12dp</item>
 		<item name="keep_track_pos_12dp">@drawable/keep_track_pos_12dp</item>
 		<item name="keep_list_track_pos_12dp">@drawable/keep_list_track_pos_12dp</item>
+		
+		<item name="list_drag_24dp">@drawable/list_drag</item>
+		<item name="list_drag_hor_24dp">@drawable/list_drag_hor</item>
 		
 		
 		<item name="settings_v">@drawable/settings_v_colored</item><!-- NOTE: used in some dialogs -->
@@ -321,7 +326,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="clear">@drawable/clear_24dp</item>
 		<item name="redo">@drawable/redo_24dp</item>
 		<item name="export">@drawable/export_24dp</item>
+		<item name="import_24dp">@drawable/import_24dp</item>
 		<item name="bookmark">@drawable/bookmark_stroke</item>
+		<item name="share_24dp">@drawable/share_24dp</item>
 		
 		<item name="clear_q_24dp">@drawable/clear_q_stroke_24dp</item>
 		<item name="artists_24dp">@drawable/artists_stroke_24dp</item>
@@ -352,11 +359,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="shuffle_24dp">@drawable/shuffle_24dp</item>
 		<item name="stream_24dp">@drawable/stream_24dp</item>
 		
+		<item name="l_plus_r_ch_24dp">@drawable/l_plus_r_ch_24dp</item>
+		<item name="l_ch_24dp">@drawable/l_ch_24dp</item>
+		<item name="r_ch_24dp">@drawable/r_ch_24dp</item>
+		
+		<item name="low_pass_24dp">@drawable/low_pass_24dp</item>
+		<item name="high_pass_24dp">@drawable/high_pass_24dp</item>
+		<item name="band_pass_24dp">@drawable/band_pass_24dp</item>
+		<item name="peaking_band_24dp">@drawable/peaking_band_24dp</item>
+		<item name="lsf_24dp">@drawable/lsf_24dp</item>
+		<item name="hsf_24dp">@drawable/hsf_24dp</item>
+		
 		<item name="star_8dp">@drawable/star_8dp</item>
 		<item name="star_2_8dp">@drawable/star_2_8dp</item>
 		<item name="star_3_8dp">@drawable/star_3_8dp</item>
 		<item name="star_4_8dp">@drawable/star_4_8dp</item>
 		<item name="star_5_8dp">@drawable/star_5_8dp</item>
+		
+		<item name="logo_navbar">@drawable/logo_navbar_hamburger</item>
 		
 		<!-- Android mediarouter icons -->
 		<item name="media_route">@drawable/mr_button_light</item>
@@ -406,6 +426,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_navbar">8dp</item>
 		<item name="corners_searchbar">8dp</item>
 		<item name="corners_mini">4dp</item>
+		<item name="corners_equ_frs">0dp</item><!-- NOTE: overridden for v28/v29+, as it's slow for lower Androids -->
 		<item name="corners_large">24dp</item>
 		<item name="corners_small">2dp</item>
 		<item name="corners_knob_thumb">@dimen/knob_thumb_radius</item>
@@ -508,7 +529,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_MediaRouteControllerActivity">@style/dialog_MediaRouteControllerActivity</item>
 		<item name="dialog_EqPresetsActivity">@style/dialog_EqPresetsActivity</item>
 		<item name="dialog_LyricsActivity">@style/dialog_LyricsActivity</item>		
-		<item name="dialog_MobirooDRMErrorActivity">@style/dialog_MobirooDRMErrorActivity</item>
+		<!--<item name="dialog_MobirooDRMErrorActivity">@style/dialog_MobirooDRMErrorActivity</item>-->
 		<item name="dialog_PlaylistsExportActivity">@style/dialog_PlaylistsExportActivity</item>		
 		
 		<!-- Skin overlaps -->
@@ -542,6 +563,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMenu_scene_aa_visibility">visible</item>
 		<item name="AAImage_scaleType">centerCrop</item><!-- By default, (modified) centerCrop is used. Can be overriden by OptionAAKeepAspect/OptionAACrop -->
 		
+		<item name="EqParamColorSet">@array/EqParamColorSet_Default</item>
+		
 		<!-- Not themeable functional attributes -->
 		
 		<item name="milk_advance_modes">@array/milk_advance_modes</item>
@@ -549,6 +572,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="milk_advance_enum">@null</item>
 		<item name="settings_target_audio">audio</item>
 		<item name="settings_target_equ">audio_equ</item>
+		<item name="EqLockLabelStyle">@null</item>
 	</style>
 
 	<!-- NOTE: need additional level of indirection due to e.g. values-v29 overridding which should be used by skins which derive from Base_ActivityTheme_Default -->	
@@ -748,6 +772,61 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="micro_low_rated">@drawable/queue_micro_low_rated</item>
 		<item name="micro_top_rated">@drawable/queue_micro_top_rated</item>
 	</style>
+	
+	<integer-array name="EqParamColorSet_Default">
+		<item>0x000001</item><!-- Special color, means nothing -->
+		<item>0x881100</item>
+		<item>0x770000</item>
+		<item>0x550000</item>
+		<item>0x440000</item>
+		<item>0x330000</item>
+		
+		<item>0x0</item>
+		
+		<item>0x113399</item>
+		<item>0x001188</item>
+		<item>0x000077</item>
+		<item>0x000055</item>
+		<item>0x000044</item>
+		<item>0x000033</item>
+		
+		<item>0x0</item>
+		
+		<item>0x119933</item>
+		<item>0x118833</item>
+		<item>0x007700</item>
+		<item>0x005500</item>
+		<item>0x004400</item>
+		<item>0x003300</item>
+		
+		<item>0x0</item>
+		
+		<item>0x999933</item>
+		<item>0x888833</item>
+		<item>0x777700</item>
+		<item>0x555500</item>
+		<item>0x444400</item>
+		<item>0x333300</item>
+		
+		<item>0x0</item>
+		
+		<item>0x888888</item>
+		<item>0x777777</item>
+		<item>0x666666</item>
+		<item>0x444444</item>
+		<item>0x333333</item>
+		<item>0x222222</item>
+		
+		<item>0x0</item>
+		
+		<item>0x990099</item>
+		<item>0x880088</item>
+		<item>0x770077</item>
+		<item>0x550055</item>
+		<item>0x440044</item>
+		<item>0x330033</item>
+	</integer-array>
+		
 		
 </resources>
 

@@ -95,7 +95,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopPlay_state_seeking"
 	/>
 
-		<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s -->
+	<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s -->
 	<com.maxmpz.widget.base.MorphableBusActionButton android:id="@+id/next_cat"
 		style="?TopNextCat"
 		w:busId="@id/bus_player_cmd"

@@ -36,4 +36,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqVolPanel1_paddingTop">8dp</dimen>
 	
 	<dimen name="RoundKnobLabelLeftTop_marginRight">8dp</dimen>
+	
 </resources>

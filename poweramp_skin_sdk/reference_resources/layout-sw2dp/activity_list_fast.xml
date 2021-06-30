@@ -256,9 +256,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 	<!-- 
 		NOTE: android:scrollbars defines standard android scrollbars. Setting it to vertical disables e.g. AA scrollbar (which is horizontal, but not used)
-		Also, horizontal scrollbar will require larger width (==parent width), but now width is set to narrow value => for a-z and vertical thumb modes only
+		Also, horizontal scrollbar will require larger width (==parent width), but now the width is set to a narrow value => for a-z and vertical thumb modes only
 	--> 
-	<!-- NOTE: extra padding left for extra touchable area. Padding is not visible -->
+	<!-- NOTE: extra padding left for extra touchable area. The padding is not visible -->
 	<com.maxmpz.widget.base.ListScrollerView android:id="@+id/list_scroller"
 		style="?TopListScrollerView"
 	/>

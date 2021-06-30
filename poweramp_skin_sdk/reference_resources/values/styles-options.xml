@@ -96,5 +96,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="OptionAACrop">
 		<item name="AAImage_scaleType">centerCropXY</item>
 	</style>
-		
+
+	<!-- NOTE: this is overridden for v28 -->	
+	<style name="OptionEquFRSRounded_Light">
+		<item name="EqMilkFrs_presetUri">internal://#fft2invrounded</item>
+	</style>
+	<!-- NOTE: this is overridden for v28 -->	
+	<style name="OptionEquFRSRounded_Dark">
+		<item name="EqMilkFrs_presetUri">internal://#fft2rounded</item>
+	</style>
 </resources>

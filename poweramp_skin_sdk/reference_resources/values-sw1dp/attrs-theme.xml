@@ -51,7 +51,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	
 	<attr name="dialog_AlertDialogActivity"/>
+	<attr name="dialog_AlertDialogActivity_centered"/>
 	<attr name="dialog_AlertDialogActivity_list"/>
+	<attr name="dialog_AlertDialogActivity_list_centered"/>
 	<attr name="dialog_AlertDialogActivity_vertical_buttons"/>
 	<attr name="dialog_AlertDialogActivity_no_title"/>
 	<attr name="dialog_AlertDialogActivity_no_title_vertical_buttons"/>
