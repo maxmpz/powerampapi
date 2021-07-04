@@ -1846,4 +1846,15 @@ public interface TableDefs {
 		public static final @NonNull String TITLE = "title";
 		public static final @NonNull String SUMMARY = "summary";
 	}
+	
+	/** 
+	 * Search history for the main (tracks) search
+	 * @since 907 
+	 */
+	public class SearchHistory {
+		public static final @NonNull String TABLE = "search_history";
+		public static final @NonNull String _ID = TABLE + "._id";
+		public static final @NonNull String TERM = "term";
+		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
+	}
 }
