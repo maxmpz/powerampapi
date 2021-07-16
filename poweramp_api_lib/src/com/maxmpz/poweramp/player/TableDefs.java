@@ -799,9 +799,9 @@ public interface TableDefs {
 
 	/** 
 	 * One-to-many relation table for track artists<br> 
-	 * This is only used if track has multiple artists
+	 * Always used. First entry may be UNKNOWN_ID or unsplit artist
 	 * @since 899
-	 * */
+	 */
 	public interface MultiArtists {
 		public static final @NonNull String TABLE = "multi_artists";
 
@@ -902,7 +902,7 @@ public interface TableDefs {
 
 	/** 
 	 * One-to-many relation table for track album artists<br> 
-	 * This is only used if track has multiple album artists
+	 * Always used. First entry may be UNKNOWN_ID or unsplit album artist
 	 * @since 899
 	 * */
 	public interface MultiAlbumArtists {
@@ -1084,7 +1084,7 @@ public interface TableDefs {
 
 	/** 
 	 * One-to-many relation table for track album artists<br> 
-	 * This is only used if track has multiple album artists
+	 * Always used. First entry may be UNKNOWN_ID or unsplit composer
 	 * @since 899
 	 * */
 	public interface MultiComposers {
