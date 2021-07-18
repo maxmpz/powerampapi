@@ -596,13 +596,25 @@
 		<item name="com.maxmpz.audioplayer:linesBackground">false</item>
 		<item name="android:background">@drawable/ripple_alpha_always_rounded</item>
 
-		<item name="android:paddingLeft">8dp</item>
-		<item name="android:paddingTop">8dp</item>
-		<item name="android:paddingRight">8dp</item>
-		<item name="android:paddingBottom">8dp</item>
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+
+		<item name="com.maxmpz.audioplayer:labelBackground">@drawable/alpha_always_rounded</item>
+		<!-- Extra paddings within labelBackground around label/value -->
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingLeft">8dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingRight">8dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingTop">8dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingBottom">8dp</item>
+
+		<item name="com.maxmpz.audioplayer:textPadding">8dp</item><!-- Padding between knob and label/value -->
+		<item name="com.maxmpz.audioplayer:valuePadding">2dp</item><!-- Padding between label and value -->
+
 
 		<item name="android:scaleX">0.75</item><!-- NOTE: can't use different scaleX vs scaleY here as SceneParams doesn't support it, it supports fixed aspect ratio scale -->
 		<item name="android:scaleY">0.75</item>
+
 
 		<!-- Following forces FastLayout to compensate scaled size and layout this view like no scale applied -->
 		<item name="android:transformPivotX">0px</item>
@@ -627,10 +639,20 @@
 		<item name="com.maxmpz.audioplayer:thumbWidth">64dp</item>
 		<item name="com.maxmpz.audioplayer:thumbHeight">32dp</item>
 
+		<item name="com.maxmpz.audioplayer:textPadding">8dp</item><!-- Extra padding between text and knob -->
+		<item name="com.maxmpz.audioplayer:valuePadding">2dp</item><!-- Padding between label and value -->
+
 		<!-- NOTE: by default linear knob (EqPreampLinearKnob style) uses own background with ticks.
 			 If we want some custom background, we should disable that default lines background -->
 		<item name="com.maxmpz.audioplayer:linesBackground">false</item>
 		<item name="android:background">@drawable/ripple_alpha_always_rounded</item>
+
+		<item name="com.maxmpz.audioplayer:labelBackground">@drawable/semi_white_bg</item>
+		<!-- Extra paddings within labelBackground around label/value -->
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingLeft">4dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingRight">4dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingTop">2dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingBottom">2dp</item>
 
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingTop">8dp</item>
@@ -640,6 +662,8 @@
 		<!-- NOTE: can't use different scaleX vs scaleY here as SceneParams doesn't support it, it supports fixed aspect ratio scale -->
 		<item name="android:scaleX">0.75</item>
 		<item name="android:scaleY">0.75</item>
+
+		<item name="android:text">Volume</item>
 	</style>
 
 	<style name="SampleSkin_mainLinearVolumeKnobHidden">

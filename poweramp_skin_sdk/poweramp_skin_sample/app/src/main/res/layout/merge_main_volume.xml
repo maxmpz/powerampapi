@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--suppress AndroidUnresolvableTag -->
 <merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,6 +10,7 @@
 	<!-- Show in main scene -->
 
 	<!-- Round knob variant -->
+	<!--suppress AndroidUnresolvableTag -->
 	<com.maxmpz.widget.player.DSPRoundKnobLayout
 		style="@style/SampleSkin_mainRoundVolumeKnob"
 
@@ -20,8 +22,9 @@
 		w:valueFormatMax="100"
 
 		w:labelText="@string/volume"
+
 		tools:ignore="MissingClass"
-		/>
+	/>
 	<!-- Show in playing scene -->
 	<SceneParams
 		w:baseScene="defaultScene"
@@ -79,19 +82,20 @@
 		android:visibility="invisible"
 	/>
 
-	<!-- This is horizontal knob (863+). paddingLeft=0 and valueFormat=0 forces no labels -->
+	<!-- This is horizontal knob (863+)  -->
 	<com.maxmpz.widget.player.DSPLinearKnob
 		style="@style/SampleSkin_mainLinearVolumeKnob_horiz"
 		android:orientation="horizontal"
 
-		w:valueFormat=""
+		w:valueFormat="%.0f%%"
 		w:valueFormatMin="0"
 		w:valueFormatMax="100"
+		android:text="@string/volume"
 
 		w:param="@com.maxmpz.audioplayer:id/dsp_master_volume"
 		w:updateMsgId="@com.maxmpz.audioplayer:id/msg_dsp_other_changed"
 		tools:ignore="MissingClass"
-		/>
+	/>
 
 	<!-- Show in playing scene -->
 	<SceneParams
