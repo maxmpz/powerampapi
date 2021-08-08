@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<page
+	name="Another sub page 2"
+	summary="Demonstrating sub pages and sub categories"
+>
+	<category name="Another sub page 2 category">
+	</category>
+	<page name="Another sub-sub page 2">
+		<category name="Sub-sub page 2 empty category">
+
+			<!-- Duplicated volume_knob option -->
+			<option
+				key="volume_knob"
+				name="@string/skin_volume_knob"
+				summary="@string/skin_summary_volume_knob"
+				overlapStyle="@style/SampleSkin_VolumeKnob"
+				checkedByDefault="false"
+			/>
+
+		</category>
+	</page>
+
+</page>

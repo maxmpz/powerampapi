@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+	<!-- Define few skin related attributes we'll be using inside skin -->
+
+	<!-- This is a reference to counter layout (when enabled by Poweramp settings) -->
+	<attr name="SampleSkin_counterLayout" format="reference"/>
+
+	<!-- This is a reference to main mini spectrum (when enabled by skin option) -->
+	<attr name="SampleSkin_mainMiniSpectrumLayout" format="reference"/>
+
+	<!-- This is a reference to main volume knob (when enabled by skin option) -->
+	<attr name="SampleSkin_mainVolumeLayout" format="reference"/>
+
+	<!-- Using those attributes to set both playing and paused AA scale -->
+	<attr name="SampleSkin_ItemTrackAAImage_scene_aa_scale" format="float"/>
+	<attr name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing" format="float"/>
+</resources>

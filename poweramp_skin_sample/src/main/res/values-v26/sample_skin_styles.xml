@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+
+	<!-- SampleSkin_transparentNavbar variant for v26+ (Android 8+) -->
+	<style name="SampleSkin_transparentNavbar" parent="SampleSkin_transparentNavbarBase">
+		<item name="android:navigationBarColor">#0000</item><!-- Make android navigation bar transparent -->
+		<item name="android:windowLightNavigationBar">true</item>
+		<item name="com.maxmpz.audioplayer:windowLightNavigationBar">true</item><!-- Needed for Android 8.0 as it doesn't support android:windowLightNavigationBar -->
+	</style>
+
+</resources>

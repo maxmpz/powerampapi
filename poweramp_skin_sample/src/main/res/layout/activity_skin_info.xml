@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:id="@android:id/custom"
+>
+	<ScrollView
+		android:id="@+id/scrollview"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:scrollbarDefaultDelayBeforeFade="100000"
+		android:layout_above="@+id/buttons"
+		android:layout_alignParentTop="true"
+	>
+		<RelativeLayout
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:padding="10dip"			
+		>
+			<ImageView
+				android:id="@+id/icon"
+				android:src="@mipmap/app_icon"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="2dip"
+				/>
+			<TextView
+				android:id="@+id/title"
+				android:layout_marginLeft="10dip"
+				android:layout_toRightOf="@+id/icon"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/app_name"
+				android:textSize="18sp"
+				android:textStyle="bold"
+				android:layout_alignTop="@+id/icon"
+				android:layout_alignBottom="@+id/icon"
+				android:gravity="center_vertical"
+			/>
+		
+			<TextView
+				android:id="@+id/msg1"
+				android:layout_below="@+id/icon"		
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/installation_ok"
+				android:textSize="16sp"
+				android:layout_marginTop="22dip"
+			/>
+		</RelativeLayout>
+	</ScrollView>
+
+	<LinearLayout android:id="@+id/buttons"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:orientation="vertical"
+	>
+		<Button
+			android:onClick="startWithSampleSkin"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="16dp"
+			android:text="@string/start_with_sample_skin"
+			android:textSize="16sp"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+		/>
+
+		<Button
+			android:onClick="startWithSampleAAASkin"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="16dp"
+			android:text="@string/start_with_sample_aaa_skin"
+			android:textSize="16sp"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+		/>
+
+		<Button
+			android:onClick="openPowerampThemeSettings"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/open_theme_settings"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginBottom="10dp"
+		/>
+	</LinearLayout>
+</RelativeLayout>

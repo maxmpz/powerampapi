@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+
+	<!-- NOTE: we can't just align labels horizontally as for landscape it's asymmetrical due to the Album art to the left.
+	     Instead, we'll force AAImage to "consume" left hand side of screen, thus making less space to the right, allowing labels to be centered properly
+	     NOTE: we modify item in scene_aa. Such AAImage modification also affects rating as it's NOT aligned to AAImage by default -->
+	<style name="SampleSkin_Alt_Centered" parent="SampleSkin_Alt_Centered_Base">
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">@style/SampleSkin_Alt_ItemTrackAAImage_scene_aa</item>
+		<!-- Fix ItemLikeUnlikeLayout/ItemRatingBar so it properly aligned to AAImage -->
+		<item name="com.maxmpz.audioplayer:ItemLikeUnlikeLayout_scene_aa">@style/SampleSkin_Alt_ItemLikeUnlikeLayout_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemRatingBar_scene_aa">@style/SampleSkin_Alt_ItemRatingBar_scene_aa</item>
+	</style>
+
+	<style name="SampleSkin_Alt_ItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemTrackAAImage_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_consumeSpace">horizontal</item>
+		<item name="com.maxmpz.audioplayer:scale">?SampleSkin_ItemTrackAAImage_scene_aa_scale</item>
+	</style>
+
+	<style name="SampleSkin_Alt_ItemLikeUnlikeLayout_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemLikeUnlikeLayout_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+	</style>
+
+	<style name="SampleSkin_Alt_ItemRatingBar_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemRatingBar_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachLeftToLeft">@com.maxmpz.audioplayer:id/aa_image</item>
+	</style>
+
+	<style name="Alt_Centered_ItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemTrackTitle_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">parent</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="android:layout_marginLeft">48dp</item><!-- Adjust margins for the chromecast button -->
+		<item name="android:layout_marginRight">48dp</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+
+	<style name="Alt_ItemTrackLine2_scene_aa" parent="com.maxmpz.audioplayer:Alt_ItemTrackLine2_scene_aa">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachRight">@null</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/title</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">@null</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+</resources>

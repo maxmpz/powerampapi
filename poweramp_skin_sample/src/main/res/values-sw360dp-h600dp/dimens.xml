@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<dimen name="NavbarBounds_height">48dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines">102dp</dimen>
+
+	<dimen name="AAA_TopPlay_marginBottom">30dp</dimen>
+
+	<dimen name="AAA_Seek_marginBottom">22dp</dimen>
+
+	<dimen name="AAA_TopTrackElapsed_marginBottom">4dp</dimen>
+	<dimen name="AAA_TopMetaInfoLayout_marginBottom">8dp</dimen>
+
+	<dimen name="AAA_TopPlay_maxSize">80dp</dimen>
+	<dimen name="AAA_TopPause_maxSize">70dp</dimen>
+	<dimen name="AAA_TopMediumButton_size">50dp</dimen>
+
+	<item type="dimen" format="float" name="AAA_ItemLikeUnlikeLayout_scene_aa_scale">.9</item>
+	<item type="dimen" format="float" name="AAA_ItemTrackTitle_scene_aa_scale">1</item>
+
+	<dimen name="AAA_ListSubstyle_aaPaddingBottom">61dp</dimen>
+
+	<dimen name="AAA_ItemTrackMenu_scene_aa_marginBottom">34dp</dimen>
+
+	<dimen name="AAA_ItemTrackMenu_drawableSize">24dp</dimen>
+
+	<dimen name="AAA_ItemRatingBar_padding">4dp</dimen>
+	<dimen name="AAA_ItemRatingBar_drawableSize">24dp</dimen>
+
+</resources>

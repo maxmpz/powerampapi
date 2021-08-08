@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Apply loadable open sans fonts for almost everything in Poweramp. Keep few styles as is just to demonstrate that
+     NOTE: many *_Text styles here also sets "sp" size. This is because original Poweramp skin has some text sizes set in dp which are not scalable
+     according to user settings. While this gives a bit more consistent look, here we use sp sizes which will mostly match default skin sizes for default
+     Android system font size settings, but will also grow/shrink according to that setting
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+
+	<!-- Introduce some attribute for a font so we can set it for all styles we need at once. This points to xml file which includes regular/bold/italic/bold italic styles -->
+	<attr name="OpenSans_font" format="string"/>
+
+	<style name="SampleSkin_OpenSansFont">
+		<item name="OpenSans_font">@font/open_sans</item>
+
+		<item name="android:textAppearance">@style/textAppearance_OpenSansFont</item><!-- Used in few places in the dialogs for a message text -->
+		<item name="android:textAppearanceButton">@style/textAppearanceButton_OpenSansFont</item><!-- Apply font for few buttons which use textAppearanceButton, e.g. dialog buttons -->
+		<item name="android:textAppearanceMediumInverse">@style/textAppearanceMediumInverse_OpenSansFont</item><!-- Used by e.g. TopListSearchEditText and other possible EditTexts -->
+		<item name="android:textAppearanceLargePopupMenu">@style/textAppearanceLargePopupMenu_OpenSansFont</item><!-- Used by some popups, like Eq Preset autocomplete -->
+		<item name="com.maxmpz.audioplayer:Dialog_textAppearance">@style/Dialog_textAppearance_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:Dialog_textAppearanceSmall">@style/Dialog_textAppearanceSmall_OpenSansFont</item><!-- Used by alert dialog messages -->
+		<item name="com.maxmpz.audioplayer:HeadText">@style/HeadText_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:SubheadText">@style/SubheadText_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:Hint">@style/Hint_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:AccentedText">@style/AccentedText_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:Text">@style/Text_OpenSansFont</item><!-- NOTE: used mostly in dialogs for text -->
+		<item name="com.maxmpz.audioplayer:LargerText">@style/LargerText_OpenSansFont</item>
+
+		<item name="com.maxmpz.audioplayer:TopListScrollerView_Text">@style/TopListScrollerView_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopTrackElapsedDuration_Text">@style/TopTrackElapsedDuration_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopSearchTarget_Text">@style/TopSearchTarget_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopListIndexerPopupView_Text">@style/TopListIndexerPopupView_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopToastTitle_Text">@style/TopToastTitle_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopToastLine2_Text">@style/TopToastLine2_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopCounterLayout_Text">@style/TopCounterLayout_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopMetaInfoLabel_Text">@style/TopMetaInfoLabel_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopHelp_Text">@style/TopHelp_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopHelpSmaller_Text">@style/TopHelpSmaller_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:TopHelpButton_Text">@style/TopHelpButton_Text_OpenSansFont</item>
+
+		<item name="com.maxmpz.audioplayer:NavbarExtensionLogoLabel_Text">@style/NavbarExtensionLogoLabel_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:NavbarExtensionMenuLine_Text">@style/NavbarExtensionMenuLine_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:PopupButton_Text">@style/PopupButton_Text_OpenSansFont</item>
+
+		<item name="com.maxmpz.audioplayer:DialogTitle_Text">@style/DialogTitle_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:DialogToastLine1_Text">@style/DialogToastLine1_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:DialogToastLine2_Text">@style/DialogToastLine2_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:DialogToastLineOnly1_Text">@style/DialogToastLineOnly1_Text_OpenSansFont</item>
+
+		<item name="com.maxmpz.audioplayer:ItemTrackCatImage_Text">@style/ItemTrackCatImage_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_Text">@style/ItemTrackTitle_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_Text">@style/ItemTrackLine2_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackMeta_Text">@style/ItemTrackMeta_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemAALEDecorText_Text">@style/ItemAALEDecorText_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemMiniplayerPrevNextDecorText_Text">@style/ItemMiniplayerPrevNextDecorText_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:SeparatorWithButton_Text">@style/SeparatorWithButton_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:BlackButton_Text">@style/BlackButton_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:WhiteButton_Text">@style/WhiteButton_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:WhiteStrokedListHeaderButton_Text">@style/WhiteStrokedListHeaderButton_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemTextTitle_Text">@style/ItemTextTitle_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemTextLine2_Text">@style/ItemTextLine2_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemEmptyListText_Text">@style/ItemEmptyListText_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemMiniplayerTitle_Text">@style/ItemMiniplayerTitle_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemMiniplayerLine2_Text">@style/ItemMiniplayerLine2_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemPopupSimpleTitle_Text">@style/ItemPopupSimpleTitle_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemPopupSimpleLine2_Text">@style/ItemPopupSimpleLine2_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemPopupListTitle_Text">@style/ItemPopupListTitle_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemPopupListTitleLarger_Text">@style/ItemPopupListTitleLarger_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemVisTitle_Text">@style/ItemVisTitle_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:ItemVisLine2_Text">@style/ItemVisLine2_Text_OpenSansFont</item>
+
+		<item name="com.maxmpz.audioplayer:PopupMenuItem_Text">@style/PopupMenuItem_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:PopupInfoTextTitle_Text">@style/PopupInfoTextTitle_Text_OpenSansFont</item>
+
+		<item name="com.maxmpz.audioplayer:SelectionListContextButton_Text">@style/SelectionListContextButton_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:SelectionMenu_Text">@style/SelectionMenu_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:SleepTimerTitle_Text">@style/SleepTimerTitle_Text_OpenSansFont</item>
+
+		<item name="com.maxmpz.audioplayer:EqLinearKnob_Text">@style/EqLinearKnob_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:EqKnobLabel_Text">@style/EqKnobLabel_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:EqKnobValue_Text">@style/EqKnobValue_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:EqButton_Text">@style/EqButton_Text_OpenSansFont</item>
+		<item name="com.maxmpz.audioplayer:EqEquPresetLabel_Text">@style/EqEquPresetLabel_Text_OpenSansFont</item>
+	</style>
+
+	<!-- NOTE: this sets font for quite specific cases, like Checkboxes (in SleepTimer dialog) -->
+	<style name="textAppearance_OpenSansFont" parent="android:TextAppearance.Material">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="textAppearanceButton_OpenSansFont" parent="android:TextAppearance.Material.Widget.Button">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">15.75dp</item><!-- NOTE: increased as no caps -->
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="textAppearanceMediumInverse_OpenSansFont" parent="android:TextAppearance.Material.Medium.Inverse">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="textAppearanceLargePopupMenu_OpenSansFont" parent="android:TextAppearance.Material.Widget.PopupMenu.Large">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="Dialog_textAppearance_OpenSansFont" parent="android:TextAppearance.Material">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="Dialog_textAppearanceSmall_OpenSansFont" parent="android:TextAppearance.Material.Small"><!-- Plain text views, e.g. used for labels/some messages -->
+	</style>
+
+	<style name="HeadText_OpenSansFont" parent="com.maxmpz.audioplayer:HeadText">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">16.2sp</item>
+	</style>
+	<style name="SubheadText_OpenSansFont" parent="com.maxmpz.audioplayer:SubheadText">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="Hint_OpenSansFont" parent="com.maxmpz.audioplayer:Hint">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="AccentedText_OpenSansFont" parent="com.maxmpz.audioplayer:AccentedText">
+	</style>
+	<style name="Text_OpenSansFont" parent="com.maxmpz.audioplayer:Text">
+	</style>
+	<style name="LargerText_OpenSansFont" parent="com.maxmpz.audioplayer:LargerText">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+
+	<style name="TopListScrollerView_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopListScrollerView_Text">
+	</style>
+	<style name="TopTrackElapsedDuration_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopTrackElapsedDuration_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">12.6sp</item>
+	</style>
+	<style name="TopSearchTarget_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopSearchTarget_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">11.7sp</item>
+	</style>
+	<style name="TopListIndexerPopupView_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopListIndexerPopupView_Text">
+		<!-- Keep default dp size as this is not strictly a text, but a popup glyph -->
+	</style>
+	<style name="TopToastTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopToastTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="TopToastLine2_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopToastLine2_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="TopCounterLayout_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopCounterLayout_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">9sp</item>
+	</style>
+	<style name="TopMetaInfoLabel_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopMetaInfoLabel_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">9sp</item>
+	</style>
+	<style name="TopHelp_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopHelp_Text">
+	</style>
+	<style name="TopHelpSmaller_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopHelpSmaller_Text">
+		<item name="android:textSize">10.8sp</item>
+	</style>
+	<style name="TopHelpButton_Text_OpenSansFont" parent="com.maxmpz.audioplayer:TopHelpButton_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+
+	<style name="NavbarExtensionLogoLabel_Text_OpenSansFont" parent="com.maxmpz.audioplayer:NavbarExtensionLogoLabel_Text">
+		<!--<item name="android:fontFamily">?OpenSans_font</item>-->
+		<item name="android:textSize">12.6sp</item>
+	</style>
+
+	<style name="NavbarExtensionMenuLine_Text_OpenSansFont" parent="com.maxmpz.audioplayer:NavbarExtensionMenuLine_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="PopupButton_Text_OpenSansFont" parent="com.maxmpz.audioplayer:PopupButton_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">14.4sp</item>
+	</style>
+
+	<style name="DialogTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:DialogTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">18sp</item>
+	</style>
+	<style name="DialogToastLine1_Text_OpenSansFont" parent="com.maxmpz.audioplayer:DialogToastLine1_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">13.5sp</item>
+	</style>
+	<style name="DialogToastLine2_Text_OpenSansFont" parent="com.maxmpz.audioplayer:DialogToastLine2_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">11.7sp</item>
+	</style>
+	<style name="DialogToastLineOnly1_Text_OpenSansFont" parent="com.maxmpz.audioplayer:DialogToastLineOnly1_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">14.4sp</item>
+	</style>
+
+	<style name="ItemTrackCatImage_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTrackCatImage_Text">
+		<item name="android:textSize">8.1sp</item>
+	</style>
+	<style name="ItemTrackTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTrackTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">15sp</item>
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
+	</style>
+	<style name="ItemTrackLine2_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTrackLine2_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">13sp</item>
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
+	</style>
+	<style name="ItemTrackMeta_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTrackMeta_Text">
+		<item name="android:textSize">9sp</item>
+	</style>
+	<style name="ItemAALEDecorText_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemAALEDecorText_Text">
+		<item name="android:textSize">12sp</item>
+	</style>
+	<style name="ItemMiniplayerPrevNextDecorText_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemMiniplayerPrevNextDecorText_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">10.5sp</item>
+	</style>
+	<style name="SeparatorWithButton_Text_OpenSansFont" parent="com.maxmpz.audioplayer:SeparatorWithButton_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">11.5sp</item><!-- NOTE: increased as no caps -->
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="BlackButton_Text_OpenSansFont" parent="com.maxmpz.audioplayer:BlackButton_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">13.5sp</item><!-- NOTE: increased as no caps -->
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="WhiteButton_Text_OpenSansFont" parent="com.maxmpz.audioplayer:WhiteButton_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">13.5sp</item><!-- NOTE: increased as no caps -->
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="WhiteStrokedListHeaderButton_Text_OpenSansFont" parent="com.maxmpz.audioplayer:WhiteStrokedListHeaderButton_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">13.5sp</item>
+		<item name="android:textAllCaps">false</item><!-- NOTE: increased as no caps -->
+	</style>
+	<style name="ItemTextTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTextTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">17sp</item><!-- NOTE: slightly increased vs default font -->
+	</style>
+	<style name="ItemTextLine2_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemTextLine2_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+	<style name="ItemEmptyListText_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemEmptyListText_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+	<style name="ItemMiniplayerTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemGenericTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">11.7sp</item>
+	</style>
+	<style name="ItemMiniplayerLine2_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemGenericLine2_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">10.8sp</item>
+	</style>
+	<style name="ItemPopupSimpleTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemPopupSimpleTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">13.5sp</item>
+	</style>
+	<style name="ItemPopupSimpleLine2_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemPopupSimpleLine2_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">10.8sp</item>
+	</style>
+	<style name="ItemPopupListTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemGenericTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">11.7sp</item>
+	</style>
+	<style name="ItemPopupListTitleLarger_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemPopupListTitleLarger_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">13.5sp</item>
+	</style>
+	<style name="ItemVisTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemGenericTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">11.7sp</item>
+	</style>
+	<style name="ItemVisLine2_Text_OpenSansFont" parent="com.maxmpz.audioplayer:ItemGenericLine2_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">10.8sp</item>
+	</style>
+
+	<style name="PopupMenuItem_Text_OpenSansFont" parent="com.maxmpz.audioplayer:PopupMenuItem_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">14.4sp</item>
+	</style>
+	<style name="PopupInfoTextTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:PopupInfoTextTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">16.2sp</item>
+	</style>
+
+	<style name="SelectionListContextButton_Text_OpenSansFont" parent="com.maxmpz.audioplayer:SelectionListContextButton_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">11.25sp</item>
+	</style>
+	<style name="SelectionMenu_Text_OpenSansFont" parent="com.maxmpz.audioplayer:SelectionMenu_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+	</style>
+
+	<style name="SleepTimerTitle_Text_OpenSansFont" parent="com.maxmpz.audioplayer:SleepTimerTitle_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">15.3sp</item>
+	</style>
+
+	<style name="EqLinearKnob_Text_OpenSansFont" parent="com.maxmpz.audioplayer:EqLinearKnob_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+	<style name="EqKnobLabel_Text_OpenSansFont" parent="com.maxmpz.audioplayer:EqKnobLabel_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">11.7sp</item>
+	</style>
+	<style name="EqKnobValue_Text_OpenSansFont" parent="com.maxmpz.audioplayer:EqKnobValue_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">10.5sp</item>
+	</style>
+	<style name="EqButton_Text_OpenSansFont" parent="com.maxmpz.audioplayer:EqButton_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">12sp</item><!-- NOTE: increased as no caps -->
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="EqEquPresetLabel_Text_OpenSansFont" parent="com.maxmpz.audioplayer:EqEquPresetLabel_Text">
+		<item name="android:fontFamily">?OpenSans_font</item>
+		<item name="android:textSize">12sp</item><!-- NOTE: increased as no caps -->
+		<item name="android:textAllCaps">false</item>
+	</style>
+</resources>

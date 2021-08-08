@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- NOTE: both app: and android: prefixed attributes should be defined.
+     Failure to do so will result fonts not working in Android 8+ (android:) or Androids 5-7 (app:) -->
+<font-family xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+	<font
+		app:fontStyle="normal"     app:fontWeight="400"     app:font="@font/opensans_regular"
+		android:fontStyle="normal" android:fontWeight="400" android:font="@font/opensans_regular"
+	/>
+	<font
+		app:fontStyle="italic"     app:fontWeight="400"     app:font="@font/opensans_regularitalic"
+		android:fontStyle="italic" android:fontWeight="400" android:font="@font/opensans_regularitalic"
+	/>
+	<font
+		app:fontWeight="700"      app:fontStyle="normal"     app:font="@font/opensans_bold"
+		android:fontWeight="700"  android:fontStyle="normal" android:font="@font/opensans_bold"
+	/>
+	<font
+		app:fontWeight="700"      app:fontStyle="italic"     app:font="@font/opensans_bolditalic"
+		android:fontWeight="700"  android:fontStyle="italic" android:font="@font/opensans_bolditalic"
+	/>
+</font-family>

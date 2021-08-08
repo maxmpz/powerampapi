@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<resources>
-	<style name="ActivityWidgetConfigure" parent="@android:style/Theme.Wallpaper.NoTitleBar">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowShowWallpaper">true</item>
-	</style>
-</resources>

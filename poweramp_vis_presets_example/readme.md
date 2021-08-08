@@ -1,11 +1,13 @@
 [TOC levels=3]:# "#Poweramp v3 / Poweramp Equalizer Visualization Presets Example"
 
 # Poweramp v3 / Poweramp Equalizer Visualization Presets Example
+- [Recent changes](#recent-changes)
 - [Poweramp v3 / Poweramp Equalizer visualization presets](#poweramp-v3--poweramp-equalizer-visualization-presets)
-- [How Poweramp v3 visualization works?](#how-poweramp-v3-visualization-works)
+- [How Poweramp v3 visualizations work?](#how-poweramp-v3-visualizations-work)
+- [Android 11/targetSdkVersion 30 support](#android-11targetsdkversion-30-support)
 - [Poweramp v3 visualization presets APK](#poweramp-v3-visualization-presets-apk)
 - [How to start own presets APK (based on this example project)](#how-to-start-own-presets-apk-based-on-this-example-project)
-- [Poweramp .milk format extentensions](#poweramp-milk-format-extentensions)
+- [Poweramp milk format extensions](#poweramp-milk-format-extensions)
 - [Android 10 and access to the Poweramp presets directory](#android-10-and-access-to-the-poweramp-presets-directory)
 - [License](#license)
 
@@ -19,8 +21,10 @@ Poweramp v3 (**build 796+** is required for the correct APK handling) or Poweram
 
 ### Recent changes
 
-* build 899 now supports bar peaks animation via bars_peak* options
-* build 899 now renders bar visualization with the screen resolution
+**Build 899:**
+* now supports bar peaks animation via bars_peak* options
+* added bars_rounding rendering, increased number of the supported bars/quads to 128
+* now renders bar visualization with the screen resolution
   * previously it rendered it to 512x512 or 1024x1024 (HD) target
   * presets without bars still rendered with the 512x512/1024x1024 target, and presets with bars are rendered to the screen size target
   * this increases bars fidelity, but may cause frame drops if preset also contains complicated animations/shaders
@@ -34,13 +38,29 @@ Some documentation for Milkdrop presets can be found here: https://raw.githubuse
 
 Poweramp understands .milk presets placed by user directly into the specific folder, or it can load presets from 3rd party APK.
 
-### How Poweramp v3 visualization works?
+### How Poweramp v3 visualizations work?
 
 Poweramp parses .milk file and translates .milk preset internal Eel language to Lua, which then executed in internal LuaJIT VM. Shader code, which is DirectX HLSL shader dialect, is
 translated internally to Open GL ES GLSL shaders, preprocessed and loaded for the preset.
 
 **Due to the non-trivial loading process and multiple translations, not all .milk presets can be loaded or properly rendered by Poweramp. Please test all presets in Poweramp v3 before
 publishing the presets APK.**
+
+### Android 11/targetSdkVersion 30 support
+All sample projects and PowerampAPI is built with targetSdkVersion 30. Poweramp is built with targetSdkVersion 30
+starting from the build 911.  
+Due to the package visibility changes on Android 11 for the apps compiled with targetSdkVersion 30, ensure your
+skin AndroidManifest.xml contains:
+* queries tag:
+```xml
+<queries>
+    <intent>
+        <action android:name="com.maxmpz.audioplayer.API_COMMAND"/>
+    </intent>
+</queries>
+```
+Note that poweramp_api_lib AndroidManifest.xml contains the queries element and it should be automatically merged
+to your app/plugin - please verify that by the reviewing Merged Manifest bottom tab for the project AndroidManifest.xml.
 
 ### Poweramp v3 visualization presets APK
 
@@ -49,24 +69,24 @@ Poweramp skin is a pretty much standard Android app in APK which includes:
 ```xml
 <meta-data android:name="com.maxmpz.PowerampVisPresets" android:value="true"/>
 ```
-* .milk files in **[app/src/main/assets/milk_presets](app/src/main/assets/milk_presets)**
+* .milk files in **[src/main/assets/milk_presets](src/main/assets/milk_presets)**
   * Poweramp parses preset file name using "name - author.milk" scheme, where name, author, and APK name are separate searchable labels in Poweramp presets list
-* optional textures in **[app/src/main/assets/milk_textures](app/src/main/assets/milk_textures)**
+* optional textures in **[src/main/assets/milk_textures](src/main/assets/milk_textures)**
   * jpg/png/bmp/tga formats are supported
 * an Activity which can be started by user. This activity may include actions to open Poweramp visualization settings or directly start Poweramp with target preset APK loaded
     * the activity is also used for the development to force Poweramp to reload APK under development
     * the activity can be further customized as needed
 
 ### How to start own presets APK (based on this example project)
-APK development is done directly from Android Studio (3.1.4 was used for this project).
-* clone this repository, rename appropriately and change **[values/strings.xml](app/src/main/res/values/strings.xml)** labels
+APK development is done directly from Android Studio
+* clone this repository, rename appropriately and change **[values/strings.xml](src/main/res/values/strings.xml)** labels
 * change application package, preferable to something containing **".poweramp.v3.vispresets."** as this is the substring that will be used in Poweramp to search for preset APKs in Play
 * build and run presets APK as a normal Android app
 * when presets APK activity is started, "Start Poweramp With This Preset" button can be pressed to force Poweramp immediately reload the presets APK
   * if the last loaded visualization preset was selected from this APK (via presets panel and may be filtering), this preset will be immediately reloaded as well
 * APK should appear in Poweramp Visualization settings page as well
 
-### Poweramp .milk format extentensions
+### Poweramp milk format extensions
 
 Poweramp supports extra rendering object - spectrum bars - which is defined via "bars_*" .milk file entries:
 * **bars_mode**
@@ -79,9 +99,9 @@ Poweramp supports extra rendering object - spectrum bars - which is defined via 
   * 6 - long bars reflected to left/right
   * 7 - rectangles reflected to left/right
 * **bars_num_x**
-  * number of bars in x axis, max=128 for long bars; 32 for rectangles
+  * number of bars in x axis, max=128
 * **bars_num_y**
-  * number of rectanges in y axis, max=24
+  * number of rectangles in y axis, max=128
 * **bars_spacing_x**
   * spacing in 0..1 range between bars horizontally
 * **bars_spacing_y**
@@ -176,7 +196,7 @@ Poweramp implements very simple ContentProvider which allows:
 - adding file, modifying the file, or deleting the preset or texture file
 
 Please see PowerampAPI.PERMISSION_ACCESS_MILK_PRESETS, PowerampAPI.MILK_PRESETS_URI documentation and  
-**[poweramp_vis_presets_example InfoActivity.java](app/src/main/java/com/poweramp/v3/vispresets/sample/InfoActivity.java)**
+**[poweramp_vis_presets_example InfoActivity.java](src/main/java/com/poweramp/v3/vispresets/sample/InfoActivity.java)**
 methods listMilkPresets, pushFile, deleteFile.
 
 

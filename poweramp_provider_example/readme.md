@@ -61,7 +61,7 @@ Track Provider is added to Poweramp via Poweramp *Music Folders* dialog with the
 optionally, a sub-folder.
 
 ### AndroidManifest.xml
-Your provider should be marked with `com.maxmpz.PowerampTrackProvider` metadata. See [AndroidManifest.xml](app/src/main/AndroidManifest.xml#L23).
+Your provider should be marked with `com.maxmpz.PowerampTrackProvider` metadata. See [AndroidManifest.xml](src/main/AndroidManifest.xml#L23).
 Currently (builds 863+) Poweramp loads and uses any document provider available, but this metadata allows Poweramp to understand your Provider fully supports API defined here.
 
 
@@ -71,7 +71,7 @@ Poweramp scans Track Provider Plugin tracks in two phases:
 * hierarchy scan
   * establishes folder and tracks hierarchy
   * adds new tracks, removes deleted tracks to/from Poweramp Library
-  * updates last modified timestaps
+  * updates last modified timestamps
   * projection columns are limited to a few columns
 * metadata scan
   * metadata retrieved for the new or modified tracks (based on last modified timestamp)
@@ -112,7 +112,7 @@ Static URL track has URL defined once when provider is scanned by Poweramp for t
 Poweramp doesn't do openDocument in this case.
 
 Dynamic URL track forces Poweramp to query actual URL to use when the track is started in Poweramp. Poweramp does additional call to the method `TrackProviderConsts.CALL_GET_URL`.
-See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L831) for the example method implementation.
+See [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L831) for the example method implementation.
 
 For URL Tracks with the duration, Poweramp will try to pre-scan it for a seek-wave. As this can increase traffic and server load, you can disable this behavior with  
 `TrackProviderConsts.COLUMN_TRACK_WAVE` set to a zero sized float array: `new float[0]`.
@@ -131,14 +131,15 @@ A pipe file descriptor is also accepted, but is not recommended as no seeking is
 * the direct file descriptor is the file pointing file descriptor which is seekable with no extra effort. Poweramp is also able
 to read tags directly from the track and read embedded album art from it
 
-* the seekable socket descriptor requires a special support ([TrackProviderProtocol.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderProto.java)), but
+* the seekable socket descriptor requires a special support  
+([TrackProviderProtocol.java](../poweramp_api_lib/src/main/java/com/maxmpz/poweramp/player/TrackProviderProto.java)), but
 resulting code is very close to the code for a pipe file descriptor. This works on all supported Android versions (5.0+)
 
 * the seekable proxy file descriptor created by StorageManager.openProxyFileDescriptor. Works for Android 8+. Recommended if you're targeting Android 8+
 
 * the pipe file descriptor is also accepted, but is not recommended: no seeking is possible, no tag reading, no embedded album art extraction, file is represented as "stream"
 
-See [ExampleProvider.java openDocument implementation](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L572) for the file pointing
+See [ExampleProvider.java openDocument implementation](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L572) for the file pointing
 file descriptor, the seekable socket, and proxy file descriptor code examples.
 
 Please note that socket is read by Poweramp as much as needed for the track playback and the total reading time from the start to the end of the track is close to the track duration itself.  
@@ -165,20 +166,21 @@ Poweramp supports 2 approaches for the Provider track metadata (tags) and album 
 
 #### Metadata And Album Art Provided By Provider
 
-See `DEFAULT_TRACK_AND_METADATA_PROJECTION` in [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L132).
+See `DEFAULT_TRACK_AND_METADATA_PROJECTION` in [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L132).
 
 If `MediaStore.MediaColumns.TITLE` or `MediaStore.MediaColumns.DURATION` columns exist in the resulting cursor, Poweramp assumes metadata is provided by the Provider and track is not scanned
 for the tags or the album art.
 
 In this case the album art image is retrieved if `Document.COLUMN_FLAGS` column has `Document.FLAG_SUPPORTS_THUMBNAIL` flag.
 
-Poweramp then requests the album art via `openDocumentThumbnail`. See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L551)
+Poweramp then requests the album art via `openDocumentThumbnail`. See [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L551)
 
 Lyrics can be also provided via `TrackProviderConsts.COLUMN_TRACK_LYRICS`. Poweramp adds this column to the `projection` columns only when Info/Tags or Lyrics dialog is shown, and
 your Provider may take time to extract/download/obtain the lyrics as needed.
 
 (Since 869) Directories may have thumbnail as well, if appropriate `Document.FLAG_SUPPORTS_THUMBNAIL` flag is set for the directory.
-See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L381) and [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L570)
+See [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L381) and  
+[ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L570)
 
 #### Metadata And Album Art From Track File
 
@@ -196,10 +198,10 @@ If array size is 0, Poweramp assumes default wave (same as used for Streams) is 
 If array size is not 100, Poweramp will resample that to 100 values internally.
 
 You can have either a float[] array (easier to manipulate/generate) or a byte[] array (float array represented as bytes, easier to store/retrieve as BLOB in/from the database).
-See [TrackProviderHelper.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderHelper.java#L15) for `bytesToFloats`, `floatsToBytes` methods if you need to convert
+See [TrackProviderHelper.java](../poweramp_api_lib/src/main/java/com/maxmpz/poweramp/player/TrackProviderHelper.java#L15) for `bytesToFloats`, `floatsToBytes` methods if you need to convert
 from one format to the another.
 
-In any case, you must put `TrackProviderConsts.COLUMN_TRACK_WAVE` to the cursor as bytes (bytep[] array), as Android cursor doesn't support other BLOB types.
+In any case, you must put `TrackProviderConsts.COLUMN_TRACK_WAVE` to the cursor as bytes (byte[] array), as Android cursor doesn't support other BLOB types.
 
 Track wave `TrackProviderConsts.COLUMN_TRACK_WAVE` column is added by Poweramp to the projection columns during the 2nd phase of scanning (the metadata scan).
 
@@ -209,15 +211,16 @@ Track wave `TrackProviderConsts.COLUMN_TRACK_WAVE` column is added by Poweramp t
 For your Provider to be selectable in the Android system picker, the Roots should have `Root.FLAG_SUPPORTS_IS_CHILD` flag set. Also, `isChildDocument` method should be overridden and, at least,
 it should return true or do a full documentId hierarchy check as needed.
 
-See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L188).
+See [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L188).
 
 ### Folders Hierarchy And User Selected Sub-folders
 
 Poweramp Music Folders dialog allows sub-folders selection, meaning user may select some provider folder in the hierarchy under the appropriate root.
 Such folder by default is shown on top level in the Folders Hierarchy category.
 
-If you want such folders to be in the hierarchy despite user selection, implement [TrackProviderConsts.CALL_GET_DIR_METADATA](../poweramp_api_lib/src/com/maxmpz/poweramp/player/TrackProviderConsts.java#L108).
-See [ExampleProvider.java](app/src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L951) for the example implementation.
+If you want such folders to be in the hierarchy despite user selection, implement
+[TrackProviderConsts.CALL_GET_DIR_METADATA](../poweramp_api_lib/src/main/java/com/maxmpz/poweramp/player/TrackProviderConsts.java#L108).
+See [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L951) for the example implementation.
 
 Supported since 869.
 
@@ -248,7 +251,7 @@ At this moment, .cue sheet files are not support for the track providers. *Pleas
 ### Data Refresh
 
 Data is refreshed on app first start, or when appropriate event or intent received
-(see [Scanner intents in PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1560)), etc.
+(see [Scanner intents in PowerampAPI.java](../poweramp_api_lib/src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#L1560)), etc.
 
 Poweramp handles metadata refresh automatically based on the `Document.COLUMN_LAST_MODIFIED` column for the folders and files.
 
@@ -257,7 +260,7 @@ This is configurable in the Poweramp settings: for example, only manual rescan m
 Please note that the Scanner intents sent to Poweramp will be only processed if your app is on the foreground, or if Poweramp is a foreground process (either Poweramp UI is visible or Poweramp is playing).  
 If this is not true, scan service is a subject to the Android 8+ background services policy and your intent will be ignored.
 
-Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/com/maxmpz/poweramp/player/PowerampAPI.java#L1694) for fine-grained scan just for your provider. If not specified,
+Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#L1694) for fine-grained scan just for your provider. If not specified,
 Poweramp will scan all known folders and providers.
 
 

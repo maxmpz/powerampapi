@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, MainActivity!</string>
+	<string name="app_name">Poweramp API Example</string>
+
+	<string name="aa_text_sample">Hello there!\n\n<b>Bold</b> <i>Italic</i> <a href="http://foobar.com">Link here</a></string>
+
+	<string name="unknown">Unknown</string>
+	<string name="unknown_artist_name">Unknown artist</string>
+	<string name="unknown_album_name">Unknown album</string>
+
+	<string name="widget_no_songs_selected">&lt;No songs selected&gt;</string>
+	<string name="widget_tap_to_open_power_amp">Tap here to open Poweramp</string>
+</resources>

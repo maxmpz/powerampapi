@@ -1,0 +1,6 @@
+rootProject.name = "poweramp_public_api"
+include ':poweramp_api_lib'
+include ':poweramp_api_example'
+include ':poweramp_provider_example'
+include ':poweramp_skin_sample'
+include ':poweramp_vis_presets_example'

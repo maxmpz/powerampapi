@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<dimen name="AAA_Seek_height">32dp</dimen>
+	<dimen name="AAA_Seek_marginBottom">20dp</dimen>
+	<dimen name="AAA_TopTrackElapsed_marginBottom">0dp</dimen>
+	<dimen name="AAA_TopMetaInfoLayout_marginBottom">8dp</dimen>
+
+	<dimen name="AAA_TopWaveseekLayout_height">120dp</dimen>
+	<dimen name="AAA_TopPlay_marginBottom">16dp</dimen>
+
+	<dimen name="AAA_TopSleepTimerButtonLayout_marginLeft">-6dp</dimen>
+
+	<dimen name="AAA_ItemTrackLine2_scene_aa_marginTop">-8dp</dimen>
+
+	<dimen name="AAA_ItemRatingBar_scene_aa_marginTop">4dp</dimen>
+</resources>

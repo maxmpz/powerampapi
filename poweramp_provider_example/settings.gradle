@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name='poweramp_provider_example'

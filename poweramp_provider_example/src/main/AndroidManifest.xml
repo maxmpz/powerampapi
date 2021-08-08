@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="com.maxmpz.powerampproviderexample">
+
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/AppTheme"
+		tools:ignore="GoogleAppIndexingWarning">
+
+		<provider
+			android:authorities="com.maxmpz.powerampproviderexample"
+			android:name="com.maxmpz.powerampproviderexample.ExampleProvider"
+			android:exported="true"
+			android:grantUriPermissions="true"
+			android:permission="android.permission.MANAGE_DOCUMENTS"
+			android:icon="@mipmap/ic_launcher"
+		>
+			<!-- This meta allows Poweramp to identify tracks provider and enables it for Poweramp -->
+			<meta-data android:name="com.maxmpz.PowerampTrackProvider" android:value="true"/>
+
+			<intent-filter>
+				<action android:name="android.content.action.DOCUMENTS_PROVIDER" />
+			</intent-filter>
+		</provider>
+
+
+		<activity android:name=".MainActivity" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+
+	</application>
+</manifest>

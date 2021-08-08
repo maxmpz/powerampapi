@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: keeping ripple as top drawable item: 
+	- that allows setting software mode on it
+	- avoiding multiple ripples inside drawable hierarchy
+--> 
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+	android:color="?com.maxmpz.audioplayer:colorKnobRipple">
+	<item>
+		<layer-list>
+			<!-- NOTE: layer item width/height is supported for SDK 23+, thus, using linear knob thumbWidth/height attributes instead -->
+			<!-- <item android:width="32dp" android:height="64dp"> -->
+			<item>
+				<selector android:exitFadeDuration="300">
+					<item android:state_enabled="false">
+						<shape>
+							<corners android:radius="?com.maxmpz.audioplayer:corners_knob_thumb"/>
+							<solid android:color="?com.maxmpz.audioplayer:colorKnobBg"/>
+							<stroke android:color="?com.maxmpz.audioplayer:colorKnobDisabled" android:width="1dp"/>
+						</shape>
+					</item>
+					
+					<item android:state_pressed="true">
+						<shape>
+							<corners android:radius="?com.maxmpz.audioplayer:corners_knob_thumb"/>
+							<solid android:color="?com.maxmpz.audioplayer:colorKnobBg"/>
+							<stroke android:color="?com.maxmpz.audioplayer:colorKnobPressed" android:width="2.5dp"/>
+						</shape>
+					</item>
+						
+					<item>
+						<shape>
+							<corners android:radius="?com.maxmpz.audioplayer:corners_knob_thumb"/>
+							<solid android:color="?com.maxmpz.audioplayer:colorKnobBg"/>
+							<stroke android:color="?com.maxmpz.audioplayer:colorKnob" android:width="1dp"/>
+						</shape>
+					</item>
+				</selector>
+			</item>
+
+			<!-- NOTE: top_bottom swapped with left_right -->
+			<item android:top="@com.maxmpz.audioplayer:dimen/knob_thumb_indicator_left_right"
+				android:left="@com.maxmpz.audioplayer:dimen/knob_thumb_indicator_top_bottom"
+				android:right="@com.maxmpz.audioplayer:dimen/knob_thumb_indicator_top_bottom"
+				android:bottom="@com.maxmpz.audioplayer:dimen/knob_thumb_indicator_left_right"
+			>
+				<selector android:exitFadeDuration="300">
+					<item android:state_enabled="false">
+						<shape>
+							<solid android:color="?com.maxmpz.audioplayer:colorKnobIndicatorDisabled"/>
+						</shape>
+					</item>
+					<item android:state_pressed="true">
+						<shape>
+							<solid android:color="?com.maxmpz.audioplayer:colorKnobIndicatorPressed"/>
+						</shape>
+					</item>
+					<item>
+						<shape>
+							<solid android:color="?com.maxmpz.audioplayer:colorKnobIndicator"/>
+						</shape>
+					</item>
+				</selector>
+			</item>
+			
+		</layer-list>
+	</item>
+</ripple>

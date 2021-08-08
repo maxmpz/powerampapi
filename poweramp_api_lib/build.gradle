@@ -1,0 +1,29 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdk 30
+    buildToolsVersion "31.0.0"
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 30
+        targetSdkVersion 30
+        minSdkVersion 21
+    }
+
+    buildTypes {
+        release {
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    compileSdkVersion 30
+}
+
+dependencies {
+    api 'org.eclipse.jdt:org.eclipse.jdt.annotation:2.2.600'
+}

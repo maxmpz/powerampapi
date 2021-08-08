@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!-- v8 -->
-<resources>
-   	<dimen name="appwidget_4x4_lr_margin">7dip</dimen>
-   	<dimen name="appwidget_4x4_width">-1px</dimen><!-- fill_parent for atrix -->
-   	<dimen name="appwidget_4x4_height">-1px</dimen><!-- fill_parent for SGNote -->
-</resources>

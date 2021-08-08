@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- As our sample skin can include multiple extra layouts, but there is only one "slot" by default in Poweramp activity_list_fast.xml layout,
+     we're including this placeholder instead, which in turn may include multiple extra layouts as needed -->
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:w="http://schemas.android.com/apk/res/com.maxmpz.audioplayer"
+>
+
+	<!--NOTE: by default, all these values are nulls, so nothing is loaded. w:optional="true" makes inflater ignore default null value -->
+
+	<include android:layout="?SampleSkin_counterLayout" w:optional="true"/>
+
+	<include android:layout="?SampleSkin_mainMiniSpectrumLayout" w:optional="true"/>
+
+	<include android:layout="?SampleSkin_mainVolumeLayout" w:optional="true"/>
+</merge>

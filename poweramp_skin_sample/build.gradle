@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '31.0.0'
+
+    defaultConfig {
+        applicationId "com.poweramp.v3.sampleskin"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    lintOptions {
+        disable "ResAuto", "MissingTranslation", "OnClick", "ExtraTranslation"
+
+    }
+    aaptOptions {
+        def localProps = new Properties()
+        localProps.load(rootProject.file("local.properties").newDataInputStream())
+
+        //"--stable-ids", "stable-ids.txt",
+        additionalParameters "--emit-ids", "stable-ids.txt", "--package-id", "0x80",
+                                "-I", "${projectDir}/../${localProps['poweramp.apk']}"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat-resources:1.3.1"
+}

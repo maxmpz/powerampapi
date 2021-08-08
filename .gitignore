@@ -1,4 +1,7 @@
+*.iml
+.gradle/
 local.properties
-/bin
-/gen
+.idea/
 .DS_Store
+build/
+.externalNativeBuild

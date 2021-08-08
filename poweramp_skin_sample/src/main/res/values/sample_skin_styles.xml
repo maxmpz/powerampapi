@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+	<!-- Main theme, derived from Poweramp base white theme. We override only the attributes we need.
+	     Poweramp styles/attributes/values start with "com.maxmpz.audioplayer:", otherwise syntax is the standard Android xml resource syntax
+	 -->
+	
+	<style name="SampleSkin" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
+		<item name="com.maxmpz.audioplayer:corners_navbar">0dp</item>
+
+		<item name="com.maxmpz.audioplayer:corners_popup">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_medium">4dp</item>
+		<item name="com.maxmpz.audioplayer:corners_medium_plus">4dp</item>
+		<item name="com.maxmpz.audioplayer:corners_searchbar">4dp</item>
+		<item name="com.maxmpz.audioplayer:corners_mini">0dp</item>
+		<item name="com.maxmpz.audioplayer:corners_large">8dp</item>
+		<item name="com.maxmpz.audioplayer:corners_small">1dp</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other">matchHeight</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_zoomed">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_zoomed">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_zoomed">matchHeight</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid">matchHeight</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid_zoomed">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid_zoomed">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid_zoomed">matchHeight</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_small">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">2dp</item>
+		<item name="com.maxmpz.audioplayer:corners_miniplayer_aa">0dp</item>
+
+		<!--<item name="com.maxmpz.audioplayer:colorBgInverse">#00f</item>--><!-- Change e.g. all background colors globally. See other color* definitions in reference_resources -->
+
+		<item name="com.maxmpz.audioplayer:colorStroke">#ddd</item><!-- Make stroked buttons much less contrasted -->
+
+		<item name="com.maxmpz.audioplayer:navbar_elevation">8dp</item><!-- Increase elevation for navbar -->
+
+		<!-- Redefine bottom navbar bounds used as anchor for other views, as we moved navbar 8dp down -->
+		<item name="com.maxmpz.audioplayer:bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>
+		<item name="com.maxmpz.audioplayer:bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>
+
+		<!-- Change Navbar style to make it fill whole width -->
+		<item name="com.maxmpz.audioplayer:Navbar">@style/Navbar</item>
+		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet</item>
+		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines</item>
+
+		<!-- Apply same for selection menu -->
+		<item name="com.maxmpz.audioplayer:SelectionMenuSubcontainer">@style/SelectionMenuSubcontainer</item>
+		<item name="com.maxmpz.audioplayer:SelectionMenuSubcontainer_scene_selection_menu">@style/SelectionMenuSubcontainer_scene_selection_menu</item>
+
+		<!-- Change Equalizer top bar style to make it fill whole width -->
+		<item name="com.maxmpz.audioplayer:TopActionModeBar">@style/TopActionModeBar</item>
+
+		<!-- Redefine AA swipe transform -->
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/TopListWidget</item>
+
+		<!-- As we changed corners for everything, let's add separate always rounded background for menu button -->
+		<item name="com.maxmpz.audioplayer:ItemTrackMenu">@style/ItemTrackMenu</item>
+
+		<!-- Also modify text header menu, as it uses different styling -->
+		<item name="com.maxmpz.audioplayer:ItemTextMenu">@style/ItemTextMenu</item>
+
+		<!-- Let's add background for buttons in list headers. It's always hidden in Poweramp default themes -->
+		<item name="com.maxmpz.audioplayer:ItemHeaderButtonsBg">@style/ItemHeaderButtonsBg</item>
+		<item name="com.maxmpz.audioplayer:ItemHeaderButtonsBg_scene_header">@style/ItemHeaderButtonsBg_scene_header</item>
+
+		<!-- Override buttons with different background drawable/ripple -->
+		<item name="com.maxmpz.audioplayer:ItemHeaderShuffleButton">@style/ItemHeaderShuffleButton</item>
+		<item name="com.maxmpz.audioplayer:ItemHeaderPlayButton">@style/ItemHeaderPlayButton</item>
+		<item name="com.maxmpz.audioplayer:ItemHeaderSelectButton">@style/ItemHeaderSelectButton</item>
+		<item name="com.maxmpz.audioplayer:ItemHeaderSearchButton">@style/ItemHeaderSearchButton</item>
+
+		<!-- The text header button (text header => header without background image for categories like Albums, Playlists, etc. -->
+		<item name="com.maxmpz.audioplayer:ItemTextHeaderShuffleButton">@style/ItemTextHeaderShuffleButton</item>
+
+
+		<!-- Override menu button in just scene_header scene -->
+		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_header">@style/ItemTrackMenu_scene_header</item>
+
+		<!-- Few more adjustments are needed for "back decors" as they should have same layout as title for proper animations -->
+		<!-- Also, we override all possible backdecor styles/scenes here just to demonstrate how to apply some styles too all possible
+		     backdecor combinations:
+		     - top backdecor (Library => any top category)
+		     - text backdecor (Top category => child list)
+		     - item backdecor (List => List with cover background)
+		       + scene_header_1 for 1-line categories (Artists, Generes, etc.)
+		     NOTE: generally you don't need to override all such styles, this is why they are commented here - we override only the styles we need for sample skin
+		-->
+		<!--
+		<item name="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle">@style/ItemTopTextBackDecorTitle</item>
+		<item name="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle_scene_header_back_decor">@style/ItemTopTextBackDecorTitle_scene_header_back_decor</item>
+
+		<item name="com.maxmpz.audioplayer:ItemTextBackDecorTitle">@style/ItemTextBackDecorTitle</item>
+		<item name="com.maxmpz.audioplayer:ItemTextBackDecorTitle_scene_header_back_decor">@style/ItemTextBackDecorTitle_scene_header_back_decor</item>
+		-->
+
+		<!-- Change volume panel slightly (optional panel, can be enabled in Poweramp Audio settings -->
+		<item name="com.maxmpz.audioplayer:VolumePanelFrame">@style/VolumePanelFrame</item>
+
+		<!-- Change Playing Mark from just background to overlay icon.
+		     By default, currently played track has background, but we may change that to a completely different thing, in this case - icon.
+		     All scenes should be overridden for that, though (as layout is changed in every scene)
+		-->
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark">@style/ItemTrackPlayingMark</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_small">@style/ItemTrackPlayingMark_scene_small</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_1">@style/ItemTrackPlayingMark_scene_1</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_zoomed">@style/ItemTrackPlayingMark_scene_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_1_zoomed">@style/ItemTrackPlayingMark_scene_1_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid">@style/ItemTrackPlayingMark_scene_grid</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1">@style/ItemTrackPlayingMark_scene_grid_1</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1_alt">@style/ItemTrackPlayingMark_scene_grid_1_alt</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_zoomed">@style/ItemTrackPlayingMark_scene_grid_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1_zoomed">@style/ItemTrackPlayingMark_scene_grid_1_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scene_grid_1_alt_zoomed">@style/ItemTrackPlayingMark_scene_grid_1_alt_zoomed</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackPlayingMark_scenes_hidden">@style/ItemTrackPlayingMark_scenes_hidden</item>
+
+		<!-- NOTE: override OptionCounter option attribute as we're overriding TopContainer_extraLayout with own layout, which will in turn
+			 include counter (when enabled), mini frequency response, volume knob -->
+		<item name="com.maxmpz.audioplayer:OptionCounter">@style/SampeSkin_OptionCounter</item>
+
+		<!-- Provide null default value for counter layout (so nothing is loaded by default) -->
+		<item name="SampleSkin_counterLayout">@null</item>
+
+		<!-- Provide null default value for main mini spectrum layout (so nothing is loaded by default) -->
+		<item name="SampleSkin_mainMiniSpectrumLayout">@null</item>
+
+		<!-- Provide null default value for main volume knob layout (so nothing is loaded by default) -->
+		<item name="SampleSkin_mainVolumeLayout">@null</item>
+
+		<item name="com.maxmpz.audioplayer:TopContainer_extraLayout">@layout/merge_extralayout_includes</item>
+
+		<!-- NOTE: to make scalable font sizes work even in this isolated case, many additional styles are needed to properly scale also parent containers,
+		     some attached views, etc. Still, stuff like header sizes, etc. can't be scaled based on fonts inside, so we can't use too large fonts in some places -->
+		<item name="com.maxmpz.audioplayer:TopSearchPanel">@style/TopSearchPanel</item>
+		<item name="com.maxmpz.audioplayer:TopSearchCloseButton">@style/TopSearchCloseButton</item>
+		<item name="com.maxmpz.audioplayer:TopListSearchEditText">@style/TopListSearchEditText</item>
+
+		<!-- NOTE: we override this for OpenSansFont/UnbuntuFont as well -->
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_Text">@style/ItemTrackTitle_Text</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_Text">@style/ItemTrackLine2_Text</item>
+
+		<!-- Add style to manipilate AA image scale while playing and paused -->
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">@style/ItemTrackAAImage_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa_playing">@style/ItemTrackAAImage_scene_aa_playing</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.975</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.0</item>
+	</style>
+
+	<style name="ItemTrackTitle_Text" parent="com.maxmpz.audioplayer:ItemTrackTitle_Text">
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
+	</style>
+	<style name="ItemTrackLine2_Text" parent="com.maxmpz.audioplayer:ItemTrackLine2_Text">
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
+	</style>
+
+
+	<style name="TopSearchPanel" parent="com.maxmpz.audioplayer:TopSearchPanel">
+		<item name="android:layout_height">wrap_content</item><!-- Make height scalable according to the text size -->
+	</style>
+	<style name="TopSearchCloseButton" parent="com.maxmpz.audioplayer:TopSearchCloseButton">
+		<!-- Make gravity relative to edit text now as we have scalable container height now -->
+		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@com.maxmpz.audioplayer:id/search_edit</item>
+	</style>
+
+	<style name="TopListSearchEditText" parent="com.maxmpz.audioplayer:TopListSearchEditText">
+		<!-- The seekbar preference key we want to use here.
+		     The preference key containing float size _multiplier_.
+		     The multipler is applied to android:textSize set for given textview or other view with the text.
+
+		     Resulting text size in pixels will be:
+		       android:textSize in dp * textSizePref preference float value
+		       or
+		       android:textSize in sp * user system text size preference * textSizePref preference float value.
+
+		     Different text or view styles may have different textSizePref values. We use multiplier here instead of the fixed font size value
+		     to allow all the default text sizes (defined by default theme/styles) to be valid without extra configuration.
+		 -->
+		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/searchEditFontSize</item>
+		<item name="android:layout_marginRight">24dp</item><!-- Give some space to the close button -->
+	</style>
+
+	<!-- We need to change layout in all "scenes" for the target view, in this case, Navbar -->
+	<style name="Navbar" parent="com.maxmpz.audioplayer:Navbar">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+	<style name="Navbar_scene_navbar_1line_sheet" parent="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+	<style name="Navbar_scene_navbar_2lines" parent="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
+	<style name="SelectionMenuSubcontainer" parent="com.maxmpz.audioplayer:SelectionMenuSubcontainer">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+	<style name="SelectionMenuSubcontainer_scene_selection_menu" parent="com.maxmpz.audioplayer:SelectionMenuSubcontainer_scene_selection_menu">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
+
+	<style name="TopActionModeBar" parent="com.maxmpz.audioplayer:TopActionModeBar">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:elevation">1dp</item>
+	</style>
+
+	<style name="TopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listSubstyle">@style/ListSubstyle</item>
+	</style>
+	<style name="ListSubstyle" parent="com.maxmpz.audioplayer:ListSubstyle">
+		<item name="com.maxmpz.audioplayer:aaMaxYRotation">-2</item><!-- Slightly rotate on Y axis -->
+		<item name="com.maxmpz.audioplayer:aaMaxZRotation">0</item><!-- Don't rotate on Z axis -->
+		<item name="com.maxmpz.audioplayer:aaMaxScale">1</item><!-- Don't scale items when out of view -->
+		<item name="com.maxmpz.audioplayer:aaDenseFactor">0.6</item><!-- Make items closer to each other -->
+	</style>
+
+	<style name="ItemTrackMenu" parent="com.maxmpz.audioplayer:ItemTrackMenu">
+		<item name="android:background">@drawable/ripple_inverse_always_rounded</item>
+	</style>
+
+	<style name="ItemTextMenu" parent="com.maxmpz.audioplayer:ItemTextMenu">
+		<item name="android:background">@drawable/ripple_inverse_stroke_always_rounded</item>
+	</style>
+
+	<style name="ItemHeaderButtonsBg" parent="com.maxmpz.audioplayer:ItemHeaderButtonsBg">
+		<item name="android:visibility">invisible</item><!-- By default, this view should be invisible, and it will become visible in scene_header (see below) -->
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">50dp</item>
+		<item name="android:background">#8000</item><!-- Add some background -->
+		<item name="com.maxmpz.audioplayer:layout_attachBottom">parent</item>
+		<item name="android:translationZ">?com.maxmpz.audioplayer:over_aa_elevation</item><!-- Need this elevation to be above AA -->
+		<item name="android:outlineProvider">none</item><!-- Force no shadow -->
+		<item name="android:disabledAlpha">0</item><!-- This makes it to disappear with buttons in selection mode -->
+	</style>
+	<style name="ItemHeaderButtonsBg_scene_header" parent="com.maxmpz.audioplayer:ItemHeaderButtonsBg_scene_header">
+		<item name="android:visibility">visible</item>
+	</style>
+
+	<style name="ItemHeaderShuffleButton" parent="com.maxmpz.audioplayer:ItemHeaderShuffleButton">
+		<item name="android:background">@drawable/ripple_button</item>
+		<item name="com.maxmpz.audioplayer:drawableTint">#f00</item>
+	</style>
+
+	<style name="ItemTextHeaderShuffleButton" parent="com.maxmpz.audioplayer:ItemTextHeaderShuffleButton">
+		<item name="com.maxmpz.audioplayer:drawableTint">#00f</item>
+	</style>
+
+	<style name="ItemHeaderPlayButton" parent="com.maxmpz.audioplayer:ItemHeaderPlayButton">
+		<item name="android:background">@drawable/ripple_button</item>
+	</style>
+
+	<style name="ItemHeaderSelectButton" parent="com.maxmpz.audioplayer:ItemHeaderSelectButton">
+		<item name="android:background">@drawable/ripple_button</item>
+	</style>
+
+	<style name="ItemHeaderSearchButton" parent="com.maxmpz.audioplayer:ItemHeaderSearchButton">
+		<item name="android:background">@drawable/ripple_button</item>
+	</style>
+
+	<style name="ItemTrackMenu_scene_header" parent="com.maxmpz.audioplayer:ItemTrackMenu_scene_header">
+		<item name="android:background">@drawable/ripple_button</item>
+		<!-- By default, view params like background are not applied for ItemTrackMenu during scene transitions, but as we want to change background, set applyViewParams to true -->
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+	<!--
+	<style name="ItemTopTextBackDecorTitle" parent="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle">
+		<item name="android:textColor">#f00</item>
+	</style>
+	<style name="ItemTopTextBackDecorTitle_scene_header_back_decor" parent="com.maxmpz.audioplayer:ItemTopTextBackDecorTitle_scene_header_back_decor">
+		<item name="android:textColor">#f00</item>
+	</style>
+
+	<style name="ItemTextBackDecorTitle" parent="com.maxmpz.audioplayer:ItemTextBackDecorTitle">
+		<item name="android:textColor">#f00</item>
+	</style>
+	<style name="ItemTextBackDecorTitle_scene_header_back_decor" parent="com.maxmpz.audioplayer:ItemTextBackDecorTitle_scene_header_back_decor">
+		<item name="android:textColor">#f00</item>
+	</style>
+	-->
+
+	<!-- Optional styles for color1 option, color2 option select, and bg_color popup -->
+	<style name="SampleSkin_color1">
+		<item name="android:textColorPrimary">#f00</item>
+	</style>
+	<style name="SampleSkin_color_red">
+		<item name="android:textColorPrimary">#f00</item>
+	</style>
+	<style name="SampleSkin_color_green">
+		<item name="android:textColorPrimary">#0f0</item>
+	</style>
+	<style name="SampleSkin_color_blue">
+		<item name="android:textColorPrimary">#00f</item>
+	</style>
+
+	<style name="SampleSkin_bg_color_red">
+		<item name="com.maxmpz.audioplayer:colorBgPrimary">#faa</item>
+		<item name="com.maxmpz.audioplayer:colorBgNavbar">#faa</item>
+		<item name="com.maxmpz.audioplayer:colorAABgColor">#faa</item>
+	</style>
+	<style name="SampleSkin_bg_color_green">
+		<item name="com.maxmpz.audioplayer:colorBgPrimary">#afa</item>
+		<item name="com.maxmpz.audioplayer:colorBgNavbar">#afa</item>
+		<item name="com.maxmpz.audioplayer:colorAABgColor">#afa</item>
+	</style>
+	<style name="SampleSkin_bg_color_blue">
+		<item name="com.maxmpz.audioplayer:colorBgPrimary">#aaf</item>
+		<item name="com.maxmpz.audioplayer:colorBgNavbar">#aaf</item>
+		<item name="com.maxmpz.audioplayer:colorAABgColor">#aaf</item>
+	</style>
+
+
+
+
+	<!-- Optional style for SampleSkin_transparentNavbar option. Poweramp applies optional styles on top of the skin theme, if such option is checked by user in settings.
+	     NOTE: as fully transparent navigation bar is supported by Android 8.0+, we have different variants of this style for v21-25 (Android 5-7), and for v26+ (Android 8+).
+	     NOTE: this is overridden in values-land (back to default), as we don't want UI to go under navigation bar in landscape, as navigation bar is to the right / left
+	-->
+	<style name="SampleSkin_transparentNavbarBase">
+
+		<item name="com.maxmpz.audioplayer:navigationBarBg">#0000</item>
+
+		<item name="com.maxmpz.audioplayer:colorNavbarIcons">#7a7a7a</item><!-- Makes Poweramp navbar icons a bit more contrast for non-white backgrounds possible due to an album art -->
+
+		<item name="com.maxmpz.audioplayer:navbar_elevation">0dp</item><!-- Remove elevation for navbar -->
+
+		<item name="com.maxmpz.audioplayer:Navbar">@style/Navbar_transparentNavbar</item>
+		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
+		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+
+		<!-- Apply same for selection menu container -->
+		<item name="com.maxmpz.audioplayer:TopSelectionMenuContainer">@style/TopSelectionMenuContainer</item>
+
+		<!-- We want Android navigation bar to become non-transparent for lists, as list goes beyond it -->
+		<item name="com.maxmpz.audioplayer:TopFitsNavigationBarView_scenes_non_main">@style/TopFitsNavigationBarView_scenes_non_main</item>
+
+		<!-- To demonstrate animation duration overriding, let's override transition time between main AA and other screens to sync nav bar background animations with it -->
+		<item name="com.maxmpz.audioplayer:TopContainer">@style/TopContainer_transparentNavbar</item>
+	</style>
+
+	<!-- SampleSkin_transparentNavbar variant for v21-v25 (Android 5-7) -->
+	<style name="SampleSkin_transparentNavbar" parent="SampleSkin_transparentNavbarBase">
+		<item name="android:windowTranslucentNavigation">true</item>
+	</style>
+
+
+
+	<!-- No need to override all scenes, as we change just background, which is not changed by scenes for Poweramp Navbar.
+	     We also derive from our skin Navbar style to reuse previous modification (e.g. margins) -->
+	<style name="Navbar_transparentNavbar" parent="Navbar">
+		<item name="android:background">#0000</item><!-- NOTE: @null won't work here, as this will make navbar a non-drawing view, thus, no scene background change will happen -->
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+
+	<style name="Navbar_scene_navbar_1line_sheet_transparentNavbar" parent="Navbar_scene_navbar_1line_sheet">
+		<item name="android:background">#fff</item><!-- Apply white background for scenes, so navbar has visible background in lists and when expanded -->
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item><!-- Enables background changes for scene -->
+	</style>
+	<style name="Navbar_scene_navbar_2lines_transparentNavbar" parent="Navbar_scene_navbar_2lines">
+		<item name="android:background">#fff</item>
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+	<style name="TopSelectionMenuContainer" parent="com.maxmpz.audioplayer:TopSelectionMenuContainer">
+		<item name="android:clipToPadding">true</item>
+		<item name="android:clipChildren">true</item>
+	</style>
+
+	<style name="TopFitsNavigationBarView_scenes_non_main" parent="com.maxmpz.audioplayer:TopFitsNavigationBarView_scenes_non_main">
+		<item name="android:background">#fff</item>
+		<item name="com.maxmpz.audioplayer:applyViewParams">true</item>
+	</style>
+
+	<style name="TopContainer_transparentNavbar" parent="com.maxmpz.audioplayer:TopContainer">
+		<!-- By default this is 0, but we sync it with navigation transition duration, which is 500ms by default -->
+		<item name="com.maxmpz.audioplayer:animMainExitTime">500</item>
+		<item name="android:clipChildren">true</item><!-- Force clipping to avoid selection menu going under android navigation bar -->
+	</style>
+
+
+	<!-- Divided waveseek option -->
+	<style name="SampleSkin_dividedWaveseek">
+		<!-- Override TopWaveseek -->
+		<item name="com.maxmpz.audioplayer:TopWaveseek">@style/SampleSkin_dividedWaveseek_TopWaveseek</item>
+	</style>
+	<style name="SampleSkin_dividedWaveseek_TopWaveseek" parent="com.maxmpz.audioplayer:TopWaveseek">
+		<item name="com.maxmpz.audioplayer:divisor">75%</item>
+		<!-- Redefine bottom bars with our own bitmap -->
+		<item name="com.maxmpz.audioplayer:barBitmap2">@drawable/bar_alpha</item>
+		<item name="com.maxmpz.audioplayer:elapsedBarBitmap2">@drawable/bar_alpha</item>
+	</style>
+
+
+	<!-- No AA blur option -->
+	<style name="SampleSkin_noAABlur">
+		<!-- We should override listMilkMode in TopListWidget style -->
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/SampleSkin_noAABlur_TopListWidget</item>
+	</style>
+	<style name="SampleSkin_noAABlur_TopListWidget" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listMilkMode">none</item>
+	</style>
+
+	<style name="VolumePanelFrame" parent="com.maxmpz.audioplayer:VolumePanelFrame">
+		<item name="android:background">@drawable/semi_black_bg</item><!-- Make it black -->
+	</style>
+
+	<!-- Playing mark in normal list. Also a base style for other scenes -->
+	<style name="ItemTrackPlayingMark">
+		<item name="android:layout_width">32dp</item>
+		<item name="android:layout_height">32dp</item>
+		<item name="android:layout_gravity">right|center_vertical</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:visibility">visible</item>
+		<!-- Drawable should be set only for activated state -->
+		<item name="android:background">@drawable/playing_mark_selector</item>
+		<item name="android:translationZ">?attr/com.maxmpz.audioplayer:item_ontop_elevation</item>
+		<item name="android:outlineProvider">none</item><!-- Disable shadow -->
+	</style>
+	<!-- For list-compact (==scene_small) move mark to the left -->
+	<style name="ItemTrackPlayingMark_scene_small">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+		<item name="android:layout_width">24dp</item>
+		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="android:layout_marginLeft">20dp</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_1">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_zoomed">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_1_zoomed">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+		<item name="android:layout_width">24dp</item>
+		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_gravity">right|top</item>
+		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_marginTop">12dp</item>
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_1" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_1_alt" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_zoomed" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_1_zoomed" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scene_grid_1_alt_zoomed" parent="ItemTrackPlayingMark_scene_grid">
+	</style>
+	<style name="ItemTrackPlayingMark_scenes_hidden">
+		<item name="com.maxmpz.audioplayer:baseScene">defaultScene</item>
+		<item name="android:visibility">invisible</item>
+	</style>
+
+
+	<!-- Mini spectrum on main screen option -->
+	<style name="SampleSkin_mainMiniSpectrum">
+		<!-- NOTE: we override own attribute here (not a com.maxmpz.audioplayer attribute), which is included inside our merge_extralayout_inlcudes.xml -->
+		<item name="SampleSkin_mainMiniSpectrumLayout">@layout/merge_main_mini_spectrum</item>
+	</style>
+
+	<style name="SampleSkin_mainMiniSpectrum_MilkFRS_base">
+		<!-- Using transparent background.
+			 NOTE: this works only with "bars" visualizations
+		-->
+		<!--<item name="com.maxmpz.audioplayer:bgColor">?com.maxmpz.audioplayer:colorBgPrimary</item>-->
+		<!--<item name="com.maxmpz.audioplayer:bgColor">#000</item>-->
+		<item name="com.maxmpz.audioplayer:bgColor">#0000</item>
+		<!--
+			Poweramp uses (for eq screen):
+
+		    "internal://#fft2inv" - black bars
+			"internal://#fft2" - light bars
+
+		    But here, we're using own milk preset from our skin assets directory (assets/milk_presets/SampleSkin - spectrum-main.milk)
+
+		    NOTE: if Poweramp fails to load preset, it will load some default one (Poweramp - spectrum-centered) and will complain in log
+		    NOTE: presetUri is an URI and should be properly escaped (e.g. spaces in #fragment => %20, etc.)
+		    NOTE: Poweramp uses "small" profile for such visualization components, they don't support milkdrop scripts/shaders, just "bar" spectrum
+
+		    List of Poweramp builtin spectrum presets:
+		        internal://#fft1
+		        internal://#fft2
+		        internal://#fft2inv
+				builtin://#Poweramp%20-%20spectrum-centered
+				builtin://#Poweramp%20-%20spectrum-centered-narrow
+				builtin://#Poweramp%20-%20spectrum-centered-reflected
+				builtin://#Poweramp%20-%20spectrum-centered-wide
+				builtin://#Poweramp%20-%20spectrum-dots
+				builtin://#Poweramp%20-%20spectrum-narrow
+				builtin://#Poweramp%20-%20spectrum-plain
+				builtin://#Poweramp%20-%20spectrum-quads-narrow
+				builtin://#Poweramp%20-%20spectrum-reflected-wide
+				builtin://#Poweramp%20-%20spectrum-wide
+		 -->
+		<!--<item name="com.maxmpz.audioplayer:presetUri">internal://#fft2</item>-->
+		<item name="com.maxmpz.audioplayer:presetUri">apk://com.poweramp.v3.sampleskin#SampleSkin%20-%20spectrum-main.milk</item>
+	</style>
+
+	<style name="SampleSkin_mainMiniSpectrum_MilkFRS" parent="SampleSkin_mainMiniSpectrum_MilkFRS_base">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">64dp</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">@com.maxmpz.audioplayer:id/sub_aa_buttons</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+
+	<style name="SampleSkin_transBgMain">
+		<item name="com.maxmpz.audioplayer:TopMilk">@style/SampleSkin_transBgMain_TopMilk</item>
+		<item name="android:windowShowWallpaper">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+	</style>
+
+	<style name="SampleSkin_transBgMain_TopMilk" parent="@com.maxmpz.audioplayer:style/TopMilk">
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<!-- As we override TopContainer_extraLayout with own layout which includes multiple other layout, this is redefinition of OptionCounter,
+		 which includes counter layout into our new extra layout -->
+	<style name="SampeSkin_OptionCounter">
+		<!-- Additional layout which is missing by default, but enabled by user (in Poweramp settings, non-skin) option.
+		     SampleSkin_counterLayout is our custom attribute (see attrs.xml) -->
+		<item name="SampleSkin_counterLayout">@com.maxmpz.audioplayer:layout/merge_top_extralayout</item><!-- This is default Poweramp counter layout -->
+	</style>
+
+	<style name="SampleSkin_VolumeKnob">
+		<!-- Additional layout which is missing by default, but enabled by skin option.
+			 SampleSkin_mainVolumeLayout is our custom attribute (see attrs.xml) -->
+		<item name="SampleSkin_mainVolumeLayout">@layout/merge_main_volume</item>
+	</style>
+
+	<!-- Style for the main volume round knob layout
+	     NOTE: this just injects small volume knob into main layout. This style demonstration doesn't try to actually make it proper size, position, or layout,
+	     - this is an exercise for the custom skin developer and the default Poweramp skins don't have place for a volume knob anyway -->
+	<style name="SampleSkin_mainRoundVolumeKnob" parent="com.maxmpz.audioplayer:EqVolumeKnobLayoutBase">
+		<!-- Redefine knob itself -->
+		<item name="com.maxmpz.audioplayer:roundKnobStyle">@style/MainVolumeRoundKnob</item>
+		<!-- Hide "Volume" label (but leave value as is) -->
+		<item name="com.maxmpz.audioplayer:labelStyle">@style/MainVolumeLabel</item>
+		<item name="android:layout_width">80dp</item><!-- NOTE: fixed width is required for proper gravity -->
+
+		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@com.maxmpz.audioplayer:id/sub_aa_buttons</item>
+		<item name="android:layout_gravity">center_horizontal|top</item>
+	</style>
+
+	<!-- Style for the main round volume knob itself.
+	     The knob drawables and style can be further redefined as needed -->
+	<style name="MainVolumeRoundKnob" parent="com.maxmpz.audioplayer:EqBigRoundKnob">
+		<item name="android:layout_width">80dp</item>
+		<item name="android:layout_height">80dp</item>
+	</style>
+	<style name="MainVolumeLabel" parent="com.maxmpz.audioplayer:EqRoundKnobLabel">
+		<!-- Hide "Volume" label (but leave value as is) -->
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<!-- Style for the main vertical volume knob itself.
+	     The knob drawables and style can be further redefined as needed -->
+	<style name="SampleSkin_mainLinearVolumeKnob" parent="com.maxmpz.audioplayer:EqPreampLinearKnob">
+		<item name="com.maxmpz.audioplayer:layout_attachLeft">parent</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">inset</item>
+		<item name="com.maxmpz.audioplayer:layout_attachBottomToBottom">@com.maxmpz.audioplayer:id/aa_bounds</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+
+		<!-- NOTE: by default linear knob (EqPreampLinearKnob style) uses own backround with ticks.
+			 If we want some custom background, we should disable that default lines background -->
+		<item name="com.maxmpz.audioplayer:linesBackground">false</item>
+		<item name="android:background">@drawable/ripple_alpha_always_rounded</item>
+
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+
+		<item name="com.maxmpz.audioplayer:labelBackground">@drawable/alpha_always_rounded</item>
+		<!-- Extra paddings within labelBackground around label/value -->
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingLeft">8dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingRight">8dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingTop">8dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingBottom">8dp</item>
+
+		<item name="com.maxmpz.audioplayer:textPadding">8dp</item><!-- Padding between knob and label/value -->
+		<item name="com.maxmpz.audioplayer:valuePadding">2dp</item><!-- Padding between label and value -->
+
+
+		<item name="android:scaleX">0.75</item><!-- NOTE: can't use different scaleX vs scaleY here as SceneParams doesn't support it, it supports fixed aspect ratio scale -->
+		<item name="android:scaleY">0.75</item>
+
+
+		<!-- Following forces FastLayout to compensate scaled size and layout this view like no scale applied -->
+		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotY">0px</item>
+		<item name="com.maxmpz.audioplayer:layout_compensateScale">0.75</item>
+	</style>
+
+	<style name="SampleSkin_mainLinearVolumeKnob_horiz" parent="com.maxmpz.audioplayer:EqPreampLinearKnob">
+		<!-- Change thumb drawable to horizontal one -->
+		<item name="com.maxmpz.audioplayer:thumb">@drawable/knob_thumb_selector_horiz</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="com.maxmpz.audioplayer:layout_attachTop">inset</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+
+		<!-- Set proper size for horizontally aligned thumb -->
+		<item name="com.maxmpz.audioplayer:thumbWidth">64dp</item>
+		<item name="com.maxmpz.audioplayer:thumbHeight">32dp</item>
+
+		<item name="com.maxmpz.audioplayer:textPadding">8dp</item><!-- Extra padding between text and knob -->
+		<item name="com.maxmpz.audioplayer:valuePadding">2dp</item><!-- Padding between label and value -->
+
+		<!-- NOTE: by default linear knob (EqPreampLinearKnob style) uses own background with ticks.
+			 If we want some custom background, we should disable that default lines background -->
+		<item name="com.maxmpz.audioplayer:linesBackground">false</item>
+		<item name="android:background">@drawable/ripple_alpha_always_rounded</item>
+
+		<item name="com.maxmpz.audioplayer:labelBackground">@drawable/semi_white_bg</item>
+		<!-- Extra paddings within labelBackground around label/value -->
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingLeft">4dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingRight">4dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingTop">2dp</item>
+		<item name="com.maxmpz.audioplayer:labelBackgroundPaddingBottom">2dp</item>
+
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+
+		<!-- NOTE: can't use different scaleX vs scaleY here as SceneParams doesn't support it, it supports fixed aspect ratio scale -->
+		<item name="android:scaleX">0.75</item>
+		<item name="android:scaleY">0.75</item>
+
+		<item name="android:text">Volume</item>
+	</style>
+
+	<style name="SampleSkin_mainLinearVolumeKnobHidden">
+		<item name="com.maxmpz.audioplayer:scale">.70</item>
+		<item name="android:visibility">invisible</item>
+	</style>
+
+	<style name="SampleSkin_dynamicCorners">
+		<!-- Applying corners taken from appropriate seekbar prefs
+		     WARNING: this is not backward compatible, thus this style should be applied only for build 866+. Add appropriate message/explanation for users -->
+		<item name="com.maxmpz.audioplayer:corners_aa_scene_aa">@+id/cornersAA</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks">@+id/cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums">@+id/cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other">@+id/cornersOther</item>
+
+		<!-- NOTE: we apply same seekbar values for all possible zoom levels, but skin can add more seekbar options as needed -->
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_zoomed">@+id/cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_zoomed">@+id/cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_zoomed">@+id/cornersOther</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid">@+id/cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid">@+id/cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid">@+id/cornersOther</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_grid_zoomed">@+id/cornersTracks</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_albums_grid_zoomed">@+id/cornersAlbums</item>
+		<item name="com.maxmpz.audioplayer:corners_aa_other_grid_zoomed">@+id/cornersOther</item>
+
+		<item name="com.maxmpz.audioplayer:corners_aa_tracks_small">@+id/cornersTracks</item>
+	</style>
+
+	<style name="SampleSkin_aaOptions">
+		<!-- NOTE: to apply aa options, we're redefinining TopListWidget style to tweak listSubstyle -->
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/TopListWidget_aaOptions</item>
+
+		<!-- Also, force non-overlapping rendering (to fix issue with Android 9+ forced clipping for scaling > 1.0 when image bleeds out of parent bounds)
+		     NOTE: this can cause small shadow glitches on some devices -->
+		<item name="com.maxmpz.audioplayer:ItemTrack">@style/ItemTrack_aaOptions</item>
+	</style>
+	<style name="ItemTrack_aaOptions" parent="com.maxmpz.audioplayer:ItemTrack">
+		<item name="android:forceHasOverlappingRendering">false</item>
+	</style>
+
+	<style name="TopListWidget_aaOptions" parent="com.maxmpz.audioplayer:TopListWidget">
+		<item name="com.maxmpz.audioplayer:listSubstyle">@style/ListSubstyle_aaOptions</item>
+	</style>
+	<style name="ListSubstyle_aaOptions" parent="com.maxmpz.audioplayer:ListSubstyle">
+		<!-- Setting seekbars ids to the appropriate attributes
+		     WARNING: this is not backward compatible, thus this style should be applied only for build 866+. Add appropriate message/explanation for users -->
+		<item name="com.maxmpz.audioplayer:aaMaxYRotation">@+id/aaMaxYRotation</item>
+		<item name="com.maxmpz.audioplayer:aaMaxZRotation">@+id/aaMaxZRotation</item>
+		<item name="com.maxmpz.audioplayer:aaMaxScale">@+id/aaMaxScale</item>
+		<item name="com.maxmpz.audioplayer:aaDenseFactor">@+id/aaDenseFactor</item>
+	</style>
+
+	<style name="ItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">
+		<item name="com.maxmpz.audioplayer:scale">?SampleSkin_ItemTrackAAImage_scene_aa_scale</item>
+	</style>
+	<style name="ItemTrackAAImage_scene_aa_playing" parent="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa_playing">
+		<item name="com.maxmpz.audioplayer:scale">?SampleSkin_ItemTrackAAImage_scene_aa_scale_playing</item>
+	</style>
+	<style name="SampleSkin_aaScale_075">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.73</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.75</item>
+	</style>
+	<style name="SampleSkin_aaScale_08">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.78</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.8</item>
+	</style>
+	<style name="SampleSkin_aaScale_085">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.82</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.85</item>
+	</style>
+	<style name="SampleSkin_aaScale_09">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.88</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.9</item>
+	</style>
+	<style name="SampleSkin_aaScale_095">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.92</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">0.95</item>
+	</style>
+
+	<style name="SampleSkin_aaScale_1">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.975</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.0</item>
+	</style>
+
+	<style name="SampleSkin_aaScale_11">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.0</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.1</item>
+	</style>
+	<style name="SampleSkin_aaScale_115">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.2</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.15</item>
+	</style>
+	<style name="SampleSkin_aaScale_125">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.22</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.25</item>
+	</style>
+	<style name="SampleSkin_aaScale_133">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.29</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.33</item>
+	</style>
+	<style name="SampleSkin_aaScale_15">
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">1.46</item>
+		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.5</item>
+	</style>
+
+
+	<style name="SampleSkin_Useless">
+		<!-- Empty -->
+	</style>
+
+</resources>

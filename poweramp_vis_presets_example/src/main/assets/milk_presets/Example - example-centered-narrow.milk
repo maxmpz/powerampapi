@@ -1,0 +1,50 @@
+fGammaAdj=1.000
+fDecay=0.95
+bWaveThick=1
+bModWaveAlphaByVolume=1
+fWaveSmoothing=0.000
+fModWaveAlphaStart=0.000
+fModWaveAlphaEnd=1.000
+fWarpAnimSpeed=0.500
+fWarpScale=1.01
+fZoomExponent=1.1
+zoom=1.0015
+rot=-0.0100
+cx=0
+cy=0
+dx=0.0010
+dy=-0.00100
+warp=0
+sx=1.00500
+sy=1.00500
+fWaveAlpha=0
+wave_r=1.000
+wave_g=1.000
+wave_b=1.000
+wave_x=0.5
+wave_y=0.5
+
+bars_mode=3
+
+bars_thr = 0.50
+bars_thr_color_t=0xFFFFc8ff
+bars_thr_color_b=0xFFFFc8ff
+bars_thr_color_l=0x00000000
+bars_thr_color_r=0xFF050709
+
+bars_color_t=0xFFFFc8ff
+bars_color_b=0xFFFF0709
+bars_color_r=0x00000000
+bars_color_l=0x00000000
+
+bars_x=0.0
+bars_y=0.0
+bars_rot=0
+bars_sx = 1.0
+bars_sy = 1.0
+bars_num_x = 64
+bars_num_y = 24
+bars_smooth = 0.85
+bars_sensitivity = 0.5
+bars_spacing_y = 0.3
+bars_spacing_x = 0.3

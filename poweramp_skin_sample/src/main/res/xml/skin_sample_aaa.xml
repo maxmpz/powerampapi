@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This is included file (from the main skins.xml)
+	 Custom "alternative" layout. NOTE: it's recommended to use Poweramp alternative style based option instead.
+	 Still this theme demonstrates how to change layout with own styles without reusing Poweramp builtin "alternative" layout styles -->
+<skin
+	name="@string/skin_sample_aaa"
+	author="@string/skin_author"
+	description="@string/skin_sample_aaa_description"
+	style="@style/SampleSkinAAA"
+>
+	<!-- NOTE: noAABlur option for SampleSkinAAA requires another style as SampleSkinAAA overrides list styles -->
+	<option
+		key="no_aa_blur"
+		name="@string/skin_no_aa_blur"
+		summary="@string/skin_summary_no_aa_blur"
+		overlapStyle="@style/SampleSkinAAA_noAABlur"
+		checkedByDefault="false"
+		/>
+
+	<option
+		key="seekbar_and_waveseek"
+		name="@string/skin_seekbar_and_waveseek"
+		summary="@string/skin_summart_seekbar_and_waveseek"
+		overlapStyle="@style/SampleSkinAAA_seekbar_and_waveseek"
+		checkedByDefault="false"
+		/>
+</skin>

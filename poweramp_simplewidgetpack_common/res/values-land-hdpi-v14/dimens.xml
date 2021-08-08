@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!-- values-land-hdpi-v14 -->
-<resources>
-    <dimen name="widget4x2_height">-1px</dimen><!-- fill parent -->
-</resources>

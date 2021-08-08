@@ -1,0 +1,76 @@
+MILKDROP_PRESET_VERSION=201
+PSVERSION=2
+PSVERSION_WARP=2
+PSVERSION_COMP=2
+[preset00]
+fGammaAdj=1.000
+fDecay=0.995
+nWaveMode=0
+bAdditiveWaves=0
+bWaveDots=0
+bWaveThick=1
+bModWaveAlphaByVolume=1
+bMaximizeWaveColor=0
+bTexWrap=0
+bDarkenCenter=0
+bRedBlueStereo=0
+bBrighten=0
+bDarken=0
+bSolarize=0
+bInvert=0
+fWaveSmoothing=0.000
+fModWaveAlphaStart=0.000
+fModWaveAlphaEnd=1.000
+fWarpAnimSpeed=1.000
+fWarpScale=1.000
+fZoomExponent=1.00000
+zoom=1.00
+rot=0.00000
+cx=0
+cy=0
+dx=0.00000
+dy=0.00000
+warp=0
+sx=1.00000
+sy=1.00000
+fWaveAlpha=0
+wave_r=1.000
+wave_g=1.000
+wave_b=1.000
+wave_x=0.5
+wave_y=0.5
+
+bars_mode=1
+
+bars_thr = 0.80
+bars_thr_color_t=0xFFaa0000
+bars_thr_color_b=0xFF443333
+
+bars_color_t=0xFF111199
+bars_color_b=0xFF1111FF
+bars_color_r=0x00000000
+bars_color_l=0x00000000
+
+bars_x=0.0
+bars_y=0.0
+bars_rot=0
+bars_sx = 1.0
+bars_sy = 1.0
+bars_num_x = 16
+bars_num_y = 24
+bars_smooth = 0.85
+bars_sensitivity = 0.7
+bars_spacing_y = 0.2
+bars_spacing_x = 0.2
+
+# load texture and correct aspect
+# fw prefix means filter + don't wrap
+
+warp_1=`sampler sampler_fc_poweramp_logo;
+warp_1=`shader_body
+warp_1=`{
+warp_1=`    uv -= 0.5;
+warp_1=`    uv *= aspect.xy;
+warp_1=`    uv += 0.5;
+warp_1=`    ret = tex2D(sampler_fc_poweramp_logo, uv);
+warp_1=`}
