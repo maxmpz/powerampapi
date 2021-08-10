@@ -5,10 +5,10 @@
 - [Poweramp v3 / Poweramp Equalizer visualization presets](#poweramp-v3--poweramp-equalizer-visualization-presets)
 - [How Poweramp v3 visualizations work?](#how-poweramp-v3-visualizations-work)
 - [Android 11/targetSdkVersion 30 support](#android-11targetsdkversion-30-support)
+- [Android 10 and access to the Poweramp presets directory](#android-10-and-access-to-the-poweramp-presets-directory)
 - [Poweramp v3 visualization presets APK](#poweramp-v3-visualization-presets-apk)
 - [How to start own presets APK (based on this example project)](#how-to-start-own-presets-apk-based-on-this-example-project)
 - [Poweramp milk format extensions](#poweramp-milk-format-extensions)
-- [Android 10 and access to the Poweramp presets directory](#android-10-and-access-to-the-poweramp-presets-directory)
 - [License](#license)
 
 
@@ -61,6 +61,13 @@ skin AndroidManifest.xml contains:
 ```
 Note that poweramp_api_lib AndroidManifest.xml contains the queries element and it should be automatically merged
 to your app/plugin - please verify that by the reviewing Merged Manifest bottom tab for the project AndroidManifest.xml.
+
+### Android 10 and access to the Poweramp presets directory
+
+Android 10 and above started to apply restrictions to the direct directory/file access. It's not possible to manipulate preset files in Poweramp
+app files directory directly anymore.
+
+To allow such manipulation Poweramp build 885+ adds ContentProvider access to the presets directory.
 
 ### Poweramp v3 visualization presets APK
 
@@ -172,13 +179,6 @@ Poweramp supports extra rendering object - spectrum bars - which is defined via 
 * **bars_peak_accel**
   * since build 899
   * peak drop acceleration (in screen heights per second^2)
-
-### Android 10 and access to the Poweramp presets directory
-
-Android 10 and above started to apply restrictions to the direct directory/file access. It's not possible to manipulate preset files in Poweramp
-app files directory directly anymore.
-
-To allow such manipulation Poweramp build 885+ adds ContentProvider access to the presets directory.
 
 #### Legacy directories
 Some additional logic should be applied in your code to handle Android 9 -> Android 10 upgrade, as

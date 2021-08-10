@@ -6,6 +6,7 @@
 - [How to Start Own Skin (Based on Sample Skin)](#how-to-start-own-skin-based-on-sample-skin)
 - [How Poweramp v3 Skins Work](#how-poweramp-v3-skins-work)
 - [Android 11/targetSdkVersion 30 support](#android-11targetsdkversion-30-support)
+- [Bundle support](#bundle-support)
 - [Poweramp Skin styles.xml](#poweramp-skin-stylesxml)
 - [Automatic Dark/Light Modes](#automatic-darklight-modes)
 - [Poweramp v3 Skin Theme Specifics](#poweramp-v3-skin-theme-specifics)
@@ -85,6 +86,8 @@ skin AndroidManifest.xml contains:
 </intent-filter>
 ```
 
+### Bundle support
+Bundles should work fine out of box for the skin projects without extra configuration.
 
 ### Poweramp Skin styles.xml
 The main skin styles is defined via [xml/skins.xml](src/main/res/xml/skins.xml) (in this example, SampleSkin):
