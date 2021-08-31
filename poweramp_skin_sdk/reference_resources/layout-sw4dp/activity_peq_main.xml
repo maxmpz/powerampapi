@@ -107,7 +107,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- NOTE: loaded once and never unloaded. NOTE: TopNavHelper assumes vis panel is loaded via behavior, otherwise change vis_panel_faded_alpha logic there -->
-	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/vis_panel_loadable_beahvior"
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/vis_panel_loadable_behavior"
 		android:layout="@layout/merge_vis_panel"
 		w:loadForScene="@+id/scene_vis_temp_ui"
 		w:loadForScene_2="@+id/scene_vis"
@@ -167,7 +167,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	
-	<!-- NOTE: status bar bg should be atop of everything, so putting it here as last, thus higher z-index. Helps with e.g. header => popup menu poping over status bar bg.
+	<!-- NOTE: status bar bg should be atop of everything, so putting it here as last, thus higher z-index. Helps with e.g. header => popup menu popping over status bar bg.
 		 By default, status_bar_bg/navigation_bar_bg don't change anything for scenes, but SceneParams are provided for skins, which can change them -->
 
 	<com.maxmpz.widget.base.FitsStatusBarView android:id="@+id/status_bar_bg"

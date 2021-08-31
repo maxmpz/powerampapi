@@ -38,18 +38,18 @@ public class PluginMsgHelper {
 	}
 
 	// sync with plugininterface.h
-	public static int MSG_TAG 			 = 0xF1F2F3F4;
-	public static int HEADER_SIZE_INTS   = 8;
-	public static int MAX_SIZE_INTS		 = 1024;
-	public static int MAX_SIZE_BYTES	 = MAX_SIZE_INTS * 4;
-	public static int HEADER_SIZE_BYTES  = HEADER_SIZE_INTS * 4;
+	public static final int MSG_TAG 			 = 0xF1F2F3F4;
+	public static final int HEADER_SIZE_INTS   = 8;
+	public static final int MAX_SIZE_INTS		 = 1024;
+	public static final int MAX_SIZE_BYTES	 = MAX_SIZE_INTS * 4;
+	public static final int HEADER_SIZE_BYTES  = HEADER_SIZE_INTS * 4;
 
 	public static int IX_PLUGIN_ID      = 0;
 	public static int IX_PLUGIN_ID_INT  = 0;
-	public static int IX_TAG            = 4 * 4; // 1
-	public static int IX_MSG_ID         = 5 * 4; // 2
-	public static int IX_FLAGS          = 6 * 4; // 3
-	public static int IX_DATA_SIZE      = 7 * 4; // 4
+	public static final int IX_TAG            = 4 * 4; // 1
+	public static final int IX_MSG_ID         = 5 * 4; // 2
+	public static final int IX_FLAGS          = 6 * 4; // 3
+	public static final int IX_DATA_SIZE      = 7 * 4; // 4
 	public static int IX_DATA           = 8 * 4;
 	public static int IX_DATA_INT       = 8;
 

@@ -36,6 +36,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+@SuppressWarnings("deprecation")
 public class FoldersActivity extends ListActivity implements OnItemClickListener, OnItemLongClickListener {
 	private static final String TAG = "FoldersActivity";
 

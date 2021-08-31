@@ -36,6 +36,7 @@ import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.TableDefs;
 
+@SuppressWarnings("deprecation")
 public class TrackListActivity extends ListActivity implements OnItemClickListener {
 	private static final String TAG = "TrackListActivity";
 	private Uri mUri;
@@ -76,7 +77,6 @@ public class TrackListActivity extends ListActivity implements OnItemClickListen
 		Uri uri = mUri.buildUpon()
 				.appendEncodedPath(Long.toString(id))
 				.build();
-				;
 		Log.w(TAG, "onItemClick uri=>" + uri);
 
 		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)

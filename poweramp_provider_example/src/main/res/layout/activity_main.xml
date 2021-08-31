@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:padding="16sp"
@@ -10,6 +11,7 @@
 		android:text="Open Poweramp Music Folders Dialog"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		tools:ignore="HardcodedText,UsingOnClickInXml"
 		/>
 
 	<Button
@@ -17,28 +19,32 @@
 		android:text="Send Data Refresh (All)"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-	/>
+		tools:ignore="HardcodedText,UsingOnClickInXml"
+		/>
 
 	<Button
 		android:onClick="sendScanThis"
 		android:text="Send Data Refresh (This Provider Only)"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-	/>
+		tools:ignore="HardcodedText,UsingOnClickInXml"
+		/>
 
 	<Button
 		android:onClick="sendScanThisSubdir"
 		android:text="Send Data Refresh (This Provider Only, root1)"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-	/>
+		tools:ignore="HardcodedText,UsingOnClickInXml"
+		/>
 
 	<Button
 		android:onClick="sendScanThisSubdir2"
 		android:text="Send Data Refresh (This Provider Only, root1/Folder2)"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-	/>
+		tools:ignore="HardcodedText,UsingOnClickInXml"
+		/>
 
 	<TextView android:id="@+id/status"
 		android:layout_width="match_parent"

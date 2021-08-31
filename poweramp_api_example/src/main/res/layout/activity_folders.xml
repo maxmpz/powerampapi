@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
@@ -12,16 +13,19 @@
 		android:layout_height="wrap_content"
 		android:text="Press to open folder, long press to play whole folder in shuffle mode"
 		android:layout_marginBottom="8dip"
+		tools:ignore="HardcodedText"
 		/>
 
 	<ListView android:id="@id/android:list"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
+		android:layout_height="0dp"
 		android:layout_weight="1"
 		android:drawSelectorOnTop="false" />
 
 	<TextView android:id="@id/android:empty"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
-		android:text="No data" />
+		android:text="No data"
+		tools:ignore="HardcodedText"
+		/>
 </LinearLayout>

@@ -41,4 +41,8 @@
 	<dimen name="AAA_ItemRatingBar_drawableSize">16dp</dimen>
 
 	<dimen name="AAA_ItemRatingBar_scene_aa_marginBottom">0dp</dimen>
+
+	<dimen name="AAA_Seek_thumb_size">5dp</dimen>
+	<dimen name="AAA_Seek_paddingTopBottom">13.5dp</dimen>
+
 </resources>

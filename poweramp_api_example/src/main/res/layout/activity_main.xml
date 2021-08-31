@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	>
 
 	<RelativeLayout
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
+		android:layout_height="wrap_content"
 		android:focusable="true"
 		android:focusableInTouchMode="true"
 		>
@@ -22,6 +23,7 @@
 					android:text="List Uri"
 					android:layout_width="60dp"
 					android:layout_height="wrap_content"
+					tools:ignore="HardcodedText"
 					/>
 			</TableRow>
 			<TextView android:id="@+id/uri"
@@ -36,6 +38,7 @@
 					android:text="Category Type"
 					android:layout_width="60dp"
 					android:layout_height="wrap_content"
+					tools:ignore="HardcodedText"
 					/>
 				<TextView android:id="@+id/cat"
 					android:layout_width="wrap_content"
@@ -49,6 +52,7 @@
 					android:text="ID"
 					android:layout_width="60dp"
 					android:layout_height="wrap_content"
+					tools:ignore="HardcodedText"
 					/>
 				<TextView android:id="@+id/id"
 					android:layout_width="fill_parent"
@@ -62,6 +66,7 @@
 					android:text="Title"
 					android:layout_width="60dp"
 					android:layout_height="wrap_content"
+					tools:ignore="HardcodedText"
 					/>
 				<TextView android:id="@+id/title"
 					android:layout_width="fill_parent"
@@ -75,6 +80,7 @@
 					android:text="Album"
 					android:layout_width="60dp"
 					android:layout_height="wrap_content"
+					tools:ignore="HardcodedText"
 					/>
 				<TextView android:id="@+id/album"
 					android:layout_width="fill_parent"
@@ -88,6 +94,7 @@
 					android:text="Artist"
 					android:layout_width="60dp"
 					android:layout_height="wrap_content"
+					tools:ignore="HardcodedText"
 					/>
 				<TextView android:id="@+id/artist"
 					android:layout_width="fill_parent"
@@ -101,6 +108,7 @@
 					android:text="Path"
 					android:layout_width="60dp"
 					android:layout_height="wrap_content"
+					tools:ignore="HardcodedText"
 					/>
 			</TableRow>
 			<TextView android:id="@+id/path"
@@ -128,6 +136,7 @@
 			android:layout_below="@+id/info"
 			android:layout_alignParentRight="true"
 			android:layout_marginTop="8dp"
+			tools:ignore="RtlHardcoded"
 			/>
 		<SeekBar android:id="@+id/song_seekbar"
 			android:layout_width="fill_parent"
@@ -148,31 +157,37 @@
 				android:text="&lt;&lt;&lt;"
 				android:layout_width="60dp"
 				android:layout_height="wrap_content"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 			<Button android:id="@+id/prev"
 				android:text="&lt;&lt;"
 				android:layout_width="60dp"
 				android:layout_height="wrap_content"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 			<Button android:id="@+id/play"
 				android:text="&gt;"
 				android:layout_width="60dp"
 				android:layout_height="wrap_content"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 			<Button android:id="@+id/pause"
 				android:text="||"
 				android:layout_width="60dp"
 				android:layout_height="wrap_content"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 			<Button android:id="@+id/next"
 				android:text="&gt;&gt;"
 				android:layout_width="60dp"
 				android:layout_height="wrap_content"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 			<Button android:id="@+id/next_in_cat"
 				android:text="&gt;&gt;&gt;"
 				android:layout_width="60dp"
 				android:layout_height="wrap_content"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 		</LinearLayout>
 		<LinearLayout android:id="@+id/controls2"
@@ -188,13 +203,15 @@
 				android:layout_width="60dp"
 				android:layout_height="wrap_content"
 				android:onClick="seekBackward10s"
-			/>
+				tools:ignore="ButtonStyle,HardcodedText,UsingOnClickInXml"
+				/>
 			<Button
 				android:text="+10s"
 				android:layout_width="60dp"
 				android:layout_height="wrap_content"
 				android:onClick="seekForward10s"
-			/>
+				tools:ignore="ButtonStyle,HardcodedText,UsingOnClickInXml"
+				/>
 		</LinearLayout>
 
 		<TextView android:id="@+id/album_art_info"
@@ -212,6 +229,7 @@
 			android:minWidth="100dp"
 			android:adjustViewBounds="true"
 			android:scaleType="center"
+			tools:ignore="ContentDescription"
 			/>
 
 
@@ -227,17 +245,20 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Cycle"
+				tools:ignore="HardcodedText"
 				/>
 			<Button android:id="@+id/repeat"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Repeat"
+				tools:ignore="HardcodedText"
 				/>
 
 			<Button android:id="@+id/shuffle"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Shuffle"
+				tools:ignore="HardcodedText"
 				/>
 		</LinearLayout>
 
@@ -252,22 +273,26 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Rep OFF"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 			<Button android:id="@+id/repeat_all"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Rep ALL"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 
 			<Button android:id="@+id/shuffle_off"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Shuf OFF"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 			<Button android:id="@+id/shuffle_all"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Shuf ALL"
+				tools:ignore="ButtonStyle,HardcodedText"
 				/>
 		</LinearLayout>
 
@@ -285,6 +310,7 @@
 			android:layout_marginTop="8dp"
 			android:singleLine="true"
 			android:hint="content://"
+			tools:ignore="Autofill,HardcodedText,TextFields"
 			/>
 		<Button android:id="@+id/play_file"
 			android:layout_width="wrap_content"
@@ -292,6 +318,7 @@
 			android:layout_alignTop="@+id/play_file_path"
 			android:layout_toRightOf="@+id/play_file_path"
 			android:text="Play file"
+			tools:ignore="HardcodedText,RtlHardcoded"
 			/>
 
 		<Button android:id="@+id/create_playlist"
@@ -301,6 +328,7 @@
 			android:layout_marginTop="8dp"
 			android:text="Create Playlist And Add Something To It"
 			android:onClick="onClick"
+			tools:ignore="HardcodedText,UsingOnClickInXml"
 			/>
 
 
@@ -311,7 +339,8 @@
 			android:layout_marginTop="8dp"
 			android:text="Create Playlist with Http Streams"
 			android:onClick="onClick"
-		/>
+			tools:ignore="HardcodedText,UsingOnClickInXml"
+			/>
 
 		<Button android:id="@+id/goto_created_playlist"
 			android:layout_below="@+id/play_file_path"
@@ -322,6 +351,7 @@
 			android:text="Go To Created Playlist"
 			android:onClick="onClick"
 			android:enabled="false"
+			tools:ignore="HardcodedText,RtlHardcoded,UsingOnClickInXml"
 			/>
 
 		<Button android:id="@+id/add_to_q_and_goto_q"
@@ -331,6 +361,7 @@
 			android:layout_marginTop="8dp"
 			android:text="Add Something To Queue And Go To Queue"
 			android:onClick="onClick"
+			tools:ignore="HardcodedText,UsingOnClickInXml"
 			/>
 
 		<LinearLayout android:id="@+id/category_buttons"
@@ -344,14 +375,16 @@
 				android:layout_height="wrap_content"
 				android:layout_marginTop="8dp"
 				android:text="Retrieve Folders"
-			/>
+				tools:ignore="HardcodedText"
+				/>
 			<Button
 				android:onClick="openNowPlayingTracks"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="8dp"
 				android:text="Retrieve Currently Playing Category"
-			/>
+				tools:ignore="HardcodedText,UsingOnClickInXml"
+				/>
 
 			<Button android:id="@+id/queue"
 				android:layout_width="wrap_content"
@@ -359,24 +392,28 @@
 				android:layout_marginTop="8dp"
 				android:text="Queue"
 				android:onClick="onClick"
+				tools:ignore="HardcodedText,UsingOnClickInXml"
 				/>
 
 			<Button android:id="@+id/play_album"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Play First Album"
+				tools:ignore="HardcodedText"
 				/>
 
 			<Button android:id="@+id/play_all_songs"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Play All Songs"
+				tools:ignore="HardcodedText"
 				/>
 
 			<Button android:id="@+id/play_second_artist_first_album"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:text="Play Second Artist First Album"
+				tools:ignore="HardcodedText"
 				/>
 		</LinearLayout>
 
@@ -386,7 +423,8 @@
 			android:layout_below="@+id/category_buttons"
 			android:layout_marginTop="16dp"
 			android:text="Open Eq"
-		/>
+			tools:ignore="HardcodedText"
+			/>
 
 		<Button android:id="@+id/pa_current_list"
 			android:layout_width="wrap_content"
@@ -395,7 +433,8 @@
 			android:layout_marginTop="16dp"
 			android:textStyle="bold"
 			android:text="PA Current List"
-		/>
+			tools:ignore="HardcodedText"
+			/>
 
 		<Button android:id="@+id/pa_folders"
 			android:layout_width="wrap_content"
@@ -405,7 +444,8 @@
 			android:layout_toRightOf="@+id/pa_current_list"
 			android:textStyle="bold"
 			android:text="PA Folders"
-		/>
+			tools:ignore="HardcodedText,RtlHardcoded"
+			/>
 
 		<Button android:id="@+id/pa_all_songs"
 			android:layout_width="wrap_content"
@@ -415,7 +455,8 @@
 			android:layout_toRightOf="@+id/pa_folders"
 			android:textStyle="bold"
 			android:text="PA All Songs"
-		/>
+			tools:ignore="HardcodedText,RtlHardcoded"
+			/>
 
 		<Button android:id="@+id/export_prefs"
 			android:layout_width="wrap_content"
@@ -425,7 +466,8 @@
 			android:textStyle="bold"
 			android:text="Export Prefs"
 			android:onClick="exportPrefs"
-		/>
+			tools:ignore="HardcodedText,UsingOnClickInXml"
+			/>
 
 		<Button android:id="@+id/import_prefs"
 			android:layout_width="wrap_content"
@@ -436,7 +478,8 @@
 			android:textStyle="bold"
 			android:text="Import Prefs"
 			android:onClick="importPrefs"
-		/>
+			tools:ignore="HardcodedText,RtlHardcoded,UsingOnClickInXml"
+			/>
 
 		<EditText android:id="@+id/pref"
 			android:layout_width="160dp"
@@ -444,7 +487,8 @@
 			android:layout_below="@+id/import_prefs"
 			android:layout_marginTop="16dp"
 			android:hint="Preference Name"
-		/>
+			tools:ignore="Autofill,HardcodedText,TextFields"
+			/>
 
 		<Button android:id="@+id/get_pref"
 			android:layout_width="wrap_content"
@@ -455,7 +499,8 @@
 			android:textStyle="bold"
 			android:text="Get Preference"
 			android:onClick="onClick"
-		/>
+			tools:ignore="HardcodedText,RtlHardcoded,UsingOnClickInXml"
+			/>
 
 		<EditText android:id="@+id/pref_value"
 			android:layout_width="160dp"
@@ -463,6 +508,7 @@
 			android:layout_below="@+id/pref"
 			android:layout_marginTop="16dp"
 			android:hint="Preference Value"
+			tools:ignore="Autofill,HardcodedText,TextFields"
 			/>
 
 		<Button android:id="@+id/set_pref"
@@ -474,6 +520,7 @@
 			android:textStyle="bold"
 			android:text="Set Preference"
 			android:onClick="setPref"
+			tools:ignore="HardcodedText,RtlHardcoded,UsingOnClickInXml"
 			/>
 
 		<Button android:id="@+id/get_all_prefs"
@@ -484,7 +531,8 @@
 			android:textStyle="bold"
 			android:text="Get All Prefs"
 			android:onClick="onClick"
-		/>
+			tools:ignore="HardcodedText,UsingOnClickInXml"
+			/>
 		<TextView android:id="@+id/prefs"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -499,7 +547,8 @@
 			android:layout_margin="8dp"
 			android:min="0"
 			android:max="7200"
-		/>
+			tools:targetApi="o"
+			/>
 		<Button android:id="@+id/sleep_timer_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -507,14 +556,16 @@
 			android:layout_marginTop="4dp"
 			android:text="Set Sleep Timer"
 			android:onClick="setSleepTimer"
-		/>
+			tools:ignore="HardcodedText,UsingOnClickInXml"
+			/>
 		<CheckBox android:id="@+id/sleep_timer_play_to_end"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/sleep_timer_seekbar"
 			android:layout_toRightOf="@id/sleep_timer_button"
 			android:text="Play To End"
-		/>
+			tools:ignore="HardcodedText,RtlHardcoded"
+			/>
 		<TextView android:id="@+id/sleep_timer_value"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -522,7 +573,8 @@
 			android:layout_below="@+id/sleep_timer_seekbar"
 			android:layout_toRightOf="@id/sleep_timer_play_to_end"
 			android:text="Sleep in ..."
-		/>
+			tools:ignore="HardcodedText,RtlHardcoded"
+			/>
 
 
 		<Button android:id="@+id/rescan_button"
@@ -532,7 +584,8 @@
 			android:layout_marginTop="4dp"
 			android:text="Rescan"
 			android:onClick="rescan"
-		/>
+			tools:ignore="HardcodedText,TooManyViews,UsingOnClickInXml"
+			/>
 
 		<Button android:id="@+id/milk_rescan_button"
 			android:layout_width="wrap_content"
@@ -543,7 +596,8 @@
 			android:layout_marginLeft="4dp"
 			android:text="Milk Rescan"
 			android:onClick="milkRescan"
-		/>
+			tools:ignore="HardcodedText,RtlHardcoded,UsingOnClickInXml"
+			/>
 	</RelativeLayout>
 
 </ScrollView>

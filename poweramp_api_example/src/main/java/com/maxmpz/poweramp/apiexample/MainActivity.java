@@ -33,7 +33,6 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.PersistableBundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -271,22 +270,22 @@ public class MainActivity extends AppCompatActivity implements
 		if(mTrackIntent != null) {
 			try {
 				unregisterReceiver(mTrackReceiver);
-			} catch(Exception ex){} // Can throw exception if for some reason broadcast receiver wasn't registered.
+			} catch(Exception ignored){} // Can throw exception if for some reason broadcast receiver wasn't registered.
 		}
 		if(mStatusReceiver != null) {
 			try {
 				unregisterReceiver(mStatusReceiver);
-			} catch(Exception ex){}
+			} catch(Exception ignored){}
 		}
 		if(mPlayingModeReceiver != null) {
 			try {
 				unregisterReceiver(mPlayingModeReceiver);
-			} catch(Exception ex){}
+			} catch(Exception ignored){}
 		}
 		if(mMediaButtonIgnoredReceiver != null) {
 			try {
 				unregisterReceiver(mMediaButtonIgnoredReceiver);
-			} catch(Exception ex){}
+			} catch(Exception ignored){}
 		}
 	}
 
@@ -299,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	};
 
-	private BroadcastReceiver mMediaButtonIgnoredReceiver = new BroadcastReceiver() {
+	private final BroadcastReceiver mMediaButtonIgnoredReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			debugDumpIntent(TAG, "mMediaButtonIgnoredReceiver", intent);
@@ -352,6 +351,7 @@ public class MainActivity extends AppCompatActivity implements
 	};
 
 	// This method updates track related info, album art.
+	@SuppressLint("SetTextI18n")
 	private void updateTrackUI() {
 		Log.w(TAG, "updateTrackUI");
 
@@ -492,13 +492,14 @@ public class MainActivity extends AppCompatActivity implements
 
 	@SuppressWarnings("serial")
 	private static class FileFoundException extends RuntimeException {
-		File mFile;
+		final File mFile;
 		FileFoundException(File file) {
 			mFile = file;
 		}
 	}
 
 	void findFirstMP3InFolder(File dir) {
+		//noinspection ResultOfMethodCallIgnored
 		dir.listFiles(new FileFilter() {
 			@Override
 			public boolean accept(File child) {
@@ -515,7 +516,7 @@ public class MainActivity extends AppCompatActivity implements
 		});
 	}
 
-	void updateAlbumArt(Bundle track) {
+	@SuppressLint("SetTextI18n") void updateAlbumArt(Bundle track) {
 		Log.w(TAG, "updateAlbumArt");
 
 		ImageView aaImage = ((ImageView)findViewById(R.id.album_art));
@@ -545,160 +546,103 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void onClick(View v) {
 		Log.w(TAG, "onClick v=" + v);
-		switch(v.getId()) {
-			case R.id.play:
-				Log.w(TAG, "play");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE),
-						FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.pause:
-				Log.w(TAG, "pause");
-				// NOTE: since 867. Sending String command instead of int
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, "PAUSE"), FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.prev:
-				Log.w(TAG, "prev");
-				// NOTE: since 867. Sending lowcase String command instead of int
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, "previous"), FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.next:
-				Log.w(TAG, "next");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.NEXT),
-						FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.prev_in_cat:
-				Log.w(TAG, "prev_in_cat");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT),
-						FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.next_in_cat:
-				Log.w(TAG, "next_in_cat");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.NEXT_IN_CAT),
-						FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.repeat:
-				Log.w(TAG, "repeat");
-				// No toast for this button just for demo.
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT),
-						FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.shuffle:
-				Log.w(TAG, "shuffle");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE),
-						FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.repeat_all:
-				Log.w(TAG, "repeat_all");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT)
-						.putExtra(PowerampAPI.EXTRA_REPEAT, PowerampAPI.RepeatMode.REPEAT_ON), FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.repeat_off:
-				Log.w(TAG, "repeat_off");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT)
-						.putExtra(PowerampAPI.EXTRA_REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE), FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.shuffle_all:
-				Log.w(TAG, "shuffle_all");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE)
-						.putExtra(PowerampAPI.EXTRA_SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_ALL), FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.shuffle_off:
-				Log.w(TAG, "shuffle_all");
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE)
-						.putExtra(PowerampAPI.EXTRA_SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE), FORCE_API_ACTIVITY);
-				break;
-
-			case R.id.commit_eq:
-				Log.w(TAG, "commit_eq");
-				commitEq();
-				break;
-
-			case R.id.play_file:
-				Log.w(TAG, "play_file");
-				try {
-					String uri = ((TextView) findViewById(R.id.play_file_path)).getText().toString();
-					if(uri.length() > "content://".length()) {
-						PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-								.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
-								//.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
-								.setData(Uri.parse(uri)), FORCE_API_ACTIVITY);
-					}
-				} catch(Throwable th) {
-					Log.e(TAG, "", th);
-					Toast.makeText(this, th.getMessage(), Toast.LENGTH_LONG).show();
+		int id = v.getId();
+		if(id == R.id.play) {
+			Log.w(TAG, "play");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.TOGGLE_PLAY_PAUSE),
+					FORCE_API_ACTIVITY);
+		} else if(id == R.id.pause) {
+			Log.w(TAG, "pause");
+			// NOTE: since 867. Sending String command instead of int
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, "PAUSE"), FORCE_API_ACTIVITY);
+		} else if(id == R.id.prev) {
+			Log.w(TAG, "prev");
+			// NOTE: since 867. Sending lowcase String command instead of int
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, "previous"), FORCE_API_ACTIVITY);
+		} else if(id == R.id.next) {
+			Log.w(TAG, "next");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.NEXT),
+					FORCE_API_ACTIVITY);
+		} else if(id == R.id.prev_in_cat) {
+			Log.w(TAG, "prev_in_cat");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.PREVIOUS_IN_CAT),
+					FORCE_API_ACTIVITY);
+		} else if(id == R.id.next_in_cat) {
+			Log.w(TAG, "next_in_cat");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.NEXT_IN_CAT),
+					FORCE_API_ACTIVITY);
+		} else if(id == R.id.repeat) {
+			Log.w(TAG, "repeat");
+			// No toast for this button just for demo.
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT),
+					FORCE_API_ACTIVITY);
+		} else if(id == R.id.shuffle) {
+			Log.w(TAG, "shuffle");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE),
+					FORCE_API_ACTIVITY);
+		} else if(id == R.id.repeat_all) {
+			Log.w(TAG, "repeat_all");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT)
+					.putExtra(PowerampAPI.EXTRA_REPEAT, PowerampAPI.RepeatMode.REPEAT_ON), FORCE_API_ACTIVITY);
+		} else if(id == R.id.repeat_off) {
+			Log.w(TAG, "repeat_off");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.REPEAT)
+					.putExtra(PowerampAPI.EXTRA_REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE), FORCE_API_ACTIVITY);
+		} else if(id == R.id.shuffle_all) {
+			Log.w(TAG, "shuffle_all");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE)
+					.putExtra(PowerampAPI.EXTRA_SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_ALL), FORCE_API_ACTIVITY);
+		} else if(id == R.id.shuffle_off) {
+			Log.w(TAG, "shuffle_all");
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SHUFFLE)
+					.putExtra(PowerampAPI.EXTRA_SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE), FORCE_API_ACTIVITY);
+		} else if(id == R.id.commit_eq) {
+			Log.w(TAG, "commit_eq");
+			commitEq();
+		} else if(id == R.id.play_file) {
+			Log.w(TAG, "play_file");
+			try {
+				String uri = ((TextView) findViewById(R.id.play_file_path)).getText().toString();
+				if(uri.length() > "content://".length()) {
+					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+							.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
+							//.putExtra(PowerampAPI.Track.POSITION, 10) // Play from 10th second.
+							.setData(Uri.parse(uri)), FORCE_API_ACTIVITY);
 				}
-				break;
-
-			case R.id.folders:
-				startActivity(new Intent(this, FoldersActivity.class));
-				break;
-
-			case R.id.play_album:
-				playAlbum();
-				break;
-
-			case R.id.play_all_songs:
-				playAllSongs();
-				break;
-
-			case R.id.play_second_artist_first_album:
-				playSecondArtistFirstAlbum();
-				break;
-
-			case R.id.eq:
-				startActivity(new Intent(this, EqActivity.class));
-				break;
-
-			case R.id.pa_current_list:
-				startActivity(new Intent(PowerampAPI.ACTION_SHOW_CURRENT));
-				break;
-
-			case R.id.pa_folders:
-				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build()));
-				break;
-
-			case R.id.pa_all_songs:
-				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
-				break;
-
-			case R.id.create_playlist:
-				createPlaylistAndAddToIt();
-				break;
-
-			case R.id.create_playlist_w_streams:
-				createPlaylistWStreams();
-				break;
-
-			case R.id.goto_created_playlist:
-				gotoCreatedPlaylist();
-				break;
-
-			case R.id.add_to_q_and_goto_q:
-				addToQAndGotoQ();
-				break;
-
-			case R.id.queue:
-				startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("queue").build()));
-				break;
-
-			case R.id.get_all_prefs:
-				getAllPrefs();
-				break;
-
-			case R.id.get_pref:
-				getPref();
-				break;
+			} catch(Throwable th) {
+				Log.e(TAG, "", th);
+				Toast.makeText(this, th.getMessage(), Toast.LENGTH_LONG).show();
+			}
+		} else if(id == R.id.folders) {
+			startActivity(new Intent(this, FoldersActivity.class));
+		} else if(id == R.id.play_album) {
+			playAlbum();
+		} else if(id == R.id.play_all_songs) {
+			playAllSongs();
+		} else if(id == R.id.play_second_artist_first_album) {
+			playSecondArtistFirstAlbum();
+		} else if(id == R.id.eq) {
+			startActivity(new Intent(this, EqActivity.class));
+		} else if(id == R.id.pa_current_list) {
+			startActivity(new Intent(PowerampAPI.ACTION_SHOW_CURRENT));
+		} else if(id == R.id.pa_folders) {
+			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build()));
+		} else if(id == R.id.pa_all_songs) {
+			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
+		} else if(id == R.id.create_playlist) {
+			createPlaylistAndAddToIt();
+		} else if(id == R.id.create_playlist_w_streams) {
+			createPlaylistWStreams();
+		} else if(id == R.id.goto_created_playlist) {
+			gotoCreatedPlaylist();
+		} else if(id == R.id.add_to_q_and_goto_q) {
+			addToQAndGotoQ();
+		} else if(id == R.id.queue) {
+			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("queue").build()));
+		} else if(id == R.id.get_all_prefs) {
+			getAllPrefs();
+		} else if(id == R.id.get_pref) {
+			getPref();
 		}
 	}
 
@@ -750,7 +694,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	/** Get the specified preference and show its name, type, value */
-	private void getPref() {
+	@SuppressLint("SetTextI18n") private void getPref() {
 		EditText prefET = findViewById(R.id.pref);
 		String prefName = prefET.getText().toString();
 		TextView prefsTV = findViewById(R.id.prefs);
@@ -771,7 +715,7 @@ public class MainActivity extends AppCompatActivity implements
 					prefsTV.setText(prefName + ": <no value>");
 					prefsTV.setBackgroundColor(0x55FF0000);
 				}
-				((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);;
+				((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);
 			} else {
 				prefsTV.setText("Call failed");
 				prefsTV.setBackgroundColor(0x55FF0000);
@@ -786,7 +730,7 @@ public class MainActivity extends AppCompatActivity implements
 		Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, null);
 
 		prefsTV.setText(dumpBundle(resultPrefs));
-		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);;
+		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);
 	}
 
 	public void setPref(View view) {
@@ -850,7 +794,7 @@ public class MainActivity extends AppCompatActivity implements
 		Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_SET_PREFERENCE, null, request);
 
 		prefsTV.setText(dumpBundle(resultPrefs));
-		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);;
+		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);
 	}
 
 	/**
@@ -858,23 +802,21 @@ public class MainActivity extends AppCompatActivity implements
  	 */
 	@Override
 	public boolean onLongClick(View v) {
-		switch(v.getId()) {
-			case R.id.play:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.STOP),
-						FORCE_API_ACTIVITY);
-				return true;
-
-			case R.id.next:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD),
-						FORCE_API_ACTIVITY);
-				mProcessingLongPress = true;
-				return true;
-
-			case R.id.prev:
-				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.BEGIN_REWIND),
-						FORCE_API_ACTIVITY);
-				mProcessingLongPress = true;
-				return true;
+		int id = v.getId();
+		if(id == R.id.play) {
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.STOP),
+					FORCE_API_ACTIVITY);
+			return true;
+		} else if(id == R.id.next) {
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.BEGIN_FAST_FORWARD),
+					FORCE_API_ACTIVITY);
+			mProcessingLongPress = true;
+			return true;
+		} else if(id == R.id.prev) {
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.BEGIN_REWIND),
+					FORCE_API_ACTIVITY);
+			mProcessingLongPress = true;
+			return true;
 		}
 
 		return false;
@@ -889,23 +831,22 @@ public class MainActivity extends AppCompatActivity implements
 		switch(event.getActionMasked()) {
 			case MotionEvent.ACTION_UP:
 			case MotionEvent.ACTION_CANCEL: {
-				switch(v.getId()) {
-					case R.id.next:
-						Log.e(TAG, "onTouch next ACTION_UP");
-						if(mProcessingLongPress) {
-							PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND,
-									PowerampAPI.Commands.END_FAST_FORWARD), FORCE_API_ACTIVITY);
-							mProcessingLongPress = false;
-						}
-						return false;
-
-					case R.id.prev:
-						if(mProcessingLongPress) {
-							PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND,
-									PowerampAPI.Commands.END_REWIND), FORCE_API_ACTIVITY);
-							mProcessingLongPress = false;
-						}
-						return false;
+				int id = v.getId();
+				if(id == R.id.next) {
+					Log.e(TAG, "onTouch next ACTION_UP");
+					if(mProcessingLongPress) {
+						PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND,
+								PowerampAPI.Commands.END_FAST_FORWARD), FORCE_API_ACTIVITY);
+						mProcessingLongPress = false;
+					}
+					return false;
+				} else if(id == R.id.prev) {
+					if(mProcessingLongPress) {
+						PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND).putExtra(PowerampAPI.EXTRA_COMMAND,
+								PowerampAPI.Commands.END_REWIND), FORCE_API_ACTIVITY);
+						mProcessingLongPress = false;
+					}
+					return false;
 				}
 			}
 		}
@@ -1037,15 +978,13 @@ public class MainActivity extends AppCompatActivity implements
  	 */
 	@Override
 	public void onProgressChanged(SeekBar bar, int progress, boolean fromUser) {
-		switch(bar.getId()) {
-			case R.id.song_seekbar:
-				if(fromUser) {
-					sendSeek(false);
-				}
-				break;
-			case R.id.sleep_timer_seekbar:
-				updateSleepTimer(progress);
-				break;
+		int id = bar.getId();
+		if(id == R.id.song_seekbar) {
+			if(fromUser) {
+				sendSeek(false);
+			}
+		} else if(id == R.id.sleep_timer_seekbar) {
+			updateSleepTimer(progress);
 		}
 	}
 
@@ -1170,7 +1109,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	// =================================================
 
-	private void updateSleepTimer(int progress) {
+	@SuppressLint("SetTextI18n") private void updateSleepTimer(int progress) {
 		((TextView)findViewById(R.id.sleep_timer_value)).setText("Seep in " + progress + "s");
 	}
 
@@ -1182,7 +1121,7 @@ public class MainActivity extends AppCompatActivity implements
 			try {
 				code = getPackageManager().getPackageInfo(PowerampAPIHelper.getPowerampPackageName(this), 0).versionCode;
 			} catch(PackageManager.NameNotFoundException ex) {
-				code = 0;
+				// code==0 here
 				Log.e(TAG, "", ex);
 			}
 			if(code > 1000) {
@@ -1437,7 +1376,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 
-	public static final @NonNull String getRawColName(@NonNull String col) {
+	public static @NonNull String getRawColName(@NonNull String col) {
 		int dot = col.indexOf('.');
 		if(dot >= 0 && dot + 1 <= col.length()) {
 			return col.substring(dot + 1);

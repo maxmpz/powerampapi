@@ -7,6 +7,7 @@ android {
     defaultConfig {
         applicationId "com.poweramp.v3.sampleskin"
         minSdkVersion 21
+        //noinspection OldTargetApi
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -24,10 +25,14 @@ android {
     aaptOptions {
         def localProps = new Properties()
         localProps.load(rootProject.file("local.properties").newDataInputStream())
+        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-912-resources.zip"
 
-        //"--stable-ids", "stable-ids.txt",
-        additionalParameters "--emit-ids", "stable-ids.txt", "--package-id", "0x80",
-                                "-I", "${projectDir}/../${localProps['poweramp.apk']}"
+        additionalParameters "--emit-ids", "stable-ids.txt",
+                                "--package-id", "0x80",
+                                "-I", "${projectDir}/../${paResources}"
+        if(rootProject.file("stable-ids.txt").exists()) {
+            additionalParameters "--stable-ids", "stable-ids.txt"
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

@@ -314,7 +314,8 @@ public class ExampleProvider extends DocumentsProvider {
 		return null;
 	}
 
-	private void fillURLRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, @NonNull String url, long size, @NonNull String title,
+	private void fillURLRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, @NonNull String url,
+	                        long size, @NonNull String title,
 	                        long duration, boolean sendMetadata, boolean sendWave, boolean sendEmptyWave
 	) {
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
@@ -538,7 +539,7 @@ public class ExampleProvider extends DocumentsProvider {
 				fillURLRow(docId, c.newRow(),
 						TrackProviderConsts.DYNAMIC_URL,
 						DUBSTEP_SIZE,
-						null, // NOTE: titles not sent here
+						"", // NOTE: titles not sent here
 						DUBSTEP_DURATION_MS,
 						false, false, false); // Not sending metadata here
 
@@ -546,7 +547,7 @@ public class ExampleProvider extends DocumentsProvider {
 				fillURLRow(docId, c.newRow(),
 						TrackProviderConsts.DYNAMIC_URL,
 						SUMMER_SIZE,
-						null, // NOTE: titles not sent here
+						"", // NOTE: titles not sent here
 						SUMMER_DURATION_MS,
 						false, false, false); // Not sending metadata here
 
@@ -558,7 +559,7 @@ public class ExampleProvider extends DocumentsProvider {
 					fillURLRow(docId, c.newRow(),
 							isDubstep ? DUBSTEP_HTTP_URL : SUMMER_HTTP_URL,
 							isDubstep ? DUBSTEP_SIZE : SUMMER_SIZE,
-							null, // NOTE: titles not sent here
+							"", // NOTE: titles not sent here
 							isStream ? 0 : (isDubstep ? DUBSTEP_DURATION_MS : SUMMER_DURATION_MS),
 							false, false, false);
 				}
@@ -610,7 +611,7 @@ public class ExampleProvider extends DocumentsProvider {
 	@Override
 	public AssetFileDescriptor openDocumentThumbnail(String documentId, Point sizeHint, CancellationSignal signal) throws FileNotFoundException {
 
-		String imageSrc = null;
+		String imageSrc;
 
 		if(documentId.endsWith(".mp3") || documentId.endsWith(".flac") || documentId.endsWith(DOCID_STATIC_URL_SUFFIX)
 			|| documentId.endsWith(DOCID_DYNAMIC_URL_SUFFIX)
@@ -719,6 +720,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 							while(true) {
 								int len;
+								//noinspection UnusedAssignment
 								while((len = fc.read(buf)) > 0) {
 									buf.flip();
 
@@ -744,6 +746,7 @@ public class ExampleProvider extends DocumentsProvider {
 								long seekRequestPos = proto.sendEOFAndWaitForSeekOrClose();
 								if(handleSeekRequest(proto, seekRequestPos, fc, fileLength)) {
 									if(LOG) Log.w(TAG, "openViaSeekableSocket file seek past EOF documentId=" + documentId);
+									//noinspection UnnecessaryContinue
 									continue; // We've just processed extra seek request, continue sending buffers
 								} else {
 									break; // We done here, Poweramp closed socket
@@ -789,7 +792,7 @@ public class ExampleProvider extends DocumentsProvider {
 			// - this can take an indefinite time, as Poweramp can be paused on the file
 
 			new Thread(new Runnable() {
-				public void run() {
+				@SuppressWarnings("UnusedAssignment") public void run() {
 					// NOTE: we can use arbitrary buffer size here >0, but increasing buffer will increase non-seekable "window" at the end of file
 					// Using buffer size > MAX_DATA_SIZE will cause buffer to be split into multiple packets
 					ByteBuffer buf = ByteBuffer.allocateDirect(TrackProviderProto.MAX_DATA_SIZE);
@@ -828,6 +831,7 @@ public class ExampleProvider extends DocumentsProvider {
 								TrackProviderProto.SeekRequest seekRequest = proto.sendEOFAndWaitForSeekOrClose2();
 								if(handleSeekRequest2(proto, seekRequest, fc, fileLength)) {
 									if(LOG) Log.w(TAG, "openViaSeekableSocket2 file seek past EOF documentId=" + documentId);
+									//noinspection UnnecessaryContinue
 									continue; // We've just processed extra seek request, continue sending buffers
 								} else {
 									break; // We done here, Poweramp closed socket
@@ -1102,7 +1106,8 @@ public class ExampleProvider extends DocumentsProvider {
 				if(LOG) Log.w(TAG, "handleRescan targeted provider rescan");
 
 			}
-		} else if(TextUtils.isEmpty(targetProvider)) {
+		} else //noinspection StatementWithEmptyBody
+			if(TextUtils.isEmpty(targetProvider)) {
 
 			// This is non-targeted scan request:
 			// - from the Poweramp UI for categories outside this provider folders

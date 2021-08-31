@@ -246,7 +246,7 @@ public class PowerampAPIHelper {
 			if(!(context instanceof Activity)) {
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			}
-			context.startActivity(intent);;
+			context.startActivity(intent);
 		} else if(buildNum >= 855) {
 			intent.setComponent(getApiReceiverComponentName(context));
 			context.sendBroadcast(intent);
@@ -281,10 +281,7 @@ public class PowerampAPIHelper {
 
 		Uri aaUri = PowerampAPI.AA_ROOT_URI.buildUpon().appendEncodedPath("files").appendEncodedPath(Long.toString(track.getLong(PowerampAPI.Track.REAL_ID))).build();
 
-		ParcelFileDescriptor pfd = null;
-
-		try {
-			pfd = context.getContentResolver().openFileDescriptor(aaUri, "r");
+		try(ParcelFileDescriptor pfd = context.getContentResolver().openFileDescriptor(aaUri, "r")) {
 			if(pfd != null) {
 				BitmapFactory.Options opts = new BitmapFactory.Options();
 				// If this pfd is pipe, we can't reuse it for decoding, so don't do the subsample then
@@ -304,7 +301,8 @@ public class PowerampAPIHelper {
 				Bitmap b = BitmapFactory.decodeFileDescriptor(pfd.getFileDescriptor(), null, opts);
 
 				if(LOG) Log.e(TAG, "getAlbumArt aaUri=" + aaUri + " b=" + b);
-				if(LOG && b != null) Log.e(TAG, "getAlbumArt w=" + b.getWidth() + " h=" + b.getHeight());
+				if(LOG && b != null)
+					Log.e(TAG, "getAlbumArt w=" + b.getWidth() + " h=" + b.getHeight());
 
 				return b;
 
@@ -317,12 +315,6 @@ public class PowerampAPIHelper {
 		} catch(Throwable th) {
 			Log.e(TAG, "", th);
 
-		} finally {
-			if(pfd != null) {
-				try {
-					pfd.close();
-				} catch(IOException e) {}
-			}
 		}
 
 		return null;

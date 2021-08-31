@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 	<dimen name="NavbarBounds_height">48dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines">102dp</dimen>
 
-	<dimen name="AAA_TopWaveseekLayout_height">130dp</dimen>
+	<dimen name="AAA_TopWaveseekLayout_height" tools:ignore="MissingDefaultResource">130dp</dimen>
 
 	<dimen name="AAA_TopPlay_marginBottom">20dp</dimen>
 

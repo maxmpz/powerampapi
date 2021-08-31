@@ -1,7 +1,6 @@
 package com.maxmpz.poweramp.equalizer;
 
 import com.maxmpz.poweramp.player.PowerampAPI;
-import com.maxmpz.poweramp.player.PowerampAPIHelper;
 
 public final class PeqAPI {
 	public static final String ACTION_ASK_FOR_DATA_PERMISSION = PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION;
@@ -43,6 +42,9 @@ public final class PeqAPI {
 		public static final int STOP_SERVICE = PowerampAPI.Commands.STOP_SERVICE;
 	}
 
+	/** @see PowerampAPI#CALL_SET_PREFERENCE */
+	public static final String CALL_SET_PREFERENCE = PowerampAPI.CALL_SET_PREFERENCE;
+
 	public final static class MilkScanner extends PowerampAPI.MilkScanner {}
 	
 	
@@ -53,7 +55,6 @@ public final class PeqAPI {
 		/**
 		 * Settings activity
 		 */
-		@SuppressWarnings("hiding")
 		public static final String ACTIVITY_SETTINGS = "com.maxmpz.equalizer.preference.SettingsActivity";
 
 		/**

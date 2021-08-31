@@ -12,14 +12,16 @@
 		android:layout_height="wrap_content"
 		android:padding="16dp"
 		android:orientation="horizontal"
-	>
+		tools:ignore="UseCompoundDrawables"
+		>
 		<ImageView
 			android:id="@+id/icon"
 			android:src="@mipmap/app_icon"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="2dp"
-		/>
+			tools:ignore="ContentDescription"
+			/>
 		<TextView
 			android:id="@+id/title"
 			android:layout_marginLeft="16dp"
@@ -28,7 +30,8 @@
 			android:text="@string/installation_ok"
 			android:textSize="16sp"
 			android:layout_gravity="center_vertical"
-		/>
+			tools:ignore="RtlHardcoded"
+			/>
 	</LinearLayout>
 
 	<LinearLayout
@@ -49,7 +52,8 @@
 			android:scrollbars="vertical"
 			android:scrollbarAlwaysDrawVerticalTrack="true"
 			android:inputType="textMultiLine"
-		/>
+			tools:ignore="Autofill,LabelFor,NestedWeights"
+			/>
 		<Button
 			android:onClick="sendPreset"
 			android:layout_width="match_parent"
@@ -57,7 +61,8 @@
 			android:text="@string/send_preset"
 			android:layout_marginLeft="8dp"
 			android:layout_marginRight="8dp"
-		/>
+			tools:ignore="UsingOnClickInXml"
+			/>
 
 		<!-- Debug buttons -->
 		<HorizontalScrollView
@@ -66,7 +71,7 @@
 			android:background="?android:attr/colorAccent"
 		>
 			<LinearLayout
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:orientation="horizontal"
 				android:paddingLeft="8dp"
@@ -78,7 +83,8 @@
 					android:layout_height="wrap_content"
 					android:text="listMilkPresets"
 					android:textSize="10sp"
-				/>
+					tools:ignore="ButtonStyle,HardcodedText,SmallSp,UsingOnClickInXml"
+					/>
 				<Button
 					android:onClick="pushFile"
 					android:layout_width="wrap_content"
@@ -86,7 +92,8 @@
 					android:text="pushFile"
 					android:layout_marginLeft="4dp"
 					android:textSize="10sp"
-				/>
+					tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SmallSp,UsingOnClickInXml"
+					/>
 				<Button
 					android:onClick="deleteFile"
 					android:layout_width="wrap_content"
@@ -94,7 +101,8 @@
 					android:text="deleteFile"
 					android:layout_marginLeft="4dp"
 					android:textSize="10sp"
-				/>
+					tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SmallSp,UsingOnClickInXml"
+					/>
 			</LinearLayout>
 		</HorizontalScrollView>
 
@@ -108,7 +116,8 @@
 			android:textSize="16sp"
 			android:layout_marginLeft="8dp"
 			android:layout_marginRight="8dp"
-		/>
+			tools:ignore="UsingOnClickInXml"
+			/>
 
 		<Button
 			android:onClick="rescanVisPresets"
@@ -117,7 +126,8 @@
 			android:text="@string/rescan_presets"
 			android:layout_marginLeft="8dp"
 			android:layout_marginRight="8dp"
-		/>
+			tools:ignore="UsingOnClickInXml"
+			/>
 
 		<Button
 			android:onClick="openPowerampVisSettings"
@@ -126,6 +136,7 @@
 			android:text="@string/open_vis_settings"
 			android:layout_marginLeft="8dp"
 			android:layout_marginRight="8dp"
-		/>
+			tools:ignore="UsingOnClickInXml"
+			/>
 	</LinearLayout>
 </LinearLayout>

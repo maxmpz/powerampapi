@@ -195,7 +195,7 @@ public abstract class WidgetUpdater {
 			return data;
 		}
 
-		Bundle track = null;
+		Bundle track;
 
 		Intent trackIntent = context.registerReceiver(null, WidgetUpdater.sTrackFilter);
 

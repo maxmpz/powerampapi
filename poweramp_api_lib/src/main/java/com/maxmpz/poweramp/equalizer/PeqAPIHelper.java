@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.ResolveInfo;
-import android.os.Build;
 import android.util.Log;
 
 
@@ -156,7 +155,7 @@ public class PeqAPIHelper {
 			if(!(context instanceof Activity)) {
 				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			}
-			context.startActivity(intent);;
+			context.startActivity(intent);
 		} else {
 			intent.setComponent(getApiReceiverComponentName(context));
 			context.sendBroadcast(intent);

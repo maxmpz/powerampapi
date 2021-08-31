@@ -41,14 +41,14 @@ public class RemoteTrackTime {
 
 	private static final int UPDATE_DELAY = 1000;
 
-	private Context mContext;
+	private final Context mContext;
 	int mPosition;
 
 	long mStartTimeMs;
 	int mStartPosition;
 	private boolean mPlaying;
 
-	Handler mHandler = new Handler();
+	final Handler mHandler = new Handler();
 
 
 	public interface TrackTimeListener {
@@ -80,12 +80,12 @@ public class RemoteTrackTime {
 		if(mTrackPosSyncReceiver != null) {
 			try {
 				mContext.unregisterReceiver(mTrackPosSyncReceiver);
-			} catch(Exception ex){}
+			} catch(Exception ignored) { }
 		}
 		mHandler.removeCallbacks(mTickRunnable);
 	}
 
-	private BroadcastReceiver mTrackPosSyncReceiver = new BroadcastReceiver() {
+	private final BroadcastReceiver mTrackPosSyncReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			int pos = intent.getIntExtra(PowerampAPI.Track.POSITION, 0);
@@ -117,7 +117,7 @@ public class RemoteTrackTime {
 		}
 	}
 
-	protected Runnable mTickRunnable = new Runnable() {
+	protected final Runnable mTickRunnable = new Runnable() {
 		@Override
 		public void run() {
 			mPosition = (int)(System.currentTimeMillis() - mStartTimeMs + 500) / 1000 + mStartPosition;

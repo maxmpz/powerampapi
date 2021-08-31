@@ -33,7 +33,7 @@ public class InfoActivity extends Activity {
 
 	private static final int REQUEST_ACCESS_MILK_PRESETS = 1;
 
-	private ArrayList<String> mPushedFiles = new ArrayList<String>();
+	private final ArrayList<String> mPushedFiles = new ArrayList<>();
 
 
 	@Override
@@ -105,7 +105,6 @@ public class InfoActivity extends Activity {
 				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_VIS_PRESET)
 				.putExtra(PowerampAPI.EXTRA_NAME, "VisPresetsExample - Test Preset.milk")
 				.putExtra(PowerampAPI.EXTRA_DATA, ((EditText) findViewById(R.id.edit)).getText().toString()); // NOTE: strictly String type is expected
-		;
 		startActivity(intent);
 
 		// NOTE: we can't immediately do same action/component startActivity immediately, so delay it a bit via post
@@ -176,6 +175,7 @@ public class InfoActivity extends Activity {
 		return filename.substring(lastDot + 1);
 	}
 
+	@SuppressWarnings("CommentedOutCode")
 	public void listMilkPresetsImpl() {
 		if(LOG) Log.w(TAG, "listMilkPresetsImpl");
 		final ArrayList<String> presets = new ArrayList<>();
@@ -184,7 +184,7 @@ public class InfoActivity extends Activity {
 
 		// The path parameter also accepts glob patterns, e.g. content://com.maxmpz.audioplayer.milk_presets/*.milk,
 		// To quickly query for the single file, you can also use uris like: content://com.maxmpz.audioplayer.milk_presets/single_file
-		// NOTE: cols are always ignored, the following colums are always retuned:
+		// NOTE: cols are always ignored, the following columns are always returned:
 		//   Document.COLUMN_DISPLAY_NAME, Document.COLUMN_LAST_MODIFIED, Document.COLUMN_SIZE,
 		// NOTE: ? symbol requires escaping (%3F)
 

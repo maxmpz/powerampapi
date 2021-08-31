@@ -24,6 +24,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="2dip"
+				tools:ignore="ContentDescription"
 				/>
 			<TextView
 				android:id="@+id/title"
@@ -37,7 +38,8 @@
 				android:layout_alignTop="@+id/icon"
 				android:layout_alignBottom="@+id/icon"
 				android:gravity="center_vertical"
-			/>
+				tools:ignore="RtlHardcoded"
+				/>
 		
 			<TextView
 				android:id="@+id/msg1"
@@ -66,7 +68,8 @@
 			android:textSize="16sp"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp"
-		/>
+			tools:ignore="UsingOnClickInXml"
+			/>
 
 		<Button
 			android:onClick="startWithSampleAAASkin"
@@ -77,7 +80,8 @@
 			android:textSize="16sp"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp"
-		/>
+			tools:ignore="UsingOnClickInXml"
+			/>
 
 		<Button
 			android:onClick="openPowerampThemeSettings"
@@ -87,6 +91,7 @@
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp"
 			android:layout_marginBottom="10dp"
-		/>
+			tools:ignore="UsingOnClickInXml"
+			/>
 	</LinearLayout>
 </RelativeLayout>

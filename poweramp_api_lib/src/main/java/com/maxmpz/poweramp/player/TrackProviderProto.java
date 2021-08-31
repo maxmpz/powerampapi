@@ -149,7 +149,7 @@ public class TrackProviderProto implements AutoCloseable {
 		mSocket = socket;
 		mFileLength = fileLength;
 
-		ByteBuffer headerBuffer = ByteBuffer.allocateDirect(INITIAL_PACKET_SIZE);;
+		ByteBuffer headerBuffer = ByteBuffer.allocateDirect(INITIAL_PACKET_SIZE);
 		if(headerBuffer == null) throw new TrackProviderProtoException("headerBuffer");
 		mHeaderBuffer = headerBuffer;
 		mHeaderBuffer.order(ByteOrder.nativeOrder());

@@ -226,7 +226,6 @@ public final class PowerampAPI {
 	 * Command values for {@link #EXTRA_COMMAND} extra.<br>
 	 * Alternatively, Commands field name can be used instead of integer value, e.g. "PAUSE", instead of 2
 	 */
-	@SuppressWarnings("hiding")
 	public static final class Commands {
 		/**
 		 * Extras:<br>
@@ -839,7 +838,8 @@ public final class PowerampAPI {
 	/**
 	 * Sent by Poweramp to your app<br>
 	 * Poweramp equalizer settings changed.<br>
-	 * Sticky intent (can be queried for permanently stored data).<br><br>
+	 * v2: sticky intent (can be queried for permanently stored data).<br>
+	 * v3: non-sticky intent<br><br>
 	 *
 	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br><br>
 	 *
@@ -1235,7 +1235,6 @@ public final class PowerampAPI {
 	/**
 	 * STATUS_CHANGED track extra fields
 	 */
-	@SuppressWarnings("hiding")
 	public static final class Track {
 		/**
 		 * Max number to use for filename numbers, e.g. 1-track.mp3 is considered a track #1, but 100-track.mp3 is not
@@ -1443,7 +1442,6 @@ public final class PowerampAPI {
 		/**
 		 * Ask to keep service/notification
 		 */
-		@SuppressWarnings("hiding")
 		public static final int KEEP_SERVICE      = 0x0001;
 		
 		/**
@@ -1740,7 +1738,6 @@ public final class PowerampAPI {
 		 * Extra<br>
 		 * {@code String} - your app package name
 		 */
-		@SuppressWarnings("hiding")
 		public static final String EXTRA_PACKAGE = "pak";
 	}
 	
@@ -1752,7 +1749,6 @@ public final class PowerampAPI {
 		/**
 		 * Poweramp settings activity
 		 */
-		@SuppressWarnings("hiding")
 		public static final String ACTIVITY_SETTINGS = PowerampAPI.ACTIVITY_SETTINGS;
 
 		/**

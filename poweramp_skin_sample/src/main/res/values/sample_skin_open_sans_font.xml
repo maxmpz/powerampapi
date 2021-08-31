@@ -89,7 +89,7 @@
 	</style>
 	<style name="textAppearanceButton_OpenSansFont" parent="android:TextAppearance.Material.Widget.Button">
 		<item name="android:fontFamily">?OpenSans_font</item>
-		<item name="android:textSize">15.75dp</item><!-- NOTE: increased as no caps -->
+		<item name="android:textSize" tools:ignore="SpUsage">15.75dp</item><!-- NOTE: increased as no caps -->
 		<item name="android:textAllCaps">false</item>
 	</style>
 	<style name="textAppearanceMediumInverse_OpenSansFont" parent="android:TextAppearance.Material.Medium.Inverse">

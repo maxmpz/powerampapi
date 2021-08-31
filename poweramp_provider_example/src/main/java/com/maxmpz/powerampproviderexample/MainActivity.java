@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +20,7 @@ public class MainActivity extends Activity {
 	private static final boolean LOG = true;
 
 
-	private BroadcastReceiver mScanEventsReceiver = new BroadcastReceiver() {
+	private final BroadcastReceiver mScanEventsReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			((TextView)findViewById(R.id.status)).setText(intent.getAction());
@@ -149,7 +147,7 @@ public class MainActivity extends Activity {
 	protected void onDestroy() {
 		try {
 			unregisterReceiver(mScanEventsReceiver);
-		} catch(Throwable th) {	}
+		} catch(Throwable ignored) { }
 		super.onDestroy();
 	}
 }

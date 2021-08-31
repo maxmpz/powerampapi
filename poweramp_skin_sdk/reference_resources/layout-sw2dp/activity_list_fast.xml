@@ -325,7 +325,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?TopSleepTimerButtonLayout_scene_item_menu" 
 		/>
 		
-		<!-- NOTE: arg2="1" means we override arg2 when sending message by chaning modes by pressing BusSelectablePopupButtonLayout.
+		<!-- NOTE: arg2="1" means we override arg2 when sending message by changing modes by pressing BusSelectablePopupButtonLayout.
 			 This only applied (and overrides possible button arg2) ONLY when BusSelectablePopupButtonLayout is pressed, 
 			 otherwise, while in popup menu buttons send their (or buttons* based) messages/args -->
 		<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/shuffle_button_layout"
@@ -457,7 +457,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<include android:layout="@layout/merge_navbar"/>
 	
 	<!-- NOTE: loaded once and never unloaded. NOTE: TopNavHelper assumes vis panel is loaded via behavior, otherwise change vis_panel_faded_alpha logic there -->
-	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/vis_panel_loadable_beahvior"
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/vis_panel_loadable_behavior"
 		android:layout="@layout/merge_vis_panel"
 		w:loadForScene="@+id/scene_vis_temp_ui"
 		w:loadForScene_2="@+id/scene_vis"
@@ -498,7 +498,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 	
 	
-	<!-- NOTE: status bar bg should be atop of everything, so putting it here as last, thus higher z-index. Helps with e.g. header => popup menu poping over status bar bg.
+	<!-- NOTE: status bar bg should be atop of everything, so putting it here as last, thus higher z-index. Helps with e.g. header => popup menu popping over status bar bg.
 		 By default, status_bar_bg/navigation_bar_bg don't change anything for scenes, but SceneParams are provided for skins, which can change them
 		 NOTE: automatically hidden if user hides status bar via settings
 	 -->
