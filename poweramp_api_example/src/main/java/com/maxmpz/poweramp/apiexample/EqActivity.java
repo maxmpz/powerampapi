@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2020 Maksim Petrov
+Copyright (C) 2011-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -52,6 +52,10 @@ import com.maxmpz.poweramp.player.PowerampAPIHelper;
 
 public class EqActivity extends Activity implements OnClickListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener {
 	private static final String TAG = "EqActivity";
+	private static final boolean LOG = true;
+
+	private static final Pattern sSemicolonSplitRe = Pattern.compile(";");
+	private static final Pattern sEqualSplitRe = Pattern.compile("=");
 
 	Intent mEquIntent;
 	private boolean mEquBuilt;
@@ -60,10 +64,14 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	private boolean mSettingTone;
 	private boolean mSettingPreset;
 
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "deprecation" })
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// Ask for PA equ state update immediately by sending "empty" SET_EQU_ENABLED command.
+		// The reply may be delayed up to 250ms, so UI should accommodate for that (update asynchronously)
+		requestEqStatus();
 
 		setContentView(R.layout.activity_eq);
 
@@ -103,6 +111,11 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		((CheckBox)findViewById(R.id.tone)).setOnCheckedChangeListener(this);
 	}
 
+	private void requestEqStatus() {
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED));
+	}
+
 	/**
 	 * NOTE: when screen is rotated, by default android will reapply all saved values to the controls, calling the event handlers, which generate appropriate intents, thus,
 	 * on screen rotation some commands could be sent to Poweramp unintentionally.
@@ -136,6 +149,10 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		super.onResume();
 
 		registerAndLoadStatus();
+
+		// Ask PA for eq state as, while on background, we probably were denied of intent processing due to
+		// Android 8+ background limitations
+		requestEqStatus();
 	}
 
 
@@ -151,16 +168,20 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	/**
 	 * NOTE, it's not necessary to set mStatusIntent/mPlayingModeIntent/mEquIntent this way here,
 	 * but this approach can be used with null receiver to get current sticky intent without broadcast receiver
+	 *
+	 * NOTE: For Poweramp v3 this intent is not sticky anymore
 	 */
 	private void registerAndLoadStatus() {
 		mEquIntent = registerReceiver(mEquReceiver, new IntentFilter(PowerampAPI.ACTION_EQU_CHANGED));
+		if(LOG) Log.w(TAG, "registerAndLoadStatus mEquIntent=>" + mEquIntent);
 	}
 
 	private void unregister() {
 		if(mEquReceiver != null) {
 			try {
 				unregisterReceiver(mEquReceiver);
-			} catch(Exception ex) { }
+			} catch(Exception ignored) {
+			}
 		}
 	}
 
@@ -169,7 +190,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		public void onReceive(Context context, Intent intent) {
 			mEquIntent = intent;
 
-			debugDumpEquIntent(intent);
+			if(LOG) debugDumpEquIntent(intent);
 
 			updateEqu();
 		}
@@ -178,9 +199,10 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 	void updateEqu() {
 		if(mEquIntent == null) {
+			if(LOG) Log.e(TAG, "updateEqu IGNORE !mEquIntent");
 			return;
 		}
-
+		if(LOG) Log.w(TAG, "updateEqu", new Exception());
 
 		final CheckBox eq = (CheckBox)findViewById(R.id.eq);
 		boolean equEnabled = mEquIntent.getBooleanExtra(PowerampAPI.EXTRA_EQU, false);
@@ -198,6 +220,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 		String presetString = mEquIntent.getStringExtra(PowerampAPI.EXTRA_VALUE);
 		if(presetString == null || presetString.length() == 0) {
+			if(LOG) Log.w(TAG, "updateEqu !presetString");
 			return;
 		}
 
@@ -209,7 +232,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 
 		long id = mEquIntent.getLongExtra(PowerampAPI.EXTRA_ID, PowerampAPI.NO_ID);
-		Log.w(TAG, "updateEqu id=" + id);
+		if(LOG) Log.w(TAG, "updateEqu id=" + id);
 
 		Spinner presetSpinner = (Spinner)findViewById(R.id.preset_spinner);
 		int count = presetSpinner.getAdapter().getCount();
@@ -224,18 +247,16 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		}
 	}
 
-	private static Pattern sSemicolonSplitRe = Pattern.compile(";");
-	private static Pattern sEqualSplitRe = Pattern.compile("=");
-
 	/**
 	 * This method parses the equalizer serialized "presetString" and creates appropriate seekbars.
  	 */
 	private void buildEquUI(String string) {
+		if(LOG) Log.w(TAG, "buildEquUI string=" + string);
 		String[] pairs = sSemicolonSplitRe.split(string);
 		TableLayout equLayout = (TableLayout)findViewById(R.id.equ_layout);
 
-		for(int i = 0, pairsLength = pairs.length; i < pairsLength; i++) {
-			String[] nameValue = sEqualSplitRe.split(pairs[i], 2);
+		for(String pair : pairs) {
+			String[] nameValue = sEqualSplitRe.split(pair, 2);
 			if(nameValue.length == 2) {
 				String name = nameValue[0];
 
@@ -270,7 +291,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	 * Preamp, bass/treble and equ bands have different scaling. This method ensures correct scaling is applied.
  	 */
 	void setBandValue(String name, float value, SeekBar bar) {
-		//Log.w(TAG, "name=" + name + " value=" + value);
+		if(LOG) Log.w(TAG, "setBandValue name=" + name + " value=" + value);
 		if("preamp".equals(name)) {
 			bar.setMax(200);
 			bar.setProgress((int)(value * 100f));
@@ -287,7 +308,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	 * Almost the same as buildEquUI, just do the UI update without building it
 	 */
 	private void updateEquUI(String string) {
-		Log.w(TAG, "updateEquUI!");
+		if(LOG) Log.w(TAG, "updateEquUI string=" + string);
 		String[] pairs = sSemicolonSplitRe.split(string);
 		TableLayout equLayout = (TableLayout)findViewById(R.id.equ_layout);
 
@@ -325,45 +346,38 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()) {
-			case R.id.commit_eq:
-				commitEq();
-				break;
+		if(v.getId() == R.id.commit_eq) {
+			commitEq();
 		}
 	}
 
 	/**
-	 * Event handler for Dynamic Eq checkbox
+	 * Event handler for the checkboxes
 	 */
 	@Override
 	public void onCheckedChanged(CompoundButton view, boolean isChecked) {
 		Log.w(TAG, "onCheckedChanged=" + view);
-		switch(view.getId()) {
-			case R.id.dynamic:
-				findViewById(R.id.commit_eq).setEnabled(!isChecked);
-				break;
-
-			case R.id.eq:
-				if(!mSettingEqu) {
-					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-							.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
-							.putExtra(PowerampAPI.EXTRA_EQU, isChecked),
-							MainActivity.FORCE_API_ACTIVITY
-					);
-				}
-				mSettingEqu = false;
-				break;
-
-			case R.id.tone:
-				if(!mSettingTone) {
-					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
-							.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
-							.putExtra(PowerampAPI.EXTRA_TONE, isChecked),
-							MainActivity.FORCE_API_ACTIVITY
-					);
-				}
-				mSettingTone = false;
-				break;
+		int id = view.getId();
+		if(id == R.id.dynamic) {
+			findViewById(R.id.commit_eq).setEnabled(!isChecked);
+		} else if(id == R.id.eq) {
+			if(!mSettingEqu) {
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+								.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
+								.putExtra(PowerampAPI.EXTRA_EQU, isChecked),
+						MainActivity.FORCE_API_ACTIVITY
+				);
+			}
+			mSettingEqu = false;
+		} else if(id == R.id.tone) {
+			if(!mSettingTone) {
+				PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+								.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_EQU_ENABLED)
+								.putExtra(PowerampAPI.EXTRA_TONE, isChecked),
+						MainActivity.FORCE_API_ACTIVITY
+				);
+			}
+			mSettingTone = false;
 		}
 	}
 
