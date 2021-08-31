@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.View;
@@ -108,7 +109,7 @@ public class InfoActivity extends Activity {
 		startActivity(intent);
 
 		// NOTE: we can't immediately do same action/component startActivity immediately, so delay it a bit via post
-		new Handler().post(new Runnable() {
+		new Handler(Looper.getMainLooper()).post(new Runnable() {
 			@Override
 			public void run() {
 				Intent intent;
