@@ -20,11 +20,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.widgetpackcommon;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -34,6 +29,11 @@ import android.os.PowerManager;
 import android.util.Log;
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public abstract class WidgetUpdater {
@@ -58,7 +58,7 @@ public abstract class WidgetUpdater {
 	public static final IntentFilter sStatusFilter = new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED);
 	public static final IntentFilter sModeFilter = new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED);
 
-	private final Context mContext;
+	private final Context mContext; // NOTE: PS context ATM
 
 	private static @Nullable SharedPreferences sCachedPrefs;
 
@@ -78,7 +78,7 @@ public abstract class WidgetUpdater {
 		if(powerManager == null) throw new AssertionError();
 		mPowerManager = powerManager;
 
-		mContext = context;
+		mContext = context; // NOTE: PS context ATM
 		
 		if(LOG) Log.w(TAG, "ctor in=" + (System.nanoTime() - start) / 1000);
 	} 
@@ -161,7 +161,7 @@ public abstract class WidgetUpdater {
 	public static @NonNull SharedPreferences getCachedSharedPreferences(Context context) {
 		SharedPreferences cachedPrefs = sCachedPrefs;
 		if(cachedPrefs == null) {
-			// REVISIT: try to get preferences from Application itself
+			// NOTE: getting Poweramp shared prefs implementation via explicit app context
 			Context app = context.getApplicationContext();
 			cachedPrefs = sCachedPrefs = app.getSharedPreferences(getGlobalSharedPreferencesName(app), 0);
 		}
