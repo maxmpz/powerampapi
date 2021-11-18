@@ -34,8 +34,6 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -61,6 +59,8 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.RemoteTrackTime;
@@ -70,8 +70,6 @@ import com.maxmpz.poweramp.player.TableDefs;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import java.io.File;
-import java.io.FileFilter;
 import java.lang.reflect.Field;
 import java.util.Set;
 
@@ -147,11 +145,11 @@ public class MainActivity extends AppCompatActivity implements
 		findViewById(R.id.shuffle_off).setOnClickListener(this);
 		findViewById(R.id.eq).setOnClickListener(this);
 
-		mSongSeekBar = (SeekBar)findViewById(R.id.song_seekbar);
+		mSongSeekBar = findViewById(R.id.song_seekbar);
 		mSongSeekBar.setOnSeekBarChangeListener(this);
 
-		mDuration = (TextView)findViewById(R.id.duration);
-		mElapsed = (TextView)findViewById(R.id.elapsed);
+		mDuration = findViewById(R.id.duration);
+		mElapsed = findViewById(R.id.elapsed);
 
 		mRemoteTrackTime = new RemoteTrackTime(this);
 		mRemoteTrackTime.setTrackTimeListener(this);
@@ -174,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements
 		// NOTE: this will work only if Poweramp process is alive.
 		// This actually should be done once per this app installation, but for the simplicity, we use per-process static field here
 		if(!sPermissionAsked) {
-			if(LOG_VERBOSE) Log.w(TAG, "onCreate askin permission");
+			if(LOG_VERBOSE) Log.w(TAG, "onCreate skin permission");
 			Intent intent = new Intent(PowerampAPI.ACTION_ASK_FOR_DATA_PERMISSION);
 			intent.setPackage(PowerampAPIHelper.getPowerampPackageName(this));
 			intent.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName());
@@ -478,49 +476,11 @@ public class MainActivity extends AppCompatActivity implements
 		}
 	}
 
-	/**
-	 * Find first mp3 in a folder or in any sub-folder inside
-	 */
-	private String findFirstMP3(File dir) {
-		try {
-			findFirstMP3InFolder(dir);
-		} catch(FileFoundException ex) {
-			return ex.mFile.getPath();
-		}
-		return "";
-	}
-
-	@SuppressWarnings("serial")
-	private static class FileFoundException extends RuntimeException {
-		final File mFile;
-		FileFoundException(File file) {
-			mFile = file;
-		}
-	}
-
-	void findFirstMP3InFolder(File dir) {
-		//noinspection ResultOfMethodCallIgnored
-		dir.listFiles(new FileFilter() {
-			@Override
-			public boolean accept(File child) {
-				if(child.isDirectory()) {
-					findFirstMP3InFolder(child);
-				} else {
-					String fileName = child.getName();
-					if(fileName.regionMatches(true, fileName.length() - "mp3".length(), "mp3", 0, "mp3".length())){
-						throw new FileFoundException(child);
-					}
-				}
-				return false;
-			}
-		});
-	}
-
 	@SuppressLint("SetTextI18n") void updateAlbumArt(Bundle track) {
 		Log.w(TAG, "updateAlbumArt");
 
-		ImageView aaImage = ((ImageView)findViewById(R.id.album_art));
-		TextView albumArtInfo = (TextView)findViewById(R.id.album_art_info);
+		ImageView aaImage = findViewById(R.id.album_art);
+		TextView albumArtInfo = findViewById(R.id.album_art_info);
 
 		if(track == null) {
 			Log.w(TAG, "no track");
@@ -715,7 +675,7 @@ public class MainActivity extends AppCompatActivity implements
 					prefsTV.setText(prefName + ": <no value>");
 					prefsTV.setBackgroundColor(0x55FF0000);
 				}
-				((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);
+				prefsTV.getParent().requestChildFocus(prefsTV, prefsTV);
 			} else {
 				prefsTV.setText("Call failed");
 				prefsTV.setBackgroundColor(0x55FF0000);
@@ -730,71 +690,60 @@ public class MainActivity extends AppCompatActivity implements
 		Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, null);
 
 		prefsTV.setText(dumpBundle(resultPrefs));
-		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);
+		prefsTV.getParent().requestChildFocus(prefsTV, prefsTV);
 	}
 
 	public void setPref(View view) {
-		EditText pref = (EditText)findViewById(R.id.pref);
+		EditText pref = findViewById(R.id.pref);
 		String name = pref.getText().toString().trim();
 		if(TextUtils.isEmpty(name)) {
 			pref.setError("Empty");
 			return;
 		}
 
-		Field prefFiled;
-		try {
-			prefFiled = PowerampAPI.Settings.Preferences.class.getDeclaredField(name);
-		} catch(Throwable th) {
-			pref.setError("Bad pref name");
-			Log.e(TAG, "", th);
-			return;
-		}
-
 		pref.setError(null);
 
-		EditText prefValue = (EditText)findViewById(R.id.pref_value);
+		EditText prefValue = findViewById(R.id.pref_value);
 		String value = prefValue.getText().toString().trim();
 
-		final Class<?> type = prefFiled.getType();
-
-		if(TextUtils.isEmpty(value) && type != String.class) { // Check if we can send empty values => String
-			prefValue.setError("Empty");
-			return;
-		}
-
 		Bundle request = new Bundle();
-
-		try {
-			// Check if we can parse value
-			if(type == String.class) {
-				request.putString(name, value);
-
-			} else if(type == Boolean.TYPE) {
-				request.putBoolean(name, Boolean.parseBoolean(value));
-
-			} else if(type == Integer.TYPE) {
-				request.putInt(name, Integer.parseInt(value, 10));
-
-			} else if(type == Long.TYPE) {
-				request.putLong(name, Long.parseLong(value, 10));
-
-			} else if(type == Float.TYPE) {
-				request.putFloat(name, Float.parseFloat(value));
-			} else throw new AssertionError("Bad field type=" + type);
-
-			prefValue.setError(null);
-		} catch(NumberFormatException ex) {
-			prefValue.setError(ex.getMessage());
+		prefValue.setError(null);
+		boolean failed = false;
+		// Guess the type from the value
+		if(TextUtils.isEmpty(value)) {
+			request.putString(name, value); // Empty value is possible only for the String
+		} else if("true".equals(value)) {
+			request.putBoolean(name, true);
+		} else if("false".equals(value)) {
+			request.putBoolean(name, false);
+		} else {
+			try {
+				int intValue = Integer.parseInt(value);
+				// We are able to parse this as int, though preference can be any type.
+				// Real code should decide the type based on existing knowledge of the preference type, which don't have here
+				request.putInt(name, intValue);
+			} catch(NumberFormatException ex) {
+				try {
+					float intValue = Float.parseFloat(value);
+					// We are able to parse this as float, though actual preference can by any type.
+					// Real code should decide the type based on existing knowledge of the preference type, which don't have here
+					request.putFloat(name, intValue);
+				} catch(NumberFormatException ex2) {
+					prefValue.setError("Failed to guess type");
+					failed = true;
+				}
+			}
 		}
+		if(!failed) {
+			TextView prefsTV = findViewById(R.id.prefs);
 
-		TextView prefsTV = findViewById(R.id.prefs);
+			// OK, let's call it
 
-		// OK, let's call it
+			Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_SET_PREFERENCE, null, request);
 
-		Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_SET_PREFERENCE, null, request);
-
-		prefsTV.setText(dumpBundle(resultPrefs));
-		((ViewGroup)prefsTV.getParent()).requestChildFocus(prefsTV, prefsTV);
+			prefsTV.setText(dumpBundle(resultPrefs));
+			prefsTV.getParent().requestChildFocus(prefsTV, prefsTV);
+		}
 	}
 
 	/**
@@ -945,7 +894,7 @@ public class MainActivity extends AppCompatActivity implements
 	private void commitEq() {
 		StringBuilder presetString = new StringBuilder();
 
-		TableLayout equLayout = (TableLayout)findViewById(R.id.equ_layout);
+		TableLayout equLayout = findViewById(R.id.equ_layout);
 		int count = equLayout.getChildCount();
 		for(int i = count - 1; i >= 0; i--) {
 			SeekBar bar = (SeekBar)((ViewGroup)equLayout.getChildAt(i)).getChildAt(1);
