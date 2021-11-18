@@ -50,6 +50,7 @@ public abstract class WidgetUpdater {
 	 * NOTE: as of v3 betas, no album art event is sent anymore
 	 */
 	private static final boolean USE_AA_EVENT = false;
+	public static final @NonNull String WIDGETS_PREFS_NAME = "appwidgets";
 
 	private static boolean sUpdatedOnce;
 
@@ -163,12 +164,13 @@ public abstract class WidgetUpdater {
 		if(cachedPrefs == null) {
 			// NOTE: getting Poweramp shared prefs implementation via explicit app context
 			Context app = context.getApplicationContext();
-			cachedPrefs = sCachedPrefs = app.getSharedPreferences(getGlobalSharedPreferencesName(app), 0);
+			cachedPrefs = sCachedPrefs = app.getSharedPreferences(WIDGETS_PREFS_NAME, 0);
 		}
 		return cachedPrefs;
 	}
 
-	public static String getGlobalSharedPreferencesName(Context context) {
+	/** NOTE: we're using #WIDGTS_PREFS_NAME now for widgets, but we still expose previous name to allow prefs code to migrate */
+	public static String getOldSharedPreferencesName(Context context) {
 		return context.getPackageName() + "_appwidgets";
 	}
 

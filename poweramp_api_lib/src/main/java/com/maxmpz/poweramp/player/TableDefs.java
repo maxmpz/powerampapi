@@ -250,8 +250,9 @@ public interface TableDefs {
 		public static final @NonNull String URL = TABLE + ".url";
 		
 		/**
-		 * Optional full path to the file. This file_path always overrides parent folder path + filename. Used for the cases when actual file path
-		 * can't be derived from the parent folder due to non-hierarchical or opaque paths, e.g. for tracks providers.<br>
+		 * Optional full path to the file. This file_path always overrides parent folder path + filename. Used for the cases
+		 * when actual file path can't be derived from the parent folder due to non-hierarchical or opaque paths,
+		 * e.g. for tracks providers.<br>
 		 * Path is in Poweramp internal path format<br>
 		 * TEXT
 		 * @since 862

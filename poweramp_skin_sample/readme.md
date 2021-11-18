@@ -18,6 +18,46 @@
 - [Reference Resources](#reference-resources)
 - [License](#license)
 
+### Recent Changes
+##### Build 912
+###### New corner radiuses
+By default, Android 12-like corner radiuses is now applied with the appropriate changes to paddings/margins.
+New corner radius attributes added for the specific use cases, see *attrs-corners.xml*
+
+###### FastTextViews
+Track related FastTextViews (title, line2, meta) now use new *layout_alignToContent* and *eatFontPads* attributes
+- *layout_alignToContent* forces alignment to the content ignoring the padding
+- *eatFontPads* removes implicit vertical font paddings
+
+  This simplifies pixel perfect margin and alignment adjustments for text inside TrackItem for
+  the varied fonts, font sizes, scenes, zoom levels, etc.
+
+  Previously, pixel perfect alignment required manual margin/padding adjustments per scene, and
+  that could quickly get out of control due to the large number of possible scenes multiplied by
+  different fonts/font sizes (multipled by number of text views, multiplied by other conditions, etc.).
+
+  Instead, by ignoring the inner font padding differences (*eatFontPads=true*) and paddings in general
+  (*layout_alignToContent=true*) such adjustments could be (and actually, should be) done only once.
+  Preferable, no any adjustments should be done and derived styles should be used as they are.
+
+  To use the new paddings, add *applyNewPadding="true"* to your *&lt;skin>* element.  
+
+  By default (when no *applyNewPadding* is specified) Poweramp will try to guess if new paddings can
+  be applied by checking if skin has theme attribute *ItemTrackTitle* defined.
+  Most skins do not have this redefined and default Poweramp item styles work just fine.
+  If skin defines the *ItemTrackTitle*, Poweramp applies
+  *default-styles.xml/ActivityTheme_Legacy_oldPadding* style which disables the new paddings.
+
+  If you happen to redefine *ItemTrackTitle* or any other *ItemTrack** **text** styles, ensure your margins and
+  alignment are OK with Poweramp build-912+.
+
+  You may get wrong alignment/margins if you override some margin attributes (e.g. marginTop), but do not override others
+  (e.g. marginBottom/Left/Right) causing derived margins and other styles being partially applied.
+
+  Either override all margins and other attributes which may affect view alignment (scale/padding/gravity), or
+  remove such overriding and use the derived default style.
+
+  
 ### Introduction
 This is a sample skin source that demonstrates two separate skins in one project.
 This project can be directly used to build APK which can be installed on the device and recognized by

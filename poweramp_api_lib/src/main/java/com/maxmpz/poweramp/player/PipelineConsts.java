@@ -97,4 +97,15 @@ public interface PipelineConsts {
 	
 	
 	public static final int MSG_SET_NO_DVC_HEADROOM_MB   = 0x0009; // NOTE: immediately applies this. NOTE: public - can be used by java code
+
+
+	public static final int FADE_NO_FADE = 0;
+	public static final int FADE_IN_OUT = 1;
+	public static final int FADE_CROSSFADE = 2;
+
+	public static final int CROSSFADE_NO_FADE = 0;
+	public static final int CROSSFADE_NO_GAPLESS = 1;
+	public static final int CROSSFADE_ALL = 2;
+	public static final int CROSSFADE_SHUFFLE = 3;
+	public static final int CROSSFADE_MAX = 3;
 }
