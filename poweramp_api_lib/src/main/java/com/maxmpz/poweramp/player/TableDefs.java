@@ -243,7 +243,8 @@ public interface TableDefs {
 		public static final @NonNull String USER_ADDED = TABLE + ".user_added";
 		
 		/**
-		 * Optional http(s) URL pointing to the target track. If exists, this will be preferred over path (== folder.path + file_name.name)<br>
+		 * Optional http(s) URL pointing to the target track. If exists, this will be used
+		 * instead of the path (== folder.path + file_name.name)<br>
 		 * Can be {@link TrackProviderConsts#DYNAMIC_URL}<br> 
 		 * TEXT
 		 */
@@ -410,6 +411,7 @@ public interface TableDefs {
 		/**
 		 * Full path of the folder<br>
 		 * NOTE: avoid TABLE name here to allow using field in raw_files. "path" is (almost) unique column, also used in playlists<br>
+		 * The path has a trailing /
 		 * TEXT
 		 */
 		public static final @NonNull String PATH = "path";
@@ -1342,14 +1344,14 @@ public interface TableDefs {
 		public static final @NonNull String SORT = "sort";
 		
 		/**
-		 * Filename or the stream uri<br>
+		 * Filename, the full or final part of the stream URL<br>
 		 * TEXT
 		 * @since 842<br>
 		 */
 		public static final @NonNull String FILE_NAME = "file_name";
 		
 		/**
-		 * Parent folder path or NULL for streams<br>
+		 * Parent folder path (matching {@link Folders#PATH}, or base URL (or NULL) for streams<br>
 		 * TEXT
 		 * @since 842<br>
 		 */
