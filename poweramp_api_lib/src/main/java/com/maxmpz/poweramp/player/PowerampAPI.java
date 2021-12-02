@@ -89,8 +89,6 @@ import android.util.Log;
  * <li>{@link #INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH} -> {@link #ACTIVITY_STARTUP}, {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}
  * <li>{@link Scanner#ACTION_SCAN_DIRS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * <li>{@link Scanner#ACTION_SCAN_TAGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
- * <li>{@link Settings#ACTION_EXPORT_SETTINGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
- * <li>{@link Settings#ACTION_IMPORT_SETTINGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * <li>{@link MilkScanner#ACTION_SCAN} -> {@link PowerampAPIHelper#getMilkScannerServiceComponentName}, since 868 -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * </ul>
  */
@@ -1760,15 +1758,17 @@ public final class PowerampAPI {
 		 * Exports Poweramp settings<br>
 		 * Target URI for file should be set via {@link Intent#setData} with the appropriate permissions given to Poweramp process
 		 * Extras: {@link #EXTRA_UI}
-		 * @since 863
+		 * @derpecated disabled starting from build-912
 		 */
+		@Deprecated
 		public static final String ACTION_EXPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_EXPORT_SETTINGS";
 
 		/**
 		 * Sent by your app to Poweramp.<br>
 		 * Imports Poweramp settings
-		 * @since 862
+		 * @derpecated disabled starting from build-912
 		 */
+		@Deprecated
 		public static final String ACTION_IMPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_IMPORT_SETTINGS";
 
 		/**
