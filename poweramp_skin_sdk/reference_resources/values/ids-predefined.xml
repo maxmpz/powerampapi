@@ -41,6 +41,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="_freq_value"/>
 	<item type="id" name="_freq_label_and_value"/>
 	<item type="id" name="_q_label_and_value"/>
+	<item type="id" name="_color"/>
+	<item type="id" name="_edit"/>
+	<item type="id" name="_left_label"/>
+	<item type="id" name="_right_label"/>
+
+	<item type="id" name="vis_frame"/>
+	<item type="id" name="milk_frs"/>
 	<item type="id" name="menu_more_button"/>
 	<item type="id" name="perm_panel"/>
 	<item type="id" name="track_seek" />
@@ -59,14 +66,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="separator3"/>
 	<item type="id" name="separator2"/>
 	<item type="id" name="separator"/>
-	<item type="id" name="navbar" />
-	<item type="id" name="aa_image" />
-	<item type="id" name="list_scroller" />
 	<item type="id" name="buttlist_indexerons1" />
-	<item type="id" name="menu_placeholder" />
-	<item type="id" name="milk" />
-	<item type="id" name="list_indexer" />
-	<item type="id" name="status_bar_bg" />
 	<item type="id" name="navigation_bar_bg"/>
 	<item type="id" name="cat_image"/>
 	<item type="id" name="num"/>
@@ -78,11 +78,36 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="save_button"/>
 	<item type="id" name="reset_button"/>
 	<item type="id" name="mono_button"/>
-	
+	<item type="id" name="insetLeft"/>
+	<item type="id" name="copy_item"/>
+	<item type="id" name="share_item"/>
+	<item type="id" name="list_item"/>
+
+	<item type="id" name="top_container"/>
+	<item type="id" name="aa_bounds"/>
+	<item type="id" name="cc_button"/>
+	<item type="id" name="waveseek_layout"/>
+	<item type="id" name="waveseek"/>
+	<item type="id" name="play_pause_behind"/>
+	<item type="id" name="pause"/>
+	<item type="id" name="play"/>
+	<item type="id" name="meta_info_layout"/>
+	<item type="id" name="meta_info"/>
+	<item type="id" name="vis_button_layout"/>
+	<item type="id" name="sleep_timer_layout"/>
+	<item type="id" name="sleep_timer_button"/>
+	<item type="id" name="shuffle_button_layout"/>
+	<item type="id" name="repeat_button_layout"/>
+	<item type="id" name="behavior_eq_layout"/>
+	<item type="id" name="behavior_search_layout"/>
+	<item type="id" name="vis_panel_loadable_beahvior"/>
+
+	<item type="id" name="anim_temp_hidden"/>
+
+
 	<!-- Some old ids keeped for compatibility with skins -->
 	
 	<!--
-	<item type="id" name=""/>
 	<item type="id" name=""/>
 	<item type="id" name=""/>
 	<item type="id" name=""/>

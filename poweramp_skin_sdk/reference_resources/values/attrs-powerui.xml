@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- Used in <include>, if true, no any error happens if android:layout doesn't exist (set to @null for that <include>) -->
+	<attr name="optional" format="boolean"/>
+	
+	<!-- Just for Android 8.0, which supports light navigation bar, but doesn't have attribute for that -->
+	<attr name="windowLightNavigationBar" format="boolean"/>
+
+	<!-- Extra state for drawables -->
+	<attr name="state_toolbar_in_header" format="boolean" /><!-- REVISIT: not used ATM -->
+
+	<!-- Styles always applied for activities / dialogs -->
+	<declare-styleable name="PoweruiStyles">
+		<!-- Base styles applied for any activity -->
+		<attr name="BasePoweruiStyles" format="reference"/>
+		
+		<!-- Styles applied for main activity, includes top list widget, items, navbar, etc. styles -->
+		<attr name="TopPoweruiStyles" format="reference"/>
+	
+		<!-- Forced styles for dialogs -->	
+		<attr name="DialogForcedStyle"/>
+		
+		<!-- Forced style for case when light system ui (navigation/status bar) is needed for light theme.
+		     This usually happens in Settings, where Settings theme differs from main app theme, thus, dialogs may change system ui colors --> 
+		<attr name="DialogForceLightSystemUIStyle"/>
+		<!-- Forced style for case when dark system ui (navigation/status bar) is needed for light theme.
+		     This usually happens in Settings, where Settings theme differs from main app theme, thus, dialogs may change system ui colors --> 
+		<attr name="DialogForceDarkSystemUIStyle"/>
+	</declare-styleable>
+	
+	
+	<!-- Base PowerList attributes. NOTE: main Poweramp list is a ListWidget (derived from PowerList) which has extra attributes (see ListWidget below) -->
+	<declare-styleable name="PowerList">
+		<!-- ListScroller view id. PowerList uses separate view as scrollbar -->
+		<attr name="listScroller" format="reference"/>
+		<!-- ListIndexer view id. PowerList uses separate indexer view (small popup with character for a-z scrolling) -->
+		<attr name="listIndexer" format="reference"/>
+
+		<attr name="moveableToolbar" format="reference"/><!-- Id of the toolbar which can be moved by list on scroll -->
+		<attr name="moveableToolbarExtraStates" format="boolean"/><!-- If true, PowerList will set state w:state_toolbar_in_header for NavBar and NavBarButtons drawables when toolbar is over header -->
+		<attr name="moveableToolbarAnchor">
+			<enum name="fixedTop" value="0"/><!-- Toolbar always on top, doesn't move (also should be set in xml layout as top aligned) -->
+			<enum name="top" value="1"/><!-- Toolbar moves away top on scroll (also should be set in xml layout as top aligned) -->
+			<enum name="bottom" value="2"/><!-- Toolbar moves away bottom on scroll (also should be set in xml layout as bottom aligned) -->
+			<enum name="fixedBottom" value="3"/><!-- Toolbar always on bottom, doesn't move (also should be set in xml layout as bottom aligned) -->
+		</attr>
+
+		<!-- Space to reserve for moveable toobar on bottom. Should be large enough so the toolbar doesn't overlap last item -->
+		<attr name="bottomReservedSpace" format="dimension|reference"/>
+
+		<!-- The extra space to add to bottomReservedSpace for a selection mode. Allows space increase/decrease relative to bottomReservedSpace,
+		     which can be dynamic due to the theme options  -->
+		<attr name="selectionBottomReservedExtraSpace" format="dimension|reference"/>
+
+		<attr name="android:colorEdgeEffect"/><!-- Defines overshoot edge effect color -->
+	</declare-styleable>
+	
+	<!-- Scene params is a pseudo-view-tag (xml tag without the actual view) which defines attributes for one or multiple scenes -->
+	<declare-styleable name="SceneParams">
+		<!-- If visibility is missing from the given SceneParams, visibility is not changed -->
+		<attr name="android:visibility"/>
+		
+		<!-- NOTE: manipulating visibility, alpha + StateAnim alpha is hard, and some scenarios may not work properly due to the conflicting or overlapping alpha values --> 
+	
+		<!-- If alpha is missing from the SceneParams, alpha=1.0 is assumed -->
+		<attr name="android:alpha"/>
+
+		<!-- Uniform scale. Separate scaleX/Y are not supported.
+			 If scale is missing from the SceneParams, scale=1.0 is assumed -->
+		<attr name="scale" format="float"/>
+		
+		<!-- Elevation is applied with a "jump", as animated elevation change has large overhead. 
+			 Appropriate outline provider and other required elevation properties should be set on view.
+			 If elevation is missing from the SceneParams, elevation value is kept as is.
+			 Due to the high overhead for elevation changes, this property behavior, thus, differs from other SceneParams attributes like scale or alpha) -->
+		<attr name="android:elevation"/>
+		
+		<!-- Optional attribute, if missing, SceneParams is attached to the previous view -->
+		<attr name="forId" format="reference|integer">
+			<!-- NOTE: parent generally won't work when SceneParams is put into the same XML layout which defines "parent", as during XML inflation,
+				 that "parent" is not yet attached to the upper parent, thus it's not possible to create layout params for it and it's not possible
+				 to create SceneParams.
+				 "parent" is used for loadable / merged XML layouts, when extra SceneParams should be added to parent view, where XML is added to
+			--> 
+			<enum name="parent" value="0"/>
+			<!-- These SceneParams is for RootView (window top view group). Very special case, used e.g. for dialogs -->
+			<enum name="root" value="-1"/>
+		</attr>
+		
+		<!-- Target scene id which this SceneParams is for -->
+		<attr name="scene" format="reference|integer">
+			<!-- NOTE: scene can be set to defaultScene, so that will redefine the default scene (or update, if baseScene="defaultScene" is used 
+				 Only the first "scene" attribute supports this -->
+			<enum name="defaultScene" value="0"/>
+		</attr>
+		<attr name="scene_2" format="reference"/><!-- valid only if scene exists in tag -->
+		<attr name="scene_3" format="reference"/><!-- valid only if scene_2 exists in tag -->
+		<attr name="scene_4" format="reference"/><!-- valid only if scene_3 exists in tag -->
+		<attr name="scene_5" format="reference"/><!-- valid only if scene_4 exists in tag -->
+		<attr name="scene_6" format="reference"/><!-- valid only if scene_5 exists in tag -->
+		
+		<!-- The base scene we copy all the properties from. Usually, using baseScene is better VS using parent style
+		     via <style .. parent="parent style">, as parent styles still require full parsing and processing,
+		     and baseScene just quickly copies base scene values.
+			 NOTE: layout params (all the "layout_*" attributes) always copied as a whole, meaning you can't
+			 override just single layout_* parameter - whole layout should be overridden if the new layout is needed -->
+		<attr name="baseScene" format="reference|integer">
+			<enum name="defaultScene" value="0"/>
+		</attr>
+		
+		<!-- NOTE: placed here for technical reasons to detect if layout params exist for the given scene params.
+			 If layout_width exists in the attributes, we assume layout is set for this scene params, otherwise no different layout is applied for this scene params -->
+		<attr name="android:layout_width"/>
+		
+		<!-- Defines point during transition when target view is re-laid out. Layout is a costly operation for the most views,
+		     so we want to keep it as rare as possible, still getting smooth animation.
+		     NOTE: this option changes only "layout" processing in terms of Android UI framework. 
+		     The bounds of views are always transitioned/animated (unless view is GONE) -->
+		<attr name="recalcChildren" format="fraction|integer">
+			<!-- Initial child layout is used for the transition until end (jumps in the end) -->
+			<enum name="on_end" value="0" /><!-- Sync with SceneParams --> 
+			
+			<!-- Final child layout is used for the transition (jumps in the beggining) -->
+			<enum name="on_start" value="1" /><!-- Sync with SceneParams -->
+			 
+			<!-- Dynamically recalculate layout of children, this is costly and can be slow, but may be required for images and some other views that
+			     we want to constantly relayout during transition -->
+			<enum name="dynamic" value="2" /><!-- Sync with SceneParams -->
+		</attr>
+		
+		<!-- Default is true. Used to disable existing scene, e.g. _tag_scene_zero -->
+		<attr name="applyScene" format="boolean"/>
+		
+		<!-- Default is false for non-zero/default scene and true for zero/default scene. 
+		     If true, per view params will be applied for this scene (if supported by view), such as background, textColor, etc. -->
+		<attr name="applyViewParams" format="boolean"/> 
+		
+		<!-- Default is false. If true, visibility will be applied immediately without an alpha transition. Good for the cases when view should not fade at all -->
+		<attr name="jumpVisibility" format="boolean"/>
+		
+		<!-- If true, apply scene params even if view is GONE in _both_ (from/to) scenes. 
+		     Useful for the views which are force-hidden by code, but still should have different layout in scenes.
+		     This can be further optimized with dontApplyIfGone -->
+		<attr name="applyEvenIfGone" format="boolean|integer">
+			<!-- Don't apply scene params if view is GONE currently (only in the current scene). If view is GONE, then it won't participate in scenes until set to non-gone by code.
+			     This is used mostly by views which can be shown/hidden by code -->
+			<enum name="dontApplyIfGone" value="2"/>
+		</attr>
+	</declare-styleable>
+	
+	
+	<!-- StateAnim is pseudo-view-tag that defines animation attribures, orthogonal to Scene animated params, used for small temporary animations -->
+	<declare-styleable name="StateAnimParams">
+		<!-- Target view id -->
+		<attr name="forId"/>
+		<!-- State animation id -->
+		<attr name="stateAnim" format="reference" />
+		<!-- State animation id, valid if stateAnim is defined -->
+		<attr name="stateAnim_2" format="reference" />
+		<!-- State animation id, valid if stateAnim_2 is defined -->
+		<attr name="stateAnim_3" format="reference" />
+		<!-- State animation id, valid if stateAnim_3 is defined -->
+		<attr name="stateAnim_4" format="reference" />
+
+		<!-- Duration in ms -->		
+		<attr name="android:duration"/>
+		
+		<!-- Target alpha. NOTE: if view is also transitioned by SceneParams with alpha, SceneParams alpha make take priority in some cases -->
+		<attr name="android:alpha"/>
+		<!-- Sets both scaleX and scaleY to same value. Has priority over separate scaleX/Y values -->
+		<attr name="scale"/>
+		<!-- Other params, animating the standard Android view transform properties -->
+		<attr name="android:scaleX"/>
+		<attr name="android:scaleY"/>
+		<attr name="android:translationX"/>
+		<attr name="android:translationY"/>
+		<attr name="android:rotation"/>
+		<attr name="android:rotationX"/>
+		<attr name="android:rotationY"/>
+	</declare-styleable>
+	
+	<!-- Used internally -->	
+	<declare-styleable name="ViewTag">
+		<attr name="android:id" />
+		<attr name="android:value" />
+	</declare-styleable>
+	
+	<!-- Used internally -->
+	<declare-styleable name="Include">
+		<attr name="android:id" />
+		<attr name="android:visibility" />
+		<attr name="android:layout_width"/>
+	</declare-styleable>
+	
+	<!-- Used internally -->
+	<declare-styleable name="TextPropsMin">
+		<attr name="android:textSize"/>
+		<attr name="android:textColor"/>
+	</declare-styleable>
+	
+	<declare-styleable name="TextSizeMin">
+		<!-- 
+		     Some preference key containing float size _multiplier_ id, for example, from skin seekbar preference id. 
+		     The multipler is applied to android:textSize set for given textview or other view with the text.
+
+		     Resulting text size in pixels will be:
+		       android:textSize in dp * textSizePref preference float value
+		       or
+		       android:textSize in sp * user system text size preference * textSizePref preference float value.
+		       
+		     Different text or view styles may have different textSizePref values. We use multiplier here instead of the fixed font size value
+		     to allow all the default text sizes (defined by default themes) to be valid without extra configuration.
+		     
+		     NOTE: the value should be some id in the format "@id/your_id_name" (you can freely define your ids in some values.xml or ids.xml)
+		-->
+		<attr name="textSizeMultiplierPref" format="reference"/>
+	</declare-styleable>
+	
+	<!-- Used internally -->
+	<!-- NOTE: similar to TextProps, but has no android:textAppearance -->
+	<!-- NOTE: there is already TextAppearance styleable from appcompat, so using own version here with the different name -->
+	<!-- NOTE: fontPad* properties are important for the pixel accurate text alignment, such as in Track items.
+	     Due to different internal font paddings in different fonts, it may be hard to align text with pixel accuraccy, esp.
+	     a scaled text. Android Framework does not expose detailed font properties, but Poweramp can calculate
+	     them, taking some time during first run/cold start.
+	     As an optimization, the calculated fontPad* values can be defined in the skin XML per font family/style.
+	     Poweramp logs the calculated paddings into logcat when "Always Reload Skin" option is enabled.
+
+	     NOTE: the fontPad* values are not applied by default to views.
+	     FastLayout (and derived views) layout param layout_alignToContent  de
+	      -->
+	<declare-styleable name="TextAppearanceMin">
+		<attr name="android:textSize" />
+		<attr name="android:textColor" />
+		<attr name="android:textStyle" />
+		<attr name="android:typeface" />
+		<attr name="android:fontFamily" />
+		<attr name="android:textAllCaps"/>
+		<attr name="textSizeMultiplierPref"/>
+
+		<!-- See FontPads below -->
+		<attr name="fontPads" format="reference"/>
+	</declare-styleable>
+
+	<!-- TODO: remove -->
+	<declare-styleable name="FontPads">
+		<!-- Horizontal inner font padding defined as textAdjH = InnerFontHorizontalPadding / fontSize.
+		     If not defined, the value will be calculated automatically with cold start delay ~1-10ms per the unique font.
+		     If "Always Reload Skin" option is enabled, Poweramp also logs the calculated fontPaddings to the logcat,
+		     so these can be specified for the skin xml as an optimization -->
+		<attr name="fontPadH" format="float"/>
+
+		<!-- Top vertical inner font padding defined as textAdjH = InnerFontTopPadding / fontSize.
+		     If not defined, the value will be calculated automatically with cold start delay ~1-10ms per the unique font.
+		     If "Always Reload Skin" option is enabled, Poweramp also logs the calculated fontPaddings to the logcat,
+		     so these can be specified for the skin xml as an optimization -->
+		<attr name="fontPadTop" format="float"/>
+		
+		<!-- Bottom vertical inner font padding defined as textAdjH = InnerFontBottomPadding / fontSize.
+		     If not defined, the value will be calculated automatically with cold start delay ~1-10ms per the unique font.
+		     If "Always Reload Skin" option is enabled, Poweramp also logs the calculated fontPaddings to the logcat,
+		     so these can be specified for the skin xml as an optimization -->
+		<attr name="fontPadBottom" format="float"/>
+	</declare-styleable>
+	
+	<declare-styleable name="TextViewFontFamily">
+		<attr name="android:textAppearance"/>
+		<attr name="android:fontFamily" />
+		<attr name="textSizeMultiplierPref"/>
+	</declare-styleable>
+	
+	<!-- Simple view which applies disabledAlpha when disabled -->
+	<declare-styleable name="AlphaDisabledView">
+		<!-- Defines the disabled alpha value -->	
+		<attr name="android:disabledAlpha"/>
+	</declare-styleable>
+	
+	<!-- Scene-overridable extra FastTextView params -->
+	<declare-styleable name="FastTextViewSceneParams">
+		<attr name="lineBackground"/>
+		<attr name="android:textColor" />
+		<attr name="android:maxLines"/>
+		<!-- NOTE: prior SDK=22 it's not possible to detect @empty (or @null) vs missing attribute.
+		     For now, use #00000000 (#0000) color instead to indicate transition to no-background -->
+		<attr name="android:background"/>
+		<attr name="drawableTint"/>
+		<!-- NOTE: limited support for drawable transitions. For the new drawable to appear, default scene should have some default drawable set
+			 Basically, that means we can transition between drawables, but we can't transition between no-drawable and drawable and vice-versa -->
+		<attr name="android:drawable"/>
+		
+		<!-- NOTE: supported by MarqueeFastTextView only. Changed by not animated -->
+		<attr name="android:ellipsize"/>
+
+		<!-- This is changed per scene, but not animated ATM -->
+		<attr name="android:gravity"/>
+	</declare-styleable>
+	
+	
+	<!-- FastButton is derived from FastTextView -->
+	<declare-styleable name="FastButton">
+		<!-- Default=false. If false, ripple animation is cancelled, good for cases when button click causes immediate animation/scene transition, and animated
+			 ripple is not visible anyway, but causes performance drop on some devices -->
+		<attr name="animOnClick" format="boolean"/>
+		<attr name="disableClickHandler" format="boolean"/>
+	</declare-styleable>
+	
+	
+	<!-- com.maxmpz.widget.base.EditText extension -->
+	<declare-styleable name="EditText">
+		<attr name="drawableWidth"/>
+		<attr name="drawableHeight"/>
+	</declare-styleable>
+	
+	
+	<!-- FastCheckBoxOnly is simplified check box, which is View-based (not TextView based, as standard Android checkbox), thus is much-much faster to layout and render
+		 in cases when no text is needed (as list items are).
+		 Also can be a tristate checkbox
+	-->
+	<declare-styleable name="FastCheckBoxOnly">
+		<attr name="android:drawable"/>
+		<attr name="drawableTint"/>
+		<attr name="android:checked"/>
+		<attr name="tristate" format="boolean"/>
+	</declare-styleable>
+	
+	
+	<!-- FastCheckBox is check box with text, based on FastTextView, thus, is faster to layout and render and supports all the FastText additional properties.
+		 NOTE: android:button attribute is the same as FastTextView android:drawable, and android:buttonTint is the same as FastTextView drawableTint 
+	 -->
+	<declare-styleable name="FastCheckBox">
+		<!-- <attr name="android:button"/> -->
+		<!-- <attr name="android:buttonTint"/> -->
+		<attr name="android:checked"/>
+	</declare-styleable>
+	
+
+	<!-- Generic Scene extra attributes, usually applied to layouts starting with Scene* (e.g. SceneFastLayout) -->
+	<declare-styleable name="Scene">
+		<!-- Default false. If true, scene allows scene-wide state anims, otherwise only specific per-view StateAnims are possible -->
+		<attr name="enableStateAnim" format="boolean"/>
+		<attr name="clipChildrenForSceneAnim" format="boolean"/><!-- Default false. NOTE: not used ATM -->
+		<!-- Default false. If private, child views are not processed by scenes, initiated outside of this view -->
+		<attr name="privateScene" format="boolean"/>
+	</declare-styleable>
+	
+	<!-- Extra scene parameters supported for FastLayout children -->
+	<declare-styleable name="SceneFastLayoutViewSceneParams">
+		<!-- If true, per view params will be applied for this scene -->
+		<attr name="applyViewParams"/>
+		<attr name="android:background"/>
+		<attr name="android:elevation"/>
+	</declare-styleable>
+		
+	<!-- Used internally -->
+	<declare-styleable name="BgTransSceneParams">
+		<attr name="android:background"/>
+	</declare-styleable>
+		
+	<!-- Used internally in dialogs. Behavior - pseudo-view-tag which attaches to some real view and modifies its behavior in some way -->
+	<declare-styleable name="RootSceneActivityBehavior">
+		<attr name="windowIsResizable" format="boolean"/>
+	</declare-styleable>
+	
+	<!-- Used internally in dialogs. Behavior - pseudo-view-tag which attaches to some real view and modifies its behavior in some way -->
+	<declare-styleable name="AdjustToSoftKeyboardBehavior">
+		<attr name="android:enabled"/>
+	</declare-styleable>
+
+	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) 
+	     which is able to load specific layout for one or multiple scenes, and unload it later, if needed.
+	     Similar to Android Stub view, but is not a view (not visible, doesn't participate in layout/rendering/etc.) -->		
+	<declare-styleable name="LoadableBehavior">
+		<!-- Defines this loadable behavior id. Used by code to find given behavior --> 
+		<attr name="android:id"/>
+		<!-- Target layout to inject -->
+		<attr name="android:layout"/>
+		<!-- Target scene id layout will load for. This is usually not needed and missing, as code decides when to load this behavior instead -->
+		<attr name="loadForScene" format="reference"/>
+		<attr name="loadForScene_2" format="reference"/>
+		<attr name="loadForScene_3" format="reference"/>
+		<attr name="loadForScene_4" format="reference"/>
+		<attr name="loadForScene_5" format="reference"/>
+		<attr name="loadForScene_6" format="reference"/>
+		<attr name="loadForScene_7" format="reference"/>
+		<!-- Optional insert position. Default is end (views appended to parent, fastest) -->
+		<attr name="insertAt" format="integer">
+			<!-- Insert at position of behavior. 
+				 NOTE: position is recorded when behavior is first parsed, thus, subsequent changes to view hierarchy can move this insert point 
+			-->
+			<enum name="thisPosition" value="-2"/><!-- Sync with LoadableBehavior -->
+			<!-- Add to the end of parent view (default) -->
+			<enum name="end" value="-1"/>
+			<!-- Insert as first child in the parent view -->
+			<enum name="start" value="0"/>
+		</attr>
+		<!-- Default is "onSceneEnd". NOTE: LoadableBehaviors can be loaded/unloaded directly by code.
+			 unload="never" makes LoadableBehavior similar to StubView, but it's not a view and controlled by scenes (or code).
+		 -->
+		<attr name="unload">
+			<!-- Unloads when scene moves away from behavior defined loadForScene* sceneId -->
+			<enum name="onSceneEnd" value="0"/><!-- Sync with LoadableBehavior -->
+			<!-- Never automatically unloaded (but can be unloaded by code -->
+			<enum name="never" value="1"/><!-- Sync with LoadableBehavior -->
+		</attr>		
+	</declare-styleable>
+	
+	
+	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which enables sending commands to Poweramp event buses
+		 NOTE: also applied to BusActionButton -->
+	<declare-styleable name="BusActionBehavior">
+		<attr name="busId" format="reference"/><!-- E.g. @id/list (== bus supporting view id) or @id/bus_gui -->
+		<attr name="msgId" format="reference"/><!-- E.g. @id/cmd_list_select_all -->
+		<attr name="longPressMsgId" format="reference"/><!-- E.g. @id/cmd_list_select_all. Send on long press and (if repeatLongPressPeriod > 0) periodically  -->
+		<attr name="longPressEndMsgId" format="reference"/><!-- Sent on long press end. Optional. Only valid if longPressMsgId is set -->
+		
+		<attr name="repeatLongPressPeriod" format="integer"/><!-- If non zero, repeated longPressMsgId events sent each repeatLongPressPeriod ms -->
+		
+		<attr name="arg1" format="reference|integer|boolean|float|fraction|dimension|color"><!-- Optional argument #1 -->
+			<enum name="checkedState" value="-1"/><!-- If parent view is Chechable, then arg will have checked state (1==checked)) -->
+		</attr>
+		<attr name="arg2" format="reference|integer|boolean|float|fraction|dimension|color"><!-- Optional argument #2 -->
+			<enum name="checkedState" value="-1"/>
+		</attr>
+		<!-- Optional string argument -->
+		<attr name="string" format="string"/>
+		
+		<!-- Optional confirmation dialog title. Should be set for dialog to show -->
+		<attr name="confirmTitle" format="string|reference"/>
+		<!-- Optional confirmation dialog text -->
+		<attr name="confirmText" format="string|reference"/>
+		
+		<!-- Optional confirmation dialog title for long press. Should be set for dialog to show -->
+		<attr name="longPressConfirmTitle" format="string|reference"/>
+		<!-- Optional confirmation dialog text for long press -->
+		<attr name="longPressConfirmText" format="string|reference"/>
+		
+		<!-- Delay for sending message in ms -->
+		<attr name="clickDelay" format="integer"/>
+		
+		<attr name="disableForStateBusId" format="reference"/><!-- See BusDisabledForStateBehavior -->
+		<attr name="firstPressToast" format="string|reference"/><!-- If set, toast msg will be shown for first ever press on this button. Preference is stored based on view id -->
+	</declare-styleable>
+	
+	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) to enable/disable views based on Poweramp state buses
+		 NOTE: also applied to BusActionButton -->
+	<declare-styleable name="BusDisabledForStateBehavior">
+		<attr name="disableForStateBusId"/><!-- E.g. @id/list -->
+		<attr name="disableForStateId" format="reference"/><!-- E.g. @id/state_list_selection_mode -->
+		<attr name="disableForStateId_2" format="reference"/><!-- Valid only if stateId defined -->
+		<attr name="enableForStateId" format="reference"/><!-- E.g. @id/state_list_selection_mode -->
+		<attr name="disableForStateMsgId" format="reference"/><!-- Can match stateIds or can be any other message. When msg received, the appropriate disable/enable ids are checked -->
+		<attr name="disableForStateMsgId_2" format="reference"/><!-- Can match stateIds or can be any other message. When msg received, the appropriate disable/enable ids are checked -->
+	</declare-styleable>
+	
+	<!-- Extends BusDisabledForStateBehavior -->
+	<declare-styleable name="MorphableBusStateBehavior">
+		<attr name="morphWhenState" format="reference"/>
+		<attr name="morphDrawable" format="reference"/>
+		<attr name="morphMsgId" format="reference"/>
+		<attr name="morphArg1" format="integer"/>
+		<attr name="morphArg2" format="integer"/>
+		<attr name="morphString" format="string"/>
+		<attr name="morphLongPressMsgId" format="reference"/>
+		<attr name="morphLongPressEndMsgId" format="reference"/>
+		<attr name="morphContentDescription" format="string"/>
+		<attr name="android:drawable"/>
+	</declare-styleable>
+	
+	<!-- SelectablePopupButtonLayout attributes which define list selection workflow -->  
+	<declare-styleable name="BusSelectablePopupButtonLayout">
+		<!-- State bus to listen/query to -->
+		<attr name="stateBusId" format="reference"/>
+		<!-- State id to set buttons to -->
+		<attr name="stateId"/>
+		<!-- Message id to listen from state bus msgbus and set buttons to arg1 --> 
+		<attr name="msgId"/>
+		<!-- If true, state bus will be queried on message when received instead of using arg1 for msgId message -->
+		<attr name="getStateOnMsg" format="boolean"/>
+		
+		<!-- If set, arg1 will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
+		<attr name="arg1"/>
+		<!-- If set, arg2 will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
+		<attr name="arg2"/>
+		<!-- If set, string will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
+		<attr name="string"/>
+		
+		<!-- Buttons message @id - the same command message id is used for all buttons -->
+		<attr name="buttonsMsgId" format="reference"/>
+		<!-- Buttons bus id - the same msg bus is used for all buttons -->
+		<attr name="buttonsBusId" format="reference"/>
+		<!-- Integer-array of arg1 for each button. If defined, this array is used to remap index for the reported selected index -->
+		<attr name="buttonsArg1" format="reference"/>
+		
+		<!-- If defined, BusDisabledForStateBehavior is created for this button layout --> 
+		<attr name="disableForStateBusId"/>
+		
+		<!-- Disabled alpha will be used for given view + BusDisabledForStateBehavior -->
+		<attr name="android:disabledAlpha"/>
+	</declare-styleable>
+		
+	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which selectes child view based on Poweramp state/msg bus -->
+	<declare-styleable name="BusSelectableBehavior">
+		<!-- State bus to listen/query to -->
+		<attr name="stateBusId"/>
+		<!-- State id to set buttons to -->
+		<attr name="stateId"/>
+		<!-- Message id to listen from state bus msgbus and set buttons to. arg1 is checked for state. arg1 == -1 is ignored (no changes to buttons) --> 
+		<attr name="msgId"/>
+	</declare-styleable>
+	
+	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which enables left-right swiping scrolling on a layout.
+	     See also AAScrollingBehavior --> 
+	<declare-styleable name="BusAAScrollingBehavior">
+		<!-- Time to scroll between 2 pages when tab/nav button pressed -->
+		<attr name="posScrollAnimTime" format="integer"/><!-- ms -->
+		<!-- Time to settle to page when scrolled manually -->
+		<attr name="settleAnimTime" format="integer"/><!-- ms -->
+
+		<!-- Max overshoot used in normal mode -->
+		<attr name="maxOvershoot"/>
+		<!-- Max overshoot used in stretch mode -->
+		<attr name="maxStretchOvershoot"/>
+		
+		<!-- State bus to listen/query to -->
+		<attr name="stateBusId"/>
+		<!-- State id to set buttons to -->
+		<attr name="stateId"/>
+		<!-- Message id to listen from state bus msgbus and set current page to --> 
+		<attr name="msgId"/>
+		<!-- Message id to send for on pos changed --> 
+		<attr name="onPosChangedMsgId" format="reference"/>
+				
+		<attr name="android:colorEdgeEffect"/><!-- Defines overshoot edge effect color -->
+	</declare-styleable>
+	
+	<!-- Extra attributes for BusStateEnabledBehavior or BusStateActionButton, which manipulate view enabled state based on state -->
+	<declare-styleable name="BusStateEnabled">
+		<!-- State bus to listen/query to -->
+		<attr name="stateBusId"/>
+		
+		<!-- State to retrieve from StateBus -->
+		<attr name="stateId" format="reference"/>
+		
+		<!-- Msg id to listen for state change. If not specified, stateId is used -->
+		<attr name="stateMsgId"/>
+		
+		<attr name="enableByState"><!-- Sync with BusStateEnabledHelper.java -->
+			<!-- View is enabled when stateId is boolean and true -->
+			<enum name="matchBoolean" value="0"/>
+			<!-- View is enabled when stateId is boolean and false -->
+			<enum name="dontMatchBoolean" value="1"/>
+			<!-- View is enabled when stateId is integer and matches matchArg -->
+			<enum name="matchInteger" value="2"/>
+			<!-- View is enabled when stateId is integer and doesn't match matchArg -->
+			<enum name="dontMatchInteger" value="3"/>
+		</attr>
+		
+		<!-- Used to set matching value for stateEnabledLogic=matchInteger/dontMatchInteger -->
+		<attr name="stateMatchArg" format="reference|integer"/>
+		
+		<!-- If true, when msg is received we still check stateBus instead of looking into msg arg1 as state -->
+		<attr name="alwaysCheckState" format="boolean"/>
+	</declare-styleable>
+		
+	<!-- Extra options for BusCheckableStateBehavior, BusCheckableStateHelper, BusCheckBox which allow checking/unchecking view based on state -->  
+	<declare-styleable name="BusCheckableStateHelper">
+		<!-- State bus to listen/query to -->
+		<attr name="stateBusId"/>
+		<!-- Boolean state to retrieve from StateBus. May match stateMsgId -->
+		<attr name="booleanStateId" format="reference"/>
+		<!-- Msg id with the boolean value in arg1 to listen to -->
+		<attr name="stateMsgId" format="reference"/>
+		<!-- If true, true state == checked, otherwise, false state == checked -->
+		<attr name="checkedIfTrue" format="boolean"/>
+		<!-- Cmd to issue on check -->
+		<attr name="checkCmdId" format="reference"/>
+		<!-- Cmd to issue on uncheck -->
+		<attr name="uncheckCmdId" format="reference"/>
+	</declare-styleable>
+	
+	<!-- Number of attributes to show formatted text based on Poweramp state buses -->
+	<!-- NOTE: not used anymore, use BusStatusText instead -->
+	<declare-styleable name="BusStateFormatValue">
+		<attr name="android:id"/>
+		<attr name="busId"/><!-- E.g. @id/list -->
+		<attr name="stateId"/><!-- E.g. @id/state_list_selection_count -->
+		<attr name="secondaryStateId" format="reference"/><!-- E.g. @id/state_list_selectable_item_count -->
+		<!-- String like "Count: %d" or array with multiple values. Array also works with boolean-like values (index=0 - false value, index=1 - true value) -->
+		<attr name="format" format="string|reference"/> 
+		<attr name="type"><!-- Type of state to format -->
+			<enum name="integer" value="0"/>
+			<enum name="string" value="1"/>
+		</attr>
+	</declare-styleable>
+	
+	<!-- Extra options for BusStatusText which update text based on bus msg/state -->
+	<declare-styleable name="BusText">
+		<!-- State bus to listen/query to -->
+		<attr name="stateBusId"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId" format="reference"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_2" format="reference"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_3" format="reference"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_4" format="reference"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_5" format="reference"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_6" format="reference"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_7" format="reference"/>
+		<!-- Msg id to listen to -->
+		<attr name="updateMsgId_8" format="reference"/>
+		<!-- String state for label to format/display  -->
+		<attr name="labelStateId" format="reference"/>
+		<!-- Secondary string state for label to format/display  -->
+		<attr name="labelStateId_2" format="reference"/>
+		<!-- Format string like "Count: %d" or array with multiple values. Array works for type=integer and also with the boolean-like values 
+		     (index=0 - false value, index=1 - true value) -->
+		<attr name="labelFormat" format="string|reference"/>
+		<!-- Int state for icon to display  -->
+		<attr name="iconStateId" format="reference"/>
+		<!-- Optional scene in which no updates happen. This view should have SceneParams for such scene -->
+		<attr name="noUpdateInScene" format="reference"/>
+		<!-- Do not update if transition runs (and view is aware of that, i.e. view is animated by the scene) -->
+		<attr name="noUpdateInTransition" format="boolean"/>
+		
+		<!-- Show the default (android:text) text if state is empty/null -->
+		<attr name="defaultTextOnNoState" format="boolean"/>
+		
+		<attr name="stateType"><!-- Type of state to format -->
+			<enum name="string" value="0"/><!-- Default -->
+			<enum name="integer" value="1"/>
+		</attr>
+	</declare-styleable>
+	
+	<!-- FastButton which is able to start specified Activity -->
+	<declare-styleable name="IntentActionButton">
+		<attr name="android:action"/>
+		<attr name="android:targetClass"/>
+		<attr name="string"/><!-- EXTRA_OBJ -->
+	</declare-styleable>
+		
+	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) used to implement Poweramp dialogs in a separate activity 
+		 NOTE: dialog behavior always have implicit id=@id/behavior_dialog -->
+	<declare-styleable name="DialogBehavior">
+		<attr name="dialogAltOutScene"/><!-- REVISIT: this is read from Theme, not from behavior styles/attributes -->
+	</declare-styleable>
+		
+	<!-- Empty/invisible view which changes its size depending on params below. Used as anchor for other views -->
+	<declare-styleable name="SmartSpacer">
+		<!-- Some view within this view parent, which will be queried for existance and visibility=GONE. When view is missing/GONE, heightWhenMissing is forced
+			 for this view, otherwise, default height is applied -->
+		<attr name="heightTargetId" format="reference"/>
+		<!-- The height this view has when heightTargetId is missing/GONE -->
+		<attr name="heightWhenMissing" format="dimension"/>
+				
+		<!-- Some view within this view parent, which will be queried for existance and visibility=GONE. When view is missing/GONE, widthtWhenMissing is forced
+			 for this view, otherwise, default width is applied -->
+		<attr name="widthTargetId" format="reference"/>
+		<!-- The width this view has when widthTargetId is missing/GONE -->
+		<attr name="widthWhenMissing" format="dimension"/>
+	</declare-styleable>
+	
+	<!-- ListWidget popup menu animation time -->
+	<attr name="popupEnterAnimTime" format="integer"/><!-- ms -->
+	<!-- ListWidget popup menu animation time -->
+	<attr name="popupExitAnimTime" format="integer"/><!-- ms -->
+	<!-- Some top level MenuHelper-enabled layout (poped-out item transformed into menu and attached there) -->
+	<attr name="menuPlaceholder" format="reference"/>
+	
+	<attr name="listItemSize"/>
+		
+	<!-- Base attributes for poping-out layout, transforming into menu on click/long click -->
+	<declare-styleable name="PopupLayout">
+		<!-- Default is false, and popup is opened by long click. If true, popup is opened by short click -->
+		<attr name="openOnClick" format="boolean"/>
+		<!-- Default is true. If true, opening popup temporarily hides other popups/top panels/etc. -->
+		<attr name="modal" format="boolean"/>
+		<!-- If true, inner scrolling will be activated for popup -->
+		<attr name="innerScrolling" format="boolean"/>
+
+		<attr name="popupEnterAnimTime"/><!-- ms -->
+		<attr name="popupExitAnimTime"/><!-- ms -->
+		<attr name="menuPlaceholder"/>
+		
+		<!-- Layout to inflate into popup -->
+		<attr name="menuItemsLayout" format="reference"/>
+		<attr name="closeOnClickInside" format="boolean"/>
+		
+		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this view, as the view is detached
+		     completely from current parent while in popup mode. Alternatively use private scene layout, or set this to false and not rely on this view layout --> 
+		<attr name="disableParentLayoutForPopup" format="boolean"/>
+	</declare-styleable>
+	
+	<!-- Layout looking like button, but transformed to a menu on click/long click -->
+	<declare-styleable name="PopupButtonLayout">
+		<!-- Default is false, and popup is opened by long click. If true, popup is opened by short click -->
+		<attr name="openOnClick"/> 
+		<attr name="modal"/>
+		<attr name="popupEnterAnimTime"/><!-- ms -->
+		<attr name="popupExitAnimTime"/><!-- ms -->
+		<attr name="buttonAnimTime" format="integer"/><!-- ms -->
+		<attr name="menuPlaceholder"/>
+		<!--<attr name="menuItemsLayout"/>--><!-- NOTE: not supported here ATM -->
+		
+		<!-- Button labels string @array --> 
+		<attr name="buttonsLabels" format="reference"/>
+		<!-- Button drawables @array -->
+		<attr name="buttonsDrawables" format="reference"/>
+		
+		<!-- Tint is applied to buttons drawables -->
+		<attr name="drawableTint"/>
+		
+		<!-- Button style (e.g. ?PopupButton) -->
+		<attr name="buttonStyle" format="reference"/>
+		<!-- Button style (e.g. ?PopupButton_scene_button_menu) -->
+		<attr name="menuButtonStyle" format="reference"/>
+		
+		<!-- Default is true -->
+		<attr name="closeOnClickInside"/>
+		
+		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this view, as the view is detached
+		     completely from current parent while in popup mode. Alternatively use private scene layout, or set this to false and not rely on this view layout --> 
+		<attr name="disableParentLayoutForPopup"/>
+		
+		<attr name="toastOnPress" format="reference"/>
+	</declare-styleable>
+	
+	
+	<!-- Layout for toasts -->
+	<declare-styleable name="ToastFrameLayout">
+		<attr name="toastDuration" format="integer"/><!-- ms. This is default value, which is often overridden by code -->
+		<attr name="cmdId" format="reference"/><!-- By default - cmd_gui_show_toast -->
+		<!-- If set, this layout will queue and show toasts in order. If queueMinMs == 0, toasts will be shown with their duration, otherwise new toast will reduce 
+		     previous toast duration to queueMinMs ms -->
+		<attr name="queueMinMs" format="integer"/>
+	</declare-styleable>
+	
+	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which enables scrolling in a layout.
+	     Scrolling direction is defined by layout android:scrollbars -->
+	<declare-styleable name="ScrollingBehavior">
+		<attr name="maxOvershoot" format="dimension"/>
+		<attr name="maxStretchOvershoot" format="dimension"/>
+		<attr name="disallowParentScroll" format="boolean"/>
+		<attr name="noScrollbars" format="boolean"/><!-- If true, avoid enabling scrollbar drawing -->
+		
+		<attr name="android:colorEdgeEffect"/><!-- Defines overshoot edge effect color -->
+	</declare-styleable>
+	
+	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which enables aa-like horizontal scrolling in a layout.
+	     See also BusAAScrollingBehavior -->
+	<declare-styleable name="AAScrollingBehavior">
+		<attr name="maxOvershoot"/>
+		<attr name="maxStretchOvershoot"/>
+	</declare-styleable>
+	
+	<!-- Poping-out button which is transformed into a PowerList -->
+	<declare-styleable name="PopupListLayout">
+		<!-- Default is true. If true, opening popup temporarily hides other popups/top panels/etc. -->
+		<attr name="modal"/>
+
+		<attr name="popupEnterAnimTime"/><!-- ms -->
+		<attr name="popupExitAnimTime"/><!-- ms -->
+		<attr name="menuPlaceholder"/>
+		
+		<!-- PowerList style for list used in popup. Default is @style/PopupListLayoutList -->
+		<attr name="popupListStyle" format="reference"/>
+		
+		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this view, as the view is detached
+		     completely from current parent while in popup mode. Alternatively use private scene layout, or set this to false and not rely on this view layout --> 
+		<attr name="disableParentLayoutForPopup"/>
+		
+		<!-- State bus id for label and messages to listen to -->
+		<attr name="stateBusId"/>
+		
+		<!-- Optional long state to listen to/retrieve from StateBus to change selectedItemStateId -->
+		<attr name="selectedItemStateId" format="reference"/>
+		
+		<!-- Msg id to listen for state change (both selected item and label) -->
+		<attr name="stateMsgId"/>
+		
+		<!-- String state for label to display. If not set, label text is not changed/updated -->
+		<attr name="labelStateId"/>
+		
+		<!-- Optional format string like "Preset: %s". NOTE: only strings supported here -->
+		<attr name="labelFormat"/>
+				
+		<!-- Height of list row -->
+		<attr name="listItemSize"/>
+	</declare-styleable>
+
+	<!-- FastLayout with an animated line background, which animates view resize -->
+	<declare-styleable name="BgAnim">
+		<!-- lineBackground animation duration --> 
+		<attr name="lineAnimTime" format="integer"/>
+		
+		<!-- Line background drawable --> 
+		<attr name="lineBackground"/>
+		
+		<!-- Default false. If private, child views are not processed by scenes, initiated outside of this view -->
+		<attr name="privateScene"/>
+	</declare-styleable>
+	
+	<!-- Additional attributes for selection menu -->
+	<declare-styleable name="SelectionMenuBehavior">
+		<attr name="animTime"/><!-- In animation duration -->
+		<attr name="animExitTime"/><!-- Optional out animation duration (if not specified, animTime is used for both enter and exit) -->
+	</declare-styleable>
+	
+	<declare-styleable name="RatingBar">
+		<attr name="android:enabled"/>
+		<!-- The star drawble to use -->
+		<attr name="android:drawable"/>
+		<!-- The off version of star drawable -->
+		<attr name="drawableOff" format="reference"/>
+		<attr name="drawableWidth"/>
+		<attr name="drawableHeight"/>
+		<attr name="drawableTint"/>
+		<!-- The animated background -->
+		<attr name="lineBackground"/>
+		<!-- Can be left (default) / right. Defines horizontal position for stars within rating bar -->
+		<attr name="android:gravity"/>
+		<attr name="busId"/>
+		<attr name="msgId"/>
+	</declare-styleable>
+	
+	<!-- Special top-level layout for poping-out menus. Poping out views are transformed into menu and attached to this layout for a popup duration --> 
+	<declare-styleable name="PopupMenuHelper">
+		<!--
+			Color used to shade contents of the list when some popup menu is shown.
+			Used for both color and blue shade types. 
+			For color - it's just a color. 
+			For blur - it's additional color which is also applied before blur. 
+		-->
+		<attr name="shadeColor" format="color|reference"/>
+		
+		<!-- <attr name="shadeType"/> -->
+		<!-- <attr name="shadeBlurSubsample"/> --><!-- Subsample scale to improve performance. 0.1 recommended -->
+		<!-- <attr name="shadeBlurRadius"/> --><!-- Blur radius -->
+		<!-- Defines popup overscan area, e.g. set this when popup menu placeholder layout is placed under status bar (overscan=top), 
+			 android navigation bar (overscan=bottom) or both (overscan=top|bottom). 
+			 This is used for additional vertical alignment accounting for overscans 
+		-->
+		<!-- Sync with PopupMenuHelper.java -->
+		<!-- NOTE: not used ATM
+		<attr name="overscan">
+			<flag name="none" value="0"/>
+			<flag name="top" value="0x1"/>
+			<flag name="bottom" value="0x2"/>
+		</attr>
+		-->
+	</declare-styleable>
+	
+	<!-- Poping out character shown when user actively scrolls in az mode -->
+	<declare-styleable name="ListIndexerPopupView">
+		<attr name="indexerPopupMode">
+			<enum name="fixed" value="0"/><!-- Popup stays as specified by layout --> 
+			<enum name="moveWithThumb" value="1"/><!-- Popup translationY is modified to match scrolling thumb. Appropriate layout should be given in xml (e.g. popup should be on top, aligned right to scrollbar -->
+		</attr>
+		<!-- Additional margin to apply in moveWithThumb + moving thumb mode. NOTE: applied as translationX -->
+		<attr name="thumbModeOffsetX" format="dimension"/>
+	</declare-styleable>
+	
+	<!-- Scroller for main Poweramp list with 2 modes - az chars or standard draggable thumb. PowerList switches modes depending on data it's showing --> 
+	<declare-styleable name="ListScrollerView">
+		<!-- Drawable for thumb. Can have enter/exit animation -->
+		<attr name="android:thumb"/>
+		<!-- Track drawable. Enter/exit animation is ignored. Instead, StateAnim is applied -->
+		<attr name="android:track"/>
+		
+		<!-- Like standard android transformPivotX/Y, but expressed as percent -->
+		<attr name="transformPivotX_percent" format="fraction"/>
+		<attr name="transformPivotY_percent" format="fraction"/>
+		
+		<!-- Background to use in az scrolling mode -->
+		<attr name="azBackground" format="reference|color"/>
+		<!-- Touched background to use in az scrolling mode -->
+		<attr name="azTouchedBackground" format="reference|color"/>
+		<!-- Text scale to use in az scrolling mode -->
+		<attr name="azTextScale" format="float"/>
+		<!-- If exists, scroll up small drawable will be drawn on top of az -->
+		<attr name="azScrollUp" format="reference"/>		
+				
+		<!-- The characters to use in az scrolling mode. Should be properly sorted -->
+		<attr name="azChars" format="string"/><!-- NOTE: also should be defined for main theme, as Pages take it from there -->
+		
+		<!-- Padding for az scrolling mode -->		
+		<attr name="azPaddingLeft" format="dimension"/>
+		<!-- Padding for az scrolling mode -->
+		<attr name="azPaddingRight" format="dimension"/>
+		<!-- Padding for az scrolling mode -->
+		<attr name="azPaddingTop" format="dimension"/><!-- NOTE: is azSize is used (valid not @null/@empty value, > 0), then azPaddingTop/azPaddingBottom are ignored, AZ centered -->
+		<!-- Padding for az scrolling mode -->
+		<attr name="azPaddingBottom" format="dimension"/>
+
+		<!-- Optional size (height) for az scrolling mode. Can be a percentage of available height or direct fixed size -->
+		<attr name="azSize" format="dimension|fraction"/>
+		
+		<!-- Also, android:text* attributes are supported -->
+		<!-- NOTE: font size is automatically selected depending on space available in the cells -->
+		
+		<attr name="android:textAppearance"/>
+		<attr name="android:textSize"/>
+		<attr name="android:textColor"/>
+		<attr name="android:textStyle"/>
+		<attr name="android:fontFamily" />
+		<attr name="android:typeface" />
+		<attr name="textSizeMultiplierPref"/>
+		<attr name="fontPads"/>
+	</declare-styleable>
+	
+	<declare-styleable name="RatingBarSceneParams">
+		<attr name="android:background"/>
+		<attr name="drawableTint"/>
+		<!-- NOTE: limited support for drawable transitions. For new drawable to appear, default scene should have some default drawable set
+			 Basically, that means we can transition between drawables, but we can't transition between no-drawable and drawable and vice-versa -->
+		<attr name="android:drawable"/>
+		<attr name="drawableOff"/>
+		<attr name="lineBackground"/>
+	</declare-styleable>
+	
+				
+	<declare-styleable name="Waveseek">
+		<!-- Defines waveseek layout -->
+		<attr name="waveLayout" format="integer">
+			<enum name="scrollable" value="0"/><!-- Waveseek can be dragged with swipes -->
+			<enum name="fixed" value="1"/><!-- Waveseek can't be dragged, progress follows touch -->
+		</attr>
+	
+		<!-- Used only in layout=scrollable mode. Ignored in layout=fixed mode -->
+		<attr name="barWidth" format="dimension|enum">
+			<enum name="auto" value="-1"/><!-- If auto, matches barBitmap bitmap width -->
+		</attr>
+		
+		<!-- Used for both layout modes. Can be a percentage of barWidth for layut=scrollable -->
+		<attr name="barSpacing" format="dimension|fraction"/>
+	
+		<!-- 
+			Defines number of bars in waveseek. The actual wave data set to the Waveseek by Poweramp may be of different size. Waveseek resamples
+			incoming data to match numBars.
+			
+			For layout=fixed mode, this together with barSpacing defines width of bars. 
+		 -->
+		<attr name="numBars" format="integer"/>
+		
+		<!-- Minumum bar height. NOTE: min bar height can't be less than largest *barBitmap* width -->
+		<attr name="minBarHeight" format="dimension"/>
+		
+		<!-- 
+			Waveseek can draw either simple and fast bars with background and border or drawables 
+		 	To the left is elapsedBar* bars/drawables, to the right - just bar*.
+		 	If divisor is >=0%, then 2 bars/drawables are drawn - top and bottom. 
+		 	Bottom bar is drawn with barColor2/elapsedBarColor2/barDrawable2/elapsedBarDrawable2.
+		 	
+		 	Center bar is split under cursor (even if cursor doesn't exist) - indicating the seek position.
+		-->
+			
+		<!-- The divisor (empty space) position between top and bottom bars. If < 0%, then just one set of bars drawn --> 
+		<attr name="divisor" format="fraction"/>
+		<!-- The divisor size (size of the empty space between top and bottom bars) -->
+		<attr name="divisorSize" format="dimension"/>
+		
+		
+		<!-- NOTE: bar/elapsedBarColor*, bar/elapsedBarDrawable* / stroke are not used now due to issues on some Android devices. Instead raw bitmaps are used. 
+			 See bar/elaspedBarBitmap* for details --> 
+		<attr name="barColor" format="color|reference"/><!-- NOTE: not used -->
+		<attr name="barColor2" format="color|reference"/><!-- NOTE: not used -->
+		<attr name="elapsedBarColor" format="color|reference"/><!-- NOTE: not used -->
+		<attr name="elapsedBarColor2" format="color|reference"/><!-- NOTE: not used -->
+		<attr name="barStrokeColor" format="color|reference"/><!-- NOTE: not used -->
+		<attr name="elapsedBarStrokeColor" format="color|reference"/><!-- NOTE: not used -->
+		<!-- If both barDrawable & elapsedBarDrawable are defined, then drawables are drawn, otherwise - bars -->
+		<attr name="barDrawable" format="reference"/><!-- NOTE: not used -->
+		<attr name="elapsedBarDrawable" format="reference"/><!-- NOTE: not used -->
+		<attr name="barDrawable2" format="reference"/><!-- NOTE: not used -->
+		<attr name="elapsedBarDrawable2" format="reference"/><!-- NOTE: not used -->
+		<!-- If non-zero, rounded corners applied to bars -->
+		<attr name="barRoundedCorners" format="dimension"/><!-- NOTE: not used -->
+		<attr name="stroke" format="dimension"/><!-- NOTE: not used -->
+					
+		<!-- NOTE: barBitmap/elapsedBarBitmap/barBitmap2/elapsedBarBitmap2 are specifically crafted bitmaps. Height of the bitmap should be >= width of the bitmap.
+			 Bitmap is stretched in a way similar to 9-patch images, but only 3 "patches" used - top, middle, bottom.
+			 Top is unstretched, height=width*0.5, bottom is unstretched, height=width*0.5 and reset is stretched middle.
+			 
+			 This is required as accross Android devices, many can't render 9-patch images reliable and fast, others can't reliable
+			 render e.g. RoundRect shapes or other Drawables, thus, the approach with the raw Bitmaps is used here -->
+
+		<!-- Non-yet-elapsed bar (to the right of playing point) --> 			 
+		<attr name="barBitmap" format="reference"/>
+		<!-- Elapsed bar (to the left of playing point) -->
+		<attr name="elapsedBarBitmap" format="reference"/>
+		<!-- Optiponal non-yet-elapsed bar (to the right of playing point) - bottom part -->
+		<attr name="barBitmap2" format="reference"/>
+		<!-- Optiponal elapsed bar (to the left of playing point) - bottom part -->
+		<attr name="elapsedBarBitmap2" format="reference"/>
+
+		<!-- The tint color to apply for the bars -->
+		<attr name="barTint" format="color"/>
+		<!-- Default is src_atop -->
+		<attr name="barTintMode">
+			<enum name="src_over" value="3" />
+			<enum name="src_in" value="5" />
+			<enum name="src_atop" value="9" />
+			<enum name="multiply" value="14" />
+			<enum name="screen" value="15" />
+			<enum name="add" value="16" />
+		</attr>
+
+		<!-- Used only in layout=fixed mode. Cursor position in percent of Waveseek width. 50%=center -->
+		<attr name="cursorPosition" format="fraction"/>
+		<!-- Used only in layout=fixed mode. Cursor absolute offset from cursorPosition -->
+		<attr name="cursorOffset" format="dimension"/>
+		
+		<!-- Cursor activation animation -->
+		<attr name="cursorAnimator" format="reference"/>
+
+		<!-- Used only in layout=fixed mode. Default=true. If true, elapsed bars are redrawn immediately on any scroll, otherwise they delayed until scroll is finished -->
+		<attr name="cursorBgFastTracking" format="boolean"/><!-- NOTE: not used -->
+		
+		<!-- If set, all bars will have this value. Useful for emulating "usual" seekbar -->
+		<attr name="forceValue" format="float"/>
+		
+		<!-- Used only for layout=scroll. Default=true. If true, leftmost/rightmost bars are gradually faded out/in -->
+		<attr name="fadeSidebars" format="boolean"/>
+
+		<!-- Time for data change animation in ms -->
+		<attr name="dataAnimTime" format="integer"/>
+		<!-- Time for data change animation when no incoming data exists (to small line) in ms -->
+		<attr name="noDataAnimTime" format="integer"/>
+		
+		<!-- Waveseek supports style "enabled" attribute (not supported by Android views by default). If set to false, waveseek functionality will be completely disabled -->
+		<attr name="android:enabled"/>
+	</declare-styleable>
+
+	<declare-styleable name="PaddedCheckBox">
+		<attr name="drawablePaddingStart"/>
+		<!-- Padding between drawable and text. Basically it's added to paddingLeft when drawable exists -->
+		<attr name="android:drawablePadding"/>
+	</declare-styleable>
+
+
+</resources>

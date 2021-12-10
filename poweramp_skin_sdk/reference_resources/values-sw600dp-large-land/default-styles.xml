@@ -3,21 +3,15 @@
 <resources>
 
 	<!-- Redefine wave seeklayout to align it at center vertically -->
-	<style name="TopWaveseekLayout">
-		<item name="android:layout_height">240dp</item>		
+	<style name="TopWaveseekLayout" parent="TopWaveseekLayoutBase">
+		<item name="android:layout_height">240dp</item>
 		<item name="layout_attachBottom">@null</item>
 		<item name="layout_attachTop">@null</item>
 		<item name="layout_attachLeft">@+id/aa_bounds</item>
-		<!-- <item name="layout_gravityTarget">@+id/aa_bounds</item> -->
 		<item name="layout_attachRight">inset</item>
 		<item name="android:paddingBottom">8dp</item>
 		<item name="android:paddingTop">8dp</item>
 		<item name="android:layout_gravity">center_vertical</item>
-		
-		<item name="android:clickable">true</item><!-- Clickable to avoid touching trough it and moving AA/List -->
-		<item name="android:focusable">false</item><!-- Not focusable, as it's clickable just to eat touches -->
-		<item name="android:clipToPadding">false</item>
-		<item name="android:clipChildren">false</item>
 	</style>
 
 	

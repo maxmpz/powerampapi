@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+	<!-- NOTE: main theme attributes requires separate definition for settings theme as otherwise they are not resolvable.
+		 We apply this as overlap style w/o override -->
+	<style name="NonOverlap_ActivityTheme_Settings">
+		<!-- Base colors/corners requires for drawables/ripples -->
+		<item name="colorPrimary">?android:attr/colorPrimary</item>
+		<item name="colorControlHighlight">?android:attr/colorControlHighlight</item>
+		<item name="colorBgPrimary">?android:attr/colorBackground</item>
+		<item name="colorBgPrimaryAlpha">?android:attr/colorBackgroundCacheHint</item><!-- NOTE: can't define easily here via android attributes. colorBackgroundCacheHint better matches list bg -->
+		<item name="colorBgLessAlpha">?android:attr/colorBackground</item>
+		
+		<item name="colorInverse">?android:attr/colorForeground</item>
+		
+		<item name="colorBgInverse">?android:attr/colorForeground</item>
+		<item name="colorBgInverseChecked">?android:attr/colorForeground</item>
+		
+		<item name="colorStroke">?android:attr/textColorSecondary</item>
+		<item name="colorBgHelp">?android:attr/textColorSecondary</item>
+		<item name="colorStrokeHelp">#f00</item>
+		<item name="colorLessContrast">?android:attr/textColorSecondary</item><!-- Used for e.g. for main screen tinted icons, some text -->
+		<item name="colorShade">?android:attr/textColorSecondary</item>
+		<item name="colorBgLight">?android:attr/colorControlHighlight</item><!-- Used for Search Frame bg -->
+		<!--<item name="colorBgLight">?android:attr/colorButtonNormal</item>-->
+		<item name="colorItemPlayingMark">#f00</item>
+		
+		<item name="colorIconPrimary">?android:attr/colorForeground</item><!-- By default, our icon drawables are black, thus, no extra tinting -->
+		<item name="colorIconPrimaryForced">?android:attr/colorForeground</item>
+		<item name="colorIconInverse">?android:attr/colorForegroundInverse</item>
+		<item name="colorIconInverseForced">?android:attr/colorForegroundInverse</item>
+		<item name="colorIconDisabled">#7777</item>
+				
+		
+		<item name="corners_popup">6dp</item>
+		<item name="corners_medium">8dp</item>
+		<item name="corners_medium_plus">16dp</item>
+		<item name="corners_navbar">8dp</item>
+		<item name="corners_searchbar">8dp</item>
+		<item name="corners_mini">4dp</item>
+		<item name="corners_equ_frs">4dp</item>
+		<item name="corners_large">24dp</item>
+		<item name="corners_small">2dp</item>
+		
+		<item name="clear">@drawable/clear_24dp</item>
+		
+		<item name="ItemEmptyList">@style/SearchItemEmptyList</item>
+		<item name="ItemEmptyListText">@style/SearchItemEmptyListText</item>
+		
+		<item name="preferenceIndentPadding">52dp</item>
+		
+		<item name="settings_v">@drawable/settings_v_colored</item>
+		<item name="settings_look_feel">@drawable/settings_look_feel_colored</item>
+		<item name="settings_audio">@drawable/settings_audio_colored</item>
+		<item name="settings_vis">@drawable/settings_vis_colored</item>
+		<item name="settings_aa_bg">@drawable/settings_aa_bg_colored</item>
+		<item name="settings_aa">@drawable/settings_aa_colored</item>
+		<item name="settings_folders_library">@drawable/settings_folders_library_colored</item>
+		<item name="settings_headset">@drawable/settings_headset_colored</item>
+		<item name="settings_lockscreen">@drawable/settings_lockscreen_colored</item>
+		<item name="settings_misc">@drawable/settings_misc_colored</item>
+		<item name="settings_general">@drawable/settings_general_colored</item>
+		<item name="settings_equ">@drawable/settings_equ_colored</item>
+		<item name="settings_utils">@drawable/settings_utils_colored</item>
+		<item name="settings_support">@drawable/settings_support_colored</item>
+		<item name="settings_import">@drawable/settings_import_colored</item>
+		<item name="settings_export">@drawable/settings_export_colored</item>
+		<item name="settings_send_errors">@drawable/settings_send_errors_colored</item>
+		<item name="settings_pa_logo">@drawable/settings_pa_logo_themed</item>
+		<item name="settings_restore_purchase">@drawable/settings_restore_purchase_colored</item>
+		<item name="settings_doubleq">@drawable/settings_doubleq_colored</item>
+	</style>
+
+	<style name="Base_ActivityTheme_Settings" parent="@android:style/Theme.DeviceDefault.Settings">
+		<item name="TreeViewList">@style/TreeViewList</item>
+		<item name="android:windowActionBarOverlay">true</item>
+	</style>
+	<style name="ActivityTheme_Settings" parent="Base_ActivityTheme_Settings"></style>
+	
+	<style name="Base_ActivityTheme_SettingsLight" parent="@android:style/Theme.DeviceDefault.Light">
+		<item name="android:windowActionBarOverlay">true</item>
+		<item name="android:windowLightStatusBar">true</item><!-- Required, e.g. on Pixel@12 to force dark status bar icons -->
+	</style>
+	<style name="ActivityTheme_SettingsLight" parent="Base_ActivityTheme_SettingsLight"></style>
+	
+	<style name="Base_ActivityTheme_SettingsDark" parent="@android:style/Theme.DeviceDefault" tools:ignore="NewApi">
+		<item name="android:navigationBarColor">#000</item>
+		<item name="android:statusBarColor">#000</item>
+		<item name="android:windowLightStatusBar">false</item>
+		<item name="android:windowLightNavigationBar">false</item><!-- For 9.0 -->
+		<item name="android:windowActionBarOverlay">true</item>
+	</style>
+	<style name="ActivityTheme_SettingsDark" parent="Base_ActivityTheme_SettingsDark"></style>
+	
+		
+	<!-- This is applyed for PA settings with override -->
+	<style name="Overlap_ActivityTheme_Base">
+		<item name="pref_privacy_policy">https://www.iubenda.com/privacy-policy/8016901/full-legal</item>
+	</style>
+	<style name="Overlap_ActivityTheme_Settings" parent="Overlap_ActivityTheme_Base">
+		<item name="settings_milk_preset_uri">internal://#poweramp1inv</item>
+	</style>
+	<style name="Overlap_ActivityTheme_Settings_Light" parent="Overlap_ActivityTheme_Base">
+		<item name="settings_milk_preset_uri">internal://#poweramp1inv</item>
+	</style>
+	<style name="Overlap_ActivityTheme_Settings_Dark" parent="Overlap_ActivityTheme_Base">
+		<item name="settings_milk_preset_uri">internal://#poweramp1</item>
+	</style>
+		
+	<style name="Overlap_ActivityTheme_PeqBase">
+		<item name="pref_privacy_policy">https://www.iubenda.com/privacy-policy/32990222/full-legal</item>
+	</style>
+	<!-- This is applyed for Peq settings with override -->
+	<style name="Overlap_ActivityTheme_Peq_Settings" parent="Overlap_ActivityTheme_PeqBase">
+		<item name="settings_milk_preset_uri">internal://#peq1inv</item>
+	</style>
+	<style name="Overlap_ActivityTheme_Peq_Settings_Light" parent="Overlap_ActivityTheme_PeqBase">
+		<item name="settings_milk_preset_uri">internal://#peq1inv</item>
+	</style>
+	<style name="Overlap_ActivityTheme_Peq_Settings_Dark" parent="Overlap_ActivityTheme_PeqBase">
+		<item name="settings_milk_preset_uri">internal://#peq1</item>
+	</style>
+	
+	
+	<attr name="Settings_font" format="string"/>
+	<attr name="Settings_medium_font" format="string"/>
+	
+	<style name="Overlap_ActivityTheme_Settings_AltFont">
+		<item name="Settings_font">@font/manrope_extrabold_smaller</item>
+		<item name="Settings_medium_font">@font/manrope_regular_smaller</item>
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textAppearanceListItemSecondary">@style/Settings_textAppearanceListItemSecondary_Font</item>
+	</style>
+	
+	<style name="Overlap_ActivityTheme_Settings_BoldFont">
+		<item name="Settings_font">@font/ttnormspro_bold</item>
+		<item name="Settings_medium_font">@font/ttnormspro_medium</item>
+		
+		<item name="android:fontFamily">?Settings_font</item><!-- Global override -->
+		
+		<item name="android:textAppearance">@style/Settings_textAppearance_Font</item>
+		<item name="android:textAppearanceButton">@style/Settings_textAppearanceButton_Font</item><!-- Apply font for few buttons which use textAppearanceButton, e.g. dialog buttons -->
+		<item name="android:textAppearanceMediumInverse">@style/Settings_textAppearanceMediumInverse_Font</item><!-- Used by e.g. TopListSearchEditText and other possible EditTexts -->
+		<item name="android:textAppearanceLargePopupMenu">@style/Settings_textAppearanceLargePopupMenu_Font</item><!-- Used by some popups, like Eq Preset autocomplete -->
+		
+		<item name="android:textAppearanceListItem">@style/Settings_textAppearanceListItem_Font</item> 
+		<item name="android:textAppearanceListItemSecondary">@style/Settings_textAppearanceListItemSecondary_Font</item>
+		<item name="android:textAppearanceListItemSmall">@style/Settings_textAppearanceListItemSmall_Font</item>
+		<item name="android:textAppearanceMedium">@style/Settings_textAppearanceMedium_Font</item>
+		<item name="android:textAppearanceSmall">@style/Settings_textAppearanceSmall_Font</item>
+		<item name="android:textAppearanceLarge">@style/Settings_textAppearanceLarge_Font</item>
+		
+		<!-- Action bar is in separate theme and requires full style redefinition. This makes it not follow system theme (e.g. background color, etc) -->
+		<item name="android:actionBarStyle">@style/Settings_actionBarStyle</item>
+	</style>
+
+	<style name="Settings_actionBarStyle" parent="@android:style/Widget.Material.ActionBar.Solid">
+		<item name="android:titleTextStyle">@style/Settings_Title</item>
+	</style>
+	
+	<style name="Settings_Title" parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
+		<item name="android:fontFamily">?Settings_font</item>
+	</style>
+		
+		
+	<!-- NOTE: these are used -->
+	<style name="Settings_textAppearance_Font" parent="@android:style/TextAppearance.DeviceDefault">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="Settings_textAppearanceButton_Font" parent="@android:style/TextAppearance.DeviceDefault.Widget.Button">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="Settings_textAppearanceMediumInverse_Font" parent="@android:style/TextAppearance.DeviceDefault.Medium.Inverse">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="Settings_textAppearanceLargePopupMenu_Font" parent="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Large">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">15.5sp</item>
+	</style>
+	
+	<style name="Settings_textAppearanceListItem_Font" parent="@android:style/TextAppearance.DeviceDefault.SearchResult.Title">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">17sp</item>
+	</style>
+	<style name="Settings_textAppearanceListItemSecondary_Font" parent="@android:style/TextAppearance.DeviceDefault.SearchResult.Subtitle">
+		<item name="android:fontFamily">?Settings_medium_font</item>
+		<item name="android:textSize">12.5sp</item>
+	</style>
+	<style name="Settings_textAppearanceListItemSmall_Font" parent="@android:style/TextAppearance.DeviceDefault.Small">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+	<style name="Settings_textAppearanceMedium_Font" parent="@android:style/TextAppearance.Material.Medium">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">24sp</item>
+	</style>
+	<style name="Settings_textAppearanceSmall_Font" parent="@android:style/TextAppearance.DeviceDefault.Small">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+	<style name="Settings_textAppearanceLarge_Font" parent="@android:style/TextAppearance.DeviceDefault.Large">
+		<item name="android:fontFamily">?Settings_font</item>
+		<item name="android:textSize">15.5sp</item>
+	</style>
+								
+	
+	
+	<style name="SettingsDivider">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">1dp</item>
+		<!-- <item name="android:background">?android:attr/listDivider</item> --><!-- For samsung @ 8.0 this drawable is shorter than needed for some reason -->
+		<!-- Needed for Samsung + skin prefs where standard divider is shorter than needed -->
+		<item name="android:background">@drawable/list_divider_material</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	
+	<!-- NOTE: used for skin radios only -->
+	<style name="SettingsRadioDivider" parent="SettingsDivider">
+		<item name="android:layout_marginLeft">40dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+	</style>
+	
+	<!-- NOTE: shown on top -->
+	<style name="SettingsWrapperDivider" parent="SettingsDivider">
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:visibility">gone</item>
+	</style>
+	
+	<style name="SettingsRadioOptionsLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">@id/radio</item><!-- NOTE: space is consumed by icon, but we want to be more to the left -->
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_marginTop">-4dp</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="android:visibility">gone</item>
+	</style>
+	
+	
+	<!-- Used for skip options. Slightly smaller than usual (or at least, limited in size, as some devices have incorrect sizes for just textAppearanceListItem -->
+	<style name="SkinSettingsTitleText">
+		<item name="android:textAppearance">?android:attr/textAppearanceListItem</item>
+		<item name="android:textSize">15sp</item>
+	</style>
+	
+	
+	<!-- Actually used in list opts dialog -->
+	<style name="SettingsListOptsCheckboxLibrary_Home">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">1dp</item>
+		<item name="drawableWidth">18dp</item>
+		<item name="drawableHeight">18dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:drawable">@drawable/lists</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		
+	</style>
+	
+	<style name="SettingsListOptsCheckboxLibrary" parent="android:Widget.Material.CompoundButton.CheckBox">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
+		<item name="android:background">@null</item><!-- NOTE: backbround + ripple doesn't work for some reason (at least on 9) -->
+		<item name="android:foreground">?android:attr/selectableItemBackground</item>
+	</style>
+	
+
+		
+	<!-- Search -->
+	<style name="SettingsSearchLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="itemSize">76sp</item>
+	</style>
+	
+	<style name="SettingsSearchPanel">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">48dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:clipToPadding">false</item>
+		
+		<item name="android:background">@drawable/searchbar_bg</item>
+		<item name="android:visibility">invisible</item>
+		<item name="android:scaleX">1.05</item>
+		<item name="android:scaleY">1.05</item>
+		<item name="android:elevation">0dp</item>
+	</style>
+	<style name="SettingsSearchPanel_scene_search">
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">48dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+				
+		<item name="android:visibility">visible</item>
+		<item name="scale">1</item>
+	</style>
+
+	<style name="SettingsSearchBackButton">
+		<item name="android:drawable">@drawable/abc_ic_ab_back_material</item>
+		<item name="drawableTint">?android:textColorPrimary</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:padding">8dp</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>		
+		<item name="animOnClick">true</item>
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:gravity">center</item>
+	</style>
+	
+	<style name="SettingsSearchCloseButton">
+		<item name="android:drawable">@drawable/settings_close</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:padding">8dp</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>		
+		<item name="animOnClick">true</item>
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:gravity">center</item>
+	</style>
+	
+	<style name="SettingsSearchEdit" parent="@style/Widget.AppCompat.EditText">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:background">@null</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textColorHint">?android:textColorTertiary</item>
+		<item name="android:fontFamily">?android:textAppearanceMediumInverse</item>
+		<item name="android:textSize">19dp</item><!-- NOTE: fixed size as system settings theme has usually fixed header + text sizes -->
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
+		<item name="android:drawablePadding">8dp</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:drawableBottom">@null</item>
+	</style>
+	
+	
+	<style name="SettingsSearchContent">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:visibility">invisible</item>
+		<item name="android:background">?android:attr/windowBackground</item>
+	</style>
+	
+	<style name="SettingsSearchList">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+	</style>
+	
+	<!-- Search item -->
+	
+	<style name="SettingsSearchItemView">
+		<item name="android:paddingStart">?android:attr/listPreferredItemPaddingStart</item>
+		<item name="android:paddingEnd">?android:attr/listPreferredItemPaddingEnd</item>
+		<item name="android:background">?android:attr/selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+	</style>
+	
+	<style name="SettingsSearchItemImage">
+		<item name="android:layout_width">32dp</item>
+		<item name="android:layout_height">32dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">center_vertical</item>
+	</style>
+	
+	<style name="SettingsSearchItemTexts">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical</item>
+	</style>
+	
+	<style name="SettingsSearchItemTitle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceListItem</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="allowZeroHeight">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:singleLine">true</item>			
+	</style>
+	
+	<style name="SettingsSearchItemLine2">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="allowZeroHeight">true</item>
+	</style>
+	
+	<style name="SettingsSearchItemLine3">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:textSize">13sp</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="allowZeroHeight">true</item>
+	</style>
+	
+	
+	<style name="SearchItemEmptyList">
+	</style>
+
+	<style name="SearchItemEmptyListText">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_height">wrap_content</item>	
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_marginBottom">150dp</item><!-- Like keyboard height / 2 -->
+		<item name="android:paddingLeft">16dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textAppearance">@style/SearchItemEmptyListText_Text</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	<style name="SearchItemEmptyListText_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorTertiary</item>
+	</style>
+	
+	<style name="DebugTextColor">
+		<item name="android:layout_width">wrap_content</item> 
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textSize">20dp</item> 
+		<item name="android:text">&#11044;</item><!-- Solid circle -->
+		<item name="layout_consumeSpace">horizontal|reset_auto</item> 		
+	</style>
+	<style name="DebugColor">
+		<item name="android:layout_width">20dp</item> 
+		<item name="android:layout_height">20dp</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item> 		
+	</style>
+	
+	<!-- NOTE: inflated in the Dialog/main theme -->
+	<style name="TagPreferenceContainer">
+		<!-- NOTE: layout set by code -->
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:scrollbarStyle">insideOverlay</item>
+		<item name="android:scrollbars">vertical</item>
+	</style>
+	<!-- NOTE: inflated in the Dialog/main OR in Settings theme -->
+	<style name="TagPreferenceTagEdit">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_unlimitedMeasure">true</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+		<item name="android:paddingLeft">24dp</item><!-- NOTE: no access to ?dialogContentPaddingLR here as we have settings activity context when creating this -->
+		<item name="android:paddingRight">24dp</item>
+	</style>
+	
+	<!-- NOTE: while overridding android:fontFamily works for the Settings, technically it forces each textview and similar views to 
+		 additionally resolve non-textAppearance attribute and apply it VS just resolving the textAppearance.
+		 Text views style resolving always gets textAppearance for the theme+attrs and (as they always exist) resolve attributes from that textAppearance.
+		 Thus, using textAppearance styles here derived from e.g. app compat TA will override font for in-Dialog labels/tags
+	  -->
+	
+	<!-- Visually same paddings for None as for tag to avoid jumps -->
+	<!-- NOTE: inflated in the Dialog/main OR in Settings theme -->
+	<style name="TagPreferenceTagEditNone">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+		
+		<item name="android:textSize">12.5sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">?android:attr/textColorSecondary</item>
+	</style>
+	
+	<!-- NOTE: inflated in Dialog/main theme -->
+	<style name="TagPreferenceTagEditTagReadOnly">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+		
+		<item name="layout_consumeSpace">stack_horizontal</item>
+		
+		<!-- NOTE: avoiding text appearance here as main theme (Dialog) styles then are getting overridden by such textAppearance, thus not getting proper font there -->
+		<item name="android:textSize">12.5sp</item>
+		<item name="android:textStyle">bold</item>
+				
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
+		
+		<item name="android:background">@drawable/bg_light_rounded_large</item><!-- NOTE: use simple background, not ripple to avoid anims / states-->
+	</style>
+	
+	<!-- NOTE: inflated in Dialog/main theme -->
+	<style name="TagPreferenceTagEditTag" parent="TagPreferenceTagEditTagReadOnly">
+		<item name="animOnClick">true</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:drawablePadding">0dp</item>
+		<item name="drawablePosition">right</item>
+		<item name="drawableWidth">16dp</item>
+		<item name="drawableHeight">16dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:drawable">?clear</item>
+		<item name="android:background">@drawable/ripple_bg_light_rounded_large</item>
+	</style>
+	
+	<!-- NOTE: inflated in the Settings theme for in-settings TagEdits readonly, and in Dialog/main for dialog TagsEdit label
+	     NOTE: if not specified, it can't find proper font, and uses some default one, non-theme -->
+	<style name="TagPreferenceTagEditTagLabel">
+		<!-- NOTE: all requested attributes resolved from the Settings theme -->
+	</style>
+		
+
+	<!-- NOTE: need quite large paddings so click area is not too small -->
+	<!-- NOTE: inflated in the Settings theme -->
+	<style name="TagListPreferenceTag">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:minWidth">48dp</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="layout_consumeSpace">stack_horizontal</item>
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:paddingRight">10dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		
+		<item name="android:textColor">@color/button_text_color_selector</item>
+		<item name="android:textSize">13dp</item>
+		<item name="android:textStyle">normal</item>
+		
+		<item name="animOnClick">true</item>
+		<item name="android:clickable">true</item>
+		
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
+		
+		<item name="android:background">@drawable/checkable_rounded_large</item><!-- NOTE: use simple background, not ripple to avoid anims / states-->
+	</style>
+</resources>
+

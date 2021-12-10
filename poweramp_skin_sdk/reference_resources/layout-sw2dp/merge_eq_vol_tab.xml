@@ -19,7 +19,8 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	style="?EqTabLayout"
 	w:enableStateAnim="true"
 	w:privateScene="true"
@@ -99,6 +100,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:disableForStateMsgId="@id/msg_dsp_tempo_state_changed"
 			
 			android:text="+"
+			tools:ignore="HardcodedText"
 		/>
 		<com.maxmpz.widget.base.BusActionButton android:id="@+id/tempo_minus_button"
 			style="?EqTempoMinusButton"
@@ -111,6 +113,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:disableForStateMsgId="@id/msg_dsp_tempo_state_changed"
 
 			android:text="-"
+			tools:ignore="HardcodedText"
 		/>
 		
 						

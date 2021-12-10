@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<style name="TopToastContainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/TopToastContainer_layout_height</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:translationZ">?modal_translationZ</item><!-- Needed to be ~above vis panel and popup menu placeholder. Currently this is defined by view order -->
+		<item name="android:outlineProvider">none</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+	</style>
+	<style name="TopToastContainer_scenes_non_main">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/TopToastContainer_layout_height</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_marginBottom">44dp</item><!-- Extra offset for 2nd navigation line -->
+	</style>
+		
+	<!-- NOTE: for simplicity, fixed height, thus, easier to layout everything inside centered as needed -->
+	<style name="TopToastFrame">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		
+		<item name="android:minHeight">38dp</item>
+		<item name="layout_maxWidth">@dimen/TopToastFrame_maxWidth</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_gravity">center_horizontal|bottom</item>
+				
+		<item name="android:background">@drawable/toast_bg</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Don't focus on this -->
+		<item name="android:elevation">?toast_elevation</item>
+		<item name="android:paddingLeft">@dimen/TopToastFrame_paddingLR</item>
+		<item name="android:paddingRight">@dimen/TopToastFrame_paddingLR</item>
+		<item name="android:paddingTop">@dimen/TopToastFrame_paddingTB</item>
+		<item name="android:paddingBottom">@dimen/TopToastFrame_paddingTB</item>
+		<item name="android:scaleX">1</item>
+		<item name="android:scaleY">1</item>
+		<item name="android:visibility">invisible</item>
+		
+		<!-- NOTE: needed as we may have icon size too small - defined by title/line2 bounds -->	
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+		
+		<item name="dragDirection">down</item>
+		<item name="toastDuration">2000</item>
+	</style>
+	<style name="TopToastFrame_scene_expandedBase" parent="TopToastFrame">
+		<item name="android:visibility">visible</item>
+			
+		<item name="layout_attachBottom">inset</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
+		<!-- Defines position of the toast. Also TopToastContainer_scenes_non_main/android:layout_marginBottom -->
+		<item name="android:layout_marginBottom">60dp</item>
+			
+		<item name="scale">1</item>
+	</style>
+	<style name="TopToastFrame_scene_expanded" parent="TopToastFrame_scene_expandedBase">
+	</style>
+		
+
+	<!-- NOTE: icon is attached to title/line2, so we can't attach title/line2 to icon (==cicrular depednency),
+	     so margins are used -->
+	<style name="TopToastIcon">
+		<item name="android:layout_width">32dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:gravity">center</item>
+		<item name="layout_attachTopToTop">@id/title</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachBottomToBottom">@id/line2</item>
+		<item name="drawableOnly">true</item>
+		<!-- NOTE: don't apply tint here, allow icons to have own tints as needed -->
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="TopToastTitle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:gravity">left|top</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginLeft">@dimen/TopToastTile_marginLeft</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="layout_attachLeft">parent</item><!-- This makes it basically match_parent -->
+		<item name="layout_attachRight">parent</item>
+		<item name="android:textAppearance">?TopToastTitle_Text</item>
+		<item name="eatFontPads">true</item>
+		<item name="applyViewParams">true</item>
+	</style>
+	<style name="TopToastTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">14sp</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+	<style name="TopToastTitle_no_icon"><!-- NOTE: used in scenes -->
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:gravity">center|top</item>
+		<item name="applyViewParams">true</item>
+	</style>
+	
+	<style name="TopToastLine2">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginLeft">@dimen/TopToastTile_marginLeft</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:textAppearance">?TopToastLine2_Text</item>
+		<item name="allowZeroHeight">true</item>
+		<item name="android:paddingTop">3dp</item>
+		<item name="android:paddingBottom">5dp</item>
+		<item name="eatFontPads">true</item>
+		<item name="android:gravity">left|top</item>
+		<item name="applyViewParams">true</item>
+	</style>
+	<style name="TopToastLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">11sp</item>
+	</style>
+	<style name="TopToastLine2_no_icon"><!-- NOTE: used in scenes -->
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:gravity">center|top</item>
+		<item name="applyViewParams">true</item>
+	</style>
+		
+	
+</resources>

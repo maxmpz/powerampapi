@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- FastLayout (and variants, like SceneFastLayout) is strictly one-pass, one-measure per pass (thus, fast), supporting multiple
+	 layout paradigms within single layout, allowing major child layout manipulation with styles without editing actual layout xmls.
+	 Most of the design decisions for FastLayout and its FastLayoutParams are dictated by performance. The resulting layouts
+	 are faster vs Android basic layouts (LinearLayout/RelativeLayout), much faster than ConstraintLayout, and can be also used
+	 as direct replacement even for very simple layouts as FrameLayout due to the minimal overhead
+
+	 FastLayout can replace:
+	 - FrameLayout (not slower than FrameLayout, or faster, as FastLayout never re-meassures children for MATCH_PARENT)
+	 - LinearLayout (can be implemented via layout_flex* or most commonly via layout_consumeSpace)
+	 - RelativeLayout (FastLayout is faster as it uses strictly one-pass, one measure per pass approach)
+	 - partially ConstraintLayout (FastLayout is much faster)
+	 - or combination of those in the one layout
+
+	 Mostly every layout you're seeing in Poweramp main UI is FastLayout
+
+	 FastLayout is focused on performance and thus has limitations due to the strict "no-remeasure" approach:
+	 - views are laid out in xml order (some layout params may override the layout direction)
+	   - if some view is referenced by other view that triggers immediate laying out of such referenced view
+		 - if this causes cycle StackOverflowException is thrown
+
+	 FastLayoutLP are attribures for FastLayout child views. FastLayout itself has no extra attributes
+	-->
+	<declare-styleable name="FastLayoutLP">
+		<!-- Gravity is applied if no attaching points are defined for the child at given axis
+			 NOTE: FastLayout takes own paddings into account when applying child layout gravity. This is different, from e.g. RelativeLayout
+			 layout_centerInParent/centerHorizontal/centerVertical, which doens't account for the layout own paddings.
+		-->
+		<attr name="android:layout_gravity" />
+
+		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT)
+		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size.
+		     This allows multiple views with same relative size (e.g. 4 views with layout_widthPercent="25%" in a row) also to consume
+		     space and being laid out as expeted in a sequence.
+		     The views which consume space still may reduce the available size by using appropriate consume flags
+		     NOTE: this view horizontal margins reduce resulting width for layout_widthPercent.
+		     This is to match behavior of "match_parent" which is equal to layout_widthPercent="100%". Horizontal margins always reduce size of the view
+		     with layout_width="match_parent". Use layout_percentIngoresMargin to override this behavior -->
+		<attr name="layout_widthPercent" format="fraction"/>
+		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT)
+		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size
+		     NOTE: this view vertical margins reduce resulting height for layout_heightPercent. Use layout_percentIngoresMargin to override this behavior -->
+		<attr name="layout_heightPercent" format="fraction"/>
+
+		<!-- Defines max possible width for the child -->
+		<attr name="layout_maxWidth" format="dimension"/>
+		<!-- Defines max possible height for the child -->
+		<attr name="layout_maxHeight" format="dimension"/>
+
+		<!-- Defines min possible width for the child. Always force applied (compare to view.minWidth which applied only in specific cases) -->
+		<attr name="layout_minWidth" format="dimension"/>
+		<!-- Defines min possible height for the child. Always force applied (compare to view.minHeight which applied only in specific cases) -->
+		<attr name="layout_minHeight" format="dimension"/>
+
+		<!-- If set, one view dimension will be matched against another, basically making view square. This works only if the source dimension has defined value,
+			 e.g. fixed dp value, MATCH_PARENT, attachLeft + attachRight, etc.
+			 If source dimension is WRAP_CONTENT, layout_matchDimension is ignored.
+			 NOTE: appropriate view paddings are added to final view dimensions: padding top/bottom for heightToWidth and padding left/right for widthToHeight -->
+		<attr name="layout_matchDimension" format="integer">
+			<!-- If set, width dimension will be forced to height, other width attributes are ignored -->
+			<enum name="widthToHeight" value="0x100000"/>
+			<!-- If set, height dimension will be force to width, other height attributes are ignores -->
+			<enum name="heightToWidth" value="0x200000"/>
+		</attr>
+
+		<!--
+			Flex axis views are laid out and expanded (if layout_flexWeight is specified) along the vertical or horizontal axis
+
+			NOTE: flex layout views are measured/laid out _before_ any other "normal" children.
+			So if FastLayout width/height is set to WRAP_CONTENT, intermediate FastLayout width/height is used for gravity
+			(e.g. gravity=center or gravity=right/bottom) not the final dimensions
+
+			NOTE: any other non-flex w:layout_* properties are ignored for the "flex" views
+		-->
+		<attr name="layout_flexAxis">
+			<enum name="horizontal" value="0x0400"/><!-- NOTE: should match FastLayoutParams.FLAG_FLEX_* -->
+			<enum name="vertical" value="0x0800"/>
+		</attr>
+
+		<!--
+			NOTE: FastLayout uses weightSum=num of flexWeight children
+			Basically this means, layout_flexWeight=1 children always expands uniformely.
+			Also, if no layout_flexWeight attribute is specified for a view, it's never stretched/shrinked, just stays as layout_width/height attributes command.
+		-->
+		<attr name="layout_flexWeight" format="float"/>
+
+		<!-- If true, this and all next flex views are laid out bottom-up in the xml order -->
+		<attr name="layout_flexReverse" format="boolean"/>
+
+		<!-- layout_attach* attribute can attach view to:
+			 - any other child view, including flex layout child.
+			   Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
+			 - "parent" attaches to parent side, accounting for any "consumed" space (if any) from side(s) where view is attached or "gravitated" to
+			 - percent value (e.g. 50%) positions view by offset calculated form parent width/height * percent.
+			   This works only if appropriate width or height is fixed for the parent FastLayout (i.e. not WRAP_CONTENT).
+			 - "inset" - like parent, but offsets by window inset on given side. Makes sense only for parent views which align with
+			   the appropriate screen side
+			 - "none" - resets any previous value (e.g. set by theme style)
+		-->
+		<!-- layout_attachLeft => attaches left edge of view to right edge of target view or to parent left, or to parent fraction width from left -->
+		<attr name="layout_attachLeft" format="reference|integer|fraction">
+			<enum name="parent" value="0"/>
+			<enum name="none" value="-1"/>
+			<enum name="inset" value="-2"/>
+		</attr>
+		<attr name="layout_attachTop" format="reference|integer|fraction">
+			<enum name="parent" value="0"/>
+			<enum name="none" value="-1"/>
+			<enum name="inset" value="-2"/>
+		</attr>
+		<attr name="layout_attachRight" format="reference|integer|fraction">
+			<enum name="parent" value="0"/>
+			<enum name="none" value="-1"/>
+			<enum name="inset" value="-2"/>
+			<!-- Attaches to the right parent side, calculated prior laying out of this view. If parent has a fixed width, that is the same as "parent",
+			     otherwise the right side may grow appropriately with every child laid out before this view -->
+			<enum name="side" value="-3"/>
+		</attr>
+		<attr name="layout_attachBottom" format="reference|integer|fraction">
+			<enum name="parent" value="0"/>
+			<enum name="none" value="-1"/>
+			<enum name="inset" value="-2"/>
+			<!-- Attaches to the bottom parent side, calculated prior laying out of this view. If parent has a fixed height, that is the same as "parent",
+			     otherwise the bottom side may grow appropriately with every child laid out before this view -->
+			<enum name="side" value="-3"/>
+		</attr>
+
+		<!-- layout_attachRightToRight => attaches right edge of view to right edge of target view. No fraction or parent here,
+			 as layout_attachRightToRight="fraction %" would be the same as layout_attachRight="fraction %",
+			 and layout_attachRightToRight="parent" would be the same as layout_attachRight="parent".
+			 layout_attachRightToRight and layout_attachRight are mutually exclusive. The last parsed attribute is in effect.
+			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
+		-->
+
+		<attr name="layout_attachRightToRight" format="reference"/>
+		<attr name="layout_attachBottomToBottom" format="reference"/>
+		<attr name="layout_attachLeftToLeft" format="reference"/>
+		<attr name="layout_attachTopToTop" format="reference"/>
+
+		<!-- By default, view gravitates to its parent (via standard android:layout_gravity). If layout_gravityTarget is some non-parent view id,
+			 that target view becomes the point of gravitaion. E.g. if android:layout_gravity="center" and layout_gravityTarget="@id/some_view", this view
+			 will be centered relatively to the target "some_view".
+			 The gravity target view should be in the same parent as this view.
+			 If gravity target view doesn't exist, or is GONE, view gravitates to parent.
+			 Not supported for layout_flex views.
+			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
+
+			 NOTE: this disables accounting for gravity based consumed parent space, as gravityTarget view bounds become the reference bounds for this view
+			 Consume space still works if layout_attach*="parent" is used
+		-->
+		<attr name="layout_gravityTarget" format="reference|integer">
+			<enum name="parent" value="0"/>
+		</attr>
+
+		<!-- The axis to use for the layout_gravityTarget -->
+		<attr name="layout_gravityTargetAxis">
+			<enum name="horizontal" value="0x0100"/>
+			<enum name="vertical" value="0x0200"/>
+			<enum name="both" value="0x0300"/><!-- Default -->
+		</attr>
+
+		<!-- Applies additional offsets for gravity AND parent available size for this child on appripriate side based on window insets.
+		     By default, gravity aligns to the parent sides ignoring possible insets. Also, for match_parent size, %-percent size, or any other parent-related size, no
+		     insets are accounted for. With this attribute, appropriate side inset will be accounted for.
+		     For example, view with layout_offsets=insets and match_parent/match_parent will fill parent according to window insets.
+		     This, of course, works if insets are propagated appropriately -->
+		<attr name="layout_offsets">
+			<flag name="insetLeft"   value="0x10000000"/>
+			<flag name="insetTop"    value="0x20000000"/>
+			<flag name="insetRight"  value="0x40000000"/>
+			<flag name="insetBottom" value="0x80000000"/>
+			<!-- All 4 inset sides -->
+			<flag name="insets"      value="0xF0000000"/>
+		</attr>
+
+
+		<!-- layout_consumeSpace "consumes" space within parent from one or two sides, or both (layout_consumeSpace="both").
+			 If parent space is consumed, any subsequent child will be laid out with offset. Gravity is also affected, but not the
+			 layout_widthPercent/layout_heightPercent (unless "size" flag specified, see below).
+			 There are 4 sides in parent view which can be consumed - left, top, right, bottom.
+
+			 Views aligned to left (or left and right), consume left space, view aligned to top - top space, views aligned
+			 to right - right space, and aligned to bottom - bottom space.
+			 The alignment here means either layout_gravity (per appropiate axis), or layout_attach* attribute, if layout_gravity is missing for the axis.
+
+			 layout_consumeSpace=reset_* resets such layout consumption (works similar to new line in text or to <br/> in html).
+			 By default, only the side (e.g. just left, for horizontally consumed space), which view is aligned to is reset.
+			 Special reset_full_* values can reset both sides.
+
+			 For example: 2 columns 50%|50% height=200dp, then 2 rows (width=100%) height=100dp
+			 	<view w:layout_widthRelative="50%" android:layout_height="200dp" w:layout_consumeSpace="horizontal"/>
+			 	<view w:layout_widthRelative="50%" android:layout_height="200dp" w:layout_consumeSpace="vertical|reset_horizontal"/>
+
+			 	<view android:layout_width="match_parent" android:layout_height="100dp" w:layout_consumeSpace="vertical"/>
+			 	<view android:layout_width="match_parent" android:layout_height="100dp" w:layout_consumeSpace="vertical"/>
+
+		-->
+		<attr name="layout_consumeSpace">
+			<flag name="none" value="0"/>
+			<flag name="horizontal" value="0x1000000"/><!-- NOTE: should match FastLayoutParams.FLAG_CONSUME_* -->
+			<flag name="vertical" value="0x2000000"/>
+			<flag name="both" value="0x3000000"/>
+
+			<!-- Also consume parent space available for children for width/heightPercent and other parent size
+				 dependent proprerties. Size is consumed on the axises where we consume space
+				 REVISIT: currently this can't be reset -->
+			<flag name="size" value="0x80000000"/>
+
+			<!-- Resets appropriate horizontal consumed space on one side (depending on view gravity, e.g. view attached to left will reset left side consumed space) -->
+			<!-- Works like <br/> -->
+			<flag name="reset_horizontal" value="0x4000000"/>
+			<!-- Resets appropriate vertical consumed space on one side (depending on view gravity, e.g. view attached to top will reset top side consumed space) -->
+			<flag name="reset_vertical" value="0x8000000"/>
+			<!-- reset_horizontal and reset_vertical combined -->
+			<flag name="reset_both" value="0xC000000"/>
+
+			<!-- Resets horizontal consumed space on both sides (left/right) -->
+			<flag name="reset_full_horizontal" value="0x10000000"/>
+			<!-- Resets horizontal consumed space on both sides (top/bottom) -->
+			<flag name="reset_full_vertical" value="0x20000000"/>
+
+			<!-- Resets horizontal consumed space on all 4 sides (left/right/top/bottom) -->
+			<flag name="reset_full" value="0x30000000"/>
+
+			<!-- Automatically resets appropriate axis as soon as no more space on this axis exists and consumes other axis on such reset.
+				 This results in automatic layout break to new "line" (or column, for vertical layout).
+				 E.g. if multiple views have layout_consumeSpace="horizontal|reset_auto", they will be laid out in rows.
+				 NOTE: layout_consumeSpace is processed after given view is laid out. Thus, if there is no enough space for view due to consumed space,
+				 view will "overshoot" or will be shrinked. Thus, reset_auto works best with predefined percent view dimensions, e.g.
+				 multiple views with w:layout_widthPercent="25%" w:layout_consumeSpace="horizontal|reset_auto" will be laid out
+				 in rows, 4 view per row
+				 NOTE: reset_auto by default resets horizontal axis and consumes vertical.
+				 Only if vertical (without also horizontal) is specified for given view, vertical axis will be reset, and horizontal consumed.
+				 Other reset_* flags are processed as usual, thus, can cause double consuption and other side effects, if used together with reset_auto
+			 -->
+			<flag name="reset_auto" value="0x40000000"/>
+
+			<!-- This shouldn't be combined with the other layout_consumeSpace flags. Causes items to be positioned one by one as horizontal
+			     stacks with the auto wrapping to the next "line".
+			     Views are measured with the whole available container width (other horizontal consumed space is ignored,
+			     similarily to layout_*Percent measurement) -->
+			<flag name="stack_horizontal" value="0x800000"/>
+		</attr>
+
+		<!-- android:layout_gravity will be used if layout_forceGravityIfGone="@id/some_view_id" view is missing or GONE -->
+		<attr name="layout_forceGravityIfGone" format="reference"/>
+
+		<!-- if any of layout_attach* target ids are "gone", view is attached to appropriate parent side.
+			 NOTE: view is attached to parent side if no such target "attach to" view exists, even without this property set to true.
+		     This attribute ensures view is attached to parent when the attach target visibility is GONE.
+			 layout_consumeSpace attribute is still processed -->
+		<attr name="layout_attachToParentIfGone" format="boolean"/>
+
+		<!-- View margins are compensated for given scale (thus, margins are not affected by scaleX/scaleY/scale transformations)
+			 Requires pivot set to 0, 0 (i.e. android:transformPivotX=0, android:transformPivotY=0). Doesn't work with MATCH_PARENT,
+			 though works with attachLeft/attachRight combintation -->
+		<attr name="layout_compensateScale" format="float"/>
+
+		<!-- If true, view is aligned to its content. For non-FastTextView this means padding is ignored.
+
+		     For the FastTextView and the derived views this also ignores inner font paddings, aligning
+		     the view almost to the text content pixels or the icon (when drawableAdj is defined for the FastTextView).
+		     layout_compensateScales is important here, as it's used to scale all the paddings to ignore.
+
+		     Previously, margin values were used to specifically adjust such views. With layout_alignToContent,
+		     it's not necessary to adjust margins for each scene/font-size anymore.
+
+             Not applied to the flex-layout children -->
+		<attr name="layout_alignToContent">
+			<enum name="none" value="0"/>
+			<enum name="horizontal" value="0x10000"/>
+			<enum name="vertical" value="0x20000"/>
+			<enum name="all" value="0x30000"/>
+		</attr>
+
+		<!-- If true, view will be given UNSPECIFIED measure spec when view size is wrap_content on given axis.
+			 By default, this is disabled, thus view measures requested size limited by its container size.
+			 layout_unlimitedMeasure="true" may be required for the cases when there is only one child view which should grow beyond its container size
+			 on the scrollable axis. Such behavior is close to Android ScrollableView children measuring
+		-->
+		<attr name="layout_unlimitedMeasure" format="boolean"/>
+
+		<!-- If true, layout_width/height="wrap_content" won't take margins into account.
+		     NOTE: by default, when wrap_content is used, parent still limits view size based on parent available size minus view margins.
+		     Setting this attribute to true removes margins from the calculation, making whole space available for the child -->
+		<attr name="layout_wrapIgnoresMargins" format="boolean"/>
+
+		<!-- If true, applied gravity ignores this view margings. Note that gravity may be applied by one axis, both axises, or none,
+		     and margins are ignored for the applied gravity axis. Note that also if no other layout_attach* attributes defined for the axis,
+		     gravity is applied on this axis -->
+		<attr name="layout_gravityIgnoresMargins" format="boolean"/>
+
+		<!-- If set, layout_percentWidth/layout_percentHeight, or both properties ignore this view margins -->
+		<attr name="layout_percentIgnoresMargins">
+			<flag name="width"  value="0x200000"/><!-- Sync with FLAG2_PERCENT_WIDTH_IGNORES_MARGIN -->
+			<flag name="height" value="0x400000"/><!-- Sync with FLAG2_PERCENT_HEIGHT_IGNORES_MARGIN -->
+			<flag name="both"   value="0x600000"/>
+		</attr>
+
+
+		<!-- If true, this view gets width=0 height=0 (like GONE view) when the view is empty. Actual visibility is not changed.
+		     NOTE: currently works only for FastTextView, TextViews, and the derived classes
+		-->
+		<attr name="layout_goneWhenEmpty" format="boolean"/>
+
+
+
+		<!-- Reference to the dynamic dimensions. See values-dimensions.xml -->
+		<attr name="layout_widthRef" format="reference"/>
+		<!-- Reference to the dynamic dimensions. See values-dimensions.xml -->
+		<attr name="layout_heightRef" format="reference"/>
+		<!-- Reference to the dynamic dimensions. See values-dimensions.xml -->
+		<attr name="layout_marginLeftRef" format="reference"/>
+		<!-- Reference to the dynamic dimensions. See values-dimensions.xml -->
+		<attr name="layout_marginTopRef" format="reference"/>
+		<!-- Reference to the dynamic dimensions. See values-dimensions.xml  -->
+		<attr name="layout_marginRightRef" format="reference"/>
+		<!-- Reference to the dynamic dimensions. See values-dimensions.xml  -->
+		<attr name="layout_marginBottomRef" format="reference"/>
+
+		<!-- NOTE: basic MarginLayoutParams attrs are needed for programmatic LP creation based on style attr/res. MarginLayoutParams doesn't support that,
+			 so FastLayoutLP handles margin parsing on its own
+			 NOTE: there is a slight difference for marginStart/End parsing. FastLayout always parses them in supportsRtl=true mode, meaning,
+			 if marginStart or marginEnd or both are defined, then marginStart and marginStart are used instead of marginLeft/Right.
+			 If only one of the marginStart/End attributes defined, other attribute is considered to be 0 (marginLeft/Right ignored)
+		-->
+
+		<attr name="android:layout_width"/>
+		<attr name="android:layout_height"/>
+		<attr name="android:layout_margin"/>
+		<attr name="android:layout_marginLeft"/>
+		<attr name="android:layout_marginTop"/>
+		<attr name="android:layout_marginBottom"/>
+		<attr name="android:layout_marginRight"/>
+		<attr name="android:layout_marginStart"/>
+		<attr name="android:layout_marginEnd"/>
+	</declare-styleable>
+
+	<!-- Constant definitions for FastLayoutLP layout_matchDimension. Can be used e.g. via resource specific @integer -->
+	<integer name="layout_matchDimension_widthToHeight" tools:ignore="UnusedResources">0x100000</integer>
+	<integer name="layout_matchDimension_heightToWidth" tools:ignore="UnusedResources">0x200000</integer>
+
+</resources>

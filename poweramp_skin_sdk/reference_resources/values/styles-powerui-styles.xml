@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<!-- Applied to top activity and dialogs -->
+	<style name="BasePoweruiStyles">
+		<!-- Drawables -->
+		<!-- NOTE: for non default themes, these can be overridden in a theme xml -->
+		
+		<item name="repeat_none_32dp">@drawable/repeat_stroke_32dp_tinted</item>
+		<item name="repeat_32dp">@drawable/repeat_32dp_tinted</item>
+		<item name="repeat_advance_32dp">@drawable/repeat_advance_32dp_tinted</item>
+		<item name="repeat_song_32dp">@drawable/repeat_song_32dp_tinted</item>
+		<item name="single_song_32dp">@drawable/single_song_32dp_tinted</item>
+		
+		<item name="shuffle_none_32dp">@drawable/shuffle_stroke_32dp_tinted</item>
+		<item name="shuffle_all_32dp">@drawable/shuffle_all_32dp_tinted</item>
+		<item name="shuffle_songs_32dp">@drawable/shuffle_songs_32dp_tinted</item>
+		<item name="shuffle_cats_32dp">@drawable/shuffle_cats_32dp_tinted</item>
+		<item name="shuffle_songs_and_cats_32dp">@drawable/shuffle_songs_and_cats_32dp_tinted</item>
+		
+		<item name="vis_lock_24dp">@drawable/vis_lock_24dp_tinted</item>
+		<item name="vis_advance_24dp">@drawable/advance_24dp_tinted</item>
+		<item name="vis_advance_by_time_24dp">@drawable/advance_by_time_24dp_tinted</item>
+		<item name="vis_shuffle_24dp">@drawable/shuffle_24dp_tinted</item>
+		
+		<item name="vis_none_32dp">@drawable/vis_stroke_32dp_tinted</item>
+		<item name="vis_w_ui_32dp">@drawable/vis_w_ui_32dp_tinted</item>
+		<item name="vis_32dp">@drawable/vis_32dp_tinted</item>
+				
+		
+		<item name="reverb_24dp">@drawable/reverb_24dp</item>
+		<item name="vis_24dp">@drawable/vis_32dp</item><!-- Vis panel list item icon -->
+		
+		<item name="sleep_timer_32dp">@drawable/sleep_timer_stroke_32dp_tinted</item>
+				
+		<item name="nav_lists">@drawable/lists_rounded_stroke_selector</item>
+		<item name="nav_equ">@drawable/equ_rounded_stroke_selector</item>
+		<item name="nav_search">@drawable/search_rounded_stroke_selector</item>
+		<item name="nav_hamburger">@drawable/hamburger_rounded_stroke_selector</item>
+		
+		<item name="eq_equalizer">@drawable/eq_equalizer_stroke_selector</item>
+		<item name="eq_vol">@drawable/eq_vol_stroke_selector</item>
+		<item name="eq_reverb">@drawable/eq_reverb_stroke_selector</item>
+		
+		<!-- Base dialogs -->
+		<item name="dialog_AlertDialogActivity">@style/dialog_AlertDialogActivity</item>
+		<item name="dialog_AlertDialogActivity_centered">@style/dialog_AlertDialogActivity_centered</item>
+		<item name="dialog_AlertDialogActivity_list">@style/dialog_AlertDialogActivity_list</item>
+		<item name="dialog_AlertDialogActivity_list_centered">@style/dialog_AlertDialogActivity_list_centered</item>
+		<item name="dialog_AlertDialogActivity_vertical_buttons">@style/dialog_AlertDialogActivity_vertical_buttons</item>
+		<item name="dialog_AlertDialogActivity_no_title">@style/dialog_AlertDialogActivity_no_title</item>
+		<item name="dialog_AlertDialogActivity_no_title_vertical_buttons">@style/dialog_AlertDialogActivity_no_title_vertical_buttons</item>
+		
+		<item name="azChars">@string/azChars</item><!-- public-string -->
+		
+		<item name="EqMilkFrs_presetUri">internal://#fft2inv</item>
+		
+		<!-- These styles are also used in dialogs -->
+		<item name="TopBaseButtonLayout">@style/TopBaseButtonLayout</item>
+		<item name="TopMenuPlaceholderLayout">@style/TopMenuPlaceholderLayout</item>
+		
+		<item name="ItemPopupList">@style/ItemPopupList</item>
+		<item name="ItemPopupListMorePadding">@style/ItemPopupListMorePadding</item>		
+		<item name="ItemPopupListImage">@style/ItemPopupListImage</item>
+		<item name="ItemPopupListAAImage">@style/ItemPopupListAAImage</item>
+		<item name="ItemPopupListSelectBox">@style/ItemPopupListSelectBox</item>
+		<item name="ItemPopupListAASelectBox">@style/ItemPopupListAASelectBox</item>
+		<item name="ItemPopupListTitle">@style/ItemPopupListTitle</item>
+		<item name="ItemPopupListTitle_Text">@style/ItemGenericTitle_Text</item>
+		<item name="ItemPopupListTitleLarger">@style/ItemPopupListTitleLarger</item>
+		<item name="ItemPopupListTitleLarger_Text">@style/ItemPopupListTitleLarger_Text</item>
+		<item name="ItemPopupListTitleLarger_2line">@style/ItemPopupListTitleLarger_2line</item>
+		<item name="ItemPopupListMicroIcon">@style/ItemPopupListMicroIcon</item>
+		<item name="ItemPopupListMicroIconSpace">@style/ItemPopupListMicroIconSpace</item>
+		<item name="ItemPopupListFrs">@style/ItemPopupListFrs</item>
+		<item name="ItemEqPreset">@style/ItemEqPreset</item>
+		<item name="ItemEqPresetSelectBox">@style/ItemEqPresetSelectBox</item>
+		
+		<item name="ItemPopupSimpleTitle">@style/ItemPopupSimpleTitle</item>
+		<item name="ItemPopupSimpleTitle_Text">@style/ItemPopupSimpleTitle_Text</item>
+		<item name="ItemPopupSimpleLine2">@style/ItemPopupSimpleLine2</item>
+		<item name="ItemPopupSimpleLine2_Text">@style/ItemPopupSimpleLine2_Text</item>
+						
+		<item name="ItemPopupMenu_scene_item_menu">@style/ItemPopupMenu_scene_item_menu</item>
+		<item name="ItemPopupMenuSeparator">@style/ItemPopupMenuSeparator</item>
+		<item name="ItemPopupMenuSeparator2">@style/ItemPopupMenuSeparator2</item>
+		<item name="ItemPopupMenuItemsLayout">@style/ItemPopupMenuItemsLayout</item>
+		<item name="ItemTextPopupMenuItemsLayout">@style/ItemTextPopupMenuItemsLayout</item>
+		<item name="ItemPopupMenuTopSpacer">@style/ItemPopupMenuTopSpacer</item>
+		<item name="ItemTextPopupMenuTopSpacer">@style/ItemTextPopupMenuTopSpacer</item>
+		<item name="ItemPopupMenuTopSpacer_scene_item_menu_lu">@style/ItemPopupMenuTopSpacer_scene_item_menu_lu</item>
+		
+		<item name="PopupInfoTextTitle">@style/PopupInfoTextTitle</item>
+		<item name="PopupInfoTextTitle_Text">@style/PopupInfoTextTitle_Text</item>
+		<item name="PopupInfoText">@style/PopupInfoText</item>
+		<item name="PopupContent_scene_button_menu">@style/PopupContent_scene_button_menu</item>
+		<item name="PopupDSPInfoText">@style/PopupDSPInfoText</item>
+		<item name="PopupDSPInfoImage">@style/PopupDSPInfoImage</item>
+		
+		<item name="PopupMenuItem">@style/PopupMenuItem</item>
+		<item name="PopupMenuItem_Text">@style/PopupMenuItem_Text</item>
+		<item name="PopupMenuItem50">@style/PopupMenuItem50</item>
+		
+		<item name="BlackButton_Text">@style/BlackButton_Text</item>
+		<item name="WhiteButton_Text">@style/WhiteButton_Text</item>
+		
+		<!-- NOTE: Eq text styles are here, as they can be used by non-top-activity derived contexts (e.g. VolumePanel) -->
+		<item name="EqLinearKnob_Text">@style/EqLinearKnob_Text</item>
+		<item name="EqKnobValue_Text">@style/EqKnobValue_Text</item>
+		<item name="EqKnobValueLarger_Text">@style/EqKnobValueLarger_Text</item>
+		<item name="EqKnobLabel_Text">@style/EqKnobLabel_Text</item>
+		
+		<!-- Used in preset assignment dialog -->
+		<item name="EqPresetDeviceAssignIcon">@style/EqPresetDeviceAssignIcon</item>
+		<item name="EqPresetDeviceAssignCheckbox">@style/EqPresetDeviceAssignCheckbox</item>
+		
+		<!-- NOTE: PopupButtons and related are possible in dialogs -->
+		<item name="PopupButton">@style/PopupButtonNoTint</item>
+		<item name="PopupButton_Text">@style/PopupButton_Text</item>
+		<item name="PopupButton_scene_button_menu">@style/PopupButtonNoTint_scene_button_menu</item>
+		
+		<item name="PopupButtonLayoutDialogButton3">@style/PopupButtonLayoutDialogButton3</item>
+		<item name="PopupButtonLayoutDialogButton2">@style/PopupButtonLayoutDialogButton2</item>
+		<item name="PopupButtonLayoutDialogButton1">@style/PopupButtonLayoutDialogButton1</item>
+		
+		<item name="SmallerPopupButton">@style/SmallerPopupButton</item>
+		<item name="SmallerPopupButton_scene_button_menu">@style/SmallerPopupButton_scene_button_menu</item>
+
+		<!-- NOTE: toast is also used in dialogs -->		
+		<item name="TopToastContainer">@style/TopToastContainer</item>
+		<item name="TopToastContainer_scenes_non_main">@style/TopToastContainer_scenes_non_main</item>
+		<item name="TopToastFrame">@style/TopToastFrame</item>
+		<item name="TopToastFrame_scene_expanded">@style/TopToastFrame_scene_expanded</item>
+		<item name="TopToastIcon">@style/TopToastIcon</item>
+		<item name="TopToastTitle">@style/TopToastTitle</item>
+		<item name="TopToastTitle_Text">@style/TopToastTitle_Text</item>
+		<item name="TopToastLine2">@style/TopToastLine2</item>
+		<item name="TopToastLine2_Text">@style/TopToastLine2_Text</item>
+		<item name="TopToastTitle_no_icon">@style/TopToastTitle_no_icon</item>
+		<item name="TopToastLine2_no_icon">@style/TopToastLine2_no_icon</item>
+	</style>
+	
+	<!-- Applied to top activity only -->
+	<style name="TopPoweruiStyles">
+		<item name="WhiteStrokedListHeaderButton_Text">@style/WhiteStrokedListHeaderButton_Text</item>
+		
+		<item name="ItemTrack">@style/ItemTrack</item>
+		
+		<item name="ItemTrackSelectBox">@style/ItemTrackSelectBox</item>
+		<item name="ItemTrackSelectBox_scene_grid">@style/ItemTrackSelectBox_scene_grid</item>
+		<item name="ItemTrackSelectBox_scene_small_no_aa">@style/ItemTrackSelectBox_scene_small_no_aa</item>
+		
+		<item name="ItemTrackPlayingMark">@style/ItemTrackPlayingMark</item>
+		<item name="ItemTrackPlayingMark_scene_small">@style/ItemTrackPlayingMark_scene_small</item>
+		<item name="ItemTrackPlayingMark_scene_1">@style/ItemTrackPlayingMark_scene_1</item>
+		<item name="ItemTrackPlayingMark_scene_zoomed">@style/ItemTrackPlayingMark_scene_zoomed</item>
+		<item name="ItemTrackPlayingMark_scene_1_zoomed">@style/ItemTrackPlayingMark_scene_1_zoomed</item>
+		<item name="ItemTrackPlayingMark_scene_grid">@style/ItemTrackPlayingMark_scene_grid</item>
+		<item name="ItemTrackPlayingMark_scene_grid_1">@style/ItemTrackPlayingMark_scene_grid_1</item>
+		<item name="ItemTrackPlayingMark_scene_grid_1_alt">@style/ItemTrackPlayingMark_scene_grid_1_alt</item>
+		<item name="ItemTrackPlayingMark_scene_grid_zoomed">@style/ItemTrackPlayingMark_scene_grid_zoomed</item>
+		<item name="ItemTrackPlayingMark_scene_grid_1_zoomed">@style/ItemTrackPlayingMark_scene_grid_1_zoomed</item>
+		<item name="ItemTrackPlayingMark_scene_grid_1_alt_zoomed">@style/ItemTrackPlayingMark_scene_grid_1_alt_zoomed</item>
+		<item name="ItemTrackPlayingMark_scenes_hidden">@style/ItemTrackPlayingMark_scenes_hidden</item>
+		<item name="ItemTrackPlayingMark_scene_item_menu">@style/ItemTrackPlayingMark_scene_item_menu</item>
+		
+		<item name="ItemTrackAAImage">@style/ItemTrackAAImage</item>
+		<item name="ItemTrackAAImage_scene_small">@style/ItemTrackAAImage_scene_small</item>
+		<item name="ItemTrackAAImage_scene_small_no_aa">@style/ItemTrackAAImage_scene_small_no_aa</item>
+		<item name="ItemTrackAAImage_scene_zoomed">@style/ItemTrackAAImage_scene_zoomed</item>
+		<item name="ItemTrackAAImage_scene_aa">@style/ItemTrackAAImage_scene_aa</item>
+		<item name="ItemTrackAAImage_scene_aa_vis">@style/ItemTrackAAImage_scene_aa_vis</item>
+		<item name="ItemTrackAAImage_scene_aa_playing">@style/ItemTrackAAImage_scene_aa_playing</item>
+		<item name="ItemTrackAAImage_scene_grid">@style/ItemTrackAAImage_scene_grid</item>
+		<item name="ItemTrackAAImage_scene_grid_zoomed">@style/ItemTrackAAImage_scene_grid_zoomed</item>
+		<item name="ItemTrackAAImage_scene_grid_1_alt_zoomed">@style/ItemTrackAAImage_scene_grid_1_alt_zoomed</item>
+		<item name="ItemTrackAAImage_scene_grid_1_alt">@style/ItemTrackAAImage_scene_grid_1_alt</item>
+		<item name="ItemTrackAAImage_scene_header">@style/ItemTrackAAImage_scene_header</item>
+		<item name="ItemTrackAAImage_scene_item_menu">@style/ItemTrackAAImage_scene_item_menu</item>
+		<item name="ItemTrackAAImage_scene_item_menu_lu">@style/ItemTrackAAImage_scene_item_menu_lu</item>
+
+		<item name="ItemTrackCatImage">@style/ItemTrackCatImage</item>
+		<item name="ItemTrackCatImage_Text">@style/ItemTrackCatImage_Text</item>
+		<item name="ItemTrackCatImage_scene_zoomed">@style/ItemTrackCatImage_scene_zoomed</item>
+		<item name="ItemTrackCatImage_scene_small">@style/ItemTrackCatImage_scene_small</item>
+		<item name="ItemTrackCatImage_scene_1_small">@style/ItemTrackCatImage_scene_1_small</item>
+		<item name="ItemTrackCatImage_scene_header">@style/ItemTrackCatImage_hidden</item>
+		<item name="ItemTrackCatImage_scene_grid">@style/ItemTrackCatImage_scene_grid</item>
+		<item name="ItemTrackCatImage_scene_grid_zoomed">@style/ItemTrackCatImage_scene_grid_zoomed</item>
+		<item name="ItemTrackCatImage_scene_aa">@style/ItemTrackCatImage_gone</item>
+		<item name="ItemTrackCatImage_scene_aa_vis">@style/ItemTrackCatImage_gone</item>
+		<item name="ItemTrackCatImage_scene_aa_playing">@style/ItemTrackCatImage_gone</item>
+		<item name="ItemTrackCatImage_scene_item_menu">@style/ItemTrackCatImage_gone</item>
+		
+		<item name="ItemTrackTitle">@style/ItemTrackTitle</item>
+		<item name="ItemTrackTitle_Text">@style/ItemTrackTitle_Text</item>
+		<item name="ItemTrackTitle_scene_small">@style/ItemTrackTitle_scene_small</item>
+		<item name="ItemTrackTitle_scene_1">@style/ItemTrackTitle_scene_1</item>
+		<item name="ItemTrackTitle_scene_1_small">@style/ItemTrackTitle_scene_1_small</item>
+		<item name="ItemTrackTitle_scene_zoomed">@style/ItemTrackTitle_scene_zoomed</item>
+		<item name="ItemTrackTitle_scene_1_zoomed">@style/ItemTrackTitle_scene_1_zoomed</item>
+		<item name="ItemTrackTitle_scene_grid">@style/ItemTrackTitle_scene_grid</item>
+		<item name="ItemTrackTitle_scene_grid_1">@style/ItemTrackTitle_scene_grid_1</item>
+		<item name="ItemTrackTitle_scene_grid_1_alt">@style/ItemTrackTitle_scene_grid_1_alt</item>
+		<item name="ItemTrackTitle_scene_grid_zoomed">@style/ItemTrackTitle_scene_grid_zoomed</item>
+		<item name="ItemTrackTitle_scene_grid_1_zoomed">@style/ItemTrackTitle_scene_grid_1_zoomed</item>
+		<item name="ItemTrackTitle_scene_grid_1_alt_zoomed">@style/ItemTrackTitle_scene_grid_1_alt_zoomed</item>
+		<item name="ItemTrackTitle_scene_aa">@style/ItemTrackTitle_scene_aa</item>
+		<item name="ItemTrackTitle_scene_aa_vis">@style/ItemTrackTitle_scene_aa_vis</item>
+		<item name="ItemTrackTitle_scene_aa_playing">@style/ItemTrackTitle_scene_aa_playing</item>
+		<item name="ItemTrackTitle_scene_item_menu">@style/ItemTrackTitle_scene_item_menu</item>
+		<item name="ItemTrackTitle_scene_item_menu_lu">@style/ItemTrackTitle_scene_item_menu_lu</item>
+		<item name="ItemTrackTitle_scene_header">@style/ItemTrackTitle_scene_header</item>
+		<item name="ItemTrackTitle_scene_header_1">@style/ItemTrackTitle_scene_header_1</item>
+				
+		<item name="ItemTrackLine2">@style/ItemTrackLine2</item>
+		<item name="ItemTrackLine2_Text">@style/ItemTrackLine2_Text</item>
+		<item name="ItemTrackLine2_scene_small">@style/ItemTrackLine2_scene_small</item>
+		<item name="ItemTrackLine2_scene_1">@style/ItemTrackLine2_scene_1</item>
+		<item name="ItemTrackLine2_scene_1_small">@style/ItemTrackLine2_scene_1_small</item>
+		<item name="ItemTrackLine2_scene_zoomed">@style/ItemTrackLine2_scene_zoomed</item>
+		<item name="ItemTrackLine2_scene_1_zoomed">@style/ItemTrackLine2_scene_1_zoomed</item>
+		<item name="ItemTrackLine2_scene_grid">@style/ItemTrackLine2_scene_grid</item>
+		<item name="ItemTrackLine2_scene_grid_1">@style/ItemTrackLine2_scene_grid_1</item>
+		<item name="ItemTrackLine2_scene_grid_1_alt">@style/ItemTrackLine2_scene_grid_1_alt</item>
+		<item name="ItemTrackLine2_scene_grid_zoomed">@style/ItemTrackLine2_scene_grid_zoomed</item>
+		<item name="ItemTrackLine2_scene_grid_1_zoomed">@style/ItemTrackLine2_scene_grid_1_zoomed</item>
+		<item name="ItemTrackLine2_scene_grid_1_alt_zoomed">@style/ItemTrackLine2_scene_grid_1_alt_zoomed</item>
+		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa</item>
+		<item name="ItemTrackLine2_scene_aa_vis">@style/ItemTrackLine2_scene_aa_vis</item>
+		<item name="ItemTrackLine2_scene_aa_playing">@style/ItemTrackLine2_scene_aa_playing</item>
+		<item name="ItemTrackLine2_scene_item_menu">@style/ItemTrackLine2_scene_item_menu</item>
+		<item name="ItemTrackLine2_scene_item_menu_lu">@style/ItemTrackLine2_scene_item_menu_lu</item>
+		<item name="ItemTrackLine2_scene_header">@style/ItemTrackLine2_scene_header</item>
+		
+		<item name="ItemTrackMeta">@style/ItemTrackMeta</item>
+		<item name="ItemTrackMeta_Text">@style/ItemTrackMeta_Text</item>
+		<item name="ItemTrackMeta_scene_small">@style/ItemTrackMeta_scene_small</item>
+		<item name="ItemTrackMeta_scene_1">@style/ItemTrackMeta_scene_1</item>
+		<item name="ItemTrackMeta_scene_1_small">@style/ItemTrackMeta_scene_1_small</item>
+		<item name="ItemTrackMeta_scene_zoomed">@style/ItemTrackMeta_scene_zoomed</item>
+		<item name="ItemTrackMeta_scene_1_zoomed">@style/ItemTrackMeta_scene_1_zoomed</item>
+		<item name="ItemTrackMeta_scene_grid">@style/ItemTrackMeta_scene_grid</item>
+		<item name="ItemTrackMeta_scene_grid_1">@style/ItemTrackMeta_scene_grid_1</item>
+		<item name="ItemTrackMeta_scene_grid_1_alt">@style/ItemTrackMeta_scene_grid_1_alt</item>
+		<item name="ItemTrackMeta_scene_grid_zoomed">@style/ItemTrackMeta_scene_grid_zoomed</item>
+		<item name="ItemTrackMeta_scene_grid_1_zoomed">@style/ItemTrackMeta_scene_grid_1_zoomed</item>
+		<item name="ItemTrackMeta_scene_grid_1_alt_zoomed">@style/ItemTrackMeta_scene_grid_1_alt_zoomed</item>
+		<item name="ItemTrackMeta_scene_header">@style/ItemTrackMeta_scene_header</item>
+		<item name="ItemTrackMeta_scene_aa">@style/ItemTrackMeta_scene_aa</item>
+		<item name="ItemTrackMeta_scene_aa_vis">@style/ItemTrackMeta_scene_aa_vis</item>
+		<item name="ItemTrackMeta_scene_aa_playing">@style/ItemTrackMeta_scene_aa_playing</item>
+		<item name="ItemTrackMeta_scene_item_menu">@style/ItemTrackMeta_scene_item_menu</item>
+		<item name="ItemTrackMeta_scene_item_menu_lu">@style/ItemTrackMeta_scene_item_menu_lu</item>
+		
+		<item name="ItemTrackNum">@style/ItemTrackNum</item>
+		<item name="ItemTrackNum_Text">@style/ItemTrackNum_Text</item>
+		<item name="ItemTrackNum_scene_small">@style/ItemTrackNum_scene_small</item>
+		<item name="ItemTrackNum_scene_1">@style/ItemTrackNum_scene_1</item>
+		<item name="ItemTrackNum_scene_1_small">@style/ItemTrackNum_scene_1_small</item>
+		<item name="ItemTrackNum_scene_zoomed">@style/ItemTrackNum_scene_zoomed</item>
+		<item name="ItemTrackNum_scene_1_zoomed">@style/ItemTrackNum_scene_1_zoomed</item>
+		<item name="ItemTrackNum_scene_grid">@style/ItemTrackNum_scene_grid</item>
+		<item name="ItemTrackNum_scene_grid_1">@style/ItemTrackNum_scene_grid_1</item>
+		<item name="ItemTrackNum_scene_grid_1_alt">@style/ItemTrackNum_scene_grid_1_alt</item>
+		<item name="ItemTrackNum_scene_grid_zoomed">@style/ItemTrackNum_scene_grid_zoomed</item>
+		<item name="ItemTrackNum_scene_grid_1_zoomed">@style/ItemTrackNum_scene_grid_1_zoomed</item>
+		<item name="ItemTrackNum_scene_grid_1_alt_zoomed">@style/ItemTrackNum_scene_grid_1_alt_zoomed</item>
+		<item name="ItemTrackNum_scene_header">@style/ItemTrackNum_scene_header</item>
+		<item name="ItemTrackNum_scene_aa">@style/ItemTrackNum_scene_aa</item>
+		<item name="ItemTrackNum_scene_aa_vis">@style/ItemTrackNum_scene_aa_vis</item>
+		<item name="ItemTrackNum_scene_aa_playing">@style/ItemTrackNum_scene_aa_playing</item>
+		<item name="ItemTrackNum_scene_item_menu">@style/ItemTrackNum_scene_item_menu</item>
+		<item name="ItemTrackNum_scene_item_menu_lu">@style/ItemTrackNum_scene_item_menu_lu</item>
+		
+		<item name="ItemTrackDragHandler">@style/ItemTrackDragHandler</item>
+		<item name="ItemTrackDragHandler_scene_grid">@style/ItemTrackDragHandler_scene_grid</item>
+		<item name="ItemTrackDragHandler_scene_small_no_aa">@style/ItemTrackDragHandler_scene_small_no_aa</item>
+		
+		<item name="ItemTrackMenu">@style/ItemTrackMenu</item>
+		<item name="ItemTrackMenu_scene_menu">@style/ItemTrackMenu_scene_menu</item>
+		<item name="ItemTrackMenu_scene_header">@style/ItemTrackMenu_scene_header</item>
+		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa</item>
+		<item name="ItemTrackMenu_scene_aa_vis">@style/ItemTrackMenu_scene_aa_vis</item>
+		<item name="ItemTrackMenu_scene_aa_playing">@style/ItemTrackMenu_scene_aa_playing</item>
+		
+		<item name="SeparatorWithButton">@style/SeparatorWithButton</item>
+		<item name="SeparatorWithButtonTitle">@style/SeparatorWithButtonTitle</item>
+		<item name="SeparatorWithButton_Text">@style/SeparatorWithButton_Text</item>
+		<item name="SeparatorWithButtonButton">@style/SeparatorWithButtonButton</item>
+		
+		<item name="ItemSubheadWithButton">@style/ItemSubheadWithButton</item>
+		<item name="ItemSubheadWithButtonTitle">@style/ItemSubheadWithButtonTitle</item><!-- Not used ATM -->
+		<item name="ItemSubheadWithButtonButton">@style/ItemSubheadWithButtonButton</item><!-- Not used ATM -->
+		
+		<item name="ItemText">@style/ItemText</item>
+		
+		<item name="ItemTextAAImage">@style/ItemTextAAImage</item>
+		<item name="ItemTextAAImage_scene_grid">@style/ItemTextAAImage_scene_grid</item>
+		<item name="ItemTextAAImage_scene_header">@style/ItemTextAAImage_scene_header</item>
+		<item name="ItemTextAAImage_scene_item_menu">@style/ItemTextAAImage_scene_item_menu</item>
+		
+		<item name="ItemTextTitle">@style/ItemTextTitle</item>
+		<item name="ItemTextTitle_Text">@style/ItemTextTitle_Text</item>
+		<item name="ItemTextTitle_scene_grid">@style/ItemTextTitle_scene_grid</item>
+		<item name="ItemTextTitle_scene_header">@style/ItemTextTitle_scene_header</item>
+		<item name="ItemTextTitle_scene_top_header">@style/ItemTextTitle_scene_top_header</item>
+		<item name="ItemTextTitle_scene_item_menu">@style/ItemTextTitle_scene_item_menu</item>
+		
+		<item name="ItemTextLine2">@style/ItemTextLine2</item>
+		<item name="ItemTextLine2_Text">@style/ItemTextLine2_Text</item>
+		<item name="ItemTextLine2_scene_grid">@style/ItemTextLine2_scene_grid</item>
+		<item name="ItemTextLine2_scene_header">@style/ItemTextLine2_scene_header</item>
+		<item name="ItemTextLine2_scene_item_menu">@style/ItemTextLine2_scene_item_menu</item>
+
+		<item name="ItemTextMenu">@style/ItemTextMenu</item>
+		<item name="ItemTextMenu_scene_menu">@style/ItemTextMenu_scene_menu</item>
+		<item name="ItemTextMenu_scene_header">@style/ItemTextMenu_scene_header</item>
+		<item name="ItemTextMenu_scene_search_header">@style/ItemTextMenu_scene_search_header</item>
+		<item name="ItemTextMenu_scene_top_header">@style/ItemTextMenu_scene_top_header</item>
+		
+		<item name="ItemTextHeaderShuffleButton">@style/ItemTextHeaderShuffleButton</item>
+		<item name="ItemTextHeaderShuffleButton_scene_header">@style/ItemTextHeaderShuffleButton_scene_header</item>
+		<item name="ItemTextHeaderShuffleButton_scene_menu">@style/ItemTextHeaderShuffleButton_scene_menu</item>
+		<item name="ItemTextHeaderPlayButton">@style/ItemTextHeaderPlayButton</item>
+		<item name="ItemTextHeaderPlayButton_scene_header">@style/ItemTextHeaderPlayButton_scene_header</item>
+		<item name="ItemTextHeaderPlayButton_scene_menu">@style/ItemTextHeaderPlayButton_scene_menu</item>
+		<item name="ItemTextHeaderSearchButton">@style/ItemTextHeaderSearchButton</item>
+		<item name="ItemTextHeaderSearchButton_scene_header">@style/ItemTextHeaderSearchButton_scene_header</item>
+		<item name="ItemTextHeaderSearchButton_scene_menu">@style/ItemTextHeaderSearchButton_scene_menu</item>
+		
+		<item name="ItemTextHeaderSelectButton">@style/ItemTextHeaderSelectButton</item>
+		<item name="ItemTextHeaderSelectButton_scene_header">@style/ItemTextHeaderSelectButton_scene_header</item>
+		<item name="ItemTextHeaderSelectButton_scene_menu">@style/ItemTextHeaderSelectButton_scene_menu</item>
+		
+		<item name="ItemTextBackDecor">@style/ItemTextBackDecor</item>
+		<item name="ItemTextBackDecorTitle">@style/ItemTextBackDecorTitle</item>
+		<item name="ItemTextBackDecorTitle_scene_header_back_decor">@style/ItemTextBackDecorTitle_scene_header_back_decor</item>
+		
+		<item name="ItemTopTextBackDecor">@style/ItemTopTextBackDecor</item>
+		<item name="ItemTopTextBackDecorTitle">@style/ItemTopTextBackDecorTitle</item>
+		<item name="ItemTopTextBackDecorTitle_scene_header_back_decor">@style/ItemTopTextBackDecorTitle_scene_header_back_decor</item>
+		
+		<item name="ItemHeaderScanProgress">@style/ItemHeaderScanProgress</item>
+		<item name="ItemHeaderScanProgress_scene_item_menu">@style/ItemHeaderScanProgress_scene_item_menu</item>
+		<item name="ItemHeaderScanProgress_scene_header">@style/ItemHeaderScanProgress_scene_header</item>
+		
+		<item name="ItemTextHeaderScanProgress">@style/ItemTextHeaderScanProgress</item>
+		<item name="ItemTextHeaderScanProgress_scene_item_menu">@style/ItemTextHeaderScanProgress_scene_item_menu</item>
+		<item name="ItemTextHeaderScanProgress_scene_header">@style/ItemTextHeaderScanProgress_scene_header</item>
+		<item name="ItemTextHeaderScanProgress_scene_top_header">@style/ItemTextHeaderScanProgress_scene_top_header</item>
+		
+		<item name="ItemAALEDecorLayout">@style/ItemAALEDecorLayout</item>
+		<item name="ItemAALEDecorText">@style/ItemAALEDecorText</item>
+		<item name="ItemAALEDecorText_Text">@style/ItemAALEDecorText_Text</item>
+		
+		<item name="ItemTrackBackDecor">@style/ItemTrackBackDecor</item>
+		<item name="ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle</item>
+		<item name="ItemTrackBackDecorTitle_scene_header_1">@style/ItemTrackBackDecorTitle_scene_header_1</item>
+		<item name="ItemTrackBackDecorTitle_scene_header_back_decor">@style/ItemTrackBackDecorTitle_scene_header_back_decor</item>
+		
+		<item name="ItemEmptyList">@style/ItemEmptyList</item>
+		<item name="ItemEmptyListText">@style/ItemEmptyListText</item>
+		<item name="ItemEmptyListText_Text">@style/ItemEmptyListText_Text</item>
+		<item name="ItemEmptyListSettingsButtonBase">@style/ItemEmptyListSettingsButtonBase</item>
+		<item name="ItemEmptyListSettingsButton">@style/ItemEmptyListSettingsButton</item>
+		<item name="ItemEmptyListScanProgress">@style/ItemEmptyListScanProgress</item>
+		<item name="ItemEmptyListScanProgressCenter">@style/ItemEmptyListScanProgressCenter</item>
+		
+		<item name="ItemMiniplayer">@style/ItemMiniplayer</item>
+		<item name="ItemMiniplayerAAImage">@style/ItemMiniplayerAAImage</item>
+		<item name="ItemMiniplayerTitle">@style/ItemMiniplayerTitle</item>
+		<item name="ItemMiniplayerTitle_Text">@style/ItemGenericTitle_Text</item>
+		<item name="ItemMiniplayerLine2">@style/ItemMiniplayerLine2</item>
+		<item name="ItemMiniplayerLine2_Text">@style/ItemGenericLine2_Text</item>
+		<item name="ItemMiniplayerPlayButton">@style/ItemMiniplayerPlayButton</item>
+		<item name="ItemMiniplayerPrevNextDecorLayout">@style/ItemMiniplayerPrevNextDecorLayout</item>
+		<item name="ItemMiniplayerPrevNextDecorText">@style/ItemMiniplayerPrevNextDecorText</item>
+		<item name="ItemMiniplayerPrevNextDecorText_Text">@style/ItemMiniplayerPrevNextDecorText_Text</item>
+		
+		<item name="ItemVis">@style/ItemVis</item>
+		<item name="ItemVisImage">@style/ItemVisImage</item>
+		<item name="ItemVisLikeButton">@style/ItemVisLikeButton</item>
+		<item name="ItemVisTitle">@style/ItemVisTitle</item>
+		<item name="ItemVisTitle_Text">@style/ItemGenericTitle_Text</item>
+		<item name="ItemVisLine2">@style/ItemVisLine2</item>
+		<item name="ItemVisLine2_Text">@style/ItemGenericLine2_Text</item>
+		<item name="ItemVisActivatedCheck">@style/ItemVisActivatedCheck</item>
+		
+		<item name="VisLockButtonLayout">@style/VisLockButtonLayout</item>
+		
+		<item name="ItemHeaderShuffleButton">@style/ItemHeaderShuffleButton</item>
+		<item name="ItemHeaderShuffleButton_scene_header">@style/ItemHeaderShuffleButton_scene_header</item>
+		<item name="ItemHeaderShuffleButton_scene_menu">@style/ItemHeaderShuffleButton_scene_menu</item>
+		<item name="ItemHeaderPlayButton">@style/ItemHeaderPlayButton</item>
+		<item name="ItemHeaderPlayButton_scene_header">@style/ItemHeaderPlayButton_scene_header</item>
+		<item name="ItemHeaderPlayButton_scene_menu">@style/ItemHeaderPlayButton_scene_menu</item>
+		<item name="ItemHeaderSelectButton">@style/ItemHeaderSelectButton</item>
+		<item name="ItemHeaderSelectButton_scene_header">@style/ItemHeaderSelectButton_scene_header</item>
+		<item name="ItemHeaderSelectButton_scene_menu">@style/ItemHeaderSelectButton_scene_menu</item>
+		<item name="ItemHeaderSearchButton">@style/ItemHeaderSearchButton</item>
+		<item name="ItemHeaderSearchButton_scene_header">@style/ItemHeaderSearchButton_scene_header</item>
+		<item name="ItemHeaderSearchButton_scene_menu">@style/ItemHeaderSearchButton_scene_menu</item>
+				
+		<item name="ItemTrackAAPanel">@style/ItemTrackAAPanel</item>
+		<item name="ItemTrackAAPanel_scene_aa">@style/ItemTrackAAPanel_scenes_hidden</item>
+		<item name="ItemTrackAAPanel_scene_aa_playing">@style/ItemTrackAAPanel_scenes_hidden</item>
+		<item name="ItemTrackAAPanel_scene_aa_vis">@style/ItemTrackAAPanel_scenes_hidden</item>
+		<item name="ItemTrackAAPanel_scenes_hidden">@style/ItemTrackAAPanel_scenes_hidden</item>
+		
+		<item name="ItemLikeUnlikeLayout">@style/ItemLikeUnlikeLayout</item>
+		<item name="ItemLikeUnlikeLayout_scene_item_menu_lu">@style/ItemLikeUnlikeLayout_scene_item_menu_lu</item>
+		<item name="ItemLikeUnlikeLayout_scene_aa">@style/ItemLikeUnlikeLayout_scene_aa</item>
+		<item name="ItemLikeUnlikeLayout_scenes_invisible">@style/ItemLikeUnlikeLayout_scenes_invisible</item>
+		
+		<item name="ItemRatingBar">@style/ItemRatingBar</item>
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa</item>
+		<item name="ItemRatingBar_scene_item_menu_lu">@style/ItemRatingBar_scene_item_menu_lu</item>
+		<item name="ItemRatingBar_anim_ratingbar_pressed">@style/ItemRatingBar_anim_ratingbar_pressed</item>
+		<item name="ItemRatingBar_scenes_invisible">@style/ItemRatingBar_scenes_invisible</item>
+		
+		<item name="ItemLike">@style/ItemLike</item>
+		<item name="ItemLike_scene_aa">@style/ItemLike_scene_aa</item>
+		<item name="ItemLike_scene_item_menu">@style/ItemLike_scene_item_menu</item>
+		<item name="ItemUnlike">@style/ItemUnlike</item>
+		<item name="ItemUnlike_scene_aa">@style/ItemUnlike_scene_aa</item>
+		<item name="ItemUnlike_scene_item_menu">@style/ItemUnlike_scene_item_menu</item>
+				
+		<item name="NavbarShim">@style/NavbarShim</item>
+		<item name="Navbar">@style/Navbar</item>
+		<item name="NavbarExtension">@style/NavbarExtension</item>
+		<item name="NavbarExtensionLogo">@style/NavbarExtensionLogo</item>
+		<!-- NOTE: also see NavbarPeqExtensionLogo in styles-peq.xml/PeqStyles -->
+		<item name="NavbarExtensionLogoLabel">@style/NavbarExtensionLogoLabel</item>
+		<item name="NavbarExtensionLogoLabel_Text">@style/NavbarExtensionLogoLabel_Text</item>
+		<item name="NavbarExtensionMenuLine">@style/NavbarExtensionMenuLine</item>
+		<item name="NavbarExtensionMenuLine_Text">@style/NavbarExtensionMenuLine_Text</item>
+		<item name="NavbarExtensionMenuLine50">@style/NavbarExtensionMenuLine50</item>
+		<item name="NavbarList">@style/NavbarList</item>
+		<item name="NavbarNavButtonsLayout">@style/NavbarNavButtonsLayout</item>
+		<item name="NavBarButton">@style/NavBarButton</item>
+		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet</item>
+		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines</item>
+		
+		<item name="SelectionMenuTopLineLayout">@style/SelectionMenuTopLineLayout</item>
+		<item name="SelectionMenuSelectBox">@style/SelectionMenuSelectBox</item>
+		<item name="SelectionMenuCountText">@style/SelectionMenuCountText</item>
+		<item name="SelectionMenu_Text">@style/SelectionMenu_Text</item>
+		<item name="SelectionMenuCloseButton">@style/SelectionMenuCloseButton</item>
+		<item name="SelectionMenuSeparator">@style/SelectionMenuSeparator</item>
+		<item name="SelectionMenuBottomLineLayout">@style/SelectionMenuBottomLineLayout</item>
+		<item name="SelectionListContextButton">@style/SelectionListContextButton</item>
+		<item name="SelectionListContextButton33">@style/SelectionListContextButton33</item>
+		<item name="SelectionListContextButton_Text">@style/SelectionListContextButton_Text</item>
+		<item name="SelectionMenuSubcontainer">@style/SelectionMenuSubcontainer</item>
+		<item name="SelectionMenuSubcontainer_scene_selection_menu">@style/SelectionMenuSubcontainer_scene_selection_menu</item>
+		<item name="SelectionMenuSubcontainer_scenes_hidden">@style/SelectionMenuSubcontainer_scenes_hidden</item>
+		
+		<item name="TopContainer">@style/TopContainer</item>
+		<item name="TopMilk">@style/TopMilk</item>
+		<item name="TopListWidget">@style/TopListWidget</item>
+		<item name="TopAABounds">@style/TopAABounds2</item>
+		
+		<item name="TopListScrollerView">@style/TopListScrollerView</item>
+		<item name="TopListScrollerView_Text">@style/TopListScrollerView_Text</item>
+		<item name="TopListScrollerView_state_scrollbar_pressed">@style/TopListScrollerView_state_scrollbar_pressed</item>
+
+		<item name="TopEqLayout">@style/TopEqLayout</item>
+		<!-- Also see TopPeqEqLayout/TopPeqEqLayout_scenes_vis in styles-peq.xml -->
+		<item name="TopActionModeBar">@style/TopActionModeBar</item>
+		<item name="TopActionModeBarButton">@style/TopActionModeBarButton</item>
+		<item name="TopSearchLayout">@style/TopSearchLayout</item>
+		<item name="TopSearchPanel">@style/TopSearchPanel</item>
+		<item name="TopSearchCloseButton">@style/TopSearchCloseButton</item>
+		<item name="TopListSearchEditText">@style/TopListSearchEditText</item>
+		<item name="TopSearchTarget">@style/TopSearchTarget</item>
+		<item name="TopSearchTarget_Text">@style/TopSearchTarget_Text</item>
+
+		<item name="TopNavbarBounds">@style/TopNavbarBounds</item>
+		<item name="TopNavbarContainer">@style/TopNavbarContainer</item>
+		<item name="TopSelectionMenuContainer">@style/TopSelectionMenuContainer</item>
+
+		<item name="TopListIndexerPopupView">@style/TopListIndexerPopupView</item>
+		<item name="TopListIndexerPopupView_Text">@style/TopListIndexerPopupView_Text</item>
+		<item name="TopListIndexerPopupView_state_scrollbar_pressed">@style/TopListIndexerPopupView_state_scrollbar_pressed</item>
+		
+		<item name="TopFitsStatusBarView">@style/TopFitsStatusBarView</item>
+		<item name="TopFitsStatusBarView_scenes_non_main">@style/TopFitsStatusBarView_scenes_non_main</item>
+		
+		<item name="TopFitsNavigationBarView">@style/TopFitsNavigationBarView</item>
+		<item name="TopFitsNavigationBarView_scenes_non_main">@style/TopFitsNavigationBarView_scenes_non_main</item>
+		
+		<item name="TopWaveseekLayout">@style/TopWaveseekLayout</item>
+		<item name="TopWaveseek">@style/TopWaveseek</item>
+		<item name="TopWaveseekLayout_scene_lib">@style/TopWaveseekLayout_scene_lib</item>
+		<item name="TopWaveseekLayout_scenes_playing">@style/TopWaveseekLayout_scenes_playing</item>
+		<item name="TopWaveseekLayout_scenes_invisible">@style/TopWaveseekLayout_scenes_invisible</item>
+		<item name="TopWaveseekCursor">@style/TopWaveseekCursor</item>
+		<item name="TopWaveseekCursor_state_waveseek_pressed">@style/TopWaveseekCursor_state_waveseek_pressed</item>
+		<item name="TopTrackElapsed">@style/TopTrackElapsed</item>
+		<item name="TopTrackElapsedDuration_Text">@style/TopTrackElapsedDuration_Text</item>
+		<item name="TopTrackElapsed_scene_playing">@style/TopTrackElapsed_scene_playing</item>
+		<item name="TopTrackElapsed_state_seeking">@style/TopTrackElapsed_state_seeking</item>
+		<item name="TopTrackDuration">@style/TopTrackDuration</item>
+		<item name="TopTrackDuration_scene_playing">@style/TopTrackDuration_scene_playing</item>
+		<item name="TopTrackDuration_state_seeking">@style/TopTrackDuration_state_seeking</item>
+		<item name="TopPlayPauseBehind">@style/TopPlayPauseBehind</item>
+		<item name="TopPause">@style/TopPause</item>
+		<item name="TopPause_scene_playing">@style/TopPause_scene_playing</item>
+		<item name="TopPause_state_seeking">@style/TopPause_state_seeking</item>
+		<item name="TopPlay">@style/TopPlay</item>
+		<item name="TopPlay_scene_playing">@style/TopPlay_scene_playing</item>
+		<item name="TopPlay_state_seeking">@style/TopPlay_state_seeking</item>
+		
+		<item name="TopPrevCat">@style/TopPrevCat</item>
+		<item name="TopNextCat">@style/TopNextCat</item>
+		<item name="TopRw">@style/TopRw</item>
+		<item name="TopRw_scene_playing">@style/TopRw_scene_playing</item>
+		<item name="TopFf">@style/TopFf</item>
+		<item name="TopFf_scene_playing">@style/TopFf_scene_playing</item>
+		
+		<item name="TopSubAAButtons">@style/TopSubAAButtons</item>
+		<item name="TopSubAAButtons_scenes_playing">@style/TopSubAAButtons_scenes_playing</item>
+		<item name="TopSubAAButtons_scene_lib">@style/TopSubAAButtons_scene_lib</item>
+		<item name="TopSubAAButtons_scenes_hidden">@style/TopSubAAButtons_scenes_hidden</item>
+		<item name="TopVisButtonLayout">@style/TopVisButtonLayout</item>
+		<item name="TopShuffleButtonLayout">@style/TopShuffleButtonLayout</item>
+		<item name="TopRepeatButtonLayout">@style/TopRepeatButtonLayout</item>
+		<item name="TopSleepTimerButtonLayout">@style/TopSleepTimerButtonLayout</item>
+		<item name="TopSleepTimerButtonLayout_scene_item_menu">@style/TopSleepTimerButtonLayout_scene_item_menu</item>
+		<item name="SleepTimerButton_scene_button_menu">@style/SleepTimerButton_scene_button_menu</item>
+		<item name="TopSleepTimerButton">@style/TopSleepTimerButton</item>
+		
+		<item name="TopCounterLayout">@style/TopCounterLayout</item>
+		<item name="TopCounterLayout_Text">@style/TopCounterLayout_Text</item>
+		<item name="TopCounterLayout_scenes_playing">@style/TopMetaInfoLayout_scenes_playing</item><!-- NOTE: using same scene styles as TopMetaInfoLayout --> 
+		<item name="TopCounterLayout_scenes_invisible">@style/TopMetaInfoLayout_scenes_invisible</item>
+		<item name="TopCounterLayout_anim_seeking">@style/TopMetaInfoLayout_anim_seeking</item>
+		
+		<item name="TopMetaInfoLayout">@style/TopMetaInfoLayout</item>
+		<item name="TopMetaInfoLayout_scenes_playing">@style/TopMetaInfoLayout_scenes_playing</item>
+		<item name="TopMetaInfoLayout_scenes_invisible">@style/TopMetaInfoLayout_scenes_invisible</item>
+		<item name="TopMetaInfoLayout_anim_seeking">@style/TopMetaInfoLayout_anim_seeking</item>
+		<item name="TopMetaInfo">@style/TopMetaInfo</item>
+		<item name="TopMetaInfo_scene_item_menu">@style/TopMetaInfo_scene_item_menu</item>
+		<item name="TopMetaInfoLabel">@style/TopMetaInfoLabel</item>
+		<item name="TopMetaInfoLabel_Text">@style/TopMetaInfoLabel_Text</item>
+		
+		<item name="TopHelp_Text">@style/TopHelp_Text</item>
+		<item name="TopHelpNormal_Text">@style/TopHelp_Text</item>
+		<item name="TopHelpSmaller_Text">@style/TopHelpSmaller_Text</item>
+		<item name="TopHelpButton_Text">@style/TopHelpButton_Text</item>
+		
+		
+		<!-- Vis -->
+		
+		<item name="VisPanelContainer">@style/VisPanelContainer</item>
+		<!-- Also see PeqVisPanelContainer in styles-peq.xml -->
+		<item name="VisPanelShim">@style/VisPanelShim</item>
+		<item name="VisPanelFrame">@style/VisPanelFrame</item>
+		<item name="VisCloseButton">@style/VisCloseButton</item>
+		<item name="VisSettingsButton">@style/VisSettingsButton</item>
+		<item name="VisSortButtonLayout">@style/VisSortButtonLayout</item>
+		<item name="VisFilterEditText">@style/VisFilterEditText</item>
+		<item name="VisPanelList">@style/VisPanelList</item>
+		<item name="VisPanelFrame_scene_vispanel_expanded">@style/VisPanelFrame_scene_vispanel_expanded</item>
+				
+		<!-- Eq pages -->
+		
+		<item name="EqPagesLayout">@style/EqPagesLayout</item>
+		<item name="EqPagesScrollingBehavior">@style/EqPagesScrollingBehavior</item>
+		<item name="EqTabLayout">@style/EqTabLayout</item>
+		
+		<!-- Equalizer tab -->
+		<item name="EqButton_Text">@style/EqButton_Text</item>
+		<item name="EqPreampKnobLayout">@style/EqPreampKnobLayout</item>
+		<item name="EqListControlsLayout">@style/EqListControlsLayout</item>
+		<item name="EqListControlsAdd">@style/EqListControlsAdd</item>
+		<item name="EqListEmptyControlsAdd">@style/EqListEmptyControlsAdd</item>
+		<item name="EqListControlsSelect">@style/EqListControlsSelect</item>		
+		<item name="EqPreampLinearKnob">@style/EqPreampLinearKnob</item>
+		<item name="EqKnobsLayout">@style/EqKnobsLayout</item>
+		<item name="EqLinearKnob">@style/EqLinearKnob</item>
+		<item name="EqParamLayout">@style/EqParamLayout</item>		
+		<item name="EqFrequencyResponseScroller">@style/EqFrequencyResponseScroller</item>
+		<item name="EqMilkFrs">@style/EqMilkFrs</item>
+		<item name="EqInfo">@style/EqInfo</item>
+		<item name="EqInfo_scene_item_menu">@style/EqInfo_scene_item_menu</item>
+		<item name="EqInfoLabel">@style/EqInfoLabel</item>
+		<item name="EqEquButton">@style/EqEquButton</item>
+		<item name="EqToneButton">@style/EqToneButton</item>
+		<item name="EqLimiterButton">@style/EqLimiterButton</item>
+		<item name="EqEquPresetButtonLayout">@style/EqEquPresetButtonLayout</item>
+		<item name="EqEquPresetButtonLayout_scene_button_menu">@style/EqEquPresetButtonLayout_scene_button_menu</item>
+		<item name="EqEquPresetLabel">@style/EqEquPresetLabel</item>
+		<item name="EqEquPresetLabel_Text">@style/EqEquPresetLabel_Text</item>
+		<item name="EqEquSaveButton">@style/EqEquSaveButton</item>
+		<item name="EqEquResetButton">@style/EqEquResetButton</item>
+		<item name="EqTonePanel">@style/EqTonePanel</item>
+		<item name="EqBassToneKnobLayout">@style/EqBassToneKnobLayout</item>
+		<item name="EqTrebleToneKnobLayout">@style/EqTrebleToneKnobLayout</item>
+		<!-- Also see PeqVisButtonLayout, PeqEqEnableVisFrs, PeqEqEnableVisFrs_Text in styles-peq.xml -->
+
+		<!-- Vol tab -->
+		<item name="EqVolPanel1">@style/EqVolPanel1</item>
+		<item name="EqVolPanel2">@style/EqVolPanel2</item>
+		<item name="EqVolPanel3">@style/EqVolPanel3</item>
+		<item name="EqBalanceKnobLayout">@style/EqBalanceKnobLayout</item>
+		<item name="EqSFXKnobLayout">@style/EqSFXKnobLayout</item>
+		<item name="EqTempoCheckButton">@style/EqTempoCheckButton</item>
+		<item name="EqTempoKnobLayout">@style/EqTempoKnobLayout</item>
+		<item name="EqTempoPlusButton">@style/EqTempoPlusButton</item>
+		<item name="EqTempoMinusButton">@style/EqTempoMinusButton</item>
+		<item name="EqMonoCheckButton">@style/EqMonoCheckButton</item>
+		<item name="EqPlatformFXCheckButton">@style/EqPlatformFXCheckButton</item>
+		<item name="EqOtherResetButton">@style/EqOtherResetButton</item>
+		<!-- Also see PeqOtherResetButton -->
+		<item name="EqVolumeKnobLayout">@style/EqVolumeKnobLayout</item>
+		<!-- Also see PeqVolumeKnobLayout, PeqEqVolPanel*, PeqEqBalanceKnobLayout, PeqEqCompressor* -->
+
+		<!-- Parametric -->
+		<item name="EqParamColorCircleSelector">@style/EqParamColorCircleSelector</item>
+		<item name="EqParamGainLinearKnob">@style/EqParamGainLinearKnob</item>
+		<item name="EqParamPlaceholder1">@style/EqParamPlaceholder1</item>
+		<item name="EqParamPlaceholder2">@style/EqParamPlaceholder2</item>
+		<item name="EqParamColorPopupLayout">@style/EqParamColorPopupLayout</item>
+		<item name="EqParamColorPopupLayout_scene_item_menu">@style/EqParamColorPopupLayout_scene_item_menu</item>
+		<item name="EqParamColorPopupIcon">@style/EqParamColorPopupIcon</item>
+		<item name="EqParamEditButton">@style/EqParamEditButton</item>
+		<item name="EqParamLRPopupButtonLayout">@style/EqParamLRPopupButtonLayout</item>
+		<item name="EqParamTypePopupButtonLayout">@style/EqParamTypePopupButtonLayout</item>
+		<item name="EqParamQRoundKnob">@style/EqParamQRoundKnob</item>
+		<item name="EqParamQLabelAndValue">@style/EqParamQLabelAndValue</item>
+		<item name="EqParamFreqRoundKnob">@style/EqParamFreqRoundKnob</item>
+		<item name="EqParamFreqLabelAndValue">@style/EqParamFreqLabelAndValue</item>
+		<item name="EqParamSelectBox">@style/EqParamSelectBox</item>
+		<item name="EqParamDragHandler">@style/EqParamDragHandler</item>
+		<item name="EqListControlsHint">@style/EqListControlsHint</item>
+		
+		<!--<item name="">@style/</item>
+		<item name="">@style/</item>-->
+				
+				
+		
+		<!-- Reverb tab -->
+		<item name="EqReverbPanel1">@style/EqReverbPanel1</item>
+		<item name="EqReverbPanel2">@style/EqReverbPanel2</item>
+		<item name="EqReverbPanel3">@style/EqReverbPanel3</item>
+		<item name="EqReverbParam7KnobLayout">@style/EqReverbParam7KnobLayout</item>
+		<item name="EqReverbParam2KnobLayout">@style/EqReverbParam2KnobLayout</item>
+		<item name="EqReverbParam3KnobLayout">@style/EqReverbParam3KnobLayout</item>
+		<item name="EqReverbParam4KnobLayout">@style/EqReverbParam4KnobLayout</item>
+		<item name="EqReverbParam6KnobLayout">@style/EqReverbParam6KnobLayout</item>
+		<item name="EqReverbParam1KnobLayout">@style/EqReverbParam1KnobLayout</item>
+		<item name="EqReverbParam5KnobLayout">@style/EqReverbParam5KnobLayout</item>
+		<item name="EqReverbCheckButton">@style/EqReverbCheckButton</item>
+		<item name="EqReverbPresetButtonLayout">@style/EqReverbPresetButtonLayout</item>
+		<item name="EqReverbPresetButtonLayout_scene_button_menu">@style/EqReverbPresetButtonLayout_scene_button_menu</item>
+		<item name="EqReverbPresetLabel">@style/EqReverbPresetLabel</item>
+		<item name="EqReverbSaveButton">@style/EqReverbSaveButton</item>
+		<item name="EqReverbResetButton">@style/EqReverbResetButton</item>
+		<!-- Also see PeqEqReverbParamKnobLayout -->
+
+		<!-- Sleep timer -->
+		<item name="SleepTimerTitle">@style/SleepTimerTitle</item>
+		<item name="SleepTimerTitle_Text">@style/SleepTimerTitle_Text</item>
+		<item name="SleepTimerContent">@style/SleepTimerContent</item>
+		<item name="SleepTimerValue">@style/SleepTimerValue</item>
+		<item name="SleepTimerValue_Text">@style/SleepTimerValue_Text</item>
+		<item name="SleepTimerSeekbar">@style/SleepTimerSeekbar</item>
+		<item name="SleepTimerPTESelectBox">@style/SleepTimerPTESelectBox</item>
+		
+		<!-- PlainSeekbar -->
+		<item name="PlainSeekbar">@style/PlainSeekbar</item>
+		<item name="PlainSeekbar_anim_seeking">@style/PlainSeekbar_anim_seeking</item>
+
+
+		<!-- Peq -->
+		<item name="NavbarPeqExtensionLogo">@style/NavbarPeqExtensionLogo</item>
+		<item name="TopPeqEqLayout">@style/TopPeqEqLayout</item>
+		<item name="TopPeqEqLayout_scenes_vis">@style/TopPeqEqLayout_scenes_vis</item>
+		<item name="PeqVisPanelContainer">@style/PeqVisPanelContainer</item>
+		<item name="PeqVisButtonLayout">@style/PeqVisButtonLayout</item>
+		<item name="PeqEqEnableVisFrs">@style/PeqEqEnableVisFrs</item>
+		<item name="PeqEqEnableVisFrs_Text">@style/PeqEqEnableVisFrs_Text</item>
+		<item name="PeqOtherResetButton">@style/PeqOtherResetButton</item>
+		<item name="PeqVolumeKnobLayout">@style/PeqVolumeKnobLayout</item>
+		<item name="PeqEqVolPanel1">@style/PeqEqVolPanel1</item>
+		<item name="PeqEqVolPanel2">@style/PeqEqVolPanel2</item>
+		<item name="PeqEqVolPanel3">@style/PeqEqVolPanel3</item>
+		<item name="PeqEqBalanceKnobLayout">@style/PeqEqBalanceKnobLayout</item>
+		<item name="PeqEqCompressorCheckButton">@style/PeqEqCompressorCheckButton</item>
+		<item name="PeqEqCompressKnobLayout1">@style/PeqEqCompressKnobLayout1</item>
+		<item name="PeqEqCompressKnobLayout2">@style/PeqEqCompressKnobLayout2</item>
+		<item name="PeqEqCompressKnobLayout3">@style/PeqEqCompressKnobLayout3</item>
+		<item name="PeqEqCompressKnobLayout4">@style/PeqEqCompressKnobLayout4</item>
+		<item name="PeqEqCompressKnobLayout5">@style/PeqEqCompressKnobLayout5</item>
+		<item name="PeqEqCompressKnobLayout6">@style/PeqEqCompressKnobLayout6</item>
+		<item name="PeqEqReverbParamKnobLayout">@style/PeqEqReverbParamKnobLayout</item>
+
+		<item name="TopUpperToastContainer">@style/TopUpperToastContainer</item>
+		<item name="TopUpperToastFrame">@style/TopUpperToastFrame</item>
+		<item name="TopUpperToastFrame_scene_expanded">@style/TopUpperToastFrame_scene_expanded</item>
+		<item name="TopUpperToastCloseButton">@style/TopUpperToastCloseButton</item>
+		<item name="TopUpperToastIcon">@style/TopUpperToastIcon</item>
+		<item name="TopUpperToastTitle">@style/TopUpperToastTitle</item>
+		<item name="TopUpperToastTitle_Text">@style/TopUpperToastTitle_Text</item>
+		<item name="TopUpperToastLine2">@style/TopUpperToastLine2</item>
+		<item name="TopUpperToastLine2_Text">@style/TopUpperToastLine2_Text</item>
+		<item name="TopUpperToastTitle_no_icon">@style/TopUpperToastTitle_no_icon</item>
+		<item name="TopUpperToastLine2_no_icon">@style/TopUpperToastLine2_no_icon</item>
+	</style>
+	
+</resources>

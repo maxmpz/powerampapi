@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:stateId="@id/state_list_something_selected"
 		w:stateMsgId="@id/state_list_selection_count"
 		
-		w:confirmTitle="@string/delete_presets_q"
-		w:confirmText="@string/msg_delete_selected_presets"
+		w:confirmTitle="@string/delete_bands_q"
+		w:confirmText="@string/msg_delete_selected_bands"
 	/>
 </merge>

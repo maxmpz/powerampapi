@@ -21,17 +21,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 <resources>
-	<dimen name="EqKnobsLayout_marginTop">8dp</dimen>
+	<!-- EqFrequencyResponseScroller_marginTop should match EqKnobsLayout_marginTop for visually distributed paddings -->
 	
+	<dimen name="TopActionModeBar_marginBottom">8dp</dimen>
+	<dimen name="EqKnobsLayout_marginTop">0dp</dimen>
+	<dimen name="EqFrequencyResponseScroller_marginTop">8dp</dimen>
+		
 	<integer name="PeqEqCompressorCheckButton_gravity">0x51</integer><!-- center_horizontal|bottom = 0x01|0x50 -->
 	
-	<dimen name="EqFrequencyResponseScroller_marginTop">8dp</dimen>
 	<dimen name="EqInfoBase_marginTB">8dp</dimen><!-- Increased for longer screens -->
 	
 	<dimen name="eq_frs_height">64dp</dimen>
 	
-	<fraction name="EqParamQRoundKnob_heightPercent">20%</fraction>
 	<dimen name="EqParamTypePopupButtonLayout_marginBottom">16dp</dimen>
-	<dimen name="EqParamQKnobValue_marginBottom">12dp</dimen>
-	<dimen name="EqParamRoundKnob_marginBottom">12dp</dimen>
+	<dimen name="Peq_EqParamRoundKnob_marginBottom">12dp</dimen>
+	<dimen name="EqParamRoundKnob_marginBottom">8dp</dimen>
 </resources>

@@ -3,7 +3,7 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android" 
 	android:color="?colorKnobRipple">
 	<item>
-		<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="300">
+		<selector android:exitFadeDuration="300">
 			<!-- NOTE: solid is needed for ripple -->
 			<item android:state_enabled="false">
 				<shape android:shape="oval">

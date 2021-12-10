@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- 
+NOTE: the parametric styles applied as "landscape" to all devices with not enough vertical space
+in any orientation (portrait/landscape). As soon as enough vertical space is available,
+values-sw2dp-h700dp is applied for the "portrait" layout.
+
+Here we have base + "landscape" layout styles
+--> 
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<!-- NOTE: this is PowerList item view. The item view is created from the code as:
+	     - gain linear knob
+	     - q round knob
+	     - L/R popup button
+	     - type popup button
+	     - freq round knob
+	     - other controls (edit/color)
+	     NOTE: the default layouts defined here looks like "landscape" layouts, as low-resolution/small screen devices
+	           do not have enough vertical space for "portrait" layouts.
+	           See sw2dp-700h/styles-eq-param.xml for the portrait layout overrides for larger screen devices
+	     NOTE: specific background (set by code) is used here, so setting any background here have no effect
+	     NOTE: avoid alignment to parent right here, as we have wrap_content-like measured width
+	     NOTE: measuring the item happens in EqKnobList during specific events, and it can fail / incorrectly measure
+	     Also it won't properly handle cases when list height dynamically changes - the previous item width will be used
+	-->
+	<style name="EqParamLayout">
+		<item name="android:layout_width">wrap_content</item>	
+		<item name="android:layout_height">match_parent</item>
+		
+		<item name="valueLabelPressedAnimStyle">@style/EqToneLabelPressedAnim</item>
+		
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
+		
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		
+		<item name="separatorColor">?colorKnobIndicatorDisabled</item>
+		<item name="separatorWidth">2dp</item>
+		<item name="separatorPaddingTop">8dp</item>
+		<item name="separatorPaddingBottom">24dp</item>
+				
+		<item name="bgPaddingLeft">2dp</item><!-- Matching space between preamp and first band -->
+		<item name="bgPaddingRight">0dp</item>
+		<item name="bgCorners">?corners_medium</item>
+	</style>
+	
+	<!-- Gain always gets whole height to the left -->
+	<style name="EqParamGainLinearKnob" parent="EqLinearKnob">
+		<item name="android:id">@id/_gain</item>
+		<item name="android:layout_width">wrap_content</item>	
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_marginRight">6dp</item>
+		<item name="android:layout_marginLeft">@dimen/EqParamGainLinearKnob_layout_marginLeft</item><!-- Smaller for land -->
+		
+		<!-- Increased, as we can see paddings clearly on color backgrounds -->
+		<item name="labelBackgroundPaddingLeft">5sp</item>
+		<item name="labelBackgroundPaddingRight">5sp</item>
+	</style>
+	
+	<!-- NOTE: action buttons should fit in vis modes when bands are shrank due to vis panel
+	     This is mostly defined by the size percentage for round knobs -->
+	<style name="EqParamEditButtonBase">
+		<item name="android:id">@id/_edit</item>
+		<item name="android:layout_height">32dp</item>
+		<item name="android:layout_width">32dp</item>
+		
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="android:background">@drawable/ripple_rounded_large</item>
+		
+		<item name="drawableOnly">true</item>
+		<item name="drawablePosition">forceGravity</item>
+		<item name="android:gravity">center</item>	
+		<item name="android:drawable">@drawable/edit_24dp</item>
+		<item name="drawableTint">?colorKnob</item>
+		<item name="animOnClick">true</item>
+	</style>
+	
+	<style name="EqParamColorPopupLayoutBase">
+		<item name="android:id">@id/_color</item>
+		<!-- NOTE: can't use dynamic size due to current popup behavior, when we can't return to new size -->
+		<item name="android:layout_height">32dp</item>
+		<item name="android:layout_width">32dp</item>
+				
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="menuItemsLayout">@layout/merge_eq_param_colors</item>		
+		<item name="android:background">@drawable/rounded_no_stroke_button_layout_bg</item>
+	</style>
+	
+	<style name="EqParamColorPopupLayout_scene_item_menu" parent="ItemPopupMenu_scene_item_menu">
+		<item name="android:layout_width">match_parent</item>
+		<item name="layout_maxWidth">@dimen/TopSleepTimerButtonLayout_scene_item_menu_width</item>
+		<item name="layout_maxHeight">600dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+	</style>
+	<style name="EqParamColorPopupIcon">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:drawable">@drawable/palette_24dp</item>
+		<item name="drawableTint">?colorKnob</item>
+	</style>
+	<style name="EqParamColorCircleSelector">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		
+		<item name="colorSet">?EqParamColorSet</item>
+		<item name="colorSize">42dp</item>
+		<item name="colorPadding">8dp</item>
+		<item name="selectedBorderColor">?colorControlNormal</item>		
+		<item name="selectedBorderWidth">4dp</item>
+		<item name="borderColor">?colorStroke</item>
+		<item name="borderWidth" tools:ignore="PxUsage">2px</item>
+		
+		<item name="android:clickable">true</item>
+	</style>
+	
+		
+	<style name="EqParamBandButtonLayoutBase" parent="EqPresetButtonLayoutBase">
+		<item name="buttonStyle">@style/PopupButton</item>
+		<item name="menuButtonStyle">@style/PopupButton_scene_button_menu</item><!-- Use style with the forced tint -->
+		<item name="openOnClick">true</item>
+	</style>
+
+	<style name="EqParamLRPopupButtonLayoutBase" parent="EqParamBandButtonLayoutBase">
+		<item name="android:id">@id/_lr</item>
+		<item name="buttonsLabels">@array/eq_param_lr_modes</item>
+		<item name="buttonsDrawables">@array/eq_param_lr_icons_24dp</item>
+	</style>
+	
+	<style name="EqParamTypePopupButtonLayoutBase" parent="EqParamBandButtonLayoutBase">
+		<item name="android:id">@id/_type</item>
+		<item name="buttonsLabels">@array/eq_param_type_modes</item>
+		<item name="buttonsDrawables">@array/eq_param_type_icons_24dp</item>	
+	</style>
+	
+	
+	<style name="EqParamRoundKnobBase" parent="EqResizableRoundKnob">
+		<item name="valueLabel">@null</item>
+		<item name="dependentLabel">@null</item>
+		
+		<item name="offsetWhenNoArc">4dp</item><!-- Apply some extra offset for knob to compensate no arc -->
+	</style>
+	
+	
+	<style name="EqParamLabelAndValueBase" parent="KnobLabelAndValueBase">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+
+		<!-- Increased, as we can see paddings clearly on color backgrounds -->
+		<item name="labelBackgroundPaddingLeft">5sp</item>
+		<item name="labelBackgroundPaddingRight">5sp</item>
+		
+		<item name="android:clickable">true</item>
+		<item name="android:longClickable">true</item>
+		
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+	
+	
+	<style name="EqParamKnobLabelAnim" parent="EqLabelPressedAnim"/>
+	
+	
+	<style name="EqParamSelectBox">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="layout_attachTopToTop">@id/_edit</item>
+		<item name="layout_attachRightToRight">@id/_edit</item>
+				
+		<item name="android:translationZ">?over_aa_elevation</item>
+		<item name="android:outlineProvider">none</item>
+		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
+		<item name="android:background">@drawable/rounded_large</item>
+		<item name="android:clickable">true</item>
+		<item name="applyEvenIfGone">true</item><!-- NOTE: as select_box is almost always force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
+	</style>
+	
+	<style name="EqParamDragHandler">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachLeftToLeft">@id/_gain</item>
+		<item name="layout_attachRightToRight">@id/_placeholder2</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		
+		<item name="android:translationZ">?over_aa_elevation</item>
+		<item name="android:outlineProvider">none</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Handles just touching -->
+		<item name="android:background">@drawable/rounded_large</item>
+		<item name="android:drawable">?list_drag_hor_24dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="drawableWidth">22dp</item>
+		<item name="drawableHeight">22dp</item>
+		<item name="android:paddingTop">6dp</item>		
+		<item name="android:paddingBottom">6dp</item>
+		<item name="drawableOnly">true</item>
+		<item name="drawablePosition">forceGravity</item>
+		<item name="android:gravity">center</item>
+		
+		<item name="applyEvenIfGone">true</item><!-- NOTE: as this is view is generaly force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
+	</style>
+	
+		
+	<!-- Land definitions -->
+	
+	<!-- land -->
+	<style name="EqParamPlaceholder1">
+		<item name="android:id">@+id/_placeholder1</item>
+		
+		<item name="android:layout_height">10dp</item>
+		<item name="android:layout_width">100dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+	</style>
+	<!-- land -->
+	<style name="EqParamPlaceholder2">
+		<item name="android:id">@+id/_placeholder2</item>
+		
+		<item name="android:layout_height">10dp</item>
+		<item name="android:layout_width">100dp</item>
+		<item name="layout_attachLeft">@+id/_placeholder1</item>
+	</style>
+
+	<!-- land -->	
+	<style name="EqParamEditButton" parent="EqParamEditButtonBase">
+		<item name="layout_attachRightToRight">@id/_q</item>
+		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+	<!-- land -->
+	<style name="EqParamColorPopupLayout" parent="EqParamColorPopupLayoutBase">
+		<item name="layout_attachLeftToLeft">@id/_edit</item>
+		<item name="layout_attachTop">@id/_edit</item>
+	</style>
+	
+	<!-- land -->
+	<style name="EqParamLRPopupButtonLayout" parent="EqParamLRPopupButtonLayoutBase">
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">@+id/_type</item>
+
+		<item name="layout_gravityTarget">@+id/_placeholder1</item>
+		<item name="android:layout_gravity">center_horizontal|top</item>
+		<!--suppress AndroidDomInspection -->
+		<item name="layout_consumeSpace">@null</item>
+		
+		<item name="android:layout_marginBottom">8dp</item>
+		
+	</style>
+	
+	<!-- land -->
+	<style name="EqParamTypePopupButtonLayout" parent="EqParamTypePopupButtonLayoutBase">
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">@+id/_q</item>
+
+		<item name="layout_gravityTarget">@+id/_placeholder1</item>
+		<item name="android:layout_gravity">center_horizontal|top</item>
+		<!--suppress AndroidDomInspection -->
+		<item name="layout_consumeSpace">@null</item>
+				
+		<item name="android:layout_marginBottom">16dp</item>
+	</style>	
+		
+	
+	<!-- land -->
+	<style name="EqParamRoundKnobLandBase" parent="EqParamRoundKnobBase">
+		<item name="android:layout_width">90dp</item>
+		<item name="layout_attachTop">42%</item>
+		<item name="layout_attachBottom">@+id/_freq_label_and_value</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+		
+	<!-- land -->
+	<style name="EqParamQRoundKnob" parent="EqParamRoundKnobLandBase">
+		<item name="android:id">@+id/_q</item>
+		<item name="layout_gravityTarget">@+id/_placeholder2</item>
+	</style>
+
+	<!-- land -->
+	<style name="EqParamQLabelAndValue" parent="EqParamLabelAndValueBase">
+		<item name="android:id">@+id/_q_label_and_value</item>
+		
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_gravityTarget">@id/_placeholder2</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginBottom">2dp</item>
+	</style>
+	
+	<!-- land -->
+	<style name="EqParamFreqRoundKnob" parent="EqParamRoundKnobLandBase">
+		<item name="android:id">@+id/_freq</item>
+		<item name="layout_gravityTarget">@+id/_placeholder1</item>
+	</style>
+	
+	<!-- land -->
+	<style name="EqParamFreqLabelAndValue" parent="EqParamLabelAndValueBase">
+		<item name="android:id">@+id/_freq_label_and_value</item>
+		
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_gravityTarget">@id/_placeholder1</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginBottom">2dp</item>
+	</style>
+		
+</resources>

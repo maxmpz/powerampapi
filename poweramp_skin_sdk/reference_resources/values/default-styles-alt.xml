@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -38,7 +38,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopWaveseekLayout">@style/Alt_TopWaveseekLayout</item>
 		<item name="TopWaveseek">@style/Alt_TopWaveseek</item>
 		<item name="TopMetaInfoLayout">@style/Alt_TopMetaInfoLayout</item>
-		
+
+		<item name="ItemTrack_labels_scene_grid_lineBackground">#0000</item>
+		<item name="ItemTrack_labels_scene_grid_textColor">?android:textColorPrimary</item>
+
+		<!-- NOTE: Alt_ListSubstyle_gridItem1LineExtraSpace, Alt_ListSubstyle_gridZoomedItem1LineExtraSpace,
+		     Alt_ListSubstyle_gridItemExtraSpace, Alt_ListSubstyle_gridZoomedItemExtraSpace now are defined in the main
+		     theme (default-styles.xml) to be available for 3rd party skins not deriving from this theme -->
+
 		<item name="ItemTrackTitle">@style/Alt_ItemTrackTitle</item>
 		<item name="ItemTrackLine2">@style/Alt_ItemTrackLine2</item>
 		<item name="ItemTrackTitle_scene_aa">@style/Alt_ItemTrackTitle_scene_aa</item>
@@ -98,6 +105,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PlainSeekbar_metaInfo_marginBottom">@dimen/Alt_PlainSeekbar_metaInfo_marginBottom</item>
 		<item name="PlainSeekbar_common_marginBottom">@dimen/Alt_PlainSeekbar_common_marginBottom</item>
 
+
 	</style>
 	
 	<style name="ActivityTheme_Whitepro_AltLayout_StarsMenu" parent="ActivityTheme_Whitepro_AltLayout">
@@ -115,10 +123,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
+		<item name="layout_consumeSpace">vertical|size</item>
 	</style>
 	
 	<style name="Alt_TopSubAAButtons" parent="TopSubAAButtons">
-		<item name="android:layout_marginTop">@dimen/Alt_TopSubAAButtons_marginTop</item>
+		<item name="android:layout_marginTop">4dp</item><!-- Prev: @dimen/Alt_TopSubAAButtons_marginTop -->
 		<item name="android:layout_marginLeft">14dp</item>
 		<item name="android:layout_marginRight">14dp</item>
 	</style>
@@ -136,7 +145,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="Alt_ItemTrackLine2" parent="ItemTrackLine2">
 	</style>
-	<style name="Alt_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
+
+	<!-- NOTE: special alignment for alternative layout scene_aa (build-913+)
+	     Applied only if we have enough vertical space (this is defined by appropriate dimen)
+
+	     +==========+
+		 |          |
+		 |    AA    | <- AA "consumes" vertical space
+         |          |
+         +==========+ <- bottom of AA
+         title
+		 ........     < 50% between bottom of AA and bottom of ItemTrackView
+         line2
+		 ~~~~~~~~~~~~ <- bottom of ItemTrack view
+
+        - this is applied only in values-*-h600dp where we have enough space
+        - AA "consumes" vertical space
+        - thus setting layout_attachBottom=50% for title and layout_attachTop=50% for line2
+          puts title just over middle of the remaining space, and line 2 just after middle of the remanining space
+        - the total space below AA is defined by aaPaddingBottom (set for Alt_ListSubstyle_Base and Alt_TopAABounds)
+          This space should be always enough to fit title + line2 + paddings event for the largest font size possible
+	-->
+	<style name="Base_Alt_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		
@@ -152,24 +182,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Default: left aligned -->
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
-		<item name="layout_attachBottom">@id/line2</item>
+		<item name="layout_attachBottom">@id/line2</item><!-- Should be line2 by default and 50% if we have space -->
 		<item name="layout_attachTop">@null</item>
-		
+
 		<item name="android:layout_marginLeft">14dp</item>
 		<item name="android:layout_marginRight">14dp</item>
-		<item name="android:layout_marginBottom">0dp</item>
-		<item name="android:layout_marginTop">@dimen/Alt_ItemTrackTitle_scene_aa_marginTop</item>
-		
+		<item name="android:layout_marginBottom">0.5dp</item>
+		<item name="android:layout_marginTop">0dp</item><!-- Prev: @dimen/Alt_ItemTrackTitle_scene_aa_marginTop -->
+
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
-		
+
 		<item name="android:visibility">visible</item>
 		
-		<item name="scale">?Alt_ItemTrackTitle_scene_aa_scale</item>
+		<item name="scale">?Alt_ItemTrackTitle_scene_aa_scale</item><!-- .85 or 1 -->
 		<item name="layout_compensateScale">?Alt_ItemTrackTitle_scene_aa_scale</item>
 	</style>
-	
-	<style name="Alt_ItemTrackLine2_scene_aa" parent="ItemTrackLine2_scene_aa">
+	<style name="Alt_ItemTrackTitle_scene_aa" parent="Base_Alt_ItemTrackTitle_scene_aa">
+		<!-- Overridden in sw2dp-h550dp-port -->
+	</style>
+
+	<style name="Base_Alt_ItemTrackLine2_scene_aa" parent="ItemTrackLine2_scene_aa">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		
@@ -191,22 +224,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">14dp</item>
 		<item name="android:layout_marginRight">14dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
-		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginTop">0.5dp</item>
 		
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
-		
-		<item name="scale">?Alt_ItemTrackLine2_scene_aa_scale</item>
+
+		<item name="scale">?Alt_ItemTrackLine2_scene_aa_scale</item><!-- .85 or 1 -->
 		<item name="layout_compensateScale">?Alt_ItemTrackLine2_scene_aa_scale</item>
+	</style>
+	<style name="Alt_ItemTrackLine2_scene_aa" parent="Base_Alt_ItemTrackLine2_scene_aa">
+		<!-- Overridden in sw2dp-h550dp-port -->
 	</style>
 	
 	<style name="Alt_ItemLikeUnlikeLayout_scene_aa" parent="ItemLikeUnlikeLayout_scene_aa">
-		<item name="scale">0.9</item>
-		<item name="layout_compensateScale">0.9</item>
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
 		
 		<item name="android:layout_marginLeft">14dp</item>
-		<item name="android:layout_marginBottom">16dp</item>
-		<item name="layout_attachBottom">@id/title</item>
+		<item name="android:layout_marginBottom">6dp</item>
+		<item name="layout_attachBottomToBottom">@id/aa_image</item>
 		
 	</style>
 	<style name="Alt_ItemLike_scene_aa" parent="ItemLike_scene_aa">
@@ -226,12 +262,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	</style>
 	<style name="Alt_ItemRatingBar_scene_aa" parent="ItemRatingBar_scene_aa">
-		<item name="scale">0.9</item>
-		<item name="layout_compensateScale">0.9</item>
-		<item name="layout_attachBottom">@id/title</item>
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
+		<item name="layout_attachBottomToBottom">@id/aa_image</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginLeft">14dp</item>
-		<item name="android:layout_marginBottom">16dp</item>
+		<item name="android:layout_marginBottom">6dp</item>
 		
 		<item name="drawableTint">?colorIconPrimaryForced</item>
 		<item name="lineBackground">@drawable/ripple_alpha_rounded_large</item>
@@ -248,16 +284,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_ItemTrackMenu_scene_aa" parent="ItemTrackMenu_scene_aa">
 		<item name="scale">0.9</item>
 		<item name="layout_compensateScale">0.9</item>
-		
-		<item name="layout_attachBottom">@id/title</item>
+
+		<item name="layout_attachBottomToBottom">@id/aa_image</item>
 		<item name="android:layout_marginRight">14dp</item>
-		<item name="android:layout_marginBottom">16dp</item>
+		<item name="android:layout_marginBottom">6dp</item>
 	</style>
 	
 	<style name="Alt_ItemTrackMenu_scene_header" parent="ItemTrackMenu_scene_header">
 		<item name="applyViewParams">true</item><!-- NOTE: as currently menu is not shown for items and basically never transitions between item states, applyViewParams just here is enough -->
 		<item name="drawableTint">?colorIconInverse</item> 
-		<item name="android:background">@drawable/ripple_inverse_rounded_large</item><!-- Shouldn't have alpha for header -->
+		<item name="android:background">@drawable/ripple_text_bg_rounded_large</item>
 		
 	</style>
 	
@@ -359,21 +395,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_TopListWidget" parent="TopListWidget">
 		<item name="listSubstyle">@style/Alt_ListSubstyle</item>
 	</style>
+	
 	<style name="Alt_ListSubstyle_Base" parent="ListSubstyle2">
 		<!-- This is the extra room for title / line2 / menu / rating below AA image -->
 		<item name="aaPaddingBottom">@dimen/Alt_TopAABounds_marginBottom</item><!-- Sync with Alt_TopAABounds -->
-		<!-- Minimum size we can shring AA to -->
+		<!-- Minimum size we can shrink AA to -->
 		<item name="aaMinSize">50dp</item><!-- Sync with Alt_TopAABounds -->
 		<!-- The space reserved below AA. We need some space there for sub aa buttons, controls, seekbar, etc.
 		     This affects split screen layout mostly or very short screens, as for the longer screens, there is always enough space -->
 		<item name="aaMarginBottom">@dimen/Alt_TopListSubstyle_aaMarginBottom</item><!-- Sync with Alt_TopAABounds -->
-		
-		<!-- Extra space grid cell layouts => so cell has non-square layout with extra space for title below image -->
-		<item name="gridItem1LineExtraSpace">@dimen/Alt_ListSubstyle_Base_gridItem1LineExtraSpace</item><!-- 1line 4x, 3x grids -->
-		<item name="gridZoomedItem1LineExtraSpace">@dimen/Alt_ListSubstyle_Base_gridZoomedItem1LineExtraSpace</item><!-- 1line 2x grids -->
 
-		<item name="gridItemExtraSpace">@dimen/Alt_ListSubstyle_Base_gridItemExtraSpace</item><!-- 2line 4x, 3x grids -->
-		<item name="gridZoomedItemExtraSpace">@dimen/Alt_ListSubstyle_Base_gridZoomedItemExtraSpace</item><!-- 2line 2x grids -->
+		<!-- Extra space grid cell layouts => so cell has non-square layout with extra space for title below image
+		     NOTE: these are propagated to the ListSubstyle as any non-theme style (such as ListSubstyle) resolves
+		     attributes also vs main theme.
+		     Overridden for alt/bold fonts
+		 -->
+		<item name="gridItem1LineExtraSpace">?Alt_ListSubstyle_gridItem1LineExtraSpace</item><!-- 1line 4x, 3x grids -->
+		<item name="gridZoomedItem1LineExtraSpace">?Alt_ListSubstyle_gridZoomedItem1LineExtraSpace</item><!-- 1line 2x grids -->
+		<item name="gridItemExtraSpace">?Alt_ListSubstyle_gridItemExtraSpace</item><!-- 2line 4x, 3x grids -->
+		<item name="gridZoomedItemExtraSpace">?Alt_ListSubstyle_gridZoomedItemExtraSpace</item><!-- 2line 2x grids -->
+
+
+		<!-- REVISIT: these should be in sp for scaled fonts (alt/bold), and dp for the default font -->
 	</style>
 	<style name="Alt_ListSubstyle" parent="Alt_ListSubstyle_Base">
 	</style>

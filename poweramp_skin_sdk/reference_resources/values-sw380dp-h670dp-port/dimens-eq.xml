@@ -22,10 +22,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<dimen name="TopActionModeBar_marginTop">8dp</dimen>
-	<dimen name="TopActionModeBar_marginBottom">4dp</dimen>
 	
 	<dimen name="EqInfoLabel_maxWidth">370dp</dimen>
-	<dimen name="EqFrequencyResponseScroller_marginTop">4dp</dimen>
 		
 	<dimen name="eq_frs_height">54dp</dimen>
 

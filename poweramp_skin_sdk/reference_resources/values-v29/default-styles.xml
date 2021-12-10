@@ -27,6 +27,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="statusBarBg">#3000</item>
 		<item name="android:navigationBarColor">#0fff</item><!-- Makes big navbar button greyish so they are better visible on white -->
 		
-		<item name="corners_equ_frs">4dp</item><!-- NOTE: overridden for v28/v29+, as it's slow for lower Androids. Also further overridden by OptionEquFRSRounded* -->
+		<item name="corners_equ_frs">16dp</item><!-- NOTE: overridden for v28/v29+, as it's slow for lower Androids. Also further overridden by OptionEquFRSRounded* -->
 	</style>
 </resources>

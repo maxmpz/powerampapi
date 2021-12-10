@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,7 +19,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:z="http://schemas.android.com/apk/res-auto">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 	<style name="Base_ActivityTheme_Black" parent="Base_ActivityTheme_Default">
 		<item name="OptionEquFRSRounded">@style/OptionEquFRSRounded_Dark</item>
 		
@@ -27,8 +27,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 Poweramp places id/status_bar_bg view under status bar, with statusBarBg drawable, which can be any drawable, not just color.
 			 Use either android:statusBarColor for just color, or statusBarBg, but avoid using both to limit overdraw (set other to transparent/#0000)-->
 		<item name="android:statusBarColor">@android:color/transparent</item>
-		<item name="android:windowLightStatusBar">false</item>
-		<item name="android:windowLightNavigationBar">false</item><!-- For 9.0 -->
+		<item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+		<item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item><!-- For 9.0 -->
 		<item name="windowLightNavigationBar">false</item>
 				
 		<!-- NOTE: any alpha value in this color enables transparent android navigation bar and appropriate Poweramp layout changes, i.e. layout spans behind that bar.
@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 NOTE: some devices may always ignore these colors (OnePlus - ignores #FF000000, but accepts #FF000001)
 		-->
 		<item name="android:navigationBarColor">#FF000001</item>
-		<item name="android:navigationBarDividerColor">#0000</item><!-- Force nothing for divider as it doesn't look well on some devices which use light divider -->
+		<item name="android:navigationBarDividerColor" tools:ignore="NewApi">#0000</item><!-- Force nothing for divider as it doesn't look well on some devices which use light divider -->
 		<item name="statusBarBg">#5000</item><!-- Drawable/color for a view under Android status bar.  -->
 		<item name="navigationBarBg">#0000</item><!-- Drawable/color for a view under Android navigation bar. -->
 		
@@ -53,8 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textColorSecondary">#aaa</item>
 		<item name="android:textColorTertiary">#bbb</item>
 		<item name="android:textColorPrimaryInverse">#fff</item>
-		
-			
+
 		<item name="colorIconPrimary">#fff</item>
 		<item name="colorIconPrimaryForced">#fff</item>
 		<item name="colorIconInverse">#fff</item>
@@ -65,18 +64,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="colorBgPrimary">#222</item>
 		<item name="colorBgPrimaryAlpha">#4333</item>
-		<item name="colorBgLessAlpha">#d000</item>
+		<item name="colorBgLessAlpha">#d444</item>
 		<item name="colorInverse">#fff</item>
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#222</item>
 		<item name="colorStroke">#5f5f5f</item>
 		<item name="colorLessContrast">#eee</item>
+		<item name="colorTextBgAlpha">#c0000000</item>
 		
 		<item name="colorStrokeHelp">#555</item>
 		<item name="colorBgHelp">#333</item>
 		
 		<item name="colorShade">#88000000</item>
-		<item name="colorBgLight">#0f0f0f</item><!-- Used ATM for Search Frame bg -->
+		<item name="colorBgLight">#333</item><!-- Used ATM for the Search Frame bg -->
 		<item name="colorItemPlayingMark">#282828</item>
 		
 		<item name="colorAABgColor">#000</item>
@@ -117,13 +117,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorSeparatorLight">#2A2A2A</item>
 				
 		<item name="colorNavbarIcons">@color/navbar_icons_selector</item>
-		<item name="colorNavbarIconsLessContrast">#999</item><!-- NOTE: not used in default theme -->
+		<item name="colorNavbarIconsLessContrast">#999</item>
 		<item name="colorBgNavbar">#181818</item>
 		<item name="colorBgTransparentNavbar">#88181818</item>		
 		
 		<item name="colorSeekbarThumb">#7eee</item>
 		
-		<item name="colorIconCC">#eee</item>
+		<item name="colorIconCC">#dfff</item>
 		
 		<item name="defaultHiResAA">@drawable/black_poweramp_logo_hd</item>
 		<item name="defaultLowResAA">@drawable/black_poweramp_logo</item>
@@ -131,16 +131,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="waveseek_bar">@drawable/inverse_bar</item>
 		<item name="waveseek_elapsedbar">@drawable/inverse_elapsedbar</item>
 		
-		<item name="nav_lists">@drawable/lists</item>
-		<item name="nav_equ">@drawable/equ_24dp</item>
-		<item name="nav_search">@drawable/search</item>
-		<item name="nav_hamburger">@drawable/hamburger</item>
+		<item name="nav_lists">@drawable/lists_rounded</item>
+		<item name="nav_equ">@drawable/equ_rounded_24dp</item>
+		<item name="nav_search">@drawable/search_rounded</item>
+		<item name="nav_hamburger">@drawable/hamburger_rounded</item>
 		
 		<item name="eq_equalizer">@drawable/equ_thumbs</item>
 		<item name="eq_vol">@drawable/vol</item>
 		<item name="eq_reverb">@drawable/reverb</item>
 		
-		<item name="miniplayer_play_pause">@drawable/miniplayer_play_pause</item>
+		<item name="miniplayer_play_pause">@drawable/miniplayer_play_pause_rounded</item>
 		
 		<item name="repeat_none_32dp">@drawable/repeat_none_32dp_tinted</item>
 		<item name="vis_none_32dp">@drawable/vis_disabled_32dp_tinted</item>
@@ -163,6 +163,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Blackpro_MoreButtons</item>
+		<item name="overlap_less_rounding">@style/ActivityTheme_Black_LessRounding</item>
 		
 		<item name="DialogForceLightSystemUIStyle">@style/ActivityTheme_Black_DialogForceLightSystemUIStyle</item>
 		<item name="DialogForceDarkSystemUIStyle">@style/ActivityTheme_Black_DialogForceDarkSystemUIStyle</item>
@@ -173,6 +174,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="control_elevation">0dp</item><!-- Not visible on black + improves performance -->
 	</style>
 
+	<style name="ActivityTheme_Black_LessRounding" parent="ActivityTheme_White_LessRounding">
+		<item name="nav_lists">@drawable/lists</item>
+		<item name="nav_equ">@drawable/equ_24dp</item>
+		<item name="nav_search">@drawable/search</item>
+		<item name="nav_hamburger">@drawable/hamburger</item>
+		<item name="miniplayer_play_pause">@drawable/miniplayer_play_pause</item>
+	</style>
+
 		
 	<!-- NOTE: theme may be further overridden, e.g. in values-h700dp-port, etc. so keeping a separate base theme.
 		 This helps with overriding specific styles for e.g. values-h700dp-port only, not overriding them here -->
@@ -180,14 +189,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<!-- NOTE: changing statusbar background is not looking well on many devices, so not touching it here -->
-	<style name="ActivityTheme_Black_DialogForceLightSystemUIStyle">
+	<style name="ActivityTheme_Black_DialogForceLightSystemUIStyle" tools:ignore="NewApi">
 		<item name="android:navigationBarColor">@android:color/white</item>
 		<item name="android:windowLightNavigationBar">true</item>
 		<item name="windowLightNavigationBar">true</item> 
 		<item name="android:windowLightStatusBar">true</item>
 		<item name="android:navigationBarDividerColor">#08000000</item>
 	</style>
-	<style name="ActivityTheme_Black_DialogForceDarkSystemUIStyle">
+	<style name="ActivityTheme_Black_DialogForceDarkSystemUIStyle" tools:ignore="NewApi">
 		<item name="android:navigationBarColor">@android:color/black</item>
 		<item name="android:windowLightNavigationBar">false</item>
 		<item name="windowLightNavigationBar">false</item> 
@@ -202,14 +211,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopWaveseek">@style/TopWaveseekStatic</item>
 	</style>
 	
-	<style name="ActivityTheme_Blackpro_PlainSeekbar">
-		
-	</style>
-		
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Blackpro_MoreButtons">
 		<!-- Additional layout which is otherwise missing -->
 		<item name="TopWaveseekLayout_extraLayout">@layout/merge_topwaveseeklayout_extralayout</item>
+
+		<item name="TopPlay_scene_playing">@style/TopPlayMoreButtons_scene_playing</item>
 		
 		<item name="TopPause">@style/TopPauseMoreButtons</item>
 		<item name="TopPause_scene_playing">@style/TopPauseMoreButtons_scene_playing</item>

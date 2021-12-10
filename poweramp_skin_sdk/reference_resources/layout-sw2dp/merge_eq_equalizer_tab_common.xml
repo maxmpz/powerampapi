@@ -20,41 +20,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
-	<!-- EqKnobsFastLayout generates LinearKnobs with style="?EqLinearKnob -->
-	<!-- NOTE: EqPreampKnobLayout is needed for background as if background is applied to the DSPLinearKnob itself, knob outline shadow is rendered behind background -->
-	 
-	<!--
-	<com.maxmpz.widget.player.EqKnobsFastLayout android:id="@+id/eq_knobs_layout"
-		style="?EqKnobsLayout"
-	>
-		<com.maxmpz.widget.base.FastLayout
-			style="?EqPreampKnobLayout"
-		>
-			<com.maxmpz.widget.player.DSPPreampLinearKnob android:id="@+id/preamp_knob" 
-				style="?EqPreampLinearKnob"
-				android:text="@string/preamp"
-				
-				w:param="@id/dsp_preamp"
-				w:updateMsgId="@id/msg_dsp_eq_changed"
-			/>
-		</com.maxmpz.widget.base.FastLayout>
-		<com.maxmpz.widget.base.ScrollingBehavior w:disallowParentScroll="true" w:noScrollbars="true"/>
-	</com.maxmpz.widget.player.EqKnobsFastLayout>
-	-->
-	
-	<!-- PowerList based bands -->
+	<!-- NOTE: EqPreampKnobLayout is needed for background as if background is applied to the DSPLinearKnob itself,
+	     knob outline shadow is rendered behind background -->
+
+	<!-- PowerList based band list -->
 	<com.maxmpz.widget.player.EqKnobsList android:id="@+id/eq_knobs_layout"
 		style="?EqKnobsLayout"
 		w:listScroller="@+id/frequency_response_scroller"
 	/>
-		
+
 	<com.maxmpz.widget.player.MilkFRS android:id="@+id/milk_frs"
 		style="?EqMilkFrs"
 		android:contentDescription="@string/h_frs_drag_to_scroll"
 	/>
 	
 	<!-- NOTE: for the EqKnobsList (based on PowerList) the list scroller is set for in the list attributes, not vice versa as for EqKnobsFastLayout -->
-	<!-- w:scrollable="@id/eq_knobs_layout" -->
 	<com.maxmpz.widget.player.FrequencyResponseScroller android:id="@+id/frequency_response_scroller"
 		style="?EqFrequencyResponseScroller"
 		w:useDSPBus="true"

@@ -26,7 +26,8 @@
 	</item>
 	
 	<!-- Set when item needs touch feedback, e.g. on long press -->
-	<item android:minLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:maxLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:drawable="@drawable/ripple_rounded_medium"/>
+	<item android:minLevel="@integer/ITEM_BG_LEVEL_FEEDBACK" android:maxLevel="@integer/ITEM_BG_LEVEL_FEEDBACK"
+		android:drawable="@drawable/ripple_rounded_mini"/>
 	
 	<!-- By default, we have null drawable for level==0, thus, improving performance -->
 	<!-- NOTE: focus is handled by Android 8+ default focus drawable -->

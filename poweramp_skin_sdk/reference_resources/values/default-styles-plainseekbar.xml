@@ -194,7 +194,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="layout_attachBottom">parent</item>
 		<item name="layout_attachTop">@null</item>
-		<item name="android:layout_gravity">@null</item>
+		<item name="android:layout_gravity">top|left</item>
 		<item name="layout_attachBottomToBottom">@null</item>
 				
 		<item name="android:layout_marginBottom">?PlainSeekbar_common_marginBottom</item><!-- 8dp -->
@@ -224,7 +224,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="layout_attachBottom">parent</item>
 		<item name="layout_attachTop">@null</item>
-		<item name="android:layout_gravity">@null</item>
+		<item name="android:layout_gravity">top|left</item>
 		<item name="layout_attachBottomToBottom">@null</item>
 				
 		<item name="android:layout_marginBottom">?PlainSeekbar_common_marginBottom</item><!-- 8dp -->

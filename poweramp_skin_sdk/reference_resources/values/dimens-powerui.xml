@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values-h1dp -->
+<resources>
+	<bool name="v28_forceHasOverlappingRendering">false</bool>
+	<dimen name="PopupLayoutList_height">340dp</dimen>
+		
+	<dimen name="TopBottomSheetDialogFrame_maxHeight">440dp</dimen>
+	<dimen name="TopBottomSheetDialogFrame_vertical_buttons_maxHeight">500dp</dimen>
+	<dimen name="CenterDialogFrame_maxHeight">540dp</dimen>
+	<dimen name="SmallerCenterDialogFrame_maxHeight">320dp</dimen>
+	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">600dp</dimen>
+	<dimen name="DialogFrame_maxWidth">680dp</dimen>
+	
+	<dimen name="DialogButtonStyle_layout_maxWidth">148dp</dimen>
+	
+	<dimen name="CenterDialogFrame_maxWidth">380dp</dimen>
+	
+	<dimen name="TopToastContainer_layout_height">200dp</dimen><!-- Ensure 2-3 line fits -->
+	<dimen name="TopToastContainer_scenes_non_main_layout_height">146dp</dimen><!-- Not used -->
+	<dimen name="TopToastFrame_maxWidth">300dp</dimen>
+	<dimen name="TopToastFrame_paddingLR">16dp</dimen>
+	<dimen name="TopToastFrame_paddingTB">8dp</dimen>
+	<dimen name="TopToastTile_marginLeft">44dp</dimen><!-- NOTE: defines space for icon + padding -->
+	
+	<dimen name="TopUpperToastFrame_maxWidth">9999dp</dimen><!-- Not limited in portrait, limited in land -->
+	
+	<dimen name="HeadText_size">17sp</dimen>
+	<dimen name="SubheadText_size">12sp</dimen>
+	<dimen name="Text_size">14sp</dimen>
+	<dimen name="Hint_size">11sp</dimen>
+	<dimen name="LargerText_size">16sp</dimen>
+	
+	<dimen name="TopBaseButtonLayout_layout_width">58dp</dimen>
+	<dimen name="TopBaseButtonLayout_layout_height">30dp</dimen>
+	<dimen name="PopupButtons_drawableSize">28dp</dimen>
+	<dimen name="PopupButton_scene_button_menu">56dp</dimen>
+	<dimen name="SmallerPopupButton_marginLeft">-8dp</dimen>
+	<dimen name="SmallerPopupButtons_drawableSize">24dp</dimen>
+	<dimen name="PopupButtons_paddingLeft">15dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
+	<dimen name="PopupMenuItem_drawableWidth">24dp</dimen>
+	<dimen name="SmallerPopupButtons_paddingLeft">16.5dp</dimen>
+
+	<dimen name="NavbarExtensionMenuLine_drawableSize">24dp</dimen>
+	
+	<dimen name="TopSleepTimerButtonLayout_scene_item_menu_width">340dp</dimen>
+	<dimen name="PopupButtonLayoutDialogButton_marginTop">0dp</dimen>
+
+	<integer name="selector_fade_ms">150</integer>
+	
+	<dimen name="ListMenu_drawableSize">20dp</dimen>
+	<dimen name="track_children_scene_aa_margin">18dp</dimen>
+	<dimen name="ItemTrackMenu_scene_aa_marginLeft">-16dp</dimen>
+
+	<dimen name="searchHistoryItemSize">40sp</dimen>
+</resources>

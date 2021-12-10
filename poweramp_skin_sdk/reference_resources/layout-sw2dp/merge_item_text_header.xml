@@ -72,7 +72,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_shuffle"
 	>
-		<tag android:id="@+id/header_button" android:value="1"/>
+		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
 	</com.maxmpz.widget.base.BusActionButton>
 	
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
@@ -94,7 +94,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_play"
 	>
-		<tag android:id="@+id/header_button" android:value="1"/>
+		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
 	</com.maxmpz.widget.base.BusActionButton>
 	
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
@@ -134,7 +134,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_toggle_selection_mode"
 	>
-		<tag android:id="@+id/header_button" android:value="1"/>
+		<tag android:id="@+id/header_button" android:value="1" tools:ignore="DuplicateIds"/>
 	</com.maxmpz.widget.base.BusActionButton>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
 		style="?ItemTextHeaderSelectButton_scene_header"

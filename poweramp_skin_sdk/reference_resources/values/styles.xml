@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="TreeViewList" parent="@android:style/Widget.ListView">
+		<!-- <item name="android:divider">@drawable/divider_horizontal_dark</item> -->
+		<item name="android:textColor">#000</item>
+		<item name="android:colorAccent">#000</item>
+	</style>	
+
+	<style name="VolumePanelAnimation">
+		<item name="android:windowEnterAnimation">@anim/popup_enter_material</item>
+		<item name="android:windowExitAnimation">@anim/popup_exit_material</item>
+	</style>
+	
+	<style name="status_text_1" parent="@android:style/TextAppearance.Material.Notification.Title">
+	</style>	
+	
+	<style name="status_text_2" parent="@android:style/TextAppearance.Material.Notification">
+	</style>
+	
+	<style name="ListOptsRadioButton" parent="@android:style/Widget.Material.CompoundButton.RadioButton">
+		<!-- NOTE: uses global ?textAppearance, in this case, dialog's -->
+		<item name="android:paddingStart">4dp</item>
+		<item name="android:layout_marginBottom">4dp</item><!-- NOTE: applies only for xml+style, not applied for code-created views (not using this for LP) -->
+	</style>
+	
+	<style name="ListOptsRadioButton50" parent="ListOptsRadioButton">
+		<item name="layout_widthPercent">50%</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item>
+	</style>
+	
+	<style name="PeqMicroNotificationSamsung">
+		<!-- Keep empty -->
+	</style>
+
+	<style name="AlertDialog_Hint_Multichoice">
+		<item name="android:textAppearance">?Hint</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">@id/checkbox</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+
+		<item name="drawableWidth">10dp</item>
+		<item name="drawableHeight">10dp</item>
+		<item name="android:paddingLeft">8dp</item>
+
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:gravity">center_vertical</item>
+	</style>
+
+</resources>

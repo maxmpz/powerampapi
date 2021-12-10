@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
+
+	<!-- Always applied for Peq after all other styles. Applied to App theme.
+	     NOTE: this is mostly used to override some functional parts, not visual styles (as this is not overridden by skins) -->
+	<style name="PeqGlobalAppOverrides">
+		<item name="milk_advance_modes">@array/peq_milk_advance_modes</item>
+		<item name="milk_advance_icons">@array/peq_milk_advance_icons</item>
+		<item name="milk_advance_enum">@array/peq_milk_advance_enum</item>
+		<item name="settings_target_audio">peq_equ</item>
+		<item name="settings_target_equ">peq_equ</item>
+		
+		<item name="logo_navbar">@drawable/logo_navbar_peq</item>
+		
+		<item name="EqToneButton">@style/EqToneButtonHidden</item>
+		
+		<!-- REVISIT: we need a way to override this in themes -->
+		<item name="VisPanelContainer">?PeqVisPanelContainer</item>
+		
+		<item name="EqLockLabelStyle">@style/PeqLockLabel</item>
+		
+	</style>
+
+	<style name="PeqStyles">
+	</style>
+
+</resources>

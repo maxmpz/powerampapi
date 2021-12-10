@@ -2,6 +2,7 @@
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
 	android:color="?colorInverse"
+	android:effectColor="#0000"
 >
 	<item android:drawable="?pause_round" />
 </ripple>

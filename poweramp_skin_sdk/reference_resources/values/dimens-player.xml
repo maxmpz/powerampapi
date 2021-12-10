@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values-h1dp -->
+<resources>
+	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- Need less margin for shorter screens -->
+	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
+	<dimen name="ListSubstyleBase2_aaMarginBottom">200dp</dimen>
+	
+	<dimen name="TopWaveseek_maxHeight">128dp</dimen>
+	
+	
+	<dimen name="TopPlay_maxSize">64dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
+	<dimen name="TopSmallButton_size">36dp</dimen>
+	<dimen name="TopMediumButton_size">46dp</dimen>
+	
+	<dimen name="TopPlayPauseBehind_size">40dp</dimen>
+	<dimen name="TopPause_scene_playing_height">25dp</dimen>
+	<dimen name="TopPause_scene_playing_width">80dp</dimen>
+	<dimen name="TopTrackElapsedDuration_height">25dp</dimen>
+	<dimen name="TopTrackElapsedDuration_marginSide">-10dp</dimen>
+	<dimen name="TopTrackElapsed_paddingLR">8dp</dimen>
+
+	<dimen name="ItemTrackNum_width">28sp</dimen>
+	
+	<dimen name="TopTrackElapsedMoreButtons_marginBottom">-8dp</dimen>
+	<item name="TopTrackElapsedDurationMoreButtons_scale" type="dimen" format="float">0.8</item>
+	
+	<dimen name="TopMetaInfoLabel_textSize">8dp</dimen>
+	<dimen name="TopMetaInfoLabel_drawableSize">10dp</dimen>
+	<dimen name="TopMetaInfoLabel_paddingTopBottom">2dp</dimen>
+	<dimen name="TopMetaInfoLayout_marginBottom">4dp</dimen>		
+	<dimen name="TopMetaInfo_scene_item_menu_maxWidth">380dp</dimen>
+
+	<dimen name="Navbar_height">40dp</dimen>
+	<dimen name="NavbarNavButtonsLayout_height">36dp</dimen>
+	<dimen name="NavBarButton_drawableSize">28dp</dimen>
+	<dimen name="Navbar_normal_marginB">8dp</dimen>
+	<dimen name="NavbarList_marginBottom">-4dp</dimen>
+
+	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
+	<dimen name="NavbarBounds_height">44dp</dimen>
+	<!-- Navbar (2 lines scene) + bottom Navbar paddings => resulting anchoring point for other views -->
+	<dimen name="NavbarBounds_height_scene_navbar_2lines">98dp</dimen>
+	<!-- Same for overlap_navbar_offset -->
+	<dimen name="NavbarBounds_height_offset">52dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">102dp</dimen>
+
+	<dimen name="Navbar_marginB_more_rounded">4dp</dimen>
+	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
+	<dimen name="NavbarBounds_height_scene_navbar_2lines_more_rounded">90dp</dimen>
+
+
+	<dimen name="TopHelpSmaller_textSize">9sp</dimen>
+	<dimen name="TopHelpSmaller_paddingLR">10dp</dimen>
+	<dimen name="TopHelpSmaller_paddingTB">4dp</dimen>
+	<dimen name="TopHelpSmaller_marginTB">8dp</dimen>
+	<dimen name="TopHelpMarginTB">16dp</dimen>
+		
+	<!-- Alt -->
+	<dimen name="Alt_TopSubAAButtons_marginTop">5dp</dimen>
+	
+	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-4dp</dimen>
+	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">.85</item>
+	<dimen name="Alt_TopAABounds_marginBottom">50dp</dimen>
+	<dimen name="Alt_TopListSubstyle_aaMarginBottom">222dp</dimen>
+	
+	<dimen name="Alt_ListSubstyle_Base_gridItem1LineExtraSpace">26dp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridZoomedItem1LineExtraSpace">36dp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridItemExtraSpace">46dp</dimen>
+	<dimen name="Alt_ListSubstyle_Base_gridZoomedItemExtraSpace">54dp</dimen>
+
+	<!-- REVISIT: requires sp paddings as well
+	<dimen name="Alt_ListSubstyle_gridItem1LineExtraSpace_sp">18sp</dimen>
+	<dimen name="Alt_ListSubstyle_gridZoomedItem1LineExtraSpace_sp">28sp</dimen>
+	<dimen name="Alt_ListSubstyle_gridItemExtraSpace_sp">39sp</dimen>
+	<dimen name="Alt_ListSubstyle_gridZoomedItemExtraSpace_sp">48sp</dimen>
+	-->
+
+	<dimen name="Alt_TopPlay_maxSize">64dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
+	<dimen name="Alt_TopSmallButton_size">36dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">46dp</dimen>
+			
+	<dimen name="Alt_TopWaveseek_paddingTB">4dp</dimen>
+		
+	<dimen name="PlainSeekbar_buttons_offset">30dp</dimen>
+	<dimen name="Alt_PlainSeekbar_buttons_offset">30dp</dimen><!-- Keep it the same for smaller screens as otherwise buttons get too close to seekbar -->
+	
+	<dimen name="PlainSeekbar_marginBottom">-4dp</dimen>
+	<dimen name="PlainSeekbar_common_marginBottom">6dp</dimen>
+	<dimen name="PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
+	<dimen name="Alt_PlainSeekbar_common_marginBottom">6dp</dimen>
+	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
+	<dimen name="Alt_PlainSeekbar_marginBottom">-4dp</dimen>
+	
+	
+	<!-- @Deprecated -->
+	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
+	<!-- @Depeicated -->
+	<dimen name="Alt_ListSubstyle_aaPaddingBottom">62dp</dimen>
+	<!-- @Deprecated -->
+	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.3</item>
+	<!-- @Deprecated -->
+	<dimen name="Alt_aaMaxSize">302dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
+	
+	<dimen name="EqPresetButtonLayoutBase_listItemSize">56dp</dimen>
+				
+</resources>

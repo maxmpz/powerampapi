@@ -76,6 +76,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="overlap_plain_seekbar" format="reference"/>
 		<attr name="overlap_navbar_offset" format="reference"/>
 		<attr name="overlap_alt_layout" format="reference"/>
+		<attr name="overlap_less_rounding" format="reference"/>
+		<attr name="overlap_light_buttons" format="reference"/>
 	</declare-styleable>
 	
 	<!-- Navbar margins moved to theme to allow easy overriding for overlap_navbar_offset option -->

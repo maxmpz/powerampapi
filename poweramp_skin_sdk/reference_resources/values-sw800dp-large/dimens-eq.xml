@@ -26,7 +26,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqLinearKnob_thumbHeight">96dp</dimen>
 	<dimen name="knob_thumb_indicator_top_bottom">47dp</dimen>	
 	<dimen name="knob_thumb_indicator_left_right">8dp</dimen>
-	<dimen name="knob_thumb_radius">20dp</dimen>
+	<dimen name="knob_thumb_radius">30dp</dimen>
+	<dimen name="knob_thumb_radius_less_rounded">20dp</dimen>
 	<dimen name="EqLinearKnob_paddingLR">16dp</dimen>
 	<dimen name="linear_knob_text_size">14dp</dimen>
 	
@@ -37,6 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqButton_layout_width">72dp</dimen>
 	<dimen name="EqButton_layout_height">44dp</dimen>
+	<dimen name="EqParamPlaceholder2_height">112dp</dimen>
 	<dimen name="EqButton_textSize">15dp</dimen>
 	
 	<dimen name="eq_frs_height">96dp</dimen>

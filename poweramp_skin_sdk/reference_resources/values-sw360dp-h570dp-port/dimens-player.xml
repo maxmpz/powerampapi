@@ -28,8 +28,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfoLabel_drawableSize">12dp</dimen>
 	<dimen name="TopMetaInfoLabel_paddingTopBottom">3dp</dimen>
 	
-	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
-	
 	<dimen name="ListMenu_drawableSize">24dp</dimen>
 		
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- NOTE: aa bounds already have visual margin on bottom == 8 dp -->

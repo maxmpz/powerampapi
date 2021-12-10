@@ -38,11 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpSmaller_textSize">14sp</dimen>
 	<dimen name="TopTrackElapsedDuration_Text_size">19sp</dimen>
 	<dimen name="ItemTrackCatImage_Text_size">10.125sp</dimen>
-	<dimen name="linear_knob_text_size">15sp</dimen>
-	<dimen name="EqKnobValueText_size">12sp</dimen>
-	<dimen name="EqKnobLabelText_size">14sp</dimen>
-	<dimen name="EqButton_textSize">14sp</dimen>
-		
+
 	
 	<dimen name="small1_textSize">13.5sp</dimen>
 	<dimen name="small2_textSize">13.5sp</dimen>

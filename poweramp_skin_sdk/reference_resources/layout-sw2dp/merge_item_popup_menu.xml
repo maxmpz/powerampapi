@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -41,7 +41,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 			
 	<!-- NOTE: this is usually attached to aa_image, but for item_text + scene_top_header, there may be no visible aa_image, thus
-		 layout_attachToParrentIfGone="true" is used to attach to parent. item_text title consumes space in item_text, so separator is properly positioned below.
+		 layout_attachToParrentIfGone="true" is used to attach to parent. item_text title consumes space in item_text, so separator
+		 is properly positioned below.
 	 -->
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/menu_items"
 		style="?ItemPopupMenuItemsLayout"

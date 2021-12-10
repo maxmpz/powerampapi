@@ -28,6 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Applied (over main theme style) when rating is enabled and set to stars -->
 	<style name="OptionRatingStars">
 		<item name="ItemLikeUnlikeLayout_layout">@layout/merge_item_aa_rating_stars</item>
+		<item name="ItemTrackTitle_scene_aa">@style/ItemTrackTitle_scene_aa_w_rating</item>
 		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overridden for Alt layout -->
 		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa_w_rating</item>
 	</style>
@@ -45,6 +46,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Applied (over main theme style) when rating is enabled and set to like/unlike thumbs -->
 	<style name="OptionRatingLikeUnlike">
 		<item name="ItemLikeUnlikeLayout_layout">@layout/merge_item_aa_rating_thumbs</item>
+		<item name="ItemTrackTitle_scene_aa">@style/ItemTrackTitle_scene_aa_w_rating</item>
 		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overridden for Alt layout -->
 		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa_w_rating</item>
 	</style>
@@ -67,11 +69,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="CcButton_MainUI_scenes_playing">@style/CcButton_MainUI_disabled</item>
 		<item name="CcButton_MainUI_scenes_invisible">@style/CcButton_MainUI_disabled</item>
 		<item name="CcButton_MainUI_scenes_vis_w_ui">@style/CcButton_MainUI_disabled</item>
+		<item name="CcButton_MainUI_scene_vis">@style/CcButton_MainUI_disabled</item>
 		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine</item>
 	</style>
 	
 	<style name="OptionCCMainUIButton">
 		<item name="CcButton_MainUI">@style/CcButton_MainUIButton</item>
+		<item name="CcButton_MainUI_scenes_playing">@style/CcButton_MainUIButton_scenes_playing</item>
+		<item name="CcButton_MainUI_scenes_vis_w_ui">@style/CcButton_MainUIButton_scenes_vis_w_ui</item>
+		<item name="CcButton_MainUI_scene_vis">@style/CcButton_MainUIButton_scenes_vis</item>
 	</style>
 	
 	<style name="OptionCCMainUIAndInMenu">

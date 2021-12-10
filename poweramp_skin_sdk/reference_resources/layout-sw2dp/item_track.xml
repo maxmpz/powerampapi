@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -43,10 +43,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	- small list 1-line no-aa (scene_1_small_no_aa)
 	- zoomed list             (scene_zoomed)
 	- zoom list 1-line        (scene_1_zoomed)
-	- grid                    (scene_grid)
+	- grid                    (scene_grid) also used for alt mode with an increased cell height
 	- grid 1-line             (scene_grid_1)
 	- grid 1-line alt         (scene_grid_1_alt) used for human categories (artists, composers)
-	- zoomed grid             (scene_grid_zoomed)
+	- zoomed grid             (scene_grid_zoomed) also used for alt mode with an increased cell height
 	- zoomed grid 1-line      (scene_grid_1_zoomed)
 	- zoomed grid 1-line alt  (scene_grid_1_alt_zoomed) used for human categories (artists, composers)
 	NOTE: rounded AA image is implemented via bind property, which forces it to use cornerRadiusAlt attribute
@@ -64,7 +64,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	Total: 21
 		
 -->
-<com.maxmpz.widget.player.list.AAItemView 
+<!--suppress AndroidElementNotAllowed -->
+<com.maxmpz.widget.player.list.AAItemView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	

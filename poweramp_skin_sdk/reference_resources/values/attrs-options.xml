@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<!-- Optional styles. Applied based on user preferences. 
+	     Styles for these attributes should be defined in main skin theme, but these styles will be applied only if appropriate option is set in Poweramp settings  -->
+	<declare-styleable name="OptionalPoweruiStyles">
+		<!-- Applied (over main theme style) when rating is enabled and set to stars -->
+		<attr name="OptionRatingStars" format="reference"/>
+		
+		<!-- Applied (over main theme style) when rating is enabled and set to stars in menu only -->
+		<attr name="OptionRatingStarsMenu" format="reference"/>
+
+		<!-- Applied (over main theme style) when rating is enabled and set to like/unlike thumbs -->
+		<attr name="OptionRatingLikeUnlike" format="reference"/>
+		
+		<!-- Applied (over main theme style) when track counter is enabled -->
+		<attr name="OptionCounter" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Chromecast buttons should be disabled completely. NOTE: default style shows CC button on top of the main screen AA -->
+		<attr name="OptionCCDisabled" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Chromecast should be shown as main UI button. NOTE: default style shows CC button on top of the main screen AA -->
+		<attr name="OptionCCMainUIButton" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Chromecast should be shown in the main menu. NOTE: default style shows CC button on top of the main screen AA -->
+		<attr name="OptionCCInMenu" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Chromecast should be shown in main UI AND main menu -->
+		<attr name="OptionCCMainUIAndInMenu" format="reference"/>
+
+		<!-- Applied (over main theme style) when meta should be shown in headers -->
+		<attr name="OptionHeaderMeta" format="reference"/>
+		
+		<!-- Applied (over main theme style) when hide menu option is enabled -->
+		<attr name="OptionHideMenu" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Keep Aspect Ratio option is enabled -->
+		<attr name="OptionAAKeepAspect" format="reference"/>
+		
+		<!-- Applied (over main theme style) when Crop Album Art option is enabled -->
+		<attr name="OptionAACrop" format="reference"/>
+		
+		<!-- Applied (over main theme style) when equalizer frs visualization set to rounded -->
+		<attr name="OptionEquFRSRounded" format="reference"/>
+				
+	</declare-styleable>
+</resources>

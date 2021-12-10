@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Usually corresponds to @dimen/NavbarBounds_height. Anchoring point for content above the navbar.
+	 Now deprecated, as it's proved to be hard to adjust sizes like this per many available screen sizes, dimensions,
+	 Android version. Use a calculated dimension, e.g. layout_heightRef="@id/navbar_bounds_size" instead -->
+	<!-- @Deprecated -->
+	<attr name="bottom_navbar_bounds_size" format="dimension"/>
+	<!-- Usually corresponds to @dimen/NavbarBounds_height_scene_navbar_2lines. Anchoring point for content above navbar in
+	     2lines state.
+	     Now deprecated, use a calculated dimension, e.g. layout_heightRef="@id/navbar_bounds_2lines_size" instead
+	 -->
+	<!-- @Deprecated -->
+	<attr name="bottom_navbar_bounds_2lines_size" format="dimension"/>
+
+	<!-- Space to reserve for selection bar on bottom. Should be large enough so selection doesn't overlap last item.
+		 Deprecated, use selectionBottomReservedExtraSpace instead -->
+	<!-- @Deprecated -->
+	<attr name="selectionBottomReservedSpace" format="dimension"/>
+
+	<!-- @Deprecated -->
+	<attr name="ItemTrackMeta_scene_item_menu_marginLeft" format="dimension"/>
+	<!-- @Deprecated -->
+	<attr name="ItemTrackTitle_scene_item_menu_marginBottom" format="dimension"/>
+
+</resources>

@@ -34,5 +34,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	android:paddingEnd="?dialogContentPaddingLR"
 	android:drawableStart="?android:attr/listChoiceIndicatorMultiple"
 	android:drawablePadding="20dp"
-	android:ellipsize="marquee"
+	android:ellipsize="end"
 />

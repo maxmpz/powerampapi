@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Keeping legacy styles for the old skins. Do not use -->
+	<!-- @Deprecated -->
+	<style name="ListSubstyle" parent="ListSubstyle2">
+		<item name="aaItemRatio">100%</item>
+	</style>
+	<!-- @Deprecated -->
+	<style name="TopAABounds">
+		<item name="android:id">@+id/aa_bounds</item>
+		<item name="android:layout_height">match_parent</item><!-- NOTE: sync with ListSubstyle / various AA related params -->
+		<item name="android:layout_width">match_parent</item>
+		<item name="layout_matchDimension">widthToHeight</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachTop">inset</item>
+		<item name="layout_attachBottom">inset</item>
+		<item name="layout_marginBottomRef">@id/navbar_bounds_size</item>
+		<!--<item name="android:background">#5f0f</item>--><!-- DEBUG -->
+	</style>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- NOTE: derived from the framework checkbox, which doesn't support left padding (that's used for padding between text and image -->
+
+<com.maxmpz.widget.base.AlertDialogCheckableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:textAppearance="?android:attr/textAppearanceMedium"
+	android:textColor="?android:attr/textColorAlertDialogListItem"
+	android:paddingStart="?dialogContentPaddingLR"
+	android:paddingEnd="?dialogContentPaddingLR"
+	android:paddingTop="4dp"
+	android:paddingBottom="4dp"
+	android:background="?android:attr/selectableItemBackground"
+	android:clickable="true"
+	android:focusable="true"
+	android:focusableInTouchMode="false"
+>
+	<com.maxmpz.widget.base.FastCheckBoxOnly
+		android:id="@+id/checkbox"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		w:layout_consumeSpace="horizontal"
+		android:drawable="?android:attr/listChoiceIndicatorSingle"
+		android:background="@drawable/rounded_large"
+	/>
+
+	<com.maxmpz.widget.base.TextView
+		android:id="@+id/text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		w:layout_consumeSpace="vertical|reset_horizontal"
+		android:layout_marginLeft="12dp"
+
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:textColor="?android:attr/textColorAlertDialogListItem"
+		android:singleLine="true"
+		android:ellipsize="end"
+	/>
+
+	<com.maxmpz.widget.base.TextView
+		android:id="@+id/hint"
+		style="?Hint"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="8dp"
+		w:layout_attachLeft="@id/checkbox"
+		android:singleLine="true"
+		android:ellipsize="end"
+	/>
+</com.maxmpz.widget.base.AlertDialogCheckableLayout>

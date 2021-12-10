@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<style name="PopupMenuItem">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		
+		<item name="android:textAppearance">?PopupMenuItem_Text</item>
+				
+		<item name="android:paddingLeft">16dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		
+		<item name="drawableWidth">@dimen/PopupMenuItem_drawableWidth</item>
+		<item name="drawableHeight">@dimen/PopupMenuItem_drawableWidth</item>
+		
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="drawablePaddingStart">16dp</item>
+<!--		<item name="android:background">?android:selectableItemBackground</item>-->
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+	</style>
+	<style name="PopupMenuItem_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textSize">16dp</item>
+	</style>
+	<style name="PopupMenuItem50" parent="PopupMenuItem">
+		<item name="layout_widthPercent">50%</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item>
+		<item name="android:maxLines">1</item>
+	</style>
+	
+	<!-- Popup Buttons -->
+	<!-- NOTE: PopupButton clickability is manipulated by PopupButtonLayout as needed -->
+	<!-- NOTE: rather large buttons, e.g. sub-aa buttons on main screen -->
+	<style name="PopupButton">
+		<item name="drawablePaddingStart">@dimen/PopupButtons_paddingLeft</item><!-- Padding before image -->
+		<item name="android:paddingLeft">@dimen/PopupButtons_paddingLeft</item><!-- 18dp -->
+		<item name="android:paddingRight">40dp</item><!-- Extra padding to the right for a possible check drawable -->
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="drawablePosition">left</item>
+		<item name="drawableWidth">@dimen/PopupButtons_drawableSize</item><!-- ~32dp, smaller for smaller screens -->
+		<item name="drawableHeight">@dimen/PopupButtons_drawableSize</item>
+		<item name="android:hapticFeedbackEnabled">true</item>
+		<item name="drawableTint">?colorLessContrast</item>
+  		<item name="android:maxLines">1</item>
+		
+  		<item name="android:textAppearance">?PopupButton_Text</item>
+  		
+		<item name="android:ellipsize">end</item>
+		<!-- NOTE: works only when button is in popup menu, in button mode it's not clickable
+  			 NOTE: still, bg is actually there. For default selectableItemBackground it's not rendered in non-pressed state, though -->
+  		<item name="android:clickable">false</item>
+  		<!-- NOTE: @empty - specifically set empty bg here, otherwise bg from PopupButton_scene_button_menu is kept as is
+  			 This works on 5.1+ only, as hasValueOrEmpty is supported for SDK=22+
+  			 NOTE: thus using optimized #000000000 color instead (causes no extra drawables in FastButton) 
+  		-->
+  		<!-- <item name="android:background">@empty</item> -->
+  		<item name="android:background">#00000000</item><!-- NOTE: still, extra drawable is created when button is created with this style -->
+  		<item name="android:gravity">left|center_vertical</item>
+		<item name="applyViewParams">true</item><!-- NOTE: needed for tint -->
+  		<item name="recalcChildren">on_start</item>
+  		<item name="android:visibility">gone</item>
+  	</style>
+	<style name="PopupButton_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">16dp</item>
+	</style>
+	
+	<style name="PopupButtonNoTint" parent="PopupButton">
+		<item name="drawableTint">@null</item>
+	</style>
+  	
+	<style name="PopupButton_scene_button_menu">
+		<item name="scene">@id/scene_button_menu</item>
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">visible</item>
+		<item name="android:alpha">1</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/PopupButton_scene_button_menu</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="applyViewParams">true</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item><!-- NOTE: @null/@empty is not supported ATM, need explicit tint, thus using forced -->
+  		<item name="android:background">@drawable/ripple_with_check_selector</item>
+	</style>
+	
+	<style name="PopupButtonNoTint_scene_button_menu" parent="PopupButton_scene_button_menu">
+		<item name="drawableTint">@null</item><!-- REVISIT: this probably doesn't work as expected if normal button has tint -->
+	</style>
+	
+	<!-- NOTE: smaller buttons, e.g. sort button in vis panel. Fine tuned for smaller horizontal size by shifting contents by marginLeft
+		 Same PopupButton_scene_button_menu style is used (as expanded button inside a popup is the same style) -->
+	<style name="SmallerPopupButton" parent="PopupButton">
+		<item name="android:layout_marginLeft">@dimen/SmallerPopupButton_marginLeft</item>
+		<item name="drawableWidth">@dimen/SmallerPopupButtons_drawableSize</item><!-- 24dp -->
+		<item name="drawableHeight">@dimen/SmallerPopupButtons_drawableSize</item>
+		<item name="drawablePaddingStart">@dimen/SmallerPopupButtons_paddingLeft</item><!-- Padding before image -->
+	</style>
+	<style name="SmallerPopupButton_scene_button_menu" parent="PopupButton_scene_button_menu">
+	</style>
+	
+	<style name="PopupContent_scene_button_menu">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">visible</item>
+		<item name="baseScene">defaultScene</item>
+		<!-- NOTE: important, do not introduce layout here, keep baseScene layout -->
+	</style>
+	
+	
+	<style name="PopupDialogListLayoutList"><!-- Used for separate dialogs with popup lists, e.g. for Playlist select dialog -->
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+<!--		<item name="android:scrollbars">vertical</item>-->
+		<item name="android:nestedScrollingEnabled">true</item>
+	</style>
+	
+	<style name="ExpandedListLayoutBase" parent="PopupDialogListLayoutList">
+		<item name="android:layout_width">match_parent</item>
+<!--		<item name="android:scrollbars">vertical</item>-->
+		<item name="android:nestedScrollingEnabled">true</item>
+	</style>
+	
+	<style name="MediaRouterPopupDialogListLayoutList" parent="ExpandedListLayoutBase">
+		<item name="android:layout_height">192dp</item><!-- 64 * 3 -->
+	</style>
+	
+	<style name="EqPresetListLayout" parent="ExpandedListLayoutBase">
+		<item name="android:layout_height">@dimen/PopupLayoutList_height</item>
+	</style>
+	
+	<style name="PopupListLayoutList">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/PopupLayoutList_height</item>
+<!--		<item name="android:scrollbars">vertical</item>-->
+	</style>
+		
+	<style name="PopupListLayoutLabel">
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:textAppearance">@style/PopupListLayoutLabel_Text</item><!-- NOTE: usually overridden by derived styles -->
+	</style>
+	<style name="PopupListLayoutLabel_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">12dp</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+
+	<style name="GenericPowerList">
+<!--		<item name="android:scrollbars">vertical</item>-->
+	</style>
+	
+</resources>

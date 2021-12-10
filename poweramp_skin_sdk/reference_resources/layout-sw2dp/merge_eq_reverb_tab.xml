@@ -23,6 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	style="?EqTabLayout"
 	w:enableStateAnim="true"
 	w:privateScene="true"
+	android:clipChildren="false"
 >
 	<!-- NOTE: additional panels are not requires for layout, but still are here to allow e.g. backgrounds for skin makers --> 
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/reverb_panel1"

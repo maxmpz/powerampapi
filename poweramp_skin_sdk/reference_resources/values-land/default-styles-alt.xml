@@ -68,7 +68,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="Alt_ListSubstyle" parent="Alt_ListSubstyle_Base">
 		<item name="aaItemBoundsMatchList">width</item>
-		<item name="aaMarginBottom">?bottom_navbar_bounds_size</item>
+		<item name="aaMarginBottom">@id/navbar_bounds_size</item>
 		<item name="aaPaddingBottom">0dp</item><!-- No space below AA as we put labels to the right of AA -->
 	</style>
 	

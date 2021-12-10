@@ -31,7 +31,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textAppearanceButton">@style/textAppearanceButton_Tablet</item>
 		<item name="android:textAppearanceMediumInverse">@style/textAppearanceMediumInverse_Tablet</item>
 		<item name="android:textAppearanceLargePopupMenu">@style/textAppearanceLargePopupMenu_Tablet</item>
-		
+
+		<!-- TODO
 		<item name="corners_popup">7.5dp</item>
 		<item name="corners_medium">12dp</item>
 		<item name="corners_medium_plus">24dp</item>
@@ -63,6 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_aa_scene_aa">10dp</item>
 		
 		<item name="corners_miniplayer_aa">5dp</item>
+		-->
 	</style>
 	
 	

@@ -24,12 +24,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="OptionEquFRSRounded_Light">
 		<item name="EqMilkFrs_presetUri">internal://#fft2invrounded</item>
-		<item name="corners_equ_frs">8dp</item><!-- NOTE: overridden for v28/v29+, as it's slow for lower Androids -->
 	</style>
 	
 	<style name="OptionEquFRSRounded_Dark">
 		<item name="EqMilkFrs_presetUri">internal://#fft2rounded</item>
-		<item name="corners_equ_frs">8dp</item><!-- NOTE: overridden for v28/v29+, as it's slow for lower Androids -->
 	</style>
 	
 </resources>	

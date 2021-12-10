@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2020 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<attr name="settings_v" format="reference"/>
+	<attr name="settings_look_feel" format="reference"/>
+	<attr name="settings_audio" format="reference"/>
+	<attr name="settings_vis" format="reference"/>
+	<attr name="settings_aa_bg" format="reference"/>
+	<attr name="settings_aa" format="reference"/>
+	<attr name="settings_folders_library" format="reference"/>
+	<attr name="settings_headset" format="reference"/>
+	<attr name="settings_lockscreen" format="reference"/>
+	<attr name="settings_misc" format="reference"/>
+	<attr name="settings_general" format="reference"/>
+	<attr name="settings_equ" format="reference"/>
+	<attr name="settings_utils" format="reference"/>
+	<attr name="settings_support" format="reference"/>
+	<attr name="settings_export" format="reference"/>
+	<attr name="settings_import" format="reference"/>
+	<attr name="settings_send_errors" format="reference"/>
+	<attr name="settings_restore_purchase" format="reference"/>
+	<attr name="settings_doubleq" format="reference"/>
+		
+	<attr name="settings_pa_logo" format="reference"/>
+	<attr name="settings_peq_logo" format="reference"/>
+	<attr name="settings_milk_preset_uri" format="string"/>
+	
+	<!-- NOTE: used by indented skin preferences. Should be in settings theme -->
+	<attr name="preferenceIndentPadding" format="dimension"/>	
+	
+	<attr name="TreeViewList" format="reference"/>
+	
+	<attr name="pref_privacy_policy" format="string|reference"/>
+	
+	<declare-styleable name="TreeViewList">
+		<attr name="collapsible" format="boolean" />
+		<attr name="src_expanded" format="reference|color" />
+		<attr name="src_collapsed" format="reference|color" />
+		<attr name="indent_width" format="dimension" />
+		<attr name="handle_trackball_press" format="boolean" />
+		<attr name="indicator_gravity">
+			<!-- Push object to the top of its container, not changing its size. -->
+			<flag name="top" value="0x30" />
+			<!-- Push object to the bottom of its container, not changing its size. -->
+			<flag name="bottom" value="0x50" />
+			<!-- Push object to the left of its container, not changing its size. -->
+			<flag name="left" value="0x03" />
+			<!-- Push object to the right of its container, not changing its size. -->
+			<flag name="right" value="0x05" />
+			<!-- Place object in the vertical center of its container, not changing its size. -->
+			<flag name="center_vertical" value="0x10" />
+			<!-- Grow the vertical size of the object if needed so it completely fills its container. -->
+			<flag name="fill_vertical" value="0x70" />
+			<!-- Place object in the horizontal center of its container, not changing its size. -->
+			<flag name="center_horizontal" value="0x01" />
+			<!-- Grow the horizontal size of the object if needed so it completely fills its container. -->
+			<flag name="fill_horizontal" value="0x07" />
+			<!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+			<flag name="center" value="0x11" />
+			<!-- Grow the horizontal and vertical size of the object if needed so it completely fills its container. -->
+			<flag name="fill" value="0x77" />
+			<!-- Additional option that can be set to have the top and/or bottom edges of the child clipped to its container's bounds.
+				The clip will be based on the vertical gravity: a top gravity will clip the bottom edge, a bottom gravity will clip the top
+				edge, and neither will clip both edges. -->
+			<flag name="clip_vertical" value="0x80" />
+			<!-- Additional option that can be set to have the left and/or right edges of the child clipped to its container's bounds.
+				The clip will be based on the horizontal gravity: a left gravity will clip the right edge, a right gravity will clip the
+				left edge, and neither will clip both edges. -->
+			<flag name="clip_horizontal" value="0x08" />
+		</attr>
+		<attr name="indicator_background" format="reference|color" />
+		<attr name="row_background" format="reference|color" />
+		
+		<attr name="android:textColor"/>
+		<attr name="android:colorAccent"/>
+	</declare-styleable>
+	
+	<declare-styleable name="NumberListPreference">
+		<attr name="entries" format="reference"/>
+		<attr name="values" format="reference"/>
+		<attr name="summary" format="string" />
+		<attr name="summaries" format="reference" />
+		<attr name="disableDependenciesValue" format="integer"/>
+	</declare-styleable>
+	
+	<declare-styleable name="ListPreference">
+		<attr name="android:entries"/>
+		<attr name="android:entryValues"/>
+		<attr name="android:summary"/>
+		<attr name="summary2" format="string"/>
+	</declare-styleable>
+	
+	<declare-styleable name="SeekbarPreference">
+		<attr name="max" format="integer"/>
+		<attr name="min" format="integer"/>
+		<attr name="step" format="integer"/>
+		<attr name="label" format="string"/>
+		<!-- float -->
+		<attr name="scale"/>
+		<!-- float -->
+		<attr name="snapTo"/>
+		<attr name="android:layout"/>
+		<attr name="leftLabel" format="string"/>
+		<attr name="centerLabel" format="string"/>
+		<attr name="rightLabel" format="string"/>
+		<attr name="tickMark"/>
+		<!-- If non-zero, float value is read/stored, prescaled by this value -->
+		<attr name="floatScale" format="float"/>
+		<attr name="summary2"/>
+		<attr name="sup" format="string"/>
+		<attr name="supLink" format="string"/>
+		
+		<!-- If defined, switches SeekbarPreference to a predefined-values-list mode, where all value dependent attributes are ignores and
+		     seeking is happening through the predefined values/entries.
+		     This is some typed array. Depending on array type, appropriate value is written: int, float, string -->
+		<attr name="values"/>
+		<!-- If defined, this is shown as value in summary -->
+		<attr name="entries"/>
+	</declare-styleable>
+	
+	<declare-styleable name="RoundKnobPreference">
+		<attr name="max"/>
+		<attr name="min"/>
+		<!-- In same scale as min/max for consinstency -->
+		<attr name="mid" format="integer"/>
+		<!-- Always 0..midPos..1 for RoundKnob -->
+		<attr name="midPos"  format="float"/>
+		<attr name="label"/>
+		<!-- float -->
+		<attr name="scale"/>
+		<!-- float -->
+		<attr name="snapTo"/>
+		<attr name="android:layout"/>
+		<!-- If non-zero, float value is read/stored, prescaled by this value -->
+		<attr name="floatScale"/>
+		<attr name="summary2"/>
+		<attr name="sup"/>
+		<attr name="supLink"/>
+		<attr name="valueFormat"/>
+		<attr name="rounding"/>
+	</declare-styleable>
+	
+	<declare-styleable name="Preference">
+		<attr name="target" format="string"/>
+		<attr name="android:icon" />
+	</declare-styleable>
+	
+	<!-- Also used for some other prefs/PreferenceHelper -->
+	<declare-styleable name="MultilineSwitchPreference">
+		<attr name="summary"/>
+		<attr name="summary2"/>
+		<attr name="sup"/>
+		<attr name="supLink"/>
+		<attr name="android:textColorPrimary"/><!-- Taken from theme -->
+		<!-- Small inline icon -->
+		<attr name="smallIcon" format="reference"/>
+		<!-- The summary will be prefiltered with this removed, e.g. stuff like : %s -->
+		<attr name="removeFromSummary" format="string"/>
+	</declare-styleable>
+	
+	<declare-styleable name="PreferenceHeader">
+		<!-- Identifier value for the header. -->
+		<attr name="android:id" />
+		<!-- The title of the item that is shown to the user. -->
+		<attr name="android:title" />
+		<!-- The summary for the item. -->
+		<attr name="android:summary"/>
+		<!-- The title for the bread crumb of this item. -->
+		<attr name="android:breadCrumbTitle"/>
+		<!-- The short title for the bread crumb of this item. -->
+		<attr name="android:breadCrumbShortTitle"/>
+		<!-- An icon for the item. -->
+		<attr name="android:icon" />
+		<!-- The fragment that is displayed when the user selects this item. -->
+		<attr name="android:fragment"  />
+		
+		<attr name="skipOnSinglePane" format="boolean"/>
+	</declare-styleable>
+	
+	<!-- NOTE: MultilineSwitchPreference attributes also applies here (via PreferenceHelper) -->
+	<declare-styleable name="RawTextPreference">
+		<attr name="line1" format="string"/>
+		<attr name="line2" format="string"/>
+		<attr name="line3" format="string"/>
+		<attr name="line4" format="string"/>
+		
+		<attr name="smallLine1" format="string"/>
+		<attr name="smallLine2" format="string"/>
+		<attr name="smallLine3" format="string"/>
+		<attr name="smallLine4" format="string"/>
+		
+		<attr name="singleNewline" format="boolean"/>
+		<!-- Required to properly apply newlinew -->
+		<attr name="useHtml" format="boolean"/>
+		<attr name="iconAlignedTop" format="boolean"/>
+		
+		<attr name="target"/>
+		
+		<attr name="android:textColorPrimary"/><!-- Taken from theme -->
+		<attr name="android:gravity"/>
+		<attr name="android:background"/>
+		
+	</declare-styleable>	
+	
+	<declare-styleable name="EditTextPreference">
+		<attr name="summaryWhenEmpty" format="string"/>
+	</declare-styleable>
+	
+	<declare-styleable name="IndexedPreference">
+		<attr name="android:key"/>
+		<attr name="android:title"/>
+		<attr name="searchSummary" format="string"/>
+		<!-- If skipSearch contains comma separated (no spaces) editions, we'll be skipping if the current edition matches.
+		     NOTE: skipSearch is false by default, except for RawTextPreference, where it's true by default -->
+		<attr name="skipSearch" format="boolean|string"/>
+		<attr name="android:summary"/>
+		<attr name="summary"/>
+		<attr name="summary2"/>
+		<attr name="android:icon"/>
+		
+	</declare-styleable>
+	
+	<declare-styleable name="TopIndexedPreference">
+		<attr name="android:title"/>
+		<attr name="searchIndexer" format="string"/>
+		<!-- If skipSearch contains comma separated (no spaces) editions, we'll be skipping if the current edition matches -->
+		<attr name="skipSearch"/>
+		<!-- Used for categories, defines parent for search breadcrumb.
+		     As for "static" preferences max 1 parent is used (main / parent1 / current), only one breadcrumb provided
+		-->
+		<attr name="searchBreadcrumb1" format="string"/>
+		<attr name="ignoreTitle" format="boolean"/>
+		
+	</declare-styleable>
+	
+	<declare-styleable name="TagsPreference">
+		<attr name="summaryWhenEmpty"/>
+		<attr name="separatorChars" format="string"/>
+		<attr name="addButtonText" format="string"/>
+		<!-- The tags limit to store in the preference -->
+		<attr name="tagsLimit" format="integer"/>
+		
+		<!-- The tags limit to show in the preferences list -->
+		<attr name="listTagsLimit" format="integer"/>
+	</declare-styleable>
+	
+	<declare-styleable name="TagListPreference">
+		<attr name="entries"/>
+		<attr name="values"/>
+		<attr name="disableDependenciesValue"/>
+	</declare-styleable>
+		
+		
+</resources>

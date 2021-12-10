@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- Specific styles we never override by themes -->
+<resources
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	>
+
+	<style name="behavior_eq_layout">
+		<item name="android:id">@+id/behavior_eq_layout</item>
+		<item name="android:layout">@layout/merge_eq_layout</item>
+		<item name="loadForScene">@+id/scene_eq</item>
+		<item name="insertAt">thisPosition</item>
+		<item name="unload">never</item>
+	</style>
+
+	<style name="behavior_search_layout">
+		<item name="android:id">@+id/behavior_search_layout</item>
+		<item name="android:layout">@layout/merge_search_layout</item>
+		<item name="loadForScene">@+id/scene_search</item>
+		<item name="insertAt">thisPosition</item>
+		<item name="unload">never</item>
+	</style>
+
+	<style name="vis_panel_loadable_beahvior">
+		<item name="android:id">@+id/vis_panel_loadable_beahvior</item>
+		<item name="android:layout">@layout/merge_vis_panel</item>
+		<item name="loadForScene">@+id/scene_vis_temp_ui</item>
+		<item name="loadForScene_2">@+id/scene_vis</item>
+		<item name="loadForScene_3">@+id/scene_vis_w_ui</item>
+		<item name="insertAt">thisPosition</item>
+		<item name="unload">never</item>
+
+	</style>
+</resources>

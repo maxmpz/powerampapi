@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Alt_ItemTrackTitle_scene_aa" parent="Base_Alt_ItemTrackTitle_scene_aa">
+		<item name="layout_attachBottom">50%</item><!-- Should be @/line2 by default and 50% if we have space -->
+	</style>
+	<style name="Alt_ItemTrackLine2_scene_aa" parent="Base_Alt_ItemTrackLine2_scene_aa">
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">50%</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
+</resources>

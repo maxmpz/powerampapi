@@ -20,11 +20,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- values -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 	<style name="ActivityTheme_Blackpro_TransparentNavbar">
 		<item name="navigationBarBg">#8000</item>
 		<item name="android:navigationBarColor">#0000</item><!-- Make android navigation bar transparent -->
-		<item name="android:windowLightNavigationBar">false</item>
+		<item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
 		<item name="windowLightNavigationBar">false</item><!-- Needed for Android 8.0 as it doesn't support android:windowLightNavigationBar -->
 		
 		<item name="Navbar">@style/Navbar_transparentNavbar</item>

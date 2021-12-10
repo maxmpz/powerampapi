@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -30,7 +30,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		w:param="@+id/dsp_master_volume"
 		w:updateMsgId="@+id/msg_dsp_other_changed"
-		
+
+		w:labelText="@string/volume"
 		w:valueFormat="@string/f0_percent"
 		w:valueFormatMin="0"
 		w:valueFormatMax="100"

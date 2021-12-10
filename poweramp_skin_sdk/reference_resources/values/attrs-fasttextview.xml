@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- FastTextView is TextView/Button/ImageButton replacement, which is designed for layout and drawing performance. Used for a static text, labels, text with icons,
+	 and just icons (+ few derived classes e.g. for the checkboxes)
+
+	 This is, in some parts, very limited widget, esp. compared to full blown TextView, but it's fast:
+	 - it doesn't use Android text layout code
+	 - it doesn't support Spanned text
+	 - it doesn't support RTL
+	 - it has limited drawable support (just one drawable. Can be positioned to the left, right or top)
+
+	 Nevertheless, additional features are:
+	 - support for line drawables (per line text background, independent from general view background)
+	 - support for additional animatable SceneParams parameters: text color, max lines, drawable, line background, background
+
+	 Paddings:
+	 NOTE: fast text padding processing (with drawable) differs from the standard Android TextView.
+	 This is due to the requirement for consinstent padding around text, while padding around drawable may be specific to that drawable.
+	 This allows same styles for buttons with or without drawables and consinstent text paddings as a result
+
+	 Horizontal FastTextView paddings when no drawable:
+	   paddingLeft text paddingRight
+
+	 Horizontal FastTextView paddings when drawable is available, drawablePosition=left:
+	   drawablePaddingStart drawable drawablePadding (drawablePaddingEndNoText) paddingLeft text paddingRight
+
+	 Horizontal FastTextView paddings when drawable is available, drawablePosition=right:
+	   paddingLeft text paddingRight drawablePadding (drawablePaddingEndNoText) drawable drawablePaddingStart
+
+	 Horizontal FastTextView paddings when drawable is available and drawableOnly=true:
+	   drawablePaddingStart drawable drawablePadding paddingLeft paddingRight
+
+	 NOTE: leadingOffset may be added (or removed if negatove) to the paddingLeft/paddingRight (depending on the
+	 text gravity).
+	 This is special offset which reduces leading pixels difference between various fonts/font styles/font sizes/scaling.
+	 Used for the better alignment of the visible text pixels
+
+	 NOTE: drawablePaddingEndNoText is applied only if text is empty (null or "")
+	 NOTE: when drawablePosition=GRAVITY (this is default for drawableOnly), no paddings applied as fixed size is assumed
+
+	 Same approach is used for vertical paddings (drawblePosition=top)
+
+	 Paddings with drawablePosition=forceGravity and drawableOnly=true (icon only) are standard paddingLeft/Top/Right/Bottom.
+	 drawablePadding/drawablePaddingStart are ignored, as gravity make drawable to be positioned everywhere depending on gravity, thus
+	 text-related drawable paddings make no sense in this mode
+
+	 NOTE: generally, some drawables, like <inset> or other drawables with padding can override view paddings completely, when set for FastText/FastButton
+	 AFTER initial XML parsing (e.g. during scene animation with the new background)
+	 Fast text mitigates this by forcing the initial XML paddings when background is updated for scene
+-->
+	<declare-styleable name="FastTextView">
+		<attr name="lineBackground" format="reference|color"/>
+		<!-- If true, text won't be shown and drawablePosition is set to "forceGravity". Good for drawable without text, e.g. image buttons
+			 Default=false -->
+		<attr name="drawableOnly" format="boolean"/>
+		<!-- Max number of lines in this view. If set to 1, single line mode is activated, similar to android TextView singleLine:
+			 - no any breaks are possible, even \n doesn't break text
+			 - overflowing text is cut by character, not by word
+		-->
+		<attr name="android:maxLines"/>
+		<!-- NOTE: for compability reasons, singleLine=true just forces maxLines=1 (actual maxLines attribute is then ignored)-->
+		<attr name="android:singleLine"/>
+
+		<!-- If true, no attempt to break text (on new line/overflow) will happen -->
+		<attr name="noBreak" format="boolean"/>
+		<!-- Optional drawable -->
+		<attr name="android:drawable"/>
+		<!-- Padding before drawable when drawable is available. Can be negative. NOTE: paddingLeft is not applied to drawable (always applied to the text)-->
+		<attr name="drawablePaddingStart" format="dimension"/>
+		<!-- Padding between drawable and text. Basically it's added to paddingLeft when drawable exists -->
+		<attr name="android:drawablePadding"/>
+		<attr name="drawablePosition">
+			<enum name="left" value="0"/>
+			<enum name="top" value="1"/>
+			<enum name="right" value="2"/>
+			<!-- Drawable will be positioned according to android:gravity. This makes sense only if drawableOnly=true, for pure icons without text. No paddings applied, fixed size assumed -->
+			<enum name="forceGravity" value="-1"/>
+		</attr>
+
+		<!-- NOTE: android:drawableTint not supported by Android 5.0, thus using w:drawableTint -->
+		<attr name="drawableTint" format="reference|color"/>
+		<!-- Default drawableTintMode=src_in -->
+		<attr name="drawableTintMode">
+		<!--
+			<enum name="src_over" value="3" />
+			<enum name="src_in" value="5" />
+			<enum name="src_atop" value="9" />
+			<enum name="multiply" value="14" />
+			<enum name="screen" value="15" />
+			<enum name="add" value="16" />-->
+		</attr>
+
+		<!-- Forced drawable width. Default is drawable original width -->
+		<attr name="drawableWidth" format="dimension"/>
+		<!-- Forced drawable height. Default is drawable original height -->
+		<attr name="drawableHeight" format="dimension"/>
+
+		<!-- Default true. If false, we won't use drawable height for the view height measuring,
+		     text view height is purely text dependent then. Applied when it makes sense (left/right positioned drawable + text) -->
+		<attr name="useDrawableHeight" format="boolean"/>
+
+		<!-- Default is false. If true, allow this view to have zero-height if no text (text=="" or null) nor drawable is set for it.
+		     NOTE: minHeight is still honored -->
+		<attr name="allowZeroHeight" format="boolean"/>
+		<!-- Extra drawable padding right when no text exists (empty or null). This can be negative value, it's summed with other paddings right to the drawable, i.e:
+		     drawablePaddingStart drawable (drawablePaddingEndNoText + drawablePadding + paddingLeft + paddingRight) -->
+		<attr name="drawablePaddingEndNoText" format="dimension"/>
+
+		<!--
+		When drawable exists, paddings and backgrounds are distributed as follows:
+		  (bg starts) drawablePaddingStart <drawable> drawablePadding (line bg starts) paddingLeft <text> paddingRight (line bg ends) (bg ends)
+		When no drawable, paddings are as usual:
+		  (bg starts)(line bg starts) paddingLeft <text> paddingRight (line bg ends)(bg ends)
+		-->
+
+		<!-- Applied when we have ellispsize=end and text should be cut so ellipsis should be shown.
+		     If false, ellipsis (...) is just drawn right after the text, line background ends right after the ellipsis (+ paddings).
+		     This may cause FastTextViews not being the same widths due to line background being attached to the
+		     wrapped/cut text which size varies with the symbols in it.
+		     If true (default), the resulting FastTextView width is set to avalable width and ellipsis is centered between
+		     text end and right text view side -->
+		<attr name="alignEllipsis" format="boolean"/>
+
+		<!-- Adjustment offset used for the layout_alignToContent calc to the first drawable pixel for the reporting
+		     to the FastLayout. Absolute value in pixels/dp.
+		     Used for pixel perfect alignment for different fonts/styles/sizes without using extra margins/paddings,
+		     thus simplifying alignment for various devices/screen sizes.
+		     Doesn't change anything inside this fast text view, affects just layout -->
+		<attr name="drawableAdj" format="dimension"/>
+
+		<!-- Only "none" and "end" are supported ATM -->
+		<attr name="android:ellipsize"/>
+		<!-- Only "none" and "characters" are supported ATM. It's preferable to use textAllCaps instead, as it's derived from TextAppearance -->
+		<attr name="android:capitalize"/>
+		<attr name="android:minWidth"/>
+		<attr name="android:minHeight"/>
+		<attr name="textScale" format="float"/>
+		<attr name="android:enabled"/>
+		
+		<!-- NOTE: not actually processed by FastTextView, but by FastTextView descendants - e.g. FastButton -->
+		<attr name="android:disabledAlpha"/>
+
+		<attr name="android:text"/>
+		<attr name="android:gravity"/>
+		<attr name="android:lineSpacingMultiplier"/>
+		<attr name="android:lineSpacingExtra"/>
+
+		<attr name="android:textAppearance"/>
+		<attr name="android:textSize"/>
+		<attr name="android:textColor"/>
+		<attr name="android:textStyle"/>
+		<attr name="android:fontFamily" />
+		<attr name="android:typeface" />
+		<attr name="android:textAllCaps"/>
+
+		<!--
+		     Some preference key containing float size _multiplier_ id, for example, from skin seekbar preference id.
+		     The multipler is applied to android:textSize set for given textview or other view with the text.
+
+		     Resulting text size in pixels will be:
+		       android:textSize in dp * textSizePref preference float value
+		       or
+		       android:textSize in sp * user system text size preference * textSizePref preference float value.
+
+		     Different text or view styles may have different textSizePref values. We use multiplier here instead of the fixed
+		     font size value to allow all the default text sizes (defined by default themes) to be valid without extra
+		     configuration.
+
+		     NOTE: the value should be some id in the format "@id/your_id_name" (you can freely define your ids in some values.xml
+		     or ids.xml)
+		-->
+		<attr name="textSizeMultiplierPref"/>
+
+		<!-- If true, vertical inner font padding around the text is "eaten" and text has no extra font padding.
+		     The implicit text height becomes capital letter height.
+		     Allows pixel accurate text alignment.
+
+		     If applied, ensure text views have enough top/bottom padding to allow font ascents/descents (such as "g", "p",
+		     or some non-latin scripts -->
+		<attr name="eatFontPads" format="boolean"/>
+
+		<!-- If set to non-zero, the debugging rectangles are drawn around text and drawable exact bounds.
+		     Only raw color values accepted -->
+		<attr name="debugRectColor" format="color"/>
+	</declare-styleable>
+</resources>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2021 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<style name="NavbarShim">
+		<item name="android:background">?colorShade</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:visibility">gone</item>
+		<item name="android:outlineProvider">none</item>
+	</style>
+	
+	<style name="Base_Navbar">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/Navbar_height</item><!-- ~48dp -->
+		<item name="layout_attachBottom">inset</item>
+		<item name="android:layout_marginLeft">?navbar_marginLR</item>
+		<item name="android:layout_marginRight">?navbar_marginLR</item>
+		<item name="android:layout_marginBottom">?navbar_marginB</item>
+		<!-- clipToOutline is required to properly clip scrolled stuff (in a list), but older Android versions have a bug with
+		     the handling XML attribute, so this is set in the code -->
+<!--		<item name="android:clipToOutline">true</item>-->
+		<item name="android:elevation">?navbar_elevation</item>
+		<item name="android:background">@drawable/navbar_bg</item>
+	</style>
+	<!-- NOTE: overridden in values-sw2dp-v29 -->
+	<style name="Navbar" parent="Base_Navbar">
+	</style>
+	<style name="Base_Navbar_scene_navbar_1line_sheet">
+		<item name="layout_attachBottom">inset</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">?navbar_marginLR</item>
+		<item name="android:layout_marginRight">?navbar_marginLR</item>
+		<item name="android:layout_marginBottom">?navbar_marginB</item>
+	</style>
+	<style name="Navbar_scene_navbar_1line_sheet" parent="Base_Navbar_scene_navbar_1line_sheet">
+	</style>
+	<!-- See calculated @id/navbar_bounds_2lines_size -->
+	<style name="Base_Navbar_scene_navbar_2lines">
+		<item name="layout_attachBottom">inset</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">?navbar_marginLR</item>
+		<item name="android:layout_marginRight">?navbar_marginLR</item>
+		<item name="android:layout_marginBottom">?navbar_marginB</item>
+	</style>
+	<style name="Navbar_scene_navbar_2lines" parent="Base_Navbar_scene_navbar_2lines">
+	</style>
+	
+	<style name="NavbarExtension">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginBottom">2dp</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:visibility">gone</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="shim">@+id/navbar_shim</item>
+		<item name="animTime">500</item><!-- Extension enter anim time -->
+		<item name="animExitTime">200</item><!-- Extension exit anim time -->
+		<item name="twoLineEnterAnimTime">500</item>
+		<item name="twoLineExitAnimTime">500</item>
+		<item name="android:duplicateParentState">true</item><!-- Needed to e.g. state_playing to propagate -->
+	</style>
+	
+	<style name="NavbarExtensionLogo">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">28dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:scaleType">center</item>
+		<item name="android:paddingLeft">16dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">4dp</item>
+		
+		<item name="android:layout_gravity">top|center_horizontal</item>
+		<item name="android:drawable">@drawable/logo_navbar_hamburger</item>
+		<item name="drawableOnly">true</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="clickDelay">@integer/activity_start_navbar_click_delay</item>
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+	</style>
+
+	<style name="NavbarExtensionLogoLabel">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:paddingLeft">8dp</item><!-- Needed to avoid fake-italic last char clipping -->
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:layout_gravity">top|center_horizontal</item>
+		<item name="android:textAppearance">?NavbarExtensionLogoLabel_Text</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:drawablePadding">-2dp</item>
+	</style>
+	<style name="NavbarExtensionLogoLabel_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textStyle">italic</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textSize">12.5dp</item><!-- Fixed size to avoid overflowing for large text scale -->
+	</style>
+	
+	<style name="NavbarExtensionMenuLine">
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">44dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:drawablePadding">20dp</item>
+		<item name="drawableWidth">@dimen/NavbarExtensionMenuLine_drawableSize</item>
+		<item name="drawableHeight">@dimen/NavbarExtensionMenuLine_drawableSize</item>
+		<item name="drawablePaddingStart">28dp</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="clickDelay">@integer/activity_start_navbar_click_delay</item>
+		<item name="android:textAppearance">?NavbarExtensionMenuLine_Text</item>
+	</style>
+	<style name="NavbarExtensionMenuLine_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+	<!-- NOTE: not used ATM -->
+	<style name="NavbarExtensionMenuLine50" parent="NavbarExtensionMenuLine">
+		<item name="android:layout_width">0px</item>
+		<item name="layout_widthPercent">50%</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item>
+	</style>
+	
+	<style name="NavbarList">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/Navbar_height</item>
+		<!-- Slightly move to navbar buttons territory by offseting bottom. 
+		     This is for the better paddings distribution inside miniplayer list item => better background positioning when pressed -->
+		<item name="android:layout_marginBottom">@dimen/NavbarList_marginBottom</item>
+		<item name="android:visibility">gone</item>
+		<item name="layout_attachTop">@id/navbar_extension</item>
+		<item name="android:duplicateParentState">true</item><!-- Needed to e.g. state_playing to propagate -->
+	</style>
+	
+	<style name="NavbarNavButtonsLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/Navbar_height</item>
+		<item name="layout_attachTop">@id/navbar_list</item>
+		<item name="android:padding">2dp</item>
+	</style>
+	
+	<style name="NavBarButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_flexAxis">horizontal</item>
+		<item name="layout_flexWeight">1</item>
+		
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="drawableWidth">@dimen/NavBarButton_drawableSize</item>
+		<item name="drawableHeight">@dimen/NavBarButton_drawableSize</item>
+		<item name="drawableTint">?colorNavbarIcons</item>
+		<item name="drawableOnly">true</item>
+		<item name="drawablePosition">forceGravity</item>
+		<item name="android:gravity">center</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="animOnClick">true</item>
+		
+		<item name="android:minWidth">24dp</item>
+		<item name="android:minHeight">24dp</item>
+	</style>
+
+	<style name="NavbarPeqExtensionLogo" parent="NavbarExtensionLogo">
+		<item name="android:drawable">@drawable/logo_navbar_peq</item><!-- NOTE: overridden in Peq -->
+		<item name="android:layout_height">25dp</item>
+	</style>
+</resources>

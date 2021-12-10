@@ -11,5 +11,5 @@
 		</shape>
 	</item>
 	
-	<item android:minLevel="0" android:maxLevel="0" android:drawable="@drawable/ripple_alpha_activated_rounded_medium"/>
+	<item android:minLevel="0" android:maxLevel="0" android:drawable="@drawable/ripple_alpha_activated_rounded_generic"/>
 </level-list>

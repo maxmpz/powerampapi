@@ -73,7 +73,31 @@
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
 		style="@style/TopHelp_anim_help_visible" 
 	/>
-		
+
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+
+		w:help_anchor="@id/shuffle_button_layout"
+		w:help_position="top"
+
+		android:text="@string/shuffle"
+		/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible"
+		/>
+
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+
+		w:help_anchor="@id/repeat_button_layout"
+		w:help_position="bottom"
+
+		android:text="@string/repeat"
+		/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible"
+		/>
+
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
 		

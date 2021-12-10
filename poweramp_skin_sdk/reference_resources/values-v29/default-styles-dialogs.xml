@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="dialog_MusicFoldersActivity" parent="CenteredDialog_vertical_buttons">
+		<item name="dialogContentLayout">@layout/dialog_content_music_folders</item>
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
+	</style>
+</resources>

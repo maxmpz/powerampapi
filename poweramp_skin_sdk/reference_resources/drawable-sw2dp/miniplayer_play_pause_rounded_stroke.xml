@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+	android:exitFadeDuration="250"
+	android:enterFadeDuration="150"
+>
+	<item android:state_activated="true" android:drawable="@drawable/pause_small_rounded_stroke"/>
+	<item android:drawable="@drawable/play_small_rounded_stroke"/>
+</selector>

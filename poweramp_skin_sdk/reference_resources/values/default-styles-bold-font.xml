@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -31,40 +31,47 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		NOTE: don't override textColor here for item texts.
 		Text colors for text-color animated texts (like title/line2/meta etc. in items) are set on view level due to scene animations and ignored if overridden here -->
 	
-	<!-- Introduce some attribute for a font so we can set it for all styles we need at once. This font includes regular and bold fonts -->
+	<!-- Introduce some attribute for a font so we can set it for all styles we need at once.
+	     This font includes medium and bold fonts
+	     NOTE: from Android point of view, both fonts have implied fontStyle=bold -->
 	<attr name="BoldFont_font" format="string"/>
 	<attr name="BoldFont_medium_font" format="string"/>
+
+	<!-- Not used anymore -->
+	<!-- @Deprecated -->
 	<attr name="BoldFont_regular_font" format="string"/>
-	
+
 	<style name="ActivityTheme_BoldFont">
 		<item name="BoldFont_font">@font/ttnormspro_bold</item>
 		<item name="BoldFont_medium_font">@font/ttnormspro_medium</item>
+		<!-- Not used anymore -->
+		<!-- @Deprecated -->
 		<item name="BoldFont_regular_font">@font/ttnormspro_medium</item>
-		
+
+		<item name="humanGridItemExtraSpace">18sp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
+		<item name="humanGridZoomedItemExtraSpace">24sp</item><!-- 2x grids. Overridden for alt/bold fonts -->
+
+		<!-- REVISIT: requires sp paddings as well
+		<item name="Alt_ListSubstyle_gridItem1LineExtraSpace">@dimen/Alt_ListSubstyle_gridItem1LineExtraSpace_sp</item>
+		<item name="Alt_ListSubstyle_gridZoomedItem1LineExtraSpace">@dimen/Alt_ListSubstyle_gridZoomedItem1LineExtraSpace_sp</item>
+		<item name="Alt_ListSubstyle_gridItemExtraSpace">@dimen/Alt_ListSubstyle_gridItemExtraSpace_sp</item>
+		<item name="Alt_ListSubstyle_gridZoomedItemExtraSpace">@dimen/Alt_ListSubstyle_gridZoomedItemExtraSpace_sp</item>
+		-->
+
 		<!-- Also modify item scale a bit in some scenes -->
-		<item name="ItemTrackTitle_scene_small_scale">.75</item>
 		<item name="ItemTrackTitle_scene_grid_scale">.65</item>
 		<item name="ItemTrackTitle_scene_grid_zoomed_scale">.9</item>
 		<item name="ItemTrackTitle_scene_grid_1_alt_zoomed_scale">.75</item>
-		<item name="ItemTrackTitle_marginBottom">-5sp</item>
-		<item name="ItemTrackTitle_paddingTB">3dp</item>
 		<item name="ItemTrackTitle_scene_item_menu_scale">.9</item>
-		<item name="ItemTrackTitle_scene_item_menu_marginBottom">-11.625dp</item>
-				
-		<item name="ItemTrackLine2_scene_small_scale">.725</item>
+
 		<item name="ItemTrackLine2_scene_grid_scale">.65</item>
-		<item name="ItemTrackLine2_scene_grid_zoomed_scale">.75</item>
-		<item name="ItemTrackLine2_paddingTB">4dp</item>
-		<item name="ItemTrackLine2_paddingLR">8.125dp</item>
-		<item name="ItemTrackLine2_scene_item_menu_scale">.93</item>
-		
-		<item name="ItemTrackMeta_marginTop">-9sp</item>
-		<item name="ItemTrackMeta_paddingLR">8.5dp</item>
-		<item name="ItemTrackMeta_drawablePadding">-7dp</item>
-		<item name="ItemTrackMeta_drawablePaddingStart">6dp</item>		
-		<item name="ItemTrackMeta_scene_item_menu_scale">.9</item>
-		<item name="ItemTrackMeta_scene_item_menu_marginLeft">.5sp</item>
-				
+		<item name="ItemTrackLine2_scene_grid_zoomed_scale">.9</item>
+		<item name="ItemTrackLine2_scene_item_menu_scale">.9</item>
+
+		<item name="ItemTrackTitle_scene_header_scale">.9</item>
+		<item name="ItemTrackLine2_scene_header_scale">.9</item>
+		<item name="ItemTrackMeta_scene_header_w_meta_base_scale">.9</item>
+
 		<item name="android:textAppearance">@style/textAppearance_BoldFont</item>
 		<item name="android:textAppearanceButton">@style/textAppearanceButton_BoldFont</item><!-- Apply font for few buttons which use textAppearanceButton, e.g. dialog buttons -->
 		<item name="android:textAppearanceMediumInverse">@style/textAppearanceMediumInverse_BoldFont</item><!-- Used by e.g. TopListSearchEditText and other possible EditTexts -->
@@ -165,7 +172,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:fontFamily">?BoldFont_font</item>
 	</style>
 	<style name="Dialog_textAppearanceSmall_BoldFont" parent="TextAppearance.AppCompat.Small"><!-- Plain text views, e.g. used for labels/some messages -->
-		<item name="android:fontFamily">?BoldFont_regular_font</item>
+		<item name="android:fontFamily">?BoldFont_medium_font</item>
 	</style>
 	
 	<style name="HeadText_BoldFont" parent="HeadText">
@@ -179,10 +186,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:fontFamily">?BoldFont_font</item>
 	</style>
 	<style name="AccentedText_BoldFont" parent="AccentedText">
-		<item name="android:fontFamily">?BoldFont_regular_font</item>
+		<item name="android:fontFamily">?BoldFont_medium_font</item>
 	</style>
 	<style name="Text_BoldFont" parent="Text">
-		<item name="android:fontFamily">?BoldFont_regular_font</item>
+		<item name="android:fontFamily">?BoldFont_medium_font</item>
 	</style>
 	<style name="LargerText_BoldFont" parent="LargerText">
 		<item name="android:fontFamily">?BoldFont_font</item>
@@ -222,7 +229,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:fontFamily">?BoldFont_font</item>
 	</style>
 	<style name="TopHelpNormal_Text_BoldFont" parent="TopHelp_Text">
-		<item name="android:fontFamily">?BoldFont_regular_font</item>
+		<item name="android:fontFamily">?BoldFont_medium_font</item>
 	</style>
 	<style name="TopHelpSmaller_Text_BoldFont" parent="TopHelpSmaller_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
@@ -248,9 +255,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<style name="DialogTitle_Text_BoldFont" parent="DialogTitle_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/large4_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/large1_AltFont_textSize</item>
 	</style>
-	<style name="DialogToastLine1_Text_BoldFont" parent="DialogToastLine1_Text">
+	<style name="DialogToastLine1_Text_BoldFont" parent="DialogToastLine1_Text"><!-- Bold -->
 		<item name="android:fontFamily">?BoldFont_medium_font</item>
 		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
 	</style>
@@ -271,17 +278,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/medium3_AltFont_textSize</item>
 	</style>
-	<style name="ItemTrackTitle_Text_BoldFont" parent="ItemTrackTitle_Text">
+	<style name="ItemTrackTitle_Text_BoldFont" parent="ItemTrackTitle_Text"><!-- NOTE: style=bold -->
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/large4_AltFont_textSize</item>
 	</style>
-	<style name="ItemTrackLine2_Text_BoldFont" parent="ItemTrackLine2_Text">
+	<style name="ItemTrackLine2_Text_BoldFont" parent="ItemTrackLine2_Text"><!-- NOTE: style=normal -->
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
 	</style>
 	<style name="ItemTrackMeta_Text_BoldFont" parent="ItemTrackMeta_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/moderate0_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
 	</style>
 	<style name="ItemAALEDecorText_Text_BoldFont" parent="ItemAALEDecorText_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
@@ -323,12 +330,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:fontFamily">?BoldFont_font</item>
 	</style>
 	<style name="ItemMiniplayerTitle_Text_BoldFont" parent="ItemGenericTitle_Text">
-		<item name="android:fontFamily">?BoldFont_medium_font</item>
-		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+		<item name="android:fontFamily">?BoldFont_font</item>
+		<item name="android:textSize">@dimen/moderate3_AltFont_textSize</item>
 	</style>
 	<style name="ItemMiniplayerLine2_Text_BoldFont" parent="ItemGenericLine2_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/small4_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/small3_AltFont_textSize</item>
 	</style>
 	<style name="ItemPopupSimpleTitle_Text_BoldFont" parent="ItemPopupSimpleTitle_Text">
 		<item name="android:fontFamily">?BoldFont_medium_font</item>
@@ -367,7 +374,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SelectionListContextButton_Text_BoldFont" parent="SelectionListContextButton_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/moderate0_AltFont_textSize</item>
-		<!--<item name="android:textSize">11.25sp</item>-->
 	</style>
 	<style name="SelectionMenu_Text_BoldFont" parent="SelectionMenu_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
@@ -390,7 +396,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="EqKnobLabel_Text_BoldFont" parent="EqKnobLabel_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item> 
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
 	</style>
 	<style name="EqKnobValue_Text_BoldFont" parent="EqKnobValue_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>

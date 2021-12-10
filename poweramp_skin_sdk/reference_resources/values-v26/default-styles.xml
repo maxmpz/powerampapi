@@ -20,14 +20,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- values-v26 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 	<style name="Base_ActivityTheme_Default" parent="Base_ActivityTheme_Core">
 		<item name="android:editTextBackground">@drawable/edit_text_material</item>
 	</style>
 	
 	<style name="ActivityTheme_Whitepro_TransparentNavbar">
 		<item name="navigationBarBg">#5000</item>
-		<item name="android:windowLightNavigationBar">false</item>
+		<item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
 		<item name="windowLightNavigationBar">false</item><!-- Needed for Android 8.0 as it doesn't support android:windowLightNavigationBar -->
 		<item name="android:navigationBarColor">#0000</item><!-- Make android navigation bar transparent -->
 		
@@ -39,7 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="ActivityTheme_Whitepro_TransparentLightNavbar" parent="ActivityTheme_Whitepro_TransparentNavbar">
 		<item name="navigationBarBg">?colorBgTransparentNavbar</item>
-		<item name="android:windowLightNavigationBar">true</item>
+		<item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
 		<item name="windowLightNavigationBar">true</item><!-- Needed for Android 8.0 as it doesn't support android:windowLightNavigationBar -->
 	</style>
 		

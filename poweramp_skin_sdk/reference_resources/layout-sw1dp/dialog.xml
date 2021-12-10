@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	- scene_dialog_out_alt - alternative dialog-out scene. Used for manual CenteredDialog dragging-out - which normally fades in/out 	
 -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:w="http://schemas.android.com/apk/res-auto" >
+	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto" >
 
 	<!-- NOTE: we're inside FrameLayout (sub-DecorView) here -->
 	
@@ -90,9 +90,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?DialogFrame"
 			android:clickable="true"
 			android:focusable="false"
-		>
+			tools:ignore="KeyboardInaccessibleWidget"
+			>
 				<!-- Title layout
-				     NOTE: even if hidden, it still can consume space via margins (they are calculated even for gone vies) -->
+				     NOTE: even if hidden, it still can consume space via margins (they are calculated even for the "gone" views) -->
 				<com.maxmpz.widget.base.FastLayout android:id="@+id/dialog_title_layout"
 					style="?DialogTitleLayout"
 				>
@@ -112,8 +113,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 						w:scene_2="@id/scene_dialog_in_progress"
 						android:visibility="visible"
 						w:recalcChildren="on_start"
-					/>	
-															
+					/>
+
+					<com.maxmpz.widget.base.FastButton android:id="@+id/dialog_progress_button"
+						style="?DialogProgressButton"
+					/>
+
 					<!-- NOTE: FastText behaves a bit better here during animations, due to support for clipChildren=false --> 
 					<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 						style="?DialogTitle"
@@ -188,12 +193,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					(that fixes bug/oversight in default Android layout inflater)
 				-->
 				<include android:layout="?dialogContentLayout"/>
-				
+
+				<!-- NOTE: using dynamic here for a better animations for dialog size changes -->
 				<SceneParams
 					w:scene="@id/scene_dialog_in" 
 					w:scene_2="@id/scene_dialog_in_loading"
 					android:visibility="visible"
-					w:recalcChildren="on_start"
+					w:recalcChildren="dynamic"
 				/>
 				<SceneParams
 					w:scene="@id/scene_dialog_in_progress" 
@@ -247,7 +253,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:privateScene="true"
 		/>
 		
-		<include android:layout="@layout/merge_toast"/><!-- NOTE: for some projects can be empty -->
+		<include android:layout="@layout/merge_toast"/>
 				
 	</com.maxmpz.widget.base.DialogOuterFastLayout>
 	<!-- NOTE: empty SceneParams for dialog-in scenes. Needed for AdjustToSoftKeyboardBehavior - it animates current scene for soft keyboard -->

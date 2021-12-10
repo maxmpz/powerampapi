@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+	android:color="?colorInverse"
+>
+	<item>
+		<shape android:shape="oval">
+			<solid android:color="?colorPlayButtonsBg" />
+			<padding android:left="1px" android:right="1px" android:top="1px" android:bottom="1px"/>
+		</shape>
+	</item>
+	<item>
+		<rotate android:toDegrees="0" android:fromDegrees="180">
+			<bitmap android:src="?next_cat_core" android:gravity="center" android:tint="?colorPlayButtonsTint"/>
+		</rotate>
+	</item>
+</ripple>
