@@ -400,12 +400,22 @@ The page tag is ignored by builds prior 866, all inner options are still shown.
 
 
 ### Skin Options Persistence
-Poweramp persists skin option to own preferences based on skin generated IDs for the styles/attributes. Re-generating such IDs (e.g. in case of Clean build) will reset some
-or all options on user side as IDs will be changed.
+Poweramp persists skin option to own preferences based on skin generated IDs for the styles/attributes.
+Re-generating such IDs (e.g. in case of Clean build) will reset some or all options on user side as IDs will be changed.
 
-To avoid this issue **[stable-ids.txt](stable-ids.txt)** file is used, which is automatically updated during skin build process with the new styles/attributes you add to your skin.
+To avoid this issue **[stable-ids.txt](stable-ids.txt)** file is used, which is automatically updated during skin
+build process with the new styles/attributes you add to your skin.
 Be sure to keep this file around. 
 The file initially contains the sample skin IDs (which won't generally interfere with your IDs).
+
+Note that only few attributes should have stable ids - the skin style as used in your *skins*.xml
+<skin> tag style attribute.
+For example <skin style="@style/SampleSkin"..> means line like:
+```
+com.poweramp.v3.sampleskin:style/SampleSkin = 0x80070054
+```
+should exist in stable-ids.txt. Other lines/stable ids are not needed.
+
 
 
 ### Custom/Loadable Fonts
