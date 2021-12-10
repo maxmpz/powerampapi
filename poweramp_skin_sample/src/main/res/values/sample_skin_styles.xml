@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--suppress ALL -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
 	<!-- Main theme, derived from Poweramp base white theme. We override only the attributes we need.
 	     Poweramp styles/attributes/values start with "com.maxmpz.audioplayer:", otherwise syntax is the standard Android xml resource syntax
@@ -42,14 +43,24 @@
 
 		<item name="com.maxmpz.audioplayer:navbar_elevation">8dp</item><!-- Increase elevation for navbar -->
 
-		<!-- Redefine bottom navbar bounds used as anchor for other views, as we moved navbar 8dp down -->
+		<!-- 912+: deprecated, navbar dimensions are calculated via "dynamic" dimensions automatically now.
+		     We still keep these styles here for the old builds -->
 		<item name="com.maxmpz.audioplayer:bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>
+		<!-- 912+: deprecated -->
 		<item name="com.maxmpz.audioplayer:bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>
 
+		<!-- 912+: special theme attribute to control navbar margin -->
+		<item name="com.maxmpz.audioplayer:navbar_marginB">0dp</item>
+
+		<!-- This disables reduceBottomInset - see @style/TopContainer -->
+		<item name="com.maxmpz.audioplayer:TopContainer">@style/TopContainer</item>
+
 		<!-- Change Navbar style to make it fill whole width -->
+		<!--
 		<item name="com.maxmpz.audioplayer:Navbar">@style/Navbar</item>
 		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet</item>
 		<item name="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines</item>
+		-->
 
 		<!-- Apply same for selection menu -->
 		<item name="com.maxmpz.audioplayer:SelectionMenuSubcontainer">@style/SelectionMenuSubcontainer</item>
@@ -153,6 +164,13 @@
 		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.0</item>
 	</style>
 
+	<style name="TopContainer" parent="com.maxmpz.audioplayer:TopContainer">
+		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine
+			 and consistent around it
+			 As we have 0 bottom margin, just disable this as well -->
+		<item name="com.maxmpz.audioplayer:reduceBottomInset">0dp</item>
+	</style>
+
 	<style name="ItemTrackTitle_Text" parent="com.maxmpz.audioplayer:ItemTrackTitle_Text">
 		<item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/titleLine2FontSize</item>
 	</style>
@@ -191,19 +209,19 @@
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginRight">0dp</item>
-		<item name="android:layout_marginBottom">0dp</item>
+		<!-- NOTE: avoid direct marginBottom here, use Navbar_marginB attribute in the global theme  -->
 	</style>
 	<style name="Navbar_scene_navbar_1line_sheet" parent="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginRight">0dp</item>
-		<item name="android:layout_marginBottom">0dp</item>
+		<!-- NOTE: avoid direct marginBottom here, use Navbar_marginB attribute in the global theme  -->
 	</style>
 	<style name="Navbar_scene_navbar_2lines" parent="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginRight">0dp</item>
-		<item name="android:layout_marginBottom">0dp</item>
+		<!-- NOTE: avoid direct marginBottom here, use Navbar_marginB attribute in the global theme  -->
 	</style>
 
 	<style name="SelectionMenuSubcontainer" parent="com.maxmpz.audioplayer:SelectionMenuSubcontainer">

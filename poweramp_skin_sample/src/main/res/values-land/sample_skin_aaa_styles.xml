@@ -4,7 +4,8 @@
 
 	<style name="AAA_ListSubstyle" parent="AAA_ListSubstyle_Base">
 		<item name="com.maxmpz.audioplayer:aaItemBoundsMatchList">width</item>
-		<item name="com.maxmpz.audioplayer:aaMarginBottom">?com.maxmpz.audioplayer:bottom_navbar_bounds_size</item>
+		<!-- NOTE: do not override this, allow it to handle navbar height automatically via "dynamic" dimension -->
+		<!--<item name="com.maxmpz.audioplayer:aaMarginBottom">?com.maxmpz.audioplayer:bottom_navbar_bounds_size</item>-->
 		<item name="com.maxmpz.audioplayer:aaPaddingBottom">0dp</item><!-- No space below AA as we put labels to the right of AA -->
 	</style>
 
