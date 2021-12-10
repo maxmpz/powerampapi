@@ -48,9 +48,9 @@ Track related FastTextViews (title, line2, meta) now use new *layout_alignToCont
   (*layout_alignToContent=true*) such adjustments could be (and actually, should be) done only once.
   In skins, preferable, no any adjustments should be done and derived styles should be used as they are.
 
-  To use the new paddings, add *applyNewPadding="true"* to your *&lt;skin>* element.  
+  To use the new paddings, add *allowNewPadding="true"* to your *&lt;skin>* element.
 
-  By default (when no *applyNewPadding* is specified) Poweramp will try to guess if new paddings can
+  By default (when no *allowNewPadding* is specified) Poweramp will try to guess if new paddings can
   be applied by checking if skin has theme attribute *ItemTrackTitle* defined.
   Most skins do not have this redefined and default Poweramp item styles work just fine.
   If skin redefines the *ItemTrackTitle*, Poweramp applies

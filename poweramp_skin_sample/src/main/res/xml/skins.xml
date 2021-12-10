@@ -12,7 +12,7 @@
 		style="@style/SampleSkin"
 		forceGlobalOptions="true"
 		darkMode="@style/SampleSkinDark"
-		applyNewPadding="true"
+		allowNewPadding="true"
 	>
 		<!-- Since 866. The category and page tags define 2 types of option categories. The <category> tag is just a grouping header in skin settings.
 		     The <page> tag defines settings sub-page.
