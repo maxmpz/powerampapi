@@ -1,11 +1,12 @@
 [TOC]: # "Poweramp v3 Skin Sample"
 
 # Poweramp v3 Skin Sample
+- [Recent Changes](#recent-changes)
 - [Introduction](#introduction)
 - [Poweramp v3 Skin](#poweramp-v3-skin)
 - [How to Start Own Skin (Based on Sample Skin)](#how-to-start-own-skin-based-on-sample-skin)
 - [How Poweramp v3 Skins Work](#how-poweramp-v3-skins-work)
-- [Android 11/targetSdkVersion 30 support](#android-11targetsdkversion-30-support)
+- [Android 11/targetSdkVersion 30+ support](#android-11targetsdkversion-30-support)
 - [Bundle support](#bundle-support)
 - [Poweramp Skin styles.xml](#poweramp-skin-stylesxml)
 - [Automatic Dark/Light Modes](#automatic-darklight-modes)
@@ -19,9 +20,16 @@
 - [License](#license)
 
 ### Recent Changes
-##### Build 912
+##### Builds 912-914
+###### Plugin XML minSdk/maxSdk attributes
+New minSdk="*sdk_num*" and maxSdk="*sdk_num*" attributes are supported for option tags. *sdk_num* is also known as API Level
+(see Tools/SDK Manager in Android Studio for the reference).
+Both minSdk and maxSdk attributes are optional
+* minSdk defines the minimum SDK level for the option. The option is hidden for the SDK levels prior minSdk
+* maxSDK defines the maximum SDK level for the option. The option is hidden for the SDK levels above maxSDK
+
 ###### New corner radiuses
-By default, Android 12-like corner radiuses is now applied with the appropriate changes to paddings/margins.
+By default, Android 12-like corner radiuses are now applied with the appropriate changes to the paddings/margins.
 New corner radius attributes added for the specific use cases, see *attrs-corners.xml*
 
 ###### FastTextViews
@@ -30,32 +38,32 @@ Track related FastTextViews (title, line2, meta) now use new *layout_alignToCont
 - *eatFontPads* removes implicit vertical font paddings
 
   This simplifies pixel perfect margin and alignment adjustments for text inside TrackItem for
-  the varied fonts, font sizes, scenes, zoom levels, etc.
+  varied fonts, font sizes, scenes, zoom levels, etc.
 
   Previously, pixel perfect alignment required manual margin/padding adjustments per scene, and
   that could quickly get out of control due to the large number of possible scenes multiplied by
-  different fonts/font sizes (multipled by number of text views, multiplied by other conditions, etc.).
+  different fonts/font sizes (in turn, multiplied by number of the text views, multiplied by other conditions, etc.).
 
   Instead, by ignoring the inner font padding differences (*eatFontPads=true*) and paddings in general
   (*layout_alignToContent=true*) such adjustments could be (and actually, should be) done only once.
-  Preferable, no any adjustments should be done and derived styles should be used as they are.
+  In skins, preferable, no any adjustments should be done and derived styles should be used as they are.
 
   To use the new paddings, add *applyNewPadding="true"* to your *&lt;skin>* element.  
 
   By default (when no *applyNewPadding* is specified) Poweramp will try to guess if new paddings can
   be applied by checking if skin has theme attribute *ItemTrackTitle* defined.
   Most skins do not have this redefined and default Poweramp item styles work just fine.
-  If skin defines the *ItemTrackTitle*, Poweramp applies
+  If skin redefines the *ItemTrackTitle*, Poweramp applies
   *default-styles.xml/ActivityTheme_Legacy_oldPadding* style which disables the new paddings.
 
   If you happen to redefine *ItemTrackTitle* or any other *ItemTrack** **text** styles, ensure your margins and
-  alignment are OK with Poweramp build-912+.
+  alignments are OK with Poweramp build-912+.
 
   You may get wrong alignment/margins if you override some margin attributes (e.g. marginTop), but do not override others
   (e.g. marginBottom/Left/Right) causing derived margins and other styles being partially applied.
 
   Either override all margins and other attributes which may affect view alignment (scale/padding/gravity), or
-  remove such overriding and use the derived default style.
+  remove such overrides and just use the derived default style.
 
   
 ### Introduction
@@ -105,11 +113,11 @@ To ensure future skin compatibility (and to reuse existing default skin styles),
 
 See [values/sample_skin_styles.xml](src/main/res/values/sample_skin_styles.xml), [values/sample_skin_aaa_styles.xml](src/main/res/values/sample_skin_aaa_styles.xml) for commented skin style definitions.
 
-### Android 11/targetSdkVersion 30 support
-All sample projects and PowerampAPI is built with targetSdkVersion 30. Poweramp is built with targetSdkVersion 30
+### Android 11/targetSdkVersion 30+ support
+All sample projects and PowerampAPI is built with targetSdkVersion 30+. Poweramp is built with targetSdkVersion 31
 starting from the build 911.
 
-Due to the package visibility changes on Android 11 for the apps compiled with targetSdkVersion 30, ensure your
+Due to the package visibility changes on Android 11 for the apps compiled with targetSdkVersion 30+, ensure your
 skin AndroidManifest.xml contains:
 * queries tag (so skin app is able to find Poweramp to set the skin on button press):
 ```xml
@@ -199,7 +207,7 @@ Poweramp v3 has concept of a scene. A view can be rendered in the target scene (
 This is why many attributes/styles are ending with "_scene.." suffix, as for almost each view addition per-scene styles are required.
 
 Also, almost all Poweramp views are custom views, including layout (FastLayout) and text views (FastTextView). FastLayout is multi-paradigm layout, somewhat similar to ConstraintLayout,
-but faster, strictly one-pass per layout, and optimized for animations; and FastText is a fast text rendering view optimized for transitions. See **[reference_resources/values-sw1dp/attrs-powerui.xml](/poweramp_skin_sdk/reference_resources/values-sw1dp/attrs-powerui.xml)** for the commented attributes definitions
+but faster, strictly one-pass per layout, and optimized for animations; and FastText is a fast text rendering view optimized for transitions. See **[reference_resources/values/attrs-powerui.xml](/poweramp_skin_sdk/reference_resources/values/attrs-powerui.xml)** for the commented attributes definitions
 for these views.
 
 
@@ -217,6 +225,8 @@ Options include:
     overlapStyle="[overlap style reference]"
     checkedByDefault="[true|false]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    minSdk="[since 912]"
+    maxSdk="[since 912]"
 />
 ```
 * set of a radio buttons (since build 810). Only one selected value from the set of options is applied:
@@ -227,6 +237,8 @@ Options include:
     summary="[optional summary]"
     defaultValue="[optional default overlap style reference]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    minSdk="[since 912]"
+    maxSdk="[since 912]"
 >
         <option
             name="[visible name]"
@@ -245,6 +257,8 @@ Options include:
     defaultValue="[optional default overlap style reference]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
     allowMulti="[since 900 - boolean - true|false - optional, default is true. If set to false, disables conversion to the multiSwitch]"
+    minSdk="[since 912]"
+    maxSdk="[since 912]"
 >
         <option
             name="[visible name]"
@@ -266,6 +280,8 @@ Options include:
     centerLabel="[string - the label at the center]"
     rightLabel="[string - the label to the right]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    minSdk="[since 912]"
+    maxSdk="[since 912]"
 >
         <option
             name="[visible name]"
@@ -286,6 +302,8 @@ Converted option won't have summary, if the summary contains formatting symbols 
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
     defaultValue="[optional default overlap style reference]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    minSdk="[since 912]"
+    maxSdk="[since 912]"
 >
         <option
             name="[visible name]"
@@ -414,20 +432,28 @@ Check Logcat for Poweramp errors.
 * less bitmap graphics in default skins, but this is open for skin author, there is no any limitation on bitmap images
 
 
+### Poweramp Equalizer Support
+Poweramp Equalizer is able to load Poweramp skins. Additional styles/attributes/layouts are defined specifically
+for Equalizer, those are available in reference resources as well, usually with *peq* suffix/prefix.
+The Equalizer skin should be still built vs Poweramp APK as Equalizer APK has no *public* definitions.
+
+
 ### Reference Resources
-For skin authoring, some Poweramp v3 resources (attribute definitions, styles, drawables, etc.) are provided for the reference - see **[/reference_resources](/poweramp_skin_sdk/reference_resources)** directory.
+For skin authoring core Poweramp v3 resources (attribute definitions, styles, drawables, etc.) are provided for the reference -  
+see **[/reference_resources](/poweramp_skin_sdk/reference_resources)** directory.
 
 The most important files are:
-* res/layout-sw1dp/activity_list_fast.xml - the main Poweramp activity layout
-* res/layout-sw1dp/merge_*.xml - various additional merged layouts
-* res/layout-sw1dp/item_track.xml - the "track" item which is used in main player UI and lists for all the items with image
-* res/layout-sw1dp/item_text.xml - same as item_track.xml, but for text-only items
-* res/values-sq1dp/attrs.xml, attrs-powerui.xml, attrs-player.xml - attributes definitions for all the Poweramp custom views, scenes, etc.
+* res/layout-sw2dp/activity_main.xml - the main Poweramp activity layout
+* res/layout-sw2dp/merge_*.xml - various additional merged layouts
+* res/layout-sw2dp/item_track.xml - the "track" item which is used in main player UI and lists for all the items with image
+* res/layout-sw2dp/item_text.xml - same as item_track.xml, but for text-only items
+* res/values-sq2dp/attrs.xml, attrs-powerui.xml, attrs-player.xml - attributes definitions for all the Poweramp custom views, scenes, etc.
 * res/values/default-styles.xml - default skin style
-* res/values-sw1db/styles-*.xml - various default skin styles, grouped by style name prefix (all of them combined into default style inside Poweramp)
+* res/values/styles-*.xml - various default skin styles, grouped by style name prefix (all of them combined into default style inside Poweramp)
+
 
 ### License
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
