@@ -115,7 +115,7 @@ See [values/sample_skin_styles.xml](src/main/res/values/sample_skin_styles.xml),
 
 ### Android 11/targetSdkVersion 30+ support
 All sample projects and PowerampAPI is built with targetSdkVersion 30+. Poweramp is built with targetSdkVersion 31
-starting from the build 911.
+starting from the build 912.
 
 Due to the package visibility changes on Android 11 for the apps compiled with targetSdkVersion 30+, ensure your
 skin AndroidManifest.xml contains:
