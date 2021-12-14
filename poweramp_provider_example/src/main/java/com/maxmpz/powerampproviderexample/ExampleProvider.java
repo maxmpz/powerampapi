@@ -104,6 +104,9 @@ public class ExampleProvider extends DocumentsProvider {
 	// ~116 bytes per ms in the real bensound-dubstep.flac, but "fake" value is an approximation
 	private static final long DUBSTEP_FAKE_AVERAGE_BYTES_PER_MS = Math.round((float)DUBSTEP_FAKE_FLAC_SIZE / (float) DUBSTEP_DURATION_MS);
 
+	/** If > 0, we'll force-stop the playback after these bytes played. Works for seekable sockets/PA protocol */
+	private static final long DEBUG_STOP_AFTER_BYTES = 0; // e.g. = 500000
+
 
 	/** Default columns returned for roots */
 	private static final String[] DEFAULT_ROOT_PROJECTION =	new String[] {
@@ -712,6 +715,8 @@ public class ExampleProvider extends DocumentsProvider {
 					ByteBuffer buf = ByteBuffer.allocateDirect(TrackProviderProto.MAX_DATA_SIZE);
 					buf.order(ByteOrder.nativeOrder());
 
+					long bytesSent = 0;
+
 					try(FileInputStream fis = new FileInputStream(file)) {
 						FileChannel fc = fis.getChannel(); // We'll be using nio for the buffer loading
 						try(TrackProviderProto proto = new TrackProviderProto(fds[1], fileLength)) {
@@ -730,7 +735,15 @@ public class ExampleProvider extends DocumentsProvider {
 
 									handleSeekRequest(proto, seekRequestPos, fc, fileLength); // May be handle seek request
 
+									bytesSent += buf.limit();
+
 									buf.clear();
+
+									if(DEBUG_STOP_AFTER_BYTES > 0 && bytesSent >= DEBUG_STOP_AFTER_BYTES) {
+										// Force-stop playback from our side
+										if(LOG) Log.w(TAG, "openViaSeekableSocket STOP due to DEBUG_STOP_AFTER_BYTES");
+										return;
+									}
 								}
 
 								// Here we're almost done with the file and hit EOF. Still keep file and socket opened until Poweramp closes socket
@@ -797,6 +810,7 @@ public class ExampleProvider extends DocumentsProvider {
 					// Using buffer size > MAX_DATA_SIZE will cause buffer to be split into multiple packets
 					ByteBuffer buf = ByteBuffer.allocateDirect(TrackProviderProto.MAX_DATA_SIZE);
 					buf.order(ByteOrder.nativeOrder());
+					long bytesSent = 0;
 
 					try(FileInputStream fis = new FileInputStream(file)) {
 						FileChannel fc = fis.getChannel(); // We'll be using nio for the buffer loading
@@ -815,7 +829,15 @@ public class ExampleProvider extends DocumentsProvider {
 
 									handleSeekRequest2(proto, seekRequest, fc, fileLength); // May be handle seek request
 
+									bytesSent += buf.limit();
+
 									buf.clear();
+
+									if(DEBUG_STOP_AFTER_BYTES > 0 && bytesSent >= DEBUG_STOP_AFTER_BYTES) {
+										// Force-stop playback from our side
+										if(LOG) Log.w(TAG, "openViaSeekableSocket2 STOP due to DEBUG_STOP_AFTER_BYTES");
+										return;
+									}
 								}
 
 								// Here we're almost done with the file and hit EOF. Still keep file and socket opened until Poweramp closes socket
