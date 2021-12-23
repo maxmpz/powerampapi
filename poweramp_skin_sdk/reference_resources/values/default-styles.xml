@@ -204,10 +204,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="colorIconCC">#e8e8e8</item>
 
-		<!-- These are used for Android 12 dynamic colors and by default set to @null or #0000 for lower Androids -->
+		<!-- These are used for Android 12 dynamic colors  -->
 		<item name="colorWaveseekTint">@null</item><!-- Do not apply waveseek tint by default -->
-		<item name="colorPlayButtonsTint">@null</item><!-- Do not apply tints by default -->
-		<item name="colorPlayButtonsBg">#F000</item>
+		<item name="colorPlayButtonsTint">#fff</item>
+		<item name="colorPlayButtonsBg">#000</item>
+		<item name="colorPlayButtonsStroke">#000</item>
 
 		<item name="arcStartColor">@null</item>
 		<item name="arcEndColor">@null</item>
@@ -237,8 +238,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="back_10s_round">@drawable/back_10s_round</item>
 		<item name="forward_10s_round">@drawable/forward_10s_round</item>
 
-		<!-- Player core button icons - currently used just for Android 12. Arrow-like icons rotated for the reverse action,
-			 so there are no rw/prev_cat icons-->
+		<!-- Player core button icons - currently used just for Android 12.
+		     So Android 12+ deosn't use the "prev_cat_round..forward_10s_round" defined styles above and through other xmls.
+		     (Also see drawable-sw2dp-v31 drawables). This is needed as we must separately tint
+		     various part of the buttons.
+
+		     Lower Androids contiue to use simple pre-rendered drawables as those render faster on low end devices
+
+		     NOTE: Arrow-like icons rotated for the reverse action, so there are no rw/prev_cat core icons -->
 		<item name="play_core">@drawable/play_core_rounded</item>
 		<item name="pause_core">@drawable/pause_core_rounded</item>
 		<item name="ff_core">@drawable/ff_core_rounded</item>
@@ -744,8 +751,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorIconInverse">#000</item>
 		<item name="colorIconInverseForced">#000</item>
 		<item name="colorTextBgAlpha">#c8FFFFFF</item>
-		<item name="colorPlayButtonsBg">#FFFF</item>
 
+		<!-- For Android 12 -->
+		<item name="colorPlayButtonsTint">#000</item>
+		<item name="colorPlayButtonsBg">#fff</item>
+		<item name="colorPlayButtonsStroke">#777</item>
+	</style>
+
+	<style name="ActivityTheme_Whitepro_LightButtons" parent="Base_ActivityTheme_Whitepro_LightButtons">
+		<!-- NOTE: these are ignored on Android 12+ -->
 		<item name="prev_cat_round">@drawable/prev_cat_round_inv_rounded</item>
 		<item name="rw_round">@drawable/rw_round_inv_rounded</item>
 		<item name="ff_round">@drawable/ff_round_inv_rounded</item>
@@ -756,8 +770,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="back_10s_round">@drawable/back_10s_round_inv</item>
 		<item name="forward_10s_round">@drawable/forward_10s_round_inv</item>
 	</style>
-	<!-- Overridden by v31 -->
-	<style name="ActivityTheme_Whitepro_LightButtons" parent="Base_ActivityTheme_Whitepro_LightButtons">
+	<style name="ActivityTheme_Whitepro_LessRounded_LightButtons" parent="Base_ActivityTheme_Whitepro_LightButtons">
+		<!-- NOTE: these are ignored on Android 12+ -->
+		<item name="prev_cat_round">@drawable/prev_cat_round_inv</item>
+		<item name="rw_round">@drawable/rw_round_inv</item>
+		<item name="ff_round">@drawable/ff_round_inv</item>
+		<item name="next_cat_round">@drawable/next_cat_round_inv</item>
+		<item name="pause_round">@drawable/pause_round_inv</item>
+		<item name="play_round">@drawable/play_round_inv_100dp</item>
+		<!-- NOTE: small pause is just tinted -->
+		<item name="back_10s_round">@drawable/back_10s_round_inv</item>
+		<item name="forward_10s_round">@drawable/forward_10s_round_inv</item>
 	</style>
 	
 	<!-- An overlap style -->
@@ -827,7 +850,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="miniplayer_play_pause">@drawable/miniplayer_play_pause_stroke</item>
 
-		<item name="overlap_light_buttons">@style/ActivityTheme_White_LessRounding_LightButtons</item>
+		<!-- Override this as we need less rounded light buttons. NOTE: for Android 12 buttons are ignored anyway, only colors apply -->
+		<item name="overlap_light_buttons">@style/ActivityTheme_Whitepro_LessRounded_LightButtons</item>
 	</style>
 	<style name="ActivityTheme_White_LessRounding" parent="Base_ActivityTheme_White_LessRounding">
 		<!-- Overridden for v28 -->
@@ -840,8 +864,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorIconInverse">#000</item>
 		<item name="colorIconInverseForced">#000</item>
 		<item name="colorTextBgAlpha">#c8FFFFFF</item>
-		<item name="colorPlayButtonsBg">#FFFF</item>
+		<item name="colorPlayButtonsBg">#fff</item>
+		<item name="colorPlayButtonsTint">#000</item>
+		<item name="colorPlayButtonsStroke">#777</item>
 
+		<!--
 		<item name="prev_cat_round">@drawable/prev_cat_round_inv</item>
 		<item name="rw_round">@drawable/rw_round_inv</item>
 		<item name="ff_round">@drawable/ff_round_inv</item>
@@ -851,6 +878,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="pause_small_narrow">@drawable/pause_small_narrow</item>
 		<item name="back_10s_round">@drawable/back_10s_round_inv</item>
 		<item name="forward_10s_round">@drawable/forward_10s_round_inv</item>
+		-->
 	</style>
 	<style name="ActivityTheme_White_LessRounding_LightButtons" parent="Base_ActivityTheme_White_LessRounding_LightButtons">
 		<!-- Overridden for v31 -->

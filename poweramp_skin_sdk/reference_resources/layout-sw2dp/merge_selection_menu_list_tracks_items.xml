@@ -40,7 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:drawable="?album_art"
 		
 		android:text="@string/album_art"
-		w:stateId="@id/state_list_one_track_selected"
+		w:stateId="@id/state_list_aa_selectable_selected"
 		w:stateMsgId="@id/state_list_selection_count"
 		
 		w:msgId="@id/cmd_list_album_art"

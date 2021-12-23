@@ -151,6 +151,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_something_selected"/><!-- boolean -->
 	<item type="id" name="state_list_can_delete"/><!-- boolean, like state_list_something_selected but depends on enable_deletion -->
 	<item type="id" name="state_list_one_track_selected"/><!-- boolean -->
+	<item type="id" name="state_list_aa_selectable_selected"/><!-- boolean -->
 	<item type="id" name="state_list_one_item_selected"/><!-- boolean -->
 	<item type="id" name="state_list_selection_count"/><!-- integer, also a msg -->
 	<item type="id" name="state_list_item_count"/><!-- integer -->

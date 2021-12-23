@@ -51,4 +51,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqToneRoundKnob_maxSize">170dp</dimen>
 	<dimen name="EqRoundKnob_maxSize">170dp</dimen>
 	<dimen name="EqLargerRoundKnob_maxSize">200dp</dimen>
+
+	<dimen name="EqPresetButtonLayout_width">132dp</dimen><!-- land only -->
 </resources>

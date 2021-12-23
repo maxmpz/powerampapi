@@ -47,8 +47,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_marginSide">16dp</dimen>
 	<dimen name="EqEquPresetButtonLayout_layout_width">90dp</dimen>
 	
-	<dimen name="EqPresetButtonLayout_width">82dp</dimen><!-- land only -->
-	
 	<dimen name="EqKnob_spacing">8dp</dimen>
 	
 	<dimen name="EqToneRoundKnob_maxSize">240dp</dimen>

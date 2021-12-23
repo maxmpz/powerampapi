@@ -113,6 +113,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTextHeaderSearchButton"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_target_search"
+		android:contentDescription="@string/search"
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
 		style="?ItemTextHeaderSearchButton_scene_header"

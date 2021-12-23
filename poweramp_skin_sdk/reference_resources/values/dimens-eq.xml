@@ -85,7 +85,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqKnob_spacing">4dp</dimen>
 	<dimen name="EqReverbPanel3_paddingTop">8dp</dimen><!-- == EqKnob_spacing*2 --> 
 	
-	<dimen name="EqPresetButtonLayout_width">72dp</dimen><!-- land only -->
+	<dimen name="EqPresetButtonLayout_width">80dp</dimen><!-- land only -->
 
 	<!-- NOTE: includes labels, some paddings -->
 	<dimen name="EqSmallRoundKnobLayout_maxSize">120dp</dimen>

@@ -64,6 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/bus_app_cmd"
 		w:msgId="@id/cmd_app_open_settings"
 		w:string="?settings_target_audio"
+		android:contentDescription="@string/settings"
 	/>
 	<SceneParams w:scene="@id/scene_button_menu"
 		w:recalcChildren="on_start"

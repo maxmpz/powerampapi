@@ -39,6 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemEmptyListSettingsButton"
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_empty_dialog"
+		android:contentDescription="@string/settings"
 	/>
 		
 </com.maxmpz.widget.base.FastLayout> 

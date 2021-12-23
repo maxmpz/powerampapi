@@ -29,6 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<com.maxmpz.widget.base.FastButton android:id="@+id/line2"
 		style="@style/ItemSearchHistoryButton"
+		android:contentDescription="@string/clear"
 	/>
 	
 </com.maxmpz.widget.player.list.SeparatorItemView>

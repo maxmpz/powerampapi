@@ -39,7 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_marginSide">8dp</dimen>
 	
 	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
-	<dimen name="EqPresetButtonLayout_width">108dp</dimen>
+	<dimen name="EqPresetButtonLayout_width">114dp</dimen>
 	
 	<dimen name="eq_frs_height">44dp</dimen>
 </resources>

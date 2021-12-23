@@ -74,8 +74,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorSeekbarProgress" format="color"/>
 	<attr name="colorSeekbarThumb" format="color"/>
 
-	<!-- These are used for Android 12 dynamic colors and by default set to @null or #0000 for lower Androids -->
+	<!-- These are used for Android 12 dynamic colors -->
 	<attr name="colorWaveseekTint" format="color"/>
+	<!-- Color for play/pause/next/prev + cat buttons core -->
 	<attr name="colorPlayButtonsTint" format="color"/>
+	<!-- Color for play/pause/next/prev + cat buttons background -->
 	<attr name="colorPlayButtonsBg" format="color"/>
+	<!-- Color for play/pause/next/prev + cat buttons stroke around background -->
+	<attr name="colorPlayButtonsStroke" format="color"/>
+
 </resources>

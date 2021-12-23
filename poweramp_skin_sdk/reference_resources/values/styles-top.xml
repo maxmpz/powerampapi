@@ -328,10 +328,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">1dp</item>
 		<item name="android:paddingLeft">@dimen/TopTrackElapsed_paddingLR</item>
 		<item name="android:paddingRight">@dimen/TopTrackElapsed_paddingLR</item>
-		<item name="android:drawablePadding">-4dp</item><!-- Resulting == 8dp -->
+		<item name="android:drawablePadding">-8dp</item><!-- Should match drawablePaddingStart -->
 		<item name="drawableWidth">24dp</item>
 		<item name="drawableHeight">24dp</item>
-		<item name="drawablePaddingStart">8dp</item>
+		<item name="drawablePaddingStart">8dp</item><!-- Should match drawablePadding -->
 		<item name="android:ellipsize">none</item>
 		<item name="android:background">@drawable/inverse_rounded_small_labels</item>
 		<item name="android:textColor">?android:textColorPrimaryInverse</item>

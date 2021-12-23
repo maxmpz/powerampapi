@@ -39,6 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?EqFrequencyResponseScroller"
 		w:useDSPBus="true"
 		android:importantForAccessibility="yes"
+		android:contentDescription="@string/h_frs_drag_to_scroll"
 	/>
 	
 	<com.maxmpz.widget.base.BusActionPopupLayout android:id="@+id/frs_info_label"
@@ -47,6 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/bus_dsp_cmd"
 		w:msgId="@id/cmd_dsp_switch_dsp_meta"
 		w:firstPressToast="@string/long_press_for_more_options"
+		android:importantForAccessibility="no"
 	>
 		<!-- bus is different in PA vs Peq -->
 		<com.maxmpz.widget.player.BusStatusText android:id="@id/_label"

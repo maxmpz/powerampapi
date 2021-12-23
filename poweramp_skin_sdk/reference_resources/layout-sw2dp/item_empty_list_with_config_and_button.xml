@@ -40,5 +40,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/bus_app_cmd"
 		w:msgId="@id/cmd_app_open_settings"
 		android:drawable="@drawable/settings_24dp"
+		android:contentDescription="@string/settings"
 	/>
 </com.maxmpz.widget.base.FastLayout> 

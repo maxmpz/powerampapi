@@ -25,5 +25,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
 	
 	<dimen name="EqButton_layout_maxWidth">96dp</dimen>
-	<dimen name="EqPresetButtonLayout_width">96dp</dimen>
+	<dimen name="EqPresetButtonLayout_width">102dp</dimen>
 </resources>

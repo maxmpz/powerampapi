@@ -115,6 +115,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	>
 	 	<com.maxmpz.widget.player.Waveseek android:id="@+id/waveseek"
 			style="?TopWaveseek"
+		    android:contentDescription="@string/track_progress_scroller"
 		>
 			<com.maxmpz.widget.base.NonOverlappingView android:id="@id/waveseek_cursor"
 				style="?TopWaveseekCursor"
@@ -130,6 +131,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
 			w:longPressMsgId="@id/cmd_player_stop_playing"
+			android:importantForAccessibility="no"
 		/>
 		
 		<com.maxmpz.widget.base.BusActionButton android:id="@+id/pause"
@@ -214,6 +216,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_switch_track_meta"
 			w:firstPressToast="@string/long_press_for_more_options"
+			android:importantForAccessibility="no"
 		>
 			<!-- NOTE: avoid anything except visibility in scene_button_menu to avoid returning to a wrong size -->
 			<!-- NOTE: msg_player_repeat_mode_changed is needed as it can change next track meta info -->		
@@ -263,6 +266,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: extra padding left for extra touchable area. The padding is not visible -->
 	<com.maxmpz.widget.base.ListScrollerView android:id="@+id/list_scroller"
 		style="?TopListScrollerView"
+		android:contentDescription="@string/pref_az_scroll"
 	/>
 	<StateAnimParams w:stateAnim="@+id/anim_scrollbar_pressed"
 		style="?TopListScrollerView_state_scrollbar_pressed"
@@ -311,10 +315,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.player.SleepTimerPopupLayout android:id="@+id/sleep_timer_layout"
 			style="?TopSleepTimerButtonLayout"
 			w:menuItemsLayout="@layout/merge_sleep_timer_popup_layout"
-			android:contentDescription="@string/sleep_timer"
+			android:importantForAccessibility="no"
 		>
 			<com.maxmpz.widget.base.PopupButton android:id="@+id/sleep_timer_button"
 				style="?TopSleepTimerButton"
+				android:contentDescription="@string/sleep_timer"
 			/>
 			<SceneParams w:scene="@+id/scene_button_menu"
 				style="?SleepTimerButton_scene_button_menu"
@@ -343,6 +348,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:buttonsBusId="@id/bus_player_cmd"
 			w:buttonsMsgId="@id/cmd_player_set_shuffle_mode"
 			w:buttonsArg1="@array/shuffle_modes_enum"
+			android:contentDescription="@string/shuffle"
 		/>
 		<SceneParams w:scene="@+id/scene_button_menu" 
 			style="?ItemPopupMenu_scene_item_menu" 
@@ -361,6 +367,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:buttonsBusId="@id/bus_player_cmd"
 			w:buttonsMsgId="@id/cmd_player_set_repeat_mode"
 			w:buttonsArg1="@array/repeat_modes_enum"
+			android:contentDescription="@string/repeat"
 		/>
 		<SceneParams w:scene="@+id/scene_button_menu" 
 			style="?ItemPopupMenu_scene_item_menu" 

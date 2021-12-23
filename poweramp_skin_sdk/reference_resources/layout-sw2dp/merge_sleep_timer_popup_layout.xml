@@ -46,6 +46,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 		<SeekBar android:id="@+id/seekbar"
 			style="?SleepTimerSeekbar"
+			android:contentDescription="@string/sleep_timer"
 		/>
 		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/play_to_end"
 			style="?SleepTimerPTESelectBox"

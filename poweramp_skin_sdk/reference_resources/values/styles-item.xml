@@ -37,7 +37,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemText">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
-<!--		<item name="android:scrollbars">vertical</item>-->
+		<!--<item name="android:scrollbars">vertical</item>-->
+		<!--<item name="android:scrollbarDefaultDelayBeforeFade">1000</item>-->
 		<item name="android:clipChildren">true</item>
 		<item name="android:clipToPadding">false</item>
 		<item name="android:background">@drawable/item_bg</item>
@@ -701,7 +702,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">@null</item>
 		<item name="android:layout_gravity">left</item>
 		<item name="layout_attachBottom">50%</item>
-		<item name="android:layout_marginBottom">-6dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
 	</style>
 	
 	<style name="ItemPopupListLine2" parent="ItemGenericLine2"><!-- NOTE: not used ATM -->
@@ -800,7 +801,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachTop">50%</item>
-		<item name="android:layout_marginTop">3dp</item>
+		<item name="android:layout_marginTop">4dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="drawableTint">?android:textColorSecondary</item>
 		<item name="android:textColor">?android:textColorSecondary</item>

@@ -48,6 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?TopSearchTarget"
 			w:busId="@id/list"
 			w:msgId="@id/cmd_list_clear_target_search"
+			android:contentDescription="@string/clear"
 		/>
 
 	</com.maxmpz.widget.base.FastLayout><!-- search_layout -->

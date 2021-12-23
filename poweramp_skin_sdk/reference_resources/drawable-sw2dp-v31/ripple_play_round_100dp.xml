@@ -7,6 +7,7 @@
 	<item>
 		<shape android:shape="oval">
 			<solid android:color="?colorPlayButtonsBg" />
+			<stroke android:color="?colorPlayButtonsStroke" android:width="1px"/>
 			<padding android:left="1px" android:right="1px" android:top="1px" android:bottom="1px"/>
 		</shape>
 	</item>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -42,7 +42,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:msgId="@id/cmd_nav_to_eq"
 				w:arg1="@integer/EQ_TAB_EQ"
 				
-				android:contentDescription="@string/equ"
+				android:contentDescription="@string/equ_tab"
 			/>
 
 			<com.maxmpz.widget.base.BusActionButton
@@ -53,7 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:busId="@id/bus_gui"
 				w:msgId="@id/cmd_nav_to_eq" 
 				
-				android:contentDescription="@string/volume"
+				android:contentDescription="@string/volume_tab"
 			/>
 
 			<com.maxmpz.widget.base.BusActionButton
@@ -64,7 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:busId="@id/bus_gui"
 				w:msgId="@id/cmd_nav_to_eq" 
 				
-				android:contentDescription="@string/reverb"
+				android:contentDescription="@string/reverb_tab"
 			/>
 		</com.maxmpz.widget.base.FastLayout>
 		

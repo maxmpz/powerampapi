@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2021 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -36,6 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/bus_app_cmd"
 		w:msgId="@id/cmd_app_open_settings"
 		w:string="folders_library/music_folders_button"
+		android:contentDescription="@string/settings"
 	/>
 		
 </com.maxmpz.widget.base.FastLayout> 

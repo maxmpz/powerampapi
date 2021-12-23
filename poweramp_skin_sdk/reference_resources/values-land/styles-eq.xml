@@ -19,22 +19,49 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- values-sw1dp-land -->
+<!-- land -->
 <resources 
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
+	<!-- NOTE: can't attach anything to @id/preset_button as it's a popup button which may disappear from the layout when
+	     in popup mode, so other attached view will jump occasionally.
+	     Instead we're attaching to tone_panel on the right, frequency_response_scroller or eq_knobs_layout on the left,
+	     and margin=EqPresetButtonLayout_width defines space for the buttons
+
+	+=============================+                  +===========+
+	| eq_knobs_layout             | <(preset_button)>| tone_panel|
+	|                             | <(save)          |           |
+	|                             | <...             |           |
+	+=============================+                  |           |
+	| frequency_response_scroller |                  |           |
+	+=============================+                  +===========+
+	                              |<-              ->|
+	                           EqPresetButtonLayout_width
+	-->
+
+	<!-- This is kind of anchor view, we attach other views to this one -->
+	<style name="EqFrequencyResponseScroller" parent="EqFrequencyResponseScrollerBase">
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">@dimen/eq_frs_height</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachRight">@+id/tone_panel</item>
+		<item name="android:layout_marginRight">@dimen/EqPresetButtonLayout_width</item>
+		<item name="android:layout_marginLeft">0dp</item>
+	</style>
+
 	<style name="EqKnobsLayout" parent="EqKnobsLayoutBase">
 		<item name="android:layout_width">0px</item>
 		<item name="android:layout_height">0px</item>
 				
 		<item name="layout_attachLeft">parent</item>
-		<item name="layout_attachRight">@+id/preset_button</item>
-		<item name="android:layout_marginRight">2dp</item>
 		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottom">@+id/frequency_response_scroller</item>
+		<item name="layout_attachRightToRight">@+id/frequency_response_scroller</item>
 		<item name="android:layout_marginBottom">4dp</item><!-- Some margins matching the action bar to the left / frs padding -->
 		<item name="android:layout_marginTop">4dp</item>
+
 	</style>
 	
 	<style name="EqMilkFrs" parent="EqMilkFrsBase">
@@ -42,20 +69,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">@dimen/eq_frs_height</item>
 		<item name="layout_attachBottom">parent</item>
 		<item name="layout_attachLeft">parent</item>
-		<item name="layout_attachRightToRight">@+id/eq_knobs_layout</item>
-		<item name="android:layout_marginRight">2dp</item>
+		<item name="layout_attachRightToRight">@+id/frequency_response_scroller</item>
+		<item name="android:layout_marginRight">0dp</item>
 	</style>
 	
-	<style name="EqFrequencyResponseScroller" parent="EqFrequencyResponseScrollerBase">
-		<item name="android:layout_width">0px</item>
-		<item name="android:layout_height">@dimen/eq_frs_height</item>
-		<item name="layout_attachLeft">parent</item>
-		<item name="layout_attachBottom">parent</item>
-		<item name="layout_attachRight">@+id/preset_button</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">4dp</item>
-	</style>
-		
+
 	<style name="EqInfo" parent="EqInfoBase">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -63,55 +81,56 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:visibility">gone</item><!-- No place for this ATM. REVISIT: 18:9 screens have enough room for this -->
 	</style>
-	
-		
-		
+
+
+	<style name="EqEquResetButton" parent="EqButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+	</style>
+
+	<style name="EqEquSaveButton" parent="EqButton">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
+		<item name="layout_attachTop">@+id/reset_button</item>
+		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
+	</style>
+
 	<style name="EqEquPresetButtonLayout" parent="EqPresetButtonLayoutBase">
 		<item name="android:layout_marginLeft">4dp</item>
 		<item name="android:layout_marginRight">4dp</item>
 		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_width">@dimen/EqPresetButtonLayout_width</item>
-		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachTop">@+id/save_button</item>
+		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
 		<item name="layout_attachRight">@+id/tone_panel</item>
 	</style>
 		
-	<style name="EqEquSaveButton" parent="EqButton">
-		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="layout_attachLeftToLeft">@+id/preset_button</item>
-		<item name="layout_attachTop">@+id/preset_button</item>
-		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
-	</style>
-	
-	<style name="EqEquResetButton" parent="EqButton">
-		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="layout_attachLeftToLeft">@+id/preset_button</item>
-		<item name="layout_attachTop">@+id/save_button</item>
-		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
-	</style>
-	
+
+
 	
 	<style name="EqEquButton" parent="EqCheckButton">
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="layout_attachLeftToLeft">@id/preset_button</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
 		<item name="layout_attachBottom">@id/tone_button</item>
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
 	</style>
 	
 	<style name="EqToneButton" parent="EqCheckButton">
 		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginLeft">4dp</item>
 		<item name="layout_attachBottom">@+id/limiter_button</item>
-		<item name="layout_attachLeftToLeft">@+id/preset_button</item>
+		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
 	</style>
 	
 	<style name="EqLimiterButton" parent="EqCheckButton">
 		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginLeft">4dp</item>
 		<item name="layout_attachBottom">parent</item>
-		<item name="layout_attachLeftToLeft">@+id/preset_button</item>
+		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
 		<item name="layout_maxWidth">@dimen/EqButton_layout_maxWidth</item>
 	</style>
 	

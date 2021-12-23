@@ -121,8 +121,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 -->
 		<attr name="aaBlurNoAAToAAAnimTime" format="integer"/>
 		
-		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine and consinstent around it.
-		     Bassically we need to offset inset by our navbar bottom margin (normal margin, not overlap_navbar_offset).   
+		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine
+			 and consistent around it.
+		     Basically we need to offset inset by our navbar bottom margin (normal margin, not overlap_navbar_offset).
 		     TopContainer will try to adjust bottom inset when needed (Android 10+, only when small line-navbar is visible) -->
 		<attr name="reduceBottomInset" format="dimension"/>
 		
