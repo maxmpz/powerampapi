@@ -147,7 +147,7 @@ public interface TableDefs {
 
 		/**
 		 * Seconds<br>
-		 * This is file last modified time actually, for most Android variants<br>
+		 * This is the file last modified time actually, for most Android variants<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String FILE_CREATED_AT = "file_created_at";
