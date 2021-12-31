@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdk 31
     buildToolsVersion '31.0.0'
 
     defaultConfig {
         applicationId "com.poweramp.v3.vispresets.sample"
-        minSdkVersion 21
+        minSdk 21
         //noinspection OldTargetApi
-        targetSdkVersion 30
+        targetSdk 30
         versionCode 1
         versionName "1.0"
     }

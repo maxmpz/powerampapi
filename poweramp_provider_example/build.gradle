@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdk 31
     buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "com.maxmpz.powerampproviderexample"
-        minSdkVersion 21
+        minSdk 21
         //noinspection OldTargetApi
-        targetSdkVersion 30
+        targetSdk 30
         versionCode 1
         versionName "1.0"
     }
@@ -25,6 +25,6 @@ android {
 
 dependencies {
     implementation project(path: ':poweramp_api_lib')
-    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.annotation:annotation:1.3.0'
     project(':poweramp_api_example')
 }

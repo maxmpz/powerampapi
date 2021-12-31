@@ -25,7 +25,7 @@ android {
     aaptOptions {
         def localProps = new Properties()
         localProps.load(rootProject.file("local.properties").newDataInputStream())
-        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-914-resources.zip"
+        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-918-resources.zip"
 
         additionalParameters "--emit-ids", "stable-ids.txt",
                                 "--package-id", "0x80",
