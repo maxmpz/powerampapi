@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2021 Maksim Petrov
+Copyright (C) 2011-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -21,8 +21,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramp.player;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import android.annotation.TargetApi;
 import android.media.AudioDeviceInfo;
+
 
 public interface RouterConsts {
 	// Sync with plugininterface-output.h
@@ -47,30 +49,76 @@ public interface RouterConsts {
 	public static final @NonNull String DEVICE_NAME_USB = "usb";
 	public static final @NonNull String DEVICE_NAME_OTHER = "other";
 	public static final @NonNull String DEVICE_NAME_CHROMECAST = "chromecast";
-	
-	public final class Helper {
-		private Helper() {}
 
-		@TargetApi(23)
-		public static int toAndroidDeviceType(int device) {
-			switch(device) {
-				default:
-				case DEVICE_HEADSET:
-					return AudioDeviceInfo.TYPE_WIRED_HEADSET; // 3
-				case DEVICE_SPEAKER:
-					return AudioDeviceInfo.TYPE_BUILTIN_SPEAKER; // 2
-				case DEVICE_BT:
-					return AudioDeviceInfo.TYPE_BLUETOOTH_A2DP; // 8
-				case DEVICE_USB:
-					return AudioDeviceInfo.TYPE_USB_DEVICE; // 11
-				case DEVICE_CHROMECAST:
-					return AudioDeviceInfo.TYPE_IP; // 20
-			}
+	@TargetApi(23)
+	public static int toAndroidDeviceType(int device) {
+		switch(device) {
+			default:
+			case DEVICE_HEADSET:
+				return AudioDeviceInfo.TYPE_WIRED_HEADSET; // 3
+			case DEVICE_SPEAKER:
+				return AudioDeviceInfo.TYPE_BUILTIN_SPEAKER; // 2
+			case DEVICE_BT:
+				return AudioDeviceInfo.TYPE_BLUETOOTH_A2DP; // 8
+			case DEVICE_USB:
+				return AudioDeviceInfo.TYPE_USB_DEVICE; // 11
+			case DEVICE_CHROMECAST:
+				return AudioDeviceInfo.TYPE_IP; // 20
 		}
-		
-		/** @return true if the device is a valid known device (excluding {@link #DEVICE_UNKNOWN}) */ 
-		public static boolean isValidKnownDevice(int device) {
-			return device >= 0 && device < DEVICE_COUNT;
+	}
+
+	/** @return true if the device is a valid known device (excluding {@link #DEVICE_UNKNOWN}) */
+	public static boolean isValidKnownDevice(int device) {
+		return device >= 0 && device < DEVICE_COUNT;
+	}
+
+	static int getDeviceId(@Nullable String device) {
+		if(device == null) {
+			return -1;
+		}
+		switch(device) {
+			case DEVICE_NAME_HEADSET:
+				return DEVICE_HEADSET;
+			case DEVICE_NAME_SPEAKER:
+				return DEVICE_SPEAKER;
+			case DEVICE_NAME_BT:
+				return DEVICE_BT;
+			case DEVICE_NAME_USB:
+				return DEVICE_USB;
+			case DEVICE_NAME_OTHER:
+				return DEVICE_OTHER;
+			case DEVICE_NAME_CHROMECAST:
+				return DEVICE_CHROMECAST;
+			default:
+				return -1;
+		}
+	}
+
+	// NOTE: used as pref part
+	// REVISIT: refactor this and following statics into a helper?
+	static @NonNull String getDeviceName(int device) {
+		//device = device & DEVICE_MASK;
+		switch(device) {
+			case DEVICE_HEADSET:
+				return DEVICE_NAME_HEADSET;
+
+			case DEVICE_SPEAKER:
+				return DEVICE_NAME_SPEAKER;
+
+			case DEVICE_BT:
+				return DEVICE_NAME_BT;
+
+			case DEVICE_USB:
+				return DEVICE_NAME_USB;
+
+			case DEVICE_OTHER:
+				return DEVICE_NAME_OTHER;
+
+			case DEVICE_CHROMECAST:
+				return DEVICE_NAME_CHROMECAST;
+
+			default:
+				return "Unknown_" + device;
 		}
 	}
 }
