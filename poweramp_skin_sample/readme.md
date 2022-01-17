@@ -16,6 +16,7 @@
 - [Custom/Loadable Fonts](#customloadable-fonts)
 - [Errors](#errors)
 - [Difference vs Poweramp v2 Skins](#difference-vs-poweramp-v2-skins)
+- [Poweramp Equalizer Support](#poweramp-equalizer-support)
 - [Reference Resources](#reference-resources)
 - [License](#license)
 
