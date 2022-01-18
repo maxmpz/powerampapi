@@ -36,6 +36,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
+@SuppressWarnings("deprecation")
 public abstract class WidgetUpdater {
 	private static final String TAG = "WidgetUpdater";
 	private static final boolean LOG = false;

@@ -653,7 +653,6 @@ public final class PowerampAPI {
 	 * NOTE: Poweramp allows limited subset of preferences to be set this way<br>
 	 * Depending on preference Poweramp may immediately apply it, apply for the next track, for the next activity restart, or for the next Poweramp process restart.<br>
 	 * <b>Experimental: this part of API is currently under development and may change in the future</b><br>
-	 * See {@link Settings.Preferences}<br>
 	 * Returns bundle with the old values for the preferences which were set, or null on error<br>
 	 * @since 862
 	 */
@@ -1868,22 +1867,16 @@ public final class PowerampAPI {
 		public static class PreferencesConsts {
 			/** 
 			 * Don't show vis<br>
-			 * {@link Preferences#vis_mode}
 			 */
 			public static final int VIS_MODE_VIS_NONE = 0; 
 			/** 
 			 * Vis + UI<br>
-			 * {@link Preferences#vis_mode}
 			 */
 			public static final int VIS_MODE_VIS_W_UI = 1; 
 			/** 
 			 * Just Vis<br>
-			 * {@link Preferences#vis_mode}
 			 */
 			public static final int VIS_MODE_VIS      = 2;
-			/** 
-			 * {@link Preferences#vis_mode}
-			 */
 			public static final int VIS_MODE_MAX      = 2;
 		}
 	}
