@@ -105,7 +105,16 @@ public class ExampleProvider extends DocumentsProvider {
 	private static final long DUBSTEP_FAKE_AVERAGE_BYTES_PER_MS = Math.round((float)DUBSTEP_FAKE_FLAC_SIZE / (float) DUBSTEP_DURATION_MS);
 
 	/** If > 0, we'll force-stop the playback after these bytes played. Works for seekable sockets/PA protocol */
-	private static final long DEBUG_STOP_AFTER_BYTES = 0; // e.g. = 500000
+	private static final long DEBUG_STOP_PROTOCOL_AFTER_BYTES = 0; // e.g. = 500000
+
+	/** If true, we'll force-stop playback immediately in open. Works for seekable sockets/PA protocol */
+	private static final boolean DEBUG_ALWAYS_STOP_IN_OPEN = false;
+
+	/** If true, we'll force-stop playback immediately in thread. Works for seekable sockets/PA protocol */
+	private static final boolean DEBUG_ALWAYS_STOP_PROTOCOL = false;
+
+	/** If true, we'll force-stop playback after the header. Works for seekable sockets/PA protocol */
+	private static final boolean DEBUG_STOP_PROTOCOL_AFTER_HEADER = false;
 
 
 	/** Default columns returned for roots */
@@ -703,6 +712,27 @@ public class ExampleProvider extends DocumentsProvider {
 			final File file = new File(getContext().getFilesDir(), filePath);
 			final long fileLength = file.length();
 
+			if(DEBUG_ALWAYS_STOP_IN_OPEN) {
+				if(LOG) Log.w(TAG, "openViaSeekableSocket STOP due to DEBUG_ALWAYS_STOP_IN_OPEN");
+				// NOTE: in this case if we just return socket here and stop, Poweramp will still wait for timeout
+				// as socket was never closed from our side
+				// If we want fail-fast approach from Poweramp, either return null here, or shutdown socket properly
+				new Thread(new Runnable() {
+					public void run() {
+						if(LOG) Log.w(TAG, "openViaSeekableSocket STOP shutdown socket");
+						FileDescriptor socket = fds[1].getFileDescriptor();
+						try {
+							Os.shutdown(socket, 0);
+						} catch(ErrnoException ex) {
+						}
+						try {
+							Os.close(socket);
+						} catch(ErrnoException ex) {
+						}
+					}
+				}).start();
+				return fds[0];
+			}
 			// NOTE: it's not possible to use timeouts on this side of the socket as Poweramp may open and hold the socket for an indefinite time while in the paused state
 			// NOTE: don't use AsyncTask or other short-time thread pools here, as:
 			// - this thread will be alive as long as Poweramp holds the file
@@ -721,7 +751,17 @@ public class ExampleProvider extends DocumentsProvider {
 						FileChannel fc = fis.getChannel(); // We'll be using nio for the buffer loading
 						try(TrackProviderProto proto = new TrackProviderProto(fds[1], fileLength)) {
 
+							if(DEBUG_ALWAYS_STOP_PROTOCOL) {
+								if(LOG) Log.w(TAG, "openViaSeekableSocket STOP due to DEBUG_ALWAYS_STOP_PROTOCOL");
+								return; // Immediately stop. NOTE: this will call proto.close automatically
+							}
+
 							proto.sendHeader(); // Send initial header
+
+							if(DEBUG_STOP_PROTOCOL_AFTER_HEADER) {
+								if(LOG) Log.w(TAG, "openViaSeekableSocket STOP due to DEBUG_STOP_PROTOCOL_AFTER_HEADER");
+								return; // Immediately stop. NOTE: this will call proto.close automatically
+							}
 
 							while(true) {
 								int len;
@@ -739,7 +779,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 									buf.clear();
 
-									if(DEBUG_STOP_AFTER_BYTES > 0 && bytesSent >= DEBUG_STOP_AFTER_BYTES) {
+									if(DEBUG_STOP_PROTOCOL_AFTER_BYTES > 0 && bytesSent >= DEBUG_STOP_PROTOCOL_AFTER_BYTES) {
 										// Force-stop playback from our side
 										if(LOG) Log.w(TAG, "openViaSeekableSocket STOP due to DEBUG_STOP_AFTER_BYTES");
 										return;
@@ -792,6 +832,14 @@ public class ExampleProvider extends DocumentsProvider {
 			final ParcelFileDescriptor[] fds = ParcelFileDescriptor.createSocketPair();
 			final File file = new File(getContext().getFilesDir(), filePath);
 
+			if(DEBUG_ALWAYS_STOP_IN_OPEN) {
+				if(LOG) Log.w(TAG, "openViaSeekableSocket STOP due to DEBUG_ALWAYS_STOP_IN_OPEN - return null");
+				// NOTE: in this case if we just return socket here and stop, Poweramp will still wait for timeout
+				// as socket was never closed from our side
+				// If we want fail-fast approach from Poweramp, either return null here, or shutdown socket properly
+				return null;
+			}
+
 			//long fileLength = file.length();
 
 			// NOTE: for the sake of testing, let's send some approximation of the file instead, based on
@@ -816,7 +864,17 @@ public class ExampleProvider extends DocumentsProvider {
 						FileChannel fc = fis.getChannel(); // We'll be using nio for the buffer loading
 						try(TrackProviderProto proto = new TrackProviderProto(fds[1], fileLength)) {
 
+							if(DEBUG_ALWAYS_STOP_PROTOCOL) {
+								if(LOG) Log.w(TAG, "openViaSeekableSocket2 STOP due to DEBUG_ALWAYS_STOP_PROTOCOL");
+								return; // Immediately stop. NOTE: this will call proto.close automatically
+							}
+
 							proto.sendHeader(); // Send initial header
+
+							if(DEBUG_STOP_PROTOCOL_AFTER_HEADER) {
+								if(LOG) Log.w(TAG, "openViaSeekableSocket2 STOP due to DEBUG_STOP_PROTOCOL_AFTER_HEADER");
+								return; // Immediately stop. NOTE: this will call proto.close automatically
+							}
 
 							while(true) {
 								int len;
@@ -833,7 +891,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 									buf.clear();
 
-									if(DEBUG_STOP_AFTER_BYTES > 0 && bytesSent >= DEBUG_STOP_AFTER_BYTES) {
+									if(DEBUG_STOP_PROTOCOL_AFTER_BYTES > 0 && bytesSent >= DEBUG_STOP_PROTOCOL_AFTER_BYTES) {
 										// Force-stop playback from our side
 										if(LOG) Log.w(TAG, "openViaSeekableSocket2 STOP due to DEBUG_STOP_AFTER_BYTES");
 										return;
