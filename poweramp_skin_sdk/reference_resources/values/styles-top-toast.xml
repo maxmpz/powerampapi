@@ -39,12 +39,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">44dp</item><!-- Extra offset for 2nd navigation line -->
 	</style>
 		
-	<!-- NOTE: for simplicity, fixed height, thus, easier to layout everything inside centered as needed -->
 	<style name="TopToastFrame">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		
-		<item name="android:minHeight">38dp</item>
+		<!--<item name="android:minHeight">30dp</item>-->
 		<item name="layout_maxWidth">@dimen/TopToastFrame_maxWidth</item>
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">12dp</item>
@@ -121,8 +120,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">vertical</item>
-		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="android:gravity">center|top</item>
+		<item name="android:layout_gravity">top|center_horizontal</item>
+		<item name="android:gravity">top|center_horizontal</item>
 		<item name="applyViewParams">true</item>
 	</style>
 	
@@ -151,6 +150,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:gravity">center|top</item>
+		<item name="layout_goneWhenEmpty">true</item><!-- Avoid 2dp from extending parent frame when no 2nd line -->
 		<item name="applyViewParams">true</item>
 	</style>
 		

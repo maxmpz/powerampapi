@@ -33,8 +33,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    	<dimen name="help_hint_font_size">12sp</dimen>
    	
    	<!-- Tree -->
-	<dimen name="tree_item_height">48dp</dimen>
-	<dimen name="tree_item_2_line_height">64dp</dimen>
+	<dimen name="tree_item_height">40sp</dimen>
+	<dimen name="tree_item_2_line_height">56sp</dimen>
 	<dimen name="tree_item_indent_per_level">20dp</dimen>
 	<dimen name="dir_tree_item_checkbox_width">@dimen/WRAP_CONTENT</dimen><!-- WRAP_CONTENT -->
    	<dimen name="dir_tree_item_paddingLeft">16dp</dimen>

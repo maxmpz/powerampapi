@@ -25,6 +25,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">74dp</dimen>
 	<dimen name="TopSmallButton_size">52dp</dimen>
 	<dimen name="TopMediumButton_size">64dp</dimen>
+
+	<dimen name="PlainSeekbar_TopWaveseekLayout_land_height">132dp</dimen>
 		
 	<dimen name="TopTrackElapsedMoreButtons_marginBottom">0dp</dimen>
 	<dimen name="TopMetaInfoLabel_textSize">10dp</dimen>

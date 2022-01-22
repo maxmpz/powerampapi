@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -702,7 +702,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="eatFontPads">?TrackItem_eatFontPads</item>
 
 		<item name="layout_attachBottom">@+id/line2</item>
-		<item name="android:layout_marginBottom">4dp</item><!-- Make title closer to line2 - by default distance is too large due to paddings for line background -->
 
 		<item name="scale">?ItemTrackTitle_scene_zoomed_scale</item><!-- 1 -->
 		<item name="layout_compensateScale">?ItemTrackTitle_scene_zoomed_scale</item>

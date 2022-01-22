@@ -21,17 +21,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources 
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:w="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto"
 >
+	<!-- NOTE: overridden for Matrial You colors in values-v31 for Android 12+ -->
 	<style name="ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic">
+		<item name="colorKnobHiliteStartDisabled">#008795b2</item><!-- Transparent, but with the color component for the better anim -->
+		<item name="colorKnobHiliteStartPressed">#a8b9dd</item>
+		<item name="colorKnobHiliteStart">#a5b0c6</item>
+		<item name="colorKnobHiliteEndDisabled">#006168ff</item><!-- Transparent, but with the color component for the better anim -->
+		<item name="colorKnobHiliteEndPressed">#8187ff</item>
+		<item name="colorKnobHiliteEnd">#746cda</item>
+
 		<item name="arcStartColor">@color/peq_eq_arc_start_mono_selector</item>
 		<item name="arcEndColor">@color/peq_eq_arc_end_mono_selector</item>
 		
 		<item name="holeStartColor">@color/peq_eq_arc_start_mono_selector</item>
 		<item name="holeEndColor">@color/peq_eq_arc_end_mono_selector</item>
 	</style>
-	
+
 	<style name="ActivityTheme_Whitepro_EqKnobsHiliteColorful">
+		<item name="colorKnobHiliteStartDisabled">#000F</item><!-- Transparent, but with the color component for the better anim -->
+		<item name="colorKnobHiliteStartPressed">#88F</item>
+		<item name="colorKnobHiliteStart">#00F</item>
+		<item name="colorKnobHiliteEndDisabled">#0F00</item><!-- Transparent, but with the color component for the better anim -->
+		<item name="colorKnobHiliteEndPressed">#F88</item>
+		<item name="colorKnobHiliteEnd">#F00</item>
+
 		<item name="arcStartColor">@color/eq_arc_start_colorful_selector</item>
 		<!--<item name="arcMidColor">@color/eq_arc_mid_colorful_selector</item>-->
 		<item name="arcEndColor">@color/eq_arc_end_colorful_selector</item>
@@ -48,8 +63,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!--<item name="holeGlowMidColor">@color/eq_arc_mid_colorful_selector</item>-->
 		<item name="holeGlowEndColor">@color/eq_arc_end_colorful_selector</item>
 	</style>
-	
-	
+
 	<style name="EqPagesLayout">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
@@ -113,8 +127,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="labelBackground">@drawable/ripple_rounded_eq_label_bg</item>
 		
 		<item name="android:elevation">?control_elevation</item>
-		<item name="android:outlineAmbientShadowColor">?colorKnobShadow</item>
-		<item name="android:outlineSpotShadowColor">?colorKnobShadow</item>
+		<item name="android:outlineAmbientShadowColor" tools:ignore="NewApi">?colorKnobShadow</item>
+		<item name="android:outlineSpotShadowColor" tools:ignore="NewApi">?colorKnobShadow</item>
 
 		<item name="android:longClickable">true</item>
 	</style>
@@ -506,8 +520,8 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="indicator">@drawable/round_knob_indicator</item>
 		<item name="android:disabledAlpha">1</item><!-- NOTE: keeping it full alpha - using xml drawable state instead for disabled -->
 		<item name="android:elevation">?control_elevation</item>
-		<item name="android:outlineAmbientShadowColor">?colorKnobShadow</item>
-		<item name="android:outlineSpotShadowColor">?colorKnobShadow</item>
+		<item name="android:outlineAmbientShadowColor" tools:ignore="NewApi">?colorKnobShadow</item>
+		<item name="android:outlineSpotShadowColor" tools:ignore="NewApi">?colorKnobShadow</item>
 		
 		<!-- Setting some default arc properties. Those are not applied w/o colors defined (colors are optionally defined via skin options) -->
 		<item name="arcWidth">?arcWidth</item>

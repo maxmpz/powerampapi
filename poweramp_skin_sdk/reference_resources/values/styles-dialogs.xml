@@ -308,9 +308,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">left|center_vertical</item>
 	</style>
 
+	<!-- NOTE: to properly align with title and not expand title with the drawable, using sp vertical sizes here -->
 	<style name="DialogTitleProgress" parent="@style/Widget.AppCompat.ProgressBar">
-		<item name="android:layout_width">24dp</item>
-		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_width">20sp</item>
+		<item name="android:layout_height">20sp</item>
 		<item name="android:visibility">gone</item>
 		<item name="android:layout_marginRight">8dp</item>
 	</style>
@@ -329,11 +330,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:ellipsize">end</item>
 		<item name="android:gravity">left|center_vertical</item>
 		<item name="eatFontPads">true</item>
-		<item name="android:paddingTop">3sp</item>
-		<item name="android:paddingBottom">3sp</item>
+		<item name="android:paddingTop">3.5sp</item>
+		<item name="android:paddingBottom">3.5sp</item>
 	</style>
 	<style name="DialogTitle_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">16dp</item>
+		<item name="android:textSize">15sp</item>
 		<item name="android:textStyle">bold</item>
 	</style>
 
@@ -425,7 +426,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">12dp</item>
 		<item name="drawablePaddingStart">8dp</item>
 		<item name="android:drawablePadding">-8dp</item>
-		<item name="drawablePaddingStart">8dp</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="drawableWidth">24dp</item>
 		<item name="drawableHeight">24dp</item>
@@ -481,7 +481,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingLeft">0dp</item>
 		<item name="android:paddingRight">0dp</item>
 	</style>
-	
+	<style name="DialogContentNoPaddingNoBottomPadding" parent="DialogContentNoPadding">
+		<item name="android:paddingBottom">0dp</item>
+	</style>
+
 	<style name="DialogButtonBar">
 		<item name="android:visibility">visible</item><!-- NOTE: need explicit visibility, so visibility is applied properly for scene -->
 		<item name="layout_flexAxis">vertical</item>
@@ -722,8 +725,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">top|right</item>
-		<item name="android:layout_marginTop">10dp</item>
-		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginRight">2dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:paddingTop">8dp</item>
@@ -800,9 +803,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textColor">?android:attr/textColorAlertDialogListItem</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:ellipsize">end</item>
+		<item name="layout_gravityTarget">@id/checkbox</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_attachLeft">@id/checkbox</item>
 		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
+		<item name="android:includeFontPadding">false</item>
 	</style>
+	<style name="AlertDialog_Hint_Multichoice">
+		<item name="android:textAppearance">?Hint</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">@id/checkbox</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
 
+		<item name="drawableWidth">10dp</item>
+		<item name="drawableHeight">10dp</item>
+		<item name="android:drawablePadding">8dp</item>
 
-
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:gravity">center_vertical</item>
+	</style>
 </resources>

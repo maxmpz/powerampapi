@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -150,16 +150,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="shuffle_none_32dp">@drawable/shuffle_none_32dp_tinted</item>
 
 		<!-- Android mediarouter icons -->
-		<item name="media_route">@drawable/mr_button_dark</item>
-		<item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_dark</item>
-		<item name="mediaRoutePlayDrawable">@drawable/mr_media_play_dark</item>
-		<item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_dark</item>
-		<item name="mediaRouteStopDrawable">@drawable/mr_media_stop_dark</item>
-		<item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_dark</item>
-		<item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_disconnected_dark</item>
-		<item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_dark</item>
-		<item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_dark</item>
-		<item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_dark</item>
+		<item name="media_route" tools:ignore="PrivateResource">@drawable/mr_button_dark</item>
+		<item name="mediaRouteCloseDrawable" tools:ignore="PrivateResource">@drawable/mr_dialog_close_dark</item>
+		<item name="mediaRoutePlayDrawable" tools:ignore="PrivateResource">@drawable/mr_media_play_dark</item>
+		<item name="mediaRoutePauseDrawable" tools:ignore="PrivateResource">@drawable/mr_media_pause_dark</item>
+		<item name="mediaRouteStopDrawable" tools:ignore="PrivateResource">@drawable/mr_media_stop_dark</item>
+		<item name="mediaRouteAudioTrackDrawable" tools:ignore="PrivateResource">@drawable/mr_vol_type_audiotrack_dark</item>
+		<item name="mediaRouteDefaultIconDrawable" tools:ignore="PrivateResource">@drawable/ic_mr_button_disconnected_dark</item>
+		<item name="mediaRouteTvIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_tv_dark</item>
+		<item name="mediaRouteSpeakerIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_speaker_dark</item>
+		<item name="mediaRouteSpeakerGroupIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_speaker_group_dark</item>
 		
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Blackpro_MoreButtons</item>

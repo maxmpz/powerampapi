@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -37,6 +37,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopTrackElapsedDuration_marginSide">-12dp</dimen>
 	<dimen name="TopTrackElapsed_paddingLR">16dp</dimen>
 
+	<dimen name="PlainSeekbar_TopWaveseekLayout_land_height">300dp</dimen>
+
 	<dimen name="ListMenu_drawableSize">36dp</dimen>
 	<dimen name="ItemLike_drawableSize">36dp</dimen>
 
@@ -52,6 +54,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="Navbar_height">64dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">60dp</dimen>
+
+	<dimen name="ItemMiniplayerAAImage_size">48dp</dimen>
+	<dimen name="corners_miniplayer_aa">16dp</dimen>
 	
 	<dimen name="NavbarBounds_height">68dp</dimen>
 	<dimen name="NavBarButton_drawableSize">48dp</dimen>

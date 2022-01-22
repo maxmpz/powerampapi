@@ -119,19 +119,19 @@
 		<multiSwitch
 			key="knob_hilite"
 			name="@string/skin_knob_hilite"
-			defaultValue="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
+			defaultValue="@attr/overlap_knobs_hilite_color"
 		>
 			<option
 				name="@string/none"
-				overlapStyle=""
+				overlapAttr=""
 			/>
 			<option
 				name="@string/monochromatic"
-				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic"
+				overlapAttr="@attr/overlap_knobs_hilite_mono"
 			/>
 			<option
 				name="@string/colorful"
-				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
+				overlapAttr="@attr/overlap_knobs_hilite_color"
 			/>
 		</multiSwitch>		
 		
@@ -262,19 +262,19 @@
 		<multiSwitch
 			key="knob_hilite"
 			name="@string/skin_knob_hilite"
-			defaultValue="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
+			defaultValue="@attr/overlap_knobs_hilite_color"
 		>
 			<option
 				name="@string/none"
-				overlapStyle=""
+				overlapAttr=""
 			/>
 			<option
 				name="@string/monochromatic"
-				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic"
+				overlapAttr="@attr/overlap_knobs_hilite_mono"
 			/>
 			<option
 				name="@string/colorful"
-				overlapStyle="@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful"
+				overlapAttr="@attr/overlap_knobs_hilite_color"
 			/>
 		</multiSwitch>		
 		

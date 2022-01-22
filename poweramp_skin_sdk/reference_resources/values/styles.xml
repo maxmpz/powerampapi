@@ -52,22 +52,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PeqMicroNotificationSamsung">
 		<!-- Keep empty -->
 	</style>
-
-	<style name="AlertDialog_Hint_Multichoice">
-		<item name="android:textAppearance">?Hint</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachLeft">@id/checkbox</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:singleLine">true</item>
-		<item name="android:ellipsize">end</item>
-
-		<item name="drawableWidth">10dp</item>
-		<item name="drawableHeight">10dp</item>
-		<item name="android:paddingLeft">8dp</item>
-
-		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:gravity">center_vertical</item>
-	</style>
-
 </resources>

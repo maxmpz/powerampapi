@@ -494,10 +494,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemMiniplayerAAImage">
 		<item name="android:scaleType">?AAImage_scaleType</item>
 		<item name="android:cropToPadding">true</item>
-		<item name="android:layout_width">36dp</item>
-		<item name="android:layout_height">36dp</item>
-		<item name="android:layout_gravity">left</item>
-		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:layout_width">@dimen/ItemMiniplayerAAImage_size</item><!-- 36dp - depends on NavbarHeight -->
+		<item name="android:layout_height">@dimen/ItemMiniplayerAAImage_size</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
 		<item name="android:layout_marginLeft">10dp</item>
 		<item name="android:layout_marginRight">2dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
@@ -511,7 +510,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">64dp</item><!-- Right-indent to keep space for the button -->
 		<item name="android:textAppearance">?ItemMiniplayerTitle_Text</item><!-- => ItemGenericTitle_Text -->
 		<item name="layout_alignToContent">all</item>
-		<!--<item name="android:layout_marginBottom">0dp</item>-->
 	</style>
 
 	<style name="ItemMiniplayerLine2" parent="ItemGenericLine2">
@@ -519,7 +517,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">64dp</item><!-- Right-indent to keep space for the button -->
 		<item name="android:textAppearance">?ItemMiniplayerLine2_Text</item><!-- => ItemGenericLine2_Text -->
 		<item name="layout_alignToContent">all</item>
-		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginTop">5dp</item>
 	</style>
 
 	<style name="ItemMiniplayerPlayButton">
@@ -659,6 +657,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemPopupListMorePadding" parent="ItemPopupList">
 		<item name="android:paddingLeft">24dp</item>
 	</style>
+	<style name="ItemPopupListMorePaddingNoCheck" parent="ItemPopupListMorePadding">
+		<item name="android:paddingRight">8dp</item><!-- Reduced padding on the right as no icon or alignment needed there -->
+	</style>
 	
 	<style name="ItemPopupListImage" parent="ItemGenericImage">
 	</style>
@@ -725,6 +726,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 
 	<style name="ItemVisImage" parent="ItemGenericImage">
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
 	</style>
 	
 	<style name="ItemVisTitle" parent="ItemGenericTitle">

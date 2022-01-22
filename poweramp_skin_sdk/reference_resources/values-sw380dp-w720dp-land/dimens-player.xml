@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -26,6 +26,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopPlay_maxSize">104dp</dimen>
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">90dp</dimen>
 	<dimen name="TopPlayPauseBehind_size">55dp</dimen>
+
+	<dimen name="PlainSeekbar_TopWaveseekLayout_land_height">156dp</dimen>
 	
 	<dimen name="TopWaveseek_maxHeight">184dp</dimen>
 

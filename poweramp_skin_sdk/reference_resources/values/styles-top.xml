@@ -134,7 +134,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="humanCatHeaderSize">276dp</item>
 		<item name="textHeaderSize">186dp</item>
 		<item name="topTextHeaderSize">76dp</item>
-		<item name="searchHeaderSize">106dp</item><!-- Includes margin for status bar and search field -->
+		<item name="searchHeaderSize">@dimen/ListSubstyleBase2_searchHeaderSize</item><!-- Includes margin for status bar and search field -->
 		<item name="targetSearchHeaderSize">142dp</item><!-- Includes margin for status bar, search field, and target button -->
 		
 		<item name="maxFontScaleForCompact">1.3</item>
@@ -847,7 +847,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<item name="android:maxLines">1</item>
 		<item name="android:ellipsize">end</item>
-				
+		<item name="layout_goneWhenEmpty">true</item><!-- Ensure we're "hidden" when no text, so we don't hang over shuffle button -->
+		<item name="ignoreDrawableForEmpty">true</item>
+
 		<item name="android:background">@drawable/ripple_bg_light_rounded_large</item>
 		<item name="android:disabledAlpha">0</item>
 		

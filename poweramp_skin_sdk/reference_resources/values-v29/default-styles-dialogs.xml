@@ -3,5 +3,6 @@
 	<style name="dialog_MusicFoldersActivity" parent="CenteredDialog_vertical_buttons">
 		<item name="dialogContentLayout">@layout/dialog_content_music_folders</item>
 		<item name="DialogContent">@style/DialogContentNoPadding</item>
+		<item name="dialogContentPaddingBottom">0dp</item>
 	</style>
 </resources>

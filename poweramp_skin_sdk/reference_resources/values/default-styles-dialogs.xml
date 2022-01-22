@@ -147,7 +147,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="dialog_MediaRouteChooserActivity" parent="TopsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_mediaroute_chooser</item>
-		<item name="DialogContent">@style/CenteredDialogContentNoPadding</item>
+		<!-- We want top padding to keep list items nicely padded from the title/gear -->
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
 	</style>
 		
 	<style name="dialog_MediaRouteControllerActivity" parent="CenteredDialog">

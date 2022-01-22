@@ -195,8 +195,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_delete"/>
 	
 	<item type="id" name="cmd_app_open_settings"/><!-- obj => settings page -->
-	
-	
+	<item type="id" name="cmd_app_open_settings_search"/><!-- Open settings search directly -->
+
 	<item type="id" name="cmd_list_prefer_aa_scene"/><!-- arg1 == scene_aa, scene_aa_playing, scene_aa_vis -->
 	<!-- Cancels any transitions, modal states, menus, etc. in list -->
 	<item type="id" name="cmd_list_cancel_all"/>	
@@ -223,6 +223,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_activity_on_stop"/><!-- bus_gui -->
 	<item type="id" name="msg_activity_on_destroy"/><!-- bus_gui -->
 	<item type="id" name="msg_activity_on_save"/><!-- onSaveInstanceState, bus_gui -->
+	<item type="id" name="msg_activity_on_result"/><!-- bus_gui -->
 	
 	<!-- Other bus msgs -->
 	<item type="id" name="msg_version_info_changed"/><!-- bus_app -->

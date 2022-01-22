@@ -11,7 +11,5 @@
 			<padding android:left="1px" android:right="1px" android:top="1px" android:bottom="1px"/>
 		</shape>
 	</item>
-	<item>
-		<bitmap android:src="?play_core" android:gravity="center" android:tint="?colorPlayButtonsTint"/>
-	</item>
+	<item android:drawable="?play_core"/>
 </ripple>

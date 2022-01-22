@@ -810,6 +810,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<!-- Height of list row -->
 		<attr name="listItemSize"/>
+
+		<!-- Smaller zoomed out height of list row. ATM applied to MediaRouter list only -->
+		<attr name="smallerListItemSize"/>
 	</declare-styleable>
 
 	<!-- FastLayout with an animated line background, which animates view resize -->

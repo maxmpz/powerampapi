@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,11 +19,12 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- values-h1dp -->
+<!-- values/ -->
 <resources>
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- Need less margin for shorter screens -->
 	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
 	<dimen name="ListSubstyleBase2_aaMarginBottom">200dp</dimen>
+	<dimen name="ListSubstyleBase2_searchHeaderSize">106dp</dimen>
 	
 	<dimen name="TopWaveseek_maxHeight">128dp</dimen>
 	
@@ -32,7 +33,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
 	<dimen name="TopSmallButton_size">36dp</dimen>
 	<dimen name="TopMediumButton_size">46dp</dimen>
-	
+
+	<dimen name="PlainSeekbar_marginTop">0dp</dimen>
+	<dimen name="PlainSeekbar_TopWaveseekLayout_land_height">108dp</dimen><!-- NOTE: land only -->
+
 	<dimen name="TopPlayPauseBehind_size">40dp</dimen>
 	<dimen name="TopPause_scene_playing_height">25dp</dimen>
 	<dimen name="TopPause_scene_playing_width">80dp</dimen>
@@ -57,6 +61,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Navbar_normal_marginB">8dp</dimen>
 	<dimen name="NavbarList_marginBottom">-4dp</dimen>
 
+	<dimen name="ItemMiniplayerAAImage_size">28dp</dimen>
+	<dimen name="corners_miniplayer_aa">8dp</dimen>
+
 	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
 	<dimen name="NavbarBounds_height">44dp</dimen>
 	<!-- Navbar (2 lines scene) + bottom Navbar paddings => resulting anchoring point for other views -->
@@ -69,13 +76,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines_more_rounded">90dp</dimen>
 
-
 	<dimen name="TopHelpSmaller_textSize">9sp</dimen>
 	<dimen name="TopHelpSmaller_paddingLR">10dp</dimen>
 	<dimen name="TopHelpSmaller_paddingTB">4dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">8dp</dimen>
 	<dimen name="TopHelpMarginTB">16dp</dimen>
-		
+
+
+
 	<!-- Alt -->
 	<dimen name="Alt_TopSubAAButtons_marginTop">5dp</dimen>
 	
@@ -112,8 +120,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_PlainSeekbar_common_marginBottom">6dp</dimen>
 	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
 	<dimen name="Alt_PlainSeekbar_marginBottom">-4dp</dimen>
-	
-	
+
+
 	<!-- @Deprecated -->
 	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
 	<!-- @Depeicated -->

@@ -179,7 +179,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_flexWeight">1</item>
 		
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
-		<item name="drawableWidth">@dimen/NavBarButton_drawableSize</item>
+		<item name="drawableWidth">@dimen/NavBarButton_drawableSize</item><!-- NOTE: this should be tied to NavBar_height -->
 		<item name="drawableHeight">@dimen/NavBarButton_drawableSize</item>
 		<item name="drawableTint">?colorNavbarIcons</item>
 		<item name="drawableOnly">true</item>

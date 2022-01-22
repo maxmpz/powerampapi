@@ -276,6 +276,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="ItemPopupList" format="reference"/>
 		<attr name="ItemPopupListMorePadding" format="reference"/>
+		<attr name="ItemPopupListMorePaddingNoCheck" format="reference"/>
 		<attr name="ItemPopupListImage" format="reference"/>
 		<attr name="ItemPopupListAAImage" format="reference"/>
 		<attr name="ItemPopupListSelectBox" format="reference"/>

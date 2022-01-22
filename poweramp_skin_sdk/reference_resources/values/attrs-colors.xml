@@ -62,6 +62,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorKnobBg" format="color"/>
 	<attr name="colorKnobDisabled" format="color"/>
 
+	<!-- Used for Knob Higlight start/end color states -->
+	<attr name="colorKnobHiliteStartDisabled" format="color"/>
+	<attr name="colorKnobHiliteStartPressed" format="color"/>
+	<attr name="colorKnobHiliteStart" format="color"/>
+	<attr name="colorKnobHiliteEndDisabled" format="color"/>
+	<attr name="colorKnobHiliteEndPressed" format="color"/>
+	<attr name="colorKnobHiliteEnd" format="color"/>
+
 	<!-- Used for Android 12+ -->
 	<attr name="colorKnobShadow" format="color"/>
 	

@@ -28,7 +28,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines_more_rounded">88dp</dimen>
 
-
+	<dimen name="ItemMiniplayerAAImage_size">28dp</dimen>
+	<dimen name="corners_miniplayer_aa">8dp</dimen>
+	
 	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
 	<dimen name="NavbarBounds_height">48dp</dimen>
 	<!-- Navbar (2 lines scene) + bottom Navbar paddings => resulting anchoring point for other views -->
@@ -44,12 +46,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="TopPlay_maxSize">72dp</dimen>
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
-	
+
+	<dimen name="PlainSeekbar_marginTop">16dp</dimen>
+	<!-- NOTE: base PlainSeekbar_TopWaveseekLayout_land_height is set in main values/dimens-player -->
+
 	<dimen name="PlainSeekbar_common_marginBottom">0dp</dimen>
 	<dimen name="Alt_PlainSeekbar_common_marginBottom">0dp</dimen>
-	<dimen name="PlainSeekbar_metaInfo_marginBottom">0dp</dimen>
-	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">0dp</dimen>
-		
+	<dimen name="PlainSeekbar_metaInfo_marginBottom">3dp</dimen>
+	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">3dp</dimen>
+
+
 	
 	<!-- Alt -->
 	<dimen name="Alt_TopPlay_maxSize">72dp</dimen>

@@ -23,16 +23,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	style="@style/AlertDialogCheckableLayout_Multichoice"
-	>
+>
 	<com.maxmpz.widget.base.FastCheckBoxOnly
 		android:id="@+id/checkbox"
 		style="@style/AlertDialogCheckBox_Multichoice"
-		/>
+	/>
 
 	<com.maxmpz.widget.base.TextView
 		android:id="@+id/text"
 		style="@style/AlertDialog_Text_Multichoice"
-		/>
+	/>
 
 	<!-- NOTE: we set labelStateId/iconStateId programatically -->
 	<com.maxmpz.widget.player.BusStatusText
@@ -40,5 +40,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="@style/AlertDialog_Hint_Multichoice"
 		w:stateBusId="@id/bus_export_import"
 		w:updateMsgId="@id/msg_export_stats"
-		/>
+	/>
 </com.maxmpz.audioplayer.preference.exportimport.ExportStatsAlertDialogCheckableLayout>

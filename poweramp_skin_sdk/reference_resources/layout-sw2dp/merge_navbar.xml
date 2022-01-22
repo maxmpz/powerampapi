@@ -74,11 +74,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					style="?CcButton_NavbarExtensionMenuLine"
 				/>
 				
-				<com.maxmpz.widget.base.IntentActionButton android:id="@+id/navbar_ext_settings"
+				<com.maxmpz.widget.base.BusActionButton android:id="@+id/navbar_ext_settings"
 					style="?NavbarExtensionMenuLine"
 					android:drawable="?settings_24dp"
 					android:text="@string/settings"
-					android:targetClass=".preference.SettingsActivity"
+					w:busId="@id/bus_app_cmd"
+					w:msgId="@id/cmd_app_open_settings"
+					w:longPressMsgId="@id/cmd_app_open_settings_search"
+					android:longClickable="true"
 				/>
 				
 				<com.maxmpz.widget.base.BusActionButton

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -22,7 +22,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- NOTE: derived from the framework checkbox, which doesn't support left padding (that's used for padding between text and image -->
 
 <com.maxmpz.widget.base.AlertDialogCheckableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:w="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:textAppearance="?android:attr/textAppearanceMedium"
@@ -35,7 +35,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	android:clickable="true"
 	android:focusable="true"
 	android:focusableInTouchMode="false"
->
+	tools:ignore="Overdraw"
+	>
 	<com.maxmpz.widget.base.FastCheckBoxOnly
 		android:id="@+id/checkbox"
 		android:layout_width="wrap_content"
@@ -51,6 +52,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:layout_height="wrap_content"
 		w:layout_consumeSpace="vertical|reset_horizontal"
 		android:layout_marginLeft="12dp"
+		w:layout_gravityTarget="@+id/checkbox"
+		android:layout_gravity="center_vertical"
+		w:layout_attachLeft="@+id/checkbox"
+		android:includeFontPadding="false"
 
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:textColor="?android:attr/textColorAlertDialogListItem"
@@ -63,7 +68,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?Hint"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginLeft="8dp"
+		android:layout_marginLeft="12dp"
 		w:layout_attachLeft="@id/checkbox"
 		android:singleLine="true"
 		android:ellipsize="end"

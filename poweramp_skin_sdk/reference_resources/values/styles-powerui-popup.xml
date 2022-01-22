@@ -150,7 +150,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="MediaRouterPopupDialogListLayoutList" parent="ExpandedListLayoutBase">
-		<item name="android:layout_height">192dp</item><!-- 64 * 3 -->
+		<item name="android:layout_height">224dp</item><!-- 64 * 3.5 -->
 	</style>
 	
 	<style name="EqPresetListLayout" parent="ExpandedListLayoutBase">

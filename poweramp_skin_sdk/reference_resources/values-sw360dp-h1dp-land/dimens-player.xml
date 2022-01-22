@@ -26,6 +26,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">70dp</dimen>
 	<dimen name="TopSmallButton_size">48dp</dimen>
 	<dimen name="TopMediumButton_size">56dp</dimen>
+
+	<dimen name="PlainSeekbar_TopWaveseekLayout_land_height">138dp</dimen>
 	
 	<!-- Alt -->
 	<!-- <dimen name="Alt_aaMaxSize">402dp</dimen> Not used anymore -->

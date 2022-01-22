@@ -101,7 +101,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="drawableTint" format="reference|color"/>
 		<!-- Default drawableTintMode=src_in -->
 		<attr name="drawableTintMode">
-		<!--
+		<!-- NOTE: drawableTintMode is defined by AppCompat already, but AndroidStudio sometimes can't understand that
 			<enum name="src_over" value="3" />
 			<enum name="src_in" value="5" />
 			<enum name="src_atop" value="9" />
@@ -125,6 +125,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Extra drawable padding right when no text exists (empty or null). This can be negative value, it's summed with other paddings right to the drawable, i.e:
 		     drawablePaddingStart drawable (drawablePaddingEndNoText + drawablePadding + paddingLeft + paddingRight) -->
 		<attr name="drawablePaddingEndNoText" format="dimension"/>
+
+		<!-- Default is false. If true, we're ignoring drawable and consider text only for layout_goneWhenEmpty -->
+		<attr name="ignoreDrawableForEmpty" format="boolean"/>
 
 		<!--
 		When drawable exists, paddings and backgrounds are distributed as follows:

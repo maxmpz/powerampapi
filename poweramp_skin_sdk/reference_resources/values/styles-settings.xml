@@ -99,7 +99,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="Base_ActivityTheme_SettingsLight" parent="@android:style/Theme.DeviceDefault.Light">
 		<item name="android:windowActionBarOverlay">true</item>
-		<item name="android:windowLightStatusBar">true</item><!-- Required, e.g. on Pixel@12 to force dark status bar icons -->
+		<item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item><!-- Required, e.g. on Pixel@12 to force dark status bar icons -->
 	</style>
 	<style name="ActivityTheme_SettingsLight" parent="Base_ActivityTheme_SettingsLight"></style>
 	

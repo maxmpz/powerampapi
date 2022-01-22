@@ -3,6 +3,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
 	android:exitFadeDuration="@integer/selector_fade_ms">
 
+	<!-- NOTE: equ == equ_24dp, equ_stroke == equ_stroke24dp (via symlink). Still keeping those for skin compat -->
 	<item android:state_activated="true" android:drawable="@drawable/equ" />
 	<item android:state_pressed="true" android:drawable="@drawable/equ" />
 	<item android:drawable="@drawable/equ_stroke" />

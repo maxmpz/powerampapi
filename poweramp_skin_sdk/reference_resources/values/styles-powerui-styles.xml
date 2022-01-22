@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -51,15 +51,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		
 		<item name="reverb_24dp">@drawable/reverb_24dp</item>
-		<item name="vis_24dp">@drawable/vis_32dp</item><!-- Vis panel list item icon -->
+		<item name="vis_24dp">@drawable/vis_24dp</item><!-- Vis panel list item icon -->
 		
 		<item name="sleep_timer_32dp">@drawable/sleep_timer_stroke_32dp_tinted</item>
-				
+
+		<!-- xhdpi: 64dp, xxxhdpi: 128dp, sw600-large-xhdpi: 128dp -->
 		<item name="nav_lists">@drawable/lists_rounded_stroke_selector</item>
 		<item name="nav_equ">@drawable/equ_rounded_stroke_selector</item>
 		<item name="nav_search">@drawable/search_rounded_stroke_selector</item>
 		<item name="nav_hamburger">@drawable/hamburger_rounded_stroke_selector</item>
-		
+
+		<!-- xhdpi: 64dp, xxxhdpi: 128dp, sw600-large-xhdpi: 128dp -->
 		<item name="eq_equalizer">@drawable/eq_equalizer_stroke_selector</item>
 		<item name="eq_vol">@drawable/eq_vol_stroke_selector</item>
 		<item name="eq_reverb">@drawable/eq_reverb_stroke_selector</item>
@@ -82,7 +84,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopMenuPlaceholderLayout">@style/TopMenuPlaceholderLayout</item>
 		
 		<item name="ItemPopupList">@style/ItemPopupList</item>
-		<item name="ItemPopupListMorePadding">@style/ItemPopupListMorePadding</item>		
+		<item name="ItemPopupListMorePadding">@style/ItemPopupListMorePadding</item>
+		<item name="ItemPopupListMorePaddingNoCheck">@style/ItemPopupListMorePaddingNoCheck</item>
 		<item name="ItemPopupListImage">@style/ItemPopupListImage</item>
 		<item name="ItemPopupListAAImage">@style/ItemPopupListAAImage</item>
 		<item name="ItemPopupListSelectBox">@style/ItemPopupListSelectBox</item>

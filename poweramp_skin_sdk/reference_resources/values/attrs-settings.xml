@@ -175,6 +175,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="smallIcon" format="reference"/>
 		<!-- The summary will be prefiltered with this removed, e.g. stuff like : %s -->
 		<attr name="removeFromSummary" format="string"/>
+		<!-- If true, we're allowing links withing summary and making it clickable -->
+		<attr name="allowLinks" format="boolean"/>
 	</declare-styleable>
 	
 	<declare-styleable name="PreferenceHeader">

@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_Whitepro_PlainSeekbar">
 		<item name="TopWaveseekLayout_extraLayout">@layout/merge_plainseekbar_morebuttons</item>
 		
-		<item name="TopWaveseekLayout">@style/PlainSeekbar_TopWaveseekLayout</item>
+		<item name="TopWaveseekLayout">@style/PlainSeekbar_TopWaveseekLayout</item><!-- NOTE: overridden -->
 		<item name="TopWaveseek">@style/TopWaveseek_disabled</item>
 		
 		<item name="overlap_more_buttons">@style/ActivityTheme_Whitepro_PlainSeekbar_MoreButtons</item>
@@ -87,7 +87,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingBottom">0dp</item>
 	</style>
 	
-	<!-- NOTE: seekbar is slightly broken on Androids up to 6.0, so for 5.0/5.1 we override drawable dimens in values-v21 -->
+	<!-- NOTE: seekbar is slightly broken on Androids up to 6.0, so for 5.0/5.1 we override drawable dimens in values-v21
+	     NOTE: this is attached to track_elapsed, so track_elapsed should be moved to move seekbar as well -->
 	<style name="PlainSeekbar" parent="@android:style/Widget.Material.SeekBar">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">32dp</item>

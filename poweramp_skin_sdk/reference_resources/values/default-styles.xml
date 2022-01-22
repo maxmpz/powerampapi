@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -188,6 +188,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorPreampBg">#ccc</item>
 		<item name="colorKnobShadow">@null</item>
 
+		<!-- These are overridden for ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic/ActivityTheme_Whitepro_EqKnobsHiliteColorful -->
+		<item name="colorKnobHiliteStartDisabled">#0000</item>
+		<item name="colorKnobHiliteStartPressed">#0000</item>
+		<item name="colorKnobHiliteStart">#0000</item>
+		<item name="colorKnobHiliteEndDisabled">#0000</item>
+		<item name="colorKnobHiliteEndPressed">#0000</item>
+		<item name="colorKnobHiliteEnd">#0000</item>
+
 		<item name="colorTrackMeta">#999</item>
 		<item name="colorTrackNum">#999</item>
 		<item name="colorSeparator">#FF888888</item>
@@ -246,12 +254,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     Lower Androids contiue to use simple pre-rendered drawables as those render faster on low end devices
 
 		     NOTE: Arrow-like icons rotated for the reverse action, so there are no rw/prev_cat core icons -->
-		<item name="play_core">@drawable/play_core_rounded</item>
-		<item name="pause_core">@drawable/pause_core_rounded</item>
-		<item name="ff_core">@drawable/ff_core_rounded</item>
-		<item name="next_cat_core">@drawable/next_cat_core_rounded</item>
-		<item name="forward_10s_core">@drawable/forward_10s_core</item>
-		<item name="back_10s_core">@drawable/back_10s_core</item>
+		<item name="play_core">@drawable/play_core_rounded_tinted</item>
+		<item name="pause_core">@drawable/pause_core_rounded_tinted</item>
+		<item name="ff_core">@drawable/ff_core_rounded_tinted</item>
+		<item name="next_cat_core">@drawable/next_cat_core_rounded_tinted</item>
+		<item name="forward_10s_core">@drawable/forward_10s_core_tinted</item>
+		<item name="back_10s_core">@drawable/back_10s_core_tinted</item>
 
 		<item name="defaultHiResAA">@drawable/gl_poweramp_logo_hd</item>
 		<item name="defaultLowResAA">@drawable/gl_poweramp_logo</item>
@@ -408,16 +416,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="logo_navbar">@drawable/logo_navbar_hamburger</item>
 
 		<!-- Android mediarouter icons -->
-		<item name="media_route">@drawable/mr_button_light</item>
-		<item name="mediaRouteCloseDrawable">@drawable/mr_dialog_close_light</item>
-		<item name="mediaRoutePlayDrawable">@drawable/mr_media_play_light</item>
-		<item name="mediaRoutePauseDrawable">@drawable/mr_media_pause_light</item>
-		<item name="mediaRouteStopDrawable">@drawable/mr_media_stop_light</item>
-		<item name="mediaRouteAudioTrackDrawable">@drawable/mr_vol_type_audiotrack_light</item>
-		<item name="mediaRouteDefaultIconDrawable">@drawable/ic_mr_button_grey</item>
-		<item name="mediaRouteTvIconDrawable">@drawable/ic_vol_type_tv_light</item>
-		<item name="mediaRouteSpeakerIconDrawable">@drawable/ic_vol_type_speaker_light</item>
-		<item name="mediaRouteSpeakerGroupIconDrawable">@drawable/ic_vol_type_speaker_group_light</item>
+		<item name="media_route" tools:ignore="PrivateResource">@drawable/mr_button_light</item>
+		<item name="mediaRouteCloseDrawable" tools:ignore="PrivateResource">@drawable/mr_dialog_close_light</item>
+		<item name="mediaRoutePlayDrawable" tools:ignore="PrivateResource">@drawable/mr_media_play_light</item>
+		<item name="mediaRoutePauseDrawable" tools:ignore="PrivateResource">@drawable/mr_media_pause_light</item>
+		<item name="mediaRouteStopDrawable" tools:ignore="PrivateResource">@drawable/mr_media_stop_light</item>
+		<item name="mediaRouteAudioTrackDrawable" tools:ignore="PrivateResource">@drawable/mr_vol_type_audiotrack_light</item>
+		<item name="mediaRouteDefaultIconDrawable" tools:ignore="PrivateResource">@drawable/ic_mr_button_grey</item>
+		<item name="mediaRouteTvIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_tv_light</item>
+		<item name="mediaRouteSpeakerIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_speaker_light</item>
+		<item name="mediaRouteSpeakerGroupIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_speaker_group_light</item>
 
 		<!-- Android autocomplete items -->
 		<item name="android:listPreferredItemHeight">44dp</item>
@@ -488,7 +496,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_aa_tracks_small">8dp</item>
 		<item name="corners_aa_scene_aa">18.75dp</item>
 
-		<item name="corners_miniplayer_aa">12dp</item>
+		<item name="corners_miniplayer_aa">@dimen/corners_miniplayer_aa</item><!-- 12dp, depends on Navbar_height -->
 
 		<!-- Track item theme dependent attributes -->
 
@@ -593,7 +601,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_PlaylistsExportActivity">@style/dialog_PlaylistsExportActivity</item>
 
 		<!-- Skin overlaps -->
-		<item name="overlap_more_buttons">@style/ActivityTheme_Whitepro_MoreButtons</item>
+		<item name="overlap_more_buttons">@style/ActivityTheme_Whitepro_MoreButtons</item><!-- ProButtons -->
 		<item name="overlap_plain_seekbar">@style/ActivityTheme_Whitepro_PlainSeekbar</item>
 		<item name="overlap_transparent_navbar">@style/ActivityTheme_Whitepro_TransparentNavbar</item>
 		<item name="overlap_navbar_offset">@style/ActivityTheme_Whitepro_OffsetNavbar</item>
@@ -602,6 +610,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_less_rounding">@style/ActivityTheme_White_LessRounding</item>
 		<!-- NOTE: overlap_less_rounding manipulates overlap_light_buttons -->
 		<item name="overlap_light_buttons">@style/ActivityTheme_Whitepro_LightButtons</item>
+		<!-- NOTE: overridden for Material You colors -->
+		<item name="overlap_knobs_hilite_mono">@style/ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic</item>
+		<!-- NOTE: overridden for Material You colors -->
+		<item name="overlap_knobs_hilite_color">@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful</item>
 
 		<!-- Navbar margins to allow easy overriding for overlap_navbar_offset option -->
 		<item name="navbar_marginLR">8dp</item>
@@ -843,10 +855,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="back_10s_round">@drawable/back_10s_round</item>
 		<item name="forward_10s_round">@drawable/forward_10s_round</item>
 
-		<item name="play_core">@drawable/play_core</item>
-		<item name="pause_core">@drawable/pause_core</item>
-		<item name="ff_core">@drawable/ff_core</item>
-		<item name="next_cat_core">@drawable/next_cat_core</item>
+		<item name="play_core">@drawable/play_core_tinted</item>
+		<item name="pause_core">@drawable/pause_core_tinted</item>
+		<item name="ff_core">@drawable/ff_core_tinted</item>
+		<item name="next_cat_core">@drawable/next_cat_core_tinted</item>
 		
 		<item name="miniplayer_play_pause">@drawable/miniplayer_play_pause_stroke</item>
 

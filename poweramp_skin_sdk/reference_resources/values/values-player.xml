@@ -182,8 +182,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_bookmark_now"/>
 	<item type="id" name="cmd_list_rescan"/>
 	<item type="id" name="cmd_data_request_rescan"/><!-- Resolves obj => uri to extra info as needed for the rescan and starts it -->
-	
-	<item type="id" name="cmd_data_mass_add_to_q"/><!-- arg1 => boolean, 0 - just add to q, 1 - clear q, add and play (forced for queue_clear_on_add pref), arg2 - shuffle mode for playing q, obj => UriAndIds -->
+
+	<!-- arg1 => boolean, 0 - just add to q, 1 - clear q, add and play (forced for queue_clear_on_add pref), arg2 - shuffle mode for playing q, obj => UriAndIds -->
+	<item type="id" name="cmd_data_mass_add_to_q"/>
 	
 	
 	
