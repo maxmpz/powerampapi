@@ -770,6 +770,7 @@ public final class PowerampAPI {
 	 * {@code long ts} - timestamp of the event (System.currentTimeMillis())
 	 * @deprecated since 829
 	 */
+	@SuppressWarnings("DeprecatedIsStillUsed")
 	@Deprecated
 	public static final String ACTION_AA_CHANGED = "com.maxmpz.audioplayer.AA_CHANGED";
 
