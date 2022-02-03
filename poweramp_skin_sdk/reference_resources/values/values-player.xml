@@ -84,7 +84,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- <item type="id" name="cmd_disable_nav"/> NOTE: not used ATM --><!-- bus_gui -->
 	<!-- <item type="id" name="cmd_enable_nav"/>  NOTE: not used ATM --><!-- bus_gui -->
 	
-	<!-- NOTE: nav commands are sent for TopNav helper, it's not neccessary that such command will be actually executed, as navigation
+	<!-- NOTE: nav commands are sent for TopNav helper, it's not necessary that such command will be actually executed, as navigation
 	     can be disabled or other state disallows navigation change.
 	     Thus, listen to nav_* msgs for confirmed navigation change -->
 	     
