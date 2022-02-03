@@ -27,11 +27,14 @@ android {
         localProps.load(rootProject.file("local.properties").newDataInputStream())
         def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-918-resources.zip"
 
-        additionalParameters "--emit-ids", "stable-ids.txt",
+        additionalParameters "--emit-ids", "${projectDir}/stable-ids.txt",
                                 "--package-id", "0x80",
                                 "-I", "${projectDir}/../${paResources}"
-        if(rootProject.file("stable-ids.txt").exists()) {
-            additionalParameters "--stable-ids", "stable-ids.txt"
+        if(project.file("stable-ids.txt").exists()) {
+            print "Got stable-ids OK"
+            additionalParameters "--stable-ids", "${projectDir}/stable-ids.txt"
+        } else {
+            print "WARNING: no stable-ids.txt specified"
         }
     }
     compileOptions {
@@ -41,5 +44,5 @@ android {
 }
 
 dependencies {
-    implementation "androidx.appcompat:appcompat-resources:1.4.0"
+    implementation "androidx.appcompat:appcompat-resources:1.4.1"
 }
