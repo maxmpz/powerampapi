@@ -719,13 +719,14 @@
 		<!-- NOTE: to apply aa options, we're redefinining TopListWidget style to tweak listSubstyle -->
 		<item name="com.maxmpz.audioplayer:TopListWidget">@style/TopListWidget_aaOptions</item>
 
-		<!-- Also, force non-overlapping rendering (to fix issue with Android 9+ forced clipping for scaling > 1.0 when image bleeds out of parent bounds)
-		     NOTE: this can cause small shadow glitches on some devices -->
-		<item name="com.maxmpz.audioplayer:ItemTrack">@style/ItemTrack_aaOptions</item>
 	</style>
+
+	<!--
+	NOTE: avoid applying forceHasOverlappingRendering as this may break proper Y-rotation and shadow rendering
+	on newer Android variants. Poweramp handles this automatically
 	<style name="ItemTrack_aaOptions" parent="com.maxmpz.audioplayer:ItemTrack">
 		<item name="android:forceHasOverlappingRendering">false</item>
-	</style>
+	</style>-->
 
 	<style name="TopListWidget_aaOptions" parent="com.maxmpz.audioplayer:TopListWidget">
 		<item name="com.maxmpz.audioplayer:listSubstyle">@style/ListSubstyle_aaOptions</item>
