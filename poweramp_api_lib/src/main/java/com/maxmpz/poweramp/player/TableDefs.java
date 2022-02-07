@@ -1368,6 +1368,11 @@ public interface TableDefs {
 		 * INTEGER
 		 */
 		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		/**
+		 * INTEGER
+		 */
+		public static final @NonNull String SHUFFLE_ORDER = TABLE + ".shuffle_order";
 	}
 
 
@@ -1488,7 +1493,12 @@ public interface TableDefs {
 		 * INTEGER
 		 */
 		public static final @NonNull String SORT = TABLE + ".sort";
-		
+
+		/**
+		 * INTEGER
+		 */
+		public static final @NonNull String SHUFFLE_ORDER = TABLE + ".shuffle_order";
+
 		public static final @NonNull String CALC_PLAYED = "folder_files.played_at >= queue.created_at"; // If played at is the same as queue entry time, consider it played already 
 		public static final @NonNull String CALC_UNPLAYED = "folder_files.played_at < queue.created_at";
 	}
@@ -1530,6 +1540,8 @@ public interface TableDefs {
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
 	}
 
+	/** Never used, to be removed */
+	@Deprecated
 	public class ShuffleSessionIds {
 		public static final @NonNull String TABLE = "shuffle_session_ids";
 
