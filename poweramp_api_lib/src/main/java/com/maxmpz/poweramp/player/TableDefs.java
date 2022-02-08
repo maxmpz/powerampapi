@@ -147,7 +147,7 @@ public interface TableDefs {
 
 		/**
 		 * Seconds<br>
-		 * This is the file last modified time actually, for most Android variants<br>
+		 * This is the file last modified time (for the most Android variants)<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String FILE_CREATED_AT = "file_created_at";
@@ -487,16 +487,6 @@ public interface TableDefs {
 		public static final @NonNull String HIER_NUM_FILES = TABLE + ".hier_num_files";
 
 		/**
-		 * Number of tracks in the whole folder hierarchy, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @since 829
-		 * @deprecated since 864. {@link #HIER_NUM_FILES} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String HIER_NUM_ALL_FILES = TABLE + ".hier_num_all_files";
-
-		/**
 		 * Duration in milliseconds for the tracks inside this folder only, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
 		 * INTEGER
@@ -504,16 +494,6 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
-		/**
-		 * Duration in milliseconds for the tracks inside this folder only, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @since 829<br>
-		 * @deprecated since 864. {@link #DURATION} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
-
 		/**
 		 * Duration in milliseconds for the whole hierarchy inside this folder, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
@@ -523,16 +503,6 @@ public interface TableDefs {
 		public static final @NonNull String HIER_DURATION = TABLE + ".hier_duration";
 		
 		/**
-		 * Duration in milliseconds for the whole hierarchy inside this folder, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @since 829<br>
-		 * @deprecated since 864
-		 */
-		@Deprecated
-		public static final @NonNull String HIER_DURATION_ALL = TABLE + ".hier_duration_all";
-
-		/**
 		 * Duration meta<br>
 		 * Dynamically recalculated on rescans<br>
 		 * TEXT
@@ -541,32 +511,12 @@ public interface TableDefs {
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 
 		/**
-		 * Duration meta including cues<br>
-		 * Dynamically recalculated on rescans<br>
-		 * TEXT
-		 * @since 829<br>
-		 * @deprecated since 864. {@link #DUR_META} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
-
-		/**
 		 * Hierarchy duration meta<br>
 		 * Dynamically recalculated on rescans<br>
 		 * TEXT
 		 * @since 829<br>
 		 */
 		public static final @NonNull String HIER_DUR_META = TABLE + ".hier_dur_meta";
-
-		/**
-		 * Hierarchy duration meta including cues<br> 
-		 * Dynamically recalculated on rescans<br>
-		 * TEXT
-		 * @since 829<br>
-		 * @deprecated since 864
-		 */
-		@Deprecated
-		public static final @NonNull String HIER_DUR_ALL_META = TABLE + ".hier_dur_all_meta";
 
 		/**
 		 * Bitwise flag<br>
@@ -596,7 +546,65 @@ public interface TableDefs {
 		 * @since 869
 		 */
 		public static final @NonNull String SORT_ORDER = "sort_order";
-		
+
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		// Deprecated
+
+		/**
+		 * Number of tracks in the whole folder hierarchy, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @since 829
+		 * @deprecated since 864. {@link #HIER_NUM_FILES} is now dynamically updated depending on "show cue images" preference
+		 */
+		@Deprecated
+		public static final @NonNull String HIER_NUM_ALL_FILES = TABLE + ".hier_num_all_files";
+
+		/**
+		 * Duration in milliseconds for the tracks inside this folder only, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @since 829<br>
+		 * @deprecated since 864. {@link #DURATION} is now dynamically updated depending on "show cue images" preference
+		 */
+		@Deprecated
+		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
+
+		/**
+		 * Hierarchy duration meta including cues<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 * @since 829<br>
+		 * @deprecated since 864
+		 */
+		@Deprecated
+		public static final @NonNull String HIER_DUR_ALL_META = TABLE + ".hier_dur_all_meta";
+
+		/**
+		 * Duration meta including cues<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 * @since 829<br>
+		 * @deprecated since 864. {@link #DUR_META} is now dynamically updated depending on "show cue images" preference
+		 */
+		@Deprecated
+		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
+
+		/**
+		 * Duration in milliseconds for the whole hierarchy inside this folder, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @since 829<br>
+		 * @deprecated since 864
+		 */
+		@Deprecated
+		public static final @NonNull String HIER_DURATION_ALL = TABLE + ".hier_duration_all";
+
 		/**
 		 * Calculated subquery column which retrieves parent name<br>
 		 * TEXT
@@ -652,15 +660,6 @@ public interface TableDefs {
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
 		/**
-		 * Number of tracks in this category, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTRGER
-		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-
-		/**
 		 * Bitwise flag<br>
 		 * INTEGER
 		 */
@@ -681,6 +680,31 @@ public interface TableDefs {
 		public static final @NonNull String DURATION = TABLE + ".duration";
 		
 		/**
+		 * Duration meta<br>
+		 * Dynamically recalculated on rescans<br>
+		 * TEXT
+		 * @since 829<br>
+		 */
+		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
+
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		// Deprecated
+
+		/**
+		 * Number of tracks in this category, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTRGER
+		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
+		 */
+		@Deprecated
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
+
+		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
 		 * INTEGER
@@ -689,14 +713,6 @@ public interface TableDefs {
 		 */
 		@Deprecated
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
-
-		/**
-		 * Duration meta<br>
-		 * Dynamically recalculated on rescans<br>
-		 * TEXT
-		 * @since 829<br>
-		 */
-		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 
 		/**
 		 * Duration meta including cues<br>
@@ -768,7 +784,13 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String IS_UNSPLIT = TABLE + ".is_unsplit";
 
-		// Deprecated fields
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		// Deprecated
 		
 		/**
 		 * Number of tracks in this category, including cue source images<br>
@@ -802,7 +824,7 @@ public interface TableDefs {
 
 	/** 
 	 * One-to-many relation table for track artists<br> 
-	 * Always used. First entry may be UNKNOWN_ID or unsplit artist
+	 * Always used. First entry may be the UNKNOWN_ID or an unsplit artist
 	 * @since 899
 	 */
 	public interface MultiArtists {
@@ -871,6 +893,12 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String IS_UNSPLIT = TABLE + ".is_unsplit";
 
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
 		// Deprecated fields
 		
 		/**
@@ -905,7 +933,7 @@ public interface TableDefs {
 
 	/** 
 	 * One-to-many relation table for track album artists<br> 
-	 * Always used. First entry may be UNKNOWN_ID or unsplit album artist
+	 * Always used. First entry may be the UNKNOWN_ID or an unsplit album artist
 	 * @since 899
 	 * */
 	public interface MultiAlbumArtists {
@@ -949,6 +977,22 @@ public interface TableDefs {
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
 		/**
+		 * Duration in milliseconds, excluding cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @since 829<br>
+		 */
+		public static final @NonNull String DURATION = TABLE + ".duration";
+
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		// Deprecated
+
+		/**
 		 * Number of tracks in this category, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
 		 * INTEGER
@@ -956,15 +1000,7 @@ public interface TableDefs {
 		 */
 		@Deprecated
 		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-		
-		/**
-		 * Duration in milliseconds, excluding cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @since 829<br>
-		 */
-		public static final @NonNull String DURATION = TABLE + ".duration";
-		
+
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
@@ -1052,7 +1088,13 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String IS_UNSPLIT = TABLE + ".is_unsplit";
 
-		// Deprecated fields
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		// Deprecated
 
 		/**
 		 * Number of tracks in this category, including cue source images<br>
@@ -1087,7 +1129,7 @@ public interface TableDefs {
 
 	/** 
 	 * One-to-many relation table for track album artists<br> 
-	 * Always used. First entry may be UNKNOWN_ID or unsplit composer
+	 * Always used. First entry may be the UNKNOWN_ID or an unsplit composer
 	 * @since 899
 	 * */
 	public interface MultiComposers {
@@ -1123,15 +1165,6 @@ public interface TableDefs {
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
 		/**
-		 * Number of tracks in this category, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-
-		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
 		 * INTEGER
@@ -1148,6 +1181,29 @@ public interface TableDefs {
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 		
 		/**
+		 * Bitwise flag<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		// Deprecated
+
+		/**
+		 * Number of tracks in this category, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
+		 */
+		@Deprecated
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
+
+		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
 		 * TEXT
@@ -1156,7 +1212,7 @@ public interface TableDefs {
 		 */
 		@Deprecated
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
-		
+
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
@@ -1167,11 +1223,6 @@ public interface TableDefs {
 		@Deprecated
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
-		/**
-		 * Bitwise flag<br>
-		 * INTEGER
-		 */
-		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
 	}
 
 
@@ -1221,15 +1272,6 @@ public interface TableDefs {
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
 		/**
-		 * Number of tracks in this category, including cue source images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-
-		/**
 		 * Duration in milliseconds, excluding cue source images<br>
 		 * Dynamically recalculated on rescans<br>
 		 * INTEGER
@@ -1244,6 +1286,20 @@ public interface TableDefs {
 		public static final @NonNull String DUR_META = TABLE + ".dur_meta";
 		
 		/**
+		 * Bitwise flag<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		// Deprecated
+
+		/**
 		 * Duration meta including cues<br>
 		 * Dynamically recalculated on rescans<br>
 		 * TEXT
@@ -1251,7 +1307,7 @@ public interface TableDefs {
 		 */
 		@Deprecated
 		public static final @NonNull String DUR_ALL_META = TABLE + ".dur_all_meta";
-		
+
 		/**
 		 * Duration in milliseconds, including cue source images<br>
 		 * Dynamically recalculated on rescans<br>
@@ -1262,10 +1318,13 @@ public interface TableDefs {
 		public static final @NonNull String DURATION_ALL = TABLE + ".duration_all";
 
 		/**
-		 * Bitwise flag<br>
+		 * Number of tracks in this category, including cue source images<br>
+		 * Dynamically recalculated on rescans<br>
 		 * INTEGER
+		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
 		 */
-		public static final @NonNull String AA_STATUS = TABLE + ".aa_status";
+		@Deprecated
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
 	}
 
 
@@ -1418,18 +1477,6 @@ public interface TableDefs {
 		public static final @NonNull String NUM_FILES = TABLE + ".num_files";
 
 		/**
-		 * Number of playlist entries. Since 824 - same as num_files<br>
-		 * Poweramp can insert CUE images into playlists if appropriate option enabled, or it skips them completely. In anycase, playlist should show # of all possible entries in it,
-		 * without filtering for CUE images<br>
-		 * Dynamically recalculated on rescans<br>
-		 * INTEGER
-		 * @since 796<br>
-		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
-		 */
-		@Deprecated
-		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
-
-		/**
 		 * Bitwise flag<br>
 		 * INTEGER
 		 */
@@ -1468,6 +1515,26 @@ public interface TableDefs {
 		 * INTEGER (boolean)
 		 */
 		public static final @NonNull String IS_FILE = TABLE + ".playlist_path IS NOT NULL AS _is_file";
+
+		/**
+		 * This is usually not updated, unless shuffled
+		 * INTEGER
+		 */
+		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
+
+		// Deprecated
+
+		/**
+		 * Number of playlist entries. Since 824 - same as num_files<br>
+		 * Poweramp can insert CUE images into playlists if appropriate option enabled, or it skips them completely. In anycase, playlist should show # of all possible entries in it,
+		 * without filtering for CUE images<br>
+		 * Dynamically recalculated on rescans<br>
+		 * INTEGER
+		 * @since 796<br>
+		 * @deprecated since 864. {@link #NUM_FILES} is now dynamically updated depending on "show cue images" preference
+		 */
+		@Deprecated
+		public static final @NonNull String NUM_ALL_FILES = TABLE + ".num_all_files";
 	}
 
 
