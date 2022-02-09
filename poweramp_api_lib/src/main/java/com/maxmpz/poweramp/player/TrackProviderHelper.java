@@ -20,6 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.player;
 
+import android.annotation.SuppressLint;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import org.eclipse.jdt.annotation.NonNull;
@@ -36,6 +37,7 @@ public class TrackProviderHelper {
 		if(waveBytes.length == 0) {
 			return new float[0];
 		}
+		@SuppressLint("InlinedApi")
 		int floatSize = waveBytes.length / Float.BYTES;
 
 		float[] wave = new float[floatSize]; // Alloc
@@ -51,6 +53,7 @@ public class TrackProviderHelper {
 		if(wave.length == 0) {
 			return new byte[0];
 		}
+		@SuppressLint("InlinedApi")
 		ByteBuffer bb = ByteBuffer.allocate(wave.length * Float.BYTES);
 		FloatBuffer fb = bb.asFloatBuffer(); // Allocs
 		fb.put(wave);
