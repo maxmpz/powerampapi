@@ -72,7 +72,7 @@ public interface RouterConsts {
 		return device >= 0 && device < DEVICE_COUNT;
 	}
 
-	static int getDeviceId(@Nullable String device) {
+	public static int getDeviceId(@Nullable String device) {
 		if(device == null) {
 			return -1;
 		}
@@ -96,8 +96,7 @@ public interface RouterConsts {
 
 	// NOTE: used as pref part
 	// REVISIT: refactor this and following statics into a helper?
-	static @NonNull String getDeviceName(int device) {
-		//device = device & DEVICE_MASK;
+	public static @NonNull String getDeviceName(int device) {
 		switch(device) {
 			case DEVICE_HEADSET:
 				return DEVICE_NAME_HEADSET;
