@@ -1919,6 +1919,7 @@ public interface TableDefs {
 		public static final @NonNull String PREF_URI = "pref_uri";
 		public static final @NonNull String PREF_KEY = "pref_key";
 		public static final @NonNull String ICON = "icon";
+		public static final @NonNull String TYPE = "type";
 	}
 
 	/** @since 841 */
