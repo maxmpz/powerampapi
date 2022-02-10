@@ -23,6 +23,7 @@ package com.maxmpz.poweramp.player;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
+import org.eclipse.jdt.annotation.NonNull;
 
 
 /**
@@ -571,7 +572,7 @@ public final class PowerampAPI {
 		
 		
 		
-		public static String cmdToString(int cmd) {
+		public static @NonNull String cmdToString(int cmd) {
 			switch(cmd) {
 				case TOGGLE_PLAY_PAUSE:
 					return "TOGGLE_PLAY_PAUSE";
