@@ -44,6 +44,7 @@ Due to the standard APIs used, the resulting provider plugin can be potentially 
 - [Roots](#roots)
 - [Folders Hierarchy And User Selected Sub-folders](#folders-hierarchy-and-user-selected-sub-folders)
 - [Sorting](#sorting)
+- [Playlists](#playlists)
 - [Cue Sheets](#cue-sheets)
 - [Data Refresh](#data-refresh)
 - [Deletion](#deletion)
@@ -241,11 +242,19 @@ For providers, Poweramp doesn't infer track number from track filename as it doe
 
 For folders in Folder Hierarchy, Poweramp always uses folder cursor position (build 869+). For flat Folders category sorting is set by user.
 
-
+### Playlists
+Your provider can provide m3u8/pls playlists with either http streams or links to the other tracks, including tracks provided by the provider.
+Paths in the playlist should follow "parent_folder/file_name.ext" pattern.  
+Poweramp uses just the (last) parent folder name and file name to resolve a playlist entry to the actual track/file.
+The folder and file names come from Document.COLUMN_DISPLAY_NAME (for the appropriate folder or file).
+Note that if you don't provide COLUMN_DISPLAY_NAME, Poweramp will try to generate some path based on doc id, but that won't be stable,
+so using COLUMN_DISPLAY_NAME is recommended.
+See [ExampleProvider](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L411) for details on filling the playlist cursor rows.
 
 ### Cue Sheets
 
 At this moment, .cue sheet files are not support for the track providers. *Please create issue on github if this functionality is needed for your project.*
+
 
 
 ### Data Refresh
