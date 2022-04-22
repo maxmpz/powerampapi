@@ -4,7 +4,7 @@
 Poweramp v3 (build 862+) supports externally provided tracks which are shown along other tracks in the Poweramp Library categories, including Folders and Folders Hierarchy.
 
 This API enables scenarios like providing cloud-based tracks, streamed/cached tracks, file system, http hosted tracks, or other virtual track hierarchies into Poweramp Library.
-Poweramp treats such tracks as usual tracks within Poweramp Library categories, they appear the same way the file system tracks appear - Poweramp adds the provider app name label  
+Poweramp treats such tracks as usual tracks within Poweramp Library categories, they appear the same way the file system tracks appear - Poweramp adds the provider app name label
 to such tracks and may treat such tracks slightly differently, as documented here.
 
 Please note that file-backed tracks are most easy to implement in provider: if track file is on the file system somewhere on a device, or, in other words track has a seekable file descriptor,
@@ -86,7 +86,7 @@ Poweramp scans Track Provider Plugin tracks in two phases:
 "Loading" cursors are not supported. Your provider should provide ready to use cursor with the data. There is little point in scanning data yet to be loaded.
 Instead just load data as needed and when needed by your code and issue appropriate Poweramp rescan command.
 
-Alternatively, if data loading is fast enough, just block your appropriate provider method (e.g. queryChildDocuments/queryDocument) and do loading there, but please note that Poweramp scanning  
+Alternatively, if data loading is fast enough, just block your appropriate provider method (e.g. queryChildDocuments/queryDocument) and do loading there, but please note that Poweramp scanning
 has timeouts. There is also a timeout for openDocument which is defined by the user in Poweramp settings as "Network Timeout" option.
 
 
@@ -115,7 +115,7 @@ Poweramp doesn't do openDocument in this case.
 Dynamic URL track forces Poweramp to query actual URL to use when the track is started in Poweramp. Poweramp does additional call to the method `TrackProviderConsts.CALL_GET_URL`.
 See [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L831) for the example method implementation.
 
-For URL Tracks with the duration, Poweramp will try to pre-scan it for a seek-wave. As this can increase traffic and server load, you can disable this behavior with  
+For URL Tracks with the duration, Poweramp will try to pre-scan it for a seek-wave. As this can increase traffic and server load, you can disable this behavior with
 `TrackProviderConsts.COLUMN_TRACK_WAVE` set to a zero sized float array: `new float[0]`.
 
 Note, at this moment streamed URL tracks (without duration) are shown by Poweramp in the appropriate Folders Hierarchy in your provider folders. This is different comparing to Poweramp scanned
@@ -143,7 +143,7 @@ resulting code is very close to the code for a pipe file descriptor. This works 
 See [ExampleProvider.java openDocument implementation](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L572) for the file pointing
 file descriptor, the seekable socket, and proxy file descriptor code examples.
 
-Please note that socket is read by Poweramp as much as needed for the track playback and the total reading time from the start to the end of the track is close to the track duration itself.  
+Please note that socket is read by Poweramp as much as needed for the track playback and the total reading time from the start to the end of the track is close to the track duration itself.
 If you download the data you may need to adjust your timeouts or you may download track to a local file cache and/or feed Poweramp with a file pointing file descriptor instead.
 
 CancellationSignal is also provided and can be used to monitor Poweramp closing a file due to the user requesting some other file or due to any other track-ending scenario.
@@ -180,7 +180,7 @@ Lyrics can be also provided via `TrackProviderConsts.COLUMN_TRACK_LYRICS`. Power
 your Provider may take time to extract/download/obtain the lyrics as needed.
 
 (Since 869) Directories may have thumbnail as well, if appropriate `Document.FLAG_SUPPORTS_THUMBNAIL` flag is set for the directory.
-See [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L381) and  
+See [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L381) and
 [ExampleProvider.java](src/main/java/com/maxmpz/powerampproviderexample/ExampleProvider.java#L570)
 
 #### Metadata And Album Art From Track File
