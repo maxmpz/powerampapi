@@ -24,6 +24,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Main Poweramp list, i.e. main screen AA and all the Library lists and Library itself. 
 		 NOTE: derived from PowerList - accepts PowerList attributes as well -->
 	<declare-styleable name="ListWidget">
+		<attr name="moveableToolbar" format="reference"/><!-- Id of the toolbar which can be moved by list on scroll -->
+		<attr name="moveableToolbarExtraStates" format="boolean"/><!-- If true, PowerList will set state w:state_toolbar_in_header for NavBar and NavBarButtons drawables when toolbar is over header -->
+		<attr name="moveableToolbarAnchor">
+			<enum name="fixedTop" value="0"/><!-- Toolbar always on top, doesn't move (also should be set in xml layout as top aligned) -->
+			<enum name="top" value="1"/><!-- Toolbar moves away top on scroll (also should be set in xml layout as top aligned) -->
+			<enum name="bottom" value="2"/><!-- Toolbar moves away bottom on scroll (also should be set in xml layout as bottom aligned) -->
+			<enum name="fixedBottom" value="3"/><!-- Toolbar always on bottom, doesn't move (also should be set in xml layout as bottom aligned) -->
+		</attr>
+
+		<!-- Space to reserve for moveable toobar on bottom. Should be large enough so the toolbar doesn't overlap last item -->
+		<attr name="bottomReservedSpace" format="dimension|reference"/>
+
+		<!-- The extra space to add to bottomReservedSpace for a selection mode. Allows space increase/decrease relative to bottomReservedSpace,
+		     which can be dynamic due to the theme options  -->
+		<attr name="selectionBottomReservedExtraSpace" format="dimension|reference"/>
+
 		<!-- ListWidget popup menu animation time -->
 		<attr name="popupEnterAnimTime"/><!-- ms -->
 		<!-- ListWidget popup menu animation time -->

@@ -36,5 +36,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:layout_height="wrap_content"
 		w:layout_consumeSpace="vertical|reset_horizontal"
 		android:layout_marginBottom="4dp"
+		w:layout_goneWhenEmpty="true"
 	/>
+
+	<TextView android:id="@+id/message_hint"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		w:layout_consumeSpace="vertical|reset_horizontal"
+		android:layout_marginBottom="4dp"
+		w:layout_goneWhenEmpty="true"
+		android:textAppearance="?Hint"
+		/>
+
 </merge>

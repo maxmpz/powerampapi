@@ -7,21 +7,20 @@
 			<!-- NOTE: solid is needed for ripple -->
 			<item android:state_enabled="false">
 				<shape android:shape="oval">
-					<!--<stroke android:color="?colorKnobDisabled" android:width="1dp"/>-->
 					<solid android:color="?colorKnobBg"/>
 				</shape>
 			</item>
 
 			<item android:state_pressed="true">
 				<shape android:shape="oval">
-					<stroke android:color="?colorKnobPressed" android:width="2.5dp"/>
+					<stroke android:color="?colorKnobPressed" android:width="3dp"/>
 					<solid android:color="?colorKnobBg"/><!-- NOTE: solid is needed for ripple -->
 				</shape>
 			</item>
 			
 			<item>
 				<shape android:shape="oval">
-					<stroke android:color="?colorKnob" android:width="1dp"/>
+					<stroke android:color="?colorKnob" android:width="2dp"/>
 					<solid android:color="?colorKnobBg"/><!-- NOTE: solid is needed for ripple -->
 				</shape>
 			</item>

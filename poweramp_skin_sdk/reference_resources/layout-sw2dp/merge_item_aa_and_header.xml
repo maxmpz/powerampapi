@@ -27,10 +27,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.base.FastButton android:id="@+id/menu"
 		style="?ItemTrackMenu"
 		android:contentDescription="@string/menu"
-	>
-		<tag android:id="@+id/header_button" android:value="1"/>
-	</com.maxmpz.widget.base.FastButton>
-	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_small" w:scene_3="@+id/scene_grid_1_alt" 
+	/>
+	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_small" w:scene_3="@+id/scene_grid_1_alt"
 		w:scene_4="@+id/scene_grid_1_alt_zoomed" w:scene_5="@+id/scene_1_small"
 		w:baseScene="defaultScene" 
 	/>
@@ -46,6 +44,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
 		style="?ItemTrackMenu_scene_header"
 	/>
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		style="?ItemTrackMenu_scene_bottom_toolbar"
+		/>
 	<SceneParams w:scene="@+id/scene_aa"
 		style="?ItemTrackMenu_scene_aa"
 	/>
@@ -55,7 +56,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackMenu_scene_aa_playing"
 	/>
-	
+
+
 	<!-- NOTE: this view is never visible in default themes, but can be used in 3rd party skins -->
 	<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/aa_panel"
 		style="?ItemTrackAAPanel"
@@ -69,13 +71,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackAAPanel_scene_aa_playing"
 	/>
-	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_zoomed" w:scene_3="@+id/scene_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_header" w:scene_6="@+id/scene_1_small"
+	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_zoomed" w:scene_3="@+id/scene_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_header"
+		w:scene_6="@+id/scene_1_small"
 		style="?ItemTrackAAPanel_scenes_hidden"  
 	/> 
 	<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" w:scene_3="@+id/scene_header" w:scene_4="@+id/scene_header_1"
-		w:scene_5="@+id/scene_small_no_aa" w:scene_6="@+id/scene_1_small_no_aa"		
+		w:scene_5="@+id/scene_small_no_aa" w:scene_6="@+id/scene_1_small_no_aa"
 		style="?ItemTrackAAPanel_scenes_hidden"
 	/>
-		
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		style="?ItemTrackAAPanel_scenes_hidden"
+		/>
+
 	<include android:layout="?ItemLikeUnlikeLayout_layout" w:optional="true"/>
 </merge>

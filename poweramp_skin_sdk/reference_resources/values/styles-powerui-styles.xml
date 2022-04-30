@@ -72,6 +72,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_AlertDialogActivity_list">@style/dialog_AlertDialogActivity_list</item>
 		<item name="dialog_AlertDialogActivity_list_centered">@style/dialog_AlertDialogActivity_list_centered</item>
 		<item name="dialog_AlertDialogActivity_vertical_buttons">@style/dialog_AlertDialogActivity_vertical_buttons</item>
+		<item name="dialog_AlertDialogActivity_vertical_buttons_centered">@style/dialog_AlertDialogActivity_vertical_buttons_centered</item>
 		<item name="dialog_AlertDialogActivity_no_title">@style/dialog_AlertDialogActivity_no_title</item>
 		<item name="dialog_AlertDialogActivity_no_title_vertical_buttons">@style/dialog_AlertDialogActivity_no_title_vertical_buttons</item>
 		
@@ -305,6 +306,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMenu">@style/ItemTrackMenu</item>
 		<item name="ItemTrackMenu_scene_menu">@style/ItemTrackMenu_scene_menu</item>
 		<item name="ItemTrackMenu_scene_header">@style/ItemTrackMenu_scene_header</item>
+		<item name="ItemTrackMenu_scene_bottom_toolbar">@style/ItemTrackMenu_scene_bottom_toolbar</item>
 		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa</item>
 		<item name="ItemTrackMenu_scene_aa_vis">@style/ItemTrackMenu_scene_aa_vis</item>
 		<item name="ItemTrackMenu_scene_aa_playing">@style/ItemTrackMenu_scene_aa_playing</item>
@@ -343,19 +345,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTextMenu_scene_header">@style/ItemTextMenu_scene_header</item>
 		<item name="ItemTextMenu_scene_search_header">@style/ItemTextMenu_scene_search_header</item>
 		<item name="ItemTextMenu_scene_top_header">@style/ItemTextMenu_scene_top_header</item>
+		<item name="ItemTextMenu_scene_bottom_toolbar">@style/ItemTextMenu_scene_bottom_toolbar</item>
 		
 		<item name="ItemTextHeaderShuffleButton">@style/ItemTextHeaderShuffleButton</item>
 		<item name="ItemTextHeaderShuffleButton_scene_header">@style/ItemTextHeaderShuffleButton_scene_header</item>
+		<item name="ItemTextHeaderShuffleButton_scene_bottom_toolbar">@style/ItemTextHeaderShuffleButton_scene_bottom_toolbar</item>
 		<item name="ItemTextHeaderShuffleButton_scene_menu">@style/ItemTextHeaderShuffleButton_scene_menu</item>
+
 		<item name="ItemTextHeaderPlayButton">@style/ItemTextHeaderPlayButton</item>
 		<item name="ItemTextHeaderPlayButton_scene_header">@style/ItemTextHeaderPlayButton_scene_header</item>
+		<item name="ItemTextHeaderPlayButton_scene_bottom_toolbar">@style/ItemTextHeaderPlayButton_scene_bottom_toolbar</item>
 		<item name="ItemTextHeaderPlayButton_scene_menu">@style/ItemTextHeaderPlayButton_scene_menu</item>
+
 		<item name="ItemTextHeaderSearchButton">@style/ItemTextHeaderSearchButton</item>
 		<item name="ItemTextHeaderSearchButton_scene_header">@style/ItemTextHeaderSearchButton_scene_header</item>
+		<item name="ItemTextHeaderSearchButton_scene_bottom_toolbar">@style/ItemTextHeaderSearchButton_scene_bottom_toolbar</item>
 		<item name="ItemTextHeaderSearchButton_scene_menu">@style/ItemTextHeaderSearchButton_scene_menu</item>
 		
 		<item name="ItemTextHeaderSelectButton">@style/ItemTextHeaderSelectButton</item>
 		<item name="ItemTextHeaderSelectButton_scene_header">@style/ItemTextHeaderSelectButton_scene_header</item>
+		<item name="ItemTextHeaderSelectButton_scene_bottom_toolbar">@style/ItemTextHeaderSelectButton_scene_bottom_toolbar</item>
 		<item name="ItemTextHeaderSelectButton_scene_menu">@style/ItemTextHeaderSelectButton_scene_menu</item>
 		
 		<item name="ItemTextBackDecor">@style/ItemTextBackDecor</item>
@@ -413,18 +422,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemVisActivatedCheck">@style/ItemVisActivatedCheck</item>
 		
 		<item name="VisLockButtonLayout">@style/VisLockButtonLayout</item>
+
+		<!-- NOTE: these are commented as not used, but can be used in the skins -->
+		<!--
+		<item name="ItemHeaderButtonsBg">@style/ItemHeaderButtonsBg</item>
+		<item name="ItemHeaderButtonsBg_scene_header">@style/ItemHeaderButtonsBg_scene_header</item>
+		<item name="ItemHeaderButtonsBg_scene_bottom_toolbar">@style/ItemHeaderButtonsBg_scene_bottom_toolbar</item>
+
+		<item name="ItemTextHeaderButtonsBg">@style/ItemTextHeaderButtonsBg</item>
+		<item name="ItemTextHeaderButtonsBg_scene_header">@style/ItemTextHeaderButtonsBg_scene_header</item>
+		<item name="ItemTextHeaderButtonsBg_scene_bottom_toolbar">@style/ItemTextHeaderButtonsBg_scene_bottom_toolbar</item>
+		-->
 		
 		<item name="ItemHeaderShuffleButton">@style/ItemHeaderShuffleButton</item>
 		<item name="ItemHeaderShuffleButton_scene_header">@style/ItemHeaderShuffleButton_scene_header</item>
+		<item name="ItemHeaderShuffleButton_scene_bottom_toolbar">@style/ItemHeaderShuffleButton_scene_bottom_toolbar</item>
 		<item name="ItemHeaderShuffleButton_scene_menu">@style/ItemHeaderShuffleButton_scene_menu</item>
 		<item name="ItemHeaderPlayButton">@style/ItemHeaderPlayButton</item>
 		<item name="ItemHeaderPlayButton_scene_header">@style/ItemHeaderPlayButton_scene_header</item>
+		<item name="ItemHeaderPlayButton_scene_bottom_toolbar">@style/ItemHeaderPlayButton_scene_bottom_toolbar</item>
 		<item name="ItemHeaderPlayButton_scene_menu">@style/ItemHeaderPlayButton_scene_menu</item>
 		<item name="ItemHeaderSelectButton">@style/ItemHeaderSelectButton</item>
 		<item name="ItemHeaderSelectButton_scene_header">@style/ItemHeaderSelectButton_scene_header</item>
+		<item name="ItemHeaderSelectButton_scene_bottom_toolbar">@style/ItemHeaderSelectButton_scene_bottom_toolbar</item>
 		<item name="ItemHeaderSelectButton_scene_menu">@style/ItemHeaderSelectButton_scene_menu</item>
 		<item name="ItemHeaderSearchButton">@style/ItemHeaderSearchButton</item>
 		<item name="ItemHeaderSearchButton_scene_header">@style/ItemHeaderSearchButton_scene_header</item>
+		<item name="ItemHeaderSearchButton_scene_bottom_toolbar">@style/ItemHeaderSearchButton_scene_bottom_toolbar</item>
 		<item name="ItemHeaderSearchButton_scene_menu">@style/ItemHeaderSearchButton_scene_menu</item>
 				
 		<item name="ItemTrackAAPanel">@style/ItemTrackAAPanel</item>
@@ -472,6 +496,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="SelectionMenuCountText">@style/SelectionMenuCountText</item>
 		<item name="SelectionMenu_Text">@style/SelectionMenu_Text</item>
 		<item name="SelectionMenuCloseButton">@style/SelectionMenuCloseButton</item>
+		<item name="SelectionMenuRangeButton">@style/SelectionMenuRangeButton</item>
 		<item name="SelectionMenuSeparator">@style/SelectionMenuSeparator</item>
 		<item name="SelectionMenuBottomLineLayout">@style/SelectionMenuBottomLineLayout</item>
 		<item name="SelectionListContextButton">@style/SelectionListContextButton</item>
@@ -480,6 +505,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="SelectionMenuSubcontainer">@style/SelectionMenuSubcontainer</item>
 		<item name="SelectionMenuSubcontainer_scene_selection_menu">@style/SelectionMenuSubcontainer_scene_selection_menu</item>
 		<item name="SelectionMenuSubcontainer_scenes_hidden">@style/SelectionMenuSubcontainer_scenes_hidden</item>
+		<item name="SelectionListContextPopupButtonLayout">@style/SelectionListContextPopupButtonLayout</item>
+		<item name="SelectionListContextPopupButtonLayout_scene_item_menu">@style/SelectionListContextPopupButtonLayout_scene_item_menu</item>
 		
 		<item name="TopContainer">@style/TopContainer</item>
 		<item name="TopMilk">@style/TopMilk</item>
@@ -498,6 +525,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopSearchPanel">@style/TopSearchPanel</item>
 		<item name="TopSearchCloseButton">@style/TopSearchCloseButton</item>
 		<item name="TopListSearchEditText">@style/TopListSearchEditText</item>
+		<item name="TopSearchCatsLayout">@style/TopSearchCatsLayout</item>
+		<item name="TopSearchCatButton">@style/TopSearchCatButton</item>
 		<item name="TopSearchTarget">@style/TopSearchTarget</item>
 		<item name="TopSearchTarget_Text">@style/TopSearchTarget_Text</item>
 

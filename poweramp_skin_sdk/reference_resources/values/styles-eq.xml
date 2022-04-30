@@ -75,8 +75,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="EqPagesScrollingBehavior">
-		<item name="maxOvershoot">30dp</item>
-		<item name="maxStretchOvershoot">30dp</item>
 		<item name="posScrollAnimTime">250</item>
 		<item name="settleAnimTime">450</item>
 	</style>
@@ -98,7 +96,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqKnobsLayout" parent="EqKnobsLayoutBase">
 		<item name="android:layout_width">match_parent</item>
 		<item name="layout_heightPercent">50%</item>
-		<item name="android:layout_marginTop">@dimen/EqKnobsLayout_marginTop</item>
+		<item name="android:layout_marginTop">@dimen/EqKnobsLayout_marginTop</item><!-- NOTE: overridden for Peq -->
 		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottom">@id/frequency_response_scroller</item>
 		<!-- NOTE: left/right margins not needed in land -->
@@ -148,6 +146,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="thumbWidth">@dimen/EqLinearKnob_thumbWidth</item><!-- 32dp -->
 		<item name="thumbHeight">@dimen/EqLinearKnob_thumbHeight</item><!-- 64dp -->
 		<item name="android:background">@drawable/focusable_bg</item>
+
+		<item name="android:paddingBottom">@dimen/EqLinearKnob_paddingTB</item><!-- Usually 0, but overridden for peq-port -->
+		<item name="android:paddingTop">@dimen/EqLinearKnob_paddingTB</item>
 		
 		<!-- NOTE: theme-wide holeColor*/holeGlow* attributes are resolved automatically for EqLinearKnob -->
 		
@@ -190,12 +191,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="selectionDrawable">@drawable/frs_selection_selector</item>
 		
 		<item name="lineColor">?colorFrs</item>
-		<item name="lineWidth">1.5dp</item>
-		<item name="parametricLineWidth">0.75dp</item><!-- Slightly less pronounced as we have a lot of curves -->
+		<item name="lineWidth">2dp</item>
+		<item name="parametricLineWidth">1dp</item><!-- Slightly less pronounced as we have a lot of curves -->
 		<item name="cornerRadius">?corners_equ_frs</item>
 
 		<item name="backLineColor">?colorFrsBackline</item>		
-		<item name="toneLineWidth">1dp</item>
+		<item name="toneLineWidth">1.5dp</item>
 		<item name="toneLineColor">?colorFrsTone</item>
 		<item name="toneLineColorAlpha">?colorFrsToneAlpha</item>
 		<item name="toneFillColor">?colorFrsToneFill</item>
@@ -287,8 +288,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:minWidth">@dimen/EqButton_layout_width</item><!-- 64dp -->
 		<item name="android:ellipsize">end</item>
 		<item name="android:textAppearance">?EqButton_Text</item>
-		<item name="android:paddingLeft">12dp</item>
-		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingLeft">@dimen/EqButton_paddingLR</item><!-- 12dp -->
+		<item name="android:paddingRight">@dimen/EqButton_paddingLR</item>
 	</style>
 	<style name="EqButton_Text" parent="WhiteButton_Text">
 		<item name="android:textSize">@dimen/EqButton_textSize</item>
@@ -407,7 +408,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="layout_attachBottom">parent</item>
 		
 		<item name="android:layout_marginLeft">@dimen/EqEquButton_maxWidth</item>
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginTop">@dimen/EqTonePanel_marginTop</item>
 		<item name="android:paddingLeft">@dimen/EqTonePanel_offsetLeft</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:paddingTop">@dimen/EqTonePanel_offsetTB</item>
@@ -437,11 +438,10 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxHeight">@dimen/EqToneRoundKnobLayout_maxSize</item>
 		<item name="layout_maxWidth">@dimen/EqToneRoundKnobLayout_maxWidth</item><!-- Further limit width for large tablets -->
-		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginRight">@dimen/EqToneKnobLayout_marginSide</item>
 	</style>
 	
 	<style name="EqTrebleToneKnobLayout" parent="EqToneKnobLayoutBase">
-		<!--<item name="android:layout_marginRight">8dp</item>-->
 		<item name="android:layout_width">0px</item>
 		<item name="layout_widthPercent">50%</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -449,7 +449,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 				
 		<item name="layout_maxHeight">@dimen/EqToneRoundKnobLayout_maxSize</item>
 		<item name="layout_maxWidth">@dimen/EqToneRoundKnobLayout_maxWidth</item><!-- Further limit width for large tablets -->
-		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginLeft">@dimen/EqToneKnobLayout_marginSide</item>
 	</style>
 		
 	
@@ -471,6 +471,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">@dimen/RoundKnobLabelLeftTop_marginTop</item>
 		<item name="layout_maxWidth">@dimen/EqToneRoundKnobLabel_maxWidth</item>
+		<item name="android:layout_marginRight">@dimen/EqToneRoundKnobLabel_marginRight</item><!-- Make label closer to round knob, thus leaving more space for the knob - knob grows -->
 		<item name="android:maxLines">1</item>
 		<item name="android:ellipsize">end</item>
 		<!-- NOTE: don't consume space as label may consume space depeding on the text size, causing knob to differ for tone -->
@@ -484,7 +485,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachTop">@id/_label</item>
 		<item name="layout_attachLeftToLeft">@id/_label</item>
-		<item name="android:layout_marginRight">@dimen/RoundKnobLabelLeftTop_marginRight</item>
+		<item name="android:layout_marginRight">@dimen/RoundKnobLabelLeftTop_marginRight</item><!-- REVISIT: makes little sense? -->
 		<item name="android:layout_marginTop">@dimen/EqRoundKnobValueLabel_marginTop</item>
 		
 		<item name="android:id">@id/_value_label</item>

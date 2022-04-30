@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -130,18 +130,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="ListSubstyleBase2">
 		<item name="addStatusBarHeightToHeaders">true</item>
-		<item name="headerSize">236dp</item>
-		<item name="humanCatHeaderSize">276dp</item>
-		<item name="textHeaderSize">186dp</item>
-		<item name="topTextHeaderSize">76dp</item>
-		<item name="searchHeaderSize">@dimen/ListSubstyleBase2_searchHeaderSize</item><!-- Includes margin for status bar and search field -->
-		<item name="targetSearchHeaderSize">142dp</item><!-- Includes margin for status bar, search field, and target button -->
-		
+
+		<!-- NOTE: textHeaderSize, topTextHeaderSize, humanGridItemExtraSpace, humanGridZoomedItemExtraSpace are defined in the main theme
+		     and propagated here. They can be overridden via main theme override, e.g. for OptionNoHeaderButtons -->
+
+		<!-- As bottom toolbar attached to the bottom/navbar, this height also defines padding between buttons and bottom/navbar -->
+		<item name="bottomToolbarSize">44dp</item>
+		<!-- This is important to keep bottom toolbar over the items in the list -->
+		<item name="bottomToolbarZ">?bottom_toolbar_elevation</item>
+
 		<item name="maxFontScaleForCompact">1.3</item>
-		
-		<item name="compactHeaderSize">200dp</item>
-		<item name="compactHumanCatHeaderSize">160dp</item>
-		<item name="compactTextHeaderSize">166dp</item>
 
 		<item name="separatorSize">32dp</item>
 		<item name="searchHistoryItemSize">@dimen/searchHistoryItemSize</item>
@@ -170,7 +168,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="allTracksSubheadSize">88dp</item><!-- Size of all-tracks subheader, e.g. Artists/Albums all songs -->
 		<item name="metaSubheadSize">24dp</item><!-- Size of meta subheader, e.g. for any Files --><!-- Not used ATM --> 
 
-		<!-- NOTE: humanGridItemExtraSpace, humanGridZoomedItemExtraSpace is defined in the main theme -->
 
 		<item name="headerStretchyImage">@+id/aa_image</item>
 		
@@ -301,12 +298,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:maxLines">1</item>
 		<item name="android:textAppearance">?TopTrackElapsedDuration_Text</item>
 		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+		<item name="relayoutInTransition">true</item>
 	</style>
 	<style name="TopTrackElapsedDuration_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">14dp</item>
 	</style>
 	<style name="TopTrackElapsed_scene_playing">
-		<item name="recalcChildren">on_start</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">@dimen/TopTrackElapsedDuration_height</item><!-- Match pause button height in state_playing -->
@@ -339,6 +336,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textAppearance">?TopTrackElapsedDuration_Text</item><!-- NOTE: shares it with TopTrackElapsed -->
 		<item name="drawableTint">?colorIconInverse</item>
 		<item name="android:importantForAccessibility">yes</item>
+		<item name="relayoutInTransition">true</item>
 	</style>
 	<style name="TopTrackDuration_scene_playing">
 		<item name="recalcChildren">on_start</item>
@@ -391,8 +389,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="msgId">@id/cmd_player_toggle_playing</item>
 		<item name="longPressMsgId">@id/cmd_player_stop_playing</item>
 		<item name="android:contentDescription">@string/pause</item>
+		<item name="deripple">true</item><!-- Remove duplicated RippleDrawables for broken skins -->
 	</style>
 	<style name="TopPause_scene_playing">
+		<item name="recalcChildren">on_start</item>
 		<item name="android:layout_width">@dimen/TopPause_scene_playing_width</item>
 		<item name="android:layout_height">@dimen/TopPause_scene_playing_height</item><!-- Match elasped/duration -->
 		<item name="android:layout_gravity">center</item>
@@ -427,6 +427,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="msgId">@id/cmd_player_toggle_playing</item>
 		<item name="longPressMsgId">@id/cmd_player_stop_playing</item>
 		<item name="android:contentDescription">@string/play</item>
+		<item name="deripple">true</item><!-- Remove duplicated RippleDrawables for broken skins -->
 	</style>
 	<style name="TopPlay_scene_playing">
 		<item name="recalcChildren">on_end</item>
@@ -456,6 +457,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="animOnClick">true</item>
 		<item name="android:gravity">fill</item><!-- Force drawable to fill dimensions -->
 		<item name="drawableOnly">true</item>
+		<item name="deripple">true</item><!-- Remove duplicated RippleDrawables for broken skins -->
 	</style>
 	
 	<!-- Pro themes extra styles -->
@@ -476,6 +478,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="animOnClick">true</item>
 		<item name="android:gravity">fill</item><!-- Force drawable to fill dimensions -->
 		<item name="drawableOnly">true</item>
+		<item name="deripple">true</item><!-- Remove duplicated RippleDrawables for broken skins -->
 	</style>
 	
 	<style name="TopPrevCat" parent="TopSmallButton">
@@ -721,24 +724,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopEqLayout" parent="TopEqLayoutBase">
 	</style>
 
-	<style name="TopPeqEqLayoutBase" parent="TopEqLayoutBase">
-		<item name="android:visibility">visible</item>
-		<item name="layout_attachBottom">@id/navbar_bounds</item>
-		<item name="android:layout_marginBottom">8dp</item>
-		<item name="layout_attachLeft">inset</item>
-		<item name="layout_attachRight">inset</item>
-	</style>
-	<style name="TopPeqEqLayout" parent="TopPeqEqLayoutBase">
-	</style>
-	
-	<style name="TopPeqEqLayoutBase_scenes_vis" parent="TopPeqEqLayout">
-		<!-- Margin top: 48dp + 8dp -->
-		<item name="android:layout_marginTop">@dimen/TopPeqEqLayoutBase_scenes_vis_marginTop</item>
-	</style>
-	<style name="TopPeqEqLayout_scenes_vis" parent="TopPeqEqLayoutBase_scenes_vis">
-	</style>
-				
-	
 	<style name="TopActionModeBarBase">
 		<item name="android:layout_marginTop">@dimen/TopActionModeBar_marginTop</item><!-- Increased for longer screens -->
 		<item name="android:layout_marginLeft">8dp</item>
@@ -819,13 +804,42 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:includeFontPadding">false</item>
-	</style>	
+	</style>
+
+	<style name="TopSearchCatsLayout">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:clipToPadding">true</item>
+	</style>
+	<style name="TopSearchCatButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="layout_unlimitedMeasure">true</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:background">@drawable/checkable_non_tr_rounded_large</item>
+		<item name="animOnClick">true</item>
+		<item name="android:clickable">true</item>
+		<item name="android:longClickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="android:textAppearance">?TopSearchTarget_Text</item>
+		<item name="android:textColor">@color/button_text_color_selector</item>
+	</style>
 	
 	<style name="TopSearchTarget">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">vertical</item>
-		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginTop">6dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 						
@@ -854,6 +868,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:disabledAlpha">0</item>
 		
 		<item name="android:textAppearance">?TopSearchTarget_Text</item>
+		<item name="android:visibility">gone</item>
 	</style>
 	<style name="TopSearchTarget_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">13dp</item>
@@ -923,7 +938,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="TopMenuPlaceholderLayout">
-		<item name="android:id">@id/menu_placeholder</item>
 		<item name="privateScene">true</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
@@ -1360,11 +1374,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="help_position">bottom</item>
 	</style>
 	
-	<style name="TopHelpButtonPeqEq" parent="TopHelpButton">
-		<item name="layout_attachTop">parent</item>
-		<item name="help_position">bottom</item>
-	</style>
-		
 	<style name="TopHelpButton_anim_help_visible">
 		<item name="android:alpha">1</item>
 	</style>

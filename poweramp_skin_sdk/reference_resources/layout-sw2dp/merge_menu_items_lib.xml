@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 		w:busId="@id/bus_app_cmd" 
 		w:msgId="@id/cmd_app_open_settings"
-		w:string="folders_library"
+		w:string="library"
 		
 		android:text="@string/settings"
 	/>

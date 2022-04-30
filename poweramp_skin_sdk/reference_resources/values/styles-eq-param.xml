@@ -170,13 +170,16 @@ Here we have base + "landscape" layout styles
 	
 	
 	<style name="EqParamRoundKnobBase" parent="EqResizableRoundKnob">
+		<item name="layout_maxHeight">@dimen/EqParamRoundKnobBase_maxSize</item>
+
 		<item name="valueLabel">@null</item>
 		<item name="dependentLabel">@null</item>
-		
+
 		<item name="offsetWhenNoArc">4dp</item><!-- Apply some extra offset for knob to compensate no arc -->
+
 	</style>
-	
-	
+
+
 	<style name="EqParamLabelAndValueBase" parent="KnobLabelAndValueBase">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>

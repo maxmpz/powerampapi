@@ -41,8 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">?navbar_marginLR</item>
 		<item name="android:layout_marginBottom">?navbar_marginB</item>
 		<!-- clipToOutline is required to properly clip scrolled stuff (in a list), but older Android versions have a bug with
-		     the handling XML attribute, so this is set in the code -->
-<!--		<item name="android:clipToOutline">true</item>-->
+		     the handling XML attribute, so clipToOutline is set in the code -->
 		<item name="android:elevation">?navbar_elevation</item>
 		<item name="android:background">@drawable/navbar_bg</item>
 	</style>
@@ -70,6 +69,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="Navbar_scene_navbar_2lines" parent="Base_Navbar_scene_navbar_2lines">
 	</style>
+
+
+	<!-- No need to override all scenes, as we change just background, which is not changed by scenes for Poweramp Navbar.
+	     We also derive from our skin Navbar style to reuse previous modification (e.g. margins).
+	     See also/sync with values-sw2dp-land/styles-navbar.xml where this is repeated for land -->
+	<style name="Navbar_transparentNavbar" parent="Navbar">
+		<item name="android:background">@drawable/navbar_transparent_bg</item><!-- NOTE: @null won't work here, as this will make navbar a non-drawing view, thus, no scene background change will happen -->
+		<item name="applyViewParams">true</item>
+		<item name="android:elevation">0px</item>
+	</style>
+	<style name="Navbar_scene_navbar_1line_sheet_transparentNavbar" parent="Navbar_scene_navbar_1line_sheet">
+		<item name="android:background">@drawable/navbar_bg</item><!-- Apply white background for scenes, so navbar has visible background in lists and when expanded -->
+		<item name="applyViewParams">true</item><!-- Enables background changes for scene -->
+		<item name="android:elevation">?navbar_elevation</item>
+	</style>
+	<style name="Navbar_scene_navbar_2lines_transparentNavbar" parent="Navbar_scene_navbar_2lines">
+		<item name="android:background">@drawable/navbar_bg</item>
+		<item name="applyViewParams">true</item>
+		<item name="android:elevation">?navbar_elevation</item>
+	</style>
+
 	
 	<style name="NavbarExtension">
 		<item name="android:layout_width">match_parent</item>

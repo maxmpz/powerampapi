@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -110,5 +110,38 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: this is overridden for v28 -->	
 	<style name="OptionEquFRSRounded_Dark">
 		<item name="EqMilkFrs_presetUri">internal://#fft2rounded</item>
+	</style>
+
+	<style name="OptionNoHeaderButtons">
+		<item name="ItemTextHeaderShuffleButton_scene_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextHeaderPlayButton_scene_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextHeaderSearchButton_scene_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextHeaderSelectButton_scene_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextMenu_scene_search_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextMenu_scene_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextMenu_scene_top_header">@style/ItemTextHeaderButton_invisible</item>
+		
+		<item name="ItemTextAAImage_scene_header">@style/ItemTextAAImage_scene_header_no_buttons</item>
+		<item name="ItemTextTitle_scene_header">@style/ItemTextTitle_scene_header_no_buttons</item>
+
+		<item name="ItemHeaderShuffleButton_scene_header">@style/ItemHeaderButton_invisible</item>
+		<item name="ItemHeaderPlayButton_scene_header">@style/ItemHeaderButton_invisible</item>
+		<item name="ItemHeaderSearchButton_scene_header">@style/ItemHeaderButton_invisible</item>
+		<item name="ItemHeaderSelectButton_scene_header">@style/ItemHeaderButton_invisible</item>
+		<item name="ItemTrackMenu_scene_header">@style/ItemHeaderButton_invisible</item>
+
+		<!-- Now to override Alt layout headers, override the alt layout overlap style -->
+
+		<item name="textHeaderSize">122dp</item>
+		<item name="topTextHeaderSize">70dp</item>
+		<item name="headerSize">216dp</item>
+		<item name="humanCatHeaderSize">256dp</item>
+
+		<item name="compactHeaderSize">136dp</item>
+		<item name="compactHumanCatHeaderSize">116dp</item>
+		<item name="compactTextHeaderSize">146dp</item>
+
+		<item name="searchHeaderSize">96dp</item><!-- Includes margin for status bar and search field -->
+		<item name="targetSearchHeaderSize">96dp</item><!-- Includes margin for status bar, search field, and target button -->
 	</style>
 </resources>

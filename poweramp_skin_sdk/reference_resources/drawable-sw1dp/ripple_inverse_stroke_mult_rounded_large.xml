@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Stroke width increased by 1.38 -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:color="?colorPrimary"
+>
+	<item android:id="@android:id/mask" android:drawable="@drawable/rounded_large" />	
+	<item>
+		<shape>
+			<corners android:radius="?corners_large"/>
+			<stroke android:color="?colorStroke" android:width="1.8dp"/><!-- 1.25 * 1.38 => 1.725 ~ 1.8 -->
+		</shape>
+	</item>
+</ripple>

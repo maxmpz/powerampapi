@@ -62,11 +62,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="layout_heightPercent">50%</item>
 		<item name="android:layout_gravity">top|left</item>
-		
+
 		<item name="android:layout_marginTop">8dp</item> 
 		<item name="android:layout_marginBottom">2dp</item>
 				
-		<item name="android:paddingBottom">36sp</item><!-- Should be enough for label and values to fit -->
+		<item name="android:paddingBottom">@dimen/EqParamRoundKnobPortBase_paddingBottom</item><!-- 36sp. Should be enough for label and values to fit -->
 
 	</style>
 	
@@ -76,18 +76,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="layout_attachTop">@null</item>
 		<item name="layout_attachBottom">@id/_freq</item>
-			
-		<!--<item name="android:background">#f00</item>-->
 	</style>
 	
 	<!-- port -->
 	<style name="EqParamQLabelAndValue" parent="EqParamLabelAndValueBase">
 		<item name="android:id">@id/_q_label_and_value</item>
-		
+
+		<item name="layout_minWidth">52sp</item><!-- Reduce width jumps when rotating and changing value by defining some resonable min width -->
 		<item name="layout_attachBottomToBottom">@id/_q</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
-		
+
 		<item name="layout_gravityTarget">@id/_q</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		
@@ -99,8 +98,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="layout_attachTop">@null</item>
 		<item name="layout_attachBottom">parent</item>
-		
-		<!--<item name="android:background">#0f0</item>-->
+
+		<item name="layout_minWidth">52sp</item><!-- Reduce width jumps when rotating and changing value by defining some resonable min width -->
 	</style>
 	
 	<!-- port -->

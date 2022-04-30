@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -168,6 +168,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 			style="?TopTrackElapsed_scene_playing"
 			/>
+		<!-- Empty SceneParams required for view to be touched during these scenes - important for changes happening
+		     to the text while in transition -->
+		<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis" w:scene_4="@+id/scene_lib"
+			/>
 		<StateAnimParams w:stateAnim="@id/anim_seeking"
 			style="?TopTrackElapsed_state_seeking"
 			/>
@@ -178,6 +182,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 			style="?TopTrackDuration_scene_playing"
+			/>
+		<!-- Empty SceneParams required for view to be touched during these scenes - important for changes happening
+		     to the text while in transition -->
+		<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis" w:scene_4="@+id/scene_lib"
 			/>
 		<StateAnimParams w:stateAnim="@id/anim_seeking"
 			style="?TopTrackDuration_state_seeking"
@@ -243,8 +251,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?TopMetaInfo_scene_item_menu" 
 		/>
 	</com.maxmpz.widget.base.PrivateNonSceneFastLayout>
-	<!-- NOTE: alpha is overridden by user preference -->
-	<!-- NOTE: dynamic is needed here as BusStatusText can be updated at any time, even during running scene -->
+	<!-- NOTE: alpha is overridden by user preference
+	     NOTE: recalcChildren/defaultScene is needed here as BusStatusText can be updated at any time, even during running scene -->
+	<SceneParams w:scene="defaultScene"
+		w:recalcChildren="dynamic"
+		w:baseScene="defaultScene"
+	/>
 	<SceneParams w:scene="@+id/scene_vis_w_ui" 
 		style="?TopMetaInfoLayout_scenes_playing"
 	/>
@@ -252,13 +264,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopMetaInfoLayout_scenes_playing"
 		w:recalcChildren="dynamic"
 	/>
+	<!-- NOTE: on_start here important for the proper render during the transition to lists, etc. and update -->
+	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis" w:scene_4="@+id/scene_lib"
+		style="?TopMetaInfoLayout_scenes_invisible"
+		w:recalcChildren="on_start"
+		/>
 	<StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopMetaInfoLayout_anim_seeking"
 	/>
-	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis" w:scene_4="@+id/scene_lib"
-		style="?TopMetaInfoLayout_scenes_invisible"
-	/>
-			
+
 	<!-- 
 		NOTE: android:scrollbars defines standard android scrollbars. Setting it to vertical disables e.g. AA scrollbar (which is horizontal, but not used)
 		Also, horizontal scrollbar will require larger width (==parent width), but now the width is set to a narrow value => for a-z and vertical thumb modes only
@@ -442,7 +456,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- NOTE: for now, need selection menu over menu placeholder, as we use selection menu for popup lists -->
 	<include android:layout="@layout/merge_selection_menu"/>
-	
+
+	<!-- NOTE: this is the secondary popup area, used for selection menu popup -->
+	<com.maxmpz.widget.base.MenuPlaceholderLayout android:id="@+id/menu_placeholder2"
+		style="?TopMenuPlaceholderLayout"
+		w:privateScene="true"
+	/>
+
 	<include android:layout="@layout/merge_toast"/>
 
 	<!-- This is for toast_container -->
@@ -497,7 +517,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopFitsNavigationBarView_scenes_non_main"
 	/>
 		
-	
+	<!--<include android:layout="@layout/_debug_all_mu_colors"/>-->
+
+
 </com.maxmpz.audioplayer.widget.TopNavSceneFastLayout><!-- top_container -->
 		
 

@@ -24,6 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PeqEqVolPanel3_paddingbottom">0dp</dimen>
 	
 	<integer name="PeqEqCompressorCheckButton_gravity">0x55</integer><!-- right|bottom = 0x05|0x50 -->
+	<dimen name="PeqEqCompressorCheckButton_marginBottom">0dp</dimen>
 
 	<dimen name="peq_micro_notification_icon_marginLeft">14.5dp</dimen>
 
@@ -31,4 +32,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="peq_micro_notification_muiu_icon_size">18dp</dimen>
 
 	<dimen name="peq_micro_notification_muiu12_icon_marginLeft">6dp</dimen>
+	<dimen name="peq_export_import_dialog_height">220dp</dimen>
 </resources>

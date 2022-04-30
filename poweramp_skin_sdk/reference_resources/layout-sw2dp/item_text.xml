@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -27,18 +27,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	- height is defined by list
 	
 	Base scenes:
-	- default list == 0  (_tag_scene_zero/defaultScene depending on context)
-	- grid               (scene_grid)
+	- default list == 0   (_tag_scene_zero/defaultScene depending on context)
+	- grid                (scene_grid)
 	== 2
 	
 	Special:	
 	- header
 	- scene_top_header
 	- scene_search_header
+	- bottom buttons      (scene_bottom_toolbar) optionally enabled via OptionNoHeaderButtons
 	- menu
-	== +4
+	== +5
 	
-	Total: 6
+	Total: 7
 -->
 <!--
 
@@ -69,6 +70,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextAAImage_scene_item_menu"
 	/>
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		android:visibility="gone"
+		/>
 	<!-- aa_image -->
 	
 	
@@ -85,7 +89,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_top_header" 
 		style="?ItemTextTitle_scene_top_header"
 	/><!-- title -->
-	<SceneParams w:scene="@+id/scene_search_header"
+	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 	/>
 	<!-- title -->
@@ -110,17 +114,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextLine2_scene_item_menu"
 	/><!-- line2 -->
-	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header"
+	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header" w:scene_3="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 	/>
 	<!-- line2 -->
+
+	
 	<com.maxmpz.widget.base.FastButton android:id="@+id/menu"
 		style="?ItemTextMenu"
 		android:contentDescription="@string/menu"
-	>
-		<tag android:id="@+id/header_button" android:value="1"/>
-	</com.maxmpz.widget.base.FastButton>
-	<SceneParams w:scene="@+id/scene_item_menu" 
+	/>
+	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextMenu_scene_menu"
 	/><!-- menu -->
 	<SceneParams w:scene="@+id/scene_grid"
@@ -131,24 +135,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<SceneParams w:scene="@+id/scene_header" 
 		style="?ItemTextMenu_scene_header"
-	/><!-- menu -->
+	/>
 	<SceneParams w:scene="@+id/scene_top_header"
 		style="?ItemTextMenu_scene_top_header" 
 	/>
-	
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		style="?ItemTextMenu_scene_bottom_toolbar"
+		/>
+	<!-- menu -->
+
+
 	<!-- NOTE: programatically loaded -->
 	<com.maxmpz.widget.base.LoadableBehavior
 		android:id="@+id/behavior_queue_counter"
 		android:layout="@layout/merge_item_queue_counter" 
 	/>
 		
+
 	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_header"
 		android:layout="@layout/merge_item_text_header"
 		w:loadForScene="@id/scene_header"
 		w:loadForScene_2="@id/scene_search_header"
 		w:loadForScene_3="@id/scene_top_header"
+		w:loadForScene_4="@id/scene_bottom_toolbar"
 	/>
 	
+
 	<!-- NOTE: programatically loaded for scene_item_menu -->
 	<com.maxmpz.widget.base.LoadableBehavior
 		android:id="@+id/behavior_menu"

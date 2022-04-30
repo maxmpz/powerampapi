@@ -25,4 +25,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="bar_elevation" format="dimension"/><!-- E.g. selection menu bottom bar -->
 	<attr name="toast_elevation" format="dimension"/>
 	<attr name="modal_translationZ" format="dimension"/><!-- z-index for views which want to be higher or on popup level, e.g. selection menu container, popup container itself, etc. -->
+	<attr name="bottom_toolbar_buttons_elevation" format="dimension"/><!-- Elevation for the bottom toolbar buttons -->
 </resources>

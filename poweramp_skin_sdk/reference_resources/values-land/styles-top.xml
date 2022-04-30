@@ -56,8 +56,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="layout_attachLeft">@+id/aa_bounds</item>
 		<item name="layout_attachRight">inset</item>
-		<!-- <item name="android:paddingBottom">8dp</item> -->
-		<!-- <item name="android:background">#f00</item> -->
 	</style>
 		
 	<style name="TopMetaInfoLayout">

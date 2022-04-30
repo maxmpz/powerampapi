@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 
 	<!-- NOTE: SelectionMenuBehavior assumes this behavior unloads and thus no additional cleanup is made on unload -->
-			
+	<!-- NOTE: we may swap msgBus/stateBus==@id/list to some other list id for popup lists, etc. -->
 	<!-- Top line -->
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/selection_menu_top_line_layout"
 		style="?SelectionMenuTopLineLayout"
@@ -41,14 +41,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: stateBusId is set dynamically by SelectionMenuBehavior -->
 		<com.maxmpz.widget.base.BusCheckBox android:id="@+id/select_box"
 			style="?SelectionMenuSelectBox"
-			android:text="@string/select_all_short"			
+			android:text="@string/select_all_short"
+			w:stateBusId="@id/list"
 			w:stateMsgId="@id/state_list_all_selected"
 			w:booleanStateId="@id/state_list_all_selected"
 			w:checkCmdId="@id/cmd_list_select_all"
 			w:uncheckCmdId="@id/cmd_list_select_none"
+			/>
+
+		<com.maxmpz.widget.base.BusActionButton
+			style="?SelectionMenuRangeButton"
+			w:busId="@id/list"
+			w:msgId="@id/cmd_list_select_range"
+
+			w:disableForStateBusId="@id/list"
+			w:enableForStateId="@id/state_list_range_avail"
+			w:disableForStateMsgId="@id/state_list_selection_count"
+
+			android:text="@string/range"
+			/>
+
+
+		<com.maxmpz.widget.base.BusActionButton
+			style="?SelectionMenuCloseButton"
+			w:busId="@id/bus_gui"
+			w:msgId="@id/cmd_selection_menu_close"
 		/>
-		
-		<!-- NOTE: busId is set dynamically by SelectionMenuBehavior -->
+
 		<com.maxmpz.widget.player.BusStatusText android:id="@+id/selection_menu_count_text"
 			style="?SelectionMenuCountText"
 			w:stateBusId="@id/list"
@@ -57,21 +76,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:updateMsgId="@id/state_list_selection_count"
 			w:labelFormat="@string/d_slash_d"
 			w:stateType="integer"
-			
 			android:importantForAccessibility="yes"
-		/>
+			/>
 		<!-- NOTE: as text can change during load + state update, causing visual jump, scene params are needed + selected 0% point to reapply layout -->
 		<SceneParams w:scene="@+id/scene_selection_menu"
 			w:recalcChildren="0%"
-		/>
-		
-		<com.maxmpz.widget.base.BusActionButton
-			style="?SelectionMenuCloseButton"
-			android:text="@string/close"
-			w:busId="@id/bus_gui"
-			w:msgId="@id/cmd_selection_menu_close"
-		/>
-		
+			/>
+
+
+
 	</com.maxmpz.widget.base.FastLayout>
 			
 	<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/separator"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -34,16 +34,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorInverse">?android:attr/colorForeground</item>
 		
 		<item name="colorBgInverse">?android:attr/colorForeground</item>
-		<item name="colorBgInverseChecked">?android:attr/colorForeground</item>
+		<item name="colorBgInverseChecked">?android:attr/colorControlActivated</item>
 		
 		<item name="colorStroke">?android:attr/textColorSecondary</item>
 		<item name="colorBgHelp">?android:attr/textColorSecondary</item>
 		<item name="colorStrokeHelp">#f00</item>
 		<item name="colorLessContrast">?android:attr/textColorSecondary</item><!-- Used for e.g. for main screen tinted icons, some text -->
+		<item name="colorIconLessContrast">?android:attr/textColorSecondary</item>
 		<item name="colorShade">?android:attr/textColorSecondary</item>
 		<item name="colorBgLight">?android:attr/colorControlHighlight</item><!-- Used for Search Frame bg -->
 		<!--<item name="colorBgLight">?android:attr/colorButtonNormal</item>-->
-		<item name="colorItemPlayingMark">#f00</item>
+		<item name="colorItemPlayingMark">#555</item>
 		
 		<item name="colorIconPrimary">?android:attr/colorForeground</item><!-- By default, our icon drawables are black, thus, no extra tinting -->
 		<item name="colorIconPrimaryForced">?android:attr/colorForeground</item>
@@ -56,7 +57,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_medium">8dp</item>
 		<item name="corners_medium_plus">16dp</item>
 		<item name="corners_navbar">8dp</item>
-		<item name="corners_searchbar">8dp</item>
+		<item name="corners_searchbar">24dp</item>
 		<item name="corners_mini">4dp</item>
 		<item name="corners_equ_frs">4dp</item>
 		<item name="corners_large">24dp</item>
@@ -357,7 +358,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawable">@drawable/settings_close</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:padding">8dp</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="android:clickable">true</item>
@@ -374,8 +375,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SettingsSearchEdit" parent="@style/Widget.AppCompat.EditText">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:paddingLeft">12dp</item>
-		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:background">@null</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
@@ -388,6 +389,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:drawableBottom">@null</item>
+		<item name="android:inputType">text</item>
+		<item name="android:textCursorDrawable">@drawable/text_cursor_material</item><!-- Fixes some Samsungs@12 missing text cursor in some settings themes -->
 	</style>
 	
 	
@@ -417,9 +420,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SettingsSearchItemImage">
 		<item name="android:layout_width">32dp</item>
 		<item name="android:layout_height">32dp</item>
+		<item name="drawableWidth">32dp</item>
+		<item name="drawableHeight">32dp</item>
 		<item name="android:layout_marginRight">16dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_gravity">center_vertical</item>
+		<item name="drawableOnly">true</item>
 	</style>
 	
 	<style name="SettingsSearchItemTexts">
@@ -494,7 +500,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">horizontal|reset_auto</item> 		
 	</style>
 	
-	<!-- NOTE: inflated in the Dialog/main theme -->
+	<!-- NOTE: inflated in the Dialog/main theme. Also used for preference_edit_textdialog_content -->
 	<style name="TagPreferenceContainer">
 		<!-- NOTE: layout set by code -->
 		<item name="android:layout_width">match_parent</item>
@@ -512,6 +518,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingLeft">24dp</item><!-- NOTE: no access to ?dialogContentPaddingLR here as we have settings activity context when creating this -->
 		<item name="android:paddingRight">24dp</item>
 	</style>
+
 	
 	<!-- NOTE: while overridding android:fontFamily works for the Settings, technically it forces each textview and similar views to 
 		 additionally resolve non-textAppearance attribute and apply it VS just resolving the textAppearance.
@@ -593,15 +600,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:minWidth">48dp</item>
 		<item name="android:gravity">center_horizontal</item>
-		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">4dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="layout_consumeSpace">stack_horizontal</item>
-		<item name="android:paddingLeft">10dp</item>
-		<item name="android:paddingRight">10dp</item>
-		<item name="android:paddingTop">4dp</item>
-		<item name="android:paddingBottom">4dp</item>
+
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingBottom">5dp</item>
 		
 		<item name="android:textColor">@color/button_text_color_selector</item>
 		<item name="android:textSize">13dp</item>

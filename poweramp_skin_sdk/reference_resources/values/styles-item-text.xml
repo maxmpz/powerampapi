@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2022 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!--
+NOTE: outlineProvider="@null" causes default outline provider (some shadow), use outlineProvder="none" instead
+-->
+<resources
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	>
+	<!-- Text item styles -->
+	<style name="ItemText">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<!--<item name="android:scrollbars">vertical</item>-->
+		<!--<item name="android:scrollbarDefaultDelayBeforeFade">1000</item>-->
+		<item name="android:clipChildren">true</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:background">@drawable/item_bg</item>
+	</style>
+
+	<style name="ItemTextAAImage">
+		<item name="android:layout_width">36dp</item>
+		<item name="android:layout_height">36dp</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginLeft">24dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+
+		<item name="android:gravity">fill</item>
+		<item name="cornerRadius">0dp</item>
+		<item name="android:elevation">0px</item><!--  Forced no elevation -->
+		<item name="drawableOnly">true</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextAAImage_scene_grid">
+		<!-- <item name="baseScene">defaultScene</item> -->
+		<item name="android:layout_width">36dp</item>
+		<item name="android:layout_height">36dp</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:visibility">visible</item><!-- Required as we hide it in e.g. top header scene -->
+	</style>
+	<style name="ItemTextAAImage_scene_header">
+		<item name="recalcChildren">dynamic</item>
+		<item name="android:layout_width">48dp</item>
+		<item name="android:layout_height">48dp</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_offsets">insetTop</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextAAImage_scene_header_no_buttons" parent="ItemTextAAImage_scene_header">
+		<item name="android:layout_gravity">left|top</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_marginBottom">13dp</item>
+	</style>
+	<style name="ItemTextAAImage_scene_item_menu">
+		<item name="recalcChildren">dynamic</item>
+		<item name="android:layout_width">44dp</item>
+		<item name="android:layout_height">44dp</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginRight">-12dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<!-- NOTE: don't make it visible, so it keeps last visible state in menu (needed for top header) -->
+	</style>
+
+	<style name="ItemTextTitle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
+		<item name="android:transformPivotY">0px</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingBottom">10dp</item>
+		<item name="eatFontPads">true</item>
+
+		<item name="android:textAppearance">?ItemTextTitle_Text</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+
+		<item name="android:maxLines">2</item>
+		<item name="android:translationZ">?over_aa_elevation</item>
+		<item name="android:outlineProvider">none</item>
+		<item name="android:visibility">visible</item><!-- IMPORANT: as we change visibility and may initially render in hidden state -->
+	</style>
+	<style name="ItemTextTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">18dp</item>
+	</style>
+	<style name="ItemTextTitle_scene_grid" parent="ItemTextTitle">
+		<item name="recalcChildren">75%</item>
+		<item name="applyViewParams">true</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:layout_marginLeft">0dp</item>
+	</style>
+	<!-- NOTE: parent="ItemTextTitle" is added for ItemTopTextBackDecorTitle, so we can use complete ItemTopTextBackDecorTitle style for a view, not a SceneParams.
+		 (SceneParams styles have only changes, but full view style is needed with the e.g. padding, text size, etc. for ItemTopTextBackDecorTitle
+	-->
+	<style name="ItemTextTitle_scene_header" parent="ItemTextTitle">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">@+id/aa_image</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_offsets">insetTop</item><!-- Force gravity to account for window inset, so we're aligned with offset to the status bar -->
+		<item name="android:layout_marginLeft">0dp</item><!-- -4dp -->
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="scale">1.5</item>
+		<item name="android:scaleX">1.5</item>
+		<item name="android:scaleY">1.5</item>
+		<item name="layout_compensateScale">1.5</item>
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:maxLines">1</item><!-- IMPORTANT due to fixed position for decor -->
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextTitle_scene_header_no_buttons" parent="ItemTextTitle_scene_header">
+		<item name="layout_gravityTarget">@+id/aa_image</item>
+	</style>
+	<style name="ItemTextTitle_scene_top_header" parent="ItemTextTitle_scene_header">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_offsets">insetTop</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextTitle_scene_item_menu">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">@+id/aa_image</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="android:layout_marginLeft">11dp</item>
+		<item name="android:layout_marginRight">20dp</item>
+		<item name="android:layout_marginTop">12dp</item>
+		<item name="android:layout_marginBottom">7dp</item><!-- NOTE: needed for top text header in scene_item_menu -->
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="scale">1.25</item>
+		<item name="layout_compensateScale">1.25</item>
+		<item name="android:visibility">visible</item>
+	</style>
+
+	<style name="ItemTextLine2">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">@+id/title</item>
+		<item name="android:layout_marginTop">1.5dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:maxLines">1</item>
+
+		<item name="android:textAppearance">?ItemTextLine2_Text</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
+		<item name="android:transformPivotY">0px</item>
+		<item name="android:translationZ">?over_aa_elevation</item>
+		<item name="android:outlineProvider">none</item>
+		<item name="android:visibility">visible</item>
+		<item name="scale">1</item>
+		<item name="android:scaleX">1</item>
+		<item name="android:scaleY">1</item>
+	</style>
+	<style name="ItemTextLine2_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">11dp</item>
+	</style>
+	<style name="ItemTextLine2_scene_grid">
+		<item name="baseScene">defaultScene</item>
+	</style>
+	<style name="ItemTextLine2_scene_header">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical|right</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginRight">32dp</item>
+
+		<item name="scale">1.25</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextLine2_scene_item_menu">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="layout_attachTopToTop">@id/title</item>
+		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:layout_marginRight">24dp</item>
+		<item name="scale">1.25</item>
+		<item name="android:visibility">visible</item>
+		<item name="layout_consumeSpace">reset_horizontal</item>
+	</style>
+
+
+	<style name="ItemTextMenu" parent="BlackListMenu">
+		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+	</style>
+	<style name="ItemTextMenu_scene_menu" parent="BlackListMenu_scene_menu"><!-- Invisible -->
+	</style>
+	<style name="ItemTextMenu_scene_header" parent="BlackListMenu_scene_header">
+		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="applyViewParams">true</item>
+	</style>
+	<style name="ItemTextMenu_scene_top_header">
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<!-- NOTE: no marginLeft here now to sync it with usual text header menu, thus, syncing scan progress margin -->
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextMenu_scene_search_header" parent="ItemTextMenu_scene_top_header">
+		<item name="android:layout_gravity">top|start</item>
+		<item name="android:layout_marginBottom">3dp</item>
+		<item name="layout_attachBottom">parent</item>
+	</style>
+
+	<style name="ItemTextMenu_scene_bottom_toolbar" parent="ItemTextMenu_scene_top_header">
+		<item name="android:layout_gravity">top|start</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item><!-- NOTE: button distance from bottom defined by ListSubstyleBase2/bottomToolbarSize -->
+		<item name="android:layout_marginRight">24dp</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item>
+		<item name="android:elevation">?bottom_toolbar_buttons_elevation</item>
+		<!--<item name="android:background">@drawable/ripple_bg_navbar_rounded_large</item>-->
+		<item name="android:background">@drawable/ripple_inverse_stroke_bg_rounded_large</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="scale">0.9</item>
+		<item name="layout_compensateScale">0.9</item>
+	</style>
+
+
+	<style name="ItemTextBackDecor" parent="ItemTrackBackDecor"><!-- Container -->
+	</style>
+
+	<!-- This view should visually match title in scene_header, but may have no any location set, as Poweramp automatically syncs its location to the real title.
+	     NOTE: Poweramp build 846+ automatically matches position of the back decor title to the header item view title in this (0) scene and in scene_header_1
+	     NOTE: no textAppearance, instead using the derived style -->
+	<style name="ItemTextBackDecorTitle" parent="ItemTextTitle_scene_header">
+		<item name="android:paddingLeft">0dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:disabledAlpha">0</item>
+		<item name="drawableWidth">32dp</item><!-- NOTE: actual image is 24dp, but larger drawable size here defines overal background height -->
+		<item name="drawableHeight">32dp</item>
+		<item name="android:drawable">@drawable/up_nav</item>
+		<item name="drawableTint">#0000</item><!-- Invisible -->
+		<item name="animOnClick">false</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+	</style>
+	<style name="ItemTextBackDecorTitle_scene_header_back_decor" parent="ItemTopTextBackDecorTitle_scene_header_back_decor">
+		<item name="drawableTint">?colorIconInverseForced</item>
+		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+		<item name="android:background">@drawable/ripple_text_bg_rounded_large</item>
+	</style>
+
+	<style name="ItemTopTextBackDecor" parent="ItemTrackBackDecor">
+	</style>
+
+	<!-- This view should visually match title in scene_top_header.
+	     NOTE: Poweramp build 846+ automatically matches position of the back decor title to the header item view title in this (0) scene and in scene_header_1
+	     NOTE: no textAppearance, instead using the derived style -->
+	<style name="ItemTopTextBackDecorTitle" parent="ItemTextTitle_scene_top_header">
+		<item name="android:paddingLeft">0dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+
+		<item name="android:disabledAlpha">0</item>
+		<item name="drawableWidth">32dp</item>
+		<item name="drawableHeight">32dp</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:drawable">@drawable/up_nav</item>
+		<!-- NOTE: avoid ripple here as ripple animation will interfere with as-title look when pressed and animated back to title -->
+		<item name="drawableTint">#0000</item><!-- Invisible -->
+		<item name="animOnClick">false</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+	</style>
+	<!-- NOTE: this is the final back decor title position (top left corner), position is required -->
+	<style name="ItemTopTextBackDecorTitle_scene_header_back_decor">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachTop">inset</item>
+		<item name="android:layout_marginTop">8dp</item><!-- NOTE: offset from status bar. We attached to status bar via layout_attachTop=inset -->
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+		<item name="applyViewParams">true</item>
+		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item>
+		<!-- NOTE: needed here to avoid title to alpha-animate from invisible state, which is auto applied due to isLaidOut=false -->
+		<item name="jumpVisibility">true</item><!-- IMPORTANT: to avoid fade anim/pos jump from isLaidOut=false -->
+	</style>
+
+
+	<style name="ItemTextHeaderButtonsBg">
+		<item name="android:visibility">gone</item>
+	</style>
+	<style name="ItemTextHeaderButtonsBg_scene_header">
+	</style>
+
+	<!-- Text Header -->
+
+	<style name="ItemTextHeaderScanProgress">
+		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_width">24dp</item>
+		<item name="android:indeterminate">true</item>
+		<item name="android:layout_gravity">center_vertical|right</item>
+		<item name="android:layout_marginTop">12dp</item>
+		<item name="android:layout_marginRight">24dp</item>
+		<item name="android:background">@drawable/ripple_rounded_large</item>
+		<item name="android:clickable">true</item>
+	</style>
+	<style name="ItemTextHeaderScanProgress_scene_header" parent="ItemTextHeaderScanProgress">
+		<item name="layout_attachTop">inset</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:layout_marginTop">12dp</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextHeaderScanProgress_scene_top_header" parent="ItemTextHeaderScanProgress">
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="layout_attachRight">@+id/menu</item>
+		<item name="layout_attachTopToTop">@+id/menu</item>
+		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextHeaderScanProgress_scene_item_menu">
+		<item name="android:visibility">invisible</item><!-- Keep invisible as text may be too wide for some screens -->
+		<item name="android:layout_height">24dp</item>
+		<item name="android:layout_width">24dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityTarget">@+id/title</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+	</style>
+
+	<style name="ItemTextHeaderButton_invisible">
+		<item name="android:visibility">gone</item>
+		<item name="baseScene">defaultScene</item>
+		<item name="applyEvenIfGone">true</item>
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="layout_attachBottom">parent</item>
+	</style>
+
+	<style name="ItemTextHeaderShuffleButton" parent="WhiteStrokedListIconOnlyHeaderButton">
+		<item name="android:drawable">?shuffle_24dp</item>
+	</style>
+	<style name="ItemTextHeaderShuffleButton_scene_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_header"></style>
+	<style name="ItemTextHeaderShuffleButton_scene_menu" parent="WhiteStrokedListIconOnlyHeaderButton_scene_menu"></style>
+	<style name="ItemTextHeaderShuffleButton_scene_bottom_toolbar" parent="ListHeaderButton_scene_bottom_toolbar">
+		<item name="layout_attachRight">@id/play_button</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item><!-- Needed for non-text buttons where this style is also used -->
+	</style>
+
+
+	<style name="ItemTextHeaderPlayButton" parent="WhiteStrokedListIconOnlyHeaderButton">
+		<item name="android:drawable">?play_24dp</item>
+	</style>
+	<style name="ItemTextHeaderPlayButton_scene_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_header"></style>
+	<style name="ItemTextHeaderPlayButton_scene_menu" parent="WhiteStrokedListIconOnlyHeaderButton_scene_menu"></style>
+	<style name="ItemTextHeaderPlayButton_scene_bottom_toolbar" parent="ListHeaderButton_scene_bottom_toolbar">
+		<item name="layout_attachRight">@id/search_button</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item><!-- Needed for non-text buttons where this style is also used -->
+	</style>
+
+
+	<style name="ItemTextHeaderSearchButton" parent="WhiteStrokedListIconOnlyHeaderButton">
+		<item name="android:drawable">?search_24dp</item>
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	<style name="ItemTextHeaderSearchButton_scene_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_header">
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	<style name="ItemTextHeaderSearchButton_scene_menu" parent="WhiteStrokedListIconOnlyHeaderButton_scene_menu">
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	<style name="ItemTextHeaderSearchButton_scene_bottom_toolbar" parent="ListHeaderButton_scene_bottom_toolbar">
+		<item name="applyEvenIfGone">0</item>
+		<item name="layout_attachRight">@id/select_button</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item><!-- Needed for non-text buttons where this style is also used -->
+	</style>
+
+
+	<!-- NOTE: reset_horizontal here is needed for scene_item_menu, so separator can start from left, not pushed by buttons -->
+	<style name="ItemTextHeaderSelectButton" parent="WhiteStrokedListHeaderButton">
+		<!-- NOTE: disabledAlpha=0 here makes it too different vs other lists where it's not 0 -->
+		<item name="layout_consumeSpace">reset_horizontal</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+	<style name="ItemTextHeaderSelectButton_scene_header" parent="WhiteStrokedListHeaderButton_scene_header">
+		<item name="layout_maxWidth">@dimen/ItemHeaderSelectButton_maxWidth</item><!-- NOTE: quite narrow for low end screens, relaxed for sw360dp and land -->
+	</style>
+	<style name="ItemTextHeaderSelectButton_scene_menu" parent="WhiteStrokedListHeaderButton_scene_menu"></style>
+	<style name='ItemTextHeaderSelectButton_scene_bottom_toolbar' parent="ListHeaderButton_scene_bottom_toolbar">
+		<item name="layout_maxWidth">@dimen/ItemHeaderSelectButton_maxWidth</item><!-- NOTE: quite narrow for low end screens, relaxed for sw360dp and land -->
+		<item name="layout_attachRight">@id/menu</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item><!-- Needed for non-text buttons where this style is also used -->
+		<item name="android:textColor">?android:textColorPrimary</item>
+	</style>
+
+</resources>

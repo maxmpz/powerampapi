@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: popup menu item view is detached from list and attached to @id/menu_placeholder -->
 	<!-- NOTE: defines scene params for the item which is detached from list and attached to menu_placeholder -->
 	<!-- NOTE: PopupMenuHelper creates "returning" scene params programatically as needed to match initial item position -->
-	<com.maxmpz.widget.base.SceneParams w:forId="parent" w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+	<SceneParams w:forId="parent" w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemPopupMenu_scene_item_menu"
 	/>
 
@@ -47,21 +47,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 	</com.maxmpz.widget.base.FastLayout>		
 	<!-- NOTE: SceneParams is also needed so menu LinearLayout is tracked/animated vs jumping around --> 
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_header" w:scene_3="@+id/scene_top_header" w:scene_4="@+id/scene_aa_vis" 
+	<SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_header" w:scene_3="@+id/scene_top_header" w:scene_4="@+id/scene_aa_vis"
 										w:scene_5="@+id/scene_aa_playing" w:scene_6="@+id/scene_header_1"
 		android:visibility="invisible"
 		w:recalcChildren="on_start"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_search_header"
+	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_search_header" w:scene_3="@+id/scene_bottom_toolbar"
 		android:visibility="invisible"
 		w:recalcChildren="on_start"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@id/_tag_scene_zero"
+	<SceneParams w:scene="@id/_tag_scene_zero"
 		android:visibility="invisible"
 		w:recalcChildren="on_end"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+	<SceneParams w:scene="@id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		android:visibility="visible"
 		w:recalcChildren="on_start"
 	/>
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		android:visibility="gone"
+		/>
+
 </merge>

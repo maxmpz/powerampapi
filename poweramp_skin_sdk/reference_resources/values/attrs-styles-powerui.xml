@@ -167,6 +167,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackMenu" format="reference"/>
 		<attr name="ItemTrackMenu_scene_menu" format="reference"/>
 		<attr name="ItemTrackMenu_scene_header" format="reference"/>
+		<attr name="ItemTrackMenu_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTrackMenu_scene_aa" format="reference"/>
 		<attr name="ItemTrackMenu_scene_aa_vis" format="reference"/>
 		<attr name="ItemTrackMenu_scene_aa_playing" format="reference"/>
@@ -217,18 +218,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTextMenu_scene_header" format="reference"/>
 		<attr name="ItemTextMenu_scene_search_header" format="reference"/>
 		<attr name="ItemTextMenu_scene_top_header" format="reference"/>
+		<attr name="ItemTextMenu_scene_bottom_toolbar" format="reference"/>
 		
 		<attr name="ItemTextHeaderShuffleButton" format="reference"/>
 		<attr name="ItemTextHeaderShuffleButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderShuffleButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTextHeaderShuffleButton_scene_menu" format="reference"/>
 		<attr name="ItemTextHeaderPlayButton" format="reference"/>
 		<attr name="ItemTextHeaderPlayButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderPlayButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTextHeaderPlayButton_scene_menu" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderSelectButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton_scene_menu" format="reference"/>
 		<attr name="ItemTextHeaderSearchButton" format="reference"/><!-- The search button -->
 		<attr name="ItemTextHeaderSearchButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderSearchButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTextHeaderSearchButton_scene_menu" format="reference"/>
 		
 		<attr name="ItemTextBackDecor" format="reference"/>
@@ -313,21 +319,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<attr name="ItemHeaderButtonsBg" format="reference"/>
 		<attr name="ItemHeaderButtonsBg_scene_header" format="reference"/>
+		<attr name="ItemHeaderButtonsBg_scene_bottom_toolbar" format="reference"/>
 		
 		<attr name="ItemTextHeaderButtonsBg" format="reference"/>
 		<attr name="ItemTextHeaderButtonsBg_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderButtonsBg_scene_bottom_toolbar" format="reference"/>
 				
 		<attr name="ItemHeaderShuffleButton" format="reference"/>
 		<attr name="ItemHeaderShuffleButton_scene_header" format="reference"/>
+		<attr name="ItemHeaderShuffleButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemHeaderShuffleButton_scene_menu" format="reference"/>
 		<attr name="ItemHeaderPlayButton" format="reference"/>
 		<attr name="ItemHeaderPlayButton_scene_header" format="reference"/>
+		<attr name="ItemHeaderPlayButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemHeaderPlayButton_scene_menu" format="reference"/>
 		<attr name="ItemHeaderSelectButton" format="reference"/>
 		<attr name="ItemHeaderSelectButton_scene_header" format="reference"/>
+		<attr name="ItemHeaderSelectButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemHeaderSelectButton_scene_menu" format="reference"/>
 		<attr name="ItemHeaderSearchButton" format="reference"/>
 		<attr name="ItemHeaderSearchButton_scene_header" format="reference"/>
+		<attr name="ItemHeaderSearchButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemHeaderSearchButton_scene_menu" format="reference"/>				
 		
 		<attr name="ItemTrackAAPanel" format="reference"/>
@@ -397,11 +409,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="SelectionMenuCountText" format="reference"/>
 		<attr name="SelectionMenu_Text" format="reference"/>
 		<attr name="SelectionMenuCloseButton" format="reference"/>
+		<attr name="SelectionMenuRangeButton" format="reference"/>
 		<attr name="SelectionMenuSeparator" format="reference"/>
 		<attr name="SelectionMenuBottomLineLayout" format="reference"/>
 		<attr name="SelectionListContextButton" format="reference"/>
 		<attr name="SelectionListContextButton33" format="reference"/>
 		<attr name="SelectionListContextButton_Text" format="reference"/>
+		<attr name="SelectionListContextPopupButtonLayout" format="reference"/>
+		<attr name="SelectionListContextPopupButtonLayout_scene_item_menu" format="reference"/>
 		
 		<attr name="TopContainer" format="reference"/>
 		<attr name="TopMilk" format="reference"/>
@@ -418,6 +433,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopSearchLayout" format="reference"/>
 		<attr name="TopSearchPanel" format="reference"/>
 		<attr name="TopSearchCloseButton" format="reference"/>
+		<attr name="TopSearchCatsLayout" format="reference"/>
+		<attr name="TopSearchCatButton" format="reference"/>
 		<attr name="TopListSearchEditText" format="reference"/>
 		<attr name="TopSearchTarget" format="reference"/>
 		<attr name="TopSearchTarget_Text" format="reference"/>

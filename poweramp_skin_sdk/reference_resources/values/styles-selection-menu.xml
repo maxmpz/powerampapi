@@ -67,10 +67,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:layout_margin">2dp</item>
 	</style>
-	
+
 	<style name="SelectionMenuSelectBox">
-		<item name="layout_widthPercent">30%</item>
+		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_height">38dp</item>
+		<item name="layout_widthPercent">25%</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
 		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
 		<item name="android:clickable">true</item>
@@ -81,23 +82,49 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:paddingTop">0dp</item>
 		<item name="android:paddingBottom">0dp</item>
-		<item name="android:drawablePadding">4dp</item>
+		<item name="android:drawablePadding">0dp</item>
 		<item name="drawablePaddingStart">8dp</item>
 		<item name="android:textAppearance">?SelectionMenu_Text</item>
+
 	</style>
-	
+
+	<style name="SelectionMenuRangeButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">38dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="animOnClick">true</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:drawable">@drawable/range_24dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="android:textAppearance">?SelectionMenu_Text</item>
+	</style>
+
 	<style name="SelectionMenuCountText">
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_height">38dp</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:gravity">center</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:textAppearance">?SelectionMenu_Text</item>
 	</style>
 	<style name="SelectionMenu_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">12sp</item>
 	</style>
-	
+
 	<style name="SelectionMenuCloseButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="layout_consumeSpace">horizontal</item>
@@ -107,18 +134,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
-		<item name="android:gravity">center</item>
 		<item name="android:paddingTop">8dp</item>
 		<item name="android:paddingBottom">8dp</item>
 		<item name="android:paddingLeft">8dp</item>
-		<item name="android:paddingRight">16dp</item>
-		<item name="drawablePaddingStart">16dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="drawableOnly">true</item>
 		<item name="android:drawable">@drawable/close_stroke</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
 		<item name="android:textAppearance">?SelectionMenu_Text</item>
 	</style>
-	
+
 	<style name="SelectionMenuSeparator">
 		<item name="android:background">?colorSeparator</item>
 		<item name="android:layout_width">match_parent</item>
@@ -133,7 +159,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="SelectionListContextButtonBase">		
-		<!--<item name="layout_widthPercent">33.333%</item>-->
 		<item name="layout_widthPercent">25%</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="drawablePaddingStart">4dp</item><!-- The padding on top, before drawable -->
@@ -146,16 +171,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:singleLine">true</item>
 		
 		<item name="drawablePosition">top</item>
-		<item name="drawableWidth">24dp</item>
+		<item name="drawableWidth">24dp</item><!-- NOTE: fixed size is required here so e.g. xxxhdpi icons properly fit xhdpi screens -->
 		<item name="drawableHeight">24dp</item>
-		<!-- <item name="android:disabledAlpha">0.5</item> -->
 		<item name="drawableTint">?colorIconPrimary</item>
 		
 		<item name="android:textAppearance">?SelectionListContextButton_Text</item>
 		
 		<item name="android:gravity">center</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
-		<item name="animOnClick">true</item><!-- REVISIT: not needed if I hide toolbar on clicks -->
+		<item name="animOnClick">true</item>
 		<item name="android:duplicateParentState">false</item><!-- Parent can be clickable, but we don't want to duplicate presses on it -->
 		<item name="android:clickable">true</item><!-- Also enforces clickable state (FastButtons are not clickable by default) and ignores parent drawable hot spots -->
 		<item name="android:focusable">true</item>
@@ -172,4 +196,61 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SelectionListContextButton33" parent="SelectionListContextButtonBase">
 		<item name="layout_widthPercent">33.333%</item>
 	</style>
+
+	<style name="SelectionListContextPopupButton" parent="SelectionListContextButtonBase">
+		<item name="layout_widthPercent">@null</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">@null</item>
+
+		<item name="android:clickable">false</item>
+		<item name="android:background">#00000000</item>
+		<item name="applyViewParams">true</item><!-- NOTE: needed for tint -->
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<style name="SelectionListContextPopupButtonInMenu" parent="SelectionListContextButtonBase">
+		<item name="layout_widthPercent">@null</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:visibility">visible</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="applyViewParams">true</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item><!-- NOTE: @null/@empty is not supported ATM, need explicit tint, thus using forced -->
+		<item name="android:background">@drawable/ripple_with_small_check_selector</item>
+	</style>
+
+	<style name="SelectionListContextPopupButtonLayout">
+		<item name="layout_widthPercent">25%</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">horizontal|reset_auto</item>
+
+		<item name="menuPlaceholder">@+id/menu_placeholder2</item>
+		<item name="openOnClick">false</item>
+		<item name="modal">false</item>
+		<item name="innerScrolling">true</item>
+		<item name="android:clipChildren">false</item>
+
+		<item name="android:longClickable">true</item>
+		<item name="android:clickable">true</item><!-- Force clickable, otherwise, while we're actually clickable here, some keyboard presses are mishandled -->
+		<item name="android:focusable">true</item><!-- Clickability is managed automatically -->
+		<item name="android:focusableInTouchMode">false</item>
+
+		<item name="android:background">@drawable/popup_button_layout_ripple_bg</item>
+
+		<item name="buttonStyle">@style/SelectionListContextPopupButton</item>
+		<item name="menuButtonStyle">@style/SelectionListContextPopupButtonInMenu</item>
+		<item name="android:disabledAlpha">0.7</item><!-- Match our disabled alpha for buttons as otherwise we're pulling this from the global or Android theme -->
+	</style>
+
+	<style name="SelectionListContextPopupButtonLayout_scene_item_menu" parent="ItemPopupMenu_scene_item_menu">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="recalcChildren">dynamic</item><!-- Avoid not so good animation for the active button -->
+		<item name="android:layout_gravity">top|left</item>
+		<item name="layout_attachBottom">parent</item>
+	</style>
+
 </resources>

@@ -40,6 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="colorIconPrimary" format="color"/><!-- Usually same as colorPrimary, but for black/#000 it should be #0000 to avoid tinting at all -->
 	<attr name="colorIconPrimaryForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
+	<attr name="colorIconLessContrast" format="color"/><!-- Tint/foreground color for a bit less contrast icons -->
 	<attr name="colorIconInverse" format="color"/><!-- Usually same as colorInverse, but for black/#000 it should be #0000 to avoid tinting at all -->
 	<attr name="colorIconInverseForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
 	<attr name="colorIconDisabled" format="color"/><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
@@ -56,6 +57,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="dialog_AlertDialogActivity_list"/>
 	<attr name="dialog_AlertDialogActivity_list_centered"/>
 	<attr name="dialog_AlertDialogActivity_vertical_buttons"/>
+	<attr name="dialog_AlertDialogActivity_vertical_buttons_centered"/>
 	<attr name="dialog_AlertDialogActivity_no_title"/>
 	<attr name="dialog_AlertDialogActivity_no_title_vertical_buttons"/>
 	

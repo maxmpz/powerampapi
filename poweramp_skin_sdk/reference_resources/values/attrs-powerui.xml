@@ -56,149 +56,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- ListIndexer view id. PowerList uses separate indexer view (small popup with character for a-z scrolling) -->
 		<attr name="listIndexer" format="reference"/>
 
-		<attr name="moveableToolbar" format="reference"/><!-- Id of the toolbar which can be moved by list on scroll -->
-		<attr name="moveableToolbarExtraStates" format="boolean"/><!-- If true, PowerList will set state w:state_toolbar_in_header for NavBar and NavBarButtons drawables when toolbar is over header -->
-		<attr name="moveableToolbarAnchor">
-			<enum name="fixedTop" value="0"/><!-- Toolbar always on top, doesn't move (also should be set in xml layout as top aligned) -->
-			<enum name="top" value="1"/><!-- Toolbar moves away top on scroll (also should be set in xml layout as top aligned) -->
-			<enum name="bottom" value="2"/><!-- Toolbar moves away bottom on scroll (also should be set in xml layout as bottom aligned) -->
-			<enum name="fixedBottom" value="3"/><!-- Toolbar always on bottom, doesn't move (also should be set in xml layout as bottom aligned) -->
-		</attr>
-
-		<!-- Space to reserve for moveable toobar on bottom. Should be large enough so the toolbar doesn't overlap last item -->
-		<attr name="bottomReservedSpace" format="dimension|reference"/>
-
-		<!-- The extra space to add to bottomReservedSpace for a selection mode. Allows space increase/decrease relative to bottomReservedSpace,
-		     which can be dynamic due to the theme options  -->
-		<attr name="selectionBottomReservedExtraSpace" format="dimension|reference"/>
-
 		<attr name="android:colorEdgeEffect"/><!-- Defines overshoot edge effect color -->
 	</declare-styleable>
 	
-	<!-- Scene params is a pseudo-view-tag (xml tag without the actual view) which defines attributes for one or multiple scenes -->
-	<declare-styleable name="SceneParams">
-		<!-- If visibility is missing from the given SceneParams, visibility is not changed -->
-		<attr name="android:visibility"/>
-		
-		<!-- NOTE: manipulating visibility, alpha + StateAnim alpha is hard, and some scenarios may not work properly due to the conflicting or overlapping alpha values --> 
-	
-		<!-- If alpha is missing from the SceneParams, alpha=1.0 is assumed -->
-		<attr name="android:alpha"/>
 
-		<!-- Uniform scale. Separate scaleX/Y are not supported.
-			 If scale is missing from the SceneParams, scale=1.0 is assumed -->
-		<attr name="scale" format="float"/>
-		
-		<!-- Elevation is applied with a "jump", as animated elevation change has large overhead. 
-			 Appropriate outline provider and other required elevation properties should be set on view.
-			 If elevation is missing from the SceneParams, elevation value is kept as is.
-			 Due to the high overhead for elevation changes, this property behavior, thus, differs from other SceneParams attributes like scale or alpha) -->
-		<attr name="android:elevation"/>
-		
-		<!-- Optional attribute, if missing, SceneParams is attached to the previous view -->
-		<attr name="forId" format="reference|integer">
-			<!-- NOTE: parent generally won't work when SceneParams is put into the same XML layout which defines "parent", as during XML inflation,
-				 that "parent" is not yet attached to the upper parent, thus it's not possible to create layout params for it and it's not possible
-				 to create SceneParams.
-				 "parent" is used for loadable / merged XML layouts, when extra SceneParams should be added to parent view, where XML is added to
-			--> 
-			<enum name="parent" value="0"/>
-			<!-- These SceneParams is for RootView (window top view group). Very special case, used e.g. for dialogs -->
-			<enum name="root" value="-1"/>
-		</attr>
-		
-		<!-- Target scene id which this SceneParams is for -->
-		<attr name="scene" format="reference|integer">
-			<!-- NOTE: scene can be set to defaultScene, so that will redefine the default scene (or update, if baseScene="defaultScene" is used 
-				 Only the first "scene" attribute supports this -->
-			<enum name="defaultScene" value="0"/>
-		</attr>
-		<attr name="scene_2" format="reference"/><!-- valid only if scene exists in tag -->
-		<attr name="scene_3" format="reference"/><!-- valid only if scene_2 exists in tag -->
-		<attr name="scene_4" format="reference"/><!-- valid only if scene_3 exists in tag -->
-		<attr name="scene_5" format="reference"/><!-- valid only if scene_4 exists in tag -->
-		<attr name="scene_6" format="reference"/><!-- valid only if scene_5 exists in tag -->
-		
-		<!-- The base scene we copy all the properties from. Usually, using baseScene is better VS using parent style
-		     via <style .. parent="parent style">, as parent styles still require full parsing and processing,
-		     and baseScene just quickly copies base scene values.
-			 NOTE: layout params (all the "layout_*" attributes) always copied as a whole, meaning you can't
-			 override just single layout_* parameter - whole layout should be overridden if the new layout is needed -->
-		<attr name="baseScene" format="reference|integer">
-			<enum name="defaultScene" value="0"/>
-		</attr>
-		
-		<!-- NOTE: placed here for technical reasons to detect if layout params exist for the given scene params.
-			 If layout_width exists in the attributes, we assume layout is set for this scene params, otherwise no different layout is applied for this scene params -->
-		<attr name="android:layout_width"/>
-		
-		<!-- Defines point during transition when target view is re-laid out. Layout is a costly operation for the most views,
-		     so we want to keep it as rare as possible, still getting smooth animation.
-		     NOTE: this option changes only "layout" processing in terms of Android UI framework. 
-		     The bounds of views are always transitioned/animated (unless view is GONE) -->
-		<attr name="recalcChildren" format="fraction|integer">
-			<!-- Initial child layout is used for the transition until end (jumps in the end) -->
-			<enum name="on_end" value="0" /><!-- Sync with SceneParams --> 
-			
-			<!-- Final child layout is used for the transition (jumps in the beggining) -->
-			<enum name="on_start" value="1" /><!-- Sync with SceneParams -->
-			 
-			<!-- Dynamically recalculate layout of children, this is costly and can be slow, but may be required for images and some other views that
-			     we want to constantly relayout during transition -->
-			<enum name="dynamic" value="2" /><!-- Sync with SceneParams -->
-		</attr>
-		
-		<!-- Default is true. Used to disable existing scene, e.g. _tag_scene_zero -->
-		<attr name="applyScene" format="boolean"/>
-		
-		<!-- Default is false for non-zero/default scene and true for zero/default scene. 
-		     If true, per view params will be applied for this scene (if supported by view), such as background, textColor, etc. -->
-		<attr name="applyViewParams" format="boolean"/> 
-		
-		<!-- Default is false. If true, visibility will be applied immediately without an alpha transition. Good for the cases when view should not fade at all -->
-		<attr name="jumpVisibility" format="boolean"/>
-		
-		<!-- If true, apply scene params even if view is GONE in _both_ (from/to) scenes. 
-		     Useful for the views which are force-hidden by code, but still should have different layout in scenes.
-		     This can be further optimized with dontApplyIfGone -->
-		<attr name="applyEvenIfGone" format="boolean|integer">
-			<!-- Don't apply scene params if view is GONE currently (only in the current scene). If view is GONE, then it won't participate in scenes until set to non-gone by code.
-			     This is used mostly by views which can be shown/hidden by code -->
-			<enum name="dontApplyIfGone" value="2"/>
-		</attr>
-	</declare-styleable>
-	
-	
-	<!-- StateAnim is pseudo-view-tag that defines animation attribures, orthogonal to Scene animated params, used for small temporary animations -->
-	<declare-styleable name="StateAnimParams">
-		<!-- Target view id -->
-		<attr name="forId"/>
-		<!-- State animation id -->
-		<attr name="stateAnim" format="reference" />
-		<!-- State animation id, valid if stateAnim is defined -->
-		<attr name="stateAnim_2" format="reference" />
-		<!-- State animation id, valid if stateAnim_2 is defined -->
-		<attr name="stateAnim_3" format="reference" />
-		<!-- State animation id, valid if stateAnim_3 is defined -->
-		<attr name="stateAnim_4" format="reference" />
-
-		<!-- Duration in ms -->		
-		<attr name="android:duration"/>
-		
-		<!-- Target alpha. NOTE: if view is also transitioned by SceneParams with alpha, SceneParams alpha make take priority in some cases -->
-		<attr name="android:alpha"/>
-		<!-- Sets both scaleX and scaleY to same value. Has priority over separate scaleX/Y values -->
-		<attr name="scale"/>
-		<!-- Other params, animating the standard Android view transform properties -->
-		<attr name="android:scaleX"/>
-		<attr name="android:scaleY"/>
-		<attr name="android:translationX"/>
-		<attr name="android:translationY"/>
-		<attr name="android:rotation"/>
-		<attr name="android:rotationX"/>
-		<attr name="android:rotationY"/>
-	</declare-styleable>
-	
 	<!-- Used internally -->	
 	<declare-styleable name="ViewTag">
 		<attr name="android:id" />
@@ -354,23 +215,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 
-	<!-- Generic Scene extra attributes, usually applied to layouts starting with Scene* (e.g. SceneFastLayout) -->
-	<declare-styleable name="Scene">
-		<!-- Default false. If true, scene allows scene-wide state anims, otherwise only specific per-view StateAnims are possible -->
-		<attr name="enableStateAnim" format="boolean"/>
-		<attr name="clipChildrenForSceneAnim" format="boolean"/><!-- Default false. NOTE: not used ATM -->
-		<!-- Default false. If private, child views are not processed by scenes, initiated outside of this view -->
-		<attr name="privateScene" format="boolean"/>
-	</declare-styleable>
-	
-	<!-- Extra scene parameters supported for FastLayout children -->
-	<declare-styleable name="SceneFastLayoutViewSceneParams">
-		<!-- If true, per view params will be applied for this scene -->
-		<attr name="applyViewParams"/>
-		<attr name="android:background"/>
-		<attr name="android:elevation"/>
-	</declare-styleable>
-		
 	<!-- Used internally -->
 	<declare-styleable name="BgTransSceneParams">
 		<attr name="android:background"/>
@@ -402,6 +246,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="loadForScene_5" format="reference"/>
 		<attr name="loadForScene_6" format="reference"/>
 		<attr name="loadForScene_7" format="reference"/>
+		<attr name="loadForScene_8" format="reference"/>
 		<!-- Optional insert position. Default is end (views appended to parent, fastest) -->
 		<attr name="insertAt" format="integer">
 			<!-- Insert at position of behavior. 
@@ -516,6 +361,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Disabled alpha will be used for given view + BusDisabledForStateBehavior -->
 		<attr name="android:disabledAlpha"/>
+
+		<!-- Default is false. If true, we're processing click as click, not the button selection change -->
+		<attr name="clickOnClick" format="boolean"/>
+		<!-- Bus id to send message on button click when clickOnClick=true -->
+		<attr name="clickBusId" format="reference"/>
+		<!-- Msg id to send message on button click when clickOnClick=true. Arg1 matches buttonArg1 set via buttonsArg1  -->
+		<attr name="clickMsgId" format="reference"/>
 	</declare-styleable>
 		
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which selectes child view based on Poweramp state/msg bus -->
@@ -713,8 +565,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this view, as the view is detached
 		     completely from current parent while in popup mode. Alternatively use private scene layout, or set this to false and not rely on this view layout --> 
 		<attr name="disableParentLayoutForPopup" format="boolean"/>
+
+		<attr name="maxOvershoot"/>
+		<attr name="maxStretchOvershoot"/>
 	</declare-styleable>
-	
+
 	<!-- Layout looking like button, but transformed to a menu on click/long click -->
 	<declare-styleable name="PopupButtonLayout">
 		<!-- Default is false, and popup is opened by long click. If true, popup is opened by short click -->
@@ -734,9 +589,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Tint is applied to buttons drawables -->
 		<attr name="drawableTint"/>
 		
-		<!-- Button style (e.g. ?PopupButton) -->
+		<!-- Button style (e.g. ?PopupButton) while in button state -->
 		<attr name="buttonStyle" format="reference"/>
-		<!-- Button style (e.g. ?PopupButton_scene_button_menu) -->
+		<!-- Button style (e.g. ?PopupButton_scene_button_menu) while in popup menu state -->
 		<attr name="menuButtonStyle" format="reference"/>
 		
 		<!-- Default is true -->
@@ -747,6 +602,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="disableParentLayoutForPopup"/>
 		
 		<attr name="toastOnPress" format="reference"/>
+
 	</declare-styleable>
 	
 	

@@ -79,7 +79,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">0dp</item>
 	</style>
 	<style name="PeqEqPopupButton" parent="PopupButton">
-		<item name="drawableTint">@color/eq_icon_tint_color_selector</item>
+		<item name="drawableTint">@color/eq_icon_tint_color_selector</item><!-- NOTE: this removes "disabled" alpha from the icon and we use bg to indicate enabled state -->
 		<item name="drawableWidth">28dp</item>
 		<item name="drawableHeight">28dp</item>
 		<item name="drawablePaddingStart">18dp</item>
@@ -103,7 +103,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="PeqEqVolPanel2">
 		<item name="android:layout_width">match_parent</item>
-		<item name="layout_heightPercent">26%</item>
+		<item name="layout_heightPercent">24%</item>
 		<item name="android:paddingTop">@dimen/PeqEqVolPanel_paddings</item>
 		<item name="android:paddingBottom">@dimen/PeqEqVolPanel_paddings</item>
 		<item name="layout_consumeSpace">vertical</item>
@@ -114,7 +114,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="PeqEqVolPanel3">
 		<item name="android:layout_width">match_parent</item>
-		<item name="layout_heightPercent">26%</item>
+		<item name="layout_heightPercent">28%</item>
 		<item name="android:paddingTop">@dimen/PeqEqVolPanel_paddings</item>
 		<item name="android:paddingBottom">@dimen/PeqEqVolPanel3_paddingbottom</item>
 		<item name="layout_consumeSpace">vertical</item>
@@ -128,7 +128,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">@integer/PeqEqCompressorCheckButton_gravity</item><!-- right|bottom on small screens, center_horizontal|bottom on long -->
 		<item name="layout_consumeSpace">vertical|size</item>
 		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginTop">0dp</item><!-- NOTE: overridden below -->
 		<item name="android:layout_marginBottom">0dp</item><!-- NOTE: overridden below -->
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="layout_attachTop">@null</item>
@@ -137,6 +137,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="PeqEqCompressorCheckButton" parent="PeqEqCompressorCheckButtonBase">
 		<item name="android:layout_marginTop">@dimen/PeqEqVolPanel_paddings</item>
+		<item name="android:layout_marginBottom">@dimen/PeqEqCompressorCheckButton_marginBottom</item>
 	</style>
 	
 	<!-- Overridden for land -->

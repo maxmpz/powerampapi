@@ -73,10 +73,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Defines min possible height for the child. Always force applied (compare to view.minHeight which applied only in specific cases) -->
 		<attr name="layout_minHeight" format="dimension"/>
 
-		<!-- If set, one view dimension will be matched against another, basically making view square. This works only if the source dimension has defined value,
+		<!-- If set, one view dimension will be matched against another, basically making view square.
+		     This works only if the source dimension (height for widthToHeight, width for heightToWidth) has a defined value,
 			 e.g. fixed dp value, MATCH_PARENT, attachLeft + attachRight, etc.
-			 If source dimension is WRAP_CONTENT, layout_matchDimension is ignored.
-			 NOTE: appropriate view paddings are added to final view dimensions: padding top/bottom for heightToWidth and padding left/right for widthToHeight -->
+			 If source dimension is WRAP_CONTENT, layout_matchDimension is ignored -->
 		<attr name="layout_matchDimension" format="integer">
 			<!-- If set, width dimension will be forced to height, other width attributes are ignored -->
 			<enum name="widthToHeight" value="0x100000"/>
@@ -324,7 +324,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 		<attr name="layout_goneWhenEmpty" format="boolean"/>
 
-
+		<!-- Default false. If true, view ignores layout_minWidth/layout_minHeight/layout_maxWidth/layout_maxHeight
+		     when view is attached to the left/right and/or top/bottom.
+		     This is the (buggy) behavior Poweramp prior build-912 applied, so this can be used for old skins compatibility.
+		     Poweramp automatically applies this for some skins -->
+		<attr name="layout_ignoreMinMaxForAttach" format="boolean"/>
 
 		<!-- Reference to the dynamic dimensions. See values-dimensions.xml -->
 		<attr name="layout_widthRef" format="reference"/>

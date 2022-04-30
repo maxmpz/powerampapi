@@ -72,7 +72,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableWidth">@dimen/PopupButtons_drawableSize</item><!-- ~32dp, smaller for smaller screens -->
 		<item name="drawableHeight">@dimen/PopupButtons_drawableSize</item>
 		<item name="android:hapticFeedbackEnabled">true</item>
-		<item name="drawableTint">?colorLessContrast</item>
+		<item name="drawableTint">?colorIconLessContrast</item>
   		<item name="android:maxLines">1</item>
 		
   		<item name="android:textAppearance">?PopupButton_Text</item>
@@ -124,6 +124,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableWidth">@dimen/SmallerPopupButtons_drawableSize</item><!-- 24dp -->
 		<item name="drawableHeight">@dimen/SmallerPopupButtons_drawableSize</item>
 		<item name="drawablePaddingStart">@dimen/SmallerPopupButtons_paddingLeft</item><!-- Padding before image -->
+		<item name="drawableTint">?colorIconPrimary</item><!-- Avoid colorIconLessContrast here -->
 	</style>
 	<style name="SmallerPopupButton_scene_button_menu" parent="PopupButton_scene_button_menu">
 	</style>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -62,8 +62,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 				<!-- NOTE: wrap content items shrink too much and causes jumps when we resize parent container to small height/GONE.
 					 This is why fixed heights are used here -->
-					 
-				<com.maxmpz.widget.player.BusStatusText
+
+				<!--
+					w:iconStateId="@id/state_app_edition_icon"
+					android:clickable="true"
+					android:focusable="true"
+					android:background="@drawable/ripple_rounded_mini"
+					w:busId="@id/bus_app_cmd"
+					w:msgId="@id/cmd_app_open"
+					w:string="activity/dialogs.ChangelogActivity"
+				-->
+				<com.maxmpz.widget.player.BusStatusTextButton
 					style="?NavbarExtensionLogoLabel"
 					w:stateBusId="@id/bus_app"
 					w:updateMsgId="@id/msg_version_info_changed"
@@ -74,9 +83,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					style="?CcButton_NavbarExtensionMenuLine"
 				/>
 				
-				<com.maxmpz.widget.base.BusActionButton android:id="@+id/navbar_ext_settings"
+				<com.maxmpz.widget.base.BusActionButton
+					android:id="@+id/navbar_ext_settings"
 					style="?NavbarExtensionMenuLine"
-					android:drawable="?settings_24dp"
+					android:drawable="?settings_navbar"
 					android:text="@string/settings"
 					w:busId="@id/bus_app_cmd"
 					w:msgId="@id/cmd_app_open_settings"

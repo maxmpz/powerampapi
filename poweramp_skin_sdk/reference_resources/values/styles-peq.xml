@@ -44,4 +44,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PeqStyles">
 	</style>
 
+
+	<style name="TopPeqEqLayoutBase" parent="TopEqLayoutBase">
+		<item name="android:visibility">visible</item>
+		<item name="layout_marginBottomRef">@id/navbar_bounds_size</item>
+		<!--<item name="android:layout_marginBottom">8dp</item>-->
+		<item name="android:paddingBottom">8dp</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachRight">inset</item>
+	</style>
+	<style name="TopPeqEqLayout" parent="TopPeqEqLayoutBase">
+	</style>
+
+	<style name="TopPeqEqLayoutBase_scenes_vis" parent="TopPeqEqLayout">
+		<!-- Margin top: 48dp + 8dp -->
+		<item name="android:layout_marginTop">@dimen/TopPeqEqLayoutBase_scenes_vis_marginTop</item>
+	</style>
+	<style name="TopPeqEqLayout_scenes_vis" parent="TopPeqEqLayoutBase_scenes_vis">
+	</style>
+
+	<style name="TopHelpButtonPeqEq" parent="TopHelpButton">
+		<item name="layout_attachTop">parent</item>
+		<item name="help_position">bottom</item>
+	</style>
+
+
+
 </resources>

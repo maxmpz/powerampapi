@@ -81,7 +81,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="CcButton_MainUIButtonBase" parent="CcButton_MainUIBase">
 		<item name="android:background">@drawable/alpha_popup_button_layout_bg</item>
 		<item name="android:padding">8dp</item>
-		<item name="drawableTint">?colorLessContrast</item>
+		<item name="drawableTint">?colorIconLessContrast</item>
 	</style>
 	<!-- overridden in values-sw2dp-land -->
 	<style name="CcButton_MainUIButton" parent="CcButton_MainUIButtonBase">

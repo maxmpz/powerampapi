@@ -260,6 +260,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="addButtonText" format="string"/>
 		<!-- The tags limit to store in the preference -->
 		<attr name="tagsLimit" format="integer"/>
+		<!-- If true, we're allowing whitespace as a separator symbol -->
+		<attr name="allowWhitespace" format="boolean"/>
 		
 		<!-- The tags limit to show in the preferences list -->
 		<attr name="listTagsLimit" format="integer"/>
@@ -268,6 +270,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="TagListPreference">
 		<attr name="entries"/>
 		<attr name="values"/>
+		<attr name="summaries"/>
 		<attr name="disableDependenciesValue"/>
 	</declare-styleable>
 		

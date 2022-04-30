@@ -5,26 +5,26 @@
 >
 	<item android:state_enabled="false">
 		<shape>
-			<corners android:radius="1dp"/>
+			<corners android:radius="4dp"/>
 			<solid android:color="?colorKnobIndicatorDisabled" />
-			<size android:width="2dp" android:height="10dp"/>
-			<padding android:top="8dp"/>
+			<size android:width="5dp" android:height="10dp"/>
+			<padding android:top="10dp"/>
 		</shape>
 		</item>
 	<item android:state_pressed="true">
 		<shape>
-			<corners android:radius="1dp"/>
+			<corners android:radius="4dp"/>
 			<solid android:color="?colorKnobIndicatorPressed" />
-			<size android:width="2dp" android:height="10dp"/>
+			<size android:width="5dp" android:height="10dp"/>
 			<padding android:top="8dp"/>
 		</shape>
 		</item>
 	<item>
 		<shape>
-			<corners android:radius="1dp"/>
+			<corners android:radius="4dp"/>
 			<solid android:color="?colorKnobIndicator" />
-			<size android:width="2dp" android:height="10dp"/>
-			<padding android:top="8dp"/>
+			<size android:width="5dp" android:height="10dp"/>
+			<padding android:top="10dp"/>
 		</shape>
 		</item>
 </selector>

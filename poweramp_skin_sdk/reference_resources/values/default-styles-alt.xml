@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -61,8 +61,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemTrackMenu">@style/Alt_ItemTrackMenu</item>
 		<item name="ItemTrackMenu_scene_aa">@style/Alt_ItemTrackMenu_scene_aa</item>
-		<item name="ItemTrackMenu_scene_header">@style/Alt_ItemTrackMenu_scene_header</item>
-		
+		<!-- NOTE: now avoiding overridding ItemTrackMenu_scene_header here as it can be overridden by OptionNoHeaderButtons, and we don't want
+		     to many overridding overrides. Instead previous Alt_ItemTrackMenu_scene_header styles moved to base ItemTrackMenu_scene_header  -->
+		<item name="ItemTrackMenu_scene_bottom_toolbar">@style/Alt_ItemTrackMenu_scene_bottom_toolbar</item>
+
 		<item name="TopVisButtonLayout">@style/Alt_TopVisButtonLayout</item>
 		<item name="TopSleepTimerButtonLayout">@style/Alt_TopSleepTimerButtonLayout</item>
 		<item name="TopShuffleButtonLayout">@style/Alt_TopShuffleButtonLayout</item>
@@ -291,11 +293,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="Alt_ItemTrackMenu_scene_header" parent="ItemTrackMenu_scene_header">
-		<item name="applyViewParams">true</item><!-- NOTE: as currently menu is not shown for items and basically never transitions between item states, applyViewParams just here is enough -->
-		<item name="drawableTint">?colorIconInverse</item> 
-		<item name="android:background">@drawable/ripple_text_bg_rounded_large</item>
-		
 	</style>
+
+	<style name="Alt_ItemTrackMenu_scene_bottom_toolbar" parent="ItemTextMenu_scene_bottom_toolbar"></style>
 	
 	<style name="Alt_TopVisButtonLayout" parent="TopVisButtonLayout">
 		<item name="android:background">@drawable/alpha_popup_button_layout_large_bg</item>

@@ -30,6 +30,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_layout_maxWidth">70dp</dimen>
 
 	<dimen name="RoundKnobLabelLeftTop_marginRight">8dp</dimen>
-	
-	
+
+	<dimen name="EqLinearKnob_paddingTB">0dp</dimen>
 </resources>

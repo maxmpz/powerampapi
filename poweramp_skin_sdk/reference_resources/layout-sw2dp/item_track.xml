@@ -53,15 +53,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	== 14
 
 	Special:		   
-	- header	            (scene_header)
-	- header 1-line         (scene_header_1)
-	- item_menu             (scene_item_menu)
-	- item_menu like/unlike (scene_item_menu_lu) menu with like/unlike buttons
-	- aa                    (scene_aa)
-	- aa_vis                (scene_aa_vis)
-	- aa_playing            (scene_aa_playing)
-	== +7 
-	Total: 21
+	- header	              (scene_header)
+	- header 1-line           (scene_header_1)
+	- bottom buttons          (scene_bottom_toolbar) optionally enabled via OptionNoHeaderButtons
+	- item_menu               (scene_item_menu)
+	- item_menu like/unlike   (scene_item_menu_lu) menu with like/unlike buttons
+	- aa                      (scene_aa)
+	- aa_vis                  (scene_aa_vis)
+	- aa_playing              (scene_aa_playing)
+	== +8
+	Total: 22
 		
 -->
 <!--suppress AndroidElementNotAllowed -->
@@ -118,6 +119,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<!-- playing_mark -->
 	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1" w:scene_3="@+id/scene_aa" w:scene_4="@+id/scene_aa_vis" w:scene_5="@+id/scene_aa_playing"
+		w:scene_6="@+id/scene_bottom_toolbar"
 		style="?ItemTrackPlayingMark_scenes_hidden"
 	/>
 	<!-- playing_mark -->
@@ -162,7 +164,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed" 
 		style="?ItemTrackNum_scene_grid_1_alt_zoomed"
 	/>
-	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
+	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1" w:scene_3="@+id/scene_bottom_toolbar"
 		style="?ItemTrackNum_scene_header"
 	/>
 	<SceneParams w:scene="@+id/scene_aa"
@@ -243,6 +245,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackAAImage_scene_item_menu_lu"
 	/>
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		android:visibility="gone"
+		/>
 		
 	<!-- NOTE: this can be completely GONE for items. This is controlled by code -->
 	<com.maxmpz.widget.player.list.CatImage android:id="@+id/cat_image" 
@@ -291,7 +296,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemTrackCatImage_scene_item_menu"
 	/>
-		
+	<!-- cat_image -->
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		android:visibility="gone"
+		/>
 	
 	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
 		style="?ItemTrackTitle"
@@ -369,7 +377,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackTitle_scene_item_menu_lu"
 	/>
 	<!-- title -->
-	
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		android:visibility="gone"
+		/>
+	<!-- title -->
 	
 	
 	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/line2"
@@ -443,7 +454,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackLine2_scene_item_menu_lu"
 	/>
-		
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		android:visibility="gone"
+		/>
+	<!-- line2 -->
+
 	
 	<com.maxmpz.widget.base.FastTextView android:id="@+id/meta"
 		style="?ItemTrackMeta"
@@ -517,7 +532,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackMeta_scene_item_menu_lu"
 	/>
 	<!-- meta -->
-	
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		android:visibility="gone"
+		/>
+	<!-- meta -->
+
 	
 	<!-- NOTE: drag handler is force-hidden and will not appear when list doesn't support dragging -->
 	<com.maxmpz.widget.base.DragHandler android:id="@+id/drag_handler"
@@ -576,6 +595,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:loadForScene_5="@id/scene_aa_playing"
 		w:loadForScene_6="@id/scene_header"
 		w:loadForScene_7="@id/scene_header_1"
+		w:loadForScene_8="@id/scene_bottom_toolbar"
 	/>
 	
 	<!-- NOTE: scene_header here is needed for cases when we transition from header to menu
@@ -585,6 +605,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:layout="@layout/merge_item_header"
 		w:loadForScene="@id/scene_header"
 		w:loadForScene_2="@id/scene_header_1"
+		w:loadForScene_3="@id/scene_bottom_toolbar"
 	/>
 	
 	<!-- NOTE: programmatically loaded for menu -->	

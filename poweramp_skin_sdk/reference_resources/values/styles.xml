@@ -40,7 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ListOptsRadioButton" parent="@android:style/Widget.Material.CompoundButton.RadioButton">
 		<!-- NOTE: uses global ?textAppearance, in this case, dialog's -->
 		<item name="android:paddingStart">4dp</item>
-		<item name="android:layout_marginBottom">4dp</item><!-- NOTE: applies only for xml+style, not applied for code-created views (not using this for LP) -->
+		<item name="android:layout_marginBottom">6dp</item>
 	</style>
 	
 	<style name="ListOptsRadioButton50" parent="ListOptsRadioButton">

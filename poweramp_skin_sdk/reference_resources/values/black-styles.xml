@@ -54,8 +54,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textColorTertiary">#bbb</item>
 		<item name="android:textColorPrimaryInverse">#fff</item>
 
+
 		<item name="colorIconPrimary">#fff</item>
 		<item name="colorIconPrimaryForced">#fff</item>
+		<item name="colorIconLessContrast">?colorLessContrast</item>
 		<item name="colorIconInverse">#fff</item>
 		<item name="colorIconInverseForced">#fff</item>
 		<item name="colorIconDisabled">#7eee</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
@@ -172,6 +174,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="holeGlowWidth">6dp</item><!-- Increased for black -->
 		
 		<item name="control_elevation">0dp</item><!-- Not visible on black + improves performance -->
+		<item name="bottom_toolbar_buttons_elevation">3dp</item><!-- Increased elevation for black theme -->
 	</style>
 
 	<style name="ActivityTheme_Black_LessRounding" parent="ActivityTheme_White_LessRounding">

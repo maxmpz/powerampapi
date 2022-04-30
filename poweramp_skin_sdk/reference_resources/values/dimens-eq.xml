@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -25,7 +25,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopActionModeBar_marginTop">4dp</dimen>
 	<!-- TopActionModeBar_marginBottom+EqKnobsLayout_marginTop should match EqFrequencyResponseScroller_marginTop  -->
 	<dimen name="TopActionModeBar_marginBottom">4dp</dimen>
-	<dimen name="EqKnobsLayout_marginTop">0dp</dimen>
+	<dimen name="EqKnobsLayout_marginTop">0dp</dimen><!-- NOTE: overridden for Peq -->
+
+	<!-- NOTE: overridden by peq dimens-eq.xml -->
 	<dimen name="EqFrequencyResponseScroller_marginTop">4dp</dimen>
 	
 	<dimen name="TopPeqEqLayoutBase_scenes_vis_marginTop">56dp</dimen>
@@ -52,6 +54,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqLinearKnob_thumbWidth">24dp</dimen>
 	<dimen name="EqLinearKnob_thumbHeight">48dp</dimen>
+	<dimen name="EqLinearKnob_paddingTB">0dp</dimen>
+
 	<dimen name="knob_thumb_indicator_top_bottom">23.5dp</dimen>
 	<dimen name="knob_thumb_indicator_left_right">4.5dp</dimen>
 	<dimen name="knob_thumb_radius">16dp</dimen>
@@ -59,7 +63,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqButton_layout_width">48dp</dimen>
 	<dimen name="EqButton_layout_height">24dp</dimen>
+	<dimen name="EqButton_paddingLR">12dp</dimen>
+
 	<dimen name="EqParamPlaceholder2_height">64dp</dimen>
+	<dimen name="EqParamRoundKnobPortBase_paddingBottom">36sp</dimen>
 	
 	<dimen name="EqParamGainLinearKnob_layout_marginLeft">14dp</dimen>
 	
@@ -68,7 +75,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_textSize">10dp</dimen>
 	
 	<dimen name="EqEquButton_maxWidth">70dp</dimen>
-	<dimen name="EqTonePanel_offsetTB">8dp</dimen><!-- Increased for longer screens -->
+	<dimen name="EqTonePanel_marginTop">8dp</dimen>
+	<dimen name="EqTonePanel_offsetTB">8dp</dimen>
 	<dimen name="EqTonePanel_offsetLeft">16dp</dimen>
 	
 	
@@ -76,6 +84,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqRoundKnobLabel_maxWidth">120dp</dimen>
 	<dimen name="EqToneRoundKnobLabel_maxWidth">50dp</dimen>
+	<dimen name="EqToneRoundKnobLabel_marginRight">-4dp</dimen>
 	
 	<dimen name="RoundKnobLabelLeftTop_marginRight">4dp</dimen>
 	<dimen name="RoundKnobLabelLeftTop_marginTop">8dp</dimen>
@@ -91,6 +100,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqSmallRoundKnobLayout_maxSize">120dp</dimen>
 	<dimen name="EqToneRoundKnobLayout_maxSize">200dp</dimen>
 	<dimen name="EqToneRoundKnobLayout_maxWidth">220dp</dimen><!-- Further limit width for large tablets -->
+	<dimen name="EqToneKnobLayout_marginSide">4dp</dimen><!-- Margin applied to bass right and treble left, so actual padding between those == x2 -->
 	
 	<dimen name="EqRoundKnobLayout_maxSize">200dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">220dp</dimen>
@@ -98,6 +108,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqSmallRoundKnob_maxSize">80dp</dimen>
 	<dimen name="EqToneRoundKnob_maxSize">140dp</dimen>
 	<dimen name="EqRoundKnob_maxSize">140dp</dimen>
+	<dimen name="EqParamRoundKnobBase_maxSize">140dp</dimen>
 	<dimen name="EqLargerRoundKnob_maxSize">180dp</dimen>
 	
 	<dimen name="EqParamTypePopupButtonLayout_marginBottom">12dp</dimen>

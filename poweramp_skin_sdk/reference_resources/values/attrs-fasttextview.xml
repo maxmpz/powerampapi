@@ -136,7 +136,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		  (bg starts)(line bg starts) paddingLeft <text> paddingRight (line bg ends)(bg ends)
 		-->
 
-		<!-- Applied when we have ellispsize=end and text should be cut so ellipsis should be shown.
+		<!-- Default true.
+		     Applied when we have ellispsize=end and text should be cut so ellipsis should be shown.
 		     If false, ellipsis (...) is just drawn right after the text, line background ends right after the ellipsis (+ paddings).
 		     This may cause FastTextViews not being the same widths due to line background being attached to the
 		     wrapped/cut text which size varies with the symbols in it.
@@ -201,6 +202,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     If applied, ensure text views have enough top/bottom padding to allow font ascents/descents (such as "g", "p",
 		     or some non-latin scripts -->
 		<attr name="eatFontPads" format="boolean"/>
+
+		<!-- If true, inner ripple drawables will be replaced with non-ripple layers to avoid multiple ripples for the same
+		     drawable (usually in 3rd party skins) - which causes lag on Android 12+.
+		     Applied for Android 12 only -->
+		<attr name="deripple" format="boolean"/>
+
+		<!-- Default is false. If true, this text view will attempt to do relayout during transitions, which is needed for specific views,
+		     which should always have meaningful layout even if relayout is disabled due to the transition or other conditions -->
+		<attr name="relayoutInTransition" format="boolean"/>
 
 		<!-- If set to non-zero, the debugging rectangles are drawn around text and drawable exact bounds.
 		     Only raw color values accepted -->

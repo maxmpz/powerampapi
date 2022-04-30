@@ -40,7 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextLine2_scene_item_menu"
 	/>
-	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header"
+	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header" w:scene_3="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 	/>
 		

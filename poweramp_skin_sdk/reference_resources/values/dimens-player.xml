@@ -24,7 +24,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- Need less margin for shorter screens -->
 	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
 	<dimen name="ListSubstyleBase2_aaMarginBottom">200dp</dimen>
-	<dimen name="ListSubstyleBase2_searchHeaderSize">106dp</dimen>
+	<dimen name="ListSubstyleBase2_searchHeaderSize">140dp</dimen>
+	<dimen name="ListSubstyleBase2_targetSearchHeaderSize">140dp</dimen>
 	
 	<dimen name="TopWaveseek_maxHeight">128dp</dimen>
 	
@@ -119,7 +120,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
 	<dimen name="Alt_PlainSeekbar_common_marginBottom">6dp</dimen>
 	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
-	<dimen name="Alt_PlainSeekbar_marginBottom">-4dp</dimen>
+	<dimen name="Alt_PlainSeekbar_marginBottom">-6dp</dimen>
 
 
 	<!-- @Deprecated -->

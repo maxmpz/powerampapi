@@ -40,17 +40,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 		</com.maxmpz.widget.base.FastLayout>
 
-		<!--
-			w:disableForStateBusId="@id/list"
-			w:disableForStateId="@id/state_list_selection_mode"
-		-->
+
+		<com.maxmpz.audioplayer.widget.ListSearchCatsLayout android:id="@+id/search_cats_layout"
+			style="?TopSearchCatsLayout"
+			>
+			<!-- NOTE: buttons inside created with style=?TopSearchCatButton -->
+		</com.maxmpz.audioplayer.widget.ListSearchCatsLayout>
+		<SceneParams w:scene="@+id/scene_search"
+			android:visibility="gone"
+			/>
+
 		<com.maxmpz.audioplayer.widget.ListSearchTargetButton android:id="@+id/search_target"
 			style="?TopSearchTarget"
 			w:busId="@id/list"
 			w:msgId="@id/cmd_list_clear_target_search"
 			android:contentDescription="@string/clear"
 		/>
-
+		<SceneParams w:scene="@+id/scene_search"
+			android:visibility="gone"
+			/>
 	</com.maxmpz.widget.base.FastLayout><!-- search_layout -->
 	<SceneParams w:scene="@+id/scene_search"
 		android:visibility="visible"

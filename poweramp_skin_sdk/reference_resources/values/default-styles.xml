@@ -55,6 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="OptionAAKeepAspect">@style/OptionAAKeepAspect</item>
 		<item name="OptionAACrop">@style/OptionAACrop</item>
 		<item name="OptionEquFRSRounded">@style/OptionEquFRSRounded_Light</item>
+		<item name="OptionNoHeaderButtons">@style/OptionNoHeaderButtons</item>
 
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>
 		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>
@@ -145,9 +146,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="colorIconPrimary">@null</item><!-- By default, our icon drawables are black, thus, no extra tinting -->
 		<item name="colorIconPrimaryForced">#000</item>
+		<item name="colorIconLessContrast">?colorLessContrast</item>
 		<item name="colorIconInverse">#fff</item>
 		<item name="colorIconInverseForced">#fff</item>
-		<item name="colorIconDisabled">#7777</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
+		<item name="colorIconDisabled">#9333</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
 
 		<item name="colorTextDisabled">#d6d6d6</item><!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob -->
 
@@ -177,8 +179,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorKnobHolePressed">#000</item>
 		<item name="colorKnobHole">#555</item>
 		<item name="colorKnobRipple">#bbb</item>
-		<item name="colorKnob">#000</item>
-		<item name="colorKnobIndicator">#000</item>
+		<item name="colorKnob">#333</item>
+		<item name="colorKnobIndicator">#656565</item>
 		<item name="colorKnobIndicatorPressed">#000</item>
 		<item name="colorKnobIndicatorDisabled">#ccc</item>
 		<item name="colorKnobPressed">#000</item>
@@ -202,7 +204,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorSeparatorLight">#EEE</item>
 
 		<item name="colorNavbarIconsLessContrast">#fff</item><!-- NOTE: not used in default theme -->
-		<item name="colorNavbarIcons">#FF686868</item>
+		<item name="colorNavbarIcons">#f333</item>
 		<item name="colorBgNavbar">#fff</item>
 		<item name="colorBgTransparentNavbar">#7fff</item><!-- REVISIT: doesn't look so great for Android 10 navbar-line, but still is OK for usual navbar there -->
 
@@ -234,7 +236,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="holeColorWidth">2.5dp</item>
 		<item name="holeGlowWidth">0dp</item><!-- Increased for Dark. Doesn't look good for Light -->
-		<item name="holeColorRadius">1.25dp</item>
+		<item name="holeColorRadius">2.5dp</item>
 
 		<item name="prev_cat_round">@drawable/prev_cat_round_rounded</item>
 		<item name="rw_round">@drawable/rw_round_rounded</item>
@@ -342,6 +344,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="toast_excl">@drawable/toast_exclamation_tinted</item><!-- Toast exlcamation sign -->
 		<item name="toast_queue">@drawable/toast_queue_tinted</item>
 		<item name="toast_info">@drawable/toast_info_tinted</item>
+		<item name="toast_unhappy">@drawable/toast_unhappy_tinted</item>
 
 		<item name="button_selector">?android:attr/selectableItemBackgroundBorderless</item><!-- Background used for buttons -->
 		<item name="ar_down_selector">@drawable/ar_down</item><!-- Arrow down image used for combobox inputs, e.g. like in Edit Tags dialog/Genre -->
@@ -350,10 +353,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="rescan">@drawable/refresh</item>
 		<item name="list_options">@drawable/list_options_stroke</item>
 		<item name="add_to_pl">@drawable/add_to_pl_stroke</item>
-		<item name="info">@drawable/info</item>
+		<item name="add_to_pl_at_start">@drawable/add_to_pl_at_start_24dp</item>
+		<item name="add_to_pl_shuffled">@drawable/add_to_pl_shuffled_24dp</item>
+		<item name="info">@drawable/info_stroke_24dp</item>
 		<item name="send">@drawable/send_stroke</item>
 		<item name="enqueue">@drawable/enqueue_stroke</item>
+		<item name="enqueue_shuffled">@drawable/enqueue_shuffled_24dp</item>
 		<item name="add_next">@drawable/add_next_stroke</item>
+		<item name="add_next_shuffled">@drawable/add_next_shuffled_24dp</item>
 		<item name="lyrics">@drawable/lyrics</item>
 		<item name="album_art">@drawable/image</item>
 		<item name="delete">@drawable/delete_stroke_24dp</item>
@@ -381,6 +388,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="search_24dp">@drawable/search</item>
 
 		<item name="changelog_24dp">@drawable/zap</item>
+
+		<item name="settings_navbar">@drawable/settings_navbar</item>
 		<item name="settings_24dp">@drawable/settings_24dp</item>
 		<item name="settings_alt_24dp">@drawable/settings_stroke_24dp</item>
 		<item name="support_24dp">@drawable/support</item>
@@ -395,6 +404,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="sort_num_tracks_24dp">@drawable/sort_num_tracks_24dp</item>
 		<item name="shuffle_24dp">@drawable/shuffle_24dp</item>
 		<item name="stream_24dp">@drawable/stream_24dp</item>
+
+		<item name="insert_top_24dp">@drawable/insert_top_24dp</item>
+		<item name="insert_bottom_24dp">@drawable/insert_bottom_24dp</item>
+		<item name="insert_shuffle_24dp">@drawable/insert_shuffle_24dp</item>
 
 		<item name="l_plus_r_ch_24dp">@drawable/l_plus_r_ch_24dp</item>
 		<item name="l_ch_24dp">@drawable/l_ch_24dp</item>
@@ -441,15 +454,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Elevation -->
 		<item name="dialogFrame_elevation">16dp</item>
 		<item name="control_elevation">4dp</item>
+		<item name="bottom_toolbar_buttons_elevation">1.5dp</item><!-- Overridden for black theme -->
 
 		<item name="aa_elevation">4dp</item>
 		<item name="grid_aa_elevation">4dp</item>
 		<item name="list_aa_elevation">2dp</item>
 		<item name="over_aa_elevation">4dp</item>
+		<item name="over_aa_elevation_plus">4.25dp</item><!-- over_aa_elevation + some minor offset to top -->
 		<item name="item_ontop_elevation">4.5dp</item><!-- This should be always on top of everything in item -->
 
 		<item name="popup_elevation">8dp</item>
 		<item name="navbar_elevation">1.25dp</item>
+		<item name="bottom_toolbar_elevation">1.25dp</item>
 		<item name="bar_elevation">2dp</item>
 		<item name="toast_elevation">2dp</item>
 		<item name="VisPanelFrame_elevation">1.99dp</item><!-- Usually slightly below toast, but above other main contents -->
@@ -498,11 +514,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="corners_miniplayer_aa">@dimen/corners_miniplayer_aa</item><!-- 12dp, depends on Navbar_height -->
 
-		<!-- Track item theme dependent attributes -->
+		<!-- ListSubstyle -->
+		<item name="textHeaderSize">186dp</item>
+		<item name="topTextHeaderSize">76dp</item>
+		<item name="headerSize">236dp</item>
+		<item name="humanCatHeaderSize">276dp</item>
+		<item name="compactHeaderSize">172dp</item>
+		<item name="compactHumanCatHeaderSize">148dp</item>
+		<item name="compactTextHeaderSize">166dp</item>
+		<item name="searchHeaderSize">@dimen/ListSubstyleBase2_searchHeaderSize</item><!-- Includes margin for status bar and search field -->
+		<item name="targetSearchHeaderSize">@dimen/ListSubstyleBase2_targetSearchHeaderSize</item><!-- Includes margin for status bar, search field, and target button -->
 
 		<!-- Extra space for 1-line "human" grid cell layouts => so cell has non-square layout with extra space for title below image -->
 		<item name="humanGridItemExtraSpace">22dp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
 		<item name="humanGridZoomedItemExtraSpace">30dp</item><!-- 2x grids. Overridden for alt/bold fonts -->
+
+
+
+		<!-- Track item theme dependent attributes -->
 
 		<!-- This is for ActivityTheme_Whitepro_AltLayout or for the similar 3rd party themes -->
 		<item name="Alt_ListSubstyle_gridItem1LineExtraSpace">@dimen/Alt_ListSubstyle_Base_gridItem1LineExtraSpace</item><!-- 1line 4x, 3x grids -->
@@ -620,6 +649,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: there is also increased margin, but we need exactly Navbar_normal_marginB value for TopContainer reduceBottomInset -->
 		<item name="navbar_marginB">@dimen/Navbar_marginB_more_rounded</item>
 
+		<!-- Globally setting overshoot parameters for stuff like AA popup, meta info AA. Some views override this (e.g. equalizer horizontal scrolls) -->
+		<item name="maxOvershoot">50dp</item>
+		<item name="maxStretchOvershoot">50dp</item>
 
 		<!-- Used for ActivityTheme_Whitepro_PlainSeekbar, overridden by ActivityTheme_Whitepro_AltLayout  -->
 		<item name="PlainSeekbar_buttons_offset">@dimen/PlainSeekbar_buttons_offset</item>
@@ -651,8 +683,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Globally enables debug rectangle around fast text view text/drawables. Can be set per specific FastTextViews as well -->
 		<!--<item name="debugRectColor">#ffaaaaaa</item>-->
-
-
 		<!-- Deprecated stuff -->
 
 		<!-- @Deprecated - not used -->
@@ -689,6 +719,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TrackItem_alignToContent">none</item>
 		<item name="TrackItem_alignToContent_horizontal">none</item>
 	</style>
+
+	<!-- An overlap style we're using for skins assuming layout_(min|max)(Width|Height) do not apply for the attached views -->
+	<style name="ActivityTheme_Legacy_minMax">
+		<item name="layout_ignoreMinMaxForAttach">true</item>
+	</style>
 	
 	<!-- An overlap style -->
 	<!-- Inverses navbar -->
@@ -714,24 +749,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_Whitepro_TransparentLightNavbar" parent="ActivityTheme_Whitepro_TransparentNavbar">
 	</style>
 	
-	<!-- No need to override all scenes, as we change just background, which is not changed by scenes for Poweramp Navbar.
-	     We also derive from our skin Navbar style to reuse previous modification (e.g. margins).
-	     See also/sync with values-sw2dp-land/styles-navbar.xml where this is repeated for land -->
-	<style name="Navbar_transparentNavbar" parent="Navbar">
-		<item name="android:background">@drawable/navbar_transparent_bg</item><!-- NOTE: @null won't work here, as this will make navbar a non-drawing view, thus, no scene background change will happen -->
-		<item name="applyViewParams">true</item>
-		<item name="android:elevation">0px</item>
-	</style>
-	<style name="Navbar_scene_navbar_1line_sheet_transparentNavbar" parent="Navbar_scene_navbar_1line_sheet">
-		<item name="android:background">@drawable/navbar_bg</item><!-- Apply white background for scenes, so navbar has visible background in lists and when expanded -->
-		<item name="applyViewParams">true</item><!-- Enables background changes for scene -->
-		<item name="android:elevation">?navbar_elevation</item>
-	</style>
-	<style name="Navbar_scene_navbar_2lines_transparentNavbar" parent="Navbar_scene_navbar_2lines">
-		<item name="android:background">@drawable/navbar_bg</item>
-		<item name="applyViewParams">true</item>
-		<item name="android:elevation">?navbar_elevation</item>
-	</style>
 	<style name="SelectionMenuSubcontainer_scenes_hidden_transparentNavbar" parent="SelectionMenuSubcontainer_scenes_hidden">
 		<item name="jumpVisibility">false</item><!-- Avoid jumping visibility, let it properly fade -->
 	</style>
@@ -905,8 +922,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<!-- NOTE: on cold start, older Samsung OneUI launchers incorrectly animate adaptive icon if we set transparent or
 		 wallpaper bg here.
-	     OneUI launcher seems to always do that ugly icon animation, though this is not noticeable for many apps
-	     due to the overdrawing it with some background -->
+	     OneUI launcher seems to always do that ugly icon animation on very first cold start after the install:
+	     - sdk 31+ splash screen is ignored (due to startup activity->main activity transition)(
+	     - not happening after reboots and for any other cold starts
+	     NOTE: not using splash screens here, as our typical cold start should be within 250ms, and splash screen
+	           may add comparable time -->
 	<style name="StartupActivity" parent="Base_ActivityTheme_Default">
 		<item name="android:windowBackground">@android:color/transparent</item>
 		<item name="android:windowClipToOutline">false</item>

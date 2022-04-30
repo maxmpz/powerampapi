@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -90,6 +90,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?EqToneButton"
 		w:param="@id/dsp_tone_enabled"
 		w:updateMsgId="@id/msg_dsp_eq_changed"
+
+		w:longPressCmdId="@id/cmd_app_open_settings"
+		w:longPressBusId="@id/bus_app_cmd"
+		w:string="peq_equ_tone"
+
 		android:text="@string/tone"
 	/>
 

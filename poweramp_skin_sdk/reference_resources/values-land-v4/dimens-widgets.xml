@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values-land -->
+<resources>
+    <dimen name="widget_conf_options_width">420dp</dimen><!--  fill parent -->
+    
+   	<dimen name="widget4x2_height">-1px</dimen>
+
+   	<dimen name="widget4x2_controls_margin1">-8dip</dimen>
+   	<dimen name="widget4x2_controls_margin2">-12dip</dimen>
+   	
+   	<dimen name="widget4x1_conf_height">76dp</dimen>
+   	<dimen name="widget4x1_controls_paddingLR">0dip</dimen>
+   	<dimen name="widget4x1_controls_margin">-4dp</dimen>
+   	
+   	<dimen name="widget_small_conf_width">390dip</dimen>
+   	<dimen name="widget_small_conf_height">160dip</dimen>
+   	
+   	<dimen name="widget4x2_controls_marginTop">-4dip</dimen>
+</resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -24,8 +24,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: linear knobs and related size increase requires enough vertical room, not just width -->
 	<dimen name="EqLinearKnob_thumbWidth">32dp</dimen>
 	<dimen name="EqLinearKnob_thumbHeight">64dp</dimen>
-	<dimen name="knob_thumb_indicator_top_bottom">31dp</dimen>	
-	<dimen name="knob_thumb_indicator_left_right">6dp</dimen>
+	<dimen name="knob_thumb_indicator_top_bottom">30dp</dimen>
+	<dimen name="knob_thumb_indicator_left_right">8.5dp</dimen>
 	<dimen name="knob_thumb_radius">16dp</dimen>
 	<dimen name="knob_thumb_radius_less_rounded">12dp</dimen>
 	<dimen name="EqKnobValueText_size">10.5sp</dimen>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:wpc="http://schemas.android.com/apk/res-auto">
+	<!-- Sync with BaseCommonWidgetProvider.FONT_FAMILY_* and related code,
+	     also build.xml gentextlayouts-pass-all.
+	-->			
+	<string-array name="pref_widget_font_families_extra" tools:ignore="InconsistentArrays">
+		<item>@string/skin_alt_font</item>
+		<item>@string/bold</item>
+	</string-array>
+</resources>

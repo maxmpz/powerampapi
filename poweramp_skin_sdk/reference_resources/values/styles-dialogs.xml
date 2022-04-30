@@ -204,7 +204,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:background">?colorShade</item>
 	</style>
-	
+
 	<style name="BaseDialogFrame">
 		<item name="android:background">@drawable/default_dialog_bg_less_rounded</item><!-- NOTE: this seems to introduce padding (from insets) -->
 		<item name="android:elevation">?dialogFrame_elevation</item>
@@ -539,51 +539,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">@null</item>
 	</style>		
 	
-	<style name="CenteredAlertDialog" parent="CenteredDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>	
-	</style>
-	<style name="BottomsheetAlertDialog" parent="BottomsheetDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>	
-	</style>
-	<style name="TopsheetAlertDialog" parent="TopsheetDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>	
-	</style>
-	
-	<style name="dialog_AlertDialogActivity" parent="BottomsheetAlertDialog"/>
-	
-	<!-- NOTE: supporting just normal centered dialog currently -->
-	<style name="dialog_AlertDialogActivity_centered" parent="CenteredAlertDialog"/>
-	
-	<!-- NOTE: also used for custom view with no padding -->
-	<style name="dialog_AlertDialogActivity_list" parent="BottomsheetAlertDialog">
-		<item name="DialogContent">@style/DialogContentNoPadding</item>
-		<item name="dragByNestedScroll">false</item>
-	</style>
-	<!-- NOTE: also used for custom view with no padding -->
-	<style name="dialog_AlertDialogActivity_list_centered" parent="CenteredAlertDialog">
-		<item name="DialogContent">@style/DialogContentNoPadding</item>
-		<item name="dragByNestedScroll">false</item>
-	</style>
-	
-	<style name="dialog_AlertDialogActivity_vertical_buttons" parent="BottomsheetDialog_vertical_buttons">
-		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>
-	</style>
-	
-	<style name="dialog_AlertDialogActivity_no_title" parent="BottomsheetAlertDialog">
-		<item name="dialogContentPaddingTop">16dp</item><!-- Optically sync with the bottom padding -->
-		<item name="dialogContentPaddingBottom">12dp</item><!-- Optically sync with the top padding -->
-		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
-		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
-	</style>
-		
-	<style name="dialog_AlertDialogActivity_no_title_vertical_buttons" parent="dialog_AlertDialogActivity_vertical_buttons">
-		<!-- Larger paddings to sync vertical buttons -->
-		<item name="dialogContentPaddingTop">20dp</item>
-		<item name="dialogContentPaddingBottom">20dp</item>
-		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
-		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
-	</style>
-		
+
 	<!-- NOTE: forced this to normal dialog buttons for land, but again vertical for tablets -->
 	<style name="BaseCenteredDialog_vertical_buttons" parent="CenteredDialog">
 		<item name="dialogContentPaddingBottom">16dp</item><!-- Introduce some content bottom padding -->
@@ -704,9 +660,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxWidth">@null</item>
    	</style>
    	
-	<style name="DialogButtonSpace_vertical_buttons"></style><!-- Not used anymore -->
-		
-	
+	<style name="DialogButtonSpace_vertical_buttons"/><!-- Not used anymore -->
+
 	<style name="DialogMenuPlaceholderLayout">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
@@ -715,12 +670,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="shadeColor">?colorShade</item>
 	</style>
 	
-	<style name="DialogAlertDontShowAgainLP">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">8dp</item>
-	</style>
-	
+
 	<style name="DialogSettingsGearIcon">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -734,7 +684,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingLeft">16dp</item>
 		<item name="android:paddingRight">16dp</item>
 		<item name="android:background">@drawable/ripple_rounded_large</item>
-		<item name="android:drawable">@drawable/settings_24dp</item>		
+		<item name="android:drawable">@drawable/settings_24dp</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>
@@ -773,57 +723,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:minLines">3</item>
 	</style>
 
-	<!-- Multichoice Alert Dialog -->
-	<style name="AlertDialogCheckableLayout_Multichoice">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-		<item name="android:textColor">?android:attr/textColorAlertDialogListItem</item>
-		<item name="android:paddingStart">?dialogContentPaddingLR</item>
-		<item name="android:paddingEnd">?dialogContentPaddingLR</item>
-		<item name="android:paddingTop">2dp</item>
-		<item name="android:paddingBottom">4dp</item>
-		<item name="android:background">?android:attr/selectableItemBackground</item>
-		<item name="android:clickable">true</item>
-		<item name="android:focusable">true</item>
-		<item name="android:focusableInTouchMode">false</item>
-	</style>
-	<style name="AlertDialogCheckBox_Multichoice">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
-		<item name="android:background">@drawable/rounded_large</item>
-		<item name="layout_consumeSpace">horizontal</item>
-	</style>
-	<style name="AlertDialog_Text_Multichoice">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
-		<item name="android:textColor">?android:attr/textColorAlertDialogListItem</item>
-		<item name="android:singleLine">true</item>
-		<item name="android:ellipsize">end</item>
-		<item name="layout_gravityTarget">@id/checkbox</item>
-		<item name="android:layout_gravity">center_vertical</item>
-		<item name="layout_attachLeft">@id/checkbox</item>
-		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
-		<item name="android:includeFontPadding">false</item>
-	</style>
-	<style name="AlertDialog_Hint_Multichoice">
-		<item name="android:textAppearance">?Hint</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachLeft">@id/checkbox</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:singleLine">true</item>
-		<item name="android:ellipsize">end</item>
-
-		<item name="drawableWidth">10dp</item>
-		<item name="drawableHeight">10dp</item>
-		<item name="android:drawablePadding">8dp</item>
-
-		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:gravity">center_vertical</item>
-	</style>
 </resources>

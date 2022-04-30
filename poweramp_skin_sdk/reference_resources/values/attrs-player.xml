@@ -99,10 +99,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="rescan" format="reference"/>
 	<attr name="list_options" format="reference"/>
 	<attr name="add_to_pl" format="reference"/>
+	<attr name="add_to_pl_at_start" format="reference"/>
+	<attr name="add_to_pl_shuffled" format="reference"/>
 	<attr name="info" format="reference"/>
 	<attr name="send" format="reference"/>
 	<attr name="enqueue" format="reference"/>
+	<attr name="enqueue_shuffled" format="reference"/>
 	<attr name="add_next" format="reference"/>
+	<attr name="add_next_shuffled" format="reference"/>
 	<attr name="lyrics" format="reference"/>
 	<attr name="album_art" format="reference"/>
 	<attr name="delete" format="reference"/>
@@ -128,7 +132,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="playlist_24dp" format="reference"/>
 	<attr name="play_24dp" format="reference"/>
 	<attr name="search_24dp" format="reference"/>
-		
+
+	<!-- This may visually match settings_24dp, but may also have a higher resolution for xhdpi-large.
+	     settings_24dp should not grow over 24dp as it used with implicit size in many places -->
+	<attr name="settings_navbar" format="reference"/>
 	<attr name="settings_24dp" format="reference"/>
 	<attr name="settings_alt_24dp" format="reference"/><!-- E.g. settings_stroke_24dp -->
 	<attr name="changelog_24dp" format="reference"/>
@@ -144,6 +151,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="sort_num_tracks_24dp" format="reference"/>
 	<attr name="shuffle_24dp" format="reference"/>
 	<attr name="stream_24dp" format="reference"/><!-- This one should be preferable rendered for at least xxx and xx hdpi densities for best scaling -->
+
+	<attr name="insert_top_24dp" format="reference"/>
+	<attr name="insert_bottom_24dp" format="reference"/>
+	<attr name="insert_shuffle_24dp" format="reference"/>
 	
 	<attr name="l_plus_r_ch_24dp" format="reference"/>
 	<attr name="l_ch_24dp" format="reference"/>
@@ -205,10 +216,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="aa_elevation" format="dimension"/><!-- When on main screen -->
 	<attr name="list_aa_elevation" format="dimension"/><!-- When in list -->
 	<attr name="grid_aa_elevation" format="dimension"/><!-- When in grid -->
-	<attr name="over_aa_elevation" format="dimension"/><!-- Max. possible aa elevation - to keep some other views always on top of AA -->
+	<attr name="over_aa_elevation" format="dimension"/><!-- Max. aa elevation - to keep some other views always on top of AA -->
+	<attr name="over_aa_elevation_plus" format="dimension"/><!-- Same as over_aa_elevation with small increase -->
 	<attr name="VisPanelFrame_elevation" format="dimension"/>
 	<attr name="item_ontop_elevation" format="dimension"/><!-- Elevation which is over any other standard item child views -->
 	<attr name="navbar_elevation" format="dimension"/>
+	<attr name="bottom_toolbar_elevation" format="dimension"/><!-- Elevation for list bottom buttons. Should generally match navbar_elevation -->
 			
 	<!-- AA corners for various scenes and item types:
 		 - tracks => any tracks lists and big AA on main screen
@@ -216,7 +229,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 - other => human categories (Artists, Album Artists, Composers)
 		 
 		 Can be "matchHeight" - makes it round
-		 Can be @id/some_id reference to the skin <seekbar> option controled float value 
+		 Can be @id/some_id reference to the skin <seekbar> option controlled float value
 	-->
 	
 	<attr name="corners_aa_scene_aa" format="dimension|reference"><!-- Main screen big AA corners -->
@@ -471,12 +484,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="headerSize" format="dimension"/>
 		<!-- Compact header size. If headerSize<=0, headerSize will be list width/2 -->
 		<attr name="compactHeaderSize" format="dimension"/>
-		<!-- Larger header size for "human" categories, i.e. artists/composers --> 
+		<!-- Larger header size for "human" categories, i.e. artists/composers, also years -->
 		<attr name="humanCatHeaderSize" format="dimension"/>
 		<!-- Maximum system font scale setting to allow apply "compact" header sizes. 
 		     If user sets font scale larger than that, compact header option is disabled -->
 		<attr name="maxFontScaleForCompact" format="float"/>
-		<!-- Compact header size for "human" categories, i.e. artists/composers --> 
+		<!-- Compact header size for "human" categories, i.e. artists/composers, also years -->
 		<attr name="compactHumanCatHeaderSize" format="dimension"/>
 		<!-- Size for header in search page -->
 		<attr name="searchHeaderSize" format="dimension"/>
@@ -501,6 +514,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="allTracksSubheadSize" format="dimension"/>
 		<!-- Size of meta subheader, e.g. for any Files -->
 		<attr name="metaSubheadSize" format="dimension"/>
+
+		<!-- Bottom toolbar size -->
+		<attr name="bottomToolbarSize" format="dimension"/>
+		<!-- Bottom toolbar translationZ -->
+		<attr name="bottomToolbarZ" format="dimension"/>
 		
 		<!-- Extra space to add to calculated grid cell for 1line human categories, e.g. to place title there -->
 		<attr name="humanGridItemExtraSpace" format="dimension"/>
@@ -580,13 +598,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			These 3 radiuses can be defined per each scene, though there is little point in defined all of them for e.g. scene_aa* scenes (as only tracks are shown there),
 			though headers, menus, and grid/list scenes should have these defined  
 		--> 
-		<attr name="cornerRadius" format="dimension">
+		<attr name="cornerRadius" format="dimension|reference">
 			<enum name="matchHeight" value="-1"/>
 		</attr>
-		<attr name="cornerRadius2" format="dimension">
+		<attr name="cornerRadius2" format="dimension|reference">
 			<enum name="matchHeight" value="-1"/>
 		</attr>
-		<attr name="cornerRadius3" format="dimension">
+		<attr name="cornerRadius3" format="dimension|reference">
 			<enum name="matchHeight" value="-1"/>
 		</attr>
 		

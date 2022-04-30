@@ -107,7 +107,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="popup_menu_item"/><!-- Modality id: item popups -->
 
 	<!-- Used for view tag to mark it stretchable for scroll overshoot -->
-	<item type="id" name="inner_scroll_overshoot"/>
+	<item type="id" name="inner_scroll_stored_trans"/>
 	
 	<!-- Dialogs -->
 	<item type="id" name="dialog_shim"/>
@@ -162,6 +162,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_view_cache"/><!-- obj=>ViewCache -->
 	<item type="id" name="state_list_current_uri"/><!-- (main list) obj=>Uri which describes current loaded list state -->
 	<item type="id" name="state_list_current_pos"/>
+	<item type="id" name="state_list_range_avail"/><!-- boolean, true when range selection is possible -->
 
 	<item type="id" name="state_list_preset_rename_allowed"/><!-- boolean, currently for EqPrestPopupListLayout only -->
 	<item type="id" name="state_list_preset_delete_allowed"/><!-- boolean, currently for EqPrestPopupListLayout only -->
@@ -193,6 +194,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_up_nav"/>
 	<item type="id" name="cmd_list_search_text"/>
 	<item type="id" name="cmd_list_delete"/>
+	<item type="id" name="cmd_list_select_range"/>
 	
 	<item type="id" name="cmd_app_open_settings"/><!-- obj => settings page -->
 	<item type="id" name="cmd_app_open_settings_search"/><!-- Open settings search directly -->

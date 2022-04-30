@@ -4,7 +4,7 @@
 	android:exitFadeDuration="@integer/selector_fade_ms">
 
 	<item android:state_activated="true">
-		<bitmap android:src="@drawable/sleep_timer_alt_stroke_32dp" android:tint="?colorLessContrast"/>
+		<bitmap android:src="@drawable/sleep_timer_alt_stroke_32dp" android:tint="?colorIconLessContrast"/>
 	</item>
 	
 	<item>

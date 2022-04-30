@@ -34,16 +34,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/texts"
 		style="@style/SettingsSearchItemTexts"
 	>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
-			style="@style/SettingsSearchItemTitle"
-	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
-			style="@style/SettingsSearchItemLine2"
-	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/line3"
-		style="@style/SettingsSearchItemLine3"
-	/>
-			
+		<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
+				style="@style/SettingsSearchItemTitle"
+		/>
+		<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
+				style="@style/SettingsSearchItemLine2"
+		/>
+		<com.maxmpz.widget.base.FastTextView android:id="@+id/line3"
+			style="@style/SettingsSearchItemLine3"
+		/>
+
 	</com.maxmpz.widget.base.FastLayout>
 
 </com.maxmpz.audioplayer.preference.SearchItemView>

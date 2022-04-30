@@ -31,7 +31,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="toast_excl" format="reference"/>
 		<attr name="toast_queue" format="reference"/>
 		<attr name="toast_info" format="reference"/>
-		
+		<attr name="toast_unhappy" format="reference"/>
+
 		<attr name="button_selector" format="reference"/>
 		<attr name="ar_down_selector" format="reference"/>
 				

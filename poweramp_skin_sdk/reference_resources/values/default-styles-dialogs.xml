@@ -262,11 +262,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="animOnClick">true</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
+
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">center</item>
 	</style>
-	
+
+	<style name="PlaylistSelectDialogAddButton" parent="DialogTopButtonBase">
+		<item name="android:layout_width">42dp</item>
+		<item name="android:layout_height">32sp</item>
+
+		<item name="android:layout_gravity">top|right</item>
+		<item name="android:layout_marginRight">12dp</item>
+
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
+		<item name="android:drawable">?add_to_pl</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+
+		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+	</style>
+
 	<!-- NOTE: button layouts can't adequately measure itself in collapsed (button) mode as inner contents is much larger, actuall, thus fixed size is required -->
 	<style name="PlaylistSortButtonLayout" parent="DialogTopButtonBase">
 		<item name="android:layout_width">42dp</item>
@@ -280,5 +299,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="buttonStyle">@style/SmallerPopupButton</item>
 		<item name="menuButtonStyle">@style/SmallerPopupButton_scene_button_menu</item>
+	</style>
+
+	<style name="PlaylistInsertButtonLayout" parent="PlaylistSortButtonLayout">
+
 	</style>
 </resources>

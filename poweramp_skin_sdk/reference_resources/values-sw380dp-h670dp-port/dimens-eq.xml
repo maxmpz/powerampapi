@@ -34,5 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqVolPanel1_paddingTop">8dp</dimen>
 	
 	<dimen name="RoundKnobLabelLeftTop_marginRight">8dp</dimen>
+
+	<dimen name="EqToneKnobLayout_marginSide">6dp</dimen><!-- Margin applied to bass right and treble left, so actual padding between those == x2 -->
 	
 </resources>

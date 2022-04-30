@@ -73,7 +73,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
 	<dimen name="ListSubstyleBase2_aaMarginBottom">280dp</dimen>
-	<dimen name="ListSubstyleBase2_searchHeaderSize">117dp</dimen>
+
 	<dimen name="Alt_TopListSubstyle_aaMarginBottom">280dp</dimen>
 	
 	<dimen name="TopPlay_maxSize">90dp</dimen>

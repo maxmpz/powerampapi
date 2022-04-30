@@ -159,14 +159,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					<com.maxmpz.widget.base.FastButton android:id="@+id/dialog_toast_button"
 						style="?DialogToastButton"
 					/>
-					<TextView android:id="@+id/dialog_toast_line_only_1"
+					<com.maxmpz.widget.base.TextView android:id="@+id/dialog_toast_line_only_1"
 						style="?DialogToastLineOnly1"
 					/>
 					<!-- NOTE: text views here to support styleable charsequences -->
-					<TextView android:id="@+id/dialog_toast_line1"
+					<com.maxmpz.widget.base.TextView android:id="@+id/dialog_toast_line1"
 						style="?DialogToastLine1"
 					/>
-					<TextView android:id="@+id/dialog_toast_line2"
+					<com.maxmpz.widget.base.TextView android:id="@+id/dialog_toast_line2"
 						style="?DialogToastLine2"
 					/>
 				</com.maxmpz.widget.base.FastLayout>

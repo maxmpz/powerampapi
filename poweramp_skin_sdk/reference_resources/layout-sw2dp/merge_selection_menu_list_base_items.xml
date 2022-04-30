@@ -22,33 +22,87 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.base.BusStateEnabledActionButton
-		style="?SelectionListContextButton"
-		android:drawable="?add_to_pl"
-		android:text="@string/playlist"
-		w:stateId="@id/state_list_something_selected"
-		w:stateMsgId="@id/state_list_selection_count"
-		
-		w:msgId="@id/cmd_list_add_to_pl_dialog"
-	/>
-	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/enqueue"
-		style="?SelectionListContextButton"
-		android:drawable="?enqueue"
-		android:text="@string/queue"
-		w:stateId="@id/state_list_something_selected"
-		w:stateMsgId="@id/state_list_selection_count"
-		
-		w:msgId="@id/cmd_list_add_to_q"
-	/>
-	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/queue_as_next"
-		style="?SelectionListContextButton"
-		android:drawable="?add_next"
-		android:text="@string/queue_as_next_short"
-		w:stateId="@id/state_list_something_selected"
-		w:stateMsgId="@id/state_list_selection_count"
+	<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/add_to_pl"
+		style="?SelectionListContextPopupButtonLayout"
 
-		w:msgId="@id/cmd_list_add_as_next_to_q"
-	/>
+		w:disableForStateBusId="@id/list"
+		w:enableForStateId="@id/state_list_something_selected"
+		w:disableForStateMsgId="@id/state_list_selection_count"
+
+		w:stateBusId="@id/list"
+
+		w:stateId="@id/state_playlist_insert_pos"
+
+		w:clickOnClick="true"
+		w:clickBusId="@id/list"
+		w:clickMsgId="@id/cmd_list_add_to_pl_dialog"
+
+		w:buttonsBusId="@id/list"
+		w:buttonsMsgId="@id/cmd_set_playlist_insert_pos"
+		w:buttonsLabels="@array/add_to_pl_modes"
+		w:buttonsDrawables="@array/add_to_pl_modes_icons_24dp"
+		w:buttonsArg1="@array/playlist_insert_args1"
+		>
+	</com.maxmpz.widget.base.BusSelectablePopupButtonLayout>
+	<SceneParams w:scene="@+id/scene_button_menu"
+		style="?SelectionListContextPopupButtonLayout_scene_item_menu"
+		/>
+
+	<!-- NOTE: using disableForStateBusId="@id/list" to enable disabling, but this is replaced to the actual target of the selection menu anyway
+	     NOTE: disableForStateBusId, stateBusId, buttonsBusId are set by the code
+	-->
+	<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/enqueue"
+		style="?SelectionListContextPopupButtonLayout"
+
+		w:disableForStateBusId="@id/list"
+		w:enableForStateId="@id/state_list_something_selected"
+		w:disableForStateMsgId="@id/state_list_selection_count"
+
+		w:stateBusId="@id/list"
+
+		w:stateId="@id/state_queue_insert_pos"
+
+		w:clickOnClick="true"
+		w:clickBusId="@id/list"
+		w:clickMsgId="@id/cmd_list_add_to_q"
+
+		w:buttonsBusId="@id/list"
+		w:buttonsMsgId="@id/cmd_set_queue_insert_pos"
+		w:buttonsLabels="@array/enqueue_modes"
+		w:buttonsDrawables="@array/enqueue_modes_icons_24dp"
+		w:buttonsArg1="@array/enqueue_modes_args1"
+		>
+	</com.maxmpz.widget.base.BusSelectablePopupButtonLayout>
+	<SceneParams w:scene="@+id/scene_button_menu"
+		style="?SelectionListContextPopupButtonLayout_scene_item_menu"
+		/>
+
+	<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/queue_as_next"
+		style="?SelectionListContextPopupButtonLayout"
+
+		w:disableForStateBusId="@id/list"
+		w:enableForStateId="@id/state_list_something_selected"
+		w:disableForStateMsgId="@id/state_list_selection_count"
+
+		w:stateBusId="@id/list"
+
+		w:stateId="@id/state_play_next_insert_pos"
+
+		w:clickOnClick="true"
+		w:clickBusId="@id/list"
+		w:clickMsgId="@id/cmd_list_add_as_next_to_q"
+
+		w:buttonsBusId="@id/list"
+		w:buttonsMsgId="@id/cmd_set_play_next_insert_pos"
+		w:buttonsLabels="@array/play_next_modes"
+		w:buttonsDrawables="@array/play_next_modes_icons_24dp"
+		w:buttonsArg1="@array/enqueue_modes_args1"
+		>
+	</com.maxmpz.widget.base.BusSelectablePopupButtonLayout>
+	<SceneParams w:scene="@+id/scene_button_menu"
+		style="?SelectionListContextPopupButtonLayout_scene_item_menu"
+		/>
+
 	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton"
 		android:drawable="?delete_24dp"

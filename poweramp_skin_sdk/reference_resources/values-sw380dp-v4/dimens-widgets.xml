@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- values-sw360-v4 -->
+<resources>
+	<dimen name="widget4x1_controls_marginTop">4dp</dimen>
+   	<dimen name="widget4x1_cat_button_size">36dp</dimen>
+   	<dimen name="widget4x1_rw_ff_button_size">36dp</dimen>
+   	<dimen name="widget4x1_big_button_size">36dp</dimen>
+   	<dimen name="widget4x1_big_button_padding">2dp</dimen>
+   	
+   	<dimen name="widget4x2_cat_button_size">44dp</dimen>
+   	<dimen name="widget4x2_ff_button_size">50dp</dimen>
+   	<dimen name="widget4x2_big_button_size">58dp</dimen>
+   	<dimen name="widget4x2_big_button_padding">8dp</dimen>
+</resources>
