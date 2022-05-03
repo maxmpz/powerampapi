@@ -26,16 +26,17 @@ android {
     aaptOptions {
         def localProps = new Properties()
         localProps.load(rootProject.file("local.properties").newDataInputStream())
-        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-918-resources.zip"
+        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-935-resources.zip"
+        println "Using $paResources PA resources"
 
         additionalParameters "--emit-ids", "${projectDir}/stable-ids.txt",
                                 "--package-id", "0x80",
                                 "-I", "${projectDir}/../${paResources}"
         if(project.file("stable-ids.txt").exists()) {
-            print "Got stable-ids OK"
+            println "Got stable-ids OK"
             additionalParameters "--stable-ids", "${projectDir}/stable-ids.txt"
         } else {
-            print "WARNING: no stable-ids.txt specified"
+            println "WARNING: no stable-ids.txt specified"
         }
     }
     compileOptions {
