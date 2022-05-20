@@ -995,6 +995,13 @@ public final class PowerampAPI {
 	public static final String EXTRA_SHUFFLE = "shuffle";
 
 	/**
+	 * Extra for ACTION_API_COMMAND, RESUME command. If true, Poweramp will try to resume even if it's in playing state<br>
+	 * {@code boolean}
+	 * @since 940
+	 */
+	public static final String EXTRA_IGNORE_PLAYING_STATE = "ips";
+
+	/**
 	 * Extra
 	 * Int
 	 * @see PowerampAPI#ACTION_OPEN_EQ
