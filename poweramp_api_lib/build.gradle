@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace 'com.maxmpz.powerampapilib'
     compileSdk 31
     buildToolsVersion "31.0.0"
 
