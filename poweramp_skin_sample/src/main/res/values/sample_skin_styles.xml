@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--suppress ALL -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	tools:ignore="ResourceCycle, NewApi">
 	<!-- Main theme, derived from Poweramp base white theme. We override only the attributes we need.
 	     Poweramp styles/attributes/values start with "com.maxmpz.audioplayer:", otherwise syntax is the standard Android xml resource syntax
 	 -->
@@ -162,6 +163,15 @@
 		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa_playing">@style/ItemTrackAAImage_scene_aa_playing</item>
 		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale">0.975</item>
 		<item name="SampleSkin_ItemTrackAAImage_scene_aa_scale_playing">1.0</item>
+
+		<!-- Apply some styling to main screen meta -->
+		<item name="com.maxmpz.audioplayer:TopMetaInfo">@style/TopMetaInfo</item>
+		<item name="com.maxmpz.audioplayer:TopMetaInfoLabel">@style/TopMetaInfoLabel</item>
+
+		<!-- Apply some styling to bottom floating buttons menu button -->
+		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_bottom_toolbar">@style/ItemTrackMenu_scene_bottom_toolbar</item>
+		<item name="com.maxmpz.audioplayer:ItemTextMenu_scene_bottom_toolbar">@style/ItemTrackMenu_scene_bottom_toolbar</item>
+
 	</style>
 
 	<style name="TopContainer" parent="com.maxmpz.audioplayer:TopContainer">
@@ -796,6 +806,19 @@
 
 	<style name="SampleSkin_Useless">
 		<!-- Empty -->
+	</style>
+
+	<style name="TopMetaInfo" parent="com.maxmpz.audioplayer:TopMetaInfo">
+		<item name="com.maxmpz.audioplayer:lineBackground">@drawable/semi_black_bg</item>
+	</style>
+
+	<style name="TopMetaInfoLabel" parent="com.maxmpz.audioplayer:TopMetaInfoLabel">
+		<item name="android:textColor">#fff</item>
+	</style>
+
+	<style name="ItemTrackMenu_scene_bottom_toolbar" parent="com.maxmpz.audioplayer:ItemTrackMenu_scene_bottom_toolbar">
+		<item name="android:background">@drawable/ripple_inverse_stroke_always_rounded</item>
+		<item name="com.maxmpz.audioplayer:drawableTint">#f00</item>
 	</style>
 
 </resources>
