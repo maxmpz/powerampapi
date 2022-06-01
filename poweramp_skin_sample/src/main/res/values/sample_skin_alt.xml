@@ -7,6 +7,9 @@
 	<style name="SampleSkin_Alt_Centered_Base" parent="com.maxmpz.audioplayer:ActivityTheme_Whitepro_AltLayout">
 		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">@style/Alt_Centered_ItemTrackTitle_scene_aa</item>
 		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">@style/Alt_ItemTrackLine2_scene_aa</item>
+
+		<!-- Ensure we override our bottom buttons menu, which has a separate override in Poweramp ActivityTheme_Whitepro_AltLayout style -->
+		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_bottom_toolbar">@style/ItemTrackMenu_scene_bottom_toolbar</item>
 	</style>
 	<!-- We'll override this for landscape -->
 	<style name="SampleSkin_Alt_Centered" parent="SampleSkin_Alt_Centered_Base">
