@@ -309,6 +309,7 @@ Converted option won't have summary, if the summary contains formatting symbols 
         <option
             name="[visible name]"
             overlapStyle="[overlap style reference, can be an empty string]"
+            summary="[optional. summary shown when option selected]"
         />
         ...
 </multiSwitch>
@@ -399,6 +400,31 @@ The page tag is ignored by builds prior 866, all inner options are still shown.
     </page>
 ```
 
+* msg (since build 940). Non-clickable message/hint to show. The lineX/smallLineX attributes are all optional
+```xml
+    <msg
+        align="[top|bottom - option. If specified, the message will be appropriately aligned]"
+        line1="[normal size text line or @string reference]"
+        smallLine1="[smaller size text line or @string reference]"
+        line2="[normal size text line or @string reference]"
+        smallLine2="[smaller size text line or @string reference]"
+        line3="[normal size text line or @string reference]"
+        smallLine3="[smaller size text line or @string reference]"
+        line4="[normal size text line or @string reference]"
+        smallLine5="[smaller size text line or @string reference]"
+    />
+```
+
+* globalOption (since build 940). Additional style to apply for appropriate global option. Multiple unique globalOptions are possible, per
+appropriate Poweramp global option. The style defined by the overlapAttr is applied after skin options, so skin may override
+some styling depending on the global option, such as OptionRatingDisabled
+```xml
+    <globalOption
+        option="[Poweramp global option attr - see styles-options.xml - e.g. @attr/OptionRatingDisabled]"
+        overlapAttr="[skin style attribute to apply when option is in effect - e.g. @attr/overlap_OptionRatingDisabled]"
+        />
+
+```
 
 ### Skin Options Persistence
 Poweramp persists skin option to own preferences based on skin generated IDs for the styles/attributes.
@@ -464,7 +490,7 @@ The most important files are:
 
 
 ### License
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software

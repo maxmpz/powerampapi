@@ -82,6 +82,10 @@
 			overlapStyle="@com.maxmpz.audioplayer:style/ActivityTheme_Whitepro_StaticSeekbar"
 			checkedByDefault="false"
 		/>
+		<msg
+			line1="Some hint title here"
+			smallLine1="Some hint message here"
+			/>
 
 		<radio
 			key="alt_layout_radio"
