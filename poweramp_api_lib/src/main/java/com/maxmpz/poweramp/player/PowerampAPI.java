@@ -1048,6 +1048,7 @@ public final class PowerampAPI {
 	 * {@code int}
 	 * @since 700
 	 * @see PowerampAPI#ACTION_STATUS_CHANGED
+	 * @see Lyrics#ACTION_UPDATE_LYRICS
 	 */
 	public static final String EXTRA_STATE = "state";
 
@@ -1383,6 +1384,13 @@ public final class PowerampAPI {
 		public static final String FLAGS = "flags";
 
 		/**
+		 * One of the {@link LyricsState} values
+		 * @since 941
+		 */
+		public static final String LYRICS_STATE = "lyricsState";
+
+
+		/**
 		 * {@link PowerampAPI.Track} {@link #FILE_TYPE} values
 		 */
 		public static class FileType {
@@ -1436,6 +1444,42 @@ public final class PowerampAPI {
 			public static final int FLAG_NOTIFICATION_UI         = 0x20;
 			/** Indicates the track is the first in Poweramp service session */
 			public static final int FLAG_FIRST_IN_PLAYER_SESSION = 0x40;
+		}
+
+		public static final class TagStatus {
+			public static final int TAG_NOT_SCANNED = 0;
+			public static final int TAG_SCANNED = 1;
+		}
+
+		/**
+		 * Values for {@link #LYRICS_STATE}
+		 * @since 941
+		 */
+		public static final class LyricsState {
+			/**
+			 * Lyrics are loading, probably by some 3rd party plugin. While this state is in effect,
+			 * we still may show lyrics if they already exist
+			 * @since 941
+			 */
+			public static final int LYRICS_STATE_LOADING = -2;
+
+			/**
+			 * No lyrics detected
+			 * @since 941
+			 */
+			public static final int LYRICS_STATE_NONE = -1;
+
+			/**
+			 * Lyrics state unknown, lyrics should be resolved
+			 * @since 941
+			 */
+			public static final int LYRICS_STATE_UNKNOWN = 0;
+
+			/**
+			 * Lyrics are available as data in the lyrics field
+			 * @since 941
+			 */
+			public static final int LYRICS_STATE_HAS_DATA = 1;
 		}
 
 		// Deprecated
@@ -1748,6 +1792,99 @@ public final class PowerampAPI {
 		 * {@code String} - your app package name
 		 */
 		public static final String EXTRA_PACKAGE = "pak";
+	}
+
+	/**
+	 * Describes simple Poweramp Lyrics API for lyrics loading plugin.<br><br>
+	 * Your plugin, usually in response to Poweramp {@link Lyrics#ACTION_NEED_LYRICS} or in response to any other event as your plugin seems
+	 * fit, may send {@link Lyrics#ACTION_UPDATE_LYRICS} intent with the appropriate extras filled to:
+	 * <ul>
+	 * <li>optionallu indicate your plugin is loading lyrics for the given track
+	 * <li>update loaded lyrics for the track or indicate a loading failure
+	 * </ul>
+	 * NOTE: Poweramp won't update lyrics if lyrics already exist for the given track (previously updated by some lyrics plugin)
+	 * unless user specifically refreshes lyrics for the given track. Refreshing the lyrics action causes {@link Lyrics#ACTION_NEED_LYRICS}
+	 * being resent again
+	 *
+	 * @since 941
+	 */
+	public static class Lyrics {
+		/**
+		 * Sent by Poweramp to your app when lyrics are required for the track.<br>
+		 * Sent, for example, when track has no lyrics, but lyrics mode is enabled, or
+		 * when user explicitly requesting the lyrics for a track.<br><br>
+		 *
+		 * In response, your app can send one or multiple {@link #ACTION_UPDATE_LYRICS} intents
+		 * to update lyrics state and/or data for the track.<br><br>
+		 *
+		 * See {@link #ACTION_TRACK_CHANGED_EXPLICIT} for explaination how exactly this event is sent to the background (plugin) apps.<br><br>
+		 *
+		 * Extras: {@link #EXTRA_TRACK}
+		 */
+		public static final String ACTION_NEED_LYRICS = "com.maxmpz.audioplayer.ACTION_NEED_LYRICS";
+
+		/**
+		 * Sent by your app to Poweramp.<br>
+		 * Changes lyrics or lyrics state for the track.<br><br>
+		 *
+		 * You can send lyrics data immediately or you can indicate some loading state + send lyrics data or failure state later.
+		 * Poweramp will show appropriate progress for loading (subject for timeout ~1 minute).<br><br>
+		 *
+		 * <b>(Optionally) to indicate your plugin started loading lyrics:</b>
+		 * <ul><li>send ACTION_UPDATE_LYRICS, EXTRA_ID=>long Track.REAL_ID, EXTRA_LYRICS_STATE=>STATE_LOADING</ul>
+		 *
+		 * <b>(Optionally) to indicate loading failure after ACTION_UPDATE_LYRICS+EXTRA_LYRICS_STATE=STATE_LOADING:</b>
+		 * <ul><li>send ACTION_UPDATE_LYRICS, EXTRA_ID=>long Track.REAL_ID, EXTRA_LYRICS_STATE=>STATE_FAILED</ul>
+		 *
+		 * <b>To update lyrics content for the track:</b>
+		 * <ul><li>send ACTION_UPDATE_LYRICS, EXTRA_ID=>long Track.REAL_ID, EXTRA_LYRICS=>lyrics content, plain text or LRC</ul>
+		 * 
+		 *  NOTE:
+		 *  <ul>
+		 *  <li>if multiple plugins send ACTION_UPDATE_LYRICS, the first received intent with non-empty lyrics wins
+		 *  <li>empty or very small EXTRA_LYRICS is ignored, so plugin can't remove existing lyrics
+		 *  <li>if the track already has some lyrics, they won't be updated by ACTION_UPDATE_LYRICS unless user specifically have requested that
+		 *      for the track via lyrics refresh action
+		 *  <li>you can send ACTION_UPDATE_LYRICS anytime, even if Poweramp does not request anything.
+		 *      The lyrics for the given track will be updated, if track has no lyrics yet
+		 *  <li>Poweramp shows link to the plugin which previously updated the lyrics with the plugin icon and name. Clicking the link
+		 *      sends ACTION_LYRICS_LINK event to your plugin with EXTRA_TRACK describing the track
+		 *  </ul>
+		 *
+		 * Extras: {@link #EXTRA_LYRICS}, {@link #EXTRA_STATE}<br>
+		 */
+		public static final String ACTION_UPDATE_LYRICS = "com.maxmpz.audioplayer.ACTION_UPDATE_LYRICS";
+
+		/**
+		 * Sent by Poweramp to your plugin when user clicks plugin link for the lyrics previously updated by your plugin. Plugin
+		 * can open some activity in response (this is "foreground" intent) or do nothing<br><br>
+		 * Extras: {@link #EXTRA_TRACK}
+		 */
+		public static final String ACTION_LYRICS_LINK = "com.maxmpz.audioplayer.ACTION_LYRICS_LINK";
+
+		/**
+		 * Extra for {@link #ACTION_UPDATE_LYRICS}. Contains lyrics data as text or in LRC format.<br>
+		 * {@code String}
+		 */
+		public static final String EXTRA_LYRICS = "lyrics";
+
+		/**
+		 * Extra for {@link #ACTION_UPDATE_LYRICS}. Contains lyrics data as text or in LRC format.<br>
+		 * {@code String}
+		 */
+		public static final String EXTRA_LYRICS_STATE = "lyricsState";
+
+		/**
+		 * Lyrics loading state.<br>
+		 * Value for {@link #EXTRA_LYRICS_STATE}
+		 */
+		public static final String STATE_LOADING = "loading";
+		
+		/**
+		 * Lyrics loading failed state.<br>
+		 * Value for {@link #EXTRA_LYRICS_STATE}
+		 */
+		public static final String STATE_FAILED = "failed";
 	}
 	
 
