@@ -20,6 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.player;
 
+import com.maxmpz.poweramp.player.PowerampAPI.Track.TagStatus;
 import org.eclipse.jdt.annotation.NonNull;
 
 public interface TableDefs {
@@ -282,14 +283,45 @@ public interface TableDefs {
 
 
 		/**
-		 * tag_status
+		 * @deprecated
+		 * @see com.maxmpz.poweramp.player.PowerampAPI.Track.TagStatus#TAG_NOT_SCANNED
 		 */
-		public static final int TAG_NOT_SCANNED = 0;
+		public static final int TAG_NOT_SCANNED = TagStatus.TAG_NOT_SCANNED;
 
 		/**
-		 * tag_status
+		 * @deprecated
+		 * @see com.maxmpz.poweramp.player.PowerampAPI.Track.TagStatus#TAG_SCANNED
 		 */
-		public static final int TAG_SCANNED = 1;
+		public static final int TAG_SCANNED = TagStatus.TAG_NOT_SCANNED;
+
+
+		/**
+		 * Lyrics content or reference<br>
+		 * TEXT
+		 * @since 941
+		 */
+		public static final @NonNull String LYRICS = "lyrics";
+
+		/**
+		 * LYRICS_STATE_*<br>
+		 * INTEGER
+		 * @since 941
+		 */
+		public static final @NonNull String LYRICS_STATE = "lyrics_state";
+
+		/**
+		 * Milliseconds, System.currentTimeMillis for the last LYRICS_STATE update time<br>
+		 * INTEGER
+		 * @since 941
+		 */
+		public static final @NonNull String LYRICS_STATE_UPDATED_AT = "lyrics_state_updated_at";
+
+		/**
+		 * Optional package name of the plugin that updated the lyrics<br>
+		 * TEXT
+		 * @since 941
+		 */
+		public static final @NonNull String LYRICS_UPDATED_BY = "lyrics_updated_by";
 	}
 
 	/** Contains the single track entry when/if some path is requested to be played and that path is not in Poweramp Music Folders/Library */
@@ -1910,6 +1942,7 @@ public interface TableDefs {
 		 */
 		public static final @NonNull String NAME = TABLE + ".name";
 	}
+
 
 	/** @since 841 */
 	public class PrefSearch {
