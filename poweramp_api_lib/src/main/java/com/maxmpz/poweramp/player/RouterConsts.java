@@ -37,9 +37,7 @@ public interface RouterConsts {
 	// 6
 
 	public static final int DEVICE_UNKNOWN = 0xFF;
-
-	//public static final int DEVICE_MASK    = 0xFF; // 256 devices
-
+	
 	public static final int DEVICE_COUNT   = 6;
 	public static final int DEVICE_SAFE_DEFAULT = DEVICE_HEADSET;
 

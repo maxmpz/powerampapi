@@ -90,6 +90,8 @@ public final class PaSampleFormat {
 				return 32;
 			case PA_SAMPLE_FMT_FLT:
 				return 24;
+			case PA_SAMPLE_FMT_FLTP:
+				return 24;
 			case PA_SAMPLE_FMT_DBL:
 				return 53;
 			case PA_SAMPLE_FMT_U8P:
@@ -97,8 +99,6 @@ public final class PaSampleFormat {
 			case PA_SAMPLE_FMT_S16P:
 				return 16;
 			case PA_SAMPLE_FMT_S32P:
-				return 32;
-			case PA_SAMPLE_FMT_FLTP:
 				return 32;
 			case PA_SAMPLE_FMT_DBLP:
 				return 53;
