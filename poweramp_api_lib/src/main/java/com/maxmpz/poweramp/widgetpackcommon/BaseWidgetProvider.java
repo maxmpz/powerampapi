@@ -1,23 +1,3 @@
-/*
-Copyright (C) 2011-2020 Maksim Petrov
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted for widgets, plugins, applications and other software
-which communicate with Poweramp application on Android platform.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-
 package com.maxmpz.poweramp.widgetpackcommon;
 
 import android.appwidget.AppWidgetManager;
@@ -40,8 +20,6 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 {
 	private static final String TAG = "BaseWidgetProvider";
 	private static final boolean LOG = false;
-
-	public static final int WIDGET_PACK_PREFS_VERSION = 209;
 
 	public static final int API_VERSION_200 = 200;
 
@@ -161,7 +139,8 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	protected boolean getAANoAnimState(WidgetUpdateData data, WidgetContext widgetCtx) {
 		if(data.albumArtNoAnim
 				|| widgetCtx.lastAATimeStamp == data.albumArtTimestamp
-				|| data.hasTrack && (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0) {
+				|| data.hasTrack && (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0
+		) {
 
 			if(LOG) Log.w(TAG, "getAANoAnimState =>true data.albumArtNoAnim=" + data.albumArtNoAnim + " same ts=" + (widgetCtx.lastAATimeStamp == data.albumArtTimestamp) +
 					"  FLAG_FIRST_IN_PLAYER_SESSION=" + (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) + " bitmap=" + data.albumArtBitmap);

@@ -23,6 +23,8 @@ package com.maxmpz.poweramp.widgetpackcommon;
 import android.graphics.Bitmap;
 import android.util.Log;
 import com.maxmpz.poweramp.player.PowerampAPI;
+import org.eclipse.jdt.annotation.Nullable;
+
 
 /**
  * The data required for widget update
@@ -45,6 +47,8 @@ public class WidgetUpdateData {
 	public Bitmap albumArtBitmap;
 	public long albumArtTimestamp;
 	public boolean albumArtResolved;
+	/** ATM used for the debugging purposes */
+	public @Nullable String albumArtSource;
 
 	public boolean playing;
 
@@ -56,8 +60,9 @@ public class WidgetUpdateData {
 	@Override
 	public String toString() {
 		return super.toString() + " hasTrack=" + hasTrack + " title=" + title + " album=" + album + " artist=" + artist + " supportsCatNav=" + supportsCatNav +
-				" posInList=" + posInList + " listSize=" + listSize + " flags=0x" + Integer.toHexString(flags) + " albumArtBitmap=" + albumArtBitmap +
-				" albumArtTimestamp=" + albumArtTimestamp + " playing=" + playing + " shuffle=" + shuffle + " repeat=" + repeat;
+					" posInList=" + posInList + " listSize=" + listSize + " flags=0x" + Integer.toHexString(flags) + " albumArtBitmap=" + albumArtBitmap +
+					" albumArtTimestamp=" + albumArtTimestamp + " albumArtSource=" + albumArtSource +
+			        " playing=" + playing + " shuffle=" + shuffle + " repeat=" + repeat;
 	}
 
 	/**

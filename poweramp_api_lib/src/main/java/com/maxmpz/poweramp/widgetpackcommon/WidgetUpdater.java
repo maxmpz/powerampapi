@@ -121,7 +121,7 @@ public abstract class WidgetUpdater {
 	}
 
 	private void pushUpdateCore(@NonNull WidgetUpdateData data, int[] ids) {
-		if(LOG) Log.w(TAG, "pushUpdateCore data=" + data + " ids=" + Arrays.toString(ids) + " mProviders.length=" + mProviders.size());
+		if(LOG) Log.w(TAG, "pushUpdateCore ids=" + Arrays.toString(ids) + " data=" + data +  " mProviders.length=" + mProviders.size());
 
 		SharedPreferences prefs = getCachedSharedPreferences(mContext);
 
@@ -230,19 +230,19 @@ public abstract class WidgetUpdater {
 		}
 
 		// NOTE: as of v3 betas, no album art event is sent anymore
-		if(USE_AA_EVENT) {
-			Intent aaIntent = context.registerReceiver(null, WidgetUpdater.sAAFilter);
-			if(aaIntent != null) {
-				try {
-					data.albumArtBitmap = PowerampAPIHelper.getAlbumArt(context, track, 512, 512);
-					if(LOG) Log.w(TAG, "generateUpdateData got aa=" + data.albumArtBitmap);
-					data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.EXTRA_TIMESTAMP, 0);
-					if(LOG) Log.w(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
-				} catch(OutOfMemoryError oom) {
-					Log.e(TAG, "", oom);
-				}
-			}
-		}
+//		if(USE_AA_EVENT) { // == false
+//			Intent aaIntent = context.registerReceiver(null, WidgetUpdater.sAAFilter);
+//			if(aaIntent != null) {
+//				try {
+//					data.albumArtBitmap = PowerampAPIHelper.getAlbumArt(context, track, 512, 512);
+//					if(LOG) Log.w(TAG, "generateUpdateData got aa=" + data.albumArtBitmap);
+//					data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.EXTRA_TIMESTAMP, 0);
+//					if(LOG) Log.w(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
+//				} catch(OutOfMemoryError oom) {
+//					Log.e(TAG, "", oom);
+//				}
+//			}
+//		}
 
 		getPlayingState(context, data);
 
