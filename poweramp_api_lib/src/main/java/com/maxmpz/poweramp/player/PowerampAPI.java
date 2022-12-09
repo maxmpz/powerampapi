@@ -1427,28 +1427,43 @@ public final class PowerampAPI {
 		/**
 		 * {@link PowerampAPI.Track} {@link #FLAGS} bitset values. First 3 bits = FLAG_ADVANCE_*
 		 */
-		public static final class Flags {
+		public interface Flags {
 			/** Track wasn't advanced */
 			public static final int FLAG_ADVANCE_NONE            = 0;
 			/** Track was advanced forward */
-			public static final int FLAG_ADVANCE_FORWARD         = 1;
+			public static final int FLAG_ADVANCE_FORWARD         = 0x1;
 			/** Track was advanced backward */
-			public static final int FLAG_ADVANCE_BACKWARD        = 2;
+			public static final int FLAG_ADVANCE_BACKWARD        = 0x2;
 			/** Track category was advanced forward */
-			public static final int FLAG_ADVANCE_FORWARD_CAT     = 3;
+			public static final int FLAG_ADVANCE_FORWARD_CAT     = 0x3;
 			/** Track category was advanced backward */
-			public static final int FLAG_ADVANCE_BACKWARD_CAT    = 4;
+			public static final int FLAG_ADVANCE_BACKWARD_CAT    = 0x4;
+			/**
+			 * Track is manually selected by user from the list
+			 */
+			public static final int FLAG_ADVANCE_BY_USER         = 0x5;
 			/** Mask for FLAG_ADVANCE_* values */
 			public static final int FLAG_ADVANCE_MASK            = 0x7;
-			/** Track was advanced from the notification */
+
+			/**
+			 * Track was advanced from the notification.<br>
+			 * If set, event comes from the notification ui and we will animate aa update then
+			 */
 			public static final int FLAG_NOTIFICATION_UI         = 0x20;
 			/** Indicates the track is the first in Poweramp service session */
 			public static final int FLAG_FIRST_IN_PLAYER_SESSION = 0x40;
+			/**
+			 * The track failed to load for any reason
+			 * @since 947
+			 */
+			public static final int FLAG_FAILED                  = 0x80;
 		}
 
 		public static final class TagStatus {
 			public static final int TAG_NOT_SCANNED = 0;
 			public static final int TAG_SCANNED = 1;
+			/** Currently used only for LRC files */
+			public static final int TAG_FAILED = 2;
 		}
 
 		/**
@@ -1476,7 +1491,7 @@ public final class PowerampAPI {
 			public static final int LYRICS_STATE_UNKNOWN = 0;
 
 			/**
-			 * Lyrics are available as data in the lyrics field
+			 * Lyrics are available
 			 * @since 941
 			 */
 			public static final int LYRICS_STATE_HAS_DATA = 1;
@@ -1806,7 +1821,7 @@ public final class PowerampAPI {
 	 * unless user specifically refreshes lyrics for the given track. Refreshing the lyrics action causes {@link Lyrics#ACTION_NEED_LYRICS}
 	 * being resent again
 	 *
-	 * @since 941
+	 * @since 947
 	 */
 	public static class Lyrics {
 		/**

@@ -88,6 +88,7 @@ public interface TableDefs {
 		/**
 		 * One of the TAG_* constants<br>
 		 * INTEGER
+		 * @see com.maxmpz.poweramp.player.PowerampAPI.Track.TagStatus
 		 */
 		public static final @NonNull String TAG_STATUS = "tag_status";
 
@@ -147,8 +148,9 @@ public interface TableDefs {
 		public static final @NonNull String PLAYED_FULLY_AT = TABLE + ".played_fully_at";
 
 		/**
+		 * This is the file last modified time - mtime (for the most Android variants).<br>
+		 * The naming "file_created_at" is a legacy.<br>
 		 * Seconds<br>
-		 * This is the file last modified time (for the most Android variants)<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String FILE_CREATED_AT = "file_created_at";
@@ -296,32 +298,27 @@ public interface TableDefs {
 
 
 		/**
-		 * Lyrics content or reference<br>
-		 * TEXT
-		 * @since 941
+		 * If non-NULL, references lrc_files entry in {@link LrcFiles}
+		 * INTEGER (boolean)
+		 * @since 947
 		 */
-		public static final @NonNull String LYRICS = "lyrics";
+		public static final @NonNull String LRC_FILES_ID = "lrc_files_id";
 
 		/**
-		 * LYRICS_STATE_*<br>
+		 * 1 if this track is known to have lyrics tag<br>
+		 * INTEGER (boolean)
+		 * @since 947
+		 */
+		public static final @NonNull String HAS_LRC_TAG = "has_lrc_tag";
+
+		/**
+		 * If non-NULL, references cached lyrics entry in {@link CachedLyrics}
 		 * INTEGER
-		 * @since 941
+		 * @since 947
 		 */
-		public static final @NonNull String LYRICS_STATE = "lyrics_state";
+		public static final @NonNull String CACHED_LYRICS_ID = "cached_lyrics_id";
 
-		/**
-		 * Milliseconds, System.currentTimeMillis for the last LYRICS_STATE update time<br>
-		 * INTEGER
-		 * @since 941
-		 */
-		public static final @NonNull String LYRICS_STATE_UPDATED_AT = "lyrics_state_updated_at";
-
-		/**
-		 * Optional package name of the plugin that updated the lyrics<br>
-		 * TEXT
-		 * @since 941
-		 */
-		public static final @NonNull String LYRICS_UPDATED_BY = "lyrics_updated_by";
+		public static final @NonNull String HAS_LYRICS = "(has_lrc_tag OR lrc_files_id IS NOT NULL OR cached_lyrics_id IS NOT NULL) AS _has_lyrics";
 	}
 
 	/** Contains the single track entry when/if some path is requested to be played and that path is not in Poweramp Music Folders/Library */
@@ -1485,7 +1482,7 @@ public interface TableDefs {
 		public static final @NonNull String MTIME = TABLE + ".mtime";
 
 		/**
-		 * INTEGER
+		 * TEXT
 		 */
 		public static final @NonNull String PATH = TABLE + ".playlist_path";
 
@@ -1973,4 +1970,157 @@ public interface TableDefs {
 		public static final @NonNull String TERM = "term";
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 	}
+
+	/**
+	 * LRC files found during the file system/providers scan
+	 * @since 947
+	 */
+	public interface LrcFiles {
+		public static final @NonNull String TABLE = "lrc_files";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+
+		/**
+		 * First seen time<br>
+		 * Seconds<br>
+		 * INTEGER NOT NULL
+		 */
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+
+		/**
+		 * Time of update<br>
+		 * Seconds<br>
+		 * INTEGER NOT NULL
+		 */
+		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
+
+		/**
+		 * LRC file mtime<br>
+		 * INTEGER NOT NULL
+		 */
+		public static final @NonNull String MTIME = TABLE + ".mtime";
+
+		/**
+		 * Title extracted either from [ti:] tag or from the file name or NULL if none<br>
+		 * TEXT NULL
+		 */
+		public static final @NonNull String TITLE = TABLE + ".title";
+
+		/**
+		 * Artist extracted either from [ar:] tag or from the file name or NULL if none<br>
+		 * TEXT NULL
+		 */
+		public static final @NonNull String ARTIST = TABLE + ".artist";
+
+		/**
+		 * [al:] album tag contents or NULL if none<br>
+		 * TEXT NULL
+		 */
+		public static final @NonNull String ALBUM = TABLE + ".album";
+
+		/**
+		 * [length:] tag in seconds (rounded) or NULL if none<br>
+		 * INTEGER NULL
+		 */
+		public static final @NonNull String LENGTH_S = TABLE + ".length_s";
+
+		/**
+		 * Simple filename - the filename without path or extension<br>
+		 * TEXT NON NULL
+		 */
+		public static final @NonNull String SIMPLE_FILENAME = TABLE + ".simple_filename";
+
+		/**
+		 * File extension with the dot, e.g. ".lrc" or empty string if none<br>
+		 * TEXT NON NULL
+		 */
+		public static final @NonNull String EXTENSION = TABLE + ".extension";
+
+		/**
+		 * Parent folder path including the last /<br>
+		 * TEXT NON NULL
+		 */
+		public static final @NonNull String FOLDER_PATH = TABLE + ".folder_path";
+
+		/**
+		 * 1 if this file should be treated as utf8<br>
+		 * BOOLEAN NON NULL
+		 */
+		public static final @NonNull String IS_UTF8 = TABLE + ".is_utf8";
+
+		/**
+		 * One of the TAG_* constants<br>
+		 * INTEGER NOT NULL
+		 * @see com.maxmpz.poweramp.player.PowerampAPI.Track.TagStatus
+		 */
+		public static final @NonNull String TAG_STATUS = TABLE + ".tag_status";
+
+		/**
+		 * Full path to the lrc file.<br>
+		 * Calculated field
+		 */
+		public static final @NonNull String FULL_PATH = FOLDER_PATH + "||" + SIMPLE_FILENAME + "||" + EXTENSION;
+	}
+
+	/**
+	 * The cached lyrics. Only lyrics from 3rd party plugins gets here.<br>
+	 * LRC files and embedded/tag lyrics are always loaded from the respective LRC file or the track tag.
+	 * @since 947
+	 */
+	public interface CachedLyrics {
+		public static final @NonNull String TABLE = "cached_lyrics";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+
+		/**
+		 * First seen time<br>
+		 * Seconds<br>
+		 * INTEGER NOT NULL
+		 */
+		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
+
+		/**
+		 * Time of update<br>
+		 * Seconds<br>
+		 * INTEGER NOT NULL
+		 */
+		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
+
+		/**
+		 * 3rd party plugin package, the source of the lyrics
+		 * TEXT
+		 */
+		public static final @NonNull String CREATED_BY_PAK = TABLE + ".created_by_pak";
+
+		/**
+		 * Lyrics content
+		 * TEXT NOT NULL
+		 */
+		public static final @NonNull String CONTENT = TABLE + ".content";
+
+		/**
+		 * Title or NULL if none<br>
+		 * TEXT
+		 */
+		public static final @NonNull String TITLE = TABLE + ".title";
+
+		/**
+		 * Artist or NULL if none<br>
+		 * TEXT
+		 */
+		public static final @NonNull String ARTIST = TABLE + ".artist";
+
+		/**
+		 * Album or NULL if none<br>
+		 * TEXT
+		 */
+		public static final @NonNull String ALBUM = TABLE + ".album";
+
+		/**
+		 * Length in seconds (rounded) or NULL if none<br>
+		 * INTEGER
+		 */
+		public static final @NonNull String LENGTH_S = TABLE + ".length_s";
+	}
+
 }
