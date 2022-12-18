@@ -43,11 +43,9 @@ public interface TableDefs {
 	 * Tracks
 	 */
 	public interface Files {
-		/** 
-		 * Special value for {@link #TRACK_NUMBER} - means no valid track number exists for given track 
-		 */
+		/** Special value for {@link #TRACK_NUMBER} - means no valid track number exists for the given track */
 		public static final int INVALID_TRACK_NUMBER = 10000;
-		
+
 		public static final @NonNull String TABLE = "folder_files";
 
 		public static final @NonNull String _ID = TABLE + "._id";
@@ -299,26 +297,39 @@ public interface TableDefs {
 
 		/**
 		 * If non-NULL, references lrc_files entry in {@link LrcFiles}
-		 * INTEGER (boolean)
-		 * @since 947
+		 * INTEGER NULL
+		 * @since 948
 		 */
 		public static final @NonNull String LRC_FILES_ID = "lrc_files_id";
 
 		/**
-		 * 1 if this track is known to have lyrics tag<br>
-		 * INTEGER (boolean)
-		 * @since 947
+		 * If non-NULL, defines priority for {@link #LRC_FILES_ID}. The higher value is the higher priority.
+		 * LRC priority is used to support multiple possible sources of the LRC file for the track and
+		 * reduce the scope of the LRC resolition against files.<br>
+		 * INTEGER NOT NULL DEFAULT 0
+		 * @since 948
 		 */
-		public static final @NonNull String HAS_LRC_TAG = "has_lrc_tag";
+		public static final @NonNull String LRC_FILES_PRIO = "lrc_files_prio";
+
+		/**
+		 * 1 if this track is known to have lyrics tag (not necessarily a synchronized lyrics)<br>
+		 * INTEGER NOT NULL (boolean)
+		 * @since 948
+		 */
+		public static final @NonNull String HAS_LYRICS_TAG = "has_lyrics_tag";
 
 		/**
 		 * If non-NULL, references cached lyrics entry in {@link CachedLyrics}
-		 * INTEGER
-		 * @since 947
+		 * INTEGER NULL
+		 * @since 948
 		 */
 		public static final @NonNull String CACHED_LYRICS_ID = "cached_lyrics_id";
 
-		public static final @NonNull String HAS_LYRICS = "(has_lrc_tag OR lrc_files_id IS NOT NULL OR cached_lyrics_id IS NOT NULL) AS _has_lyrics";
+		/**
+		 * Calculated field<br>
+		 * INTEGER (boolean)
+		 */
+		public static final @NonNull String HAS_LYRICS = "(has_lyrics_tag OR lrc_files_id IS NOT NULL OR cached_lyrics_id IS NOT NULL) AS _has_lyrics";
 	}
 
 	/** Contains the single track entry when/if some path is requested to be played and that path is not in Poweramp Music Folders/Library */
@@ -1973,7 +1984,7 @@ public interface TableDefs {
 
 	/**
 	 * LRC files found during the file system/providers scan
-	 * @since 947
+	 * @since 948
 	 */
 	public interface LrcFiles {
 		public static final @NonNull String TABLE = "lrc_files";
@@ -2019,10 +2030,10 @@ public interface TableDefs {
 		public static final @NonNull String ALBUM = TABLE + ".album";
 
 		/**
-		 * [length:] tag in seconds (rounded) or NULL if none<br>
+		 * [length:] tag in milliseconds or NULL if none or 0<br>
 		 * INTEGER NULL
 		 */
-		public static final @NonNull String LENGTH_S = TABLE + ".length_s";
+		public static final @NonNull String LENGTH = TABLE + ".length";
 
 		/**
 		 * Simple filename - the filename without path or extension<br>
@@ -2065,7 +2076,7 @@ public interface TableDefs {
 	/**
 	 * The cached lyrics. Only lyrics from 3rd party plugins gets here.<br>
 	 * LRC files and embedded/tag lyrics are always loaded from the respective LRC file or the track tag.
-	 * @since 947
+	 * @since 948
 	 */
 	public interface CachedLyrics {
 		public static final @NonNull String TABLE = "cached_lyrics";
@@ -2117,10 +2128,10 @@ public interface TableDefs {
 		public static final @NonNull String ALBUM = TABLE + ".album";
 
 		/**
-		 * Length in seconds (rounded) or NULL if none<br>
+		 * Length in milliseconds or NULL if none found or length is 0<br>
 		 * INTEGER
 		 */
-		public static final @NonNull String LENGTH_S = TABLE + ".length_s";
+		public static final @NonNull String LENGTH = TABLE + ".length";
 	}
 
 }
