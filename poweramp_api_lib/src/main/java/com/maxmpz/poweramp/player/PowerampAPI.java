@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2021 Maksim Petrov
+Copyright (C) 2011-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for the widgets, plugins, applications and other software
@@ -569,7 +569,6 @@ public final class PowerampAPI {
 		 * @since 867
 		 */
 		public static final int SET_VIS_PRESET = 200;
-		
 		
 		
 		public static @NonNull String cmdToString(int cmd) {
@@ -1430,18 +1429,24 @@ public final class PowerampAPI {
 		public interface Flags {
 			/** Track wasn't advanced */
 			public static final int FLAG_ADVANCE_NONE            = 0;
+
 			/** Track was advanced forward */
 			public static final int FLAG_ADVANCE_FORWARD         = 0x1;
+
 			/** Track was advanced backward */
 			public static final int FLAG_ADVANCE_BACKWARD        = 0x2;
+
 			/** Track category was advanced forward */
 			public static final int FLAG_ADVANCE_FORWARD_CAT     = 0x3;
+
 			/** Track category was advanced backward */
 			public static final int FLAG_ADVANCE_BACKWARD_CAT    = 0x4;
+
 			/**
 			 * Track is manually selected by user from the list
 			 */
 			public static final int FLAG_ADVANCE_BY_USER         = 0x5;
+
 			/** Mask for FLAG_ADVANCE_* values */
 			public static final int FLAG_ADVANCE_MASK            = 0x7;
 
@@ -1450,11 +1455,13 @@ public final class PowerampAPI {
 			 * If set, event comes from the notification ui and we will animate aa update then
 			 */
 			public static final int FLAG_NOTIFICATION_UI         = 0x20;
+
 			/** Indicates the track is the first in Poweramp service session */
 			public static final int FLAG_FIRST_IN_PLAYER_SESSION = 0x40;
+
 			/**
 			 * The track failed to load for any reason
-			 * @since 947
+			 * @since 948
 			 */
 			public static final int FLAG_FAILED                  = 0x80;
 		}
@@ -1462,6 +1469,7 @@ public final class PowerampAPI {
 		public static final class TagStatus {
 			public static final int TAG_NOT_SCANNED = 0;
 			public static final int TAG_SCANNED = 1;
+
 			/** Currently used only for LRC files */
 			public static final int TAG_FAILED = 2;
 		}
@@ -1531,30 +1539,38 @@ public final class PowerampAPI {
 		/** Root library category. Not used in Poweramp v3. */
 		@Deprecated
 		public static final int ROOT                    = 0;
+
 		/** All Songs */
 		public static final int FILES                   = 30;
 		public static final int FOLDERS                 = 10;
 		public static final int FOLDERS_HIER            = 20;
 		public static final int ALBUMS                  = 200;
 		public static final int ARTISTS                 = 500;
+
 		/** Albums for given artist id */
 		public static final int ARTISTS_ID_ALBUMS       = 220;
 		public static final int ALBUM_ARTISTS           = 520;
+
 		/** Albums for given album_artist id */
 		public static final int ALBUM_ARTISTS_ID_ALBUMS = 256;
+
 		/** Albums for given albums split by artists */
 		public static final int ARTISTS__ALBUMS         = 250;
 		public static final int GENRES                  = 320;
 		public static final int YEARS                   = 330;
+
 		/** Albums for given genre id */
 		public static final int GENRES_ID_ALBUMS        = 210;
+
 		/** Albums for given year id */
 		public static final int YEARS_ID_ALBUMS         = 340;
 		public static final int COMPOSERS               = 600;
+
 		/** Albums for given composer id */
 		public static final int COMPOSERS_ID_ALBUMS     = 230;
 		public static final int PLAYLISTS               = 100;
 		public static final int QUEUE                   = 800;
+
 		/** @since 877 */
 		public static final int BOOKMARKS               = 810;
 		public static final int STREAM_FILES            = 60;
@@ -1574,7 +1590,6 @@ public final class PowerampAPI {
 	 * Please note that service won't start/scan if your application is not foreground, or if Poweramp is not in the foreground, or if Poweramp is not actively playing. 
 	 */
 	public static final class Scanner {
-
 		/**
 		 * Sent by your app to Poweramp.<br>
 		 * Poweramp Scanner action.<br><br>
@@ -1672,17 +1687,20 @@ public final class PowerampAPI {
 		public static final String ACTION_FAST_TAGS_SCAN_FINISHED = "com.maxmpz.audioplayer.ACTION_FAST_TAGS_SCAN_FINISHED";
 
 		/**
-		 * If true, FolderScanner tries to skip unmodified folders/files. Either folder/file is scanned or not is based on last modified time for that folder or file.<br>
-		 * If given folder is not modified, Poweramp won't further look into that folder files.<br>
+		 * If true, FolderScanner tries to skip unmodified folders/files. Either folder/file is scanned or not is based on
+		 * last modified time for that folder or file.<br>
+		 * If given folder is not modified, Poweramp won't further look into that folder (direct children) files.<br>
 		 * Extra<br>
 		 * {@code boolean}
 		 */
 		public static final String EXTRA_FAST_SCAN = "fastScan";
+
 		/**
 		 * Extra<br>
 		 * {@code int}
 		 */
 		public static final String EXTRA_PROGRESS = "progress";
+
 		/**
 		 * Extra<br>
 		 * {@code boolean} - true if at least on track has been scanned, false if no tags scanned (probably, because all files are up-to-date)<br>
@@ -1821,7 +1839,7 @@ public final class PowerampAPI {
 	 * unless user specifically refreshes lyrics for the given track. Refreshing the lyrics action causes {@link Lyrics#ACTION_NEED_LYRICS}
 	 * being resent again
 	 *
-	 * @since 947
+	 * @since 948
 	 */
 	public static class Lyrics {
 		/**
@@ -2030,19 +2048,20 @@ public final class PowerampAPI {
 			 * Don't show vis<br>
 			 */
 			public static final int VIS_MODE_VIS_NONE = 0; 
-			/** 
+
+			/**
 			 * Vis + UI<br>
 			 */
 			public static final int VIS_MODE_VIS_W_UI = 1; 
-			/** 
+
+			/**
 			 * Just Vis<br>
 			 */
 			public static final int VIS_MODE_VIS      = 2;
+
 			public static final int VIS_MODE_MAX      = 2;
 		}
 	}
-
-
 
 
 	// Deprecated =============================================
@@ -2244,7 +2263,6 @@ public final class PowerampAPI {
 	@Deprecated
 	public static final String ACTIVITY_PLAYLIST = "com.maxmpz.audioplayer.PlayListActivity";
 
-
 	/**
 	 * Extra<br>
 	 * {@code String}
@@ -2377,5 +2395,4 @@ public final class PowerampAPI {
 	 */
 	@Deprecated
 	public static final String TRACK = "track";
-
 }
