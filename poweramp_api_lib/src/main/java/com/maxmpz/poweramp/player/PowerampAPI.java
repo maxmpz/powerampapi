@@ -1754,6 +1754,14 @@ public final class PowerampAPI {
 		public static final String EXTRA_SCAN_PROVIDERS = "scanProviders";
 
 		/**
+		 * If true, force rescan tracks with possible synchronized lyrics tags, e.g. SYLT.<br>
+		 * Extra for {@link #ACTION_SCAN_DIRS}, {@link #ACTION_SCAN_TAGS}<br>
+		 * {@code boolean}
+		 * @since 949
+		 */
+		public static final String EXTRA_RESCAN_LYRICS_TAGS = "rescanLyricsTags";
+
+		/**
 		 * If set, Poweramp will scan only folders matching this provider authority. scanProviders extra should be set to true (or can be missing) in this case<br>
 		 * Warning: don't use this with {@link #EXTRA_FULL_RESCAN}, as only the provider tracks will appear after rescan<br>
 		 * Extra for {@link #ACTION_SCAN_DIRS}<br>
