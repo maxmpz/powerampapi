@@ -52,6 +52,7 @@ if they implement SAF/DocumentsContract client APIs.
 - [Playlists](#playlists)
 - [Cue Sheets](#cue-sheets)
 - [Data Refresh](#data-refresh)
+- [Rescan](#rescan)
 - [Deletion](#deletion)
 - [Provider Crashes](#provider-crashes)
 - [Music Folders Selection Optimization](#music-folders-selection-optimization)
@@ -92,11 +93,12 @@ To represent list of provider tracks Poweramp scans Track Provider Plugin in two
 
 ### EXTRA_LOADING
 "Loading" cursors are not supported. Your provider should provide ready to use cursor with the data.
-There is little point in requesting scan when appropriate metadat adata is not yet loaded by your plugin.
+There is little point in requesting scan when appropriate metadata data is not yet loaded by your plugin.
 Instead, load data as needed in your plugin and then issue the appropriate Poweramp rescan command.
 
-Alternatively, if data loading is fast enough, just block in your provider method (e.g. queryChildDocuments/queryDocument) and do loading there, but note that Poweramp scanning
-has timeout. There is also a timeout for openDocument which is defined by the user in Poweramp settings as "Network Timeout" option.
+Alternatively, if data loading is fast enough, just block in your provider method (e.g. queryChildDocuments/queryDocument) and do loading there,
+but note that Poweramp scanning has a timeout. There is also a timeout for openDocument call duration which is defined by the user
+in Poweramp settings as the "Network Timeout" option.
 
 
 ### Icon
@@ -281,6 +283,16 @@ If this is not true, scan service is a subject to the Android 8+ background serv
 Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#L1694) for fine-grained scan just for your provider. If not specified,
 Poweramp will scan all known folders and providers.
 
+### Rescan
+ 
+Poweramp optimizes scanning the providers to reduce possible hit on user battery (as any media file related change will trigger some sort
+of rescan). By default Poweramp will scan Provider initially and won't rescan it automatically, unless:
+
+- provider explicitly sends rescan request intent to Poweramp
+- user uses Rescan option from within Provider's folder in Poweramp (Folders or Folders Hierarchy categories). This way only the given folder hierachy is rescanned
+- user uses Rescan or Full Rescan option from Poweramp Settings / Library
+
+There is also "Scan Providers" option (disabled by default) which will force Poweramp to rescan Providers automatically in other cases.
 
 ### Deletion
 
