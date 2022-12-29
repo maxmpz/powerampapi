@@ -1762,8 +1762,9 @@ public final class PowerampAPI {
 		public static final String EXTRA_RESCAN_LYRICS_TAGS = "rescanLyricsTags";
 
 		/**
-		 * If set, Poweramp will scan only folders matching this provider authority. scanProviders extra should be set to true (or can be missing) in this case<br>
-		 * Warning: don't use this with {@link #EXTRA_FULL_RESCAN}, as only the provider tracks will appear after rescan<br>
+		 * If set, Poweramp will scan only folders matching this provider authority. scanProviders extra should be set to true (or missing)
+		 * in this case<br>
+		 * Warning: don't use this with {@link #EXTRA_FULL_RESCAN}, as only the provider tracks will appear after such rescan<br>
 		 * Extra for {@link #ACTION_SCAN_DIRS}<br>
 		 * {@code String}
 		 * @since 862
