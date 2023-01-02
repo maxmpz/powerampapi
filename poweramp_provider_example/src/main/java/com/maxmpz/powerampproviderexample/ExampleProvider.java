@@ -61,7 +61,7 @@ import java.util.Set;
 /**
  * Example provider demonstrating:
  * - providing tracks hierarchy for the Poweramp scanner
- * - providing tracks via direct file discriptor and via seekable socket protocol
+ * - providing tracks via direct file descriptor and via seekable socket protocol
  */
 public class ExampleProvider extends DocumentsProvider {
 	private static final String TAG = "ExampleProvider";
