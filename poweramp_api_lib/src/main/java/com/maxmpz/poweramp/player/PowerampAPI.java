@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2022 Maksim Petrov
+Copyright (C) 2011-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for the widgets, plugins, applications and other software
@@ -742,10 +742,11 @@ public final class PowerampAPI {
 	/**
 	 * Sent by Poweramp to your app<br>
 	 * This is explicit intent sent to your app to ensure it receives it on Android 8+ (with background execution limitations).<br>
-	 * Differs from ACTION_TRACK_CHANGED which is sticky intent which won't be received by your app in the background.<br><br>
+	 * Differs from ACTION_TRACK_CHANGED which is sticky intent that won't be received by your app in the background in the recent Androids.<br><br>
 	 *
 	 * <b>NOTE: Poweramp caches app list for this intent. Cache is updated when Poweramp is started or playback resumed.</b><br>
-	 * This means if your app just installed and Poweramp is playing, your app won't receive this action until next Poweramp pause/resume cycle or Poweramp service restart.<br><br>
+	 * This means if your app just installed and Poweramp is playing, your app won't receive this action until next Poweramp pause/resume
+	 * cycle or Poweramp service restart.<br><br>
 	 *
 	 * Extras:<br>
 	 * {@code Bundle track} - Track bundle<br>
@@ -1242,7 +1243,10 @@ public final class PowerampAPI {
 
 
 	/**
-	 * STATUS_CHANGED track extra fields
+	 * {@link #ACTION_TRACK_CHANGED} and {@link #ACTION_TRACK_CHANGED_EXPLICIT} extra field {@link #EXTRA_TRACK}.<br><br>
+	 *
+	 * Since build 948 all these fields are also exposed to {@link #ACTION_TRACK_CHANGED} and {@link #ACTION_TRACK_CHANGED_EXPLICIT}
+	 * extras directly.
 	 */
 	public static final class Track {
 		/**
@@ -1330,6 +1334,8 @@ public final class PowerampAPI {
 
 		/**
 		 * Position in track in seconds<br>
+		 * NOTE: while this extra is defined within this Track class, it's always exposed as top level extra, not the
+		 * track bundle extra.<br>
 		 * {@code int}
 		 */
 		public static final String POSITION = "pos";
@@ -1476,31 +1482,18 @@ public final class PowerampAPI {
 
 		/**
 		 * Values for {@link #LYRICS_STATE}
-		 * @since 941
+		 * @since 948
 		 */
 		public static final class LyricsState {
 			/**
-			 * Lyrics are loading, probably by some 3rd party plugin. While this state is in effect,
-			 * we still may show lyrics if they already exist
-			 * @since 941
+			 * No lyrics detected or cached for the track
+			 * @since 948
 			 */
-			public static final int LYRICS_STATE_LOADING = -2;
+			public static final int LYRICS_STATE_NONE = 0;
 
 			/**
-			 * No lyrics detected
-			 * @since 941
-			 */
-			public static final int LYRICS_STATE_NONE = -1;
-
-			/**
-			 * Lyrics state unknown, lyrics should be resolved
-			 * @since 941
-			 */
-			public static final int LYRICS_STATE_UNKNOWN = 0;
-
-			/**
-			 * Lyrics are available
-			 * @since 941
+			 * Some local or previously cached plugin lyrics are available
+			 * @since 948
 			 */
 			public static final int LYRICS_STATE_HAS_DATA = 1;
 		}
@@ -1859,9 +1852,16 @@ public final class PowerampAPI {
 		 * In response, your app can send one or multiple {@link #ACTION_UPDATE_LYRICS} intents
 		 * to update lyrics state and/or data for the track.<br><br>
 		 *
-		 * See {@link #ACTION_TRACK_CHANGED_EXPLICIT} for explaination how exactly this event is sent to the background (plugin) apps.<br><br>
+		 * Poweramp shows lyrics loading progress for a few seconds, after that "no lyrics found" message is shown,
+		 * but the lyrics plugin is free to take more time as needed (e.g. on slow internet connection).<br><br>
 		 *
-		 * Extras: {@link #EXTRA_TRACK}
+		 * If multiple plugins are installed, Poweramp will only request lyrics from one of them. No priority of
+		 * such lyrics plugins is defined at this time.<br><br>
+		 *
+		 * This is an explicit intent - it's sent specifically to your plugin component.
+		 * See {@link #ACTION_TRACK_CHANGED_EXPLICIT} for explanation how exactly this event is sent to the background (plugin) apps.<br><br>
+		 *
+		 * Extras: Poweramp fills all {@link Track} values as extras to this intent
 		 */
 		public static final String ACTION_NEED_LYRICS = "com.maxmpz.audioplayer.ACTION_NEED_LYRICS";
 
@@ -1869,64 +1869,50 @@ public final class PowerampAPI {
 		 * Sent by your app to Poweramp.<br>
 		 * Changes lyrics or lyrics state for the track.<br><br>
 		 *
-		 * You can send lyrics data immediately or you can indicate some loading state + send lyrics data or failure state later.
-		 * Poweramp will show appropriate progress for loading (subject for timeout ~1 minute).<br><br>
+		 * You can send lyrics data immediately or you can do a some long request over internet.
+		 * Poweramp will show appropriate progress for loading for few seconds and then will show "no lyrics found",
+		 * but ACTION_UPDATE_LYRICS will be processed by Poweramp anyway, updating the lyrics for the track.<br><br>
 		 *
-		 * <b>(Optionally) to indicate your plugin started loading lyrics:</b>
-		 * <ul><li>send ACTION_UPDATE_LYRICS, EXTRA_ID=>long Track.REAL_ID, EXTRA_LYRICS_STATE=>STATE_LOADING</ul>
-		 *
-		 * <b>(Optionally) to indicate loading failure after ACTION_UPDATE_LYRICS+EXTRA_LYRICS_STATE=STATE_LOADING:</b>
-		 * <ul><li>send ACTION_UPDATE_LYRICS, EXTRA_ID=>long Track.REAL_ID, EXTRA_LYRICS_STATE=>STATE_FAILED</ul>
+		 * User may re-request lyrics for the same track even if previously no any lyrics were found or updated by plugin for
+		 * that track.<br><br>
 		 *
 		 * <b>To update lyrics content for the track:</b>
-		 * <ul><li>send ACTION_UPDATE_LYRICS, EXTRA_ID=>long Track.REAL_ID, EXTRA_LYRICS=>lyrics content, plain text or LRC</ul>
+		 * <ul><li>send ACTION_UPDATE_LYRICS:<br>
+		 *          {@link #EXTRA_ID}: Long - Track.REAL_ID<br>
+		 *          {@link #EXTRA_LYRICS}: String - lyrics content plain text or LRC</ul>
+		 *
+		 * <b>To indicate failed request and stop loading progress (optional):</b>
+		 * <ul><li>send ACTION_UPDATE_LYRICS:<br>
+		 *          {@link #EXTRA_ID}: Long - Track.REAL_ID<br>
+		 *          {@link #EXTRA_LYRICS}: String - explicit null as extra value or no EXTRA_LYRICS extra at all</ul>
 		 * 
 		 *  NOTE:
 		 *  <ul>
-		 *  <li>if multiple plugins send ACTION_UPDATE_LYRICS, the first received intent with non-empty lyrics wins
-		 *  <li>empty or very small EXTRA_LYRICS is ignored, so plugin can't remove existing lyrics
-		 *  <li>if the track already has some lyrics, they won't be updated by ACTION_UPDATE_LYRICS unless user specifically have requested that
-		 *      for the track via lyrics refresh action
-		 *  <li>you can send ACTION_UPDATE_LYRICS anytime, even if Poweramp does not request anything.
-		 *      The lyrics for the given track will be updated, if track has no lyrics yet
+		 *  <li>if multiple plugins send ACTION_UPDATE_LYRICS, the last received intent with non-empty lyrics wins
+		 *  <li>empty or very small EXTRA_LYRICS is ignored
+		 *  <li>if the track already has some cached lyrics, lyrics may be updated by another valid ACTION_UPDATE_LYRICS intent coming later
+		 *  <li>you can send ACTION_UPDATE_LYRICS anytime, even if Poweramp hasn't requested anything.
+		 *      The lyrics for the given track will be updated if the lyrics data is valid
 		 *  <li>Poweramp shows link to the plugin which previously updated the lyrics with the plugin icon and name. Clicking the link
-		 *      sends ACTION_LYRICS_LINK event to your plugin with EXTRA_TRACK describing the track
+		 *      opens ACTION_LYRICS_LINK activity in your plugin with EXTRA_TRACK describing the track, if the activity is provided
+		 *      by the plugin.
 		 *  </ul>
 		 *
-		 * Extras: {@link #EXTRA_LYRICS}, {@link #EXTRA_STATE}<br>
+		 * Extras: {@link #EXTRA_ID}, {@link #EXTRA_LYRICS}<br>
 		 */
 		public static final String ACTION_UPDATE_LYRICS = "com.maxmpz.audioplayer.ACTION_UPDATE_LYRICS";
 
 		/**
-		 * Sent by Poweramp to your plugin when user clicks plugin link for the lyrics previously updated by your plugin. Plugin
-		 * can open some activity in response (this is "foreground" intent) or do nothing<br><br>
+		 * Used by Poweramp to open plugin activity when user clicks plugin link for the lyrics previously updated by your plugin.<br>
 		 * Extras: {@link #EXTRA_TRACK}
 		 */
 		public static final String ACTION_LYRICS_LINK = "com.maxmpz.audioplayer.ACTION_LYRICS_LINK";
 
 		/**
-		 * Extra for {@link #ACTION_UPDATE_LYRICS}. Contains lyrics data as text or in LRC format.<br>
+		 * Extra for {@link #ACTION_UPDATE_LYRICS}. Contains lyrics data as plain text or text in LRC format.<br>
 		 * {@code String}
 		 */
 		public static final String EXTRA_LYRICS = "lyrics";
-
-		/**
-		 * Extra for {@link #ACTION_UPDATE_LYRICS}. Contains lyrics data as text or in LRC format.<br>
-		 * {@code String}
-		 */
-		public static final String EXTRA_LYRICS_STATE = "lyricsState";
-
-		/**
-		 * Lyrics loading state.<br>
-		 * Value for {@link #EXTRA_LYRICS_STATE}
-		 */
-		public static final String STATE_LOADING = "loading";
-		
-		/**
-		 * Lyrics loading failed state.<br>
-		 * Value for {@link #EXTRA_LYRICS_STATE}
-		 */
-		public static final String STATE_FAILED = "failed";
 	}
 	
 
