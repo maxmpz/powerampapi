@@ -1750,7 +1750,7 @@ public final class PowerampAPI {
 		 * If true, force rescan tracks with possible synchronized lyrics tags, e.g. SYLT.<br>
 		 * Extra for {@link #ACTION_SCAN_DIRS}, {@link #ACTION_SCAN_TAGS}<br>
 		 * {@code boolean}
-		 * @since 949
+		 * @since 948
 		 */
 		public static final String EXTRA_RESCAN_LYRICS_TAGS = "rescanLyricsTags";
 
