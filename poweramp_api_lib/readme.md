@@ -1,5 +1,13 @@
+[TOC levels=3]:# "Poweramp Intent APIs"
+
 # Poweramp Intent APIs
-============================================
+- [Android 11/targetSdkVersion 30 support](#android-11targetsdkversion-30-support)
+- [Tasker and Similar Automation Apps Integration](#tasker-and-similar-automation-apps-integration)
+  - [Sending Commands](#sending-commands)
+  - [Receiving Status](#receiving-status)
+  - [Track Extras](#track-extras)
+  - [Example: parsing Poweramp track info and showing it in a toast popup](#example-parsing-poweramp-track-info-and-showing-it-in-a-toast-popup)
+  - [Other Relevant Poweramp APIs](#other-relevant-poweramp-apis)
 
 Poweramp Intent based APIs are focused on simplicity: you can just throw a simple Intent to Poweramp to play something, command Poweramp to do something,
 or get some Poweramp state from the published Intents.
@@ -42,7 +50,6 @@ Example of simple tasker action:
 This will send TOGGLE_PLAY_PAUSE (1) command. See other commands here: [PowerampAPI.java around line 206](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#L206).
 
 ### Receiving Status
-
 You can receive Poweramp status via broadcast intents.
 
 Example of simple tasker intent receiver:
@@ -54,7 +61,16 @@ Example of simple tasker intent receiver:
 - Title: Status Changed
 - Text: State=%state Paused=%paused
 
-The %variables are taken directly from receive intent. See here for other extras: [PowerampAPI.java around line 667](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#L667).
+The %variables are taken directly from receive intent. See here for other extras:
+[PowerampAPI.java around line 730](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#L730).
+
+### Track Extras
+Since build 948 all track extras are also exposed within STATUS_CHANGED extras, so all of them, such as title, album, artist, etc.,
+are available as %title, %album, %artist, etc.
+See here for that track info extras: [PowerampAPI.java around line 1251](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#L1251).
+
+Previously, before build 948, track info was exposed in "track" extra as 2nd level bundle, which may be hard to extract in Tasker
+without using (rather complicated) Java/JavaScript actions.
 
 ### Example: parsing Poweramp track info and showing it in a toast popup
 (Courtesy of Clever_man)

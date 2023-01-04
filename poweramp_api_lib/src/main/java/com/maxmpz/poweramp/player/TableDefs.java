@@ -1005,6 +1005,7 @@ public interface TableDefs {
 
 		/**
 		 * First seen time<br>
+		 * Seconds unix time<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
@@ -2098,40 +2099,25 @@ public interface TableDefs {
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
 
 		/**
+		 * Loading start timestamp<br>
+		 * Milliseconds in System.currentTimeMillis timebase<br>
+		 * NULL if loading is not started yet or loading is complete<br>
+		 * INTEGER NULL
+		 */
+		public static final @NonNull String LOADING_STARTED_AT = TABLE + ".loading_started_at";
+
+		/**
 		 * 3rd party plugin package, the source of the lyrics
-		 * TEXT
+		 * TEXT NULL
 		 */
 		public static final @NonNull String CREATED_BY_PAK = TABLE + ".created_by_pak";
 
 		/**
-		 * Lyrics content
-		 * TEXT NOT NULL
+		 * Lyrics content or NULL if none.<br>
+		 * NOTE: we may have NULL while lyrics is requested via the plugin, but we haven't received data from it yet
+		 * TEXT 
 		 */
 		public static final @NonNull String CONTENT = TABLE + ".content";
-
-		/**
-		 * Title or NULL if none<br>
-		 * TEXT
-		 */
-		public static final @NonNull String TITLE = TABLE + ".title";
-
-		/**
-		 * Artist or NULL if none<br>
-		 * TEXT
-		 */
-		public static final @NonNull String ARTIST = TABLE + ".artist";
-
-		/**
-		 * Album or NULL if none<br>
-		 * TEXT
-		 */
-		public static final @NonNull String ALBUM = TABLE + ".album";
-
-		/**
-		 * Length in milliseconds or NULL if none found or length is 0<br>
-		 * INTEGER
-		 */
-		public static final @NonNull String LENGTH = TABLE + ".length";
 	}
 
 }
