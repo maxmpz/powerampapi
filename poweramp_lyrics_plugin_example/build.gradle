@@ -1,0 +1,30 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+android {
+    compileSdk 33
+    buildToolsVersion '33.0.0'
+
+    defaultConfig {
+        applicationId "com.maxmpz.poweramplyricspluginexample"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(path: ':poweramp_api_lib')
+    implementation 'androidx.annotation:annotation:1.5.0'
+    project(':poweramp_api_example')
+}
