@@ -22,6 +22,7 @@ package com.maxmpz.poweramp.apiexample;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -1314,16 +1315,31 @@ public class MainActivity extends AppCompatActivity implements
 		TextView tv = findViewById(R.id.component_names);
 		SpannableStringBuilder sb = new SpannableStringBuilder();
 		appendWithSpan(sb, "Component Names\n", new StyleSpan(Typeface.BOLD));
-		appendWithSpan(sb, "Package: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getPowerampPackageName(this)).append("\n");
-		appendWithSpan(sb, "PlayerService: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getPlayerServiceComponentName(this).toString()).append("\n");
-		appendWithSpan(sb, "MediaBrowserService: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getBrowserServiceComponentName(this).toString()).append("\n");
-		appendWithSpan(sb, "API Receiver: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getApiReceiverComponentName(this).toString()).append("\n");
-		appendWithSpan(sb, "Scanner: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getScannerServiceComponentName(this).toString()).append("\n");
-		appendWithSpan(sb, "Milk Scanner: ", new StyleSpan(Typeface.BOLD)).append(PowerampAPIHelper.getMilkScannerServiceComponentName(this).toString()).append("\n");
+		appendWithSpan(sb, "Package: ", new StyleSpan(Typeface.BOLD))
+				.append(PowerampAPIHelper.getPowerampPackageName(this))
+				.append("\n");
+		appendWithSpan(sb, "PlayerService: ", new StyleSpan(Typeface.BOLD))
+				.append(toStringOrEmpty(PowerampAPIHelper.getPlayerServiceComponentName(this)))
+				.append("\n");
+		appendWithSpan(sb, "MediaBrowserService: ", new StyleSpan(Typeface.BOLD))
+				.append(toStringOrEmpty(PowerampAPIHelper.getBrowserServiceComponentName(this)))
+				.append("\n");
+		appendWithSpan(sb, "API Receiver: ", new StyleSpan(Typeface.BOLD))
+				.append(toStringOrEmpty(PowerampAPIHelper.getApiReceiverComponentName(this)))
+				.append("\n");
+		appendWithSpan(sb, "Scanner: ", new StyleSpan(Typeface.BOLD))
+				.append(toStringOrEmpty(PowerampAPIHelper.getScannerServiceComponentName(this)))
+				.append("\n");
+		appendWithSpan(sb, "Milk Scanner: ", new StyleSpan(Typeface.BOLD))
+				.append(toStringOrEmpty(PowerampAPIHelper.getMilkScannerServiceComponentName(this)))
+				.append("\n");
 		tv.setText(sb);
 		if(LOG_VERBOSE) Log.w(TAG, "getComponentNames DONE");
 	}
 
+	private @NonNull String toStringOrEmpty(@Nullable ComponentName name) {
+		return name != null ? name.toString() : "";
+	}
 
 	public static @NonNull String getRawColName(@NonNull String col) {
 		int dot = col.indexOf('.');
@@ -1332,7 +1348,6 @@ public class MainActivity extends AppCompatActivity implements
 		}
 		return col;
 	}
-
 
 	public static void formatTimeS(@NonNull StringBuilder sb, int secs, boolean showPlaceholderForZero) {
 		if(secs < 0 || secs == 0 && showPlaceholderForZero) {

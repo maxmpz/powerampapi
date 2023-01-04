@@ -14,6 +14,7 @@ class LyricsRequestReceiver : BroadcastReceiver() {
     companion object {
         private const val TAG = "LyricsRequestReceiver"
         private const val LOG = true
+        private const val DEBUG_DELAY_RESPONSE_MS = 1000L // Just a debugging delay
     }
 
     private val guiHandler = Handler(Looper.getMainLooper())
@@ -38,10 +39,11 @@ class LyricsRequestReceiver : BroadcastReceiver() {
             val album = intent.getStringExtra(PowerampAPI.Track.ALBUM)
             val artist = intent.getStringExtra(PowerampAPI.Track.ARTIST)
             val durationS = intent.getIntExtra(PowerampAPI.Track.DURATION, 0)
-
             // We can extract other PowerampAPI.Track fields from extras here if needed
 
-            if(LOG) Log.w(TAG, "ACTION_NEED_LYRICS title=$title album=$album artist=$artist durationS=$durationS")
+            val debugLine = "ACTION_NEED_LYRICS realId=$realId title=$title album=$album artist=$artist durationS=$durationS"
+            DebugLines.addDebugLine(debugLine)
+            if(LOG) Log.w(TAG, debugLine)
 
             // Real plugin will initiate some background http request here for lyrics,
             // we just emulate the response with some delay
@@ -52,7 +54,7 @@ class LyricsRequestReceiver : BroadcastReceiver() {
 
                 sendLyricsResponse(context, realId, lyrics)
 
-            }, 1000)
+            }, DEBUG_DELAY_RESPONSE_MS)
         }
     }
 
@@ -62,7 +64,9 @@ class LyricsRequestReceiver : BroadcastReceiver() {
         intent.putExtra(PowerampAPI.Lyrics.EXTRA_LYRICS, lyrics) // Can be null
         try {
             PowerampAPIHelper.sendPAIntent(context, intent)
-            if(LOG) Log.w(TAG, "sendLyricsResponse realId=$realId\n\tlyrics=$lyrics")
+            val debugLine = "sendLyricsResponse realId=$realId"
+            DebugLines.addDebugLine(debugLine)
+            if(LOG) Log.w(TAG, debugLine)
         } catch(th: Throwable) {
             Log.e(TAG, "Failed to send lyrics response", th)
         }
@@ -79,9 +83,11 @@ class LyricsRequestReceiver : BroadcastReceiver() {
         val sb = StringBuilder()
         var timeMs = 0
         val msInMin = 1000 * 60
-
-        for(i in 0 until (15..100).random()) {
-            timeMs += (1..5000).random() // Random line time
+        val durationMs = durationS * 1000
+        var count = 0
+        while(true) {
+            timeMs += (250..5000).random() // Random line time
+            if(timeMs >= durationMs) break
 
             val min = timeMs / msInMin
             val s = (timeMs - min * msInMin) / 1000
@@ -90,7 +96,15 @@ class LyricsRequestReceiver : BroadcastReceiver() {
             val msPadded = ms.toString().padStart(3, '0')
 
             val time = "$min:$sPadded.$msPadded"
-            sb.append("[$time]Fake line #$i $time\n")
+            sb.append("[$time]")
+            when(count) {
+                0 -> sb.append(title)
+                1 -> sb.append(album)
+                2 -> sb.append(artist)
+                else -> sb.append("Fake line #$count $time")
+            }
+            sb.append("\n")
+            count++
         }
 
         return sb.toString()

@@ -6,18 +6,9 @@
 	android:padding="16sp"
 	android:orientation="vertical"
 >
-	<!--
-	<Button
-		android:onClick="openPAMusicFolders"
-		android:text="Open Poweramp Music Folders Dialog"
+	<TextView android:id="@+id/log"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:ignore="HardcodedText,UsingOnClickInXml"
-		/>
--->
-
-	<TextView android:id="@+id/status"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
+		android:scrollbars="vertical"
 	/>
 </LinearLayout>
