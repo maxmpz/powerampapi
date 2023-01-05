@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2022 Maksim Petrov
+Copyright (C) 2011-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -326,10 +326,20 @@ public interface TableDefs {
 		public static final @NonNull String CACHED_LYRICS_ID = "cached_lyrics_id";
 
 		/**
+		 * Cached lyrics loading start timestamp<br>
+		 * Milliseconds in System.currentTimeMillis timebase<br>
+		 * NULL if loading is not started yet or loading is complete<br>
+		 * INTEGER NULL
+		 * @since 948
+		 */
+		public static final @NonNull String CACHED_LYRICS_LOADING_STARTED_AT = "cached_lyrics_loading_started_at";
+
+		/**
 		 * Calculated field<br>
 		 * INTEGER (boolean)
 		 */
-		public static final @NonNull String HAS_LYRICS = "(has_lyrics_tag OR lrc_files_id IS NOT NULL OR cached_lyrics_id IS NOT NULL) AS _has_lyrics";
+		public static final @NonNull String HAS_LYRICS =
+			"(has_lyrics_tag OR lrc_files_id IS NOT NULL OR cached_lyrics_id IS NOT NULL AND cached_lyrics_loading_started_at IS NULL) AS _has_lyrics";
 	}
 
 	/** Contains the single track entry when/if some path is requested to be played and that path is not in Poweramp Music Folders/Library */
@@ -2097,14 +2107,6 @@ public interface TableDefs {
 		 * INTEGER NOT NULL
 		 */
 		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
-
-		/**
-		 * Loading start timestamp<br>
-		 * Milliseconds in System.currentTimeMillis timebase<br>
-		 * NULL if loading is not started yet or loading is complete<br>
-		 * INTEGER NULL
-		 */
-		public static final @NonNull String LOADING_STARTED_AT = TABLE + ".loading_started_at";
 
 		/**
 		 * 3rd party plugin package, the source of the lyrics
