@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2021 Maksim Petrov
+Copyright (C) 2011-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -19,6 +19,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 package com.maxmpz.poweramp.apiexample;
+
+import static android.view.View.VISIBLE;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -71,7 +73,6 @@ import com.maxmpz.poweramp.player.TableDefs;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
-import java.lang.reflect.Field;
 import java.util.Set;
 
 
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements
 			intent.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName());
 			if(FORCE_API_ACTIVITY) {
 				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
-				startActivity(intent);
+				startActivitySafe(intent);
 			} else {
 				sendBroadcast(intent);
 			}
@@ -187,6 +188,12 @@ public class MainActivity extends AppCompatActivity implements
 		}
 
 		getComponentNames();
+
+		if(PowerampAPIHelper.getPowerampBuild(this) == 0) {
+			var topHint = (TextView)findViewById(R.id.top_hint);
+			topHint.setText("-Poweramp not installed-");
+			topHint.setVisibility(VISIBLE);
+		}
 
 		if(LOG_VERBOSE) Log.w(TAG, "onCreate DONE");
 	}
@@ -575,7 +582,7 @@ public class MainActivity extends AppCompatActivity implements
 				Toast.makeText(this, th.getMessage(), Toast.LENGTH_LONG).show();
 			}
 		} else if(id == R.id.folders) {
-			startActivity(new Intent(this, FoldersActivity.class));
+			startActivitySafe(new Intent(this, FoldersActivity.class));
 		} else if(id == R.id.play_album) {
 			playAlbum();
 		} else if(id == R.id.play_all_songs) {
@@ -583,13 +590,13 @@ public class MainActivity extends AppCompatActivity implements
 		} else if(id == R.id.play_second_artist_first_album) {
 			playSecondArtistFirstAlbum();
 		} else if(id == R.id.eq) {
-			startActivity(new Intent(this, EqActivity.class));
+			startActivitySafe(new Intent(this, EqActivity.class));
 		} else if(id == R.id.pa_current_list) {
-			startActivity(new Intent(PowerampAPI.ACTION_SHOW_CURRENT));
+			startActivitySafe(new Intent(PowerampAPI.ACTION_SHOW_CURRENT));
 		} else if(id == R.id.pa_folders) {
-			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build()));
+			startActivitySafe(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build()));
 		} else if(id == R.id.pa_all_songs) {
-			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
+			startActivitySafe(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").build()));
 		} else if(id == R.id.create_playlist) {
 			createPlaylistAndAddToIt();
 		} else if(id == R.id.create_playlist_w_streams) {
@@ -599,11 +606,19 @@ public class MainActivity extends AppCompatActivity implements
 		} else if(id == R.id.add_to_q_and_goto_q) {
 			addToQAndGotoQ();
 		} else if(id == R.id.queue) {
-			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("queue").build()));
+			startActivitySafe(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("queue").build()));
 		} else if(id == R.id.get_all_prefs) {
 			getAllPrefs();
 		} else if(id == R.id.get_pref) {
 			getPref();
+		}
+	}
+
+	private void startActivitySafe(@NonNull Intent intent) {
+		try {
+			startActivity(intent);
+		} catch(Throwable th) {
+			Log.e(TAG, "FAIL intent=" + intent, th);
 		}
 	}
 
@@ -617,7 +632,7 @@ public class MainActivity extends AppCompatActivity implements
 
 				Log.w(TAG, "openNowPlayingTracks catUri=" + catUri + " uri=>" + uri);
 
-				startActivity(new Intent(this, TrackListActivity.class).setData(uri));
+				startActivitySafe(new Intent(this, TrackListActivity.class).setData(uri));
 				return; // Done here
 			}
 		}
@@ -664,7 +679,12 @@ public class MainActivity extends AppCompatActivity implements
 			Bundle bundle = new Bundle();
 			bundle.putString(prefName, null);
 
-			Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, bundle);
+			Bundle resultPrefs = null;
+			try {
+				resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, bundle);
+			} catch(IllegalArgumentException ex) {
+				Log.e(TAG, "FAIL Poweramp not installed", ex);
+			}
 
 			if(resultPrefs != null) {
 
@@ -688,10 +708,14 @@ public class MainActivity extends AppCompatActivity implements
 	private void getAllPrefs() {
 		TextView prefsTV = findViewById(R.id.prefs);
 
-		Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, null);
+		try {
+			Bundle resultPrefs = getContentResolver().call(PowerampAPI.ROOT_URI, PowerampAPI.CALL_PREFERENCE, null, null);
 
-		prefsTV.setText(dumpBundle(resultPrefs));
-		prefsTV.getParent().requestChildFocus(prefsTV, prefsTV);
+			prefsTV.setText(dumpBundle(resultPrefs));
+			prefsTV.getParent().requestChildFocus(prefsTV, prefsTV);
+		} catch(IllegalArgumentException ex) {
+			Log.e(TAG, "FAIL Poweramp not installed", ex);
+		}
 	}
 
 	public void setPref(View view) {
@@ -1037,21 +1061,34 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	public void rescan(View view) {
+		var componentName = PowerampAPIHelper.getScannerServiceComponentName(this);
+		if(componentName == null) {
+			Log.e(TAG, "FAIL !componentName");
+			return;
+		}
 		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS)
-				.setComponent(PowerampAPIHelper.getScannerServiceComponentName(this))
+				.setComponent(componentName)
 				.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " user requested");
 		startService(intent);
 	}
 
 	public void milkRescan(View view) {
+		final int powerampBuild = PowerampAPIHelper.getPowerampBuild(this);
+		if(powerampBuild <= 0) {
+			Log.e(TAG, "FAIL !powerampBuild");
+			return;
+		}
+
 		Intent intent = new Intent(PowerampAPI.MilkScanner.ACTION_SCAN)
 				.putExtra(PowerampAPI.MilkScanner.EXTRA_CAUSE, getPackageName() + " user requested");
-		if(PowerampAPIHelper.getPowerampBuild(this) >= 868) {
+
+		if(powerampBuild >= 868) {
 
 			PowerampAPIHelper.sendPAIntent(this, intent, FORCE_API_ACTIVITY); // Since 868
 
 		} else {
-			intent.setComponent(PowerampAPIHelper.getMilkScannerServiceComponentName(this)); // Used prior build 868
+			final ComponentName milkScannerServiceComponentName = PowerampAPIHelper.getMilkScannerServiceComponentName(this);
+			intent.setComponent(milkScannerServiceComponentName); // Used prior build 868
 			startService(intent);
 		}
 	}
@@ -1088,6 +1125,10 @@ public class MainActivity extends AppCompatActivity implements
  	 */
 	private void createPlaylistAndAddToIt() {
 		int buildNumber = getPowerampBuildNumber();
+		if(buildNumber == 0) {
+			Log.e(TAG, "createPlaylistAndAddToIt FAIL !buildNumber");
+			return;
+		}
 
 		ContentResolver cr = getContentResolver();
 		Uri playlistsUri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("playlists").build();
@@ -1160,7 +1201,7 @@ public class MainActivity extends AppCompatActivity implements
 				intent.putExtra(PowerampAPI.EXTRA_TABLE, TableDefs.PlaylistEntries.TABLE);
 				if(FORCE_API_ACTIVITY) {
 					intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
-					startActivity(intent);
+					startActivitySafe(intent);
 				} else {
 					sendBroadcast(intent);
 				}
@@ -1228,7 +1269,7 @@ public class MainActivity extends AppCompatActivity implements
 			intent.putExtra(PowerampAPI.EXTRA_TABLE, TableDefs.PlaylistEntries.TABLE);
 			if(FORCE_API_ACTIVITY) {
 				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
-				startActivity(intent);
+				startActivitySafe(intent);
 			} else {
 				sendBroadcast(intent);
 			}
@@ -1240,7 +1281,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	private void gotoCreatedPlaylist() {
 		if(mLastCreatedPlaylistFilesUri != null) {
-			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(mLastCreatedPlaylistFilesUri));
+			startActivitySafe(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(mLastCreatedPlaylistFilesUri));
 		}
 	}
 
@@ -1300,12 +1341,12 @@ public class MainActivity extends AppCompatActivity implements
 			intent.putExtra(PowerampAPI.EXTRA_TABLE, TableDefs.Queue.TABLE);
 			if(FORCE_API_ACTIVITY) {
 				intent.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
-				startActivity(intent);
+				startActivitySafe(intent);
 			} else {
 				sendBroadcast(intent);
 			}
 
-			startActivity(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(queueUri));
+			startActivitySafe(new Intent(PowerampAPI.ACTION_OPEN_LIBRARY).setData(queueUri));
 		}
 	}
 
@@ -1316,7 +1357,7 @@ public class MainActivity extends AppCompatActivity implements
 		SpannableStringBuilder sb = new SpannableStringBuilder();
 		appendWithSpan(sb, "Component Names\n", new StyleSpan(Typeface.BOLD));
 		appendWithSpan(sb, "Package: ", new StyleSpan(Typeface.BOLD))
-				.append(PowerampAPIHelper.getPowerampPackageName(this))
+				.append(orEmpty(PowerampAPIHelper.getPowerampPackageName(this)))
 				.append("\n");
 		appendWithSpan(sb, "PlayerService: ", new StyleSpan(Typeface.BOLD))
 				.append(toStringOrEmpty(PowerampAPIHelper.getPlayerServiceComponentName(this)))
@@ -1335,6 +1376,11 @@ public class MainActivity extends AppCompatActivity implements
 				.append("\n");
 		tv.setText(sb);
 		if(LOG_VERBOSE) Log.w(TAG, "getComponentNames DONE");
+	}
+
+	private @NonNull String orEmpty(@Nullable String s) {
+		if(s == null) return "";
+		return s;
 	}
 
 	private @NonNull String toStringOrEmpty(@Nullable ComponentName name) {

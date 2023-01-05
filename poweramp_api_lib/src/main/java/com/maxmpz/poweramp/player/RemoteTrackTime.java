@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2020 Maksim Petrov
+Copyright (C) 2011-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -26,6 +26,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 import android.util.Log;
+
+import org.eclipse.jdt.annotation.NonNull;
 
 
 /**
@@ -77,15 +79,13 @@ public class RemoteTrackTime {
 	}
 
 	public void unregister() {
-		if(mTrackPosSyncReceiver != null) {
-			try {
-				mContext.unregisterReceiver(mTrackPosSyncReceiver);
-			} catch(Exception ignored) { }
-		}
+		try {
+			mContext.unregisterReceiver(mTrackPosSyncReceiver);
+		} catch(Exception ignored) { }
 		mHandler.removeCallbacks(mTickRunnable);
 	}
 
-	private final BroadcastReceiver mTrackPosSyncReceiver = new BroadcastReceiver() {
+	private final @NonNull BroadcastReceiver mTrackPosSyncReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			int pos = intent.getIntExtra(PowerampAPI.Track.POSITION, 0);

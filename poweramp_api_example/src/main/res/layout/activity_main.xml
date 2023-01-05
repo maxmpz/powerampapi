@@ -4,7 +4,6 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	>
-
 	<RelativeLayout
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -18,6 +17,15 @@
 			android:stretchColumns="*"
 			android:collapseColumns="*"
 			>
+			<TableRow>
+				<TextView android:id="@+id/top_hint"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="8dp"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:visibility="gone"
+					/>
+			</TableRow>
 			<TableRow>
 				<TextView
 					android:text="List Uri"

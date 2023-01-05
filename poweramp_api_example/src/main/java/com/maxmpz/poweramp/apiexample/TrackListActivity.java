@@ -57,7 +57,7 @@ public class TrackListActivity extends ListActivity implements OnItemClickListen
 				null,
 				null,
 				null); // NOTE: using null as order argument - this results in user selected sorting - the same way as shown in Poweramp list
-		startManagingCursor(c);
+		if(c != null) startManagingCursor(c);
 
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(
 				this, // Context.

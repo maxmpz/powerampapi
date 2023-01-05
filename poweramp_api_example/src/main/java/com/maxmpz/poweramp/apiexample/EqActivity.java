@@ -83,7 +83,7 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 		String[] cols = new String[] { "_id", "name" };
 		Cursor c = getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("eq_presets").build(),
 				cols, null, null, "name");
-		startManagingCursor(c);
+		if(c != null) startManagingCursor(c);
 		// Add first empty item to the merged cursor via matrix cursor with single row.
 		MatrixCursor mc = new MatrixCursor(cols);
 		mc.addRow(new Object[]{ PowerampAPI.NO_ID, "" });

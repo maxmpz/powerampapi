@@ -48,7 +48,7 @@ public class FoldersActivity extends ListActivity implements OnItemClickListener
 
 		Cursor c = this.getContentResolver().query(PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("folders").build(),
 				new String[]{ "folders._id AS _id", "folders.name AS name", "folders.parent_name AS parent_name" }, null, null, "folders.name COLLATE NOCASE");
-		startManagingCursor(c);
+		if(c != null) startManagingCursor(c);
 
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(
 				this, // Context.
