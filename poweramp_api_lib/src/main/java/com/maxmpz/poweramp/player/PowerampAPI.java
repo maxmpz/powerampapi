@@ -1333,6 +1333,13 @@ public final class PowerampAPI {
 		public static final String DURATION = "dur";
 
 		/**
+		 * Track duration in milliseconds<br>
+		 * {@code int}
+		 * @since 948
+		 */
+		public static final String DURATION_MS = "durMs";
+
+		/**
 		 * Position in track in seconds<br>
 		 * NOTE: while this extra is defined within this Track class, it's always exposed as top level extra, not the
 		 * track bundle extra.<br>
