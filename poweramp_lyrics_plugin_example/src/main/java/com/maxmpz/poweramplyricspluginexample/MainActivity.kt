@@ -1,12 +1,39 @@
+/*
+Copyright (C) 2011-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for widgets, plugins, applications and other software
+which communicate with Poweramp application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 package com.maxmpz.poweramplyricspluginexample
 
 import android.app.Activity
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Layout
 import android.text.method.ScrollingMovementMethod
+import android.view.View
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import com.maxmpz.poweramp.player.PowerampAPI
+import com.maxmpz.poweramp.player.TableDefs.*
+import kotlinx.coroutines.*
 
 /**
  * This is a debug activity.
@@ -14,9 +41,16 @@ import android.widget.TextView
  * functionality
  */
 class MainActivity : Activity() {
+    companion object {
+        private const val TAG = "MainActivity"
+        private const val LOG = true
+    }
+
     private val handler = Handler(Looper.getMainLooper())
     private var serial = 0
     private var logTv: TextView? = null
+    private val scope = CoroutineScope(Dispatchers.IO)
+    
     
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,17 +59,82 @@ class MainActivity : Activity() {
         logTv?.setMovementMethod(ScrollingMovementMethod())
     }
 
+    /**
+     * On button press we try to load track details from Poweramp and we'll send some fake lyrics directly for that track id
+     */
+    fun sendLyricsForTrack(v: View) {
+        val trackId = findViewById<EditText>(R.id.trackId).text.toString().toLongOrNull(10)
+
+        scope.launch {
+            var error: String? = null
+            if(trackId != null && trackId != 0L) {
+                val uri = PowerampAPI.ROOT_URI.buildUpon().appendEncodedPath("files").appendEncodedPath(trackId.toString()).build()
+
+                // NOTE: we do simple query for track details. This won't handle tracks which do not have such details, such as streams
+                error = "no such track id=$trackId" // If we fail checks below, it's the error
+
+                contentResolver.query(
+                        uri,
+                        arrayOf(Files.TITLE_TAG, Artists.ARTIST, Albums.ALBUM, Files.DURATION),
+                        null,
+                        null,
+                        null
+                )?.use { c ->
+                    if(c.moveToNext()) {
+                        val title = c.getString(0)
+                        val artist = c.getString(1).orEmpty()
+                        val album = c.getString(2).orEmpty()
+                        val durationMs = c.getInt(3)
+
+                        DebugLines.addDebugLine("generating lyrics for trackId=$trackId title=$title artist=$artist album=$album dur=$durationMs")
+
+                        val lyrics = generateFakeLyrics("DIRECT:" + title, artist, album, durationMs)
+
+                        if(sendLyricsResponse(this@MainActivity, trackId, lyrics)) {
+                            error = null
+                        } else {
+                            error = "error sending response"
+                        }
+                    }
+                }
+            } else {
+                error = "bad track id"
+            }
+
+            withContext(Dispatchers.Main) {
+                Toast.makeText(this@MainActivity,
+                        if(error == null) "Sent lyrics OK" else "Failed to send lyrics: $error",
+                        Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+
     override fun onStart() {
         super.onStart()
-        poll()
+        pollDebugLines()
+
+        // Try to get current track id from Poweramp API
+        val trackIntent = registerReceiver(null, IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED))
+        if(trackIntent != null) {
+            findViewById<EditText>(R.id.trackId).setText(trackIntent.getLongExtra(PowerampAPI.Track.REAL_ID, 0L).toString())
+        }
     }
 
     override fun onStop() {
-        handler.removeCallbacksAndMessages(null)
+        stopPolling()
         super.onStop()
     }
 
-    private fun poll() {
+    override fun onDestroy() {
+        stopPolling()
+        scope.cancel(null)
+        super.onDestroy()
+    }
+
+    /** Simple polling to show the latest debug lines */
+    private fun pollDebugLines() {
         val serial = DebugLines.serial
         val logTv = logTv
         if(serial != this.serial && logTv != null) {
@@ -44,7 +143,7 @@ class MainActivity : Activity() {
             handler.post(::scrollToEnd)
         }
 
-        handler.postDelayed(::poll, 500)
+        handler.postDelayed(::pollDebugLines, 500)
     }
 
     private fun scrollToEnd() {
@@ -58,8 +157,7 @@ class MainActivity : Activity() {
         }
     }
 
-    companion object {
-        private const val TAG = "MainActivity"
-        private const val LOG = true
+    private fun stopPolling() {
+        handler.removeCallbacksAndMessages(null)
     }
 }
