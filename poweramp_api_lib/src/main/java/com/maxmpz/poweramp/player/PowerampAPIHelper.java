@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2020 Maksim Petrov
+Copyright (C) 2011-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -212,11 +212,11 @@ public class PowerampAPIHelper {
 	/**
 	 * If we have Poweramp build 855+, send broadcast, otherwise use startForegroundService/startService which may be prone to ANR errors
 	 * and are deprecated for Poweramp builds 855+.<br><br>
-	 * NOTE: scanner intents
-	 * THREADING: can be called from any thread
+	 * THREADING: can be called from any thread<br>
+	 * @return true if intent was successfully sent, false otherwise
 	 */
-	public static void sendPAIntent(Context context, Intent intent) {
-		sendPAIntent(context, intent, false);
+	public static boolean sendPAIntent(Context context, Intent intent) {
+		return sendPAIntent(context, intent, false);
 	}
 
 	/**
@@ -224,37 +224,44 @@ public class PowerampAPIHelper {
 	 * and are deprecated for Poweramp builds 855+.<br><br>
 	 * THREADING: can be called from any thread
 	 * @param sendToActivity if true, we're sending intent to the activity (build 862+)
+	 * @return true if intent was successfully sent, false otherwise
 	 */
-	public static void sendPAIntent(Context context, Intent intent, boolean sendToActivity) {
-		int buildNum = getPowerampBuild(context);
-		intent.putExtra(PowerampAPI.EXTRA_PACKAGE, context.getPackageName());
+	public static boolean sendPAIntent(Context context, Intent intent, boolean sendToActivity) {
+		try {
+			int buildNum = getPowerampBuild(context);
+			intent.putExtra(PowerampAPI.EXTRA_PACKAGE, context.getPackageName());
 
-		if(DEBUG_ALWAYS_SEND_TO_SERVICE) {
-			intent.setComponent(getPlayerServiceComponentNameImpl(context));
-			if(Build.VERSION.SDK_INT >= 26) {
-				context.startForegroundService(intent);
-			} else {
-				context.startService(intent);
+			if(DEBUG_ALWAYS_SEND_TO_SERVICE) {
+				intent.setComponent(getPlayerServiceComponentNameImpl(context));
+				if(Build.VERSION.SDK_INT >= 26) {
+					context.startForegroundService(intent);
+				} else {
+					context.startService(intent);
+				}
+				return true;
 			}
-			return;
-		}
 
-		if(sendToActivity && buildNum >= 862) {
-			intent.setComponent(getApiActivityComponentName(context));
-			if(!(context instanceof Activity)) {
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			}
-			context.startActivity(intent);
-		} else if(buildNum >= 855) {
-			intent.setComponent(getApiReceiverComponentName(context));
-			context.sendBroadcast(intent);
-		} else {
-			intent.setComponent(getPlayerServiceComponentNameImpl(context));
-			if(Build.VERSION.SDK_INT >= 26) {
-				context.startForegroundService(intent);
+			if(sendToActivity && buildNum >= 862) {
+				intent.setComponent(getApiActivityComponentName(context));
+				if(!(context instanceof Activity)) {
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				}
+				context.startActivity(intent);
+			} else if(buildNum >= 855) {
+				intent.setComponent(getApiReceiverComponentName(context));
+				context.sendBroadcast(intent);
 			} else {
-				context.startService(intent);
+				intent.setComponent(getPlayerServiceComponentNameImpl(context));
+				if(Build.VERSION.SDK_INT >= 26) {
+					context.startForegroundService(intent);
+				} else {
+					context.startService(intent);
+				}
 			}
+			return true;
+		} catch(Exception ex) {
+			Log.e(TAG, "intent=" + intent, ex);
+			return false;
 		}
 	}
 
