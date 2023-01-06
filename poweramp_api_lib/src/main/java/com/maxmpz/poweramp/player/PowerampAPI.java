@@ -1905,7 +1905,7 @@ public final class PowerampAPI {
 		 *      by the plugin.
 		 *  </ul>
 		 *
-		 * Extras: {@link #EXTRA_ID}, {@link #EXTRA_LYRICS}<br>
+		 * Extras: {@link #EXTRA_ID}, {@link #EXTRA_LYRICS}, {@link #EXTRA_INFO_LINE}<br>
 		 */
 		public static final String ACTION_UPDATE_LYRICS = "com.maxmpz.audioplayer.ACTION_UPDATE_LYRICS";
 
@@ -1920,6 +1920,14 @@ public final class PowerampAPI {
 		 * {@code String}
 		 */
 		public static final String EXTRA_LYRICS = "lyrics";
+
+		/**
+		 * Extra for {@link #ACTION_UPDATE_LYRICS}.
+		 * 3rd party plugin info line text, shown as last line in Poweramp lyrics. Can be copyright or other similar
+		 * additional short info text<br>
+		 * {@code String}
+		 */
+		public static final String EXTRA_INFO_LINE = "info_line";
 	}
 	
 

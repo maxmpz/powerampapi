@@ -2115,6 +2115,13 @@ public interface TableDefs {
 		public static final @NonNull String CREATED_BY_PAK = TABLE + ".created_by_pak";
 
 		/**
+		 * 3rd party plugin info line text, shown as last line in Poweramp lyrics. Can be copyright or other similar
+		 * additional short info text
+		 * TEXT NULL
+		 */
+		public static final @NonNull String INFO_LINE = TABLE + ".info_line";
+
+		/**
 		 * Lyrics content or NULL if none.<br>
 		 * NOTE: we may have NULL while lyrics is requested via the plugin, but we haven't received data from it yet
 		 * TEXT 
