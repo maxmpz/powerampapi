@@ -74,15 +74,18 @@ class LyricsRequestReceiver : BroadcastReceiver() {
             DebugLines.addDebugLine(debugLine)
             if(LOG) Log.w(TAG, debugLine)
 
+            // Inject some info line for even ids
+            val infoLine: String? = if((realId and 0x1L) == 0L) "Lyrics by Poweramp Plugin Example (realId=$realId)" else null
+            val lrc = realId % 3 != 0L // Generate non-lrc for third of realIds
 
             // Real plugin will initiate some background http request here for lyrics,
             // we just emulate the response with some delay
             GlobalScope.launch(Dispatchers.IO) {
-                val lyrics = generateFakeLyrics(title, album, artist, durationMs)
+                val lyrics = generateFakeLyrics(lrc, title, album, artist, durationMs)
 
                 delay(DEBUG_DELAY_RESPONSE_MS)
 
-                sendLyricsResponse(context, realId, lyrics)
+                sendLyricsResponse(context, realId, lyrics, infoLine)
             }
         }
     }

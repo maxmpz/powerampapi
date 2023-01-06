@@ -121,12 +121,17 @@ class MainActivity : Activity() {
                         val artist = c.getString(1).orEmpty()
                         val album = c.getString(2).orEmpty()
                         val durationMs = c.getInt(3)
+                        val lrc = trackId % 3 != 0L // Generate non-lrc for third of realIds
+                        
+                        DebugLines.addDebugLine("generating lyrics for trackId=$trackId lrc=$lrc title=$title artist=$artist album=$album" +
+                                " dur=$durationMs ")
 
-                        DebugLines.addDebugLine("generating lyrics for trackId=$trackId title=$title artist=$artist album=$album dur=$durationMs")
+                        val lyrics = generateFakeLyrics(lrc,"DIRECT:" + title, artist, album, durationMs)
 
-                        val lyrics = generateFakeLyrics("DIRECT:" + title, artist, album, durationMs)
+                        // Inject some info line for even ids
+                        val infoLine: String? = "DIRECTLY updated lyrics by Poweramp Plugin Example (realId=$trackId)"
 
-                        if(sendLyricsResponse(this@MainActivity, trackId, lyrics)) {
+                        if(sendLyricsResponse(this@MainActivity, trackId, lyrics, infoLine)) {
                             error = null
                         } else {
                             error = "error sending response"

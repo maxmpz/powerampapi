@@ -6,7 +6,7 @@ private const val TAG = "LyricsRequestReceiver"
 private const val LOG = true
 
 
-fun generateFakeLyrics(title: String, album: String?, artist: String?, durationMs: Int): String? {
+fun generateFakeLyrics(lrc: Boolean, title: String, album: String?, artist: String?, durationMs: Int): String? {
     // For the tracks starting from "A" or "O", return no lyrics - just for the testing purposes
     if(title.startsWith("A", ignoreCase = true) || title.startsWith("O", ignoreCase = true)) {
         if(LOG) Log.w(TAG, "generateFakeLyrics return NO LYRICS for title=$title")
@@ -28,8 +28,8 @@ fun generateFakeLyrics(title: String, album: String?, artist: String?, durationM
         val sPadded = s.toString().padStart(2, '0')
         val msPadded = ms.toString().padStart(3, '0')
 
-        val time = "$min:$sPadded.$msPadded"
-        sb.append("[$time]")
+        val time = if(lrc) "$min:$sPadded.$msPadded" else ""
+        if(lrc) sb.append("[$time]")
         when(count) {
             0 -> sb.append(title)
             1 -> sb.append(if(album.isNullOrBlank()) "-" else album)
