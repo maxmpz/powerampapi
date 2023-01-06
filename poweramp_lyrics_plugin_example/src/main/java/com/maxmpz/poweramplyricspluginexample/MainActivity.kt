@@ -21,17 +21,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.maxmpz.poweramplyricspluginexample
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Layout
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.maxmpz.poweramp.player.PowerampAPI
+import com.maxmpz.poweramp.player.PowerampAPI.NO_ID
 import com.maxmpz.poweramp.player.TableDefs.*
 import kotlinx.coroutines.*
 
@@ -57,6 +61,38 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         logTv = findViewById<TextView>(R.id.log)
         logTv?.setMovementMethod(ScrollingMovementMethod())
+
+        val intent = getIntent()
+        if(intent != null && intent.action == PowerampAPI.Lyrics.ACTION_LYRICS_LINK
+                && !intent.getBooleanExtra("__processed", false)
+        ) {
+            intent.putExtra("__processed", true)
+            handleLyricsLinkIntent(intent)
+        }
+    }
+
+    private fun handleLyricsLinkIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        if(LOG) Log.w(TAG, "onNewIntent")
+        val msg: String
+        val realId = intent.getLongExtra(PowerampAPI.Track.REAL_ID, NO_ID)
+        if(realId != NO_ID) {
+            msg = """
+            REAL_ID=$realId
+            TITLE=${intent.getStringExtra(PowerampAPI.Track.TITLE)}
+            ALBUM=${intent.getStringExtra(PowerampAPI.Track.ALBUM)}
+            ARTIST=${intent.getStringExtra(PowerampAPI.Track.ARTIST)}
+            DURATION_MS=${intent.getIntExtra(PowerampAPI.Track.DURATION_MS, 0)}
+            """.trimIndent()
+        } else {
+            msg = "No track info provided"
+        }
+
+        AlertDialog.Builder(this)
+                .setTitle("ACTION_LYRICS_LINK")
+                .setMessage(msg)
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
     }
 
     /**

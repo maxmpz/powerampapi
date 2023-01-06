@@ -36,6 +36,11 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 				<category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
+
+			<intent-filter>
+				<action android:name="com.maxmpz.audioplayer.ACTION_LYRICS_LINK"/>
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
 		</activity>
 	</application>
 
