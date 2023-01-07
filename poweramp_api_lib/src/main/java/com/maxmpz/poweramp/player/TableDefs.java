@@ -342,86 +342,12 @@ public interface TableDefs {
 			"(has_lyrics_tag OR lrc_files_id IS NOT NULL OR cached_lyrics_id IS NOT NULL AND cached_lyrics_loading_started_at IS NULL) AS _has_lyrics";
 	}
 
-	/** Contains the single track entry when/if some path is requested to be played and that path is not in Poweramp Music Folders/Library */
+	/**
+	 * Contains the single track entry when/if some path is requested to be played and that path is not in Poweramp Music Folders/Library.<br>
+	 * @since 949 this is always a structural copy of folder_files table (with just that one _id={@link PowerampAPI#RAW_TRACK_ID} (-2) entry)
+	 */
 	public interface RawFiles extends Files {
 		public static final @NonNull String TABLE = "raw_files";
-
-		public static final @NonNull String _ID = TABLE + "._id";
-
-		/**
-		 * Short filename<br>
-		 * TEXT
-		 */
-		public static final @NonNull String NAME = TABLE + ".name";
-
-		/**
-		 * Title tag<br>
-		 * TEXT
-		 */
-		public static final @NonNull String TITLE_TAG = TABLE + ".title_tag";
-
-		/**
-		 * Seconds<br>
-		 * INTEGER
-		 */
-		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
-
-		/**
-		 * INTEGER
-		 */
-		public static final @NonNull String PLAYED_AT = TABLE + ".played_at";
-
-		/**
-		 * Full path. Works only if the query is joined with the folders<br>
-		 * TEXT
-		 */
-		public static final @NonNull String FULL_PATH = Folders.PATH + "||" + NAME;
-
-		/**
-		 * INTEGER
-		 */
-		public static final @NonNull String PLAYED_TIMES = TABLE + ".played_times";
-
-		/**
-		 * INTEGER
-		 */
-		public static final @NonNull String ALBUM_ID = TABLE + ".album_id";
-
-		/**
-		 * INTEGER
-		 */
-		public static final @NonNull String ARTIST_ID = TABLE + ".artist_id";
-
-		/**
-		 * INTEGER
-		 */
-		public static final @NonNull String ALBUM_ARTIST_ID = TABLE + ".album_artist_id";
-
-		/**
-		 * INTEGER
-		 */
-		public static final @NonNull String COMPOSER_ID = TABLE + ".composer_id";
-
-		/**
-		 * First seen time<br>
-		 * INTEGER
-		 */
-		public static final @NonNull String CREATED_AT = TABLE + ".created_at";
-
-		/**
-		 * String
-		 */
-		public static final @NonNull String META = TABLE + ".meta";
-
-		/**
-		 * String
-		 */
-		public static final @NonNull String ALBUM_TAG = TABLE + ".album_tag";
-
-		/**
-		 * String
-		 */
-		public static final @NonNull String ARTIST_TAG = TABLE + ".artist_tag";
 	}
 
 	/** All known Poweramp folders */
