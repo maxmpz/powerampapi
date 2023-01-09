@@ -213,17 +213,28 @@ for these views.
 
 
 ### Poweramp v3 Skin Options
-Poweramp v3 supports unique feature allowing user selectable skin options to be defined by skin author. Option is an "overlap" style which is applied in addition to the main skin theme.
+Poweramp v3 supports unique feature allowing user selectable skin options to be defined by skin author.
+
+#### overlapStyle and overlapAttr
+Option is an *overlapStyle* - the extra style applied to the theme on top level which is applied in addition to the main skin theme.
+
+If *overlapStyle* is not defined, but *overlapAttr* is defined, *overlapAttr* is resolved to style and that style is applied.
+
+* *overlapStyle* applies that style values directly to the top level theme
+* *overlapAttr* is an attribute which points to the style which is applied directly to the top level theme. This indirection
+allows earlier option to modify options below by simply overriding that later option *overlapAttr* attribute to an alternative style
+
 See sample skin **[xml/skins.xml](src/main/res/xml/skins.xml)** for reference.
 
-Options include:
+#### Options
 * simple option with some name and optional summary (rendered as switch):
 ```xml
 <option
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary]"
-    overlapStyle="[overlap style reference]"
+    overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
+    overlapAttr="[optional overlap attr reference to style]"
     checkedByDefault="[true|false]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
     minSdk="[since 912]"
@@ -236,26 +247,29 @@ Options include:
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary]"
-    defaultValue="[optional default overlap style reference]"
-    dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    defaultValue="[default overlapStyle/overlapAttr value to use]"
+    dependency="[since 866. Key of some other option. If the referenced option is switched off (or value is 0), this option is disabled]"
     minSdk="[since 912]"
     maxSdk="[since 912]"
 >
         <option
             name="[visible name]"
             summary="[optional summary]"
-            overlapStyle="[overlap style reference, can be an empty string]"
+            overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
+            overlapAttr="[optional overlap attr reference to style]"
         />
         ...
 </radio>
 ```
-* option with a popup option chooser list (since build 810). Only one selected value from the set of options is applied:
+* option with a popup option chooser list (since build 810). Only one selected value from the set of options is applied. Since build 900
+&lt;popup&gt; option are automatically converted to &lt;multiSwitch&gt; unless allowMulti is set to false for the &lt;popup&gt;.
+The automatic conversion happens if number of &lt;popup&gt; options is less than 5, options don't have html and are shorter than 24 characters.
 ```xml
 <popup
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
-    defaultValue="[optional default overlap style reference]"
+    defaultValue="[default overlapStyle/overlapAttr value to use]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
     allowMulti="[since 900 - boolean - true|false - optional, default is true. If set to false, disables conversion to the multiSwitch]"
     minSdk="[since 912]"
@@ -263,7 +277,8 @@ Options include:
 >
         <option
             name="[visible name]"
-            overlapStyle="[overlap style reference, can be an empty string]"
+            overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
+            overlapAttr="[optional overlap attr reference to style]"
         />
         ...
 </popup>
@@ -276,7 +291,7 @@ Options include:
     name="[visible name]"
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
     summary2="[string - same as summary. Allows independent string resource to be used. Works only if just summary exists]"
-    defaultValue="[optional default overlap style reference]"
+    defaultValue="[default overlapStyle/overlapAttr value to use]"
     leftLabel="[string - the label to the left]"
     centerLabel="[string - the label at the center]"
     rightLabel="[string - the label to the right]"
@@ -286,30 +301,30 @@ Options include:
 >
         <option
             name="[visible name]"
-            overlapStyle="[overlap style reference, can be an empty string]"
+            overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
+            overlapAttr="[optional overlap attr reference to style]"
         />
         ...
 </popup>
 ```
 
-* option with the multiple switchable inline options (since build 900). Only one selected value from the set of options is applied.  
-Note: &lt;popup&gt; option are automatically converted to &lt;multiSwitch&gt; unless allowMulti is set to false for the &lt;popup&gt;.
-The automatic conversion happens if number of &lt;popup&gt; options is less than 5, options don't have html and are shorter than 24 characters.
+* option with the multiple switchable inline options (since build 900). Only one selected value from the set of options is applied.
 Converted option won't have summary, if the summary contains formatting symbols (%s).
 ```xml
 <multiSwitch
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
-    defaultValue="[optional default overlap style reference]"
+    defaultValue="[default overlapStyle/overlapAttr value to use]"
     dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
     minSdk="[since 912]"
     maxSdk="[since 912]"
 >
         <option
             name="[visible name]"
-            overlapStyle="[overlap style reference, can be an empty string]"
             summary="[optional. summary shown when option selected]"
+            overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
+            overlapAttr="[optional overlap attr reference to style]"
         />
         ...
 </multiSwitch>
