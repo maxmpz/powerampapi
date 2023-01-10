@@ -67,8 +67,14 @@ class LyricsRequestReceiver : BroadcastReceiver() {
 
             val album = intent.getStringExtra(PowerampAPI.Track.ALBUM)
             val artist = intent.getStringExtra(PowerampAPI.Track.ARTIST)
-            val durationMs = intent.getIntExtra(PowerampAPI.Track.DURATION_MS, 0)
+            var durationMs = intent.getIntExtra(PowerampAPI.Track.DURATION_MS, 0)
             // We can extract other PowerampAPI.Track fields from extras here if needed
+            val fileType = intent.getIntExtra(PowerampAPI.Track.FILE_TYPE, PowerampAPI.Track.FileType.TYPE_UNKNOWN)
+
+            // NOTE: if it's a stream, we won't get durationMs and it may be generally harder to guess/search/load
+            // lyrics for such stream "tracks"
+            val isStream = fileType == PowerampAPI.Track.FileType.TYPE_STREAM
+            if(isStream && durationMs <= 0) durationMs = 60 * 1000; // Let's use some fake duration for our generateFakeLyrics
 
             val debugLine = "ACTION_NEED_LYRICS realId=$realId title=$title album=$album artist=$artist durationMs=$durationMs"
             DebugLines.addDebugLine(debugLine)

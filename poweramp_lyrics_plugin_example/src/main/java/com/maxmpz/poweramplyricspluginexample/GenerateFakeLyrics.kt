@@ -12,8 +12,11 @@ fun generateFakeLyrics(lrc: Boolean, title: String, album: String?, artist: Stri
         if(LOG) Log.w(TAG, "generateFakeLyrics return NO LYRICS for title=$title")
         return null
     }
+    if(durationMs <= 0) {
+        if(LOG) Log.e(TAG, "generateFakeLyrics return NO LYRICS !durationMs title=$title")
+        return null
+    }
 
-    // Generate random number of LRC lines
     val sb = StringBuilder()
     var timeMs = 0
     val msInMin = 1000 * 60

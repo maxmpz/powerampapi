@@ -82,6 +82,7 @@ class MainActivity : Activity() {
             TITLE=${intent.getStringExtra(PowerampAPI.Track.TITLE)}
             ALBUM=${intent.getStringExtra(PowerampAPI.Track.ALBUM)}
             ARTIST=${intent.getStringExtra(PowerampAPI.Track.ARTIST)}
+            TYPE=${intent.getStringExtra(PowerampAPI.Track.FILE_TYPE)}
             DURATION_MS=${intent.getIntExtra(PowerampAPI.Track.DURATION_MS, 0)}
             """.trimIndent()
         } else {
@@ -111,7 +112,7 @@ class MainActivity : Activity() {
 
                 contentResolver.query(
                         uri,
-                        arrayOf(Files.TITLE_TAG, Artists.ARTIST, Albums.ALBUM, Files.DURATION),
+                        arrayOf(Files.TITLE_TAG, Artists.ARTIST, Albums.ALBUM, Files.DURATION, Files.FILE_TYPE),
                         null,
                         null,
                         null
@@ -120,13 +121,17 @@ class MainActivity : Activity() {
                         val title = c.getString(0)
                         val artist = c.getString(1).orEmpty()
                         val album = c.getString(2).orEmpty()
-                        val durationMs = c.getInt(3)
+                        var durationMs = c.getInt(3)
+                        val fileType = c.getInt(4)
                         val lrc = trackId % 3 != 0L // Generate non-lrc for third of realIds
-                        
+
+                        val isStream = fileType == PowerampAPI.Track.FileType.TYPE_STREAM
+                        if(isStream && durationMs <= 0) durationMs = 60 * 1000; // Let's use some fake duration for our generateFakeLyrics
+
                         DebugLines.addDebugLine("generating lyrics for trackId=$trackId lrc=$lrc title=$title artist=$artist album=$album" +
                                 " dur=$durationMs ")
 
-                        val lyrics = generateFakeLyrics(lrc,"DIRECT:" + title, artist, album, durationMs)
+                        val lyrics = generateFakeLyrics(lrc, "DIRECT:$title", artist, album, durationMs)
 
                         // Inject some info line for even ids
                         val infoLine: String? = "DIRECTLY updated lyrics by Poweramp Plugin Example (realId=$trackId)"
