@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 
 		Intent intent = new Intent();
 		intent.setComponent(new ComponentName(PowerampAPIHelper.getPowerampPackageName(this), PowerampAPI.ACTIVITY_SETTINGS));
-		intent.putExtra(PowerampAPI.Settings.EXTRA_OPEN_PATH, "folders_library/music_folders_button");
+		intent.putExtra(PowerampAPI.Settings.EXTRA_OPEN_PATH, "library/music_folders_button");
 		intent.putExtra(PowerampAPI.Settings.EXTRA_NO_BACKSTACK, true);
 		intent.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName());
 		startActivity(intent);
