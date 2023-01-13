@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -136,7 +136,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		  (bg starts)(line bg starts) paddingLeft <text> paddingRight (line bg ends)(bg ends)
 		-->
 
-		<!-- Default true.
+		<!-- Default true. Not applied for the horizontally centered text gravity.
 		     Applied when we have ellispsize=end and text should be cut so ellipsis should be shown.
 		     If false, ellipsis (...) is just drawn right after the text, line background ends right after the ellipsis (+ paddings).
 		     This may cause FastTextViews not being the same widths due to line background being attached to the
@@ -215,5 +215,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- If set to non-zero, the debugging rectangles are drawn around text and drawable exact bounds.
 		     Only raw color values accepted -->
 		<attr name="debugRectColor" format="color"/>
+	</declare-styleable>
+	
+
+	<!-- Scene-overridable extra FastTextView params -->
+	<declare-styleable name="FastTextViewSceneParams">
+		<attr name="lineBackground"/>
+		<attr name="android:textColor" />
+		<attr name="android:maxLines"/>
+		<!-- NOTE: prior SDK=22 it's not possible to detect @empty (or @null) vs missing attribute.
+		     For now, use #00000000 (#0000) color instead to indicate transition to no-background -->
+		<attr name="android:background"/>
+		<attr name="drawableTint"/>
+		<!-- NOTE: limited support for drawable transitions. For the new drawable to appear, default scene should have some default drawable set
+			 Basically, that means we can transition between drawables, but we can't transition between no-drawable and drawable and vice-versa -->
+		<attr name="android:drawable"/>
+
+		<!-- NOTE: supported by MarqueeFastTextView only. Changed by not animated -->
+		<attr name="android:ellipsize"/>
+
+		<!-- This is changed per scene, but not animated ATM -->
+		<attr name="android:gravity"/>
 	</declare-styleable>
 </resources>

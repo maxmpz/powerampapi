@@ -69,7 +69,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="ListMenu_drawableSize">20dp</dimen>
 	<dimen name="track_children_scene_aa_margin">18dp</dimen>
-	<dimen name="ItemTrackMenu_scene_aa_marginLeft">-16dp</dimen>
 
 	<dimen name="searchHistoryItemSize">40sp</dimen>
 </resources>

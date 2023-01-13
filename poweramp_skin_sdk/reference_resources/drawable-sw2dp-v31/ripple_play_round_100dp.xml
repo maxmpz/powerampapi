@@ -11,5 +11,13 @@
 			<padding android:left="1px" android:right="1px" android:top="1px" android:bottom="1px"/>
 		</shape>
 	</item>
-	<item android:drawable="?play_core"/>
+	<item>
+		<!-- NOTE: % insets are supported for Android 8/sdk26+ -->
+		<!-- NOTE: extra layer list is required as ?play_core can't be resolved via inset drawable ref -->
+		<inset android:inset="25%">
+			<layer-list>
+				<item android:drawable="?play_core"/>
+			</layer-list>
+		</inset>
+	</item>
 </ripple>

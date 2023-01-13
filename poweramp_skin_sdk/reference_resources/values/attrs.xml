@@ -76,19 +76,45 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="overlap_transparent_navbar" format="reference"/>
 		<attr name="overlap_plain_seekbar" format="reference"/>
 		<attr name="overlap_navbar_offset" format="reference"/>
+		<!-- Normal alt layout -->
 		<attr name="overlap_alt_layout" format="reference"/>
+		<!-- Full alt layout with all items moved below the cover -->
+		<attr name="overlap_alt_layout2" format="reference"/>
+		<!-- Centered track labels -->
+		<attr name="overlap_track_labels_centered" format="reference"/>
+		<!-- No bg for track labels -->
+		<attr name="overlap_track_labels_no_bg" format="reference"/>
 		<attr name="overlap_less_rounding" format="reference"/>
 		<attr name="overlap_light_buttons" format="reference"/>
 		<attr name="overlap_knobs_hilite_mono" format="reference"/>
 		<attr name="overlap_knobs_hilite_color" format="reference"/>
+
+		<!-- Extra globalOption attribute to apply when OptionRatingDisabled option is in effect -->
+		<attr name="overlap_OptionRatingDisabled" format="reference"/>
+		<!-- Extra globalOption attribute to apply when OptionRatingStarsMenu option is in effect -->
+		<attr name="overlap_OptionRatingStarsMenu" format="reference"/>
 	</declare-styleable>
 	
 	<!-- Navbar margins moved to theme to allow easy overriding for overlap_navbar_offset option -->
 	<attr name="navbar_marginLR" format="dimension"/>
 	<attr name="navbar_marginB" format="dimension"/>
-	
+	<!-- These are theme attribute, usually pointint to some @dimen. Used in DynamicDimensions and allows theme to redefine navbar
+	     related sizes -->
+	<attr name="Navbar_height" format="dimension"/>
+	<attr name="NavbarSeekbar_marginTop" format="dimension"/>
+	<attr name="NavbarSeekbar_marginLR" format="dimension"/>
+	<attr name="NavbarList_marginBottom" format="dimension"/>
+	<attr name="NavbarSeekbar_height" format="dimension"/>
+	<attr name="NavbarSeekbar_marginBottom" format="dimension"/>
+
 	<!-- Needed for OptionHideMenu -->
 	<attr name="ItemTrackMenu_scene_aa_visibility">
+		<enum name="visible" value="0" />
+		<enum name="invisible" value="1" />
+		<enum name="gone" value="2" />
+	</attr>
+	
+	<attr name="ItemTrackLyrics_scene_aa_visibility">
 		<enum name="visible" value="0" />
 		<enum name="invisible" value="1" />
 		<enum name="gone" value="2" />

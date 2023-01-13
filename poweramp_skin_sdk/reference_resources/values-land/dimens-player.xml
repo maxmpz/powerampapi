@@ -25,8 +25,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="NavbarNavButtonsLayout_height">36dp</dimen>
 	<dimen name="NavBarButton_drawableSize">28dp</dimen>
 
+	<!-- @Deprecated -->
 	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
+	<!-- @Deprecated -->
 	<dimen name="NavbarBounds_height_scene_navbar_2lines_more_rounded">88dp</dimen>
+
+	<!-- Sligtly reduce navbar seekbar spanning height for land -->
+	<dimen name="NavbarSeekbar_marginTop">-4dp</dimen>
+	<dimen name="NavbarSeekbar_marginBottom">-10dp</dimen>
 
 	<dimen name="ItemMiniplayerAAImage_size">28dp</dimen>
 	<dimen name="corners_miniplayer_aa">8dp</dimen>
@@ -55,9 +61,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PlainSeekbar_metaInfo_marginBottom">3dp</dimen>
 	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">3dp</dimen>
 
+	<dimen name="TopListScrollerView_marginTop">32dp</dimen>
+	<dimen name="TopListScrollerView_marginBottom">88dp</dimen>
+	<dimen name="OptionLocalizedAZScroll_TopListScrollerView_marginTop">32dp</dimen>
 
 	
 	<!-- Alt -->
 	<dimen name="Alt_TopPlay_maxSize">72dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
+
+	<dimen name="ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft">0dp</dimen>
+	<dimen name="Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft">4dp</dimen>
 </resources>

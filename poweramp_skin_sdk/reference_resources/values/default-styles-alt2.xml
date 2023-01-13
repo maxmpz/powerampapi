@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- Layout Full Cover -->
+	<!-- This is alternative layout with title/album-artist and buttons moved below cover -->
+	<!-- NOTE: this is not a theme, but a skin option, which is applied after the skin theme and global optional styles -->
+	<!--
+		Alternative layout 2 looks like:
+		- with rating:
+		+==========+
+		|          |
+		|    AA    | <- AA "consumes" vertical space
+		|          |
+		+==========+ <- bottom of AA                                +
+		...                                                         |
+		title  (lrc) (menu) <- bottom attached to line2             |
+		line2        <- vertically centered                         |-> height == @dimen/Alt_TopAABounds_marginBottom
+		rating       <- top attached to line2                       |
+		...                                                         |
+		~~~~~~~~~~~~ <- bottom of ItemTrack view                    +
+        sub-aa buttons (vis, sleep, repeat, shuffle)
+        ...
+
+		- disabled rating:
+		+==========+
+		|          |
+		|    AA    | <- AA "consumes" vertical space
+		|          |
+		+==========+ <- bottom of AA                                +
+		...                                                         |
+		title        <- bottom attached to 50%                      |
+		                                                            |-> height == @dimen/Alt_TopAABounds_marginBottom
+		line2 (lrc) (menu) <- top attached to 50%                   |
+		...                                                         |
+		~~~~~~~~~~~~ <- bottom of ItemTrack view                    +
+        sub-aa buttons (vis, sleep, repeat, shuffle)
+        ...
+
+		Grid item styles also changed to move text out from cover
+		NOTE: this layout is changed for the landscape
+
+
+	-->
+
+	<!-- We'll use this attribute locally to move rating bar a bit when backrounds are disabled -->
+	<attr name="Alt2_ItemRatingBar_scene_aa_marginLeft" format="dimension"/>
+
+	<style name="Base_ActivityTheme_AltLayout2" parent="ActivityTheme_Whitepro_AltLayout">
+		<!-- Apply extra style when OptionRatingDisabled is in effect.
+		     This is further overridden for centered labels (Alt2_TrackLabelsCentered) -->
+		<item name="overlap_OptionRatingDisabled">@style/Alt2_OptionRatingDisabled</item>
+		<!-- NOTE: here we're applying same Alt2_OptionRatingDisabled style when OptionRatingStarsMenu is in effect -->
+		<item name="overlap_OptionRatingStarsMenu">@style/Alt2_OptionRatingDisabled</item>
+
+		<item name="overlap_track_labels_centered">@style/Alt2_TrackLabelsCentered</item>
+
+		<item name="TopListWidget">@style/Alt2_TopListWidget</item>
+		<item name="TopAABounds">@style/Alt2_TopAABounds</item>
+
+		<item name="ItemTrackAAImage_scene_aa">@style/Alt2_ItemTrackAAImage_scene_aa</item>
+
+		<item name="ItemTrackTitle_scene_aa">@style/Alt2_ItemTrackTitle_scene_aa</item>
+		<item name="ItemTrackLine2_scene_aa">@style/Alt2_ItemTrackLine2_scene_aa</item>
+		<item name="ItemTrackMenu_scene_aa">@style/Alt2_ItemTrackMenu_scene_aa</item>
+		<item name="ItemTrackLyrics_scene_aa">@style/Alt2_ItemTrackLyrics_scene_aa</item>
+
+		<item name="ItemLikeUnlikeLayout_scene_aa">@style/Alt2_ItemLikeUnlikeLayout_scene_aa</item>
+		<item name="ItemRatingBar_scene_aa">@style/Alt2_ItemRatingBar_scene_aa</item>
+
+		<item name="TopSubAAButtons">@style/Alt2_TopSubAAButtons</item>
+
+		<!-- This is overridden only for land -->
+		<item name="TopWaveseekLayout">@style/Alt2_TopWaveseekLayout</item>
+
+		<!-- Overridden for land -->
+		<item name="Alt2_ItemRatingBar_scene_aa_marginLeft">@dimen/ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft</item>
+	</style>
+	<style name="ActivityTheme_White_AltLayout2" parent="Base_ActivityTheme_AltLayout2">
+		<item name="overlap_track_labels_no_bg">@style/Alt2_White_TracksLabelsNoBg</item>
+	</style>
+	<style name="ActivityTheme_Black_AltLayout2" parent="Base_ActivityTheme_AltLayout2">
+		<item name="overlap_track_labels_no_bg">@style/Alt2_Black_TracksLabelsNoBg</item>
+	</style>
+
+	<!-- NOTE: redefined in land -->
+	<style name="Alt2_TrackLabelsCentered">
+		<item name="overlap_OptionRatingDisabled">@style/Alt2_TrackLabelsCentered_OptionRatingDisabled</item>
+		<item name="overlap_OptionRatingStarsMenu">@style/Alt2_TrackLabelsCentered_OptionRatingDisabled</item>
+		
+		<item name="ItemTrackTitle_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa</item>
+		<item name="ItemTrackLine2_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa</item>
+		<item name="ItemTrackMenu_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackMenu_scene_aa</item>
+		<item name="ItemTrackLyrics">@style/Alt2_TrackLabelsCentered_ItemTrackLyrics</item>
+		<item name="ItemTrackLyrics_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa</item>
+
+		<!-- Needed as this defines list scene (rating is invisible there, but we want to adjust alignment for the anim) -->
+		<item name="ItemLikeUnlikeLayout">@style/Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout</item>
+		<item name="ItemLikeUnlikeLayout_scene_aa">@style/Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scene_aa</item>
+		<item name="ItemLikeUnlikeLayout_scenes_invisible">@style/Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scenes_invisible</item>
+
+		<item name="ItemRatingBar">@style/Alt2_TrackLabelsCentered_ItemRatingBar</item>
+		<item name="ItemRatingBar_scene_aa">@style/Alt2_TrackLabelsCentered_ItemRatingBar_scene_aa</item>
+		<item name="ItemRatingBar_scenes_invisible">@style/Alt2_TrackLabelsCentered_ItemRatingBar_scenes_invisible</item>
+		<item name="ItemRatingBar_anim_ratingbar_pressed">@style/Alt2_TrackLabelsCentered_ItemRatingBar_anim_ratingbar_pressed</item>
+	</style>
+
+	<!-- Reposition title/line2/menu when no rating exists
+	     NOTE: as title/line2 is not symmetric vertically (title is higher than line2), resulting layout has
+	     slightly different visual paddings above/below title/line2. This can be compensated by
+	     the dp or sp difference between title and line2, but it may be hard to ideally align anyway due to
+	     the mixed dp/sp dimensions -->
+	<!-- NOTE: redefined in land -->
+	<style name="Alt2_OptionRatingDisabled">
+		<item name="ItemTrackTitle_scene_aa">@style/Alt2_OptionRatingDisabled_ItemTrackTitle_scene_aa</item>
+		<item name="ItemTrackLine2_scene_aa">@style/Alt2_OptionRatingDisabled_ItemTrackLine2_scene_aa</item>
+		<item name="ItemTrackMenu_scene_aa">@style/Alt2_OptionRatingDisabled_ItemTrackMenu_scene_aa</item>
+		<!-- NOTE: for OptionRatingDisabled rating is not loaded at all, so no need for styles here, but
+		     for OptionRatingStarsMenu 5 stars rating is loaded, so we need to hide it -->
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item><!-- gone -->
+	</style>
+
+	<!-- Similar repositions for the centered labels -->
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled">
+		<item name="ItemTrackTitle_scene_aa">@style/Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackTitle_scene_aa</item>
+		<item name="ItemTrackLine2_scene_aa">@style/Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackLine2_scene_aa</item>
+		<item name="ItemTrackMenu_scene_aa">@style/Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackMenu_scene_aa</item>
+		<item name="ItemTrackLyrics_scene_aa">@style/Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackLyrics_scene_aa</item>
+		<!-- NOTE: for OptionRatingDisabled rating is not loaded at all, so no need for styles here, but
+		     for OptionRatingStarsMenu 5 stars rating is loaded, so we need to hide it -->
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item><!-- gone -->
+	</style>
+
+	<style name="Alt2_White_TracksLabelsNoBg" parent="Alt_White_TracksLabelsNoBg">
+		<item name="alt_ratingbar_bg">#0000</item><!-- NOTE: @null won't work properly here as it means - no attribute -->
+		<item name="alt_menu_bg">@drawable/ripple_hidden_rounded_large</item>
+		<item name="colorAltMenu">?colorOnAABg</item>
+		<item name="colorRating">?colorOnAABg</item>
+		<item name="Alt2_ItemRatingBar_scene_aa_marginLeft">@dimen/Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft</item>
+	</style>
+
+	<style name="Alt2_Black_TracksLabelsNoBg" parent="Alt_Black_TracksLabelsNoBg">
+		<item name="alt_ratingbar_bg">#0000</item><!-- NOTE: @null won't work properly here as it means - no attribute -->
+		<item name="alt_menu_bg">@drawable/ripple_hidden_rounded_large</item>
+		<item name="colorAltMenu">?colorOnAABg</item>
+		<item name="colorRating">?colorOnAABg</item>
+		<item name="Alt2_ItemRatingBar_scene_aa_marginLeft">@dimen/Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft</item>
+	</style>
+
+
+	<style name="Alt2_TopListWidget" parent="Alt_TopListWidget">
+		<item name="listSubstyle">@style/Alt2_ListSubstyle</item>
+	</style>
+
+	<style name="Alt2_ListSubstyle" parent="Alt_ListSubstyle">
+		<item name="aaPaddingBottom">@dimen/Alt2_TopAABounds_marginBottom</item><!-- Sync with Alt_TopAABounds -->
+	</style>
+
+	<style name="Alt2_TopAABounds" parent="Alt_TopAABounds">
+		<item name="aaPaddingBottom">@dimen/Alt2_TopAABounds_marginBottom</item><!-- NOTE: sync with Alt_ListSubstyle_Base -->
+		<item name="android:layout_marginBottom">@dimen/Alt2_TopAABounds_marginBottom</item>
+	</style>
+
+	<!-- Remove bottom margin for AA as we want to properly vertically center the title/line2/rating views -->
+	<!-- Overridden in land -->
+	<style name="Alt2_ItemTrackAAImage_scene_aa" parent="Alt_ItemTrackAAImage_scene_aa">
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
+	<style name="Alt2_TopWaveseekLayout" parent="Alt_TopWaveseekLayout">
+		<!-- Overridden in land -->
+	</style>
+
+	<style name="Alt2_ItemTrackTitle_scene_aa" parent="Base_Alt_ItemTrackTitle_scene_aa">
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">@id/line2</item>
+		<item name="layout_attachRight">@id/lyrics</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginBottom">1dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa" parent="Alt2_ItemTrackTitle_scene_aa">
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<!-- Need margin for possible menu as can't use menu attachment here due to the centered gravity -->
+		<item name="android:layout_marginLeft">32dp</item>
+		<item name="android:layout_marginRight">32dp</item>
+	</style>
+	<style name="Alt2_OptionRatingDisabled_ItemTrackTitle_scene_aa" parent="Alt2_ItemTrackTitle_scene_aa">
+		<item name="layout_attachBottom">50%</item>
+		<item name="android:layout_marginBottom">0dp</item><!-- Sligtly shift to bottom -->
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="layout_attachRight">@id/lyrics</item>
+	</style>
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackTitle_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa">
+		<item name="android:layout_marginLeft">46dp</item>
+		<item name="android:layout_marginRight">46dp</item>
+		<item name="layout_attachBottom">50%</item>
+		<item name="android:layout_marginBottom">0dp</item><!-- Sligtly shift to bottom -->
+	</style>
+
+	<style name="Alt2_ItemTrackLine2_scene_aa" parent="Base_Alt_ItemTrackLine2_scene_aa">
+		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachRight">@id/lyrics</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa" parent="Alt2_ItemTrackLine2_scene_aa">
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="android:layout_gravity">center_horizontal|center_vertical</item>
+		<!-- Need margin for possible menu as can't use menu/lyrics attachment here due to the centered gravity and dynamic naturie of lyrics/menu visibility -->
+		<item name="android:layout_marginLeft">48dp</item>
+		<item name="android:layout_marginRight">48dp</item>
+	</style>
+	<style name="Alt2_OptionRatingDisabled_ItemTrackLine2_scene_aa" parent="Alt2_ItemTrackLine2_scene_aa">
+		<item name="layout_attachTop">50%</item>
+		<item name="android:layout_marginTop">1dp</item><!-- Slightly shift to bottom -->
+	</style>
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackLine2_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa">
+		<item name="android:layout_marginLeft">46dp</item>
+		<item name="android:layout_marginRight">46dp</item>
+		<item name="layout_attachTop">50%</item>
+		<item name="android:layout_marginTop">1dp</item><!-- Slightly shift to bottom -->
+	</style>
+
+	<!-- Move menu under AA. Just detach it from anything and it will be positioned under AA as AA consumes vertical space.
+	     NOTE: we can't/won't consume space for menu as menu is attached after title/line2, so consuming space here won't
+		       affect title/line2 layout -->
+	<style name="Alt2_ItemTrackMenu_scene_aa" parent="Alt_ItemTrackMenu_scene_aa">
+		<item name="android:layout_marginBottom">0dp</item><!-- Move closer to line2 -->
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="layout_attachBottomToBottom">@null</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@null</item>
+		<item name="android:layout_gravity">right|center_vertical</item>
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+		<item name="android:elevation">0px</item>
+	</style>
+	<!-- Further make menu smaller and shift down so it doesn't overlap long title -->
+	<style name="Alt2_TrackLabelsCentered_ItemTrackMenu_scene_aa" parent="Alt2_ItemTrackMenu_scene_aa">
+		<item name="layout_attachTop">@null</item>
+		<item name="android:layout_gravity">right|center_vertical</item>
+		<item name="scale">0.75</item>
+		<item name="layout_compensateScale">0.75</item>
+		<item name="android:layout_marginTop">0dp</item>
+	</style>
+	<style name="Alt2_OptionRatingDisabled_ItemTrackMenu_scene_aa" parent="Alt2_ItemTrackMenu_scene_aa">
+	</style>
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackMenu_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackMenu_scene_aa">
+	</style>
+
+	<style name="Alt2_ItemTrackLyrics_scene_aa" parent="Alt_ItemTrackLyrics_scene_aa">
+		<item name="android:layout_marginBottom">0dp</item><!-- Move closer to line2 -->
+		<item name="android:layout_marginLeft">1dp</item><!-- Move title/line2 right side closer to the button -->
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="layout_goneWhenEmpty">true</item>
+		<item name="layout_applyMarginsForGone">true</item>
+		<item name="layout_attachBottomToBottom">@null</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@null</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+	</style>
+	<!-- This is for the animation to the list -->
+	<style name="Alt2_TrackLabelsCentered_ItemTrackLyrics" parent="ItemTrackLyrics">
+		<item name="layout_attachRight">@null</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginLeft">14dp</item>
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa" parent="Alt2_ItemTrackLyrics_scene_aa">
+		<item name="layout_attachRight">@null</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachTop">@null</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="scale">0.75</item>
+		<item name="layout_compensateScale">0.75</item>
+	</style>
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackLyrics_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa">
+	</style>
+
+
+	<!-- Move rating under AA. Just detach it from anything and it will be positioned under AA as AA consumes vertical space -->
+	<!-- NOTE: redefined in land -->
+	<style name="Alt2_ItemLikeUnlikeLayout_scene_aa" parent="Alt_ItemLikeUnlikeLayout_scene_aa">
+		<item name="android:layout_marginTop">1dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="layout_attachBottomToBottom">@null</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@id/line2</item>
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scene_aa" parent="Alt2_ItemLikeUnlikeLayout_scene_aa">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+
+	<style name="Alt2_ItemRatingBar_scene_aa" parent="Alt_ItemRatingBar_scene_aa">
+		<item name="android:layout_marginTop">1dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginLeft">?Alt2_ItemRatingBar_scene_aa_marginLeft</item><!-- 14dp -->
+		<item name="layout_attachBottomToBottom">@null</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@id/line2</item>
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemRatingBar_scene_aa" parent="Alt2_ItemRatingBar_scene_aa">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:gravity">center_horizontal</item>
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemRatingBar" parent="ItemRatingBar">
+		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
+		<!--<item name="android:transformPivotY">0px</item>-->
+		<item name="android:layout_gravity">center_horizontal|bottom</item><!-- Used for animation from AA to list -->
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemRatingBar_scenes_invisible" parent="ItemRatingBar_scenes_invisible">
+		<item name="android:layout_gravity">center_horizontal|bottom</item><!-- Used for animation from AA to list -->
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemRatingBar_anim_ratingbar_pressed" parent="ItemRatingBar_anim_ratingbar_pressed">
+		<item name="scale">1</item>
+	</style>
+
+	<style name="Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout" parent="ItemLikeUnlikeLayout">
+		<item name="android:layout_gravity">center_horizontal|bottom</item><!-- Used for animation from AA to list -->
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scenes_invisible" parent="ItemLikeUnlikeLayout_scenes_invisible">
+		<item name="android:layout_gravity">center_horizontal|bottom</item>!-- Used for animation from AA to list -->
+	</style>
+
+	<style name="Alt2_TopSubAAButtons" parent="Alt_TopSubAAButtons">
+		<item name="android:layout_marginTop">0dp</item>
+	</style>
+</resources>

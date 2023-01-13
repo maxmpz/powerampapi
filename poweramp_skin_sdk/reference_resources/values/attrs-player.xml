@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -169,6 +169,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="meta_next_12dp" format="reference"/>
 	<attr name="meta_songs_12dp" format="reference"/>
+	<attr name="meta_songs_w_lyrics_12dp" format="reference"/>
 	
 	<attr name="list_drag_24dp" format="reference"/>
 	<attr name="list_drag_hor_24dp" format="reference"/>
@@ -187,6 +188,34 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="logo_navbar" format="reference"/>
 	
 	<attr name="EqLockLabelStyle" format="reference"/>
+
+	<!-- Backgrounds to use for alt/alt2. Can be further manipulated, e.g. by overlap_track_labels_no_bg -->
+	<attr name="alt_title_bg" format="color|reference"/>
+	<attr name="alt_ratingbar_bg" format="color|reference"/>
+	<attr name="alt_menu_bg" format="color|reference"/>
+	<attr name="alt_sub_aa_button_bg" format="color|reference"/>
+	<attr name="meta_info_bg" format="color|reference"/>
+
+	<!-- These are overridden for alt styles + overlap_track_labels_no_bg -->
+	<attr name="ItemTrackAAImage_scene_header_drawableTintColor" format="color"/>
+
+	<attr name="ItemTrackTitle_scene_header_lineBackground" format="reference"/>
+	<attr name="ItemTrackLine2_scene_header_lineBackground" format="reference"/>
+	<attr name="ItemTrackMeta_scene_header_w_meta_background" format="reference"/>
+	<attr name="ListHeaderButton_scene_header_background" format="reference"/>
+	<attr name="ItemTrackMenu_scene_header_background" format="reference"/>
+	<attr name="ItemTrackBackDecorTitle_scene_header_back_decor_background" format="reference"/>
+	<attr name="ItemTextBackDecorTitle_scene_header_back_decor_background" format="reference"/>
+	<attr name="ListHeaderButton_scene_header_marginLeft" format="dimension"/>
+	<attr name="ListHeaderButton_scene_header_marginRight" format="dimension"/>
+	<attr name="ListHeaderButton_scene_header_marginBottom" format="dimension"/>
+	<attr name="ListMenu_scene_header_marginBottom" format="dimension"/>
+	<attr name="ItemBackDecorTitle_scene_header_back_decor_marginLeft" format="dimension"/>
+
+	<!-- OptionRoundedScreenCorners -->
+	<attr name="OptionRoundedScreenCorners_corners_header" format="dimension"/>
+	<attr name="OptionRoundedScreenCorners_header_aa_elevation" format="dimension"/>
+	<attr name="OptionRoundedScreenCorners_buttons_scene_header_marginBottom"/>
 	
 	<!-- -->
 		
@@ -195,6 +224,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="keep_list_pos_12dp" format="reference"/>
 		<attr name="keep_track_pos_12dp" format="reference"/>
 		<attr name="keep_list_track_pos_12dp" format="reference"/>
+		<attr name="meta_songs_w_lyrics_12dp"/>
 	</declare-styleable>
 	
 	<!-- Small star drawables for list cat image (1-5 stars). NOTE: style itself is not used in resources, just in code --> 
@@ -211,18 +241,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 	<attr name="media_route" format="reference"/>
-	
-			
+
+	<!-- Used for list buttons, such as menu, lyrics, shuffle, play, select, etc. -->
+	<attr name="list_buttons_outline_provider">
+		<enum name="background" value="0" />
+		<enum name="none" value="1" />
+		<enum name="bounds" value="2" />
+		<enum name="paddedBounds" value="3" />
+	</attr>
+
 	<attr name="aa_elevation" format="dimension"/><!-- When on main screen -->
 	<attr name="list_aa_elevation" format="dimension"/><!-- When in list -->
 	<attr name="grid_aa_elevation" format="dimension"/><!-- When in grid -->
+	<attr name="header_aa_elevation" format="dimension"/>
 	<attr name="over_aa_elevation" format="dimension"/><!-- Max. aa elevation - to keep some other views always on top of AA -->
 	<attr name="over_aa_elevation_plus" format="dimension"/><!-- Same as over_aa_elevation with small increase -->
 	<attr name="VisPanelFrame_elevation" format="dimension"/>
 	<attr name="item_ontop_elevation" format="dimension"/><!-- Elevation which is over any other standard item child views -->
 	<attr name="navbar_elevation" format="dimension"/>
 	<attr name="bottom_toolbar_elevation" format="dimension"/><!-- Elevation for list bottom buttons. Should generally match navbar_elevation -->
-			
+
+
 	<!-- AA corners for various scenes and item types:
 		 - tracks => any tracks lists and big AA on main screen
 		 - albums => includes Albums, Genres, Playlists, etc. non-human categories
@@ -286,6 +325,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="corners_aa_tracks_small" format="dimension|reference"><!-- Compact list => possible only for tracks -->
 		<enum name="matchHeight" value="-1"/>
 	</attr>
+
+	<!-- NOTE: matchHeight not supported as it makes no sense for the header -->
+	<attr name="corners_aa_tracks_header" format="dimension"/>
+	<!-- NOTE: matchHeight not supported as it makes no sense for the header -->
+	<attr name="corners_aa_albums_header" format="dimension"/>
+	<!-- NOTE: matchHeight not supported as it makes no sense for the header -->
+	<attr name="corners_aa_other_header" format="dimension"/>
+
+
 	<!-- AA corners for miniplayer -->
 	<attr name="corners_miniplayer_aa" format="dimension|reference">
 		<enum name="matchHeight" value="-1"/>
@@ -390,10 +438,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="ItemTrackMeta_drawablePadding" format="dimension"/>
 	<attr name="ItemTrackMeta_drawablePaddingStart" format="dimension"/>
 
+
 	<!-- @Deprecated -->
 	<attr name="ItemTrackMeta_scene_item_menu_marginBottom" format="dimension"/>
 
 	<attr name="ItemMiniplayer_paddingLeft" format="dimension"/>
+
+	<attr name="TopListScrollerView_marginTop" format="dimension"/>
+	<attr name="TopListScrollerView_marginBottom" format="dimension"/>
+	<attr name="TopListScrollerView_azTextScale" format="float"/>
+
 
 			
 	<!-- Styles, applied to ListWidget internals (e.g. LayoutEngines/HeaderEngines/etc.) -->
@@ -420,7 +474,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<flag name="right" value="0x05" />
 		</attr>
 		
-		<!-- By default, AA _item_ layout bounds are limited by album art size + paddings. If this option is set, AA item layout bounds will match whole list on appropriate axises.
+		<!-- By default, AA _item_ layout bounds are limited by album art size + paddings. If this option is set,
+			 AA item layout bounds will match whole list on appropriate axises.
 			 This applied to item bounds, the album art image dimension / position is not affected.
 			 Useful for other item views (e.g. title, line2) which can be freely positioned in list bounds as needed -->
 		<attr name="aaItemBoundsMatchList">
@@ -428,6 +483,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<flag name="width" value="0x1" />
 			<flag name="height" value="0x2" />
 		</attr>
+
+		<!-- Defines the min. w/h ratio (aspect) to apply the alternative AA item layout (non-square wide layout) -->
+		<attr name="altAaLayoutRatio" format="float"/>
 		
 		<!-- Additional margin to apply to AA layout. Usuful e.g. to offset AA item from navbar -->
 		<attr name="aaMarginLeft" format="dimension|reference"/>
@@ -446,22 +504,38 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="aaPaddingRight" format="dimension"/>
 		<!-- Additional padding to apply to AA layout. Usuful e.g. for landscape or extra views inside AA "frame" -->
 		<attr name="aaPaddingBottom" format="dimension"/>
-		
+
+		<!-- Max X rotation for AA item when swiped left/right. Default value is 5.0.
+		     Not applied on some devices which have rendered artifacts for this property (Androids 8.1 and below)
+		     Supports <seekbar> option id reference -->
+		<attr name="aaMaxXRotation" format="float|reference"/>
 		<!-- Max Y rotation for AA item when swiped left/right. Default value is -10.0.
+		     Not applied on some devices which have rendered artifacts for this property (Androids 8.1 and below)
 		     Supports <seekbar> option id reference -->
 		<attr name="aaMaxYRotation" format="float|reference"/>
 		<!-- Max Z rotation for AA item when swiped left/right. Default value is 5.5
+             Not applied on some devices which have rendered artifacts for this property (Androids 9 and above)
 		     Supports <seekbar> option id reference -->
 		<attr name="aaMaxZRotation" format="float|reference"/>
+
+		<!-- If true, use absolute (no negative sign) value for the appropriate rotation. This makes the rotation symmetrical for
+		     both left and right swipes. Default is true -->
+		<attr name="absForXRotation" format="boolean"/>
+		<!-- If true, use absolute (no negative sign) value for the appropriate rotation. This makes the rotation symmetrical for
+		     both left and right swipes. Default is false -->
+		<attr name="absForYRotation" format="boolean"/>
+		<!-- If true, use absolute (no negative sign) value for the appropriate rotation. This makes the rotation symmetrical for
+		     both left and right swipes. Default is false -->
+		<attr name="absForZRotation" format="boolean"/>
+
 		<!-- Max scale to use for the hidden (out of the screen) items. Default value is 0.5
 		     NOTE: normal (center of the screen) scale is always 1.0. The item image, text, and buttons are scaled.
-		     Supports <seekbar> option id reference -->		
+		     Supports <seekbar> option id reference -->
 		<attr name="aaMaxScale" format="float|reference"/>
 		<!-- Dense factor > 0.0f. Values < 1 will make AA items closer to each other. Default value is 0.75 
 		     Supports <seekbar> option id reference -->		
 		<attr name="aaDenseFactor" format="float|reference"/>
-		
-		
+
 		<!-- Normal list item size. NOTE: grid layouts have automatic cell size, which depends on screen width and number of columns -->
 		<attr name="itemSize"/>
 		<!-- Small scene_small item size -->
@@ -474,7 +548,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="itemSize1SmallNoAAExtraSmall" format="dimension"/>
 		<!-- List item size for +1 zoom level -->
 		<attr name="itemSizeZoomed" format="dimension"/>
-		
+
+		<!-- NOTE: lyrics item size (row height) is dynamic - it depends on lyrics text in the line -->
+
+		<!-- Alpha to apply for lyrics item past current one (previous lines). Default is 1.0 -->
+		<attr name="lyricsPrevAlpha" format="float"/>
+		<!-- Alpha to apply for the next lyrics item. Alpha is applied gradually. Default is 1.0 -->
+		<attr name="lyricsNextAlpha" format="float"/>
+
 		<!-- If true, list automatically adds status bar height to all headers, thus, in this case, all header sizes should exclude default Android status bar height.
 			 While Android status bar height is usually 24dp, it may be different on devices with notch and absolute pixel size fixed status bar height matching the notch. 
 			 Works only if offsetWindowInsets is specified for the list -->
@@ -509,7 +590,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="compactTextHeaderSize" format="dimension"/>
 		<!-- Top text header size (basically, the Library header itself) -->
 		<attr name="topTextHeaderSize" format="dimension"/>
-		
+		<!-- Lyrics header size -->
+		<attr name="lyricsHeaderSize" format="dimension"/>
+		<!-- Lyrics sub-header size -->
+		<attr name="lyricsSubheadSize" format="dimension"/>
+
 		<!-- Size of all-tracks subheader, e.g. Artists/Albums all songs -->
 		<attr name="allTracksSubheadSize" format="dimension"/>
 		<!-- Size of meta subheader, e.g. for any Files -->
@@ -540,7 +625,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 		<attr name="headerStretchyImage" format="reference"/>
 
-		<!-- Auto animation time (when clicked item/nav button) -->
+		<!-- Auto animation time (for the clicked item/nav button) -->
 		<attr name="pageAnimTime" format="integer"/>
 
 		<!-- Animation time when manual transition is committed -->
@@ -566,11 +651,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="aaToSearchAnimTime" format="integer"/>
 		<!-- Auto animation for search to AA page transition --> 
 		<attr name="searchToAAAnimTime" format="integer"/>
+
+		<!-- Auto animation for AA to lyrics page transition -->
+		<attr name="aaToLyricsAnimTime" format="integer"/>
+		<!-- Auto animation for lyrics to AA page transition -->
+		<attr name="lyricsToAAAnimTime" format="integer"/>
 	</declare-styleable>
 	
 	<declare-styleable name="AABounds">
 		<!-- If true, we're matching all these aa* attributes. False is the default - for old skins -->
 		<attr name="matchAASubstyle" format="boolean"/>
+		<attr name="altAaLayoutRatio"/>
 		<attr name="offsetWindowInsets"/>
 		<attr name="aaItemRatio"/>
 		<attr name="aaMaxSize"/>
@@ -594,38 +685,49 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			- Tracks (cornerRadius)
 			- Albums (cornerRadius2)
 			- Artists/Genres/Composers (cornerRadius3)
-			The selection is done by provider on bound depending on the item category type
-			These 3 radiuses can be defined per each scene, though there is little point in defined all of them for e.g. scene_aa* scenes (as only tracks are shown there),
+			The selection is done by provider on binding, depending on the item category type
+			These 3 radiuses can be defined per each scene, though there is little point in the definition for all of them,
+			e.g. for scene_aa* scenes (as only tracks are shown there);
 			though headers, menus, and grid/list scenes should have these defined  
-		--> 
-		<attr name="cornerRadius" format="dimension|reference">
+		-->
+		<!-- Defines corners for Tracks -->
+		<attr name="cornerRadius1" format="dimension|reference">
 			<enum name="matchHeight" value="-1"/>
 		</attr>
+		<!-- Defines corners for Albums -->
 		<attr name="cornerRadius2" format="dimension|reference">
 			<enum name="matchHeight" value="-1"/>
 		</attr>
+		<!-- Defines corners for Artists/Genres/Composers -->
 		<attr name="cornerRadius3" format="dimension|reference">
 			<enum name="matchHeight" value="-1"/>
 		</attr>
-		
+
 		<attr name="hiRes" format="boolean"/><!-- If true, larger, higher resolution bitmap is loaded. Not for use for grids/lists, but for AA layout -->
 		
 		<attr name="android:scaleType"/>
 		<attr name="android:maxWidth"/>
 		<attr name="android:maxHeight"/>
 		<attr name="android:src"/>
+
+		<attr name="drawableTintColor" format="color"/><!-- NOTE: state lists not supported -->
+		<attr name="drawableTintMode"/>
 	</declare-styleable>
 	
 	<!-- Scene params for AAImageView -->
 	<declare-styleable name="AAImageViewSceneParams">
 		<attr name="applyViewParams"/>
 		
-		<attr name="cornerRadius"/>
+		<attr name="cornerRadius1"/>
 		<attr name="cornerRadius2"/>
 		<attr name="cornerRadius3"/>
 		
 		<attr name="hiRes"/>
 		<attr name="android:elevation"/>
+
+		<attr name="drawableTintColor"/>
+
+		<attr name="alwaysFade" format="boolean"/>
 	</declare-styleable>
 	
 	<declare-styleable name="EqKnobsFastLayout">
@@ -850,8 +952,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="toastOnPress"/>
 		<attr name="toastHeaderOnPress" format="reference"/>
 		<attr name="toastIconOnPress" format="reference"/>
+
+		<!-- If set, this state is used for the toast msg (if string state returns non-null value) -->
+		<attr name="toastStateIdOnPress" format="reference"/>
 	</declare-styleable>
-	
+
 	<declare-styleable name="MilkFRS">
 		<attr name="roundRectClipRadius" format="dimension"/>
 		<attr name="presetUri" format="string"/>
@@ -867,7 +972,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Parametric mode line width -->
 		<attr name="parametricLineWidth" format="dimension"/>
 		
-		<attr name="cornerRadius"/>
+		<attr name="cornerRadius1"/>
 		
 		<attr name="toneLineWidth" format="dimension"/>
 		<attr name="toneFillColor" format="color"/>
@@ -981,7 +1086,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="arrowFillColor" format="color"/>
 		<attr name="arrowStrokeColor" format="color"/>
 		<attr name="drawableTint"/>
-		
+
 		<attr name="html" format="string"/>
 	</declare-styleable>
 	

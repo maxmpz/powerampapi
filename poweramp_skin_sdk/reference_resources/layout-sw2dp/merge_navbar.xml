@@ -40,9 +40,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?NavbarShim"
 		/>
 		<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet" w:scene_2="@id/scene_navbar_2lines_sheet"
+			w:scene_3="@id/scene_navbar_3lines_sheet"
 			android:visibility="visible"
 		/>
-		<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines"
+		<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_3lines"
 			android:visibility="gone"
 		/>
 			
@@ -63,15 +64,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				<!-- NOTE: wrap content items shrink too much and causes jumps when we resize parent container to small height/GONE.
 					 This is why fixed heights are used here -->
 
-				<!--
-					w:iconStateId="@id/state_app_edition_icon"
-					android:clickable="true"
-					android:focusable="true"
-					android:background="@drawable/ripple_rounded_mini"
-					w:busId="@id/bus_app_cmd"
-					w:msgId="@id/cmd_app_open"
-					w:string="activity/dialogs.ChangelogActivity"
-				-->
 				<com.maxmpz.widget.player.BusStatusTextButton
 					style="?NavbarExtensionLogoLabel"
 					w:stateBusId="@id/bus_app"
@@ -113,23 +105,41 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				/>
 			</com.maxmpz.widget.player.NavbarExtension>
 			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet" w:scene_2="@id/scene_navbar_2lines_sheet"
+				w:scene_3="@id/scene_navbar_3lines_sheet"
 				android:visibility="visible"
 			/>
-			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines"
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_3lines"
 				android:visibility="gone"
 			/>
 			
-	
+
+			<!-- navbar_list -->
 			<com.maxmpz.widget.base.PowerList android:id="@+id/navbar_list"
 				style="?NavbarList"
 			/>
 			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"
+				w:scene_3="@id/scene_navbar_3lines" w:scene_4="@id/scene_navbar_3lines_sheet"
 				android:visibility="visible"
 			/>
 			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
 				android:visibility="gone"
 			/>
-			
+			<!-- navbar_list -->
+
+			<com.maxmpz.widget.player.Seek android:id="@+id/navbar_seekbar"
+				style="@style/NavbarSeekbar"
+				/>
+			<StateAnimParams w:stateAnim="@id/anim_seeking"
+				style="?PlainSeekbar_anim_seeking"
+				/>
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_3lines" w:scene_2="@id/scene_navbar_3lines_sheet"
+				android:visibility="visible"
+				/>
+			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
+				w:scene_2="@id/scene_navbar_2lines" w:scene_3="@id/scene_navbar_2lines_sheet"
+				android:visibility="gone"
+				/>
+
 			<!-- NOTE: extra view group is needed to attach sceneparams to, so it's tracked/animated as one entity (vs scene params per button). Also helps with fast button search -->
 			
 			<com.maxmpz.widget.base.FastLayout android:id="@+id/navbar_nav_buttons"
@@ -161,6 +171,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 			</com.maxmpz.widget.base.FastLayout>
 			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"
+				w:scene_3="@id/scene_navbar_3lines" w:scene_4="@id/scene_navbar_3lines_sheet"
 				android:visibility="visible"
 			/>
 			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
@@ -172,6 +183,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?Navbar_scene_navbar_1line_sheet"
 		/>
 		<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"
+			w:scene_3="@id/scene_navbar_3lines" w:scene_4="@id/scene_navbar_3lines_sheet"
 			style="?Navbar_scene_navbar_2lines"
 		/>
 	
@@ -187,8 +199,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@id/scene_vis_temp_ui" w:scene_2="@id/scene_playing" w:scene_3="@id/scene_eq" w:scene_4="@id/scene_lib" w:scene_5="@id/scene_search"
 		android:alpha="1"
 		android:visibility="visible"
-	/>		
-				
-	
-	
+	/>
+	<SceneParams w:scene="@id/scene_lyrics"
+		android:alpha="1"
+		android:visibility="visible"
+		/>
 </merge>

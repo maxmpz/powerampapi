@@ -1,0 +1,6 @@
+<resources>
+	<!-- We want this larger as in landscape 4x1 layout is 1-store long line -->
+	<dimen name="widget4x1_minWidth">350dp</dimen>
+	<dimen name="WidgetOptionsFrame_marginBottom">16dp</dimen>
+	<dimen name="WidgetOptionsFrame_marginRight">16dp</dimen>
+</resources>

@@ -26,15 +26,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!--
 	Top scenes:
-	- 0 == default. Paused. Scene with large AA
-	- scene_playing. Playing. Scene with large AA 
+	- main screen scenes:
+	  - 0 == default. Paused. Scene with large AA
+	  - scene_playing. Playing. Scene with large AA. NOTE: this is different scene vs scene_aa_playing used in the tracks
+	  - scene_vis_w_ui (playing implied) - scene with small AA (internal list scene) + vis controls, optionally alpha faded. Should be separate <SceneParams> as it's modified by code
+	  - scene_vis_temp_ui (playing implied) - scene with both AA + vis controls, alpha == 1 (to allow all UI use cases, e.g. popup menus)
+	  - scene_vis (playing implied, nothing is visible except vis surface)
+	  - scene_lyrics (lyrics page)
 	- scene_lib
 	- scene_search
 	- scene_eq
-	- scene_vis_w_ui (playing implied) - scene with small AA (internal list scene) + vis controls, optionally alpha faded. Should be separate <SceneParams> as it's modified by code
-	- scene_vis_temp_ui (playing implied) - scene with both AA + vis controls, alpha == 1 (to allow all UI use cases, e.g. popup menus)
-	- scene_vis (playing implied, nothing is visible except vis surface)
-	
+
 	NOTE: for main screen TOP containers, scene_vis_w_ui should be ALWAYS separated from other scenes, i.e. scene_vis_w_ui  
 	should be the only scene in SceneParams tag. This is due to alpha value set by code based on user preference for these SceneParams. If multiple scenes co-exist 
 	with scene_vis_w_ui in same SceneParams, all of them will be affected by the user preference alpha value
@@ -56,14 +58,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.player.MilkWidget android:id="@+id/milk"
 		style="?TopMilk"
 	/>
-	
+
+
+	<!-- list -->
 	<com.maxmpz.audioplayer.list.ListWidget android:id="@+id/list"
 		style="?TopListWidget"
 	/>
- 	<SceneParams w:scene="@+id/scene_lib" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_playing" w:scene_4="@id/scene_vis_temp_ui" 
+ 	<SceneParams w:scene="@+id/scene_lib" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_playing" w:scene_4="@id/scene_vis_temp_ui"
 		android:visibility="visible"
 		android:alpha="1"
 	/>
+	<SceneParams w:scene="@+id/scene_lyrics"
+		android:visibility="visible"
+		android:alpha="1"
+		/>
 	<!-- NOTE: alpha is overridden by user preference -->
 	<SceneParams w:scene="@+id/scene_vis_w_ui" 
 		android:visibility="visible"
@@ -71,8 +79,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_vis"
 		android:visibility="gone"
-	/><!-- list -->
-		
+	/>
+	<!-- list -->
+
+
 	<!-- Invisible view which matches list AA layout.
 		 Used to attach other views to it, as @id/list itself spans the whole screen.
 		 Also defines visualization size for bars in non-full-screen mode (aa_bounds padding accounted for this as well).
@@ -83,14 +93,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.player.AABounds android:id="@+id/aa_bounds"
 		style="?TopAABounds"
 	/>
- 	
+
+	
+	<!-- cc_button -->
 	<com.maxmpz.audioplayer.widget.MediaRouteButton android:id="@+id/cc_button"
 		style="?CcButton_MainUI"
 	/>
-	<SceneParams w:scene="@+id/scene_playing" 
+	<SceneParams w:scene="@+id/scene_playing"
 		style="?CcButton_MainUI_scenes_playing"
 	/>
-	<SceneParams w:scene="@id/scene_vis_temp_ui" 
+	<SceneParams w:scene="@id/scene_vis_temp_ui"
 		style="?CcButton_MainUI_scenes_vis_w_ui"
 	/>
 	<!-- NOTE: alpha is overridden by user preference -->
@@ -99,16 +111,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:alpha="0.25"
 	/>
 	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_lib"
+		w:scene_4="@+id/scene_lyrics"
 		style="?CcButton_MainUI_scenes_invisible"
 		/>
 	<SceneParams w:scene="@+id/scene_vis"
 		style="?CcButton_MainUI_scene_vis"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_temp_hidden"
+	<StateAnimParams w:stateAnim="@id/popup_menu_item"
 		android:alpha="0"
-	/>
+		/>
+	<!-- cc_button -->
 		
-		
+
+	<!-- waveseek_layout -->
 	<!-- NOTE: layout for a waveseek is needed so the waveseek can be centered vertically between sub aa buttons and nav bar + have max height -->
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/waveseek_layout"
 		style="?TopWaveseekLayout"
@@ -125,7 +140,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 		</com.maxmpz.widget.player.Waveseek>
 		
-		<!-- An invisible "button" behind play/pause. Used to capture presses for (probably) visually small pay/pause buttons -->
+		<!-- An invisible "button" behind play/pause. Used to capture presses for (probably) visually small play/pause buttons -->
 		<com.maxmpz.widget.base.BusActionButton android:id="@+id/play_pause_behind"
 			style="?TopPlayPauseBehind"
 			w:busId="@id/bus_player_cmd"
@@ -133,7 +148,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:longPressMsgId="@id/cmd_player_stop_playing"
 			android:importantForAccessibility="no"
 		/>
-		
+
+		<!-- pause -->
 		<com.maxmpz.widget.base.BusActionButton android:id="@+id/pause"
 			style="?TopPause"
 			w:busId="@id/bus_player_cmd"
@@ -144,10 +160,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@+id/scene_vis_w_ui" w:scene_3="@+id/scene_vis" w:scene_4="@id/scene_vis_temp_ui"
 			style="?TopPause_scene_playing"
 		/>
+		<SceneParams w:scene="@+id/scene_lyrics"
+			w:baseScene="defaultScene"
+			/>
 		<StateAnimParams w:stateAnim="@id/anim_seeking"
 			style="?TopPause_state_seeking"
 		/>
+		<!-- pause -->
 
+
+		<!-- play -->
 		<com.maxmpz.widget.base.BusActionButton android:id="@+id/play"
 			style="?TopPlay"
 			w:busId="@id/bus_player_cmd"
@@ -158,15 +180,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@+id/scene_vis_w_ui" w:scene_3="@+id/scene_vis" w:scene_4="@id/scene_vis_temp_ui"
 			style="?TopPlay_scene_playing"
 		/>
+		<SceneParams w:scene="@+id/scene_lyrics"
+			w:baseScene="defaultScene"
+			/>
 		<StateAnimParams w:stateAnim="@id/anim_seeking"
 			style="?TopPlay_state_seeking"
 		/>
+		<!-- play -->
 
+
+		<!-- track_elapsed -->
 		<com.maxmpz.widget.player.Elapsed android:id="@+id/track_elapsed"
 			style="?TopTrackElapsed"
 			/>
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 			style="?TopTrackElapsed_scene_playing"
+			/>
+		<SceneParams w:scene="@+id/scene_lyrics"
+			w:baseScene="defaultScene"
 			/>
 		<!-- Empty SceneParams required for view to be touched during these scenes - important for changes happening
 		     to the text while in transition -->
@@ -175,13 +206,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<StateAnimParams w:stateAnim="@id/anim_seeking"
 			style="?TopTrackElapsed_state_seeking"
 			/>
+		<!-- track_elapsed -->
 
+
+		<!-- track_duration -->
 		<com.maxmpz.widget.player.Duration android:id="@+id/track_duration"
 			style="?TopTrackDuration"
 			android:importantForAccessibility="yes"
 			/>
 		<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
 			style="?TopTrackDuration_scene_playing"
+			/>
+		<SceneParams w:scene="@+id/scene_lyrics"
+			w:baseScene="defaultScene"
 			/>
 		<!-- Empty SceneParams required for view to be touched during these scenes - important for changes happening
 		     to the text while in transition -->
@@ -190,30 +227,38 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<StateAnimParams w:stateAnim="@id/anim_seeking"
 			style="?TopTrackDuration_state_seeking"
 		/>
+		<!-- track_duration -->
 
 		<!-- See @layout/merge_topwaveseeklayout_extralayout -->
 		<include android:layout="?TopWaveseekLayout_extraLayout" w:optional="true"/>
 		
-	</com.maxmpz.widget.base.FastLayout><!-- waveseek_layout -->
+	</com.maxmpz.widget.base.FastLayout>
+	<!-- waveseek_layout -->
+	<SceneParams w:scene="@+id/scene_lyrics"
+		w:baseScene="defaultScene"
+		/>
 	<SceneParams w:scene="@+id/scene_lib"
 		style="?TopWaveseekLayout_scene_lib"
-	/><!-- waveseek_layout -->
-	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" 
+	/>
+	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui"
 		style="?TopWaveseekLayout_scenes_playing"
-	/><!-- waveseek_layout -->
+	/>
 	<!-- NOTE: alpha is overridden by user preference -->
 	<SceneParams w:scene="@id/scene_vis_w_ui"
 		style="?TopWaveseekLayout_scenes_playing"
 		android:alpha="0.25"
-	/><!-- waveseek_layout -->
+	/>
 	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis"
 		style="?TopWaveseekLayout_scenes_invisible"
-	/><!-- waveseek_layout -->
+	/>
+	<!-- waveseek_layout -->
 	
 	
 	<!-- See @layout/merge_top_extralayout -->
 	<include android:layout="?TopContainer_extraLayout" w:optional="true"/>
-	
+
+
+	<!-- meta_info_layout -->
 	<!-- NOTE: extra container is needed for the proper animations during top scene running - e.g. vis_mode => touch => scene to temp vis ui + label change relayout -->	
 	<com.maxmpz.widget.base.PrivateNonSceneFastLayout android:id="@+id/meta_info_layout"
 		style="?TopMetaInfoLayout"
@@ -238,6 +283,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:updateMsgId_3="@id/msg_player_track_meta_switched"
 				w:updateMsgId_4="@id/msg_player_repeat_mode_changed"
 				w:updateMsgId_5="@id/msg_player_output_meta_changed"
+				w:updateMsgId_6="@id/msg_player_np_ended"
 				w:noUpdateInScene="@id/scene_button_menu"
 			/>
 			<SceneParams w:scene="@+id/scene_button_menu"
@@ -257,7 +303,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:recalcChildren="dynamic"
 		w:baseScene="defaultScene"
 	/>
-	<SceneParams w:scene="@+id/scene_vis_w_ui" 
+	<SceneParams w:scene="@id/scene_lyrics"
+		w:recalcChildren="dynamic"
+		w:baseScene="defaultScene"
+		/>
+	<SceneParams w:scene="@+id/scene_vis_w_ui"
 		style="?TopMetaInfoLayout_scenes_playing"
 	/>
 	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@+id/scene_vis" w:scene_3="@id/scene_vis_temp_ui"
@@ -272,7 +322,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopMetaInfoLayout_anim_seeking"
 	/>
+	<!-- meta_info_layout -->
+	
 
+	<!-- list_scroller -->
 	<!-- 
 		NOTE: android:scrollbars defines standard android scrollbars. Setting it to vertical disables e.g. AA scrollbar (which is horizontal, but not used)
 		Also, horizontal scrollbar will require larger width (==parent width), but now the width is set to a narrow value => for a-z and vertical thumb modes only
@@ -282,9 +335,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopListScrollerView"
 		android:contentDescription="@string/pref_az_scroll"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_scrollbar_pressed"
-		style="?TopListScrollerView_state_scrollbar_pressed"
-	/>
+	<SceneParams w:scene="@id/scene_lyrics"
+		w:recalcChildren="dynamic"
+		w:baseScene="defaultScene"
+		/>
 	<SceneParams w:scene="@+id/scene_lib" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_playing" w:scene_4="@id/scene_vis_temp_ui"
 		android:visibility="visible"
 		android:alpha="1"
@@ -297,10 +351,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_vis"
 		android:visibility="gone"
 	/>
+	<StateAnimParams w:stateAnim="@+id/anim_scrollbar_pressed"
+		style="?TopListScrollerView_state_scrollbar_pressed"
+		/>
+	<!-- list_scroller -->
+
 	
-	
-	<!-- SubAA -->
-	
+	<!-- sub_aa_buttons -->
 	<com.maxmpz.widget.base.SceneFastLayout android:id="@+id/sub_aa_buttons"
 		style="?TopSubAAButtons"
 		w:privateScene="true"
@@ -386,28 +443,31 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<SceneParams w:scene="@+id/scene_button_menu" 
 			style="?ItemPopupMenu_scene_item_menu" 
 		/>
-	</com.maxmpz.widget.base.SceneFastLayout><!-- sub_aa_buttons -->
+	</com.maxmpz.widget.base.SceneFastLayout>
+	<!-- sub_aa_buttons -->
+	<SceneParams w:scene="@id/scene_lyrics"
+		w:baseScene="defaultScene"
+		/>
 	<SceneParams w:scene="@+id/scene_playing"
 		style="?TopSubAAButtons_scenes_playing"
-	/><!-- sub_aa_buttons -->
+	/>
 	<SceneParams w:scene="@id/scene_vis_temp_ui"
 		style="?TopSubAAButtons_scenes_playing"
-	/><!-- sub_aa_buttons -->
+	/>
 	<!-- NOTE: alpha is overridden by user preference -->
 	<SceneParams w:scene="@+id/scene_vis_w_ui"
 		style="?TopSubAAButtons_scenes_playing"
 		android:alpha="0.25"
-	/><!-- sub_aa_buttons -->
+	/>
 	<!-- Needed to be invisible so waveseek properly attaches to it -->
 	<SceneParams w:scene="@+id/scene_lib" 
 		style="?TopSubAAButtons_scene_lib"
-	/><!-- sub_aa_buttons -->
-	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis" 
+	/>
+	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis"
 		style="?TopSubAAButtons_scenes_hidden"
-	/><!-- sub_aa_buttons -->
-	
-	
-	
+	/>
+	<!-- sub_aa_buttons -->
+
 	
 	<!-- eq -->
 	<com.maxmpz.widget.base.LoadableBehavior style="@style/behavior_eq_layout"/>

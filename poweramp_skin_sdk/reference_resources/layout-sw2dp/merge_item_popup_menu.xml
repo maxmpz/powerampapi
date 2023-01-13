@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -59,6 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:recalcChildren="on_start"
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_search_header"
+		w:scene_3="@+id/scene_lyrics"
 		android:visibility="invisible"
 		w:recalcChildren="on_start"
 	/>

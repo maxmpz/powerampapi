@@ -36,7 +36,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Space to reserve for moveable toobar on bottom. Should be large enough so the toolbar doesn't overlap last item -->
 		<attr name="bottomReservedSpace" format="dimension|reference"/>
 
-		<!-- The extra space to add to bottomReservedSpace for a selection mode. Allows space increase/decrease relative to bottomReservedSpace,
+		<!-- Space to reserve for extended moveable toobar on bottom (with the seekbar) -->
+		<attr name="bottomReservedSpace2" format="dimension|reference"/>
+
+		<!-- The extra space to add to bottomReservedSpace for the selection mode. Allows space increase/decrease relative to bottomReservedSpace,
 		     which can be dynamic due to the theme options  -->
 		<attr name="selectionBottomReservedExtraSpace" format="dimension|reference"/>
 
@@ -49,11 +52,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Animation time between AA states (playing/paused) -->
 		<attr name="preferredAAAnimTime" format="integer"/><!-- ms -->
 		
-		<!-- Controls AA blur background --> 
+		<!-- Controls AA blur background. Note that user can also disable background in the Background settings.
+		     See also aaEffectList, aaEffectLyrics attributes, which define effects applied for the appropriate backgrounds -->
 		<attr name="listMilkMode" format="integer">
-			<flag name="none" value="0"/><!-- No any AA images are applied to background -->
-			<flag name="mainAA" value="1"/><!-- Default. AA from main screen is applied to background --> 
-			<flag name="listHeader" value="2"/><!-- AA from list headers is applied -->
+			<flag name="none" value="0"/><!-- No any AA images are applied to the background -->
+			<flag name="mainAA" value="0x1"/><!-- Default. AA from the main screen is applied to the background -->
+			<!-- @Deprecated -->
+			<flag name="listHeader" value="0x2"/>
+			<flag name="list" value="0x2"/><!-- AA is applied to the list background. See also aaEffectList -->
+			<flag name="lyrics" value="0x4"/><!-- AA is applied to the lyrics background. See also aaEffectLyrics -->
 		</attr>
 		
 		<!-- Milk (visualization) AA widget id --> 

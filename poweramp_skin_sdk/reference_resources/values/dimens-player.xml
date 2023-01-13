@@ -61,6 +61,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="NavBarButton_drawableSize">28dp</dimen>
 	<dimen name="Navbar_normal_marginB">8dp</dimen>
 	<dimen name="NavbarList_marginBottom">-4dp</dimen>
+	<dimen name="NavbarSeekbar_marginTop">0dp</dimen>
+	<dimen name="NavbarSeekbar_marginBottom">-6dp</dimen>
 
 	<dimen name="ItemMiniplayerAAImage_size">28dp</dimen>
 	<dimen name="corners_miniplayer_aa">8dp</dimen>
@@ -77,13 +79,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines_more_rounded">90dp</dimen>
 
+	<dimen name="NavbarSeekbar_height">32dp</dimen>
+
 	<dimen name="TopHelpSmaller_textSize">9sp</dimen>
 	<dimen name="TopHelpSmaller_paddingLR">10dp</dimen>
 	<dimen name="TopHelpSmaller_paddingTB">4dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">8dp</dimen>
 	<dimen name="TopHelpMarginTB">16dp</dimen>
 
-
+	<dimen name="TopListScrollerView_marginTop">110dp</dimen>
+	<dimen name="TopListScrollerView_marginBottom">110dp</dimen>
+	<dimen name="OptionLocalizedAZScroll_TopListScrollerView_marginTop">64dp</dimen>
+	
 
 	<!-- Alt -->
 	<dimen name="Alt_TopSubAAButtons_marginTop">5dp</dimen>
@@ -91,6 +98,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-4dp</dimen>
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">.85</item>
 	<dimen name="Alt_TopAABounds_marginBottom">50dp</dimen>
+	<dimen name="Alt2_TopAABounds_marginBottom">92sp</dimen>
 	<dimen name="Alt_TopListSubstyle_aaMarginBottom">222dp</dimen>
 	
 	<dimen name="Alt_ListSubstyle_Base_gridItem1LineExtraSpace">26dp</dimen>
@@ -122,6 +130,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
 	<dimen name="Alt_PlainSeekbar_marginBottom">-6dp</dimen>
 
+	<dimen name="ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft">14dp</dimen>
+	<dimen name="Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft">16dp</dimen>
+
 
 	<!-- @Deprecated -->
 	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
@@ -135,5 +146,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
 	
 	<dimen name="EqPresetButtonLayoutBase_listItemSize">56dp</dimen>
-				
+
 </resources>

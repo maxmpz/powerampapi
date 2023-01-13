@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			android:contentDescription="@string/like"
 		/>
 		<SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_aa_vis" w:scene_3="@+id/scene_aa_playing"
+			w:scene_4="@+id/scene_lyrics"
 			style="?ItemLike_scene_aa"
 		/>
 		<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
@@ -42,6 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			android:contentDescription="@string/unlike"
 		/>
 		<SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_aa_vis" w:scene_3="@+id/scene_aa_playing"
+			w:scene_4="@+id/scene_lyrics"
 			style="?ItemUnlike_scene_aa"
 		/>
 		<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
@@ -75,6 +77,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
+		/>
+	<SceneParams w:scene="@+id/scene_lyrics"
+		style="?ItemLikeUnlikeLayout_scene_lyrics"
 		/>
 
 </merge>

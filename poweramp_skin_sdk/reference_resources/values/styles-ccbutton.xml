@@ -23,13 +23,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<!-- NOTE: this view uses drawable=?media_route via code. Don't set it here (it may be slow to load) --> 
+	<!-- NOTE: this view uses drawable=?media_route via code. Don't set it here (it may be slow to load) -->
+	<!-- NOTE: to simplify options and overrides, esp. for alt and land layouts, we always keep CC button within aa bounds in all
+	     layout variants -->
 	<style name="CcButton_MainUIBase">
 		<item name="android:id">@+id/cc_button</item>
 		<item name="layout_attachTop">inset</item>
-		<item name="layout_attachRight">inset</item>
-		<item name="android:layout_marginTop">11dp</item>
-		<item name="android:layout_marginRight">11dp</item>
+		<item name="layout_attachRightToRight">@id/aa_bounds</item>
+		<item name="android:layout_marginTop">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 
@@ -48,25 +50,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="CcButton_MainUI" parent="CcButton_MainUIBase">
 	</style>
 	<!-- NOTE: overridden in values-sw2dp-land -->
-	<style name="CcButton_MainUI_scenes_playing">
-		<item name="layout_attachTop">inset</item>
-		<item name="layout_attachRight">inset</item>
-		<item name="android:layout_marginTop">11dp</item>
-		<item name="android:layout_marginRight">11dp</item>
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		
+	<!-- NOTE: we put layout params here as we want CC to animate up/down when vis<->playing scene changes happen -->
+	<style name="CcButton_MainUI_scenes_playing" parent="CcButton_MainUIBase">
 		<item name="android:visibility">visible</item>
-		<item name="android:alpha">1</item>
 	</style>
-	<style name="CcButton_MainUI_scenes_vis_w_ui">
+	<style name="CcButton_MainUI_scenes_vis_w_ui" parent="CcButton_MainUIBase">
 		<!-- NOTE: can't attach to vis_panel_container as it takes whole screen height, so using known VisPanelFrame height for top margin -->
-		<item name="layout_attachTop">inset</item>
-		<item name="layout_attachRight">inset</item>
 		<item name="android:layout_marginTop">58dp</item>
-		<item name="android:layout_marginRight">11dp</item>
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:visibility">visible</item>
 	</style>
 	<style name="CcButton_MainUI_scene_vis" parent="CcButton_MainUI_scenes_vis_w_ui">

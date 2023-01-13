@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -89,6 +89,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="applyViewParams">true</item>
 		<item name="android:elevation">?navbar_elevation</item>
 	</style>
+	<style name="Navbar_noBgNavbar" parent="Navbar">
+		<item name="android:background">@drawable/navbar_no_bg</item><!-- NOTE: @null won't work here, as this will make navbar a non-drawing view, thus, no scene background change will happen -->
+		<item name="applyViewParams">true</item>
+		<item name="android:elevation">0px</item>
+	</style>
 
 	
 	<style name="NavbarExtension">
@@ -173,6 +178,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_widthPercent">50%</item>
 		<item name="layout_consumeSpace">horizontal|reset_auto</item>
 	</style>
+
 	
 	<style name="NavbarList">
 		<item name="android:layout_width">match_parent</item>
@@ -184,11 +190,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachTop">@id/navbar_extension</item>
 		<item name="android:duplicateParentState">true</item><!-- Needed to e.g. state_playing to propagate -->
 	</style>
+
 	
 	<style name="NavbarNavButtonsLayout">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/Navbar_height</item>
-		<item name="layout_attachTop">@id/navbar_list</item>
+		<item name="layout_attachTop">@id/navbar_seekbar</item>
 		<item name="android:padding">2dp</item>
 	</style>
 	
@@ -201,7 +208,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
 		<item name="drawableWidth">@dimen/NavBarButton_drawableSize</item><!-- NOTE: this should be tied to NavBar_height -->
 		<item name="drawableHeight">@dimen/NavBarButton_drawableSize</item>
-		<item name="drawableTint">?colorNavbarIcons</item>
+		<item name="drawableTint">?colorNavbarIcons</item><!-- color-sw2dp/navbar_icons_selector -->
 		<item name="drawableOnly">true</item>
 		<item name="drawablePosition">forceGravity</item>
 		<item name="android:gravity">center</item>
@@ -218,4 +225,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawable">@drawable/logo_navbar_peq</item><!-- NOTE: overridden in Peq -->
 		<item name="android:layout_height">25dp</item>
 	</style>
+
+	<style name="NavbarSeekbar" parent="@android:style/Widget.Material.SeekBar">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/NavbarSeekbar_height</item>
+		<item name="layout_attachTop">@id/navbar_list</item>
+
+		<item name="android:layout_marginTop">?NavbarSeekbar_marginTop</item>
+		<item name="android:layout_marginLeft">?NavbarSeekbar_marginLR</item>
+		<item name="android:layout_marginRight">?NavbarSeekbar_marginLR</item>
+		<item name="android:layout_marginBottom">?NavbarSeekbar_marginBottom</item><!-- -6dp -->
+
+		<item name="android:visibility">gone</item>
+
+		<item name="android:progressDrawable">@drawable/seekbar</item>
+		<item name="android:thumb">@drawable/seekbar_thumb</item>
+		<item name="android:background">@drawable/ripple_seekbar_bg</item>
+		<item name="android:paddingTop">8dp</item><!-- Needed for Android 5 -->
+		<item name="android:paddingBottom">8dp</item><!-- Needed for Android 5 -->
+		<item name="android:paddingLeft">10dp</item><!-- NOTE: paddings/left/right doesn't work for seekbar shape so adjusting it here -->
+		<item name="android:paddingRight">10dp</item>
+
+		<item name="android:clickable">true</item><!-- Avoid setPressed propagation from parent clicks -->
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+	</style>
+
 </resources>

@@ -110,7 +110,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogSeparator">@style/DialogSeparator</item>
 		
 		<!-- NOTE: following attributes are pulled from theme by DialogBehavior -->
-		<item name="dragDirection">none</item>
+		<item name="collapseDragDirection">none</item>
 		<item name="animTime">350</item>
 		<item name="dragAnimTime">1000</item>
 		<item name="dragByNestedScroll">true</item>
@@ -165,7 +165,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="BottomsheetDialog" parent="BaseDialog">
-		<item name="dragDirection">down</item>
+		<item name="collapseDragDirection">down</item>
 		<item name="DialogFrame">@style/BottomsheetDialogFrame</item>
 		<item name="DialogFrame_scene_dialog_in">@style/BottomsheetDialogFrame_scene_dialog_in</item>
 		<item name="DialogFrameContent">@style/DialogFrameContent</item>
@@ -174,7 +174,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="TopsheetDialog" parent="BaseDialog">
-		<item name="dragDirection">up</item>
+		<item name="collapseDragDirection">up</item>
 		<item name="dialogAdjustToSoftKeyboard">false</item>
 		<item name="DialogFrame">@style/TopsheetDialogFrame</item>
 		<item name="DialogFrame_scene_dialog_in">@style/TopsheetDialogFrame_scene_dialog_in</item>
@@ -185,7 +185,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="CenteredDialog" parent="BaseDialog">
 		<item name="dialogAltOutScene">true</item>
-		<item name="dragDirection">up</item>
+		<item name="collapseDragDirection">up</item>
 		<item name="animTime">450</item>
 		<item name="DialogFrame">@style/CenteredDialogFrame</item>
 		<item name="DialogFrame_scene_dialog_in">@style/CenteredDialogFrame_scene_dialog_in</item>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -31,18 +31,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:padding">8dp</item>
 		<item name="android:layout_marginRight">0dp</item>
 	</style>
-	
-	<style name="Alt_CcButton_MainUI_scenes_vis_w_ui">
-		<!-- Do nothing as in landscape for alt layout we have enough room -->
-	</style>	
-	
+
 	<style name="Alt_TopWaveseekLayout" parent="TopWaveseekLayout">
-		<item name="android:layout_height">160dp</item>		
-		<item name="android:layout_marginTop">104dp</item>
+		<item name="android:layout_height">160dp</item><!-- TODO: dimen for tablets -->
+		<item name="android:layout_marginTop">104dp</item><!-- Should be enough for the title/line2 -->
 		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottom">@+id/meta_info_layout</item>
 		<item name="layout_attachLeft">@+id/aa_bounds</item>
 		<item name="layout_attachRight">inset</item>
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:paddingTop">4dp</item>
 		<item name="android:paddingBottom">4dp</item>
 		<item name="android:clickable">true</item><!-- Clickable to avoid touching trough it and moving AA/List -->
@@ -54,8 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_TopWaveseek" parent="TopWaveseek">
 		<item name="layout_maxHeight">160dp</item>
 	</style>
-		
-	
+
 	<style name="Alt_TopMetaInfoLayout" parent="TopMetaInfoLayout">
 	</style>
 	
@@ -63,7 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginBottom">12dp</item>
-		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_marginRight">8dp</item>
 	</style>
 	
 	<style name="Alt_ListSubstyle" parent="Alt_ListSubstyle_Base">
@@ -79,6 +75,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
 		<item name="layout_matchDimension">widthToHeight</item>
+		<item name="layout_consumeSpace">horizontal|size</item><!-- NOTE: consumes available size for the children -->
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
@@ -87,17 +84,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<style name="Alt_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
 		<item name="layout_attachRight">parent</item>
-		<item name="layout_attachLeft">@id/aa_image</item>
+		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottom">@null</item>
 
 		<item name="android:layout_marginLeft">0dp</item><!-- Sync margins with AA image margins -->
-		<item name="android:layout_marginRight">48dp</item><!-- Leave some space for Chromecast button -->
+		<item name="android:layout_marginRight">8dp</item><!-- Leave some space for the possible Chromecast button -->
 		<item name="android:layout_marginTop">12dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
-		
-		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+
+		<item name="android:textColor">?colorAltTitle</item>
+		<item name="lineBackground">?alt_title_bg</item>
 	</style>
 
 	<style name="Alt_ItemTrackLine2_scene_aa" parent="ItemTrackLine2_scene_aa">
@@ -107,41 +104,65 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">0dp</item>
 
 		<item name="layout_attachRight">parent</item>
-		<item name="layout_attachLeft">@id/aa_image</item>
+		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachTop">@id/title</item>
 		<item name="layout_attachBottom">@null</item>
-		
-		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+
+		<item name="android:textColor">?colorAltTitle</item>
+		<item name="lineBackground">?alt_title_bg</item>
 	</style>
+
+	<!-- NOTE: using attachLeft/Right=null + layout_gravity so we properly animate scene layout when going e.g. to left-aligned menu title -->
+	<style name="Alt_TrackLabelsCentered_ItemTrackTitle_scene_aa" parent="Alt_ItemTrackTitle_scene_aa">
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+	</style>
+	<style name="Alt_TrackLabelsCentered_ItemTrackLine2_scene_aa" parent="Alt_ItemTrackLine2_scene_aa">
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+	</style>
+
 	
 	<style name="Alt_ItemRatingBar_scene_aa" parent="ItemRatingBar_scene_aa">
 		<item name="scale">0.9</item>
 		<item name="layout_compensateScale">0.9</item>
-				
+
+		<item name="layout_attachLeftToLeft">@id/aa_image</item>
 		<item name="android:layout_marginTop">0dp</item>
-		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginLeft">6dp</item>
 		<item name="android:layout_marginBottom">14dp</item>
 		
-		<item name="drawableTint">?colorIconPrimaryForced</item>
-		<item name="lineBackground">@drawable/ripple_alpha_rounded_large</item>
+		<!--<item name="drawableTint">?colorIconPrimaryForced</item>-->
+		<item name="drawableTint">?colorRating</item>
+		<item name="lineBackground">?alt_ratingbar_bg</item>
 	</style>
-	
+
+
 	<style name="Alt_ItemTrackMenu_scene_aa" parent="ItemTrackMenu_scene_aa">
 		<item name="scale">0.9</item>
 		<item name="layout_compensateScale">0.9</item>
 		<item name="layout_attachRightToRight">@+id/aa_image</item>
 		<item name="layout_attachRight">@null</item>
-		
+
 		<item name="android:layout_marginRight">6dp</item>
 		<item name="android:layout_marginBottom">14dp</item>
+
+		<item name="drawableTint">?colorAltMenu</item>
+		<item name="android:background">?alt_menu_bg</item>
 	</style>
 	
 	<style name="Alt_ItemLikeUnlikeLayout_scene_aa" parent="ItemLikeUnlikeLayout_scene_aa">
 		<item name="scale">0.9</item>
 		<item name="layout_compensateScale">0.9</item>
-		
-		<item name="android:layout_marginLeft">14dp</item>
+
+		<item name="layout_attachLeftToLeft">@id/aa_image</item>
+		<item name="android:layout_marginLeft">6dp</item>
 		<item name="android:layout_marginBottom">14dp</item>
 	</style>
 	
@@ -154,7 +175,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_TopToastContainer_scenes_non_main" parent="Alt_TopToastContainer">
 	</style>
 	<style name="Alt_TopToastFrame" parent="TopToastFrame">
-		<item name="dragDirection">up</item>
+		<item name="collapseDragDirection">up</item>
 		<item name="android:layout_gravity">center_horizontal|top</item>
 		<item name="android:layout_marginTop">-32dp</item>
 		<item name="android:layout_marginBottom">0dp</item>

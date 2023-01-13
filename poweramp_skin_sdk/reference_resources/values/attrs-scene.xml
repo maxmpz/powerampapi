@@ -83,7 +83,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     NOTE: this option changes only "layout" processing in terms of Android UI framework.
 		     The bounds of views are always transitioned/animated (unless view is GONE).
 		     NOTE: while it's called "recalc children", the relayout can be used on non-viewgroup views as well, so
-		     a better term would be "recalcLayout" -->
+		     a better term would be "recalcLayout".
+		     This can be either one of the enum values, or percentage (e.g. 50%) setting the point of transition where
+		     the relayout takes place -->
 		<attr name="recalcChildren" format="fraction|integer">
 			<!-- Initial child layout is used for the transition until end (jumps in the end) -->
 			<enum name="on_end" value="0" /><!-- Sync with SceneParams -->
@@ -142,6 +144,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:scaleY"/>
 		<attr name="android:translationX"/>
 		<attr name="android:translationY"/>
+		<attr name="android:translationZ"/>
 		<attr name="android:rotation"/>
 		<attr name="android:rotationX"/>
 		<attr name="android:rotationY"/>

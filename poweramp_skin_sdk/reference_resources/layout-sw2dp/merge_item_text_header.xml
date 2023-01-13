@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -35,7 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:scene_5="@+id/scene_1_small_no_aa" w:scene_6="@+id/scene_small_no_aa"
 		w:baseScene="defaultScene"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" 
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu" w:scene_3="@+id/scene_subheader"
 		android:visibility="gone"
 	/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"  w:scene_3="@+id/scene_search_header"
@@ -62,7 +62,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTextHeaderScanProgress_scene_header"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_subheader"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>
@@ -78,14 +78,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_shuffle"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header"
 		style="?ItemTextHeaderShuffleButton_scene_header"
 	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_search_header"
+		style="?ItemTextHeaderShuffleButton_scene_search_header"
+		/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_top_header"
 		style="?ItemTextHeaderShuffleButton_scene_menu"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_subheader"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>
@@ -101,14 +104,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_play"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header"
 		style="?ItemTextHeaderPlayButton_scene_header"
 	/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_search_header"
+		style="?ItemTextHeaderPlayButton_scene_search_header"
+		/>
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_top_header"
 		style="?ItemTextHeaderPlayButton_scene_menu"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_subheader"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>
@@ -124,16 +130,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:msgId="@id/cmd_list_target_search"
 		android:contentDescription="@string/search"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header"
 		style="?ItemTextHeaderSearchButton_scene_header"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_top_header"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_search_header"
+		style="?ItemTextHeaderSearchButton_scene_search_header"
+		/>
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextHeaderSearchButton_scene_menu"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene
 	     NOTE: dontApplyIfGone needed here as it's can't be derived from the default scene -->
 	<!-- 		w:applyEvenIfGone="dontApplyIfGone" -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_top_header"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>
@@ -149,15 +158,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list"
 		w:msgId="@id/cmd_list_toggle_selection_mode"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_search_header"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_header"
 		style="?ItemTextHeaderSelectButton_scene_header"
 	/>
-	<!-- NOTE: reset_horizontal is needed here to reset horizontal space consumed by buttons --> 
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_search_header"
+		style="?ItemTextHeaderSelectButton_scene_search_header"
+		/>
+	<!-- NOTE: reset_horizontal is needed here to reset horizontal space consumed by buttons -->
 	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_item_menu" w:scene_3="@+id/scene_top_header"
 		style="?ItemTextHeaderSelectButton_scene_menu"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid"
+	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_top_header"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>

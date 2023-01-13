@@ -73,36 +73,41 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 		/>
+	<SceneParams w:scene="@+id/scene_subheader"
+		style="?ItemTextAAImage_scene_subheader"
+		/>
 	<!-- aa_image -->
-	
-	
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
+
+	<!-- title -->
+	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
 		style="?ItemTextTitle"
 		android:importantForAccessibility="yes"
-	/><!-- title -->
+	/>
 	<SceneParams w:scene="@+id/scene_grid"
 		style="?ItemTextTitle_scene_grid"
-	/><!-- title -->
+	/>
 	<SceneParams w:scene="@+id/scene_header"
 		style="?ItemTextTitle_scene_header"
-	/><!-- title -->
+	/>
 	<SceneParams w:scene="@+id/scene_top_header" 
 		style="?ItemTextTitle_scene_top_header"
-	/><!-- title -->
+	/>
 	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 	/>
-	<!-- title -->
 	<!-- NOTE: consumes vertical space so separator is positioned below title -->
 	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextTitle_scene_item_menu"
 	/>
+	<SceneParams w:scene="@+id/scene_subheader"
+		style="?ItemTextTitle_scene_subheader"
+		/>
 	<!-- title -->
 	
 	
 	<!-- NOTE: for now it's not used. NOTE: menu attaches to line2 so it's important to have proper layout for it anyway -->
 	<!-- NOTE: due to zoom on title, we can't reliable position line2 after title horizontally, as layout just doesn't know about zoom -->
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
+	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/line2"
 		style="?ItemTextLine2"
 	/><!-- line2 -->
 	<SceneParams w:scene="@+id/scene_grid"
@@ -117,6 +122,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_search_header" w:scene_2="@+id/scene_top_header" w:scene_3="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 	/>
+	<SceneParams w:scene="@+id/scene_subheader"
+		style="?ItemTextLine2_scene_subheader"
+		/>
 	<!-- line2 -->
 
 	
@@ -127,7 +135,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTextMenu_scene_menu"
 	/><!-- menu -->
-	<SceneParams w:scene="@+id/scene_grid"
+	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_subheader"
 		w:baseScene="defaultScene"
 	/>
 	<SceneParams w:scene="@+id/scene_search_header"
@@ -148,9 +156,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: programatically loaded -->
 	<com.maxmpz.widget.base.LoadableBehavior
 		android:id="@+id/behavior_queue_counter"
-		android:layout="@layout/merge_item_queue_counter" 
+		android:layout="@layout/merge_item_queue_counter"
 	/>
-		
+
+	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_subheader"
+		android:layout="@layout/merge_item_text_subheader"
+		w:loadForScene="@id/scene_subheader"
+		/>
 
 	<com.maxmpz.widget.base.LoadableBehavior android:id="@+id/behavior_header"
 		android:layout="@layout/merge_item_text_header"
@@ -159,7 +171,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:loadForScene_3="@id/scene_top_header"
 		w:loadForScene_4="@id/scene_bottom_toolbar"
 	/>
-	
 
 	<!-- NOTE: programatically loaded for scene_item_menu -->
 	<com.maxmpz.widget.base.LoadableBehavior

@@ -2,5 +2,5 @@
 
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
 	android:src="@drawable/albums_alt" 
-	android:tint="#454588"
+	android:tint="#5858ae"
 />

@@ -56,7 +56,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- <item name="collapsedScene"></item> Default is 0 -->
 		<item name="expandedScene">@+id/scene_vispanel_expanded</item>
-		<item name="dragDirection">up</item>
+		<item name="collapseDragDirection">up</item>
 		
 		<item name="animTime">500</item>
 		

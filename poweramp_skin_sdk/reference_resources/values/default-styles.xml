@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -32,11 +32,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	                          |
          global Option* styles (if forceGlobalOptions=false) 
 	                          |
-                      ActivityTheme_*
+                skin theme (e.g. ActivityTheme_*)
 	                          |
         global Option* styles (if forceGlobalOptions=true)
                               |       
                         skin options
+                              |
+       globalOption skin styles (per enabled global option)
 
 	-->
 	     
@@ -45,6 +47,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="OptionRatingStars">@style/OptionRatingStars</item>
 		<item name="OptionRatingStarsMenu">@style/OptionRatingStarsMenu</item>
 		<item name="OptionRatingLikeUnlike">@style/OptionRatingLikeUnlike</item>
+		<item name="OptionRatingDisabled">@style/OptionRatingDisabled</item>
 		<item name="OptionCounter">@style/OptionCounter</item>
 		<item name="OptionCCDisabled">@style/OptionCCDisabled</item><!-- See also CcButton_MainUI/CcButton_NavbarExtensionMenuLine -->
 		<item name="OptionCCInMenu">@style/OptionCCInMenu</item>
@@ -52,10 +55,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="OptionCCMainUIAndInMenu">@style/OptionCCMainUIAndInMenu</item>
 		<item name="OptionHeaderMeta">@style/OptionHeaderMeta</item>
 		<item name="OptionHideMenu">@style/OptionHideMenu</item>
+		<item name="OptionHideLyricsButton">@style/OptionHideLyricsButton</item>
 		<item name="OptionAAKeepAspect">@style/OptionAAKeepAspect</item>
 		<item name="OptionAACrop">@style/OptionAACrop</item>
 		<item name="OptionEquFRSRounded">@style/OptionEquFRSRounded_Light</item>
 		<item name="OptionNoHeaderButtons">@style/OptionNoHeaderButtons</item>
+		<item name="OptionLocalizedAZScroll">@style/OptionLocalizedAZScroll</item>
+		<item name="OptionRoundedScreenCorners">@style/OptionRoundedScreenCorners</item>
 
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>
 		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>
@@ -157,10 +163,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     Though, in lock screen mode, this color is also used as background color by lock screen code -->
 		<item name="colorAABgColor">#fff</item>
 
+		<!-- NOTE: used only for overlap_track_labels_no_bg styles -->
+		<item name="colorOnAABg">#000</item>
+		<item name="colorOnAABgLessContrast">#333</item>
+
 		<item name="colorFastScroller">#888</item>
 		<item name="colorFastScrollerPressed">#444</item>
 		<item name="colorFastScrollerTrack">#0000</item>
 		<item name="colorScrollPopupBg">#a555</item>
+		<item name="colorAZBg">#88F5F5F5</item>
+		<item name="colorAZPressed">#fff</item>
+		<item name="colorAZSeparator">#000</item>
 
 		<item name="colorFrsSelectionBgRipple">#aaa</item>
 		<item name="colorFrsSelectionBgPressed">#3000</item>
@@ -204,7 +217,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorSeparatorLight">#EEE</item>
 
 		<item name="colorNavbarIconsLessContrast">#fff</item><!-- NOTE: not used in default theme -->
-		<item name="colorNavbarIcons">#f333</item>
+		<item name="colorNavbarIcons">#f333</item><!-- NOTE: using fixed color here as in white theme icons change for activated state -->
 		<item name="colorBgNavbar">#fff</item>
 		<item name="colorBgTransparentNavbar">#7fff</item><!-- REVISIT: doesn't look so great for Android 10 navbar-line, but still is OK for usual navbar there -->
 
@@ -219,6 +232,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorPlayButtonsTint">#fff</item>
 		<item name="colorPlayButtonsBg">#000</item>
 		<item name="colorPlayButtonsStroke">#000</item>
+
+		<item name="colorMetaInfo">?android:textColorPrimary</item>
+		<item name="colorRating">?colorIconInverse</item>
 
 		<item name="arcStartColor">@null</item>
 		<item name="arcEndColor">@null</item>
@@ -249,11 +265,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="forward_10s_round">@drawable/forward_10s_round</item>
 
 		<!-- Player core button icons - currently used just for Android 12.
-		     So Android 12+ deosn't use the "prev_cat_round..forward_10s_round" defined styles above and through other xmls.
+		     So Android 12+ doesn't use the "prev_cat_round..forward_10s_round" defined styles above and through other xmls.
 		     (Also see drawable-sw2dp-v31 drawables). This is needed as we must separately tint
 		     various part of the buttons.
 
-		     Lower Androids contiue to use simple pre-rendered drawables as those render faster on low end devices
+		     Lower Androids continue to use simple pre-rendered drawables as those render faster on low end devices,
+		     though for 3rd-party skins either approach can be used, depending on
+		     the targeted audience (low end devices/fast devices).
 
 		     NOTE: Arrow-like icons rotated for the reverse action, so there are no rw/prev_cat core icons -->
 		<item name="play_core">@drawable/play_core_rounded_tinted</item>
@@ -304,6 +322,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="streams">@drawable/streams_colored</item>
 		<item name="bookmarks">@drawable/bookmarks_colored</item>
 
+		<item name="raw_file">@drawable/raw_file_colored</item>
+
 		<item name="micro_all_songs">@drawable/song_12dp</item>
 		<item name="micro_folders">@drawable/folders_12dp</item>
 		<item name="micro_folders_hier">@drawable/folders_hier_12dp</item>
@@ -322,12 +342,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="micro_recently_played">@drawable/recently_played_12dp</item>
 		<item name="micro_recently_added">@drawable/recently_added_12dp</item>
 		<item name="micro_long_files">@drawable/long_files_12dp</item>
-		<item name="micro_raw_file">@drawable/song_12dp</item><!-- REVISIT -->
+		<item name="micro_raw_file">@drawable/raw_file_12dp</item>
 		<item name="micro_streams">@drawable/streams_12dp</item>
 		<item name="micro_bookmarks">@drawable/bookmarks_12dp</item>
 
 		<item name="meta_next_12dp">@drawable/next_12dp</item>
 		<item name="meta_songs_12dp">@drawable/song_12dp</item><!-- Small song icon used for item_track meta -->
+		<item name="meta_songs_w_lyrics_12dp">@drawable/song_w_lyrics_12dp</item>
 
 		<item name="keep_list_pos_12dp">@drawable/keep_list_pos_12dp</item>
 		<item name="keep_track_pos_12dp">@drawable/keep_track_pos_12dp</item>
@@ -427,6 +448,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="star_5_8dp">@drawable/star_5_8dp</item>
 
 		<item name="logo_navbar">@drawable/logo_navbar_hamburger</item>
+		<item name="meta_info_bg">@drawable/alpha_popup_button_layout_bg</item>
 
 		<!-- Android mediarouter icons -->
 		<item name="media_route" tools:ignore="PrivateResource">@drawable/mr_button_light</item>
@@ -458,6 +480,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="aa_elevation">4dp</item>
 		<item name="grid_aa_elevation">4dp</item>
+		<item name="header_aa_elevation">0dp</item>
 		<item name="list_aa_elevation">2dp</item>
 		<item name="over_aa_elevation">4dp</item>
 		<item name="over_aa_elevation_plus">4.25dp</item><!-- over_aa_elevation + some minor offset to top -->
@@ -512,7 +535,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_aa_tracks_small">8dp</item>
 		<item name="corners_aa_scene_aa">18.75dp</item>
 
+		<!-- NOTE: overridden for OptionRoundedScreenCorners -->
+		<item name="corners_aa_tracks_header">0px</item>
+		<item name="corners_aa_albums_header">0px</item>
+		<item name="corners_aa_other_header">0px</item>
+
 		<item name="corners_miniplayer_aa">@dimen/corners_miniplayer_aa</item><!-- 12dp, depends on Navbar_height -->
+
+		<item name="OptionRoundedScreenCorners_corners_header">16dp</item>
+		<item name="OptionRoundedScreenCorners_header_aa_elevation">8dp</item>
+		<item name="OptionRoundedScreenCorners_buttons_scene_header_marginBottom">12dp</item>
+
+		<!-- This enables shadow for header/bottom toolbar buttons as well for menu, etc. -->
+		<item name="list_buttons_outline_provider">background</item>
+
+		<!-- Change AA background for lists/lyrics -->
+		<item name="aaEffectReadable">@style/ActivityTheme_White_MilkViewEffect_Lyrics</item>
+		<item name="aaEffectList">@style/ActivityTheme_White_MilkViewEffect_List</item>
+
+		<!-- NOTE: this is ListConfig style attributes, but we can also define them on the global theme level as any style
+		     "derives" values from the global theme as well
+		     NOTE: active/inactive lyrics lines also have different text colors - e.g.
+		     ItemLyricsTitle_scene_small vs ItemLyricsTitle_scene_small_active -->
+		<item name="lyricsPrevAlpha">0.3</item>
+		<item name="lyricsNextAlpha">0.5</item>
 
 		<!-- ListSubstyle -->
 		<item name="textHeaderSize">186dp</item>
@@ -524,6 +570,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="compactTextHeaderSize">166dp</item>
 		<item name="searchHeaderSize">@dimen/ListSubstyleBase2_searchHeaderSize</item><!-- Includes margin for status bar and search field -->
 		<item name="targetSearchHeaderSize">@dimen/ListSubstyleBase2_targetSearchHeaderSize</item><!-- Includes margin for status bar, search field, and target button -->
+		<item name="lyricsHeaderSize">100dp</item>
+		<item name="lyricsSubheadSize">52dp</item>
 
 		<!-- Extra space for 1-line "human" grid cell layouts => so cell has non-square layout with extra space for title below image -->
 		<item name="humanGridItemExtraSpace">22dp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
@@ -539,9 +587,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="Alt_ListSubstyle_gridItemExtraSpace">@dimen/Alt_ListSubstyle_Base_gridItemExtraSpace</item><!-- 2line 4x, 3x grids -->
 		<item name="Alt_ListSubstyle_gridZoomedItemExtraSpace">@dimen/Alt_ListSubstyle_Base_gridZoomedItemExtraSpace</item><!-- 2line 2x grids -->
 
+		<!-- Overridden for alt styles + overlap_track_labels_no_bg -->
+		<item name="ItemTrackAAImage_scene_header_drawableTintColor">#0000</item>
+		<item name="ItemTrackTitle_scene_header_lineBackground">@drawable/text_bg_alpha_rounded</item>
+		<item name="ItemTrackLine2_scene_header_lineBackground">@drawable/text_bg_alpha_rounded</item>
+		<item name="ItemTrackMeta_scene_header_w_meta_background">@drawable/text_bg_alpha_rounded</item>
+		<item name="ListHeaderButton_scene_header_background">@drawable/ripple_text_bg_rounded_large</item>
+		<item name="ItemTrackMenu_scene_header_background">@drawable/ripple_text_bg_rounded_large</item>
+		<item name="ItemTrackBackDecorTitle_scene_header_back_decor_background">@drawable/ripple_text_bg_rounded_large</item>
+		<item name="ItemTextBackDecorTitle_scene_header_back_decor_background">@drawable/ripple_text_bg_rounded_large</item>
+		<item name="ListHeaderButton_scene_header_marginLeft">12dp</item>
+		<item name="ListHeaderButton_scene_header_marginRight">-8.5dp</item>
+		<item name="ListHeaderButton_scene_header_marginBottom">7dp</item>
+		<item name="ListMenu_scene_header_marginBottom">5dp</item>
+		<item name="ItemBackDecorTitle_scene_header_back_decor_marginLeft">12dp</item>
 
 		<item name="ItemTrack_labels_scene_grid_lineBackground">@drawable/text_bg_alpha_rounded</item><!-- Overridden by alt mode -->
 		<item name="ItemTrack_labels_scene_grid_textColor">?android:textColorPrimaryInverse</item><!-- Overridden by alt mode -->
+
 
 		<item name="TrackItem_eatFontPads">true</item>
 		<item name="TrackItem_alignToContent">all</item>
@@ -592,6 +655,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="ItemMiniplayer_paddingLeft">6dp</item><!-- NOTE: reduced in ActivityTheme_White_LessRounding -->
 
+		<item name="TopListScrollerView_marginTop">@dimen/TopListScrollerView_marginTop</item><!-- Changed by OptionLocalizedAZScroll or/and land -->
+		<item name="TopListScrollerView_marginBottom">@dimen/TopListScrollerView_marginBottom</item><!-- Changed by OptionLocalizedAZScroll or/and land -->
+		<item name="TopListScrollerView_azTextScale">0.45</item>
+
 		<item name="VolumePanelPopup">@style/VolumePanelPopup</item>
 		<item name="VolumePanelFrame">@style/VolumePanelFrame</item>
 		<item name="VolumePanelKnobLayout">@style/VolumePanelKnobLayout</item>
@@ -636,6 +703,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_navbar_offset">@style/ActivityTheme_Whitepro_OffsetNavbar</item>
 		<!-- NOTE: this is further overridden by styles-options.xml OptionRatingStarsMenu (works with <skin> forceGlobalOptions=true) -->
 		<item name="overlap_alt_layout">@style/ActivityTheme_Whitepro_AltLayout</item>
+		<item name="overlap_alt_layout2">@style/ActivityTheme_White_AltLayout2</item>
 		<item name="overlap_less_rounding">@style/ActivityTheme_White_LessRounding</item>
 		<!-- NOTE: overlap_less_rounding manipulates overlap_light_buttons -->
 		<item name="overlap_light_buttons">@style/ActivityTheme_Whitepro_LightButtons</item>
@@ -648,6 +716,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="navbar_marginLR">8dp</item>
 		<!-- NOTE: there is also increased margin, but we need exactly Navbar_normal_marginB value for TopContainer reduceBottomInset -->
 		<item name="navbar_marginB">@dimen/Navbar_marginB_more_rounded</item>
+
+		<item name="Navbar_height">@dimen/Navbar_height</item>
+		<item name="NavbarSeekbar_marginLR">16dp</item>
+		<item name="NavbarList_marginBottom">@dimen/NavbarList_marginBottom</item>
+		<item name="NavbarSeekbar_height">@dimen/NavbarSeekbar_height</item>
+		<item name="NavbarSeekbar_marginTop">@dimen/NavbarSeekbar_marginTop</item>
+		<item name="NavbarSeekbar_marginBottom">@dimen/NavbarSeekbar_marginBottom</item>
 
 		<!-- Globally setting overshoot parameters for stuff like AA popup, meta info AA. Some views override this (e.g. equalizer horizontal scrolls) -->
 		<item name="maxOvershoot">50dp</item>
@@ -668,6 +743,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine_disabled</item>
 
 		<item name="ItemTrackMenu_scene_aa_visibility">visible</item>
+		<item name="ItemTrackLyrics_scene_aa_visibility">visible</item><!-- NOTE: we allow lyrics button to be visible, but it still will be gone if no lyrics are in the track -->
 		<item name="AAImage_scaleType">centerCrop</item><!-- By default, (modified) centerCrop is used. Can be overridden by OptionAAKeepAspect/OptionAACrop -->
 
 		<item name="EqParamColorSet">@array/EqParamColorSet_Default</item>
@@ -705,11 +781,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines_more_rounded</item>
 	</style>
 
+
 	<!-- NOTE: need additional level of indirection due to e.g. values-v29 overridding which should be used by skins which derive from Base_ActivityTheme_Default -->
 	<style name="Base_ActivityTheme_Default" parent="Base_ActivityTheme_Core">
 	</style>
 
 	<style name="ActivityTheme_White" parent="Base_ActivityTheme_Default">
+	</style>
+
+	<style name="ActivityTheme_White_MilkViewEffect_Lyrics">
+		<item name="aaBlurIntensity">1.75</item>
+		<item name="aaBlurSaturation">2.25</item>
+		<item name="aaBlurScaleSize">4</item>
+
+		<item name="aaBlurPinLight">0.975</item>
+		<item name="aaBlurLighten">0.7</item>
+		<item name="aaBlurDarken">1</item><!-- Do not darken -->
+	</style>
+	<style name="ActivityTheme_White_MilkViewEffect_List" parent="ActivityTheme_White_MilkViewEffect_Lyrics">
+		<item name="aaBlurScaleSize">8</item>
+		<!--<item name="aaSolidColorTarget">lightVibrant</item>-->
+		<item name="aaBlurIntensity">1</item>
+		<item name="aaBlurSaturation">1.5</item>
+		<item name="aaBlurPinLight">0.9</item>
+		<item name="aaBlurLighten">0.85</item>
 	</style>
 
 	<!-- An overlap style we're using for skins not yet updated to use eatFontPads/alignToContent.
@@ -748,6 +843,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="ActivityTheme_Whitepro_TransparentLightNavbar" parent="ActivityTheme_Whitepro_TransparentNavbar">
 	</style>
+
+	<!-- An overlay style -->
+	<style name="ActivityTheme_Whitepro_NoMainNavbarBg">
+		<item name="nav_lists">@drawable/lists_rounded</item>
+		<item name="nav_equ">@drawable/equ_rounded_24dp</item>
+		<item name="nav_search">@drawable/search_rounded</item>
+		<item name="nav_hamburger">@drawable/hamburger_rounded</item>
+
+		<item name="Navbar">@style/Navbar_noBgNavbar</item>
+		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
+		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+	</style>
+
 	
 	<style name="SelectionMenuSubcontainer_scenes_hidden_transparentNavbar" parent="SelectionMenuSubcontainer_scenes_hidden">
 		<item name="jumpVisibility">false</item><!-- Avoid jumping visibility, let it properly fade -->
@@ -757,10 +865,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_Whitepro_OffsetNavbar">
 		<item name="navbar_marginLR">12dp</item>
 		<item name="navbar_marginB">12dp</item>
-		<!-- TODO:remove
-		<item name="bottom_navbar_bounds_size">@dimen/NavbarBounds_height_offset</item>
-		<item name="bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines_offset</item>
-		-->
 	</style>
 	
 	<!-- An overlap style -->
@@ -838,7 +942,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_eq_label_bg">4dp</item>
 		<item name="corners_medium">8dp</item>
 		<item name="corners_mini">4dp</item>
-		<item name="corners_popup">6dp</item>                      1
+		<item name="corners_popup">6dp</item>
 		<item name="corners_navbar">8dp</item>
 		<item name="corners_text_bg">4dp</item>
 		<item name="corners_generic">8dp</item>
@@ -856,6 +960,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:colorEdgeEffect">?android:textColorPrimary</item>
 		
 		<item name="navbar_marginB">@dimen/Navbar_normal_marginB</item>
+		<item name="NavbarSeekbar_marginLR">10dp</item>
 
 		<item name="nav_lists">@drawable/lists_stroke_selector</item>
 		<item name="nav_equ">@drawable/equ_stroke_selector</item>
@@ -923,7 +1028,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: on cold start, older Samsung OneUI launchers incorrectly animate adaptive icon if we set transparent or
 		 wallpaper bg here.
 	     OneUI launcher seems to always do that ugly icon animation on very first cold start after the install:
-	     - sdk 31+ splash screen is ignored (due to startup activity->main activity transition)(
+	     - sdk 31+ splash screen is ignored (due to the startup activity->main activity transition)
 	     - not happening after reboots and for any other cold starts
 	     NOTE: not using splash screens here, as our typical cold start should be within 250ms, and splash screen
 	           may add comparable time -->

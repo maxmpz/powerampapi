@@ -27,7 +27,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.base.Shim android:id="@+id/vis_panel_shim"
 		style="?VisPanelShim"
 	/>
-	
+
+
+	<!-- vis_panel_container -->
 	<com.maxmpz.widget.base.SceneFastLayout android:id="@+id/vis_panel_container"
 		style="?VisPanelContainer"
 		w:privateScene="true"
@@ -76,7 +78,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 			<EditText android:id="@+id/vis_panel_edittext"
 				style="?VisFilterEditText"
-				android:hint="@string/filter"
+				android:hint="@string/search"
 				android:inputType="text"
 				android:importantForAutofill="no"
 				/>
@@ -122,10 +124,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?VisPanelFrame_scene_vispanel_expanded"
 			w:recalcChildren="on_end"
 		/>
-		<StateAnimParams w:stateAnim="@+id/anim_temp_hidden"
-			android:alpha="0"
-		/>
-	
 	</com.maxmpz.widget.base.SceneFastLayout>
 	<SceneParams w:scene="@id/scene_vis_temp_ui"
 		android:visibility="visible"
@@ -142,5 +140,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@id/scene_lib" w:scene_2="@id/scene_lib" w:scene_3="@id/scene_search" w:scene_4="@id/scene_eq" w:scene_5="@id/scene_playing"
 		android:visibility="gone"
 	/>
-	
+	<SceneParams w:scene="@id/scene_lyrics"
+		android:visibility="gone"
+		/>
+	<StateAnimParams w:stateAnim="@+id/popup_menu_item"
+		android:alpha="0"
+		/>
+
+	<!-- vis_panel_container -->
 </merge>

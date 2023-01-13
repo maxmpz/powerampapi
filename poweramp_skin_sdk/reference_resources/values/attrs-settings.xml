@@ -50,6 +50,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="TreeViewList" format="reference"/>
 	
 	<attr name="pref_privacy_policy" format="string|reference"/>
+	<attr name="pref_privacy_policy_non_play" format="string|reference"/>
 	
 	<declare-styleable name="TreeViewList">
 		<attr name="collapsible" format="boolean" />
@@ -214,9 +215,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Required to properly apply newlinew -->
 		<attr name="useHtml" format="boolean"/>
 		<attr name="iconAlignedTop" format="boolean"/>
+
+		<attr name="zeroTopPad" format="boolean"/>
+		<attr name="zeroBottomPad" format="boolean"/>
 		
 		<attr name="target"/>
-		
+
+		<!-- If true, dot is added to each lineX/smallLineX, if no dot is there. Dot is not added for the last line
+		     (but also is not removed if it's already there) -->
+		<attr name="addDots" format="boolean"/>
+
 		<attr name="android:textColorPrimary"/><!-- Taken from theme -->
 		<attr name="android:gravity"/>
 		<attr name="android:background"/>

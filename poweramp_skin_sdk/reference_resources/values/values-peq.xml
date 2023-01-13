@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- PEQ inbound commands - sent to bus_player_cmd -->
 	<item type="id" name="cmd_peq_new_control_session"/>
 	<item type="id" name="cmd_peq_close_control_session"/>
-	<item type="id" name="cmd_peq_enable_pak"/><!-- arg1 => boolean, obj => String pak -->
+	<item type="id" name="cmd_peq_enable_pak"/><!-- arg1 => boolean, arg2 => optionalAptSessionId, obj => String pak -->
 	<item type="id" name="cmd_peq_enable_dvc"/><!-- arg1 => boolean, obj => String pak -->
 	<item type="id" name="cmd_peq_request_vis_perm"/><!-- arg1 => boolean hideDontShowAgain -->
 	<item type="id" name="cmd_peq_close"/><!-- arg1 => boolean, true => disable  -->

@@ -46,13 +46,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<item type="id" name="anim_waveseek_pressed"/>
+
+	<item type="id" name="state_active"/>
 	
 	<!-- Top scenes. Also includes scene=0 default scene (paused state) -->
 	<item type="id" name="scene_playing"/>
+	<item type="id" name="scene_lyrics"/>
 	<item type="id" name="scene_vis"/><!-- playing implied, no UI visible  -->
 	<item type="id" name="scene_vis_w_ui"/><!-- playing implied, some UI is visible, but optionally faded by alpha set by user preferences -->	
 	<item type="id" name="scene_vis_temp_ui"/><!-- playing implied, shown on user touch while vis runs. UI is fully visible with alpha = 1 with vis behind UI -->
 	<item type="id" name="scene_eq"/>
 	<item type="id" name="scene_lib"/>
 	<item type="id" name="scene_search"/>
+	
 </resources>

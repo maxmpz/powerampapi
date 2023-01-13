@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2022 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values-sw2dp-land -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- NOTE: redefined in land -->
+	<style name="Alt2_TrackLabelsCentered">
+		<item name="ItemTrackTitle_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa</item>
+		<item name="ItemTrackLine2_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa</item>
+		<item name="ItemLikeUnlikeLayout_scene_aa">@style/Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scene_aa</item>
+		<item name="ItemRatingBar_scene_aa">@style/Alt2_TrackLabelsCentered_ItemRatingBar_scene_aa</item>
+		<item name="ItemTrackLyrics_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa</item>
+	</style>
+
+	<!-- NOTE: redefine to derive directly from land/default-styles-alt style -->
+	<style name="Alt2_ListSubstyle" parent="Alt_ListSubstyle">
+	</style>
+
+	<!-- NOTE: redefine to derive directly from land/default-styles-alt style -->
+	<style name="Alt2_TopAABounds" parent="Alt_TopAABounds">
+	</style>
+
+	<!-- NOTE: redefine to derive directly from land/default-styles-alt style (keep margin) -->
+	<style name="Alt2_ItemTrackAAImage_scene_aa" parent="Alt_ItemTrackAAImage_scene_aa">
+	</style>
+
+	<style name="Alt2_OptionRatingDisabled">
+		<!-- NOTE: for OptionRatingDisabled rating is not loaded at all, so no need for styles here, but
+		     for OptionRatingStarsMenu 5 stars rating is loaded, so we need to hide it -->
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item><!-- gone -->
+	</style>
+
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled">
+		<!-- NOTE: for OptionRatingDisabled rating is not loaded at all, so no need for styles here, but
+		     for OptionRatingStarsMenu 5 stars rating is loaded, so we need to hide it -->
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item><!-- gone -->
+	</style>
+
+	<!-- NOTE: redefine to derive directly from land/default-styles-alt style -->
+	<style name="Alt2_ItemTrackTitle_scene_aa" parent="Alt_ItemTrackTitle_scene_aa">
+	</style>
+
+	<style name="Alt2_ItemTrackLine2_scene_aa" parent="Alt_ItemTrackLine2_scene_aa">
+		<item name="layout_attachRight">@id/lyrics</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+
+	<style name="Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa" parent="Alt_TrackLabelsCentered_ItemTrackTitle_scene_aa">
+	</style>
+	<style name="Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa" parent="Alt_TrackLabelsCentered_ItemTrackLine2_scene_aa">
+	</style>
+
+	<style name="Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa" parent="Alt2_ItemTrackLyrics_scene_aa">
+		<item name="layout_attachRight">@null</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachTop">@id/title</item>
+		<item name="android:layout_gravity">@null</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginTop">1dp</item>
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+	</style>
+
+
+
+	<!-- Move menu to the line2 right, centered vertically -->
+	<style name="Alt2_ItemTrackMenu_scene_aa" parent="Alt_ItemTrackMenu_scene_aa">
+		<item name="layout_attachRight">inset</item>
+		<item name="layout_attachTop">@id/title</item>
+		<item name="layout_attachRightToRight">@null</item>
+		<item name="layout_attachBottom">@null</item>
+
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginTop">1dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+	</style>
+
+	<style name="Alt2_ItemTrackLyrics_scene_aa" parent="Alt_ItemTrackLyrics_scene_aa">
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+		<item name="layout_attachTop">@id/title</item>
+		<item name="android:layout_marginRight">1dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginTop">1dp</item>
+		<item name="android:layout_marginLeft">1dp</item>
+		<item name="layout_attachBottomToBottom">@null</item>
+		<item name="layout_attachBottom">@null</item>
+	</style>
+
+	<!-- Move rating under line2 -->
+	<style name="Alt2_ItemLikeUnlikeLayout_scene_aa" parent="Alt_ItemLikeUnlikeLayout_scene_aa">
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@id/line2</item>
+		<item name="layout_attachLeft">@id/aa_image</item>
+		<item name="layout_attachLeftToLeft">@null</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+
+	<style name="Alt2_ItemRatingBar_scene_aa" parent="Alt_ItemRatingBar_scene_aa">
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@id/line2</item>
+		<item name="layout_attachLeft">@id/aa_image</item>
+		<item name="layout_attachLeftToLeft">@null</item>
+		<item name="android:layout_marginLeft">?Alt2_ItemRatingBar_scene_aa_marginLeft</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+
+		<!--<item name="lineBackground">@drawable/alpha_rounded_popup</item>-->
+	</style>
+
+	<!-- Center rating horizontaly for Alt2_TrackLabelsCentered -->
+	<style name="Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scene_aa" parent="Alt2_ItemLikeUnlikeLayout_scene_aa">
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="layout_gravityTarget">@id/line2</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+
+	<!--
+		REVISIT:
+	    - 5 star rating wants to be left aligned and do not look good centered in landscape
+	    - proper centering would require specifically handled animations and touch iteration
+	-->
+	<style name="Alt2_TrackLabelsCentered_ItemRatingBar_scene_aa" parent="Alt2_ItemRatingBar_scene_aa">
+		<item name="layout_attachLeft">@null</item>
+		<item name="layout_attachRight">@null</item>
+		<item name="layout_gravityTarget">@id/line2</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
+		<item name="android:gravity">center_horizontal</item>
+	</style>
+
+	<!-- REVISIT: it's hard to match waveseek top offset to the dynamic size for the title/line2/rating due to the
+	     font sizes, which depend on system font size. Thus for now size is set to be usable more or less for different
+	     font sizes, tuned for the default size -->
+	<style name="Alt2_TopWaveseekLayout" parent="Alt_TopWaveseekLayout">
+		<item name="android:layout_marginTop">132dp</item>
+	</style>
+
+</resources>

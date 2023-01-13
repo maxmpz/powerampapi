@@ -79,6 +79,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="reset_button"/>
 	<item type="id" name="mono_button"/>
 	<item type="id" name="insetLeft"/>
+	<item type="id" name="insetTop"/>
+	<item type="id" name="insetBottom"/>
 	<item type="id" name="copy_item"/>
 	<item type="id" name="share_item"/>
 	<item type="id" name="list_item"/>

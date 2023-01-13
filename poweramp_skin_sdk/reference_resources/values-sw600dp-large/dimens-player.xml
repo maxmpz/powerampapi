@@ -64,8 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="ListMenu_drawableSize">26dp</dimen>
 
 	<dimen name="track_children_scene_aa_margin">32dp</dimen>
-	<dimen name="ItemTrackMenu_scene_aa_marginLeft">-28dp</dimen>
-	
+
 		
 	<dimen name="TopSubAAButtons_marginTop">8dp</dimen><!-- NOTE: aa bounds already have visual margin on bottom == 8 dp -->
 	

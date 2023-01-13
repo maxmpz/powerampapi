@@ -2,5 +2,5 @@
 
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
 	android:src="@drawable/folders_hier_alt" 
-	android:tint="#222c51"
+	android:tint="#5066d8"
 />

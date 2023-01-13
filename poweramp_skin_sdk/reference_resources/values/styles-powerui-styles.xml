@@ -115,7 +115,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemPopupMenuTopSpacer">@style/ItemPopupMenuTopSpacer</item>
 		<item name="ItemTextPopupMenuTopSpacer">@style/ItemTextPopupMenuTopSpacer</item>
 		<item name="ItemPopupMenuTopSpacer_scene_item_menu_lu">@style/ItemPopupMenuTopSpacer_scene_item_menu_lu</item>
-		
+
+		<item name="ItemLyrics">@style/ItemLyrics</item>
+		<item name="ItemLyricsTitle">@style/ItemLyricsTitle</item>
+		<item name="ItemLyricsTitle_active">@style/ItemLyricsTitle_active</item>
+		<item name="ItemLyricsTitle_scene_small">@style/ItemLyricsTitle_scene_small</item>
+		<item name="ItemLyricsTitle_scene_small_active">@style/ItemLyricsTitle_scene_small_active</item>
+		<item name="ItemLyricsTitle_scene_zoomed">@style/ItemLyricsTitle_scene_zoomed</item>
+		<item name="ItemLyricsTitle_scene_zoomed_active">@style/ItemLyricsTitle_scene_zoomed_active</item>
+		<item name="ItemLyricsTitle_scene_unsync">@style/ItemLyricsTitle_scene_unsync</item>
+		<item name="ItemLyricsTitle_scene_unsync_small">@style/ItemLyricsTitle_scene_unsync_small</item>
+		<item name="ItemLyricsTitle_scene_unsync_zoomed">@style/ItemLyricsTitle_scene_unsync_zoomed</item>
+
+		<item name="ItemLastLyricsItemText">@style/ItemLastLyricsItemText</item>
+		<item name="ItemLastLyricsItemText_scene_unsync">@style/ItemLastLyricsItemText_scene_unsync</item>
+
+		<item name="ItemEmptyLyricsLoadingViaPlugin">@style/ItemEmptyLyricsLoadingViaPlugin</item>
+		<item name="ItemEmptyLyricsText">@style/ItemEmptyLyricsText</item>
+		<item name="ItemEmptyLyricsHint">@style/ItemEmptyLyricsHint</item>
+		<item name="ItemEmptyLyricsSearchButton">@style/ItemEmptyLyricsSearchButton</item>
+
 		<item name="PopupInfoTextTitle">@style/PopupInfoTextTitle</item>
 		<item name="PopupInfoTextTitle_Text">@style/PopupInfoTextTitle_Text</item>
 		<item name="PopupInfoText">@style/PopupInfoText</item>
@@ -204,6 +223,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackAAImage_scene_header">@style/ItemTrackAAImage_scene_header</item>
 		<item name="ItemTrackAAImage_scene_item_menu">@style/ItemTrackAAImage_scene_item_menu</item>
 		<item name="ItemTrackAAImage_scene_item_menu_lu">@style/ItemTrackAAImage_scene_item_menu_lu</item>
+		<item name="ItemTrackAAImage_scene_lyrics">@style/ItemTrackAAImage_scene_lyrics</item>
 
 		<item name="ItemTrackCatImage">@style/ItemTrackCatImage</item>
 		<item name="ItemTrackCatImage_Text">@style/ItemTrackCatImage_Text</item>
@@ -213,10 +233,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackCatImage_scene_header">@style/ItemTrackCatImage_hidden</item>
 		<item name="ItemTrackCatImage_scene_grid">@style/ItemTrackCatImage_scene_grid</item>
 		<item name="ItemTrackCatImage_scene_grid_zoomed">@style/ItemTrackCatImage_scene_grid_zoomed</item>
-		<item name="ItemTrackCatImage_scene_aa">@style/ItemTrackCatImage_gone</item>
-		<item name="ItemTrackCatImage_scene_aa_vis">@style/ItemTrackCatImage_gone</item>
-		<item name="ItemTrackCatImage_scene_aa_playing">@style/ItemTrackCatImage_gone</item>
+		<item name="ItemTrackCatImage_scene_aa">@style/ItemTrackCatImage_scene_aa</item>
+		<item name="ItemTrackCatImage_scene_aa_vis">@style/ItemTrackCatImage_scene_aa</item>
+		<item name="ItemTrackCatImage_scene_aa_playing">@style/ItemTrackCatImage_scene_aa</item>
 		<item name="ItemTrackCatImage_scene_item_menu">@style/ItemTrackCatImage_gone</item>
+		<item name="ItemTrackCatImage_scene_lyrics">@style/ItemTrackCatImage_gone</item>
 		
 		<item name="ItemTrackTitle">@style/ItemTrackTitle</item>
 		<item name="ItemTrackTitle_Text">@style/ItemTrackTitle_Text</item>
@@ -238,6 +259,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackTitle_scene_item_menu_lu">@style/ItemTrackTitle_scene_item_menu_lu</item>
 		<item name="ItemTrackTitle_scene_header">@style/ItemTrackTitle_scene_header</item>
 		<item name="ItemTrackTitle_scene_header_1">@style/ItemTrackTitle_scene_header_1</item>
+		<item name="ItemTrackTitle_scene_lyrics">@style/ItemTrackTitle_scene_lyrics</item>
 				
 		<item name="ItemTrackLine2">@style/ItemTrackLine2</item>
 		<item name="ItemTrackLine2_Text">@style/ItemTrackLine2_Text</item>
@@ -257,7 +279,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackLine2_scene_aa_playing">@style/ItemTrackLine2_scene_aa_playing</item>
 		<item name="ItemTrackLine2_scene_item_menu">@style/ItemTrackLine2_scene_item_menu</item>
 		<item name="ItemTrackLine2_scene_item_menu_lu">@style/ItemTrackLine2_scene_item_menu_lu</item>
+		<item name="ItemTrackLine2_scene_bottom_toolbar">@style/ItemTrackLine2_scene_bottom_toolbar</item>
 		<item name="ItemTrackLine2_scene_header">@style/ItemTrackLine2_scene_header</item>
+		<item name="ItemTrackLine2_scene_lyrics">@style/ItemTrackLine2_scene_lyrics</item>
 		
 		<item name="ItemTrackMeta">@style/ItemTrackMeta</item>
 		<item name="ItemTrackMeta_Text">@style/ItemTrackMeta_Text</item>
@@ -278,6 +302,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMeta_scene_aa_playing">@style/ItemTrackMeta_scene_aa_playing</item>
 		<item name="ItemTrackMeta_scene_item_menu">@style/ItemTrackMeta_scene_item_menu</item>
 		<item name="ItemTrackMeta_scene_item_menu_lu">@style/ItemTrackMeta_scene_item_menu_lu</item>
+		<item name="ItemTrackMeta_scene_lyrics">@style/ItemTrackMeta_scene_lyrics</item>
 		
 		<item name="ItemTrackNum">@style/ItemTrackNum</item>
 		<item name="ItemTrackNum_Text">@style/ItemTrackNum_Text</item>
@@ -298,6 +323,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackNum_scene_aa_playing">@style/ItemTrackNum_scene_aa_playing</item>
 		<item name="ItemTrackNum_scene_item_menu">@style/ItemTrackNum_scene_item_menu</item>
 		<item name="ItemTrackNum_scene_item_menu_lu">@style/ItemTrackNum_scene_item_menu_lu</item>
+		<item name="ItemTrackNum_scene_lyrics">@style/ItemTrackNum_scene_lyrics</item>
 		
 		<item name="ItemTrackDragHandler">@style/ItemTrackDragHandler</item>
 		<item name="ItemTrackDragHandler_scene_grid">@style/ItemTrackDragHandler_scene_grid</item>
@@ -310,6 +336,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa</item>
 		<item name="ItemTrackMenu_scene_aa_vis">@style/ItemTrackMenu_scene_aa_vis</item>
 		<item name="ItemTrackMenu_scene_aa_playing">@style/ItemTrackMenu_scene_aa_playing</item>
+		<item name="ItemTrackMenu_scene_lyrics">@style/ItemTrackMenu_scene_lyrics</item>
+
+		<item name="ItemTrackLyrics">@style/ItemTrackLyrics</item>
+		<item name="ItemTrackLyrics_scene_menu">@style/ItemTrackLyrics_scene_menu</item>
+		<item name="ItemTrackLyrics_scene_aa">@style/ItemTrackLyrics_scene_aa</item>
+		<item name="ItemTrackLyrics_scene_aa_vis">@style/ItemTrackLyrics_scene_aa_vis</item>
+		<item name="ItemTrackLyrics_scene_aa_playing">@style/ItemTrackLyrics_scene_aa_playing</item>
+		<item name="ItemTrackLyrics_scene_lyrics">@style/ItemTrackLyrics_scene_lyrics</item>
 		
 		<item name="SeparatorWithButton">@style/SeparatorWithButton</item>
 		<item name="SeparatorWithButtonTitle">@style/SeparatorWithButtonTitle</item>
@@ -326,6 +360,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTextAAImage_scene_grid">@style/ItemTextAAImage_scene_grid</item>
 		<item name="ItemTextAAImage_scene_header">@style/ItemTextAAImage_scene_header</item>
 		<item name="ItemTextAAImage_scene_item_menu">@style/ItemTextAAImage_scene_item_menu</item>
+		<item name="ItemTextAAImage_scene_subheader">@style/ItemTextAAImage_scene_subheader</item>
 		
 		<item name="ItemTextTitle">@style/ItemTextTitle</item>
 		<item name="ItemTextTitle_Text">@style/ItemTextTitle_Text</item>
@@ -333,12 +368,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTextTitle_scene_header">@style/ItemTextTitle_scene_header</item>
 		<item name="ItemTextTitle_scene_top_header">@style/ItemTextTitle_scene_top_header</item>
 		<item name="ItemTextTitle_scene_item_menu">@style/ItemTextTitle_scene_item_menu</item>
+		<item name="ItemTextTitle_scene_subheader">@style/ItemTextTitle_scene_subheader</item>
 		
 		<item name="ItemTextLine2">@style/ItemTextLine2</item>
 		<item name="ItemTextLine2_Text">@style/ItemTextLine2_Text</item>
 		<item name="ItemTextLine2_scene_grid">@style/ItemTextLine2_scene_grid</item>
 		<item name="ItemTextLine2_scene_header">@style/ItemTextLine2_scene_header</item>
 		<item name="ItemTextLine2_scene_item_menu">@style/ItemTextLine2_scene_item_menu</item>
+		<item name="ItemTextLine2_scene_subheader">@style/ItemTextLine2_scene_subheader</item>
+
+		<item name="ItemTextSubheadButton">@style/ItemTextSubheadButton</item>
+		<item name="ItemTextSubheadButton_scene_subheader">@style/ItemTextSubheadButton_scene_subheader</item>
 
 		<item name="ItemTextMenu">@style/ItemTextMenu</item>
 		<item name="ItemTextMenu_scene_menu">@style/ItemTextMenu_scene_menu</item>
@@ -349,21 +389,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemTextHeaderShuffleButton">@style/ItemTextHeaderShuffleButton</item>
 		<item name="ItemTextHeaderShuffleButton_scene_header">@style/ItemTextHeaderShuffleButton_scene_header</item>
+		<item name="ItemTextHeaderShuffleButton_scene_search_header">@style/ItemTextHeaderShuffleButton_scene_search_header</item>
 		<item name="ItemTextHeaderShuffleButton_scene_bottom_toolbar">@style/ItemTextHeaderShuffleButton_scene_bottom_toolbar</item>
 		<item name="ItemTextHeaderShuffleButton_scene_menu">@style/ItemTextHeaderShuffleButton_scene_menu</item>
 
 		<item name="ItemTextHeaderPlayButton">@style/ItemTextHeaderPlayButton</item>
 		<item name="ItemTextHeaderPlayButton_scene_header">@style/ItemTextHeaderPlayButton_scene_header</item>
+		<item name="ItemTextHeaderPlayButton_scene_search_header">@style/ItemTextHeaderPlayButton_scene_search_header</item>
 		<item name="ItemTextHeaderPlayButton_scene_bottom_toolbar">@style/ItemTextHeaderPlayButton_scene_bottom_toolbar</item>
 		<item name="ItemTextHeaderPlayButton_scene_menu">@style/ItemTextHeaderPlayButton_scene_menu</item>
 
 		<item name="ItemTextHeaderSearchButton">@style/ItemTextHeaderSearchButton</item>
 		<item name="ItemTextHeaderSearchButton_scene_header">@style/ItemTextHeaderSearchButton_scene_header</item>
+		<item name="ItemTextHeaderSearchButton_scene_search_header">@style/ItemTextHeaderSearchButton_scene_search_header</item>
 		<item name="ItemTextHeaderSearchButton_scene_bottom_toolbar">@style/ItemTextHeaderSearchButton_scene_bottom_toolbar</item>
 		<item name="ItemTextHeaderSearchButton_scene_menu">@style/ItemTextHeaderSearchButton_scene_menu</item>
 		
 		<item name="ItemTextHeaderSelectButton">@style/ItemTextHeaderSelectButton</item>
 		<item name="ItemTextHeaderSelectButton_scene_header">@style/ItemTextHeaderSelectButton_scene_header</item>
+		<item name="ItemTextHeaderSelectButton_scene_search_header">@style/ItemTextHeaderSelectButton_scene_search_header</item>
 		<item name="ItemTextHeaderSelectButton_scene_bottom_toolbar">@style/ItemTextHeaderSelectButton_scene_bottom_toolbar</item>
 		<item name="ItemTextHeaderSelectButton_scene_menu">@style/ItemTextHeaderSelectButton_scene_menu</item>
 		
@@ -378,6 +422,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemHeaderScanProgress">@style/ItemHeaderScanProgress</item>
 		<item name="ItemHeaderScanProgress_scene_item_menu">@style/ItemHeaderScanProgress_scene_item_menu</item>
 		<item name="ItemHeaderScanProgress_scene_header">@style/ItemHeaderScanProgress_scene_header</item>
+		<item name="ItemHeaderScanProgress_scene_bottom_toolbar">@style/ItemHeaderScanProgress_scene_bottom_toolbar</item>
 		
 		<item name="ItemTextHeaderScanProgress">@style/ItemTextHeaderScanProgress</item>
 		<item name="ItemTextHeaderScanProgress_scene_item_menu">@style/ItemTextHeaderScanProgress_scene_item_menu</item>
@@ -411,6 +456,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemMiniplayerPrevNextDecorLayout">@style/ItemMiniplayerPrevNextDecorLayout</item>
 		<item name="ItemMiniplayerPrevNextDecorText">@style/ItemMiniplayerPrevNextDecorText</item>
 		<item name="ItemMiniplayerPrevNextDecorText_Text">@style/ItemMiniplayerPrevNextDecorText_Text</item>
+
+		<item name="ItemGenericTitle_Text">@style/ItemGenericTitle_Text</item>
+		<item name="ItemGenericLine2_Text">@style/ItemGenericLine2_Text</item>
 		
 		<item name="ItemVis">@style/ItemVis</item>
 		<item name="ItemVisImage">@style/ItemVisImage</item>
@@ -422,6 +470,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemVisActivatedCheck">@style/ItemVisActivatedCheck</item>
 		
 		<item name="VisLockButtonLayout">@style/VisLockButtonLayout</item>
+
+		<item name="ItemLyricsTitle_Text">@style/ItemLyricsTitle_Text</item>
 
 		<!-- NOTE: these are commented as not used, but can be used in the skins -->
 		<!--
@@ -456,17 +506,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackAAPanel_scene_aa_playing">@style/ItemTrackAAPanel_scenes_hidden</item>
 		<item name="ItemTrackAAPanel_scene_aa_vis">@style/ItemTrackAAPanel_scenes_hidden</item>
 		<item name="ItemTrackAAPanel_scenes_hidden">@style/ItemTrackAAPanel_scenes_hidden</item>
+		<item name="ItemTrackAAPanel_scene_lyrics">@style/ItemTrackAAPanel_scenes_hidden</item>
 		
 		<item name="ItemLikeUnlikeLayout">@style/ItemLikeUnlikeLayout</item>
 		<item name="ItemLikeUnlikeLayout_scene_item_menu_lu">@style/ItemLikeUnlikeLayout_scene_item_menu_lu</item>
 		<item name="ItemLikeUnlikeLayout_scene_aa">@style/ItemLikeUnlikeLayout_scene_aa</item>
 		<item name="ItemLikeUnlikeLayout_scenes_invisible">@style/ItemLikeUnlikeLayout_scenes_invisible</item>
+		<item name="ItemLikeUnlikeLayout_scene_lyrics">@style/ItemLikeUnlikeLayout_scene_lyrics</item>
 		
 		<item name="ItemRatingBar">@style/ItemRatingBar</item>
 		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa</item>
 		<item name="ItemRatingBar_scene_item_menu_lu">@style/ItemRatingBar_scene_item_menu_lu</item>
 		<item name="ItemRatingBar_anim_ratingbar_pressed">@style/ItemRatingBar_anim_ratingbar_pressed</item>
 		<item name="ItemRatingBar_scenes_invisible">@style/ItemRatingBar_scenes_invisible</item>
+		<item name="ItemRatingBar_scene_lyrics">@style/ItemRatingBar_scene_lyrics</item>
 		
 		<item name="ItemLike">@style/ItemLike</item>
 		<item name="ItemLike_scene_aa">@style/ItemLike_scene_aa</item>

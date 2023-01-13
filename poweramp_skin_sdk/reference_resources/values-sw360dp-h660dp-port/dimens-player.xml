@@ -35,5 +35,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-2dp</dimen><!-- Increasing this moves rating up -->
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">1</item>
 	<dimen name="Alt_TopAABounds_marginBottom">72dp</dimen>
+	<dimen name="Alt2_TopAABounds_marginBottom">110sp</dimen>
 	<dimen name="Alt_TopListSubstyle_aaMarginBottom">222dp</dimen>
 </resources>

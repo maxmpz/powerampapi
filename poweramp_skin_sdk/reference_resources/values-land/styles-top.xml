@@ -48,11 +48,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- DEBUG -->
 		<!--<item name="android:background">#500f</item>-->
 	</style>
-	
+
+	<style name="TopWaveseek" parent="TopWaveseekBase">
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+	</style>
+
 	<style name="TopWaveseekLayout" parent="TopWaveseekLayoutBase">
 		<item name="android:layout_height">160dp</item>
-		<!-- <item name="layout_attachBottom">@+id/meta_info_layout</item> -->
 		<item name="layout_gravityTarget">@id/aa_bounds</item>
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="layout_attachLeft">@+id/aa_bounds</item>
 		<item name="layout_attachRight">inset</item>
@@ -65,9 +70,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachBottom">@+id/sub_aa_buttons</item>
 		<item name="android:clipChildren">false</item>
-		<item name="android:scaleX">0.95</item>
-		<item name="android:scaleY">0.95</item>
+		<item name="android:scaleX">.95</item>
+		<item name="android:scaleY">.95</item>
 		<item name="android:alpha">0.75</item>
+		<item name="android:layout_marginRight">8dp</item>
 	</style>
 	
 	<style name="TopSubAAButtons">
@@ -80,6 +86,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:layout_marginTop">8dp</item>
 		<!-- Be a bit closer to AA as AA has own padding anyway, so no marginLeft -->
+		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:visibility">visible</item>
 	</style>
@@ -104,8 +111,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="TopListScrollerView" parent="TopListScrollerViewBase">
-		<item name="android:layout_marginTop">32dp</item>
-		<item name="android:layout_marginBottom">104dp</item>
+		<item name="android:layout_marginTop">?TopListScrollerView_marginTop</item><!-- Changed by OptionLocalizedAZScroll -->
+		<item name="android:layout_marginBottom">?TopListScrollerView_marginBottom</item><!-- Changed by OptionLocalizedAZScroll -->
 		<item name="layout_attachRight">inset</item>
 	</style>
 	

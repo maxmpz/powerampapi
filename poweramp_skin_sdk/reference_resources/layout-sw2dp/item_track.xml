@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -26,6 +26,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	- various scenes for the abov: popup menu, header, zoom levels, selection, etc.
 	
 	For top level library items/headers, see @layout/item_text
+	For the extra views loaded into scenes, see:
+	- @layout/merge_item_aa_and_header
+	- @layout/merge_item_header
+	- @layout/merge_item_popup_menu
 
 	NOTE: clipChildren=false is needed for some devices, which fail to apply RenderNode transformations to clip area (e.g. Huaweis)
 	NOTE: AAItemView is (Scene)FastLayout
@@ -61,8 +65,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	- aa                      (scene_aa)
 	- aa_vis                  (scene_aa_vis)
 	- aa_playing              (scene_aa_playing)
-	== +8
-	Total: 22
+	- lyrics header           (scene_lyrics)
+	== +10
+	Total: 24
 		
 -->
 <!--suppress AndroidElementNotAllowed -->
@@ -72,29 +77,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	style="?ItemTrack"
 >
+	<!-- playing_mark -->
 	<!-- The currently loaded / playing track mark. Invisible in AA / menu / header scenes and visible in list scenes.
 	     This can be a simple background, or it can be also any other mark (e.g. some symbol / icon) with appropriate transitionZ tweaks -->
 	<com.maxmpz.widget.player.list.PlayingMark android:id="@+id/playing_mark" 
 		style="?ItemTrackPlayingMark"	
 	/>
-	<!-- playing_mark -->
 	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small" w:scene_3="@+id/scene_small_no_aa" w:scene_4="@+id/scene_1_small_no_aa"
 		style="?ItemTrackPlayingMark_scene_small"
 	/>
-	<!-- playing_mark -->
 	<SceneParams w:scene="@+id/scene_1"
 		style="?ItemTrackPlayingMark_scene_1"
 	/>
-	<!-- playing_mark -->
 	<SceneParams w:scene="@+id/scene_zoomed"
 		style="?ItemTrackPlayingMark_scene_zoomed"
 	/>
-	<!-- playing_mark -->
 	<SceneParams w:scene="@+id/scene_1_zoomed"
 		style="?ItemTrackPlayingMark_scene_1_zoomed"
 	/>
-	<!-- playing_mark -->
-	<SceneParams w:scene="@+id/scene_grid" 
+	<SceneParams w:scene="@+id/scene_grid"
 		style="?ItemTrackPlayingMark_scene_grid"
 	/>
 	<!-- playing_mark -->
@@ -105,29 +106,29 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_grid_1_alt" 
 		style="?ItemTrackPlayingMark_scene_grid_1_alt"
 	/>
-	<!-- playing_mark -->
-	<SceneParams w:scene="@+id/scene_grid_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_zoomed"
 		style="?ItemTrackPlayingMark_scene_grid_zoomed"
 	/>
-	<!-- playing_mark -->
-	<SceneParams w:scene="@+id/scene_grid_1_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_1_zoomed"
 		style="?ItemTrackPlayingMark_scene_grid_1_zoomed"
 	/>
-	<!-- playing_mark -->
-	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackPlayingMark_scene_grid_1_alt_zoomed"
 	/>
-	<!-- playing_mark -->
 	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1" w:scene_3="@+id/scene_aa" w:scene_4="@+id/scene_aa_vis" w:scene_5="@+id/scene_aa_playing"
 		w:scene_6="@+id/scene_bottom_toolbar"
 		style="?ItemTrackPlayingMark_scenes_hidden"
 	/>
-	<!-- playing_mark -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
+	<SceneParams w:scene="@+id/scene_lyrics"
+		style="?ItemTrackPlayingMark_scenes_hidden"
+		/>
+	<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemTrackPlayingMark_scene_item_menu"
 	/>
 	<!-- playing_mark -->
-	
+
+
+	<!-- num -->
 	<com.maxmpz.widget.base.FastTextView android:id="@+id/num"
 		style="?ItemTrackNum"
 	/>
@@ -155,6 +156,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_grid_1_alt" 
 		style="?ItemTrackNum_scene_grid_1_alt"
 	/>
+	<!-- num -->
 	<SceneParams w:scene="@+id/scene_grid_zoomed" 
 		style="?ItemTrackNum_scene_grid_zoomed"
 	/>
@@ -167,6 +169,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1" w:scene_3="@+id/scene_bottom_toolbar"
 		style="?ItemTrackNum_scene_header"
 	/>
+	<SceneParams w:scene="@+id/scene_lyrics"
+		style="?ItemTrackNum_scene_lyrics"
+		/>
 	<SceneParams w:scene="@+id/scene_aa"
 		style="?ItemTrackNum_scene_aa" 
 	/>
@@ -176,47 +181,41 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackNum_scene_aa_playing" 
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu"
+	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTrackNum_scene_item_menu"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu_lu"
+	<SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackNum_scene_item_menu_lu"
 	/>
-	<!-- num -->		
-	
+	<!-- num -->
+
+
+	<!-- aa_image -->
 	<com.maxmpz.widget.player.list.AAImageView android:id="@+id/aa_image"
 		style="?ItemTrackAAImage"
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_1"
 		w:baseScene="defaultScene"
 		w:recalcChildren="dynamic"
 	/>
-	<!-- aa_image -->
-	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_1_zoomed" 
+	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_1_zoomed"
 		style="?ItemTrackAAImage_scene_zoomed" 
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small"
 		style="?ItemTrackAAImage_scene_small"
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_small_no_aa" w:scene_2="@+id/scene_1_small_no_aa"
 		style="?ItemTrackAAImage_scene_small_no_aa"
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_aa"
 		style="?ItemTrackAAImage_scene_aa"
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_aa_vis"
 		style="?ItemTrackAAImage_scene_aa_vis"
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackAAImage_scene_aa_playing"
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_1" w:scene_3="@+id/scene_grid_1_alt"
 		style="?ItemTrackAAImage_scene_grid"
 	/>
@@ -224,19 +223,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_grid_1_alt"
 		style="?ItemTrackAAImage_scene_grid_1_alt"
 	/>
-	<!-- aa_image -->
-	<SceneParams w:scene="@+id/scene_grid_zoomed" w:scene_2="@+id/scene_grid_1_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_zoomed" w:scene_2="@+id/scene_grid_1_zoomed"
 		style="?ItemTrackAAImage_scene_grid_zoomed"
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackAAImage_scene_grid_1_alt_zoomed"
 	/>
-	<!-- aa_image -->
 	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
 		style="?ItemTrackAAImage_scene_header"
 	/>
-	<!-- aa_image -->
 	<!-- NOTE: it's here VS menu layout, as we have different approaches for aa_image depending on item type - and menu layout is shared for all of them -->
 	<SceneParams w:scene="@+id/scene_item_menu" 
 		style="?ItemTrackAAImage_scene_item_menu"
@@ -248,30 +243,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 		/>
-		
-	<!-- NOTE: this can be completely GONE for items. This is controlled by code -->
+	<SceneParams w:scene="@+id/scene_lyrics"
+		style="?ItemTrackAAImage_scene_lyrics"
+		/>
+	<!-- aa_image -->
+
+
+	<!-- cat_image -->
+	<!-- NOTE: this can be completely GONE or INVISIBLE for items. Controlled by the code -->
 	<com.maxmpz.widget.player.list.CatImage android:id="@+id/cat_image" 
 		style="?ItemTrackCatImage"
 	/>
-	<SceneParams w:scene="@+id/scene_1" 
+	<SceneParams w:scene="@+id/scene_1"
 		w:baseScene="defaultScene" 
 	/>
 	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_1_zoomed"
 		style="?ItemTrackCatImage_scene_zoomed" 
 	/>
-	<!-- cat_image -->
-	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_small_no_aa" 
+	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_small_no_aa"
 		style="?ItemTrackCatImage_scene_small" 
 	/>
-	<!-- cat_image -->
-	<SceneParams w:scene="@+id/scene_1_small" w:scene_2="@+id/scene_1_small_no_aa" 
+	<SceneParams w:scene="@+id/scene_1_small" w:scene_2="@+id/scene_1_small_no_aa"
 		style="?ItemTrackCatImage_scene_1_small" 
 	/>
-	<!-- cat_image -->
 	<SceneParams w:scene="@+id/scene_aa"
 		style="?ItemTrackCatImage_scene_aa"
 	/>
-	<!-- cat_image -->
 	<SceneParams w:scene="@+id/scene_aa_vis"
 		style="?ItemTrackCatImage_scene_aa_vis"
 	/>
@@ -279,265 +276,233 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackCatImage_scene_aa_playing"
 	/>
-	<!-- cat_image -->
-	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_1" w:scene_3="@+id/scene_grid_1_alt"  
+	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_1" w:scene_3="@+id/scene_grid_1_alt"
 		style="?ItemTrackCatImage_scene_grid"
 	/>
-	<!-- cat_image -->
 	<SceneParams w:scene="@+id/scene_grid_zoomed" w:scene_2="@+id/scene_grid_1_zoomed" w:scene_3="@+id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackCatImage_scene_grid_zoomed"
 	/>
-	<!-- cat_image -->
 	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
 		style="?ItemTrackCatImage_scene_header"
 	/>
-	<!-- cat_image -->
 	<!-- NOTE: it's here VS menu layout, as we have different approaches for aa_image depending on item type - and menu layout is shared for all of them -->
 	<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemTrackCatImage_scene_item_menu"
 	/>
-	<!-- cat_image -->
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 		/>
-	
+	<SceneParams w:scene="@+id/scene_lyrics"
+		style="?ItemTrackCatImage_scene_lyrics"
+		/>
+	<!-- cat_image -->
+
+
+	<!-- title -->
 	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
 		style="?ItemTrackTitle"
 		android:importantForAccessibility="yes"
 	/>
-	<!-- title -->
 	<SceneParams w:scene="@+id/scene_1"
 		style="?ItemTrackTitle_scene_1"	   
 	/>
-	<!-- title -->
 	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_small_no_aa"
 		style="?ItemTrackTitle_scene_small"	   
 	/>
-	<!-- title -->
 	<SceneParams w:scene="@+id/scene_1_small" w:scene_2="@+id/scene_1_small_no_aa"
 		style="?ItemTrackTitle_scene_1_small"	   
 	/>
-	<!-- title -->
-	<SceneParams w:scene="@+id/scene_zoomed"  
+	<SceneParams w:scene="@+id/scene_zoomed"
 		style="?ItemTrackTitle_scene_zoomed" 
 	/>
-	<!-- title -->
-	<SceneParams w:scene="@+id/scene_1_zoomed" 
+	<SceneParams w:scene="@+id/scene_1_zoomed"
 		style="?ItemTrackTitle_scene_1_zoomed" 
 	/>
-	<!-- title -->
-	<SceneParams w:scene="@+id/scene_grid" 
+	<SceneParams w:scene="@+id/scene_grid"
 		style="?ItemTrackTitle_scene_grid"
 	/>
-	<!-- title -->
-	<SceneParams w:scene="@+id/scene_grid_1" 
+	<SceneParams w:scene="@+id/scene_grid_1"
 		style="?ItemTrackTitle_scene_grid_1"
 	/>
-	<!-- title -->
-	<SceneParams w:scene="@+id/scene_grid_1_alt" 
+	<SceneParams w:scene="@+id/scene_grid_1_alt"
 		style="?ItemTrackTitle_scene_grid_1_alt"
 	/>
 	<!-- title -->
 	<SceneParams w:scene="@+id/scene_grid_zoomed" 
 		style="?ItemTrackTitle_scene_grid_zoomed"
 	/>
-	<!-- title -->
-	<SceneParams w:scene="@+id/scene_grid_1_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_1_zoomed"
 		style="?ItemTrackTitle_scene_grid_1_zoomed"
 	/>
-	<!-- title -->
-	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackTitle_scene_grid_1_alt_zoomed"
 	/>
-	<!-- title -->
 	<SceneParams w:scene="@+id/scene_header"
 		style="?ItemTrackTitle_scene_header"
 	/>
-	<!-- title -->
 	<SceneParams w:scene="@+id/scene_header_1"
 		style="?ItemTrackTitle_scene_header_1"
 	/>
-	<!-- title -->  
 	<SceneParams w:scene="@id/scene_aa"
 		style="?ItemTrackTitle_scene_aa" 
 	/>
-	<!-- title -->  
 	<SceneParams w:scene="@id/scene_aa_vis"
 		style="?ItemTrackTitle_scene_aa_vis" 
 	/>
-	<!-- title -->  
 	<SceneParams w:scene="@id/scene_aa_playing"
 		style="?ItemTrackTitle_scene_aa_playing" 
 	/>
-	<!-- title -->
 	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTrackTitle_scene_item_menu"
-	/><!-- title -->
+	/>
 	<SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackTitle_scene_item_menu_lu"
 	/>
-	<!-- title -->
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 		/>
+	<SceneParams w:scene="@+id/scene_lyrics"
+		style="?ItemTrackTitle_scene_lyrics"
+		/>
 	<!-- title -->
-	
-	
+
+
+	<!-- line2 -->
 	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/line2"
 		style="?ItemTrackLine2"
 		android:importantForAccessibility="yes"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_small_no_aa"
 		style="?ItemTrackLine2_scene_small"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_1"
 		style="?ItemTrackLine2_scene_1"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_1_small" w:scene_2="@+id/scene_1_small_no_aa"
 		style="?ItemTrackLine2_scene_1_small"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_zoomed"
 		style="?ItemTrackLine2_scene_zoomed"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_1_zoomed"
 		style="?ItemTrackLine2_scene_1_zoomed"
 	/>
-	<!-- line2 -->
-	<SceneParams w:scene="@+id/scene_grid"  
+	<SceneParams w:scene="@+id/scene_grid"
 		style="?ItemTrackLine2_scene_grid"
 	/>
-	<!-- line2 -->
-	<SceneParams w:scene="@+id/scene_grid_1"  
+	<SceneParams w:scene="@+id/scene_grid_1"
 		style="?ItemTrackLine2_scene_grid_1"
 	/>
 	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_grid_1_alt"  
 		style="?ItemTrackLine2_scene_grid_1_alt"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_grid_zoomed"
 		style="?ItemTrackLine2_scene_grid_zoomed"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_grid_1_zoomed"
 		style="?ItemTrackLine2_scene_grid_1_zoomed"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackLine2_scene_grid_1_alt_zoomed"
 	/>
-	<!-- line2 -->
 	<SceneParams w:scene="@+id/scene_header"
 		style="?ItemTrackLine2_scene_header"
-	/><!-- line2 -->
+	/>
 	<!-- NOTE: force hidden right here  -->
 	<SceneParams w:scene="@+id/scene_header_1"
 		android:visibility="gone"
-	/><!-- line2 -->
+	/>
 	<SceneParams w:scene="@+id/scene_aa"
 		style="?ItemTrackLine2_scene_aa" 
-	/><!-- line2 -->
+	/>
 	<SceneParams w:scene="@+id/scene_aa_vis"
 		style="?ItemTrackLine2_scene_aa_vis" 
-	/><!-- line2 -->
+	/>
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackLine2_scene_aa_playing" 
-	/><!-- line2 -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu"
+	/>
+	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTrackLine2_scene_item_menu"
-	/><!-- line2 -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu_lu"
+	/>
+	<SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackLine2_scene_item_menu_lu"
 	/>
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
-		android:visibility="gone"
+		style="?ItemTrackLine2_scene_bottom_toolbar"
+		/>
+	<SceneParams w:scene="@+id/scene_lyrics"
+		style="?ItemTrackLine2_scene_lyrics"
 		/>
 	<!-- line2 -->
 
-	
+
+	<!-- meta -->
 	<com.maxmpz.widget.base.FastTextView android:id="@+id/meta"
 		style="?ItemTrackMeta"
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_small_no_aa"
 		style="?ItemTrackMeta_scene_small"
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_1"
 		style="?ItemTrackMeta_scene_1"
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_1_small" w:scene_2="@+id/scene_1_small_no_aa"
 		style="?ItemTrackMeta_scene_1_small"
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_zoomed"
 		style="?ItemTrackMeta_scene_zoomed"
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_1_zoomed"
 		style="?ItemTrackMeta_scene_1_zoomed"
 	/>
-	<!-- meta -->
-	<SceneParams w:scene="@+id/scene_grid" 
+	<SceneParams w:scene="@+id/scene_grid"
 		style="?ItemTrackMeta_scene_grid"
 	/>
-	<!-- meta -->
-	<SceneParams w:scene="@+id/scene_grid_1" 
+	<SceneParams w:scene="@+id/scene_grid_1"
 		style="?ItemTrackMeta_scene_grid_1"
 	/>
 	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_grid_1_alt" 
 		style="?ItemTrackMeta_scene_grid_1_alt"
 	/>
-	<!-- meta -->
-	<SceneParams w:scene="@+id/scene_grid_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_zoomed"
 		style="?ItemTrackMeta_scene_grid_zoomed"
 	/>
-	<!-- meta -->
-	<SceneParams w:scene="@+id/scene_grid_1_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_1_zoomed"
 		style="?ItemTrackMeta_scene_grid_1_zoomed"
 	/>
-	<!-- meta -->
-	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed" 
+	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackMeta_scene_grid_1_alt_zoomed"
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
 		style="?ItemTrackMeta_scene_header"
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_aa"
 		style="?ItemTrackMeta_scene_aa" 
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_aa_vis"
 		style="?ItemTrackMeta_scene_aa_vis" 
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_aa_playing"
 		style="?ItemTrackMeta_scene_aa_playing" 
 	/>
-	<!-- meta -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu"
+	<SceneParams w:scene="@+id/scene_item_menu"
 		style="?ItemTrackMeta_scene_item_menu"
 	/>
-	<!-- meta -->
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_item_menu_lu"
+	<SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackMeta_scene_item_menu_lu"
 	/>
-	<!-- meta -->
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
 		/>
+	<SceneParams w:scene="@+id/scene_lyrics"
+		style="?ItemTrackMeta_scene_lyrics"
+		/>
 	<!-- meta -->
 
-	
+
+	<!-- drag_handler -->
 	<!-- NOTE: drag handler is force-hidden and will not appear when list doesn't support dragging -->
 	<com.maxmpz.widget.base.DragHandler android:id="@+id/drag_handler"
 		style="?ItemTrackDragHandler"
@@ -546,8 +511,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:scene_5="@+id/scene_small" w:scene_6="@+id/scene_1_small"
 		style="?ItemTrackDragHandler" 
 	/>
-	<!-- drag_handler -->
-	<SceneParams w:scene="@id/scene_grid" w:scene_2="@id/scene_grid_zoomed" w:scene_3="@id/scene_grid_1" w:scene_4="@id/scene_grid_1_zoomed" 
+	<SceneParams w:scene="@id/scene_grid" w:scene_2="@id/scene_grid_zoomed" w:scene_3="@id/scene_grid_1" w:scene_4="@id/scene_grid_1_zoomed"
 					w:scene_5="@id/scene_grid_1_alt" w:scene_6="@id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackDragHandler_scene_grid" 
 	/>
@@ -555,8 +519,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackDragHandler_scene_small_no_aa" 
 	/>
 	<!-- drag_handler -->
-		
-		
+
+
+	<!-- select_box -->
 	<!-- NOTE: not setting tint as default color is black -->
 	<!-- NOTE: _not_ clickable, so item instead is always clicked as we don't process checkbox clicks -->
 	<!-- Select box is force-hidden by code by default and programmatically made visible when needed -->
@@ -569,8 +534,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:scene_5="@+id/scene_small" w:scene_6="@+id/scene_1_small"
 		style="?ItemTrackSelectBox"
 	/>
-	<!-- select_box -->
-	<SceneParams w:scene="@id/scene_grid" w:scene_2="@id/scene_grid_zoomed" w:scene_3="@id/scene_grid_1" w:scene_4="@id/scene_grid_1_zoomed" 
+	<SceneParams w:scene="@id/scene_grid" w:scene_2="@id/scene_grid_zoomed" w:scene_3="@id/scene_grid_1" w:scene_4="@id/scene_grid_1_zoomed"
 					w:scene_5="@id/scene_grid_1_alt" w:scene_6="@id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackSelectBox_scene_grid" 
 	/>
@@ -596,6 +560,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:loadForScene_6="@id/scene_header"
 		w:loadForScene_7="@id/scene_header_1"
 		w:loadForScene_8="@id/scene_bottom_toolbar"
+		w:loadForScene_9="@id/scene_lyrics"
 	/>
 	
 	<!-- NOTE: scene_header here is needed for cases when we transition from header to menu

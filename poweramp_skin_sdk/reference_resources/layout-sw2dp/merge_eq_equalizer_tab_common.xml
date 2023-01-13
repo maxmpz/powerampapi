@@ -140,6 +140,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:updateMsgId="@id/msg_dsp_eq_changed"
 		
 		w:firstPressToast="@string/long_press_autosave_hint"
+		w:toastStateIdOnPress="@id/dsp_autosave_toast_msg"
 		w:toastOnPress="@string/autosave_enabled_msg"
 		w:toastHeaderOnPress="@string/autosave"
 		w:toastIconOnPress="?toast_info"

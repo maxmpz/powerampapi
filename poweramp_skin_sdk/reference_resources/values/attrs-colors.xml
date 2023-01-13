@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,15 +23,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorFastScroller" format="color"/>
 	<attr name="colorFastScrollerPressed" format="color"/>
 	<attr name="colorFastScrollerTrack" format="color"/>
+	<attr name="colorAZBg" format="color"/>
+	<attr name="colorAZSeparator" format="color"/>
+	<!-- Foreground color for the pressed az -->
+	<attr name="colorAZPressed" format="color"/>
 	<attr name="colorScrollPopupBg" format="color"/>
 	<attr name="colorNavbarIcons" format="color"/>
 	<attr name="colorNavbarIconsLessContrast" format="color"/>
 	<attr name="colorBgNavbar" format="color"/>
 	<attr name="colorBgTransparentNavbar" format="color"/>
-	<attr name="colorIconCC" format="color"/><!-- Forced (white) color for Chromecast icon -->
-	
-	<attr name="colorAABgColor" format="color"/><!-- NOTE: this is basically main background color for application, as Milk + AA blur is used as background -->
-	<attr name="colorItemPlayingMark" format="color"/><!-- Current playing item mark bg -->
+	<!-- Forced (white) color for Chromecast icon -->
+	<attr name="colorIconCC" format="color"/>
+
+	<!-- NOTE: this is basically main background color for application, as Milk + AA blur is used as background -->
+	<attr name="colorAABgColor" format="color"/>
+	<!-- Current playing item mark bg -->
+	<attr name="colorItemPlayingMark" format="color"/>
 	
 	<attr name="colorFrsSelectionBg" format="color"/>
 	<attr name="colorFrsSelectionBgPressed" format="color"/>
@@ -84,11 +91,32 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- These are used for Android 12 dynamic colors -->
 	<attr name="colorWaveseekTint" format="color"/>
+
 	<!-- Color for play/pause/next/prev + cat buttons core -->
 	<attr name="colorPlayButtonsTint" format="color"/>
+
 	<!-- Color for play/pause/next/prev + cat buttons background -->
 	<attr name="colorPlayButtonsBg" format="color"/>
+
 	<!-- Color for play/pause/next/prev + cat buttons stroke around background -->
 	<attr name="colorPlayButtonsStroke" format="color"/>
+
+	<!-- Meta info text color (main screen) -->
+	<attr name="colorMetaInfo" format="color"/>
+
+	<!-- Color used for track labels/text in alt layout only (main screen, scene_aa) -->
+	<attr name="colorAltTitle" format="color"/>
+
+	<!-- Color used for the track menu in alt layout only -->
+	<attr name="colorAltMenu" format="color"/>
+
+	<!-- Color used for the track rating (stars or thumbs, main screen, scene_aa) -->
+	<attr name="colorRating" format="color"/>
+
+	<!-- Color for text/icons which should be visible and be contrast against AA background -->
+	<attr name="colorOnAABg" format="color"/>
+
+	<!-- Color for text/icons (less contrasting) which should be visible and be contrast against AA background -->
+	<attr name="colorOnAABgLessContrast" format="color"/>
 
 </resources>

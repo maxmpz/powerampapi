@@ -21,7 +21,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<!-- Optional styles. Applied based on user preferences. 
-	     Styles for these attributes should be defined in main skin theme, but these styles will be applied only if appropriate option is set in Poweramp settings  -->
+	     Styles for these attributes should be defined in main skin theme, but these styles will be applied only if appropriate option
+	     is set in Poweramp settings.
+	     NOTE: attributes, e.g. com.maxmpz.audioplayer:attr/OptionRatingStars, etc. can be used to for skin <globalOption/> option argument -->
 	<declare-styleable name="OptionalPoweruiStyles">
 		<!-- Applied (over main theme style) when rating is enabled and set to stars -->
 		<attr name="OptionRatingStars" format="reference"/>
@@ -31,16 +33,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Applied (over main theme style) when rating is enabled and set to like/unlike thumbs -->
 		<attr name="OptionRatingLikeUnlike" format="reference"/>
+
+		<!-- Applied (over main theme style) when rating is disabled -->
+		<attr name="OptionRatingDisabled" format="reference"/>
 		
 		<!-- Applied (over main theme style) when track counter is enabled -->
 		<attr name="OptionCounter" format="reference"/>
 		
 		<!-- Applied (over main theme style) when Chromecast buttons should be disabled completely. NOTE: default style shows CC button on top of the main screen AA -->
 		<attr name="OptionCCDisabled" format="reference"/>
-		
+
+		<!-- Applied (over main theme style) when Chromecast should be shown as main UI icon. NOTE: default attribute is 0 (not set) for this option-->
+		<attr name="OptionCCMainUI" format="reference"/>
+
 		<!-- Applied (over main theme style) when Chromecast should be shown as main UI button. NOTE: default style shows CC button on top of the main screen AA -->
 		<attr name="OptionCCMainUIButton" format="reference"/>
-		
+
 		<!-- Applied (over main theme style) when Chromecast should be shown in the main menu. NOTE: default style shows CC button on top of the main screen AA -->
 		<attr name="OptionCCInMenu" format="reference"/>
 		
@@ -52,7 +60,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Applied (over main theme style) when hide menu option is enabled -->
 		<attr name="OptionHideMenu" format="reference"/>
-		
+
+		<!-- Applied (over main theme style) when hide lyrics button option is enabled -->
+		<attr name="OptionHideLyricsButton" format="reference"/>
+
 		<!-- Applied (over main theme style) when Keep Aspect Ratio option is enabled -->
 		<attr name="OptionAAKeepAspect" format="reference"/>
 		
@@ -64,6 +75,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Applied (over main theme style) when header buttons are completely disabled (i.e. replaced by bottom buttons) -->
 		<attr name="OptionNoHeaderButtons" format="reference"/>
+
+		<!-- Applied (over main theme style) when we want the extended AZ scroll including the local alphabet -->
+		<attr name="OptionLocalizedAZScroll" format="reference"/>
+
+		<!-- Applied (over main theme style) for screens with rounded corners - only on Android 12+ where appropriate API exists -->
+		<attr name="OptionRoundedScreenCorners" format="reference"/>
 				
 	</declare-styleable>
 </resources>

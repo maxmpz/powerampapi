@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- NOTE: ripple_forward_10s_round, rippled_back_10s_round should 100% match this drawable layout/size -->
+<!-- NOTE: scaled or insert/layered imaged do not work properly with morpheable buttons due to the TransitionDrawable
+     incorrectly handling bounds. Thus using fixed sized stuff here -->
+<!-- NOTE: not using fill scaling for the buttons, they pretty much never scaled and size is defined
+     by the appropriate style (e.g. TopSmallButton_size) -->
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
 	android:color="?colorInverse"
 >
@@ -10,5 +15,12 @@
 			<padding android:left="1px" android:right="1px" android:top="1px" android:bottom="1px"/>
 		</shape>
 	</item>
-	<item android:drawable="?next_cat_core"/>
+	<item>
+		<inset android:inset="20%">
+			<layer-list>
+				<item android:drawable="?next_cat_core"/>
+			</layer-list>
+		</inset>
+	</item>
+
 </ripple>

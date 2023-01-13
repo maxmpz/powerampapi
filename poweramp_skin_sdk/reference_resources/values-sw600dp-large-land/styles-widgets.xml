@@ -1,0 +1,23 @@
+<resources>
+	<style name="WidgetStylePager">
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">@+id/options_frame</item>
+		<item name="android:layout_marginBottom">@dimen/widget_conf_content_marginBottom</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:paddingTop">@dimen/widget_conf_content_marginTop</item>
+	</style>
+
+	<style name="WidgetOptionsFrame" parent="WidgetOptionsFrame_BaseLand">
+		<item name="android:layout_gravity">right|bottom</item>
+	</style>
+
+	<style name="WidgetFragmentFrameFrame">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_gravity">center</item>
+	</style>
+
+</resources>

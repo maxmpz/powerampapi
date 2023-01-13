@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,7 +19,7 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 	<item type="id" name="bus_player"/><!-- PlayerService msg bus. Also a state bus. Separated from PlayerService, exists even when no PS loaded yet -->
 	<item type="id" name="bus_player_cmd"/><!-- PlayerService cmd bus (for cmd_*). Public -->
 	
@@ -96,13 +96,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_nav_to_search"/><!-- bus_gui -->
 	<item type="id" name="cmd_nav_more"/><!-- bus_gui -->
 	<item type="id" name="cmd_nav_to_eq"/><!-- bus_gui, arg1 => EQ_TAB_* -->
+	<item type="id" name="cmd_nav_to_lyrics"/><!-- bus_gui. Navigates to the current track lyrics -->
+	<item type="id" name="cmd_nav_to_lyrics_or_app"/><!-- bus_gui -->
+	<item type="id" name="cmd_open_lyrics_app"/><!-- bus_gui -->
 
 	
 	<item type="id" name="nav_lib"/><!-- bus_gui, arg1 = LIB_* -->
 	<item type="id" name="nav_main"/><!-- bus_gui -->
 	<item type="id" name="nav_search"/><!-- bus_gui, arg1 => boolean focusSearchText -->
 	<item type="id" name="nav_eq"/><!-- bus_gui, arg1 => EQ_TAB_*  -->
-	
+
 	<!-- Opens last used tab -->
 	<integer name="EQ_TAB_DEFAULT">-1</integer><!-- Sync with TopNavHelper -->
 	<integer name="EQ_TAB_EQ">0</integer>
@@ -116,6 +119,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_gui_set_vis_mode"/><!-- bus_gui, integer VIS_* -->
 	<item type="id" name="cmd_gui_apply_aa_blur_prefs"/><!-- bus_gui -->
 	<item type="id" name="cmd_gui_show_hide_milk"/><!-- bus_gui, arg1 => STATE_TRUE => show, STATE_FALSE => hide -->
+
+	<!--<item type="id" name="cmd_gui_set_lyrics_state"/>&lt;!&ndash; bus_gui, arg1 = LyricsState.LYRICS_STATE_* &ndash;&gt;-->
+	<!--<item type="id" name="cmd_gui_toggle_lyrics"/>&lt;!&ndash; bus_gui &ndash;&gt;-->
 
 	
 	<item type="id" name="cmd_data_info_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track -->
@@ -219,6 +225,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_update_eq_preset"/>
 	<item type="id" name="cmd_data_update_search_history"/><!-- obj => search term -->
 	<item type="id" name="cmd_data_clear_search_history"/><!-- obj => search term to clear term, arg1 => STATE_TRUE to clear whole history -->
+	<item type="id" name="cmd_data_update_lyrics"/><!-- obj -> intent or bundle which follows ACTION_UPDATE_LYRICS API -->
 	
 	<item type="id" name="cmd_list_add_to_q"/>
 	<item type="id" name="cmd_list_add_as_next_to_q"/>
@@ -228,6 +235,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_shuffle"/><!-- Header reshuffle -->
 	<item type="id" name="cmd_list_add_url"/><!-- Opens dialog -->
 	<item type="id" name="cmd_list_bookmark"/>
+
+	<item type="id" name="cmd_list_prefer_aa_state"/><!-- arg1 == list_aa_* -->
 	
 	<item type="id" name="state_gui_vis_mode"/><!-- integer VIS_* -->
 	<item type="id" name="state_gui_eq_tab"/><!-- integer EQ_TAB_* -->
@@ -251,6 +260,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- StateAnim states -->
 	<!-- <item type="id" name="anim_playing" /> -->
 	<item type="id" name="anim_seeking" />
+	<item type="id" name="anim_state_lyrics"/>
+	<item type="id" name="anim_state_lyrics_max"/>
 	
 	<item type="id" name="anim_knob_pressed"/>
 					
@@ -279,6 +290,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: this is called after cmd_player_on_queue_updated, but on bus_player, and only if PS is alive --> 
 	<item type="id" name="msg_player_queue_changed"/><!-- arg1 = unplayed count, arg2 = total count, obj = Boolean.TRUE if enqueued-->
 	<item type="id" name="msg_player_output_meta_changed"/><!-- arg1 => routed device_id, obj => OutputEndDeviceMetaInfo|null -->
+	<item type="id" name="msg_player_output_info_changed"/><!-- arg1 => routed device_id, obj => ResolvedOutputInfo|null -->
 	<item type="id" name="cmd_player_on_tempo_changed"/><!-- Internal -->
 	<item type="id" name="msg_player_entity_reshuffled"/><!-- Internal, obj = entity -->
 	<item type="id" name="msg_player_np_ended"/>
@@ -308,25 +320,36 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_player_category_navigable"/><!-- boolean. Changed with msg_player_track_changed -->
 	<item type="id" name="state_player_category_not_navigable"/><!-- boolean. Changed with msg_player_track_changed -->
 	
-	<item type="id" name="state_player_sample_rate"/><!-- int -->
 	<item type="id" name="state_player_latency"/><!-- int -->
 	<item type="id" name="state_player_dsp_frames"/><!-- int -->
 	<item type="id" name="state_player_dsp_bufs"/><!-- int -->
 	
 	<item type="id" name="state_player_output_caps"/><!-- int -->
-	<item type="id" name="state_player_output_buf_format"/><!-- int -->
 	<item type="id" name="state_player_output_plugin_id"/><!-- int -->
 	<item type="id" name="state_player_output_plugin_name"/><!-- string -->
 	<item type="id" name="state_player_output_plugin_uniq_name"/><!-- string -->
 	<item type="id" name="state_player_output_variant"/><!-- string -->
-	<item type="id" name="state_player_output_sample_rate"/><!-- int -->
-	<item type="id" name="state_player_output_bits"/><!-- int. Resolved output bits -> the actual played bits -->
+
+	<item type="id" name="state_player_sample_rate"/><!-- int. The pipeline and output plugin sample rate -->
+
+	<item type="id" name="state_player_output_buf_format"/><!-- int. the format we ask output to use -->
+	<item type="id" name="state_player_output_buf_bits"/><!-- int. The format bits we ask output to use -->
+
+	<item type="id" name="state_player_output_resolved_sample_rate"/><!-- int. If resolved: AF output sample rate, -1 otherwise-->
+	<item type="id" name="state_player_output_resolved_format"/><!-- int. If resolved: AF output format, -1 otherwise -->
+
+	<item type="id" name="state_player_output_sample_rate"/><!-- int. If resolved: AF output sample rate, state_player_sample_rate otherwise -->
+	<item type="id" name="state_player_output_format"/><!-- int. If resolved: AF output format, state_player_output_buf_format otherwise -->
+	<item type="id" name="state_player_output_bits"/><!-- int. If resolved: AF output bits -> the actual played bits, state_player_output_buf_bits otherwise -->
+
+
 	<item type="id" name="state_player_output_latency"/><!-- int -->
 	<item type="id" name="state_player_output_device"/><!-- string, int -->
 	<item type="id" name="state_player_output_device_flags"/><!-- int. Not used ATM -->
 	<item type="id" name="state_player_output_end_device"/><!-- string -->
 	<!--<item type="id" name="state_player_output_end_device_address"/>--><!-- string -->
-	<item type="id" name="state_player_output_end_device_meta"/><!-- string -->
+	<!-- string, obj => OutputEndDeviceMetaInfo -->
+	<item type="id" name="state_player_output_end_device_meta"/>
 	<item type="id" name="state_player_track_decode_info"/><!-- string -->
 	<item type="id" name="state_player_output_info"/><!-- string -->
 	<item type="id" name="state_player_output_meta"/><!-- string -->
@@ -359,7 +382,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_play_uri"/><!-- arg1 => STATE_TRUE=>pause, STATE_FALSE/default=>play, arg2 => optional int PrefsConsts.PLAYLIST_ACTION_*, obj => Uri or Intent with the uri -->
 	<item type="id" name="cmd_player_play_pos"/><!-- arg1 => pos in current list to play -->
 	<item type="id" name="cmd_player_pause_playing"/><!-- arg1 => STATE_TRUE - no fade, arg2 => PowerampAPI.PauseFlags. Public -->
-	<item type="id" name="cmd_player_resume_playing"/><!-- arg2 => delay ms -->
+	<item type="id" name="cmd_player_resume_playing"/><!-- arg1 => STATE_TRUE - resume even if playing -->
 	<item type="id" name="cmd_player_toggle_playing"/><!-- arg2 => PowerampAPI.PauseFlags -->
 	<item type="id" name="cmd_player_play_next_track"/><!-- arg1 => flags, arg2 => trackFlags -->
 	<item type="id" name="cmd_player_play_prev_track"/><!-- arg1 => boolean forceMove, arg2 => flags -->
@@ -409,7 +432,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_enable_headset_controls"/><!-- arg => boolean -->
 	<item type="id" name="cmd_player_refresh_headset_controls"/>
 	<item type="id" name="cmd_player_apply_long_volume_controls"/>
-	
+	<item type="id" name="cmd_player_resolve_output_info"/><!-- arg1 => deviceId. Sent by native to force output info re-resolve -->
+
 	
 	<!-- NOTE: used for cmd_set_repeat_mode -->
 	<!-- Sync with PowerampAPI.RepeatMode -->
@@ -562,7 +586,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="dsp_resampler_type"/><!-- int -->
 	<item type="id" name="dsp_resampler_cuttoff"/><!-- int -->
-	<item type="id" name="dsp_resampler_dither"/><!-- int -->
+	<item type="id" name="dsp_resampler_dither"/><!-- int. Just current dither setting, actual dither will happen only if output bits are less than pipeline -->
 	<item type="id" name="dsp_status_string"/><!-- string -->
 	<item type="id" name="dsp_status_string_short"/><!-- string -->
 	<item type="id" name="dsp_custom_volume_levels"/><!-- int -->
@@ -570,6 +594,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- string. Switchable meta string: can be e.g. dsp info, output info -->
 	<item type="id" name="dsp_meta"/><!-- NOTE: updated on: msg_pipeline_started -->
 	<item type="id" name="dsp_autosave_enabled"/><!-- boolean -->
+	<!-- string -->
+	<item type="id" name="dsp_autosave_toast_msg"/>
 
 
 	<item type="id" name="bus_export_import"/>

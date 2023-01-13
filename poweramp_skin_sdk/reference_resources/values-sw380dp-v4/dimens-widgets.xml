@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- values-sw360-v4 -->
+<!-- values-sw380-v4 -->
 <resources>
-	<dimen name="widget4x1_controls_marginTop">4dp</dimen>
-   	<dimen name="widget4x1_cat_button_size">36dp</dimen>
-   	<dimen name="widget4x1_rw_ff_button_size">36dp</dimen>
-   	<dimen name="widget4x1_big_button_size">36dp</dimen>
-   	<dimen name="widget4x1_big_button_padding">2dp</dimen>
-   	
    	<dimen name="widget4x2_cat_button_size">44dp</dimen>
    	<dimen name="widget4x2_ff_button_size">50dp</dimen>
    	<dimen name="widget4x2_big_button_size">58dp</dimen>
    	<dimen name="widget4x2_big_button_padding">8dp</dimen>
+
+	<dimen name="widget4x1_font_size1">10.5dp</dimen>
+	<dimen name="widget4x1_font_size2">10dp</dimen>
+	<dimen name="widget4x1_font_size3">11dp</dimen>
+	<dimen name="widget4x1_font_size4">12dp</dimen>
+	<dimen name="widget4x1_font_size5">13dp</dimen>
+	<dimen name="widget4x1_font_size6">16dp</dimen>
+	<dimen name="widget4x1_font_size7">18dp</dimen>
+	<dimen name="widget4x1_font_size8">20dp</dimen>
+	<dimen name="widget4x1_font_size9">22dp</dimen>
+	<dimen name="widget4x1_font_size10">24dp</dimen>
+	<dimen name="widget4x1_font_size11">28dp</dimen>
+
+	<dimen name="widget2x2_font_size1">10.5dp</dimen>
+	<dimen name="widget2x2_font_size2">10dp</dimen>
+	<dimen name="widget2x2_font_size3">11dp</dimen>
+	<dimen name="widget2x2_font_size4">12dp</dimen>
+	<dimen name="widget2x2_font_size5">13dp</dimen>
+	<dimen name="widget2x2_font_size6">16dp</dimen>
+	<dimen name="widget2x2_font_size7">18dp</dimen>
+	<dimen name="widget2x2_font_size8">20dp</dimen>
+	<dimen name="widget2x2_font_size9">22dp</dimen>
+	<dimen name="widget2x2_font_size10">24dp</dimen>
+	<dimen name="widget2x2_font_size11">28dp</dimen>
+
+	<dimen name="widget4x2_font_size1">12dp</dimen>
+	<dimen name="widget4x2_font_size2">13dp</dimen>
+	<dimen name="widget4x2_font_size3">14dp</dimen>
+	<dimen name="widget4x2_font_size4">15dp</dimen>
+	<dimen name="widget4x2_font_size5">18dp</dimen>
+	<dimen name="widget4x2_font_size6">21dp</dimen>
+	<dimen name="widget4x2_font_size7">25dp</dimen>
+	<dimen name="widget4x2_font_size8">28dp</dimen>
+	<dimen name="widget4x2_font_size9">31dp</dimen>
+	<dimen name="widget4x2_font_size10">34dp</dimen>
+	<dimen name="widget4x2_font_size11">37dp</dimen>
+
+
+
 </resources>

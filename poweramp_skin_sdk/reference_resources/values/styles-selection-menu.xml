@@ -71,7 +71,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SelectionMenuSelectBox">
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_height">38dp</item>
-		<item name="layout_widthPercent">25%</item>
+		<item name="android:layout_width">wrap_content</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
 		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
 		<item name="android:clickable">true</item>
@@ -85,7 +85,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawablePadding">0dp</item>
 		<item name="drawablePaddingStart">8dp</item>
 		<item name="android:textAppearance">?SelectionMenu_Text</item>
-
+		<item name="android:singleLine">true</item>
 	</style>
 
 	<style name="SelectionMenuRangeButton">
@@ -106,6 +106,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
 		<item name="android:textAppearance">?SelectionMenu_Text</item>
+		<item name="android:singleLine">true</item>
 	</style>
 
 	<style name="SelectionMenuCountText">
@@ -120,6 +121,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:textAppearance">?SelectionMenu_Text</item>
+		<item name="android:singleLine">true</item>
 	</style>
 	<style name="SelectionMenu_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">12sp</item>

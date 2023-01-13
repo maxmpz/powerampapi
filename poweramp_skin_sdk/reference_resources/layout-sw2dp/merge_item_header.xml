@@ -211,6 +211,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>
+	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		style="?ItemHeaderScanProgress_scene_bottom_toolbar"
+	/>
 	<SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed" 
 		w:baseScene="defaultScene"

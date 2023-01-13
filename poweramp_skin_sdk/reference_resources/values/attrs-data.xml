@@ -22,7 +22,7 @@
 	<attr name="streams" format="reference"/>
 	<attr name="bookmarks" format="reference"/>
 	<!-- 20 -->
-	
+
 	<attr name="micro_all_songs" format="reference"/>
 	<attr name="micro_folders" format="reference"/>
 	<attr name="micro_folders_hier" format="reference"/>
@@ -44,10 +44,10 @@
 	<attr name="micro_streams" format="reference"/>
 	<attr name="micro_bookmarks" format="reference"/>
 	<!-- 20 -->
-	
+
+	<attr name="raw_file" format="reference"/>
 	<attr name="micro_raw_file" format="reference"/>
-	<!-- + 1 -->
-	
+
 	<attr name="folder_cat_icon" format="reference"/>
 	
 	<!-- Sync to RestLibraryItems -->

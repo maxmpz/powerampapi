@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -82,12 +82,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorItemPlayingMark">#282828</item>
 		
 		<item name="colorAABgColor">#000</item>
-		
+
+		<!-- NOTE: used only for overlap_track_labels_no_bg styles -->
+		<item name="colorOnAABg">#fff</item>
+		<item name="colorOnAABgLessContrast">#eee</item>
+
 		<item name="colorFastScroller">#888</item>
 		<item name="colorFastScrollerPressed">#444</item>
 		<item name="colorFastScrollerTrack">#0000</item>
 		<item name="colorScrollPopupBg">#a555</item>
-		
+		<item name="colorAZBg">#A111</item>
+		<item name="colorAZPressed">#fff</item>
+		<item name="colorAZSeparator">#0000</item><!-- Do not draw separators -->
+
 		<item name="colorFrsSelectionBgRipple">#eee</item>
 		<item name="colorFrsSelectionBgPressed">#3fff</item>
 		<item name="colorFrsSelectionBg">#1fff</item>
@@ -151,6 +158,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="shuffle_none_32dp">@drawable/shuffle_none_32dp_tinted</item>
 
+		<item name="list_buttons_outline_provider">none</item>
+
+		<!-- Change AA backgrounds for lyrics/lists -->
+		<item name="aaEffectReadable">@style/ActivityTheme_Black_MilkViewEffect_Lyrics</item>
+		<item name="aaEffectList">@style/ActivityTheme_Black_MilkViewEffect_List</item>
+
+		<item name="lyricsPrevAlpha">0.25</item>
+		<item name="lyricsNextAlpha">0.6</item>
+
 		<!-- Android mediarouter icons -->
 		<item name="media_route" tools:ignore="PrivateResource">@drawable/mr_button_dark</item>
 		<item name="mediaRouteCloseDrawable" tools:ignore="PrivateResource">@drawable/mr_dialog_close_dark</item>
@@ -166,7 +182,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Blackpro_MoreButtons</item>
 		<item name="overlap_less_rounding">@style/ActivityTheme_Black_LessRounding</item>
-		
+
+		<item name="overlap_alt_layout">@style/ActivityTheme_Black_AltLayout</item>
+		<item name="overlap_alt_layout2">@style/ActivityTheme_Black_AltLayout2</item>
+
 		<item name="DialogForceLightSystemUIStyle">@style/ActivityTheme_Black_DialogForceLightSystemUIStyle</item>
 		<item name="DialogForceDarkSystemUIStyle">@style/ActivityTheme_Black_DialogForceDarkSystemUIStyle</item>
 		
@@ -175,6 +194,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="control_elevation">0dp</item><!-- Not visible on black + improves performance -->
 		<item name="bottom_toolbar_buttons_elevation">3dp</item><!-- Increased elevation for black theme -->
+	</style>
+
+	<style name="ActivityTheme_Black_MilkViewEffect_Lyrics">
+		<item name="aaBlurIntensity">.45</item>
+		<item name="aaBlurSaturation">1.5</item>
+		<item name="aaBlurScaleSize">8</item>
+		<item name="aaBlurPinLight">-1</item><!-- Disable pinLight/lighten/darken - not needed for the black theme -->
+	</style>
+	<style name="ActivityTheme_Black_MilkViewEffect_List">
+		<!--<item name="aaSolidColorTarget">darkVibrant</item>-->
+		<item name="aaBlurIntensity">.1</item>
+		<item name="aaBlurSaturation">1.5</item>
+		<item name="aaBlurScaleSize">4</item>
+		<item name="aaBlurPinLight">0.17</item>
+		<item name="aaBlurDarken">.175</item>
 	</style>
 
 	<style name="ActivityTheme_Black_LessRounding" parent="ActivityTheme_White_LessRounding">
@@ -240,7 +274,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
 		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
 	</style>
-	
+
+	<!-- An overlay style -->
+	<style name="ActivityTheme_Blackpro_NoMainNavbarBg">
+		<item name="Navbar">@style/Navbar_noBgNavbar</item>
+		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
+		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+	</style>
+
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Blackpro_SwapLand">
 		<!-- NOTE: applied in landscape -->

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -123,7 +123,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:paddingTop">4dp</item>
 		<item name="android:paddingBottom">4dp</item>
 		<item name="android:gravity">center</item>
-		
+
 		<item name="android:textAppearance">?ItemEmptyListText_Text</item>
 		<item name="android:textColor">?android:textColorTertiary</item>
 				
@@ -192,7 +192,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">10dp</item>
 		<item name="android:layout_marginRight">2dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
-		<item name="cornerRadius">?corners_miniplayer_aa</item>
+		<item name="cornerRadius1">?corners_miniplayer_aa</item>
 		<item name="android:elevation">0px</item><!--  Force no elevation -->
 		<item name="hiRes">false</item>
 	</style>
@@ -273,7 +273,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="lineBackground">@null</item>
 		<item name="android:maxLines">1</item>
 		
-		<item name="android:textAppearance">@style/ItemGenericTitle_Text</item>
+		<item name="android:textAppearance">?ItemGenericTitle_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 
 		<item name="android:transformPivotX">0px</item>
@@ -301,7 +301,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="android:maxLines">1</item>
 		
-		<item name="android:textAppearance">@style/ItemGenericLine2_Text</item>
+		<item name="android:textAppearance">?ItemGenericLine2_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 				
 		<item name="android:paddingLeft">8dp</item>
@@ -365,7 +365,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:layout_marginBottom">2dp</item>
 		
-		<item name="cornerRadius">6dp</item><!-- Tracks -->
+		<item name="cornerRadius1">6dp</item><!-- Tracks -->
 		<item name="cornerRadius2">6dp</item><!-- Albums -->
 		<item name="cornerRadius3">6dp</item><!-- Others -->
 		<item name="android:elevation">?list_aa_elevation</item>
@@ -533,5 +533,4 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachLeftToLeft">@id/frs</item>
 		<item name="android:layout_marginLeft">4dp</item>
 	</style>
-	
 </resources>

@@ -193,7 +193,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="lineColor">?colorFrs</item>
 		<item name="lineWidth">2dp</item>
 		<item name="parametricLineWidth">1dp</item><!-- Slightly less pronounced as we have a lot of curves -->
-		<item name="cornerRadius">?corners_equ_frs</item>
+		<item name="cornerRadius1">?corners_equ_frs</item>
 
 		<item name="backLineColor">?colorFrsBackline</item>		
 		<item name="toneLineWidth">1.5dp</item>
@@ -237,7 +237,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:longClickable">true</item><!-- NOTE: making it also clickable=true here will cause ripple drawable in popup to activate -->
 				
-		<item name="lineBackground">@drawable/alpha_popup_button_layout_bg</item>
+		<item name="lineBackground">?meta_info_bg</item>
 		
 		<item name="android:layout_marginTop">@dimen/EqInfoBase_marginTB</item>
 		<item name="android:layout_marginBottom">@dimen/EqInfoBase_marginTB</item>
@@ -500,7 +500,6 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="android:scaleX">1.5</item>
 		<item name="android:scaleY">1.5</item>
 		<item name="android:translationY">1dp</item>
-		<item name="android:translationZ">5dp</item>
 		<item name="android:duration">300</item>
 	</style>
 		
@@ -508,7 +507,6 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="android:scaleX">1.5</item>
 		<item name="android:scaleY">1.5</item>
 		<item name="android:translationY">1dp</item>
-		<item name="android:translationZ">5dp</item>
 		<item name="android:duration">300</item>
 	</style>
 		

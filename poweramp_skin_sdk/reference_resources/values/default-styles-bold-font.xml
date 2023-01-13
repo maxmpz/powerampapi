@@ -116,6 +116,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMeta_Text">@style/ItemTrackMeta_Text_BoldFont</item>
 		<item name="ItemAALEDecorText_Text">@style/ItemAALEDecorText_Text_BoldFont</item>
 		<item name="ItemMiniplayerPrevNextDecorText_Text">@style/ItemMiniplayerPrevNextDecorText_Text_BoldFont</item>
+		<item name="ItemGenericTitle_Text">@style/ItemGenericTitle_Text_BoldFont</item>
+		<item name="ItemGenericLine2_Text">@style/ItemGenericLine2_Text_BoldFont</item>
 		<item name="SeparatorWithButton_Text">@style/SeparatorWithButton_Text_BoldFont</item>
 		<item name="BlackButton_Text">@style/BlackButton_Text_BoldFont</item>
 		<item name="WhiteButton_Text">@style/WhiteButton_Text_BoldFont</item>
@@ -131,6 +133,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemPopupListTitleLarger_Text">@style/ItemPopupListTitleLarger_Text_BoldFont</item>
 		<item name="ItemVisTitle_Text">@style/ItemVisTitle_Text_BoldFont</item>
 		<item name="ItemVisLine2_Text">@style/ItemVisLine2_Text_BoldFont</item>
+
+		<item name="ItemLyricsTitle_Text">@style/ItemLyricsTitle_Text_BoldFont</item>
 		
 		<item name="PopupMenuItem_Text">@style/PopupMenuItem_Text_BoldFont</item>
 		<item name="PopupInfoTextTitle_Text">@style/PopupInfoTextTitle_Text_BoldFont</item>
@@ -298,6 +302,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/small3_AltFont_textSize</item>
 	</style>
+	<style name="ItemGenericTitle_Text_BoldFont" parent="ItemGenericTitle_Text">
+		<item name="android:fontFamily">?BoldFont_font</item>
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+	<style name="ItemGenericLine2_Text_BoldFont" parent="ItemGenericLine2_Text">
+		<item name="android:fontFamily">?BoldFont_font</item>
+		<item name="android:textSize">@dimen/small4_AltFont_textSize</item>
+	</style>
 	<style name="SeparatorWithButton_Text_BoldFont" parent="SeparatorWithButton_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/moderate0_AltFont_textSize</item>
@@ -361,7 +373,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/small4_AltFont_textSize</item>
 	</style>
-	
+
+	<style name="ItemLyricsTitle_Text_BoldFont" parent="ItemLyricsTitle_Text">
+		<item name="android:fontFamily">?BoldFont_font</item>
+	</style>
+
 	<style name="PopupMenuItem_Text_BoldFont" parent="PopupMenuItem_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/medium4_AltFont_textSize</item>

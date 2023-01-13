@@ -65,7 +65,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 		
-		<item name="dragDirection">down</item>
+		<item name="collapseDragDirection">down</item>
 		<item name="toastDuration">2000</item>
 	</style>
 	<style name="TopToastFrame_scene_expandedBase" parent="TopToastFrame">

@@ -75,8 +75,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_textSize">10dp</dimen>
 	
 	<dimen name="EqEquButton_maxWidth">70dp</dimen>
-	<dimen name="EqTonePanel_marginTop">8dp</dimen>
-	<dimen name="EqTonePanel_offsetTB">8dp</dimen>
+	<dimen name="EqTonePanel_marginTop">14dp</dimen>
+	<dimen name="EqTonePanel_offsetTB">2dp</dimen>
 	<dimen name="EqTonePanel_offsetLeft">16dp</dimen>
 	
 	
@@ -84,7 +84,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqRoundKnobLabel_maxWidth">120dp</dimen>
 	<dimen name="EqToneRoundKnobLabel_maxWidth">50dp</dimen>
-	<dimen name="EqToneRoundKnobLabel_marginRight">-4dp</dimen>
+	<dimen name="EqToneRoundKnobLabel_marginRight">-1dp</dimen>
 	
 	<dimen name="RoundKnobLabelLeftTop_marginRight">4dp</dimen>
 	<dimen name="RoundKnobLabelLeftTop_marginTop">8dp</dimen>

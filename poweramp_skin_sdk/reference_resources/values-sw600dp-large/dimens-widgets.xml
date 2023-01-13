@@ -1,0 +1,30 @@
+<resources>
+	<dimen name="widget4x1_font_size1">14sp</dimen>
+	<dimen name="widget4x1_font_size2">16sp</dimen>
+	<dimen name="widget4x1_font_size3">18sp</dimen>
+	<dimen name="widget4x1_font_size4">19sp</dimen>
+	<dimen name="widget4x1_font_size5">20sp</dimen>
+	<dimen name="widget4x1_font_size6">22sp</dimen>
+	<dimen name="widget4x1_font_size7">25sp</dimen>
+	<dimen name="widget4x1_font_size8">27sp</dimen>
+	<dimen name="widget4x1_font_size9">29sp</dimen>
+	<dimen name="widget4x1_font_size10">31sp</dimen>
+	<dimen name="widget4x1_font_size11">34sp</dimen>
+
+	<!-- 4x1 -->
+	<dimen name="widget4x1_icons_size">38dp</dimen>
+	<dimen name="widget4x1_icons_padding">4dp</dimen>
+	<dimen name="widget4x1_contros_marginTop">0dp</dimen>
+	<dimen name="widget4x1_controls_margin">2dp</dimen>
+	<dimen name="widget4x1_cat_maxSize">44dp</dimen>
+	<dimen name="widget4x1_cat_padding">4dp</dimen>
+
+	<dimen name="widget4x1_ff_rw_controls_maxSize">48dp</dimen>
+	<dimen name="widget4x1_ff_rw_padding">4dp</dimen>
+
+	<dimen name="widget4x1_play_maxSize">58dp</dimen>
+	<dimen name="widget4x1_play_padding">4dp</dimen>
+
+	<dimen name="widget4x1_text_labels_margin">1dp</dimen>
+
+</resources>

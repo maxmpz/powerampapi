@@ -97,8 +97,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="navbar_list"/>
 		
 	<item type="id" name="scene_navbar_2lines"/>
+	<item type="id" name="scene_navbar_3lines"/>
+	<!-- *_sheet means the extended navbar menu -->
 	<item type="id" name="scene_navbar_1line_sheet"/>
 	<item type="id" name="scene_navbar_2lines_sheet"/>
+	<item type="id" name="scene_navbar_3lines_sheet"/>
 	
 	<!-- Popup menu -->
 	<item type="id" name="menu"/>
@@ -126,7 +129,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Bus ids -->
 	<item type="id" name="bus_app"/><!-- App level bus, also a state bus -->
 	<item type="id" name="bus_app_cmd"/>
-	<item type="id" name="bus_gui"/><!-- Gui only messages. REVISIT: no bus_gui_cmd for now? Public -->
+	<item type="id" name="bus_gui"/><!-- Gui only messages. NOTE: no bus_gui_cmd exists. Public -->
 		
 	<!-- Msgs/states/cmds -->
 	<item type="id" name="state_app_live_activities"/><!-- int. Number of created and not yet destroyed activities -->
@@ -155,7 +158,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_one_item_selected"/><!-- boolean -->
 	<item type="id" name="state_list_selection_count"/><!-- integer, also a msg -->
 	<item type="id" name="state_list_item_count"/><!-- integer -->
-	<item type="id" name="state_list_selectable_item_count"/><!-- integer -->
+	<item type="id" name="state_list_selectable_item_count"/><!-- integer. Available only during selection mode -->
+	<item type="id" name="state_list_may_be_selectable_item_count"/><!-- integer, always available -->
 	<item type="id" name="state_list_empty"/><!-- boolean, also a msg -->
 	<item type="id" name="state_list_search_text"/><!-- null if current provider is not ProviderSearchSupport, otherwise search string, including "" (empty string) -->
 	<item type="id" name="state_list_nav_allowed"/><!-- boolean, also a msg. Msg is sent only when state_list_nav_allowed state becomes true -->
@@ -179,7 +183,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- Sets gui to modal mode: used for popups and other modal-like use cases -->
-	<item type="id" name="cmd_gui_set_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
+	<item type="id" name="cmd_gui_set_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state, arg2, boolean true => do not lock orientation -->
 	<item type="id" name="cmd_gui_unset_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
 	<item type="id" name="cmd_gui_reset_modal"/><!-- bus_gui, no anim by default, optional boolean arg = anim (PopupMenuHelper only) -->
 	<item type="id" name="cmd_gui_show_toast"/><!-- bus_gui, arg1 = icon res, arg2 = optional duration ms (>0), obj = CharSequence or array[2] of CharSequence. Public -->

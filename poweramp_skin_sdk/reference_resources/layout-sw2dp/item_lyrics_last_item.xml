@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,32 +19,17 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- land -->
-<resources 
+<com.maxmpz.widget.base.ItemSceneFastLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
+	style="?ItemEmptyList"
 >
-	<style name="CcButton_MainUI" parent="CcButton_MainUIBase">
-		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_marginRight">4dp</item>
-	</style>
-	
-	<style name="CcButton_MainUI_scenes_playing">
-		<item name="layout_attachTop">inset</item>
-		<item name="layout_attachRight">inset</item>
-		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		
-		<item name="android:visibility">visible</item>
-		<item name="android:alpha">1</item>
-	</style>
-	
-	<style name="CcButton_MainUIButton" parent="CcButton_MainUIButtonBase">
-		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:layout_marginRight">8dp</item>
-	</style>
-		
-		
-</resources>
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/item_empty_list_text"
+		style="?ItemLastLyricsItemText"
+		/>
+	<SceneParams w:scene="@+id/scene_unsync"
+		style="?ItemLastLyricsItemText_scene_unsync"
+		/>
+
+
+</com.maxmpz.widget.base.ItemSceneFastLayout>

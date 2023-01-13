@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<resources
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+>
+	<!-- NOTE: ItemLyrics is special due to the dynamic item height. We can't assume the item has a fixed height like
+	     other list items usually do, so we _can't_ use any bottom attachments or vertical gravity in it -->
+	<style name="ItemLyrics" parent="ItemGenericBase">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item><!-- See ItemLyrics comment -->
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingLeft">16dp</item>
+		<item name="android:clipChildren">false</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="android:background">@drawable/item_bg</item>
+	</style>
+
+	<!-- NOTE: _active scenes applied within the same item size (width/height), meaning we must
+	     have enough room inside the original item height to properly fit zoomed text.
+	     This is done by reducing the marginTop/Bottom for the _active scene -->
+
+	<style name="ItemLyricsTitle">
+		<item name="android:layout_gravity">center_horizontal</item><!-- See ItemLyrics comment -->
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item><!-- See ItemLyrics comment -->
+
+		<!-- We need some margin for normal (non active) items so making them active via zooming do not relayout them -->
+		<item name="android:layout_marginLeft">17sp</item>
+		<item name="android:layout_marginRight">17sp</item>
+
+		<item name="android:layout_marginTop">13sp</item>
+		<item name="android:layout_marginBottom">13sp</item>
+
+		<item name="android:gravity">center_horizontal</item>
+
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+
+		<item name="android:textAppearance">?ItemLyricsTitle_Text</item>
+		<item name="android:textColor">?colorIconDisabled</item>
+
+		<item name="android:scaleX">1</item>
+		<item name="android:scaleY">1</item>
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
+
+		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotY">0px</item>
+
+		<item name="android:translationZ">?over_aa_elevation</item>
+		<item name="android:outlineProvider">none</item>
+		<item name="android:ellipsize">end</item>
+		<item name="alignEllipsis">false</item>
+		<item name="eatFontPads">true</item>
+	</style>
+	<style name="ItemLyricsTitle_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">22sp</item>
+	</style>
+
+	<!-- NOTE: recalcChildren=dynamic requires very specific marginLeft/Right values for non-active scene
+	     to avoid jumping of text layout, and still that may happen multiple times when view is transitioned
+	     to/from active state as available width + scale is changed dynamically causing text reflows -->
+	<!-- NOTE: marginTop/Bottom here, while applied, makes little sense, as item height is already fixed and
+	     we just need to center text vertically -->
+	<style name="ItemLyricsTitle_active">
+		<item name="recalcChildren">50%</item>
+		<item name="android:layout_gravity">center_horizontal|center_vertical</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">13sp</item>
+		<item name="android:layout_marginBottom">13sp</item>
+
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="applyViewParams">true</item>
+
+		<item name="scale">1.1</item>
+		<item name="layout_compensateScale">1.1</item>
+	</style>
+
+	<style name="ItemLyricsTitle_scene_small">
+		<item name="recalcChildren">50%</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">48sp</item>
+		<item name="android:layout_marginRight">48sp</item>
+		<item name="android:layout_marginTop">11sp</item>
+		<item name="android:layout_marginBottom">11sp</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="scale">.65</item>
+		<item name="layout_compensateScale">.65</item>
+	</style>
+	<style name="ItemLyricsTitle_scene_small_active">
+		<item name="recalcChildren">50%</item>
+		<item name="android:layout_gravity">center_horizontal|center_vertical</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">0sp</item>
+		<item name="android:layout_marginBottom">0sp</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="scale">.85</item>
+		<item name="layout_compensateScale">.85</item>
+	</style>
+
+	<style name="ItemLyricsTitle_scene_zoomed">
+		<item name="recalcChildren">50%</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">13sp</item>
+		<item name="android:layout_marginRight">13sp</item>
+		<item name="android:layout_marginTop">17sp</item>
+		<item name="android:layout_marginBottom">17sp</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?colorIconDisabled</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="scale">1.2</item>
+		<item name="layout_compensateScale">1.2</item>
+	</style>
+	<style name="ItemLyricsTitle_scene_zoomed_active">
+		<item name="recalcChildren">50%</item>
+		<item name="android:layout_gravity">center_horizontal|center_vertical</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">0sp</item>
+		<item name="android:layout_marginBottom">0sp</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="scale">1.3</item><!-- 1.3 -->
+		<item name="layout_compensateScale">1.3</item>
+	</style>
+	<!-- Unsync -->
+	<style name="ItemLyricsTitle_scene_unsync">
+		<item name="recalcChildren">50%</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item><!-- See ItemLyrics comment -->
+		<item name="android:layout_gravity">left</item>
+		<item name="android:layout_marginLeft">0sp</item>
+		<item name="android:layout_marginRight">0sp</item>
+		<item name="android:layout_marginTop">16sp</item>
+		<item name="android:layout_marginBottom">0sp</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:gravity">left|top</item>
+		<item name="android:textColor">?colorLessContrast</item>
+		<item name="scale">.85</item>
+		<item name="layout_compensateScale">.85</item>
+	</style>
+	<style name="ItemLyricsTitle_scene_unsync_small">
+		<item name="recalcChildren">50%</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item><!-- See ItemLyrics comment -->
+		<item name="android:layout_gravity">left</item>
+		<item name="android:layout_marginTop">16sp</item>
+		<item name="android:layout_marginBottom">0sp</item>
+		<item name="android:layout_marginLeft">0sp</item>
+		<item name="android:layout_marginRight">0sp</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:gravity">left|top</item>
+		<item name="android:textColor">?colorLessContrast</item>
+		<item name="scale">.65</item>
+		<item name="layout_compensateScale">.65</item>
+	</style>
+	<style name="ItemLyricsTitle_scene_unsync_zoomed">
+		<item name="recalcChildren">50%</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item><!-- See ItemLyrics comment -->
+		<item name="android:layout_gravity">left</item>
+		<item name="android:layout_marginTop">16sp</item>
+		<item name="android:layout_marginBottom">0sp</item>
+		<item name="android:layout_marginLeft">0sp</item>
+		<item name="android:layout_marginRight">0sp</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:gravity">left|top</item>
+		<item name="android:textColor">?colorLessContrast</item>
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
+	</style>
+
+
+	<style name="ItemEmptyLyricsText" parent="ItemEmptyListText">
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="layout_consumeSpace">@null</item>
+		<item name="layout_attachBottom">@id/item_empty_lyrics_hint</item>
+		<item name="android:textSize">@dimen/large4_AltFont_textSize</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
+	<style name="ItemEmptyLyricsLoadingViaPlugin" parent="ItemEmptyListText">
+		<item name="layout_attachBottom">@id/progress</item>
+		<item name="layout_consumeSpace">@null</item>
+		<item name="android:layout_marginBottom">16dp</item>
+	</style>
+
+	<style name="ItemEmptyLyricsHint">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:textAppearance">?Hint</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="layout_attachBottom">@id/search_button</item>
+	</style>
+
+	<style name="ItemEmptyLyricsSearchButton" parent="WhiteButtonBase">
+		<item name="android:layout_gravity">center</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginBottom">12dp</item>
+		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+	</style>
+
+	<style name="ItemLastLyricsItemText">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">top|left</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_marginTop">24dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+
+		<item name="android:textAppearance">?ItemTextLine2_Text</item>
+		<item name="android:textColor">?android:textColorSecondary</item>
+	</style>
+
+	<style name="ItemLastLyricsItemText_scene_unsync">
+		<item name="applyViewParams">true</item>
+		<item name="android:gravity">left</item>
+	</style>
+</resources>

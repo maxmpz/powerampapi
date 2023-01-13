@@ -156,27 +156,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:disabledAlpha"/>
 	</declare-styleable>
 	
-	<!-- Scene-overridable extra FastTextView params -->
-	<declare-styleable name="FastTextViewSceneParams">
-		<attr name="lineBackground"/>
-		<attr name="android:textColor" />
-		<attr name="android:maxLines"/>
-		<!-- NOTE: prior SDK=22 it's not possible to detect @empty (or @null) vs missing attribute.
-		     For now, use #00000000 (#0000) color instead to indicate transition to no-background -->
-		<attr name="android:background"/>
-		<attr name="drawableTint"/>
-		<!-- NOTE: limited support for drawable transitions. For the new drawable to appear, default scene should have some default drawable set
-			 Basically, that means we can transition between drawables, but we can't transition between no-drawable and drawable and vice-versa -->
-		<attr name="android:drawable"/>
-		
-		<!-- NOTE: supported by MarqueeFastTextView only. Changed by not animated -->
-		<attr name="android:ellipsize"/>
 
-		<!-- This is changed per scene, but not animated ATM -->
-		<attr name="android:gravity"/>
-	</declare-styleable>
-	
-	
 	<!-- FastButton is derived from FastTextView -->
 	<declare-styleable name="FastButton">
 		<!-- Default=false. If false, ripple animation is cancelled, good for cases when button click causes immediate animation/scene transition, and animated
@@ -239,6 +219,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Target layout to inject -->
 		<attr name="android:layout"/>
 		<!-- Target scene id layout will load for. This is usually not needed and missing, as code decides when to load this behavior instead -->
+		<!-- NOTE: ensure these attrs are grouped together as we use range >/< attr comparisons to parse the value -->
 		<attr name="loadForScene" format="reference"/>
 		<attr name="loadForScene_2" format="reference"/>
 		<attr name="loadForScene_3" format="reference"/>
@@ -247,6 +228,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="loadForScene_6" format="reference"/>
 		<attr name="loadForScene_7" format="reference"/>
 		<attr name="loadForScene_8" format="reference"/>
+		<attr name="loadForScene_9" format="reference"/>
 		<!-- Optional insert position. Default is end (views appended to parent, fastest) -->
 		<attr name="insertAt" format="integer">
 			<!-- Insert at position of behavior. 
@@ -275,6 +257,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="BusActionBehavior">
 		<attr name="busId" format="reference"/><!-- E.g. @id/list (== bus supporting view id) or @id/bus_gui -->
 		<attr name="msgId" format="reference"/><!-- E.g. @id/cmd_list_select_all -->
+		<attr name="longPressBusId"/><!-- Optional, busId is used by default -->
 		<attr name="longPressMsgId" format="reference"/><!-- E.g. @id/cmd_list_select_all. Send on long press and (if repeatLongPressPeriod > 0) periodically  -->
 		<attr name="longPressEndMsgId" format="reference"/><!-- Sent on long press end. Optional. Only valid if longPressMsgId is set -->
 		
@@ -328,6 +311,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="morphLongPressMsgId" format="reference"/>
 		<attr name="morphLongPressEndMsgId" format="reference"/>
 		<attr name="morphContentDescription" format="string"/>
+		<!-- Default=true -->
+		<attr name="morphCrossfade" format="boolean"/>
 		<attr name="android:drawable"/>
 	</declare-styleable>
 	
@@ -763,8 +748,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- If exists, scroll up small drawable will be drawn on top of az -->
 		<attr name="azScrollUp" format="reference"/>		
 				
-		<!-- The characters to use in az scrolling mode. Should be properly sorted -->
-		<attr name="azChars" format="string"/><!-- NOTE: also should be defined for main theme, as Pages take it from there -->
+		<!-- Not used anymore -->
+		<attr name="azChars" format="string"/>
 		
 		<!-- Padding for az scrolling mode -->		
 		<attr name="azPaddingLeft" format="dimension"/>
@@ -777,6 +762,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Optional size (height) for az scrolling mode. Can be a percentage of available height or direct fixed size -->
 		<attr name="azSize" format="dimension|fraction"/>
+
+		<!-- Color of the line between A-Z chars. Can be #0000 to avoid separators -->
+		<attr name="azSeparatorLineColor" format="color"/>
 		
 		<!-- Also, android:text* attributes are supported -->
 		<!-- NOTE: font size is automatically selected depending on space available in the cells -->
@@ -799,6 +787,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:drawable"/>
 		<attr name="drawableOff"/>
 		<attr name="lineBackground"/>
+		<attr name="android:gravity"/>
 	</declare-styleable>
 	
 				

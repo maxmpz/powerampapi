@@ -45,22 +45,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqButton_marginSide">8dp</dimen>
 	<dimen name="EqEquPresetButtonLayout_layout_width">128dp</dimen>
 	
+
+	<dimen name="EqSmallRoundKnobLayout_maxSize">170dp</dimen>
+
 	<dimen name="EqToneRoundKnobLabel_maxWidth">100dp</dimen>
 	<dimen name="EqToneRoundKnobLabel_marginRight">0dp</dimen>
-	
-	<dimen name="EqSmallRoundKnobLayout_maxSize">170dp</dimen>
-	<dimen name="EqToneRoundKnobLayout_maxSize">220dp</dimen>
+	<dimen name="EqToneRoundKnob_maxSize">190dp</dimen>
+
 	<dimen name="EqRoundKnobLayout_maxSize">220dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">240dp</dimen>
-		
 	<dimen name="EqSmallRoundKnob_maxSize">130dp</dimen>
-	<dimen name="EqToneRoundKnob_maxSize">190dp</dimen>
 	<dimen name="EqRoundKnob_maxSize">180dp</dimen>
 	<dimen name="EqParamRoundKnobBase_maxSize">160dp</dimen>
 	<dimen name="EqLargerRoundKnob_maxSize">200dp</dimen>
-	<dimen name="EqToneRoundKnobLayout_maxWidth">300dp</dimen>
-
-
-
 	<dimen name="EqPresetButtonLayout_width">132dp</dimen><!-- land only -->
 </resources>

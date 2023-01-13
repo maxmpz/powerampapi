@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -45,10 +45,26 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_consumeSpace">horizontal</item>
 
 		<item name="android:gravity">fill</item>
-		<item name="cornerRadius">0dp</item>
+		<item name="cornerRadius1">0dp</item>
 		<item name="android:elevation">0px</item><!--  Forced no elevation -->
 		<item name="drawableOnly">true</item>
 		<item name="android:visibility">visible</item>
+	</style>
+	<style name="ItemTextAAImage_scene_subheader">
+		<item name="android:layout_width">16dp</item>
+		<item name="android:layout_height">16dp</item>
+		<!--<item name="android:layout_gravity">center_vertical</item>-->
+		<!--
+		<item name="layout_attachRight">parent</item>
+		<item name="android:layout_marginRight">22dp</item>
+		<item name="android:layout_marginLeft">24dp</item>
+		-->
+		<item name="layout_attachTop">@+id/line2</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:layout_marginRight">6dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:visibility">visible</item>
+		<item name="android:alpha">0.9</item>
 	</style>
 	<style name="ItemTextAAImage_scene_grid">
 		<!-- <item name="baseScene">defaultScene</item> -->
@@ -95,8 +111,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:transformPivotX">0px</item><!-- NOTE: transformPivot* are needed for more predictable scaling, from top/left -->
 		<item name="android:transformPivotY">0px</item>
+
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_gravity">center_vertical</item>
+		
 		<item name="android:paddingLeft">12dp</item>
 		<item name="android:paddingRight">12dp</item>
 		<item name="android:paddingTop">10dp</item>
@@ -109,11 +127,34 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:maxLines">2</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
+		<item name="android:ellipsize">end</item>
+
 		<item name="android:visibility">visible</item><!-- IMPORANT: as we change visibility and may initially render in hidden state -->
 	</style>
 	<style name="ItemTextTitle_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textStyle">normal</item>
 		<item name="android:textSize">18dp</item>
+	</style>
+	<style name="ItemTextTitle_scene_subheader">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_alignToContent">all</item>
+		<item name="android:layout_marginTop">4dp</item>
+
+		<item name="layout_attachTop">@+id/line2</item>
+		<item name="layout_attachLeft">@+id/aa_image</item>
+		<item name="layout_attachRight">@+id/subhead_button</item>
+
+		<item name="android:visibility">visible</item>
+
+		<item name="scale">.925</item>
+		<item name="layout_compensateScale">.925</item>
+
+		<item name="android:ellipsize">marquee</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:maxLines">1</item>
 	</style>
 	<style name="ItemTextTitle_scene_grid" parent="ItemTextTitle">
 		<item name="recalcChildren">75%</item>
@@ -135,14 +176,15 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">0dp</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
-		<item name="scale">1.5</item>
-		<item name="android:scaleX">1.5</item>
-		<item name="android:scaleY">1.5</item>
-		<item name="layout_compensateScale">1.5</item>
+		<item name="scale">1.6</item>
+		<item name="android:scaleX">1.6</item>
+		<item name="android:scaleY">1.6</item>
+		<item name="layout_compensateScale">1.6</item>
 		<item name="applyViewParams">true</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:maxLines">1</item><!-- IMPORTANT due to fixed position for decor -->
 		<item name="android:visibility">visible</item>
+		<item name="android:ellipsize">marquee</item>
 	</style>
 	<style name="ItemTextTitle_scene_header_no_buttons" parent="ItemTextTitle_scene_header">
 		<item name="layout_gravityTarget">@+id/aa_image</item>
@@ -175,6 +217,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="scale">1.25</item>
 		<item name="layout_compensateScale">1.25</item>
 		<item name="android:visibility">visible</item>
+		<item name="android:ellipsize">marquee</item>
 	</style>
 
 	<style name="ItemTextLine2">
@@ -196,6 +239,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
+		<item name="eatFontPads">true</item>
+		<item name="android:ellipsize">end</item>
+		
 		<item name="android:visibility">visible</item>
 		<item name="scale">1</item>
 		<item name="android:scaleX">1</item>
@@ -203,6 +249,28 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<style name="ItemTextLine2_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">11dp</item>
+	</style>
+	<style name="ItemTextLine2_scene_subheader">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">9dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_attachRight">@+id/subhead_button</item>
+		<item name="android:layout_marginLeft">16dp</item>
+
+		<item name="layout_attachTop">parent</item>
+		<item name="android:visibility">visible</item>
+		<item name="layout_alignToContent">all</item>
+
+		<item name="applyViewParams">true</item>
+		<item name="android:textColor">?android:textColorSecondary</item>
+
+		<item name="scale">1</item>
+		<item name="android:scaleX">1</item>
+		<item name="android:scaleY">1</item>
+		<item name="android:ellipsize">marquee</item>
 	</style>
 	<style name="ItemTextLine2_scene_grid">
 		<item name="baseScene">defaultScene</item>
@@ -217,6 +285,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="scale">1.25</item>
 		<item name="android:visibility">visible</item>
+		<item name="android:ellipsize">marquee</item>
 	</style>
 	<style name="ItemTextLine2_scene_item_menu">
 		<item name="recalcChildren">on_start</item>
@@ -229,8 +298,35 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="scale">1.25</item>
 		<item name="android:visibility">visible</item>
 		<item name="layout_consumeSpace">reset_horizontal</item>
+		<item name="android:ellipsize">marquee</item>
 	</style>
 
+	<style name="ItemTextSubheadButton" parent="ItemSubheadWithButtonButton">
+		<item name="android:layout_marginTop">9dp</item>
+		<item name="android:layout_marginLeft">18dp</item>
+		<item name="android:layout_marginRight">17dp</item>
+		<item name="android:layout_gravity">right|top</item>
+
+		<item name="android:drawable">@drawable/text_right_arrow</item>
+		<item name="drawablePosition">right</item>
+		<item name="android:visibility">gone</item>
+		<item name="drawableOnly">true</item>
+
+		<!-- Due to the pointy side, arrow seems to be shifted right, so that requires compensation -->
+		<item name="android:paddingLeft">16dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="drawablePaddingStart">14dp</item>
+		<item name="android:drawablePadding">0dp</item>
+
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:background">@drawable/ripple_rounded_large</item>
+
+	</style>
+	<style name="ItemTextSubheadButton_scene_subheader">
+		<item name="android:visibility">visible</item>
+	</style>
 
 	<style name="ItemTextMenu" parent="BlackListMenu">
 		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
@@ -239,9 +335,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTextMenu_scene_menu" parent="BlackListMenu_scene_menu"><!-- Invisible -->
 	</style>
 	<style name="ItemTextMenu_scene_header" parent="BlackListMenu_scene_header">
-		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
-		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="applyViewParams">true</item>
+		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item>
 	</style>
 	<style name="ItemTextMenu_scene_top_header">
 		<item name="android:layout_gravity">center_vertical</item>
@@ -253,6 +349,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">parent</item>
 		<item name="recalcChildren">on_start</item>
 		<item name="android:visibility">visible</item>
+		<item name="android:elevation">?over_aa_elevation</item>
+		<item name="applyViewParams">true</item>
+		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item>
 	</style>
 	<style name="ItemTextMenu_scene_search_header" parent="ItemTextMenu_scene_top_header">
 		<item name="android:layout_gravity">top|start</item>
@@ -267,8 +367,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">24dp</item>
 		<item name="drawableTint">?colorIconPrimaryForced</item>
 		<item name="android:elevation">?bottom_toolbar_buttons_elevation</item>
-		<!--<item name="android:background">@drawable/ripple_bg_navbar_rounded_large</item>-->
-		<item name="android:background">@drawable/ripple_inverse_stroke_bg_rounded_large</item>
+		<item name="android:background">@drawable/ripple_bg_navbar_rounded_large</item>
 
 		<item name="applyViewParams">true</item>
 		<item name="scale">0.9</item>
@@ -306,7 +405,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTextBackDecorTitle_scene_header_back_decor" parent="ItemTopTextBackDecorTitle_scene_header_back_decor">
 		<item name="drawableTint">?colorIconInverseForced</item>
 		<item name="android:textColor">?android:textColorPrimaryInverse</item>
-		<item name="android:background">@drawable/ripple_text_bg_rounded_large</item>
+		<item name="android:background">?ItemTextBackDecorTitle_scene_header_back_decor_background</item>
 	</style>
 
 	<style name="ItemTopTextBackDecor" parent="ItemTrackBackDecor">
@@ -345,7 +444,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachTop">inset</item>
 		<item name="android:layout_marginTop">8dp</item><!-- NOTE: offset from status bar. We attached to status bar via layout_attachTop=inset -->
-		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginLeft">?ItemBackDecorTitle_scene_header_back_decor_marginLeft</item>
 		<item name="scale">0.8</item>
 		<item name="layout_compensateScale">0.8</item>
 		<item name="applyViewParams">true</item>
@@ -411,6 +510,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:drawable">?shuffle_24dp</item>
 	</style>
 	<style name="ItemTextHeaderShuffleButton_scene_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_header"></style>
+	<style name="ItemTextHeaderShuffleButton_scene_search_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_search_header"></style>
 	<style name="ItemTextHeaderShuffleButton_scene_menu" parent="WhiteStrokedListIconOnlyHeaderButton_scene_menu"></style>
 	<style name="ItemTextHeaderShuffleButton_scene_bottom_toolbar" parent="ListHeaderButton_scene_bottom_toolbar">
 		<item name="layout_attachRight">@id/play_button</item>
@@ -422,6 +522,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:drawable">?play_24dp</item>
 	</style>
 	<style name="ItemTextHeaderPlayButton_scene_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_header"></style>
+	<style name="ItemTextHeaderPlayButton_scene_search_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_search_header"></style>
 	<style name="ItemTextHeaderPlayButton_scene_menu" parent="WhiteStrokedListIconOnlyHeaderButton_scene_menu"></style>
 	<style name="ItemTextHeaderPlayButton_scene_bottom_toolbar" parent="ListHeaderButton_scene_bottom_toolbar">
 		<item name="layout_attachRight">@id/search_button</item>
@@ -434,6 +535,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="applyEvenIfGone">dontApplyIfGone</item>
 	</style>
 	<style name="ItemTextHeaderSearchButton_scene_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_header">
+		<item name="applyEvenIfGone">dontApplyIfGone</item>
+	</style>
+	<style name="ItemTextHeaderSearchButton_scene_search_header" parent="WhiteStrokedListIconOnlyHeaderButton_scene_search_header">
 		<item name="applyEvenIfGone">dontApplyIfGone</item>
 	</style>
 	<style name="ItemTextHeaderSearchButton_scene_menu" parent="WhiteStrokedListIconOnlyHeaderButton_scene_menu">
@@ -453,6 +557,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:ellipsize">end</item>
 	</style>
 	<style name="ItemTextHeaderSelectButton_scene_header" parent="WhiteStrokedListHeaderButton_scene_header">
+		<item name="layout_maxWidth">@dimen/ItemHeaderSelectButton_maxWidth</item><!-- NOTE: quite narrow for low end screens, relaxed for sw360dp and land -->
+	</style>
+	<style name="ItemTextHeaderSelectButton_scene_search_header" parent="WhiteStrokedListHeaderButton_scene_search_header">
 		<item name="layout_maxWidth">@dimen/ItemHeaderSelectButton_maxWidth</item><!-- NOTE: quite narrow for low end screens, relaxed for sw360dp and land -->
 	</style>
 	<style name="ItemTextHeaderSelectButton_scene_menu" parent="WhiteStrokedListHeaderButton_scene_menu"></style>

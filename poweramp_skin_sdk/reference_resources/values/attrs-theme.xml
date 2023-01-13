@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,37 +19,61 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- Generic colors and few other global theme attribures. See also attrs-player.xml -->
+<!-- Generic colors and few other global theme attribures. See also attrs-colors.xml, attrs-player.xml -->
 
 <resources>
-	<attr name="colorBgPrimary" format="color"/><!-- primary background color, e.g. white for Light theme -->
-	<attr name="colorBgPrimaryAlpha" format="color"/><!-- alpha faded primary background color -->
-	<attr name="colorBgLessAlpha" format="color"/><!-- a bit more pronounced alpha-faded primary background color -->
-	<attr name="colorInverse" format="color"/><!-- Foreground color for inverted color controls -->
-	<attr name="colorBgInverse" format="color"/><!-- Inverse background color, e.g. black for Light theme -->
-	<attr name="colorBgInverseChecked" format="color"/><!-- Inverse checked background color, e.g. EQ checkable buttons -->
-	<attr name="colorStroke" format="color"/><!-- Color for button stroke -->
-	<attr name="colorBgHelp" format="color"/><!-- Color for help balloons bg -->
-	<attr name="colorStrokeHelp" format="color"/><!-- Color for less visible stroke, e.g. for help hints -->
-	<attr name="colorLessContrast" format="color"/><!-- Tint/foreground color for a bit less contrast icons/buttons -->
-	<attr name="colorShade" format="color"/><!-- Shade colors for popup menus -->
-	<attr name="colorSeparator" format="color"/><!-- E.g. menu separator -->
-	<attr name="colorSeparatorLight" format="color"/><!-- E.g. menu separator (lighter) -->
-	<attr name="colorBgLight" format="color"/><!-- Non-contrast bg. Used ATM for Search Frame bg -->
-	<attr name="colorTextBgAlpha" format="color"/><!-- Semi-transparent background for text labels -->
-	
-	<attr name="colorIconPrimary" format="color"/><!-- Usually same as colorPrimary, but for black/#000 it should be #0000 to avoid tinting at all -->
-	<attr name="colorIconPrimaryForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
-	<attr name="colorIconLessContrast" format="color"/><!-- Tint/foreground color for a bit less contrast icons -->
-	<attr name="colorIconInverse" format="color"/><!-- Usually same as colorInverse, but for black/#000 it should be #0000 to avoid tinting at all -->
-	<attr name="colorIconInverseForced" format="color"/><!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
-	<attr name="colorIconDisabled" format="color"/><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
-	<attr name="colorItemActive" format="color"/><!-- Not used ATM -->
-	
-	<attr name="colorTextDisabled" foramt="color"/><!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob -->
+	<!-- Primary background color, e.g. white for Light theme -->
+	<attr name="colorBgPrimary" format="color"/>
+	<!-- Alpha faded primary background color -->
+	<attr name="colorBgPrimaryAlpha" format="color"/>
+	<!-- A bit more pronounced alpha-faded primary background color -->
+	<attr name="colorBgLessAlpha" format="color"/>
+	<!-- Foreground color for inverted color controls -->
+	<attr name="colorInverse" format="color"/>
+	<!-- Inverse background color, e.g. black for Light theme -->
+	<attr name="colorBgInverse" format="color"/>
+	<!-- Inverse checked background color, e.g. EQ checkable buttons -->
+	<attr name="colorBgInverseChecked" format="color"/>
+	<!-- Color for button stroke -->
+	<attr name="colorStroke" format="color"/>
+	<!-- Color for help balloons bg -->
+	<attr name="colorBgHelp" format="color"/>
+	<!-- Color for less visible stroke, e.g. for help hints -->
+	<attr name="colorStrokeHelp" format="color"/>
+	<!-- Tint/foreground color for a bit less contrast icons/buttons -->
+	<attr name="colorLessContrast" format="color"/>
+	<!-- Shade colors for popup menus -->
+	<attr name="colorShade" format="color"/>
+	<!-- E.g. menu separator -->
+	<attr name="colorSeparator" format="color"/>
+	<!-- E.g. menu separator (lighter) -->
+	<attr name="colorSeparatorLight" format="color"/>
+	<!-- Non-contrast bg. Used ATM for Search Frame bg -->
+	<attr name="colorBgLight" format="color"/>
+	<!-- Semi-transparent background for text labels -->
+	<attr name="colorTextBgAlpha" format="color"/>
 
-	<attr name="statusBarBg" format="color|reference"/><!-- Shade under status bar -->
-	<attr name="navigationBarBg" format="color|reference"/><!-- Shade under Android navigation bar -->
+	<!-- Usually same as colorPrimary, but for black/#000 it should be #0000 to avoid tinting at all -->
+	<attr name="colorIconPrimary" format="color"/>
+	<!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
+	<attr name="colorIconPrimaryForced" format="color"/>
+	<!-- Tint/foreground color for a bit less contrast icons -->
+	<attr name="colorIconLessContrast" format="color"/>
+	<!-- Usually same as colorInverse, but for black/#000 it should be #0000 to avoid tinting at all -->
+	<attr name="colorIconInverse" format="color"/>
+	<!-- Forced non-transparent color - for cases when we need color explicitly set for icon, e.g. top decor icons -->
+	<attr name="colorIconInverseForced" format="color"/>
+	<!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
+	<attr name="colorIconDisabled" format="color"/>
+	<!-- Not used ATM -->
+	<attr name="colorItemActive" format="color"/>
+	<!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob -->
+	<attr name="colorTextDisabled" format="color"/>
+
+	<!-- Shade under status bar -->
+	<attr name="statusBarBg" format="color|reference"/>
+	<!-- Shade under Android navigation bar -->
+	<attr name="navigationBarBg" format="color|reference"/>
 		
 	
 	<attr name="dialog_AlertDialogActivity"/>

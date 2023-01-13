@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -113,12 +113,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="moveableToolbarExtraStates">false</item>
 		<item name="moveableToolbarAnchor">bottom</item><!-- NOTE: Poweramp can make this bottomFixed if bottom is here and user selectes static navbar in settings -->
 
-		<!-- To avoid extra scrolling or overscrolling due to the selection menu being larger vs usual bottom bar,
-		     we now match both bottomReservedSpace to the highest possible bottom reserved space == selectionBottomReservedExtraSpace -->
 		<item name="bottomReservedSpace">@+id/navbar_bounds_2lines_size</item><!-- Should be ~ navbar height (in expanded form) + all its margins -->
+		<item name="bottomReservedSpace2">@+id/navbar_bounds_3lines_size</item><!-- Should be ~ navbar height (in expanded form) + all its margins -->
 		<item name="selectionBottomReservedExtraSpace">60dp</item><!-- Added to bottomReservedSpace to match ~ selection bar height + all its margins -->
 
-		<item name="listMilkMode">mainAA</item>
+		<item name="listMilkMode">mainAA|list|lyrics</item>
 		<item name="listScroller">@+id/list_scroller</item>
 		<item name="listIndexer">@+id/list_indexer</item>
 		<item name="listMilkAA">@+id/milk</item>
@@ -151,6 +150,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     NOTE: overridden in default-styles-alt.xml -->
 		<item name="aaMarginBottom">@dimen/ListSubstyleBase2_aaMarginBottom</item><!-- 200dp, larger on large screens -->
 		<item name="aaMinSize">130sp</item><!-- ~ 3 lines of text -->
+		<!-- Starting from this aspect of the available item space we want to make AA image fill whole area, not being scaled
+		     down square image -->
+		<item name="altAaLayoutRatio">1.85</item>
 		
 		<item name="itemSize">96dp</item>
 		<item name="itemSizeZoomed">137dp</item>
@@ -166,8 +168,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="compactTextItemSize">52dp</item>
 		
 		<item name="allTracksSubheadSize">88dp</item><!-- Size of all-tracks subheader, e.g. Artists/Albums all songs -->
-		<item name="metaSubheadSize">24dp</item><!-- Size of meta subheader, e.g. for any Files --><!-- Not used ATM --> 
-
+		<item name="metaSubheadSize">24dp</item><!-- Size of meta subheader, e.g. for any Files --><!-- Not used ATM -->
 
 		<item name="headerStretchyImage">@+id/aa_image</item>
 		
@@ -177,7 +178,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="libSearchAnimTime">0</item>
 		<item name="aaToSearchAnimTime">0</item>
 		<item name="searchToAAAnimTime">250</item>
-		
+
+		<item name="aaToLyricsAnimTime">250</item>
+		<item name="lyricsToAAAnimTime">150</item>
+
 		<item name="aaPosAnimTime">550</item>
 		<item name="aaPosSettleAnimTime">650</item>
 	</style>
@@ -230,7 +234,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 		
-	<style name="TopWaveseek">
+	<style name="TopWaveseekBase">
 		<item name="android:id">@+id/waveseek</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
@@ -250,7 +254,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">@drawable/focusable_bg</item><!-- Empty for Android 8+ -->
 		<item name="barTint">?colorWaveseekTint</item><!-- Disabled by default -->
 	</style>
-	
+	<style name="TopWaveseek" parent="TopWaveseekBase"></style>
+
 	<style name="TopWaveseekStatic" parent="TopWaveseek">
 		<!-- <item name="layout_maxHeight">150dp</item> -->
 		<item name="layout_maxHeight">@dimen/TopWaveseek_maxHeight</item><!-- 150dp -->
@@ -304,6 +309,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textSize">14dp</item>
 	</style>
 	<style name="TopTrackElapsed_scene_playing">
+		<item name="recalcChildren">on_start</item><!-- Reduces jump due to the text relayout -->
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">@dimen/TopTrackElapsedDuration_height</item><!-- Match pause button height in state_playing -->
@@ -454,6 +460,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="android:gravity">fill</item><!-- Force drawable to fill dimensions -->
 		<item name="drawableOnly">true</item>
@@ -480,7 +487,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableOnly">true</item>
 		<item name="deripple">true</item><!-- Remove duplicated RippleDrawables for broken skins -->
 	</style>
-	
+
+	<!-- NOTE: button size is defined by the prev/next cat drawable size, even for 10s jump mode -->
 	<style name="TopPrevCat" parent="TopSmallButton">
 		<item name="layout_attachRight">@+id/rw</item>
 		<item name="android:drawable">@drawable/ripple_prev_cat_round</item>
@@ -506,6 +514,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="morphLongPressMsgId">@id/cmd_player_begin_seek_jumps</item>
 		<item name="morphLongPressEndMsgId">@id/cmd_player_end_seek_jumps</item>
 		<item name="morphContentDescription">@string/back_10s</item>
+		<item name="morphCrossfade">false</item><!-- Avoid crossfade to avoid alpha modulation for the non-transparent background circle -->
 	</style>
 	
 	<style name="TopRw" parent="TopMediumButton">
@@ -566,7 +575,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="morphArg2">2</item>
 		<item name="morphLongPressMsgId">@id/cmd_player_begin_seek_jumps</item>
 		<item name="morphLongPressEndMsgId">@id/cmd_player_end_seek_jumps</item>
-
+		<item name="morphCrossfade">false</item><!-- Avoid crossfade to avoid alpha modulation for the non-transparent background circle -->
+		
 		<item name="android:contentDescription">@string/h_next_list</item>
 		<item name="morphContentDescription">@string/forward_10s</item>
 	</style>
@@ -682,8 +692,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="transformPivotX_percent">100%</item>
 		<item name="android:paddingRight">0dp</item>
 		<item name="android:paddingLeft">14dp</item>
-		<item name="android:layout_marginTop">110dp</item>
-		<item name="android:layout_marginBottom">110dp</item>
+		<item name="android:layout_marginTop">?TopListScrollerView_marginTop</item><!-- Changed by OptionLocalizedAZScroll -->
+		<item name="android:layout_marginBottom">?TopListScrollerView_marginBottom</item><!-- Changed by OptionLocalizedAZScroll -->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">0dp</item>
 		<item name="layout_attachRight">parent</item>
@@ -693,10 +703,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="azTouchedBackground">?colorFastScrollerPressed</item><!-- #444 -->
 		<item name="azPaddingTop">0dp</item>
 		<item name="azPaddingBottom">0dp</item>
+		<item name="azSeparatorLineColor">?colorAZSeparator</item>
 		<item name="azPaddingLeft">8dp</item>
 		<item name="azSize">100%</item>
-		<item name="azTextScale">.45</item>
-		<!-- <item name="azChars">@string/azChars</item> --><!-- NOTE: always provided by Pages -->
+		<item name="azTextScale">?TopListScrollerView_azTextScale</item>
 		<item name="azScrollUp">@drawable/scroll_up</item>
 		<item name="android:focusable">false</item><!-- Disable, as focusing it makes little sense -->
 		<item name="android:textAppearance">?TopListScrollerView_Text</item>
@@ -751,6 +761,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="TopSearchLayout">
 		<item name="layout_attachTop">@+id/status_bar_bg</item>
+		<item name="layout_attachLeft">inset</item>
+		<item name="layout_attachRight">inset</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:clipChildren">false</item>
@@ -804,6 +816,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:includeFontPadding">false</item>
+		<item name="android:imeOptions">flagNoExtractUi</item>
 	</style>
 
 	<style name="TopSearchCatsLayout">
@@ -925,7 +938,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:translationZ">?modal_translationZ</item>
 		<item name="android:outlineProvider">none</item>
 		<item name="android:textAppearance">?TopListIndexerPopupView_Text</item>
-		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+		<item name="android:textColor">?colorAZPressed</item>
 	</style>
 	<style name="TopListIndexerPopupView_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">80dp</item>
@@ -1126,7 +1139,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">true</item>
 		<item name="android:scaleX">0.95</item>
 		<item name="android:scaleY">0.95</item>
-		<item name="layout_compensateScale">0.95</item>
+		<!-- NOTE: do not use layout_compensateScale as this is centered view with the centered scale pivot -->
 		<item name="android:alpha">0.75</item>
 		<item name="layout_gravityTarget">@id/sub_aa_buttons</item>
 		<item name="android:layout_gravity">center</item>
@@ -1182,7 +1195,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scaleX">0.85</item>
 		<item name="android:scaleY">0.85</item>
 	</style>
-			
+
+
 	<style name="TopMetaInfo"><!-- NOTE: this is a PopupLayout -->
 		<item name="android:id">@+id/meta_info</item>
 		<!-- NOTE: avoid paddings here as they propagate to popup -->
@@ -1195,7 +1209,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clickable">true</item><!-- Force clickable, otherwise, while we're actually clickable here, some keyboard presses are mishandled -->
 		<item name="android:focusable">true</item><!-- Clickability is managed automatically -->
 		<item name="android:focusableInTouchMode">false</item>
-		<item name="lineBackground">@drawable/alpha_popup_button_layout_bg</item>
+		<item name="lineBackground">?meta_info_bg</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:longClickable">true</item><!-- NOTE: making it also clickable=true here will cause ripple drawable in popup to activate -->
 		<item name="menuItemsLayout">@layout/merge_dsp_info_popup_layout</item>
@@ -1230,7 +1244,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:textAppearance">?TopMetaInfoLabel_Text</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textColor">?colorMetaInfo</item>
 		<item name="stateBusId">@id/bus_player</item>
 		<item name="labelStateId">@id/state_player_track_meta</item>
 		<item name="iconStateId">@id/state_player_track_meta_icon</item>
@@ -1344,7 +1358,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textAppearance">?TopHelpButton_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		
-		
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_help_large</item>
 		<item name="android:paddingLeft">16dp</item>

@@ -47,7 +47,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 NOTE: FastLayout takes own paddings into account when applying child layout gravity. This is different, from e.g. RelativeLayout
 			 layout_centerInParent/centerHorizontal/centerVertical, which doens't account for the layout own paddings.
 		-->
-		<attr name="android:layout_gravity" />
+		<attr name="android:layout_gravity"/>
 
 		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT)
 		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size.
@@ -105,7 +105,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 		<attr name="layout_flexWeight" format="float"/>
 
-		<!-- If true, this and all next flex views are laid out bottom-up in the xml order -->
+		<!-- If true, this and all next flex views are laid out bottom-up (in the xml reversed order) -->
 		<attr name="layout_flexReverse" format="boolean"/>
 
 		<!-- layout_attach* attribute can attach view to:
@@ -146,10 +146,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="side" value="-3"/>
 		</attr>
 
-		<!-- layout_attachRightToRight => attaches right edge of view to right edge of target view. No fraction or parent here,
-			 as layout_attachRightToRight="fraction %" would be the same as layout_attachRight="fraction %",
-			 and layout_attachRightToRight="parent" would be the same as layout_attachRight="parent".
-			 layout_attachRightToRight and layout_attachRight are mutually exclusive. The last parsed attribute is in effect.
+		<!-- layout_attach*To* (where *= Right|Left|Top|Bottom => attaches appropriate edge of the view to same edge of the target view.
+			 layout_attach*To* and layout_attach* for the same * are mutually exclusive. layout_attach*To* takes priority.
+			 (Since 940) If layout_attach*="value %" is specified, then this view is also offset from the target view by the specified percent of the target
+			 size in the given axis (width for Right|Left, height for Top|Bottom).
 			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
 		-->
 
@@ -164,10 +164,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 The gravity target view should be in the same parent as this view.
 			 If gravity target view doesn't exist, or is GONE, view gravitates to parent.
 			 Not supported for layout_flex views.
-			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
+			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first
+			 (xml order is ignored).<br><br>
 
 			 NOTE: this disables accounting for gravity based consumed parent space, as gravityTarget view bounds become the reference bounds for this view
-			 Consume space still works if layout_attach*="parent" is used
+			 Consume space still works if layout_attach*="parent" is used<br><br>
+
+			 NOTE: doesn't trigger referenced view layout and doesn't take layout_goneWhenEmpty=true into account
 		-->
 		<attr name="layout_gravityTarget" format="reference|integer">
 			<enum name="parent" value="0"/>
@@ -181,8 +184,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</attr>
 
 		<!-- Applies additional offsets for gravity AND parent available size for this child on appripriate side based on window insets.
-		     By default, gravity aligns to the parent sides ignoring possible insets. Also, for match_parent size, %-percent size, or any other parent-related size, no
-		     insets are accounted for. With this attribute, appropriate side inset will be accounted for.
+		     By default, gravity aligns to the parent side ignoring possible insets. Also, for match_parent size, %-percent size, or any other parent-related size, no
+		     insets are accounted for. With this attribute, appropriate side inset will be applied.
 		     For example, view with layout_offsets=insets and match_parent/match_parent will fill parent according to window insets.
 		     This, of course, works if insets are propagated appropriately -->
 		<attr name="layout_offsets">
@@ -245,14 +248,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 			<!-- Automatically resets appropriate axis as soon as no more space on this axis exists and consumes other axis on such reset.
 				 This results in automatic layout break to new "line" (or column, for vertical layout).
-				 E.g. if multiple views have layout_consumeSpace="horizontal|reset_auto", they will be laid out in rows.
-				 NOTE: layout_consumeSpace is processed after given view is laid out. Thus, if there is no enough space for view due to consumed space,
-				 view will "overshoot" or will be shrinked. Thus, reset_auto works best with predefined percent view dimensions, e.g.
+				 E.g. if multiple views have layout_consumeSpace="horizontal|reset_auto", they will be laid out in cols, then, rows.
+				 NOTE: layout_consumeSpace is processed after the given view is laid out. Thus, if there is no enough space for view
+				 due to consumed space, view will "overshoot" or will be shrinked.
+				 Thus, reset_auto works best with predefined percent view dimensions, e.g.
 				 multiple views with w:layout_widthPercent="25%" w:layout_consumeSpace="horizontal|reset_auto" will be laid out
-				 in rows, 4 view per row
+				 in cols then in in rows, 4 views per a row.
 				 NOTE: reset_auto by default resets horizontal axis and consumes vertical.
 				 Only if vertical (without also horizontal) is specified for given view, vertical axis will be reset, and horizontal consumed.
-				 Other reset_* flags are processed as usual, thus, can cause double consuption and other side effects, if used together with reset_auto
+				 Other reset_* flags are processed as usual, thus, can cause double consumption and other side effects
+				 if used together with reset_auto.
 			 -->
 			<flag name="reset_auto" value="0x40000000"/>
 
@@ -263,16 +268,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<flag name="stack_horizontal" value="0x800000"/>
 		</attr>
 
-		<!-- android:layout_gravity will be used if layout_forceGravityIfGone="@id/some_view_id" view is missing or GONE -->
+		<!-- android:layout_gravity will be used if layout_forceGravityIfGone="@id/some_view_id" view is missing or GONE.<br>
+		     NOTE: doesn't trigger referenced view layout and doesn't take layout_goneWhenEmpty=true into account -->
 		<attr name="layout_forceGravityIfGone" format="reference"/>
 
-		<!-- if any of layout_attach* target ids are "gone", view is attached to appropriate parent side.
+		<!-- if any of layout_attach* target ids are "gone" (and layout_applyMarginsForGone=false for them),
+		     this view is attached to appropriate parent side.<br>
 			 NOTE: view is attached to parent side if no such target "attach to" view exists, even without this property set to true.
 		     This attribute ensures view is attached to parent when the attach target visibility is GONE.
-			 layout_consumeSpace attribute is still processed -->
+			 layout_consumeSpace attribute is still processed<br>
+			 NOTE: if the target view has layout_applyMarginsForGone=true the target view is never considered as a "gone" view -->
 		<attr name="layout_attachToParentIfGone" format="boolean"/>
 
-		<!-- View margins are compensated for given scale (thus, margins are not affected by scaleX/scaleY/scale transformations)
+		<!-- View margins are compensated for the given scale (thus, margins are not affected by scaleX/scaleY/scale transformations)
 			 Requires pivot set to 0, 0 (i.e. android:transformPivotX=0, android:transformPivotY=0). Doesn't work with MATCH_PARENT,
 			 though works with attachLeft/attachRight combintation -->
 		<attr name="layout_compensateScale" format="float"/>
@@ -307,7 +315,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="layout_wrapIgnoresMargins" format="boolean"/>
 
 		<!-- If true, applied gravity ignores this view margings. Note that gravity may be applied by one axis, both axises, or none,
-		     and margins are ignored for the applied gravity axis. Note that also if no other layout_attach* attributes defined for the axis,
+		     and margins are ignored for the applied gravity axis. Note that also, if no other layout_attach* attributes defined for the axis,
 		     gravity is applied on this axis -->
 		<attr name="layout_gravityIgnoresMargins" format="boolean"/>
 
@@ -320,7 +328,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 		<!-- If true, this view gets width=0 height=0 (like GONE view) when the view is empty. Actual visibility is not changed.
-		     NOTE: currently works only for FastTextView, TextViews, and the derived classes
+		     NOTE: currently works only for FastTextView, TextViews, FastLayoutEmptySupport implementation, and the derived classes
 		-->
 		<attr name="layout_goneWhenEmpty" format="boolean"/>
 
@@ -343,6 +351,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Reference to the dynamic dimensions. See values-dimensions.xml  -->
 		<attr name="layout_marginBottomRef" format="reference"/>
 
+		<!-- If set, the view will be laid out after the given view id. This changes order of layout
+		     from the xml order as this view is laid out after the layout_after view -->
+		<attr name="layout_after" format="reference"/>
+
+		<!-- Default is false. If true, even if the view is gone or goneWhenEmpty, we still use view margins to calculate
+		     the view position. But this view margins are NOT added between other attached views.
+		     This allows multiple views attached to each other to maintain same stable margins when views are hidden/shown, e.g.
+
+		     - lyrics and menu visible:
+		       **>|line2....|*>|lyrics|*>|menu|<**
+		     - lyrics visible
+		       **>|line2............|*>|lyrics||<**
+		                                      ^
+		                                     hidden menu
+		     - menu visible
+		       **>|line2..............||*>|menu|<**
+		                              ^
+		                          hidden lyrics
+
+		     - * is a margin, > points to the view defining that margin, i.e. *>|menu|<** means menu defines marginLeft=*
+		       and marginRight=**
+		     - menu and lyrics here have layout_applyMarginsForGone=true
+
+		     This also modifies behavior of the layout_attachToParentIfGone attribute
+		     -->
+		<attr name="layout_applyMarginsForGone" format="boolean"/>
+
 		<!-- NOTE: basic MarginLayoutParams attrs are needed for programmatic LP creation based on style attr/res. MarginLayoutParams doesn't support that,
 			 so FastLayoutLP handles margin parsing on its own
 			 NOTE: there is a slight difference for marginStart/End parsing. FastLayout always parses them in supportsRtl=true mode, meaning,
@@ -359,6 +394,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:layout_marginRight"/>
 		<attr name="android:layout_marginStart"/>
 		<attr name="android:layout_marginEnd"/>
+		
 	</declare-styleable>
 
 	<!-- Constant definitions for FastLayoutLP layout_matchDimension. Can be used e.g. via resource specific @integer -->

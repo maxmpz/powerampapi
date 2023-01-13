@@ -29,47 +29,60 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:jumpVisibility="true"
 	/>
 
+	<!-- prev_cat -->
 	<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s 
 	     w:morphArg2="2" x2 for duration for long press (10s, 40s) -->	
 	<com.maxmpz.widget.base.MorphableBusActionButton android:id="@+id/prev_cat"
 		style="?TopPrevCat"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
-	
-	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
+	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+		w:scene_4="@id/scene_lyrics"/>
+	<StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
-			
+	<!-- prev_cat -->
+
+
+	<!-- rw -->
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/rw"
 		style="?TopRw"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+		w:scene_4="@id/scene_lyrics"
 		style="?TopRw_scene_playing"
 	/>
-	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
+	<StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
-	
+	<!-- rw -->
+
+
+	<!-- ff -->
 	<!-- arg1="1" - forward -->	
 	<!-- REVISIT: use start seek/stop seek cmds instead -->
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/ff"
 		style="?TopFf"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+		w:scene_4="@id/scene_lyrics"
 		style="?TopFf_scene_playing"
 	/>
-	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
+	<StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
+	<!-- ff -->
 
+
+	<!-- next_cat -->
 	<!-- NOTE: this button changes it's drawable and press messaging from <<< to 10s -->
 	<com.maxmpz.widget.base.MorphableBusActionButton android:id="@+id/next_cat"
 		style="?TopNextCat"
 	/>
-	<com.maxmpz.widget.base.SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"/>
-	<com.maxmpz.widget.base.StateAnimParams w:stateAnim="@id/anim_seeking"
+	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis_w_ui"
+		w:scene_4="@id/scene_lyrics"/>
+	<StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?TopPlay_state_seeking"
 	/>
-		
+	<!-- next_cat -->
 	
 </merge>

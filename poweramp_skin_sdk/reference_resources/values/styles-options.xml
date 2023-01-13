@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackTitle_scene_aa">@style/ItemTrackTitle_scene_aa_w_rating</item>
 		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overridden for Alt layout -->
 		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa_w_rating</item>
+		<item name="ItemTrackLyrics_scene_aa">@style/ItemTrackLyrics_scene_aa_w_rating</item>
 	</style>
 	
 	<!-- Applied (over main theme style) when rating is enabled and set to stars in menu/lists only.
@@ -49,6 +50,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackTitle_scene_aa">@style/ItemTrackTitle_scene_aa_w_rating</item>
 		<item name="ItemTrackLine2_scene_aa">@style/ItemTrackLine2_scene_aa_w_rating</item><!-- NOTE: can be completely overridden for Alt layout -->
 		<item name="ItemTrackMenu_scene_aa">@style/ItemTrackMenu_scene_aa_w_rating</item>
+		<item name="ItemTrackLyrics_scene_aa">@style/ItemTrackLyrics_scene_aa_w_rating</item>
+	</style>
+
+	<style name="OptionRatingDisabled">
+		<!-- Empty -->
 	</style>
 	
 	<style name="OptionCounter">
@@ -79,9 +85,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="CcButton_MainUI_scenes_vis_w_ui">@style/CcButton_MainUIButton_scenes_vis_w_ui</item>
 		<item name="CcButton_MainUI_scene_vis">@style/CcButton_MainUIButton_scenes_vis</item>
 	</style>
-	
+
 	<style name="OptionCCMainUIAndInMenu">
-		<!-- NOTE: keeping default CcButton_MainUI* styles - it shows it in main UI by default -->
+		<!-- NOTE: keeping default CcButton_MainUI* styles as they defined in the default-theme - it shows it in main UI by default -->
 		<item name="CcButton_NavbarExtensionMenuLine">@style/CcButton_NavbarExtensionMenuLine</item>
 	</style>
 	
@@ -93,6 +99,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="OptionHideMenu">
 		<item name="ItemTrackMenu_scene_aa_visibility">gone</item>
+	</style>
+
+	<style name="OptionHideLyricsButton">
+		<item name="ItemTrackLyrics_scene_aa_visibility">gone</item>
 	</style>
 	
 	<style name="OptionAAKeepAspect">
@@ -143,5 +153,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="searchHeaderSize">96dp</item><!-- Includes margin for status bar and search field -->
 		<item name="targetSearchHeaderSize">96dp</item><!-- Includes margin for status bar, search field, and target button -->
+	</style>
+
+	<style name="OptionLocalizedAZScroll">
+		<item name="TopListScrollerView_marginTop">@dimen/OptionLocalizedAZScroll_TopListScrollerView_marginTop</item>
+		<item name="TopListScrollerView_azTextScale">0.60</item>
+	</style>
+
+	<!-- This is applied only for screens with rounded corners - only on Android 12+ where appropriate API exists.
+
+	     Currently we set additional corners for the headers:
+	     - we can only set all corners to be rounded, so it looks best on screens with rounded corners where our
+	       top corners blend with the screen corners
+	     NOTE:
+	     - this is applied after other skin themes, we use double redirection here
+	     - this is applied for the activity, not globally
+	     - globalOption does not work for this
+	     - applies with force override=true
+	     - attributes are set to another attributes, which are defined in themes/skins -->
+	<style name="OptionRoundedScreenCorners">
+		<item name="corners_aa_tracks_header">?OptionRoundedScreenCorners_corners_header</item><!-- 16dp -->
+		<item name="corners_aa_albums_header">?OptionRoundedScreenCorners_corners_header</item>
+		<item name="corners_aa_other_header">?OptionRoundedScreenCorners_corners_header</item>
+		<item name="header_aa_elevation">?OptionRoundedScreenCorners_header_aa_elevation</item><!-- 8dp -->
+		<item name="ListHeaderButton_scene_header_marginBottom">?OptionRoundedScreenCorners_buttons_scene_header_marginBottom</item><!-- 14dp -->
+		<item name="ListMenu_scene_header_marginBottom">?OptionRoundedScreenCorners_buttons_scene_header_marginBottom</item>
 	</style>
 </resources>

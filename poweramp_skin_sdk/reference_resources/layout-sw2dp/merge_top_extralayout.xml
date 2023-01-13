@@ -20,7 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
-	<!-- NOTE: this is a counter -->
+	<!-- counter -->
 	<com.maxmpz.widget.player.BusStatusText
 		style="?TopCounterLayout"
 		w:stateBusId="@id/bus_player"
@@ -33,6 +33,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_vis_w_ui" 
 		style="?TopCounterLayout_scenes_playing"
 	/>
+	<SceneParams w:scene="@id/scene_lyrics"
+		w:baseScene="defaultScene"/>
 	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@+id/scene_vis" w:scene_3="@id/scene_vis_temp_ui"
 		style="?TopCounterLayout_scenes_playing"
 	/>
@@ -42,5 +44,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis" w:scene_4="@+id/scene_lib"
 		style="?TopCounterLayout_scenes_invisible"
 	/>
+	<!-- counter -->
 </merge>
 	

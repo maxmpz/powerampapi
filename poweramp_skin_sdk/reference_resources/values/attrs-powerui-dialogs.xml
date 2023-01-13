@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		for others, this can cause dialog to be closed pre-maturely while scrolling.
 		 -->
 		<attr name="dragUseNestedScrollVelocity" format="boolean"/>   
-		<attr name="dragDirection">
+		<attr name="collapseDragDirection">
 			<enum name="none" value="0"/><!-- If none, disables dialog dragging completely. Dialog still can be dismissed by clicking outside, or by buttons. --> 
 			<enum name="down" value="1"/>
 			<enum name="up" value="2"/>

@@ -56,9 +56,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqRoundKnob_maxSize">300dp</dimen>
 	<dimen name="EqParamRoundKnobBase_maxSize">240dp</dimen>
 	<dimen name="EqLargerRoundKnob_maxSize">350dp</dimen>
-	<dimen name="EqToneRoundKnobLayout_maxWidth">320dp</dimen><!-- Further limit width for large tablets -->
-	
+
+	<dimen name="EqToneRoundKnobLayout_maxWidth">320dp</dimen>
 	<dimen name="EqToneRoundKnobLayout_maxSize">280dp</dimen>
+	
 	<dimen name="EqRoundKnobLayout_maxSize">320dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">350dp</dimen>
 		

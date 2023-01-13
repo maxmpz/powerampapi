@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2022 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!--
+	Base scenes:
+	- default             - normal size inactive synchronized lyrics line
+	- scene_active        - normal size active synchronized lyrics line
+	- scene_small         - small size inactive synchronized lyrics line
+	- scene_small_active  - small size active synchronized lyrics line
+	- scene_zoomed        - big size inactive synchronized lyrics line
+	- scene_zoomed_active - big size active synchronized lyrics line
+	- scene_unsync        - normal size unsynchronized lyrics line
+	- scene_unsync_small  - small size unsynchronized lyrics line
+	- scene_unsync_zoomed - big size unsynchronized lyrics line
+-->
+<com.maxmpz.widget.player.list.LyricsItemView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	style="?ItemLyrics"
+>
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
+		style="?ItemLyricsTitle"
+	/>
+	<!-- This is needed to ensure applyViewParams=true in the defaultScene (which is not there otherwise) -->
+	<!--
+	<SceneParams
+		w:scene="defaultScene"
+		w:baseScene="defaultScene"
+		w:applyViewParams="true"
+		/>
+		-->
+	<SceneParams w:scene="@+id/scene_active"
+		style="?ItemLyricsTitle_active"
+		/>
+	<SceneParams w:scene="@+id/scene_small"
+		style="?ItemLyricsTitle_scene_small"
+	/>
+	<SceneParams w:scene="@+id/scene_small_active"
+		style="?ItemLyricsTitle_scene_small_active"
+	/>
+	<SceneParams w:scene="@+id/scene_zoomed"
+		style="?ItemLyricsTitle_scene_zoomed"
+	/>
+	<SceneParams w:scene="@+id/scene_zoomed_active"
+		style="?ItemLyricsTitle_scene_zoomed_active"
+		/>
+	<SceneParams w:scene="@+id/scene_unsync"
+		style="?ItemLyricsTitle_scene_unsync"
+		/>
+	<SceneParams w:scene="@+id/scene_unsync_small"
+		style="?ItemLyricsTitle_scene_unsync_small"
+		/>
+	<SceneParams w:scene="@+id/scene_unsync_zoomed"
+		style="?ItemLyricsTitle_scene_unsync_zoomed"
+		/>
+
+</com.maxmpz.widget.player.list.LyricsItemView>

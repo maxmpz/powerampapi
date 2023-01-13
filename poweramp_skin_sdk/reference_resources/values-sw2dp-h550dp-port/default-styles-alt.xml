@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+	<!-- NOTE: on the longer screens, we have enough room between sub-aa buttons (vis/timer/repeat/shuffle) and the cover
+	     to freely move title+line2 to the vertical center of that room.
+	     This is done by attaching title bottom to 50% (center of the parent), and line2 top to 50% (also center of the parent)
+
+	     +==========+
+		 |          |
+		 |    AA    | <- AA "consumes" vertical space
+         |          |
+         +==========+ <- bottom of AA
+         title
+		 ........     < 50% between bottom of AA and bottom of ItemTrackView
+         line2
+		 ~~~~~~~~~~~~ <- bottom of ItemTrack view
+    -->
+
 	<style name="Alt_ItemTrackTitle_scene_aa" parent="Base_Alt_ItemTrackTitle_scene_aa">
-		<item name="layout_attachBottom">50%</item><!-- Should be @/line2 by default and 50% if we have space -->
+		<item name="layout_attachBottom">50%</item>
 	</style>
 	<style name="Alt_ItemTrackLine2_scene_aa" parent="Base_Alt_ItemTrackLine2_scene_aa">
 		<item name="layout_attachBottom">@null</item>

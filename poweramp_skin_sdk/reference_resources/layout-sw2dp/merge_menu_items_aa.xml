@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2022 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -65,24 +65,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:busId="@id/list" w:msgId="@id/cmd_list_select_aa_dialog"
 		w:clickDelay="@integer/activity_start_click_delay"
 	/>
-	
-	
+
+
+	<!-- NOTE: we manipulate this button width with the code - on Lyrics page -->
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/info"
 		style="?PopupMenuItem50"
 		android:drawable="?info"
-		
+
 		android:text="@string/info_short"
 		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_info_tags"
 		w:clickDelay="@integer/activity_start_click_delay"
 	/>
-	
-	<com.maxmpz.widget.base.BusActionButton android:id="@+id/lyrics"
+
+	<!-- NOTE: avoiding id clash with aa lyrics button
+	     w:clickDelay="@integer/activity_start_click_delay" w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_lyrics"
+
+	      -->
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/lyrics_in_menu"
 		style="?PopupMenuItem50"
+		android:longClickable="true"
 		android:drawable="?lyrics"
 
 		android:text="@string/lyrics_short"
-		w:busId="@id/bus_data_cmd" w:msgId="@id/cmd_data_lyrics"
-		w:clickDelay="@integer/activity_start_click_delay"
+		w:busId="@id/list" w:msgId="@id/cmd_nav_to_lyrics_or_app"
+		w:longPressBusId="@id/bus_data_cmd" w:longPressMsgId="@id/cmd_data_lyrics"
 	/>
 	
 	<com.maxmpz.widget.base.NonOverlappingView android:id="@+id/separator2" 

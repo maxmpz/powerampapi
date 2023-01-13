@@ -117,6 +117,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- This is applyed for PA settings with override -->
 	<style name="Overlap_ActivityTheme_Base">
 		<item name="pref_privacy_policy">https://www.iubenda.com/privacy-policy/8016901/full-legal</item>
+		<!-- Huawei, uni-ru  -->
+		<item name="pref_privacy_policy_non_play">https://www.iubenda.com/privacy-policy/71177063</item>
 	</style>
 	<style name="Overlap_ActivityTheme_Settings" parent="Overlap_ActivityTheme_Base">
 		<item name="settings_milk_preset_uri">internal://#poweramp1inv</item>
@@ -130,6 +132,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<style name="Overlap_ActivityTheme_PeqBase">
 		<item name="pref_privacy_policy">https://www.iubenda.com/privacy-policy/32990222/full-legal</item>
+		<!-- Same ATM -->
+		<item name="pref_privacy_policy_non_play">https://www.iubenda.com/privacy-policy/32990222/full-legal</item>
 	</style>
 	<!-- This is applyed for Peq settings with override -->
 	<style name="Overlap_ActivityTheme_Peq_Settings" parent="Overlap_ActivityTheme_PeqBase">
@@ -391,6 +395,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawableBottom">@null</item>
 		<item name="android:inputType">text</item>
 		<item name="android:textCursorDrawable">@drawable/text_cursor_material</item><!-- Fixes some Samsungs@12 missing text cursor in some settings themes -->
+		<item name="android:imeOptions">flagNoExtractUi</item>
 	</style>
 	
 	
@@ -470,16 +475,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SearchItemEmptyList">
 	</style>
 
+	<!-- Aligned to top so we're under search bar and we're OK in landscape also -->
 	<style name="SearchItemEmptyListText">
-		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_gravity">center_horizontal|top</item>
 		<item name="android:layout_height">wrap_content</item>	
 		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_marginBottom">150dp</item><!-- Like keyboard height / 2 -->
+		<item name="android:layout_marginTop">@dimen/SearchItemEmptyListText_marginTop</item>
 		<item name="android:paddingLeft">16dp</item>
 		<item name="android:paddingRight">16dp</item>
 		<item name="android:paddingTop">4dp</item>
 		<item name="android:paddingBottom">4dp</item>
-		<item name="android:gravity">center</item>
+		<item name="android:gravity">center_horizontal</item>
 		<item name="android:textAppearance">@style/SearchItemEmptyListText_Text</item>
 		<item name="layout_consumeSpace">vertical</item>
 	</style>
@@ -606,13 +612,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="layout_consumeSpace">stack_horizontal</item>
 
-		<item name="android:paddingLeft">12dp</item>
-		<item name="android:paddingRight">12dp</item>
-		<item name="android:paddingTop">5dp</item>
-		<item name="android:paddingBottom">5dp</item>
+		<item name="android:paddingLeft">14dp</item>
+		<item name="android:paddingRight">14dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
 		
 		<item name="android:textColor">@color/button_text_color_selector</item>
-		<item name="android:textSize">13dp</item>
+		<item name="android:textSize">14sp</item>
 		<item name="android:textStyle">normal</item>
 		
 		<item name="animOnClick">true</item>

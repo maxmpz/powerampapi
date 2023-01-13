@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -64,6 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackAAImage_scene_header" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_item_menu" format="reference"/>
 		<attr name="ItemTrackAAImage_scene_item_menu_lu" format="reference"/>
+		<attr name="ItemTrackAAImage_scene_lyrics" format="reference"/>
 		
 		<attr name="ItemTrackCatImage" format="reference"/>
 		<attr name="ItemTrackCatImage_Text" format="reference"/>
@@ -77,6 +78,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackCatImage_scene_grid_zoomed" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_header" format="reference"/>
 		<attr name="ItemTrackCatImage_scene_item_menu" format="reference"/>
+		<attr name="ItemTrackCatImage_scene_lyrics" format="reference"/>
 		
 		<attr name="ItemTrackTitle" format="reference"/>
 		<attr name="ItemTrackTitle_Text" format="reference"/>
@@ -99,6 +101,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackTitle_scene_item_menu_lu" format="reference"/>
 		<attr name="ItemTrackTitle_scene_header" format="reference"/>
 		<attr name="ItemTrackTitle_scene_header_1" format="reference"/>
+		<attr name="ItemTrackTitle_scene_lyrics" format="reference"/>
 				
 		<attr name="ItemTrackLine2" format="reference"/>
 		<attr name="ItemTrackLine2_Text" format="reference"/>
@@ -118,7 +121,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackLine2_scene_aa_playing" format="reference"/>
 		<attr name="ItemTrackLine2_scene_item_menu" format="reference"/>
 		<attr name="ItemTrackLine2_scene_item_menu_lu" format="reference"/>
+		<attr name="ItemTrackLine2_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTrackLine2_scene_header" format="reference"/>
+		<attr name="ItemTrackLine2_scene_lyrics" format="reference"/>
 
 		<attr name="ItemTrackMeta" format="reference"/>
 		<attr name="ItemTrackMeta_Text" format="reference"/>
@@ -139,6 +144,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackMeta_scene_item_menu" format="reference"/>
 		<attr name="ItemTrackMeta_scene_item_menu_lu" format="reference"/>
 		<attr name="ItemTrackMeta_scene_header" format="reference"/>
+		<attr name="ItemTrackMeta_scene_lyrics" format="reference"/>
 				
 		<attr name="ItemTrackNum" format="reference"/>
 		<attr name="ItemTrackNum_Text" format="reference"/>
@@ -159,6 +165,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackNum_scene_item_menu" format="reference"/>
 		<attr name="ItemTrackNum_scene_item_menu_lu" format="reference"/>
 		<attr name="ItemTrackNum_scene_header" format="reference"/>
+		<attr name="ItemTrackNum_scene_lyrics" format="reference"/>
 		
 		<attr name="ItemTrackDragHandler" format="reference"/>
 		<attr name="ItemTrackDragHandler_scene_grid" format="reference"/>
@@ -171,7 +178,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackMenu_scene_aa" format="reference"/>
 		<attr name="ItemTrackMenu_scene_aa_vis" format="reference"/>
 		<attr name="ItemTrackMenu_scene_aa_playing" format="reference"/>
-		
+		<attr name="ItemTrackMenu_scene_lyrics" format="reference"/>
+
+		<attr name="ItemTrackLyrics" format="reference"/>
+		<attr name="ItemTrackLyrics_scene_menu" format="reference"/>
+		<attr name="ItemTrackLyrics_scene_aa" format="reference"/>
+		<attr name="ItemTrackLyrics_scene_aa_vis" format="reference"/>
+		<attr name="ItemTrackLyrics_scene_aa_playing" format="reference"/>
+		<attr name="ItemTrackLyrics_scene_lyrics" format="reference"/>
+
 		<attr name="ItemTrackBackDecor" format="reference"/>
 		<attr name="ItemTrackBackDecorTitle" format="reference"/>
 		<attr name="ItemTrackBackDecorTitle_scene_header_1" format="reference"/>
@@ -199,6 +214,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTextAAImage_scene_grid" format="reference"/>
 		<attr name="ItemTextAAImage_scene_header" format="reference"/>
 		<attr name="ItemTextAAImage_scene_item_menu" format="reference"/>
+		<attr name="ItemTextAAImage_scene_subheader" format="reference"/>
 		
 		<attr name="ItemTextTitle" format="reference"/>
 		<attr name="ItemTextTitle_Text" format="reference"/>
@@ -206,12 +222,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTextTitle_scene_header" format="reference"/>
 		<attr name="ItemTextTitle_scene_top_header" format="reference"/>
 		<attr name="ItemTextTitle_scene_item_menu" format="reference"/>
+		<attr name="ItemTextTitle_scene_subheader" format="reference"/>
 		
 		<attr name="ItemTextLine2" format="reference"/>
 		<attr name="ItemTextLine2_Text" format="reference"/>
 		<attr name="ItemTextLine2_scene_grid" format="reference"/>
 		<attr name="ItemTextLine2_scene_header" format="reference"/>
 		<attr name="ItemTextLine2_scene_item_menu" format="reference"/>
+		<attr name="ItemTextLine2_scene_subheader" format="reference"/>
+
+		<attr name="ItemTextSubheadButton" format="reference"/>
+		<attr name="ItemTextSubheadButton_scene_subheader" format="reference"/>
 		
 		<attr name="ItemTextMenu" format="reference"/>
 		<attr name="ItemTextMenu_scene_menu" format="reference"/>
@@ -222,18 +243,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="ItemTextHeaderShuffleButton" format="reference"/>
 		<attr name="ItemTextHeaderShuffleButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderShuffleButton_scene_search_header" format="reference"/>
 		<attr name="ItemTextHeaderShuffleButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTextHeaderShuffleButton_scene_menu" format="reference"/>
 		<attr name="ItemTextHeaderPlayButton" format="reference"/>
 		<attr name="ItemTextHeaderPlayButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderPlayButton_scene_search_header" format="reference"/>
 		<attr name="ItemTextHeaderPlayButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTextHeaderPlayButton_scene_menu" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderSelectButton_scene_search_header" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTextHeaderSelectButton_scene_menu" format="reference"/>
 		<attr name="ItemTextHeaderSearchButton" format="reference"/><!-- The search button -->
 		<attr name="ItemTextHeaderSearchButton_scene_header" format="reference"/>
+		<attr name="ItemTextHeaderSearchButton_scene_search_header" format="reference"/>
 		<attr name="ItemTextHeaderSearchButton_scene_bottom_toolbar" format="reference"/>
 		<attr name="ItemTextHeaderSearchButton_scene_menu" format="reference"/>
 		
@@ -253,6 +278,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemHeaderScanProgress" format="reference"/>
 		<attr name="ItemHeaderScanProgress_scene_item_menu" format="reference"/>
 		<attr name="ItemHeaderScanProgress_scene_header" format="reference"/>
+		<attr name="ItemHeaderScanProgress_scene_bottom_toolbar" format="reference"/>
 		
 		<attr name="ItemEmptyList"/>
 		<attr name="ItemEmptyListText" format="reference"/>
@@ -269,7 +295,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemMiniplayerLine2" format="reference"/>
 		<attr name="ItemMiniplayerLine2_Text" format="reference"/>
 		<attr name="ItemMiniplayerPlayButton" format="reference"/>
-		
+
+		<attr name="ItemGenericTitle_Text" format="reference"/>
+		<attr name="ItemGenericLine2_Text" format="reference"/>
+
 		<attr name="ItemVis" format="reference"/>
 		<attr name="ItemVisImage" format="reference"/>
 		<attr name="ItemVisLikeButton" format="reference"/>
@@ -347,18 +376,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemTrackAAPanel_scene_aa_playing" format="reference"/>
 		<attr name="ItemTrackAAPanel_scene_aa_vis" format="reference"/>
 		<attr name="ItemTrackAAPanel_scenes_hidden" format="reference"/>
+		<attr name="ItemTrackAAPanel_scene_lyrics" format="reference"/>
 		
 		<attr name="ItemLikeUnlikeLayout" format="reference"/>
 		<attr name="ItemLikeUnlikeLayout_scene_item_menu" format="reference"/>
 		<attr name="ItemLikeUnlikeLayout_scene_item_menu_lu" format="reference"/>
 		<attr name="ItemLikeUnlikeLayout_scene_aa" format="reference"/>
 		<attr name="ItemLikeUnlikeLayout_scenes_invisible" format="reference"/>
-		
+		<attr name="ItemLikeUnlikeLayout_scene_lyrics" format="reference"/>
+
 		<attr name="ItemRatingBar" format="reference"/>
 		<attr name="ItemRatingBar_scene_aa" format="reference"/>
 		<attr name="ItemRatingBar_scene_item_menu_lu" format="reference"/>
 		<attr name="ItemRatingBar_anim_ratingbar_pressed" format="reference"/>
-		<attr name="ItemRatingBar_scenes_invisible" format="reference"/>		
+		<attr name="ItemRatingBar_scenes_invisible" format="reference"/>
+		<attr name="ItemRatingBar_scene_lyrics" format="reference"/>
 		
 		<attr name="ItemLike" format="reference"/>
 		<attr name="ItemLike_scene_aa" format="reference"/>
@@ -375,7 +407,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupMenuTopSpacer_scene_item_menu_lu" format="reference"/>
 		<attr name="ItemTextPopupMenuItemsLayout" format="reference"/>
 		<attr name="ItemTextPopupMenuTopSpacer" format="reference"/>
-		
+
+		<attr name="ItemLyrics" format="reference"/>
+		<attr name="ItemLyricsTitle" format="reference"/>
+		<attr name="ItemLyricsTitle_Text" format="reference"/>
+		<attr name="ItemLyricsTitle_active" format="reference"/>
+		<attr name="ItemLyricsTitle_scene_small" format="reference"/>
+		<attr name="ItemLyricsTitle_scene_small_active" format="reference"/>
+		<attr name="ItemLyricsTitle_scene_zoomed" format="reference"/>
+		<attr name="ItemLyricsTitle_scene_zoomed_active" format="reference"/>
+		<attr name="ItemLyricsTitle_scene_unsync" format="reference"/>
+		<attr name="ItemLyricsTitle_scene_unsync_small" format="reference"/>
+		<attr name="ItemLyricsTitle_scene_unsync_zoomed" format="reference"/>
+
+		<attr name="ItemLastLyricsItemText" format="reference"/>
+		<attr name="ItemLastLyricsItemText_scene_unsync" format="reference"/>
+
+		<attr name="ItemEmptyLyricsLoadingViaPlugin" format="reference"/>
+		<attr name="ItemEmptyLyricsText" format="reference"/>
+		<attr name="ItemEmptyLyricsHint" format="reference"/>
+		<attr name="ItemEmptyLyricsSearchButton" format="reference"/>
+
+
 		<attr name="PopupButton"/>
 		<attr name="PopupButton_Text"/>
 		<attr name="PopupButton_scene_button_menu"/>
