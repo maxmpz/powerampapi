@@ -340,7 +340,7 @@ public interface TableDefs {
 		 * INTEGER (boolean)
 		 */
 		public static final @NonNull String HAS_LYRICS =
-			// NOTE: avoid matching cached_lyrics_id for stream as stream constantly change metadata
+			// NOTE: avoid matching cached_lyrics_id for stream as stream constantly changes metadata
 			"(has_lyrics_tag OR lrc_files_id IS NOT NULL" +
 				" OR cached_lyrics_id IS NOT NULL AND cached_lyrics_loading_started_at IS NULL AND file_type!=" + FileType.TYPE_STREAM +
                ") AS _has_lyrics";
