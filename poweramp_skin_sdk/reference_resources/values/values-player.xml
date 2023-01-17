@@ -105,6 +105,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="nav_main"/><!-- bus_gui -->
 	<item type="id" name="nav_search"/><!-- bus_gui, arg1 => boolean focusSearchText -->
 	<item type="id" name="nav_eq"/><!-- bus_gui, arg1 => EQ_TAB_*  -->
+	<item type="id" name="nav_lyrics"/><!-- bus_gui -->
 
 	<!-- Opens last used tab -->
 	<integer name="EQ_TAB_DEFAULT">-1</integer><!-- Sync with TopNavHelper -->

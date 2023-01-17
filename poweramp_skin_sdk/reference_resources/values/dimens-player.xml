@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -133,6 +133,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft">14dp</dimen>
 	<dimen name="Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft">16dp</dimen>
 
+	<dimen name="EqPresetButtonLayoutBase_listItemSize">56dp</dimen>
+
+
 
 	<!-- @Deprecated -->
 	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
@@ -144,7 +147,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_aaMaxSize">302dp</dimen>
 	<!-- @Deprecated -->
 	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
-	
-	<dimen name="EqPresetButtonLayoutBase_listItemSize">56dp</dimen>
-
 </resources>

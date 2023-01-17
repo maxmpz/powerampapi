@@ -727,6 +727,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<attr name="drawableTintColor"/>
 
+		<!-- Always apply fade effect for AA on image change -->
 		<attr name="alwaysFade" format="boolean"/>
 	</declare-styleable>
 	

@@ -236,6 +236,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorMetaInfo">?android:textColorPrimary</item>
 		<item name="colorRating">?colorIconInverse</item>
 
+		<!-- Settings these here for alt theme - just for 3rd party skins -->
+		<item name="alt_title_bg">@drawable/alpha_rounded_popup</item>
+		<item name="alt_ratingbar_bg">@drawable/ripple_alpha_rounded_large</item>
+		<item name="alt_menu_bg">@drawable/ripple_alpha_rounded_large</item>
+		<item name="alt_sub_aa_button_bg">@drawable/alpha_popup_button_layout_activated_large_bg</item><!-- This should be with the activated state (for sleep timer) -->
+		<item name="colorAltTitle">?android:textColorPrimary</item>
+		<item name="colorAltMenu">?android:textColorPrimary</item>
+
+
 		<item name="arcStartColor">@null</item>
 		<item name="arcEndColor">@null</item>
 		<item name="arcGlowStartColor">@null</item>

@@ -106,14 +106,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">48sp</item>
-		<item name="android:layout_marginRight">48sp</item>
+		<item name="android:layout_marginLeft">41.5sp</item>
+		<item name="android:layout_marginRight">41.5sp</item>
 		<item name="android:layout_marginTop">11sp</item>
 		<item name="android:layout_marginBottom">11sp</item>
 
 		<item name="applyViewParams">true</item>
 		<item name="android:gravity">center_horizontal</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textColor">?colorIconDisabled</item>
 		<item name="scale">.65</item>
 		<item name="layout_compensateScale">.65</item>
 	</style>
@@ -137,8 +137,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">13sp</item>
-		<item name="android:layout_marginRight">13sp</item>
+		<item name="android:layout_marginLeft">13.5sp</item>
+		<item name="android:layout_marginRight">13.5sp</item>
 		<item name="android:layout_marginTop">17sp</item>
 		<item name="android:layout_marginBottom">17sp</item>
 
