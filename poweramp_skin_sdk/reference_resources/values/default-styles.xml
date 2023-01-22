@@ -290,6 +290,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="forward_10s_core">@drawable/forward_10s_core_tinted</item>
 		<item name="back_10s_core">@drawable/back_10s_core_tinted</item>
 
+		<!-- The main screen play button drawable. This differs for Android 12+ where it also includes play_core -->
+		<item name="main_play">@drawable/ripple_play_round_100dp</item>
+		<!-- The main screen pause button drawable. This differs for Android 12+ where it also includes play_core -->
+		<item name="main_pro_pause">@drawable/ripple_pause_round</item>
+		<!-- The main screen >> button drawable. This differs for Android 12+ where it also includes ff_core -->
+		<item name="main_ff">@drawable/ripple_ff_round</item>
+		<!-- The main screen << button drawable. This differs for Android 12+ where it also includes ff_core (rotated 180 degrees) -->
+		<item name="main_rw">@drawable/ripple_rw_round</item>
+		<!-- The main screen >>> button drawable. This differs for Android 12+ where it also includes next_cat_core -->
+		<item name="main_next_cat">@drawable/ripple_next_cat_round</item>
+		<!-- The main screen <<< button drawable. This differs for Android 12+ where it also includes next_cat_core (rotated 180 degrees) -->
+		<item name="main_prev_cat">@drawable/ripple_prev_cat_round</item>
+		<!-- The main screen +10s button drawable. This differs for Android 12+ where it also includes forward_10s_core -->
+		<item name="main_forward_10s">@drawable/ripple_forward_10s_round</item>
+		<!-- The main screen -10s button drawable. This differs for Android 12+ where it also includes back_10s_core -->
+		<item name="main_back_10s">@drawable/ripple_back_10s_round</item>
+
+
 		<item name="defaultHiResAA">@drawable/gl_poweramp_logo_hd</item>
 		<item name="defaultLowResAA">@drawable/gl_poweramp_logo</item>
 
@@ -816,19 +834,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="aaBlurLighten">0.85</item>
 	</style>
 
-	<!-- An overlap style we're using for skins not yet updated to use eatFontPads/alignToContent.
-	     Applied automatically, if <skin> allowNewPadding option is not set to true -->
-	<style name="ActivityTheme_Legacy_oldPadding">
-		<item name="TrackItem_eatFontPads">false</item>
-		<item name="TrackItem_alignToContent">none</item>
-		<item name="TrackItem_alignToContent_horizontal">none</item>
-	</style>
-
-	<!-- An overlap style we're using for skins assuming layout_(min|max)(Width|Height) do not apply for the attached views -->
-	<style name="ActivityTheme_Legacy_minMax">
-		<item name="layout_ignoreMinMaxForAttach">true</item>
-	</style>
-	
 	<!-- An overlap style -->
 	<!-- Inverses navbar -->
 	<style name="ActivityTheme_Whitepro_ForceLightNavbar">

@@ -202,12 +202,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemHeaderScanProgress_scene_header"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->
-	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_small" w:scene_5="@+id/scene_1_small"
+	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_grid" w:scene_3="@+id/scene_grid_zoomed" w:scene_4="@+id/scene_small"
+		w:scene_5="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>
 	<SceneParams w:scene="@+id/scene_1_small_no_aa" w:scene_2="@+id/scene_small_no_aa"
-		w:scene_3="@+id/scene_bottom_toolbar"
 		w:baseScene="defaultScene"
 		android:visibility="invisible"
 	/>

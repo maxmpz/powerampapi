@@ -15,12 +15,5 @@
 			<padding android:left="1px" android:right="1px" android:top="1px" android:bottom="1px"/>
 		</shape>
 	</item>
-	<item>
-		<inset android:inset="20%">
-			<layer-list>
-				<item android:drawable="?next_cat_core"/>
-			</layer-list>
-		</inset>
-	</item>
-
+	<item android:drawable="?next_cat_core"/>
 </ripple>

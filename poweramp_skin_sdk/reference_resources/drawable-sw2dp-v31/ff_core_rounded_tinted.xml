@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!-- NOTE: % insets are supported for Android 8/sdk26+ -->
+<!-- NOTE: extra layer list is required as ?play_core can't be resolved via inset drawable ref -->
+<!-- inset tuned to match more-or-less xxxhdpi graphics @ Samsung U21 -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android" android:inset="19%">
+	<layer-list>
+		<item>
+			<!-- NOTE: gravity=fill is required for the image scaling -->
+			<bitmap 
+				android:gravity="fill"
+				android:src="@drawable/ff_core_rounded"
+				android:tint="?colorPlayButtonsTint"
+				/>
+		</item>
+	</layer-list>
+</inset>
+

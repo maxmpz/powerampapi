@@ -426,7 +426,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:longClickable">true</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">fill</item>
-		<item name="android:drawable">@drawable/ripple_play_round_100dp</item>
+		<item name="android:drawable">?main_play</item>
 		<item name="android:minWidth">20dp</item>
 		<item name="android:minHeight">20dp</item>
 		<item name="busId">@id/bus_player_cmd</item>
@@ -451,7 +451,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopSmallButton">
 		<!-- NOTE: setting layout_maxWidth/layout_maxHeight, android:layout_height=match_parent, layout_matchDimension=widthToHeight 
 		     makes buttons kind of scallable for smaller parent, e.g. when we're shrinked due to the split window mode or due to the other window resize -->
-		<item name="layout_maxWidth">@dimen/TopSmallButton_size</item> 
+		<item name="layout_maxWidth">@dimen/TopSmallButton_size</item>
 		<item name="layout_maxHeight">@dimen/TopSmallButton_size</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:layout_width">0dp</item><!-- Provide some width => important for scenes as without layout_width scene won't apply layout params -->
@@ -491,8 +491,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: button size is defined by the prev/next cat drawable size, even for 10s jump mode -->
 	<style name="TopPrevCat" parent="TopSmallButton">
 		<item name="layout_attachRight">@+id/rw</item>
-		<item name="android:drawable">@drawable/ripple_prev_cat_round</item>
-		<item name="morphDrawable">@drawable/ripple_back_10s_round</item><!-- For morphed 10s jump button state -->
+		<item name="android:drawable">?main_prev_cat</item>
+		<item name="morphDrawable">?main_back_10s</item><!-- For morphed 10s jump button state -->
 		<item name="android:layout_marginRight">2dp</item>
 		<item name="android:longClickable">true</item><!-- Need to support long clicks -->
 
@@ -519,7 +519,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="TopRw" parent="TopMediumButton">
 		<item name="layout_attachRight">@+id/play</item>
-		<item name="android:drawable">@drawable/ripple_rw_round</item>
+		<item name="android:drawable">?main_rw</item>
 		<item name="android:layout_marginRight">2dp</item>
 
 		<item name="android:id">@+id/rw</item>
@@ -537,7 +537,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="TopFf" parent="TopMediumButton">
 		<item name="layout_attachLeft">@+id/play</item>
-		<item name="android:drawable">@drawable/ripple_ff_round</item>
+		<item name="android:drawable">?main_ff</item>
 		<item name="android:layout_marginLeft">2dp</item>
 
 		<item name="android:id">@+id/ff</item>
@@ -555,8 +555,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<style name="TopNextCat" parent="TopSmallButton">
 		<item name="layout_attachLeft">@+id/ff</item>
-		<item name="android:drawable">@drawable/ripple_next_cat_round</item>
-		<item name="morphDrawable">@drawable/ripple_forward_10s_round</item><!-- For morphed 10s jump button state -->
+		<item name="android:drawable">?main_next_cat</item>
+		<item name="morphDrawable">?main_forward_10s</item><!-- For morphed 10s jump button state -->
 		<item name="android:layout_marginLeft">2dp</item>
 		<item name="android:longClickable">true</item><!-- Need to support long clicks -->
 
@@ -597,7 +597,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:gravity">fill</item><!-- Force drawable to fill dimensions -->
 		<item name="android:background">@null</item>
-		<item name="android:drawable">@drawable/ripple_pause_round</item>
+		<item name="android:drawable">?main_pro_pause</item>
 		<item name="drawableTint">@null</item>
 		<item name="drawableWidth">@null</item>
 		<item name="drawableHeight">@null</item>

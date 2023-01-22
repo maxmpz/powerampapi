@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: % insets are supported for Android 8/sdk26+ -->
+<!-- NOTE: extra layer list is required as android:drawble="?*_core" can't be resolved via inset drawable ref -->
+<!-- NOTE: inset can't be an attribute here as to the date Android have issues with theme resolution in some drawable types -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android" android:inset="30%">
+	<layer-list>
+		<item>
+			<!-- NOTE: gravity=fill is required for the image scaling -->
+			<bitmap
+				android:gravity="fill"
+				android:src="@drawable/pause_core"
+				android:tint="?colorPlayButtonsTint"
+				/>
+		</item>
+	</layer-list>
+</inset>

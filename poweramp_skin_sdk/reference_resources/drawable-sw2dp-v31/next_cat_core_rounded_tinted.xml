@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<inset xmlns:android="http://schemas.android.com/apk/res/android" android:inset="20%">
+	<layer-list>
+		<item>
+			<bitmap 
+				android:gravity="fill"
+				android:src="@drawable/next_cat_core_rounded"
+				android:tint="?colorPlayButtonsTint"
+				/>
+		</item>
+	</layer-list>
+</inset>

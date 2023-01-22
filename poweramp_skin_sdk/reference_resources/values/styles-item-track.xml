@@ -2135,6 +2135,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">visible</item>
 		<item name="android:background">@drawable/ripple_rounded_large</item>
 		<item name="android:clickable">true</item>
+		<item name="android:outlineProvider">none</item>
+		<item name="android:translationZ">?item_ontop_elevation</item>
 	</style>
 	<style name="ItemHeaderScanProgress_scene_header" parent="ItemHeaderScanProgress">
 		<item name="recalcChildren">on_start</item>

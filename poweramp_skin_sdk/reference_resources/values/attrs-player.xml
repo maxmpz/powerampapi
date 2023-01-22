@@ -42,6 +42,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="forward_10s_core" format="reference"/>
 	<attr name="back_10s_core" format="reference"/>
 
+	<!-- The main screen play button drawable. This differs for Android 12+ where it also includes play_core -->
+	<attr name="main_play" format="reference"/>
+	<!-- The main screen pause button drawable (big round, for Pro Buttons options. See pause_small_narrow for small rectangle pause).
+	     This differs for Android 12+ where it also includes play_core -->
+	<attr name="main_pro_pause" format="reference"/>
+	<!-- The main screen >> button drawable. This differs for Android 12+ where it also includes ff_core -->
+	<attr name="main_ff" format="reference"/>
+	<!-- The main screen << button drawable. This differs for Android 12+ where it also includes ff_core (rotated 180 degrees) -->
+	<attr name="main_rw" format="reference"/>
+	<!-- The main screen >>> button drawable. This differs for Android 12+ where it also includes next_cat_core -->
+	<attr name="main_prev_cat" format="reference"/>
+	<!-- The main screen <<< button drawable. This differs for Android 12+ where it also includes next_cat_core (rotated 180 degrees) -->
+	<attr name="main_next_cat" format="reference"/>
+	<!-- The main screen +10s button drawable. This differs for Android 12+ where it also includes forward_10s_core -->
+	<attr name="main_forward_10s" format="reference"/>
+	<!-- The main screen -10s button drawable. This differs for Android 12+ where it also includes back_10s_core -->
+	<attr name="main_back_10s" format="reference"/>
+
 
 	<!-- Navbar icons -->
 	<attr name="nav_lists" format="reference"/>
