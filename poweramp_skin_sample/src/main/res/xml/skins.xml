@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<skins>
+<skins targetBuild="949">
 	<!-- NOTE: forceGlobalOptions=true means global options (by default in styles-options.xml) will force-override base skin attributes.
 
 	     By default, global options do not override base skin theme, just add to it,

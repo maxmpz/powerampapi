@@ -21,6 +21,12 @@
 - [License](#license)
 
 ### Recent Changes
+##### Build 949
+###### targetBuild
+The top ```<skins>``` xml tag now supports targetBuild attribute, which defines the Poweramp build this skin was build for.
+If not set, skin is assumed to be built for Poweramp builds prior 948 and Poweramp will apply extra layer of compatibility
+styles for such skins.
+
 ##### Builds 912-914
 ###### Plugin XML minSdk/maxSdk attributes
 New minSdk="*sdk_num*" and maxSdk="*sdk_num*" attributes are supported for option tags. *sdk_num* is also known as API Level
