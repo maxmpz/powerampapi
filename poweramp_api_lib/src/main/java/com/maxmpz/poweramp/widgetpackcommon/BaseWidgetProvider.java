@@ -5,6 +5,8 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Build.VERSION;
 import android.util.Log;
 import android.widget.RemoteViews;
 import com.maxmpz.poweramp.player.PowerampAPI;
@@ -135,11 +137,11 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider implements
 	}
 
 
-	@SuppressWarnings("static-method")
+	// NOTE: further overridden
 	protected boolean getAANoAnimState(WidgetUpdateData data, WidgetContext widgetCtx) {
 		if(data.albumArtNoAnim
-				|| widgetCtx.lastAATimeStamp == data.albumArtTimestamp
-				|| data.hasTrack && (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0
+			   || widgetCtx.lastAATimeStamp == data.albumArtTimestamp
+			   || data.hasTrack && (data.flags & PowerampAPI.Track.Flags.FLAG_FIRST_IN_PLAYER_SESSION) != 0
 		) {
 
 			if(LOG) Log.w(TAG, "getAANoAnimState =>true data.albumArtNoAnim=" + data.albumArtNoAnim + " same ts=" + (widgetCtx.lastAATimeStamp == data.albumArtTimestamp) +
