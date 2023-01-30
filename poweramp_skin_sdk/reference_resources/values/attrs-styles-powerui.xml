@@ -452,6 +452,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="NavBarButton" format="reference"/>
 		<attr name="Navbar_scene_navbar_1line_sheet" format="reference"/>
 		<attr name="Navbar_scene_navbar_2lines" format="reference"/>
+		<attr name="NavbarSeekbar" format="reference"/>
 				
 		<attr name="SelectionMenuSubcontainer" format="reference"/>
 		<attr name="SelectionMenuSubcontainer_scene_selection_menu" format="reference"/>

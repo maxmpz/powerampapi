@@ -30,6 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<!-- NOTE: we consume space from right here, so search text view is not taking full width -->
 			<com.maxmpz.widget.base.BusActionButton
 				style="?TopSearchCloseButton"
+				android:contentDescription="@string/clear"
 				w:busId="@id/list"
 				w:msgId="@id/cmd_list_search_text"
 				w:string=""

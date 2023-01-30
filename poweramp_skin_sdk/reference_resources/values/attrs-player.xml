@@ -273,6 +273,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="grid_aa_elevation" format="dimension"/><!-- When in grid -->
 	<attr name="header_aa_elevation" format="dimension"/>
 	<attr name="over_aa_elevation" format="dimension"/><!-- Max. aa elevation - to keep some other views always on top of AA -->
+	<!-- REVISIT: not used ATM -->
 	<attr name="over_aa_elevation_plus" format="dimension"/><!-- Same as over_aa_elevation with small increase -->
 	<attr name="VisPanelFrame_elevation" format="dimension"/>
 	<attr name="item_ontop_elevation" format="dimension"/><!-- Elevation which is over any other standard item child views -->

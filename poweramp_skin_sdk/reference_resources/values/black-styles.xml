@@ -203,9 +203,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="aaBlurPinLight">-1</item><!-- Disable pinLight/lighten/darken - not needed for the black theme -->
 	</style>
 	<style name="ActivityTheme_Black_MilkViewEffect_List">
-		<!--<item name="aaSolidColorTarget">darkVibrant</item>-->
-		<item name="aaBlurIntensity">.1</item>
-		<item name="aaBlurSaturation">1.5</item>
+		<item name="aaBlurIntensity">.125</item>
+		<item name="aaBlurSaturation">1.75</item>
 		<item name="aaBlurScaleSize">4</item>
 		<item name="aaBlurPinLight">0.17</item>
 		<item name="aaBlurDarken">.175</item>

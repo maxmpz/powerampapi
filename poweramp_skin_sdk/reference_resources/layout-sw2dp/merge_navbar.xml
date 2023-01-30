@@ -80,6 +80,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					style="?NavbarExtensionMenuLine"
 					android:drawable="?settings_navbar"
 					android:text="@string/settings"
+					android:contentDescription="@string/pref_poweramp_settings"
 					w:busId="@id/bus_app_cmd"
 					w:msgId="@id/cmd_app_open_settings"
 					w:longPressMsgId="@id/cmd_app_open_settings_search"
@@ -127,7 +128,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<!-- navbar_list -->
 
 			<com.maxmpz.widget.player.Seek android:id="@+id/navbar_seekbar"
-				style="@style/NavbarSeekbar"
+				style="?NavbarSeekbar"
 				/>
 			<StateAnimParams w:stateAnim="@id/anim_seeking"
 				style="?PlainSeekbar_anim_seeking"
@@ -166,7 +167,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					style="?NavBarButton"
 					android:longClickable="true"
 					android:drawable="?nav_hamburger"
-					android:contentDescription="@string/settings"
+					android:contentDescription="@string/pref_main_menu"
 				/>
 				
 			</com.maxmpz.widget.base.FastLayout>

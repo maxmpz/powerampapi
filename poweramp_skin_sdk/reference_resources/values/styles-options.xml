@@ -175,7 +175,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_aa_tracks_header">?OptionRoundedScreenCorners_corners_header</item><!-- 16dp -->
 		<item name="corners_aa_albums_header">?OptionRoundedScreenCorners_corners_header</item>
 		<item name="corners_aa_other_header">?OptionRoundedScreenCorners_corners_header</item>
-		<item name="header_aa_elevation">?OptionRoundedScreenCorners_header_aa_elevation</item><!-- 8dp -->
+		<!-- REVISIT: disabled for now as it's barely visible for dark skins and also shadow is clipped during transition for AA-list transition
+		     due to overlapped view + alpha implicit clipping applied by Android -->
+		<!--<item name="header_aa_elevation">?OptionRoundedScreenCorners_header_aa_elevation</item>&lt;!&ndash; 4dp, shouldn't go beyond that as other items have elevation just above that &ndash;&gt;-->
 		<item name="ListHeaderButton_scene_header_marginBottom">?OptionRoundedScreenCorners_buttons_scene_header_marginBottom</item><!-- 14dp -->
 		<item name="ListMenu_scene_header_marginBottom">?OptionRoundedScreenCorners_buttons_scene_header_marginBottom</item>
 	</style>

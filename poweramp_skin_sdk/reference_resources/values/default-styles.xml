@@ -507,11 +507,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="aa_elevation">4dp</item>
 		<item name="grid_aa_elevation">4dp</item>
+		<!-- NOTE: we override this with OptionRoundedScreenCorners_header_aa_elevation -->
 		<item name="header_aa_elevation">0dp</item>
 		<item name="list_aa_elevation">2dp</item>
 		<item name="over_aa_elevation">4dp</item>
-		<item name="over_aa_elevation_plus">4.25dp</item><!-- over_aa_elevation + some minor offset to top -->
-		<item name="item_ontop_elevation">4.5dp</item><!-- This should be always on top of everything in item -->
+		<!-- Not used ATM. over_aa_elevation + some minor offset to top -->
+		<item name="over_aa_elevation_plus">4.25dp</item>
+		<!-- This should be always on top of everything in item -->
+		<item name="item_ontop_elevation">4.5dp</item>
 
 		<item name="popup_elevation">8dp</item>
 		<item name="navbar_elevation">1.25dp</item>
@@ -570,7 +573,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_miniplayer_aa">@dimen/corners_miniplayer_aa</item><!-- 12dp, depends on Navbar_height -->
 
 		<item name="OptionRoundedScreenCorners_corners_header">16dp</item>
-		<item name="OptionRoundedScreenCorners_header_aa_elevation">8dp</item>
+		<!-- Shouldn't go beyond aa_elevation=4dp that as other items have elevation just above that -->
+		<item name="OptionRoundedScreenCorners_header_aa_elevation">4dp</item>
 		<item name="OptionRoundedScreenCorners_buttons_scene_header_marginBottom">12dp</item>
 
 		<!-- This enables shadow for header/bottom toolbar buttons as well for menu, etc. -->

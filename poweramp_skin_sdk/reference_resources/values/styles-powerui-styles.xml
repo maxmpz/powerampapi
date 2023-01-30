@@ -543,6 +543,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="NavBarButton">@style/NavBarButton</item>
 		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet</item>
 		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines</item>
+		<item name="NavbarSeekbar">@style/NavbarSeekbar</item>
 		
 		<item name="SelectionMenuTopLineLayout">@style/SelectionMenuTopLineLayout</item>
 		<item name="SelectionMenuSelectBox">@style/SelectionMenuSelectBox</item>

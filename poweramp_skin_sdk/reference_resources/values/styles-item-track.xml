@@ -426,7 +426,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="cornerRadius3">?corners_aa_other_header</item><!-- Others -->
 
 		<item name="hiRes">true</item>
-		<item name="android:elevation">?grid_aa_elevation</item><!-- Force no elevation for header -->
+		<!-- NOTE: we now have elevation in header so we have some shadow as well -->
+		<item name="android:elevation">?header_aa_elevation</item>
 		<item name="android:visibility">visible</item>
 		<item name="drawableTintColor">?ItemTrackAAImage_scene_header_drawableTintColor</item><!-- Overridden for alt styles + overlap_track_labels_no_bg -->
 	</style>
@@ -2120,7 +2121,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemHeaderSelectButton" parent="BlackListHeaderButton">
 		<item name="layout_consumeSpace">reset_horizontal</item>
 	</style>
-	<style name="ItemHeaderSelectButton_scene_header" parent="BlackListHeaderButton_scene_header"></style>
+	<style name="ItemHeaderSelectButton_scene_header" parent="BlackListHeaderButton_scene_header">
+		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+	</style>
 	<style name="ItemHeaderSelectButton_scene_menu" parent="BlackListHeaderButton_scene_menu"></style>
 	<style name="ItemHeaderSelectButton_scene_bottom_toolbar" parent="ItemTextHeaderSelectButton_scene_bottom_toolbar"></style>
 
@@ -2259,6 +2262,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="drawableTint">?colorIconInverseForced</item>
 	</style>
 	<style name="BlackListIconOnlyHeaderButton_scene_header" parent="BlackListHeaderButton_scene_header">
+		<item name="drawableTint">?colorIconInverseForced</item>
 	</style>
 	<style name="BlackListIconOnlyHeaderButton_scene_menu" parent="BlackListHeaderButton_scene_menu">
 	</style>

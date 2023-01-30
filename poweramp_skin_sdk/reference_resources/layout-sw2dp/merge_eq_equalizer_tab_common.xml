@@ -109,6 +109,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 Alternatively, wrap it in private scene layout -->
 	<com.maxmpz.widget.player.EqPresetPopupListLayout android:id="@+id/preset_button"
 		style="?EqEquPresetButtonLayout"
+		android:contentDescription="@string/preset"
 	>
 		<com.maxmpz.widget.player.BusStatusText android:id="@id/_label"
 			style="?EqEquPresetLabel"

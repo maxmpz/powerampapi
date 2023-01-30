@@ -36,6 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 		<com.maxmpz.widget.app.ToastFrameLayout android:id="@+id/toast_frame"
 			style="?TopToastFrame"
+			android:importantForAccessibility="no"
 		>
 			<com.maxmpz.widget.base.FastTextView android:id="@+id/icon"
 				style="?TopToastIcon"

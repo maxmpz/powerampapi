@@ -440,7 +440,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="layout_gravityTarget">@+id/dialog_toast_img</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginTop">1dp</item>
 		
 	</style>
 	<style name="DialogToastButton_Text" parent="TextAppearance.AppCompat">
