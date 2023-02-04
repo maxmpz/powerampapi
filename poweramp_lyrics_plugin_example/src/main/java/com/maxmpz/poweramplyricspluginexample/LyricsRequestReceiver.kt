@@ -28,7 +28,6 @@ import android.os.Looper
 import android.util.Log
 import com.maxmpz.poweramp.player.PowerampAPI
 import com.maxmpz.poweramp.player.PowerampAPI.NO_ID
-import com.maxmpz.poweramp.player.PowerampAPIHelper
 import kotlinx.coroutines.*
 
 
