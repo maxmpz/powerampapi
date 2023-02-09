@@ -968,6 +968,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_aa_scene_aa">8dp</item>
 		<item name="corners_miniplayer_aa">4dp</item>
 		<item name="corners_toast">16dp</item>
+		<item name="corners_large">10dp</item>
 
 		<item name="ItemTrackTitle_paddingLR">8dp</item>
 		<item name="ItemTrackLine2_paddingLR">8dp</item>

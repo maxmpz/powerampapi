@@ -19,7 +19,9 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- NOTE: use this for library lists, don't modify anything as this item is not bound -->
+<!--
+	scene_empty_no_button - disabled lyrics app, so no open lyrics app button, nor hint
+-->
 <com.maxmpz.widget.base.ItemSceneFastLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
@@ -30,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="gone"
 		android:text="@string/lyrics_loading_via_plugin"
 		/>
-	<SceneParams w:scene="@+id/scene_empty"
+	<SceneParams w:scene="@+id/scene_empty" w:scene_2="@+id/scene_empty_no_button"
 		android:visibility="gone"
 		/>
 	<SceneParams w:scene="@+id/scene_loading_via_plugin"
@@ -41,7 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="visible"
 		style="?ItemEmptyListScanProgressCenter"
 		/>
-	<SceneParams w:scene="@+id/scene_empty"
+	<SceneParams w:scene="@+id/scene_empty" w:scene_2="@+id/scene_empty_no_button"
 		android:visibility="gone"
 	/>
 	<SceneParams w:scene="@+id/scene_loading_via_plugin"
@@ -53,7 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="gone"
 		android:text="@string/no_lyrics_found"
 	/>
-	<SceneParams w:scene="@+id/scene_empty"
+	<SceneParams w:scene="@+id/scene_empty" w:scene_2="@+id/scene_empty_no_button"
 		android:visibility="visible"
 		/>
 	<SceneParams w:scene="@+id/scene_loading_via_plugin"
@@ -68,10 +70,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_empty"
 		android:visibility="visible"
 		/>
-	<SceneParams w:scene="@+id/scene_loading_via_plugin"
+	<SceneParams w:scene="@+id/scene_loading_via_plugin" w:scene_2="@+id/scene_empty_no_button"
 		android:visibility="gone"
 		/>
 
+	<!-- NOTE: we manipulate text via code in LyricsItemProvider to dynamically show/hide this button -->
 	<com.maxmpz.widget.base.FastButton android:id="@+id/search_button"
 		style="?ItemEmptyLyricsSearchButton"
 		android:text="@string/open_lyrics_app"
@@ -81,7 +84,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_empty"
 		android:visibility="visible"
 		/>
-	<SceneParams w:scene="@+id/scene_loading_via_plugin"
+	<SceneParams w:scene="@+id/scene_loading_via_plugin" w:scene_2="@+id/scene_empty_no_button"
 		android:visibility="gone"
 		/>
 
@@ -93,8 +96,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:contentDescription="@string/settings"
 		android:visibility="gone"
 	/>
-	<SceneParams w:scene="@+id/scene_empty"
+	<SceneParams w:scene="@+id/scene_empty" w:scene_2="@+id/scene_empty_no_button"
 		android:visibility="visible"
+		/>
+	<SceneParams w:scene="@+id/scene_empty_no_button"
+		style="?ItemEmptyListSettingsButton"
+		android:layout_gravity="center_horizontal"
+		w:layout_attachTop="50%"
+		android:visibility="visible"
+		
 		/>
 	<SceneParams w:scene="@+id/scene_loading_via_plugin"
 		android:visibility="gone"

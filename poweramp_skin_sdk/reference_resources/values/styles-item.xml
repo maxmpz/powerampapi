@@ -162,7 +162,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:paddingRight">16dp</item>
 		<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>
 				
-		<item name="android:layout_gravity">top|start</item>
+		<item name="android:layout_gravity">top|start</item><!-- REVISIT: this is always redefined for the target views -->
 		<item name="layout_consumeSpace">none</item>
 		<item name="drawableOnly">false</item>
 	</style>

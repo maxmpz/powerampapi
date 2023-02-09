@@ -66,6 +66,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?SelectionMenuCloseButton"
 			w:busId="@id/bus_gui"
 			w:msgId="@id/cmd_selection_menu_close"
+			android:contentDescription="@string/close"
 		/>
 
 		<com.maxmpz.widget.player.BusStatusText android:id="@+id/selection_menu_count_text"
