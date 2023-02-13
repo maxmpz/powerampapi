@@ -732,6 +732,14 @@ public final class PowerampAPI {
 	 * Sticky intent (can be queried for permanently stored data).<br><br>
 	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br>
 	 * Use *_EXPLICIT version to receive this action in background app.<br><br>
+	 *
+	 * <ul>
+	 * <li>sent when the user manually changes the track in any way
+	 * <li>sent when the player finishes playing one track, and begins another
+	 * <li>sent when the player starts again after being in the stopped state
+	 * <ul><li>may be sent multiple times in this case</ul>
+	 * </ul>
+
 	 * Extras:<br>
 	 * {@link #EXTRA_TRACK} - Bundle - Track bundle<br>
 	 * {@link #EXTRA_TIMESTAMP} - long - timestamp of the event (System.currentTimeMillis())
@@ -746,7 +754,14 @@ public final class PowerampAPI {
 	 *
 	 * <b>NOTE: Poweramp caches app list for this intent. Cache is updated when Poweramp is started or playback resumed.</b><br>
 	 * This means if your app just installed and Poweramp is playing, your app won't receive this action until next Poweramp pause/resume
-	 * cycle or Poweramp service restart.<br><br>
+	 * cycle or Poweramp service restart.<br>
+	 *
+	 * <ul>
+	 * <li>sent when the user manually changes the track in any way
+	 * <li>sent when the player finishes playing one track, and begins another
+	 * <li>sent when the player starts again after being in the stopped state
+	 * <ul><li>may be sent multiple times in this case</ul>
+	 * </ul>
 	 *
 	 * Extras:<br>
 	 * {@code Bundle track} - Track bundle<br>
@@ -782,6 +797,20 @@ public final class PowerampAPI {
 	 *
 	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br>
 	 * Use *_EXPLICIT version to receive this action in background app.<br><br>
+	 * <ul>
+	 * <li>sent when the player changes status for any reason (user initiated or automatic, such as playing when headphones are connected)
+	 * <li>sent when the user presses the X button in the notification
+	 * <ul>
+	 * <li>on this event, the player may send the paused state first
+	 * <li>then shortly after, the stopped state
+	 * </ul>
+	 * <li>sent when the player starts back up after being in the stopped state
+	 * <ul>
+	 * <li>may be sent multiple times in this case
+	 * </ul>
+	 * <li>when the player sends the stopped state, you can unload PowerAmp related state from your app, since the next
+	 * intents sent to your app will refresh it on everything it needs to know<br><br>
+	 * </ul>
 	 *
 	 * Extras:<br>
 	 * {@code int state} - one of the STATE_* values (700+)<br>
@@ -802,6 +831,21 @@ public final class PowerampAPI {
 	 *
 	 * <b>NOTE: Poweramp caches app list for this intent. Cache is updated when Poweramp is started or playback resumed.</b><br>
 	 * It means if your app just installed and Poweramp is playing, your app won't receive this action until next Poweramp pause/resume cycle or Poweramp service restart.<br><br>
+	 *
+	 * <ul>
+	 * <li>sent when the player changes status for any reason (user initiated or automatic, such as playing when headphones are connected)
+	 * <li>sent when the user presses the X button in the notification
+	 * <ul>
+	 * <li>on this event, the player may send the paused state first
+	 * <li>then shortly after, the stopped state
+	 * </ul>
+	 * <li>sent when the player starts back up after being in the stopped state
+	 * <ul>
+	 * <li>may be sent multiple times in this case
+	 * </ul>
+	 * <li>when the player sends the stopped state, you can unload PowerAmp related state from your app, since the next
+	 * intents sent to your app will refresh it on everything it needs to know<br><br>
+	 * </ul>
 	 *
 	 * Extras:<br>
 	 * {@code int state} - one of the STATE_* values<br>
