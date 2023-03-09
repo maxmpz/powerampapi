@@ -56,12 +56,15 @@ public class TrackProviderConsts {
 
 	/**
 	 * Column for the optional lyrics<br>
+	 * This can be also LRC format as Poweramp always tries to parse any lyrics as LRC, then fallbacks to showing lyrics
+	 * as plain text<br>
 	 * String
 	 */
 	public static final String COLUMN_TRACK_LYRICS = "lyrics";
 
 	/**
 	 * Column for the optional synced lyrics in LRC format<br>
+	 * If this fails to be parsed as LRC, it's shown as plain text<br>
 	 * String
 	 * @since 957
 	 */
@@ -92,7 +95,11 @@ public class TrackProviderConsts {
 
 	/**
 	 * Extra flags column.<br>
+	 * NOTE: do not confuse with Document.COLUMN_FLAGS
 	 * Integer<br>
+	 * @see #FLAG_NO_SUBDIRS
+	 * @see #FLAG_HAS_SUBDIRS
+	 * @see #FLAG_HAS_LYRICS
 	 * @since 871
 	 */
 	public static final String COLUMN_FLAGS = "__flags";
@@ -100,6 +107,7 @@ public class TrackProviderConsts {
 	/**
 	 * If set for directories: hint for Poweramp to avoid extra sub-directory lookup, especially useful for first time Music Folder selection
 	 * and first time loading, e.g. via non-yet cached network requests.<br>
+	 * @see #COLUMN_FLAGS
 	 * @since 871
 	 */
 	public static final int FLAG_NO_SUBDIRS = 0x0001;
@@ -107,12 +115,14 @@ public class TrackProviderConsts {
 	/**
 	 * If set for directories: hint for Poweramp to avoid extra sub-directory lookup, especially useful for first time Music Folder selection
 	 * and first time loading, e.g. via non-yet cached network requests.<br>
+	 * @see #COLUMN_FLAGS
 	 * @since 871
 	 */
 	public static final int FLAG_HAS_SUBDIRS = 0x0002;
 
 	/**
 	 * If set for file: lyrics or synced lyrics hint for Poweramp - appropriate icon/button will be shown for the file
+	 * @see #COLUMN_FLAGS
 	 * @since 957
 	 */
 	public static final int FLAG_HAS_LYRICS = 0x0004;

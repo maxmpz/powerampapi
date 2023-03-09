@@ -86,6 +86,8 @@ To represent list of provider tracks Poweramp scans Track Provider Plugin in two
 * metadata scan
   * metadata retrieved for the new or modified tracks (based on last modified timestamp)
   * projection columns include most metadata columns, but still exclude some additional possible metadata columns, such as lyrics
+* Poweramp also scans one track specifically for Info/Tags or Lyrics UI
+  * in this case extra info is expected, such as lyrics or synced lyrics
 
 **Important:** each scan phase is executed in multiple threads. All the related API Provider code should be thread safe
 (Android SAF Provider architecture already implies that and requires thread safe implementation).
