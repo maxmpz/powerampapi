@@ -36,6 +36,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.maxmpz.poweramp.player.PowerampAPI;
+import com.maxmpz.poweramp.player.PowerampAPI.Lyrics;
+import com.maxmpz.poweramp.player.PowerampAPI.Track;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.TrackProviderConsts;
 import com.maxmpz.poweramp.player.TrackProviderHelper;
@@ -247,9 +249,11 @@ public class ExampleProvider extends DocumentsProvider {
 	}
 
 	/**
-	 * Query document is used:
-	 * - by Android picker to show appropriate directory and tracks
-	 * - by Poweramp to retrieve track metadata
+	 * Query document is used:<br>
+	 * - by Android picker to show appropriate directory and tracks<br>
+	 * - by Poweramp to retrieve track metadata during the library scan<br>
+	 * - by Poweramp to retrieve track metadata for Info/Tags/Lyrics UI<br>
+	 *   - in this case Poweramp will ask for extra fields, such as lyrics/synced lyrics<br>
 	 */
 	@Override
 	public Cursor queryDocument(String documentId, String[] projection) throws FileNotFoundException {
@@ -303,9 +307,21 @@ public class ExampleProvider extends DocumentsProvider {
 				boolean addMetadata = documentId.startsWith("root2/") && projection != null && arrayContains(projection, MediaStore.MediaColumns.TITLE);
 				final MatrixCursor c = new MatrixCursor(resolveTrackProjection(projection));
 
-				boolean addLyrics = projection != null && arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_LYRICS);
-				boolean sendWave = documentId.contains("dubstep") && projection != null && arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_WAVE);
-				fillTrackRow(documentId, c.newRow(), addMetadata, sendWave, addLyrics, extractTrackNum(documentId), 0); // Adding wave as well to root2 tracks
+				boolean addLyrics = projection != null
+					                    && (arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_LYRICS)
+											|| arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_LYRICS_SYNCED));
+				boolean sendWave = documentId.contains("dubstep") && projection != null
+					                   && arrayContains(projection, TrackProviderConsts.COLUMN_TRACK_WAVE);
+				fillTrackRow(
+					documentId,
+					c.newRow(),
+					addMetadata,
+					sendWave, // Adding wave as well to root2 tracks
+					addLyrics,
+					extractTrackNum(documentId),
+					0,
+					TrackProviderConsts.FLAG_HAS_LYRICS // Set lyrics flag for all of these tracks
+				);
 				return c;
 
 			} else if(documentId.endsWith(".m3u")) { // Seems like a playlist
@@ -420,8 +436,15 @@ public class ExampleProvider extends DocumentsProvider {
 		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
 	}
 
-	private void fillTrackRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, boolean addMetadata, boolean sendWave, boolean sendLyrics,
-	                          int trackNum, int trackNumAlt
+	private void fillTrackRow(
+		@NonNull String documentId,
+		@NonNull MatrixCursor.RowBuilder row,
+		boolean addMetadata,
+		boolean sendWave,
+		boolean sendLyrics,
+		int trackNum,
+		int trackNumAlt,
+		int extraFlags
 	) {
 		boolean isFlac = documentId.endsWith(".flac");
 		boolean isDubstep = documentId.contains("dubstep");
@@ -458,6 +481,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 			// Setting this will cause Poweramp to ask for track album art via getDocumentThumbnail, but only if other metadata (MediaStore.MediaColumns.TITLE/MediaStore.MediaColumns.DURATION) exists
 			flags |= Document.FLAG_SUPPORTS_THUMBNAIL;
+			flags |= TrackProviderConsts.FLAG_HAS_LYRICS;
 
 			row.add(Document.COLUMN_FLAGS, flags);
 			row.add(MediaStore.MediaColumns.TITLE, prefix + "Track " + trackNum);
@@ -487,15 +511,31 @@ public class ExampleProvider extends DocumentsProvider {
 				row.add(TrackProviderConsts.COLUMN_TRACK_WAVE, TrackProviderHelper.floatsToBytes(genRandomWave()));
 			}
 
+			// Add our own extra flags if any
+			if(extraFlags != 0) {
+				row.add(TrackProviderConsts.COLUMN_FLAGS, extraFlags);
+			}
+
 			if(sendLyrics) {
-				row.add(TrackProviderConsts.COLUMN_TRACK_LYRICS, "La la la\nLyrics for track " + prefix + "Track " + trackNum);
+				if(isDubstep) {
+					// For dubstep add LRC (synced) lyrics
+					row.add(
+						TrackProviderConsts.COLUMN_TRACK_LYRICS_SYNCED,
+						"[0:00.00]La la la\n[0:05.00]Synced Lyrics for track " + prefix + "Track " + trackNum + "\n" +
+						"[0:05.00]Line\n" +
+						"[0:10.00]Line\n" +
+						"[0:30.00]The last line\n"
+					);
+				} else {
+					row.add(TrackProviderConsts.COLUMN_TRACK_LYRICS, "La la la\nLyrics for track " + prefix + "Track " + trackNum);
+				}
 			}
 		}
 	}
 
 	/**
-	 * @param sortOrder this field is not used directly as sorting order as Poweramp always use some user defined sorting which is based on track # or other user selected
-	 * criteria. Instead, we use sortOrder as optional additional parameter for things like
+	 * @param sortOrder this field is not used directly as sorting order as Poweramp always use some user defined sorting which is
+	 * based on track # or other user selected criteria. Instead, we use sortOrder as optional additional parameter for things like
 	 */
 	@Override
 	public Cursor queryChildDocuments(String parentDocumentId, String[] projection, String sortOrder) throws FileNotFoundException {
@@ -588,7 +628,7 @@ public class ExampleProvider extends DocumentsProvider {
 					if(parentDocumentId.equals("root1")) {
 						sortAlt = count - i;
 					}
-					fillTrackRow(docId, c.newRow(), addMetadata, false, false, sort, sortAlt);
+					fillTrackRow(docId, c.newRow(), addMetadata, false, false, sort, sortAlt, 0);
 				}
 			}
 
@@ -1155,12 +1195,14 @@ public class ExampleProvider extends DocumentsProvider {
 
 	/**
 	 * Provider is informed regarding the automatic or user initiated scan.<br>
-	 * This is called prior Poweramp calls any {@link android.provider.DocumentsProvider#queryChildDocuments} and other methods to rescan the actual files hierarchy and metadata.<br><br>
+	 * This is called prior Poweramp calls any {@link android.provider.DocumentsProvider#queryChildDocuments} and other methods to rescan
+	 * the actual files hierarchy and metadata.<br><br>
 	 *
-	 * Depending on ths passed arguments, provider may do some refresh on data - if absolutely needed. Poweramp (and user) waits until this method returns, so in most cases,
-	 * it should return as soon as possible.<br><br>
+	 * Depending on ths passed arguments, provider may do some refresh on data - if absolutely needed. Poweramp (and user) waits until this
+	 * method returns, so in most cases, it should return as soon as possible.<br><br>
 	 *
-	 * If we're sending the rescan intent from this app (see {@link MainActivity#sendScanThisSubdir(View)}), we're getting the extras we sent.
+	 * If we're sending the rescan intent from this app (see {@link MainActivity#sendScanThisSubdir(View)}), we're getting the extras
+	 * we sent.
 	 */
 	private Bundle handleRescan(String arg, Bundle extras) {
 		if(LOG) Log.w(TAG, "handleRescan extras=" + dumpBundle(extras));
