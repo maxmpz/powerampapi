@@ -55,10 +55,17 @@ public class TrackProviderConsts {
 	public static final String COLUMN_URL = "url";
 
 	/**
-	 * Column for optional lyrics<br>
+	 * Column for the optional lyrics<br>
 	 * String
 	 */
 	public static final String COLUMN_TRACK_LYRICS = "lyrics";
+
+	/**
+	 * Column for the optional synced lyrics in LRC format<br>
+	 * String
+	 * @since 957
+	 */
+	public static final String COLUMN_TRACK_LYRICS_SYNCED = "lyrics_synced";
 
 	/**
 	 * Column for track wave<br>
