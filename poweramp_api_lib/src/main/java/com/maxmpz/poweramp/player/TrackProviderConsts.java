@@ -111,6 +111,11 @@ public class TrackProviderConsts {
 	 */
 	public static final int FLAG_HAS_SUBDIRS = 0x0002;
 
+	/**
+	 * If set for file: lyrics or synced lyrics hint for Poweramp - appropriate icon/button will be shown for the file
+	 * @since 957
+	 */
+	public static final int FLAG_HAS_LYRICS = 0x0004;
 
 	/**
 	 * Special value for #COLUMN_URL to use with dynamic url - an url which is dynamically retrieved at the moment of playback with #CALL_GET_URL
