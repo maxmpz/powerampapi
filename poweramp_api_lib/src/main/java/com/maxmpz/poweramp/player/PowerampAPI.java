@@ -144,11 +144,6 @@ public final class PowerampAPI {
 	public static final String PARAM_AA_DOWNLOAD = "dl";
 	
 	/**
-	 * Uri query parameter - filter. Currently used only for the search uri
-	 */
-	public static final String PARAM_FILTER = "flt";
-
-	/**
 	 * Uri query parameter - shuffle mode
 	 */
 	public static final String PARAM_SHUFFLE = "shf";
@@ -2281,6 +2276,13 @@ public final class PowerampAPI {
 	 */
 	@Deprecated
 	public static final String TABLE = "table";
+
+	/**
+	 * Uri query parameter - filter. Currently used only for the search uri
+	 * @Deprecated not used anymore
+	 */
+	@Deprecated
+	public static final String PARAM_FILTER = "flt";
 
 	/**
 	 * Sent by your app to Poweramp<br>
