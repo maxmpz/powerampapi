@@ -1603,7 +1603,9 @@ public interface TableDefs {
 		public static final @NonNull String _ID = TABLE + "._id";
 
 		/**
-		 * Predefined preset number (see res/values/arrays/eq_preset_labels) or NULL for a custom preset<br>
+		 * If non-null - this is the predefined preset (see res/values/arrays/eq_preset_labels).<br>
+		 * preset=0 defines the user default preset (the preset selected when no any named preset is selected),
+		 * which is tehcnically built-in (provided by the app)
 		 * INTEGER
 		 */
 		public static final @NonNull String PRESET = "preset";
@@ -1661,6 +1663,15 @@ public interface TableDefs {
 		 * @since 906
 		 */
 		public static final @NonNull String SHARE_BLOB_UPDATED_AT = "share_blob_updated_at";
+
+		/**
+		 * INTEGER<br>
+		 * Defines type of preset: user, builtin, autoeq, etc.<br>
+		 * NOTE: parametric/graphic behavior is defined by {@link #PARAMETRIC}
+		 * @see EqPresetConsts
+		 * @since 959
+		 */
+		public static final @NonNull String TYPE = TABLE + ".type";
 
 		/**
 		 * 1 if preset is bound to speaker, 0 otherwise<br>
