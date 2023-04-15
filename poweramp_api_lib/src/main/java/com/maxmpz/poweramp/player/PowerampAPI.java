@@ -881,7 +881,8 @@ public final class PowerampAPI {
 	 * v2: sticky intent (can be queried for permanently stored data).<br>
 	 * v3: non-sticky intent<br><br>
 	 *
-	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started or some foreground service is active).</b><br><br>
+	 * <b>NOTE: on Android 8+, you'll receive this intent only if your app is on foreground (some activity started
+	 * or some foreground service is active).</b><br><br>
 	 *
 	 * Extras:<br>
 	 * {@code String name} - preset name. If no name extra exists, it's not a preset<br>
