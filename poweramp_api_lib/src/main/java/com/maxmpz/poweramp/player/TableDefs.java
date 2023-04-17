@@ -1646,7 +1646,8 @@ public interface TableDefs {
 		public static final @NonNull String SORT = TABLE + ".sort";
 
 		/**
-		 * Seconds. Updated automatically when name, _data, data_blob, parametric are updated, other fields ignored<br>
+		 * Updated automatically when name, _data, data_blob, or parametric fields are updated, other fields ignored<br>
+		 * Seconds before 980, milliseconds for 980+<br>
 		 * INTEGER
 		 * @since 906
 		 */
@@ -1659,6 +1660,7 @@ public interface TableDefs {
 		public static final @NonNull String SHARE_BLOB = "share_blob";
 
 		/**
+		 * Seconds before 980, milliseconds for 980+<br>
 		 * INTEGER
 		 * @since 906
 		 */
