@@ -1633,10 +1633,16 @@ public interface TableDefs {
 		public static final @NonNull String PARAMETRIC = "parametric";
 
 		/**
-		 * Custom preset name or null for predefined preset<br>
+		 * Preset name<br>
 		 * TEXT
 		 */
 		public static final @NonNull String NAME = TABLE + ".name";
+
+		/**
+		 * Additional meta information, such as AutoEq category<br>
+		 * TEXT
+		 */
+		public static final @NonNull String META = TABLE + ".meta";
 
 		/**
 		 * Extra sort field<br>
