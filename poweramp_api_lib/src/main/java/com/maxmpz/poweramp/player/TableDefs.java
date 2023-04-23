@@ -1618,13 +1618,29 @@ public interface TableDefs {
 		public static final @NonNull String _DATA = TABLE + "._data";
 
 		/**
-		 * Eq preset string. Either this or _data is used for the preset data<br>
-		 * The blob data format supports both graphic and parametric modes
+		 * Eq preset data. Either this or _data is used for the preset data, app always saves to DATA_BLOB.<br>
+		 * To read user/built-in/AutoEq preset data properly, use {@link #RESOLVED_BLOB}, as DATA_BLOB
+		 * is NULL for built-in/AutoEq presets until user changes the preset.<br>
+		 * The blob data format supports both graphic and parametric modes<br>
 		 * BLOB
 		 * @since 906
 		 */
 		public static final @NonNull String DATA_BLOB = TABLE + ".data_blob";
-		
+
+		/**
+		 * Default eq preset data for built-in and AutoEq presets.
+		 * BLOB
+		 * @since 960
+		 */
+		public static final @NonNull String DEFAULT_BLOB = TABLE + ".default_blob";
+
+		/**
+		 * Eq preset data resolved to either user changed data (if any) or the default preset data<br>
+		 * BLOB
+		 * @since 960
+		 */
+		public static final @NonNull String RESOLVED_BLOB = "COALESCE(" + DATA_BLOB + "," + DEFAULT_BLOB + ")";
+
 		/**
 		 * 1 if preset is parametric<br>
 		 * INTEGER (boolean)
@@ -1677,7 +1693,7 @@ public interface TableDefs {
 		 * Defines type of preset: user, builtin, autoeq, etc.<br>
 		 * NOTE: parametric/graphic behavior is defined by {@link #PARAMETRIC}
 		 * @see EqPresetConsts
-		 * @since 959
+		 * @since 960
 		 */
 		public static final @NonNull String TYPE = TABLE + ".type";
 
