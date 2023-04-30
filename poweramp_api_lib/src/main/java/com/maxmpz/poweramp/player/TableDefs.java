@@ -1911,6 +1911,19 @@ public interface TableDefs {
 		public static final @NonNull String DEVICE_ADDRESS = "device_address";
 	}
 
+	/** @since 960 */
+	public static final class KnownDevices {
+		public static final @NonNull String TABLE = "known_devices";
+
+		public static final @NonNull String _ID = TABLE + "._id";
+
+		/**
+		 * Device name<br>
+		 * TEXT
+		 */
+		public static final @NonNull String DEVICE_NAME = TABLE + ".device_name";
+	}
+
 	public class ReverbPresets {
 		public static final @NonNull String TABLE = "reverb_presets";
 
