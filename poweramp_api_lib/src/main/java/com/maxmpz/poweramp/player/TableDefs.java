@@ -1661,13 +1661,6 @@ public interface TableDefs {
 		public static final @NonNull String META = TABLE + ".meta";
 
 		/**
-		 * Extra sort field<br>
-		 * INTEGER
-		 * @since 906
-		 */
-		public static final @NonNull String SORT = TABLE + ".sort";
-
-		/**
 		 * Updated automatically when name, _data, data_blob, or parametric fields are updated, other fields ignored<br>
 		 * Seconds before 980, milliseconds for 980+<br>
 		 * INTEGER
@@ -1732,7 +1725,21 @@ public interface TableDefs {
 		 * INTEGER (boolean)
 		 */
 		public static final @NonNull String BIND_TO_CHROMECAST = "bind_to_cc";
-		
+
+		/**
+		 * Baked up devices as ints string for the assigned named devices. Used as an optimization for the UI layer<br>
+		 * TEXT<br>
+		 * @since 963
+		 */
+		public static final @NonNull String META_BOUND_DEVICES = "meta_bound_devices";
+
+		/**
+		 * Baked up first assigned device and device name (device-device_name). Used as an optimization for the UI layer<br>
+		 * TEXT<br>
+		 * @since 963
+		 */
+		public static final @NonNull String META_BOUND_DEVICE_NAME = "meta_bound_device_name";
+
 		/**
 		 * Virtual field, used for insert/update contentValues.<br>
 		 * If set to 1 preset is bound to track specified by {@link #BOUND_TRACK_ID}, if set to 0, preset is unbound from that track<br>
@@ -1861,6 +1868,15 @@ public interface TableDefs {
 		 */
 		@Deprecated
 		public static final @NonNull String BIND_TO_CAT_URI = "__bind_to_cat_uri";
+
+		/**
+		 * Extra sort field<br>
+		 * INTEGER
+		 * @since 906
+		 * @deprecated not used since 962
+		 */
+		@Deprecated
+		public static final @NonNull String SORT = TABLE + ".sort";
 	}
 
 	public static final class EqPresetSongs {
