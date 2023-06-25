@@ -331,7 +331,7 @@ public final class PowerampAPI {
 		public static final int POS_SYNC = 16;
 
 		/**
-		 * Stops {@link #BEGIN_FAST_FORWARD} or {@link #BEGIN_REWIND}
+		 * Stop {@link #BEGIN_FAST_FORWARD} or {@link #BEGIN_REWIND}
 		 */
 		public static final int END_FF_OR_RW = 11;
 		
@@ -343,7 +343,37 @@ public final class PowerampAPI {
 		 * @since 862
 		 */
 		public static final int SLEEP_TIMER = 17;
-	
+
+		/**
+		 * Set/unset "like" rating for the current track
+		 * @since 966
+		 */
+		public static final int LIKE = 18;
+
+		/**
+		 * Set/unset "unlike" rating for the current track
+		 * @since 966
+		 */
+		public static final int UNLIKE = 19;
+
+		/**
+		 * Switches between like/unlike/no rating for the current track
+		 * @since 966
+		 */
+		public static final int TOGGLE_RATING = 21;
+
+		/**
+		 * Seek for +10s
+		 * @since 966
+		 */
+		public static final int SEEK_JUMP_FORWARD = 22;
+
+		/**
+		 * Seel for -10s
+		 * @since 966
+		 */
+		public static final int SEEK_JUMP_BACKWARD = 23;
+
 		 /**
 		  * Data:<br>
 		  * - uri, following URIs are recognized:<br>
@@ -616,6 +646,17 @@ public final class PowerampAPI {
 					return "SLEEP_TIMER";
 				case SET_VIS_PRESET:
 					return "SET_VIS_PRESET";
+				case LIKE:
+					return "LIKE";
+				case UNLIKE:
+					return "UNLIKE";
+				case TOGGLE_RATING:
+					return "TOGGLE_RATING";
+				case SEEK_JUMP_FORWARD:
+					return "SEEK_JUMP_FORWARD";
+				case SEEK_JUMP_BACKWARD:
+					return "SEEK_JUMP_BACKWARD";
+
 				default:
 					return "unknown cmd=" + cmd;
 			}
@@ -1298,7 +1339,23 @@ public final class PowerampAPI {
 		 * Max track tag number to use/show
 		 */
 		public static final int MAX_TRACK_NUMBER = 999;
-		
+
+		/**
+		 * Rating value for the "unlike" icon
+		 */
+		public static final int RATING_UNLIKE = 1;
+
+		/**
+		 * Rating value for the "like" icon
+		 */
+		public static final int RATING_LIKE = 5;
+
+		/**
+		 * Rating value for the unset like-ness
+		 */
+		public static final int RATING_NOT_SET = 0;
+
+
 		/**
 		 * Id of the current track.
 		 * Can be a playlist entry id<br>
