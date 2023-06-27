@@ -1611,24 +1611,6 @@ public final class PowerampAPI {
 		public static final String TYPE = "type";
 	}
 	
-	public interface PauseFlags {
-		/**
-		 * Ask to keep service/notification
-		 */
-		public static final int KEEP_SERVICE      = 0x0001;
-		
-		/**
-		 * Specifically ask not to keep service/notification. Has priority over KEEP_SERVICE
-		 */
-		public static final int DONT_KEEP_SERVICE = 0x0002;
-
-		/**
-		 * Don't fade out pause 
-		 * @since 867
-		 */
-		public static final int NO_FADE = 0x0004;
-	}
-
 	/**
 	 * {@link PowerampAPI.Track} {@link PowerampAPI.Track#CAT} categories
 	 */
@@ -2042,7 +2024,7 @@ public final class PowerampAPI {
 		 * Exports Poweramp settings<br>
 		 * Target URI for file should be set via {@link Intent#setData} with the appropriate permissions given to Poweramp process
 		 * Extras: {@link #EXTRA_UI}
-		 * @derpecated disabled starting from build-912
+		 * @deprecated disabled starting from build-912
 		 */
 		@Deprecated
 		public static final String ACTION_EXPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_EXPORT_SETTINGS";
@@ -2050,7 +2032,7 @@ public final class PowerampAPI {
 		/**
 		 * Sent by your app to Poweramp.<br>
 		 * Imports Poweramp settings
-		 * @derpecated disabled starting from build-912
+		 * @deprecated disabled starting from build-912
 		 */
 		@Deprecated
 		public static final String ACTION_IMPORT_SETTINGS = "com.maxmpz.audioplayer.ACTION_IMPORT_SETTINGS";
@@ -2337,7 +2319,7 @@ public final class PowerampAPI {
 
 	/**
 	 * Uri query parameter - filter. Currently used only for the search uri
-	 * @Deprecated not used anymore
+	 * @deprecated not used anymore
 	 */
 	@Deprecated
 	public static final String PARAM_FILTER = "flt";
