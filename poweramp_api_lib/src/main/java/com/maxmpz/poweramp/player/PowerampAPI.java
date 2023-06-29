@@ -577,7 +577,7 @@ public final class PowerampAPI {
 		 * Used by Notification controls to stop pending/paused service/playback and unload/remove notification
 		 */
 		public static final int STOP_SERVICE = 100;
-		
+
 		/**
 		 * Set as active and/or import visualization preset<br><br>
 		 * Depending on extras, preset will be:<br>
@@ -1054,6 +1054,13 @@ public final class PowerampAPI {
 	 * defined by the "plugin" apps, such as skins.
 	 */
 	public static final String ACTION_SKIN_MAIN = "com.maxmpz.audioplayer.SKIN_MAIN";
+
+	/**
+	 * Used internally
+	 * @since 966
+	 */
+	public static final String ACTION_NOTIFICATION_DELETED = "com.maxmpz.audioplayer.ACTION_NOTIFICATION_DELETED";
+
 
 	/**
 	 * Poweramp settings activity
