@@ -31,11 +31,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="TopWaveseek_maxHeight">184dp</dimen>
 
-	<dimen name="TopBaseButtonLayout_layout_width">68dp</dimen>
-	<dimen name="TopBaseButtonLayout_layout_height">36dp</dimen>
+	<dimen name="TopBaseButtonLayout_width">72dp</dimen>
+	<dimen name="TopBaseButtonLayout_height">36dp</dimen>
 	<dimen name="PopupButtons_drawableSize">32dp</dimen>
 	<dimen name="SmallerPopupButton_marginLeft">-12dp</dimen>
-	<dimen name="PopupButtons_paddingLeft">18dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
+	<dimen name="PopupButtons_paddingLeft">18dp</dimen><!-- Sync with TopBaseButtonLayout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
 	<dimen name="SmallerPopupButtons_paddingLeft">20.5dp</dimen>
 	
 	<dimen name="TopHelpSmaller_textSize">12dp</dimen>

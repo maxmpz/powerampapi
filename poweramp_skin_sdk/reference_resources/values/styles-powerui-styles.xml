@@ -100,7 +100,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemPopupListMicroIconSpace">@style/ItemPopupListMicroIconSpace</item>
 		<item name="ItemPopupListFrs">@style/ItemPopupListFrs</item>
 		<item name="ItemEqPreset">@style/ItemEqPreset</item>
+		<item name="ItemEqPresetLock">@style/ItemEqPresetLock</item>
 		<item name="ItemEqPresetSelectBox">@style/ItemEqPresetSelectBox</item>
+		<item name="ItemEqPresetTitle">@style/ItemEqPresetTitle</item>
+		<item name="ItemEqPresetTitle_2line">@style/ItemEqPresetTitle_2line</item>
+		<item name="ItemEqPresetLine2_2line">@style/ItemEqPresetLine2_2line</item>
+		<item name="ItemEqPresetLine2_3line">@style/ItemEqPresetLine2_3line</item>
 		
 		<item name="ItemPopupSimpleTitle">@style/ItemPopupSimpleTitle</item>
 		<item name="ItemPopupSimpleTitle_Text">@style/ItemPopupSimpleTitle_Text</item>
@@ -145,6 +150,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PopupMenuItem">@style/PopupMenuItem</item>
 		<item name="PopupMenuItem_Text">@style/PopupMenuItem_Text</item>
 		<item name="PopupMenuItem50">@style/PopupMenuItem50</item>
+		<item name="CheckablePopupItem">@style/CheckablePopupItem</item>
 		
 		<item name="BlackButton_Text">@style/BlackButton_Text</item>
 		<item name="WhiteButton_Text">@style/WhiteButton_Text</item>
@@ -566,7 +572,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopMilk">@style/TopMilk</item>
 		<item name="TopListWidget">@style/TopListWidget</item>
 		<item name="TopAABounds">@style/TopAABounds2</item>
-		
+
 		<item name="TopListScrollerView">@style/TopListScrollerView</item>
 		<item name="TopListScrollerView_Text">@style/TopListScrollerView_Text</item>
 		<item name="TopListScrollerView_state_scrollbar_pressed">@style/TopListScrollerView_state_scrollbar_pressed</item>
@@ -702,8 +708,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqEquPresetButtonLayout_scene_button_menu">@style/EqEquPresetButtonLayout_scene_button_menu</item>
 		<item name="EqEquPresetLabel">@style/EqEquPresetLabel</item>
 		<item name="EqEquPresetLabel_Text">@style/EqEquPresetLabel_Text</item>
+		<item name="EqMenu">@style/EqMenu</item>
+		<item name="EqMenu_scene_item_menu">@style/EqMenu_scene_item_menu</item>
+		<item name="EqMenuIcon">@style/EqMenuIcon</item>
+		<item name="EqMenuLayoutItems">@style/EqMenuLayoutItems</item>
+		<!--
 		<item name="EqEquSaveButton">@style/EqEquSaveButton</item>
 		<item name="EqEquResetButton">@style/EqEquResetButton</item>
+		-->
+
 		<item name="EqTonePanel">@style/EqTonePanel</item>
 		<item name="EqBassToneKnobLayout">@style/EqBassToneKnobLayout</item>
 		<item name="EqTrebleToneKnobLayout">@style/EqTrebleToneKnobLayout</item>
@@ -735,6 +748,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqParamColorPopupLayout_scene_item_menu">@style/EqParamColorPopupLayout_scene_item_menu</item>
 		<item name="EqParamColorPopupIcon">@style/EqParamColorPopupIcon</item>
 		<item name="EqParamEditButton">@style/EqParamEditButton</item>
+		<item name="EqParamLockButton">@style/EqParamLockButton</item>
 		<item name="EqParamLRPopupButtonLayout">@style/EqParamLRPopupButtonLayout</item>
 		<item name="EqParamTypePopupButtonLayout">@style/EqParamTypePopupButtonLayout</item>
 		<item name="EqParamQRoundKnob">@style/EqParamQRoundKnob</item>
@@ -817,6 +831,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopUpperToastLine2_Text">@style/TopUpperToastLine2_Text</item>
 		<item name="TopUpperToastTitle_no_icon">@style/TopUpperToastTitle_no_icon</item>
 		<item name="TopUpperToastLine2_no_icon">@style/TopUpperToastLine2_no_icon</item>
+		<item name="TopUpperToastSeparator">@style/TopUpperToastSeparator</item>
 	</style>
 	
 </resources>

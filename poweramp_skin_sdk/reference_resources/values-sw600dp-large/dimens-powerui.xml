@@ -24,17 +24,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">560dp</dimen>
 	<dimen name="TopBottomSheetDialogFrame_vertical_buttons_maxHeight">560dp</dimen>
 	<dimen name="SmallerCenterDialogFrame_maxHeight">460dp</dimen>
-	
-	<dimen name="CenterDialogFrame_maxWidth">600dp</dimen>
+
+	<dimen name="CenterDialogFrame_maxWidth">540dp</dimen>
 	<dimen name="CenterDialogFrame_maxHeight">800dp</dimen>
 	
 	<dimen name="TopSleepTimerButtonLayout_scene_item_menu_width">500dp</dimen>
 	<dimen name="PopupButtonLayoutDialogButton_marginTop">8dp</dimen>
 	
-	<dimen name="TopToastContainer_layout_height">192dp</dimen>
+	<dimen name="TopToastContainer_height">192dp</dimen>
 	<dimen name="TopToastFrame_maxWidth">400dp</dimen>
 	<dimen name="TopToastFrame_paddingLR">24dp</dimen>
 	<dimen name="TopToastFrame_paddingTB">10dp</dimen>
 	<dimen name="TopToastTile_marginLeft">58dp</dimen><!-- NOTE: defines space for icon + padding -->
-		
+
+	<dimen name="DialogFrame_maxWidth">540dp</dimen>
 </resources>

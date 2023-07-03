@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<!-- NOTE: popup menu item view is detached from list and attached to @id/menu_placeholder -->
 	<!-- NOTE: defines scene params for the item which is detached from list and attached to menu_placeholder -->
-	<!-- NOTE: PopupMenuHelper creates "returning" scene params programatically as needed to match initial item position -->
+	<!-- NOTE: PopupMenuHelper creates "returning" scene params programatically as needed to match the initial item position -->
 	<SceneParams w:forId="parent" w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemPopupMenu_scene_item_menu"
 	/>

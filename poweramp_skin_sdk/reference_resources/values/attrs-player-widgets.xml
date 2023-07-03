@@ -164,5 +164,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- InfoTextHelper class name to use. Can start with . to resolve class name vs package name --> 
 		<attr name="infoTextHelper" format="string"/>
 	</declare-styleable>
-	
+
+
+	<declare-styleable name="ListSearchCatsLayoutBase">
+		<attr name="catButtonStyle" format="reference"/>
+	</declare-styleable>
+
+	<declare-styleable name="ListSearchEditText">
+		<!-- The list bus id. Default is @id/list -->
+		<attr name="busId"/>
+	</declare-styleable>
+
+	<declare-styleable name="EqPresetPopupListLayout">
+		<attr name="separatorSize"/>
+		<!-- This is taken from the default theme -->
+		<attr name="equ_graphic_small"/>
+		<!-- This is taken from the default theme -->
+		<attr name="equ_parametric_small"/>
+		<attr name="bottomReservedSpace"/>
+		<!-- True for the dialog list. This changes behavior to be focused around specific filters/assign cb/etc. as commanded
+		     by the intent -->
+		<attr name="isDialog" format="boolean"/>
+	</declare-styleable>
+
 </resources>

@@ -60,8 +60,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="animTime">500</item>
 		
-		<item name="itemSize">48dp</item>
-		<item name="listItemSize">48dp</item>
+		<item name="itemSize">@dimen/VisPanelFrame_height</item>
+		<item name="listItemSize">@dimen/VisPanelFrame_height</item>
 	</style>
 	<style name="VisPanelFrame_scene_vispanel_expanded">
 		<item name="android:layout_width">match_parent</item>

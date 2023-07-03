@@ -22,6 +22,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
+	<!-- NOTE: toast for the selection is shown via ListWidget.onBusMsg logic -->
+
 	<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/add_to_pl"
 		style="?SelectionListContextPopupButtonLayout"
 
@@ -40,6 +42,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:buttonsBusId="@id/list"
 		w:buttonsMsgId="@id/cmd_set_playlist_insert_pos"
 		w:buttonsLabels="@array/add_to_pl_modes"
+		w:buttonsLabels2="@array/playlist_insert_modes"
 		w:buttonsDrawables="@array/add_to_pl_modes_icons_24dp"
 		w:buttonsArg1="@array/playlist_insert_args1"
 		>
@@ -69,6 +72,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:buttonsBusId="@id/list"
 		w:buttonsMsgId="@id/cmd_set_queue_insert_pos"
 		w:buttonsLabels="@array/enqueue_modes"
+		w:buttonsLabels2="@array/enqueue_insert_modes"
 		w:buttonsDrawables="@array/enqueue_modes_icons_24dp"
 		w:buttonsArg1="@array/enqueue_modes_args1"
 		>
@@ -96,6 +100,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:buttonsMsgId="@id/cmd_set_play_next_insert_pos"
 		w:buttonsLabels="@array/play_next_modes"
 		w:buttonsDrawables="@array/play_next_modes_icons_24dp"
+		w:buttonsLabels2="@array/play_next_insert_modes"
 		w:buttonsArg1="@array/enqueue_modes_args1"
 		>
 	</com.maxmpz.widget.base.BusSelectablePopupButtonLayout>

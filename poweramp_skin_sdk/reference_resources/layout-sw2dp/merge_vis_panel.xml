@@ -41,6 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<!-- NOTE: buttons are aligned to the right, thus, reveresed -->
 			<com.maxmpz.widget.base.FastButton android:id="@+id/close_button"
 				style="?VisCloseButton"
+				android:contentDescription="@string/close"
 			/>
 			<SceneParams w:scene="@+id/scene_vispanel_expanded"
 				android:visibility="visible"
@@ -51,6 +52,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:busId="@id/bus_app_cmd"
 				w:msgId="@id/cmd_app_open_settings"
 				w:string="vis"
+				android:contentDescription="@string/settings"
 			/>
 			<SceneParams w:scene="@+id/scene_vispanel_expanded"
 				android:visibility="visible"
@@ -58,7 +60,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 			<com.maxmpz.widget.base.BusSelectablePopupButtonLayout
 				style="?VisSortButtonLayout"
-			
+				android:contentDescription="@string/sort"
+
 				w:stateBusId="@id/bus_player"
 				w:stateId="@id/state_player_milk_sort"			
 				

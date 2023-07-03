@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,18 +23,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >	
-	<style name="ActivityTheme_Whitepro_PeqEqKnobsHiliteMonochromatic">
-		<item name="arcStartColor">@color/peq_eq_arc_start_mono_selector</item>
-		<item name="arcEndColor">@color/peq_eq_arc_end_mono_selector</item>
-		<item name="arcGlowStartColor">@color/peq_eq_arc_start_mono_selector</item>
-		<item name="arcGlowEndColor">@color/peq_eq_arc_end_mono_selector</item>
-				
-		<item name="holeStartColor">@color/peq_eq_arc_start_mono_selector</item>
-		<item name="holeEndColor">@color/peq_eq_arc_end_mono_selector</item>
-		<item name="holeGlowStartColor">@color/peq_eq_arc_start_mono_selector</item>
-		<item name="holeGlowEndColor">@color/peq_eq_arc_end_mono_selector</item>
-	</style>
-	
 	<!-- eqtab  -->
 		
 	<style name="PeqEqEnableVisFrs" parent="WhiteButtonBase">
@@ -65,26 +53,106 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="PeqVisButtonLayoutBase" parent="EqPresetButtonLayoutBase">
 		<item name="android:background">@drawable/checkable_rounded_stroke_button_layout_bg</item>
-		<item name="buttonStyle">@style/PeqEqPopupButton</item>
-		<item name="menuButtonStyle">@style/PopupButton_scene_button_menu</item><!-- Use style with the forced tint -->
 		<item name="android:disabledAlpha">0</item><!-- Hide this completely when disabled (e.g. in PA) -->
+		<item name="dynamicButtons">true</item>
+
+		<item name="buttonStyle">@style/PeqEqPopupButton</item>
+		<item name="menuButtonStyle">@style/PeqEqPopupButton_scene_button_menu</item>
 	</style>
-	
-	
+
 	<style name="PeqVisButtonLayout" parent="PeqVisButtonLayoutBase">
+		<item name="android:layout_width">0dp</item>
+		<item name="layout_widthPercent">@fraction/left_buttons_width</item>
 		<item name="layout_attachTop">@+id/limiter_button</item>
-		<item name="android:layout_width">64dp</item>
+		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item>
 		<item name="android:layout_marginTop">6dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 	</style>
+
+	<!-- NOTE: this is a DynamicPopupButton, which is FastLayout itself:
+	     - we have additional styles for the inner icon and label views
+	     - some derived attribures used to configure normal PopupButton, such as drawable attributes are ignored
+
+		+====================================+ <- PeqEqPopupButton (==DynamicPopupButton -> FastLayout)
+		| +===========+ +==================+ |    - buttonStyle (while in button scene)
+		| |dynamicIcon| | dynamicLabel     | |    - menuButtonStyle (while in menu scene)
+		| +===========+ +==================+ |
+		+====================================+
+
+    -->
 	<style name="PeqEqPopupButton" parent="PopupButton">
-		<item name="drawableTint">@color/eq_icon_tint_color_selector</item><!-- NOTE: this removes "disabled" alpha from the icon and we use bg to indicate enabled state -->
+		<item name="recalcChildren">on_start</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+
+		<item name="dynamicIconStyle">@style/PeqEqPopupButtonIcon</item>
+		<item name="dynamicIconStyle_scene_menu">@style/PeqEqPopupButtonIcon_scene_menu</item>
+		<item name="dynamicLabelStyle">@style/PeqEqPopupButtonLabel</item>
+		<item name="dynamicLabelStyle_scene_menu">@style/PeqEqPopupButtonLabel_scene_menu</item>
+	</style>
+	<style name="PeqEqPopupButton_scene_button_menu">
+		<item name="scene">@id/scene_button_menu</item>
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">visible</item>
+		<item name="android:alpha">1</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/PopupButton_scene_button_menu</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="applyViewParams">true</item>
+		<item name="drawableTint">?colorIconPrimaryForced</item><!-- NOTE: @null/@empty is not supported ATM, need an explicit tint, thus using forced -->
+		<item name="android:background">@drawable/ripple_with_check_selector</item>
+	</style>
+
+	<style name="PeqEqPopupButtonIcon" parent="PopupButton">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+
+		<item name="drawableTint">@color/eq_icon_tint_color_selector</item>
 		<item name="drawableWidth">28dp</item>
 		<item name="drawableHeight">28dp</item>
-		<item name="drawablePaddingStart">18dp</item>
-		<item name="android:paddingLeft">18dp</item>
+		<!-- Ensure that we have icon properly positioned centered in the button by resetting all the derived paddings -->
+		<item name="drawablePaddingStart">0dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:visibility">visible</item><!-- Force icon visibility as PopupButton is gone by default -->
 	</style>
+	<style name="PeqEqPopupButtonIcon_scene_menu">
+		<item name="scene">@id/scene_button_menu</item>
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">visible</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_marginLeft">15dp</item><!-- Synchronizes visually to the usual popup buttons -->
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+
+	<style name="PeqEqPopupButtonLabel" parent="PopupButton">
+		<item name="recalcChildren">on_start</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="layout_consumeSpace">@null</item>
+		<item name="android:visibility">gone</item><!-- Ensure we don't have label initially visible -->
+		<item name="android:background">@null</item>
+	</style>
+	<style name="PeqEqPopupButtonLabel_scene_menu">
+		<item name="scene">@id/scene_button_menu</item>
+		<item name="recalcChildren">on_start</item>
+		<item name="android:visibility">visible</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="layout_consumeSpace">@null</item>
+		<item name="android:layout_marginLeft">5dp</item><!-- Synchronizes visually to the usual popup buttons -->
+		<item name="android:layout_marginRight">8dp</item>
+	</style>
+
 
 	
 	<!-- vol tab -->
@@ -185,26 +253,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="PeqVolumeKnobLayout" parent="EqVolumeKnobLayout">
 	</style>
-	
-	<style name="PeqLockLabel">
+
+	<style name="PeqLockLabelBase">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textAppearance">?EqKnobValueLarger_Text</item>
-		<item name="layout_gravityTarget">@id/_knob</item>
-		<item name="android:layout_gravity">center</item>
-		<item name="android:id">@id/_lock_label</item>
-		<item name="android:translationZ">10dp</item>
 		<item name="android:drawable">@drawable/lock_24dp</item>
-		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableOnly">true</item>
+		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:padding">4dp</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="android:translationZ">10dp</item>
 		<item name="android:elevation">?control_elevation</item>
 		<item name="android:clickable">true</item>
 		<item name="animOnClick">true</item>
 		<item name="busId">@id/bus_app_cmd</item>
 		<item name="msgId">@id/cmd_app_open_settings</item>
 		<item name="string">peq_singlepane#buy_stub</item>
+		<item name="android:visibility">gone</item>
+		<item name="android:outlineProvider">none</item>
+	</style>
+
+	<style name="PeqLockLabel" parent="PeqLockLabelBase">
+		<item name="layout_gravityTarget">@id/_knob</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:id">@id/_lock_label</item>
 	</style>
 		
 	<!-- Reverb -->

@@ -502,7 +502,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="DialogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_maxWidth">@dimen/DialogButtonStyle_layout_maxWidth</item>
+		<item name="layout_maxWidth">@dimen/DialogButtonStyle_maxWidth</item>
 		<item name="animOnClick">true</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceButton</item>
 		<item name="drawableTint">?colorIconPrimary</item>

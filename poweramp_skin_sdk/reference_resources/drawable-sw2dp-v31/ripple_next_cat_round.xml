@@ -6,7 +6,7 @@
 <!-- NOTE: not using fill scaling for the buttons, they pretty much never scaled and size is defined
      by the appropriate style (e.g. TopSmallButton_size) -->
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-	android:color="?colorInverse"
+	android:color="?colorPlaybackRipple"
 >
 	<item>
 		<shape android:shape="oval">

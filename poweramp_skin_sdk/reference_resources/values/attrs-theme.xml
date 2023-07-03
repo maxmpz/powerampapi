@@ -28,6 +28,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorBgPrimaryAlpha" format="color"/>
 	<!-- A bit more pronounced alpha-faded primary background color -->
 	<attr name="colorBgLessAlpha" format="color"/>
+	<!-- This is expected to be strictly the colorBgPrimary color with a slight alpha -->
+	<attr name="colorBgPrimaryStrictAlpha" format="color"/>
 	<!-- Foreground color for inverted color controls -->
 	<attr name="colorInverse" format="color"/>
 	<!-- Inverse background color, e.g. black for Light theme -->
@@ -42,6 +44,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorStrokeHelp" format="color"/>
 	<!-- Tint/foreground color for a bit less contrast icons/buttons -->
 	<attr name="colorLessContrast" format="color"/>
+	<!-- Color used for the ripple on main playback buttons (v31+), since 964. Needed as ripple is rendered differently on v33 -->
+	<attr name="colorPlaybackRipple" format="color"/>
 	<!-- Shade colors for popup menus -->
 	<attr name="colorShade" format="color"/>
 	<!-- E.g. menu separator -->
@@ -50,6 +54,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorSeparatorLight" format="color"/>
 	<!-- Non-contrast bg. Used ATM for Search Frame bg -->
 	<attr name="colorBgLight" format="color"/>
+	<!-- Bg used for the checkable buttons in popups - should have some contrast over the popup bg color -->
+	<attr name="colorBgCheckedLight" format="color"/>
 	<!-- Semi-transparent background for text labels -->
 	<attr name="colorTextBgAlpha" format="color"/>
 
@@ -67,8 +73,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorIconDisabled" format="color"/>
 	<!-- Not used ATM -->
 	<attr name="colorItemActive" format="color"/>
-	<!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob -->
+	<!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob
+		 Should be visible/readable enough as this is also locked state where user should be able to read the text -->
 	<attr name="colorTextDisabled" format="color"/>
+	<!-- Same as colorTextDisabled, little less visible, but still readable -->
+	<attr name="colorTextDisabledSecondary" format="color"/>
+
 
 	<!-- Shade under status bar -->
 	<attr name="statusBarBg" format="color|reference"/>

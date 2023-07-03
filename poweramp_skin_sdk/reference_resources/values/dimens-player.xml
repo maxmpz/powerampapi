@@ -24,8 +24,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- Need less margin for shorter screens -->
 	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
 	<dimen name="ListSubstyleBase2_aaMarginBottom">200dp</dimen>
-	<dimen name="ListSubstyleBase2_searchHeaderSize">140dp</dimen>
-	<dimen name="ListSubstyleBase2_targetSearchHeaderSize">140dp</dimen>
+	<dimen name="ListSubstyleBase2_searchHeaderSize">144dp</dimen><!-- REVISIT: includes sp text size, so should be sp based or dynamic -->
+	<dimen name="ListSubstyleBase2_targetSearchHeaderSize">144dp</dimen>
 	
 	<dimen name="TopWaveseek_maxHeight">128dp</dimen>
 	
@@ -132,10 +132,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft">14dp</dimen>
 	<dimen name="Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft">16dp</dimen>
-
-	<dimen name="EqPresetButtonLayoutBase_listItemSize">56dp</dimen>
-
-
 
 	<!-- @Deprecated -->
 	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>

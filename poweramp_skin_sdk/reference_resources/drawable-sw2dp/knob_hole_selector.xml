@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -21,7 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- NOTE: can't change size of drawable, thus, emulating bolder hole when pressed with invisile (#0000) stroke.
      Also, width/height=3dp defines min size for appropriate axis. -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
 	android:exitFadeDuration="300"
 >
 	<item android:state_enabled="false">
@@ -33,7 +33,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<stroke android:color="#0000" android:width="0dp"/>
 		</shape>
 	</item>
-	
+
+	<item w:state_locked="true">
+		<shape>
+			<size android:width="3dp" android:height="3dp"/>
+			<padding android:left="18dp" android:right="18dp" android:top="20dp" android:bottom="20dp"/>
+			<corners android:radius="3dp"/>
+			<solid android:color="?colorKnobHoleDisabled"/>
+			<stroke android:color="#0000" android:width="0dp"/>
+		</shape>
+	</item>
+
 	<item android:state_pressed="true">
 		<shape>
 			<size android:width="3dp" android:height="3dp"/>

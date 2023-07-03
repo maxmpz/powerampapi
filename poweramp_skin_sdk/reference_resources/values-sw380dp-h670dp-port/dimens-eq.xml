@@ -29,9 +29,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="EqButton_marginSide">8dp</dimen>
 
-	<dimen name="EqButton_layout_maxWidth">78dp</dimen>
+	<dimen name="EqButton_maxWidth">78dp</dimen>
 
-	<dimen name="EqEquPresetButtonLayout_layout_width">120dp</dimen>
+	<dimen name="EqEquPresetButtonLayout_width">160dp</dimen>
 	
 	<dimen name="EqVolPanel1_paddingTop">8dp</dimen>
 	

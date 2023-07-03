@@ -147,7 +147,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</attr>
 
 		<!-- layout_attach*To* (where *= Right|Left|Top|Bottom => attaches appropriate edge of the view to same edge of the target view.
-			 layout_attach*To* and layout_attach* for the same * are mutually exclusive. layout_attach*To* takes priority.
+			 layout_attach*To* and layout_attach* for the same * (side) are mutually exclusive. layout_attach*To* takes priority.
 			 (Since 940) If layout_attach*="value %" is specified, then this view is also offset from the target view by the specified percent of the target
 			 size in the given axis (width for Right|Left, height for Top|Bottom).
 			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
@@ -199,17 +199,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 		<!-- layout_consumeSpace "consumes" space within parent from one or two sides, or both (layout_consumeSpace="both").
-			 If parent space is consumed, any subsequent child will be laid out with offset. Gravity is also affected, but not the
-			 layout_widthPercent/layout_heightPercent (unless "size" flag specified, see below).
+			 When the parent space is consumed, any subsequent child will be laid out in the non-consumed space.
+			 Gravity is also affected, but not the layout_widthPercent/layout_heightPercent (unless "size" flag specified, see below).
 			 There are 4 sides in parent view which can be consumed - left, top, right, bottom.
 
 			 Views aligned to left (or left and right), consume left space, view aligned to top - top space, views aligned
 			 to right - right space, and aligned to bottom - bottom space.
-			 The alignment here means either layout_gravity (per appropiate axis), or layout_attach* attribute, if layout_gravity is missing for the axis.
+			 The alignment here means either layout_gravity (per appropiate axis), or layout_attach* attribute, if layout_gravity
+			 is missing for the axis.
 
 			 layout_consumeSpace=reset_* resets such layout consumption (works similar to new line in text or to <br/> in html).
-			 By default, only the side (e.g. just left, for horizontally consumed space), which view is aligned to is reset.
+			 By default, only the side (e.g. just left, for horizontally consumed space), which view is aligned to, is reset.
 			 Special reset_full_* values can reset both sides.
+
+			 The GONE views or views considered GONE (see layout_goneWhenEmpty) do not consume space nor can reset it.
 
 			 For example: 2 columns 50%|50% height=200dp, then 2 rows (width=100%) height=100dp
 			 	<view w:layout_widthRelative="50%" android:layout_height="200dp" w:layout_consumeSpace="horizontal"/>
@@ -217,6 +220,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 			 	<view android:layout_width="match_parent" android:layout_height="100dp" w:layout_consumeSpace="vertical"/>
 			 	<view android:layout_width="match_parent" android:layout_height="100dp" w:layout_consumeSpace="vertical"/>
+
 
 		-->
 		<attr name="layout_consumeSpace">

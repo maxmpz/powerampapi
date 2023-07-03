@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -20,9 +20,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
-	<!-- NOTE: EqPreampKnobLayout is needed for background as if background is applied to the DSPLinearKnob itself,
-	     knob outline shadow is rendered behind background -->
-
 	<!-- PowerList based band list -->
 	<com.maxmpz.widget.player.EqKnobsList android:id="@+id/eq_knobs_layout"
 		style="?EqKnobsLayout"
@@ -110,6 +107,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.player.EqPresetPopupListLayout android:id="@+id/preset_button"
 		style="?EqEquPresetButtonLayout"
 		android:contentDescription="@string/preset"
+		w:disableParentLayoutForPopup="false"
 	>
 		<com.maxmpz.widget.player.BusStatusText android:id="@id/_label"
 			style="?EqEquPresetLabel"
@@ -132,38 +130,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_button_menu" 
 		style="?EqEquPresetButtonLayout_scene_button_menu"
 	/>
-	
-	<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/save_button"
-		style="?EqEquSaveButton"
-		android:text="@string/save"
 
-		w:param="@id/dsp_autosave_enabled"
-		w:updateMsgId="@id/msg_dsp_eq_changed"
-		
-		w:firstPressToast="@string/long_press_autosave_hint"
-		w:toastStateIdOnPress="@id/dsp_autosave_toast_msg"
-		w:toastOnPress="@string/autosave_enabled_msg"
-		w:toastHeaderOnPress="@string/autosave"
-		w:toastIconOnPress="?toast_info"
-		w:pressBusId="@id/bus_data_cmd"
-		w:pressCmdId="@id/cmd_data_add_eq_preset_dialog"
-	/>
-	<com.maxmpz.widget.base.BusActionButton android:id="@+id/reset_button"
-		style="?EqEquResetButton"
-
+	<com.maxmpz.widget.base.BusActionPopupLayout android:id="@+id/eq_menu"
+		style="?EqMenu"
+		android:contentDescription="@string/menu"
+		w:menuItemsLayout="@layout/merge_eq_menu_layout"
 		w:busId="@id/bus_dsp_cmd"
-		w:msgId="@id/cmd_dsp_reset_eq"
-		
-		android:text="@string/reset"
-		w:confirmTitle="@string/reset"
-		w:confirmText="@string/reset_knobs_and_restore_presets"
-		
-		android:longClickable="true"
-		w:longPressMsgId="@id/cmd_dsp_restore_eq_presets"
-		w:longPressConfirmTitle="@string/pref_reset_equ_presets"
-		w:longPressConfirmText="@string/pref_summary_reset_equ_presets"
+		w:msgId="@id/cmd_dsp_switch_dsp_meta"
+		>
+		<com.maxmpz.widget.base.FastTextView android:id="@id/_icon"
+			style="?EqMenuIcon"
+			/>
+		<SceneParams w:scene="@+id/scene_button_menu"
+			android:visibility="gone"
+			/>
+		<SceneParams w:scene="@+id/scene_button_menu_closed"
+			android:visibility="visible"
+			/>
+	</com.maxmpz.widget.base.BusActionPopupLayout>
+	<SceneParams w:scene="@+id/scene_button_menu"
+		style="?EqMenu_scene_item_menu"
 	/>
-	
+
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/tone_panel"
 		style="?EqTonePanel"
 	>

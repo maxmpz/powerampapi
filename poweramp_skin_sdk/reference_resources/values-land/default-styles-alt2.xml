@@ -66,6 +66,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa" parent="Alt_TrackLabelsCentered_ItemTrackTitle_scene_aa">
 	</style>
 	<style name="Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa" parent="Alt_TrackLabelsCentered_ItemTrackLine2_scene_aa">
+		<item name="android:layout_marginLeft">42dp</item><!-- Add left/right margin enough to not to overlap buttons -->
+		<item name="android:layout_marginRight">42dp</item>
 	</style>
 
 	<style name="Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa" parent="Alt2_ItemTrackLyrics_scene_aa">

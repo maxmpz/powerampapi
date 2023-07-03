@@ -25,7 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<style name="TopToastContainer">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">@dimen/TopToastContainer_layout_height</item>
+		<item name="android:layout_height">@dimen/TopToastContainer_height</item>
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:translationZ">?modal_translationZ</item><!-- Needed to be ~above vis panel and popup menu placeholder. Currently this is defined by view order -->
 		<item name="android:outlineProvider">none</item>
@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopToastContainer_scenes_non_main">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">@dimen/TopToastContainer_layout_height</item>
+		<item name="android:layout_height">@dimen/TopToastContainer_height</item>
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_marginBottom">44dp</item><!-- Extra offset for 2nd navigation line -->
 	</style>
@@ -100,14 +100,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopToastTitle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:maxLines">2</item>
-		<item name="android:gravity">left|top</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:layout_marginLeft">@dimen/TopToastTile_marginLeft</item>
 		<item name="android:paddingTop">4dp</item>
 		<item name="android:paddingBottom">4dp</item>
 		<item name="layout_attachLeft">parent</item><!-- This makes it basically match_parent -->
 		<item name="layout_attachRight">parent</item>
+
+		<item name="android:maxLines">2</item>
+		<item name="android:gravity">left|top</item>
 		<item name="android:textAppearance">?TopToastTitle_Text</item>
 		<item name="eatFontPads">true</item>
 		<item name="applyViewParams">true</item>
@@ -134,12 +135,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachRight">parent</item>
 		<item name="android:maxLines">2</item>
 		<item name="android:textAppearance">?TopToastLine2_Text</item>
-		<item name="allowZeroHeight">true</item>
 		<item name="android:paddingTop">3dp</item>
-		<item name="android:paddingBottom">5dp</item>
-		<item name="eatFontPads">true</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="allowZeroHeight">true</item><!-- Only for FTV, which is not used now for line2 -->
+		<item name="eatFontPads">true</item><!-- Only for FTV, which is not used now for line2 -->
 		<item name="android:gravity">left|top</item>
 		<item name="applyViewParams">true</item>
+
+		<item name="layout_goneWhenEmpty">true</item>
+		<item name="android:includeFontPadding">false</item>
 	</style>
 	<style name="TopToastLine2_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">11sp</item>

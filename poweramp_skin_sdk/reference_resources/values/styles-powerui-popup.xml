@@ -44,7 +44,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:gravity">left|center_vertical</item>
 		<item name="drawablePaddingStart">16dp</item>
-<!--		<item name="android:background">?android:selectableItemBackground</item>-->
+		<!--<item name="android:background">?android:selectableItemBackground</item>-->
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
 	</style>
 	<style name="PopupMenuItem_Text" parent="TextAppearance.AppCompat">
@@ -56,25 +56,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">horizontal|reset_auto</item>
 		<item name="android:maxLines">1</item>
 	</style>
+
+	<style name="CheckablePopupItem" parent="PopupMenuItem">
+		<item name="android:background">@drawable/ripple_with_check_selector</item>
+	</style>
 	
 	<!-- Popup Buttons -->
 	<!-- NOTE: PopupButton clickability is manipulated by PopupButtonLayout as needed -->
-	<!-- NOTE: rather large buttons, e.g. sub-aa buttons on main screen -->
+	<!-- NOTE: these are rather large buttons, e.g. sub-aa buttons on main screen -->
 	<style name="PopupButton">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+
 		<item name="drawablePaddingStart">@dimen/PopupButtons_paddingLeft</item><!-- Padding before image -->
 		<item name="android:paddingLeft">@dimen/PopupButtons_paddingLeft</item><!-- 18dp -->
 		<item name="android:paddingRight">40dp</item><!-- Extra padding to the right for a possible check drawable -->
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">match_parent</item>
+
 		<item name="drawablePosition">left</item>
 		<item name="drawableWidth">@dimen/PopupButtons_drawableSize</item><!-- ~32dp, smaller for smaller screens -->
 		<item name="drawableHeight">@dimen/PopupButtons_drawableSize</item>
 		<item name="android:hapticFeedbackEnabled">true</item>
 		<item name="drawableTint">?colorIconLessContrast</item>
   		<item name="android:maxLines">1</item>
-		
+
+		<item name="android:visibility">gone</item><!-- Maniuplated by the code and scenes -->
+
   		<item name="android:textAppearance">?PopupButton_Text</item>
   		
 		<item name="android:ellipsize">end</item>
@@ -86,11 +94,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   			 NOTE: thus using optimized #000000000 color instead (causes no extra drawables in FastButton) 
   		-->
   		<!-- <item name="android:background">@empty</item> -->
-  		<item name="android:background">#00000000</item><!-- NOTE: still, extra drawable is created when button is created with this style -->
+  		<item name="android:background">#00000000</item>
   		<item name="android:gravity">left|center_vertical</item>
 		<item name="applyViewParams">true</item><!-- NOTE: needed for tint -->
   		<item name="recalcChildren">on_start</item>
-  		<item name="android:visibility">gone</item>
   	</style>
 	<style name="PopupButton_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">16dp</item>
@@ -140,12 +147,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PopupDialogListLayoutList"><!-- Used for separate dialogs with popup lists, e.g. for Playlist select dialog -->
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
+		<!-- NOTE: disabled as default Android seekbars do not play well with the rounded backgrounds -->
 <!--		<item name="android:scrollbars">vertical</item>-->
 		<item name="android:nestedScrollingEnabled">true</item>
 	</style>
 	
 	<style name="ExpandedListLayoutBase" parent="PopupDialogListLayoutList">
 		<item name="android:layout_width">match_parent</item>
+		<!-- NOTE: disabled as default Android seekbars do not play well with the rounded backgrounds -->
 <!--		<item name="android:scrollbars">vertical</item>-->
 		<item name="android:nestedScrollingEnabled">true</item>
 	</style>
@@ -154,14 +163,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">224dp</item><!-- 64 * 3.5 -->
 	</style>
 	
-	<style name="EqPresetListLayout" parent="ExpandedListLayoutBase">
-		<item name="android:layout_height">@dimen/PopupLayoutList_height</item>
-	</style>
-	
 	<style name="PopupListLayoutList">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/PopupLayoutList_height</item>
-<!--		<item name="android:scrollbars">vertical</item>-->
+		<!-- NOTE: disabled as default Android seekbars do not play well with the rounded backgrounds -->
+		<!--<item name="android:scrollbars">vertical</item>-->
 	</style>
 		
 	<style name="PopupListLayoutLabel">
@@ -180,6 +186,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="GenericPowerList">
+		<!-- NOTE: disabled as default Android seekbars do not play well with the rounded backgrounds -->
 <!--		<item name="android:scrollbars">vertical</item>-->
 	</style>
 	

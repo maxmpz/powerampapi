@@ -22,8 +22,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- land -->
 <resources>
-	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
-	
-	<dimen name="EqButton_layout_maxWidth">96dp</dimen>
+	<dimen name="EqEquPresetButtonLayout_width">100dp</dimen>
+
+	<dimen name="EqMenu_size">36dp</dimen>
+	<dimen name="EqButton_width">68dp</dimen>
+	<dimen name="EqButton_maxWidth">96dp</dimen>
 	<dimen name="EqPresetButtonLayout_width">102dp</dimen>
+	<dimen name="eq_frs_height">36dp</dimen><!-- NOTE: increased for Peq -->
+
 </resources>

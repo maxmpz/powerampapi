@@ -25,7 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<style name="TopUpperToastContainer">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">@dimen/TopToastContainer_layout_height</item>
+		<item name="android:layout_height">@dimen/TopToastContainer_height</item>
 		<item name="layout_attachTop">parent</item>
 		<item name="android:translationZ">?modal_translationZ</item><!-- Needed to be ~above vis panel and popup menu placeholder. Currently this is defined by view order -->
 		<item name="android:outlineProvider">none</item>
@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipToPadding">false</item>
 	</style>
 		
-	<!-- NOTE: for simplicity, fixed height, thus, easier to layout everything inside centered as needed -->
+	<!-- Upper toast is styled for 2 lines. Just 1 line will cause layout issues, extra styling pass is required to support 1 line -->
 	<style name="TopUpperToastFrame">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -56,8 +56,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: top/bottom paddings are large and thus vertically center the title or title + line2. Other elements are aligned to title -->
 		<item name="android:paddingLeft">@dimen/TopToastFrame_paddingLR</item>
 		<item name="android:paddingRight">@dimen/TopToastFrame_paddingLR</item>
-		<!--<item name="android:paddingTop">@dimen/TopToastFrame_paddingTB</item>
-		<item name="android:paddingBottom">@dimen/TopToastFrame_paddingTB</item>-->
+		<item name="android:paddingTop">@dimen/TopToastFrame_paddingTB</item>
+		<item name="android:paddingBottom">@dimen/TopToastFrame_paddingTB</item>
+
 		<item name="android:scaleX">1</item>
 		<item name="android:scaleY">1</item>
 		<item name="android:visibility">invisible</item>
@@ -91,15 +92,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawableWidth">32dp</item>
 		<item name="drawableHeight">32dp</item>
 		<item name="drawableOnly">true</item>
-		<!-- NOTE: don't apply tint here, allow icons to have own tints as needed -->
 		<item name="android:visibility">visible</item>
+
+		<!-- We apply tint here as we pass icons we don't have tint -->
+		<item name="drawableTint">?colorIconPrimary</item>
 	</style>
 
-	<!-- NOTE: depending on font size, close button may define the toast height -->	
 	<style name="TopUpperToastCloseButton">
 		<item name="android:layout_width">38dp</item>
-		<item name="android:layout_height">38dp</item>
-		<item name="android:layout_marginRight">-16dp</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="android:layout_marginRight">-8dp</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:gravity">center</item>
 		<item name="layout_attachRight">parent</item>
@@ -117,11 +119,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:maxLines">2</item>
+		<item name="android:gravity">left|top</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:layout_marginLeft">@dimen/TopToastTile_marginLeft</item>
 		<item name="android:layout_marginRight">32dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+
 		<item name="android:textAppearance">?TopToastTitle_Text</item>
-		<item name="android:layout_marginTop">@dimen/TopToastFrame_paddingTB</item>
+		<item name="eatFontPads">true</item>
+		<item name="applyViewParams">true</item>
 	</style>
 	<style name="TopUpperToastTitle_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">14sp</item>
@@ -138,15 +145,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopUpperToastLine2">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginTop">1dp</item>
 		<item name="android:layout_marginLeft">@dimen/TopToastTile_marginLeft</item>
-		<item name="android:layout_marginBottom">@dimen/TopToastFrame_paddingTB</item>
 		<item name="android:layout_marginRight">32dp</item>
-		<item name="layout_consumeSpace">reset_vertical</item>
+		<item name="android:paddingTop">3dp</item>
+		<item name="android:paddingBottom">2dp</item>
 		
 		<item name="android:maxLines">4</item>
 		<item name="android:textAppearance">?TopToastLine2_Text</item>
-		<item name="allowZeroHeight">true</item>
+
+		<item name="allowZeroHeight">true</item><!-- REVISIT: FTV only attribute, doesn't do anything for TextView -->
+		<item name="eatFontPads">true</item><!-- Only for FTV, which is not used now for line2 -->
+
+		<item name="layout_goneWhenEmpty">true</item>
+		<item name="android:includeFontPadding">false</item>
 	</style>
 	<style name="TopUpperToastLine2_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">11sp</item>
@@ -156,8 +168,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_marginTop">2dp</item>
+
+		<item name="layout_goneWhenEmpty">true</item>
 	</style>
-	
+
+	<style name="TopUpperToastSeparator">
+		<item name="layout_consumeSpace">reset_vertical</item>
+	</style>
 		
 	
 </resources>

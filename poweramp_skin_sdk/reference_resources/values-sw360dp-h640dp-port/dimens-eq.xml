@@ -28,12 +28,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="knob_thumb_indicator_left_right">8.5dp</dimen>
 	<dimen name="knob_thumb_radius">16dp</dimen>
 	<dimen name="knob_thumb_radius_less_rounded">12dp</dimen>
+
+	<dimen name="knob_thumb_lock_size">24dp</dimen>
+	<dimen name="knob_thumb_lock_top">20dp</dimen>
+	<dimen name="knob_thumb_lock_left">4dp</dimen>
+
 	<dimen name="EqKnobValueText_size">10.5sp</dimen>
 	<dimen name="EqKnobLabelText_size">13dp</dimen>
-	<dimen name="EqButton_layout_width">64dp</dimen>
-	<dimen name="EqButton_layout_height">32dp</dimen>
-	<dimen name="EqParamPlaceholder2_height">88dp</dimen>
-	<dimen name="EqButton_textSize">12dp</dimen>
+	<dimen name="EqButton_width">64dp</dimen>
+	<dimen name="EqButton_height">36dp</dimen>
+
+	<dimen name="EqParamPopupButtonLayout_height_port">32dp</dimen>
+	<dimen name="EqParamPlaceholder2_height_port">76dp</dimen><!-- 4 + 32 + 4 + 32 + 4 -->
+	<dimen name="EqParamTypePopupButtonLayout_marginBottom_port">4dp</dimen>
+
+	<dimen name="EqMenu_size">36dp</dimen>
+	<dimen name="EqButton_textSize">13dp</dimen><!-- Default (fixed) font -->
 	<dimen name="eq_frs_height">48dp</dimen>
 	
 </resources>

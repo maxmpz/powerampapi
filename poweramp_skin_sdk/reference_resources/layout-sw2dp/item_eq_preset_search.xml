@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<com.maxmpz.widget.base.FastLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	style="@style/EqPresetSearchLayout"
+	android:clickable="true"
+	>
+
+	<com.maxmpz.widget.base.FastLayout
+		style="@style/EqPresetSearchPanel"
+	>
+		<!-- NOTE: we consume space from right here, so search text view is not taking full width -->
+		<com.maxmpz.widget.base.BusActionButton
+			style="@style/EqPresetSearchCloseButton"
+			android:contentDescription="@string/clear"
+			w:busId="parent"
+			w:msgId="@id/cmd_list_search_clear"
+			/>
+		<com.maxmpz.audioplayer.widget.LocalListSearchEditText android:id="@+id/eq_search_edit"
+			style="@style/EqPresetSearchEditText"
+			w:busId="parent"
+			android:hint="@string/search"
+			/>
+	</com.maxmpz.widget.base.FastLayout>
+
+	<com.maxmpz.audioplayer.widget.EqPresetSearchCatsLayout android:id="@+id/eq_search_type"
+		style="@style/EqPresetSearchCatsLayout"
+		>
+		<!-- Group "g" -->
+		<com.maxmpz.widget.base.FastCheckBox
+			style="@style/EqPresetSearchCatButton"
+			android:text="@string/user_plural_adj_short"
+			android:tag="g/user"
+			/>
+		<com.maxmpz.widget.base.FastCheckBox
+			style="@style/EqPresetSearchCatButton"
+			android:text="@string/builtin_presets_short"
+			android:tag="g/built_in"
+			/>
+		<com.maxmpz.widget.base.FastCheckBox
+			style="@style/EqPresetSearchCatButton"
+			android:text="@string/auto_eq"
+			android:id="@+id/auto_eq"
+			android:tag="g/auto_eq"
+			/>
+		<com.maxmpz.widget.base.NonOverlappingView
+			style="@style/EqPresetSearchCatSeparator"
+			w:layout_attachTopToTop="@+id/auto_eq"
+			w:layout_attachBottomToBottom="@+id/auto_eq"
+			/>
+
+		<!-- Group "t" -->
+		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/graphic"
+			style="@style/EqPresetSearchCatButton"
+			android:drawable="?equ_graphic_small"
+			android:text="@string/graphic_equ_short"
+			android:tag="t/graphic"
+			/>
+		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/parametric"
+			style="@style/EqPresetSearchCatButton"
+			w:layout_consumeSpace="vertical|reset_horizontal"
+			android:drawable="?equ_parametric_small"
+			android:text="@string/parametric_equ_short"
+			android:tag="t/parametric"
+			/>
+
+		<!--
+		<com.maxmpz.widget.base.NonOverlappingView
+			style="@style/EqPresetSearchCatSeparator"
+			w:layout_attachTopToTop="@+id/parametric"
+			w:layout_attachBottomToBottom="@+id/parametric"
+			/>
+			-->
+
+		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/assigned"
+			style="@style/EqPresetSearchCatButton"
+			android:text="@string/assigned_short"
+			android:tag="f/assigned"
+			/>
+
+		<com.maxmpz.widget.base.NonOverlappingView
+			style="@style/EqPresetSearchCatSeparator"
+			w:layout_attachTopToTop="@+id/assigned"
+			w:layout_attachBottomToBottom="@+id/assigned"
+			/>
+
+		<!-- REVISIT: disable/hide this when no device exists -->
+		<com.maxmpz.widget.base.BusActionButton
+			style="@style/EqPresetSearchCatButton"
+			android:text="@string/device_short"
+			w:busId="parent"
+			w:msgId="@id/cmd_list_search_device"
+			w:disableForStateBusId="@id/bus_player"
+			w:enableForStateId="@id/state_player_output_end_device"
+			w:disableForStateMsgId="@id/msg_pipeline_started"
+			w:disableForStateMsgId_2="@id/msg_player_output_meta_changed"
+			/>
+
+
+	</com.maxmpz.audioplayer.widget.EqPresetSearchCatsLayout>
+</com.maxmpz.widget.base.FastLayout>

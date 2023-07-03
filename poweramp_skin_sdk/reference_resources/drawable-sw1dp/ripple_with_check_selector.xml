@@ -10,7 +10,10 @@
 		<selector android:exitFadeDuration="250">
 			<item android:state_activated="true">
 				<bitmap android:src="@drawable/check_16dp" android:gravity="right|center_vertical" android:tint="?colorIconPrimary"/>
-			</item>	
+			</item>
+			<item android:state_checked="true">
+				<bitmap android:src="@drawable/check_16dp" android:gravity="right|center_vertical" android:tint="?colorIconPrimary"/>
+			</item>
 		</selector>
 	</item>
 </ripple>

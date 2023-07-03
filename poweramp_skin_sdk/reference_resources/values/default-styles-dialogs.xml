@@ -157,11 +157,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="dialog_EqPresetsActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_eq_presets</item>
+		<item name="DialogFrame">@style/CenteredDialogFrame_EqPresetsActivity</item>
+		<item name="DialogFrame_scene_dialog_in">@style/CenteredDialogFrame_EqPresetsActivity_scene_dialog_in</item>
 		<item name="DialogContent">@style/CenteredDialogContentNoPadding</item>
 		<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>
 		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
 	</style>
-
+	
 	<!-- NOTE: overridden in v29 -->
 	<style name="dialog_MusicFoldersActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_music_folders</item>

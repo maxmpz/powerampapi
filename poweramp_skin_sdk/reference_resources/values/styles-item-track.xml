@@ -1205,6 +1205,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachTop">@id/title</item>
 	</style>
 	<style name="ItemTrackLine2_scene_bottom_toolbar">
+		<!-- NOTE: we still need layout here to avoid keeping some previous layout which may reference us in cycles (e.g. rating) -->
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">0px</item>
 		<item name="android:visibility">gone</item>
 	</style>
 	<style name="ItemTrackLine2_scene_lyrics" parent="ItemTrackLine2_scene_item_menu">
@@ -1633,6 +1636,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<!-- NOTE: this is an interactive rating, which is visible only in aa and menu scenes.
 	           The list rating is cat_image static icon.
 		 NOTE: tint is done via drawable, see drawable/rating_star_24dp.xml -->
+	<!-- REVISIT: for the default style (==list item), do not attach to any other children to avoid possible cycles if some
+	     scene is not defined for layout, thus we may get into cycles -->
 	<style name="ItemRatingBar">
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
@@ -1640,8 +1645,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:longClickable">true</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachTop">@+id/line2</item>
-		<item name="layout_attachLeftToLeft">@id/title</item>
+		<item name="android:layout_gravity">bottom|left</item>
 
 		<item name="android:outlineProvider">none</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
@@ -1665,12 +1669,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<!-- NOTE: inivisible by default (e.g. when animating from a list) -->
 		<item name="android:visibility">invisible</item>
 	</style>
+	<!-- NOTE: avoid any references to other child here as it can cause cycles in some option combinations (such as rating in menu) -->
 	<style name="ItemRatingBar_scenes_invisible">
 		<item name="android:visibility">invisible</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">bottom</item>
-		<item name="layout_attachLeftToLeft">@id/title</item>
+		<item name="android:layout_gravity">left|bottom</item>
 	</style>
 	<style name="ItemRatingBar_scene_aa">
 		<item name="android:visibility">visible</item>
@@ -1689,9 +1693,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="lineBackground">@drawable/text_bg_alpha_rounded</item>
 		<item name="drawableTint">?colorRating</item>
 	</style>
-	<style name="ItemRatingBar_scene_aa_menu" parent="ItemRatingBar_scenes_invisible">
+	<style name="ItemRatingBar_scene_aa_menu">
 		<item name="android:visibility">gone</item>
-
+		<!-- Avoid attaching to title thus any layout cycles. Need layout for this -->
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">bottom</item>
 	</style>
 	<style name="ItemRatingBar_scene_item_menu_lu">
 		<item name="android:visibility">visible</item>
@@ -1951,6 +1958,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:paddingLeft">10dp</item>
+		<item name="android:paddingRight">10dp</item>
 		<item name="android:gravity">left|center_vertical</item>
 	</style>
 
@@ -1963,11 +1971,24 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:textAppearance">?SeparatorWithButton_Text</item><!-- NOTE: text styling is e.g. for the derived SeparatorWithButtonButton -->
+		<!--<item name="lineBackground">@drawable/in_popup_rounded_large</item>&lt;!&ndash; Should have some contrast in popups as well &ndash;&gt;-->
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingBottom">2dp</item>
 	</style>
 	<!-- NOTE: shared between SeparatorWithButtonTitle/SeparatorWithButtonButton styles -->
 	<style name="SeparatorWithButton_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">12dp</item>
 		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="SeparatorLine">
+		<item name="android:layout_height">1dp</item>
+		<item name="layout_attachLeft">@id/title</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityTarget">@id/title</item>
+		<item name="layout_attachRight">@id/line2</item>
+		<item name="android:background">?colorBgLight</item>
+		<item name="android:layout_marginRight">16dp</item>
 	</style>
 
 	<style name="SeparatorWithButtonButton" parent="ListItemSimpleSeparator">
@@ -2179,7 +2200,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:maxLines">1</item>
 		<item name="android:paddingLeft">15dp</item>
 		<item name="android:paddingRight">15dp</item>
-		<item name="android:paddingTop">2dp</item>
+		<item name="android:paddingTop">2dp</item><!-- NOTE: added to possible drawable size -->
 		<item name="android:paddingBottom">2dp</item>
 
 		<item name="android:transformPivotX">0px</item>

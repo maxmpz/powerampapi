@@ -21,7 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <merge
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:w="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto"
 >
 
 <!--
@@ -98,7 +98,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- cc_button -->
 	<com.maxmpz.audioplayer.widget.MediaRouteButton android:id="@+id/cc_button"
 		style="?CcButton_MainUI"
-	/>
+		tools:ignore="MissingClass"
+		/>
 	<SceneParams w:scene="@+id/scene_playing"
 		style="?CcButton_MainUI_scenes_playing"
 	/>
@@ -521,7 +522,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.base.MenuPlaceholderLayout android:id="@+id/menu_placeholder2"
 		style="?TopMenuPlaceholderLayout"
 		w:privateScene="true"
-	/>
+		/>
+
+	<include android:layout="@layout/merge_upper_toast"/>
+	<!-- This is for toast_container -->
+	<SceneParams w:scene="@id/scene_vis_temp_ui" w:scene_2="@id/scene_vis"
+		w:baseScene="defaultScene"
+		/>
+	<!-- Alpha is overridden for this scene -->
+	<SceneParams w:scene="@id/scene_vis_w_ui"
+		w:baseScene="defaultScene"
+		/>
+
 
 	<include android:layout="@layout/merge_toast"/>
 

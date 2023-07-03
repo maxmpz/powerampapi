@@ -23,22 +23,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="EqLinearKnob_thumbWidth">32dp</dimen>
 	<dimen name="EqLinearKnob_thumbHeight">64dp</dimen>
-	<dimen name="knob_thumb_indicator_top_bottom">31dp</dimen>	
-	<dimen name="knob_thumb_indicator_left_right">6dp</dimen>
+	<dimen name="knob_thumb_indicator_top_bottom">30dp</dimen>
+	<dimen name="knob_thumb_indicator_left_right">8.5dp</dimen>
 	<dimen name="knob_thumb_radius">16dp</dimen>
 	<dimen name="knob_thumb_radius_less_rounded">12dp</dimen>
-	
+
+	<dimen name="knob_thumb_lock_size">24dp</dimen>
+	<dimen name="knob_thumb_lock_top">20dp</dimen>
+	<dimen name="knob_thumb_lock_left">4dp</dimen>
+
 	<dimen name="EqKnobValueText_size">10.5sp</dimen>
 	<dimen name="EqKnobLabelText_size">13dp</dimen>
 	
-	<dimen name="EqButton_layout_width">76dp</dimen>
-	<dimen name="EqButton_layout_height">32dp</dimen>
-	<dimen name="EqParamPlaceholder2_height">88dp</dimen>
-	<dimen name="EqButton_textSize">12dp</dimen>
+	<dimen name="EqButton_width">76dp</dimen>
+	<dimen name="EqButton_height">36dp</dimen>
+	<dimen name="EqMenu_size">36dp</dimen>
+	<dimen name="EqButton_textSize">13dp</dimen><!-- Default (fixed) font -->
 	
 	<dimen name="EqButton_marginSide">8dp</dimen>
 	
-	<dimen name="EqEquPresetButtonLayout_layout_width">80dp</dimen>
+	<dimen name="EqEquPresetButtonLayout_width">120dp</dimen>
 	<dimen name="EqPresetButtonLayout_width">114dp</dimen>
 	
 	<dimen name="eq_frs_height">44dp</dimen>

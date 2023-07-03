@@ -21,15 +21,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values-h1dp-land. Baseline values for scaled screens -->
 <resources>
-	<dimen name="eq_frs_height">36dp</dimen>
+	<dimen name="eq_frs_height">32dp</dimen>
 	
 	<dimen name="TopActionModeBar_marginBottom">0dp</dimen>
 	
-	<dimen name="TopPeqEqLayoutBase_scenes_vis_marginTop">48dp</dimen>
+	<dimen name="TopPeqEqLayoutBase_scenes_vis_marginTop">44dp</dimen>
 	
-	<dimen name="EqButton_layout_maxWidth">70dp</dimen>
+	<dimen name="EqButton_maxWidth">70dp</dimen>
 
 	<dimen name="RoundKnobLabelLeftTop_marginRight">8dp</dimen>
 
 	<dimen name="EqLinearKnob_paddingTB">0dp</dimen>
+	<dimen name="EqParamFreqLabelAndValue_marginBottom">2dp</dimen>
+
+	<dimen name="EqRoundKnobLabel_marginTop">0dp</dimen><!-- Reduced for land -->
+
+	<dimen name="EqParamLRPopupButtonLayout_marginBottom_land">4dp</dimen>
+	<dimen name="EqParamTypePopupButtonLayout_marginBottom_land">8dp</dimen>
+
+	<dimen name="TopPeqEqLayoutBase_paddingBottom">4dp</dimen>
 </resources>

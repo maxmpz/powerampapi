@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- NOTE: layoutWidth/height of items are always ignored (see EqPresetButtonLayoutBase listItemSize). Used for presets with assignment -->
+<com.maxmpz.widget.player.list.TextItemView 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	
+	style="?ItemEqPreset"
+>
+	<com.maxmpz.widget.player.FrequencyResponseScroller android:id="@+id/frs"
+		style="?ItemPopupListFrs"
+		android:importantForAccessibility="no"
+	/>
+
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/lock"
+		style="?ItemEqPresetLock"
+		/>
+
+	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/select_box"
+		style="?ItemEqPresetSelectBox"
+	/>
+
+	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
+		style="?ItemEqPresetTitle_2line"
+	/>
+
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
+		style="?ItemEqPresetLine2_3line"
+		/>
+
+	<!-- Spacer used to align icons to ItemPopupListTitleLarger_2line padding -->
+	<com.maxmpz.widget.base.InvisibleView
+		style="?ItemPopupListMicroIconSpace"
+		/>
+
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/speaker"
+		android:drawable="?pre_speaker"
+		style="?ItemPopupListMicroIcon"
+	/>
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/wired"
+		android:drawable="?pre_wired"
+		style="?ItemPopupListMicroIcon"
+	/>
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/bt"
+		android:drawable="?pre_bt"
+		style="?ItemPopupListMicroIcon"
+	/>
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/usb"
+		android:drawable="?pre_usb"
+		style="?ItemPopupListMicroIcon"		
+	/>
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/chromecast"
+		android:drawable="?pre_chromecast"
+		style="?ItemPopupListMicroIcon"
+	/>
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/other"
+		android:drawable="?pre_other"
+		style="?ItemPopupListMicroIcon"
+	/>
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/song"
+		android:drawable="?pre_song"
+		style="?ItemPopupListMicroIcon"
+	/>
+	
+		
+</com.maxmpz.widget.player.list.TextItemView>

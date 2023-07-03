@@ -45,7 +45,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.audioplayer.widget.ListSearchCatsLayout android:id="@+id/search_cats_layout"
 			style="?TopSearchCatsLayout"
 			>
-			<!-- NOTE: buttons inside created with style=?TopSearchCatButton -->
+			<!-- NOTE: buttons inside created with catButtonStyle => style=?TopSearchCatButton -->
 		</com.maxmpz.audioplayer.widget.ListSearchCatsLayout>
 		<SceneParams w:scene="@+id/scene_search"
 			android:visibility="gone"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -30,12 +30,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemPopupListFrs"
 		android:importantForAccessibility="no"
 	/>
-	
+
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/lock"
+		style="?ItemEqPresetLock"
+	/>
+
 	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/select_box"
 		style="?ItemEqPresetSelectBox"
 	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
-		style="?ItemPopupListTitleLarger"
+
+	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
+		style="@style/ItemEqPresetTitle"
 	/>
 	
 </com.maxmpz.widget.player.list.TextItemView>

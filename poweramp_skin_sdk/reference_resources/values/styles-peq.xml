@@ -42,14 +42,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="PeqStyles">
+		<item name="EqTonePanel_paddingTop">@dimen/Peq_EqTonePanel_paddingTop</item>
+		<item name="EqTonePanel_paddingBottom">@dimen/Peq_EqTonePanel_paddingBottom</item>
 	</style>
 
 
 	<style name="TopPeqEqLayoutBase" parent="TopEqLayoutBase">
 		<item name="android:visibility">visible</item>
 		<item name="layout_marginBottomRef">@id/navbar_bounds_size</item>
-		<!--<item name="android:layout_marginBottom">8dp</item>-->
-		<item name="android:paddingBottom">8dp</item>
+		<item name="android:paddingBottom">@dimen/TopPeqEqLayoutBase_paddingBottom</item><!-- 8dp, reduced for land -->
 		<item name="layout_attachLeft">inset</item>
 		<item name="layout_attachRight">inset</item>
 	</style>
@@ -57,7 +58,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="TopPeqEqLayoutBase_scenes_vis" parent="TopPeqEqLayout">
-		<!-- Margin top: 48dp + 8dp -->
+		<!-- Margin top: 48dp + 8dp. Overridden for land -->
 		<item name="android:layout_marginTop">@dimen/TopPeqEqLayoutBase_scenes_vis_marginTop</item>
 	</style>
 	<style name="TopPeqEqLayout_scenes_vis" parent="TopPeqEqLayoutBase_scenes_vis">

@@ -325,7 +325,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupListMicroIconSpace" format="reference"/>
 		<attr name="ItemPopupListFrs" format="reference"/>
 		<attr name="ItemEqPreset" format="reference"/>
+		<attr name="ItemEqPresetLock" format="reference"/>
 		<attr name="ItemEqPresetSelectBox" format="reference"/>
+		<attr name="ItemEqPresetTitle" format="reference"/>
+		<attr name="ItemEqPresetTitle_2line" format="reference"/>
+		<attr name="ItemEqPresetLine2_2line" format="reference"/>
+		<attr name="ItemEqPresetLine2_3line" format="reference"/>
 		<attr name="ItemPopupSimpleTitle" format="reference"/>
 		<attr name="ItemPopupSimpleTitle_Text" format="reference"/>
 		<attr name="ItemPopupSimpleLine2" format="reference"/>
@@ -492,6 +497,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopListSearchEditText" format="reference"/>
 		<attr name="TopSearchTarget" format="reference"/>
 		<attr name="TopSearchTarget_Text" format="reference"/>
+
+		<attr name="SmallerSearchEditText_Text" format="reference"/>
 		
 		<attr name="TopNavbarBounds" format="reference"/>		
 		<attr name="TopNavbarContainer" format="reference"/>
@@ -631,8 +638,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqEquPresetButtonLayout_scene_button_menu" format="reference"/>
 		<attr name="EqEquPresetLabel" format="reference"/>
 		<attr name="EqEquPresetLabel_Text" format="reference"/>
+		<!-- @Deprecated -->
 		<attr name="EqEquSaveButton" format="reference"/>
+		<!-- @Deprecated -->
 		<attr name="EqEquResetButton" format="reference"/>
+		<attr name="EqMenu" format="reference"/>
+		<attr name="EqMenu_scene_item_menu" format="reference"/>
+		<attr name="EqMenuIcon" format="reference"/>
+		<attr name="EqMenuLayoutItems" format="reference"/>
 		<attr name="EqTonePanel" format="reference"/>
 		<attr name="EqBassToneKnobLayout" format="reference"/>
 		<attr name="EqTrebleToneKnobLayout" format="reference"/>
@@ -677,6 +690,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqParamColorPopupLayout_scene_item_menu" format="reference"/>
 		<attr name="EqParamColorPopupIcon" format="reference"/>
 		<attr name="EqParamEditButton" format="reference"/>
+		<attr name="EqParamLockButton" format="reference"/>
 		<attr name="EqParamLRPopupButtonLayout" format="reference"/>
 		<attr name="EqParamTypePopupButtonLayout" format="reference"/>
 		<attr name="EqParamQRoundKnob" format="reference"/>
@@ -689,6 +703,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="EqPresetDeviceAssignIcon" format="reference"/>
 		<attr name="EqPresetDeviceAssignCheckbox" format="reference"/>
+
 		<!--<attr name="" format="reference"/>
 		<attr name="" format="reference"/>
 		<attr name="" format="reference"/>

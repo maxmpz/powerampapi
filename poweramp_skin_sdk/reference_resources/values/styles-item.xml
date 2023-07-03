@@ -33,7 +33,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<!-- NOTE: derived by ItemPopupList_scene_item_menu -->
+	<!-- NOTE: derived by ItemPopupList_scene_item_menu. Defines the popup layout in the popup (expanded) state -->
 	<style name="ItemPopupMenu_scene_item_menu">
 		<item name="recalcChildren">on_start</item>
 		<item name="applyViewParams">true</item>
@@ -168,6 +168,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	
 	<style name="ItemEmptyListSettingsButton" parent="ItemEmptyListSettingsButtonBase">
+		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:drawable">@drawable/settings_24dp</item>
 		<item name="drawableOnly">true</item>
@@ -343,7 +344,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	
 	<style name="ItemPopupList" parent="ItemGenericBase">
 		<item name="android:background">@drawable/ripple_with_check_selector</item>
-		<item name="android:paddingRight">48dp</item><!-- NOTE: padding is needed for check icon in background -->
+		<item name="android:paddingRight">40dp</item><!-- NOTE: padding is needed for check icon in background -->
 		<item name="android:paddingLeft">16dp</item>
 	</style>
 	<style name="ItemPopupListMorePadding" parent="ItemPopupList">
@@ -372,7 +373,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="hiRes">false</item>
 	</style>
 		
-	
+
 	<style name="ItemPopupListTitle" parent="ItemGenericTitle">
 		<item name="layout_attachBottom">@null</item>
 		<item name="android:layout_gravity">center_vertical</item>
@@ -381,14 +382,21 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginLeft">12dp</item>
-		<item name="android:textAppearance">?ItemPopupListTitle_Text</item><!-- By default => ItemGenericTitle_Text -->
+		<item name="android:textAppearance">?ItemPopupListTitle_Text</item>
 	</style>
-	
+
 	<style name="ItemPopupListTitleLarger" parent="ItemPopupListTitle">
-		<item name="android:textAppearance">?ItemPopupListTitleLarger_Text</item><!-- By default => ItemGenericTitle_Text -->
+		<item name="android:drawablePadding">4dp</item>
+		<item name="drawablePaddingStart">0dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:textAppearance">?ItemPopupListTitleLarger_Text</item>
+		<item name="drawableTint">?android:textColorSecondary</item>
 	</style>
 	<style name="ItemPopupListTitleLarger_Text" parent="ItemGenericTitle_Text">
-		<item name="android:textSize">15dp</item>
+		<item name="android:textSize">17dp</item>
 	</style>
 	<style name="ItemPopupListTitleLarger_2line" parent="ItemPopupListTitleLarger">
 		<item name="layout_attachLeft">@null</item>
@@ -397,8 +405,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachBottom">50%</item>
 		<item name="android:layout_marginBottom">4dp</item>
 	</style>
-	
-	<style name="ItemPopupListLine2" parent="ItemGenericLine2"><!-- NOTE: not used ATM -->
+
+	<!-- NOTE: not used ATM -->
+	<style name="ItemPopupListLine2" parent="ItemGenericLine2">
 		<item name="layout_attachTop">@null</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="android:layout_marginTop">0dp</item>
@@ -466,48 +475,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">gone</item>
 	</style>
 		
-	<!-- eq -->
-	
-	<style name="ItemPopupListFrs" parent="ItemGenericImage">
-		<item name="android:clickable">false</item>
-		<item name="miniMode">true</item>
-		<item name="android:layout_width">80dp</item>
-		<item name="android:layout_height">36dp</item>
-		
-		<item name="lineColor">?colorFrs</item>
-		<item name="glowColor">#0000</item>
-		<item name="lineWidth">1dp</item>
-		<item name="blurWidth">0</item>
-		<item name="backLineColor">?colorFrsBackline</item>
-		<item name="toneFillColor">?colorFrsToneFill</item>
-		<item name="toneLineColor">?colorFrsTone</item>
-		<item name="toneLineWidth">0.5dp</item>
-		<item name="toneGlowColor">#0000</item>
-	</style>
-	
-	<!-- Spacer used to align icons to ItemPopupListTitleLarger_2line padding -->
-	<style name="ItemPopupListMicroIconSpace">
-		<item name="android:layout_width">10dp</item>
-		<item name="android:layout_height">0dp</item>
-		<item name="layout_consumeSpace">horizontal</item>
-	</style>
-	
-	<style name="ItemPopupListMicroIcon">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachTop">50%</item>
-		<item name="android:layout_marginTop">4dp</item>
-		<item name="layout_consumeSpace">horizontal</item>
-		<item name="drawableTint">?android:textColorSecondary</item>
-		<item name="android:textColor">?android:textColorSecondary</item>
-		<item name="android:textAppearance">?Hint</item>
-		<item name="android:gravity">center_vertical</item>
-		<item name="android:singleLine">true</item>
-		<item name="layout_maxWidth">100dp</item>
-		<item name="android:ellipsize">end</item>
-		<item name="android:drawablePadding">3dp</item>
-	</style>
-	
 	<style name="ItemPopupListSelectBox" parent="ItemTrackSelectBox">
 		<item name="layout_consumeSpace">none</item><!-- Don't consume space as when it appears from GONE, it forces new consumed space value due to layout_attachLeftToLeft -->
 		<item name="layout_attachLeftToLeft">@id/aa_image</item>
@@ -522,15 +489,5 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemPopupSimpleImage" parent="ItemVisImage">
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">8dp</item>
-	</style>
-
-	<style name="ItemEqPreset" parent="ItemPopupList">
-		<item name="android:paddingLeft">8dp</item>
-	</style>
-		
-	<style name="ItemEqPresetSelectBox" parent="ItemPopupListSelectBox">
-		<item name="layout_consumeSpace">none</item><!-- Don't consume space as when it appears from GONE, it forces new consumed space value due to layout_attachLeftToLeft -->
-		<item name="layout_attachLeftToLeft">@id/frs</item>
-		<item name="android:layout_marginLeft">4dp</item>
 	</style>
 </resources>

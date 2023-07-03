@@ -85,6 +85,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="AccentedText">@style/AccentedText_BoldFont</item>
 		<item name="Text">@style/Text_BoldFont</item><!-- NOTE: used mostly in dialogs -->
 		<item name="LargerText">@style/LargerText_BoldFont</item>
+
+		<item name="SmallerSearchEditText_Text">@style/SmallerSearchEditText_Text_BoldFont</item>
 				
 		<item name="TopListScrollerView_Text">@style/TopListScrollerView_Text_BoldFont</item>
 		<item name="TopTrackElapsedDuration_Text">@style/TopTrackElapsedDuration_Text_BoldFont</item>
@@ -178,6 +180,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Dialog_textAppearanceSmall_BoldFont" parent="TextAppearance.AppCompat.Small"><!-- Plain text views, e.g. used for labels/some messages -->
 		<item name="android:fontFamily">?BoldFont_medium_font</item>
 	</style>
+
+	<style name="SmallerSearchEditText_Text_BoldFont" parent="textAppearanceMediumInverse_BoldFont">
+		<item name="android:textSize">@dimen/large2_AltFont_textSize</item>
+	</style>
 	
 	<style name="HeadText_BoldFont" parent="HeadText">
 		<item name="android:fontFamily">?BoldFont_font</item>
@@ -208,7 +214,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopSearchTarget_Text_BoldFont" parent="TopSearchTarget_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/moderate3_AltFont_textSize</item>
 	</style>
 	<style name="TopListIndexerPopupView_Text_BoldFont" parent="TopListIndexerPopupView_Text">
 		<!-- Keep default dp size as this is not strictly a text, but a popup glyph -->
@@ -363,7 +369,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="ItemPopupListTitleLarger_Text_BoldFont" parent="ItemPopupListTitleLarger_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/large1_AltFont_textSize</item>
 	</style>
 	<style name="ItemVisTitle_Text_BoldFont" parent="ItemGenericTitle_Text">
 		<item name="android:fontFamily">?BoldFont_medium_font</item>
@@ -425,12 +431,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<style name="EqButton_Text_BoldFont" parent="EqButton_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/moderate2_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/medium1_AltFont_textSize</item>
 		<item name="android:textAllCaps">false</item>
 	</style>
 	<style name="EqEquPresetLabel_Text_BoldFont" parent="EqEquPresetLabel_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/moderate2_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/medium1_AltFont_textSize</item>
 		<item name="android:textAllCaps">false</item>
 	</style>
 	

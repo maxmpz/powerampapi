@@ -31,9 +31,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item><!-- For 9.0 -->
 		<item name="windowLightNavigationBar">false</item>
 				
-		<!-- NOTE: any alpha value in this color enables transparent android navigation bar and appropriate Poweramp layout changes, i.e. layout spans behind that bar.
-			 Poweramp places id/navigation_bar_bg view under navigation bar, with navigationBarBg drawable, which can be any drawable, not just color.
-			 Use either android:navigationBarColor for just color, or navigationBarBg, but avoid using both to limit overdraw (set other to transparent/#0000)
+		<!-- NOTE: any alpha value in this color enables transparent android navigation bar and appropriate Poweramp layout changes,
+		     i.e. layout spans behind that bar.
+			 Poweramp places id/navigation_bar_bg view under navigation bar, with navigationBarBg drawable, which can be any drawable,
+			 not just color.
+			 Use either android:navigationBarColor for just color, or navigationBarBg, but avoid using both to limit overdraw
+			 (set other to transparent/#0000)
 			 
 			 NOTE: some devices may always ignore these colors (OnePlus - ignores #FF000000, but accepts #FF000001)
 		-->
@@ -62,12 +65,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorIconInverseForced">#fff</item>
 		<item name="colorIconDisabled">#7eee</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
 		
-		<item name="colorTextDisabled">#282828</item><!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob -->
+		<item name="colorTextDisabled">#5a5a5a</item>
+		<item name="colorTextDisabledSecondary">#555555</item>
 		
 		<item name="colorBgPrimary">#222</item>
 		<item name="colorBgPrimaryAlpha">#4333</item>
 		<item name="colorBgLessAlpha">#d444</item>
-		<item name="colorInverse">#fff</item>
+		<item name="colorBgPrimaryStrictAlpha">#f0222222</item>
+		<item name="colorInverse">#fff</item><!-- REVISIT: use less contrasted color for the ripples? -->
+		<item name="colorPlaybackRipple">#999</item><!-- We change this for Android 13+ -->
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#222</item>
 		<item name="colorStroke">#5f5f5f</item>
@@ -79,6 +85,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="colorShade">#88000000</item>
 		<item name="colorBgLight">#333</item><!-- Used ATM for the Search Frame bg -->
+		<item name="colorBgCheckedLight">#444</item>
 		<item name="colorItemPlayingMark">#282828</item>
 		
 		<item name="colorAABgColor">#000</item>
@@ -116,8 +123,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="colorKnobPressed">#fff</item>
 		<item name="colorKnobBg">#222</item>
-		<item name="colorKnobDisabled">#111</item>
-		<item name="colorKnobHoleDisabled">#111</item>
+		<item name="colorKnobDisabled">#7444</item>
+		<item name="colorKnobHoleDisabled">#7444</item>
 		<item name="colorPreampBg">#111</item>
 		
 		<item name="colorTrackMeta">#999</item>
@@ -182,9 +189,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Skin overlap -->
 		<item name="overlap_more_buttons">@style/ActivityTheme_Blackpro_MoreButtons</item>
 		<item name="overlap_less_rounding">@style/ActivityTheme_Black_LessRounding</item>
-
 		<item name="overlap_alt_layout">@style/ActivityTheme_Black_AltLayout</item>
 		<item name="overlap_alt_layout2">@style/ActivityTheme_Black_AltLayout2</item>
+		<item name="overlap_graphic_frs_color">@style/ActivityTheme_Black_GraphicFrsColorful</item>
 
 		<item name="DialogForceLightSystemUIStyle">@style/ActivityTheme_Black_DialogForceLightSystemUIStyle</item>
 		<item name="DialogForceDarkSystemUIStyle">@style/ActivityTheme_Black_DialogForceDarkSystemUIStyle</item>
@@ -276,6 +283,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Blackpro_NoMainNavbarBg">
+		<!-- Disable possible extra background applied by system on some devices -->
+		<item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+
 		<item name="Navbar">@style/Navbar_noBgNavbar</item>
 		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
 		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>

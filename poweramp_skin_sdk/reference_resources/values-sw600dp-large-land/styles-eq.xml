@@ -50,5 +50,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">@dimen/EqKnob_spacing</item>
 		<item name="android:layout_marginBottom">4dp</item>
 	</style>
-		
+
+
 </resources> 

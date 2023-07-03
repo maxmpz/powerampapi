@@ -35,7 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		+==========+ <- bottom of AA                                +
 		...                                                         |
 		title  (lrc) (menu) <- bottom attached to line2             |
-		line2        <- vertically centered                         |-> height == @dimen/Alt_TopAABounds_marginBottom
+		line2        <- vertically centered                         |-> height == @dimen/Alt2_TopAABounds_marginBottom
 		rating       <- top attached to line2                       |
 		...                                                         |
 		~~~~~~~~~~~~ <- bottom of ItemTrack view                    +
@@ -50,7 +50,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		+==========+ <- bottom of AA                                +
 		...                                                         |
 		title        <- bottom attached to 50%                      |
-		                                                            |-> height == @dimen/Alt_TopAABounds_marginBottom
+		                                                            |-> height == @dimen/Alt2_TopAABounds_marginBottom
 		line2 (lrc) (menu) <- top attached to 50%                   |
 		...                                                         |
 		~~~~~~~~~~~~ <- bottom of ItemTrack view                    +
@@ -181,10 +181,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">@dimen/Alt2_TopAABounds_marginBottom</item>
 	</style>
 
-	<!-- Remove bottom margin for AA as we want to properly vertically center the title/line2/rating views -->
+	<!-- NOTE: some marginBottom added to compensate SubAA buttons also shifted by 4dp -->
 	<!-- Overridden in land -->
 	<style name="Alt2_ItemTrackAAImage_scene_aa" parent="Alt_ItemTrackAAImage_scene_aa">
-		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
 	</style>
 
 	<style name="Alt2_TopWaveseekLayout" parent="Alt_TopWaveseekLayout">
@@ -217,7 +217,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">46dp</item>
 		<item name="android:layout_marginRight">46dp</item>
 		<item name="layout_attachBottom">50%</item>
-		<item name="android:layout_marginBottom">0dp</item><!-- Sligtly shift to bottom -->
+		<item name="android:layout_marginBottom">0dp</item>>
 	</style>
 
 	<style name="Alt2_ItemTrackLine2_scene_aa" parent="Base_Alt_ItemTrackLine2_scene_aa">
@@ -239,6 +239,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="Alt2_OptionRatingDisabled_ItemTrackLine2_scene_aa" parent="Alt2_ItemTrackLine2_scene_aa">
 		<item name="layout_attachTop">50%</item>
+		<item name="layout_attachBottom">parent</item><!-- Avoid rating cycle -->
 		<item name="android:layout_marginTop">1dp</item><!-- Slightly shift to bottom -->
 	</style>
 	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackLine2_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa">
@@ -311,7 +312,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Move rating under AA. Just detach it from anything and it will be positioned under AA as AA consumes vertical space -->
 	<!-- NOTE: redefined in land -->
 	<style name="Alt2_ItemLikeUnlikeLayout_scene_aa" parent="Alt_ItemLikeUnlikeLayout_scene_aa">
-		<item name="android:layout_marginTop">1dp</item>
+		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="layout_attachBottomToBottom">@null</item>
 		<item name="layout_attachBottom">@null</item>
@@ -328,7 +329,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="Alt2_ItemRatingBar_scene_aa" parent="Alt_ItemRatingBar_scene_aa">
-		<item name="android:layout_marginTop">1dp</item>
+		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginLeft">?Alt2_ItemRatingBar_scene_aa_marginLeft</item><!-- 14dp -->
 		<item name="layout_attachBottomToBottom">@null</item>
@@ -365,6 +366,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="Alt2_TopSubAAButtons" parent="Alt_TopSubAAButtons">
-		<item name="android:layout_marginTop">0dp</item>
+		<!-- Reserve some space as due to like unlike on top meta info can be moved to close to sub aa buttons.
+		     But this also introduces vertical assemitry, so extra 4dp is also added to line2 -->
+		<item name="android:layout_marginTop">4dp</item>
 	</style>
 </resources>

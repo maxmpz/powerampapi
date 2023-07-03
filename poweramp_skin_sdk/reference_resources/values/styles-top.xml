@@ -804,7 +804,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:padding">12dp</item>
 		
 		<item name="android:background">@null</item>
-		<!-- NOTE: not supported until 6.0, thus, using separate tinted drawable -->
+		<!-- NOTE: tint here is not supported until 6.0, thus, using separate tinted drawable -->
 		<item name="android:drawableLeft">@drawable/search_tinted</item>
 		<!-- <item name="android:drawableTint">?colorIconPrimary</item> -->
 		<!-- <item name="drawableTint">?colorIconPrimary</item> -->
@@ -825,7 +825,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingTop">8dp</item>
 		<item name="android:paddingLeft">8dp</item>
 		<item name="android:paddingRight">12dp</item>
+		<!-- Applying clip here as it's not looking well if we go beyond list dimension for top search -->
 		<item name="android:clipToPadding">true</item>
+		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
+		<item name="catButtonStyle">?TopSearchCatButton</item>
 	</style>
 	<style name="TopSearchCatButton">
 		<item name="android:layout_width">wrap_content</item>
@@ -835,8 +838,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">4dp</item>
 		<item name="android:paddingLeft">12dp</item>
 		<item name="android:paddingRight">12dp</item>
-		<item name="android:paddingTop">4dp</item>
-		<item name="android:paddingBottom">4dp</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingBottom">5dp</item>
+		<item name="drawablePaddingStart">10dp</item>
+		<item name="android:drawablePadding">-11dp</item>
+		<item name="drawableTint">@color/button_primary_text_color_selector</item>
+
 		<item name="android:maxLines">1</item>
 		<item name="android:background">@drawable/checkable_non_tr_rounded_large</item>
 		<item name="animOnClick">true</item>
@@ -912,8 +919,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="layout_attachLeft">inset</item>
 		<item name="layout_attachRight">inset</item>
-				
-		<item name="android:layout_height">300dp</item><!-- Height should be enough for 2 row selection menu -->
+
+		<!-- Height should be enough for 2 row selection menu
+		     NOTE: this is not height of the selection menu, but the height of the parent (invisible) container -->
+		<item name="android:layout_height">@dimen/TopSelectionMenuContainer_height</item>
 		<item name="layout_attachBottom">parent</item><!-- Attaching to bottom, not to inset, thus we allow animation behind the navbar -->
 		<item name="android:translationZ">?modal_translationZ</item>
 		<item name="android:outlineProvider">none</item>
@@ -1018,8 +1027,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Centered -->
 	
 	<style name="TopBaseButtonLayout">
-		<item name="android:layout_width">@dimen/TopBaseButtonLayout_layout_width</item><!-- 68dp -->
-		<item name="android:layout_height">@dimen/TopBaseButtonLayout_layout_height</item><!-- 36dp -->
+		<item name="android:layout_width">@dimen/TopBaseButtonLayout_width</item>
+		<item name="android:layout_height">@dimen/TopBaseButtonLayout_height</item>
 				
 		<item name="menuPlaceholder">@+id/menu_placeholder</item>
 		<item name="android:background">@drawable/alpha_popup_button_layout_bg</item>
@@ -1034,7 +1043,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="buttonStyle">?PopupButton</item>
 		<item name="menuButtonStyle">?PopupButton_scene_button_menu</item>
 		
-		<item name="popupListStyle">@style/PopupListLayoutList</item><!-- Used for e.g. eq/reverb presets (with the PowerList inside) -->
+		<item name="popupListStyle">@style/PopupListLayoutList</item>
+
+		<item name="separatorSize">32dp</item><!-- Used for list separators, if any -->
 	</style>
 	
 	
@@ -1258,7 +1269,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopMetaInfoLabel_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
-		<item name="android:textAllCaps">true</item>				
+		<item name="android:textAllCaps">true</item>
 	</style>
 	
 	<!-- NOTE: TopHelp* styles are used directly in layouts and not meant for overriding, but still colors, backgrounds, textAppearance are overridable -->

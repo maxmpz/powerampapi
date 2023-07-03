@@ -17,4 +17,6 @@
 		<item name="layout_marginBottomRef">@id/navbar_bounds_size</item>
 		<!--<item name="android:background">#5f0f</item>--><!-- DEBUG -->
 	</style>
+	<!-- @Deprecated -->
+	<style name="ActivityTheme_Whitepro_PeqEqKnobsHiliteMonochromatic"></style>
 </resources>

@@ -124,9 +124,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="OptionNoHeaderButtons">
 		<item name="ItemTextHeaderShuffleButton_scene_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextHeaderShuffleButton_scene_search_header">@style/ItemTextHeaderButton_invisible</item>
 		<item name="ItemTextHeaderPlayButton_scene_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextHeaderPlayButton_scene_search_header">@style/ItemTextHeaderButton_invisible</item>
 		<item name="ItemTextHeaderSearchButton_scene_header">@style/ItemTextHeaderButton_invisible</item>
 		<item name="ItemTextHeaderSelectButton_scene_header">@style/ItemTextHeaderButton_invisible</item>
+		<item name="ItemTextHeaderSelectButton_scene_search_header">@style/ItemTextHeaderButton_invisible</item>
 		<item name="ItemTextMenu_scene_search_header">@style/ItemTextHeaderButton_invisible</item>
 		<item name="ItemTextMenu_scene_header">@style/ItemTextHeaderButton_invisible</item>
 		<item name="ItemTextMenu_scene_top_header">@style/ItemTextHeaderButton_invisible</item>

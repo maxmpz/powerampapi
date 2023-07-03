@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	>
+	<style name="ItemPopupListFrs" parent="ItemGenericImage">
+		<item name="android:clickable">false</item>
+		<item name="miniMode">true</item>
+		<item name="android:layout_width">80dp</item>
+		<item name="android:layout_height">36dp</item>
+		<item name="android:layout_marginRight">@dimen/ItemPopupListFrs_marginRight</item>
+
+		<item name="lineColor">?colorFrs</item>
+		<item name="glowColor">#0000</item>
+		<item name="lineWidth">1.5dp</item>
+		<item name="parametricLineWidth">1dp</item>
+		<item name="blurWidth">0</item>
+		<item name="backLineColor">?colorFrsBackline</item>
+		<item name="toneFillColor">?colorFrsToneFill</item>
+		<item name="toneLineColor">?colorFrsTone</item>
+		<item name="toneLineWidth">0.5dp</item>
+		<item name="toneGlowColor">#0000</item>
+
+		<!-- NOTE: theme default colors acceppted by Frs as well: graphicColorMax, etc. -->
+	</style>
+
+	<style name="ItemEqPresetTitle" parent="ItemPopupListTitleLarger">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:drawablePadding">@dimen/ItemEqPresetTitle_drawablePadding</item>
+		<item name="android:ellipsize">marquee</item>
+	</style>
+	<style name="ItemEqPresetTitle_2line" parent="ItemPopupListTitleLarger_2line">
+		<item name="layout_attachBottom">@id/line2</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:drawablePadding">@dimen/ItemEqPresetTitle_drawablePadding</item>
+		<item name="android:ellipsize">marquee</item>
+	</style>
+
+	<style name="ItemEqPresetLine2_2line" parent="ItemPopupListMicroIconBase">
+		<item name="layout_attachTop">50%</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginLeft">20dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="layout_goneWhenEmpty">true</item>
+		<item name="layout_maxWidth">@null</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	<style name="ItemEqPresetLine2_3line" parent="ItemEqPresetLine2_2line">
+		<item name="layout_attachTop">@null</item>
+		<item name="android:layout_gravity">center_vertical|left</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginBottom">2dp</item>
+	</style>
+
+	<!-- Spacer used to align icons to ItemPopupListTitleLarger_2line padding -->
+	<style name="ItemPopupListMicroIconSpace">
+		<item name="android:layout_width">17dp</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+
+	<style name="ItemPopupListMicroIconBase">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">horizontal</item>
+
+		<item name="drawableTint">?android:textColorSecondary</item>
+		<item name="android:textColor">?android:textColorSecondary</item>
+		<item name="android:textAppearance">?Hint</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:drawablePadding">3dp</item>
+		<item name="drawablePaddingEndNoText">-3dp</item>
+		<item name="android:layout_marginLeft">2dp</item>
+		<item name="layout_alignToContent">all</item>
+		<item name="eatFontPads">true</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+	</style>
+
+	<style name="ItemPopupListMicroIcon" parent="ItemPopupListMicroIconBase">
+		<item name="layout_attachTop">@id/line2</item>
+		<item name="layout_maxWidth">100dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+	</style>
+
+
+	<style name="ItemEqPreset" parent="ItemPopupList">
+		<item name="android:paddingLeft">8dp</item>
+	</style>
+
+	<style name="ItemEqPresetLock" parent="PeqLockLabelBase">
+		<item name="layout_gravityTarget">@id/frs</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:padding">6dp</item>
+		<item name="android:background">@drawable/ripple_primary_bg_generic</item>
+	</style>
+
+	<style name="ItemEqPresetSelectBox" parent="ItemPopupListSelectBox">
+		<item name="layout_consumeSpace">none</item><!-- Don't consume space as when it appears from GONE, it forces new consumed space value due to layout_attachLeftToLeft -->
+		<item name="layout_attachLeftToLeft">@id/frs</item>
+		<item name="android:layout_marginLeft">4dp</item>
+	</style>
+</resources>

@@ -23,7 +23,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- NOTE: need to redefine it again, as core black-styles redefines default colors -->
 	<style name="ActivityTheme_Black" parent="Base_ActivityTheme_Black">
+		<!-- NOTE: update v29/* as well if this is updated -->
 		<item name="statusBarBg">#3000</item>
+		<!-- NOTE: if navigationBarColor is fully transparent, system will apply extra background color
+		     via implicit android:enforceNavigationBarContrast.
+		     Most firmwares will properly drop that enforceNavigationBarContrast background for the
+		     gesture navigation, but some devices still apply it (Samsungs@Android 13).
+		     Also these affected devices usually do not honor setNavigationBarContrastEnforced call, so we must to apply
+		     appropriate style via xml -->
 		<item name="android:navigationBarColor">#0fff</item>
 	</style>
 </resources>

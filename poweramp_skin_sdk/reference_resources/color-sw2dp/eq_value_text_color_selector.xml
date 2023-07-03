@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:state_enabled="false" android:color="#0000" />
-	<item android:color="?android:textColorSecondary" />
+	<item android:state_enabled="false" android:color="?colorTextDisabled" />
+	<item android:color="?android:textColorSecondary" /><!-- Also for state_locked -->
 </selector>
 

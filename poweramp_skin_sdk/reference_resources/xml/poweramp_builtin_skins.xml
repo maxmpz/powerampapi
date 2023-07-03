@@ -2,7 +2,9 @@
 
 <skins xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- IMPORTANT: all these styles should be skipped from obfuscation, otherwise they may be removed from R or otherwise disabled.
-		 See procfg.pro around -keep,allowshrinking class **.R$style -->
+		 See procfg.pro around -keep,allowshrinking class **.R$style
+
+		 IMPORTANT: all the styles/attributes used as values here should be stable -->
 	
 	<!-- NOTE: forceGlobalOptions=true means global options (by default in styles-options.xml) will force-override
 	     base skin attributes. By default, global options do not override base skin theme, just add to it, but 
@@ -126,9 +128,9 @@
 			defaultValue="@style/ActivityTheme_BoldFont"
 		>
 			<option
-				name="@string/classic"
-				overlapStyle=""
-			/>
+				name="@string/_default"
+				overlapStyle="@style/ActivityTheme_SystemFont"
+				/>
 			<option
 				name="@string/skin_alt_font"
 				overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
@@ -211,8 +213,23 @@
 				name="@string/colorful"
 				overlapAttr="@attr/overlap_knobs_hilite_color"
 			/>
-		</multiSwitch>		
-		
+		</multiSwitch>
+
+		<multiSwitch
+			key="graphic_frs_color"
+			name="@string/skin_graphic_mode_frequency_curve"
+			defaultValue="@attr/overlap_graphic_frs_color"
+			>
+			<option
+				name="@string/monochromatic"
+				overlapAttr=""
+				/>
+			<option
+				name="@string/colorful"
+				overlapAttr="@attr/overlap_graphic_frs_color"
+				/>
+		</multiSwitch>
+
 		<option
 			key="force_light_navbar"
 			name="@string/skin_force_light_navbar"
@@ -241,7 +258,6 @@
 				/>
 		</multiSwitch>
 
-				
 		<option
 			key="navbar_offset"
 			name="@string/skin_navbar_offset"
@@ -249,7 +265,22 @@
 			overlapAttr="@attr/overlap_navbar_offset"
 			checkedByDefault="false"
 		/>
-				
+
+		<multiSwitch
+			key="android_navbar_bg"
+			name="@string/android_navbar"
+			defaultValue=""
+			>
+			<option
+				name="@string/default_string"
+				overlapStyle=""
+				/>
+			<option
+				name="@string/no_background"
+				overlapStyle="@style/ActivityTheme_NoAndroidNavbarBg"
+				/>
+		</multiSwitch>
+
 	</skin>
 		
 	<skin
@@ -367,9 +398,9 @@
 			defaultValue="@style/ActivityTheme_BoldFont"
 		>
 			<option
-				name="@string/classic"
-				overlapStyle=""
-			/>
+				name="@string/_default"
+				overlapStyle="@style/ActivityTheme_SystemFont"
+				/>
 			<option
 				name="@string/skin_alt_font"
 				overlapStyle="@style/ActivityTheme_Whitepro_AltFont"
@@ -444,6 +475,21 @@
 		</multiSwitch>
 
 		<multiSwitch
+			key="graphic_frs_color"
+			name="@string/skin_graphic_mode_frequency_curve"
+			defaultValue="@attr/overlap_graphic_frs_color"
+			>
+			<option
+				name="@string/monochromatic"
+				overlapAttr=""
+				/>
+			<option
+				name="@string/colorful"
+				overlapAttr="@attr/overlap_graphic_frs_color"
+				/>
+		</multiSwitch>
+
+		<multiSwitch
 			key="navbar_bg"
 			name="@string/skin_transparent_navbar"
 			defaultValue=""
@@ -470,5 +516,20 @@
 			overlapAttr="@attr/overlap_navbar_offset"
 			checkedByDefault="false"
 		/>
+
+		<multiSwitch
+			key="android_navbar_bg"
+			name="@string/android_navbar"
+			defaultValue=""
+			>
+			<option
+				name="@string/default_string"
+				overlapStyle=""
+				/>
+			<option
+				name="@string/no_background"
+				overlapStyle="@style/ActivityTheme_NoAndroidNavbarBg"
+				/>
+		</multiSwitch>
 	</skin>
 </skins>

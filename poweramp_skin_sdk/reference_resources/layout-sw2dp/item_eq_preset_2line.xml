@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -30,48 +30,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemPopupListFrs"
 		android:importantForAccessibility="no"
 	/>
-	
+
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/lock"
+		style="?ItemEqPresetLock"
+		/>
+
 	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/select_box"
 		style="?ItemEqPresetSelectBox"
 	/>
-	
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
-		style="?ItemPopupListTitleLarger_2line"
+
+	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
+		style="?ItemEqPresetTitle_2line"
 	/>
 	
-	<!-- Spacer used to align icons to ItemPopupListTitleLarger_2line padding -->
-	<com.maxmpz.widget.base.InvisibleView
-		style="?ItemPopupListMicroIconSpace"
-	/>
-	
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/speaker"
-		android:drawable="?pre_speaker"
-		style="?ItemPopupListMicroIcon"
-	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/wired"
-		android:drawable="?pre_wired"
-		style="?ItemPopupListMicroIcon"
-	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/bt"
-		android:drawable="?pre_bt"
-		style="?ItemPopupListMicroIcon"
-	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/usb"
-		android:drawable="?pre_usb"
-		style="?ItemPopupListMicroIcon"		
-	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/chromecast"
-		android:drawable="?pre_chromecast"
-		style="?ItemPopupListMicroIcon"
-	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/other"
-		android:drawable="?pre_other"
-		style="?ItemPopupListMicroIcon"
-	/>
-	<com.maxmpz.widget.base.FastTextView android:id="@+id/song"
-		android:drawable="?pre_song"
-		style="?ItemPopupListMicroIcon"
-	/>
-	
-		
+	<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
+		style="?ItemEqPresetLine2_2line"
+		/>
+
 </com.maxmpz.widget.player.list.TextItemView>

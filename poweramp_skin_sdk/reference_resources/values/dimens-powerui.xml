@@ -31,15 +31,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">600dp</dimen>
 	<dimen name="DialogFrame_maxWidth">680dp</dimen>
 	
-	<dimen name="DialogButtonStyle_layout_maxWidth">148dp</dimen>
+	<dimen name="DialogButtonStyle_maxWidth">148dp</dimen>
 	
 	<dimen name="CenterDialogFrame_maxWidth">380dp</dimen>
 	
-	<dimen name="TopToastContainer_layout_height">200dp</dimen><!-- Ensure 2-3 line fits -->
-	<dimen name="TopToastContainer_scenes_non_main_layout_height">146dp</dimen><!-- Not used -->
+	<dimen name="TopToastContainer_height">200dp</dimen><!-- Ensure 2-3 line fits -->
+	<dimen name="TopToastContainer_scenes_non_main_height">146dp</dimen><!-- Not used -->
 	<dimen name="TopToastFrame_maxWidth">300dp</dimen>
 	<dimen name="TopToastFrame_paddingLR">16dp</dimen>
-	<dimen name="TopToastFrame_paddingTB">8dp</dimen>
+	<dimen name="TopToastFrame_paddingTB">10dp</dimen>
 	<dimen name="TopToastTile_marginLeft">44dp</dimen><!-- NOTE: defines space for icon + padding -->
 	
 	<dimen name="TopUpperToastFrame_maxWidth">9999dp</dimen><!-- Not limited in portrait, limited in land -->
@@ -49,16 +49,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Text_size">14sp</dimen>
 	<dimen name="Hint_size">11sp</dimen>
 	<dimen name="LargerText_size">16sp</dimen>
-	
-	<dimen name="TopBaseButtonLayout_layout_width">58dp</dimen>
-	<dimen name="TopBaseButtonLayout_layout_height">30dp</dimen>
+	<dimen name="SmallerSearchEditText_Text_size">17dp</dimen>
+
+	<dimen name="TopBaseButtonLayout_width">58dp</dimen>
+	<dimen name="TopBaseButtonLayout_height">30dp</dimen>
 	<dimen name="PopupButtons_drawableSize">28dp</dimen>
 	<dimen name="PopupButton_scene_button_menu">56dp</dimen>
 	<dimen name="SmallerPopupButton_marginLeft">-8dp</dimen>
 	<dimen name="SmallerPopupButtons_drawableSize">24dp</dimen>
-	<dimen name="PopupButtons_paddingLeft">15dp</dimen><!-- Sync with TopBaseButtonLayout_layout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
+	<dimen name="PopupButtons_paddingLeft">15dp</dimen><!-- Sync with TopBaseButtonLayout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
 	<dimen name="PopupMenuItem_drawableWidth">24dp</dimen>
 	<dimen name="SmallerPopupButtons_paddingLeft">16.5dp</dimen>
+
+	<dimen name="TopSelectionMenuContainer_height">300dp</dimen>
+	<!-- This should be ~ max selection menu height -->
+	<dimen name="EqEquPresetButtonLayout_scene_button_menu_marginBottom">164dp</dimen>
 
 	<dimen name="NavbarExtensionMenuLine_drawableSize">24dp</dimen>
 	

@@ -103,7 +103,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:statusBarColor">#0000</item><!-- Still may be used by Android. Either this, or statusBarBg should have some color, but not both -->
 		<item name="statusBarBg">#5000</item><!-- Used by TopFitsStatusBarView -->
 
-		<item name="navigationBarBg">#0000</item><!-- Used by TopFitsNavigationBarView. We don't actually draw android navigation bar by TopFitsNavigationBarView in this theme, but some color is needed -->
+		<!-- Used by TopFitsNavigationBarView. We don't actually draw android navigation bar by TopFitsNavigationBarView in this theme, but some color is needed -->
+		<item name="navigationBarBg">#0000</item>
 
 		<!-- The code below make the status bar light -->
 		<!-- <item name="android:statusBarColor">#4fff</item>
@@ -138,7 +139,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorBgPrimary">#fff</item>
 		<item name="colorBgPrimaryAlpha">#55F5F5F5</item>
 		<item name="colorBgLessAlpha">#dfff</item>
+		<item name="colorBgPrimaryStrictAlpha">#bfff</item>
 		<item name="colorInverse">#fff</item>
+		<item name="colorPlaybackRipple">#999</item><!-- Using color which will work fine for both dark and light buttons. We change this for Android 13+ -->
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#000</item>
 		<item name="colorStroke">#555</item>
@@ -147,6 +150,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorLessContrast">#333</item><!-- Used for e.g. for the main screen tinted icons, some text -->
 		<item name="colorShade">#88000000</item>
 		<item name="colorBgLight">#f0f0f0</item><!-- Used ATM for the Search Frame bg -->
+		<item name="colorBgCheckedLight">#333</item>
 		<item name="colorItemPlayingMark">#eee</item>
 		<item name="colorTextBgAlpha">#c8000000</item>
 
@@ -157,7 +161,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorIconInverseForced">#fff</item>
 		<item name="colorIconDisabled">#9333</item><!-- NOTE: used only in few places, e.g. vis/repeat/shuffle icons (alt) -->
 
-		<item name="colorTextDisabled">#d6d6d6</item><!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob -->
+		<!-- Used for text disabled color in very few places where text is rendered by the view, e.g. in LinearKnob
+			 Should be visible/readable enough as this is also locked state where user should be able to read the text -->
+		<item name="colorTextDisabled">#d6d6d6</item>
+		<!-- Same as colorTextDisabled, little less visible, but still readable -->
+		<item name="colorTextDisabledSecondary">#d6d6d6</item>
 
 		<!-- Basically, the main background color for Poweramp main activity, as Milk visualization/AA blur is always on background, except lock screen mode.
 		     Though, in lock screen mode, this color is also used as background color by lock screen code -->
@@ -181,7 +189,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorEqKnobsLines1">#aaa</item>
 		<item name="colorEqKnobsLines2">#333</item>
 
-		<item name="colorFrs">#000</item>
 		<item name="colorFrsTone">#aa000000</item>
 		<item name="colorFrsToneAlpha">@null</item>
 		<item name="colorFrsToneFill">#28000000</item>
@@ -210,6 +217,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorKnobHiliteEndDisabled">#0000</item>
 		<item name="colorKnobHiliteEndPressed">#0000</item>
 		<item name="colorKnobHiliteEnd">#0000</item>
+
+		<!-- Overridden by overlap_knobs_hilite_color (ActivityTheme_GraphicFrsColorful) -->
+		<item name="graphicColorMax">#0000</item>
+		<item name="graphicColor75">#0000</item>
+		<item name="colorFrs">#000</item>
+		<item name="graphicColor25">#0000</item>
+		<item name="graphicColorMin">#0000</item>
 
 		<item name="colorTrackMeta">#999</item>
 		<item name="colorTrackNum">#999</item>
@@ -325,6 +339,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="pre_chromecast">@drawable/pre_chromecast</item>
 		<item name="pre_other">@drawable/pre_other</item>
 
+		<item name="equ_graphic_small">@drawable/equ_graphic_small</item>
+		<item name="equ_parametric_small">@drawable/equ_parametric_small</item>
+
+
 		<item name="folder_cat_icon">@drawable/folder_16dp</item>
 
 		<!-- List type icons. Shown in Library and as Playing Now icon -->
@@ -421,6 +439,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="import_24dp">@drawable/import_24dp</item>
 		<item name="bookmark">@drawable/bookmark_stroke</item>
 		<item name="share_24dp">@drawable/share_24dp</item>
+		<item name="reset_24dp">@drawable/reset_24dp</item>
+		<item name="save_24dp">@drawable/save_24dp</item>
+		<item name="save_assign_24dp">@drawable/save_assign_24dp</item>
+		<item name="autosave_24dp">@drawable/autosave_24dp</item>
 
 		<item name="clear_q_24dp">@drawable/clear_q_stroke_24dp</item>
 		<item name="artists_24dp">@drawable/artists_stroke_24dp</item>
@@ -430,6 +452,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="folder_24dp">@drawable/folder_stroke_24dp</item>
 		<item name="rename_24dp">@drawable/rename_24dp</item>
 		<item name="delete_24dp">@drawable/delete_stroke_24dp</item>
+		<item name="lock_24dp_tinted">@drawable/lock_24dp_tinted</item>
+		<item name="lock_24dp">@drawable/lock_24dp</item>
+		<item name="lock_solid_24dp">@drawable/lock_solid_24dp</item>
+		<item name="lock_unlock_24dp">@drawable/lock_unlock_24dp</item>
+		<item name="lock_unlock_24dp_selector">@drawable/lock_unlock_24dp_selector</item>
 		<item name="assign_eq_24dp">@drawable/assign_eq_24dp</item>
 		<item name="playlist_24dp">@drawable/playlist_24dp</item>
 		<item name="play_24dp">@drawable/play_24dp</item>
@@ -477,6 +504,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="logo_navbar">@drawable/logo_navbar_hamburger</item>
 		<item name="meta_info_bg">@drawable/alpha_popup_button_layout_bg</item>
 
+
 		<!-- Android mediarouter icons -->
 		<item name="media_route" tools:ignore="PrivateResource">@drawable/mr_button_light</item>
 		<item name="mediaRouteCloseDrawable" tools:ignore="PrivateResource">@drawable/mr_dialog_close_light</item>
@@ -499,6 +527,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="LargerText">@style/LargerText</item>
 		<item name="AccentedText">@style/AccentedText</item>
 		<item name="Hint">@style/Hint</item>
+		<item name="SmallerSearchEditText_Text">@style/SmallerSearchEditText_Text</item>
+
 
 		<!-- Elevation -->
 		<item name="dialogFrame_elevation">16dp</item>
@@ -528,7 +558,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_popup">24dp</item>
 		<item name="corners_medium_minus">6dp</item>
 		<item name="corners_medium">28dp</item>
-		<item name="corners_medium_plus">16dp</item>
+		<item name="corners_medium_plus">20dp</item><!-- Preamp, scroll popup -->
 		<item name="corners_navbar">24dp</item>
 		<item name="corners_searchbar">24dp</item>
 		<item name="corners_mini">24dp</item>
@@ -742,11 +772,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_knobs_hilite_mono">@style/ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic</item>
 		<!-- NOTE: overridden for Material You colors -->
 		<item name="overlap_knobs_hilite_color">@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful</item>
+		<item name="overlap_graphic_frs_color">@style/ActivityTheme_White_GraphicFrsColorful</item>
 
 		<!-- Navbar margins to allow easy overriding for overlap_navbar_offset option -->
 		<item name="navbar_marginLR">8dp</item>
 		<!-- NOTE: there is also increased margin, but we need exactly Navbar_normal_marginB value for TopContainer reduceBottomInset -->
 		<item name="navbar_marginB">@dimen/Navbar_marginB_more_rounded</item>
+		<!-- Navbar top margin shouldn't be changed dynamically, e.g. for offset navbar option -->
+		<!-- NOTE: this is not used directly by the navbar as margin, but used for the DynamicDimensions calculation -->
+		<item name="navbar_marginT">4dp</item>
 
 		<item name="Navbar_height">@dimen/Navbar_height</item>
 		<item name="NavbarSeekbar_marginLR">16dp</item>
@@ -775,9 +809,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="ItemTrackMenu_scene_aa_visibility">visible</item>
 		<item name="ItemTrackLyrics_scene_aa_visibility">visible</item><!-- NOTE: we allow lyrics button to be visible, but it still will be gone if no lyrics are in the track -->
-		<item name="AAImage_scaleType">centerCrop</item><!-- By default, (modified) centerCrop is used. Can be overridden by OptionAAKeepAspect/OptionAACrop -->
+		<!-- By default, the (modified, we crop just the height) centerCrop is used. Can be overridden by OptionAAKeepAspect/OptionAACrop -->
+		<item name="AAImage_scaleType">centerCrop</item>
 
 		<item name="EqParamColorSet">@array/EqParamColorSet_Default</item>
+		<!-- Overridden for Peq -->
+		<item name="EqTonePanel_paddingTop">@dimen/EqTonePanel_paddingTop</item>
+		<item name="EqTonePanel_paddingBottom">@dimen/EqTonePanel_paddingBottom</item>
 
 		<!-- Not themeable functional attributes -->
 
@@ -787,6 +825,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="settings_target_audio">audio</item>
 		<item name="settings_target_equ">audio_equ</item>
 		<item name="EqLockLabelStyle">@null</item>
+
+		<item name="popupEnterAnimTime">350</item>
+		<item name="popupExitAnimTime">300</item>
 
 		<!-- Globally enables debug rectangle around fast text view text/drawables. Can be set per specific FastTextViews as well -->
 		<!--<item name="debugRectColor">#ffaaaaaa</item>-->
@@ -800,6 +841,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackMeta_scene_item_menu_marginLeft">-2dp</item>
 		<!-- @Deprecated - not used -->
 		<item name="ItemTrackMeta_scene_item_menu_marginBottom">4dp</item>
+
 		<!-- NOTE: this is not used anymore. Here the deprecated single value per all possible configurations is defined
 		     for old 3rd party skins, though this shouldn't be ever used directly.
 		      See values-dimensions.xml for the replacement -->
@@ -869,9 +911,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="nav_search">@drawable/search_rounded</item>
 		<item name="nav_hamburger">@drawable/hamburger_rounded</item>
 
+		<!-- Disable possible extra background applied by system on some devices -->
+		<item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+
 		<item name="Navbar">@style/Navbar_noBgNavbar</item>
 		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
 		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+	</style>
+
+	<style name="ActivityTheme_NoAndroidNavbarBg">
+		<!-- Disable possible extra background applied by system on some devices -->
+		<item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+		<item name="android:navigationBarColor">#0000</item><!-- Make android navigation bar transparent -->
+		<item name="navigationBarBg">#0000</item>
 	</style>
 
 	
@@ -898,6 +950,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorInverse">#000</item>
 		<item name="colorBgInverse">#fff</item>
 		<item name="colorBgInverseChecked">#ccc</item><!-- Used for checkable buttons. As we don't inverse text to white, use some grey for checked state -->
+		<item name="colorBgCheckedLight">#ccc</item>
 		<item name="android:textColorPrimaryInverse">#000</item>
 		<item name="colorIconInverse">#000</item>
 		<item name="colorIconInverseForced">#000</item>
@@ -965,10 +1018,29 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_text_bg">4dp</item>
 		<item name="corners_generic">8dp</item>
 		<item name="corners_small_labels">2dp</item>
-		<item name="corners_aa_scene_aa">8dp</item>
+		<item name="corners_aa_scene_aa">12dp</item>
 		<item name="corners_miniplayer_aa">4dp</item>
 		<item name="corners_toast">16dp</item>
 		<item name="corners_large">10dp</item>
+
+		<item name="corners_aa_tracks_menu">10dp</item>
+		<item name="corners_aa_albums_menu">10dp</item>
+
+		<item name="corners_aa_tracks">8dp</item>
+		<item name="corners_aa_albums">4dp</item>
+
+		<item name="corners_aa_tracks_zoomed">10dp</item>
+		<item name="corners_aa_albums_zoomed">6dp</item>
+
+		<item name="corners_aa_tracks_grid">8dp</item>
+		<item name="corners_aa_albums_grid">4dp</item>
+
+		<item name="corners_aa_tracks_grid_zoomed">12dp</item>
+		<item name="corners_aa_albums_grid_zoomed">10dp</item>
+
+		<item name="corners_aa_tracks_small">4dp</item>
+
+		<item name="OptionRoundedScreenCorners_corners_header">8dp</item>
 
 		<item name="ItemTrackTitle_paddingLR">8dp</item>
 		<item name="ItemTrackLine2_paddingLR">8dp</item>
@@ -995,6 +1067,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="pause_small_narrow">@drawable/pause_small_narrow</item>
 		<item name="back_10s_round">@drawable/back_10s_round</item>
 		<item name="forward_10s_round">@drawable/forward_10s_round</item>
+		<item name="play_24dp">@drawable/play_small</item>
 
 		<item name="play_core">@drawable/play_core_tinted</item>
 		<item name="pause_core">@drawable/pause_core_tinted</item>
@@ -1013,6 +1086,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorInverse">#000</item>
 		<item name="colorBgInverse">#fff</item>
 		<item name="colorBgInverseChecked">#ccc</item><!-- Used for checkable buttons. As we don't inverse text to white, use some grey for checked state -->
+		<item name="colorBgCheckedLight">#ccc</item>
 		<item name="android:textColorPrimaryInverse">#000</item>
 		<item name="colorIconInverse">#000</item>
 		<item name="colorIconInverseForced">#000</item>
@@ -1034,7 +1108,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 	</style>
 	<style name="ActivityTheme_White_LessRounding_LightButtons" parent="Base_ActivityTheme_White_LessRounding_LightButtons">
-		<!-- Overridden for v31 -->
 	</style>
 
 	

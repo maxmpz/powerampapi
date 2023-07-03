@@ -22,5 +22,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<dimen name="EqInfoLabel_maxWidth">390dp</dimen>
-	<dimen name="EqButton_layout_maxWidth">94dp</dimen>
+	<dimen name="EqButton_maxWidth">94dp</dimen>
 </resources>

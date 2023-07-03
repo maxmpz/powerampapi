@@ -279,6 +279,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="entries"/>
 		<attr name="values"/>
 		<attr name="summaries"/>
+		<attr name="icons" format="reference"/>
 		<attr name="disableDependenciesValue"/>
 	</declare-styleable>
 		

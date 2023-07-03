@@ -31,5 +31,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.base.FastButton android:id="@+id/line2"
 		style="?SeparatorWithButtonButton"
 	/>
+	<com.maxmpz.widget.base.NonOverlappingView
+		style="@style/SeparatorLine"
+		/>
 	
 </com.maxmpz.widget.player.list.SeparatorItemView>

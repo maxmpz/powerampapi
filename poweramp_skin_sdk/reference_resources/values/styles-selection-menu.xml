@@ -220,7 +220,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="applyViewParams">true</item>
 		<item name="drawableTint">?colorIconPrimaryForced</item><!-- NOTE: @null/@empty is not supported ATM, need explicit tint, thus using forced -->
-		<item name="android:background">@drawable/ripple_with_small_check_selector</item>
+		<item name="android:background">@drawable/ripple_with_check_selector</item>
 	</style>
 
 	<style name="SelectionListContextPopupButtonLayout">
@@ -241,18 +241,116 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="android:background">@drawable/popup_button_layout_ripple_bg</item>
 
-		<item name="buttonStyle">@style/SelectionListContextPopupButton</item>
-		<item name="menuButtonStyle">@style/SelectionListContextPopupButtonInMenu</item>
 		<item name="android:disabledAlpha">0.7</item><!-- Match our disabled alpha for buttons as otherwise we're pulling this from the global or Android theme -->
+
+		<item name="dynamicButtons">true</item>
+
+		<item name="buttonStyle">@style/SelectionListContext_DynamicPopupButton</item>
+		<item name="menuButtonStyle">@style/SelectionListContext_DynamicPopupButtonInMenu</item>
 	</style>
 
 	<style name="SelectionListContextPopupButtonLayout_scene_item_menu" parent="ItemPopupMenu_scene_item_menu">
+		<!--<item name="recalcChildren">dynamic</item>&lt;!&ndash; Avoid not so good animation for the active button &ndash;&gt;-->
 		<item name="android:layout_width">wrap_content</item>
+		<!-- NOTE: BusSelectablePopupButtonLayout will try to fit popup into the button width by default,
+		     but if minWidth is specified, it will also try to apply that, allowing larger popup -->
+		<item name="layout_minWidth">260dp</item>
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="recalcChildren">dynamic</item><!-- Avoid not so good animation for the active button -->
 		<item name="android:layout_gravity">top|left</item>
 		<item name="layout_attachBottom">parent</item>
 	</style>
+
+	<style name="SelectionListContext_DynamicPopupButton" parent="SelectionListContextPopupButton">
+		<item name="android:background">#00000000</item>
+		<item name="android:gravity">left|top</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="dynamicIconStyle">@style/SelectionListContext_DynamicPopupButtonIcon</item>
+		<item name="dynamicIconStyle_scene_menu">@style/SelectionListContext_DynamicPopupButtonIcon_scene_menu</item>
+		<item name="dynamicLabelStyle">@style/SelectionListContext_DynamicPopupButtonLabel</item>
+		<item name="dynamicLabelStyle_scene_menu">@style/SelectionListContext_DynamicPopupButtonLabel_scene_menu</item>
+		<item name="dynamicLabel2Style">@style/SelectionListContext_DynamicPopupButtonLabel2</item>
+		<item name="dynamicLabel2Style_scene_menu">@style/SelectionListContext_DynamicPopupButtonLabel2_scene_menu</item>
+	</style>
+
+	<style name="SelectionListContext_DynamicPopupButtonInMenu" parent="SelectionListContextPopupButtonInMenu">
+		<item name="recalcChildren">dynamic</item>
+		<item name="scene">@id/scene_button_menu</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_height">48dp</item>
+	</style>
+
+	<!-- NOTE: this should copy visual style of SelectionListContextPopupButton icon.
+	     We also replace padding with the margins to allow animating these -->
+	<style name="SelectionListContext_DynamicPopupButtonIcon" parent="DynamicPopupButtonIcon">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">0dp</item>
+
+		<item name="android:layout_marginTop">0dp</item>
+
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="drawablePosition">left</item>
+	</style>
+	<style name="SelectionListContext_DynamicPopupButtonIcon_scene_menu" parent="DynamicPopupButtonIcon_scene_menu">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="android:layout_marginBottom">2dp</item><!-- Compensate paddingTop -->
+
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+	</style>
+
+	<!-- We replace padding with the margins to allow animating these -->
+	<style name="SelectionListContext_DynamicPopupButtonLabel" parent="SelectionListContextPopupButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginBottom">6dp</item>
+		<item name="android:visibility">visible</item>
+		<item name="android:gravity">left|top</item>
+
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+	</style>
+	<style name="SelectionListContext_DynamicPopupButtonLabel_scene_menu" parent="DynamicPopupButtonLabel_scene_menu">
+		<!--<item name="recalcChildren">dynamic</item>-->
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:visibility">gone</item>
+		<!-- As non-active buttons are GONE for the initial state (we show just one active button),
+		     they won't properly animate anything for a label which is not laid out, thus we must force the visibility jump for it.
+		     jumpVisibility avoids checking for laid out state and always applies visibility for the scene -->
+		<!--<item name="jumpVisibility">true</item>-->
+		<item name="applyEvenIfGone">true</item>
+
+		<!--<item name="layout_consumeSpace">vertical</item>-->
+		<item name="android:layout_marginLeft">0dp</item><!-- Synchronizes visually to the usual popup buttons -->
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:background">#f00</item>
+	</style>
+
+	<style name="SelectionListContext_DynamicPopupButtonLabel2" parent="SelectionListContext_DynamicPopupButtonLabel">
+		<item name="android:visibility">gone</item>
+	</style>
+	<style name="SelectionListContext_DynamicPopupButtonLabel2_scene_menu" parent="SelectionListContext_DynamicPopupButtonLabel_scene_menu">
+		<item name="android:visibility">visible</item>
+	</style>
+
 
 </resources>

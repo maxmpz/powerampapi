@@ -43,8 +43,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="_q_label_and_value"/>
 	<item type="id" name="_color"/>
 	<item type="id" name="_edit"/>
+	<item type="id" name="_lock"/>
 	<item type="id" name="_left_label"/>
 	<item type="id" name="_right_label"/>
+	<item type="id" name="_button"/>
+	<item type="id" name="_icon"/>
 
 	<item type="id" name="vis_frame"/>
 	<item type="id" name="milk_frs"/>

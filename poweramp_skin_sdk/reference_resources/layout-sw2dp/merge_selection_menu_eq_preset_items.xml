@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
 	<!-- NOTE: SelectionMenuBehavior automatically sets target list msgBusIs/stateBusId on these buttons -->
-	
+
 	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton33"
 		android:drawable="@drawable/edit_stroke_24dp"
@@ -35,7 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		w:stateId="@id/state_list_preset_rename_allowed"
 	/>
-	
+
 	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton33"
 		android:drawable="?assign_eq_24dp"
@@ -64,19 +64,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 	
 	<!-- NOTE: this may be hidden for some editions -->
-	<com.maxmpz.widget.base.BusStateEnabledActionButton 
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton33"
 		android:drawable="?share_24dp"
 		android:text="@string/share"
-		
+
 		w:stateId="@id/state_list_something_selected"
 		w:stateMsgId="@id/state_list_selection_count"
 		w:alwaysCheckState="true"
-		
+
 		w:msgId="@id/cmd_list_share"
 	/>
-	
-	<!-- Hidden for Android < 23 -->
+
 	<com.maxmpz.widget.base.BusStateEnabledActionButton android:id="@+id/export"
 		style="?SelectionListContextButton33"
 		android:drawable="?export"
@@ -88,8 +87,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		w:msgId="@id/cmd_list_export"
 	/>
-		
-	<!-- Hidden for Android < 23 -->
+	
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/_import"
 		style="?SelectionListContextButton33"
 		android:drawable="?import_24dp"

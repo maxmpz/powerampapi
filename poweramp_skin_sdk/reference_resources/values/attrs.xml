@@ -89,6 +89,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="overlap_knobs_hilite_mono" format="reference"/>
 		<attr name="overlap_knobs_hilite_color" format="reference"/>
 
+		<!-- Colorful gradient (graphic) frequency response curve -->
+		<attr name="overlap_graphic_frs_color" format="reference"/>
+
 		<!-- Extra globalOption attribute to apply when OptionRatingDisabled option is in effect -->
 		<attr name="overlap_OptionRatingDisabled" format="reference"/>
 		<!-- Extra globalOption attribute to apply when OptionRatingStarsMenu option is in effect -->
@@ -98,6 +101,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Navbar margins moved to theme to allow easy overriding for overlap_navbar_offset option -->
 	<attr name="navbar_marginLR" format="dimension"/>
 	<attr name="navbar_marginB" format="dimension"/>
+	<!-- NOTE: this is not used directly by the navbar as margin, but used for the DynamicDimensions calculation -->
+	<attr name="navbar_marginT" format="dimension"/>
 	<!-- These are theme attribute, usually pointint to some @dimen. Used in DynamicDimensions and allows theme to redefine navbar
 	     related sizes -->
 	<attr name="Navbar_height" format="dimension"/>
@@ -106,6 +111,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="NavbarList_marginBottom" format="dimension"/>
 	<attr name="NavbarSeekbar_height" format="dimension"/>
 	<attr name="NavbarSeekbar_marginBottom" format="dimension"/>
+
+	<declare-styleable name="DynamicDimensions_navbar_bounds_3lines_size">
+		<attr name="navbar_marginB"/>
+		<attr name="navbar_marginT"/>
+		<attr name="Navbar_height"/>
+		<attr name="NavbarList_marginBottom"/>
+		<attr name="NavbarSeekbar_marginTop"/>
+		<attr name="NavbarSeekbar_marginBottom"/>
+		<attr name="NavbarSeekbar_height"/>
+	</declare-styleable>
 
 	<!-- Needed for OptionHideMenu -->
 	<attr name="ItemTrackMenu_scene_aa_visibility">

@@ -154,7 +154,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 				
 			
-		<!-- NOTE: 100.5 rounding helps with 0-100 (101 items) to 100 steps rounding, especially around 50% (where by default rounded 0.5050 value is ~51%) -->
+		<!-- NOTE: 100.5 rounding helps with 0-100 (101 items) to 100 steps rounding, especially around 50%
+		    (where the rounded 0.5050 value is ~51% by default) -->
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/volume_knob_layout"
 			style="?EqVolumeKnobLayout"
 			

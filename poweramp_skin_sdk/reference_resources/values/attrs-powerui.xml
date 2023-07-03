@@ -163,6 +163,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 ripple is not visible anyway, but causes performance drop on some devices -->
 		<attr name="animOnClick" format="boolean"/>
 		<attr name="disableClickHandler" format="boolean"/>
+		<!-- If true, we set this view to "empty" state when it's disabled. This may cause FastLayout to hide it completely. May not
+		     properly work/sync with scenes -->
+		<attr name="emptyForDisable" format="boolean"/>
 	</declare-styleable>
 	
 	
@@ -255,7 +258,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which enables sending commands to Poweramp event buses
 		 NOTE: also applied to BusActionButton -->
 	<declare-styleable name="BusActionBehavior">
-		<attr name="busId" format="reference"/><!-- E.g. @id/list (== bus supporting view id) or @id/bus_gui -->
+		<!-- E.g. @id/list (== bus supporting view id) or @id/bus_gui, or parent -> to attach to the first available msg bus up
+		     the views hierarchy -->
+		<attr name="busId" format="reference">
+			<enum name="parent" value="0"/>
+		</attr>
 		<attr name="msgId" format="reference"/><!-- E.g. @id/cmd_list_select_all -->
 		<attr name="longPressBusId"/><!-- Optional, busId is used by default -->
 		<attr name="longPressMsgId" format="reference"/><!-- E.g. @id/cmd_list_select_all. Send on long press and (if repeatLongPressPeriod > 0) periodically  -->
@@ -276,16 +283,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="confirmTitle" format="string|reference"/>
 		<!-- Optional confirmation dialog text -->
 		<attr name="confirmText" format="string|reference"/>
+		<!-- Optional confirmation dialog OK button label -->
+		<attr name="confirmButton" format="string"/>
 		
 		<!-- Optional confirmation dialog title for long press. Should be set for dialog to show -->
 		<attr name="longPressConfirmTitle" format="string|reference"/>
 		<!-- Optional confirmation dialog text for long press -->
 		<attr name="longPressConfirmText" format="string|reference"/>
+		<!-- Optional confirmation dialog OK button label for long press -->
+		<attr name="longConfirmButton" format="string"/>
 		
 		<!-- Delay for sending message in ms -->
 		<attr name="clickDelay" format="integer"/>
 		
-		<attr name="disableForStateBusId" format="reference"/><!-- See BusDisabledForStateBehavior -->
+		<attr name="disableForStateBusId" format="reference"><!-- See BusDisabledForStateBehavior -->
+			<enum name="parent" value="0"/>
+		</attr>
 		<attr name="firstPressToast" format="string|reference"/><!-- If set, toast msg will be shown for first ever press on this button. Preference is stored based on view id -->
 	</declare-styleable>
 	
@@ -316,7 +329,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:drawable"/>
 	</declare-styleable>
 	
-	<!-- SelectablePopupButtonLayout attributes which define list selection workflow -->  
 	<declare-styleable name="BusSelectablePopupButtonLayout">
 		<!-- State bus to listen/query to -->
 		<attr name="stateBusId" format="reference"/>
@@ -353,8 +365,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="clickBusId" format="reference"/>
 		<!-- Msg id to send message on button click when clickOnClick=true. Arg1 matches buttonArg1 set via buttonsArg1  -->
 		<attr name="clickMsgId" format="reference"/>
+
+		<!-- If false (default) each button is a PopupButton view, if true, each button is a DynamicPopupButton (a layout).
+		     buttonStyle then may reference the style for a DynamicPopupButton (layout), which in turns
+		     creates icon (dynamicIconStyle) + label (dynamicLabelStyle) inside -->
+		<attr name="dynamicButtons" format="boolean"/>
+
+		<!-- Optional secondary button labels for the dynamic buttons - string @array -->
+		<attr name="buttonsLabels2" format="reference"/>
 	</declare-styleable>
-		
+
+	<declare-styleable name="DynamicPopupButton">
+		<!-- These should be defined either globally or within appropriate buttonStyle -->
+		<attr name="dynamicIconStyle" format="reference"/>
+		<attr name="dynamicIconStyle_scene_menu" format="reference"/>
+		<attr name="dynamicLabelStyle" format="reference"/>
+		<attr name="dynamicLabelStyle_scene_menu" format="reference"/>
+		<!-- NOTE: this should be set for label 2 to be activated -->
+		<attr name="dynamicLabel2Style" format="reference"/>
+		<attr name="dynamicLabel2Style_scene_menu" format="reference"/>
+	</declare-styleable>
+
+
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) which selectes child view based on Poweramp state/msg bus -->
 	<declare-styleable name="BusSelectableBehavior">
 		<!-- State bus to listen/query to -->
@@ -539,6 +571,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- If true, inner scrolling will be activated for popup -->
 		<attr name="innerScrolling" format="boolean"/>
 
+		<!-- If set, forces popup expansion direction (somewhat inverse of the gravity):
+		     - top - expand to top
+		     - right - expand to right
+		     - etc.
+		     This makes sense only if popup size is appropriately defined -->
+		<attr name="popupExpandDirection">
+			<flag name="none" value="0x0"/>
+			<flag name="top" value="0x30" />
+			<flag name="bottom" value="0x50" />
+			<flag name="left" value="0x03" />
+			<flag name="right" value="0x05" />
+		</attr>
+
 		<attr name="popupEnterAnimTime"/><!-- ms -->
 		<attr name="popupExitAnimTime"/><!-- ms -->
 		<attr name="menuPlaceholder"/>
@@ -550,6 +595,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this view, as the view is detached
 		     completely from current parent while in popup mode. Alternatively use private scene layout, or set this to false and not rely on this view layout --> 
 		<attr name="disableParentLayoutForPopup" format="boolean"/>
+
+		<!-- If true, intermediate temporary stub view is created and attached in place of PopupLayout button when it's
+		     in popup state. This allows the parent layout handle any changes properly while PopupLayout is detached from
+		     the parent while in popup state.
+		     This is needed when we need relayouts in the app while popup is active, such as for some actions pressed in
+		     the popup, while popup stays.
+		     WARNING: this is dangereous attribute due to the stub view reusing the popup view id, while being
+		     a completely different type of view, so any logic touching the popup view, esp. by id should be aware
+		     of this attribute being used -->
+		<attr name="keepLayoutForPopup" format="boolean"/>
 
 		<attr name="maxOvershoot"/>
 		<attr name="maxStretchOvershoot"/>
@@ -578,7 +633,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="buttonStyle" format="reference"/>
 		<!-- Button style (e.g. ?PopupButton_scene_button_menu) while in popup menu state -->
 		<attr name="menuButtonStyle" format="reference"/>
-		
+
 		<!-- Default is true -->
 		<attr name="closeOnClickInside"/>
 		

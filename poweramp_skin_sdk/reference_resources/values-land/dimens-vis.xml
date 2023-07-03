@@ -21,5 +21,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values-h1dp-land. Baseline values for scaled screens -->
 <resources>
-	<dimen name="VisPanelFrame_scene_vispanel_expanded_height">320dp</dimen><!-- Shouldn't overlap navbar -->
+	<dimen name="VisPanelFrame_scene_vispanel_expanded_height">260dp</dimen><!-- Shouldn't overlap navbar -->
+	<dimen name="VisPanelFrame_height">44dp</dimen>
 </resources>

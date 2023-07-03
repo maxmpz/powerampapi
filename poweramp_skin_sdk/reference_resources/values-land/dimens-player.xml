@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,32 +19,24 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- values-h1dp-land. Baseline values for scaled screens -->
+<!-- values-land. Baseline values for scaled screens -->
 <resources>
-	<dimen name="Navbar_height">40dp</dimen>
+	<dimen name="Navbar_height">36dp</dimen>
+	<dimen name="NavBarButton_drawableSize">24dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">36dp</dimen>
-	<dimen name="NavBarButton_drawableSize">28dp</dimen>
 
-	<!-- @Deprecated -->
-	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
-	<!-- @Deprecated -->
-	<dimen name="NavbarBounds_height_scene_navbar_2lines_more_rounded">88dp</dimen>
-
-	<!-- Sligtly reduce navbar seekbar spanning height for land -->
+	<!-- Slightly reduce navbar seekbar spanning height for land -->
 	<dimen name="NavbarSeekbar_marginTop">-4dp</dimen>
 	<dimen name="NavbarSeekbar_marginBottom">-10dp</dimen>
 
 	<dimen name="ItemMiniplayerAAImage_size">28dp</dimen>
 	<dimen name="corners_miniplayer_aa">8dp</dimen>
 	
-	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
-	<dimen name="NavbarBounds_height">48dp</dimen>
 	<!-- Navbar (2 lines scene) + bottom Navbar paddings => resulting anchoring point for other views -->
 	<dimen name="NavbarBounds_height_scene_navbar_2lines">96dp</dimen>
 	<!-- Same for overlap_navbar_offset -->
 	<dimen name="NavbarBounds_height_offset">52dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">102dp</dimen>
-
 
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen>
 
@@ -72,4 +64,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft">0dp</dimen>
 	<dimen name="Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft">4dp</dimen>
+
+
+	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
+	<!-- @Deprecated -->
+	<dimen name="NavbarBounds_height">48dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="NavbarBounds_height_scene_navbar_2lines_more_rounded">88dp</dimen>
 </resources>

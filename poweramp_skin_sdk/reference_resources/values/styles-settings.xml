@@ -32,6 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorBgLessAlpha">?android:attr/colorBackground</item>
 		
 		<item name="colorInverse">?android:attr/colorForeground</item>
+		<item name="colorPlaybackRipple">?android:attr/colorForeground</item>
 		
 		<item name="colorBgInverse">?android:attr/colorForeground</item>
 		<item name="colorBgInverseChecked">?android:attr/colorControlActivated</item>
@@ -297,10 +298,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="SettingsListOptsCheckboxLibrary" parent="android:Widget.Material.CompoundButton.CheckBox">
 		<item name="android:layout_width">match_parent</item>
+		<item name="android:drawablePadding">16dp</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
-		<item name="android:background">@null</item><!-- NOTE: backbround + ripple doesn't work for some reason (at least on 9) -->
-		<item name="android:foreground">?android:attr/selectableItemBackground</item>
+		<item name="android:background">@null</item><!-- NOTE: background + ripple doesn't work for some reason (at least on 9) &ndash;&gt;-->
+		<!--<item name="android:foreground">?android:attr/selectableItemBackground</item>-->
+		<item name="android:foreground">@drawable/ripple_hidden_rounded_large</item>
 	</style>
 	
 
@@ -607,18 +610,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:minWidth">48dp</item>
 		<item name="android:gravity">center_horizontal</item>
 		<item name="android:layout_marginTop">0dp</item>
-		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_marginBottom">6dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginRight">6dp</item>
 		<item name="layout_consumeSpace">stack_horizontal</item>
 
-		<item name="android:paddingLeft">14dp</item>
-		<item name="android:paddingRight">14dp</item>
-		<item name="android:paddingTop">4dp</item>
-		<item name="android:paddingBottom">4dp</item>
+		<item name="android:paddingLeft">16dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingBottom">5dp</item>
 		
 		<item name="android:textColor">@color/button_text_color_selector</item>
-		<item name="android:textSize">14sp</item>
+		<item name="android:textSize">15sp</item>
 		<item name="android:textStyle">normal</item>
 		
 		<item name="animOnClick">true</item>
@@ -626,6 +629,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:maxLines">1</item>
 		<item name="android:ellipsize">end</item>
+		<item name="drawableTint">?android:textColorSecondary</item>
+		<item name="drawablePaddingStart">12dp</item>
+		<item name="android:drawablePadding">-10dp</item>
 		
 		<item name="android:background">@drawable/checkable_rounded_large</item><!-- NOTE: use simple background, not ripple to avoid anims / states-->
 	</style>

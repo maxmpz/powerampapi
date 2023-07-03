@@ -22,5 +22,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- land. S9+ -->
 <resources>
-	<dimen name="EqEquPresetButtonLayout_layout_width">120dp</dimen>
+	<dimen name="EqEquPresetButtonLayout_width">120dp</dimen>
 </resources>

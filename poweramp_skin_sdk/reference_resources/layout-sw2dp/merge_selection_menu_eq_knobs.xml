@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -36,4 +36,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:confirmTitle="@string/delete_bands_q"
 		w:confirmText="@string/msg_delete_selected_bands"
 	/>
+
+	<com.maxmpz.widget.base.BusStateEnabledActionButton
+		style="?SelectionListContextButton33"
+		android:drawable="?lock_unlock_24dp"
+		android:text="@string/lock_unlock"
+
+		w:msgId="@id/cmd_list_lock_unlock"
+		w:stateId="@id/state_list_something_selected"
+		w:stateMsgId="@id/state_list_selection_count"
+		/>
 </merge>

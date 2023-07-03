@@ -59,8 +59,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				style="?TopToastTitle_no_icon"
 				w:applyEvenIfGone="true"
 			/>
-			
-			<com.maxmpz.widget.base.FastTextView android:id="@+id/line2"
+
+			<!-- NOTE: TextView is needed to be able to show links -->
+			<!-- REVISIT: allow clickable underlined FTV (whole string though, requires also different text styling) -->
+			<TextView android:id="@+id/line2"
 				style="?TopToastLine2"
 			/>
 			<SceneParams w:scene="@+id/scene_expanded"

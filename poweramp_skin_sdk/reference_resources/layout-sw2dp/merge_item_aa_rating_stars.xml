@@ -56,8 +56,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<StateAnimParams w:stateAnim="@+id/anim_ratingbar_pressed"
 		style="?ItemRatingBar_anim_ratingbar_pressed"
 	/>
+	<!-- NOTE: we still need layout applied to avoid dragging old layout with possible cycles -->
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
 		android:visibility="gone"
+		style="?ItemRatingBar_scenes_invisible"
 	/>
 	<SceneParams w:scene="@+id/scene_lyrics"
 		style="?ItemRatingBar_scene_lyrics"

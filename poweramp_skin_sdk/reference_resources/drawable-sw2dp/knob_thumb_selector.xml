@@ -1,70 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
 
 <!-- NOTE: keeping ripple as top drawable item: 
 	- that allows setting software mode on it
 	- avoiding multiple ripples inside drawable hierarchy
+	NOTE: ripple is a layer-list itself
+	NOTE: layer gravity is supported started from Android 6.0, so we're limited to absolute offsets here
+	      to position the inner layers
 --> 
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-	android:color="?colorKnobRipple">
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
+	android:color="?colorKnobRipple"
+>
+	<!-- NOTE: layer item width/height is supported for SDK 23+, thus, using linear knob thumbWidth/height attributes instead -->
+	<!-- <item android:width="32dp" android:height="64dp"> -->
 	<item>
-		<layer-list>
-			<!-- NOTE: layer item width/height is supported for SDK 23+, thus, using linear knob thumbWidth/height attributes instead -->
-			<!-- <item android:width="32dp" android:height="64dp"> -->
+		<selector android:exitFadeDuration="300">
+
+			<item android:state_enabled="false">
+				<shape>
+					<corners android:radius="?corners_knob_thumb"/>
+					<solid android:color="?colorKnobBg"/>
+					<stroke android:color="?colorKnobDisabled" android:width="2dp"/>
+				</shape>
+			</item>
+
+			<!-- This is custom state which is applied when band is in "locked" state. Similar to disabled state -->
+			<item w:state_locked="true">
+				<shape>
+					<corners android:radius="?corners_knob_thumb"/>
+					<solid android:color="?colorKnobBg"/>
+					<stroke android:color="?colorKnobDisabled" android:width="2dp"/>
+				</shape>
+			</item>
+
+			<item android:state_pressed="true">
+				<shape>
+					<corners android:radius="?corners_knob_thumb"/>
+					<solid android:color="?colorKnobBg"/>
+					<stroke android:color="?colorKnobPressed" android:width="3.5dp"/>
+				</shape>
+			</item>
+
 			<item>
-				<selector android:exitFadeDuration="300">
-					<item android:state_enabled="false">
-						<shape>
-							<corners android:radius="?corners_knob_thumb"/>
-							<solid android:color="?colorKnobBg"/>
-							<stroke android:color="?colorKnobDisabled" android:width="2dp"/>
-						</shape>
-					</item>
-					
-					<item android:state_pressed="true">
-						<shape>
-							<corners android:radius="?corners_knob_thumb"/>
-							<solid android:color="?colorKnobBg"/>
-							<stroke android:color="?colorKnobPressed" android:width="3.5dp"/>
-						</shape>
-					</item>
-						
-					<item>
-						<shape>
-							<corners android:radius="?corners_knob_thumb"/>
-							<solid android:color="?colorKnobBg"/>
-							<stroke android:color="?colorKnob" android:width="2dp"/>
-						</shape>
-					</item>
-				</selector>
+				<shape>
+					<corners android:radius="?corners_knob_thumb"/>
+					<solid android:color="?colorKnobBg"/>
+					<stroke android:color="?colorKnob" android:width="2dp"/>
+				</shape>
 			</item>
-			
-			<item android:top="@dimen/knob_thumb_indicator_top_bottom" 
-				android:left="@dimen/knob_thumb_indicator_left_right" 
-				android:right="@dimen/knob_thumb_indicator_left_right" 
-				android:bottom="@dimen/knob_thumb_indicator_top_bottom"
-			>
-				<selector android:exitFadeDuration="300">
-					<item android:state_enabled="false">
-						<shape>
-							<solid android:color="?colorKnobIndicatorDisabled"/>
-							<corners android:radius="2dp"/>
-						</shape>
-					</item>
-					<item android:state_pressed="true">
-						<shape>
-							<solid android:color="?colorKnobIndicatorPressed"/>
-							<corners android:radius="2dp"/>
-						</shape>
-					</item>
-					<item>
-						<shape>
-							<solid android:color="?colorKnobIndicator"/>
-							<corners android:radius="2dp"/>
-						</shape>
-					</item>
-				</selector>
-			</item>
-			
-		</layer-list>
+		</selector>
 	</item>
+
+	<item android:top="@dimen/knob_thumb_indicator_top_bottom"
+		android:left="@dimen/knob_thumb_indicator_left_right"
+		android:right="@dimen/knob_thumb_indicator_left_right"
+		android:bottom="@dimen/knob_thumb_indicator_top_bottom"
+	>
+		<selector android:exitFadeDuration="300">
+			<item android:state_enabled="false">
+				<shape>
+					<solid android:color="?colorKnobIndicatorDisabled"/>
+					<corners android:radius="2dp"/>
+				</shape>
+			</item>
+			<item android:state_pressed="true">
+				<shape>
+					<solid android:color="?colorKnobIndicatorPressed"/>
+					<corners android:radius="2dp"/>
+				</shape>
+			</item>
+			<item>
+				<shape>
+					<solid android:color="?colorKnobIndicator"/>
+					<corners android:radius="2dp"/>
+				</shape>
+			</item>
+		</selector>
+	</item>
+	<!--<item android:width="@dimen/knob_thumb_lock_size" android:height="@dimen/knob_thumb_lock_size"-->
+	<!--	android:top="@dimen/knob_thumb_lock_top" android:left="@dimen/knob_thumb_lock_left">-->
+	<!--	<selector android:exitFadeDuration="300">-->
+	<!--		&lt;!&ndash; This is custom state which is applied when band is in "locked" state. Similar to disabled state &ndash;&gt;-->
+	<!--		<item w:state_locked="true">-->
+	<!--			<bitmap android:src="@drawable/lock_solid_24dp" android:tint="?colorIconDisabled"/>-->
+	<!--		</item>-->
+	<!--	</selector>-->
+	<!--</item>-->
 </ripple>

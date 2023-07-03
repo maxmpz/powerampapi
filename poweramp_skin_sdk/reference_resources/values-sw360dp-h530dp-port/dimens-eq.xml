@@ -22,4 +22,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="RoundKnob_arcWidth">4dp</dimen>
 	<dimen name="RoundKnob_arcOffset">4dp</dimen>
+	<dimen name="EqButton_height">30dp</dimen>
+	<dimen name="EqMenu_size">32dp</dimen>
 </resources>

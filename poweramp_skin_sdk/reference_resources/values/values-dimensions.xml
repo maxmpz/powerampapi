@@ -32,9 +32,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Calculated as: ?navbar_marginB + @dimen/Navbar_height -->
 	<item type="id" name="navbar_bounds_size"/>
 
-	<!-- Calculated as: ?navbar_marginB * 2 + @dimen/Navbar_height * 2 + @dimen/NavbarList_marginBottom -->
+	<!-- Calculated as: ?navbar_marginB + ?navbar_marginT + @dimen/Navbar_height * 2 + @dimen/NavbarList_marginBottom -->
 	<item type="id" name="navbar_bounds_2lines_size"/>
 
-	<!-- Calculated as: ?navbar_marginB * 2 + @dimen/Navbar_height * 2 + @dimen/NavbarList_marginBottom * 2 + @dimen/NavbarSeekbar_height -->
+	<!-- Calculated as: ?navbar_marginB + ?navbar_marginB + @dimen/Navbar_height * 2 + @dimen/NavbarList_marginBottom * 2 + @dimen/NavbarSeekbar_height -->
 	<item type="id" name="navbar_bounds_3lines_size"/>
 </resources>

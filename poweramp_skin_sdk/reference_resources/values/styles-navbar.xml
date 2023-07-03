@@ -129,6 +129,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:focusable">true</item>
 		<item name="clickDelay">@integer/activity_start_navbar_click_delay</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="android:contentDescription">@string/app_name</item>
 	</style>
 
 	<style name="NavbarExtensionLogoLabel">
@@ -224,6 +225,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="NavbarPeqExtensionLogo" parent="NavbarExtensionLogo">
 		<item name="android:drawable">@drawable/logo_navbar_peq</item><!-- NOTE: overridden in Peq -->
 		<item name="android:layout_height">25dp</item>
+		<item name="android:contentDescription">@string/peq_app_name</item>
 	</style>
 
 	<style name="NavbarSeekbar" parent="@android:style/Widget.Material.SeekBar">

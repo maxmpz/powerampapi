@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-	<corners android:radius="?corners_medium_plus" />
-	<solid android:color="?colorPreampBg" />
-</shape>
+<!-- NOTE: adding right inset for preamp bg - this allows for extra padding between preamp and first band
+     without adding any extra intermediate layouts with margins -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+	android:insetRight="@dimen/preamp_bg_insetRight"
+	>
+	<shape >
+		<corners android:radius="?corners_medium_plus" />
+		<solid android:color="?colorPreampBg" />
+	</shape>
+</inset>

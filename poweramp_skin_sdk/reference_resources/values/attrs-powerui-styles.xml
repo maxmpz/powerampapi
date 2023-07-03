@@ -47,11 +47,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="TopUpperToastLine2_Text" format="reference"/>
 	<attr name="TopUpperToastTitle_no_icon" format="reference"/>
 	<attr name="TopUpperToastLine2_no_icon" format="reference"/>
+	<attr name="TopUpperToastSeparator" format="reference"/>
 	<attr name="TopUpperToastFrame_scene_expanded" format="reference"/>
 	
 	<attr name="PopupMenuItem" format="reference"/>
 	<attr name="PopupMenuItem_Text" format="reference"/>
 	<attr name="PopupMenuItem50" format="reference"/>
+	<attr name="CheckablePopupItem" format="reference"/>
 	
 	<attr name="PopupButton" format="reference"/>
 	<attr name="PopupButton_Text" format="reference"/>

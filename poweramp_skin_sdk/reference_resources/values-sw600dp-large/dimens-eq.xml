@@ -24,39 +24,51 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="EqLinearKnob_thumbWidth">40dp</dimen>
 	<dimen name="EqLinearKnob_thumbHeight">80dp</dimen>
-	<dimen name="knob_thumb_indicator_top_bottom">39.5dp</dimen>	
-	<dimen name="knob_thumb_indicator_left_right">7dp</dimen>
+	<dimen name="knob_thumb_indicator_top_bottom">39dp</dimen>
+	<dimen name="knob_thumb_indicator_left_right">10dp</dimen>
 	<dimen name="knob_thumb_radius">24dp</dimen>
 	<dimen name="knob_thumb_radius_less_rounded">18dp</dimen>
 	<dimen name="EqLinearKnob_paddingLR">8dp</dimen>
 
 	<dimen name="EqEquButton_maxWidth">110dp</dimen>
-	<dimen name="EqButton_layout_width">64dp</dimen>
-	<dimen name="EqButton_layout_height">32dp</dimen>
+	<dimen name="EqButton_width">64dp</dimen>
+	<dimen name="EqButton_height">32dp</dimen>
+	<dimen name="EqMenu_size">32dp</dimen>
 	<dimen name="EqButton_paddingLR">16dp</dimen>
 
-	<dimen name="EqParamPlaceholder2_height">88dp</dimen>
-	<dimen name="EqParamRoundKnobPortBase_paddingBottom">64sp</dimen>
+	<dimen name="EqParamRoundKnobPortBase_paddingBottom">34sp</dimen>
 
+	<dimen name="EqParamPopupButtonLayout_height_port">32dp</dimen>
+	<dimen name="EqParamPlaceholder2_height_port">84dp</dimen><!-- 4 + 32 + 4 + 32 + 12 -->
+	<dimen name="EqParamTypePopupButtonLayout_marginBottom_port">12dp</dimen>
 
 	<dimen name="eq_frs_height">62dp</dimen>
 	
-	<dimen name="EqButton_layout_maxWidth">98dp</dimen>
+	<dimen name="EqButton_maxWidth">98dp</dimen>
 	<dimen name="EqButton_marginSide">8dp</dimen>
-	<dimen name="EqEquPresetButtonLayout_layout_width">128dp</dimen>
-	
+
+	<dimen name="EqEquPresetButtonLayout_width">120dp</dimen>
 
 	<dimen name="EqSmallRoundKnobLayout_maxSize">170dp</dimen>
 
-	<dimen name="EqToneRoundKnobLabel_maxWidth">100dp</dimen>
-	<dimen name="EqToneRoundKnobLabel_marginRight">0dp</dimen>
 	<dimen name="EqToneRoundKnob_maxSize">190dp</dimen>
 
 	<dimen name="EqRoundKnobLayout_maxSize">220dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">240dp</dimen>
 	<dimen name="EqSmallRoundKnob_maxSize">130dp</dimen>
 	<dimen name="EqRoundKnob_maxSize">180dp</dimen>
-	<dimen name="EqParamRoundKnobBase_maxSize">160dp</dimen>
+	<dimen name="EqParamRoundKnobBase_maxSize_port">160dp</dimen>
 	<dimen name="EqLargerRoundKnob_maxSize">200dp</dimen>
 	<dimen name="EqPresetButtonLayout_width">132dp</dimen><!-- land only -->
+
+	<dimen name="EqPresetButtonLayoutBase_listItemSize">76dp</dimen>
+
+	<dimen name="ItemPopupListFrs_marginRight">20dp</dimen>
+	<dimen name="ItemEqPresetTitle_drawablePadding">16dp</dimen>
+
+	<dimen name="EqMenuIcon_size">24dp</dimen>
+
+
+
+
 </resources>

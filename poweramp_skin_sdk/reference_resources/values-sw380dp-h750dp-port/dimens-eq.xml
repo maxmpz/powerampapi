@@ -33,7 +33,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="eq_frs_height">64dp</dimen>
 	
-	<dimen name="EqParamTypePopupButtonLayout_marginBottom">16dp</dimen>
 	<dimen name="Peq_EqParamRoundKnob_marginBottom">12dp</dimen>
 	<dimen name="EqParamRoundKnob_marginBottom">8dp</dimen>
+
+	<fraction name="EqEquPresetButtonLayout_scene_button_menu_heightPercent">60%</fraction>
+
+	<dimen name="Peq_EqTonePanel_paddingTop">18dp</dimen>
+	<dimen name="Peq_EqTonePanel_paddingBottom">6dp</dimen>
 </resources>

@@ -197,6 +197,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_selection_mode"/><!-- arg1=0 disable, arg1=1 enable -->
 	<item type="id" name="cmd_list_up_nav"/>
 	<item type="id" name="cmd_list_search_text"/>
+	<item type="id" name="cmd_list_search_clear"/>
+	<item type="id" name="cmd_list_search_device"/>
 	<item type="id" name="cmd_list_delete"/>
 	<item type="id" name="cmd_list_select_range"/>
 	

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- dp => sp 0.897 -->
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--  -->
+	<!-- An overlap style
+		 NOTE: we have almost all text styles listed here, but we actually override only few of them, others are just left as-is:
+		 - titles/headers/buttons/items are set to alt font
+		 - other text styles use default font, but set to use scalable sp instead of dp (if not already using sp)  
+		
+		NOTE: don't override textColor here for item texts.
+		Text colors for text-color animated texts (like title/line2/meta etc. in items) are set on view level due to scene animations and ignored if overridden here -->
+	
+	<style name="ActivityTheme_SystemFont">
+		<item name="humanGridItemExtraSpace">18sp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
+		<item name="humanGridZoomedItemExtraSpace">24sp</item><!-- 2x grids. Overridden for alt/bold fonts -->
+
+		<!-- Also modify item scale a bit in some scenes -->
+		<item name="ItemTrackTitle_scene_grid_scale">.65</item>
+		<item name="ItemTrackTitle_scene_grid_zoomed_scale">.9</item>
+		<item name="ItemTrackTitle_scene_grid_1_alt_zoomed_scale">.75</item>
+		<item name="ItemTrackTitle_scene_item_menu_scale">.9</item>
+
+		<item name="ItemTrackLine2_scene_grid_scale">.65</item>
+		<item name="ItemTrackLine2_scene_grid_zoomed_scale">.9</item>
+		<item name="ItemTrackLine2_scene_item_menu_scale">.9</item>
+
+		<item name="ItemTrackTitle_scene_header_scale">.9</item>
+		<item name="ItemTrackLine2_scene_header_scale">.9</item>
+		<item name="ItemTrackMeta_scene_header_w_meta_base_scale">.9</item>
+
+		<item name="android:textAppearance">@style/textAppearance_SystemFont</item>
+		<item name="android:textAppearanceButton">@style/textAppearanceButton_SystemFont</item><!-- Apply font for few buttons which use textAppearanceButton, e.g. dialog buttons -->
+		<item name="android:textAppearanceMediumInverse">@style/textAppearanceMediumInverse_SystemFont</item><!-- Used by e.g. TopListSearchEditText and other possible EditTexts -->
+		<item name="android:textAppearanceMedium">@style/textAppearanceMedium_SystemFont</item><!-- Radio buttons in alert dialog -->
+		<item name="android:textAppearanceLargePopupMenu">@style/textAppearanceLargePopupMenu_SystemFont</item><!-- Used by some popups, like Eq Preset autocomplete --> 
+		<item name="Dialog_textAppearance">@style/Dialog_textAppearance_SystemFont</item>
+		<item name="Dialog_textAppearanceSmall">@style/Dialog_textAppearanceSmall_SystemFont</item><!-- Used by alert dialog messages -->
+		<item name="HeadText">@style/HeadText_SystemFont</item>
+		<item name="SubheadText">@style/SubheadText_SystemFont</item>
+		<item name="Hint">@style/Hint_SystemFont</item>
+		<item name="AccentedText">@style/AccentedText_SystemFont</item>
+		<item name="Text">@style/Text_SystemFont</item><!-- NOTE: used mostly in dialogs -->
+		<item name="LargerText">@style/LargerText_SystemFont</item>
+
+		<item name="SmallerSearchEditText_Text">@style/SmallerSearchEditText_Text_SystemFont</item>
+				
+		<item name="TopListScrollerView_Text">@style/TopListScrollerView_Text_SystemFont</item>
+		<item name="TopTrackElapsedDuration_Text">@style/TopTrackElapsedDuration_Text_SystemFont</item>
+		<item name="TopSearchTarget_Text">@style/TopSearchTarget_Text_SystemFont</item>
+		<item name="TopListIndexerPopupView_Text">@style/TopListIndexerPopupView_Text_SystemFont</item>
+		<item name="TopToastTitle_Text">@style/TopToastTitle_Text_SystemFont</item>
+		<item name="TopToastLine2_Text">@style/TopToastLine2_Text_SystemFont</item>
+		<item name="TopCounterLayout_Text">@style/TopCounterLayout_Text_SystemFont</item>
+		<item name="TopMetaInfoLabel_Text">@style/TopMetaInfoLabel_Text_SystemFont</item>
+		
+		<item name="TopHelp_Text">@style/TopHelp_Text_SystemFont</item>
+		<item name="TopHelpNormal_Text">@style/TopHelpNormal_Text_SystemFont</item>
+		<item name="TopHelpSmaller_Text">@style/TopHelpSmaller_Text_SystemFont</item>
+		<item name="TopHelpButton_Text">@style/TopHelpButton_Text_SystemFont</item>
+
+		<item name="NavbarExtensionLogoLabel_Text">@style/NavbarExtensionLogoLabel_Text_SystemFont</item>
+		<item name="NavbarExtensionMenuLine_Text">@style/NavbarExtensionMenuLine_Text_SystemFont</item>
+		<item name="PopupButton_Text">@style/PopupButton_Text_SystemFont</item>
+
+		<item name="DialogTitle_Text">@style/DialogTitle_Text_SystemFont</item>
+		<item name="DialogToastLine1_Text">@style/DialogToastLine1_Text_SystemFont</item>
+		<item name="DialogToastLine2_Text">@style/DialogToastLine2_Text_SystemFont</item>
+		<item name="DialogToastLineOnly1_Text">@style/DialogToastLineOnly1_Text_SystemFont</item>
+		
+		<item name="ItemTrackCatImage_Text">@style/ItemTrackCatImage_Text_SystemFont</item>
+		<item name="ItemTrackNum_Text">@style/ItemTrackNum_Text_SystemFont</item>
+		<item name="ItemTrackTitle_Text">@style/ItemTrackTitle_Text_SystemFont</item>
+		<item name="ItemTrackLine2_Text">@style/ItemTrackLine2_Text_SystemFont</item>
+		<item name="ItemTrackMeta_Text">@style/ItemTrackMeta_Text_SystemFont</item>
+		<item name="ItemAALEDecorText_Text">@style/ItemAALEDecorText_Text_SystemFont</item>
+		<item name="ItemMiniplayerPrevNextDecorText_Text">@style/ItemMiniplayerPrevNextDecorText_Text_SystemFont</item>
+		<item name="ItemGenericTitle_Text">@style/ItemGenericTitle_Text_SystemFont</item>
+		<item name="ItemGenericLine2_Text">@style/ItemGenericLine2_Text_SystemFont</item>
+		<item name="SeparatorWithButton_Text">@style/SeparatorWithButton_Text_SystemFont</item>
+		<item name="BlackButton_Text">@style/BlackButton_Text_SystemFont</item>
+		<item name="WhiteButton_Text">@style/WhiteButton_Text_SystemFont</item>
+		<item name="WhiteStrokedListHeaderButton_Text">@style/WhiteStrokedListHeaderButton_Text_SystemFont</item>
+		<item name="ItemTextTitle_Text">@style/ItemTextTitle_Text_SystemFont</item>
+		<item name="ItemTextLine2_Text">@style/ItemTextLine2_Text_SystemFont</item>
+		<item name="ItemEmptyListText_Text">@style/ItemEmptyListText_Text_SystemFont</item>
+		<item name="ItemMiniplayerTitle_Text">@style/ItemMiniplayerTitle_Text_SystemFont</item>
+		<item name="ItemMiniplayerLine2_Text">@style/ItemMiniplayerLine2_Text_SystemFont</item>
+		<item name="ItemPopupSimpleTitle_Text">@style/ItemPopupSimpleTitle_Text_SystemFont</item>
+		<item name="ItemPopupSimpleLine2_Text">@style/ItemPopupSimpleLine2_Text_SystemFont</item>
+		<item name="ItemPopupListTitle_Text">@style/ItemPopupListTitle_Text_SystemFont</item>
+		<item name="ItemPopupListTitleLarger_Text">@style/ItemPopupListTitleLarger_Text_SystemFont</item>
+		<item name="ItemVisTitle_Text">@style/ItemVisTitle_Text_SystemFont</item>
+		<item name="ItemVisLine2_Text">@style/ItemVisLine2_Text_SystemFont</item>
+
+		<item name="ItemLyricsTitle_Text">@style/ItemLyricsTitle_Text_SystemFont</item>
+		
+		<item name="PopupMenuItem_Text">@style/PopupMenuItem_Text_SystemFont</item>
+		<item name="PopupInfoTextTitle_Text">@style/PopupInfoTextTitle_Text_SystemFont</item>
+		
+		<item name="SelectionListContextButton_Text">@style/SelectionListContextButton_Text_SystemFont</item>
+		<item name="SelectionMenu_Text">@style/SelectionMenu_Text_SystemFont</item>
+		<item name="SleepTimerTitle_Text">@style/SleepTimerTitle_Text_SystemFont</item>
+		<item name="SleepTimerValue_Text">@style/SleepTimerValue_Text_SystemFont</item>		
+		
+		<item name="EqLinearKnob_Text">@style/EqLinearKnob_Text_SystemFont</item>
+		<item name="EqKnobLabel_Text">@style/EqKnobLabel_Text_SystemFont</item>
+		<item name="EqKnobValue_Text">@style/EqKnobValue_Text_SystemFont</item>
+		<item name="EqKnobValueLarger_Text">@style/EqKnobValueLarger_Text_SystemFont</item>
+		<item name="EqButton_Text">@style/EqButton_Text_SystemFont</item>
+		<item name="EqEquPresetLabel_Text">@style/EqEquPresetLabel_Text_SystemFont</item>
+		<item name="PeqEqEnableVisFrs_Text">@style/PeqEqEnableVisFrs_Text_SystemFont</item>
+	</style>
+	
+	<!-- NOTE: this sets font for quite specific cases, like Checkboxes (in SleepTimer dialog) -->
+	<style name="textAppearance_SystemFont" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/moderate2_AltFont_textSize</item>
+	</style>
+	<style name="textAppearanceButton_SystemFont" parent="TextAppearance.AppCompat.Widget.Button">
+		<item name="android:textSize">@dimen/textAppearanceButton_AltFont_size</item><!-- NOTE: increased as no caps -->
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="textAppearanceMediumInverse_SystemFont" parent="TextAppearance.AppCompat.Medium.Inverse">
+	</style>
+	<style name="textAppearanceMedium_SystemFont" parent="TextAppearance.AppCompat.Medium">
+	</style>
+	<style name="textAppearanceLargePopupMenu_SystemFont" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+	</style>
+	<style name="Dialog_textAppearance_SystemFont" parent="TextAppearance.AppCompat">
+	</style>
+	<style name="Dialog_textAppearanceSmall_SystemFont" parent="TextAppearance.AppCompat.Small"><!-- Plain text views, e.g. used for labels/some messages -->
+	</style>
+
+	<style name="SmallerSearchEditText_Text_SystemFont" parent="textAppearanceMediumInverse_SystemFont">
+		<item name="android:textSize">@dimen/large2_AltFont_textSize</item>
+	</style>
+	
+	<style name="HeadText_SystemFont" parent="HeadText">
+		<item name="android:textSize">@dimen/HeadText_AltFont_size</item>
+	</style>
+	<style name="SubheadText_SystemFont" parent="SubheadText">
+	</style>
+	<style name="Hint_SystemFont" parent="Hint">
+	</style>
+	<style name="AccentedText_SystemFont" parent="AccentedText">
+	</style>
+	<style name="Text_SystemFont" parent="Text">
+	</style>
+	<style name="LargerText_SystemFont" parent="LargerText">
+	</style>
+		
+	<style name="TopListScrollerView_Text_SystemFont" parent="TopListScrollerView_Text">
+	</style>
+	<style name="TopTrackElapsedDuration_Text_SystemFont" parent="TopTrackElapsedDuration_Text">
+		<item name="android:textSize">@dimen/TopTrackElapsedDuration_Text_AltFont_size</item>
+	</style>
+	<style name="TopSearchTarget_Text_SystemFont" parent="TopSearchTarget_Text">
+		<item name="android:textSize">@dimen/moderate3_AltFont_textSize</item>
+	</style>
+	<style name="TopListIndexerPopupView_Text_SystemFont" parent="TopListIndexerPopupView_Text">
+	</style>
+	<style name="TopToastTitle_Text_SystemFont" parent="TopToastTitle_Text">
+	</style>
+	<style name="TopToastLine2_Text_SystemFont" parent="TopToastLine2_Text">
+	</style>
+	<style name="TopCounterLayout_Text_SystemFont" parent="TopCounterLayout_Text">
+		<item name="android:textSize">@dimen/TopMetaInfoLabel_AltFont_textSize</item>
+	</style>
+	<style name="TopMetaInfoLabel_Text_SystemFont" parent="TopMetaInfoLabel_Text">
+	</style>
+
+	<style name="TopHelp_Text_SystemFont" parent="TopHelp_Text">
+	</style>
+	<style name="TopHelpNormal_Text_SystemFont" parent="TopHelp_Text">
+	</style>
+	<style name="TopHelpSmaller_Text_SystemFont" parent="TopHelpSmaller_Text">
+		<item name="android:textSize">@dimen/TopHelpSmaller_AltFont_textSize</item>
+	</style>
+	<style name="TopHelpButton_Text_SystemFont" parent="TopHelpButton_Text">
+	</style>
+	
+	<style name="NavbarExtensionLogoLabel_Text_SystemFont" parent="NavbarExtensionLogoLabel_Text">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/moderate0_AltFont_textSize</item>
+	</style>
+	
+	<style name="NavbarExtensionMenuLine_Text_SystemFont" parent="NavbarExtensionMenuLine_Text">
+	</style>
+	<style name="PopupButton_Text_SystemFont" parent="PopupButton_Text">
+		<item name="android:textSize">@dimen/medium4_AltFont_textSize</item>
+	</style>
+		
+	<style name="DialogTitle_Text_SystemFont" parent="DialogTitle_Text">
+		<item name="android:textSize">@dimen/large1_AltFont_textSize</item>
+	</style>
+	<style name="DialogToastLine1_Text_SystemFont" parent="DialogToastLine1_Text"><!-- Bold -->
+		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
+	</style>
+	<style name="DialogToastLine2_Text_SystemFont" parent="DialogToastLine2_Text">
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+	<style name="DialogToastLineOnly1_Text_SystemFont" parent="DialogToastLineOnly1_Text">
+		<item name="android:textSize">@dimen/medium4_AltFont_textSize</item>
+	</style>
+	
+	<style name="ItemTrackCatImage_Text_SystemFont" parent="ItemTrackCatImage_Text">
+		<item name="android:textSize">@dimen/ItemTrackCatImage_Text_AltFont_size</item>
+	</style>
+	<style name="ItemTrackNum_Text_SystemFont" parent="ItemTrackNum_Text">
+		<item name="android:textSize">@dimen/medium3_AltFont_textSize</item>
+	</style>
+	<style name="ItemTrackTitle_Text_SystemFont" parent="ItemTrackTitle_Text"><!-- NOTE: style=bold -->
+		<item name="android:textSize">@dimen/large4_AltFont_textSize</item>
+	</style>
+	<style name="ItemTrackLine2_Text_SystemFont" parent="ItemTrackLine2_Text"><!-- NOTE: style=normal -->
+		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
+	</style>
+	<style name="ItemTrackMeta_Text_SystemFont" parent="ItemTrackMeta_Text">
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+	<style name="ItemAALEDecorText_Text_SystemFont" parent="ItemAALEDecorText_Text">
+		<item name="android:textSize">@dimen/moderate2_AltFont_textSize</item>
+	</style>
+	<style name="ItemMiniplayerPrevNextDecorText_Text_SystemFont" parent="ItemMiniplayerPrevNextDecorText_Text">
+		<item name="android:textSize">@dimen/small3_AltFont_textSize</item>
+	</style>
+	<style name="ItemGenericTitle_Text_SystemFont" parent="ItemGenericTitle_Text">
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+	<style name="ItemGenericLine2_Text_SystemFont" parent="ItemGenericLine2_Text">
+		<item name="android:textSize">@dimen/small4_AltFont_textSize</item>
+	</style>
+	<style name="SeparatorWithButton_Text_SystemFont" parent="SeparatorWithButton_Text">
+		<item name="android:textSize">@dimen/moderate0_AltFont_textSize</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="BlackButton_Text_SystemFont" parent="BlackButton_Text">
+		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="WhiteButton_Text_SystemFont" parent="WhiteButton_Text">
+		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="WhiteStrokedListHeaderButton_Text_SystemFont" parent="WhiteStrokedListHeaderButton_Text">
+		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
+		<item name="android:textAllCaps">false</item><!-- NOTE: increased as no caps -->
+	</style>
+	<style name="ItemTextTitle_Text_SystemFont" parent="ItemTextTitle_Text">
+		<item name="android:textSize">@dimen/large4_AltFont_textSize</item>
+	</style>
+	<style name="ItemTextLine2_Text_SystemFont" parent="ItemTextLine2_Text">
+		<item name="android:textSize">@dimen/small3_AltFont_textSize</item>
+	</style>
+	<style name="ItemEmptyListText_Text_SystemFont" parent="ItemEmptyListText_Text">
+	</style>
+	<style name="ItemMiniplayerTitle_Text_SystemFont" parent="ItemGenericTitle_Text">
+		<item name="android:textSize">@dimen/moderate3_AltFont_textSize</item>
+	</style>
+	<style name="ItemMiniplayerLine2_Text_SystemFont" parent="ItemGenericLine2_Text">
+		<item name="android:textSize">@dimen/small3_AltFont_textSize</item>
+	</style>
+	<style name="ItemPopupSimpleTitle_Text_SystemFont" parent="ItemPopupSimpleTitle_Text">
+		<item name="android:textSize">@dimen/medium2_AltFont_textSize</item>
+	</style>
+	<style name="ItemPopupSimpleLine2_Text_SystemFont" parent="ItemPopupSimpleLine2_Text">
+		<item name="android:textSize">@dimen/small4_AltFont_textSize</item>
+	</style>
+	<style name="ItemPopupListTitle_Text_SystemFont" parent="ItemGenericTitle_Text">
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+	<style name="ItemPopupListTitleLarger_Text_SystemFont" parent="ItemPopupListTitleLarger_Text">
+		<item name="android:textSize">@dimen/large1_AltFont_textSize</item>
+	</style>
+	<style name="ItemVisTitle_Text_SystemFont" parent="ItemGenericTitle_Text">
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+	<style name="ItemVisLine2_Text_SystemFont" parent="ItemGenericLine2_Text">
+		<item name="android:textSize">@dimen/small4_AltFont_textSize</item>
+	</style>
+
+	<style name="ItemLyricsTitle_Text_SystemFont" parent="ItemLyricsTitle_Text">
+	</style>
+
+	<style name="PopupMenuItem_Text_SystemFont" parent="PopupMenuItem_Text">
+		<item name="android:textSize">@dimen/medium4_AltFont_textSize</item>
+	</style>
+	<style name="PopupInfoTextTitle_Text_SystemFont" parent="PopupInfoTextTitle_Text">
+		<item name="android:textSize">@dimen/large2_AltFont_textSize</item>
+	</style>
+	
+	<style name="SelectionListContextButton_Text_SystemFont" parent="SelectionListContextButton_Text">
+		<item name="android:textSize">@dimen/moderate0_AltFont_textSize</item>
+	</style>
+	<style name="SelectionMenu_Text_SystemFont" parent="SelectionMenu_Text">
+	</style>
+	
+	<style name="SleepTimerTitle_Text_SystemFont" parent="SleepTimerTitle_Text">
+		<item name="android:textSize">@dimen/large1_AltFont_textSize</item>
+	</style>
+	
+	<style name="SleepTimerValue_Text_SystemFont" parent="SleepTimerValue_Text">
+		<item name="android:textSize">@dimen/large3_AltFont_textSize</item>
+	</style>
+			
+	
+	<style name="EqLinearKnob_Text_SystemFont" parent="EqLinearKnob_Text">
+		<item name="android:textSize">@dimen/moderate2_AltFont_textSize</item>
+	</style>
+	<style name="EqKnobLabel_Text_SystemFont" parent="EqKnobLabel_Text">
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+	<style name="EqKnobValue_Text_SystemFont" parent="EqKnobValue_Text">
+		<item name="android:textSize">@dimen/small3_AltFont_textSize</item>
+	</style>
+	<style name="EqKnobValueLarger_Text_SystemFont" parent="EqKnobValue_Text">
+		<item name="android:textSize">@dimen/moderate1_AltFont_textSize</item>
+	</style>
+		
+	<style name="EqButton_Text_SystemFont" parent="EqButton_Text">
+		<item name="android:textSize">@dimen/medium1_AltFont_textSize</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="EqEquPresetLabel_Text_SystemFont" parent="EqEquPresetLabel_Text">
+		<item name="android:textSize">@dimen/medium1_AltFont_textSize</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+	
+	<style name="PeqEqEnableVisFrs_Text_SystemFont" parent="EqButton_Text">
+		<item name="android:textSize">@dimen/small2_AltFont_textSize</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+				
+</resources>

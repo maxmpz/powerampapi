@@ -21,7 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources 
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:w="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto"
 >
 	<!-- NOTE: @style/TextAppearance.AppCompat is android:TextAppearance.Material -->
 
@@ -62,7 +62,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textSize">@dimen/Hint_size</item>
 		<item name="android:textColor">?android:textColorTertiary</item>
 	</style>
-	
+
+	<style name="SmallerSearchEditText_Text" parent="TextAppearance.AppCompat.Medium.Inverse">
+		<item name="android:textSize">@dimen/SmallerSearchEditText_Text_size</item>
+	</style>
+
+
 	<!-- See also styles-*.xml for specific *Text styles -->
-	
+
 </resources>

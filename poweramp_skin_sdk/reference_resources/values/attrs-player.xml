@@ -84,6 +84,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="pre_chromecast" format="reference"/>
 	<attr name="pre_other" format="reference"/>
 
+	<attr name="equ_graphic_small" format="reference"/>
+	<attr name="equ_parametric_small" format="reference"/>
+
 	<!-- Points to array of drawables, array sorting order is important -->
 	<attr name="vis_icons_32dp" format="reference"/>
 	
@@ -137,6 +140,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="import_24dp" format="reference"/>
 	<attr name="bookmark" format="reference"/>
 	<attr name="share_24dp" format="reference"/>
+	<attr name="reset_24dp" format="reference"/>
+	<attr name="save_24dp" format="reference"/>
+	<attr name="save_assign_24dp" format="reference"/>
+	<attr name="autosave_24dp" format="reference"/>
 
 	<attr name="clear_q_24dp" format="reference"/>
 	<attr name="artists_24dp" format="reference"/>
@@ -150,6 +157,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="playlist_24dp" format="reference"/>
 	<attr name="play_24dp" format="reference"/>
 	<attr name="search_24dp" format="reference"/>
+	<!-- The tinted version - used in the toast -->
+	<attr name="lock_24dp_tinted" format="reference"/>
+	<attr name="lock_24dp" format="reference"/>
+	<attr name="lock_solid_24dp" format="reference"/>
+	<attr name="lock_unlock_24dp" format="reference"/>
 
 	<!-- This may visually match settings_24dp, but may also have a higher resolution for xhdpi-large.
 	     settings_24dp should not grow over 24dp as it used with implicit size in many places -->
@@ -197,6 +209,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Not themeable functional attributes -->
 	<attr name="state_playing" format="boolean" /><!-- Extra state for drawables -->
+	<attr name="state_locked" format="boolean" /><!-- Extra state for drawables -->
+
 	<attr name="milk_advance_modes" format="reference"/>
 	<attr name="milk_advance_icons" format="reference"/>
 	<attr name="milk_advance_enum" format="reference"/>
@@ -213,6 +227,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="alt_menu_bg" format="color|reference"/>
 	<attr name="alt_sub_aa_button_bg" format="color|reference"/>
 	<attr name="meta_info_bg" format="color|reference"/>
+
+	<attr name="lock_unlock_24dp_selector" format="reference"/>
 
 	<!-- These are overridden for alt styles + overlap_track_labels_no_bg -->
 	<attr name="ItemTrackAAImage_scene_header_drawableTintColor" format="color"/>
@@ -376,7 +392,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</attr>
 
 	<attr name="EqMilkFrs_presetUri" format="string"/>
-	
+
+	<attr name="EqTonePanel_paddingTop" format="dimension"/>
+	<attr name="EqTonePanel_paddingBottom" format="dimension"/>
+
 	<!-- Extra optional layout to include into TopWaveseekLayout (e.g. extra pro-buttons, but can be anything skin wants) -->
 	<attr name="TopWaveseekLayout_extraLayout" format="reference"/>
 	
@@ -425,9 +444,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="ItemTrackTitle_scene_item_menu_scale" format="float"/>
 	<attr name="Alt_ItemTrackTitle_scene_aa_scale" format="float"/>
 
-	<!-- @Deprecated -->
-	<attr name="ItemTrackTitle_marginBottom" format="dimension"/>
-	
 	<attr name="ItemTrackTitle_paddingLR" format="dimension"/>
 	<attr name="ItemTrackTitle_paddingTB" format="dimension"/>
 
@@ -457,9 +473,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="ItemTrackMeta_drawablePadding" format="dimension"/>
 	<attr name="ItemTrackMeta_drawablePaddingStart" format="dimension"/>
 
-
-	<!-- @Deprecated -->
-	<attr name="ItemTrackMeta_scene_item_menu_marginBottom" format="dimension"/>
 
 	<attr name="ItemMiniplayer_paddingLeft" format="dimension"/>
 
@@ -888,7 +901,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="indicatorScale" format="float"/>
 		<!-- Default is false. If true, also rotates knob image to the same angle as indicator  -->
 		<attr name="rotateKnob" format="boolean"/>
-		
+
+		<!-- Gravity to use for the round knob inside the possibly non-rectangle bounds. Default is center -->
+		<attr name="android:gravity"/>
+
 		<!-- If defined (with arcWidth > 0), arc is drawn.
 		     If just start color is defined - this is the color for whole shape, othersiwe color changes from start color to the appropriate end color -->
 		<attr name="arcStartColor" format="color|reference"/>
@@ -935,6 +951,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Additional value to round to/from values prior setting. Resulting value is Math.round(value * rounding) / rounding --> 
 		<attr name="rounding" format="float"/>
+
 	</declare-styleable>
 	
 	<declare-styleable name="DSPRoundKnob">
@@ -975,6 +992,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- If set, this state is used for the toast msg (if string state returns non-null value) -->
 		<attr name="toastStateIdOnPress" format="reference"/>
+
+		<!-- If we're in some popup and this is true, we'll try not to close the popup -->
+		<attr name="preferNotToClosePopup" format="boolean"/>
 	</declare-styleable>
 
 	<declare-styleable name="MilkFRS">
@@ -991,6 +1011,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="lineWidth" format="dimension"/>
 		<!-- Parametric mode line width -->
 		<attr name="parametricLineWidth" format="dimension"/>
+
+		<!-- Gradient color for graphic mode line.
+		     If all of these defined to value != #0000, we draw line with gradient:
+		     [graphicColorMax, graphicColor75, lineColor, graphicColor25, graphicColorMin]  -->
+		<attr name="graphicColorMax" format="color"/>
+		<!-- Gradient color for graphic mode line -->
+		<attr name="graphicColor75" format="color"/>
+		<!-- Gradient color for graphic mode line -->
+		<attr name="graphicColor25" format="color"/>
+		<!-- Gradient color for graphic mode line -->
+		<attr name="graphicColorMin" format="color"/>
 		
 		<attr name="cornerRadius1"/>
 		
@@ -1122,6 +1153,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="HeadText"/>
 		<attr name="SubheadText"/>
 		<attr name="Hint"/>
+
 		<attr name="dspInfoImage" format="reference"/><!-- The target view where we put our drawable info -->
 		<attr name="unknownIcon" format="reference"/>
 		<attr name="drawableTint"/>
@@ -1133,6 +1165,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="arrowLineWeight"/>
 		<attr name="arrowFillColor"/>
 		<attr name="arrowStrokeColor"/>
+
+		<!-- Adds extra space for subHead lines -->
+		<attr name="subheadPadding" format="dimension"/>
 	</declare-styleable>
 	
 	<declare-styleable name="EqKnobParamLayout">
@@ -1153,7 +1188,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="separatorColor" format="color"/>
 		<!-- Dotted separator line width -->
 		<attr name="separatorWidth" format="dimension"/>
-		<!-- Ribght separator line padding -->
+		<!-- Right separator line padding -->
 		<attr name="separatorPaddingRight" format="dimension"/>
 		<!-- Top separator line padding -->
 		<attr name="separatorPaddingTop" format="dimension"/>
@@ -1180,6 +1215,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     Padding should be enough to fit color borders as borders are drawn on paddings -->   
 		<attr name="colorPadding" format="dimension"/>
 	</declare-styleable>
-	
-		
+
+
+	<!-- Deprecated -->
+
+	<!-- @Deprecated -->
+	<attr name="ItemTrackMeta_scene_item_menu_marginBottom" format="dimension"/>
+	<!-- @Deprecated -->
+	<attr name="ItemTrackTitle_marginBottom" format="dimension"/>
+
+
+
 </resources>

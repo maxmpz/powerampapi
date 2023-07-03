@@ -62,19 +62,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottomToBottom">@+id/dsp_info_text</item>
 		<item name="android:layout_marginLeft">23dp</item>
 	</style>
-	
-	<style name="PopupDSPInfoText" parent="PopupInfoText">		
+
+	<!-- NOTE: text styles are taken from theme -->
+	<style name="PopupDSPInfoText" parent="PopupInfoText">
 		<item name="android:layout_marginLeft">38dp</item>
 		<item name="android:layout_marginTop">6dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="unknownIcon">@drawable/question_24dp</item>
-		
+
+		<item name="subheadPadding">4sp</item>
+
 		<item name="arrowWidth">10dp</item>
 		<item name="arrowHeight">8dp</item>
 		<item name="arrowOffset">1dp</item>
 		<item name="arrowLineWeight">2dp</item>
 		<item name="arrowFillColor">?android:textColorSecondary</item>
-		<!-- NOTE: text styles are taken from theme -->
 	</style>
 	<style name="PopupDSPInfoText_HeadText" parent="HeadText">
 		<item name="android:textStyle">normal</item>

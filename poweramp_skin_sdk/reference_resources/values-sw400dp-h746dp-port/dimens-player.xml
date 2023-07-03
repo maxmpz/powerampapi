@@ -29,7 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_TopMediumButton_size">62dp</dimen>
 	<dimen name="Alt_TopSmallButton_size">46dp</dimen>
 
-	<dimen name="Alt2_TopAABounds_marginBottom">88sp</dimen><!-- Reduce for the wider screens -->
+	<dimen name="Alt2_TopAABounds_marginBottom">96sp</dimen><!-- Reduce for the wider screens -->
 	<dimen name="Alt_PlainSeekbar_buttons_offset">38dp</dimen>
 
 </resources>

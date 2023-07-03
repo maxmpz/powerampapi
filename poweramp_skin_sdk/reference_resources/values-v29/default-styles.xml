@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -22,11 +22,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values-sw2dp-v29 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	<style name="Base_ActivityTheme_Default" parent="Base_ActivityTheme_Core">
+		<!-- NOTE: update v33/* as well if this is updated -->
 		<item name="android:editTextBackground">@drawable/edit_text_material</item>
-		
 		<item name="statusBarBg">#3000</item>
 		<item name="android:navigationBarColor">#0fff</item><!-- Makes big navbar button greyish so they are better visible on white -->
-		
 		<item name="corners_equ_frs">16dp</item><!-- NOTE: overridden for v28/v29+, as it's slow for lower Androids. Also further overridden by OptionEquFRSRounded* -->
 	</style>
 </resources>

@@ -24,37 +24,48 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="EqLinearKnob_thumbWidth">48dp</dimen>
 	<dimen name="EqLinearKnob_thumbHeight">96dp</dimen>
-	<dimen name="knob_thumb_indicator_top_bottom">47dp</dimen>	
-	<dimen name="knob_thumb_indicator_left_right">8dp</dimen>
+	<dimen name="knob_thumb_indicator_top_bottom">46dp</dimen>
+	<dimen name="knob_thumb_indicator_left_right">10dp</dimen>
 	<dimen name="knob_thumb_radius">30dp</dimen>
 	<dimen name="knob_thumb_radius_less_rounded">20dp</dimen>
-	<dimen name="EqLinearKnob_paddingLR">16dp</dimen>
+	<dimen name="EqLinearKnob_paddingLR">12dp</dimen>
 	<dimen name="linear_knob_text_size">14dp</dimen>
 	
-	<dimen name="preamp_knob_width">104dp</dimen>
+	<dimen name="preamp_knob_width">108dp</dimen>
+	<dimen name="preamp_bg_insetRight">16dp</dimen>
 		
 	<dimen name="EqKnobValueText_size">12sp</dimen>
 	<dimen name="EqKnobLabelText_size">14dp</dimen>
 	
-	<dimen name="EqButton_layout_width">72dp</dimen>
-	<dimen name="EqButton_layout_height">44dp</dimen>
+	<dimen name="EqButton_width">72dp</dimen>
+	<dimen name="EqButton_height">44dp</dimen>
+	<dimen name="EqMenu_size">44dp</dimen>
 	<dimen name="EqButton_paddingLR">24dp</dimen>
+	<dimen name="EqButton_textSize">16dp</dimen><!-- Default (fixed) font -->
 
-	<dimen name="EqParamPlaceholder2_height">112dp</dimen>
+	<dimen name="EqParamRoundKnobPortBase_paddingBottom">48sp</dimen>
 
-	<dimen name="EqButton_textSize">15dp</dimen>
-	
+	<dimen name="EqParamPopupButtonLayout_height_port">44dp</dimen>
+	<dimen name="EqParamPlaceholder2_height_port">116dp</dimen><!-- 4 + 44 + 4 + 44 + 20 -->
+	<dimen name="EqParamTypePopupButtonLayout_marginBottom_port">20dp</dimen>
+
+	<dimen name="EqParamRoundKnobBase_maxSize_port">180dp</dimen>
+
+
 	<dimen name="eq_frs_height">96dp</dimen>
 	
-	<dimen name="EqButton_layout_maxWidth">128dp</dimen>
+	<dimen name="EqButton_maxWidth">128dp</dimen>
 	<dimen name="EqButton_marginSide">16dp</dimen>
-	<dimen name="EqEquPresetButtonLayout_layout_width">190dp</dimen>
+	
+	<dimen name="EqEquPresetButtonLayout_width">272dp</dimen>
+
+	<dimen name="EqToneRoundKnobLabel_maxWidth">80dp</dimen>
 	
 	<dimen name="EqKnob_spacing">8dp</dimen>
 	
 	<dimen name="EqToneRoundKnob_maxSize">240dp</dimen>
 	<dimen name="EqRoundKnob_maxSize">300dp</dimen>
-	<dimen name="EqParamRoundKnobBase_maxSize">240dp</dimen>
+
 	<dimen name="EqLargerRoundKnob_maxSize">350dp</dimen>
 
 	<dimen name="EqToneRoundKnobLayout_maxWidth">320dp</dimen>
@@ -62,5 +73,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqRoundKnobLayout_maxSize">320dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">350dp</dimen>
-		
+
+
+
 </resources>

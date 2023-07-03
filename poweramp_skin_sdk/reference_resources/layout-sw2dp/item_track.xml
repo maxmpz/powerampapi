@@ -358,7 +358,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_item_menu_lu"
 		style="?ItemTrackTitle_scene_item_menu_lu"
 	/>
+	<!-- REVISIT: this may introduce cycles due to layout kept as is, thus we still apply some -->
 	<SceneParams w:scene="@+id/scene_bottom_toolbar"
+		android:layout_width="0px"
+		android:layout_height="0px"
 		android:visibility="gone"
 		/>
 	<SceneParams w:scene="@+id/scene_lyrics"
