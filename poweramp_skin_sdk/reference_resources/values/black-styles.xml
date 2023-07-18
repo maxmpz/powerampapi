@@ -70,6 +70,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="colorBgPrimary">#222</item>
 		<item name="colorBgPrimaryAlpha">#4333</item>
+		<item name="colorBgSeekbarLine">#4333</item>
 		<item name="colorBgLessAlpha">#d444</item>
 		<item name="colorBgPrimaryStrictAlpha">#f0222222</item>
 		<item name="colorInverse">#fff</item><!-- REVISIT: use less contrasted color for the ripples? -->

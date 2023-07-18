@@ -138,6 +138,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="colorBgPrimary">#fff</item>
 		<item name="colorBgPrimaryAlpha">#55F5F5F5</item>
+		<item name="colorBgSeekbarLine">#55F5F5F5</item>
 		<item name="colorBgLessAlpha">#dfff</item>
 		<item name="colorBgPrimaryStrictAlpha">#bfff</item>
 		<item name="colorInverse">#fff</item>

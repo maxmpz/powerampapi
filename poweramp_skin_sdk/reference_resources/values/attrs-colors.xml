@@ -119,4 +119,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Color for text/icons (less contrasting) which should be visible and be contrast against AA background -->
 	<attr name="colorOnAABgLessContrast" format="color"/>
 
+	<!-- Navbar seekbar line background color -->
+	<attr name="colorBgSeekbarLine" format="color"/>
+
 </resources>

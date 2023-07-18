@@ -2,5 +2,22 @@
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android" 
 	android:color="?colorLessContrast">
-	<item android:top="10dp" android:bottom="10dp" android:drawable="@drawable/alpha_rounded_medium" />
+	<item android:top="10dp" android:bottom="10dp">
+		<selector>
+			<!-- NOTE: single shape with color selector fails on lower Androids -->
+			<item android:state_focused="true">
+				<shape>
+					<corners android:radius="?corners_medium"/>
+					<solid android:color="?attr/colorBgLight"/>
+				</shape>
+			</item>
+			<item>
+				<shape>
+					<corners android:radius="?corners_medium"/>
+					<solid android:color="?attr/colorBgSeekbarLine"/>
+				</shape>
+			</item>
+		</selector>
+	</item>
+	
 </ripple>
