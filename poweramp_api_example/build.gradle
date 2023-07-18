@@ -8,7 +8,7 @@ android {
         applicationId "com.maxmpz.poweramp.apiexample"
         minSdk 21
         //noinspection OldTargetApi
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
     }
@@ -26,7 +26,7 @@ android {
 
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.0")
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation project(':poweramp_api_lib')
 }
