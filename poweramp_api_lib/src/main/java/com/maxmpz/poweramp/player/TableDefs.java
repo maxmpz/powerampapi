@@ -1802,9 +1802,11 @@ public interface TableDefs {
 
 		/**
 		 * Prefix for virtual fields, used for insert/update contentValues.<br>
-		 * Content values named BIND_TO_DEVICE_PREFIX, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
-		 * will be checked and if all set to appropriate valid values, preset will be bound/unmound to the device.
+		 * Content values named BIND_TO_DEVICE_PREFIX#, {@link #DEVICE_PREFIX}#, {@link #DEVICE_ADDRESS_PREFIX}#, {@link #DEVICE_NAME_PREFIX}#,
+		 * will be checked and if all set to appropriate valid values, preset will
+		 * be bound (if this value is set to 1)/unbound (if this value is set to 0) to the device.<br>
 		 * # is number [0, NUM_BIND_DEVICES)<br>
+		 *
 		 * @since 856<br>
 		 * INTEGER (boolean) 
 		 */
