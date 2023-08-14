@@ -77,6 +77,7 @@ public interface PipelineConsts {
 	public static final int DSP_TH_OUTPUT_FORMAT          = 6;
 	public static final int DSP_TH_BUFFERS                = 7;
 	public static final int DSP_TH_BUFFER_FRAMES          = 8;
+	public static final int DSP_TH_OUTPUT_PRESENTATION_LATENCY = 9;
 
 	// NOTE: sync with plugininterface-output.h
 	public static final int PA_OUTPUT_CAP_ALWAYS_UNITY_GAIN        = 0x0010;
