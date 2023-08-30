@@ -255,7 +255,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- waveseek_layout -->
 	
 	
-	<!-- See @layout/merge_top_extralayout -->
+	<!-- See @layout/merge_top_extralayout. Adds counter -->
 	<include android:layout="?TopContainer_extraLayout" w:optional="true"/>
 
 

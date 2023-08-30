@@ -44,6 +44,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<!-- NOTE: see styles-top.xml ListSubstyle2 for cell/item sizes, cell extra item space for 1-line grid layout, etc. -->
 
 	<style name="ItemTrack">
+		<!-- NOTE: the item size/position is always set by the active LayoutEngine(s) -->
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<!-- NOTE: disabled scroll which is not looking good for more rounded corners and generally rarely used for small popups
@@ -1609,8 +1610,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="android:visibility">visible</item>
 		<item name="android:background">@drawable/ripple_bg_navbar_rounded_large</item>
-		<!--<item name="android:background">@drawable/ripple_inverse_stroke_bg_rounded_large</item>-->
-		<!--<item name="android:background">@drawable/ripple_inverse_stroke_rounded_large</item>-->
 
 		<item name="android:elevation">?bottom_toolbar_buttons_elevation</item>
 

@@ -139,11 +139,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:layout_marginBottom">4dp</item>
 		<item name="android:paddingLeft">8dp</item><!-- Needed to avoid fake-italic last char clipping -->
+		<item name="drawablePaddingStart">8dp</item>
 		<item name="android:paddingRight">8dp</item>
 		<item name="android:layout_gravity">top|center_horizontal</item>
 		<item name="android:textAppearance">?NavbarExtensionLogoLabel_Text</item>
 		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:drawablePadding">-2dp</item>
+
+		<item name="android:drawablePadding">-8dp</item>
+		<!--<item name="android:background">#f00</item>-->
 	</style>
 	<style name="NavbarExtensionLogoLabel_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textStyle">italic</item>

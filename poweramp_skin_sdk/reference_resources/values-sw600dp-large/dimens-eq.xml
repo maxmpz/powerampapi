@@ -30,10 +30,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="knob_thumb_radius_less_rounded">18dp</dimen>
 	<dimen name="EqLinearKnob_paddingLR">8dp</dimen>
 
-	<dimen name="EqEquButton_maxWidth">110dp</dimen>
-	<dimen name="EqButton_width">64dp</dimen>
-	<dimen name="EqButton_height">32dp</dimen>
-	<dimen name="EqMenu_size">32dp</dimen>
+	<dimen name="EqButton_width">80dp</dimen>
+	<dimen name="EqButton_height">40dp</dimen>
+	<dimen name="EqButton_textSize">14dp</dimen>
+	<dimen name="EqMenu_size">40dp</dimen>
 	<dimen name="EqButton_paddingLR">16dp</dimen>
 
 	<dimen name="EqParamRoundKnobPortBase_paddingBottom">34sp</dimen>
@@ -41,6 +41,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqParamPopupButtonLayout_height_port">32dp</dimen>
 	<dimen name="EqParamPlaceholder2_height_port">84dp</dimen><!-- 4 + 32 + 4 + 32 + 12 -->
 	<dimen name="EqParamTypePopupButtonLayout_marginBottom_port">12dp</dimen>
+
+	<dimen name="EqRoundKnobLabel_maxWidth">140dp</dimen>
 
 	<dimen name="eq_frs_height">62dp</dimen>
 	
@@ -52,6 +54,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqSmallRoundKnobLayout_maxSize">170dp</dimen>
 
 	<dimen name="EqToneRoundKnob_maxSize">190dp</dimen>
+	<fraction name="EqToneKnobLayout_widthPercent">50%</fraction>
+	<fraction name="EqBassToneKnobLayout_attachLeft">0%</fraction>
 
 	<dimen name="EqRoundKnobLayout_maxSize">220dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">240dp</dimen>

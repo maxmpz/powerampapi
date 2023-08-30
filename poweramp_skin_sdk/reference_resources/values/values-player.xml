@@ -83,7 +83,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_app_shutdown"/><!-- boolean, true => device shutdown is in effect -->
 	<item type="id" name="state_app_edition_name"/><!-- String -->
 	<item type="id" name="state_app_edition_icon"/><!-- int -->
-			
+
 	<!-- <item type="id" name="cmd_disable_nav"/> NOTE: not used ATM --><!-- bus_gui -->
 	<!-- <item type="id" name="cmd_enable_nav"/>  NOTE: not used ATM --><!-- bus_gui -->
 	
@@ -315,6 +315,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_player_track_meta"/><!-- NOTE: updated on msgs: msg_player_track_changed, msg_pipeline_started, msg_player_track_meta_switched -->
 	<!-- int => drawable res id, matches current state_player_track_meta and can be 0 --> 
 	<item type="id" name="state_player_track_meta_icon"/>
+
+	<!-- int => drawable res id, can be 0 -->
+	<item type="id" name="state_player_routed_device_icon"/>
 	
 	<!-- string. Short meta string: counter -->
 	<item type="id" name="state_player_track_short_meta"/>
@@ -352,6 +355,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 	<item type="id" name="state_player_output_latency"/><!-- int -->
+	<item type="id" name="state_player_output_presendation_latency"/>
+	<item type="id" name="state_player_total_presendation_latency"/><!-- pipeline + output + presentation latencies int -->
 	<item type="id" name="state_player_output_device"/><!-- string, int -->
 	<item type="id" name="state_player_output_device_flags"/><!-- int. Not used ATM -->
 	<item type="id" name="state_player_output_end_device"/><!-- string, or boolean - true if we have end device name -->
@@ -523,7 +528,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_dsp_reset_eq"/>
 	<item type="id" name="cmd_dsp_reset_reverb"/>
 	<item type="id" name="cmd_dsp_reset_other"/><!-- Resets balance, sfx, tempo, mono. arg1 => optional additional argument to reset just one parameter/plugin -->
-	<item type="id" name="cmd_dsp_set_eq_preset"/><!-- arg2 -> boolean, assign to the current device, obj => PresetData -->
+	<item type="id" name="cmd_dsp_set_eq_preset"/><!-- arg2 -> tristate, 1 -> assign to the current device, -1 -> unassign from the current device, 0 - don't change assignment, obj => PresetData -->
 	<item type="id" name="cmd_dsp_set_reverb_preset"/><!-- obj => PresetData -->
 	<item type="id" name="cmd_dsp_volume_may_be_changed"/><!-- arg1 => boolean isTransient -->
 	<item type="id" name="cmd_dsp_switch_dsp_meta"/><!-- NOTE: handled in PlayerState -->

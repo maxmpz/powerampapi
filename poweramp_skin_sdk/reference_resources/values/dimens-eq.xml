@@ -44,7 +44,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="linear_knob_text_size">12sp</dimen>
 	
-	
 	<dimen name="EqLinearKnob_paddingLR">4dp</dimen> 
 	  	
 	<!-- Baseline values (for large scaling). Overridden by various resource specifiers, e.g. values-w400dp-port -->
@@ -92,6 +91,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqEquButton_maxWidth">70dp</dimen>
 
 	<fraction name="EqTonePanel_widthPercent">15%</fraction><!-- Used for land only, reduced for the longer phones -->
+	
 	<dimen name="EqTonePanel_paddingTop">12dp</dimen>
 	<dimen name="EqTonePanel_paddingBottom">0dp</dimen>
 	<!-- This is increased for Peq + longer screens -->
@@ -99,7 +99,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Peq_EqTonePanel_paddingBottom">2dp</dimen>
 
 	<dimen name="EqMenuIcon_size">20dp</dimen>
-
 
 	<dimen name="ItemPopupListFrs_marginRight">8dp</dimen>
 	<dimen name="ItemEqPresetTitle_drawablePadding">4dp</dimen>
@@ -130,7 +129,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqToneRoundKnobLayout_maxSize">200dp</dimen>
 	<dimen name="EqToneRoundKnobLayout_maxWidth">220dp</dimen><!-- Further limit width for large tablets -->
 	<dimen name="EqToneKnobLayout_marginSide">4dp</dimen><!-- Margin applied to bass right and treble left, so actual padding between those == x2 -->
-	
+
+	<fraction name="EqToneKnobLayout_widthPercent">50%</fraction>
+
+	<fraction name="EqBassToneKnobLayout_attachLeft">0%</fraction>
+	<fraction name="EqTrebleToneKnobLayout_attachLeft">50%</fraction>
+
 	<dimen name="EqRoundKnobLayout_maxSize">200dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">220dp</dimen>
 	
@@ -151,6 +155,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- Overridden for longer screens (reduced), and increased here for smaller screens -->
 	<fraction name="EqEquPresetButtonLayout_scene_button_menu_heightPercent">70%</fraction>
+
 
 	<fraction name="left_buttons_width">20%</fraction>
 	<fraction name="tone_panel_width">75%</fraction>

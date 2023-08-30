@@ -133,8 +133,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: textHeaderSize, topTextHeaderSize, humanGridItemExtraSpace, humanGridZoomedItemExtraSpace are defined in the main theme
 		     and propagated here. They can be overridden via main theme override, e.g. for OptionNoHeaderButtons -->
 
-		<!-- As bottom toolbar attached to the bottom/navbar, this height also defines padding between buttons and bottom/navbar -->
-		<item name="bottomToolbarSize">44dp</item>
+		<!-- As bottom toolbar attached to the bottom/navbar, this height also defines padding between buttons and bottom/navbar:
+		     +=========================+  ^
+		     |                         |  |  - bottom toolbar buttons, height depends on the actual button style
+		     +=========================+  | <- bottomToolbarSize
+		     |                         |  |  - padding (included into bottomToolbarSize)
+		     ============================ +
+		 -->
+		<!-- NOTE: bottomToolbarSize is now pulled from the main theme as it depends on other skin options, such as ActivityTheme_Whitepro_OffsetNavbar -->
+		<!--<item name="bottomToolbarSize">44dp</item>-->
+		
 		<!-- This is important to keep bottom toolbar over the items in the list -->
 		<item name="bottomToolbarZ">?bottom_toolbar_elevation</item>
 
@@ -153,6 +161,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Starting from this aspect of the available item space we want to make AA image fill whole area, not being scaled
 		     down square image -->
 		<item name="altAaLayoutRatio">1.85</item>
+		<item name="maxAvailSizeForAltAaLayout">290dp</item>
 		
 		<item name="itemSize">96dp</item>
 		<item name="itemSizeZoomed">137dp</item>
@@ -1155,6 +1164,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_gravityTarget">@id/sub_aa_buttons</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="lineBackground">@drawable/alpha_rounded_medium</item>
+		<item name="android:layout_marginBottom">@dimen/TopCounterLayout_marginBottom</item>
 	</style>
 	<style name="TopCounterLayout_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
@@ -1178,6 +1188,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- NOTE: see also default-styles-plainseekbar.xml -->
+	<!-- Overridden in land -->
 	<style name="TopMetaInfoLayout">
 		<item name="android:id">@+id/meta_info_layout</item>
 		<item name="android:layout_width">match_parent</item>

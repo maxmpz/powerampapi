@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- Fold large land. Very wide, almost 1:1 square aspect -->
+<resources>
+	<!-- Reduce transport buttons size as we have cover taking a lot of space -->
+	<dimen name="TopPlay_maxSize">76dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">70dp</dimen>
+	<dimen name="TopMediumButton_size">50dp</dimen>
+	<dimen name="TopSmallButton_size">40dp</dimen>
+
+	<!-- Not enough horizontal space, so distribute counter + info a bit vertically -->
+	<dimen name="TopMetaInfoLayout_marginBottom">24dp</dimen>
+	<dimen name="TopCounterLayout_marginBottom">32dp</dimen>
+
+	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
+	<!-- Non alt -->
+	<dimen name="PlainSeekbar_common_marginBottom">11.5dp</dimen>
+	<dimen name="PlainSeekbar_metaInfo_marginBottom">21.5dp</dimen>
+	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">24dp</dimen>
+
+	<dimen name="Alt_TopPlay_maxSize">74dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">64dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">52dp</dimen>
+	<dimen name="Alt_TopSmallButton_size">44dp</dimen>
+</resources>

@@ -21,9 +21,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <com.maxmpz.widget.base.FastLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:w="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto"
 	style="@style/EqPresetSearchLayout"
 	android:clickable="true"
+	tools:ignore="KeyboardInaccessibleWidget"
 	>
 
 	<com.maxmpz.widget.base.FastLayout
@@ -105,7 +106,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 
 		<!-- REVISIT: disable/hide this when no device exists -->
-		<com.maxmpz.widget.base.BusActionButton
+		<com.maxmpz.widget.player.BusStatusTextButton
 			style="@style/EqPresetSearchCatButton"
 			android:text="@string/device_short"
 			w:busId="parent"
@@ -114,8 +115,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:enableForStateId="@id/state_player_output_end_device"
 			w:disableForStateMsgId="@id/msg_pipeline_started"
 			w:disableForStateMsgId_2="@id/msg_player_output_meta_changed"
+			w:iconStateId="@id/state_player_routed_device_icon"
+			w:stateBusId="@id/bus_player"
+			w:updateMsgId="@id/msg_pipeline_started"
+			w:updateMsgId_2="@id/msg_player_output_meta_changed"
 			/>
 
+		<!--<com.maxmpz.widget.base.NonOverlappingView-->
+		<!--	style="@style/EqPresetSearchCatSeparator"-->
+		<!--	w:layout_attachTopToTop="@+id/assigned"-->
+		<!--	w:layout_attachBottomToBottom="@+id/assigned"-->
+		<!--	/>-->
+
+		<com.maxmpz.widget.base.BusActionButton
+			style="@style/EqPresetSearchResetButton"
+			android:drawable="@drawable/close_stroke"
+			android:text="@string/reset_filters"
+			w:busId="parent"
+			w:msgId="@id/cmd_list_reset_filters"
+			/>
 
 	</com.maxmpz.audioplayer.widget.EqPresetSearchCatsLayout>
 </com.maxmpz.widget.base.FastLayout>

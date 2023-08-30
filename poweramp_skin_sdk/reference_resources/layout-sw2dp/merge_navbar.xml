@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -64,11 +64,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				<!-- NOTE: wrap content items shrink too much and causes jumps when we resize parent container to small height/GONE.
 					 This is why fixed heights are used here -->
 
+				<!--
+				android:drawable="@drawable/logo_uberpatron_navbar"
+				-->
 				<com.maxmpz.widget.player.BusStatusTextButton
 					style="?NavbarExtensionLogoLabel"
 					w:stateBusId="@id/bus_app"
 					w:updateMsgId="@id/msg_version_info_changed"
 					w:labelStateId="@id/state_app_edition_name"
+					w:iconStateId="@id/state_app_edition_icon"
+
+
 				/>
 				
 				<com.maxmpz.audioplayer.widget.MediaRouteButton

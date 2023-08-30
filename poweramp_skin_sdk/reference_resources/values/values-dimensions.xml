@@ -37,4 +37,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- Calculated as: ?navbar_marginB + ?navbar_marginB + @dimen/Navbar_height * 2 + @dimen/NavbarList_marginBottom * 2 + @dimen/NavbarSeekbar_height -->
 	<item type="id" name="navbar_bounds_3lines_size"/>
+
+	<item type="id" name="Alt_TopAABounds_marginBottom_plus_8dp"/>
 </resources>

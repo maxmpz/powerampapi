@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- Adjusted for Fold emulator unfolded. NOTE: this can be used even for land if we detect we must use that due to the aspect -->
+
+<resources>
+	<dimen name="TopPlay_maxSize">100dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
+	<dimen name="TopSmallButton_size">48dp</dimen>
+	<dimen name="TopMediumButton_size">72dp</dimen>
+	<dimen name="TopPlayPauseBehind_size">64dp</dimen>
+	
+	<dimen name="TopHelpSmaller_paddingLR">12dp</dimen>
+	<dimen name="TopHelpSmaller_paddingTB">6dp</dimen>
+	<dimen name="TopHelpSmaller_marginTB">12dp</dimen>
+	
+	<dimen name="ListSubstyleBase2_aaMarginBottom">250dp</dimen><!-- Increase area below AA as our aspect is close to 1:1 -->
+	
+	<dimen name="ItemTrackNum_width">40sp</dimen>
+	
+	<!-- Alt -->
+
+	<dimen name="Alt_TopListSubstyle_aaMarginBottom">268dp</dimen>
+	<dimen name="Alt_TopAABounds_marginBottom">80dp</dimen>
+	
+	<dimen name="Alt_TopPlay_maxSize">90dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
+	<dimen name="Alt_TopSmallButton_size">40dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">60dp</dimen>
+		
+</resources>

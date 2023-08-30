@@ -518,6 +518,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Defines the min. w/h ratio (aspect) to apply the alternative AA item layout (non-square wide layout) -->
 		<attr name="altAaLayoutRatio" format="float"/>
+		<!-- We don't apply alt layout if avail screen width is larger than that -->
+		<attr name="maxAvailSizeForAltAaLayout" format="dimension"/>
 		
 		<!-- Additional margin to apply to AA layout. Usuful e.g. to offset AA item from navbar -->
 		<attr name="aaMarginLeft" format="dimension|reference"/>
@@ -694,6 +696,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- If true, we're matching all these aa* attributes. False is the default - for old skins -->
 		<attr name="matchAASubstyle" format="boolean"/>
 		<attr name="altAaLayoutRatio"/>
+		<attr name="maxAvailSizeForAltAaLayout"/>
 		<attr name="offsetWindowInsets"/>
 		<attr name="aaItemRatio"/>
 		<attr name="aaMaxSize"/>

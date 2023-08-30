@@ -16,6 +16,10 @@
 		 ~~~~~~~~~~~~ <- bottom of ItemTrack view
     -->
 
+	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
+		<item name="layout_consumeSpace">vertical|size|skip_last_margin</item>
+		<!-- NOTE: removed margin bottom here, which is needed for AALE wide layout for very small/rectangle window -->
+	</style>
 	<style name="Alt_ItemTrackTitle_scene_aa" parent="Base_Alt_ItemTrackTitle_scene_aa">
 		<item name="layout_attachBottom">50%</item>
 	</style>

@@ -94,8 +94,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<!-- Alt -->
-	<!--<dimen name="Alt_aaMaxSize">862dp</dimen> Not used anymore -->
-	
 	<dimen name="Alt_TopPlay_maxSize">90dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
 	<dimen name="Alt_TopSmallButton_size">40dp</dimen>

@@ -74,6 +74,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scaleY">.95</item>
 		<item name="android:alpha">0.75</item>
 		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginBottom">@dimen/TopMetaInfoLayout_marginBottom</item><!-- 0dp -->
 	</style>
 	
 	<style name="TopSubAAButtons">
@@ -83,8 +84,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachRight">inset</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachBottom">@id/navbar_bounds</item>
-		<item name="android:layout_marginBottom">8dp</item>
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginBottom">12dp</item>
+		<item name="android:layout_marginTop">4dp</item>
 		<!-- Be a bit closer to AA as AA has own padding anyway, so no marginLeft -->
 		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginRight">8dp</item>

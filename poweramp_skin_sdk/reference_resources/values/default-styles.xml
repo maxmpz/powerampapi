@@ -775,6 +775,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_knobs_hilite_color">@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful</item>
 		<item name="overlap_graphic_frs_color">@style/ActivityTheme_White_GraphicFrsColorful</item>
 
+		<!-- The default bottomToolbarSize for ListSubstyleBase2. This is increased for ActivityTheme_Whitepro_OffsetNavbar -->
+		<item name="bottomToolbarSize">44dp</item>
+
 		<!-- Navbar margins to allow easy overriding for overlap_navbar_offset option -->
 		<item name="navbar_marginLR">8dp</item>
 		<!-- NOTE: there is also increased margin, but we need exactly Navbar_normal_marginB value for TopContainer reduceBottomInset -->
@@ -936,6 +939,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="ActivityTheme_Whitepro_OffsetNavbar">
 		<item name="navbar_marginLR">12dp</item>
 		<item name="navbar_marginB">12dp</item>
+		<item name="bottomToolbarSize">52dp</item><!-- Increase for ListSubstyleBase2 -->
 	</style>
 	
 	<!-- An overlap style -->

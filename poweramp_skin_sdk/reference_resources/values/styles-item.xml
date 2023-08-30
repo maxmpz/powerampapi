@@ -131,6 +131,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<style name="ItemEmptyListText_Text" parent="TextAppearance.AppCompat">
 	</style>
+	
+	<style name="ItemEmptyListText2" parent="ItemEmptyListText">
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="layout_attachTop">@id/item_empty_list_text</item>
+	</style>
 
 	<style name="ItemEmptyListScanProgress">
 		<item name="android:layout_height">24dp</item>	

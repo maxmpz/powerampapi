@@ -20,6 +20,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<fraction name="EqTonePanel_widthPercent">12%</fraction><!-- Used for land only, reduced for the longer phones -->
+	<!--<fraction name="EqTonePanel_widthPercent">12%</fraction>&lt;!&ndash; Used for land only, reduced for the longer phones &ndash;&gt;-->
 	<dimen name="EqEquPresetButtonLayout_width">110dp</dimen>
 </resources>

@@ -1,0 +1,8 @@
+<resources>
+	<!-- Revert meta position back to bottom as we have no enough horizontal space for it here -->
+	<style name="PlainSeekbar_TopMetaInfoLayout" parent="TopMetaInfoLayout">
+		<item name="android:layout_marginBottom">?PlainSeekbar_metaInfo_marginBottom</item>
+		<item name="layout_attachBottomToBottom">@null</item>
+		<item name="layout_attachBottom">@+id/sub_aa_buttons</item>
+	</style>
+</resources>

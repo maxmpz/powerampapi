@@ -283,6 +283,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemEmptyList"/>
 		<attr name="ItemEmptyListText" format="reference"/>
 		<attr name="ItemEmptyListText_Text" format="reference"/>
+		<attr name="ItemEmptyListText2" format="reference"/>
 		<attr name="ItemEmptyListSettingsButtonBase" format="reference"/>
 		<attr name="ItemEmptyListSettingsButton" format="reference"/>
 		<attr name="ItemEmptyListScanProgress" format="reference"/>

@@ -25,6 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	style="@style/EqPresetSearchAssignLayout"
 	android:clickable="true"
 	>
+	<!-- NOTE: these are updated in EqPresetPopupListLayout.bindAssignModeSearchHeader -->
 	<com.maxmpz.widget.base.FastCheckBox android:id="@+id/eq_presets_assign"
 		style="@style/EqPresetSearchAssignCb"
 		android:text="@string/assign_preset_to_this_device"

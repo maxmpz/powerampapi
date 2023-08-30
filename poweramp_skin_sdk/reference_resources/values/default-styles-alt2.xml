@@ -60,7 +60,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		Grid item styles also changed to move text out from cover
 		NOTE: this layout is changed for the landscape
 
-
+		NOTE: when there is no enough vertical space, title will be pushed over AA and rating may be clipped outside of the item
 	-->
 
 	<!-- We'll use this attribute locally to move rating bar a bit when backrounds are disabled -->
@@ -184,7 +184,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: some marginBottom added to compensate SubAA buttons also shifted by 4dp -->
 	<!-- Overridden in land -->
 	<style name="Alt2_ItemTrackAAImage_scene_aa" parent="Alt_ItemTrackAAImage_scene_aa">
-		<item name="android:layout_marginBottom">4dp</item>
+		<item name="layout_consumeSpace">vertical|size|skip_last_margin</item><!-- NOTE: consumes available size for the children -->
+		<item name="android:layout_marginBottom">@dimen/Alt2_TopAABounds_marginBottom</item>
+		<item name="layout_marginBottomRef">@null</item>
 	</style>
 
 	<style name="Alt2_TopWaveseekLayout" parent="Alt_TopWaveseekLayout">

@@ -90,7 +90,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopListScrollerView_marginTop">110dp</dimen>
 	<dimen name="TopListScrollerView_marginBottom">110dp</dimen>
 	<dimen name="OptionLocalizedAZScroll_TopListScrollerView_marginTop">64dp</dimen>
-	
+
+	<dimen name="TopCounterLayout_marginBottom">0dp</dimen>
 
 	<!-- Alt -->
 	<dimen name="Alt_TopSubAAButtons_marginTop">5dp</dimen>
@@ -124,6 +125,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_PlainSeekbar_buttons_offset">30dp</dimen><!-- Keep it the same for smaller screens as otherwise buttons get too close to seekbar -->
 	
 	<dimen name="PlainSeekbar_marginBottom">-4dp</dimen>
+	<!-- Non alt -->
 	<dimen name="PlainSeekbar_common_marginBottom">6dp</dimen>
 	<dimen name="PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
 	<dimen name="Alt_PlainSeekbar_common_marginBottom">6dp</dimen>

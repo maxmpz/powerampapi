@@ -182,7 +182,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="PeqEqVolPanel3">
 		<item name="android:layout_width">match_parent</item>
-		<item name="layout_heightPercent">28%</item>
+		<item name="layout_heightPercent">27%</item>
 		<item name="android:paddingTop">@dimen/PeqEqVolPanel_paddings</item>
 		<item name="android:paddingBottom">@dimen/PeqEqVolPanel3_paddingbottom</item>
 		<item name="layout_consumeSpace">vertical</item>
@@ -244,7 +244,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PeqEqBalanceKnobLayout" parent="EqBalanceKnobLayoutBase">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
-		<item name="android:layout_marginTop">@dimen/PeqEqVolPanel_paddings</item>
+		<!--<item name="android:layout_marginTop">@dimen/PeqEqVolPanel_paddings</item>-->
 	</style>
 		
 	<!-- Overridden for land -->	

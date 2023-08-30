@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This one has non-transparent popup background and no stroke -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="?colorPrimary">
+	<item android:id="@android:id/mask" android:drawable="@drawable/rounded_large" />
+	<item>
+		<shape>
+			<corners android:radius="?corners_large"/>
+			<!--<stroke android:color="?colorStroke" android:width="1.25dp"/>-->
+			<solid android:color="?colorBgPrimary"/>
+		</shape>
+	</item>
+</ripple>

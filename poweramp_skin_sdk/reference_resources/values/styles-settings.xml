@@ -68,7 +68,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemEmptyList">@style/SearchItemEmptyList</item>
 		<item name="ItemEmptyListText">@style/SearchItemEmptyListText</item>
-		
+		<item name="ItemEmptyListText2">@style/ItemEmptyListText2</item>
+
 		<item name="preferenceIndentPadding">52dp</item>
 		
 		<item name="settings_v">@drawable/settings_v_colored</item>
@@ -312,7 +313,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SettingsSearchLayout">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
-		<item name="itemSize">76sp</item>
+		<item name="itemSize">88sp</item>
 	</style>
 	
 	<style name="SettingsSearchPanel">
@@ -495,7 +496,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SearchItemEmptyListText_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textColor">?android:textColorTertiary</item>
 	</style>
-	
+
 	<style name="DebugTextColor">
 		<item name="android:layout_width">wrap_content</item> 
 		<item name="android:layout_height">wrap_content</item>

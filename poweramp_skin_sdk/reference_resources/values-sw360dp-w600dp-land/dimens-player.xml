@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfoLabel_paddingTopBottom">3dp</dimen>
 	
 	
-	<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>
+	<!--<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>-->
 
 	<dimen name="ListMenu_drawableSize">24dp</dimen>
 	

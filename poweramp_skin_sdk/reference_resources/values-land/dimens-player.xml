@@ -57,7 +57,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopListScrollerView_marginBottom">88dp</dimen>
 	<dimen name="OptionLocalizedAZScroll_TopListScrollerView_marginTop">32dp</dimen>
 
-	
+	<dimen name="TopMetaInfoLayout_marginBottom">0dp</dimen>
+
+
 	<!-- Alt -->
 	<dimen name="Alt_TopPlay_maxSize">72dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>

@@ -69,8 +69,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="Alt_TopAABounds" parent="TopAABounds2">
-		<!-- DEBUG -->
-		<!--<item name="android:background">#5f00</item>-->
 	</style>
 	
 	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">

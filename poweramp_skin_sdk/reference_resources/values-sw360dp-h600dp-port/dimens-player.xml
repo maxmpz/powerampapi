@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="Navbar_height">48dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">44dp</dimen>
-	<dimen name="NavBarButton_drawableSize">@null</dimen>
+	<dimen name="NavBarButton_drawableSize">32dp</dimen>
 
 	<dimen name="ItemMiniplayerAAImage_size">36dp</dimen>
 	<dimen name="corners_miniplayer_aa">12dp</dimen>

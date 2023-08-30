@@ -515,18 +515,18 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 	
 	<style name="EqBassToneKnobLayout" parent="EqToneKnobLayoutBase">
 		<item name="android:layout_width">0px</item>
-		<item name="layout_widthPercent">50%</item>
+		<item name="layout_widthPercent">@fraction/EqToneKnobLayout_widthPercent</item><!-- 50% -->
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxHeight">@dimen/EqToneRoundKnobLayout_maxSize</item>
+		<item name="layout_attachLeft">@fraction/EqBassToneKnobLayout_attachLeft</item><!-- 0% -->
 	</style>
 	
 	<style name="EqTrebleToneKnobLayout" parent="EqToneKnobLayoutBase">
 		<item name="android:layout_width">0px</item>
-		<item name="layout_widthPercent">50%</item>
+		<item name="layout_widthPercent">@fraction/EqToneKnobLayout_widthPercent</item><!-- 50% -->
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachLeft">50%</item>
 		<item name="layout_maxHeight">@dimen/EqToneRoundKnobLayout_maxSize</item>
-		<!--<item name="android:background">#5f00</item>-->
+		<item name="layout_attachLeft">50%</item><!-- 50% -->
 	</style>
 		
 	
@@ -543,7 +543,6 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="layout_maxHeight">@dimen/EqToneRoundKnob_maxSize</item>
 		<item name="android:layout_gravity">right</item>
 		<item name="layout_consumeSpace">horizontal</item>
-		<!--<item name="android:background">#50f0</item>-->
 	</style>
 
 	<!-- NOTE: don't consume space as label may consume space depeding on the text size, causing knob to differ for tone -->
@@ -614,12 +613,12 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 	</style>
 	
 	<style name="EqResizableRoundKnobBase" parent="EqRoundKnob">
-		<!-- Wrap content means here take available parent room and be a rectangle -->
+		<!-- Wrap_content means here take available parent room and be a rectangle -->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 
-		<item name="layout_attachTop">parent</item><!-- This doesn't look well when we have too much vertical space. That's why we have overal max size -->
+		<!--<item name="layout_attachTop">parent</item>&lt;!&ndash; This doesn't look well when we have too much vertical space. That's why we have overal max size &ndash;&gt;-->
 		<item name="layout_attachBottom">@id/_label</item>
 	</style>
 	
@@ -640,10 +639,12 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 	<style name="EqResizableRoundKnobLabel" parent="EqRoundKnobLabel">
 		<item name="layout_attachTop">@null</item>
 		<item name="layout_attachBottom">@id/_value_label</item>
+		<item name="layout_consumeSpace">vertical</item><!-- We need to consume space on the bottom so round knob doesn't grow too much -->
 	</style>
 	<style name="EqResizableRoundKnobValue" parent="EqRoundKnobValueLabel">
 		<item name="layout_attachTop">@null</item>
 		<item name="layout_attachBottom">parent</item>
+		<item name="layout_consumeSpace">vertical</item><!-- We need to consume space on the bottom so round knob doesn't grow too much -->
 	</style>
 		
 	<style name="EqLabelBg">
@@ -738,7 +739,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		
 	<style name="EqBalanceKnobLayoutBase">
 		<item name="android:clipChildren">false</item>
-		
+
 		<item name="roundKnobStyle">@style/EqBalanceKnobLayoutKnob</item>
 		<item name="labelStyle">@style/EqBalanceKnobLayoutLabel</item>
 		<item name="valueLabelStyle">@style/EqBalanceKnobLayoutValue</item>
@@ -1152,10 +1153,10 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 
 	<style name="EqPresetSearchPanel" parent="TopSearchPanel">
 		<item name="android:layout_height">40dp</item>
-		<item name="android:layout_marginTop">7dp</item>
+		<item name="android:layout_marginTop">12dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
-		<item name="android:layout_marginLeft">6dp</item>
-		<item name="android:layout_marginRight">6dp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">12dp</item>
 	</style>
 
 	<style name="EqPresetSearchCloseButton" parent="TopSearchCloseButton">
@@ -1177,18 +1178,25 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 
 	<style name="EqPresetSearchCatsLayout" parent="TopSearchCatsLayout">
 		<item name="android:paddingTop">0dp</item>
-		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginTop">6dp</item>
 		<item name="android:paddingBottom">2dp</item>
 		<!-- We're going beyond layout dimension to better indicate scrollable filters -->
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item>
-		<item name="android:paddingLeft">2dp</item><!-- NOTE: buttons have leftMargin=2dp -->
-		<item name="android:paddingRight">4dp</item>
+		<item name="android:paddingLeft">10dp</item><!-- NOTE: buttons have leftMargin=2dp -->
+		<item name="android:paddingRight">12dp</item>
 	</style>
 
 	<style name="EqPresetSearchCatButton" parent="TopSearchCatButton">
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:background">@drawable/checkable_non_tr_lighter_rounded_large</item>
+		<item name="drawableWidth">16dp</item>
+		<item name="drawableHeight">16dp</item>
+		<item name="android:drawablePadding">-8dp</item>
+	</style>
+
+	<style name="EqPresetSearchResetButton" parent="EqPresetSearchCatButton">
 		<item name="android:background">@drawable/checkable_non_tr_lighter_rounded_large</item>
 	</style>
 

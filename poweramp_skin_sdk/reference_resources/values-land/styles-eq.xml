@@ -128,8 +128,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_widthPercent">@fraction/EqTonePanel_widthPercent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="layout_attachRight">parent</item>
-		<item name="android:layout_marginTop">4dp</item>
-		
+		<!-- Padding enough for knobs glow -->
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingRight">8dp</item>
+
+		<!-- NOTE: we still generally clipped by tone panel bounds via EqTabLayout children clipping which is needed -->
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 	</style>
@@ -157,6 +161,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">50%</item><!-- Attaching to 50% so it's better looking on tablets -->
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_marginTop">@dimen/EqToneKnobLayout_marginOffset</item>
+		<item name="android:layout_marginBottom">2dp</item>
 		<item name="layout_maxHeight">@dimen/EqToneRoundKnobLayout_maxSize</item>
 	</style>
 	
@@ -167,6 +172,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachTop">50%</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_maxHeight">@dimen/EqToneRoundKnobLayout_maxSize</item>
+		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:layout_marginBottom">@dimen/EqToneKnobLayout_marginOffset</item>
 	</style>
 	

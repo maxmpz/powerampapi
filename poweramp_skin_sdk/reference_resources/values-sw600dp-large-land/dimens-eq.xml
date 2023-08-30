@@ -26,6 +26,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	     treble value label is too close to bass knob -->
 	<dimen name="EqRoundKnobValueLabel_marginBottom">8dp</dimen>
 
+	<fraction name="EqTonePanel_widthPercent">15%</fraction><!-- Used for land only, reduced for the longer phones -->
+
 	<dimen name="EqEquPresetButtonLayout_width">110dp</dimen>
 	<dimen name="EqMenu_marginBottom">8dp</dimen>
 

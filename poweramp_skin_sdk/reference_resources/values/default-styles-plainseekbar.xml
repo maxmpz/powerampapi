@@ -83,7 +83,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	
 	<style name="PlainSeekbar_TopWaveseekLayout" parent="TopWaveseekLayout">
-		<item name="android:layout_marginBottom">0dp</item>	
+		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:paddingBottom">0dp</item>
 	</style>
 	

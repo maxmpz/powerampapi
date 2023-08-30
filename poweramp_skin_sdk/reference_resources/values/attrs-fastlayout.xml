@@ -234,6 +234,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				 REVISIT: currently this can't be reset -->
 			<flag name="size" value="0x80000000"/>
 
+			<!-- Do not consume space with this view "last" margin. Only the last margin in the direction of consume is skipped.
+			     For example, for a view which is aligned to the left
+			                              | marginLeft | view width | marginRight |
+			                                                        ^      ^- this marginRight is ignored for the consumption
+			                                                        +- this will be the "consumed" edge
+			     And for the right-to-left alignment, marginLeft will be ignored.
+			-->
+			<flag name="skip_last_margin" value="0x80000"/>
+
 			<!-- Resets appropriate horizontal consumed space on one side (depending on view gravity, e.g. view attached to left will reset left side consumed space) -->
 			<!-- Works like <br/> -->
 			<flag name="reset_horizontal" value="0x4000000"/>
@@ -338,7 +347,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Default false. If true, view ignores layout_minWidth/layout_minHeight/layout_maxWidth/layout_maxHeight
 		     when view is attached to the left/right and/or top/bottom.
-		     This is the (buggy) behavior Poweramp prior build-912 applied, so this can be used for old skins compatibility.
+		     This is the (buggy) behavior that Poweramp prior build-912 applied, and this is used for old skins compatibility.
 		     Poweramp automatically applies this for some skins -->
 		<attr name="layout_ignoreMinMaxForAttach" format="boolean"/>
 

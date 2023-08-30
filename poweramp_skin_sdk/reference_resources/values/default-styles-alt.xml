@@ -220,9 +220,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="Alt_VisPanelContainer" parent="VisPanelContainer">
 	</style>
-	
+
+	<!-- NOTE: overriden in sw2dp-h550dp-long-port -->
 	<style name="Alt_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
-		<item name="layout_consumeSpace">vertical|size</item><!-- NOTE: consumes available size for the children -->
+		<item name="layout_minHeight">56dp</item>
+		<item name="layout_consumeSpace">vertical|size|skip_last_margin</item><!-- NOTE: consumes available size for the children -->
+		<item name="layout_marginBottomRef">@id/Alt_TopAABounds_marginBottom_plus_8dp</item>
 	</style>
 	
 	<style name="Alt_TopSubAAButtons" parent="TopSubAAButtons">
@@ -531,7 +534,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">@dimen/Alt_TopAABounds_marginBottom</item><!-- NOTE: sync with aaPaddingBottom -->
 
 		<item name="aaMinSize">50dp</item><!-- Sync with Alt_ListSubstyle_Base -->
-		<item name="aaMarginBottom">@dimen/Alt_TopListSubstyle_aaMarginBottom</item><!-- Sync with Alt_TopAABounds -->
+		<item name="aaMarginBottom">@dimen/Alt_TopListSubstyle_aaMarginBottom</item><!-- Sync with Alt_ListSubstyle_Base -->
 
 		<!-- NOTE: the padding between labels and sub-aa buttons is defined by Alt_TopSubAAButtons_marginTop -->
 	</style>

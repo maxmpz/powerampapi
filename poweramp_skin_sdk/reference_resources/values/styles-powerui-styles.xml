@@ -447,6 +447,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemEmptyList">@style/ItemEmptyList</item>
 		<item name="ItemEmptyListText">@style/ItemEmptyListText</item>
 		<item name="ItemEmptyListText_Text">@style/ItemEmptyListText_Text</item>
+		<item name="ItemEmptyListText2">@style/ItemEmptyListText2</item>
 		<item name="ItemEmptyListSettingsButtonBase">@style/ItemEmptyListSettingsButtonBase</item>
 		<item name="ItemEmptyListSettingsButton">@style/ItemEmptyListSettingsButton</item>
 		<item name="ItemEmptyListScanProgress">@style/ItemEmptyListScanProgress</item>
