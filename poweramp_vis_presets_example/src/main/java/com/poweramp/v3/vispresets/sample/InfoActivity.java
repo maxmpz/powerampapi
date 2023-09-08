@@ -103,6 +103,7 @@ public class InfoActivity extends Activity {
 
 		Intent intent = new Intent(PowerampAPI.ACTION_API_COMMAND)
 				.setComponent(PowerampAPIHelper.getApiActivityComponentName(this))
+                .putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName())
 				.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_VIS_PRESET)
 				.putExtra(PowerampAPI.EXTRA_NAME, "VisPresetsExample - Test Preset.milk")
 				.putExtra(PowerampAPI.EXTRA_DATA, ((EditText) findViewById(R.id.edit)).getText().toString()); // NOTE: strictly String type is expected
@@ -131,8 +132,9 @@ public class InfoActivity extends Activity {
 				// And command it to play something
 
 				intent = new Intent(PowerampAPI.ACTION_API_COMMAND)
-						.setComponent(PowerampAPIHelper.getApiActivityComponentName(InfoActivity.this))
-						.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.RESUME)
+					         .setComponent(PowerampAPIHelper.getApiActivityComponentName(InfoActivity.this))
+					         .putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName())
+					         .putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.RESUME)
 				;
 				startActivity(intent);
 			}
