@@ -2,10 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdk 33
-    buildToolsVersion = "33.0.1"
+    namespace "com.maxmpz.powerampproviderexample"
 
     defaultConfig {
-        applicationId "com.maxmpz.powerampproviderexample"
         minSdk 21
         targetSdk 33
         versionCode 1
