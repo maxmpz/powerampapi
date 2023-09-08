@@ -83,6 +83,7 @@
 					android:layout_height="wrap_content"
 					android:text="listMilkPresets"
 					android:textSize="10sp"
+					android:textAllCaps="false"
 					tools:ignore="ButtonStyle,HardcodedText,SmallSp,UsingOnClickInXml"
 					/>
 				<Button
@@ -92,6 +93,7 @@
 					android:text="pushFile"
 					android:layout_marginLeft="4dp"
 					android:textSize="10sp"
+					android:textAllCaps="false"
 					tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SmallSp,UsingOnClickInXml"
 					/>
 				<Button
@@ -101,6 +103,7 @@
 					android:text="deleteFile"
 					android:layout_marginLeft="4dp"
 					android:textSize="10sp"
+					android:textAllCaps="false"
 					tools:ignore="ButtonStyle,HardcodedText,RtlHardcoded,SmallSp,UsingOnClickInXml"
 					/>
 			</LinearLayout>
