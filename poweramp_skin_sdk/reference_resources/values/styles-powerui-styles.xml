@@ -797,6 +797,39 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PlainSeekbar">@style/PlainSeekbar</item>
 		<item name="PlainSeekbar_anim_seeking">@style/PlainSeekbar_anim_seeking</item>
 
+		<!-- Eq Presets Popup -->
+		<item name="EqPresetSearchLayout">@style/EqPresetSearchLayout</item>
+		<item name="EqPresetSearchPanel">@style/EqPresetSearchPanel</item>
+
+		<item name="EqPresetSearchCloseButton">@style/EqPresetSearchCloseButton</item>
+		<item name="EqPresetSearchEditText">@style/EqPresetSearchEditText</item>
+		<item name="EqPresetSearchCatsLayout">@style/EqPresetSearchCatsLayout</item>
+		<item name="EqPresetSearchCatButton">@style/EqPresetSearchCatButton</item>
+		<item name="EqPresetSearchCatSeparator">@style/EqPresetSearchCatSeparator</item>
+		<item name="EqPresetSearchResetButton">@style/EqPresetSearchResetButton</item>
+		<item name="EqPresetSearchAssignLayout">@style/EqPresetSearchAssignLayout</item>
+		<item name="EqPresetSearchAssignCb">@style/EqPresetSearchAssignCb</item>
+		<item name="EqPresetSearchDontSuggestCb">@style/EqPresetSearchDontSuggestCb</item>
+
+		<!--
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		<item name="">@style/</item>
+		-->
 
 		<!-- Peq -->
 		<item name="NavbarPeqExtensionLogo">@style/NavbarPeqExtensionLogo</item>

@@ -79,7 +79,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<item type="id" name="cmd_app_on_lockscreen_mode"/><!-- arg1 => 1 - ls active, 0 - ls not active -->
 	<item type="id" name="state_app_lockscreen_active"/><!-- boolean --> 
-	<item type="id" name="state_app_browser_started"/><!-- boolean or String == browser last connected package -->
+	<item type="id" name="state_app_browser_started"/><!-- boolean or String == browser last connected package, object -> non null copy of List<String> -->
 	<item type="id" name="state_app_shutdown"/><!-- boolean, true => device shutdown is in effect -->
 	<item type="id" name="state_app_edition_name"/><!-- String -->
 	<item type="id" name="state_app_edition_icon"/><!-- int -->

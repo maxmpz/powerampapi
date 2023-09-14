@@ -445,6 +445,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="save_assign_24dp">@drawable/save_assign_24dp</item>
 		<item name="autosave_24dp">@drawable/autosave_24dp</item>
 
+		<item name="close_24dp">@drawable/close_stroke</item>
 		<item name="clear_q_24dp">@drawable/clear_q_stroke_24dp</item>
 		<item name="artists_24dp">@drawable/artists_stroke_24dp</item>
 		<item name="genres_24dp">@drawable/genres_stroke_24dp</item>

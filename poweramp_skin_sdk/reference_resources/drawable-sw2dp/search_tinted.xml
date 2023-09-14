@@ -2,6 +2,6 @@
 
 <!-- NOTE: needed as drawableTint is not supported by EditText until 6.0 -->
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-	android:src="@drawable/search" 
+	android:src="?search_24dp"
 	android:tint="?colorIconPrimary"
 />

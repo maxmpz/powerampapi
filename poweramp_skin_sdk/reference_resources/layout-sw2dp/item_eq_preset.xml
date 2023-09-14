@@ -40,7 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 
 	<com.maxmpz.audioplayer.widget.MarqueeFastTextView android:id="@+id/title"
-		style="@style/ItemEqPresetTitle"
+		style="?ItemEqPresetTitle"
 	/>
 	
 </com.maxmpz.widget.player.list.TextItemView>

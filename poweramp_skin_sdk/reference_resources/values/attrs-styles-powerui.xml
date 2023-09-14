@@ -744,8 +744,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- PlainSeekbar -->
 		<attr name="PlainSeekbar" format="reference"/>
 		<attr name="PlainSeekbar_anim_seeking" format="reference"/>
-						
+
+		<!-- Eq Presets Popup -->
+		<attr name="EqPresetSearchLayout" format="reference"/>
+		<attr name="EqPresetSearchPanel" format="reference"/>
+		<attr name="EqPresetSearchCloseButton" format="reference"/>
+		<attr name="EqPresetSearchEditText" format="reference"/>
+		<attr name="EqPresetSearchCatsLayout" format="reference"/>
+		<attr name="EqPresetSearchCatButton" format="reference"/>
+		<attr name="EqPresetSearchCatSeparator" format="reference"/>
+		<attr name="EqPresetSearchResetButton" format="reference"/>
+		<attr name="EqPresetSearchAssignLayout" format="reference"/>
+		<attr name="EqPresetSearchAssignCb" format="reference"/>
+		<attr name="EqPresetSearchDontSuggestCb" format="reference"/>
+
 		<!--
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
+		<attr name="" format="reference"/>
 		<attr name="" format="reference"/>
 		<attr name="" format="reference"/>
 		<attr name="" format="reference"/>

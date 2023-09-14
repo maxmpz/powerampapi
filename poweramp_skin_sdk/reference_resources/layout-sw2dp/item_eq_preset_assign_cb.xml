@@ -22,16 +22,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <com.maxmpz.widget.base.FastLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
-	style="@style/EqPresetSearchAssignLayout"
+	style="?EqPresetSearchAssignLayout"
 	android:clickable="true"
 	>
 	<!-- NOTE: these are updated in EqPresetPopupListLayout.bindAssignModeSearchHeader -->
 	<com.maxmpz.widget.base.FastCheckBox android:id="@+id/eq_presets_assign"
-		style="@style/EqPresetSearchAssignCb"
+		style="?EqPresetSearchAssignCb"
 		android:text="@string/assign_preset_to_this_device"
 		/>
 	<com.maxmpz.widget.base.FastCheckBox android:id="@+id/eq_preset_dont_suggest"
-		style="@style/EqPresetSearchDontSuggestCb"
+		style="?EqPresetSearchDontSuggestCb"
 		android:text="@string/dont_suggest_autoeq_preset_for_this_device"
 		/>
 </com.maxmpz.widget.base.FastLayout>

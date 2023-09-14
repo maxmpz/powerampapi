@@ -22,63 +22,63 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <com.maxmpz.widget.base.FastLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto"
-	style="@style/EqPresetSearchLayout"
+	style="?EqPresetSearchLayout"
 	android:clickable="true"
 	tools:ignore="KeyboardInaccessibleWidget"
 	>
 
 	<com.maxmpz.widget.base.FastLayout
-		style="@style/EqPresetSearchPanel"
+		style="?EqPresetSearchPanel"
 	>
 		<!-- NOTE: we consume space from right here, so search text view is not taking full width -->
 		<com.maxmpz.widget.base.BusActionButton
-			style="@style/EqPresetSearchCloseButton"
+			style="?EqPresetSearchCloseButton"
 			android:contentDescription="@string/clear"
 			w:busId="parent"
 			w:msgId="@id/cmd_list_search_clear"
 			/>
 		<com.maxmpz.audioplayer.widget.LocalListSearchEditText android:id="@+id/eq_search_edit"
-			style="@style/EqPresetSearchEditText"
+			style="?EqPresetSearchEditText"
 			w:busId="parent"
 			android:hint="@string/search"
 			/>
 	</com.maxmpz.widget.base.FastLayout>
 
 	<com.maxmpz.audioplayer.widget.EqPresetSearchCatsLayout android:id="@+id/eq_search_type"
-		style="@style/EqPresetSearchCatsLayout"
+		style="?EqPresetSearchCatsLayout"
 		>
 		<!-- Group "g" -->
 		<com.maxmpz.widget.base.FastCheckBox
-			style="@style/EqPresetSearchCatButton"
+			style="?EqPresetSearchCatButton"
 			android:text="@string/user_plural_adj_short"
 			android:tag="g/user"
 			/>
 		<com.maxmpz.widget.base.FastCheckBox
-			style="@style/EqPresetSearchCatButton"
+			style="?EqPresetSearchCatButton"
 			android:text="@string/builtin_presets_short"
 			android:tag="g/built_in"
 			/>
 		<com.maxmpz.widget.base.FastCheckBox
-			style="@style/EqPresetSearchCatButton"
+			style="?EqPresetSearchCatButton"
 			android:text="@string/auto_eq"
 			android:id="@+id/auto_eq"
 			android:tag="g/auto_eq"
 			/>
 		<com.maxmpz.widget.base.NonOverlappingView
-			style="@style/EqPresetSearchCatSeparator"
+			style="?EqPresetSearchCatSeparator"
 			w:layout_attachTopToTop="@+id/auto_eq"
 			w:layout_attachBottomToBottom="@+id/auto_eq"
 			/>
 
 		<!-- Group "t" -->
 		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/graphic"
-			style="@style/EqPresetSearchCatButton"
+			style="?EqPresetSearchCatButton"
 			android:drawable="?equ_graphic_small"
 			android:text="@string/graphic_equ_short"
 			android:tag="t/graphic"
 			/>
 		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/parametric"
-			style="@style/EqPresetSearchCatButton"
+			style="?EqPresetSearchCatButton"
 			w:layout_consumeSpace="vertical|reset_horizontal"
 			android:drawable="?equ_parametric_small"
 			android:text="@string/parametric_equ_short"
@@ -87,27 +87,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!--
 		<com.maxmpz.widget.base.NonOverlappingView
-			style="@style/EqPresetSearchCatSeparator"
+			style="?EqPresetSearchCatSeparator"
 			w:layout_attachTopToTop="@+id/parametric"
 			w:layout_attachBottomToBottom="@+id/parametric"
 			/>
 			-->
 
 		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/assigned"
-			style="@style/EqPresetSearchCatButton"
+			style="?EqPresetSearchCatButton"
 			android:text="@string/assigned_short"
 			android:tag="f/assigned"
 			/>
 
 		<com.maxmpz.widget.base.NonOverlappingView
-			style="@style/EqPresetSearchCatSeparator"
+			style="?EqPresetSearchCatSeparator"
 			w:layout_attachTopToTop="@+id/assigned"
 			w:layout_attachBottomToBottom="@+id/assigned"
 			/>
 
 		<!-- REVISIT: disable/hide this when no device exists -->
 		<com.maxmpz.widget.player.BusStatusTextButton
-			style="@style/EqPresetSearchCatButton"
+			style="?EqPresetSearchCatButton"
 			android:text="@string/device_short"
 			w:busId="parent"
 			w:msgId="@id/cmd_list_search_device"
@@ -122,13 +122,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 
 		<!--<com.maxmpz.widget.base.NonOverlappingView-->
-		<!--	style="@style/EqPresetSearchCatSeparator"-->
+		<!--	style="?EqPresetSearchCatSeparator"-->
 		<!--	w:layout_attachTopToTop="@+id/assigned"-->
 		<!--	w:layout_attachBottomToBottom="@+id/assigned"-->
 		<!--	/>-->
 
 		<com.maxmpz.widget.base.BusActionButton
-			style="@style/EqPresetSearchResetButton"
+			style="?EqPresetSearchResetButton"
 			android:drawable="@drawable/close_stroke"
 			android:text="@string/reset_filters"
 			w:busId="parent"

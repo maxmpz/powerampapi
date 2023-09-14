@@ -162,6 +162,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="lock_24dp" format="reference"/>
 	<attr name="lock_solid_24dp" format="reference"/>
 	<attr name="lock_unlock_24dp" format="reference"/>
+	<attr name="close_24dp" format="reference"/>
 
 	<!-- This may visually match settings_24dp, but may also have a higher resolution for xhdpi-large.
 	     settings_24dp should not grow over 24dp as it used with implicit size in many places -->
@@ -203,7 +204,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="list_drag_24dp" format="reference"/>
 	<attr name="list_drag_hor_24dp" format="reference"/>
-	
+
+
 	<attr name="defaultLowResAA" format="reference"/><!-- Default AA image. Strictly 512x512 bitmap -->
 	<attr name="defaultHiResAA" format="reference"/><!-- Default AA image. Strictly 1024x1024 bitmap -->
 	
