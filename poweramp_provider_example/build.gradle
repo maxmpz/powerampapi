@@ -23,6 +23,6 @@ android {
 
 dependencies {
     implementation project(path: ':poweramp_api_lib')
-    implementation 'androidx.annotation:annotation:1.6.0'
+    implementation 'androidx.annotation:annotation:1.7.0'
     project(':poweramp_api_example')
 }
