@@ -46,12 +46,15 @@
 
 		<!-- 912+: deprecated, navbar dimensions are calculated via "dynamic" dimensions automatically now.
 		     We still keep these styles here for the old builds -->
-		<item name="com.maxmpz.audioplayer:bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>
+		<!--<item name="com.maxmpz.audioplayer:bottom_navbar_bounds_size">@dimen/NavbarBounds_height</item>-->
 		<!-- 912+: deprecated -->
-		<item name="com.maxmpz.audioplayer:bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>
+		<!--<item name="com.maxmpz.audioplayer:bottom_navbar_bounds_2lines_size">@dimen/NavbarBounds_height_scene_navbar_2lines</item>-->
 
 		<!-- 912+: special theme attribute to control navbar margin -->
 		<item name="com.maxmpz.audioplayer:navbar_marginB">0dp</item>
+		<item name="com.maxmpz.audioplayer:navbar_marginT">4dp</item>
+		<!-- This is the padding between tone and navbar - increase slightly for the shadow under tone knobs -->
+		<item name="com.maxmpz.audioplayer:EqTonePanel_paddingBottom">8dp</item>
 
 		<!-- This disables reduceBottomInset - see @style/TopContainer -->
 		<item name="com.maxmpz.audioplayer:TopContainer">@style/TopContainer</item>
@@ -172,6 +175,7 @@
 		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_bottom_toolbar">@style/ItemTrackMenu_scene_bottom_toolbar</item>
 		<item name="com.maxmpz.audioplayer:ItemTextMenu_scene_bottom_toolbar">@style/ItemTrackMenu_scene_bottom_toolbar</item>
 
+
 	</style>
 
 	<style name="TopContainer" parent="com.maxmpz.audioplayer:TopContainer">
@@ -216,21 +220,15 @@
 
 	<!-- We need to change layout in all "scenes" for the target view, in this case, Navbar -->
 	<style name="Navbar" parent="com.maxmpz.audioplayer:Navbar">
-		<item name="android:layout_marginTop">0dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:background">@null</item>
 		<!-- NOTE: avoid direct marginBottom here, use Navbar_marginB attribute in the global theme  -->
 	</style>
 	<style name="Navbar_scene_navbar_1line_sheet" parent="com.maxmpz.audioplayer:Navbar_scene_navbar_1line_sheet">
-		<item name="android:layout_marginTop">0dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:background">@null</item>
 		<!-- NOTE: avoid direct marginBottom here, use Navbar_marginB attribute in the global theme  -->
 	</style>
 	<style name="Navbar_scene_navbar_2lines" parent="com.maxmpz.audioplayer:Navbar_scene_navbar_2lines">
-		<item name="android:layout_marginTop">0dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:background">@null</item>
 		<!-- NOTE: avoid direct marginBottom here, use Navbar_marginB attribute in the global theme  -->
 	</style>
 
