@@ -1537,7 +1537,12 @@ public final class PowerampAPI {
 			public static final int TYPE_TAK        = 22;
 			public static final int TYPE_STREAM     = 23;
 			public static final int TYPE_MKV        = 24;
-			public static final int LAST_TYPE       = 24;
+			public static final int TYPE_MOD        = 25;
+			public static final int TYPE_XM         = 26;
+			public static final int TYPE_S3M        = 27;
+			public static final int TYPE_IT         = 28;
+			public static final int TYPE_MPTM       = 29;
+			public static final int LAST_TYPE       = 29;
 		}
 
 		/**
