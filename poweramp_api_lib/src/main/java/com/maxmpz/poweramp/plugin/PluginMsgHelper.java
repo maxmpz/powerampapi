@@ -57,8 +57,8 @@ public class PluginMsgHelper {
 	public static int FLAG_TYPE_SYNC_NO_CONTEXT = 0x1000;
 	public static int FLAG_TYPE_SEND_OUTSIDE    = 0x2000;
 	public static int FLAG_TYPE_BROADCAST       = 0x4000;
-
 	public static int FLAG_BROADCAST_GROUP_MASK = 0x003F;
+	public static int FLAG_TYPE_ALSO_SYNC_NO_CONTEXT = 0x8000;
 
 	public static int MSG_ID_BROADCAST          = -1;
 
