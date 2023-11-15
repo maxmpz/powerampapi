@@ -4,15 +4,16 @@ plugins {
 
 android {
     namespace 'com.maxmpz.powerampapilib'
-    compileSdk 33
+    compileSdk COMPILE_SDK
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk MIN_SDK
+        targetSdk TARGET_SDK
     }
 
     buildTypes {
         release {
+            minifyEnabled false
         }
     }
     compileOptions {
