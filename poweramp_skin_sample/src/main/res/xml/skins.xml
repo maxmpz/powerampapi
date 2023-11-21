@@ -381,12 +381,12 @@
 		     popup name doesn't support html as it's used for dialog title.
 		     popup summary can include %s => that is replaced by the selected option name
         -->
+		<!--
 		<popup
 			key="bg_color"
 			name="@string/skin_select_bg_color"
 			summary="@string/skin_summary_select_bg_color_s"
 		>
-			<!-- name is the required attribute. summary is ignored, key is ignored -->
 			<option
 				name="@string/skin_default"
 				overlapStyle=""
@@ -404,6 +404,49 @@
 				overlapStyle="@style/SampleSkin_bg_color_blue"
 			/>
 		</popup>
+		-->
+
+		<!-- The multiSwitch is similar to popup, but shows all the options as "tags".
+		     The html is not supported, icon attribute is supported instead -->
+
+		<!-- NOTE: this demonstrates different approaches to icons + iconTint:
+		     - shape drawable with a color
+		     - shape drawable with a tint (which overrides any drawable color)
+		     - vector drawable with a tint
+
+		     Real skin option probably should use just one preferred approach.
+		     If iconTint value is not provided, the default (Settings/device theme) icon color is used for the icon tint -->
+		<multiSwitch
+			key="bg_color"
+			name="@string/skin_select_bg_color"
+			summary="@string/skin_summary_select_bg_color_s"
+			>
+			<option
+				name="@string/skin_default"
+				overlapStyle=""
+				/>
+			<!-- This is an drawable with a color. We must reset the default option tint to #0000 so we can see the drawable color as is -->
+			<option
+				name="@string/skin_red"
+				icon="@drawable/circle_red"
+				iconTint="none"
+				overlapStyle="@style/SampleSkin_bg_color_red"
+				/>
+			<!-- This is a generic circle drawable, so we apply the green tint for it -->
+			<option
+				name="@string/skin_green"
+				icon="@drawable/circle_black"
+				iconTint="@color/green"
+				overlapStyle="@style/SampleSkin_bg_color_green"
+				/>
+			<!-- This is a vector circle drawable, so we also apply the blue tint for it -->
+			<option
+				name="@string/skin_blue"
+				icon="@drawable/v_circle_16dp"
+				iconTint="#00f"
+				overlapStyle="@style/SampleSkin_bg_color_blue"
+				/>
+		</multiSwitch>
 
 		<page
 			name="@string/skin_page_1"

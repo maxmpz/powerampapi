@@ -1,0 +1,19 @@
+<vector
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:name="vector"
+	android:width="16dp"
+	android:height="16dp"
+	android:viewportWidth="200"
+	android:viewportHeight="200"
+	android:tintMode="screen"
+	android:tint="#50FFFFFF"
+	>
+	<group
+		android:name="group"
+		>
+		<path
+			android:name="path"
+			android:pathData="M 0 99.97 C 0 44.758 44.758 0 99.97 0 C 155.181 0 199.939 44.758 199.939 99.97 C 199.939 155.181 155.181 199.939 99.97 199.939 C 44.758 199.939 0 155.181 0 99.97 Z"
+			android:fillColor="#FFF"/>
+	</group>
+</vector>

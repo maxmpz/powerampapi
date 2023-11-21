@@ -21,6 +21,10 @@
 - [License](#license)
 
 ### Recent Changes
+##### Build 978
+###### icon and iconTint for multiSwitch option
+MultiSwitch option tag now supports icon and iconTint attributes
+
 ##### Build 949
 ###### targetBuild
 The top ```<skins>``` xml tag now supports targetBuild attribute, which defines the Poweramp build this skin was build for.
@@ -331,6 +335,8 @@ Converted option won't have summary, if the summary contains formatting symbols 
             summary="[optional. summary shown when option selected]"
             overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
             overlapAttr="[optional overlap attr reference to style]"
+            icon="[since 978. Optional @drawable/* icon for the optionbutton]"
+            iconTint="[since 978. Optional #color, @color/* to apply given tint color, or 'none' to avoid tint]"
         />
         ...
 </multiSwitch>
@@ -531,3 +537,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 
+**
