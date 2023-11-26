@@ -5,8 +5,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Build.VERSION;
 import android.util.Log;
 import android.widget.RemoteViews;
 import com.maxmpz.poweramp.player.PowerampAPI;

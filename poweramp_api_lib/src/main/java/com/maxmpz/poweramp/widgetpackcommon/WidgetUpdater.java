@@ -28,7 +28,6 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
 import com.maxmpz.poweramp.player.PowerampAPI;
-import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@SuppressWarnings("deprecation")
 public abstract class WidgetUpdater {
 	private static final String TAG = "WidgetUpdater";
 	private static final boolean LOG = false;
@@ -47,18 +45,13 @@ public abstract class WidgetUpdater {
 	 */
 	private static final boolean ALWAYS_USE_PERSISTANT_DATA = true;
 
-	/**
-	 * NOTE: as of v3 betas, no album art event is sent anymore
-	 */
-	private static final boolean USE_AA_EVENT = false;
 	public static final @NonNull String WIDGETS_PREFS_NAME = "appwidgets";
 
 	private static boolean sUpdatedOnce;
 
 	public static final IntentFilter sTrackFilter = new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED);
-	public static final IntentFilter sAAFilter = USE_AA_EVENT ? new IntentFilter(PowerampAPI.ACTION_AA_CHANGED) : null;
-	public static final IntentFilter sStatusFilter = new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED);
-	public static final IntentFilter sModeFilter = new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED);
+	private static final IntentFilter sStatusFilter = new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED);
+	private static final IntentFilter sModeFilter = new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED);
 
 	private final Context mContext; // NOTE: PS context ATM
 
@@ -101,7 +94,7 @@ public abstract class WidgetUpdater {
 	 * Called just for given provider 
 	 */
 	// THREADING: any
-	public void updateSafe(@NonNull BaseWidgetProvider provider, boolean ignorePowerState, boolean updateByOs, int[] appWidgetIds) {
+	void updateSafe(@NonNull BaseWidgetProvider provider, boolean ignorePowerState, boolean updateByOs, int[] appWidgetIds) {
 		if(LOG) Log.w(TAG, "updateSafe th=" + Thread.currentThread() + " provider=" + provider); 
 
 		synchronized(mLock) {
@@ -159,7 +152,6 @@ public abstract class WidgetUpdater {
 	// NOTE: specifically not synchronized as Context.getSharedPreferences() is thread safe and synchronized, so if we get contested here, we just get same preferences
 	// from context 2 times
 	// THREADING: any
-	@SuppressWarnings("null")
 	public static @NonNull SharedPreferences getCachedSharedPreferences(Context context) {
 		SharedPreferences cachedPrefs = sCachedPrefs;
 		if(cachedPrefs == null) {
@@ -200,7 +192,7 @@ public abstract class WidgetUpdater {
 
 		Bundle track;
 
-		Intent trackIntent = context.registerReceiver(null, WidgetUpdater.sTrackFilter);
+		Intent trackIntent = context.registerReceiver(null, sTrackFilter);
 
 		if(LOG) Log.w(TAG, "generateUpdateData trackIntent=" + trackIntent);
 
@@ -229,24 +221,9 @@ public abstract class WidgetUpdater {
 			return data;
 		}
 
-		// NOTE: as of v3 betas, no album art event is sent anymore
-//		if(USE_AA_EVENT) { // == false
-//			Intent aaIntent = context.registerReceiver(null, WidgetUpdater.sAAFilter);
-//			if(aaIntent != null) {
-//				try {
-//					data.albumArtBitmap = PowerampAPIHelper.getAlbumArt(context, track, 512, 512);
-//					if(LOG) Log.w(TAG, "generateUpdateData got aa=" + data.albumArtBitmap);
-//					data.albumArtTimestamp = aaIntent.getLongExtra(PowerampAPI.EXTRA_TIMESTAMP, 0);
-//					if(LOG) Log.w(TAG, "received AA TIMESTAMP=" + data.albumArtTimestamp);
-//				} catch(OutOfMemoryError oom) {
-//					Log.e(TAG, "", oom);
-//				}
-//			}
-//		}
-
 		getPlayingState(context, data);
 
-		Intent modeIntent = context.registerReceiver(null, WidgetUpdater.sModeFilter);
+		Intent modeIntent = context.registerReceiver(null, sModeFilter);
 		if(modeIntent != null) {
 			data.shuffle = modeIntent.getIntExtra(PowerampAPI.EXTRA_SHUFFLE, PowerampAPI.ShuffleMode.SHUFFLE_NONE);
 			data.repeat = modeIntent.getIntExtra(PowerampAPI.EXTRA_REPEAT, PowerampAPI.RepeatMode.REPEAT_NONE);
@@ -257,7 +234,7 @@ public abstract class WidgetUpdater {
 
 	@SuppressWarnings("static-method")
 	private void getPlayingState(Context context, @NonNull WidgetUpdateData data) {
-		Intent statusIntent = context.registerReceiver(null, WidgetUpdater.sStatusFilter);
+		Intent statusIntent = context.registerReceiver(null, sStatusFilter);
 		if(statusIntent != null) {
 
 			boolean paused = statusIntent.getBooleanExtra(PowerampAPI.EXTRA_PAUSED, true);

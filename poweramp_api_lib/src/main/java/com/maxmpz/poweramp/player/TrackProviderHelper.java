@@ -48,7 +48,6 @@ public class TrackProviderHelper {
 	}
 
 	/** Converts float array to bytes */
-	@SuppressWarnings("null")
 	public static byte @NonNull[] floatsToBytes(float @NonNull[] wave) {
 		if(wave.length == 0) {
 			return new byte[0];

@@ -1,9 +1,6 @@
 package com.maxmpz.poweramp.player;
 
 
-import org.eclipse.jdt.annotation.NonNull;
-
-
 public final class PaSampleFormat {
 	public static final int PA_SAMPLE_FMT_NONE     = -1;
 

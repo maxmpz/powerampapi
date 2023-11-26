@@ -136,7 +136,6 @@ public class PluginMsgHelper {
 		return toString(ar);
 	}
 
-	@SuppressWarnings("null")
 	private static @NonNull String toString(int @NonNull[] array) {
 		if (array == null) {
 			return "null";

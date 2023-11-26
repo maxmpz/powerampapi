@@ -2,6 +2,7 @@ package com.maxmpz.poweramp.player;
 
 /**
  * @see TableDefs.EqPresets#TYPE
+ * @noinspection InterfaceNeverImplemented
  */
 public interface EqPresetConsts {
 	/** Preset type not set */
