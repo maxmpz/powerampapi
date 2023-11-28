@@ -24,6 +24,8 @@ import com.maxmpz.poweramp.player.PowerampAPI.Track.FileType;
 import com.maxmpz.poweramp.player.PowerampAPI.Track.TagStatus;
 import org.eclipse.jdt.annotation.NonNull;
 
+
+/** @noinspection InterfaceNeverImplemented*/
 public interface TableDefs {
 	/**
 	 * Alias used for category. Useful when query is actually a multi table join
@@ -1982,11 +1984,18 @@ public interface TableDefs {
 	 * Search history for the main (tracks) search
 	 * @since 907 
 	 */
+	// NOTE: avoid table name as these are shared
 	public class SearchHistory {
 		public static final @NonNull String TABLE = "search_history";
 		public static final @NonNull String _ID = TABLE + "._id";
 		public static final @NonNull String TERM = "term";
-		public static final @NonNull String UPDATED_AT = TABLE + ".updated_at";
+		public static final @NonNull String UPDATED_AT = "updated_at";
+	}
+
+	/** Since 978 */
+	public class SettingsSearchHistory extends SearchHistory {
+		public static final @NonNull String TABLE = "settings_search_history";
+		public static final @NonNull String _ID = TABLE + "._id";
 	}
 
 	/**
