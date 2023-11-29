@@ -968,6 +968,14 @@ public final class PowerampAPI {
 
 	/**
 	 * Sent by your app to Poweramp<br>
+	 * Opens and plays given library uri (if provided)<br>
+	 * Should be sent with Context.startActivity
+	 * @since 978
+	 */
+	public static final String ACTION_OPEN_LIST_AND_PLAY = "com.maxmpz.audioplayer.ACTION_OPEN_LIST_AND_PLAY";
+
+	/**
+	 * Sent by your app to Poweramp<br>
 	 * Opens search<br>
 	 * Should be sent with Context.startActivity
 	 */
@@ -1170,6 +1178,8 @@ public final class PowerampAPI {
 	 * STATUS_CHANGED extra<br>
 	 * {@code boolean} - true if track is paused
 	 * @see #ACTION_STATUS_CHANGED
+	 * @see Commands#OPEN_TO_PLAY
+	 * @see ACTION_VIEW
 	 */
 	public static final String EXTRA_PAUSED = "paused";
 
