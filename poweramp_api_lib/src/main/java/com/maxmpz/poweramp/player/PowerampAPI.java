@@ -424,10 +424,12 @@ public final class PowerampAPI {
 		 content://com.maxmpz.audioplayer.data/folders/#/files
 		 content://com.maxmpz.audioplayer.data/folders/#/files/#
 
-		 - Hierarchy folders view (files and folders intermixed in one cursor)
-		 content://com.maxmpz.audioplayer.data/folders/#/folders_and_files
-		 content://com.maxmpz.audioplayer.data/folders/#/folders_and_files/#
-		 content://com.maxmpz.audioplayer.data/folders/files // All folder files, sorted as folders_files sort (for mass ops).
+		 - Hierarchy folders view
+		 content://com.maxmpz.audioplayer.data/folders_hier
+		 _id => 0 is the "root" folder, never contains files)
+		 Root folders:          content://com.maxmpz.audioplayer.data/folders_hier/0/subfolders
+		 Any other sub-folders: content://com.maxmpz.audioplayer.data/folders_hier/#/subfolders
+		 Sub-folder files:      content://com.maxmpz.audioplayer.data/folders_hier/#/files
 
 		 - Genres
 		 content://com.maxmpz.audioplayer.data/genres
