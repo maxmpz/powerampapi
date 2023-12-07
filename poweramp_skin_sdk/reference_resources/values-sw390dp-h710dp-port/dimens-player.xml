@@ -27,11 +27,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMediumButton_size">64dp</dimen>
 	<dimen name="TopSmallButton_size">48dp</dimen>
 	
-	<dimen name="PlainSeekbar_marginBottom">00dp</dimen>
-	<dimen name="PlainSeekbar_common_marginBottom">16dp</dimen>
-	<dimen name="PlainSeekbar_metaInfo_marginBottom">16dp</dimen>
-		
-	
 	<!-- Redmi5+ 392x714 Enough vertical space -->
 	<dimen name="Alt_TopPlay_maxSize">90dp</dimen>
 </resources>

@@ -23,15 +23,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	<style name="PlainSeekbar_TopWaveseekLayout" parent="TopWaveseekLayout">
 		<item name="android:layout_height">@dimen/PlainSeekbar_TopWaveseekLayout_land_height</item><!-- 150dp, depends on TopPlay_maxSize -->
-		<item name="android:layout_marginTop">20dp</item>		
+		<item name="android:layout_marginTop">20dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:paddingBottom">24dp</item>
 	</style>
-
-	<!-- NOTE: meta_info_layout is in the top layout, so it's not in the same container where track_elapsed/track_duration are,
-	     but we want to align meta to be visually inline with the elapsed/duration -->
-	<style name="PlainSeekbar_TopMetaInfoLayout" parent="TopMetaInfoLayout">
-		<item name="android:layout_marginBottom">?PlainSeekbar_metaInfo_marginBottom</item>
-		<item name="layout_attachBottomToBottom">@id/waveseek_layout</item>
-		<item name="layout_attachBottom">@null</item>
-	</style>
-	
 </resources>

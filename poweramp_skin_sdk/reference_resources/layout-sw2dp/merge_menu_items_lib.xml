@@ -23,7 +23,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
-	<com.maxmpz.widget.base.IntentActionButton android:id="@+id/folders"
+	<com.maxmpz.widget.app.IntentActionButton
+		android:id="@+id/folders"
 		style="?PopupMenuItem"
 		android:drawable="?folders_24dp"
 		android:text="@string/select_folders"
@@ -53,7 +54,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		android:text="@string/pref_rescan_folders"
 	/>
-	
+
+	<!-- Hidden by default -->
+	<com.maxmpz.widget.base.BusActionButton android:id="@+id/add_to_home"
+		style="?PopupMenuItem"
+		android:visibility="gone"
+		android:drawable="?add_to_launcher_24dp"
+
+		w:busId="@id/list"
+		w:msgId="@id/cmd_list_add_to_launcher"
+
+		android:text="@string/add_to_launcher"
+		/>
+
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/list_options"
 		style="?PopupMenuItem"
 		android:drawable="?list_options"

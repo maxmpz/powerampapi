@@ -37,6 +37,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		   => scene_item_menu_lu (* generally not, as this is used only for AA main screen items)
 		   => scene_header - can't be transitioned from scene_aa
 		To avoid animation jump, all those scenes should be defined
+		Also:
+ 		   => scene_aa,
+ 		   => scene_aa_playing,
+ 		   => scene_aa_vis
+ 		      - should be applied with GONE, to avoid any layout changes for the cached -> resused as AA item transition
 		
 		NOTE: buttons are invisible in their default style/default scene (e.g. for style ItemHeaderShuffleButton),
 		visible in *_scene_header, and again invisible in *_scene_menu, but optionally positioned differently in *_scene_menu
@@ -51,6 +56,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:scene_5="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 	/>
+	<!-- Ensure we do not alter layout in any way while possible transitioning from header -> aa (happens for chached items) -->
+	<SceneParams w:scene="@id/scene_aa" w:scene_2="@id/scene_aa_playing" w:scene_3="@id/scene_aa_vis"
+		android:visibility="gone"
+		/>
 	<SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
 		w:baseScene="defaultScene"
@@ -80,6 +89,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:scene_5="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 	/>
+	<!-- Ensure we do not alter layout in any way while possible transitioning from header -> aa (happens for chached items) -->
+	<SceneParams w:scene="@id/scene_aa" w:scene_2="@id/scene_aa_playing" w:scene_3="@id/scene_aa_vis"
+		android:visibility="gone"
+		/>
 	<SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
 		w:baseScene="defaultScene"
@@ -109,6 +122,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:scene_5="@+id/scene_1_small"
 		w:baseScene="defaultScene"
 	/>
+	<!-- Ensure we do not alter layout in any way while possible transitioning from header -> aa (happens for chached items) -->
+	<SceneParams w:scene="@id/scene_aa" w:scene_2="@id/scene_aa_playing" w:scene_3="@id/scene_aa_vis"
+		android:visibility="gone"
+		/>
 	<SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
 		w:baseScene="defaultScene"
@@ -140,6 +157,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		w:baseScene="defaultScene"
 		w:applyEvenIfGone="dontApplyIfGone"
 	/>
+	<!-- Ensure we do not alter layout in any way while possible transitioning from header -> aa (happens for chached items) -->
+	<SceneParams w:scene="@id/scene_aa" w:scene_2="@id/scene_aa_playing" w:scene_3="@id/scene_aa_vis"
+		android:visibility="gone"
+		/>
 	<SceneParams w:scene="@+id/scene_1" w:scene_2="@+id/scene_1_zoomed" w:scene_3="@+id/scene_grid_1" w:scene_4="@+id/scene_grid_1_zoomed"
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
 		w:baseScene="defaultScene"
@@ -175,6 +196,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 									w:scene_5="@+id/scene_grid_1_alt" w:scene_6="@+id/scene_grid_1_alt_zoomed"
 		w:baseScene="defaultScene"
 	/>
+	<!-- Ensure we do not alter layout in any way while possible transitioning from header -> aa (happens for chached items) -->
+	<SceneParams w:scene="@id/scene_aa" w:scene_2="@id/scene_aa_playing" w:scene_3="@id/scene_aa_vis"
+		android:visibility="gone"
+	/>
 	<SceneParams w:scene="@+id/scene_1_small_no_aa" w:scene_2="@+id/scene_small_no_aa"
 		w:baseScene="defaultScene"
 	/>
@@ -198,7 +223,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_item_menu" w:scene_2="@+id/scene_item_menu_lu"
 		style="?ItemHeaderScanProgress_scene_item_menu"
 	/>
-	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"   
+	<!-- Ensure we do not alter layout in any way while possible transitioning from header -> aa (happens for chached items) -->
+	<SceneParams w:scene="@id/scene_aa" w:scene_2="@id/scene_aa_playing" w:scene_3="@id/scene_aa_vis"
+		android:visibility="gone"
+		/>
+	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1"
 		style="?ItemHeaderScanProgress_scene_header"
 	/>
 	<!-- NOTE: needed to avoid jump from/to grid scene -->

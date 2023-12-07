@@ -154,6 +154,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="GenericList">
 		<!-- Size of normal item -->
 		<attr name="itemSize"/>
+		<!-- Separator/search item size -->
+		<attr name="separatorSize"/>
+		<!-- Header reserved size, e.g. for the search box -->
+		<attr name="headerSize"/>
 	</declare-styleable>
 		
 	

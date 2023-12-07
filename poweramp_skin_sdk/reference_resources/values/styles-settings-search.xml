@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+	<!-- Search -->
+	<style name="SettingsSearchPanel">
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">48dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:clipToPadding">false</item>
+		<item name="layout_attachTop">parent</item>
+
+		<item name="android:background">@drawable/settings_searchbar_bg</item>
+		<item name="android:visibility">invisible</item>
+		<item name="android:scaleX">1.05</item>
+		<item name="android:scaleY">1.05</item>
+		<item name="android:elevation">0dp</item>
+		<item name="android:outlineProvider">none</item>
+	</style>
+	<style name="SettingsSearchPanel_scene_search">
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">48dp</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:visibility">visible</item>
+		<item name="scale">1</item>
+	</style>
+
+	<style name="SettingsSearchBackButton">
+		<item name="android:drawable">@drawable/abc_ic_ab_back_material</item>
+		<item name="drawableTint">?android:textColorPrimary</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:padding">8dp</item>
+		<item name="layout_attachLeft">parent</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="animOnClick">true</item>
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:gravity">center</item>
+	</style>
+
+	<style name="SettingsSearchCloseButton">
+		<item name="android:drawable">@drawable/settings_close</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:padding">8dp</item>
+		<item name="layout_attachRight">parent</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="animOnClick">true</item>
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:gravity">center</item>
+	</style>
+
+	<style name="SettingsSearchEdit" parent="@style/Widget.AppCompat.EditText">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:background">@null</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:textColorHint">?android:textColorTertiary</item>
+		<item name="android:fontFamily">?android:textAppearanceMediumInverse</item>
+		<item name="android:textSize">19dp</item><!-- NOTE: fixed size as system settings theme has usually fixed header + text sizes -->
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
+		<item name="android:drawablePadding">8dp</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:drawableBottom">@null</item>
+		<item name="android:inputType">text</item>
+		<item name="android:textCursorDrawable">@drawable/text_cursor_material</item><!-- Fixes some Samsungs@12 missing text cursor in some settings themes -->
+		<item name="android:imeOptions">flagNoExtractUi</item>
+	</style>
+
+	<style name="SettingsSearchLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="itemSize">88sp</item>
+		<item name="separatorSize">48sp</item>
+		<!-- Matches search edit text header height -->
+		<item name="headerSize">60dp</item>
+	</style>
+
+	<style name="SettingsSearchContent">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:visibility">invisible</item>
+		<item name="android:background">?android:attr/windowBackground</item>
+	</style>
+
+	<style name="SettingsSearchList">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+	</style>
+
+	<!-- Search item -->
+
+	<style name="SettingsSearchItemView">
+		<item name="android:paddingStart">?android:attr/listPreferredItemPaddingStart</item>
+		<item name="android:paddingEnd">?android:attr/listPreferredItemPaddingEnd</item>
+		<item name="android:background">?android:attr/selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+	</style>
+
+	<style name="SettingsSearchItemImage">
+		<item name="android:layout_width">32dp</item>
+		<item name="android:layout_height">32dp</item>
+		<item name="drawableWidth">32dp</item>
+		<item name="drawableHeight">32dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="drawableOnly">true</item>
+	</style>
+
+	<style name="SettingsSearchItemTexts">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical</item>
+	</style>
+
+	<style name="SettingsSearchItemTitle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceListItem</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="allowZeroHeight">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:singleLine">true</item>
+	</style>
+
+	<style name="SettingsSearchItemLine2">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="allowZeroHeight">true</item>
+	</style>
+
+	<style name="SettingsSearchItemLine3">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:textSize">13sp</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+		<item name="allowZeroHeight">true</item>
+	</style>
+
+
+	<style name="SearchItemEmptyList">
+	</style>
+
+	<!-- Aligned to top so we're under search bar and we're OK in landscape also -->
+	<style name="SearchItemEmptyListText">
+		<item name="android:layout_gravity">center_horizontal|top</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_marginTop">@dimen/SearchItemEmptyListText_marginTop</item>
+		<item name="android:paddingLeft">16dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="android:textAppearance">@style/SearchItemEmptyListText_Text</item>
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+	<style name="SearchItemEmptyListText_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorTertiary</item>
+	</style>
+
+</resources>

@@ -173,6 +173,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="EditText">
 		<attr name="drawableWidth"/>
 		<attr name="drawableHeight"/>
+		<!-- Android 5/5.1 only. Should be duplicated with android:drawableTint for Androids 6+ -->
+		<attr name="drawableTint"/>
 	</declare-styleable>
 	
 	
@@ -469,6 +471,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Number of attributes to show formatted text based on Poweramp state buses -->
 	<!-- NOTE: not used anymore, use BusStatusText instead -->
+	<!-- @Deprecated -->
 	<declare-styleable name="BusStateFormatValue">
 		<attr name="android:id"/>
 		<attr name="busId"/><!-- E.g. @id/list -->
@@ -708,7 +711,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="listItemSize"/>
 
 		<!-- Smaller zoomed out height of list row. ATM applied to MediaRouter list only -->
-		<attr name="smallerListItemSize"/>
+		<attr name="smallerListItemSize" format="dimension"/>
 	</declare-styleable>
 
 	<!-- FastLayout with an animated line background, which animates view resize -->
@@ -744,6 +747,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:gravity"/>
 		<attr name="busId"/>
 		<attr name="msgId"/>
+		<!-- Default true. If true we change background line bounsd and clip unselected stars,
+		     if false - all stars are visible all the time -->
+		<attr name="doClip" format="boolean"/>
+
+		<attr name="transformPivotX_percent"/>
+		<attr name="transformPivotY_percent"/>
 	</declare-styleable>
 	
 	<!-- Special top-level layout for poping-out menus. Poping out views are transformed into menu and attached to this layout for a popup duration --> 
@@ -843,6 +852,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="drawableOff"/>
 		<attr name="lineBackground"/>
 		<attr name="android:gravity"/>
+		<attr name="doClip"/>
+		<attr name="transformPivotX_percent"/>
+		<attr name="transformPivotY_percent"/>
 	</declare-styleable>
 	
 				

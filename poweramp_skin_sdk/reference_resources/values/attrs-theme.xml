@@ -46,6 +46,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorLessContrast" format="color"/>
 	<!-- Color used for the ripple on main playback buttons (v31+), since 964. Needed as ripple is rendered differently on v33 -->
 	<attr name="colorPlaybackRipple" format="color"/>
+	<!-- Color used for the colorLessContrast ripple. Needed as ripple is rendered differently on v33 -->
+	<attr name="colorLessContrastRipple" format="color"/>
 	<!-- Shade colors for popup menus -->
 	<attr name="colorShade" format="color"/>
 	<!-- E.g. menu separator -->
@@ -58,6 +60,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorBgCheckedLight" format="color"/>
 	<!-- Semi-transparent background for text labels -->
 	<attr name="colorTextBgAlpha" format="color"/>
+
+	<!-- Optional positive (OK) dialog button bg color, which is used in ?dialogPositiveButtonBg (by default == ) -->
+	<attr name="colorBgPositive" format="color"/>
 
 	<!-- Usually same as colorPrimary, but for black/#000 it should be #0000 to avoid tinting at all -->
 	<attr name="colorIconPrimary" format="color"/>

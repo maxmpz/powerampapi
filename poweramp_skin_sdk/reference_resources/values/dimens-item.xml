@@ -31,6 +31,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="ItemLike_drawableSize">20dp</dimen>
 	<dimen name="ItemTrackAAImage_scene_item_menu_size">88dp</dimen>
+	<dimen name="ItemTrackAAImage_scene_item_menu_marginTBL">8dp</dimen>
+	<dimen name="ItemTrackAAImage_scene_item_menu_marginR">2dp</dimen>
 	
 	<dimen name="ItemHeaderSelectButton_maxWidth">64dp</dimen><!-- NOTE: overridden for land and sw360dp -->
 	

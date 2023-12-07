@@ -23,8 +23,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<!-- EqFrequencyResponseScroller_marginTop should match EqKnobsLayout_marginTop for visually distributed paddings -->
 	
-	<dimen name="TopActionModeBar_marginBottom">8dp</dimen>
-	<dimen name="EqFrequencyResponseScroller_marginTop">8dp</dimen><!-- NOTE: overriden for peq -->
+	<dimen name="eq_top_margin">8dp</dimen>
+	<dimen name="EqKnobsLayout_paddingBottom">8dp</dimen><!-- NOTE: overriden for peq -->
 		
 	<integer name="PeqEqCompressorCheckButton_gravity">0x51</integer><!-- center_horizontal|bottom = 0x01|0x50 -->
 	<dimen name="PeqEqCompressorCheckButton_marginBottom">2dp</dimen>

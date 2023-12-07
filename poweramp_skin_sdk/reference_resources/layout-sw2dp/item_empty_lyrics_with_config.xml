@@ -22,7 +22,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!--
 	scene_empty_no_button - disabled lyrics app, so no open lyrics app button, nor hint
 -->
-<com.maxmpz.widget.base.ItemSceneFastLayout
+<com.maxmpz.widget.list.ItemSceneFastLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	style="?ItemEmptyList"
@@ -110,4 +110,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:visibility="gone"
 		/>
 
-</com.maxmpz.widget.base.ItemSceneFastLayout>
+</com.maxmpz.widget.list.ItemSceneFastLayout>

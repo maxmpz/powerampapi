@@ -84,5 +84,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopPlay_state_seeking"
 	/>
 	<!-- next_cat -->
-	
+
+	<!-- The anchor view we're using for the (optional) seekbar alignment -->
+	<com.maxmpz.widget.base.InvisibleView android:id="@+id/top_probuttons_separator"
+		style="@style/TopProbuttonsSeparator"
+		/>
 </merge>

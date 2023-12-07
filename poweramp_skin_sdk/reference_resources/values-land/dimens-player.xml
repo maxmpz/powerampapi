@@ -45,13 +45,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopPlay_maxSize">72dp</dimen>
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
 
-	<dimen name="PlainSeekbar_marginTop">16dp</dimen>
+	<dimen name="PlainSeekbar_marginTop">0dp</dimen>
 	<!-- NOTE: base PlainSeekbar_TopWaveseekLayout_land_height is set in main values/dimens-player -->
 
-	<dimen name="PlainSeekbar_common_marginBottom">0dp</dimen>
-	<dimen name="Alt_PlainSeekbar_common_marginBottom">0dp</dimen>
-	<dimen name="PlainSeekbar_metaInfo_marginBottom">3dp</dimen>
-	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">3dp</dimen>
 
 	<dimen name="TopListScrollerView_marginTop">32dp</dimen>
 	<dimen name="TopListScrollerView_marginBottom">88dp</dimen>

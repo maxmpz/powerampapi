@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android" 
-	android:color="?colorLessContrast">
+	android:color="?colorLessContrastRipple">
 	<item android:top="10dp" android:bottom="10dp">
 		<selector>
 			<!-- NOTE: single shape with color selector fails on lower Androids -->

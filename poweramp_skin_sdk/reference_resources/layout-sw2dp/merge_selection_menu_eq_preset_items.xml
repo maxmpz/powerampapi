@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<com.maxmpz.widget.base.BusStateEnabledActionButton
 		style="?SelectionListContextButton33"
-		android:drawable="@drawable/edit_stroke_24dp"
+		android:drawable="?edit_stroke_24dp"
 		android:text="@string/rename"
 
 		w:msgId="@id/cmd_list_rename_dialog"

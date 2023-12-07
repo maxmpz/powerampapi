@@ -31,31 +31,33 @@
 			overlapAttr="@attr/overlap_OptionRatingStarsMenu"
 			/>
 
-		<multiSwitch
+		<radio
 			key="alt_layout"
 			name="@string/layout"
 			>
 			<option
 				name="@string/_default"
+				summary="@string/skin_summary_default"
+				icon="@drawable/default_layout"
 				overlapAttr=""
 				/>
 			<option
 				name="@string/skin_alt_layout"
+				summary="@string/skin_summary_alt_layout"
+				icon="@drawable/alt_layout"
 				overlapAttr="@attr/overlap_alt_layout"
 				/>
 			<option
 				name="@string/skin_alt_layout2"
+				summary="@string/skin_summary_alt_layout2"
+				icon="@drawable/alt2_layout"
 				overlapAttr="@attr/overlap_alt_layout2"
 				/>
-		</multiSwitch>
+		</radio>
 
 		<msg
 			align="top"
-			line1="@string/skin_alt_layout"
-			smallLine1="@string/skin_summary_alt_layout"
-			line2="@string/skin_alt_layout2"
-			smallLine2="@string/skin_summary_alt_layout2"
-			line3="@string/skin_more_player_ui_opts_avail"
+			line1="@string/skin_more_player_ui_opts_avail"
 			/>
 
 		<multiSwitch
@@ -75,6 +77,8 @@
 
 		<msg
 			align="top"
+			icon="@drawable/centered_layout"
+			iconAlign="top"
 			line1="@string/centered"
 			smallLine1="@string/applied_for_alt_full"
 			/>
@@ -302,31 +306,33 @@
 			overlapAttr="@attr/overlap_OptionRatingStarsMenu"
 			/>
 
-		<multiSwitch
+		<radio
 			key="alt_layout"
 			name="@string/layout"
 			>
 			<option
 				name="@string/_default"
+				summary="@string/skin_summary_default"
+				icon="@drawable/default_layout"
 				overlapAttr=""
 				/>
 			<option
 				name="@string/skin_alt_layout"
+				summary="@string/skin_summary_alt_layout"
+				icon="@drawable/alt_layout"
 				overlapAttr="@attr/overlap_alt_layout"
 				/>
 			<option
 				name="@string/skin_alt_layout2"
+				summary="@string/skin_summary_alt_layout2"
+				icon="@drawable/alt2_layout"
 				overlapAttr="@attr/overlap_alt_layout2"
 				/>
-		</multiSwitch>
+		</radio>
 
 		<msg
 			align="top"
-			line1="@string/skin_alt_layout"
-			smallLine1="@string/skin_summary_alt_layout"
-			line2="@string/skin_alt_layout2"
-			smallLine2="@string/skin_summary_alt_layout2"
-			line3="@string/skin_more_player_ui_opts_avail"
+			line1="@string/skin_more_player_ui_opts_avail"
 			/>
 
 		<multiSwitch
@@ -346,6 +352,8 @@
 
 		<msg
 			align="top"
+			iconAlign="top"
+			icon="@drawable/centered_layout"
 			line1="@string/centered"
 			smallLine1="@string/applied_for_alt_full"
 			/>

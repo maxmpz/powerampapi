@@ -27,9 +27,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: attributes from TopNavBehavior are applied here, as TopContainer uses TopNavBehavior internally -->
 		
 		<!-- Applied for top views animation between lib, eq, search. Not applied to in-list transition.
-		  By default is 0 for fast nav changes.
+		  Should be small for the fast nav changes.
 		  See also animMainExitTime which is used for anims between main and other screens --> 
-		<item name="animTime">0</item>
+		<item name="animTime">150</item>
 	
 		<!-- Applied for search panel, when going to/from deep search results -->
 		<item name="forcedAnimTime">250</item>
@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="animMainEnterTime">500</item>
 
 		<!-- Applied for nav animation from AA to other screens. Not applied to in-list transition -->
-		<item name="animMainExitTime">0</item>
+		<item name="animMainExitTime">250</item>
 		
 		<item name="stateAnimTime">250</item>
 		
@@ -63,6 +63,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="aaBlurUpdateAnimTime">50</item>
 		<item name="aaBlurLongerUpdateAnimTime">250</item>
 		<item name="aaBlurNoAAToAAAnimTime">200</item>
+		<item name="aaLockDurationMs">90</item>
 		
 		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine and consinstent around it.
 		     Bassically we need to offset inset by our navbar bottom margin (normal margin, not overlap_navbar_offset).   
@@ -148,7 +149,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="maxFontScaleForCompact">1.3</item>
 
-		<item name="separatorSize">32dp</item>
+		<item name="separatorSize">@dimen/List_separatorSize</item>
 		<item name="searchHistoryItemSize">@dimen/searchHistoryItemSize</item>
 		
 		<!-- This is minumum space on the bottom AA layout tries to maintain. Usually in portrait orientation there is enough space for other controls, but
@@ -184,8 +185,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="pageAnimTime">250</item><!-- NOTE: also see styles-navbar.xml => twoLineEnterAnimTime, which should be synced with this -->
 		<item name="aaToTopLibAnimTime">250</item>
 		<item name="topLibToAAAnimTime">250</item>
-		<item name="libSearchAnimTime">0</item>
-		<item name="aaToSearchAnimTime">0</item>
+		<item name="libSearchAnimTime">150</item>
+		<item name="aaToSearchAnimTime">150</item>
 		<item name="searchToAAAnimTime">250</item>
 
 		<item name="aaToLyricsAnimTime">250</item>
@@ -666,9 +667,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">@dimen/TopTrackElapsedMoreButtons_marginBottom</item>
 		<item name="android:layout_marginRight">12dp</item>
 		<item name="scale">1</item>
-	</style>		
-	
-					
+	</style>
+
+	<!-- This goes below play_pause_behind (which is "static" and doesn't move with play/pause scenes and consumes
+	     space so we can vertically align stuff beyond it. This is used for plain seekbar -->
+	<style name="TopProbuttonsSeparator">
+		<item name="layout_attachTop">@+id/play_pause_behind</item>
+		<item name="layout_consumeSpace">vertical|size</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<!-- The negative margin here needed to compensate bottom margin for play_pause_behind which shifts it up -->
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">0px</item>
+	</style>
+
+
 	<style name="TopSubAAButtons">
 		<item name="android:id">@+id/sub_aa_buttons</item>
 		<item name="privateScene">true</item>
@@ -747,7 +760,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">@dimen/TopActionModeBar_marginTop</item><!-- Increased for longer screens -->
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginBottom">@dimen/TopActionModeBar_marginBottom</item><!-- Increased for longer screens -->
+		<!-- NOTE: TopActionModeBar_marginBottom now moved to the children, so they can set e.g. padding instead -->
+		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:elevation">?bar_elevation</item>
 		<item name="android:background">@drawable/navbar_bg</item>
 		<item name="android:padding">2dp</item>
@@ -776,6 +790,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:clipChildren">false</item>
 		<item name="android:visibility">gone</item>
+		<item name="android:scaleX">0.9</item>
+		<item name="android:scaleY">0.9</item>
+	</style>
+	<!-- NOTE: visibility is forced on this scene anyway -->
+	<style name="TopSearchLayout_scene_search">
+		<item name="android:visibility">visible</item>
+		<item name="scale">1</item>
+	</style>
+	<style name="TopSearchLayout_scenes_gone">
+		<item name="android:visibility">gone</item>
+		<item name="scale">.9</item>
 	</style>
 	
 	<style name="TopSearchPanel">
@@ -813,10 +838,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:padding">12dp</item>
 		
 		<item name="android:background">@null</item>
-		<!-- NOTE: tint here is not supported until 6.0, thus, using separate tinted drawable -->
-		<item name="android:drawableLeft">@drawable/search_tinted</item>
-		<!-- <item name="android:drawableTint">?colorIconPrimary</item> -->
-		<!-- <item name="drawableTint">?colorIconPrimary</item> -->
+		<!-- NOTE: drawable tint here is not supported until 6.0, and the separate tinted bitmap drawable doesn't work
+		     with vector drawables. Poweramp EditText variant supports custom "drawableTint" for that on Android 5/5.1,
+		     but we must to duplicate that with android:drawableTint for Android 6+ -->
+		<item name="android:drawableLeft">?search_24dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:drawableTint" tools:targetApi="m">?colorIconPrimary</item>
+
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:textColorHint">?android:textColorTertiary</item>
 		<item name="drawableWidth">24dp</item>
@@ -1054,7 +1082,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="popupListStyle">@style/PopupListLayoutList</item>
 
-		<item name="separatorSize">32dp</item><!-- Used for list separators, if any -->
+		<item name="separatorSize">@dimen/List_separatorSize</item><!-- Used for list separators, if any -->
 	</style>
 	
 	
@@ -1253,11 +1281,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxWidth">300dp</item>
 		<item name="android:paddingLeft">10dp</item>
 		<item name="android:paddingRight">10dp</item>
-		<item name="android:paddingTop">@dimen/TopMetaInfoLabel_paddingTopBottom</item><!-- 3dp -->
+		<item name="android:paddingTop">@dimen/TopMetaInfoLabel_paddingTopBottom</item><!-- 2-3dp -->
 		<item name="android:paddingBottom">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
 		<item name="android:maxLines">1</item>
 		<item name="android:ellipsize">end</item>
-		<item name="drawableWidth">@dimen/TopMetaInfoLabel_drawableSize</item><!-- 12dp -->
+		<item name="drawableWidth">@dimen/TopMetaInfoLabel_drawableSize</item><!-- 10-12dp -->
 		<item name="drawableHeight">@dimen/TopMetaInfoLabel_drawableSize</item>
 		<item name="drawablePaddingStart">8dp</item>
 		<!-- 8 dr -6 10 (no text) 10 => compensate -6dp to get 8dp padding to the right of drawable when no text -->

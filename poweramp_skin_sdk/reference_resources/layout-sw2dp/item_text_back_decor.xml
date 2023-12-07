@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <com.maxmpz.widget.player.list.BackDecorItemView 
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
-	
+
 	android:id="@+id/item_back_decor"
 	style="?ItemTextBackDecor"
 >

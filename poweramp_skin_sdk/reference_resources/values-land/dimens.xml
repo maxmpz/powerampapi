@@ -21,5 +21,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values/ -->
 <resources>
-	<dimen name="SearchItemEmptyListText_marginTop">32dp</dimen>
+	<dimen name="SearchItemEmptyListText_marginTop">52dp</dimen>
 </resources>

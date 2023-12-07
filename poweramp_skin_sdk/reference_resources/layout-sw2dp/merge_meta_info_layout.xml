@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	>
+
+	<!-- NOTE: extra container is needed for the proper animations during top scene running - e.g. vis_mode => touch => scene to temp vis ui + label change relayout -->
+	<com.maxmpz.widget.base.PrivateNonSceneFastLayout android:id="@+id/meta_info_layout"
+		style="?TopMetaInfoLayout"
+		>
+		<com.maxmpz.widget.base.BusActionPopupLayout android:id="@+id/meta_info"
+			style="?TopMetaInfo"
+			w:menuItemsLayout="@layout/merge_dsp_info_popup_layout"
+			w:busId="@id/bus_player_cmd"
+			w:msgId="@id/cmd_player_switch_track_meta"
+			w:firstPressToast="@string/long_press_for_more_options"
+			android:importantForAccessibility="no"
+			>
+			<!-- NOTE: avoid anything except visibility in scene_button_menu to avoid returning to a wrong size -->
+			<!-- NOTE: msg_player_repeat_mode_changed is needed as it can change next track meta info -->
+			<com.maxmpz.widget.player.BusStatusText android:id="@id/_label"
+				style="?TopMetaInfoLabel"
+				w:stateBusId="@id/bus_player"
+				w:labelStateId="@id/state_player_track_meta"
+				w:iconStateId="@id/state_player_track_meta_icon"
+				w:updateMsgId="@id/msg_player_track_changed"
+				w:updateMsgId_2="@id/msg_pipeline_started"
+				w:updateMsgId_3="@id/msg_player_track_meta_switched"
+				w:updateMsgId_4="@id/msg_player_repeat_mode_changed"
+				w:updateMsgId_5="@id/msg_player_output_meta_changed"
+				w:updateMsgId_6="@id/msg_player_np_ended"
+				w:noUpdateInScene="@id/scene_button_menu"
+				/>
+			<SceneParams w:scene="@+id/scene_button_menu"
+				android:visibility="gone"
+				/>
+			<SceneParams w:scene="@+id/scene_button_menu_closed"
+				android:visibility="visible"
+				/>
+		</com.maxmpz.widget.base.BusActionPopupLayout>
+		<SceneParams w:scene="@+id/scene_button_menu"
+			style="?TopMetaInfo_scene_item_menu"
+			/>
+	</com.maxmpz.widget.base.PrivateNonSceneFastLayout>
+		<!-- NOTE: alpha is overridden by user preference
+		     NOTE: recalcChildren/defaultScene is needed here as BusStatusText can be updated at any time, even during running scene -->
+	<SceneParams w:scene="defaultScene"
+	w:recalcChildren="dynamic"
+	w:baseScene="defaultScene"
+		/>
+	<SceneParams w:scene="@id/scene_lyrics"
+	w:recalcChildren="dynamic"
+	w:baseScene="defaultScene"
+		/>
+	<SceneParams w:scene="@+id/scene_vis_w_ui"
+	style="?TopMetaInfoLayout_scenes_playing"
+		/>
+	<SceneParams w:scene="@+id/scene_playing" w:scene_2="@+id/scene_vis" w:scene_3="@id/scene_vis_temp_ui"
+	style="?TopMetaInfoLayout_scenes_playing"
+	w:recalcChildren="dynamic"
+		/>
+		<!-- NOTE: on_start here important for the proper render during the transition to lists, etc. and update -->
+	<SceneParams w:scene="@+id/scene_eq" w:scene_2="@+id/scene_search" w:scene_3="@+id/scene_vis" w:scene_4="@+id/scene_lib"
+	style="?TopMetaInfoLayout_scenes_invisible"
+	w:recalcChildren="on_start"
+		/>
+	<StateAnimParams w:stateAnim="@id/anim_seeking"
+	style="?TopMetaInfoLayout_anim_seeking"
+		/>
+		<!-- meta_info_layout -->
+</merge>

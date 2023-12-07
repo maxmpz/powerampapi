@@ -145,8 +145,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="PlainSeekbar_buttons_offset">@dimen/Alt_PlainSeekbar_buttons_offset</item>
 		<item name="PlainSeekbar_marginBottom">@dimen/Alt_PlainSeekbar_marginBottom</item>
-		<item name="PlainSeekbar_metaInfo_marginBottom">@dimen/Alt_PlainSeekbar_metaInfo_marginBottom</item>
-		<item name="PlainSeekbar_common_marginBottom">@dimen/Alt_PlainSeekbar_common_marginBottom</item>
 	</style>
 
 	<style name="ActivityTheme_Black_AltLayout" parent="ActivityTheme_Whitepro_AltLayout">
@@ -250,23 +248,37 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- NOTE: special alignment for alternative layout scene_aa (build-913+)
 	     Applied only if we have enough vertical space (this is defined by the appropriate dimen + port layout)
+         NOTE: this layout applied only in values-*-h550dp-port where we have enough room:
 
 	     +==========+
 		 |          |
 		 |    AA    | <- AA "consumes" vertical space
          |          |
          +==========+ <- bottom of AA
-         title
-		 ........     < 50% between bottom of AA and bottom of ItemTrackView
-         line2
+         ...
+         title       +
+                     | <- vertically aligned as a group in the center using layout_gravityGroup=0
+         line2       +
+         ...
 		 ~~~~~~~~~~~~ <- bottom of ItemTrack view
 
-        - this is applied only in values-*-h550dp-port where we have enough room
+
         - AA "consumes" vertical space
         - thus setting layout_attachBottom=50% for title and layout_attachTop=50% for line2
           puts title just over middle of the remaining space, and line 2 just after middle of the remanining space
         - the total space below AA is defined by aaPaddingBottom (set for Alt_ListSubstyle_Base and Alt_TopAABounds)
           This space should be always enough to fit title + line2 + paddings even for the largest font size possible
+
+          The layout for smaller screens (as styles defines below):
+	     +==========+
+		 |          |
+		 |    AA    | <- AA "consumes" vertical space
+         |          |
+         +==========+ <- bottom of AA
+         title        <- attached to line2
+         line2        <- attached to bottom
+		 ~~~~~~~~~~~~ <- bottom of ItemTrack view
+
 	-->
 	<style name="Base_Alt_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
 		<item name="android:layout_width">wrap_content</item>
@@ -287,13 +299,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="lineBackground">?alt_title_bg</item>
 
 		<item name="android:visibility">visible</item>
-		
+
 		<item name="scale">?Alt_ItemTrackTitle_scene_aa_scale</item><!-- .85 or 1 -->
 		<item name="layout_compensateScale">?Alt_ItemTrackTitle_scene_aa_scale</item>
 	</style>
 	<style name="Alt_ItemTrackTitle_scene_aa" parent="Base_Alt_ItemTrackTitle_scene_aa">
 		<!-- Overridden in sw2dp-h550dp-port -->
 	</style>
+	<!-- Overridden in sw2dp-h550dp-port -->
 	<style name="Alt_TrackLabelsCentered_ItemTrackTitle_scene_aa" parent="Alt_ItemTrackTitle_scene_aa">
 		<item name="layout_attachLeft">@null</item>
 		<item name="layout_attachRight">@null</item>
@@ -314,7 +327,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">?Alt_track_labels_scene_aa_margin</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginTop">0.5dp</item>
-		
+
 		<item name="android:textColor">?colorAltTitle</item>
 		<item name="lineBackground">?alt_title_bg</item>
 
@@ -324,6 +337,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="Alt_ItemTrackLine2_scene_aa" parent="Base_Alt_ItemTrackLine2_scene_aa">
 		<!-- Overridden in sw2dp-h550dp-port and values-land -->
 	</style>
+	<!-- Overridden in sw2dp-h550dp-port -->
 	<style name="Alt_TrackLabelsCentered_ItemTrackLine2_scene_aa" parent="Alt_ItemTrackLine2_scene_aa">
 		<item name="layout_attachLeft">@null</item>
 		<item name="layout_attachRight">@null</item>

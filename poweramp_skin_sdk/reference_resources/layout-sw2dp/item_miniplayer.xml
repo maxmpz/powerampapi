@@ -38,7 +38,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemMiniplayerLine2"
 		android:importantForAccessibility="yes"
 	/>
-	
+
+	<!-- NOTE: sets disableClickHandler=true in the code -->
 	<com.maxmpz.widget.player.PlayPauseButton android:id="@+id/button"
 		style="?ItemMiniplayerPlayButton" 
 		android:importantForAccessibility="yes"

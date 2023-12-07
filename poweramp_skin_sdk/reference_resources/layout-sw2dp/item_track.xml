@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -20,23 +20,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!--
-	Main Poweramp lists item, represents:
-	- tracks
-	- categories, including folders
-	- various scenes for the abov: popup menu, header, zoom levels, selection, etc.
+	Main Poweramp list item, which represents:
+	- track
+	- any category with album art, including folders
+	- various scenes: popup menu, header, zoom levels, selection, etc.
 	
-	For top level library items/headers, see @layout/item_text
+	For the top level library items/headers, see @layout/item_text
 	For the extra views loaded into scenes, see:
 	- @layout/merge_item_aa_and_header
 	- @layout/merge_item_header
 	- @layout/merge_item_popup_menu
 
-	NOTE: clipChildren=false is needed for some devices, which fail to apply RenderNode transformations to clip area (e.g. Huaweis)
-	NOTE: AAItemView is (Scene)FastLayout
-	NOTE: default scene is "list"
-	NOTE: merge_item_header (and other dependend layouts) should be updated as well for menu/header layouts
-	NOTE: *select scenes are required to have all the proper layout and properties, as any item can be retrieved from viewpool in any previous scene state
-		  and should be moved to *select scene properly
+	NOTE: clipChildren=false is needed for some devices, which fail to apply RenderNode transformations to the clip area (e.g. Huaweis)
+	NOTE: AAItemView is a (Scene)FastLayout
+	NOTE: default scene is a "list" scene
+	NOTE: merge_item_header (and other included/loaded layouts) should be updated as well for menu/header layouts
+	NOTE: scenes are required to have all the proper layouts and properties, as any item can be retrieved from the viewpool
+	      in any scene state and item can be moved to any other scene
 	
 	Base scenes:
 	- default list == 0       (_tag_scene_zero/defaultScene depending on context) 
@@ -115,8 +115,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_grid_1_alt_zoomed"
 		style="?ItemTrackPlayingMark_scene_grid_1_alt_zoomed"
 	/>
-	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1" w:scene_3="@+id/scene_aa" w:scene_4="@+id/scene_aa_vis" w:scene_5="@+id/scene_aa_playing"
-		w:scene_6="@+id/scene_bottom_toolbar"
+	<SceneParams w:scene="@+id/scene_header" w:scene_2="@+id/scene_header_1" w:scene_3="@+id/scene_aa" w:scene_4="@+id/scene_aa_vis"
+		w:scene_5="@+id/scene_aa_playing" w:scene_6="@+id/scene_bottom_toolbar"
 		style="?ItemTrackPlayingMark_scenes_hidden"
 	/>
 	<SceneParams w:scene="@+id/scene_lyrics"
@@ -507,18 +507,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- drag_handler -->
 	<!-- NOTE: drag handler is force-hidden and will not appear when list doesn't support dragging -->
-	<com.maxmpz.widget.base.DragHandler android:id="@+id/drag_handler"
+	<com.maxmpz.widget.list.DragHandler
+		android:id="@+id/drag_handler"
 		style="?ItemTrackDragHandler"
 	/>
-	<SceneParams w:scene="defaultScene" w:scene_2="@id/scene_zoomed" w:scene_3="@id/scene_1" w:scene_4="@id/scene_1_zoomed" 
-		w:scene_5="@+id/scene_small" w:scene_6="@+id/scene_1_small"
-		style="?ItemTrackDragHandler" 
+	<!-- NOTE: IMPORTANT: defining defaultScene right here to avoid auto-default-scene creation with the default visibility - needed as we operate this view
+	     visibility completely from code -->
+	<SceneParams w:scene="defaultScene" w:scene_2="@id/scene_zoomed" w:scene_3="@id/scene_1" w:scene_4="@id/scene_1_zoomed"
+		style="?ItemTrackDragHandler"
 	/>
-	<SceneParams w:scene="@id/scene_grid" w:scene_2="@id/scene_grid_zoomed" w:scene_3="@id/scene_grid_1" w:scene_4="@id/scene_grid_1_zoomed"
-					w:scene_5="@id/scene_grid_1_alt" w:scene_6="@id/scene_grid_1_alt_zoomed"
+	<SceneParams w:scene="@+id/scene_small" w:scene_2="@+id/scene_1_small"
+		style="?ItemTrackDragHandler_scene_small"
+		/>
+	<SceneParams w:scene="@id/scene_grid" w:scene_2="@id/scene_grid_1" w:scene_3="@id/scene_grid_1_alt"
 		style="?ItemTrackDragHandler_scene_grid" 
 	/>
-	<SceneParams w:scene="@id/scene_small_no_aa" w:scene_2="@id/scene_1_small_no_aa"  
+	<SceneParams w:scene="@id/scene_grid_zoomed" w:scene_2="@id/scene_grid_1_zoomed" w:scene_3="@id/scene_grid_1_alt_zoomed"
+		style="?ItemTrackDragHandler_scene_grid_zoomed"
+		/>
+	<SceneParams w:scene="@id/scene_small_no_aa" w:scene_2="@id/scene_1_small_no_aa"
 		style="?ItemTrackDragHandler_scene_small_no_aa" 
 	/>
 	<!-- drag_handler -->

@@ -6,15 +6,14 @@
 <!-- NOTE: this has 2 variants - up to Android 8 (drawable-sw2dp), and Android 8+ (drawable-sw2dp-v26).
      Default is with focus drawable, for Android 8+, no focus drawable, as default focus drawable is used instead
 -->
-
-<level-list xmlns:android="http://schemas.android.com/apk/res/android"
-	android:exitFadeDuration="200">
+<!-- NOTE: *FadeDuration attributes are not supported for level-list. The fade animation duration is set via code -->
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<!-- Set when item needs background as it can overlap other items, e.g. when it's dragged -->
 	<item android:minLevel="@integer/ITEM_BG_LEVEL_INTERMEDIATE" android:maxLevel="@integer/ITEM_BG_LEVEL_INTERMEDIATE">
 		<shape>
 			<corners android:radius="?corners_medium"/>
-			<solid android:color="?colorAABgColor"/><!-- Match activity background -->
+			<solid android:color="?colorDraggedBg"/><!-- Match activity background -->
 		</shape>
 	</item>
 	

@@ -44,8 +44,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="settings_peq_logo" format="reference"/>
 	<attr name="settings_milk_preset_uri" format="string"/>
 	
-	<!-- NOTE: used by indented skin preferences. Should be in settings theme -->
-	<attr name="preferenceIndentPadding" format="dimension"/>	
+	<attr name="preferenceIndentPadding" format="dimension"/>
+	<attr name="skinPreferenceIndentPadding" format="dimension"/>
 	
 	<attr name="TreeViewList" format="reference"/>
 	
@@ -171,6 +171,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="summary2"/>
 		<attr name="sup"/>
 		<attr name="supLink"/>
+		<attr name="tag" format="string"/>
+		<attr name="tagLink" format="string"/>
 		<attr name="android:textColorPrimary"/><!-- Taken from theme -->
 		<!-- Small inline icon -->
 		<attr name="smallIcon" format="reference"/>
@@ -228,7 +230,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:textColorPrimary"/><!-- Taken from theme -->
 		<attr name="android:gravity"/>
 		<attr name="android:background"/>
-		
+
 	</declare-styleable>	
 	
 	<declare-styleable name="EditTextPreference">
@@ -279,6 +281,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="entries"/>
 		<attr name="values"/>
 		<attr name="summaries"/>
+		<attr name="booleanType" format="boolean"/>
 		<attr name="icons" format="reference"/>
 		<attr name="disableDependenciesValue"/>
 	</declare-styleable>

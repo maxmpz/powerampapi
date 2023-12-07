@@ -23,12 +23,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Base -->
 	
 	<dimen name="TopActionModeBar_marginTop">4dp</dimen>
-	<!-- TopActionModeBar_marginBottom+EqKnobsLayout_marginTop should match EqFrequencyResponseScroller_marginTop  -->
-	<dimen name="TopActionModeBar_marginBottom">4dp</dimen>
+	<!-- eq_top_margin+EqKnobsLayout_marginTop should match EqFrequencyResponseScroller_marginTop  -->
+	<dimen name="TopActionModeBar_marginBottom">@dimen/eq_top_margin</dimen>
+	<dimen name="eq_top_margin">4dp</dimen>
 	<dimen name="EqKnobsLayout_marginTop">0dp</dimen><!-- NOTE: overridden for Peq -->
 
 	<!-- NOTE: overridden by peq dimens-eq.xml -->
-	<dimen name="EqFrequencyResponseScroller_marginTop">4dp</dimen>
+	<dimen name="EqFrequencyResponseScroller_marginTop">@dimen/EqKnobsLayout_paddingBottom</dimen>
+	<dimen name="EqKnobsLayout_paddingBottom">4dp</dimen>
 	
 	<dimen name="TopPeqEqLayoutBase_scenes_vis_marginTop">56dp</dimen>
 	
@@ -85,15 +87,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqParamGainLinearKnob_layout_marginLeft">14dp</dimen>
 	
 	<dimen name="EqButton_maxWidth">70dp</dimen>
+	<dimen name="EqReverbPresetButtonLayout_maxWidth">90dp</dimen>
 	<dimen name="EqButton_marginSide">4dp</dimen>
 	<dimen name="EqButton_textSize">11dp</dimen><!-- Default (fixed) font -->
 	
-	<dimen name="EqEquButton_maxWidth">70dp</dimen>
+	<dimen name="EqEquButton_maxWidth">75dp</dimen>
 
 	<fraction name="EqTonePanel_widthPercent">15%</fraction><!-- Used for land only, reduced for the longer phones -->
 	
 	<dimen name="EqTonePanel_paddingTop">12dp</dimen>
-	<dimen name="EqTonePanel_paddingBottom">0dp</dimen>
+	<dimen name="EqTonePanel_paddingBottom_none">0dp</dimen>
+	<dimen name="EqTonePanel_paddingBottom">8dp</dimen><!-- Needed at least 8dp when knob arc highlight is disabled (white + shadow) -->
 	<!-- This is increased for Peq + longer screens -->
 	<dimen name="Peq_EqTonePanel_paddingTop">14dp</dimen>
 	<dimen name="Peq_EqTonePanel_paddingBottom">2dp</dimen>
@@ -122,7 +126,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqKnob_spacing">4dp</dimen>
 	<dimen name="EqReverbPanel3_paddingTop">8dp</dimen><!-- == EqKnob_spacing*2 --> 
 	
-	<dimen name="EqPresetButtonLayout_width">80dp</dimen><!-- land only -->
+	<dimen name="EqPresetButtonLayout_width">120dp</dimen>
 
 	<!-- NOTE: includes labels, some paddings -->
 	<dimen name="EqSmallRoundKnobLayout_maxSize">120dp</dimen>
@@ -156,17 +160,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Overridden for longer screens (reduced), and increased here for smaller screens -->
 	<fraction name="EqEquPresetButtonLayout_scene_button_menu_heightPercent">70%</fraction>
 
-
-	<fraction name="left_buttons_width">20%</fraction>
+	<fraction name="eq_left_buttons_width">20%</fraction>
 	<fraction name="tone_panel_width">75%</fraction>
 
 	<dimen name="TopPeqEqLayoutBase_paddingBottom">8dp</dimen>
-
-	<!-- @Deprecated -->
-	<dimen name="EqTonePanel_offsetLeft">16dp</dimen>
-	<!-- @Deprecated -->
-	<dimen name="EqTonePanel_marginTop">12dp</dimen>
-	<!-- @Deprecated -->
-	<dimen name="EqToneRoundKnobLabel_marginRight">-1dp</dimen>
-
 </resources>

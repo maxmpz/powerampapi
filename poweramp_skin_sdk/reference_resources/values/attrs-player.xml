@@ -163,6 +163,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="lock_solid_24dp" format="reference"/>
 	<attr name="lock_unlock_24dp" format="reference"/>
 	<attr name="close_24dp" format="reference"/>
+	<attr name="add_to_launcher_24dp" format="reference"/>
 
 	<!-- This may visually match settings_24dp, but may also have a higher resolution for xhdpi-large.
 	     settings_24dp should not grow over 24dp as it used with implicit size in many places -->
@@ -204,6 +205,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="list_drag_24dp" format="reference"/>
 	<attr name="list_drag_hor_24dp" format="reference"/>
+	<attr name="grid_drag_24dp" format="reference"/>
+
+	<attr name="edit_stroke_24dp" format="reference"/>
 
 
 	<attr name="defaultLowResAA" format="reference"/><!-- Default AA image. Strictly 512x512 bitmap -->
@@ -404,6 +408,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Extra optional layout to include into TopContainer (e.g. counter, but can be anything skin wants) -->
 	<attr name="TopContainer_extraLayout" format="reference"/>
 
+	<!-- Optional meta_info_layout layout. This is the default position used for most themes, though theme can disable
+	     this one by using TopContainer_metaLayout=>@null and including metaLayout into e.g. TopWaveseekLayout -->
+	<attr name="TopContainer_metaLayout" format="reference"/>
+
 	<!-- Optional layout to include into ItemLikeUnlikeLayout, when item is AA scene (or going to AA scene) --> 
 	<attr name="ItemLikeUnlikeLayout_layout" format="reference"/>
 	
@@ -419,11 +427,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<!-- This depends on theme opts, e.g. this may be different for Alt + PlainSeekbar vs just PlainSeekbar -->
 	<attr name="PlainSeekbar_buttons_offset" format="dimension"/>
-	<!-- This depends on theme opts, e.g. this may be different for Alt + PlainSeekbar vs just PlainSeekbar -->
-	<attr name="PlainSeekbar_common_marginBottom" format="dimension"/>
-	<!-- This depends on theme opts, e.g. this may be different for Alt + PlainSeekbar vs just PlainSeekbar -->
-	<attr name="PlainSeekbar_marginBottom" format="dimension"/>
-	<attr name="PlainSeekbar_metaInfo_marginBottom" format="dimension"/>
 
 	<!-- Used to override Title and Line2 background in alt mode, when we may need to have different colors vs non-alt mode -->
 	<attr name="ItemTrack_labels_scene_grid_lineBackground" format="color|reference"/>
@@ -748,7 +751,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:src"/>
 
 		<attr name="drawableTintColor" format="color"/><!-- NOTE: state lists not supported -->
-		<attr name="drawableTintMode"/>
+		<attr name="drawableTintMode2"/>
 	</declare-styleable>
 	
 	<!-- Scene params for AAImageView -->

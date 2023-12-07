@@ -45,7 +45,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:elevation">?navbar_elevation</item>
 		<item name="android:background">@drawable/navbar_bg</item>
 	</style>
-	<!-- NOTE: overridden in values-sw2dp-v29 -->
+	<!-- NOTE: overridden in values-sw2dp-land-v29 -->
 	<style name="Navbar" parent="Base_Navbar">
 	</style>
 	<style name="Base_Navbar_scene_navbar_1line_sheet">

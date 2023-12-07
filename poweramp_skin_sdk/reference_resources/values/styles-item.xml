@@ -72,9 +72,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachBottomToBottom">@id/meta</item>
 		<item name="layout_consumeSpace">vertical|reset_horizontal</item>
 		<item name="android:paddingBottom">0dp</item>
+		<!-- NOTE: should match ItemTrackAAImage_scene_item_menu -->
 		<item name="layout_minHeight">@dimen/ItemTrackAAImage_scene_item_menu_size</item>
-
-		<item name="android:layout_marginTop">8dp</item>
+		<!-- NOTE: should match ItemTrackAAImage_scene_item_menu -->
+		<item name="android:layout_marginTop">@dimen/ItemTrackAAImage_scene_item_menu_marginTBL</item>
 		<!-- NOTE: do not put marginBottom here as it will offset us to the top from meta/rating bottom -->
 	</style>
 	<style name="ItemPopupMenuTopSpacer_scene_item_menu_lu" parent="ItemPopupMenuTopSpacer">
@@ -93,7 +94,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_unlimitedMeasure">true</item>
 		<!-- This defines bottom margin for AA. As spacer can't set bottom margin due to the bottomToBottom attachment (which should match exactly w/o margins),
 		     we apply that margin here -->
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginTop">@dimen/ItemTrackAAImage_scene_item_menu_marginTBL</item>
 	</style>
 	
 	<style name="ItemTextPopupMenuItemsLayout">
@@ -147,7 +148,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:indeterminate">true</item>
 		<item name="android:visibility">invisible</item>
 	</style>
-	<style name="ItemEmptyListScanProgressCenter">
+	<!-- NOTE: explicit parent required for initialization via code. See NullLayoutEngine -->
+	<style name="ItemEmptyListScanProgressCenter" parent="@android:style/Widget.Material.ProgressBar">
 		<item name="android:layout_height">24dp</item>	
 		<item name="android:layout_width">24dp</item>
 		<item name="android:layout_gravity">center</item>
@@ -207,8 +209,14 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemMiniplayerTitle" parent="ItemGenericTitle">
 		<item name="android:layout_marginLeft">10dp</item>
 		<item name="android:layout_marginRight">64dp</item><!-- Right-indent to keep space for the button -->
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:textAppearance">?ItemMiniplayerTitle_Text</item><!-- => ItemGenericTitle_Text -->
 		<item name="layout_alignToContent">all</item>
+		<item name="layout_gravityTarget">@+id/aa_image</item>
+		<item name="layout_gravityTargetAxis">vertical</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityGroup">0</item>
 	</style>
 
 	<style name="ItemMiniplayerLine2" parent="ItemGenericLine2">
@@ -216,7 +224,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">64dp</item><!-- Right-indent to keep space for the button -->
 		<item name="android:textAppearance">?ItemMiniplayerLine2_Text</item><!-- => ItemGenericLine2_Text -->
 		<item name="layout_alignToContent">all</item>
-		<item name="android:layout_marginTop">5dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="layout_gravityGroup">0</item>
+		<item name="layout_goneWhenEmpty">true</item>
 	</style>
 
 	<style name="ItemMiniplayerPlayButton">
@@ -453,6 +463,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">center_vertical|right</item>
 		<item name="android:layout_marginRight">2dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:duplicateParentState">true</item>
 				
 		<item name="android:drawable">@drawable/vis_item_activated_check</item>
 		<item name="drawableTint">?colorIconPrimary</item>

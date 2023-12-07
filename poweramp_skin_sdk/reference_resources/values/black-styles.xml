@@ -73,13 +73,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorBgSeekbarLine">#4333</item>
 		<item name="colorBgLessAlpha">#d444</item>
 		<item name="colorBgPrimaryStrictAlpha">#f0222222</item>
-		<item name="colorInverse">#fff</item><!-- REVISIT: use less contrasted color for the ripples? -->
+		<item name="colorInverse">#fff</item>
 		<item name="colorPlaybackRipple">#999</item><!-- We change this for Android 13+ -->
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#222</item>
 		<item name="colorStroke">#5f5f5f</item>
 		<item name="colorLessContrast">#eee</item>
+		<item name="colorLessContrastRipple">?colorLessContrast</item>
 		<item name="colorTextBgAlpha">#c0000000</item>
+
+		<item name="colorBgPositive">#555</item>
+
+		<item name="colorBgInverse">#000</item>
 		
 		<item name="colorStrokeHelp">#555</item>
 		<item name="colorBgHelp">#333</item>
@@ -90,6 +95,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorItemPlayingMark">#282828</item>
 		
 		<item name="colorAABgColor">#000</item>
+		<item name="colorDraggedBg">#a000</item>
 
 		<!-- NOTE: used only for overlap_track_labels_no_bg styles -->
 		<item name="colorOnAABg">#fff</item>
@@ -202,6 +208,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="control_elevation">0dp</item><!-- Not visible on black + improves performance -->
 		<item name="bottom_toolbar_buttons_elevation">3dp</item><!-- Increased elevation for black theme -->
+
+		<item name="EqTonePanel_paddingBottom">@dimen/EqTonePanel_paddingBottom_none</item><!-- 0dp as no need for a shadow -->
 	</style>
 
 	<style name="ActivityTheme_Black_MilkViewEffect_Lyrics">

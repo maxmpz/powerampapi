@@ -26,12 +26,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopPlayPauseBehind_size">75dp</dimen>
 	<dimen name="TopMediumButton_size">64dp</dimen>
 	<dimen name="TopSmallButton_size">48dp</dimen>
-	
-	<dimen name="PlainSeekbar_marginBottom">-2dp</dimen>
-	<dimen name="PlainSeekbar_common_marginBottom">18dp</dimen>
-	<dimen name="PlainSeekbar_metaInfo_marginBottom">10dp</dimen>
-	
-	<dimen name="Alt_PlainSeekbar_marginBottom">-2dp</dimen><!-- Alt + seekbar: From elapsed/duration to seekbar -->
-	<dimen name="Alt_PlainSeekbar_common_marginBottom">18dp</dimen><!-- Alt + seekbar: From navbar to elapsed/duration -->
-	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">10dp</dimen>
 </resources>

@@ -20,8 +20,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Non-Alt: LG V30 360x654, LG G6 360x644, Meizu Pro5 360x618 -->
-	
+	<dimen name="ItemTrackAAImage_scene_item_menu_size">104dp</dimen>
+	<dimen name="ItemTrackAAImage_scene_item_menu_marginTBL">16dp</dimen>
+	<dimen name="ItemTrackAAImage_scene_item_menu_marginR">6dp</dimen>
+
+
 	<dimen name="Navbar_height">48dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">44dp</dimen>
 	<dimen name="NavBarButton_drawableSize">32dp</dimen>

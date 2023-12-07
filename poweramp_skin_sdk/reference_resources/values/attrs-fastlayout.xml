@@ -100,7 +100,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!--
 			NOTE: FastLayout uses weightSum=num of flexWeight children
-			Basically this means, layout_flexWeight=1 children always expands uniformely.
+			Basically this means, layout_flexWeight=1 children always expands uniformly.
 			Also, if no layout_flexWeight attribute is specified for a view, it's never stretched/shrinked, just stays as layout_width/height attributes command.
 		-->
 		<attr name="layout_flexWeight" format="float"/>
@@ -150,6 +150,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 layout_attach*To* and layout_attach* for the same * (side) are mutually exclusive. layout_attach*To* takes priority.
 			 (Since 940) If layout_attach*="value %" is specified, then this view is also offset from the target view by the specified percent of the target
 			 size in the given axis (width for Right|Left, height for Top|Bottom).
+			 This allows percent positioning relative to the target view.
 			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
 		-->
 
@@ -274,11 +275,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 -->
 			<flag name="reset_auto" value="0x40000000"/>
 
-			<!-- This shouldn't be combined with the other layout_consumeSpace flags. Causes items to be positioned one by one as horizontal
-			     stacks with the auto wrapping to the next "line".
+			<!-- This shouldn't be combined with the other layout_consumeSpace flags, except for skip_last_margin.
+			     Causes items to be positioned one by one as horizontal stacks with the auto wrapping to the next "line".
+			     The order of horizontal stacks is left-to-right unless layout_gravity=right for the view.
 			     Views are measured with the whole available container width (other horizontal consumed space is ignored,
 			     similarily to layout_*Percent measurement) -->
 			<flag name="stack_horizontal" value="0x800000"/>
+
 		</attr>
 
 		<!-- android:layout_gravity will be used if layout_forceGravityIfGone="@id/some_view_id" view is missing or GONE.<br>
@@ -300,9 +303,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- If true, view is aligned to its content. For non-FastTextView this means padding is ignored.
 
-		     For the FastTextView and the derived views this also ignores inner font paddings, aligning
+		     For FastTextView and the derived views this also ignores inner font paddings, aligning
 		     the view almost to the text content pixels or the icon (when drawableAdj is defined for the FastTextView).
 		     layout_compensateScales is important here, as it's used to scale all the paddings to ignore.
+		     See also FastTextView eatFontPads.
 
 		     Previously, margin values were used to specifically adjust such views. With layout_alignToContent,
 		     it's not necessary to adjust margins for each scene/font-size anymore.
@@ -340,8 +344,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</attr>
 
 
-		<!-- If true, this view gets width=0 height=0 (like GONE view) when the view is empty. Actual visibility is not changed.
-		     NOTE: currently works only for FastTextView, TextViews, FastLayoutEmptySupport implementation, and the derived classes
+		<!-- If true, this view gets width=0 height=0 (like GONE view) when the view is empty.
+			 Actual view visibility is not changed.
+		     NOTE: currently works only for FastTextView, TextViews, FastLayoutEmptySupport implementation, and the derived classes.
 		-->
 		<attr name="layout_goneWhenEmpty" format="boolean"/>
 
@@ -374,6 +379,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		     - lyrics and menu visible:
 		       **>|line2....|*>|lyrics|*>|menu|<**
+
 		     - lyrics visible
 		       **>|line2............|*>|lyrics||<**
 		                                      ^
@@ -390,6 +396,73 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     This also modifies behavior of the layout_attachToParentIfGone attribute
 		     -->
 		<attr name="layout_applyMarginsForGone" format="boolean"/>
+
+		<!--
+			 Default is none (-1). If set to [0..3] defines the gravity group for this view.
+		     The first view in xml order defines the group layout_gravity and layout_gravityTarget.
+		     The gravity attributes for the subsequent views in this group are ignored, except layout_gravityIgnoresMargins which is always
+		     honored per the view.
+
+		     The group views are laid out sequentaly in the axis of the group gravity. Only one axis is processed by group - if two
+		     gravity axises are defined, only the horizontal one is handled.
+		     The other axis of the view stays laid out by the other attributes, as usually.
+
+		     Multiple views should be in the group for it to make sense.
+		     The views then processed this way (vertical axis here for example):
+		     - total size (height) of all views is calculated, including margin (unless layout_gravityIgnoresMargins=true for a view)
+		     - the group as a whole is aligned according to the group gravity
+		     - group child views are placed in xml order from top to bottom, including margin (unless layout_gravityIgnoresMargins=true)
+
+		     For example, this xml:
+
+		     <View android:id="@id/aa_image" android:layout_width="100dp" android:layout_height="100dp" w:layout_consumeSpace="horizontal"/>
+
+		     <TextView android:id="@id/title" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		        w:layout_attachLeft="parent"
+		        w:layout_gravityGroup="0" android:layout_gravity="center_vertical" w:layout_gravityTarget="@id/aa_image"/>
+
+		     <TextView android:id="@id/line2" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		        w:layout_gravityGroup="0"/>
+
+		     <TextView android:id="@id/meta" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		        w:layout_gravityGroup="0"/>
+
+		     - laid out this way:
+
+		     +=============+
+		     |   aa_image  |  +=======+ -+
+		     |             |  | title |  |
+		     |      |      |  +=======+  |
+		     |      +      |==| line2 |  |  ===> - aligned vertically as a whole group vs aa_image vertical center
+		     |      |      |  +=======+  |       - title gravity params defines whole group gravity alignment
+		     |             |  | meta |   |       - due to the title layout_gravity set, we also use its layout_attachLeft to attach to
+		     |             |  +======+  -+         the parent left edge (which is moved/consumed by aa_image)
+		     +=============+
+
+		     The groups allows simple dynamic centered alignment of views (especially with layout_targetGravity=some view),
+		     when views can be gone/layout_goneWhenEmpty.
+		     For example, it makes title + line2 + meta + rating to be always vertacally centered as a whole, no matter which
+		     children are gone from this set of views.
+
+		     NOTE: the gravityGroup layouts are processed after main layout cycle, meaning that any other views attached to
+		     gravityGroup member views will attach to the "original" position of the member, before  the gravityGroup applied gravity.
+		 -->
+		<attr name="layout_gravityGroup" format="enum|integer">
+			<enum name="none" value="-1"/>
+		</attr>
+
+		<!-- By default, gravityGroup uses the gravity defined by the first member child layout_gravity.
+		     But if that child has gravity with 2 axis, gravityGroup will apply first (horizontal) axis.
+
+		     layout_gravityGroupAxis allows overriding that axis. layout_gravityGroupAxis is applied only when
+		     the first group member gravity has both horizontal and vertical axises (e.g. ==center).
+
+		     This attribute is parsed only for the first group member view
+		-->
+		<attr name="layout_gravityGroupAxis">
+			<enum name="horizontal" value="0"/>
+			<enum name="vertical" value="1"/>
+		</attr>
 
 		<!-- NOTE: basic MarginLayoutParams attrs are needed for programmatic LP creation based on style attr/res. MarginLayoutParams doesn't support that,
 			 so FastLayoutLP handles margin parsing on its own

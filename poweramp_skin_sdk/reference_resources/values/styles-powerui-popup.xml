@@ -156,7 +156,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<!-- NOTE: disabled as default Android seekbars do not play well with the rounded backgrounds -->
 <!--		<item name="android:scrollbars">vertical</item>-->
-		<item name="android:nestedScrollingEnabled">true</item>
+<!--		<item name="android:nestedScrollingEnabled">true</item>-->
 	</style>
 	
 	<style name="MediaRouterPopupDialogListLayoutList" parent="ExpandedListLayoutBase">
@@ -185,9 +185,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 
+	<!-- Currently used for AlertDialogList -->
 	<style name="GenericPowerList">
-		<!-- NOTE: disabled as default Android seekbars do not play well with the rounded backgrounds -->
-<!--		<item name="android:scrollbars">vertical</item>-->
+		<!-- REVISIT: ? disable as default Android seekbars do not play well with the rounded backgrounds? -->
+		<item name="android:scrollbars">vertical</item>
 	</style>
 	
 </resources>

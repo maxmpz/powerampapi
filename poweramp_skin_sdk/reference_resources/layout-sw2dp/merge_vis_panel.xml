@@ -90,7 +90,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 			
 						
-			<com.maxmpz.widget.base.PowerList android:id="@+id/vis_panel_list"
+			<com.maxmpz.widget.list.PowerList
+				android:id="@+id/vis_panel_list"
 				style="?VisPanelList"
 			/>
 			<SceneParams w:scene="@+id/scene_vispanel_expanded"

@@ -25,6 +25,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	- scene_navbar_1line_sheet - 1 line (toolbar) + menu extended
 	- scene_navbar_2lines - 2 lines (toolbar + mini player) 
 	- scene_navbar_2lines_sheet - 2 lines (toolbar + mini player) + menu extended
+	- scene_navbar_3lines - 3 lines (toolbar + seekbar + mini player)
+	- scene_navbar_3lines_sheet - 3 lines + menu extended
 -->
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
@@ -121,7 +123,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 
 			<!-- navbar_list -->
-			<com.maxmpz.widget.base.PowerList android:id="@+id/navbar_list"
+			<com.maxmpz.widget.list.PowerList
+				android:id="@+id/navbar_list"
 				style="?NavbarList"
 			/>
 			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"

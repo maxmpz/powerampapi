@@ -149,11 +149,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorBgHelp">#f0f0f0</item>
 		<item name="colorStrokeHelp">#333</item>
 		<item name="colorLessContrast">#333</item><!-- Used for e.g. for the main screen tinted icons, some text -->
+		<item name="colorLessContrastRipple">?colorLessContrast</item>
 		<item name="colorShade">#88000000</item>
 		<item name="colorBgLight">#f0f0f0</item><!-- Used ATM for the Search Frame bg -->
 		<item name="colorBgCheckedLight">#333</item>
 		<item name="colorItemPlayingMark">#eee</item>
 		<item name="colorTextBgAlpha">#c8000000</item>
+
+		<item name="colorBgPositive">#e8e8e8</item>
 
 		<item name="colorIconPrimary">@null</item><!-- By default, our icon drawables are black, thus, no extra tinting -->
 		<item name="colorIconPrimaryForced">#000</item>
@@ -171,6 +174,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Basically, the main background color for Poweramp main activity, as Milk visualization/AA blur is always on background, except lock screen mode.
 		     Though, in lock screen mode, this color is also used as background color by lock screen code -->
 		<item name="colorAABgColor">#fff</item>
+		<item name="colorDraggedBg">#afff</item>
 
 		<!-- NOTE: used only for overlap_track_labels_no_bg styles -->
 		<item name="colorOnAABg">#000</item>
@@ -402,6 +406,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="list_drag_24dp">@drawable/list_drag</item>
 		<item name="list_drag_hor_24dp">@drawable/list_drag_hor</item>
+		<item name="grid_drag_24dp">@drawable/grid_drag</item>
+
+		<item name="edit_stroke_24dp">@drawable/edit_stroke_24dp</item>
 
 
 		<item name="settings_v">@drawable/settings_v_colored</item><!-- NOTE: used in some dialogs -->
@@ -463,6 +470,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="playlist_24dp">@drawable/playlist_24dp</item>
 		<item name="play_24dp">@drawable/play_24dp</item>
 		<item name="search_24dp">@drawable/search</item>
+		<item name="add_to_launcher_24dp">@drawable/add_to_launcher_24dp</item>
 
 		<item name="changelog_24dp">@drawable/zap</item>
 
@@ -496,6 +504,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="peaking_band_24dp">@drawable/peaking_band_24dp</item>
 		<item name="lsf_24dp">@drawable/lsf_24dp</item>
 		<item name="hsf_24dp">@drawable/hsf_24dp</item>
+
 
 		<item name="star_8dp">@drawable/star_8dp</item>
 		<item name="star_2_8dp">@drawable/star_2_8dp</item>
@@ -702,7 +711,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackLine2_paddingLR">12dp</item><!-- NOTE: reduced in ActivityTheme_White_LessRounding -->
 		<item name="ItemTrackLine2_paddingTB">8dp</item>
 
-		<item name="ItemTrackMeta_marginTop">11dp</item>
+		<item name="ItemTrackMeta_marginTop">5dp</item><!-- 11 - 6 -->
 		<item name="ItemTrackMeta_paddingLR">12dp</item>
 		<item name="ItemTrackMeta_drawableAdj">1.5dp</item>
 		<item name="ItemTrackMeta_drawablePadding">-8dp</item>
@@ -801,8 +810,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Used for ActivityTheme_Whitepro_PlainSeekbar, overridden by ActivityTheme_Whitepro_AltLayout  -->
 		<item name="PlainSeekbar_buttons_offset">@dimen/PlainSeekbar_buttons_offset</item>
 		<item name="PlainSeekbar_marginBottom">@dimen/PlainSeekbar_marginBottom</item>
-		<item name="PlainSeekbar_common_marginBottom">@dimen/PlainSeekbar_common_marginBottom</item>
-		<item name="PlainSeekbar_metaInfo_marginBottom">@dimen/PlainSeekbar_metaInfo_marginBottom</item>
 
 		<!-- By default, we're showing Chromecast button in main UI, though, this is overridden by OptionCCDisabled/OptionCCInMenu -->
 		<item name="CcButton_MainUI">@style/CcButton_MainUI</item>

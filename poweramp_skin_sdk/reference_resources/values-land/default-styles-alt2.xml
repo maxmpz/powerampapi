@@ -21,13 +21,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values-sw2dp-land -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<!-- NOTE: redefined in land -->
-	<style name="Alt2_TrackLabelsCentered">
+	<style name="Alt2_TrackLabelsCentered" parent="Base_Alt2_TrackLabelsCentered">
 		<item name="ItemTrackTitle_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa</item>
 		<item name="ItemTrackLine2_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa</item>
-		<item name="ItemLikeUnlikeLayout_scene_aa">@style/Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scene_aa</item>
-		<item name="ItemRatingBar_scene_aa">@style/Alt2_TrackLabelsCentered_ItemRatingBar_scene_aa</item>
-		<item name="ItemTrackLyrics_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa</item>
 	</style>
 
 	<!-- NOTE: redefine to derive directly from land/default-styles-alt style -->
@@ -59,7 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="Alt2_ItemTrackLine2_scene_aa" parent="Alt_ItemTrackLine2_scene_aa">
-		<item name="layout_attachRight">@id/lyrics</item>
+		<!--<item name="layout_attachRight">@id/lyrics</item>-->
 		<item name="android:layout_marginRight">0dp</item>
 	</style>
 
@@ -69,18 +65,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">42dp</item><!-- Add left/right margin enough to not to overlap buttons -->
 		<item name="android:layout_marginRight">42dp</item>
 	</style>
-
-	<style name="Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa" parent="Alt2_ItemTrackLyrics_scene_aa">
-		<item name="layout_attachRight">@null</item>
-		<item name="layout_attachLeft">parent</item>
-		<item name="layout_attachTop">@id/title</item>
-		<item name="android:layout_gravity">@null</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginTop">1dp</item>
-		<item name="scale">0.8</item>
-		<item name="layout_compensateScale">0.8</item>
-	</style>
-
 
 
 	<!-- Move menu to the line2 right, centered vertically -->
@@ -140,28 +124,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginRight">0dp</item>
 
 		<!--<item name="lineBackground">@drawable/alpha_rounded_popup</item>-->
-	</style>
-
-	<!-- Center rating horizontaly for Alt2_TrackLabelsCentered -->
-	<style name="Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scene_aa" parent="Alt2_ItemLikeUnlikeLayout_scene_aa">
-		<item name="layout_attachLeft">@null</item>
-		<item name="layout_attachRight">@null</item>
-		<item name="layout_gravityTarget">@id/line2</item>
-		<item name="android:layout_gravity">center_horizontal</item>
-	</style>
-
-	<!--
-		REVISIT:
-	    - 5 star rating wants to be left aligned and do not look good centered in landscape
-	    - proper centering would require specifically handled animations and touch iteration
-	-->
-	<style name="Alt2_TrackLabelsCentered_ItemRatingBar_scene_aa" parent="Alt2_ItemRatingBar_scene_aa">
-		<item name="layout_attachLeft">@null</item>
-		<item name="layout_attachRight">@null</item>
-		<item name="layout_gravityTarget">@id/line2</item>
-		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="lineBackground">@drawable/alpha_rounded_popup</item>
-		<item name="android:gravity">center_horizontal</item>
 	</style>
 
 	<!-- REVISIT: it's hard to match waveseek top offset to the dynamic size for the title/line2/rating due to the

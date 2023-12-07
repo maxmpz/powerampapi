@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="TopActionModeBar_marginTop">4dp</dimen>
 	<dimen name="eq_frs_height">38dp</dimen>
-	<dimen name="EqFrequencyResponseScroller_marginTop">4dp</dimen>
+	<dimen name="EqKnobsLayout_paddingBottom">4dp</dimen>
 	<dimen name="EqButton_height">30dp</dimen>
 	<dimen name="EqToneRoundKnobLayout_maxSize">100dp</dimen>
 	<dimen name="EqToneRoundKnobLayout_maxWidth">110dp</dimen>

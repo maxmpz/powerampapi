@@ -98,16 +98,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		</attr>
 
 		<!-- NOTE: android:drawableTint not supported by Android 5.0, thus using w:drawableTint -->
-		<attr name="drawableTint" format="reference|color"/>
+		<!-- This is defined by AppCompat, but we can override it for AndroidStudio -->
+		<attr name="drawableTint" format="color"/>
 		<!-- Default drawableTintMode=src_in -->
-		<attr name="drawableTintMode">
-		<!-- NOTE: drawableTintMode is defined by AppCompat already, but AndroidStudio sometimes can't understand that
+		<attr name="drawableTintMode2">
+		<!-- NOTE: while drawableTintMode is defined by AppCompat, AndroidStudio can't parse it properly no matter what,
+		     so using "drawableTintMode2" -->
 			<enum name="src_over" value="3" />
 			<enum name="src_in" value="5" />
 			<enum name="src_atop" value="9" />
 			<enum name="multiply" value="14" />
 			<enum name="screen" value="15" />
-			<enum name="add" value="16" />-->
+			<enum name="add" value="16" />
 		</attr>
 
 		<!-- Forced drawable width. Default is drawable original width -->
@@ -209,8 +211,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="deripple" format="boolean"/>
 
 		<!-- Default is false. If true, this text view will attempt to do relayout during transitions, which is needed for specific views,
-		     which should always have meaningful layout even if relayout is disabled due to the transition or other conditions -->
+		     which should always have meaningful layout even if relayout is disabled due to the transition or other conditions.
+		      NOTE: parent level transitions, such as PowerList void transitions won't be detected. -->
 		<attr name="relayoutInTransition" format="boolean"/>
+
+		<!-- Default is false. Forces text to be redrawn with the last known layout when relayout is actually blocked, usually
+		     due to the some scene running. Use for the views which are independently refreshed and should always be redrawn,
+		     even during running transitions -->
+		<attr name="redrawWhenRequestBlocked" format="boolean"/>
 
 		<!-- If set to non-zero, the debugging rectangles are drawn around text and drawable exact bounds.
 		     Only raw color values accepted -->

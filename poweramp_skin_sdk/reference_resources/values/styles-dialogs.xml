@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -125,7 +125,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogShim">@style/DialogShim</item>
 		
 		<item name="dialogButtonsBarPaddingLR">16dp</item>
-		<item name="dialogButtonsBarPaddingTB">4dp</item>
+		<item name="dialogButtonsBarPaddingTB">8dp</item>
 		
 		<item name="check_48dp">@drawable/check_48dp</item>
 		<item name="fail_48dp">@drawable/fail_48dp</item>
@@ -134,26 +134,36 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- NOTE: optically the same as padding left/right due to optical extra padding on text view -->
 		<!-- NOTE: this is always consumed by title layout view, even if it's gone - as this is set as it's marginTop and those consumes height -->
-		<item name="dialogPaddingTop">16dp</item>
+		<item name="dialogPaddingTop">20dp</item>
 		<item name="dialogContentPaddingLR">24dp</item>
-		<item name="dialogContentPaddingTop">12dp</item>
+		<item name="dialogContentPaddingTop">16dp</item>
 		<item name="dialogContentPaddingBottom">0dp</item><!-- NOTE: usually it's 0, but can be overridden, e.g. for vertical_buttons -->
 		
 		<item name="dialogLayout">@layout/dialog</item>
 		<item name="dialogButtonsLayout">@layout/merge_dialog_buttons</item>
 		
 		<item name="DialogButtonBar">@style/DialogButtonBar</item>
+
 		<item name="DialogPositiveButtonStyle">@style/DialogPositiveButtonStyle</item>
 		<item name="DialogNegativeButtonStyle">@style/DialogNegativeButtonStyle</item>
 		<item name="DialogNeutralButtonStyle">@style/DialogNeutralButtonStyle</item>
+
 		<item name="DialogNeutralSeparator">@style/DialogInvisibleSeparator</item>
-		<item name="DialogButtonSpace">@style/DialogButtonSpace</item>
+		<item name="DialogButtonSpace">@style/DialogButtonSpace2</item>
 		<item name="DialogPositiveSeparator">@style/DialogInvisibleSeparator</item>
 		<item name="DialogNegativeSeparator">@style/DialogInvisibleSeparator</item>
 		
 		<item name="DialogMenuPlaceholderLayout">@style/DialogMenuPlaceholderLayout</item>
 		
 		<item name="DialogSettingsGearIcon">@style/DialogSettingsGearIcon</item>
+
+		<item name="dialogPositiveButtonBg">@drawable/ripple_bg_dialog_positive</item>
+		<item name="dialogNegativeButtonBg">@drawable/ripple_rounded_mini</item>
+		<item name="dialogNeutralButtonBg">@drawable/ripple_rounded_mini</item>
+		<!-- NOTE: @null makes it take color from textAppearance -->
+		<item name="dialogPositiveButtonColor">@null</item>
+		<item name="dialogNegativeButtonColor">@null</item>
+		<item name="dialogNeutralButtonColor">@null</item>
 	</style>
 	
 	<style name="DialogOuterLayout">
@@ -325,7 +335,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">@id/dialog_progress</item>
 		<item name="layout_attachRight">@id/dialog_progress_button</item>
-		<item name="android:layout_marginTop">3dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:maxLines">2</item>
 		<item name="android:ellipsize">end</item>
 		<item name="android:gravity">left|center_vertical</item>
@@ -334,7 +344,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingBottom">3.5sp</item>
 	</style>
 	<style name="DialogTitle_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">15sp</item>
+		<item name="android:textSize">19sp</item>
 		<item name="android:textStyle">bold</item>
 	</style>
 
@@ -486,6 +496,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="DialogButtonBar">
+		<item name="android:clipChildren">false</item>
+		<item name="android:clipToPadding">false</item>
 		<item name="android:visibility">visible</item><!-- NOTE: need explicit visibility, so visibility is applied properly for scene -->
 		<item name="layout_flexAxis">vertical</item>
 		<item name="android:paddingLeft">?dialogButtonsBarPaddingLR</item>
@@ -503,26 +515,44 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxWidth">@dimen/DialogButtonStyle_maxWidth</item>
+		<item name="android:minHeight">16dp</item>
 		<item name="animOnClick">true</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceButton</item>
 		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:background">@drawable/ripple_rounded_mini</item>
-		<item name="android:paddingLeft">10dp</item>
-		<item name="android:paddingRight">10dp</item>
+		<item name="android:paddingLeft">24dp</item>
+		<item name="android:paddingRight">24dp</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_marginTop">4dp</item>
 	</style>
-	
+
+	<!-- Buttons go in xml as: Neutral(button3) / Negative(button2) / Positive(button1) -->
 	<style name="DialogNeutralButtonStyle" parent="DialogButtonStyle">
-		<item name="layout_flexAxis">horizontal</item>
-		<item name="layout_flexReverse">true</item><!-- NOTE: forces right-to-left dialog buttons measure, thus positive button gets more real estate -->
+		<item name="layout_consumeSpace">stack_horizontal</item>
+		<item name="layout_maxWidth">1000dp</item>
+		<item name="android:layout_gravity">left</item>
+		<item name="android:background">?dialogNeutralButtonBg</item>
+		<item name="android:textColor">?dialogNeutralButtonColor</item>
+		<item name="android:layout_marginRight">4dp</item>
 	</style>
 	<style name="DialogNegativeButtonStyle" parent="DialogButtonStyle">
-		<item name="layout_flexAxis">horizontal</item>
-   	</style>
-	<style name="DialogPositiveButtonStyle" parent="DialogButtonStyle">
-		<item name="layout_flexAxis">horizontal</item>
-		<item name="layout_maxWidth">250dp</item>
+		<item name="layout_after">@id/button1</item>
+		<item name="layout_consumeSpace">stack_horizontal</item>
+		<item name="layout_maxWidth">1000dp</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:background">?dialogNegativeButtonBg</item>
+		<item name="android:textColor">?dialogNegativeButtonColor</item>
+		<item name="android:layout_marginRight">4dp</item>
 	</style>
-	
+	<style name="DialogPositiveButtonStyle" parent="DialogButtonStyle">
+		<item name="layout_consumeSpace">stack_horizontal</item>
+		<item name="layout_maxWidth">1000dp</item>
+		<item name="android:layout_gravity">right</item>
+		<item name="android:background">?dialogPositiveButtonBg</item>
+		<item name="android:textColor">?dialogPositiveButtonColor</item>
+	</style>
+
 	<style name="DialogButtonSpace">
 		<item name="android:layout_width">0dp</item>	
 		<item name="android:layout_height">0px</item>
@@ -530,6 +560,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_flexWeight">1</item>
 	</style>
 	<style name="DialogInvisibleSeparator">
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<style name="DialogButtonSpace2">
 		<item name="android:visibility">gone</item>
 	</style>
 	
@@ -676,13 +710,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">top|right</item>
 		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:layout_marginRight">2dp</item>
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableOnly">true</item>
-		<item name="android:paddingTop">8dp</item>
-		<item name="android:paddingBottom">8dp</item>
-		<item name="android:paddingLeft">16dp</item>
-		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
 		<item name="android:background">@drawable/ripple_rounded_large</item>
 		<item name="android:drawable">@drawable/settings_24dp</item>
 		<item name="android:clickable">true</item>
@@ -711,16 +745,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:navigationBarDividerColor">#08000000</item>
 		<item name="android:windowLightStatusBar">false</item>
 	</style>
-	
+
+
 	<style name="DialogRadioHalfWidth">
 		<item name="layout_widthPercent">50%</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_consumeSpace">horizontal|reset_auto</item>
-		<item name="android:layout_marginBottom">4dp</item>
+		<item name="layout_consumeSpace">stack_horizontal</item>
+		<item name="android:layout_marginBottom">6dp</item>
 		<item name="android:textSize">13sp</item>
 		<item name="android:minHeight">44sp</item>
 		<item name="android:maxLines">3</item>
 		<item name="android:minLines">3</item>
 	</style>
+
+	<style name="DialogRadioFullWidth" parent="DialogRadioHalfWidth">
+		<item name="layout_widthPercent">100%</item>
+	</style>
+
 
 </resources>

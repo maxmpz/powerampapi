@@ -57,6 +57,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<!-- NOTE: transformPivotX/transformPivotY manipulated from the code -->
 	</style>
 
+	<style name="ItemTrack_scene_item_menu" parent="ItemPopupMenu_scene_item_menu">
+		<item name="android:layout_width">@dimen/ItemPopupMenu_larger_scene_item_menu_width</item>
+	</style>
+
 	<!-- NOTE: derived by ItemPopupListSelectBox -->
 	<!-- Should be gone/invisible in all scenes. Programmatically set to gone/visible as needed, don't set visibility in scenes as it will interfere with the code -->
 	<style name="ItemTrackSelectBox">
@@ -71,6 +75,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
 		<item name="android:background">@drawable/rounded_large</item>
 		<item name="android:clickable">false</item>
+		<item name="android:padding">2dp</item>
 
 		<item name="applyEvenIfGone">true</item><!-- NOTE: as select_box is almost always force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
 	</style>
@@ -82,8 +87,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">top</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">16dp</item>
-		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginTop">12dp</item>
 		<item name="applyEvenIfGone">true</item><!-- NOTE: as select_box is almost always force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
 	</style>
 
@@ -272,6 +277,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:layout_marginLeft">12dp</item>
+		<item name="scale">1</item>
+		<item name="android:scaleX">1</item>
+		<item name="android:scaleY">1</item>
 
 		<item name="cornerRadius1">?corners_aa_tracks</item><!-- Tracks -->
 		<item name="cornerRadius2">?corners_aa_albums</item><!-- Albums -->
@@ -281,7 +289,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="hiRes">false</item>
 		<item name="android:visibility">visible</item>
 		<item name="drawableTintColor">#0000</item>
-		<item name="drawableTintMode">src_atop</item>
+		<item name="drawableTintMode2">src_atop</item>
 	</style>
 	<style name="ItemTrackAAImage_scene_zoomed">
 		<item name="android:layout_width">120dp</item>
@@ -293,6 +301,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">0dp</item>
 		<item name="recalcChildren">dynamic</item>
 		<item name="applyViewParams">true</item>
+		<item name="scale">1</item>
 
 		<item name="cornerRadius1">?corners_aa_tracks_zoomed</item><!-- Tracks -->
 		<item name="cornerRadius2">?corners_aa_albums_zoomed</item><!-- Albums -->
@@ -314,6 +323,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">0dp</item>
 		<item name="recalcChildren">dynamic</item>
 		<item name="applyViewParams">true</item>
+		<item name="scale">1</item>
 
 		<item name="cornerRadius1">?corners_aa_tracks_small</item><!-- Tracks -->
 		<item name="cornerRadius2">8dp</item><!-- Albums (can't be in scene_aa) -->
@@ -375,6 +385,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
+		<item name="scale">1</item>
 
 		<item name="applyViewParams">true</item>
 		<item name="android:elevation">?grid_aa_elevation</item>
@@ -390,6 +401,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTrackAAImage_scene_grid_zoomed">
 		<item name="baseScene">@id/scene_grid</item>
 		<item name="applyViewParams">true</item>
+		<item name="scale">1</item>
 
 		<item name="cornerRadius1">?corners_aa_tracks_grid_zoomed</item><!-- Tracks -->
 		<item name="cornerRadius2">?corners_aa_albums_grid_zoomed</item><!-- Albums -->
@@ -418,9 +430,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="recalcChildren">dynamic</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
-
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="applyViewParams">true</item>
+		<item name="scale">1</item>
 
 		<item name="cornerRadius1">?corners_aa_tracks_header</item><!-- Tracks -->
 		<item name="cornerRadius2">?corners_aa_albums_header</item><!-- Albums -->
@@ -432,13 +444,16 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">visible</item>
 		<item name="drawableTintColor">?ItemTrackAAImage_scene_header_drawableTintColor</item><!-- Overridden for alt styles + overlap_track_labels_no_bg -->
 	</style>
+
 	<!-- NOTE: in scene_item_menu layout of item views is:
 
-	     aa_image (fixed size)
-	     +-~-+  title - above line2
-	     |   |- line2 - center_vertical vs aa_image (can be empty - shrinked to 0px line)
-	     +-~-+  meta  - below line2
-	            NO rating here - see ItemTrackAAImage_scene_item_menu_lu
+	     +===========+
+	     | aa_image  |      title                       +
+	     |     |     |      line2 (can be empgy/gone)   |
+	     |   ==+==   |      meta                        | === aligned vertically as a whole group VS aa_image (using title gravity params)
+	     |     |     |      optional RatingBar          |
+	     |           |      or LikeUnlikeLayout         +
+         +===========+      (see *_scene_item_menu_lu)
 
 	     (merge_item_popup_menu.xml)
 
@@ -456,11 +471,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">@dimen/ItemTrackAAImage_scene_item_menu_size</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_consumeSpace">horizontal</item>
-		<item name="android:layout_marginTop">8dp</item>
-		<item name="android:layout_marginBottom">8dp</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginRight">2dp</item>
+		<item name="android:layout_marginTop">@dimen/ItemTrackAAImage_scene_item_menu_marginTBL</item>
+		<item name="android:layout_marginBottom">@dimen/ItemTrackAAImage_scene_item_menu_marginTBL</item>
+		<item name="android:layout_marginLeft">@dimen/ItemTrackAAImage_scene_item_menu_marginTBL</item>
+		<item name="android:layout_marginRight">@dimen/ItemTrackAAImage_scene_item_menu_marginR</item>
 		<item name="applyViewParams">true</item>
+		<item name="scale">1</item>
 
 		<item name="cornerRadius1">?corners_aa_tracks_menu</item><!-- Tracks -->
 		<item name="cornerRadius2">?corners_aa_albums_menu</item><!-- Albums -->
@@ -488,6 +504,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
     -->
 	<style name="ItemTrackAAImage_scene_item_menu_lu" parent="ItemTrackAAImage_scene_item_menu">
 	</style>
+
 	<style name="ItemTrackAAImage_scene_lyrics">
 		<item name="recalcChildren">dynamic</item>
 		<item name="android:layout_width">0dp</item>
@@ -503,6 +520,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="applyViewParams">true</item>
 		<item name="android:elevation">?aa_elevation</item>
+		<item name="scale">1</item>
 
 		<item name="cornerRadius1">?corners_aa_tracks_menu</item><!-- Tracks -->
 		<item name="cornerRadius2">0dp</item><!-- Albums (can't be in the scene_lyrics) -->
@@ -510,7 +528,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="hiRes">false</item>
 		<item name="android:visibility">visible</item>
-		<item name="scale">1</item>
 		<item name="drawableTintColor">#0000</item>
 		<item name="alwaysFade">true</item><!-- Always apply fade effect for AA on image change -->
 	</style>
@@ -559,7 +576,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_goneWhenEmpty">true</item>
 	</style>
 	<style name="ItemTrackCatImage_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">9dp</item>
+		<item name="android:textSize">12dp</item>
 		<item name="android:textStyle">bold</item>
 	</style>
 	<style name="ItemTrackCatImage_scene_zoomed">
@@ -687,7 +704,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	     to paddings. This greatly helps with the various scale and font sizes, allowing same margins to be used everywhere
 	     without extra adjustments for scale/font size
 	     NOTE: FastTextView can end earlier in the right due to text layout (trying to be) bound to words, thus, depending on text wording
-		 right side will not align to right, but will be cut earlier -->
+		 right side will not align to right, but will be cut earlier
+		 NOTE: marginBottom adjusted the way it allows good distance
+		 from line2 (when it's visible) or from meta (when line2 is hidden) -->
+		  -->
 	<style name="ItemTrackTitle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -697,7 +717,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="android:layout_marginLeft">20dp</item>
 		<item name="android:layout_marginRight">20dp</item>
-		<item name="android:layout_marginBottom">12dp</item>
+		<item name="android:layout_marginBottom">6dp</item>
 
 		<item name="layout_alignToContent">?TrackItem_alignToContent</item>
 		<item name="eatFontPads">?TrackItem_eatFontPads</item>
@@ -773,7 +793,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginLeft">20dp</item>
 		<item name="android:layout_marginRight">20dp</item>
-		<item name="android:layout_marginBottom">12dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
 
 		<item name="layout_alignToContent">?TrackItem_alignToContent</item>
 		<item name="eatFontPads">?TrackItem_eatFontPads</item>
@@ -802,7 +822,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachBottom">@+id/line2</item>
 
 		<item name="android:layout_marginLeft">18dp</item>
-		<item name="android:layout_marginBottom">1dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginRight">18dp</item>
 		<item name="layout_alignToContent">?TrackItem_alignToContent_horizontal</item><!-- horizontal -->
 
@@ -836,7 +856,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_compensateScale">?ItemTrackTitle_scene_grid_zoomed_scale</item>
 		<item name="android:layout_marginLeft">21dp</item>
 		<item name="android:layout_marginRight">21dp</item>
-		<item name="android:layout_marginBottom">1dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
 	</style>
 	<style name="ItemTrackTitle_scene_grid_1_zoomed" parent="ItemTrackTitle_scene_grid_zoomed">
 		<item name="layout_attachBottom">parent</item>
@@ -898,7 +918,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginLeft">@dimen/track_children_scene_aa_margin</item>
 		<!-- NOTE: we have track_children_scene_aa_margin margin here, which is good for "Hide Menu" option.
 		     When menu is not hidden, menu has negative margin on the left, reducing distance between this view and menu -->
-		<!--<item name="android:layout_marginRight">@dimen/track_children_scene_aa_margin</item>&lt;!&ndash; Overridden for ItemTrackTitle_scene_aa_w_rating &ndash;&gt;-->
 		<item name="android:layout_marginBottom">1dp</item>
 
 		<item name="scale">?ItemTrackTitle_scene_aa_scale</item><!-- 1 -->
@@ -927,11 +946,19 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">12dp</item>
-		<item name="android:layout_marginBottom">8dp</item>
-		<item name="layout_attachBottom">@id/line2</item>
+		<item name="android:layout_marginBottom">10dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+
+		<!-- Set and define out gravity group. This will align whole group of the views (in this group=0) using the
+		     gravity parameters we define for the first view in the group (==this view) -->
+		<item name="layout_gravityGroup">0</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<!-- We need to attach to parent edge (which is moved/consumed by aa_image) - as we have layout_gravity which will try
+		     to apply gravity to x axis otherwise -->
+		<item name="layout_attachLeft">parent</item>
+		<item name="layout_gravityTarget">@id/aa_image</item>
 
 		<item name="layout_alignToContent">?TrackItem_alignToContent</item>
-
 		<item name="scale">?ItemTrackTitle_scene_item_menu_scale</item>
 		<item name="layout_compensateScale">?ItemTrackTitle_scene_item_menu_scale</item>
 
@@ -940,19 +967,14 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="lineBackground">@null</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:visibility">visible</item>
-		<item name="android:layout_gravity">left|center_vertical</item>
 	</style>
 	<!-- scene_item_menu_lu is used for AA item menu (with the like/unlike layout). In this mode text lines are laid out bottom-top -->
 	<style name="ItemTrackTitle_scene_item_menu_lu" parent="ItemTrackTitle_scene_item_menu">
-		<item name="layout_attachBottom">@null</item>
-		<item name="android:layout_gravity">top|left</item>
-		<item name="android:layout_marginTop">12dp</item>
 	</style>
 	<style name="ItemTrackTitle_scene_lyrics" parent="ItemTrackTitle_scene_item_menu">
 		<item name="recalcChildren">dynamic</item>
 		<item name="layout_attachRight">@id/menu</item>
 		<item name="android:layout_marginRight">0dp</item>
-		<item name="layout_attachLeft">parent</item>
 	</style>
 
 
@@ -967,7 +989,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="android:layout_marginLeft">20dp</item>
 		<item name="android:layout_marginRight">20dp</item>
+		<!-- Introducing margin top/bottom for line2 - and reducing title and meta margins by same value. This way normal
+		     (visible album/artist) layout doesn't change, but hidden line2 (when no album/artist) then takes some margin with it -->
+		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:layout_marginBottom">6dp</item>
 
+		<item name="layout_goneWhenEmpty">true</item>
 		<item name="layout_alignToContent">?TrackItem_alignToContent</item>
 		<item name="eatFontPads">?TrackItem_eatFontPads</item>
 
@@ -999,6 +1026,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:maxLines">1</item>
 		<item name="android:ellipsize">end</item>
 		<item name="lineBackground">@null</item>
+
+		<item name="android:clickable">true</item>
+		<item name="android:longClickable">true</item>
 	</style>
 	<style name="ItemTrackLine2_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">14.5dp</item>
@@ -1048,9 +1078,16 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachLeft">@+id/aa_image</item>
 		<item name="android:layout_marginLeft">20dp</item>
 		<item name="android:layout_marginRight">20dp</item>
+
+		<!-- Introducing margin top/bottom for line2 - and reducing title and meta margins by same value. This way normal
+		     (visible album/artist) layout doesn't change, but hidden line2 (when no album/artist) then takes some margin with it -->
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_gravity">center_vertical</item>
 
+		<item name="layout_goneWhenEmpty">true</item>
 		<item name="layout_alignToContent">?TrackItem_alignToContent</item>
 		<item name="eatFontPads">?TrackItem_eatFontPads</item>
 
@@ -1076,10 +1113,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="layout_attachBottom">parent</item>
-		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginTop">1dp</item>
 		<item name="android:layout_marginLeft">18dp</item>
 		<item name="android:layout_marginRight">18dp</item>
 		<item name="android:layout_marginBottom">10dp</item>
+
+		<item name="layout_goneWhenEmpty">true</item>
+		<item name="layout_applyMarginsForGone">true</item>
 		<item name="layout_alignToContent">?TrackItem_alignToContent_horizontal</item><!-- Horizontal -->
 
 		<item name="scale">?ItemTrackLine2_scene_grid_scale</item><!-- .70 -->
@@ -1094,7 +1134,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTrackLine2_scene_grid_zoomed" parent="ItemTrackLine2_scene_grid">
 		<item name="scale">?ItemTrackLine2_scene_grid_zoomed_scale</item>
 		<item name="layout_compensateScale">?ItemTrackLine2_scene_grid_zoomed_scale</item>
-		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginTop">1dp</item>
 		<item name="android:layout_marginLeft">21dp</item>
 		<item name="android:layout_marginBottom">11dp</item>
 		<item name="android:layout_marginRight">21dp</item>
@@ -1125,9 +1165,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:layout_marginTop">0dp</item>
 
-		<!-- NOTE: horizontal alignToContent as we want vertical paddings still to apply - we have line background there -->
-		<!--<item name="layout_alignToContent">?TrackItem_alignToContent_horizontal</item>-->
-
 		<item name="scale">?ItemTrackLine2_scene_header_scale</item><!-- 1 -->
 		<item name="layout_compensateScale">?ItemTrackLine2_scene_header_scale</item>
 		<item name="android:visibility">visible</item>
@@ -1156,6 +1193,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">0dp</item>
 		<item name="android:layout_marginBottom">@dimen/track_children_scene_aa_margin</item><!-- Overridden for ItemTrackLine2_scene_aa_w_rating -->
 
+		<item name="layout_goneWhenEmpty">true</item>
 		<item name="scale">?ItemTrackLine2_scene_aa_scale</item><!-- 1 -->
 		<item name="layout_compensateScale">?ItemTrackLine2_scene_aa_scale</item><!-- 1 -->
 		<item name="android:visibility">visible</item>
@@ -1181,13 +1219,19 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="recalcChildren">50%</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachLeft">parent</item><!-- NOTE: needed, as we have layout_gravityTarget here -->
+
+		<item name="layout_attachLeft">parent</item>
 		<item name="scale">?ItemTrackLine2_scene_item_menu_scale</item>
 		<item name="layout_compensateScale">?ItemTrackLine2_scene_item_menu_scale</item>
-		<item name="layout_gravityTarget">@+id/aa_image</item>
-		<item name="android:layout_gravity">center_vertical</item>
+
+		<!-- Join gravityGroup=0 which aligns views as a whole on the vertical axis - as defined by ItemTrackTitle_scene_item_menu -->
+		<item name="layout_gravityGroup">0</item>
+
+		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">12dp</item>
+
+		<item name="layout_goneWhenEmpty">true</item>
 		<item name="layout_alignToContent">?TrackItem_alignToContent</item>
 
 		<!-- NOTE: need to be visible for 1-line scene as minHeight is used to keep title/meta apart -->
@@ -1200,10 +1244,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<!-- scene_item_menu_lu is used for AA item menu (with the like/unlike layout) -->
 	<style name="ItemTrackLine2_scene_item_menu_lu" parent="ItemTrackLine2_scene_item_menu">
-		<item name="layout_gravityTarget">@null</item>
-		<item name="android:layout_gravity">top|start</item>
-		<item name="layout_attachLeft">@null</item>
-		<item name="layout_attachTop">@id/title</item>
 	</style>
 	<style name="ItemTrackLine2_scene_bottom_toolbar">
 		<!-- NOTE: we still need layout here to avoid keeping some previous layout which may reference us in cycles (e.g. rating) -->
@@ -1321,7 +1361,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">visible</item>
 
 		<item name="android:layout_marginLeft">20dp</item>
-		<item name="android:layout_marginTop">?ItemTrackMeta_marginTop</item>
+		<item name="android:layout_marginTop">7dp</item>
 		<item name="layout_alignToContent">?TrackItem_alignToContent</item>
 
 		<item name="scale">?ItemTrackMeta_scene_zoomed_scale</item>
@@ -1430,8 +1470,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">12dp</item>
 		<item name="android:layout_marginBottom">1dp</item>
 
-		<!--<item name="layout_alignToContent">?TrackItem_alignToContent_horizontal</item>-->
-
 		<item name="scale">?ItemTrackMeta_scene_header_scale</item><!-- 1 -->
 		<item name="layout_compensateScale">?ItemTrackMeta_scene_header_scale</item>
 	</style>
@@ -1447,12 +1485,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachTop">@+id/line2</item>
-		<item name="android:layout_marginTop">8dp</item>
+
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:layout_marginBottom">4dp</item>
 		<item name="layout_alignToContent">?TrackItem_alignToContent</item>
+
+		<!-- Join gravityGroup=0 which aligns views as a whole on the vertical axis - as defined by ItemTrackTitle_scene_item_menu -->
+		<item name="layout_gravityGroup">0</item>
 
 		<item name="scale">?ItemTrackMeta_scene_item_menu_scale</item>
 		<item name="layout_compensateScale">?ItemTrackMeta_scene_item_menu_scale</item>
@@ -1472,43 +1511,69 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 	<!-- Should be gone/invisible in all scenes. Programmatically set to gone/visible as needed, don't set visibility in scenes as it will interfere with the code -->
 	<style name="ItemTrackDragHandler">
-		<!-- <item name="android:visibility">visible</item> --><!-- DEBUG -->
-
-		<item name="android:translationZ">?over_aa_elevation</item>
-		<item name="android:outlineProvider">none</item>
-		<item name="android:clickable">true</item>
-		<item name="android:focusable">false</item><!-- Handles just touching -->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_vertical|right</item>
-		<item name="android:layout_marginRight">20dp</item>
-		<item name="android:background">@drawable/rounded_large</item>
+		<item name="android:layout_marginRight">24dp</item><!-- Should be far enough from right edge due to the gesture exclusions -->
+
+		<item name="android:translationZ">?over_aa_elevation</item>
+		<item name="android:outlineProvider">none</item>
+
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item><!-- Handles just touching -->
+
+		<item name="android:background">@drawable/alpha_strict_rounded_large</item>
+
 		<item name="android:drawable">?list_drag_24dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="drawableWidth">22dp</item>
-		<item name="drawableHeight">22dp</item>
-		<item name="android:paddingTop">4dp</item>
-		<item name="android:paddingBottom">5dp</item>
-		<item name="android:paddingRight">5dp</item>
-		<item name="drawablePaddingStart">5dp</item>
+		<item name="drawableWidth">24dp</item>
+		<item name="drawableHeight">24dp</item>
 
-		<item name="applyEvenIfGone">true</item><!-- NOTE: as this is view is generaly force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="drawablePaddingStart">12dp</item>
+
+		<item name="scale">1</item>
+		<item name="android:transformPivotX">0px</item>
+		<item name="android:transformPivotY">0px</item>
+		<item name="android:scaleX">1</item>
+		<item name="android:scaleY">1</item>
+		<item name="layout_compensateScale">1</item>
+
+		<!-- NOTE: as this is view is generaly force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
+		<item name="applyEvenIfGone">true</item>
+		<item name="applyViewParams">true</item>
+	</style>
+	<style name="ItemTrackDragHandler_scene_grid">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachBottomToBottom">@+id/aa_image</item>
+		<item name="layout_attachRightToRight">@+id/aa_image</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:layout_marginRight">4dp</item>
+
+		<item name="android:drawable">?grid_drag_24dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="scale">0.8</item>
+		<item name="layout_compensateScale">0.8</item>
+		<item name="applyEvenIfGone">true</item>
+		<item name="applyViewParams">true</item>
+	</style>
+	<style name="ItemTrackDragHandler_scene_grid_zoomed" parent="ItemTrackDragHandler_scene_grid">
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
 	</style>
 	<style name="ItemTrackDragHandler_scene_small_no_aa" parent="ItemTrackDragHandler">
 		<item name="android:layout_gravity">right|center_vertical</item>
 		<item name="android:layout_marginRight">56dp</item><!-- Some space for selectbox to the right -->
+		<item name="scale">0.7</item>
+		<item name="layout_compensateScale">0.7</item>
 	</style>
-	<style name="ItemTrackDragHandler_scene_grid">
-		<item name="applyViewParams">true</item>
-		<item name="android:drawable">@drawable/grid_drag</item>
-		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_gravity">top|right</item>
-		<item name="android:layout_marginTop">16dp</item>
-		<item name="android:layout_marginRight">16dp</item>
-
-		<item name="applyEvenIfGone">true</item><!-- NOTE: as this is view is generaly force-hidden, it's not processed by Scene by default, thus using applyEvenIfGone=true -->
+	<style name="ItemTrackDragHandler_scene_small" parent="ItemTrackDragHandler_scene_small_no_aa">
+		<item name="scale">0.75</item>
+		<item name="layout_compensateScale">0.75</item>
+		<item name="android:layout_marginRight">24dp</item>
 	</style>
 
 
@@ -1649,6 +1714,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:outlineProvider">none</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 
+		<item name="scale">1</item>
+		<item name="layout_compensateScale">1</item>
+
 		<item name="android:minHeight">24dp</item>
 		<item name="android:minWidth">24dp</item>
 		<item name="drawableWidth">@dimen/ItemLike_drawableSize</item><!-- 24dp -->
@@ -1658,12 +1726,16 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:numStars">5</item>
 		<item name="android:stepSize">1</item>
 		<item name="android:rating">5</item>
+
 		<item name="android:paddingLeft">9dp</item><!-- Padding adjusted so rating bar matches menu height in normal layout -->
 		<item name="android:paddingRight">9dp</item>
 		<item name="android:paddingTop">6dp</item>
 		<item name="android:paddingBottom">6dp</item>
+
 		<item name="drawableTint">?colorIconInverse</item>
 		<item name="lineBackground">@drawable/text_bg_alpha_rounded</item>
+		<item name="applyViewParams">true</item>
+		<item name="doClip">true</item>
 
 		<!-- NOTE: inivisible by default (e.g. when animating from a list) -->
 		<item name="android:visibility">invisible</item>
@@ -1689,6 +1761,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="recalcChildren">on_start</item>
 
 		<item name="applyViewParams">true</item>
+		<item name="doClip">true</item>
 		<item name="lineBackground">@drawable/text_bg_alpha_rounded</item>
 		<item name="drawableTint">?colorRating</item>
 	</style>
@@ -1698,22 +1771,28 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">bottom</item>
+		<item name="applyViewParams">true</item>
+		<item name="doClip">true</item>
 	</style>
 	<style name="ItemRatingBar_scene_item_menu_lu">
 		<item name="android:visibility">visible</item>
 
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachTop">@id/meta</item>
-		<item name="android:layout_marginTop">-2dp</item>
-		<item name="android:layout_marginBottom">4dp</item>
-		<item name="android:layout_marginLeft">-8dp</item><!-- NOTE: margins affected by scale as compensateScale doesn't work properly for non pivotX/Y=0/0 views -->
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item><!-- NOTE: margins affected by scale as compensateScale doesn't work properly for non pivotX/Y=0/0 views -->
+
+		<!-- Join gravityGroup=0 which aligns views as a whole on the vertical axis - as defined by ItemTrackTitle_scene_item_menu -->
+		<item name="layout_gravityGroup">0</item>
+
 		<item name="scale">.9</item>
 		<item name="layout_compensateScale">.9</item>
 
 		<item name="applyViewParams">true</item>
 		<item name="drawableTint">?colorIconPrimaryForced</item><!-- Just colorIconPrimary is @null for default theme, and that's not considered as changed tint for scenes -->
 		<item name="recalcChildren">on_start</item>
+		<item name="doClip">true</item>
 	</style>
 	<style name="ItemRatingBar_anim_ratingbar_pressed">
 		<item name="scale">1.1</item>
@@ -1725,8 +1804,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemLikeUnlikeLayoutBase">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachTop">@+id/line2</item>
 		<item name="layout_attachLeftToLeft">@id/title</item>
+		<item name="android:layout_gravity">bottom</item>
+		<item name="android:layout_marginBottom">0dp</item>
 
 		<item name="android:outlineProvider">none</item>
 		<item name="android:translationZ">?over_aa_elevation</item><!-- 10dp? -->
@@ -1745,6 +1825,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">bottom</item>
+		<item name="android:layout_marginBottom">0dp</item>
 		<item name="layout_attachLeft">15%</item>
 	</style>
 	<style name="ItemLikeUnlikeLayout_scene_aa">
@@ -1765,10 +1846,13 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:visibility">visible</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_attachTop">@id/meta</item>
-		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginTop">6dp</item>
 		<item name="android:layout_marginBottom">0dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
+
+		<!-- Join gravityGroup=0 which aligns views as a whole on the vertical axis - as defined by ItemTrackTitle_scene_item_menu -->
+		<item name="layout_gravityGroup">0</item>
+
 		<item name="scale">.725</item>
 		<item name="layout_compensateScale">.725</item>
 		<item name="recalcChildren">on_start</item>
@@ -1929,6 +2013,26 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:textStyle">bold</item>
 	</style>
 
+	<!-- Used during multi-dragging, no scenes -->
+	<style name="ItemTrackDragView">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">?ItemTrackTitle_Text</item>
+		<item name="android:background">@drawable/inverse_stroke_bg_rounded_large</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:translationZ">?over_aa_elevation</item>
+		<item name="android:outlineProvider">none</item>
+
+		<item name="android:layout_gravity">center</item>
+		<item name="layout_gravityTarget">@id/aa_image</item>
+		<item name="layout_gravityTargetAxis">vertical</item>
+		<item name="android:paddingLeft">16dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+	</style>
+
+
 	<!-- Same as ItemAALEDecorLayout/ItemAALEDecorText but for miniplayer -->
 	<style name="ItemMiniplayerPrevNextDecorLayout">
 	</style>
@@ -1970,7 +2074,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:textAppearance">?SeparatorWithButton_Text</item><!-- NOTE: text styling is e.g. for the derived SeparatorWithButtonButton -->
-		<!--<item name="lineBackground">@drawable/in_popup_rounded_large</item>&lt;!&ndash; Should have some contrast in popups as well &ndash;&gt;-->
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
 	</style>

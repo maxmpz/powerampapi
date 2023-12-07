@@ -265,7 +265,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<style name="DialogTitle_Text_BoldFont" parent="DialogTitle_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/large1_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/large5_AltFont_textSize</item>
 	</style>
 	<style name="DialogToastLine1_Text_BoldFont" parent="DialogToastLine1_Text"><!-- Bold -->
 		<item name="android:fontFamily">?BoldFont_medium_font</item>

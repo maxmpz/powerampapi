@@ -62,7 +62,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="PeqVisButtonLayout" parent="PeqVisButtonLayoutBase">
 		<item name="android:layout_width">0dp</item>
-		<item name="layout_widthPercent">@fraction/left_buttons_width</item>
+		<item name="layout_widthPercent">@fraction/eq_left_buttons_width</item>
 		<item name="layout_attachTop">@+id/limiter_button</item>
 		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item>
 		<item name="android:layout_marginTop">6dp</item>

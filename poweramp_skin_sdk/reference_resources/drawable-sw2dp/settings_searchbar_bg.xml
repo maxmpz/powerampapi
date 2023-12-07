@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
+	android:exitFadeDuration="500"
+	android:enterFadeDuration="250"
+>
+	<item>
+		<shape>
+			<corners android:radius="?corners_searchbar"/>
+			<solid android:color="?android:textColorSecondaryInverse"/>
+		</shape>
+	</item>
+</selector>

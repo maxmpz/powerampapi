@@ -31,11 +31,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">68dp</dimen>
 	<dimen name="Alt_TopMediumButton_size">52dp</dimen> 
 	<dimen name="Alt_TopSmallButton_size">42dp</dimen>
-
-
-	<dimen name="PlainSeekbar_common_marginBottom">8dp</dimen>
-	<dimen name="PlainSeekbar_metaInfo_marginBottom">8dp</dimen>
-	<dimen name="Alt_PlainSeekbar_common_marginBottom">8dp</dimen>
-	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">8dp</dimen>
-	<dimen name="Alt_PlainSeekbar_marginBottom">-2dp</dimen>
 </resources>

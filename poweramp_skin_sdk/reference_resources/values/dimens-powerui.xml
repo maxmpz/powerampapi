@@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="SmallerCenterDialogFrame_maxHeight">320dp</dimen>
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">600dp</dimen>
 	<dimen name="DialogFrame_maxWidth">680dp</dimen>
-	
+
 	<dimen name="DialogButtonStyle_maxWidth">148dp</dimen>
 	
 	<dimen name="CenterDialogFrame_maxWidth">380dp</dimen>
@@ -75,5 +75,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="ListMenu_drawableSize">20dp</dimen>
 	<dimen name="track_children_scene_aa_margin">18dp</dimen>
 
+	<!-- Typical separator size, used in lists -->
+	<dimen name="List_separatorSize">32dp</dimen>
+
 	<dimen name="searchHistoryItemSize">40sp</dimen>
+
+	<dimen name="AlertDialog_smallList_height">180dp</dimen>
 </resources>

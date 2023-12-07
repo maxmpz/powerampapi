@@ -4,9 +4,9 @@
 	<!-- Selected - to the left of current value -->
 	<item android:state_selected="true">
 		<shape android:shape="rectangle">
-			<size android:width="2dp" android:height="4dp"/>
+			<size android:width="6dp" android:height="6dp"/>
 			<solid android:color="?android:attr/colorControlActivated"/>
-			<corners android:radius="2dp"/>
+			<corners android:radius="6dp"/>
 		</shape>
 	</item>
 	<!-- To the right of current value. 
@@ -14,9 +14,9 @@
 		 this doesn't work for 5.0, and alpha extraction/workaround is too complicated for this case -->
 	<item>
 		<shape android:shape="rectangle">
-			<size android:width="2dp" android:height="4dp"/>
+			<size android:width="6dp" android:height="6dp"/>
 			<solid android:color="?android:attr/colorControlNormal"/>
-			<corners android:radius="2dp"/>
+			<corners android:radius="6dp"/>
 		</shape>
 	</item>
 </selector>

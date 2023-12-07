@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values/ -->
+<resources>
+	<!-- @Deprecated -->
+	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
+	<!-- @Depeicated -->
+	<dimen name="Alt_ListSubstyle_aaPaddingBottom">62dp</dimen>
+	<!-- @Deprecated -->
+	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.3</item>
+	<!-- @Deprecated -->
+	<dimen name="Alt_aaMaxSize">302dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="PlainSeekbar_metaInfo_marginBottom">0dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">0dp</dimen>
+	<!-- @Deprecated use eq_left_buttons_width -->
+	<fraction name="left_buttons_width">20%</fraction>
+	<!-- @Deprecated -->
+	<dimen name="EqTonePanel_offsetLeft">16dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="EqTonePanel_marginTop">12dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="EqToneRoundKnobLabel_marginRight">-1dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="PlainSeekbar_common_marginBottom">0dp</dimen>
+	<!-- @Deprecated -->
+	<dimen name="Alt_PlainSeekbar_common_marginBottom">0dp</dimen>
+
+</resources>

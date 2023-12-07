@@ -24,8 +24,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 >
 	<!-- Uses line2 style/scenes -->
+	<!-- redrawWhenRequestBlocked - avoid redraw to nothing during transitions + update -->
 	<com.maxmpz.widget.player.BusStatusText android:id="@+id/queue_counter"
 		style="?ItemTextLine2"
+		w:redrawWhenRequestBlocked="true"
 		w:stateBusId="@id/bus_player"
 		w:labelStateId="@id/state_player_queue_counter"
 		w:updateMsgId="@id/msg_player_track_changed"

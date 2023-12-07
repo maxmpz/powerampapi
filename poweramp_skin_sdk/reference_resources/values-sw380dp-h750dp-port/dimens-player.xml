@@ -32,10 +32,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PopupButtons_drawableSize">32dp</dimen>
 	<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>
 	
-	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
-	<dimen name="PlainSeekbar_common_marginBottom">12dp</dimen>
-	<dimen name="PlainSeekbar_metaInfo_marginBottom">12dp</dimen>
-	
 	<!-- Alt -->
 	<dimen name="Alt_TopSubAAButtons_marginTop">8dp</dimen>
 	<dimen name="Alt_TopWaveseek_paddingTB">12dp</dimen>

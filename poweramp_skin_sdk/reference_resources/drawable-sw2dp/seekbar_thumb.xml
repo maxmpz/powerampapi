@@ -9,7 +9,7 @@
 			android:useLevel="false"
 		>
 			<solid android:color="#0000" />
-			<size android:width="16dp" android:height="8dp" />
+			<size android:width="18dp" android:height="10dp" />
 		</shape>
 	</item>
 	
@@ -18,8 +18,8 @@
 			android:useLevel="false"
 		>
 			<solid android:color="?colorKnobPressed" />
-			<size android:width="16dp" android:height="8dp" />
-			<corners android:radius="5dp"/>
+			<size android:width="18dp" android:height="10dp" />
+			<corners android:radius="10dp"/>
 		</shape>
 		
 	</item>
@@ -29,8 +29,8 @@
 			android:useLevel="false"
 		>
 			<solid android:color="?colorSeekbarThumb" />
-			<size android:width="16dp" android:height="8dp" />
-			<corners android:radius="4dp"/>
+			<size android:width="18dp" android:height="10dp" />
+			<corners android:radius="10dp"/>
 		</shape>
 	</item>
 </selector>

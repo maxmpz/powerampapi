@@ -31,12 +31,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfoLayout_marginBottom">24dp</dimen>
 	<dimen name="TopCounterLayout_marginBottom">32dp</dimen>
 
-	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
-	<!-- Non alt -->
-	<dimen name="PlainSeekbar_common_marginBottom">11.5dp</dimen>
-	<dimen name="PlainSeekbar_metaInfo_marginBottom">21.5dp</dimen>
-	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">24dp</dimen>
-
 	<dimen name="Alt_TopPlay_maxSize">74dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">64dp</dimen>
 	<dimen name="Alt_TopMediumButton_size">52dp</dimen>

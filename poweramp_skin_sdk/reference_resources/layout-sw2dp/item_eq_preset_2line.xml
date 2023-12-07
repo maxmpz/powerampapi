@@ -20,7 +20,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- NOTE: layoutWidth/height of items are always ignored (see EqPresetButtonLayoutBase listItemSize). Used for presets with assignment -->
-<com.maxmpz.widget.player.list.TextItemView 
+<!-- NOTE: all style ?attrs should be in BasePoweruiStyles as this is also opened in dialog -->
+<com.maxmpz.widget.player.list.TextItemView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	

@@ -47,6 +47,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="large2_AltFont_textSize">16.2sp</dimen>
 	<dimen name="large3_AltFont_textSize">17sp</dimen>
 	<dimen name="large4_AltFont_textSize">18sp</dimen>
+	<dimen name="large5_AltFont_textSize">19sp</dimen>
 	
 	<dimen name="TopMetaInfoLabel_AltFont_textSize">9dp</dimen>
 	<dimen name="TopHelpSmaller_AltFont_textSize">10.8sp</dimen>

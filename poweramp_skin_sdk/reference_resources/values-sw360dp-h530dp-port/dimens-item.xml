@@ -20,6 +20,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<dimen name="ItemPopupMenu_larger_scene_item_menu_width">340dp</dimen>
 	<dimen name="ItemHeaderSelectButton_maxWidth">300dp</dimen>
 </resources>

@@ -32,4 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<StateAnimParams w:stateAnim="@id/anim_seeking"
 		style="?PlainSeekbar_anim_seeking"
 	/>
+
+	<!-- We want meta in the waveseek layout and below everything, so we can properly attach it to the seekbar -->
+	<include android:layout="@layout/merge_meta_info_layout"/>
 </merge>

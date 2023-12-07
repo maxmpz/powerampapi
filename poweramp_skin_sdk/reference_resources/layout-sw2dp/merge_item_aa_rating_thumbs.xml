@@ -51,10 +51,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 
 	</com.maxmpz.widget.player.list.LikeUnlikeLayout>
-	<!-- Keep all AA scenes as separate single SceneParams => modified by code. applyViewParams=true is requires to call onSceneParamsAdded on like unlike layout -->
+	<!-- Keep all AA scenes as separate single SceneParams => modified by code -->
 	<SceneParams w:scene="@+id/scene_aa" w:scene_2="@+id/scene_aa_vis" w:scene_3="@+id/scene_aa_playing"
 		style="?ItemLikeUnlikeLayout_scene_aa"
-		w:applyViewParams="true"
 	/>
 	<SceneParams w:scene="@+id/scene_grid" w:scene_2="@+id/scene_grid_zoomed" w:scene_3="@+id/scene_zoomed" w:scene_4="@+id/scene_small" 
 		w:scene_5="@+id/scene_1" w:scene_6="@+id/scene_1_zoomed"

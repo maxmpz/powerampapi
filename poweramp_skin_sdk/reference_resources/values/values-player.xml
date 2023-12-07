@@ -128,6 +128,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_info_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track -->
 	<item type="id" name="cmd_data_edit_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track -->
 	<item type="id" name="cmd_data_lyrics"/><!-- bus_data_cmd -->
+	<item type="id" name="cmd_data_reset_track_stats"/><!-- obj => id or arg1=1 & arg2=1 to reset all tracks stats -->
 	
 	<item type="id" name="cmd_list_select_aa_dialog"/><!-- NOTE: calls cmd_data_album_art -->
 	<item type="id" name="cmd_data_album_art"/><!-- bus_data_cmd, arg1: 0 (default, show for current PS loaded track)/RestLibrary.AA_TYPE_*; obj => IdAndPath, Long fileId, String/Uri => file path/uri, null => current track  -->
@@ -226,7 +227,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_update_eq_preset"/>
 
 	<item type="id" name="cmd_data_update_search_history"/><!-- obj => search term -->
-	<item type="id" name="cmd_data_clear_search_history"/><!-- obj => search term to clear term, arg1 => STATE_TRUE to clear whole history -->
+	<item type="id" name="cmd_data_clear_search_history"/><!-- obj => ClearSearchArgs -->
 	<item type="id" name="cmd_data_update_lyrics"/><!-- obj -> intent or bundle which follows ACTION_UPDATE_LYRICS API -->
 	
 	<item type="id" name="cmd_list_add_to_q"/>
@@ -237,6 +238,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_list_shuffle"/><!-- Header reshuffle -->
 	<item type="id" name="cmd_list_add_url"/><!-- Opens dialog -->
 	<item type="id" name="cmd_list_bookmark"/>
+	<item type="id" name="cmd_list_add_to_launcher"/>
 
 	<item type="id" name="cmd_list_prefer_aa_state"/><!-- arg1 == list_aa_* -->
 
@@ -446,6 +448,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_refresh_headset_controls"/>
 	<item type="id" name="cmd_player_apply_long_volume_controls"/>
 	<item type="id" name="cmd_player_resolve_output_info"/><!-- arg1 => deviceId. Sent by native to force output info re-resolve -->
+	<item type="id" name="cmd_player_apply_internal_plugin_config"/><!-- obj => plugin uniq name -->
 
 	
 	<!-- NOTE: used for cmd_set_repeat_mode -->

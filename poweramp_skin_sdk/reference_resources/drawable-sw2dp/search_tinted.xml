@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- NOTE: needed as drawableTint is not supported by EditText until 6.0 -->
+<!-- @Deprecated. Can't use this for skins which use vector-drawables, as bitmap drawable can't reference that -->
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-	android:src="?search_24dp"
+	android:src="@drawable/search"
 	android:tint="?colorIconPrimary"
 />

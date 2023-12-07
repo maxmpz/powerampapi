@@ -232,7 +232,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<style name="DialogTitle_Text_AltFont" parent="DialogTitle_Text">
 		<item name="android:fontFamily">?AltFont_font</item>
-		<item name="android:textSize">@dimen/large4_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/large5_AltFont_textSize</item>
 	</style>
 	<style name="DialogToastLine1_Text_AltFont" parent="DialogToastLine1_Text">
 		<item name="android:fontFamily">?AltFont_medium_font</item>

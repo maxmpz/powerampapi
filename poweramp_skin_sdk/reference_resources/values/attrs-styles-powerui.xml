@@ -30,6 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="WhiteStrokedListHeaderButton_Text" format="reference"/>
 		
 		<attr name="ItemTrack" format="reference"/>
+		<attr name="ItemTrack_scene_item_menu" format="reference"/>
 		
 		
 		<attr name="ItemTrackSelectBox" format="reference"/>
@@ -169,6 +170,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="ItemTrackDragHandler" format="reference"/>
 		<attr name="ItemTrackDragHandler_scene_grid" format="reference"/>
+		<attr name="ItemTrackDragHandler_scene_grid_zoomed" format="reference"/>
+		<attr name="ItemTrackDragHandler_scene_small" format="reference"/>
 		<attr name="ItemTrackDragHandler_scene_small_no_aa" format="reference"/>
 		
 		<attr name="ItemTrackMenu" format="reference"/>
@@ -195,6 +198,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemAALEDecorLayout" format="reference"/>
 		<attr name="ItemAALEDecorText" format="reference"/>
 		<attr name="ItemAALEDecorText_Text" format="reference"/>
+
+		<attr name="ItemTrackDragView" format="reference"/>
 		
 		<attr name="ItemMiniplayerPrevNextDecorLayout" format="reference"/>
 		<attr name="ItemMiniplayerPrevNextDecorText" format="reference"/>
@@ -204,6 +209,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="SeparatorWithButtonTitle" format="reference"/>
 		<attr name="SeparatorWithButton_Text" format="reference"/>
 		<attr name="SeparatorWithButtonButton" format="reference"/>
+		<attr name="SeparatorLine" format="reference"/>
 		
 		<attr name="ItemSubheadWithButton" format="reference"/><!-- Not used ATM -->
 		<attr name="ItemSubheadWithButtonTitle" format="reference"/><!-- Not used ATM -->
@@ -491,6 +497,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopActionModeBar" format="reference"/>
 		<attr name="TopActionModeBarButton" format="reference"/>
 		<attr name="TopSearchLayout" format="reference"/>
+		<attr name="TopSearchLayout_scene_search" format="reference"/>
+		<attr name="TopSearchLayout_scenes_gone" format="reference"/>
 		<attr name="TopSearchPanel" format="reference"/>
 		<attr name="TopSearchCloseButton" format="reference"/>
 		<attr name="TopSearchCatsLayout" format="reference"/>
@@ -615,6 +623,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Equalizer tab -->
 		<attr name="EqButton_Text" format="reference"/>
 		<attr name="EqKnobsLayout" format="reference"/>
+		<!-- Not used -->
+		<!-- @Deprecated -->
 		<attr name="EqPreampKnobLayout" format="reference"/>
 		<attr name="EqListControlsLayout" format="reference"/>
 		<attr name="EqListControlsAdd" format="reference"/>
@@ -626,6 +636,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqKnobValueLarger_Text" format="reference"/>
 		<attr name="EqKnobLabel_Text" format="reference"/>
 		<attr name="EqParamLayout" format="reference"/>
+		<!-- @Deprecated not used -->
 		<attr name="EqPreampLinearKnob" format="reference"/>
 		<attr name="EqFrequencyResponseScroller" format="reference"/>
 		<attr name="EqMilkFrs" format="reference"/>
@@ -635,6 +646,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqEquButton" format="reference"/>
 		<attr name="EqToneButton" format="reference"/>
 		<attr name="EqLimiterButton" format="reference"/>
+		<!-- Used in dialog -->
+		<attr name="EqPresetListLayout" format="reference"/>
 		<attr name="EqEquPresetButtonLayout" format="reference"/>
 		<attr name="EqEquPresetButtonLayout_scene_button_menu" format="reference"/>
 		<attr name="EqEquPresetLabel" format="reference"/>

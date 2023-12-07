@@ -72,7 +72,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="dialogLayout" format="reference"/><!-- The top level dialog xml layout. Usually it's the same for all dialogs -->
 	<attr name="dialogContentLayout" format="reference"/><!-- The dialog content (differs per dialog) -->
-	<attr name="dialogButtonsLayout" format="reference"/><!-- The dialog buttons. Usually the same for dialogs of same type -->
+	<attr name="dialogButtonsLayout" format="reference"/><!-- The dialog buttons. Usually the same for dialogs of the same type -->
 	
 	<attr name="dialogPaddingTop" format="dimension"/>
 	<attr name="dialogContentPaddingLR" format="dimension"/>
@@ -84,7 +84,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="check_48dp" format="reference"/>
 	<attr name="fail_48dp" format="reference"/>
-	
+
+	<attr name="dialogPositiveButtonBg" format="reference"/>
+	<attr name="dialogNegativeButtonBg" format="reference"/>
+	<attr name="dialogNeutralButtonBg" format="reference"/>
+	<attr name="dialogPositiveButtonColor" format="reference"/>
+	<attr name="dialogNegativeButtonColor" format="reference"/>
+	<attr name="dialogNeutralButtonColor" format="reference"/>
+
 	<attr name="DialogBehavior" format="reference"/>	
 	<attr name="DialogShim" format="reference"/>
 	<attr name="DialogOuterLayout" format="reference"/>

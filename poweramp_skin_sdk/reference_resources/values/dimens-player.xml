@@ -35,7 +35,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopSmallButton_size">36dp</dimen>
 	<dimen name="TopMediumButton_size">46dp</dimen>
 
-	<dimen name="PlainSeekbar_marginTop">0dp</dimen>
 	<dimen name="PlainSeekbar_TopWaveseekLayout_land_height">108dp</dimen><!-- NOTE: land only -->
 
 	<dimen name="TopPlayPauseBehind_size">40dp</dimen>
@@ -124,25 +123,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PlainSeekbar_buttons_offset">30dp</dimen>
 	<dimen name="Alt_PlainSeekbar_buttons_offset">30dp</dimen><!-- Keep it the same for smaller screens as otherwise buttons get too close to seekbar -->
 	
-	<dimen name="PlainSeekbar_marginBottom">-4dp</dimen>
 	<!-- Non alt -->
-	<dimen name="PlainSeekbar_common_marginBottom">6dp</dimen>
-	<dimen name="PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
-	<dimen name="Alt_PlainSeekbar_common_marginBottom">6dp</dimen>
-	<dimen name="Alt_PlainSeekbar_metaInfo_marginBottom">6dp</dimen>
-	<dimen name="Alt_PlainSeekbar_marginBottom">-6dp</dimen>
+	<dimen name="PlainSeekbar_marginTop">-16dp</dimen><!-- Shift a lot for the unknown but very small screen -->
+
+	<dimen name="PlainSeekbar_marginBottom">0dp</dimen>
+	<dimen name="Alt_PlainSeekbar_marginBottom">0dp</dimen>
 
 	<dimen name="ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft">14dp</dimen>
 	<dimen name="Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft">16dp</dimen>
-
-	<!-- @Deprecated -->
-	<dimen name="Alt_ItemTrackLine_scene_aa_marginTop">-3dp</dimen>
-	<!-- @Depeicated -->
-	<dimen name="Alt_ListSubstyle_aaPaddingBottom">62dp</dimen>
-	<!-- @Deprecated -->
-	<item type="dimen" format="float" name="Alt_ItemLikeUnlikeLayout_scene_aa_scale">0.3</item>
-	<!-- @Deprecated -->
-	<dimen name="Alt_aaMaxSize">302dp</dimen>
-	<!-- @Deprecated -->
-	<dimen name="AAA_Seek_marginBottom">18dp</dimen>
 </resources>

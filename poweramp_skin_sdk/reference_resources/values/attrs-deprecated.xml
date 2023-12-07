@@ -22,4 +22,11 @@
 	<!-- @Deprecated -->
 	<attr name="ItemTrackTitle_scene_item_menu_marginBottom" format="dimension"/>
 
+	<!-- @Deprecated not used anymore -->
+	<attr name="PlainSeekbar_metaInfo_marginBottom" format="dimension"/>
+
+	<!-- @Deprecated -->
+	<attr name="PlainSeekbar_common_marginBottom" format="dimension"/>
+	<!-- @Deprecated -->
+	<attr name="PlainSeekbar_marginBottom" format="dimension"/>
 </resources>

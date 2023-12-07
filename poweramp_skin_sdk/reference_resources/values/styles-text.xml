@@ -45,7 +45,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	
-	<!-- Currently, music folder selection text -->
+	<!-- Currently, music folder selection text, settings search history item text -->
 	<style name="LargerText" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">@dimen/LargerText_size</item>
 		<item name="android:textColor">?android:textColorPrimary</item>

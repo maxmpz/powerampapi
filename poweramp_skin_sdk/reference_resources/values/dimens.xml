@@ -39,5 +39,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="dir_tree_item_checkbox_width">@dimen/WRAP_CONTENT</dimen><!-- WRAP_CONTENT -->
    	<dimen name="dir_tree_item_paddingLeft">16dp</dimen>
 
-	<dimen name="SearchItemEmptyListText_marginTop">48dp</dimen>
+	<dimen name="SearchItemEmptyListText_marginTop">80dp</dimen>
 </resources>

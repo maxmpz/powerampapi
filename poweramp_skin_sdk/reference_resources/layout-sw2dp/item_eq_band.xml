@@ -20,14 +20,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <!-- TODO: remove, not used -->
-<com.maxmpz.widget.base.FastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
-	style="?EqPreampKnobLayout"
->
-	<com.maxmpz.widget.player.DSPPreampLinearKnob android:id="@+id/preamp_knob" 
-		style="?EqPreampLinearKnob"
-		android:text="@string/preamp"
-		
-		w:param="@id/dsp_preamp"
-		w:updateMsgId="@id/msg_dsp_eq_changed"
-	/>
-</com.maxmpz.widget.base.FastLayout>
+<NotUsed/>

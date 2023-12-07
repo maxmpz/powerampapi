@@ -143,6 +143,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     is not affected, and the only controlled time here is Eq to Main screen
 		 -->
 		<attr name="aaBlurNoAAToAAAnimTime" format="integer"/>
+
+		<!-- Anim time for locking AA, which usually happens when we navigate to non-main page and want some static background -->
+		<attr name="aaLockDurationMs" format="integer"/>
 		
 		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine
 			 and consistent around it.

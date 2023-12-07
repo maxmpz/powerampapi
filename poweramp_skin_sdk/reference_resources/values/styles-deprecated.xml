@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2023 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- values -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<!-- @Deprecated Not used anymore -->
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackTitle_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa">
+		<item name="android:layout_marginLeft">46dp</item>
+		<item name="android:layout_marginRight">46dp</item>
+		<item name="layout_attachBottom">50%</item>
+		<item name="android:layout_marginBottom">0dp</item>>
+	</style>
+
+	<!-- @Deprecated Not used anymore -->
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackLine2_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa">
+		<item name="android:layout_marginLeft">46dp</item>
+		<item name="android:layout_marginRight">46dp</item>
+		<item name="layout_attachTop">50%</item>
+		<item name="android:layout_marginTop">1dp</item>
+	</style>
+
+	<!-- @Deprecated Not used anymore -->
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackMenu_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackMenu_scene_aa">
+	</style>
+
+	<!-- @Deprecated Not used anymore -->
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled_ItemTrackLyrics_scene_aa" parent="Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa">
+	</style>
+
+	<!-- @Deprecated Not used anymore -->
+	<style name="Alt2_OptionRatingDisabled_ItemTrackTitle_scene_aa" parent="Alt2_ItemTrackTitle_scene_aa">
+		<item name="layout_attachBottom">50%</item>
+		<item name="android:layout_marginBottom">0dp</item><!-- Sligtly shift to bottom -->
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="layout_attachRight">@id/lyrics</item>
+	</style>
+
+	<!-- @Deprecated Not used anymore -->
+	<style name="Alt2_OptionRatingDisabled_ItemTrackLine2_scene_aa" parent="Alt2_ItemTrackLine2_scene_aa">
+		<item name="layout_attachTop">50%</item>
+		<item name="layout_attachBottom">parent</item><!-- Avoid rating cycle -->
+		<item name="android:layout_marginTop">1dp</item><!-- Slightly shift to bottom -->
+	</style>
+
+	<!-- @Deprecated Not used anymore -->
+	<style name="Alt2_OptionRatingDisabled_ItemTrackMenu_scene_aa" parent="Alt2_ItemTrackMenu_scene_aa">
+	</style>
+
+	<!-- @Deprecated Not used anymore -->
+	<style name="Alt2_TrackLabelsCentered_OptionRatingDisabled">
+		<!-- NOTE: for OptionRatingDisabled rating is not loaded at all, so no need for styles here, but
+		     for OptionRatingStarsMenu 5 stars rating is loaded, so we need to hide it -->
+		<item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item><!-- gone -->
+	</style>
+
+</resources>

@@ -189,13 +189,53 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopToastLine2_Text">@style/TopToastLine2_Text</item>
 		<item name="TopToastTitle_no_icon">@style/TopToastTitle_no_icon</item>
 		<item name="TopToastLine2_no_icon">@style/TopToastLine2_no_icon</item>
+
+		<!-- Eq Presets Popup - used in dialogs as well -->
+		<item name="EqPresetSearchLayout">@style/EqPresetSearchLayout</item>
+		<item name="EqPresetSearchPanel">@style/EqPresetSearchPanel</item>
+
+		<item name="EqPresetSearchCloseButton">@style/EqPresetSearchCloseButton</item>
+		<item name="EqPresetSearchEditText">@style/EqPresetSearchEditText</item>
+		<item name="EqPresetSearchCatsLayout">@style/EqPresetSearchCatsLayout</item>
+		<item name="EqPresetSearchCatButton">@style/EqPresetSearchCatButton</item>
+		<item name="EqPresetSearchCatSeparator">@style/EqPresetSearchCatSeparator</item>
+		<item name="EqPresetSearchResetButton">@style/EqPresetSearchResetButton</item>
+		<item name="EqPresetSearchAssignLayout">@style/EqPresetSearchAssignLayout</item>
+		<item name="EqPresetSearchAssignCb">@style/EqPresetSearchAssignCb</item>
+		<item name="EqPresetSearchDontSuggestCb">@style/EqPresetSearchDontSuggestCb</item>
+
+		<item name="ItemEmptyList">@style/ItemEmptyList</item>
+		<item name="ItemEmptyListText">@style/ItemEmptyListText</item>
+		<item name="ItemEmptyListText_Text">@style/ItemEmptyListText_Text</item>
+		<item name="ItemEmptyListText2">@style/ItemEmptyListText2</item>
+		<item name="ItemEmptyListSettingsButtonBase">@style/ItemEmptyListSettingsButtonBase</item>
+		<item name="ItemEmptyListSettingsButton">@style/ItemEmptyListSettingsButton</item>
+		<item name="ItemEmptyListScanProgress">@style/ItemEmptyListScanProgress</item>
+		<item name="ItemEmptyListScanProgressCenter">@style/ItemEmptyListScanProgressCenter</item>
+
+		<item name="SeparatorWithButton">@style/SeparatorWithButton</item>
+		<item name="SeparatorWithButtonTitle">@style/SeparatorWithButtonTitle</item>
+		<item name="SeparatorWithButton_Text">@style/SeparatorWithButton_Text</item>
+		<item name="SeparatorWithButtonButton">@style/SeparatorWithButtonButton</item>
+		<item name="SeparatorLine">@style/SeparatorLine</item>
+
+		<item name="ItemSubheadWithButton">@style/ItemSubheadWithButton</item>
+		<item name="ItemSubheadWithButtonTitle">@style/ItemSubheadWithButtonTitle</item><!-- Not used ATM -->
+		<item name="ItemSubheadWithButtonButton">@style/ItemSubheadWithButtonButton</item><!-- Not used ATM -->
+
+		<item name="EqPresetListLayout">@style/EqPresetListLayout</item>
 	</style>
 	
 	<!-- Applied to top activity only -->
 	<style name="TopPoweruiStyles">
+		<!-- By default, we load meta_info_layout into the TopContainer_metaLayout, which is in the top_container.
+		     Themes can override this and load meta into other containers -->
+		<item name="TopContainer_metaLayout">@layout/merge_meta_info_layout</item>
+
 		<item name="WhiteStrokedListHeaderButton_Text">@style/WhiteStrokedListHeaderButton_Text</item>
 		
 		<item name="ItemTrack">@style/ItemTrack</item>
+		<item name="ItemTrack_scene_item_menu">@style/ItemTrack_scene_item_menu</item>
 		
 		<item name="ItemTrackSelectBox">@style/ItemTrackSelectBox</item>
 		<item name="ItemTrackSelectBox_scene_grid">@style/ItemTrackSelectBox_scene_grid</item>
@@ -333,6 +373,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="ItemTrackDragHandler">@style/ItemTrackDragHandler</item>
 		<item name="ItemTrackDragHandler_scene_grid">@style/ItemTrackDragHandler_scene_grid</item>
+		<item name="ItemTrackDragHandler_scene_grid_zoomed">@style/ItemTrackDragHandler_scene_grid_zoomed</item>
+		<item name="ItemTrackDragHandler_scene_small">@style/ItemTrackDragHandler_scene_small</item>
 		<item name="ItemTrackDragHandler_scene_small_no_aa">@style/ItemTrackDragHandler_scene_small_no_aa</item>
 		
 		<item name="ItemTrackMenu">@style/ItemTrackMenu</item>
@@ -350,15 +392,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemTrackLyrics_scene_aa_vis">@style/ItemTrackLyrics_scene_aa_vis</item>
 		<item name="ItemTrackLyrics_scene_aa_playing">@style/ItemTrackLyrics_scene_aa_playing</item>
 		<item name="ItemTrackLyrics_scene_lyrics">@style/ItemTrackLyrics_scene_lyrics</item>
-		
-		<item name="SeparatorWithButton">@style/SeparatorWithButton</item>
-		<item name="SeparatorWithButtonTitle">@style/SeparatorWithButtonTitle</item>
-		<item name="SeparatorWithButton_Text">@style/SeparatorWithButton_Text</item>
-		<item name="SeparatorWithButtonButton">@style/SeparatorWithButtonButton</item>
-		
-		<item name="ItemSubheadWithButton">@style/ItemSubheadWithButton</item>
-		<item name="ItemSubheadWithButtonTitle">@style/ItemSubheadWithButtonTitle</item><!-- Not used ATM -->
-		<item name="ItemSubheadWithButtonButton">@style/ItemSubheadWithButtonButton</item><!-- Not used ATM -->
 		
 		<item name="ItemText">@style/ItemText</item>
 		
@@ -438,20 +471,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemAALEDecorLayout">@style/ItemAALEDecorLayout</item>
 		<item name="ItemAALEDecorText">@style/ItemAALEDecorText</item>
 		<item name="ItemAALEDecorText_Text">@style/ItemAALEDecorText_Text</item>
-		
+
+		<item name="ItemTrackDragView">@style/ItemTrackDragView</item>
+
 		<item name="ItemTrackBackDecor">@style/ItemTrackBackDecor</item>
 		<item name="ItemTrackBackDecorTitle">@style/ItemTrackBackDecorTitle</item>
 		<item name="ItemTrackBackDecorTitle_scene_header_1">@style/ItemTrackBackDecorTitle_scene_header_1</item>
 		<item name="ItemTrackBackDecorTitle_scene_header_back_decor">@style/ItemTrackBackDecorTitle_scene_header_back_decor</item>
-		
-		<item name="ItemEmptyList">@style/ItemEmptyList</item>
-		<item name="ItemEmptyListText">@style/ItemEmptyListText</item>
-		<item name="ItemEmptyListText_Text">@style/ItemEmptyListText_Text</item>
-		<item name="ItemEmptyListText2">@style/ItemEmptyListText2</item>
-		<item name="ItemEmptyListSettingsButtonBase">@style/ItemEmptyListSettingsButtonBase</item>
-		<item name="ItemEmptyListSettingsButton">@style/ItemEmptyListSettingsButton</item>
-		<item name="ItemEmptyListScanProgress">@style/ItemEmptyListScanProgress</item>
-		<item name="ItemEmptyListScanProgressCenter">@style/ItemEmptyListScanProgressCenter</item>
 		
 		<item name="ItemMiniplayer">@style/ItemMiniplayer</item>
 		<item name="ItemMiniplayerAAImage">@style/ItemMiniplayerAAImage</item>
@@ -583,6 +609,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopActionModeBar">@style/TopActionModeBar</item>
 		<item name="TopActionModeBarButton">@style/TopActionModeBarButton</item>
 		<item name="TopSearchLayout">@style/TopSearchLayout</item>
+		<item name="TopSearchLayout_scene_search">@style/TopSearchLayout_scene_search</item>
+		<item name="TopSearchLayout_scenes_gone">@style/TopSearchLayout_scenes_gone</item>
 		<item name="TopSearchPanel">@style/TopSearchPanel</item>
 		<item name="TopSearchCloseButton">@style/TopSearchCloseButton</item>
 		<item name="TopListSearchEditText">@style/TopListSearchEditText</item>
@@ -688,11 +716,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<!-- Equalizer tab -->
 		<item name="EqButton_Text">@style/EqButton_Text</item>
+		<!-- @Deprecated not used -->
 		<item name="EqPreampKnobLayout">@style/EqPreampKnobLayout</item>
 		<item name="EqListControlsLayout">@style/EqListControlsLayout</item>
 		<item name="EqListControlsAdd">@style/EqListControlsAdd</item>
 		<item name="EqListEmptyControlsAdd">@style/EqListEmptyControlsAdd</item>
-		<item name="EqListControlsSelect">@style/EqListControlsSelect</item>		
+		<item name="EqListControlsSelect">@style/EqListControlsSelect</item>
+		<!-- @Deprecated not used -->
 		<item name="EqPreampLinearKnob">@style/EqPreampLinearKnob</item>
 		<item name="EqKnobsLayout">@style/EqKnobsLayout</item>
 		<item name="EqLinearKnob">@style/EqLinearKnob</item>
@@ -713,10 +743,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqMenu_scene_item_menu">@style/EqMenu_scene_item_menu</item>
 		<item name="EqMenuIcon">@style/EqMenuIcon</item>
 		<item name="EqMenuLayoutItems">@style/EqMenuLayoutItems</item>
-		<!--
-		<item name="EqEquSaveButton">@style/EqEquSaveButton</item>
-		<item name="EqEquResetButton">@style/EqEquResetButton</item>
-		-->
 
 		<item name="EqTonePanel">@style/EqTonePanel</item>
 		<item name="EqBassToneKnobLayout">@style/EqBassToneKnobLayout</item>
@@ -797,19 +823,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PlainSeekbar">@style/PlainSeekbar</item>
 		<item name="PlainSeekbar_anim_seeking">@style/PlainSeekbar_anim_seeking</item>
 
-		<!-- Eq Presets Popup -->
-		<item name="EqPresetSearchLayout">@style/EqPresetSearchLayout</item>
-		<item name="EqPresetSearchPanel">@style/EqPresetSearchPanel</item>
-
-		<item name="EqPresetSearchCloseButton">@style/EqPresetSearchCloseButton</item>
-		<item name="EqPresetSearchEditText">@style/EqPresetSearchEditText</item>
-		<item name="EqPresetSearchCatsLayout">@style/EqPresetSearchCatsLayout</item>
-		<item name="EqPresetSearchCatButton">@style/EqPresetSearchCatButton</item>
-		<item name="EqPresetSearchCatSeparator">@style/EqPresetSearchCatSeparator</item>
-		<item name="EqPresetSearchResetButton">@style/EqPresetSearchResetButton</item>
-		<item name="EqPresetSearchAssignLayout">@style/EqPresetSearchAssignLayout</item>
-		<item name="EqPresetSearchAssignCb">@style/EqPresetSearchAssignCb</item>
-		<item name="EqPresetSearchDontSuggestCb">@style/EqPresetSearchDontSuggestCb</item>
 
 		<!--
 		<item name="">@style/</item>

@@ -21,4 +21,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<dimen name="EqParamGainLinearKnob_layout_marginLeft">16dp</dimen>
+
+	<dimen name="PlainSeekbar_marginBottom">4dp</dimen>
+	<dimen name="Alt_PlainSeekbar_marginBottom">8dp</dimen>
+
 </resources>

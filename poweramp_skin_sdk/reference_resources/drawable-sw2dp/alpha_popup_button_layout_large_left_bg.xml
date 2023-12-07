@@ -13,7 +13,7 @@
 	
 	<item android:minLevel="0" android:maxLevel="0">
 		<ripple 
-			android:color="?colorLessContrast">
+			android:color="?colorLessContrastRipple">
 			<item>
 				<shape>
 					<corners android:topLeftRadius="?corners_large" android:bottomLeftRadius="?corners_large"/>

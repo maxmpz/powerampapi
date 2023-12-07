@@ -39,6 +39,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorAABgColor" format="color"/>
 	<!-- Current playing item mark bg -->
 	<attr name="colorItemPlayingMark" format="color"/>
+	<!-- Color similar to colorAABgColor, but with alpha component -->
+	<attr name="colorDraggedBg" format="color"/>
 	
 	<attr name="colorFrsSelectionBg" format="color"/>
 	<attr name="colorFrsSelectionBgPressed" format="color"/>

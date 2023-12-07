@@ -62,9 +62,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 	</com.maxmpz.widget.base.FastLayout><!-- search_layout -->
 	<SceneParams w:scene="@+id/scene_search"
+		style="?TopSearchLayout_scene_search"
 		android:visibility="visible"
 		/>
 	<SceneParams w:scene="@+id/scene_lib" w:scene_2="@+id/scene_eq" w:scene_3="@+id/scene_vis" w:scene_4="@+id/scene_playing" w:scene_5="@id/scene_vis_temp_ui"
+		style="?TopSearchLayout_scenes_gone"
 		android:visibility="gone"
 		/>
 	<SceneParams w:scene="@id/scene_lyrics"

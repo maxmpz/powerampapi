@@ -24,7 +24,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- An overlay style -->
 	<style name="ActivityTheme_Whitepro_PlainSeekbar">
+		<!-- We load extra stuff into TopWaveseekLayout_extraLayout -->
 		<item name="TopWaveseekLayout_extraLayout">@layout/merge_plainseekbar_morebuttons</item>
+		<!-- We don't load meta into TopContainer_metaLayout (it's loaded in merge_plainseekbar_morebuttons) -->
+		<item name="TopContainer_metaLayout">@null</item>
 		
 		<item name="TopWaveseekLayout">@style/PlainSeekbar_TopWaveseekLayout</item><!-- NOTE: overridden -->
 		<item name="TopWaveseek">@style/TopWaveseek_disabled</item>
@@ -52,6 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				
 		<item name="TopTrackDuration">@style/PlainSeekbar_TopTrackDurationMoreButtons</item>
 		<item name="TopTrackDuration_scene_playing">@style/PlainSeekbar_TopTrackDurationMoreButtons_scene_playing</item>
+		<item name="TopTrackDuration_state_seeking">@style/PlainSeekbar_TopTrackElapsed_state_seeking</item>
 		
 		<item name="TopMetaInfoLayout">@style/PlainSeekbar_TopMetaInfoLayout</item>
 	</style>
@@ -81,31 +85,37 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Empty, to avoid any additional styles applied for Pro Buttons option -->
 	</style>
 	
-	
+
+	<!-- Overridden in land -->
 	<style name="PlainSeekbar_TopWaveseekLayout" parent="TopWaveseekLayout">
 		<item name="android:layout_marginBottom">0dp</item>
-		<item name="android:paddingBottom">0dp</item>
+		<!-- Set padding enough to fit elapsed/meta/duration on the bottom.
+		     This shifts seekbar up and reduces available space for the seekbar vertical centering.
+		     As for elapsed/meta/duration, they are attached to seekbar, so they are not directly affected by this padding -->
+		<item name="android:paddingBottom">24dp</item>
 	</style>
 	
 	<!-- NOTE: seekbar is slightly broken on Androids up to 6.0, so for 5.0/5.1 we override drawable dimens in values-v21
 	     NOTE: this is attached to track_elapsed, so track_elapsed should be moved to move seekbar as well -->
 	<style name="PlainSeekbar" parent="@android:style/Widget.Material.SeekBar">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">32dp</item>
-		<item name="layout_attachBottom">@id/track_elapsed</item>
-				
-		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_height">35dp</item>
+		<item name="android:layout_gravity">center</item>
+
+		<!-- NOTE: this offsets seekbar higher by default for smaller screen, and distribute it further down for longer screens -->
+		<item name="android:layout_marginTop">@dimen/PlainSeekbar_marginTop</item>
 		<item name="android:layout_marginLeft">14dp</item>
 		<item name="android:layout_marginRight">14dp</item>
+		<!-- This defines space between seekbar and elapsed/meta/duration -->
 		<item name="android:layout_marginBottom">?PlainSeekbar_marginBottom</item>
 		
 		<item name="android:progressDrawable">@drawable/seekbar</item>
 		<item name="android:thumb">@drawable/seekbar_thumb</item>
 		<item name="android:background">@drawable/ripple_seekbar_bg</item>
-		<item name="android:paddingTop">10dp</item><!-- Needed for Android 5 -->
-		<item name="android:paddingBottom">10dp</item><!-- Needed for Android 5 -->
-		<item name="android:paddingLeft">10dp</item><!-- NOTE: paddings/left/right doesn't work for seekbar shape so adjusting it here -->
-		<item name="android:paddingRight">10dp</item>
+		<item name="android:paddingTop">12dp</item><!-- Needed for Android 5 -->
+		<item name="android:paddingBottom">12dp</item><!-- Needed for Android 5 -->
+		<item name="android:paddingLeft">12dp</item><!-- NOTE: paddings/left/right doesn't work for seekbar shape so adjusting it here -->
+		<item name="android:paddingRight">12dp</item>
 		
 		<item name="android:clickable">true</item><!-- Avoid setPressed propagation from parent clicks -->
 		<item name="android:focusable">true</item>
@@ -193,18 +203,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">wrap_content</item>
 		
-		<item name="layout_attachBottom">parent</item>
-		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachTop">@id/seekbar</item>
 		<item name="android:layout_gravity">top|left</item>
 		<item name="layout_attachBottomToBottom">@null</item>
 				
-		<item name="android:layout_marginBottom">?PlainSeekbar_common_marginBottom</item><!-- 8dp -->
-		<item name="android:layout_marginLeft">12.75dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		
 		<item name="android:background">@drawable/alpha_rounded_medium</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:scaleX">0.836</item>		
-		<item name="android:scaleY">0.836</item>
+		<item name="android:scaleX">0.85</item>
+		<item name="android:scaleY">0.85</item>
 		
 		<item name="android:paddingLeft">6dp</item>
 		<item name="android:paddingRight">6dp</item>
@@ -212,24 +221,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingBottom">2dp</item>
 	</style>
 	<style name="PlainSeekbar_TopTrackElapsedMoreButtons_scene_playing">
-		<item name="scale">0.928</item>
+		<item name="scale">1</item>
 	</style> 
 	<style name="PlainSeekbar_TopTrackElapsed_state_seeking">
-		<item name="android:scaleX">1.114</item>
-		<item name="android:scaleY">1.114</item>
+		<item name="android:scaleX">1.25</item>
+		<item name="android:scaleY">1.25</item>
 	</style>
 	
 	<style name="PlainSeekbar_TopTrackDurationMoreButtons" parent="TopTrackDurationMoreButtons">
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">wrap_content</item>
 		
-		<item name="layout_attachBottom">parent</item>
-		<item name="layout_attachTop">@null</item>
+		<item name="layout_attachTop">@+id/seekbar</item>
 		<item name="android:layout_gravity">top|left</item>
 		<item name="layout_attachBottomToBottom">@null</item>
 				
-		<item name="android:layout_marginBottom">?PlainSeekbar_common_marginBottom</item><!-- 8dp -->
-		<item name="android:layout_marginRight">12.75dp</item>
+		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		
 		<item name="android:background">@drawable/alpha_rounded_medium</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
@@ -242,13 +250,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingBottom">2dp</item>
 	</style>
 	<style name="PlainSeekbar_TopTrackDurationMoreButtons_scene_playing">
-		<item name="scale">0.928</item>
+		<item name="scale">1</item>
 	</style> 
 	
 	<style name="PlainSeekbar_TopMetaInfoLayout" parent="TopMetaInfoLayout">
-		<item name="android:layout_marginBottom">?PlainSeekbar_metaInfo_marginBottom</item>
-		<item name="android:layout_marginLeft">56dp</item>
-		<item name="android:layout_marginRight">56dp</item>
+		<item name="layout_attachBottom">@null</item>
+		<item name="layout_attachTop">@null</item>
+		<!-- Center vertically vs elapsed, as meta info may have a bit different height for various screen sizes,
+		     so we can't use fixed margins and expect it's aligned the same for all screen sizes -->
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_gravityTarget">@+id/track_elapsed</item>
+		<item name="layout_gravityTargetAxis">vertical</item>
+		<!-- We have to attach to parent insets, as default layout_gravity=left will attach to track_elapsed -->
+		<item name="layout_attachLeft">@+id/track_elapsed</item>
+		<item name="layout_attachRight">@+id/track_duration</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginRight">8dp</item>
 	</style>
 	
 </resources>

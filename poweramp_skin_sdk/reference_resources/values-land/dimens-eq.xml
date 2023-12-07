@@ -23,7 +23,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="eq_frs_height">32dp</dimen>
 	
-	<dimen name="TopActionModeBar_marginBottom">0dp</dimen>
+	<dimen name="eq_top_margin">0dp</dimen>
 	
 	<dimen name="TopPeqEqLayoutBase_scenes_vis_marginTop">44dp</dimen>
 	

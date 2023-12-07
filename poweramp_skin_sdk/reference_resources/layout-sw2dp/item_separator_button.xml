@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?SeparatorWithButtonButton"
 	/>
 	<com.maxmpz.widget.base.NonOverlappingView
-		style="@style/SeparatorLine"
+		style="?SeparatorLine"
 		/>
 	
 </com.maxmpz.widget.player.list.SeparatorItemView>
