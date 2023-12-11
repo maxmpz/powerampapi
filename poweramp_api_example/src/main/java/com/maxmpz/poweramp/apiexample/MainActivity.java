@@ -657,18 +657,6 @@ public class MainActivity extends AppCompatActivity implements
 				FORCE_API_ACTIVITY);
 	}
 
-	public void exportPrefs(View view) {
-		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.Settings.ACTION_EXPORT_SETTINGS)
-				.putExtra(PowerampAPI.Settings.EXTRA_UI, true)
-				, FORCE_API_ACTIVITY);
-	}
-
-	public void importPrefs(View view) {
-		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.Settings.ACTION_IMPORT_SETTINGS)
-						.putExtra(PowerampAPI.Settings.EXTRA_UI, true)
-				, FORCE_API_ACTIVITY);
-	}
-
 	/** Get the specified preference and show its name, type, value */
 	@SuppressLint("SetTextI18n") private void getPref() {
 		EditText prefET = findViewById(R.id.pref);
