@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 33
+    compileSdk COMPILE_SDK
     namespace 'com.maxmpz.poweramp.apiexample'
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk MIN_SDK
+        targetSdk TARGET_SDK
         versionCode 1
         versionName "1.0"
     }
@@ -24,7 +24,7 @@ android {
 
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation project(':poweramp_api_lib')
 }

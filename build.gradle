@@ -11,7 +11,7 @@ allprojects {
     ext {
         if(!project.hasProperty('COMPILE_SDK')) COMPILE_SDK = 34
         if(!project.hasProperty('MIN_SDK')) MIN_SDK = 21
-        if(!project.hasProperty('TARGET_SDK')) TARGET_SDK = 33
+        if(!project.hasProperty('TARGET_SDK')) TARGET_SDK = 34
     }
 
     repositories {

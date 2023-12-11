@@ -1,39 +1,42 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 33
+    compileSdk COMPILE_SDK
     namespace "com.poweramp.v3.sampleskin"
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk MIN_SDK
+        targetSdk TARGET_SDK
         versionCode 1
         versionName "1.0"
     }
-    lintOptions {
-        disable "ResAuto", "MissingTranslation", "OnClick", "ExtraTranslation"
 
-    }
-    
-    aaptOptions {
-        def localProps = new Properties()
-        localProps.load(rootProject.file("local.properties").newDataInputStream())
-        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-967-resources.zip"
-        println "Using $paResources PA resources"
-
-        additionalParameters "--emit-ids", "${projectDir}/stable-ids.txt",
-                                "--package-id", "0x80",
-                                "-I", "${projectDir}/../${paResources}"
-        if(project.file("stable-ids.txt").exists()) {
-            println "Got stable-ids OK"
-            additionalParameters "--stable-ids", "${projectDir}/stable-ids.txt"
-        } else {
-            println "WARNING: no stable-ids.txt specified"
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+    lint {
+        disable 'ResAuto', 'MissingTranslation', 'OnClick', 'ExtraTranslation'
+    }
+
+    androidResources {
+        def localProps = new Properties()
+        localProps.load(rootProject.file("local.properties").newDataInputStream())
+        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-978-resources.zip"
+        println "Using $paResources PA resources"
+
+        def params = []
+
+        params += ["--emit-ids", "${projectDir}/stable-ids.txt", "--package-id", "0x80",  "-I", "${projectDir}/../${paResources}"]
+
+        if(project.file("stable-ids.txt").exists()) {
+            println "Got stable-ids OK"
+            params += ["--stable-ids", "${projectDir}/stable-ids.txt"]
+        } else {
+            println "WARNING: no stable-ids.txt specified"
+        }
+
+        additionalParameters = params
     }
 }
 

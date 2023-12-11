@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
-    compileSdk 33
+    compileSdk COMPILE_SDK
     namespace "com.maxmpz.poweramplyricspluginexample"
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk MIN_SDK
+        targetSdk TARGET_SDK
         versionCode 1
         versionName "1.0"
     }

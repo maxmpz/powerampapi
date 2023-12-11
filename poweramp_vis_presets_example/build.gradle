@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 33
+    compileSdk COMPILE_SDK
     namespace "com.poweramp.v3.vispresets.sample"
 
     defaultConfig {
-        minSdk 21
-        targetSdk 33
+        minSdk MIN_SDK
+        targetSdk TARGET_SDK
         versionCode 1
         versionName "1.0"
     }
