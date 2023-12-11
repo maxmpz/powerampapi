@@ -289,12 +289,14 @@ public interface TableDefs {
 		 * @deprecated
 		 * @see com.maxmpz.poweramp.player.PowerampAPI.Track.TagStatus#TAG_NOT_SCANNED
 		 */
+		@Deprecated
 		public static final int TAG_NOT_SCANNED = TagStatus.TAG_NOT_SCANNED;
 
 		/**
 		 * @deprecated
 		 * @see com.maxmpz.poweramp.player.PowerampAPI.Track.TagStatus#TAG_SCANNED
 		 */
+		@Deprecated
 		public static final int TAG_SCANNED = TagStatus.TAG_SCANNED;
 
 
