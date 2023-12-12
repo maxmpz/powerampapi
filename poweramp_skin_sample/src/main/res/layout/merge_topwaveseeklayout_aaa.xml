@@ -9,7 +9,7 @@
 	<include android:layout="@com.maxmpz.audioplayer:layout/merge_topwaveseeklayout_extralayout"/>
 
 	<!-- Add our plain seekbar -->
-	<com.maxmpz.widget.player.Seek android:id="@+id/seekbar"
+	<com.maxmpz.widget.player.Seek android:id="@com.maxmpz.audioplayer:id/seekbar"
 		style="@style/AAA_Seek"
 		tools:ignore="MissingClass"
 		/>

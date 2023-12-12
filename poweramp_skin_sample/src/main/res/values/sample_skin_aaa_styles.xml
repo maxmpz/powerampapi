@@ -536,7 +536,7 @@
 
 		<item name="android:layout_gravity">center_vertical</item>
 		<!-- NOTE: this is our seekbar with our @id, defined in merge_towaveseeklayout_aaa.xml. layout_gravityTarget makes waveseek to gravitate to seekbar -->
-		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@id/seekbar</item>
+		<item name="com.maxmpz.audioplayer:layout_gravityTarget">@com.maxmpz.audioplayer:id/seekbar</item>
 
 		<!-- Adjust margins so our seekbar width matches waveseek -->
 		<item name="android:layout_marginLeft">8dp</item>
