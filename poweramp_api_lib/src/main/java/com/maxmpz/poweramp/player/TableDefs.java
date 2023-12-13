@@ -1986,7 +1986,7 @@ public interface TableDefs {
 	 * Search history for the main (tracks) search
 	 * @since 907 
 	 */
-	// NOTE: avoid table name as these are shared
+	// NOTE: avoid table name as these columns are shared
 	public class SearchHistory {
 		public static final @NonNull String TABLE = "search_history";
 		public static final @NonNull String _ID = TABLE + "._id";
@@ -1994,10 +1994,12 @@ public interface TableDefs {
 		public static final @NonNull String UPDATED_AT = "updated_at";
 	}
 
-	/** Since 978 */
+	/** @since 978 */
 	public class SettingsSearchHistory extends SearchHistory {
 		public static final @NonNull String TABLE = "settings_search_history";
 		public static final @NonNull String _ID = TABLE + "._id";
+		/** @since 979 */
+		public static final @NonNull String URI = "uri";
 	}
 
 	/**
