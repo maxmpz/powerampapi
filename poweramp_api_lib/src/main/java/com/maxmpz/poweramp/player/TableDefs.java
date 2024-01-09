@@ -278,8 +278,8 @@ public interface TableDefs {
 		public static final @NonNull String FULL_PATH = "COALESCE(" + FILE_PATH + ","+ Folders.PATH + "||" + NAME + "," + NAME + ")";
 		
 		/**
-		 * Alternative track number. Currently applied only in Folders/Folders Hierarchy files for track number sorting. May differ for provider tracks, equals track_number for
-		 * all other tracks<br>
+		 * Alternative track number. Currently applied only in Folders/Folders Hierarchy files for track number sorting.
+		 * May differ for the provider tracks, equals track_number for all other tracks<br>
 		 * INTEGER
 		 */
 		public static final @NonNull String TRACK_NUMBER_ALT = "track_number_alt";
