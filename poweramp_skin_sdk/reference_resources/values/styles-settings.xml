@@ -93,6 +93,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="settings_pa_logo">@drawable/settings_pa_logo_themed</item>
 		<item name="settings_restore_purchase">@drawable/settings_restore_purchase_colored</item>
 		<item name="settings_doubleq">@drawable/settings_doubleq_colored</item>
+		<item name="settings_pak">@drawable/settings_pak_colored</item>
 
 		<item name="LargerText">@style/LargerText</item>
 
