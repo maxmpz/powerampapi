@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<declare-styleable name="MilkView">
+		<!-- Color to use as gl background fill. Alpha is ignored, unless bg_color is 0x00000000, 
+			 then view background is transparent, but this can fail or have artifacts on some devices, and is not recommended. 
+			 NOTE: this color applied only when milk preset is active (for Album Art aa_bg_color is applied) -->
+		<attr name="bgColor" format="color"/>
+		
+		<!-- Color to use as background when Album Art is displayed (or actually, when there is no yet any Album Art yet). 
+			 Same rules applied for alpha as for bg_color -->
+		<attr name="aaBgColor" format="color"/>
+		
+		<!-- If clip_radius > 0.0 and < 0.5 - apply rounded corners, if radius > 0.5 - apply circle mask (not aspect corrected).
+		     NOTE: currenty applied just to rendered contents, not to background, thus doesn't make much sense for the rounded rect clipping -->
+		<attr name="clipRadius" format="float|reference"/>
+		
+		<!-- Delay renderer init until fully attached to window. Helps with cases when Milk view can be created/removed many times before actual attachment - e.g. in Preferences -->
+		<attr name="delayedInit" format="boolean"/>
+
+		<!-- Solid color based on album art image to use as background. The standard Android Pallete is used
+		     (https://developer.android.com/training/material/palette-colors#generate-a-palette-instance),
+		     so aaSolidColor attribute corresponds directly to the pallete values. If no color can be extracted,
+		     the default aaBgColor color is used.
+
+		     If aaSolidColor is set to any value except "none", aaBlurLevel, aaBlurScaleSize attribures are ignored, but
+		     other aaBlur* attributes are still applied -->
+		<attr name="aaSolidColorTarget">
+			<enum name="none" value="-1"/>
+			<enum name="lightVibrant" value="0"/>
+			<enum name="vibrant" value="1"/>
+			<enum name="darkVibrant" value="2"/>
+			<enum name="lightMuted" value="3"/>
+			<enum name="muted" value="4"/>
+			<enum name="darkMuted" value="5"/>
+		</attr>
+
+		<!-- 1..512 (pixels). This is the initial Album Art scale for blurring.
+		     Not used if aaSolidColorTarget is set to non-none.
+		     NOTE: these aa* properties are always overridden by user preferences and also by aaEffect* attributes, -->
+		<attr name="aaBlurScaleSize" format="integer"/>
+		<!-- 0..15. Blurring level. Deeper level requires more GPU resources, so try to find lowest possible which looks good
+		     Not used if aaSolidColorTarget is set to non-none -->
+		<attr name="aaBlurLevel" format="integer"/>
+		<!-- Saturation for blurred Album Art -->
+		<attr name="aaBlurSaturation" format="float"/>
+		<!-- Brightness for blurred Album Art -->
+		<attr name="aaBlurIntensity" format="float"/>
+
+		<!-- Extra saturation multiplier for blurred Album Art. Default is 1.0.
+		     NOTE: these aa* properties are not overridden by user options and can be used by the skin to change user aaBlur* preference -->
+		<attr name="aaBlurSaturationMult" format="float"/>
+		<!-- Extra brightness multiplier for blurred Album Art. Default is 1.0 -->
+		<attr name="aaBlurIntensityMult" format="float"/>
+
+		<!-- PinLight effect value. Applied if >= 0f, default is -1f.
+		     NOTE: this can't be tweaked by the user and should be applied when, e.g. forced readability is needed on the main screen -->
+		<attr name="aaBlurPinLight" format="float"/>
+		<!-- Lighten value. [0..1] range, 0 - no change, 1 - lighter. Default is 0
+		     This basically lightens first the darker colors.
+		     NOTE: this can't be tweaked by the user and should be applied when, e.g. forced readability is needed on the main screen -->
+		<attr name="aaBlurLighten" format="float"/>
+		<!-- Darken value. [0..1] range, 1 - no change, 0 - darker. Default is 1
+		     This basically darkens first the light colors.
+		     NOTE: this can't be tweaked by the user and should be applied when, e.g. forced readability is needed on the main screen -->
+		<attr name="aaBlurDarken" format="float"/>
+
+
+		<!-- MilkViewEffect parameters to apply for backgrounds which should be readable. Used e.g. for Lyrics -->
+		<attr name="aaEffectReadable" format="reference"/>
+		<!-- MilkViewEffect parameters to apply for the list which should be readable -->
+		<attr name="aaEffectList" format="reference"/>
+
+		<!-- Default is true. If true, we allow background gradient for lists.
+		     As dark gradient may look bad for white-ish backgrounds, we disable it for light themes -->
+		<attr name="aaAllowBgGradientForList" format="boolean"/>
+
+	</declare-styleable>
+
+	<declare-styleable name="MilkViewEffect">
+		<attr name="aaSolidColorTarget"/>
+
+		<!-- Saturation to apply when we want text over bg. If positive, overrides any user value and aaBlurSaturationMult. Default is -1.0 -->
+		<attr name="aaBlurSaturation"/>
+		<!-- Intensity to apply when we want text over bg. If positive, overrides any user value and aaBlurSaturationMult. Default is -1.0 -->
+		<attr name="aaBlurIntensity"/>
+		<attr name="aaBlurScaleSize"/>
+		<!-- PinLight effect value. Applied if >= 0f, default is -1f -->
+		<attr name="aaBlurPinLight"/>
+		<!-- Lighten value. [0..1] range, 0 - no change, 1 - lighter. Default is 0
+		     This basically lightens first the darker colors -->
+		<attr name="aaBlurLighten"/>
+		<!-- Darken value. [0..1] range, 1 - no change, 0 - darker. Default is 1
+		     This basically darkens first the light colors -->
+		<attr name="aaBlurDarken"/>
+	</declare-styleable>
+
+
+</resources>
