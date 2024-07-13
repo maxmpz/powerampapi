@@ -97,19 +97,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="settleAnimTime">450</item>
 	</style>
 
-	<!-- NOTE: children clipping is required for some tab layouts, e.g. eq, so that set in layouts -->
 	<style name="EqTabLayout">
 		<item name="layout_widthPercent">100%</item><!-- NOTE: can't use match_parent here, as parent width is consumed -->
 		<item name="android:layout_height">match_parent</item>
 		<item name="layout_consumeSpace">horizontal</item>
 		<item name="android:clipToPadding">false</item>
+		<item name="android:clipChildren">false</item>
 	</style>
 
-	<!-- NOTE: child clipping is required for the PowerList containing bands -->	
+	<!-- NOTE: EqKnobsList always clips by bounds (not padding) programatically -->
 	<style name="EqKnobsLayoutBase">
 		<item name="android:scrollbars">horizontal</item><!-- NOTE: need scrollbars=horizontal to enable scrolling -->
 		<item name="android:scrollbarThumbHorizontal">@null</item><!-- NOTE: but disable default android scroll thumb drawing -->
 		<item name="android:clipToPadding">false</item>
+		<item name="android:clipChildren">false</item>
 	</style>
 	<!-- NOTE: changed margins to paddings so we can avoid clipping for at least that padding -->
 	<style name="EqKnobsLayout" parent="EqKnobsLayoutBase">

@@ -35,5 +35,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
 	<dimen name="Alt_TopMediumButton_size">64dp</dimen>	
 	<dimen name="Alt_TopSmallButton_size">40dp</dimen>
-	
+
+	<dimen name="CenterDialogFrame_maxHeight">630dp</dimen>
 </resources>

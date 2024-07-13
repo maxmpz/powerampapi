@@ -843,8 +843,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTrackTitle_scene_grid_1_alt" parent="ItemTrackTitle_scene_grid">
 		<item name="layout_attachLeft">@null</item>
 		<item name="layout_attachRight">@null</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginRight">4dp</item>
 		<item name="android:layout_marginBottom">4dp</item><!-- Leave some space on bottom for better inter row spacing -->
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachBottom">parent</item>
@@ -1622,6 +1622,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="layout_goneWhenEmpty">true</item><!-- The view becomes "gone" when no lyrics is in track -->
 		<item name="android:outlineProvider">none</item>
+		<item name="android:longClickable">true</item>
 		<!-- NOTE: we don't use gone for lyrics button to allow for the better transitions for it -->
 	</style>
 
@@ -2235,7 +2236,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="applyEvenIfGone">dontApplyIfGone</item>
 	</style>
 	<style name="ItemHeaderSearchButton_scene_header" parent="BlackListIconOnlyHeaderButton_scene_header">
-		<item name="applyEvenIfGone">dontApplyIfGone</item>
+		<!-- NOTE: dontApplyIfGone disabled, as it fails us sometimes (button stays invisible) -->
+		<!--<item name="applyEvenIfGone">dontApplyIfGone</item>-->
 	</style>
 	<style name="ItemHeaderSearchButton_scene_menu" parent="BlackListIconOnlyHeaderButton_scene_menu"></style>
 	<style name="ItemHeaderSearchButton_scene_bottom_toolbar" parent="ItemTextHeaderSearchButton_scene_bottom_toolbar"></style>

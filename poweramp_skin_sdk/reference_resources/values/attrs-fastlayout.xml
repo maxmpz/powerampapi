@@ -322,7 +322,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- If true, view will be given UNSPECIFIED measure spec when view size is wrap_content on given axis.
 			 By default, this is disabled, thus view measures requested size limited by its container size.
 			 layout_unlimitedMeasure="true" may be required for the cases when there is only one child view which should grow beyond its container size
-			 on the scrollable axis. Such behavior is close to Android ScrollableView children measuring
+			 on the scrollable axis. Such behavior is close to Android ScrollableView children measuring.
+
+			 Also can be used when we're running some "expanding" scene where our initial layout is very small, so there is no enough
+			 space to properly layout wrap_content view (as it gets no available space otherwise)
 		-->
 		<attr name="layout_unlimitedMeasure" format="boolean"/>
 

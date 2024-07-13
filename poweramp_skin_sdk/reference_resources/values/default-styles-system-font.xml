@@ -32,8 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		Text colors for text-color animated texts (like title/line2/meta etc. in items) are set on view level due to scene animations and ignored if overridden here -->
 	
 	<style name="ActivityTheme_SystemFont">
-		<item name="humanGridItemExtraSpace">18sp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
-		<item name="humanGridZoomedItemExtraSpace">24sp</item><!-- 2x grids. Overridden for alt/bold fonts -->
+		<item name="humanGridItemExtraSpace">20sp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
+		<item name="humanGridZoomedItemExtraSpace">26sp</item><!-- 2x grids. Overridden for alt/bold fonts -->
 
 		<!-- Also modify item scale a bit in some scenes -->
 		<item name="ItemTrackTitle_scene_grid_scale">.65</item>

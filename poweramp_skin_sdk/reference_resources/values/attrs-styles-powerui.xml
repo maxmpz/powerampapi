@@ -459,6 +459,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="NavbarExtensionMenuLine" format="reference"/>
 		<attr name="NavbarExtensionMenuLine_Text" format="reference"/>
 		<attr name="NavbarExtensionMenuLine50" format="reference"/><!-- Not used ATM -->
+		<attr name="NavbarExtensionNavExtSettingsTags" format="reference"/>
 		<attr name="NavbarList" format="reference"/>
 		<attr name="NavbarNavButtonsLayout" format="reference"/>
 		<attr name="NavBarButton" format="reference"/>

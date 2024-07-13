@@ -43,8 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorLessContrast">?android:attr/textColorSecondary</item><!-- Used for e.g. for main screen tinted icons, some text -->
 		<item name="colorIconLessContrast">?android:attr/textColorSecondary</item>
 		<item name="colorShade">?android:attr/textColorSecondary</item>
-		<item name="colorBgLight">?android:attr/panelBackground</item><!-- Used for Search Frame bg -->
-		<!--<item name="colorBgLight">?android:attr/colorButtonNormal</item>-->
+		<item name="colorBgLight">?android:textColorSecondaryInverse</item><!-- Used for Tag bg -->
 		<item name="colorItemPlayingMark">#555</item>
 		
 		<item name="colorIconPrimary">?android:attr/colorForeground</item><!-- By default, our icon drawables are black, thus, no extra tinting -->
@@ -60,6 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_navbar">8dp</item>
 		<item name="corners_searchbar">24dp</item>
 		<item name="corners_mini">4dp</item>
+		<item name="corners_nav_button">4dp</item>
 		<item name="corners_equ_frs">4dp</item>
 		<item name="corners_large">24dp</item>
 		<item name="corners_small">2dp</item>
@@ -359,6 +359,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingBottom">0dp</item>
 		<item name="android:paddingLeft">24dp</item><!-- NOTE: no access to ?dialogContentPaddingLR here as we have settings activity context when creating this -->
 		<item name="android:paddingRight">24dp</item>
+		<item name="tagStyle">@style/TagPreferenceTagEditTag</item>
+		<item name="tagStyleReadOnly">@style/TagPreferenceTagEditTagReadOnly</item>
 	</style>
 
 	
@@ -384,48 +386,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textSize">12.5sp</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:textColor">?android:attr/textColorSecondary</item>
-	</style>
-	
-	<!-- NOTE: inflated in Dialog/main theme -->
-	<style name="TagPreferenceTagEditTagReadOnly">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">4dp</item>
-		<item name="android:layout_marginBottom">0dp</item>
-		<item name="android:layout_marginLeft">0dp</item>
-		<item name="android:layout_marginRight">8dp</item>
-		
-		<item name="android:paddingLeft">12dp</item>
-		<item name="android:paddingRight">12dp</item>
-		<item name="android:paddingTop">6dp</item>
-		<item name="android:paddingBottom">6dp</item>
-		
-		<item name="layout_consumeSpace">stack_horizontal</item>
-		
-		<!-- NOTE: avoiding text appearance here as main theme (Dialog) styles then are getting overridden by such textAppearance, thus not getting proper font there -->
-		<item name="android:textSize">12.5sp</item>
-		<item name="android:textStyle">bold</item>
-				
-		<item name="android:maxLines">1</item>
-		<item name="android:ellipsize">end</item>
-		
-		<item name="android:background">@drawable/bg_light_rounded_large</item><!-- NOTE: use simple background, not ripple to avoid anims / states-->
-	</style>
-	
-	<!-- NOTE: inflated in Dialog/main theme -->
-	<style name="TagPreferenceTagEditTag" parent="TagPreferenceTagEditTagReadOnly">
-		<item name="animOnClick">true</item>
-		<item name="android:clickable">true</item>
-		<item name="android:focusable">true</item>
-		<item name="android:focusableInTouchMode">false</item>
-		<item name="drawablePaddingStart">8dp</item>
-		<item name="android:drawablePadding">0dp</item>
-		<item name="drawablePosition">right</item>
-		<item name="drawableWidth">16dp</item>
-		<item name="drawableHeight">16dp</item>
-		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="android:drawable">?clear</item>
-		<item name="android:background">@drawable/ripple_bg_light_rounded_large</item>
 	</style>
 	
 	<!-- NOTE: inflated in the Settings theme for in-settings TagEdits readonly, and in Dialog/main for dialog TagsEdit label
@@ -468,5 +428,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:background">@drawable/checkable_rounded_large</item><!-- NOTE: use simple background, not ripple to avoid anims / states-->
 	</style>
+
+	<!-- Assumes the FastButton derived button -->
+	<style name="PrefRoundedTransButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">16dp</item>
+		<item name="drawablePaddingStart">14dp</item>
+		<item name="drawableTint">?android:textColorPrimary</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:background">@drawable/ripple_inverse_stroke_bg_rounded_large</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="animOnClick">true</item>
+	</style>
+
 </resources>
 

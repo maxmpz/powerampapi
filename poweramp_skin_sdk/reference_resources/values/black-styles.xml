@@ -177,6 +177,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Change AA backgrounds for lyrics/lists -->
 		<item name="aaEffectReadable">@style/ActivityTheme_Black_MilkViewEffect_Lyrics</item>
 		<item name="aaEffectList">@style/ActivityTheme_Black_MilkViewEffect_List</item>
+		<!-- Enable aa bg gradient for dark theme -->
+		<item name="aaAllowBgGradientForList">true</item>
 
 		<item name="lyricsPrevAlpha">0.25</item>
 		<item name="lyricsNextAlpha">0.6</item>

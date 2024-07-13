@@ -34,6 +34,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<integer name="ITEM_BG_LEVEL_INTERMEDIATE">32</integer>
 	<integer name="ITEM_BG_LEVEL_POPUP">16</integer>
 	<integer name="ITEM_BG_LEVEL_FEEDBACK">8</integer>
+
+	<integer name="FLAG_ACTIVITY_NEW_TASK">0x10000000</integer>
 	
 	<item type="id" name="_debug"/>
 

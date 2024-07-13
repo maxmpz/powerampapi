@@ -112,7 +112,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     Useful for the views which are force-hidden by code, but still should have different layout in scenes.
 		     This can be further optimized with dontApplyIfGone -->
 		<attr name="applyEvenIfGone" format="boolean|integer">
-			<!-- Don't apply scene params if view is GONE currently (only in the current scene). If view is GONE, then it won't participate in scenes until set to non-gone by code.
+			<!-- Don't apply scene params if view is GONE currently (only in the current scene). If view is GONE, then it won't participate
+			     in scenes until set to non-gone by code.
 			     This is used mostly by views which can be shown/hidden by code -->
 			<enum name="dontApplyIfGone" value="2"/>
 		</attr>

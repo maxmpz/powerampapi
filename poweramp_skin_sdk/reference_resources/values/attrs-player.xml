@@ -1224,6 +1224,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="colorPadding" format="dimension"/>
 	</declare-styleable>
 
+	<declare-styleable name="TagsLayout">
+		<!-- True by default. If false, we'll hide everything when empty -->
+		<attr name="showEmpty" format="boolean"/>
+		<!-- True by default -->
+		<attr name="showTitle" format="boolean"/>
+		<attr name="tagStyle" format="reference"/>
+		<attr name="tagStyleReadOnly" format="reference"/>
+		<!-- NOTE: not used by TagsLayout ATM, but used by the derived classes, i.e. NavExtSettingsTag -->
+		<attr name="clickDelay"/>
+	</declare-styleable>
+
 
 	<!-- Deprecated -->
 

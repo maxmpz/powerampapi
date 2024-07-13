@@ -29,6 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="corners_medium_plus" format="dimension"/><!-- toast_bg, scroll_popup_bg -->
 	<attr name="corners_medium_minus" format="dimension"/><!-- Background for Eq labels -->
 	<attr name="corners_mini" format="dimension"/><!-- Various buttons, selection backgrounds -->
+	<attr name="corners_nav_button" format="dimension"/><!-- Specifically used for navbar button background. Previously == corners_mini -->
 	<attr name="corners_equ_frs" format="dimension"/>
 	<attr name="corners_knob_thumb" format="dimension"/>
 	<attr name="corners_eq_label_bg" format="dimension"/>

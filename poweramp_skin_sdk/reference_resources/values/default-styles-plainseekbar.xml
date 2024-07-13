@@ -203,7 +203,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">wrap_content</item>
 		
-		<item name="layout_attachTop">@com.maxmpz.audioplayer:id/seekbar</item>
+		<item name="layout_attachTop">@id/seekbar</item>
 		<item name="android:layout_gravity">top|left</item>
 		<item name="layout_attachBottomToBottom">@null</item>
 				
@@ -232,7 +232,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_width">wrap_content</item>
 		
-		<item name="layout_attachTop">@com.maxmpz.audioplayer:id/seekbar</item>
+		<item name="layout_attachTop">@+id/seekbar</item>
 		<item name="android:layout_gravity">top|left</item>
 		<item name="layout_attachBottomToBottom">@null</item>
 				

@@ -123,7 +123,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_heightPercent">50%</item>
 		<item name="android:layout_gravity">top|left</item>
 
-		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:layout_marginTop">@dimen/EqParamRoundKnobPortBase_marginTop</item>
 		<!-- Matching the gain linear knob total offset from bottom. This margin is applied to the knob labels, as those are aligned
 		     bottom-to-bottom -->
 		<item name="android:layout_marginBottom">4dp</item>

@@ -570,9 +570,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_medium_minus">6dp</item>
 		<item name="corners_medium">28dp</item>
 		<item name="corners_medium_plus">20dp</item><!-- Preamp, scroll popup -->
-		<item name="corners_navbar">24dp</item>
+		<item name="corners_navbar">@dimen/corners_navbar</item>
 		<item name="corners_searchbar">24dp</item>
 		<item name="corners_mini">24dp</item>
+		<item name="corners_nav_button">100dp</item><!-- Setting this very high so it's always rounded as circle for all screens -->
 		<item name="corners_equ_frs">0dp</item><!-- NOTE: overridden for v28/v29+, as it's slow for lower Androids -->
 		<item name="corners_large">24dp</item>
 		<item name="corners_small">2dp</item>
@@ -625,6 +626,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="aaEffectReadable">@style/ActivityTheme_White_MilkViewEffect_Lyrics</item>
 		<item name="aaEffectList">@style/ActivityTheme_White_MilkViewEffect_List</item>
 
+		<!-- Disable bg gradient for this light theme -->
+		<item name="aaAllowBgGradientForList">false</item>
+
 		<!-- NOTE: this is ListConfig style attributes, but we can also define them on the global theme level as any style
 		     "derives" values from the global theme as well
 		     NOTE: active/inactive lyrics lines also have different text colors - e.g.
@@ -646,8 +650,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="lyricsSubheadSize">52dp</item>
 
 		<!-- Extra space for 1-line "human" grid cell layouts => so cell has non-square layout with extra space for title below image -->
-		<item name="humanGridItemExtraSpace">22dp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
-		<item name="humanGridZoomedItemExtraSpace">30dp</item><!-- 2x grids. Overridden for alt/bold fonts -->
+		<item name="humanGridItemExtraSpace">24dp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
+		<item name="humanGridZoomedItemExtraSpace">32dp</item><!-- 2x grids. Overridden for alt/bold fonts -->
 
 
 
@@ -1026,6 +1030,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_eq_label_bg">4dp</item>
 		<item name="corners_medium">8dp</item>
 		<item name="corners_mini">4dp</item>
+		<item name="corners_nav_button">4dp</item>
 		<item name="corners_popup">6dp</item>
 		<item name="corners_navbar">8dp</item>
 		<item name="corners_text_bg">4dp</item>
@@ -1273,7 +1278,48 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>0x440044</item>
 		<item>0x330033</item>
 	</integer-array>
-		
-		
+
+
+	<!-- NOTE: inflated in Dialog/main theme -->
+	<style name="TagPreferenceTagEditTagReadOnly">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+
+		<item name="layout_consumeSpace">stack_horizontal</item>
+
+		<!-- NOTE: avoiding text appearance here as main theme (Dialog) styles then are getting overridden by such textAppearance, thus not getting proper font there -->
+		<item name="android:textSize">12.5sp</item>
+		<item name="android:textStyle">bold</item>
+
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
+
+		<item name="android:background">@drawable/bg_light_rounded_large</item><!-- NOTE: use simple background, not ripple to avoid anims / states-->
+	</style>
+
+	<!-- NOTE: inflated in Dialog/main theme -->
+	<style name="TagPreferenceTagEditTag" parent="TagPreferenceTagEditTagReadOnly">
+		<item name="animOnClick">true</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="android:focusableInTouchMode">false</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:drawablePadding">0dp</item>
+		<item name="drawablePosition">right</item>
+		<item name="drawableWidth">16dp</item>
+		<item name="drawableHeight">16dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:drawable">?clear</item>
+		<item name="android:background">@drawable/ripple_bg_light_rounded_large</item>
+	</style>
 </resources>
 

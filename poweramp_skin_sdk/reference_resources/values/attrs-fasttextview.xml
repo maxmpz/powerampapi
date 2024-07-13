@@ -150,8 +150,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Adjustment offset used for the layout_alignToContent calc to the first drawable pixel for the reporting
 		     to the FastLayout. Absolute value in pixels/dp.
 		     Used for pixel perfect alignment for different fonts/styles/sizes without using extra margins/paddings,
-		     thus simplifying alignment for various devices/screen sizes.
-		     Doesn't change anything inside this fast text view, affects just layout -->
+		     thus simplifying alignment for the various devices/screen sizes.
+		     Doesn't change anything inside this fast text view, affects just the layout -->
 		<attr name="drawableAdj" format="dimension"/>
 
 		<!-- Only "none" and "end" are supported ATM -->

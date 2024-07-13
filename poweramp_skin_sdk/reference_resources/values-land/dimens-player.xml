@@ -67,6 +67,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
 	<!-- @Deprecated -->
 	<dimen name="NavbarBounds_height">48dp</dimen>
+	<dimen name="corners_navbar">24dp</dimen>
 	<!-- @Deprecated -->
 	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
 	<!-- @Deprecated -->

@@ -49,7 +49,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				w:updateMsgId_4="@id/msg_player_repeat_mode_changed"
 				w:updateMsgId_5="@id/msg_player_output_meta_changed"
 				w:updateMsgId_6="@id/msg_player_np_ended"
+				w:updateMsgId_7="@id/msg_player_output_info_changed"
 				w:noUpdateInScene="@id/scene_button_menu"
+				w:debounceDelay="350"
 				/>
 			<SceneParams w:scene="@+id/scene_button_menu"
 				android:visibility="gone"

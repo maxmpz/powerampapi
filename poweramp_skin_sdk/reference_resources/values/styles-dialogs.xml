@@ -747,13 +747,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 
-	<style name="DialogRadioHalfWidth">
+	<style name="DialogRadioHalfWidth" parent="ListOptsRadioButton">
 		<item name="layout_widthPercent">50%</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">stack_horizontal</item>
 		<item name="android:layout_marginBottom">6dp</item>
 		<item name="android:textSize">13sp</item>
-		<item name="android:minHeight">44sp</item>
+		<!--<item name="android:minHeight">44sp</item>-->
 		<item name="android:maxLines">3</item>
 		<item name="android:minLines">3</item>
 	</style>

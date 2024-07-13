@@ -37,8 +37,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="AltFont_medium_font" format="string"/>
 	
 	<style name="ActivityTheme_Whitepro_AltFont">
-		<item name="humanGridItemExtraSpace">18sp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
-		<item name="humanGridZoomedItemExtraSpace">24sp</item><!-- 2x grids. Overridden for alt/bold fonts -->
+		<item name="humanGridItemExtraSpace">20sp</item><!-- 4x, 3x grids. Overridden for alt/bold fonts -->
+		<item name="humanGridZoomedItemExtraSpace">26sp</item><!-- 2x grids. Overridden for alt/bold fonts -->
 
 		<!-- REVISIT: requires sp paddings as well
 		<item name="Alt_ListSubstyle_gridItem1LineExtraSpace">@dimen/Alt_ListSubstyle_gridItem1LineExtraSpace_sp</item>

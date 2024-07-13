@@ -39,6 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="settings_send_errors" format="reference"/>
 	<attr name="settings_restore_purchase" format="reference"/>
 	<attr name="settings_doubleq" format="reference"/>
+	<attr name="settings_pak" format="reference"/>
 		
 	<attr name="settings_pa_logo" format="reference"/>
 	<attr name="settings_peq_logo" format="reference"/>
@@ -130,9 +131,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="sup" format="string"/>
 		<attr name="supLink" format="string"/>
 		
-		<!-- If defined, switches SeekbarPreference to a predefined-values-list mode, where all value dependent attributes are ignores and
+		<!-- If defined, switches SeekbarPreference to a predefined-values-list mode, where all value dependent attributes are ignored and
 		     seeking is happening through the predefined values/entries.
-		     This is some typed array. Depending on array type, appropriate value is written: int, float, string -->
+		     This is some typed array. Depending on array type, appropriate value is written to preference: int, float, or string -->
 		<attr name="values"/>
 		<!-- If defined, this is shown as value in summary -->
 		<attr name="entries"/>
@@ -217,9 +218,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Required to properly apply newlinew -->
 		<attr name="useHtml" format="boolean"/>
 		<attr name="iconAlignedTop" format="boolean"/>
+		<attr name="android:icon"/>
 
 		<attr name="zeroTopPad" format="boolean"/>
 		<attr name="zeroBottomPad" format="boolean"/>
+		<attr name="reducedPad" format="boolean"/>
 		
 		<attr name="target"/>
 
@@ -227,11 +230,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     (but also is not removed if it's already there) -->
 		<attr name="addDots" format="boolean"/>
 
+		<!-- Default if false. If true, we won't try to manipulate paddings for the top (row) view from the code, allowing
+		     e.g. paddings from the background to apply -->
+		<attr name="keepPaddings" format="boolean"/>
+
 		<attr name="android:textColorPrimary"/><!-- Taken from theme -->
 		<attr name="android:gravity"/>
 		<attr name="android:background"/>
-
-	</declare-styleable>	
+	</declare-styleable>
 	
 	<declare-styleable name="EditTextPreference">
 		<attr name="summaryWhenEmpty" format="string"/>
@@ -285,6 +291,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="icons" format="reference"/>
 		<attr name="disableDependenciesValue"/>
 	</declare-styleable>
-		
+
+	<declare-styleable name="FeaturePakPref">
+		<attr name="buttonOnly" format="boolean"/>
+	</declare-styleable>
+
 		
 </resources>

@@ -4,5 +4,5 @@
 	android:shape="rectangle">
 	<corners android:radius="10dp"/>
 	<solid android:color="?colorFastScrollerPressed"/>
-	<size android:width="8dp" android:height="64dp"/><!-- NOTE: keeping same size as normal as View gets scaled, not drawable inside -->	
+	<size android:width="10dp" android:height="64dp"/><!-- NOTE: keeping same size as normal as View gets scaled, not drawable inside -->
 </shape>

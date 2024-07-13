@@ -62,7 +62,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					w:string="general"
 					android:contentDescription="@string/app_name"
 				/>
-				
+
 				<!-- NOTE: wrap content items shrink too much and causes jumps when we resize parent container to small height/GONE.
 					 This is why fixed heights are used here -->
 
@@ -75,8 +75,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					w:updateMsgId="@id/msg_version_info_changed"
 					w:labelStateId="@id/state_app_edition_name"
 					w:iconStateId="@id/state_app_edition_icon"
-
-
 				/>
 				
 				<com.maxmpz.audioplayer.widget.MediaRouteButton
@@ -94,7 +92,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					w:longPressMsgId="@id/cmd_app_open_settings_search"
 					android:longClickable="true"
 				/>
-				
+
+				<com.maxmpz.audioplayer.widget.NavExtSettingsTags
+					style="?NavbarExtensionNavExtSettingsTags"
+					/>
+
 				<com.maxmpz.widget.base.BusActionButton
 					style="?NavbarExtensionMenuLine"
 					android:drawable="?changelog_24dp"

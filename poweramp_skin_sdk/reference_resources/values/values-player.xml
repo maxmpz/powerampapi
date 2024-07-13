@@ -47,6 +47,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_app_close_activities"/><!-- Not closing settings activities - see cmd_app_close_settings -->
 	<item type="id" name="msg_app_storage_perm_granted"/>
 	<item type="id" name="msg_app_storage_perm_failed"/>
+
+	<item type="id" name="cmd_app_feature_pak_close"/>
 	
 	<item type="id" name="cmd_app_create_file_dialog"/><!-- obj => CreateFileRequest -->
 	<item type="id" name="msg_app_create_file_dialog_res"/><!-- obj => uri or null -->
@@ -251,9 +253,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_gui_vis_mode"/><!-- integer VIS_* -->
 	<item type="id" name="state_gui_eq_tab"/><!-- integer EQ_TAB_* -->
 	<item type="id" name="state_gui_nav_allowed"/><!-- boolean -->
-	
 	<item type="id" name="state_gui_anim_durations"/><!-- obj -->
-	
+	<item type="id" name="state_gui_settings_tags"/><!-- obj -->
+
+	<item type="id" name="msg_gui_settings_tags_changed"/>
+
 	<item type="id" name="msg_gui_vis_mode_changed"/><!-- integer VIS_* -->
 
 
@@ -442,7 +446,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_remove_notif"/><!-- Ask player to force remove notification and may be stop (depending on keep_service pref). arg1 => true to deactivate mediasession -->
 	<item type="id" name="cmd_player_dont_resume_after_call"/>
 	<item type="id" name="cmd_player_start_command"/>
-	<item type="id" name="cmd_player_reset_long_volume_keys"/>
 	<item type="id" name="cmd_player_use_wakelock"/><!-- arg => boolean -->
 	<item type="id" name="cmd_player_enable_headset_controls"/><!-- arg => boolean -->
 	<item type="id" name="cmd_player_refresh_headset_controls"/>

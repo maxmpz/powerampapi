@@ -20,6 +20,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
+	<dimen name="Navbar_height">52dp</dimen>
+	<dimen name="NavbarNavButtonsLayout_height">48dp</dimen>
+	<dimen name="NavBarButton_drawableSize">36dp</dimen>
+
 	<!-- OP9 -->
 	<dimen name="TopPlay_maxSize">90dp</dimen>
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">84dp</dimen>

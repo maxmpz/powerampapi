@@ -232,6 +232,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemMiniplayerPlayButton">
 		<item name="android:layout_width">60dp</item>
 		<item name="android:layout_height">48dp</item>
+		<item name="android:layout_marginRight">3dp</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">center</item>
 		<item name="android:layout_gravity">center_vertical|right</item>

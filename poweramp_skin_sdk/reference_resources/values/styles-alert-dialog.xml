@@ -46,6 +46,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dragByNestedScroll">false</item>
 	</style>
 
+	<style name="dialog_AlertDialogActivity_list_no_title" parent="BottomsheetAlertDialog">
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
+		<item name="dragByNestedScroll">false</item>
+		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
+		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
+	</style>
+
+	<style name="dialog_AlertDialogActivity_list_no_title_centered" parent="CenteredAlertDialog">
+		<item name="DialogContent">@style/DialogContentNoPadding</item>
+		<item name="dragByNestedScroll">false</item>
+		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
+		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
+	</style>
+
 	<style name="dialog_AlertDialogActivity_vertical_buttons" parent="BottomsheetDialog_vertical_buttons">
 		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>
 	</style>
@@ -57,6 +71,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="dialog_AlertDialogActivity_no_title" parent="BottomsheetAlertDialog">
 		<item name="dialogContentPaddingTop">16dp</item><!-- Optically sync with the bottom padding -->
 		<item name="dialogContentPaddingBottom">12dp</item><!-- Optically sync with the top padding -->
+		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
+		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
+	</style>
+
+	<style name="dialog_AlertDialogActivity_no_title_centered" parent="CenteredAlertDialog">
+		<item name="dialogContentLayout">@layout/dialog_content_alert_dialog</item>
+		<item name="dialogContentPaddingTop">24dp</item><!-- Optically sync with the bottom padding -->
+		<item name="dialogContentPaddingBottom">0dp</item>
 		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
 		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
 	</style>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2019 Maksim Petrov
+Copyright (C) 2010-2023 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -21,7 +21,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<integer name="activity_start_click_delay">160</integer><!-- Match ~ aa popup collapse time -->
-	<integer name="activity_start_navbar_click_delay">100</integer><!-- Match navbar extension collapse -->
+	<!-- Match navbar extension collapse. Reduced for the faster devices, e.g. sdk=31+ -->
+	<integer name="activity_start_navbar_click_delay">100</integer>
 	
 	
 	<item type="id" name="aa_image"/>

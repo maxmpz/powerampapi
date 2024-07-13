@@ -25,4 +25,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopWaveseek_maxHeight">112dp</dimen>
 
 	<dimen name="PlainSeekbar_marginTop">-8dp</dimen>
+
+	<dimen name="CenterDialogFrame_maxHeight">590dp</dimen>
 </resources>

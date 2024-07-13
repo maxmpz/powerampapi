@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<include android:layout="@layout/merge_topwaveseeklayout_extralayout"/>
 	
 	<!-- Add our plain seekbar -->
-	<com.maxmpz.widget.player.Seek android:id="@com.maxmpz.audioplayer:id/seekbar"
+	<com.maxmpz.widget.player.Seek android:id="@+id/seekbar"
 		style="?PlainSeekbar"
 	/>
 	<StateAnimParams w:stateAnim="@id/anim_seeking"

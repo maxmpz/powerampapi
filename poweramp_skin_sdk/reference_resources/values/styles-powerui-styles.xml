@@ -71,9 +71,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_AlertDialogActivity_centered">@style/dialog_AlertDialogActivity_centered</item>
 		<item name="dialog_AlertDialogActivity_list">@style/dialog_AlertDialogActivity_list</item>
 		<item name="dialog_AlertDialogActivity_list_centered">@style/dialog_AlertDialogActivity_list_centered</item>
+		<item name="dialog_AlertDialogActivity_list_no_title">@style/dialog_AlertDialogActivity_list_no_title</item>
+		<item name="dialog_AlertDialogActivity_list_no_title_centered">@style/dialog_AlertDialogActivity_list_no_title_centered</item>
 		<item name="dialog_AlertDialogActivity_vertical_buttons">@style/dialog_AlertDialogActivity_vertical_buttons</item>
 		<item name="dialog_AlertDialogActivity_vertical_buttons_centered">@style/dialog_AlertDialogActivity_vertical_buttons_centered</item>
 		<item name="dialog_AlertDialogActivity_no_title">@style/dialog_AlertDialogActivity_no_title</item>
+		<item name="dialog_AlertDialogActivity_no_title_centered">@style/dialog_AlertDialogActivity_no_title_centered</item>
 		<item name="dialog_AlertDialogActivity_no_title_vertical_buttons">@style/dialog_AlertDialogActivity_no_title_vertical_buttons</item>
 		
 		<item name="azChars">@string/azChars</item><!-- public-string -->
@@ -571,6 +574,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="NavbarExtensionMenuLine">@style/NavbarExtensionMenuLine</item>
 		<item name="NavbarExtensionMenuLine_Text">@style/NavbarExtensionMenuLine_Text</item>
 		<item name="NavbarExtensionMenuLine50">@style/NavbarExtensionMenuLine50</item>
+		<item name="NavbarExtensionNavExtSettingsTags">@style/NavbarExtensionNavExtSettingsTags</item>
 		<item name="NavbarList">@style/NavbarList</item>
 		<item name="NavbarNavButtonsLayout">@style/NavbarNavButtonsLayout</item>
 		<item name="NavBarButton">@style/NavBarButton</item>

@@ -55,6 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfoLayout_marginBottom">4dp</dimen>		
 	<dimen name="TopMetaInfo_scene_item_menu_maxWidth">380dp</dimen>
 
+	<!-- Base navbar size (for very small screens) -->
 	<dimen name="Navbar_height">40dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">36dp</dimen>
 	<dimen name="NavBarButton_drawableSize">28dp</dimen>
@@ -68,6 +69,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
 	<dimen name="NavbarBounds_height">44dp</dimen>
+	<dimen name="corners_navbar">22dp</dimen>
 	<!-- Navbar (2 lines scene) + bottom Navbar paddings => resulting anchoring point for other views -->
 	<dimen name="NavbarBounds_height_scene_navbar_2lines">98dp</dimen>
 	<!-- Same for overlap_navbar_offset -->

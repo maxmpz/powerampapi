@@ -33,6 +33,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqKnobsLayout_paddingBottom">4dp</dimen>
 	
 	<dimen name="TopPeqEqLayoutBase_scenes_vis_marginTop">56dp</dimen>
+
+	<dimen name="EqParamRoundKnobPortBase_marginTop">6dp</dimen>
 	
 	<dimen name="EqRoundKnobValueLabel_marginTop">1dp</dimen><!-- Overridden for scripts with tall characters, such as Chinese -->
 	

@@ -95,11 +95,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="dialog_AlertDialogActivity_centered"/>
 	<attr name="dialog_AlertDialogActivity_list"/>
 	<attr name="dialog_AlertDialogActivity_list_centered"/>
+	<attr name="dialog_AlertDialogActivity_list_no_title"/>
+	<attr name="dialog_AlertDialogActivity_list_no_title_centered"/>
 	<attr name="dialog_AlertDialogActivity_vertical_buttons"/>
 	<attr name="dialog_AlertDialogActivity_vertical_buttons_centered"/>
 	<attr name="dialog_AlertDialogActivity_no_title"/>
+	<attr name="dialog_AlertDialogActivity_no_title_centered"/>
 	<attr name="dialog_AlertDialogActivity_no_title_vertical_buttons"/>
-	
+
 	<!-- Additional theme styles applied for Poweramp Equalizer. Can be overridden by skins as required --> 
 	<attr name="PeqStyles" format="reference"/>
 

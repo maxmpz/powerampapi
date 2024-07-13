@@ -518,6 +518,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="noUpdateInScene" format="reference"/>
 		<!-- Do not update if transition runs (and view is aware of that, i.e. view is animated by the scene) -->
 		<attr name="noUpdateInTransition" format="boolean"/>
+
+		<!-- Delay in ms to debounce multiple messages. First message is always processed immediately -->
+		<attr name="debounceDelay" format="integer"/>
 		
 		<!-- Show the default (android:text) text if state is empty/null -->
 		<attr name="defaultTextOnNoState" format="boolean"/>

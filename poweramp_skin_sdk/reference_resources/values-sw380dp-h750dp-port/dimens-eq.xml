@@ -38,6 +38,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<fraction name="EqEquPresetButtonLayout_scene_button_menu_heightPercent">60%</fraction>
 
-	<dimen name="Peq_EqTonePanel_paddingTop">18dp</dimen>
-	<dimen name="Peq_EqTonePanel_paddingBottom">6dp</dimen>
+	<dimen name="Peq_EqTonePanel_paddingTop">22dp</dimen>
+	<dimen name="Peq_EqTonePanel_paddingBottom">8dp</dimen>
 </resources>

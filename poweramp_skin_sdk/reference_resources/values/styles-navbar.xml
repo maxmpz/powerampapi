@@ -183,7 +183,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">horizontal|reset_auto</item>
 	</style>
 
-	
+	<style name="NavbarExtensionNavExtSettingsTags" parent="NavbarExtensionMenuLine">
+		<item name="android:paddingLeft">24dp</item>
+		<item name="showEmpty">false</item>
+		<item name="layout_goneWhenEmpty">true</item>
+		<item name="android:clickable">false</item>
+		<item name="android:focusable">false</item>
+		<item name="tagStyleReadOnly">@style/NavExtSettingsTags_TagReadOnly</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:gravity">left|top</item>
+		<item name="layout_unlimitedMeasure">true</item>
+		<item name="android:layout_marginTop">-2dp</item><!-- Compensate tag padding top -->
+		<item name="android:paddingBottom">8dp</item>
+		<item name="clickDelay">@integer/activity_start_navbar_click_delay</item>
+	</style>
+
+	<style name="NavExtSettingsTags_TagReadOnly" parent="TagPreferenceTagEditTagReadOnly">
+		<item name="android:background">@drawable/ripple_bg_light_rounded_large</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+	</style>
+
+
 	<style name="NavbarList">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/Navbar_height</item>
@@ -209,7 +230,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_flexAxis">horizontal</item>
 		<item name="layout_flexWeight">1</item>
 		
-		<item name="android:background">@drawable/ripple_rounded_mini</item>
+		<item name="android:background">@drawable/ripple_rounded_nav_button</item>
 		<item name="drawableWidth">@dimen/NavBarButton_drawableSize</item><!-- NOTE: this should be tied to NavBar_height -->
 		<item name="drawableHeight">@dimen/NavBarButton_drawableSize</item>
 		<item name="drawableTint">?colorNavbarIcons</item><!-- color-sw2dp/navbar_icons_selector -->

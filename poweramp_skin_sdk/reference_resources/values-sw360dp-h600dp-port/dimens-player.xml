@@ -33,6 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="corners_miniplayer_aa">12dp</dimen>
 
 	<dimen name="NavbarBounds_height">56dp</dimen>
+	<dimen name="corners_navbar">28dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines">108dp</dimen>
 
 	<dimen name="Navbar_marginB_more_rounded">8dp</dimen>
