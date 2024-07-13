@@ -37,14 +37,17 @@
 
 		<!-- 1..512 (pixels). This is the initial Album Art scale for blurring.
 		     Not used if aaSolidColorTarget is set to non-none.
-		     NOTE: these aa* properties are always overridden by user preferences and also by aaEffect* attributes, -->
+		     NOTE: this property is always overridden by the user preferences (and optionally also by aaEffect* attributes) -->
 		<attr name="aaBlurScaleSize" format="integer"/>
 		<!-- 0..15. Blurring level. Deeper level requires more GPU resources, so try to find lowest possible which looks good
-		     Not used if aaSolidColorTarget is set to non-none -->
+		     Not used if aaSolidColorTarget is set to non-none.
+		     NOTE: this property is always overridden by the user preferences (and optionally also by aaEffect* attributes) -->
 		<attr name="aaBlurLevel" format="integer"/>
-		<!-- Saturation for blurred Album Art -->
+		<!-- Saturation for blurred Album Art.
+		     NOTE: this property is always overridden by the user preferences (and optionally also by aaEffect* attributes) -->
 		<attr name="aaBlurSaturation" format="float"/>
-		<!-- Brightness for blurred Album Art -->
+		<!-- Brightness for blurred Album Art.
+		     NOTE: this property is always overridden by the user preferences (and optionally also by aaEffect* attributes) -->
 		<attr name="aaBlurIntensity" format="float"/>
 
 		<!-- Extra saturation multiplier for blurred Album Art. Default is 1.0.
