@@ -52,7 +52,7 @@ import com.maxmpz.poweramp.player.PowerampAPIHelper;
 
 public class EqActivity extends Activity implements OnClickListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener {
 	private static final String TAG = "EqActivity";
-	private static final boolean LOG = true;
+	private static final boolean LOG = false;
 
 	private static final Pattern sSemicolonSplitRe = Pattern.compile(";");
 	private static final Pattern sEqualSplitRe = Pattern.compile("=");
