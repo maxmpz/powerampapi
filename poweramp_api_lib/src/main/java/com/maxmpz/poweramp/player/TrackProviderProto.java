@@ -219,14 +219,15 @@ public class TrackProviderProto implements AutoCloseable {
 	}
 
 	/**
-	 * Send the data to Poweramp. This will block until Poweramp is resumed, playing, and requires more data<br>
+	 * Send the data to Poweramp. This will block until Poweramp is resumed, playing, and requiring more data<br>
 	 * If Poweramp is paused this may be blocked for a very long time, until Poweramp resumes, exists, force-closes, etc.<br><br>
 	 *
-	 * When Poweramp request seek, this method returns appropriate long seek position (>= 0 for seek from start, < 0 for seek from end)<br>
-	 * Poweramp then waits for the PACKET_TYPE_SEEK_RES packet type, ignoring any other packets, so it's required to send PACKET_TYPE_SEEK_RES packet,
-	 * or close the connection.
+	 * When Poweramp requests seeking, this method returns an appropriate long seek position
+	 * (>= 0 for the seeking from the start, < 0 for the seeking from the end)<br>
+	 * Poweramp then waits for the PACKET_TYPE_SEEK_RES packet type, ignoring any other packets, so it's required to send
+	 * PACKET_TYPE_SEEK_RES packet, or close the connection.
 	 *
-	 * @param data buffer to send. Should be properly flipped prior sending
+	 * @param data buffer to send. Should be properly flipped prior the sending
 	 * @return request for the new seek position, or INVALID_SEEK_POS(==Long.MIN_VALUE) if none requested
 	 */
 	public long sendData(@NonNull ByteBuffer data) {
