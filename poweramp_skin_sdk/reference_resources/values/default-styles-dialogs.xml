@@ -187,12 +187,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogContentLayout">@layout/dialog_content_lyrics</item>
 	</style>
 		
-	<!--
-	<style name="dialog_MobirooDRMErrorActivity" parent="CenteredDialog">
-		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
-	</style>
-	-->
-	
 	<style name="dialog_AudioBufferActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_audio_buffer</item>
 	</style>

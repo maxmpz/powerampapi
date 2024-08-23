@@ -70,8 +70,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="dialog_EqPresetsActivity" format="reference"/>
 		<attr name="dialog_LyricsActivity" format="reference"/>
 		<attr name="dialog_PlaylistsExportActivity" format="reference"/>		
-		<!--<attr name="dialog_MobirooDRMErrorActivity" format="reference"/>-->
-		
+
 		<attr name="overlap_more_buttons" format="reference"/>
 		<attr name="overlap_transparent_navbar" format="reference"/>
 		<attr name="overlap_plain_seekbar" format="reference"/>

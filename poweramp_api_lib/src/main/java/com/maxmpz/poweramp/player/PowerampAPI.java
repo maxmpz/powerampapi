@@ -2101,7 +2101,8 @@ public final class PowerampAPI {
 		
 		/**
 		 * Extra for ACTIVITY_SETTINGS<br>
-		 * {@code boolean} if true and EXTRA_OPEN_PATH was used, pressing back will return back to the activity it was started. Otherwise by default Poweramp "restores" appropriate
+		 * {@code boolean} {@code String } if true (also for String - not "0" nor "false" nor empty) and EXTRA_OPEN_PATH was used,
+		 * pressing back will return back to the activity it was started. Otherwise by default Poweramp "restores" appropriate
 		 * parent settings page
 		 * @since 842
 		 */

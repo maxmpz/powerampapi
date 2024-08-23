@@ -769,7 +769,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialog_MediaRouteControllerActivity">@style/dialog_MediaRouteControllerActivity</item>
 		<item name="dialog_EqPresetsActivity">@style/dialog_EqPresetsActivity</item>
 		<item name="dialog_LyricsActivity">@style/dialog_LyricsActivity</item>
-		<!--<item name="dialog_MobirooDRMErrorActivity">@style/dialog_MobirooDRMErrorActivity</item>-->
 		<item name="dialog_PlaylistsExportActivity">@style/dialog_PlaylistsExportActivity</item>
 
 		<!-- Skin overlaps -->

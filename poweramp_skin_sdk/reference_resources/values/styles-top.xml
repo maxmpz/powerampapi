@@ -1346,6 +1346,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="arrowStrokeColor">?colorStrokeHelp</item>
 		<item name="arrowFillColor">?colorBgHelp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="bgAlpha">0.5</item>
 		
 		<item name="android:scaleX">1.25</item>
 		<item name="android:scaleY">1.25</item>
