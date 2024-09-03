@@ -69,13 +69,13 @@ public class ExampleProvider extends DocumentsProvider {
 	private static final boolean USE_OPEN_PROXY_FILE_DESCRIPTOR = true;
 
 	/** Link to mp3 track to demonstrate http track with the duration */
-	private static final String DUBSTEP_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-dubstep.mp3";
+	private static final String DUBSTEP_HTTP_URL = "https://github.com/maxmpz/powerampapi/raw/master/poweramp_provider_example/src/main/assets/bensound-dubstep.mp3";
 
 	/** Link to mp3 track to demonstrate http track with the duration */
-	private static final String SUMMER_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-summer.mp3";
+	private static final String SUMMER_HTTP_URL = "https://github.com/maxmpz/powerampapi/raw/master/poweramp_provider_example/src/main/assets/bensound-summer.mp3";
 
 	/** Link to flac track to demonstrate http track with the duration */
-	private static final String DUBSTEP_FLAC_HTTP_URL = "https://raw.githubusercontent.com/maxmpz/powerampapi/master/poweramp_provider_example/app/src/main/assets/bensound-dubstep.flac";
+	private static final String DUBSTEP_FLAC_HTTP_URL = "https://github.com/maxmpz/powerampapi/raw/master/poweramp_provider_example/src/main/assets/bensound-dubstep.flac";
 
 	/** Docid suffix for static url tracks */
 	private static final String DOCID_STATIC_URL_SUFFIX = ".url";
