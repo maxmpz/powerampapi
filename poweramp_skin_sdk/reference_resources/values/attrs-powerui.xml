@@ -262,13 +262,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="BusActionBehavior">
 		<!-- E.g. @id/list (== bus supporting view id) or @id/bus_gui, or parent -> to attach to the first available msg bus up
 		     the views hierarchy -->
-		<attr name="busId" format="reference">
+		<attr name="busId" format="reference|integer">
 			<enum name="parent" value="0"/>
 		</attr>
-		<attr name="msgId" format="reference"/><!-- E.g. @id/cmd_list_select_all -->
+		<attr name="msgId" format="reference|integer"/><!-- E.g. @id/cmd_list_select_all -->
 		<attr name="longPressBusId"/><!-- Optional, busId is used by default -->
-		<attr name="longPressMsgId" format="reference"/><!-- E.g. @id/cmd_list_select_all. Send on long press and (if repeatLongPressPeriod > 0) periodically  -->
-		<attr name="longPressEndMsgId" format="reference"/><!-- Sent on long press end. Optional. Only valid if longPressMsgId is set -->
+		<attr name="longPressMsgId" format="reference|integer"/><!-- E.g. @id/cmd_list_select_all. Send on long press and (if repeatLongPressPeriod > 0) periodically  -->
+		<attr name="longPressEndMsgId" format="reference|integer"/><!-- Sent on long press end. Optional. Only valid if longPressMsgId is set -->
 		
 		<attr name="repeatLongPressPeriod" format="integer"/><!-- If non zero, repeated longPressMsgId events sent each repeatLongPressPeriod ms -->
 		

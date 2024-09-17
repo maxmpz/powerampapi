@@ -101,6 +101,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopHelpNormal_Text">@style/TopHelpNormal_Text_BoldFont</item>
 		<item name="TopHelpSmaller_Text">@style/TopHelpSmaller_Text_BoldFont</item>
 		<item name="TopHelpButton_Text">@style/TopHelpButton_Text_BoldFont</item>
+		<item name="TopHelpSmaller_line_Text">@style/TopHelpSmaller_line_Text_BoldFont</item>
 
 		<item name="NavbarExtensionLogoLabel_Text">@style/NavbarExtensionLogoLabel_Text_BoldFont</item>
 		<item name="NavbarExtensionMenuLine_Text">@style/NavbarExtensionMenuLine_Text_BoldFont</item>
@@ -243,10 +244,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopHelpSmaller_Text_BoldFont" parent="TopHelpSmaller_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
-		<item name="android:textSize">@dimen/TopHelpSmaller_AltFont_textSize</item>
+		<item name="android:textSize">@dimen/TopMetaInfoLabel_AltFont_textSize</item>
 	</style>
 	<style name="TopHelpButton_Text_BoldFont" parent="TopHelpButton_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
+	</style>
+	<style name="TopHelpSmaller_line_Text_BoldFont" parent="TopHelpSmaller_line_Text">
+		<item name="android:fontFamily">?BoldFont_font</item>
+		<item name="android:textSize">@dimen/TopMetaInfoLabel_AltFont_textSize</item>
 	</style>
 	
 	<style name="NavbarExtensionLogoLabel_Text_BoldFont" parent="NavbarExtensionLogoLabel_Text">

@@ -83,6 +83,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="NavbarSeekbar_height">32dp</dimen>
 
 	<dimen name="TopHelpSmaller_textSize">9sp</dimen>
+	<dimen name="TopHelpSmaller_line_textSize">8.5sp</dimen>
 	<dimen name="TopHelpSmaller_paddingLR">10dp</dimen>
 	<dimen name="TopHelpSmaller_paddingTB">4dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">8dp</dimen>

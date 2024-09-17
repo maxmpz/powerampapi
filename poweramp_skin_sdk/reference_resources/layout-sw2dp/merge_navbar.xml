@@ -66,9 +66,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				<!-- NOTE: wrap content items shrink too much and causes jumps when we resize parent container to small height/GONE.
 					 This is why fixed heights are used here -->
 
-				<!--
-				android:drawable="@drawable/logo_uberpatron_navbar"
-				-->
 				<com.maxmpz.widget.player.BusStatusTextButton
 					style="?NavbarExtensionLogoLabel"
 					w:stateBusId="@id/bus_app"

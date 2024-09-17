@@ -20,8 +20,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-	<!-- FastTextView is TextView/Button/ImageButton replacement, which is designed for layout and drawing performance. Used for a static text, labels, text with icons,
-	 and just icons (+ few derived classes e.g. for the checkboxes)
+	<!--
+	 FastTextView is TextView/Button/ImageButton replacement, which is designed for layout and drawing performance.
+	 It's used for a static text, labels, text with icons, and just icons (+ few derived classes including "fast" checkboxes)
 
 	 This is, in some parts, very limited widget, esp. compared to full blown TextView, but it's fast:
 	 - it doesn't use Android text layout code

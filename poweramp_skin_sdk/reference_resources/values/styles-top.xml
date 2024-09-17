@@ -1346,14 +1346,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="arrowStrokeColor">?colorStrokeHelp</item>
 		<item name="arrowFillColor">?colorBgHelp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="bgAlpha">0.5</item>
-		
+		<item name="bgAlpha">0.9</item>
+
 		<item name="android:scaleX">1.25</item>
 		<item name="android:scaleY">1.25</item>
 		<item name="android:alpha">0</item>
 		
 		<item name="android:textAppearance">?TopHelp_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="lineStyle">?Hint</item>
 	</style>
 	<style name="TopHelp_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">13sp</item>
@@ -1387,9 +1388,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="arrowStrokeWidth" tools:ignore="PxUsage">2px</item>
 		<item name="arrowLineWeight">3dp</item>
 		<item name="android:textAppearance">?TopHelpSmaller_Text</item>
+		<item name="lineStyle">?TopHelpSmaller_line_Text</item>
 	</style>
 	<style name="TopHelpSmaller_Text" parent="TopHelp_Text">
 		<item name="android:textSize">@dimen/TopHelpSmaller_textSize</item>
+	</style>
+	<style name="TopHelpSmaller_line_Text" parent="TopHelpSmaller_Text">
+		<item name="android:textColor">?android:textColorTertiary</item>
+		<item name="android:textSize">@dimen/TopHelpSmaller_line_textSize</item>
 	</style>
 		
 	<style name="TopHelpWider" parent="TopHelp">

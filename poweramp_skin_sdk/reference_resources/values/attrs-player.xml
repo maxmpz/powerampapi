@@ -1145,8 +1145,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="arrowFillColor" format="color"/>
 		<attr name="arrowStrokeColor" format="color"/>
 		<attr name="drawableTint"/>
+		<!-- Extra alpha to apply on background drawable -->
+		<attr name="bgAlpha" format="float"/>
 
+		<!-- NOTE: if html exists, it overwrites android:text  -->
 		<attr name="html" format="string"/>
+		<!-- NOTE: if any of lineX exists, it adds to existing android:text or html -->
+		<attr name="line1"/>
+		<attr name="line2"/>
+		<attr name="line3"/>
+		<attr name="line4"/>
+		<!-- style/Hint is used by default -->
+		<attr name="lineStyle" format="reference"/>
 	</declare-styleable>
 	
 	<declare-styleable name="HtmlTextView">

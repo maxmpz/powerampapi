@@ -601,6 +601,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopHelpNormal_Text" format="reference"/>
 		<attr name="TopHelpSmaller_Text" format="reference"/>
 		<attr name="TopHelpButton_Text" format="reference"/>
+		<attr name="TopHelpSmaller_line_Text" format="reference"/>
 		
 		<!-- Vis -->
 		<attr name="VisPanelContainer" format="reference"/>

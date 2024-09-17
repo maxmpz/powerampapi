@@ -51,4 +51,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="TopMetaInfoLabel_AltFont_textSize">9dp</dimen>
 	<dimen name="TopHelpSmaller_AltFont_textSize">10.8sp</dimen>
+	<dimen name="TopHelpSmaller_AltFont_line_textSize">9.5sp</dimen>
 </resources>

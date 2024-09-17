@@ -49,6 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="msg_app_storage_perm_failed"/>
 
 	<item type="id" name="cmd_app_feature_pak_close"/>
+	<item type="id" name="cmd_app_feature_pak_settings_refresh"/>
 	
 	<item type="id" name="cmd_app_create_file_dialog"/><!-- obj => CreateFileRequest -->
 	<item type="id" name="msg_app_create_file_dialog_res"/><!-- obj => uri or null -->
@@ -473,7 +474,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<integer name="VIS_NONE">0</integer>
 	<integer name="VIS_W_UI">1</integer>
 	<integer name="VIS_FULL_SCREEN">2</integer>
-		
+
 	<item type="id" name="msg_gui_vis_prefs_updated"/>
 	<item type="id" name="cmd_data_set_milk_preset_rating"/><!-- arg1 => rating, obj => Long id -->
 	<item type="id" name="cmd_set_playlist_select_sort"/>
@@ -618,7 +619,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<item type="id" name="bus_export_import"/>
 	<item type="id" name="msg_export_stats"/><!-- obj => string -->
-
 
 	<!-- This shares current preset -->
 	<item type="id" name="cmd_data_eq_preset_share"/>

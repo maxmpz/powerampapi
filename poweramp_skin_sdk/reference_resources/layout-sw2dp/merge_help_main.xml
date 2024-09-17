@@ -56,6 +56,7 @@
 		w:help_position="top"
 		
 		android:text="@string/visualization"
+		w:line2="@string/long_press_for_menu"
 	/>
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
 		style="@style/TopHelp_anim_help_visible" 
@@ -81,6 +82,7 @@
 		w:help_position="top"
 
 		android:text="@string/shuffle"
+		w:line1="@string/long_press_for_menu"
 		/>
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
 		style="@style/TopHelp_anim_help_visible"
@@ -93,6 +95,7 @@
 		w:help_position="bottom"
 
 		android:text="@string/repeat"
+		w:line2="@string/long_press_for_menu"
 		/>
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
 		style="@style/TopHelp_anim_help_visible"
@@ -148,20 +151,19 @@
 		w:help_anchor="@id/cmd_nav_to_eq"
 		w:help_inside="true"
 		android:text="@string/h_equ_effects"
+		w:line2="@string/long_press_for_menu"
 	/>
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
 		style="@style/TopHelp_anim_help_visible" 
 	/>
 
-	<!--			
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
 		
 		w:help_anchor="@id/cmd_nav_more"
-		android:text="@string/settings"
+		w:line1="@string/long_press_skin_opts"
 	/>
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
 		style="@style/TopHelp_anim_help_visible" 
 	/>
-	-->
 </com.maxmpz.widget.player.HelpLayout>
