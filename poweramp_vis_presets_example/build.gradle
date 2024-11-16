@@ -1,4 +1,6 @@
-apply plugin: 'com.android.application'
+plugins {
+    alias(libs.plugins.agp.application)
+}
 
 android {
     compileSdk COMPILE_SDK
@@ -11,8 +13,8 @@ android {
         versionName "1.0"
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JAVA_SOURCE_COMPATIBILITY
+        targetCompatibility = JAVA_TARGET_COMPATIBILITY
     }
 }
 

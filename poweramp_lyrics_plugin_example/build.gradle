@@ -1,6 +1,6 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    alias(libs.plugins.agp.application)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -14,18 +14,15 @@ android {
         versionName "1.0"
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JAVA_SOURCE_COMPATIBILITY
+        targetCompatibility = JAVA_TARGET_COMPATIBILITY
     }
-    kotlinOptions {
-        jvmTarget = '11'
-    }
-
 }
 
 dependencies {
     implementation project(path: ':poweramp_api_lib')
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
-    implementation 'androidx.annotation:annotation:1.7.0'
+    implementation libs.kotlinx.coroutines.android
+    implementation libs.androidx.annotation
+    implementation libs.androidx.core
     project(':poweramp_api_example')
 }

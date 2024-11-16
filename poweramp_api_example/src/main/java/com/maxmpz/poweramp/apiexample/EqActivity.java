@@ -47,10 +47,14 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 
-public class EqActivity extends Activity implements OnClickListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener {
+public class EqActivity extends AppCompatActivity
+	implements OnClickListener, OnCheckedChangeListener, OnSeekBarChangeListener, OnItemSelectedListener {
 	private static final String TAG = "EqActivity";
 	private static final boolean LOG = false;
 
@@ -172,7 +176,12 @@ public class EqActivity extends Activity implements OnClickListener, OnCheckedCh
 	 * NOTE: For Poweramp v3 this intent is not sticky anymore
 	 */
 	private void registerAndLoadStatus() {
-		mEquIntent = registerReceiver(mEquReceiver, new IntentFilter(PowerampAPI.ACTION_EQU_CHANGED));
+		mEquIntent = ContextCompat.registerReceiver(
+			this,
+			mEquReceiver,
+			new IntentFilter(PowerampAPI.ACTION_EQU_CHANGED),
+			ContextCompat.RECEIVER_EXPORTED
+		);
 		if(LOG) Log.w(TAG, "registerAndLoadStatus mEquIntent=>" + mEquIntent);
 	}
 

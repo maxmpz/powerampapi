@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 
@@ -39,7 +40,7 @@ public class MainActivity extends Activity {
 		intentFilter.addAction(PowerampAPI.Scanner.ACTION_FAST_TAGS_SCAN_FINISHED);
 		intentFilter.addAction(PowerampAPI.Scanner.ACTION_TAGS_SCAN_STARTED);
 		intentFilter.addAction(PowerampAPI.Scanner.ACTION_TAGS_SCAN_FINISHED);
-		registerReceiver(mScanEventsReceiver, intentFilter);
+		ContextCompat.registerReceiver(this, mScanEventsReceiver, intentFilter, ContextCompat.RECEIVER_EXPORTED);
 	}
 
 	public void openPAMusicFolders(View view) {

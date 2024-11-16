@@ -20,8 +20,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.apiexample;
 
-import static android.view.View.VISIBLE;
-
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -48,32 +46,21 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TableLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.core.content.ContextCompat;
 import com.maxmpz.poweramp.player.PowerampAPI;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.RemoteTrackTime;
 import com.maxmpz.poweramp.player.RemoteTrackTime.TrackTimeListener;
 import com.maxmpz.poweramp.player.TableDefs;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-
 import java.util.Set;
+import static android.view.View.VISIBLE;
 
 
 public class MainActivity extends AppCompatActivity implements
@@ -122,7 +109,9 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		if(LOG_VERBOSE) Log.w(TAG, "onCreate");
+
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_main);
 
 		findViewById(R.id.play).setOnClickListener(this);
@@ -266,10 +255,10 @@ public class MainActivity extends AppCompatActivity implements
 	 * but this approach can be used with a null receiver to get current sticky intent without broadcast receiver.
 	 */
 	private void registerAndLoadStatus() {
-		mTrackIntent = registerReceiver(mTrackReceiver, new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED));
-		mStatusIntent = registerReceiver(mStatusReceiver, new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED));
-		mPlayingModeIntent = registerReceiver(mPlayingModeReceiver, new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED));
-		registerReceiver(mMediaButtonIgnoredReceiver, new IntentFilter(PowerampAPI.ACTION_MEDIA_BUTTON_IGNORED));
+		mTrackIntent = ContextCompat.registerReceiver(this, mTrackReceiver, new IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED), ContextCompat.RECEIVER_EXPORTED);
+		mStatusIntent = ContextCompat.registerReceiver(this, mStatusReceiver, new IntentFilter(PowerampAPI.ACTION_STATUS_CHANGED), ContextCompat.RECEIVER_EXPORTED);
+		mPlayingModeIntent = ContextCompat.registerReceiver(this, mPlayingModeReceiver, new IntentFilter(PowerampAPI.ACTION_PLAYING_MODE_CHANGED), ContextCompat.RECEIVER_EXPORTED);
+		ContextCompat.registerReceiver(this, mMediaButtonIgnoredReceiver, new IntentFilter(PowerampAPI.ACTION_MEDIA_BUTTON_IGNORED), ContextCompat.RECEIVER_EXPORTED);
 	}
 
 	private void unregister() {

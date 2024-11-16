@@ -1,4 +1,7 @@
-apply plugin: 'com.android.application'
+plugins {
+    alias(libs.plugins.agp.application)
+    alias(libs.plugins.kotlin.android)
+}
 
 android {
     compileSdk COMPILE_SDK
@@ -16,15 +19,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JAVA_SOURCE_COMPATIBILITY
+        targetCompatibility = JAVA_TARGET_COMPATIBILITY
     }
 }
 
-
-
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    coreLibraryDesugaring libs.desugar.jdk.libs
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.activity
     implementation project(':poweramp_api_lib')
 }

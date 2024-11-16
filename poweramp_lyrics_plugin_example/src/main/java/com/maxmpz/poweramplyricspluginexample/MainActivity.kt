@@ -34,6 +34,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.maxmpz.poweramp.player.PowerampAPI
 import com.maxmpz.poweramp.player.PowerampAPI.NO_ID
 import com.maxmpz.poweramp.player.TableDefs.*
@@ -162,7 +163,8 @@ class MainActivity : Activity() {
         pollDebugLines()
 
         // Try to get current track id from Poweramp API
-        val trackIntent = registerReceiver(null, IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED))
+        val trackIntent =
+            ContextCompat.registerReceiver(this, null, IntentFilter(PowerampAPI.ACTION_TRACK_CHANGED), ContextCompat.RECEIVER_EXPORTED)
         if(trackIntent != null) {
             findViewById<EditText>(R.id.trackId).setText(trackIntent.getLongExtra(PowerampAPI.Track.REAL_ID, 0L).toString())
         }

@@ -1,5 +1,6 @@
 plugins {
-    id 'com.android.library'
+    alias(libs.plugins.agp.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -17,11 +18,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility = JAVA_SOURCE_COMPATIBILITY
+        targetCompatibility = JAVA_TARGET_COMPATIBILITY
     }
 }
 
 dependencies {
-    api 'org.eclipse.jdt:org.eclipse.jdt.annotation:2.3.0'
+    api libs.jdt.annotation
+    api libs.androidx.appcompat
 }

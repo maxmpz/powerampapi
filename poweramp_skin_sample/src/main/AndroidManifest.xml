@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	package="com.poweramp.v3.sampleskin">
+	xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- Queries element to support new package visibility rules for target sdk=30 and Android 11:
 	     https://developer.android.com/about/versions/11/privacy/package-visibility -->
