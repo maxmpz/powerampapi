@@ -219,7 +219,7 @@ public final class PowerampAPI {
 
 	/**
 	 * Command values for {@link #EXTRA_COMMAND} extra.<br>
-	 * Alternatively, Commands field name can be used instead of integer value, e.g. "PAUSE", instead of 2
+	 * Alternatively, Commands field name (as a string) can be used instead of integer value, e.g. "PAUSE", instead of 2
 	 */
 	public static final class Commands {
 		/**
