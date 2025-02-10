@@ -350,12 +350,18 @@ public interface TableDefs {
                ") AS _has_lyrics";
 	}
 
+
+
 	/**
 	 * Contains the single track entry when/if some path is requested to be played and that path is not in Poweramp Music Folders/Library.<br>
 	 * @since 949 this is always a structural copy of folder_files table (with just that one _id={@link PowerampAPI#RAW_TRACK_ID} (-2) entry)
 	 */
 	public interface RawFiles extends Files {
 		public static final @NonNull String TABLE = "raw_files";
+	}
+
+	public interface SoFiles {
+		public static final @NonNull String TABLE = "so_files";
 	}
 
 	/** All known Poweramp folders */
