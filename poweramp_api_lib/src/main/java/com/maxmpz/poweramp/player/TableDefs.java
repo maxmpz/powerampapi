@@ -168,9 +168,19 @@ public interface TableDefs {
 		public static final @NonNull String RATING = "rating";
 
 		/**
+		 * Number of times the track was played, as counted for the internal logic. This is not incremented when we are playing any count
+		 * based category, or count-based sorting as changing this field at the moment of playing such categories/sorts will constantly
+		 * change position of the file in the list
 		 * INTEGER
 		 */
 		public static final @NonNull String PLAYED_TIMES = TABLE + ".played_times";
+
+		/**
+		 * Number of total played times for the track, including playing from count based categories/times
+		 * INTEGER
+		 * @since 989
+		 */
+		public static final @NonNull String TOTAL_PLAYED_TIMES = TABLE + ".total_played_times";
 
 		/**
 		 * INTEGER
