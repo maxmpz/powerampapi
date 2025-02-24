@@ -4,7 +4,7 @@ kotlin = "2.0.20"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2025.01.01"
-agp = "8.8.0"
+agp = "8.8.1"
 core = "1.15.0"
 
 [libraries]
