@@ -47,6 +47,6 @@ object DebugLines {
     }
 
     fun getLog() = synchronized(lock) {
-        if(lines.size > 0) lines.joinToString("\n") else "-empty-"
+        if(lines.isNotEmpty()) lines.joinToString("\n") else "-empty-"
     }
 }

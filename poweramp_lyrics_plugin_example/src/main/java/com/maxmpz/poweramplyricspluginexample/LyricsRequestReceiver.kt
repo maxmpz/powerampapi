@@ -23,8 +23,6 @@ package com.maxmpz.poweramplyricspluginexample
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import com.maxmpz.poweramp.player.PowerampAPI
 import com.maxmpz.poweramp.player.PowerampAPI.NO_ID
@@ -42,8 +40,6 @@ class LyricsRequestReceiver : BroadcastReceiver() {
         private const val LOG = true
         private const val DEBUG_DELAY_RESPONSE_MS = 1000L // Just a debugging delay
     }
-
-    private val guiHandler = Handler(Looper.getMainLooper())
 
     
     @OptIn(DelicateCoroutinesApi::class)
@@ -73,7 +69,7 @@ class LyricsRequestReceiver : BroadcastReceiver() {
             // NOTE: if it's a stream, we won't get durationMs and it may be generally harder to guess/search/load
             // lyrics for such stream "tracks"
             val isStream = fileType == PowerampAPI.Track.FileType.TYPE_STREAM
-            if(isStream && durationMs <= 0) durationMs = 60 * 1000; // Let's use some fake duration for our generateFakeLyrics
+            if(isStream && durationMs <= 0) durationMs = 60 * 1000 // Let's use some fake duration for our generateFakeLyrics
 
             val debugLine = "ACTION_NEED_LYRICS realId=$realId title=$title album=$album artist=$artist durationMs=$durationMs"
             DebugLines.addDebugLine(debugLine)

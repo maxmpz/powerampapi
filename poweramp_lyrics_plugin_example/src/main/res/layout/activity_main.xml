@@ -5,6 +5,7 @@
 	android:layout_height="match_parent"
 	android:padding="16sp"
 	android:orientation="vertical"
+	android:fitsSystemWindows="true"
 >
 	<EditText android:id="@+id/trackId"
 		android:layout_width="match_parent"
