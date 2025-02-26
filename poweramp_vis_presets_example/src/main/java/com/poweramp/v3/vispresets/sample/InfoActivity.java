@@ -93,7 +93,7 @@ public class InfoActivity extends Activity {
 	public void rescanVisPresets(View view) {
 		Intent intent = new Intent(PowerampAPI.MilkScanner.ACTION_SCAN)
 				.setComponent(PowerampAPIHelper.getMilkScannerServiceComponentName(this))
-				.putExtra(PowerampAPI.MilkScanner.EXTRA_CAUSE, "Manual rescan")
+				.putExtra(PowerampAPI.MilkScanner.EXTRA_CAUSE, "Manual rescan from plugin")
 				.putExtra(PowerampAPI.MilkScanner.EXTRA_PACKAGE, getPackageName());
 		startService(intent);
 	}
@@ -178,6 +178,10 @@ public class InfoActivity extends Activity {
 		return filename.substring(lastDot + 1);
 	}
 
+	/**
+	 * This demonstrates access to the preset files in Poweramp /milk_presets/ folder, which are not accessible otherwise on the
+	 * modern Androids.
+	 */
 	@SuppressWarnings("CommentedOutCode")
 	public void listMilkPresetsImpl() {
 		if(LOG) Log.w(TAG, "listMilkPresetsImpl");
