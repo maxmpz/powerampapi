@@ -603,7 +603,7 @@
 		<item name="android:layout_width">80dp</item>
 		<item name="android:layout_height">80dp</item>
 	</style>
-	<style name="MainVolumeLabel" parent="com.maxmpz.audioplayer:EqRoundKnobLabel">
+	<style name="MainVolumeLabel" parent="com.maxmpz.audioplayer:EqResizableRoundKnobLabel">
 		<!-- Hide "Volume" label (but leave value as is) -->
 		<item name="android:visibility">gone</item>
 	</style>

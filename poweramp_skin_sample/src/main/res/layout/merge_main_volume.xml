@@ -13,6 +13,7 @@
 	<!--suppress AndroidUnresolvableTag -->
 	<com.maxmpz.widget.player.DSPRoundKnobLayout
 		style="@style/SampleSkin_mainRoundVolumeKnob"
+		android:id="@+id/knob1"
 
 		w:param="@com.maxmpz.audioplayer:id/dsp_master_volume"
 		w:updateMsgId="@com.maxmpz.audioplayer:id/msg_dsp_other_changed"
@@ -53,6 +54,7 @@
 	     This is vertical knob. -->
 	<com.maxmpz.widget.player.DSPLinearKnob
 		style="@style/SampleSkin_mainLinearVolumeKnob"
+		android:id="@+id/knob2"
 
 		w:valueFormat="%.0f%%"
 		w:valueFormatMin="0"
@@ -85,6 +87,8 @@
 	<!-- This is horizontal knob (863+)  -->
 	<com.maxmpz.widget.player.DSPLinearKnob
 		style="@style/SampleSkin_mainLinearVolumeKnob_horiz"
+		android:id="@+id/knob3"
+
 		android:orientation="horizontal"
 
 		w:valueFormat="%.0f%%"
