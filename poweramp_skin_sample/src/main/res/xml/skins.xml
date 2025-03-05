@@ -120,71 +120,82 @@
 			/>
 		</radio>
 
-		<page name="@string/skin_corners">
-			<!-- It's recommended to use switch to enable/disable the new seekbar based style as they are not supported prior build 866.
-			     Alternatively, <include> can be used to include this page just for builds 866+ (prior builds ignore <include>) -->
+		<category name="Some Category">
+			<page name="@string/skin_corners">
+				<!-- It's recommended to use switch to enable/disable the new seekbar based style as they are not supported prior build 866.
+				     Alternatively, <include> can be used to include this page just for builds 866+ (prior builds ignore <include>) -->
+				<option
+					key="dynamicCorners"
+					name="@string/skin_dynamicCorners"
+					summary="@string/skin_summary_dynamicCorners"
+					overlapStyle="@style/SampleSkin_dynamicCorners"
+				/>
+
+				<!-- Corner radiuses. Value is dp, but still should be float (floatScale should be defined) -->
+				<seekbar
+					key="cornersAA"
+					id="@+id/cornersAA"
+					dependency="dynamicCorners"
+					name="@string/skin_cornerRadiusAA"
+					summary="%.0fdp"
+					floatScale="1"
+					scale="1"
+					defaultValue="4"
+					min="-1"
+					max="64"
+					step="1"
+				/>
+				<seekbar
+					key="cornersTracks"
+					id="@+id/cornersTracks"
+					dependency="dynamicCorners"
+					name="@string/skin_cornerRadiusTracks"
+					summary="%.0fdp"
+					floatScale="1"
+					scale="1"
+					defaultValue="4"
+					min="-1"
+					max="64"
+					step="1"
+				/>
+				<seekbar
+					key="cornersAlbums"
+					id="@+id/cornersAlbums"
+					dependency="dynamicCorners"
+					name="@string/skin_cornerRadiusAlbums"
+					summary="%.0fdp"
+					floatScale="1"
+					scale="1"
+					defaultValue="4"
+					min="-1"
+					max="64"
+					step="1"
+				/>
+
+				<seekbar
+					key="cornersOther"
+					id="@+id/cornersOther"
+					dependency="dynamicCorners"
+					name="@string/skin_cornerRadiusOther"
+					summary="%.0fdp"
+					floatScale="1"
+					scale="1"
+					defaultValue="4"
+					min="-1"
+					max="64"
+					step="1"
+				/>
+			</page>
+			<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
+				 See strings.xml for some examples.
+			-->
 			<option
-				key="dynamicCorners"
-				name="@string/skin_dynamicCorners"
-				summary="@string/skin_summary_dynamicCorners"
-				overlapStyle="@style/SampleSkin_dynamicCorners"
-			/>
-
-			<!-- Corner radiuses. Value is dp, but still should be float (floatScale should be defined) -->
-			<seekbar
-				key="cornersAA"
-				id="@+id/cornersAA"
-				dependency="dynamicCorners"
-				name="@string/skin_cornerRadiusAA"
-				summary="%.0fdp"
-				floatScale="1"
-				scale="1"
-				defaultValue="4"
-				min="-1"
-				max="64"
-				step="1"
-			/>
-			<seekbar
-				key="cornersTracks"
-				id="@+id/cornersTracks"
-				dependency="dynamicCorners"
-				name="@string/skin_cornerRadiusTracks"
-				summary="%.0fdp"
-				floatScale="1"
-				scale="1"
-				defaultValue="4"
-				min="-1"
-				max="64"
-				step="1"
-			/>
-			<seekbar
-				key="cornersAlbums"
-				id="@+id/cornersAlbums"
-				dependency="dynamicCorners"
-				name="@string/skin_cornerRadiusAlbums"
-				summary="%.0fdp"
-				floatScale="1"
-				scale="1"
-				defaultValue="4"
-				min="-1"
-				max="64"
-				step="1"
-			/>
-
-			<seekbar
-				key="cornersOther"
-				id="@+id/cornersOther"
-				dependency="dynamicCorners"
-				name="@string/skin_cornerRadiusOther"
-				summary="%.0fdp"
-				floatScale="1"
-				scale="1"
-				defaultValue="4"
-				min="-1"
-				max="64"
-				step="1"
-			/>
-		</page>
+				key="color1"
+				name="@string/skin_text_color1"
+				overlapStyle="@style/SampleSkin_color1"
+				checkedByDefault="false"
+				/>
+		</category>
 
 		<page
 			name="@string/skin_aa_options"
@@ -318,15 +329,6 @@
 			/>
 		</page>
 
-		<!-- (build 810+) Both name and summary labels support limited html (see https://developer.android.com/reference/android/text/Html). Can be useful to for e.g. colors.
-		     See strings.xml for some examples.
-		-->
-		<option
-			key="color1"
-			name="@string/skin_text_color1"
-			overlapStyle="@style/SampleSkin_color1"
-			checkedByDefault="false"
-		/>
 
 
 		<!-- (build 810+) radio / popup - an option selectable from the number of available options -->
@@ -521,21 +523,27 @@
 			dependency="useless_option"
 		>
 			<category name="Sub page category">
-			</category>
-			<page name="Another sub-sub page">
-				<page name="Another sub-sub-sub page">
-					<category name="Sub-sub-sub page category">
-						<option
-							key="_dummy"
-							name="Some dummy sub-sub-sub page option"
-							overlapStyle="@style/SampleSkin_VolumeKnob"
-						/>
+				<page name="Another sub-sub page">
+					<page name="Another sub-sub-sub page">
+						<category name="Sub-sub-sub page category">
+							<option
+								key="volume_knob2"
+								name="@string/skin_volume_knob"
+								summary="@string/skin_summary_volume_knob"
+								overlapStyle="@style/SampleSkin_VolumeKnob"
+								/>
+						</category>
+					</page>
+					<category name="Sub-sub page category">
 					</category>
 				</page>
-				<category name="Sub-sub page category">
-				</category>
-			</page>
-
+			</category>
+			<option
+				key="useless_option2"
+				name="Useless option2"
+				summary="Some useless option"
+				overlapStyle="@style/SampleSkin_Useless"
+				/>
 		</page>
 
 		<!-- Include tag includes skin definition from other xml files.
