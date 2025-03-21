@@ -1181,7 +1181,6 @@ public final class PowerampAPI {
 	 * {@code boolean} - true if track is paused
 	 * @see #ACTION_STATUS_CHANGED
 	 * @see Commands#OPEN_TO_PLAY
-	 * @see ACTION_VIEW
 	 */
 	public static final String EXTRA_PAUSED = "paused";
 
