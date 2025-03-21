@@ -40,6 +40,8 @@ public final class PeqAPI {
 	
 	public static final class Commands {
 		public static final int STOP_SERVICE = PowerampAPI.Commands.STOP_SERVICE;
+
+		public static final int SET_EQU_PRESET = PowerampAPI.Commands.SET_EQU_PRESET;
 	}
 
 	/** @see PowerampAPI#CALL_SET_PREFERENCE */
@@ -56,18 +58,5 @@ public final class PeqAPI {
 		 * Settings activity
 		 */
 		public static final String ACTIVITY_SETTINGS = "com.maxmpz.equalizer.preference.SettingsActivity";
-
-		/**
-		 * Limited subset of preferences allowed to be set by {@link #CALL_SET_PREFERENCE}.<br>
-		 * NOTE: preferences defined as static field with the preference name and type as a reference<br>
-		 * This <b>can't</b> be used for actual preference reading/writing, i.e.:<br>
-		 * {@code Preferences.dvc_enabled = true;}<br>
-		 * will do nothing<br><br>
-		 *
-		 * <b>Experimental: this part of API is currently under development and may/will change in the future</b><br>
-		 * This class entries/types/values may/will change in next Poweramp builds without prior warning/deprication<br>
-		 */
-		public static class Preferences {
-		}
 	}
 }
