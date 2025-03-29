@@ -28,6 +28,7 @@ r8 = "8.9.27"
 uiUnitAndroid = "1.7.8"
 vectordrawable = "1.2.0"
 versionedparcelable = "1.2.1"
+coreKtx = "1.15.0"
 
 [libraries]
 androidx-customview = { module = "androidx.customview:customview", version.ref = "customview" }
@@ -71,10 +72,11 @@ play-services-base = { module = "com.google.android.gms:play-services-base", ver
 play-services-tasks = { module = "com.google.android.gms:play-services-tasks", version.ref = "playServicesTasks" }
 r8 = { module = "com.android.tools:r8", version.ref = "r8" }
 kotlinx-coroutines-android = { group="org.jetbrains.kotlinx", name="kotlinx-coroutines-android", version = "1.9.0" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 
 [plugins]
 agp-application = { id = "com.android.application", version.ref = "agp" }
 agp-library = { id = "com.android.library", version.ref = "agp" }
 agp-test = { id = "com.android.test", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.1.20" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
