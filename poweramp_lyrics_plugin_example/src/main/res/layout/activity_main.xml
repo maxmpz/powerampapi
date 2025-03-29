@@ -3,7 +3,6 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:padding="16sp"
 	android:orientation="vertical"
 	android:fitsSystemWindows="true"
 >
@@ -11,12 +10,16 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:hint="Track id"
+		android:layout_marginLeft="16dp"
+		android:layout_marginRight="16dp"
 		/>
 	<Button
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="Send Lyrics For Track ID"
 		android:onClick="sendLyricsForTrack"
+		android:layout_marginLeft="16dp"
+		android:layout_marginRight="16dp"
 		/>
 
 	<TextView
@@ -24,11 +27,15 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="8dp"
 		android:text="Log:"
+		android:layout_marginLeft="16dp"
+		android:layout_marginRight="16dp"
 		/>
 	<TextView android:id="@+id/log"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1"
 		android:scrollbars="vertical"
+		android:layout_marginLeft="16dp"
+		android:layout_marginRight="16dp"
 	/>
 </LinearLayout>
