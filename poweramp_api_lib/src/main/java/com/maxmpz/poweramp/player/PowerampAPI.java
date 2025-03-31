@@ -1310,7 +1310,7 @@ public final class PowerampAPI {
 		public static final int REPEAT_SONG    = 3;
 
 		/**
-		 * Current song is played once, then player pauses on next song
+		 * Current song is played once, then player pauses
 		 */
 		public static final int SINGLE_SONG    = 4;
 
