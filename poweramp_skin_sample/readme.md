@@ -21,13 +21,19 @@
 - [License](#license)
 
 ### Recent Changes
+##### Build 991
+###### iconTint for page and msg 
+- [page](#page) now supports iconTint attribute
+- [page](#page) tag supporting icon + iconTint attributes, now avoids any tinting by default if no iconTint is specified (original icon colors are shown) - as this seems to be the expected behavior in currently published 3rd party skins. The default tint (color which is similar to current settings theme text color) now applied with the iconTint="default" attribute value
+- in contrast, [MultiSwitch](#multiswitch), [Radio](#radio), [msg](#msg) and other option tags apply default tint (==secondary text color) by the default
+
 ##### Build 978
-###### icon and iconTint for multiSwitch option
-MultiSwitch option tag now supports icon and iconTint attributes
+###### icon and iconTint for multiSwitch, msg options
+- [MultiSwitch](#multiswitch), [msg](#msg) tags now supports icon and iconTint attributes
 
 ##### Build 949
 ###### targetBuild
-The top ```<skins>``` xml tag now supports targetBuild attribute, which defines the Poweramp build this skin was build for.
+- The top ```<skins>``` xml tag now supports targetBuild attribute, which defines the Poweramp build this skin was build for.
 If not set, skin is assumed to be built for Poweramp builds prior 948 and Poweramp will apply extra layer of compatibility
 styles for such skins.
 
@@ -36,8 +42,8 @@ styles for such skins.
 New minSdk="*sdk_num*" and maxSdk="*sdk_num*" attributes are supported for option tags. *sdk_num* is also known as API Level
 (see Tools/SDK Manager in Android Studio for the reference).
 Both minSdk and maxSdk attributes are optional
-* minSdk defines the minimum SDK level for the option. The option is hidden for the SDK levels prior minSdk
-* maxSDK defines the maximum SDK level for the option. The option is hidden for the SDK levels above maxSDK
+  * minSdk defines the minimum SDK level for the option. The option is hidden for the SDK levels prior minSdk
+  * maxSDK defines the maximum SDK level for the option. The option is hidden for the SDK levels above maxSDK
 
 ###### New corner radiuses
 By default, Android 12-like corner radiuses are now applied with the appropriate changes to the paddings/margins.
@@ -89,6 +95,7 @@ and unpolished when all such features combined in one skin**
 ### Poweramp v3 Skin
 Poweramp skin is a pretty much standard Android app in APK which includes:
 * meta entry in AndroidManifest.xml which points to **[xml/skins.xml](src/main/res/xml/skins.xml)**:
+
 ```xml
 <meta-data android:name="com.maxmpz.PowerampSkins" android:resource="@xml/skins"/>
 ```
@@ -107,6 +114,7 @@ Skin development is done directly from Android Studio (2020.3.1+).
 * clone this repository, rename appropriately and change **[values/strings.xml](src/main/res/values/strings.xml)** labels and **[xml/skins.xml](src/main/res/xml/skins.xml)** entries
 * change application package, preferable to something containing **".poweramp.v3.skins."** as this is the substring that will be used in Poweramp to search for skin APKs in Play
 * (optionally) edit local.properties, add path to your Poweramp v3 APK (by default, it points to the bundled resources-only Poweramp apk):
+
 ```
 poweramp.apk=relative path to your poweramp.apk
 ```
@@ -131,6 +139,7 @@ starting from the build 912.
 Due to the package visibility changes on Android 11 for the apps compiled with targetSdkVersion 30+, ensure your
 skin AndroidManifest.xml contains:
 * queries tag (so skin app is able to find Poweramp to set the skin on button press):
+
 ```xml
 <queries>
     <intent>
@@ -139,6 +148,7 @@ skin AndroidManifest.xml contains:
 </queries>
 ```
 * com.maxmpz.audioplayer.SKIN_MAIN action for the main activity (so Poweramp is able to find the skin):
+
 ```xml
 <intent-filter>
     <action android:name="com.maxmpz.audioplayer.SKIN_MAIN" />
@@ -150,6 +160,7 @@ Bundles should work fine out of box for the skin projects without extra configur
 
 ### Poweramp Skin styles.xml
 The main skin styles is defined via [xml/skins.xml](src/main/res/xml/skins.xml) (in this example, SampleSkin):
+
 ```xml
 <skins xmlns:android="http://schemas.android.com/apk/res/android">
     <skin
@@ -157,8 +168,8 @@ The main skin styles is defined via [xml/skins.xml](src/main/res/xml/skins.xml) 
         author="[visible author name, e.g. @string/skin_author]"
         description="[visible skin description, e.g. @string/skin_sample_description]"
         style="[the reference to the skin theme style, e.g. @style/SampleSkin]"
-        lightMode="[since 869. Optional. The reference to the light version of this skin, e.g. @style/SampleSkinLight. Valid only if darkMode is not specified]"
-        darkMode="[since 869. Optional. The reference to the dark version of this skin, e.g. @style/SampleSkinDark. Valid only if lightMode is not specified]"
+        lightMode="[optional. The reference to the light version of this skin, e.g. @style/SampleSkinLight. Valid only if darkMode is not specified]"
+        darkMode="[optional. The reference to the dark version of this skin, e.g. @style/SampleSkinDark. Valid only if lightMode is not specified]"
     >
         ...
     </skin>
@@ -169,6 +180,7 @@ The main skin styles is defined via [xml/skins.xml](src/main/res/xml/skins.xml) 
 In this sample skin, SampleSkin style is defined in **[values/sample_skin_styles.xml](src/main/res/values/sample_skin_styles.xml)**.
 This is standard Android theme style definition, with couple additional requirements:
 * the skin style should have one of the Poweramp default skin styles as parent:
+
 ```xml
 <style name="SampleSkin" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
     ...
@@ -176,6 +188,7 @@ This is standard Android theme style definition, with couple additional requirem
 ```
 
 * all the overridden styles should be derived from appropriate Poweramp styles, with **com.maxmpz.audioplayer:** prefix:
+
 ```xml
 <style name="SampleSkin" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
     ...
@@ -194,7 +207,8 @@ This is standard Android theme style definition, with couple additional requirem
 
 * overridden styles **should always be derived** from Poweramp styles, otherwise almost any Poweramp update will break skin, due to possible base styles changes
 
-* include tag (since build 866) allows inclusion of sub-sections from other res/xml files
+* include tag allows inclusion of sub-sections from other res/xml files
+
 ```xml
 <include file="@xml/skin_sample_subpage2"/>
 ```
@@ -202,7 +216,7 @@ Included file should be a valid well formed xml. Include tag is supported at any
 
 
 ### Automatic Dark/Light Modes
-Supported since build 869. Poweramp will switch skin to the dark/light version if appropriate option is enabled in Poweramp settings and current skin supports dark/light mode.
+Poweramp will switch skin to the dark/light version if appropriate option is enabled in Poweramp settings and current skin supports dark/light mode.
 The support is indicated by the lightMode and darkMode attributes.
 If Poweramp needs to switch to the dark mode and current skin has darkMode attribute, skin defined by darkMode will be selected.
 If Poweramp needs to switch to the light mode and current skin has lightMode attribute, skin defined by lightMode will be selected.
@@ -238,6 +252,7 @@ See sample skin **[xml/skins.xml](src/main/res/xml/skins.xml)** for reference.
 
 #### Options
 * simple option with some name and optional summary (rendered as switch):
+
 ```xml
 <option
     key="[preference unique key]"
@@ -246,44 +261,47 @@ See sample skin **[xml/skins.xml](src/main/res/xml/skins.xml)** for reference.
     overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
     overlapAttr="[optional overlap attr reference to style]"
     checkedByDefault="[true|false]"
-    dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
-    minSdk="[since 912]"
-    maxSdk="[since 912]"
+    dependency="[key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    minSdk="[optional integer. If device Android SDK level is below that, option is not shown]"
+    maxSdk="[optional integer. If device Android SDK level is above that, option is not shown]"
 />
 ```
-* set of a radio buttons (since build 810). Only one selected value from the set of options is applied:
+* set of a radio buttons. Only one selected value from the set of options is applied:
+
 ```xml
 <radio
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary]"
     defaultValue="[default overlapStyle/overlapAttr value to use]"
-    dependency="[since 866. Key of some other option. If the referenced option is switched off (or value is 0), this option is disabled]"
-    minSdk="[since 912]"
-    maxSdk="[since 912]"
+    dependency="[key of some other option. If the referenced option is switched off (or value is 0), this option is disabled]"
+    minSdk="[optional integer. If device Android SDK level is below that, option is not shown]"
+    maxSdk="[optional integer. If device Android SDK level is above that, option is not shown]"
 >
         <option
             name="[visible name]"
             summary="[optional summary]"
             overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
             overlapAttr="[optional overlap attr reference to style]"
+            icon="[optional @drawable/* icon for the radio button]"
+            iconTint="[optional #color, @color/* to apply given tint color, 'default ' for the default text-color based color, or 'none' to avoid tint. Default is 'default']"
         />
         ...
 </radio>
 ```
-* option with a popup option chooser list (since build 810). Only one selected value from the set of options is applied. Since build 900
-&lt;popup&gt; option are automatically converted to &lt;multiSwitch&gt; unless allowMulti is set to false for the &lt;popup&gt;.
+* option with a popup option chooser list. Only one selected value from the set of options is applied. &lt;popup&gt; option are automatically converted to &lt;multiSwitch&gt; unless allowMulti is set to false for the &lt;popup&gt;.
 The automatic conversion happens if number of &lt;popup&gt; options is less than 5, options don't have html and are shorter than 24 characters.
+
 ```xml
 <popup
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
     defaultValue="[default overlapStyle/overlapAttr value to use]"
-    dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
-    allowMulti="[since 900 - boolean - true|false - optional, default is true. If set to false, disables conversion to the multiSwitch]"
-    minSdk="[since 912]"
-    maxSdk="[since 912]"
+    dependency="[key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    allowMulti="[boolean - true|false - optional, default is true. If set to false, disables conversion to the multiSwitch]"
+    minSdk="[optional integer. If device Android SDK level is below that, option is not shown]"
+    maxSdk="[optional integer. If device Android SDK level is above that, option is not shown]"
 >
         <option
             name="[visible name]"
@@ -294,7 +312,8 @@ The automatic conversion happens if number of &lt;popup&gt; options is less than
 </popup>
 ```
 
-* option with a seekbar option chooser list (since build 866). Only one selected value from the set of options is applied:
+* option with a seekbar option chooser list. Only one selected value from the set of options is applied:
+
 ```xml
 <seekbarOptions
     key="[preference unique key]"
@@ -305,9 +324,9 @@ The automatic conversion happens if number of &lt;popup&gt; options is less than
     leftLabel="[string - the label to the left]"
     centerLabel="[string - the label at the center]"
     rightLabel="[string - the label to the right]"
-    dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
-    minSdk="[since 912]"
-    maxSdk="[since 912]"
+    dependency="[key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    minSdk="[optional integer. If device Android SDK level is below that, option is not shown]"
+    maxSdk="[optional integer. If device Android SDK level is above that, option is not shown]"
 >
         <option
             name="[visible name]"
@@ -318,31 +337,33 @@ The automatic conversion happens if number of &lt;popup&gt; options is less than
 </popup>
 ```
 
-* option with the multiple switchable inline options (since build 900). Only one selected value from the set of options is applied.
+* <a name="#multiswitch">MultiSwitch</a> - an option with the multiple switchable inline options. Only one selected value from the set of options is applied.
 Converted option won't have summary, if the summary contains formatting symbols (%s).
+
 ```xml
 <multiSwitch
     key="[preference unique key]"
     name="[visible name]"
     summary="[optional summary, can include %s pattern which is replaced by currently selected option name]"
     defaultValue="[default overlapStyle/overlapAttr value to use]"
-    dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
-    minSdk="[since 912]"
-    maxSdk="[since 912]"
+    dependency="[key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    minSdk="[optional integer. If device Android SDK level is below that, option is not shown]"
+    maxSdk="[optional integer. If device Android SDK level is above that, option is not shown]"
 >
         <option
             name="[visible name]"
             summary="[optional. summary shown when option selected]"
             overlapStyle="[overlap style reference. Applied if overlapAttr is not defined]"
             overlapAttr="[optional overlap attr reference to style]"
-            icon="[since 978. Optional @drawable/* icon for the optionbutton]"
-            iconTint="[since 978. Optional #color, @color/* to apply given tint color, or 'none' to avoid tint]"
+            icon="[optional @drawable/* icon for the option button]"
+            iconTint="[optional #color, @color/* to apply given tint color, 'default ' for the default text-color based color, or 'none' to avoid tint. Default is 'default']"
         />
         ...
 </multiSwitch>
 ```
 
 Radio/popup/seekbarOptions (but not multiSwitch) tags support limited set of html tags inside **name** and **summary** attributes. These allow e.g. specifying color:
+
 ```xml
 <option
     name="@string/skin_text_color1"
@@ -350,11 +371,13 @@ Radio/popup/seekbarOptions (but not multiSwitch) tags support limited set of htm
 
 ```
 where skin_text_color1 is defined in strings.xml with html tags inside:
+
 ```xml
 <string name="skin_text_color1"><![CDATA[Text color <span style=\"color: #ff0000;\">⬤</span>]]></string>
 ```
-* seekbar option (since build 866). The seekbar preference always manipulates integer values (e.g. 1, 100, 1000), but still can store float value (e.g. 0.5, 1.5) if needed.  
+* seekbar option. The seekbar preference always manipulates integer values (e.g. 1, 100, 1000), but still can store float value (e.g. 0.5, 1.5) if needed.  
 The seekbar preference is ignored completely by builds prior 866.
+
 ```xml
 <seekbar
     key="[preference unique key. Used to store/retrieve key name, for dependencies, etc.]"
@@ -373,7 +396,7 @@ The seekbar preference is ignored completely by builds prior 866.
     ticks="[boolean - if true tick marks are used (positioned according to the step attribute)]"
     summary="[string - summary may include %d (or if floatScale is used: %.1f or similar format values. Here %.1f means 1 digit after point, %.2f - 2 digits, etc.)]"
     summary2="[string - same as summary. Allows independent string resource to be used. Works only if just summary exists]"
-    dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+    dependency="[key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
 />
 ```
 At this moment the seekbar preference can be used only for the subset of properties:
@@ -381,6 +404,7 @@ At this moment the seekbar preference can be used only for the subset of propert
   This is silently ignored prior build 866
 
   Set to appropriate views via textSizeMultiplierPref attribute.
+
   ```xml
   <item name="com.maxmpz.audioplayer:textSizeMultiplierPref">@+id/yourSeekbarId</item>
   ```
@@ -390,6 +414,7 @@ At this moment the seekbar preference can be used only for the subset of propert
   This will silently fail to work prior build 866 - corners will be == 0px and requires substyle + some message to user not to enable on older versions of Poweramp.
 
   Set via directly assigning seekbar *id* to the appropriate corner value, e.g.:
+
     ```xml
     <item name="com.maxmpz.audioplayer:corners_aa_scene_aa">@+id/yourSeekbarId</item>
     ```
@@ -402,8 +427,9 @@ At this moment the seekbar preference can be used only for the subset of propert
 * listSubstyle aaDenseFactor
 
 
-* category (since build 866). The category is a subset of options displayed with a header.
+* category. The category is a subset of options displayed with a header.
 The category tag is ignored by builds prior 866, all inner options are still shown.
+
 ```xml
     <category
         name="[category header text]"
@@ -413,23 +439,29 @@ The category tag is ignored by builds prior 866, all inner options are still sho
     </category>
 ```
 
-* page (since build 866). Page is a subset of options on their own separate page.
+* <a name="page">page</a>. Page is a subset of options on their own separate page.
 The page tag is ignored by builds prior 866, all inner options are still shown.
+
 ```xml
     <page
         name="[category name]"
         summary="[optional summary]"
-        dependency="[since 866. Key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
+        dependency="[key of some other option. If referenced option is switched off (or value is 0) this option is disabled]"
         icon="[optional icon drawable resource]"
+        iconTint="[since 991. Optional #color, @color/* to apply given tint color, 'default ' for the default text-color based color, or 'none' to avoid tint. Default is 'none']"
     >
         [options. You can put more pages inside parent pages, creating hierarchy of option pages]
         ...
     </page>
 ```
 
-* msg (since build 940). Non-clickable message/hint to show. The lineX/smallLineX attributes are all optional
+* <a name="msg">msg</a> - non-clickable message/hint to show. The lineX/smallLineX attributes are all optional
+
 ```xml
     <msg
+        icon="[optional icon drawable resource]"
+        iconTint="[optional #color, @color/* to apply given tint color, 'default ' for the default text-color based color, or 'none' to avoid tint. Default is 'none']"
+        iconAlign="[top - option. If specified, the icon will be top aligned]"
         align="[top|bottom - option. If specified, the message will be appropriately aligned]"
         line1="[normal size text line or @string reference]"
         smallLine1="[smaller size text line or @string reference]"
@@ -442,9 +474,10 @@ The page tag is ignored by builds prior 866, all inner options are still shown.
     />
 ```
 
-* globalOption (since build 940). Additional style to apply for appropriate global option. Multiple unique globalOptions are possible, per
+* globalOption - additional style to apply for appropriate global option. Multiple unique globalOptions are possible, per
 appropriate Poweramp global option. The style defined by the overlapAttr is applied after skin options, so skin may override
 some styling depending on the global option, such as OptionRatingDisabled
+
 ```xml
     <globalOption
         option="[Poweramp global option attr - see styles-options.xml - e.g. @attr/OptionRatingDisabled]"
@@ -465,6 +498,7 @@ The file initially contains the sample skin IDs (which won't generally interfere
 Note that only few attributes should have stable ids - the skin style as used in your *skins*.xml
 <skin> tag style attribute.
 For example <skin style="@style/SampleSkin"..> means line like:
+
 ```
 com.poweramp.v3.sampleskin:style/SampleSkin = 0x80070054
 ```
@@ -473,7 +507,7 @@ should exist in stable-ids.txt. Other lines/stable ids are not needed.
 
 
 ### Custom/Loadable Fonts
-Poweramp (since build 842) supports custom fonts from **res/fonts**. See https://developer.android.com/guide/topics/ui/look-and-feel/fonts-in-xml for details on Android custom fonts usage.
+Poweramp supports custom fonts from **res/fonts**. See https://developer.android.com/guide/topics/ui/look-and-feel/fonts-in-xml for details on Android custom fonts usage.
 If you use font family .xml file, don't forget to add both android: and app: prefixed properties. The app: values are used on Androids prior 8.
 
 Please note that font files (.ttf/.otf) should be named with lowercase latin, 0-9, and "_" characters only. For example OpenSans-Bold.ttf should be renamed to opensans_bold.ttf.
