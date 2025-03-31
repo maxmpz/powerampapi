@@ -83,8 +83,23 @@
 			checkedByDefault="false"
 		/>
 		<msg
+			icon="@drawable/check_big"
 			line1="Some hint title here"
 			smallLine1="Some hint message here"
+			/>
+
+		<msg
+			icon="@drawable/app_icon"
+			iconTint="none"
+			iconAlign="top"
+			line1="Another hint title here 1"
+			smallLine1="Some small hint message here 1"
+			line2="Another hint title here 2"
+			smallLine2="Some small hint message here 2"
+			line3="Another hint title here 3"
+			smallLine3="Some small hint message here 3"
+			line4="Another hint title here 4"
+			smallLine4="Some small hint message here 4"
 			/>
 
 		<radio
@@ -107,15 +122,18 @@
 		-->
 			<option
 				name="@string/skin_disabled"
+				icon="@drawable/default_layout"
 				overlapStyle=""
 			/>
 			<option
 				name="@string/skin_alt_layout_default"
+				icon="@drawable/alt_layout"
 				overlapAttr="@com.maxmpz.audioplayer:attr/overlap_alt_layout"
 			/>
 
 			<option
 				name="@string/skin_alt_layout_centered"
+				icon="@drawable/alt2_layout"
 				overlapStyle="@style/SampleSkin_Alt_Centered"
 			/>
 		</radio>
