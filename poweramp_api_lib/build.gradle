@@ -17,6 +17,13 @@ android {
             minifyEnabled false
         }
     }
+
+    androidComponents {
+        beforeVariants(selector().all()) { variant ->
+            variant.enabled = !variant.buildType.equalsIgnoreCase('debug')
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JAVA_SOURCE_COMPATIBILITY
         targetCompatibility = JAVA_TARGET_COMPATIBILITY
