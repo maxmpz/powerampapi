@@ -1553,7 +1553,9 @@ public final class PowerampAPI {
 			public static final int TYPE_S3M        = 27;
 			public static final int TYPE_IT         = 28;
 			public static final int TYPE_MPTM       = 29;
-			public static final int LAST_TYPE       = 29;
+			public static final int TYPE_OGA        = 30;
+
+			public static final int LAST_TYPE       = 30;
 		}
 
 		/**
