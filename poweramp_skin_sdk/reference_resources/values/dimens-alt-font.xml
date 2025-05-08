@@ -26,7 +26,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopTrackElapsedDuration_Text_AltFont_size">12.6sp</dimen>
 	
 	<dimen name="ItemTrackCatImage_Text_AltFont_size">8.1sp</dimen>
-	
+
+	<dimen name="extraSmall1_AltFont_textSize">8.8sp</dimen>
+
 	<dimen name="small1_AltFont_textSize">9sp</dimen>
 	<dimen name="small2_AltFont_textSize">10sp</dimen>
 	<dimen name="small3_AltFont_textSize">10.5sp</dimen>

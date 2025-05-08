@@ -25,6 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="corners_searchbar" format="dimension"/><!-- searchbar_bg -->
 	<attr name="corners_medium" format="dimension"/><!-- Various backgrounds, usually containing "medium" suffix. Includes item_bg, default_dialog_bg_less_rounded -->
 	<attr name="corners_large" format="dimension"/><!-- Various backgrounds, usually containing "large" suffix -->
+	<attr name="corners_circle" format="dimension"/><!-- Maximum radius to make it always a circle -->
 	<attr name="corners_small" format="dimension"/><!-- Various backgrounds, usually containing "small" suffix -->
 	<attr name="corners_medium_plus" format="dimension"/><!-- toast_bg, scroll_popup_bg -->
 	<attr name="corners_medium_minus" format="dimension"/><!-- Background for Eq labels -->

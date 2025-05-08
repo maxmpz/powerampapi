@@ -301,7 +301,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="disableForStateBusId" format="reference"><!-- See BusDisabledForStateBehavior -->
 			<enum name="parent" value="0"/>
 		</attr>
-		<attr name="firstPressToast" format="string|reference"/><!-- If set, toast msg will be shown for first ever press on this button. Preference is stored based on view id -->
+		<!-- If set, toast msg will be shown for first ever press on this button. Preference is stored based on view id -->
+		<attr name="firstPressToast" format="string|reference"/>
+
+		<!-- Button is disabled immediately on click (if we handle the action). It should be reenabled by some other code, or e.g.
+		     by BusDisabledForStateBehavior -->
+		<attr name="disableOnClick" format="boolean"/>
+		<!-- Button is disabled immediately on long click  (if we handle the action). It should be reenabled by some other code, or e.g.
+		     by BusDisabledForStateBehavior -->
+		<attr name="disableOnLongClick" format="boolean"/>
 	</declare-styleable>
 	
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) to enable/disable views based on Poweramp state buses
@@ -330,7 +338,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="morphCrossfade" format="boolean"/>
 		<attr name="android:drawable"/>
 	</declare-styleable>
-	
+
+	<!-- NOTE: "extends" PopupButtonLayout -->
 	<declare-styleable name="BusSelectablePopupButtonLayout">
 		<!-- State bus to listen/query to -->
 		<attr name="stateBusId" format="reference"/>
@@ -375,6 +384,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Optional secondary button labels for the dynamic buttons - string @array -->
 		<attr name="buttonsLabels2" format="reference"/>
+
+		<!-- If specified, we show extra item as a last item - ususaly a config or something like that -->
+		<attr name="extraItem" format="string"/>
+		<attr name="extraItemIcon" format="reference"/>
+		<attr name="extraItemBusId" format="reference"/>
+		<attr name="extraItemMsgId" format="reference"/>
+		<attr name="extraItemArg1" format="integer"/>
+		<attr name="extraItemArg2" format="integer"/>
+		<attr name="extraItemString" format="string"/>
+		<attr name="extraItemStyle" format="reference"/>
+		<attr name="extraItemMenuStyle" format="reference"/>
+		<!-- This is popup style. Separator is completely gone when in the button state -->
+		<attr name="extraItemSeparatorStyle" format="reference"/>
 	</declare-styleable>
 
 	<declare-styleable name="DynamicPopupButton">

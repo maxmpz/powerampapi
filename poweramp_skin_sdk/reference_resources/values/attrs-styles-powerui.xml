@@ -476,6 +476,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="SelectionMenuCountText" format="reference"/>
 		<attr name="SelectionMenu_Text" format="reference"/>
 		<attr name="SelectionMenuCloseButton" format="reference"/>
+		<attr name="SelectionMenuHelpButton" format="reference"/>
 		<attr name="SelectionMenuRangeButton" format="reference"/>
 		<attr name="SelectionMenuSeparator" format="reference"/>
 		<attr name="SelectionMenuBottomLineLayout" format="reference"/>
@@ -596,7 +597,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopMetaInfo_scene_item_menu" format="reference"/>
 		<attr name="TopMetaInfoLabel" format="reference"/>
 		<attr name="TopMetaInfoLabel_Text" format="reference"/>
-		
+
+		<!-- NOTE: TopHelp_* are not used anymore -->
 		<attr name="TopHelp_Text" format="reference"/>
 		<attr name="TopHelpNormal_Text" format="reference"/>
 		<attr name="TopHelpSmaller_Text" format="reference"/>
@@ -753,8 +755,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="SleepTimerContent" format="reference"/>
 		<attr name="SleepTimerValue" format="reference"/>
 		<attr name="SleepTimerValue_Text" format="reference"/>
+		<!-- @Deprecated -->
 		<attr name="SleepTimerSeekbar" format="reference"/>
 		<attr name="SleepTimerPTESelectBox" format="reference"/>
+		<attr name="SleepTimerRoundKnob" format="reference"/>
 		
 		<!-- PlainSeekbar -->
 		<attr name="PlainSeekbar" format="reference"/>

@@ -184,10 +184,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="both" value="0x0300"/><!-- Default -->
 		</attr>
 
-		<!-- Applies additional offsets for gravity AND parent available size for this child on appripriate side based on window insets.
-		     By default, gravity aligns to the parent side ignoring possible insets. Also, for match_parent size, %-percent size, or any other parent-related size, no
-		     insets are accounted for. With this attribute, appropriate side inset will be applied.
+		<!-- Applies additional offsets for gravity AND parent available size for this child on appropriate side based on window insets.
+		     By default, gravity aligns to the parent side ignoring possible insets. Also, for match_parent size, %-percent size, or any
+		     other parent-related size, by default no insets are accounted for.
+		     With this attribute, appropriate side inset WILL BE applied.
 		     For example, view with layout_offsets=insets and match_parent/match_parent will fill parent according to window insets.
+		     For the given view, appropriate sides are offset, so attach*="parent" will also attach to the inset if appropriate
+		     side layout_offsets is specified (thus, avoid attaching to "inset", as it will cause double inset offset attachment).
 		     This, of course, works if insets are propagated appropriately -->
 		<attr name="layout_offsets">
 			<flag name="insetLeft"   value="0x10000000"/>
@@ -231,7 +234,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<flag name="both" value="0x3000000"/>
 
 			<!-- Also consume parent space available for children for width/heightPercent and other parent size
-				 dependent proprerties. Size is consumed on the axises where we consume space
+				 dependent properties. Size is consumed on the axes where we consume space
 				 REVISIT: currently this can't be reset -->
 			<flag name="size" value="0x80000000"/>
 

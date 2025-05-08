@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -146,8 +146,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorBgInverse">#000</item>
 		<item name="colorBgInverseChecked">#000</item>
 		<item name="colorStroke">#555</item>
-		<item name="colorBgHelp">#f0f0f0</item>
-		<item name="colorStrokeHelp">#333</item>
+		<item name="colorBgHelp">#ffffff</item>
+		<item name="colorBgHelpEnd">#f0f0f0</item>
+		<item name="colorStrokeHelp">#aaa</item>
 		<item name="colorLessContrast">#333</item><!-- Used for e.g. for the main screen tinted icons, some text -->
 		<item name="colorLessContrastRipple">?colorLessContrast</item>
 		<item name="colorShade">#88000000</item>
@@ -233,7 +234,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorTrackMeta">#999</item>
 		<item name="colorTrackNum">#999</item>
 		<item name="colorSeparator">#FF888888</item>
-		<item name="colorSeparatorLight">#EEE</item>
+		<item name="colorSeparatorLight">#bbb</item><!-- A bit darker so we don't look contrasted vs animated faded in popup bg -->
 
 		<item name="colorNavbarIconsLessContrast">#fff</item><!-- NOTE: not used in default theme -->
 		<item name="colorNavbarIcons">#f333</item><!-- NOTE: using fixed color here as in white theme icons change for activated state -->
@@ -271,7 +272,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="arcWidth">@dimen/RoundKnob_arcWidth</item>
 		<item name="arcOffset">@dimen/RoundKnob_arcOffset</item>
-		<item name="arcGlowWidth">0dp</item><!-- Increaded for Dark. Doesn't look good for Light -->
+		<item name="arcGlowWidth">0dp</item><!-- Increased for Dark. Doesn't look good for Light -->
 
 		<item name="holeStartColor">@null</item>
 		<item name="holeEndColor">@null</item>
@@ -412,6 +413,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 		<item name="settings_v">@drawable/settings_v_colored</item><!-- NOTE: used in some dialogs -->
+		<item name="settings_thumb_up">@drawable/settings_thumb_up_colored</item>
 		<item name="check_48dp">@drawable/check_48dp</item>
 		<item name="fail_48dp">@drawable/fail_48dp</item>
 
@@ -419,6 +421,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="toast_queue">@drawable/toast_queue_tinted</item>
 		<item name="toast_info">@drawable/toast_info_tinted</item>
 		<item name="toast_unhappy">@drawable/toast_unhappy_tinted</item>
+		<item name="toast_fp">@drawable/settings_pak_colored</item>
 
 		<item name="button_selector">?android:attr/selectableItemBackgroundBorderless</item><!-- Background used for buttons -->
 		<item name="ar_down_selector">@drawable/ar_down</item><!-- Arrow down image used for combobox inputs, e.g. like in Edit Tags dialog/Genre -->
@@ -476,6 +479,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="settings_navbar">@drawable/settings_navbar</item>
 		<item name="settings_24dp">@drawable/settings_24dp</item>
+		<item name="settings_32dp">@drawable/settings_32dp</item>
 		<item name="settings_alt_24dp">@drawable/settings_stroke_24dp</item>
 		<item name="support_24dp">@drawable/support</item>
 
@@ -576,6 +580,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_nav_button">100dp</item><!-- Setting this very high so it's always rounded as circle for all screens -->
 		<item name="corners_equ_frs">0dp</item><!-- NOTE: overridden for v28/v29+, as it's slow for lower Androids -->
 		<item name="corners_large">24dp</item>
+		<item name="corners_circle">1000dp</item>
 		<item name="corners_small">2dp</item>
 		<item name="corners_knob_thumb">@dimen/knob_thumb_radius</item>
 		<item name="corners_eq_label_bg">10dp</item>
@@ -1039,6 +1044,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="corners_miniplayer_aa">4dp</item>
 		<item name="corners_toast">16dp</item>
 		<item name="corners_large">10dp</item>
+		<item name="corners_circle">1000dp</item>
 
 		<item name="corners_aa_tracks_menu">10dp</item>
 		<item name="corners_aa_albums_menu">10dp</item>

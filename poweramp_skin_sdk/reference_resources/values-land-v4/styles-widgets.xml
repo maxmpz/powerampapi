@@ -8,6 +8,7 @@
 		<item name="android:layout_marginBottom">@dimen/widget_conf_content_marginBottom</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
+		<item name="layout_offsets">insets</item>
 	</style>
 
 	<style name="WidgetOptionsLayout">
@@ -25,7 +26,8 @@
 	<!-- This is further changed for tablets -->
 	<style name="WidgetOptionsFrame" parent="WidgetOptionsFrame_BaseLand">
 		<!-- Let's it float centered vertically on phones where height is very tight in landscape -->
-		<item name="android:layout_gravity">right|center_vertical</item>
+		<item name="android:layout_gravity">right|bottom</item>
+		<item name="layout_offsets">insets</item>
 	</style>
 
 	<style name="WidgetStylesPageIndicator">

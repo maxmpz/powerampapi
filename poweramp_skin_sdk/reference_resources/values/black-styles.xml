@@ -84,10 +84,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="colorBgPositive">#555</item>
 
-		<item name="colorBgInverse">#000</item>
-		
-		<item name="colorStrokeHelp">#555</item>
+		<item name="colorStrokeHelp">#ccc</item>
 		<item name="colorBgHelp">#333</item>
+		<item name="colorBgHelpEnd">#383838</item>
 		
 		<item name="colorShade">#88000000</item>
 		<item name="colorBgLight">#333</item><!-- Used ATM for the Search Frame bg -->

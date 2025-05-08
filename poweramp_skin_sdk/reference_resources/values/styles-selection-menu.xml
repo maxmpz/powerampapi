@@ -129,8 +129,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="SelectionMenuCloseButton">
 		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">horizontal</item>
-		<item name="android:layout_height">38dp</item>
+		<!--<item name="android:layout_height">40dp</item>-->
 		<item name="layout_attachRight">parent</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
@@ -146,6 +147,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
 		<item name="android:textAppearance">?SelectionMenu_Text</item>
 	</style>
+	<style name="SelectionMenuHelpButton" parent="SelectionMenuCloseButton">
+		<item name="android:drawable">@drawable/q_circle_24dp</item>
+		<item name="android:layout_marginRight">-4dp</item>
+		<item name="drawableTint">?colorIconLessContrast</item>
+	</style>
+
 
 	<style name="SelectionMenuSeparator">
 		<item name="android:background">?colorSeparator</item>

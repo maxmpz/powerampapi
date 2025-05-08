@@ -22,7 +22,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
 >
 	<style name="VisPanelContainer" tools:ignore="NewApi">
-		<item name="layout_attachTop">@+id/status_bar_bg</item>
+		<item name="layout_attachTop">inset</item>
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:visibility">gone</item>
@@ -79,8 +79,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="VisButtonBase">
 		<item name="android:layout_width">40dp</item>
 		<item name="android:layout_height">40dp</item>
-		<item name="android:layout_marginRight">2dp</item>
-		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginLeft">-2dp</item><!-- Reduce it to gather buttons a bit more closely -->
+		<item name="android:layout_marginTop">4dp</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
@@ -89,17 +90,36 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="VisCloseButton" parent="VisButtonBase">
-		<item name="android:drawable">@drawable/close_stroke</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:drawable">@drawable/settings_close_24dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
-		<item name="layout_consumeSpace">horizontal</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">center</item>
-		<item name="android:visibility">gone</item>
+		<item name="android:visibility">visible</item>
+		<!-- Force us above list -->
+		<item name="android:translationZ">1px</item>>
+		<item name="android:outlineProvider">none</item>
 	</style>
-	
+
+	<style name="VisLockButtonLayout" parent="VisButtonBase">
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="layout_attachRight">@id/close_button</item>
+
+		<item name="menuPlaceholder">@+id/menu_placeholder</item>
+		<item name="android:background">@drawable/popup_button_layout_ripple_bg</item>
+		<item name="android:drawable">@null</item>
+		<item name="modal">false</item>
+		<item name="android:longClickable">true</item>
+
+		<item name="buttonStyle">?SmallerPopupButton</item>
+		<item name="menuButtonStyle">?SmallerPopupButton_scene_button_menu</item>
+	</style>
+
+
 	<style name="VisSettingsButton" parent="VisButtonBase">
-		<item name="android:drawable">@drawable/settings_24dp</item>
+		<item name="layout_attachRight">@id/close_button</item>
+		<item name="android:drawable">@drawable/settings_stroke_24dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_rounded_mini</item>
 		<item name="layout_consumeSpace">horizontal</item>
@@ -111,6 +131,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="VisFilterEditText" parent="Widget.AppCompat.EditText">
+		<item name="layout_attachRight">@id/sort</item>
 		<item name="layout_consumeSpace">vertical|reset_full_horizontal</item>
 		<item name="android:background">@null</item>
 		<item name="android:drawableLeft">@drawable/filter_24dp_tinted</item>
@@ -125,7 +146,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawablePadding">16dp</item>
 		<item name="android:visibility">gone</item>
 
-		<item name="android:layout_marginLeft">8dp</item><!-- NOTE: adjusted to match visuall the item_vis below -->
+		<item name="android:layout_marginLeft">8dp</item><!-- NOTE: adjusted to match visually the item_vis below -->
 	</style>
 	
 	<style name="VisSortButtonLayout" parent="VisCloseButton">
@@ -134,26 +155,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:drawable">@null</item>
 		<item name="openOnClick">true</item>
 		<item name="modal">false</item>
-		
 		<item name="buttonStyle">?SmallerPopupButton</item>
 		<item name="menuButtonStyle">?SmallerPopupButton_scene_button_menu</item>
+		<item name="android:visibility">gone</item>
 	</style>
 	
-	<style name="VisLockButtonLayout" parent="VisButtonBase">
-		<item name="android:layout_marginTop">@null</item>
-		<item name="android:layout_marginRight">4dp</item>
-		<item name="android:layout_gravity">center_vertical|right</item>
-				
-		<item name="menuPlaceholder">@+id/menu_placeholder</item>
-		<item name="android:background">@drawable/popup_button_layout_ripple_bg</item>
-		<item name="android:drawable">@null</item>
-		<item name="modal">false</item>
-		<item name="android:longClickable">true</item>
-		
-		<item name="buttonStyle">?SmallerPopupButton</item>
-		<item name="menuButtonStyle">?SmallerPopupButton_scene_button_menu</item>
-	</style>
-		
+
 	<style name="VisPanelList">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">316dp</item><!-- This is max expanded height, it's always the same to allow proper item animations -->

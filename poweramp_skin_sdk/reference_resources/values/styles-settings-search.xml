@@ -22,13 +22,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 	<!-- Search -->
-	<style name="SettingsSearchPanel">
+	<style name="Base_SettingsSearchPanel">
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">48dp</item>
-		<item name="layout_consumeSpace">vertical</item>
+		<item name="layout_consumeSpace">vertical|size</item>
 		<item name="android:clipToPadding">false</item>
 		<item name="layout_attachTop">parent</item>
 
@@ -39,16 +39,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:elevation">0dp</item>
 		<item name="android:outlineProvider">none</item>
 	</style>
-	<style name="SettingsSearchPanel_scene_search">
+	<style name="SettingsSearchPanel" parent="Base_SettingsSearchPanel">
+	</style>
+
+	<style name="Base_SettingsSearchPanel_scene_search" >
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">48dp</item>
 		<item name="layout_attachTop">parent</item>
-		<item name="layout_consumeSpace">vertical</item>
+		<item name="layout_consumeSpace">vertical|size</item>
 		<item name="android:visibility">visible</item>
 		<item name="scale">1</item>
+	</style>
+	<style name="SettingsSearchPanel_scene_search" parent="Base_SettingsSearchPanel_scene_search">
 	</style>
 
 	<style name="SettingsSearchBackButton">
@@ -119,11 +124,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="headerSize">60dp</item>
 	</style>
 
-	<style name="SettingsSearchContent">
+	<style name="Base_SettingsSearchContent">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:visibility">invisible</item>
 		<item name="android:background">?android:attr/windowBackground</item>
+	</style>
+	<!-- Overridden for v-35 -->
+	<style name="SettingsSearchContent" parent="Base_SettingsSearchContent">
 	</style>
 
 	<style name="SettingsSearchList">
@@ -162,7 +170,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SettingsSearchItemTitle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textSize">16sp</item>
+		<item name="android:textSize">18sp</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceListItem</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="allowZeroHeight">true</item>
@@ -176,6 +184,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:ellipsize">end</item>
+		<item name="android:textSize">14sp</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
 		<item name="allowZeroHeight">true</item>
 	</style>

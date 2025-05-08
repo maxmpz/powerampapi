@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -49,7 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:uncheckCmdId="@id/cmd_list_select_none"
 			/>
 
-		<com.maxmpz.widget.base.BusActionButton
+		<com.maxmpz.widget.base.BusActionButton android:id="@id/cmd_list_select_range"
 			style="?SelectionMenuRangeButton"
 			w:busId="@id/list"
 			w:msgId="@id/cmd_list_select_range"
@@ -62,12 +62,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			/>
 
 
+		<!-- Attached -> right -->
 		<com.maxmpz.widget.base.BusActionButton
 			style="?SelectionMenuCloseButton"
 			w:busId="@id/bus_gui"
 			w:msgId="@id/cmd_selection_menu_close"
 			android:contentDescription="@string/close"
 		/>
+		<!-- Attached -> right -->
+		<com.maxmpz.widget.base.BusActionButton
+			style="?SelectionMenuHelpButton"
+			w:busId="@id/bus_gui"
+			w:msgId="@id/cmd_gui_open_help"
+			w:arg1="@layout/merge_help_selection_menu"
+			android:contentDescription="@string/help"
+		/>
+
 
 		<com.maxmpz.widget.player.BusStatusText android:id="@+id/selection_menu_count_text"
 			style="?SelectionMenuCountText"

@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: each dialog theme inheritance path is: dialog_* => *Dialog => BaseDialog => ActivityTheme_White -->
 	<!-- ^.*?E/ThemeManager\(\d+\):\s+ -->
 	
-	<style name="dialog_EditTagActivity" parent="BottomsheetDialog">
+	<style name="dialog_EditTagActivity" parent="BigBottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_edit_tag</item>
 	</style>
 	
@@ -179,7 +179,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="dialog_AutoFindDialogActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_auto_find</item>
 	</style>
-	<style name="dialog_APMUnlockDialogActivity" parent="CenteredDialog_vertical_buttons">
+	<style name="dialog_APMUnlockDialogActivity" parent="BottomsheetDialog_vertical_buttons">
 		<item name="dialogContentLayout">@layout/dialog_content_apm_unlock</item>
 	</style>
 	

@@ -96,8 +96,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textSize">9sp</item>
 	</style>
 	-->
-	<style name="TopHelp_Text" parent="TextAppearance.AppCompat">
+	<style name="TopHelp_Text" parent="TopHelp_Text_Base">
 		<item name="android:textSize">@dimen/medium1_textSize</item>
+
 	</style>
 	<!-- textSize via TopHelpSmaller_textSize
 	<style name="TopHelpSmaller_Text_Tablet" parent="TopHelpSmaller_Text">

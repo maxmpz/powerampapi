@@ -66,6 +66,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="TopHelpButtonPeqEq" parent="TopHelpButton">
 		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachRight">inset</item>
+
 		<item name="help_position">bottom</item>
 	</style>
 

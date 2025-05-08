@@ -440,7 +440,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	
 	<!-- NOTE: item_vis differs (vs ItemPopupList) with activation check - it's separate view ATM + it has thumb up + different paddings to match outer layout better -->
 	<style name="ItemVis" parent="ItemGenericBase">
-		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingLeft">12dp</item>
 	</style>
 
 	<style name="ItemVisImage" parent="ItemGenericImage">
@@ -449,12 +449,14 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	
 	<style name="ItemVisTitle" parent="ItemGenericTitle">
-		<item name="android:layout_marginRight">38dp</item><!-- Right-indent to keep space for vis lock button (default scene) or like (scene_vispanel_expanded scene) -->
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">72dp</item><!-- Right-indent to keep space for vis lock button (default scene) or like (scene_vispanel_expanded scene) -->
 		<item name="android:textAppearance">?ItemVisTitle_Text</item><!-- => ItemGenericTitle_Text -->
 	</style>
 	
 	<style name="ItemVisLine2" parent="ItemGenericLine2">
-		<item name="android:layout_marginRight">38dp</item>
+		<item name="android:layout_marginLeft">12dp</item>
+		<item name="android:layout_marginRight">72dp</item>
 		<item name="android:textAppearance">?ItemVisLine2_Text</item><!-- => ItemGenericLine2_Text -->
 	</style>
 	
@@ -463,8 +465,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_vertical|right</item>
 		<item name="android:layout_marginRight">2dp</item>
-		<item name="layout_consumeSpace">horizontal</item>
+		<!-- Don't consume space - rely on layout_marginRight set above -->
+		<!--<item name="layout_consumeSpace">horizontal</item>-->
 		<item name="android:duplicateParentState">true</item>
+		<item name="layout_attachRight">@id/like</item>
 				
 		<item name="android:drawable">@drawable/vis_item_activated_check</item>
 		<item name="drawableTint">?colorIconPrimary</item>
@@ -481,7 +485,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:gravity">center</item>
 		<item name="android:layout_gravity">center_vertical|right</item>
 		<!-- NOTE: for only one button per item, no need to consume space. marginRight for title/line2 always works for right indenting -->
-		<item name="layout_consumeSpace">horizontal</item>
+		<!--<item name="layout_consumeSpace">horizontal</item>-->
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>

@@ -21,7 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<!--
-	 FastTextView is TextView/Button/ImageButton replacement, which is designed for layout and drawing performance.
+	 FastTextView is a custom view, which is designed for the layout and drawing performance.
 	 It's used for a static text, labels, text with icons, and just icons (+ few derived classes including "fast" checkboxes)
 
 	 This is, in some parts, very limited widget, esp. compared to full blown TextView, but it's fast:
@@ -32,12 +32,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	 Nevertheless, additional features are:
 	 - support for line drawables (per line text background, independent from general view background)
-	 - support for additional animatable SceneParams parameters: text color, max lines, drawable, line background, background
+	 - support for additional animated SceneParams parameters: text color, max lines, drawable, line background, background
 
 	 Paddings:
 	 NOTE: fast text padding processing (with drawable) differs from the standard Android TextView.
-	 This is due to the requirement for consinstent padding around text, while padding around drawable may be specific to that drawable.
-	 This allows same styles for buttons with or without drawables and consinstent text paddings as a result
+	 This is due to the requirement for consistent padding around text, while padding around drawable may be specific to that drawable.
+	 This allows same styles for buttons with or without drawables and consistent text paddings as a result
 
 	 Horizontal FastTextView paddings when no drawable:
 	   paddingLeft text paddingRight
@@ -51,7 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	 Horizontal FastTextView paddings when drawable is available and drawableOnly=true:
 	   drawablePaddingStart drawable drawablePadding paddingLeft paddingRight
 
-	 NOTE: leadingOffset may be added (or removed if negatove) to the paddingLeft/paddingRight (depending on the
+	 NOTE: leadingOffset may be added (or removed if negative) to the paddingLeft/paddingRight (depending on the
 	 text gravity).
 	 This is special offset which reduces leading pixels difference between various fonts/font styles/font sizes/scaling.
 	 Used for the better alignment of the visible text pixels
@@ -94,7 +94,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="left" value="0"/>
 			<enum name="top" value="1"/>
 			<enum name="right" value="2"/>
-			<!-- Drawable will be positioned according to android:gravity. This makes sense only if drawableOnly=true, for pure icons without text. No paddings applied, fixed size assumed -->
+			<!-- Drawable will be positioned according to android:gravity. This makes sense only if drawableOnly=true, for pure icons
+			     without text. No paddings applied, fixed size assumed -->
 			<enum name="forceGravity" value="-1"/>
 		</attr>
 
@@ -152,7 +153,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     to the FastLayout. Absolute value in pixels/dp.
 		     Used for pixel perfect alignment for different fonts/styles/sizes without using extra margins/paddings,
 		     thus simplifying alignment for the various devices/screen sizes.
-		     Doesn't change anything inside this fast text view, affects just the layout -->
+		     Doesn't change anything inside this fast text view, affects just the (outside) layout -->
 		<attr name="drawableAdj" format="dimension"/>
 
 		<!-- Only "none" and "end" are supported ATM -->

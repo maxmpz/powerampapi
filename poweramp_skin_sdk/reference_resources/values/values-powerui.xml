@@ -185,13 +185,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_transition"/>
 	
 	<item type="id" name="state_gui_nav_animating"/><!-- boolean -->
-	<item type="id" name="state_gui_is_modal_now"/><!-- boolean, integer => @id of scene or view, identifying this model state, or 0 -->
+	<!-- boolean, integer => @id of scene or view, identifying this model state, or 0 -->
+	<item type="id" name="state_gui_is_modal_now"/>
 	<!-- boolean. This depends on how recently navigation changed, if it was just recently, this returns previous nav state -->
 	<item type="id" name="state_gui_nav_is_probably_list"/>
 
 	
 	<!-- Sets gui to modal mode: used for popups and other modal-like use cases -->
 	<item type="id" name="cmd_gui_set_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state, arg2, boolean true => do not lock orientation -->
+	<!-- NOTE: prefer using post with this in case of removal of some popup menu modality
+	     - to avoid other layers to react to back action in this frame -->
 	<item type="id" name="cmd_gui_unset_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
 	<item type="id" name="cmd_gui_reset_modal"/><!-- bus_gui, no anim by default, optional boolean arg = anim (PopupMenuHelper only) -->
 	<item type="id" name="cmd_gui_show_toast"/><!-- bus_gui, arg1 = icon res, arg2 = optional duration ms (>0), obj = CharSequence or array[2] of CharSequence. Public -->
@@ -213,6 +216,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<item type="id" name="cmd_app_open_settings"/><!-- obj => settings page -->
 	<item type="id" name="cmd_app_open_settings_search"/><!-- Open settings search directly -->
+
+	<item type="id" name="cmd_contact_us"/>
+	<item type="id" name="cmd_license_error_search"/>
 
 	<item type="id" name="cmd_list_prefer_aa_scene"/><!-- arg1 == scene_aa, scene_aa_playing, scene_aa_vis -->
 	<!-- Cancels any transitions, modal states, menus, etc. in list -->
@@ -244,7 +250,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Other bus msgs -->
 	<item type="id" name="msg_version_info_changed"/><!-- bus_app -->
-	
-	
 </resources>
 	

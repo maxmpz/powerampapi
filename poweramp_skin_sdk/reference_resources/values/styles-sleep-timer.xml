@@ -66,7 +66,7 @@ name="
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_consumeSpace">vertical</item>
-		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginTop">8dp</item>
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">16dp</item>
 		<item name="android:gravity">center</item>
@@ -77,17 +77,44 @@ name="
 		<item name="android:textStyle">bold</item>
 	</style>
 		
+	<!-- @Deprecated -->
 	<style name="SleepTimerSeekbar">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">20dip</item>
-		<item name="android:layout_marginBottom">16dip</item>
+		<item name="android:layout_marginTop">20dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
 		<item name="android:layout_marginLeft">10dip</item>
 		<item name="android:layout_marginRight">10dip</item>
 		<item name="android:paddingLeft">20dp</item>
 		<item name="android:paddingRight">20dp</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:duplicateParentState">false</item>
+	</style>
+
+	<style name="SleepTimerRoundKnob" parent="EqRoundKnob">
+		<!-- Force colorful arc colors on this knob -->
+		<item name="android:theme">@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful</item>
+
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">180dp</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:duplicateParentState">false</item>
+		<!-- Needed to avoid parent state duplication -->
+		<item name="android:clickable">true</item>
+		<item name="arcOffset">@dimen/RoundKnob_arcOffset</item>
+		<!-- NOTE: maxDegree is manipulated by the code -->
+		<item name="minDegree">0</item>
+		<item name="bzzsPerRotation">12</item>
+		<item name="bzzMarginDegrees">4</item>
+		<item name="indicator">@drawable/round_knob_round_indicator</item>
+
+		<item name="arcWidth">@dimen/RoundKnob_arcWidth</item>
+		<item name="arcGlowWidth">?arcGlowWidth</item>
+
 	</style>
 
 	<!-- NOTE: uses ?textAppearance -->
@@ -99,7 +126,7 @@ name="
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:layout_marginLeft">16dp</item>
 		<item name="android:layout_marginRight">16dp</item>
-		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
@@ -109,8 +136,9 @@ name="
 	
 	<style name="PopupButtonLayoutDialogButton" parent="DialogButtonStyle">
 		<item name="android:layout_marginTop">@dimen/PopupButtonLayoutDialogButton_marginTop</item>
-		<item name="android:layout_marginBottom">2dp</item>
+		<item name="android:layout_marginBottom">12dp</item>
 		<item name="animOnClick">false</item>
+		<item name="android:background">@drawable/ripple_rounded_mini</item>
 	</style>
 	
 	<style name="PopupButtonLayoutDialogButton3" parent="PopupButtonLayoutDialogButton">
@@ -124,6 +152,7 @@ name="
 	<style name="PopupButtonLayoutDialogButton1" parent="PopupButtonLayoutDialogButton">
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginRight">10dp</item>
+		<item name="android:background">@drawable/ripple_bg_dialog_positive</item>
 	</style>
 	
 </resources>

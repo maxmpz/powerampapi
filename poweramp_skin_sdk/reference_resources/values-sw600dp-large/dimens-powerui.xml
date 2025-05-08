@@ -21,6 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources>
 	<dimen name="TopBottomSheetDialogFrame_maxHeight">560dp</dimen>
+	<dimen name="BigTopBottomSheetDialogFrame_maxHeight">600dp</dimen>
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">560dp</dimen>
 	<dimen name="TopBottomSheetDialogFrame_vertical_buttons_maxHeight">560dp</dimen>
 	<dimen name="SmallerCenterDialogFrame_maxHeight">460dp</dimen>

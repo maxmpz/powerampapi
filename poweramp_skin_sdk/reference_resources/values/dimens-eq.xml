@@ -26,6 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- eq_top_margin+EqKnobsLayout_marginTop should match EqFrequencyResponseScroller_marginTop  -->
 	<dimen name="TopActionModeBar_marginBottom">@dimen/eq_top_margin</dimen>
 	<dimen name="eq_top_margin">4dp</dimen>
+	<dimen name="EqReverbPanel12_paddingLR">0dp</dimen>
 	<dimen name="EqKnobsLayout_marginTop">0dp</dimen><!-- NOTE: overridden for Peq -->
 
 	<!-- NOTE: overridden by peq dimens-eq.xml -->

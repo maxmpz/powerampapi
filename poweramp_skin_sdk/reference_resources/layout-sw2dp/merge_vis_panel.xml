@@ -38,15 +38,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.audioplayer.widget.VisPanelFrame android:id="@+id/vis_panel_frame"
 			style="?VisPanelFrame"
 		>
-			<!-- NOTE: buttons are aligned to the right, thus, reveresed -->
+			<!-- NOTE: buttons are aligned to the right, thus, reversed -->
 			<com.maxmpz.widget.base.FastButton android:id="@+id/close_button"
 				style="?VisCloseButton"
 				android:contentDescription="@string/close"
 			/>
-			<SceneParams w:scene="@+id/scene_vispanel_expanded"
-				android:visibility="visible"
-			/>
-			
+
 			<com.maxmpz.widget.base.BusActionButton android:id="@+id/settings_button"
 				style="?VisSettingsButton"
 				w:busId="@id/bus_app_cmd"
@@ -58,7 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				android:visibility="visible"
 			/>
 
-			<com.maxmpz.widget.base.BusSelectablePopupButtonLayout
+			<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/sort"
 				style="?VisSortButtonLayout"
 				android:contentDescription="@string/sort"
 

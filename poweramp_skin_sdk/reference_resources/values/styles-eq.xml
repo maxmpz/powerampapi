@@ -21,7 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <resources 
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools" xmlns:w="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 >
 	<!-- NOTE: overridden for Matrial You colors in values-v31 for Android 12+ -->
 	<style name="ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic">
@@ -910,6 +910,8 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
+		<item name="android:paddingLeft">@dimen/EqReverbPanel12_paddingLR</item>
+		<item name="android:paddingRight">@dimen/EqReverbPanel12_paddingLR</item>
 	</style>
 	
 	<style name="EqReverbPanel2">
@@ -918,6 +920,8 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
+		<item name="android:paddingLeft">@dimen/EqReverbPanel12_paddingLR</item>
+		<item name="android:paddingRight">@dimen/EqReverbPanel12_paddingLR</item>
 	</style>
 	
 	<style name="EqReverbPanel3">

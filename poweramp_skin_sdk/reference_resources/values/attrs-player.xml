@@ -115,7 +115,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="vis_24dp" format="reference"/>
 	<attr name="waveseek_bar" format="reference"/>
 	<attr name="waveseek_elapsedbar" format="reference"/>
-	
+
 	<!-- Menu items -->
 	<attr name="rescan" format="reference"/>
 	<attr name="list_options" format="reference"/>
@@ -169,6 +169,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	     settings_24dp should not grow over 24dp as it used with implicit size in many places -->
 	<attr name="settings_navbar" format="reference"/>
 	<attr name="settings_24dp" format="reference"/>
+	<attr name="settings_32dp" format="reference"/>
 	<attr name="settings_alt_24dp" format="reference"/><!-- E.g. settings_stroke_24dp -->
 	<attr name="changelog_24dp" format="reference"/>
 	<attr name="support_24dp" format="reference"/>
@@ -960,6 +961,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Additional value to round to/from values prior setting. Resulting value is Math.round(value * rounding) / rounding --> 
 		<attr name="rounding" format="float"/>
 
+		<attr name="minDegree" format="float"/>
+		<!-- Can be > 360 for multiple rotations -->
+		<attr name="maxDegree" format="float"/>
+
+		<!-- Number of vibrations per 1 rotation -->
+		<attr name="bzzsPerRotation" format="integer"/>
+		<!-- Default is 1. This depends on number of possible rotations and the required accuracy -->
+		<attr name="bzzMarginDegrees" format="float"/>
+
 	</declare-styleable>
 	
 	<declare-styleable name="DSPRoundKnob">
@@ -1139,9 +1149,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="arrowWidth" format="dimension"/>
 		<attr name="arrowHeight" format="dimension"/>
 		<attr name="arrowOffset" format="dimension"/>
+		<!-- This is used for the arrow stoke width AND this is the assumed stroke width of the background -->
 		<attr name="arrowStrokeWidth" format="dimension"/>
 		<attr name="arrowLineWeight" format="dimension"/>
-		<attr name="showArrow" format="boolean"/>
+		<!-- If true, we show arrow to the anchor view. By default we prefer centered target of the arrow on x axis -->
+		<attr name="showArrow" format="boolean|enum">
+			<!-- Also boolean=true -->
+			<enum name="show" value="1"/>
+			<!-- Prefer left direction of arrow on x axis -->
+			<enum name="preferLeft" value="2"/>
+			<!-- Prefer right direction of arrow on x axis -->
+			<enum name="preferRight" value="3"/>
+		</attr>
+		<!-- Additional id for the extra arrow -->
+		<attr name="showArrowTo" format="reference"/>
+		<!-- Additional id for the extra arrow -->
+		<attr name="showArrowTo2" format="reference"/>
 		<attr name="arrowFillColor" format="color"/>
 		<attr name="arrowStrokeColor" format="color"/>
 		<attr name="drawableTint"/>

@@ -145,6 +145,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?TopPlayPauseBehind"
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
+			w:string="id/play_pause_behind"
 			w:longPressMsgId="@id/cmd_player_stop_playing"
 			android:importantForAccessibility="no"
 		/>
@@ -154,6 +155,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?TopPause"
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
+			w:string="id/pause"
 			w:longPressMsgId="@id/cmd_player_stop_playing"
 			android:contentDescription="@string/pause"
 		/>
@@ -174,6 +176,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?TopPlay"
 			w:busId="@id/bus_player_cmd"
 			w:msgId="@id/cmd_player_toggle_playing"
+			w:string="id/play"
 			w:longPressMsgId="@id/cmd_player_stop_playing"
 			android:contentDescription="@string/play"
 		/>
@@ -310,6 +313,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:buttonsMsgId="@id/cmd_gui_set_vis_mode"
 			w:buttonsArg1="@array/vis_modes_enum"
 
+			w:extraItem="@string/settings"
+			w:extraItemIcon="?settings_32dp"
+			w:extraItemBusId="@id/bus_app_cmd"
+			w:extraItemMsgId="@id/cmd_app_open_settings"
+			w:extraItemString="vis"
+
 			android:contentDescription="@string/visualization"
 		>
 		</com.maxmpz.widget.base.BusSelectablePopupButtonLayout>
@@ -338,8 +347,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 		
 		<!-- NOTE: arg2="1" means we override arg2 when sending message by chaning modes by pressing BusSelectablePopupButtonLayout.
-			 This only applied (and overrides possible button arg2) ONLY when BusSelectablePopupButtonLayout is pressed, 
-			 otherwise, while in popup menu buttons send their (or buttons* based) messages/args -->
+			       This only applied (and overrides possible button arg2) ONLY when BusSelectablePopupButtonLayout is pressed,
+			       otherwise, while in popup menu buttons send their (or buttons* based) messages/args
+			 NOTE: we use PopupButtonNoTint as PopupButton by default for the shuffle/repeat layouts, as all our shuffle/repeat
+			       icons are already tinted -->
 		<com.maxmpz.widget.base.BusSelectablePopupButtonLayout android:id="@+id/shuffle_button_layout"
 			style="?TopShuffleButtonLayout"
 
@@ -354,6 +365,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:buttonsMsgId="@id/cmd_player_set_shuffle_mode"
 			w:buttonsArg1="@array/shuffle_modes_enum"
 			android:contentDescription="@string/shuffle"
+
+			w:extraItem="@string/settings"
+			w:extraItemIcon="?settings_32dp"
+			w:extraItemBusId="@id/bus_app_cmd"
+			w:extraItemMsgId="@id/cmd_app_open_settings"
+			w:extraItemString="library_shuffle"
+
 		/>
 		<SceneParams w:scene="@+id/scene_button_menu" 
 			style="?ItemPopupMenu_scene_item_menu" 
@@ -494,9 +512,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopFitsStatusBarView"
 	/>
 	<!-- All main screen scenes match default scene, thus, not transitions for these scenes -->
-	<SceneParams w:scene="@id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis"
+	<SceneParams w:scene="@id/scene_playing" w:scene_2="@id/scene_vis_temp_ui"
 		w:baseScene="defaultScene"
 	/>
+	<!-- The separate sceneParams for scene_vis (full screen) as we may want to modify it to hide status bar completely.
+	     This logic is handled by FitsStatusBarView -->
+	<SceneParams w:scene="@id/scene_vis"
+		w:baseScene="defaultScene"
+		/>
 	<!-- Alpha is overridden for this scene -->
 	<SceneParams w:scene="@id/scene_vis_w_ui"
 		w:baseScene="defaultScene"
@@ -510,10 +533,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?TopFitsNavigationBarView"
 	/>
 	<!-- NOTE: all main screen scenes match default scene, thus, not transitions for these scenes -->
-	<SceneParams w:scene="@id/scene_playing" w:scene_2="@id/scene_vis_temp_ui" w:scene_3="@id/scene_vis"
+	<SceneParams w:scene="@id/scene_playing" w:scene_2="@id/scene_vis_temp_ui"
 		w:baseScene="defaultScene"
 		w:applyViewParams="true"
 	/>
+	<!-- The separate sceneParams for scene_vis (full screen) as we may want to modify it to hide status bar completely.
+	     This logic is handled by FitsStatusBarView -->
+	<SceneParams w:scene="@id/scene_vis"
+		w:baseScene="defaultScene"
+		w:applyViewParams="true"
+		/>
 	<!-- Alpha is overridden for this scene -->
 	<SceneParams w:scene="@id/scene_vis_w_ui"
 		w:baseScene="defaultScene"

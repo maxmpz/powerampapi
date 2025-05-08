@@ -6,22 +6,25 @@
 	style="@style/TopHelpLayout"
 	w:enableStateAnim="true"
 >
-
-	<include android:layout="@layout/merge_help_buttons"/>
-		
-	<com.maxmpz.widget.player.Help
-		style="@style/TopHelp"
+	<com.maxmpz.widget.player.Help android:id="@+id/help_main_bubble"
+		style="@style/TopHelpMain"
 		
 		w:help_anchor="@id/aa_bounds"
 		w:help_position="top"
 		w:help_inside="true"
-		
+		w:showArrow="false"
+
 		w:html="@string/h_main_aa"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 	
+	<TextView
+		style="@style/TopHelpTitle"
+		android:text="@string/pref_main_screen"
+		/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
+
+	<include android:layout="@layout/merge_help_buttons"/>
 
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelp"
@@ -34,9 +37,7 @@
 		
 		w:html="@string/h_main_rating"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 		
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
@@ -44,9 +45,7 @@
 		w:help_anchor="@id/meta_info_layout"
 		android:text="@string/h_main_meta_info"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 	
 	
 	<com.maxmpz.widget.player.Help
@@ -58,22 +57,18 @@
 		android:text="@string/visualization"
 		w:line2="@string/long_press_for_menu"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 	
 	
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
 		
 		w:help_anchor="@id/sleep_timer_layout"
-		w:help_position="right"
+		w:help_position="bottom"
 		
 		android:text="@string/sleep_timer"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
@@ -84,9 +79,7 @@
 		android:text="@string/shuffle"
 		w:line1="@string/long_press_for_menu"
 		/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible"
-		/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
@@ -97,9 +90,7 @@
 		android:text="@string/repeat"
 		w:line2="@string/long_press_for_menu"
 		/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible"
-		/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
@@ -110,60 +101,52 @@
 		
 		android:text="@string/h_main_waveseek"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 		
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
-		
+		w:help_inside="true"
+		w:showArrow="false"
 		w:help_anchor="@id/prev_cat"
 		android:text="@string/h_prev_list"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 		
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
-		
+		w:help_inside="true"
+		w:showArrow="false"
 		w:help_anchor="@id/next_cat"
 		android:text="@string/h_next_list"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 	
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
-		
+		w:help_oneAxis="true"
 		w:help_anchor="@id/cmd_nav_to_lib"
 		android:text="@string/library"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 	
 	
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
 		
 		w:help_anchor="@id/cmd_nav_to_eq"
+		w:showArrow="false"
 		w:help_inside="true"
 		android:text="@string/h_equ_effects"
 		w:line2="@string/long_press_for_menu"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
-		
+		w:help_inside="true"
+		w:showArrow="false"
 		w:help_anchor="@id/cmd_nav_more"
 		w:line1="@string/long_press_skin_opts"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 </com.maxmpz.widget.player.HelpLayout>

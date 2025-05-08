@@ -76,12 +76,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	>
 				
 		<!-- 
-			This behavior tries to manipulate parent layout scene params (bottom margin) the way it animates soft keyboard state. 
+			This behavior tries to manipulate parent layout scene params (margins) the way it animates soft keyboard state.
 			Also automatically disables fitsSystemWindows if needed and applies status bar offset via top margin.
-			NOTE: this changes insets and should be compatible with possible inset/bounds changes due to themeing (e.g. pre-v29 vs v29) 
+			NOTE: this changes insets and should be compatible with possible inset/bounds changes due to theming (e.g. pre-v29 vs v29)
 		-->
 		<com.maxmpz.widget.base.AdjustToSoftKeyboardBehavior
-			android:enabled="?dialogAdjustToSoftKeyboard"	
+			android:enabled="?dialogAdjustToSoftKeyboard"
 		/>
 
 		<!-- Inner layout - actual dialog frame -->
@@ -162,7 +162,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					<com.maxmpz.widget.base.TextView android:id="@+id/dialog_toast_line_only_1"
 						style="?DialogToastLineOnly1"
 					/>
-					<!-- NOTE: text views here to support styleable charsequences -->
+					<!-- NOTE: text views here to support styleable char sequences -->
 					<com.maxmpz.widget.base.TextView android:id="@+id/dialog_toast_line1"
 						style="?DialogToastLine1"
 					/>

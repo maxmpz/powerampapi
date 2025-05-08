@@ -268,7 +268,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="animOnClick">true</item>
 		<item name="busId">@id/bus_app_cmd</item>
 		<item name="msgId">@id/cmd_app_open_settings</item>
-		<item name="string">peq_singlepane#buy_stub</item>
+		<item name="string">singlepane#buy_stub</item>
 		<item name="android:visibility">gone</item>
 		<item name="android:outlineProvider">none</item>
 	</style>

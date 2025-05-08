@@ -58,6 +58,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="PopupButton" format="reference"/>
 	<attr name="PopupButton_Text" format="reference"/>
 	<attr name="PopupButton_scene_button_menu" format="reference"/>
+	<!-- Should match PopupButton but with the enforced icon tint -->
+	<attr name="PopupButtonTinted" format="reference"/>
+	<attr name="PopupButtonTinted_scene_button_menu" format="reference"/>
 	
 	<attr name="ItemEmptyList" format="reference"/>
 	<attr name="ItemEmptyListScanProgressCenter" format="reference"/>

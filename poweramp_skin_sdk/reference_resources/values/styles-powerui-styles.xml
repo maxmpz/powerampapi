@@ -172,6 +172,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PopupButton">@style/PopupButtonNoTint</item>
 		<item name="PopupButton_Text">@style/PopupButton_Text</item>
 		<item name="PopupButton_scene_button_menu">@style/PopupButtonNoTint_scene_button_menu</item>
+		<item name="PopupButtonTinted">@style/PopupButton</item>
+		<item name="PopupButtonTinted_scene_button_menu">@style/PopupButton_scene_button_menu</item>
 		
 		<item name="PopupButtonLayoutDialogButton3">@style/PopupButtonLayoutDialogButton3</item>
 		<item name="PopupButtonLayoutDialogButton2">@style/PopupButtonLayoutDialogButton2</item>
@@ -587,6 +589,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="SelectionMenuCountText">@style/SelectionMenuCountText</item>
 		<item name="SelectionMenu_Text">@style/SelectionMenu_Text</item>
 		<item name="SelectionMenuCloseButton">@style/SelectionMenuCloseButton</item>
+		<item name="SelectionMenuHelpButton">@style/SelectionMenuHelpButton</item>
 		<item name="SelectionMenuRangeButton">@style/SelectionMenuRangeButton</item>
 		<item name="SelectionMenuSeparator">@style/SelectionMenuSeparator</item>
 		<item name="SelectionMenuBottomLineLayout">@style/SelectionMenuBottomLineLayout</item>
@@ -822,7 +825,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="SleepTimerValue_Text">@style/SleepTimerValue_Text</item>
 		<item name="SleepTimerSeekbar">@style/SleepTimerSeekbar</item>
 		<item name="SleepTimerPTESelectBox">@style/SleepTimerPTESelectBox</item>
-		
+		<item name="SleepTimerRoundKnob">@style/SleepTimerRoundKnob</item>
+
 		<!-- PlainSeekbar -->
 		<item name="PlainSeekbar">@style/PlainSeekbar</item>
 		<item name="PlainSeekbar_anim_seeking">@style/PlainSeekbar_anim_seeking</item>

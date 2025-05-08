@@ -1578,6 +1578,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 
 	<style name="ItemTrackMenu" parent="BlackListMenu">
+		<item name="android:longClickable">true</item>
 	</style>
 	<style name="ItemTrackMenu_scene_menu" parent="BlackListMenu_scene_menu">
 	</style>

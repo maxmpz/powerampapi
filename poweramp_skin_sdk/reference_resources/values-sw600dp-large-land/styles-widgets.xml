@@ -8,6 +8,7 @@
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:paddingTop">@dimen/widget_conf_content_marginTop</item>
+		<item name="layout_offsets">insets</item>
 	</style>
 
 	<style name="WidgetOptionsFrame" parent="WidgetOptionsFrame_BaseLand">

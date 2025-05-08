@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -38,8 +38,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorBgInverseChecked" format="color"/>
 	<!-- Color for button stroke -->
 	<attr name="colorStroke" format="color"/>
-	<!-- Color for help balloons bg -->
+	<!-- Color for help balloons bg (gradient start) -->
 	<attr name="colorBgHelp" format="color"/>
+	<!-- Color for help balloons bg (gradient end) -->
+	<attr name="colorBgHelpEnd" format="color"/>
 	<!-- Color for less visible stroke, e.g. for help hints -->
 	<attr name="colorStrokeHelp" format="color"/>
 	<!-- Tint/foreground color for a bit less contrast icons/buttons -->

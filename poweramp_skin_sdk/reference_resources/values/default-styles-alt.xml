@@ -473,7 +473,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>	
 		
 	<style name="Alt_PopupButtonNoTint" parent="PopupButtonNoTint">
-		
 	</style>
 	
 	<style name="Alt_TopToastContainer" parent="TopToastContainer">

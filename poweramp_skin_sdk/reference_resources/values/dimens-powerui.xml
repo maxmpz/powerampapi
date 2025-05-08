@@ -25,6 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PopupLayoutList_height">340dp</dimen>
 		
 	<dimen name="TopBottomSheetDialogFrame_maxHeight">440dp</dimen>
+	<dimen name="BigTopBottomSheetDialogFrame_maxHeight">500dp</dimen>
 	<dimen name="TopBottomSheetDialogFrame_vertical_buttons_maxHeight">500dp</dimen>
 	<dimen name="CenterDialogFrame_maxHeight">540dp</dimen>
 	<dimen name="SmallerCenterDialogFrame_maxHeight">320dp</dimen>

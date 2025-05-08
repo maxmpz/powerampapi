@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE: as HelpLayout is Scene by itself, it's own StateAnimParams (forId="parent") will be pushed into it, if placed inside -->
+<com.maxmpz.widget.player.HelpLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
+	style="@style/TopHelpLayout"
+	w:enableStateAnim="true"
+>
+	<com.maxmpz.widget.player.Help android:id="@+id/help_main_bubble"
+		style="@style/TopHelpMain"
+
+		w:help_anchor="@id/list"
+		w:help_position="center"
+		w:help_inside="true"
+
+		w:showArrow="false"
+
+		w:html="@string/long_press_item_for_selection"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
+
+	<TextView
+		style="@style/TopHelpTitle"
+		android:text="@string/selection_menu"
+		/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
+
+	<include android:layout="@layout/merge_help_buttons"/>
+
+
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelp"
+
+		w:help_anchor="@id/cmd_list_select_range"
+		w:help_position="top"
+		w:showArrow="true"
+		
+		w:html="@string/h_select_range"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible" 
+	/>
+	
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelp"
+		android:maxWidth="300dp"
+
+		w:help_anchor="@id/enqueue"
+		w:help_position="bottom"
+		w:showArrow="true"
+
+		w:showArrowTo="@+id/add_to_pl"
+		w:showArrowTo2="@+id/queue_as_next"
+
+		w:html="@string/long_press_for_more_options"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
+		style="@style/TopHelp_anim_help_visible"
+	/>
+
+</com.maxmpz.widget.player.HelpLayout>

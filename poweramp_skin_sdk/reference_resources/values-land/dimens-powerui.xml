@@ -22,6 +22,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values-h1dp-land. Baseline values for scaled screens -->
 <resources>
 	<dimen name="TopBottomSheetDialogFrame_maxHeight">460dp</dimen>
+	<dimen name="BigTopBottomSheetDialogFrame_maxHeight">460dp</dimen>
 	<dimen name="CenterDialogFrame_maxHeight">460dp</dimen><!-- 460 -->
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">460dp</dimen>
 	<dimen name="TopBottomSheetDialogFrame_vertical_buttons_maxHeight">460dp</dimen>

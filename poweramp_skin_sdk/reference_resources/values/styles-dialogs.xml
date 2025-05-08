@@ -171,7 +171,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item><!-- Avoid clipping e.g. dragged up toast -->
-		<item name="android:fitsSystemWindows">true</item><!-- NOTE: automatically disabled when needed, see dialog.xml, AdjustToSoftKeyboardBehavior -->
+		<!-- NOTE: automatically disabled when needed, see dialog.xml, AdjustToSoftKeyboardBehavior -->
+		<item name="android:fitsSystemWindows">true</item>
 	</style>
 	
 	<style name="BottomsheetDialog" parent="BaseDialog">
@@ -183,6 +184,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogContentNoPadding">@style/DialogContentNoPadding</item><!-- REVISIT: remove, use DialogContent styles redefinition per dialog instead -->
 	</style>
 	
+	<style name="BigBottomsheetDialog" parent="BottomsheetDialog">
+		<item name="DialogFrame">@style/BigBottomsheetDialogFrame</item>
+		<item name="DialogFrame_scene_dialog_in">@style/BigBottomsheetDialogFrame_scene_dialog_in</item>
+	</style>
+
 	<style name="TopsheetDialog" parent="BaseDialog">
 		<item name="collapseDragDirection">up</item>
 		<item name="dialogAdjustToSoftKeyboard">false</item>
@@ -216,7 +222,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="BaseDialogFrame">
-		<item name="android:background">@drawable/default_dialog_bg_less_rounded</item><!-- NOTE: this seems to introduce padding (from insets) -->
+		<!-- NOTE: this seems to introduce padding (from insets), thus we basically have 8dp paddping on all sides -->
+		<item name="android:background">@drawable/default_dialog_bg_less_rounded</item>
 		<item name="android:elevation">?dialogFrame_elevation</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -225,21 +232,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="BottomsheetDialogFrame" parent="BaseDialogFrame">
 		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="layout_offsets">insetLeft|insetTop|insetRight</item><!-- NOTE: no bottom here, so we attach to the whole height and dialog initially is out of screen completely -->
+		<!-- NOTE: need bottom here as well,  we attach to the whole height and dialog initially is out of screen completely,
+		     but we want dialog size to account for all insets, not overlapping them if the dialog is >= screen size -->
+		<item name="layout_offsets">insets</item>
 		<item name="layout_attachTop">100%</item>
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
 	</style>
 	<style name="BottomsheetDialogFrame_scene_dialog_in">
-		<item name="layout_offsets">insetLeft|insetTop|insetRight</item><!-- NOTE: no bottom here, as we attach to bottom inset -->
+		<item name="layout_offsets">insets</item>
 		<item name="android:layout_gravity">center_horizontal|bottom</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
-		<item name="layout_attachBottom">inset</item>
+		<!-- Do not attach to insets, as we already have those in layout_offsets -->
+		<item name="layout_attachBottom">parent</item>
 	</style>
-	
+	<style name="BigBottomsheetDialogFrame" parent="BottomsheetDialogFrame">
+		<item name="layout_maxHeight">@dimen/BigTopBottomSheetDialogFrame_maxHeight</item>
+	</style>
+	<style name="BigBottomsheetDialogFrame_scene_dialog_in" parent="BottomsheetDialogFrame_scene_dialog_in">
+		<item name="layout_maxHeight">@dimen/BigTopBottomSheetDialogFrame_maxHeight</item>
+	</style>
+
 	<style name="TopsheetDialogFrame" parent="BaseDialogFrame">
 		<item name="layout_offsets">insets</item>
 		<item name="android:layout_gravity">center_horizontal</item>
@@ -255,6 +271,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
+		<!-- Do not attach to insets, as we already have those in layout_offsets -->
 		<item name="layout_attachTop">parent</item>
 	</style>
 	
@@ -361,18 +378,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_flexAxis">vertical</item>
 		<item name="android:layout_marginTop">5dp</item>
 		<item name="android:layout_marginBottom">5dp</item>
-		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">6dp</item>
 		<item name="android:visibility">gone</item>
 	</style>
 	
 	<style name="DialogToastImg">
 		<!-- NOTE: this doesn't control size of image, but size of placeholder. Image is not scaled by FastTextView -->
-		<item name="android:layout_marginTop">2sp</item>
-		<item name="android:layout_marginBottom">2sp</item>
+		<item name="android:layout_marginTop">6sp</item>
+		<item name="android:layout_marginBottom">6sp</item>
 		<item name="android:layout_width">48dp</item>
 		<item name="android:layout_height">42sp</item>
-		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:drawable">?check_48dp</item><!-- Also ?fail_48dp can be used -->
 		<item name="drawableTint">?colorIconPrimary</item>

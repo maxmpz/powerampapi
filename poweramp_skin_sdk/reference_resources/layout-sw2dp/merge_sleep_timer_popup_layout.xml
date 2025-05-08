@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -44,10 +44,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.base.FastTextView android:id="@+id/sleep_timer_value"
 			style="?SleepTimerValue"
 		/>
+
+		<!--
 		<SeekBar android:id="@+id/seekbar"
 			style="?SleepTimerSeekbar"
 			android:contentDescription="@string/sleep_timer"
 		/>
+		-->
+
+		<com.maxmpz.widget.player.RoundKnob android:id="@+id/round_knob"
+			style="?SleepTimerRoundKnob"
+			android:contentDescription="@string/sleep_timer"
+			/>
+
+
 		<com.maxmpz.widget.base.FastCheckBox android:id="@+id/play_to_end"
 			style="?SleepTimerPTESelectBox"
 			android:text="@string/play_last_song_to_end"

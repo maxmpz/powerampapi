@@ -6,32 +6,51 @@
 	style="@style/TopHelpLayout"
 	w:enableStateAnim="true"
 >
-	<include android:layout="@layout/merge_help_buttons"/>
-	
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelp"
-		
+
 		w:help_anchor="@id/list"
 		w:help_position="top"
-		w:help_inside="true"
 		w:showArrow="false"
-		
+
+		w:html="@string/h_search_cats"
+		w:line1="@string/h_search_cats2"
+	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
+
+
+
+	<com.maxmpz.widget.player.Help android:id="@+id/help_main_bubble"
+		style="@style/TopHelpMain"
+
+		w:help_anchor="@id/list"
+		w:help_position="center"
+		w:help_inside="true"
+
+		w:showArrow="false"
+
 		w:html="@string/h_lib_list_opts"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
-		
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
+
+	<TextView
+		style="@style/TopHelpTitle"
+		android:text="@string/search"
+		/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
+
+	<include android:layout="@layout/merge_help_buttons"/>
+	
+
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelp"
 		
-		w:help_anchor="@id/navbar"
-		w:help_position="top"
-		
+		w:help_anchor="@id/navbar_list"
+		w:help_position="center"
+		w:showArrow="false"
+
 		w:html="@string/h_navbar_list"
 	/>
-	<StateAnimParams w:stateAnim="@+id/anim_help_visible"
-		style="@style/TopHelp_anim_help_visible" 
-	/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
 	
 </com.maxmpz.widget.player.HelpLayout>

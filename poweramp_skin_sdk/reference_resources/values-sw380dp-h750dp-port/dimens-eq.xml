@@ -24,6 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- EqFrequencyResponseScroller_marginTop should match EqKnobsLayout_marginTop for visually distributed paddings -->
 	
 	<dimen name="eq_top_margin">8dp</dimen>
+	<dimen name="EqReverbPanel12_paddingLR">12dp</dimen>
 	<dimen name="EqKnobsLayout_paddingBottom">8dp</dimen><!-- NOTE: overriden for peq -->
 		
 	<integer name="PeqEqCompressorCheckButton_gravity">0x51</integer><!-- center_horizontal|bottom = 0x01|0x50 -->
