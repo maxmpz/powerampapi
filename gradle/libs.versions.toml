@@ -15,7 +15,7 @@ activity = "1.10.1"
 activityCompose = "1.10.1"
 composeBom = "2025.03.01"
 agp = "8.9.1"
-core = "1.15.0"
+core = "1.16.0"
 mediarouter = "1.7.0"#"1.8.0-alpha03"
 media = "1.7.0"
 playServicesTasks = "18.2.1"
@@ -28,7 +28,7 @@ r8 = "8.9.32"
 uiUnitAndroid = "1.7.8"
 vectordrawable = "1.2.0"
 versionedparcelable = "1.2.1"
-coreKtx = "1.15.0"
+coreKtx = "1.16.0"
 
 [libraries]
 androidx-customview = { module = "androidx.customview:customview", version.ref = "customview" }
@@ -71,7 +71,7 @@ play-services-basement = { module = "com.google.android.gms:play-services-baseme
 play-services-base = { module = "com.google.android.gms:play-services-base", version.ref = "playServicesBase" }
 play-services-tasks = { module = "com.google.android.gms:play-services-tasks", version.ref = "playServicesTasks" }
 r8 = { module = "com.android.tools:r8", version.ref = "r8" }
-kotlinx-coroutines-android = { group="org.jetbrains.kotlinx", name="kotlinx-coroutines-android", version = "1.9.0" }
+kotlinx-coroutines-android = { group="org.jetbrains.kotlinx", name="kotlinx-coroutines-android", version = "1.10.2" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 
 [plugins]
