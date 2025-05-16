@@ -1522,6 +1522,7 @@ public final class PowerampAPI {
 		 */
 		public static class FileType {
 			public static final int TYPE_UNKNOWN    = -1;
+			public static final int FIRST_TYPE      = 0;
 			public static final int TYPE_MP3        = 0;
 			public static final int TYPE_FLAC       = 1;
 			public static final int TYPE_M4A        = 2;
