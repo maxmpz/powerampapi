@@ -101,8 +101,13 @@ public final class PowerampAPI {
 
 	/**
 	 * No id value (for id-related fields, for example, {@link PowerampAPI.Track#ID})
+	 * @deprecated classhes with View.NO_ID (-1). Use {@link #ID_NO_ID} instead
 	 */
+	@Deprecated
 	public static final long NO_ID = 0L;
+
+	/** No id value (for id-related fields, for example, {@link PowerampAPI.Track#ID}) */
+	public static final long ID_NO_ID = 0L;
 
 	/**
 	 * Special {@link PowerampAPI.Track#ID} value indicating raw file - file opened from some file manager, which can't be matched against Poweramp database
