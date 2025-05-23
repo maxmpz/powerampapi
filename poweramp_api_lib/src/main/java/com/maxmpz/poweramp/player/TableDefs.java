@@ -334,6 +334,13 @@ public interface TableDefs {
 		public static final @NonNull String HAS_LYRICS_TAG = "has_lyrics_tag";
 
 		/**
+		 * 1 if this track is known to be in some playlist, 0 otherwise
+		 * INTEGER NOT NULL (boolean)
+		 * @since 994
+		 */
+		public static final @NonNull String IN_PLAYLIST = "in_playlist";
+
+		/**
 		 * If non-NULL, references cached lyrics entry in {@link CachedLyrics}
 		 * INTEGER NULL
 		 * @since 948
