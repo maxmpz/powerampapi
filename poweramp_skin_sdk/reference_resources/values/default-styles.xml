@@ -22,9 +22,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values -->
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<!-- NOTE: dialog styles are in the separate xml file (e.g. default_styles_dialogs.xml), but they still "derive" app theme		 
-	     NOTE: using app compat theme to avoid unexpected OEM system theme overrides (though, for SDK=21+, most of such styles use system material theme anyway)
-	     NOTE: main activity theme applied in multiple steps:
+	<!-- The dialog styles are in the separate xml file (e.g. default_styles_dialogs.xml), but they still "derive" app theme.
+	     We're using app compat theme to avoid unexpected OEM system theme overrides (though, for SDK=21+, most of such styles use
+	           system material theme anyway)
+	     The main activity theme is applied in multiple steps. Each step may (usually) override attributes from the previous step:
 	     
 	                  BasePoweruiStyles
 	                          |
@@ -32,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	                          |
          global Option* styles (if forceGlobalOptions=false) 
 	                          |
-                skin theme (e.g. ActivityTheme_*)
+                skin theme (e.g. ActivityTheme_* => Base_ActivityTheme_Core + Base_ActivityTheme_Default + ActivityTheme_White/Black)
 	                          |
         global Option* styles (if forceGlobalOptions=true)
                               |       
@@ -430,6 +431,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="rescan">@drawable/refresh</item>
 		<item name="list_options">@drawable/list_options_stroke</item>
 		<item name="add_to_pl">@drawable/add_to_pl_stroke</item>
+		<!-- Add to playlist icon with the indication of the track which is already in some playlist. In this case just a solid icon -->
+		<item name="add_to_pl_in_pl">@drawable/pl_toggle_24dp</item>
 		<item name="add_to_pl_at_start">@drawable/add_to_pl_at_start_24dp</item>
 		<item name="add_to_pl_shuffled">@drawable/add_to_pl_shuffled_24dp</item>
 		<item name="info">@drawable/info_stroke_24dp</item>
@@ -531,6 +534,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="mediaRouteTvIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_tv_light</item>
 		<item name="mediaRouteSpeakerIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_speaker_light</item>
 		<item name="mediaRouteSpeakerGroupIconDrawable" tools:ignore="PrivateResource">@drawable/ic_vol_type_speaker_group_light</item>
+
+
+		<item name="round_check">@drawable/circle_checkbox</item>
+		<item name="plus_check">@drawable/plus_checkbox</item>
 
 		<!-- Android autocomplete items -->
 		<item name="android:listPreferredItemHeight">44dp</item>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -505,9 +505,19 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	
 	<style name="ItemPopupListAASelectBox" parent="ItemPopupListSelectBox">
-		<item name="android:layout_marginLeft">8dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">-24dp</item><!-- We have 40dp paddingRight in the item, so we can offset to that space -->
+		<item name="layout_attachRight">parent</item>
+		<item name="layout_attachLeftToLeft">@null</item>
+		<item name="drawableTint">@color/control_checkable_material</item>
+		<item name="android:drawable">?round_check</item>
 	</style>
 	
+	<style name="ItemPopupListPlusBox" parent="ItemPopupListAASelectBox">
+		<item name="android:drawable">?plus_check</item>
+	</style>
+
 	<style name="ItemPopupSimpleImage" parent="ItemVisImage">
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">8dp</item>

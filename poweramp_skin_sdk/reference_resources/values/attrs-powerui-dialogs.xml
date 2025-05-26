@@ -72,6 +72,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="dialogLayout" format="reference"/><!-- The top level dialog xml layout. Usually it's the same for all dialogs -->
 	<attr name="dialogContentLayout" format="reference"/><!-- The dialog content (differs per dialog) -->
+	<attr name="dialogTitleExtraLayout" format="reference"/>
 	<attr name="dialogButtonsLayout" format="reference"/><!-- The dialog buttons. Usually the same for dialogs of the same type -->
 	
 	<attr name="dialogPaddingTop" format="dimension"/>

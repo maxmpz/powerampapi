@@ -468,10 +468,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_gravityTarget">@+id/dialog_toast_img</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:layout_marginTop">1dp</item>
-		
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingBottom">6dp</item>
+		<item name="android:paddingLeft">14dp</item>
+		<item name="android:paddingRight">14dp</item>
 	</style>
 	<style name="DialogToastButton_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">13sp</item>
+		<item name="android:textSize">13.5sp</item>
 	</style>
 
 	<style name="DialogProgressButton" parent="DialogTopRightButton">

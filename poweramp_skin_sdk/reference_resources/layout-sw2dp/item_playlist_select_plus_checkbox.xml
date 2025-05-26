@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2018 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>	
 	
 	<com.maxmpz.widget.base.FastCheckBoxOnly android:id="@+id/select_box"
-		style="?ItemPopupListAASelectBox"
+		style="?ItemPopupListPlusBox"
 	/>
 	<com.maxmpz.widget.base.FastTextView android:id="@+id/title"
 		style="?ItemPopupListTitleLarger"

@@ -130,6 +130,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="scene_dialog_out_toast"/>
 	<item type="id" name="scene_dialog_out_alt"/>
 	<item type="id" name="scene_dialog_in_w_buttons"/><!-- Scene created in code -->
+	<item type="id" name="scene_dialog_in_alt"/>
 	
 	<!-- REVISIT: move bus/msgs/state/cmds ids to separate xml -->
 	<!-- Bus ids -->
@@ -197,7 +198,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	     - to avoid other layers to react to back action in this frame -->
 	<item type="id" name="cmd_gui_unset_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
 	<item type="id" name="cmd_gui_reset_modal"/><!-- bus_gui, no anim by default, optional boolean arg = anim (PopupMenuHelper only) -->
-	<item type="id" name="cmd_gui_show_toast"/><!-- bus_gui, arg1 = icon res, arg2 = optional duration ms (>0), obj = CharSequence or array[2] of CharSequence. Public -->
+	<!-- bus_gui, arg1 = icon res, arg2 = optional duration ms (>0), obj = CharSequence or array[2] of CharSequence.
+	     First line is FastTextView and can't show html, line2/msg is able to show html -->
+	<item type="id" name="cmd_gui_show_toast"/>
 	<item type="id" name="msg_toast_closed"/><!-- bus_gui, arg1 => id of the toast, arg2 => true if closed by user, obj => same CharSequence/[] that was used to open toast. NOTE: can be sent by different toasts -->
 	<item type="id" name="cmd_gui_close_toast"/><!-- bus_gui. Closes toast/all toasts. If obj is provided, only the text-matching toast CharSequence[2] is closed -->
 	<item type="id" name="cmd_gui_show_upper_toast"/><!-- bus_gui -->

@@ -64,7 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		/>
 		<com.maxmpz.widget.base.FastButton android:id="@+id/button3"
 			style="?PopupButtonLayoutDialogButton3"
-			android:text="@string/reset"
+			android:text="@string/disable"
 		/>
 		<com.maxmpz.widget.base.FastButton android:id="@+id/button2"
 			style="?PopupButtonLayoutDialogButton2"

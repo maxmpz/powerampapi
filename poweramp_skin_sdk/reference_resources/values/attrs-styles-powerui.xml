@@ -323,6 +323,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="ItemPopupListAAImage" format="reference"/>
 		<attr name="ItemPopupListSelectBox" format="reference"/>
 		<attr name="ItemPopupListAASelectBox" format="reference"/>
+		<attr name="ItemPopupListPlusBox" format="reference"/>
+
 		<attr name="ItemPopupListTitle" format="reference"/>
 		<attr name="ItemPopupListTitle_Text" format="reference"/>
 		<attr name="ItemPopupListTitleLarger" format="reference"/>

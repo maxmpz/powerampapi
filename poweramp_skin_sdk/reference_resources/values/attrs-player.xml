@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -120,6 +120,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="rescan" format="reference"/>
 	<attr name="list_options" format="reference"/>
 	<attr name="add_to_pl" format="reference"/>
+	<attr name="add_to_pl_in_pl" format="reference"/>
 	<attr name="add_to_pl_at_start" format="reference"/>
 	<attr name="add_to_pl_shuffled" format="reference"/>
 	<attr name="info" format="reference"/>
@@ -234,6 +235,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="alt_menu_bg" format="color|reference"/>
 	<attr name="alt_sub_aa_button_bg" format="color|reference"/>
 	<attr name="meta_info_bg" format="color|reference"/>
+
+	<!-- Round checkbox used for playlist selection -->
+	<attr name="round_check" format="reference"/>
+	<!-- "Plus" checkbox used for playlist selection -->
+	<attr name="plus_check" format="reference"/>
 
 	<attr name="lock_unlock_24dp_selector" format="reference"/>
 

@@ -188,6 +188,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:actionBarStyle">@style/Settings_actionBarStyle</item>
 	</style>
 
+	<style name="Overlap_ActivityTheme_Settings_BoldPlusFont" parent="Overlap_ActivityTheme_Settings_BoldFont">
+		<item name="Settings_font">@font/ttnormspro_bold</item>
+	</style>
+
 	<style name="Settings_actionBarStyle" parent="@android:style/Widget.Material.ActionBar.Solid">
 		<item name="android:titleTextStyle">@style/Settings_Title</item>
 	</style>

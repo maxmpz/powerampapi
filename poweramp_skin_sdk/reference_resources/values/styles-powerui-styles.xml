@@ -94,6 +94,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemPopupListAAImage">@style/ItemPopupListAAImage</item>
 		<item name="ItemPopupListSelectBox">@style/ItemPopupListSelectBox</item>
 		<item name="ItemPopupListAASelectBox">@style/ItemPopupListAASelectBox</item>
+		<item name="ItemPopupListPlusBox">@style/ItemPopupListPlusBox</item>
 		<item name="ItemPopupListTitle">@style/ItemPopupListTitle</item>
 		<item name="ItemPopupListTitle_Text">@style/ItemGenericTitle_Text</item>
 		<item name="ItemPopupListTitleLarger">@style/ItemPopupListTitleLarger</item>

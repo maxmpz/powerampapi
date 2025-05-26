@@ -97,6 +97,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 				<com.maxmpz.widget.base.FastLayout android:id="@+id/dialog_title_layout"
 					style="?DialogTitleLayout"
 				>
+					<include android:layout="?dialogTitleExtraLayout" w:optional="true"/>
+
+
 					<ProgressBar android:id="@+id/dialog_progress"
 						style="?DialogTitleProgress"
 					/>
@@ -189,8 +192,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 																				
 				<!-- 
 					Content is added here 
-					NOTE: using android:layout (vs just "layout") for faster and correct resolution of themed attribute happens
-					(that fixes bug/oversight in default Android layout inflater)
 				-->
 				<include android:layout="?dialogContentLayout"/>
 

@@ -132,14 +132,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="dialog_ListOptsActivity_DialogTitleLayout" parent="DialogTitleLayout">
 		<item name="android:layout_marginRight">54dp</item><!-- Space for settings icon -->
 	</style>
+
 	<style name="dialog_PlaylistSortActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_resort</item>
 	</style>
 	<style name="dialog_PlaylistSelectActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_playlist_select</item>
 		<item name="DialogContent">@style/DialogContentNoPadding</item>
-		<!--<item name="DialogButtonBar">@style/DialogButtonBarHidden</item>-->
+		<item name="DialogTitleLayout">@style/dialog_PlaylistSelectActivity_DialogTitleLayout</item>
+		<item name="DialogTitle">@style/dialog_PlaylistSelectActivity_DialogTitle</item>
+		<item name="DialogProgressButton">@style/dialog_PlaylistSelectActivity_DialogProgressButton</item>
+		<item name="dialogTitleExtraLayout">@layout/dialog_title_extra_playlist_select</item>
 	</style>
+
+
 	<style name="dialog_PlaylistShortcutActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_playlist_shortcut</item>
 		<item name="DialogContent">@style/DialogContentNoPadding</item>
@@ -236,41 +242,49 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">false</item>
 	</style>
 
-	<!-- NOTE: not used ATM -->
-	<!--	
-	<style name="EqPresetAssignText">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="layout_consumeSpace">vertical</item>
-		<item name="android:layout_marginLeft">4dp</item>
-		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:layout_marginTop">2dp</item>
-		<item name="android:layout_marginBottom">4dp</item>
+	<style name="dialog_PlaylistSelectActivity_DialogTitleLayout" parent="DialogTitleLayout">
+		<item name="android:layout_marginRight">0dp</item>
 	</style>
-	-->
-	
-	<style name="DialogTopButtonBase">
+
+	<style name="dialog_PlaylistSelectActivity_DialogProgressButton" parent="DialogProgressButton">
+		<item name="layout_attachRight">@+id/top_buttons</item>
+	</style>
+
+	<style name="dialog_PlaylistSelectActivity_DialogTitle" parent="DialogTitle">
+		<item name="android:singleLine">true</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="layout_gravityTarget">@+id/top_buttons</item>
+	</style>
+
+	<style name="PlaylistSelectDialogTopButtons">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+
 		<item name="android:layout_gravity">top|right</item>
-		<item name="android:layout_marginTop">16dp</item>
-		<item name="android:layout_marginRight">8dp</item>
+	</style>
+
+	<style name="PlaylistDialogTopButtonBase">
+		<item name="layout_consumeSpace">horizontal|size</item>
+		<item name="android:layout_gravity">top|left</item>
+		<item name="layout_unlimitedMeasure">true</item>
+
+		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>
 		<item name="animOnClick">true</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:background">@drawable/ripple_rounded_medium</item>
-
-		<item name="layout_consumeSpace">horizontal</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:gravity">center</item>
 	</style>
 
-	<style name="PlaylistSelectDialogAddButton" parent="DialogTopButtonBase">
+	<style name="PlaylistSelectDialogAddButton" parent="PlaylistDialogTopButtonBase">
 		<item name="android:layout_width">42dp</item>
 		<item name="android:layout_height">32sp</item>
-
-		<item name="android:layout_gravity">top|right</item>
-		<item name="android:layout_marginRight">12dp</item>
 
 		<item name="drawableWidth">24dp</item>
 		<item name="drawableHeight">24dp</item>
@@ -284,10 +298,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<!-- NOTE: button layouts can't adequately measure itself in collapsed (button) mode as inner contents is much larger, actuall, thus fixed size is required -->
-	<style name="PlaylistSortButtonLayout" parent="DialogTopButtonBase">
+	<style name="PlaylistSortButtonLayout" parent="PlaylistDialogTopButtonBase">
 		<item name="android:layout_width">42dp</item>
 		<item name="android:layout_height">32sp</item>
-		
+		<!--<item name="layout_attachRight">@+id/add_to_pl_button</item>-->
+
 		<item name="menuPlaceholder">@+id/menu_placeholder</item>
 		<item name="android:background">@drawable/popup_button_layout_stroke_large_bg</item>
 		<item name="android:drawable">@null</item>
@@ -299,6 +314,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="PlaylistInsertButtonLayout" parent="PlaylistSortButtonLayout">
-
+		<!--<item name="layout_attachRight">@+id/sort</item>-->
 	</style>
+
+	<style name="PlaylistSelectTypeSingleBL" parent="PlaylistSortButtonLayout">
+		<!--<item name="layout_attachRight">@+id/insert</item>-->
+		<item name="android:visibility">gone</item>
+	</style>
+
+	<style name="PlaylistSelectTypeMultipleBL" parent="PlaylistSelectTypeSingleBL">
+	</style>
+
+	<style name="PlaylistDialogTopButtonsEnd">
+	</style>
+
 </resources>

@@ -171,7 +171,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_data_resort"/><!-- arg1 => int PlaylistSortHelper.SORT_*, obj => uri (playlist/#/files / queue) -->
 	
 	<item type="id" name="cmd_list_add_to_pl_dialog"/>
-	<item type="id" name="cmd_data_mass_add_to_pl"/><!-- arg1 => int playlist insert pos, obj => UriAndIds -->
+	<item type="id" name="cmd_data_mass_add_to_pl"/><!-- arg1 => int playlist insert pos, arg2 => int INSERT_MODE_*, obj => UriAndIds -->
 	
 	<item type="id" name="cmd_list_clear_q"/><!-- Same as cmd_data_clear_q, reposted to bus_data_cmd -->
 	<item type="id" name="cmd_data_clear_q"/>
@@ -485,6 +485,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_queue_insert_pos"/><!-- int -->
 	<item type="id" name="cmd_set_play_next_insert_pos"/>
 	<item type="id" name="state_play_next_insert_pos"/><!-- int -->
+	<!-- Single song -->
+	<item type="id" name="state_playlist_select_type_single"/><!-- Also a msg. int -->
+	<item type="id" name="cmd_set_playlist_select_type_single"/>
+	<!-- Multiple songs -->
+	<item type="id" name="state_playlist_select_type_multiple"/><!-- Also a msg. int -->
+	<item type="id" name="cmd_set_playlist_select_type_multiple"/>
+
 
 	<!-- bus_gui messages -->
 	<item type="id" name="msg_gui_intermediate_seek_start"/>
