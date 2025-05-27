@@ -223,8 +223,45 @@
 				/>
 		</LinearLayout>
 
-		<TextView android:id="@+id/album_art_info"
+		<LinearLayout android:id="@+id/controls3"
 			android:layout_below="@+id/controls2"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:layout_marginTop="8dp"
+			>
+			<Button
+				android:text="Unlike"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:onClick="unlike"
+				tools:ignore="ButtonStyle,HardcodedText,UsingOnClickInXml"
+				/>
+			<Button
+				android:text="Like"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:onClick="like"
+				tools:ignore="ButtonStyle,HardcodedText,UsingOnClickInXml"
+				/>
+			<EditText android:id="@+id/rating"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="16dp"
+				android:hint="Rating"
+				/>
+			<Button
+				android:text="Set Rating"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:onClick="setRating"
+				tools:ignore="ButtonStyle,HardcodedText,UsingOnClickInXml"
+				/>
+		</LinearLayout>
+
+		<TextView android:id="@+id/album_art_info"
+			android:layout_below="@+id/controls3"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"

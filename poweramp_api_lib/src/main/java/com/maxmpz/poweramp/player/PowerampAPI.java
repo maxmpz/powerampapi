@@ -368,6 +368,12 @@ public final class PowerampAPI {
 		public static final int TOGGLE_RATING = 21;
 
 		/**
+		 * Sets specific {@link #EXTRA_RATING} to the track in range [0..5], where 0 - no rating, 1 - unlike, 5 - like, 2-4 star ratings
+		 * @since 995
+		 */
+		public static final int SET_RATING = 24;
+
+		/**
 		 * Seek for +10s
 		 * @since 966
 		 */
@@ -659,6 +665,8 @@ public final class PowerampAPI {
 					return "UNLIKE";
 				case TOGGLE_RATING:
 					return "TOGGLE_RATING";
+				case SET_RATING:
+					return "SET_RATING";
 				case SEEK_JUMP_FORWARD:
 					return "SEEK_JUMP_FORWARD";
 				case SEEK_JUMP_BACKWARD:
@@ -1248,6 +1256,13 @@ public final class PowerampAPI {
 	public static final String EXTRA_LONG_PRESS = "long_press";
 
 	/**
+	 * Extra<br>
+	 * {@code int} in range [0..5]
+	 * @since 955
+	 */
+	public static final String EXTRA_RATING = "rating";
+
+	/**
 	 * Shuffle extras values
 	 */
 	public static final class ShuffleMode {
@@ -1458,6 +1473,13 @@ public final class PowerampAPI {
 		 * @since 948
 		 */
 		public static final String DURATION_MS = "durMs";
+
+		/**
+		 * Rating in range [0..5]<br>
+		 * {@code int}
+		 * @since 995
+		 */
+		public static final String RATING = "rating";
 
 		/**
 		 * Position in track in seconds<br>

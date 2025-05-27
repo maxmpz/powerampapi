@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2023 Maksim Petrov
+Copyright (C) 2011-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for widgets, plugins, applications and other software
@@ -53,6 +53,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.maxmpz.poweramp.player.PowerampAPI;
+import com.maxmpz.poweramp.player.PowerampAPI.Commands;
 import com.maxmpz.poweramp.player.PowerampAPIHelper;
 import com.maxmpz.poweramp.player.RemoteTrackTime;
 import com.maxmpz.poweramp.player.RemoteTrackTime.TrackTimeListener;
@@ -359,6 +360,7 @@ public class MainActivity extends AppCompatActivity implements
 				((TextView)findViewById(R.id.album)).setText(mCurrentTrack.getString(PowerampAPI.Track.ALBUM));
 				((TextView)findViewById(R.id.artist)).setText(mCurrentTrack.getString(PowerampAPI.Track.ARTIST));
 				((TextView)findViewById(R.id.path)).setText(mCurrentTrack.getString(PowerampAPI.Track.PATH));
+				((EditText)findViewById(R.id.rating)).setText(String.valueOf(mCurrentTrack.getInt(PowerampAPI.Track.RATING, 0)));
 
 				StringBuilder info = new StringBuilder();
 				info.append("Codec: ").append(mCurrentTrack.getString(PowerampAPI.Track.CODEC)).append(" ");
@@ -644,6 +646,31 @@ public class MainActivity extends AppCompatActivity implements
 						.putExtra(PowerampAPI.EXTRA_LOCK, true) // If EXTRA_LOCK=true, we don't change track by seeking past start/end
 						,
 				FORCE_API_ACTIVITY);
+	}
+
+	public void like(View view) {
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+			                                     .putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.LIKE),
+													FORCE_API_ACTIVITY);
+	}
+
+	public void unlike(View view) {
+		PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+			                                     .putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.LIKE),
+													FORCE_API_ACTIVITY);
+	}
+
+	public void setRating(View view) {
+		var ratingText = ((EditText)findViewById(R.id.rating)).getText().toString();
+		try {
+			var rating = Integer.parseInt(ratingText, 10);
+			PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
+				                                     .putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.SET_RATING)
+													 .putExtra(PowerampAPI.EXTRA_RATING, rating),
+													FORCE_API_ACTIVITY);
+		} catch(Exception e) {
+			Log.e(TAG, "", e);
+		}
 	}
 
 	/** Get the specified preference and show its name, type, value */
