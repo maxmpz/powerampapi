@@ -39,7 +39,7 @@ styles for such skins.
 
 ##### Builds 912-914
 ###### Plugin XML minSdk/maxSdk attributes
-New minSdk="*sdk_num*" and maxSdk="*sdk_num*" attributes are supported for option tags. *sdk_num* is also known as API Level
+New minSdk="*sdk_num*" and maxSdk="*sdk_num*" attributes are supported for option tags. *sdk_num* is also known as the API Level
 (see Tools/SDK Manager in Android Studio for the reference).
 Both minSdk and maxSdk attributes are optional
   * minSdk defines the minimum SDK level for the option. The option is hidden for the SDK levels prior minSdk

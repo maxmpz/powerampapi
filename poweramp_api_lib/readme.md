@@ -9,18 +9,16 @@
   - [Example: parsing Poweramp track info and showing it in a toast popup](#example-parsing-poweramp-track-info-and-showing-it-in-a-toast-popup)
   - [Other Relevant Poweramp APIs](#other-relevant-poweramp-apis)
 
-Poweramp Intent based APIs are focused on simplicity: you can just throw a simple Intent to Poweramp to play something, command Poweramp to do something,
-or get some Poweramp state from the published Intents.
-While being simple the Intent APIs provide almost complete control over Poweramp.
-The intents can be sent programmatically or by the automation apps.
+Poweramp’s Intent-based APIs are designed for simplicity: you can send a basic Intent to play media, control playback, or retrieve state info.
+Despite their simplicity, these APIs offer near-complete control and can be used both programmatically and via automation apps.
 
 See [src/com/maxmpz/poweramp/player/PowerampAPI.java](src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java) comments for reference.
 
-### Android 11/targetSdkVersion 30 support
-All sample projects and PowerampAPI is built with targetSdkVersion 30. Poweramp is built with targetSdkVersion 30
-starting from the build 911.  
-Due to the package visibility changes on Android 11 for the apps compiled with targetSdkVersion 30, ensure your
-skin AndroidManifest.xml contains:
+### Android 11/targetSdkVersion 30 support for the **skins**
+All sample projects and PowerampAPI is built with targetSdkVersion 30+ (matching actual Poweramp builds). Poweramp is built with targetSdkVersion 30
+starting from the build 911 and always follows Play requirements for the Target SDK.
+Due to the package visibility changes on Android 11 for the apps compiled with targetSdkVersion 30+, ensure your
+**skin** (or other apps which require querying Poweramp APIs) AndroidManifest.xml contains:
 * queries tag:
 ```xml
 <queries>
@@ -29,6 +27,10 @@ skin AndroidManifest.xml contains:
     </intent>
 </queries>
 ```
+**This is not required if you just want to send some commands to Poweramp, such as control playback, modes, etc.**
+Also, it can be mitigated completely, if non-standard Poweramp editions with the modified package name are not targeted and when
+the default package name (com.maxmpz.audioplayer) can be directly used instead of querying the app package name.
+
 Note that poweramp_api_lib AndroidManifest.xml contains the queries element and it should be automatically merged
 to your app/plugin - please verify that by the reviewing Merged Manifest bottom tab for the project AndroidManifest.xml.
 
@@ -36,7 +38,7 @@ to your app/plugin - please verify that by the reviewing Merged Manifest bottom 
 
 ### Sending Commands
 You can send Poweramp commands as intents.
-The main command action here is `com.maxmpz.audioplayer.API_COMMAND`, which can be send to service (com.maxmpz.audioplayer.player.PlayerService), 
+The main command action here is `com.maxmpz.audioplayer.API_COMMAND`, which can be sent to the service (com.maxmpz.audioplayer.player.PlayerService), 
 activity (com.maxmpz.audioplayer.player.PowerampAPIActivity, build 855+), or broadcast receiver (com.maxmpz.audioplayer.player.PowerampAPIReceiver, build 855).
 
 Example of simple tasker action:
