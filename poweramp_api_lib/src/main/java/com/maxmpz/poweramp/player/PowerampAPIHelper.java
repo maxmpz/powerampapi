@@ -63,6 +63,9 @@ public class PowerampAPIHelper {
 			ComponentName componentName = getPlayerServiceComponentNameImpl(context);
 			if(componentName != null) {
 				pak = sPowerampPak = componentName.getPackageName();
+			} else {
+				//noinspection deprecation
+				pak = sPowerampPak = PowerampAPI.PACKAGE_NAME;
 			}
 		}
 		return pak;
@@ -88,6 +91,9 @@ public class PowerampAPIHelper {
 				}
 			} catch(Throwable th) {
 				Log.e(TAG, "", th);
+				// If we failed, just use the default component name as a last resort
+				//noinspection deprecation
+				componentName = sPowerampPSComponentName = PowerampAPI.PLAYER_SERVICE_COMPONENT_NAME;
 			}
 		}
 		return componentName;
@@ -126,6 +132,8 @@ public class PowerampAPIHelper {
 				}
 			} catch(Throwable th) {
 				Log.e(TAG, "", th);
+				//noinspection deprecation
+				componentName = sScanServiceComponentName = new ComponentName(PowerampAPI.PACKAGE_NAME, PowerampAPI.Scanner.SCANNER_SERVICE_NAME);
 			}
 		}
 		return componentName;
@@ -145,6 +153,8 @@ public class PowerampAPIHelper {
 				}
 			} catch(Throwable th) {
 				Log.e(TAG, "", th);
+				//noinspection deprecation
+				componentName = sMilkScanServiceComponentName = new ComponentName(PowerampAPI.PACKAGE_NAME, PowerampAPI.MilkScanner.MILK_SCANNER_SERVICE_NAME);
 			}
 		}
 		return componentName;
@@ -183,7 +193,9 @@ public class PowerampAPIHelper {
 
 	/**
 	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
-	 * @return resolved and cached Poweramp build number<br>
+	 * @return resolved and cached Poweramp build number or Integer.MAX_VALUE if we're unable to query for Poweramp build - it's not installed
+	 *         or we  have no queries tag in the AndroidManifest.xml for this app. In this case we assume the most recent Poweramp build
+	 *         is installed
 	 */
 	public static int getPowerampBuild(Context context) {
 		if(sPowerampBuild == 0) {
@@ -191,13 +203,16 @@ public class PowerampAPIHelper {
 			if(pak != null) {
 				try {
 					PackageInfo pi = context.getPackageManager().getPackageInfo(pak, 0);
-					sPowerampBuild = pi.versionCode > 1000 ? pi.versionCode / 1000 : pi.versionCode;
+					var powerampBuild = sPowerampBuild = pi.versionCode > 1000 ? pi.versionCode / 1000 : pi.versionCode;
+					return powerampBuild;
 				} catch(Throwable th) {
 					Log.e(TAG, "", th);
 				}
 			}
 		}
-		return sPowerampBuild;
+		// Fallback
+		var powerampBuild = sPowerampBuild = Integer.MAX_VALUE;
+		return powerampBuild;
 	}
 	
 	/**

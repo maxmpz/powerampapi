@@ -178,9 +178,9 @@ public class MainActivity extends AppCompatActivity implements
 
 		getComponentNames();
 
-		if(PowerampAPIHelper.getPowerampBuild(this) == 0) {
+		if(PowerampAPIHelper.getPowerampBuild(this) == Integer.MAX_VALUE) {
 			var topHint = (TextView)findViewById(R.id.top_hint);
-			topHint.setText("-Poweramp not installed-");
+			topHint.setText("-Poweramp build number inaccessible - assuming the latest build-");
 			topHint.setVisibility(VISIBLE);
 		}
 

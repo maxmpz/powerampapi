@@ -1917,6 +1917,9 @@ public final class PowerampAPI {
 		 */
 		@Deprecated
 		public static final String ACTION_TAGS_SCAN_PROGRESS = "com.maxmpz.audioplayer.ACTION_TAGS_SCAN_PROGRESS";
+
+		@Deprecated
+		public static final String SCANNER_SERVICE_NAME = "com.maxmpz.audioplayer.scanner.ScanDispatcherService";
 	}
 	
 	/**
@@ -1944,6 +1947,9 @@ public final class PowerampAPI {
 		 * {@code String} - your app package name
 		 */
 		public static final String EXTRA_PACKAGE = "pak";
+
+		@Deprecated
+		public static final String MILK_SCANNER_SERVICE_NAME = "com.maxmpz.milk.scanner.MilkScanService";
 	}
 
 	/**
@@ -2196,7 +2202,8 @@ public final class PowerampAPI {
 	public static final String PACKAGE_NAME = "com.maxmpz.audioplayer";
 
 	/**
-	 * Poweramp service ComponentName
+	 * Poweramp service ComponentName. This is fallback component name for Play/website builds. This won't work with Poweramp
+	 * editions which have modified package name (such as Huawei AppGallery edition)
 	 * @deprecated see {@link PowerampAPIHelper#getPlayerServiceComponentName}
 	 */
 	@SuppressWarnings("deprecation")
