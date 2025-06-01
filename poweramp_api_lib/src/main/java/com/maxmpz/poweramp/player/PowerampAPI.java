@@ -1091,11 +1091,9 @@ public final class PowerampAPI {
 	public static final String ACTIVITY_SETTINGS = "com.maxmpz.audioplayer.preference.SettingsActivity";
 
 	/**
-	 * Poweramp startup activity. This activity always tries to pass incoming intent to the main activity.
-	 * Always calling StartupActivity instead of main activity is preferred due to the activity animation and possible
-	 * first time run setup. Also, main activity is not exposed in API by default and is a subject to change
+	 * Poweramp startup/main activity
 	 */
-	public static final String ACTIVITY_STARTUP = "com.maxmpz.audioplayer.StartupActivity";
+	public static final String ACTIVITY_STARTUP = "com.maxmpz.audioplayer.MainActivity";
 
 	/**
 	 * Extra for ACTION_API_COMMAND, RESUME command, ACTION_PLAYING_MODE_CHANGED message<br>
