@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2011-2023 Maksim Petrov
+Copyright (C) 2011-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for the widgets, plugins, applications and other software
