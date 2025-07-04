@@ -35,6 +35,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.os.StrictMode;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -562,6 +563,13 @@ public class MainActivity extends AppCompatActivity implements
 			Log.w(TAG, "play_file");
 			try {
 				String uri = ((TextView) findViewById(R.id.play_file_path)).getText().toString();
+				if(uri.startsWith("file://")) {
+					// Disable strict mode which disallows exposing file:// for some reason. This is too unrestristive, so
+					// the real app which requires fill:// uris my configure strictmode differently here
+					StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+					StrictMode.setVmPolicy(builder.build());
+				}
+
 				if(uri.length() > "content://".length()) {
 					PowerampAPIHelper.sendPAIntent(this, new Intent(PowerampAPI.ACTION_API_COMMAND)
 							.putExtra(PowerampAPI.EXTRA_COMMAND, PowerampAPI.Commands.OPEN_TO_PLAY)
