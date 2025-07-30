@@ -40,6 +40,8 @@ public final class PeqAPI {
 	
 	public static final class Commands {
 		public static final int STOP_SERVICE = PowerampAPI.Commands.STOP_SERVICE;
+		public static final int START_SERVICE = 101;
+		public static final int TOGGLE_SERVICE = 102;
 
 		public static final int SET_EQU_PRESET = PowerampAPI.Commands.SET_EQU_PRESET;
 	}
