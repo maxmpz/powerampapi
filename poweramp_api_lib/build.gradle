@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.maxmpz.powerampapilib'
-    compileSdk COMPILE_SDK
+    compileSdkVersion COMPILE_SDK
 
     defaultConfig {
         minSdk MIN_SDK
