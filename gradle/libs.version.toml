@@ -2,7 +2,7 @@
 [versions]
 billing = "8.0.0"
 billingclient = "9.0.1"
-rustorepay = "9.0.2"
+rustorepay = "10.0.0"
 customview = "1.2.0"
 desugar = "2.1.5"
 emoji2 = "1.5.0"
