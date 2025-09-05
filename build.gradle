@@ -9,6 +9,7 @@ allprojects {
         if(!project.hasProperty('COMPILE_SDK')) COMPILE_SDK = 35
         if(!project.hasProperty('MIN_SDK')) MIN_SDK = 21
         if(!project.hasProperty('TARGET_SDK')) TARGET_SDK = 35
+        if(!project.hasProperty('BUILD_TOOLS_VERSION')) BUILD_TOOLS_VERSION = "36.0.0"
         if(!project.hasProperty('JAVA_SOURCE_COMPATIBILITY')) JAVA_SOURCE_COMPATIBILITY = JavaVersion.VERSION_17
         if(!project.hasProperty('JAVA_TARGET_COMPATIBILITY')) JAVA_TARGET_COMPATIBILITY = JavaVersion.VERSION_17
         if(!project.hasProperty('KOTLIN_JVM_TARGET_COMPATIBILITY')) KOTLIN_JVM_TARGET_COMPATIBILITY = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
