@@ -1,12 +1,12 @@
 plugins {
-    alias(libs.plugins.agp.application) apply false
-    alias(libs.plugins.agp.library) apply false
-    alias(libs.plugins.kotlin.android) apply false
+    alias libs.plugins.agp.application apply false
+    alias libs.plugins.agp.library apply false
+    alias libs.plugins.kotlin.android apply false
 }
 
 allprojects {
     ext {
-        if(!project.hasProperty('COMPILE_SDK')) COMPILE_SDK = 35
+        if(!project.hasProperty('COMPILE_SDK')) COMPILE_SDK = 36
         if(!project.hasProperty('MIN_SDK')) MIN_SDK = 21
         if(!project.hasProperty('TARGET_SDK')) TARGET_SDK = 35
         if(!project.hasProperty('BUILD_TOOLS_VERSION')) BUILD_TOOLS_VERSION = "36.0.0"
