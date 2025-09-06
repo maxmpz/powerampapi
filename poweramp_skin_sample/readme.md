@@ -24,8 +24,9 @@
 ##### Build 1003
 ###### Editable TopSubAAButtons
 - TopSubAAButtons are now user-editable and configurable. Due to this change, the layout and styling of this element and buttons are
-redefined to allow the appropriate configuration, such as dynamic button position and sizes, and dynamic size of the TopSubAAButtons layout.
-Skins which previously overridden TopSubAAButtons and/or individual (previously fixed) buttons inside it now may require adjustments
+redefined to allow the appropriate configuration, such as dynamic button position and sizes, and the dynamic size of the TopSubAAButtons 
+layout (1 line or 2 lines). Skins which previously overridden TopSubAAButtons and/or individual (previously fixed) buttons inside it now
+may require adjustments
 
 ##### Build 991
 ###### iconTint for page and msg 
