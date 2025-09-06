@@ -26,6 +26,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorBgPrimary" format="color"/>
 	<!-- Alpha faded primary background color -->
 	<attr name="colorBgPrimaryAlpha" format="color"/>
+	<!-- Color used for the player button background while in the collapsed mode. Previously, colorBgPrimaryAlpha was used for that,
+	     and colorBgPrimaryAlpha is the default value for it -->
+	<attr name="colorBgPlayerButton" format="color"/>
 	<!-- A bit more pronounced alpha-faded primary background color -->
 	<attr name="colorBgLessAlpha" format="color"/>
 	<!-- This is expected to be strictly the colorBgPrimary color with a slight alpha -->
@@ -56,6 +59,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="colorSeparator" format="color"/>
 	<!-- E.g. menu separator (lighter) -->
 	<attr name="colorSeparatorLight" format="color"/>
+	<!-- Color used to indicate placeholder/slot to add the button, etc. Should be slightly contrast vs default bg color -->
+	<attr name="colorPlaceholder" format="color"/>
 	<!-- Non-contrast bg. Used ATM for Search Frame bg -->
 	<attr name="colorBgLight" format="color"/>
 	<!-- Bg used for the checkable buttons in popups - should have some contrast over the popup bg color -->

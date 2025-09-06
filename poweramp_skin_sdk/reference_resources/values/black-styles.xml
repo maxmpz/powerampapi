@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -211,6 +211,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="bottom_toolbar_buttons_elevation">3dp</item><!-- Increased elevation for black theme -->
 
 		<item name="EqTonePanel_paddingBottom">@dimen/EqTonePanel_paddingBottom_none</item><!-- 0dp as no need for a shadow -->
+
 	</style>
 
 	<style name="ActivityTheme_Black_MilkViewEffect_Lyrics">
@@ -240,7 +241,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 This helps with overriding specific styles for e.g. values-h700dp-port only, not overriding them here -->
 	<style name="ActivityTheme_Black" parent="Base_ActivityTheme_Black">
 	</style>
-	
+
 	<!-- NOTE: changing statusbar background is not looking well on many devices, so not touching it here -->
 	<style name="ActivityTheme_Black_DialogForceLightSystemUIStyle" tools:ignore="NewApi">
 		<item name="android:navigationBarColor">@android:color/white</item>

@@ -567,7 +567,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopSleepTimerButtonLayout_scene_item_menu" format="reference"/>
 		<attr name="SleepTimerButton_scene_button_menu" format="reference"/>
 		<attr name="TopSleepTimerButton" format="reference"/>
-		
+
+		<attr name="TopEditableButtonLayout" format="reference"/>
+		<attr name="TopEditableButton24dpLayout" format="reference"/>
+		<attr name="TopEditableDynamicButtonLayout" format="reference"/>
+		<attr name="TopEditableSleepTimerButtonLayout" format="reference"/>
+		<attr name="TopEditableCounterSubAaButton" format="reference"/>
+		<attr name="TopEditableSubAaButton" format="reference"/>
+		<attr name="TopEditableSubAaButtonTinted" format="reference"/>
+		<attr name="TopEditableSubAaButtonCast" format="reference"/>
+		<attr name="EditablePopupButton" format="reference"/>
+		<attr name="EditablePopupButton_scene_button_menu" format="reference"/>
+		<attr name="EditablePopupButton24dp" format="reference"/>
+		<attr name="EditableInfoButtonTinted" format="reference"/>
+
 		<attr name="TopBaseButtonLayout" format="reference"/><!-- E.g. edit tag dialog genres popup -->
 		
 		<attr name="TopToastContainer"/>
@@ -583,13 +596,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopToastTitle_no_icon"/>
 		<attr name="TopToastLine2_no_icon"/>
 		<attr name="TopToastFrame_scene_expanded"/>
-		
+
 		<attr name="TopCounterLayout" format="reference"/>
 		<attr name="TopCounterLayout_Text" format="reference"/>
+
+		<!-- Deprecated, not used anymore -->
 		<attr name="TopCounterLayout_scenes_playing" format="reference"/>
+		<!-- Deprecated, not used anymore -->
 		<attr name="TopCounterLayout_anim_seeking" format="reference"/>
+		<!-- Deprecated, not used anymore -->
 		<attr name="TopCounterLayout_scenes_invisible" format="reference"/>
-		<attr name="TopCounter" format="reference"/><!-- Not used ATM -->
+		<!-- Deprecated, not used anymore -->
+		<attr name="TopCounter" format="reference"/>
 		
 		<attr name="TopMetaInfoLayout" format="reference"/>
 		<attr name="TopMetaInfoLayout_scenes_playing" format="reference"/>

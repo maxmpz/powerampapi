@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- NOTE: as HelpLayout is Scene by itself, it's own StateAnimParams (forId="parent") will be pushed into it, if placed inside -->
+<!-- NOTE: this help layout is also used for Peq -->
 <com.maxmpz.widget.player.HelpLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto" 
 	android:id="@+id/help_vis"
 	style="@style/TopHelpLayout"

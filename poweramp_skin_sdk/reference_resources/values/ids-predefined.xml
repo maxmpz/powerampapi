@@ -48,6 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="_right_label"/>
 	<item type="id" name="_button"/>
 	<item type="id" name="_icon"/>
+	<item type="id" name="_popup_button_index"/>
 
 	<item type="id" name="vis_frame"/>
 	<item type="id" name="milk_frs"/>
@@ -106,6 +107,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="behavior_eq_layout"/>
 	<item type="id" name="behavior_search_layout"/>
 	<item type="id" name="vis_panel_loadable_beahvior"/>
+	<item type="id" name="behavior_subaabuttons_edit"/>
 
 	<item type="id" name="anim_temp_hidden"/>
 

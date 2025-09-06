@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -109,7 +109,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="dialog_AddReverbPresetActivity" parent="CenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_add_reverb_preset</item>
 	</style>
-				
+
+	<style name="LargerBottomsheetDialogFrame" parent="BottomsheetDialogFrame">
+		<item name="layout_maxHeight">@dimen/LargerTopBottomSheetDialogFrame_maxHeight</item>
+	</style>
+	<style name="LargerBottomsheetDialogFrame_scene_dialog_in" parent="BottomsheetDialogFrame_scene_dialog_in">
+		<item name="layout_maxHeight">@dimen/LargerTopBottomSheetDialogFrame_maxHeight</item>
+	</style>
+
 	<style name="dialog_SelectAlbumArtActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_select_album_art</item>
 		<item name="DialogFrame">@style/SelectAlbumArt_BottomsheetDialogFrame</item>
@@ -118,11 +125,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogTitleLayout">@style/DialogTitleLayoutHidden</item>
 		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayoutHidden</item>
 	</style>
-    <style name="SelectAlbumArt_BottomsheetDialogFrame" parent="BottomsheetDialogFrame">
-		<item name="layout_maxHeight">@dimen/LargerTopBottomSheetDialogFrame_maxHeight</item>
-	</style>
-	<style name="SelectAlbumArt_BottomsheetDialogFrame_scene_dialog_in" parent="BottomsheetDialogFrame_scene_dialog_in">
-		<item name="layout_maxHeight">@dimen/LargerTopBottomSheetDialogFrame_maxHeight</item>
+    <style name="SelectAlbumArt_BottomsheetDialogFrame" parent="LargerBottomsheetDialogFrame">
+    </style>
+	<style name="SelectAlbumArt_BottomsheetDialogFrame_scene_dialog_in" parent="LargerBottomsheetDialogFrame_scene_dialog_in">
 	</style>
 	
 	<style name="dialog_ListOptsActivity" parent="BottomsheetDialog">
@@ -143,6 +148,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogTitle">@style/dialog_PlaylistSelectActivity_DialogTitle</item>
 		<item name="DialogProgressButton">@style/dialog_PlaylistSelectActivity_DialogProgressButton</item>
 		<item name="dialogTitleExtraLayout">@layout/dialog_title_extra_playlist_select</item>
+
+		<item name="DialogFrame">@style/LargerBottomsheetDialogFrame</item>
+		<item name="DialogFrame_scene_dialog_in">@style/LargerBottomsheetDialogFrame_scene_dialog_in</item>
 	</style>
 
 

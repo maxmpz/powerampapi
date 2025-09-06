@@ -42,6 +42,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_maxHeight">@dimen/ItemPopupMenu_scene_item_menu_maxHeight</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:elevation">?popup_elevation</item>
+		<!-- Avoid going under statusbar -->
+		<item name="layout_offsets">insets</item>
 	</style>
 	
 	<style name="ItemPopupMenuSeparator">

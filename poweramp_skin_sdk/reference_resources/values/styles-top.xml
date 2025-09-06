@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -23,12 +23,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopContainer">
 		<item name="android:id">@+id/top_container</item>
 		
-		<!-- NOTE: these durations affect nav scene animations for everything, except the list content itself. List has own anim durations -->
+		<!-- NOTE: these durations affect nav scene animations for everything, except the list content itself.
+		     List has own anim durations -->
 		<!-- NOTE: attributes from TopNavBehavior are applied here, as TopContainer uses TopNavBehavior internally -->
 		
 		<!-- Applied for top views animation between lib, eq, search. Not applied to in-list transition.
-		  Should be small for the fast nav changes.
-		  See also animMainExitTime which is used for anims between main and other screens --> 
+		     Should be small for the fast nav changes.
+		     See also animMainExitTime which is used for anims between main and other screens -->
 		<item name="animTime">150</item>
 	
 		<!-- Applied for search panel, when going to/from deep search results -->
@@ -51,22 +52,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: this is ignored, if animTime/animMainExitTime is set to 0. 
 		  	 Also, LARGE values apply for list => no list transition, which is currently only to Eq 
 			 For other list transitions, list takes control over blur animation duration (it's synced to list transition duration),
-			 and thus, if this time is aaBlurExitAnimTime, it's overridden by list, if aaBlurExitAnimTime is small, it may end animate befor
-			 list takes control
+			 and thus, if this time is aaBlurExitAnimTime, it's overridden by list, if aaBlurExitAnimTime is small, it may end animate
+			 before the list takes control
 		-->
 		<item name="aaBlurExitAnimTime">150</item>
 		<item name="visEnterAnimTime">500</item>
 		<item name="visExitAnimTime">100</item>
 		<item name="aaEnterAnimTime">250</item>
 		
-		<!-- The time new image blur animates over placeholder. Larger times (>~250) may be overridden by logic which ensures image is properly rendered -->
+		<!-- The time new image blur animates over placeholder. Larger times (>~250) may be overridden by logic which ensures image is
+		     properly rendered -->
 		<item name="aaBlurUpdateAnimTime">50</item>
 		<item name="aaBlurLongerUpdateAnimTime">250</item>
 		<item name="aaBlurNoAAToAAAnimTime">200</item>
 		<item name="aaLockDurationMs">90</item>
 		
-		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine and consinstent around it.
-		     Bassically we need to offset inset by our navbar bottom margin (normal margin, not overlap_navbar_offset).   
+		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine and
+		     consistent around it.
+		     Basically we need to offset inset by our navbar bottom margin (normal margin, not overlap_navbar_offset).
 		     TopContainer will try to adjust bottom inset when needed (Android 10+, only when small line-navbar is visible) -->
 		<item name="reduceBottomInset">@dimen/Navbar_normal_marginB</item>
 		
@@ -104,19 +107,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item>
-		
-		<item name="popupEnterAnimTime">400</item>
-		<item name="popupExitAnimTime">200</item><!-- Sync with drawable/item_bg exitFadeDuration If this is increased, tune activity_start_click_delay as well, esp. on low-end devices. -->
+
+		<!-- NOTE: we use popupEnterAnimTime/popupExitAnimTime from the styles-default/global theme -->
 		
 		<item name="preferredAAAnimTime">350</item>
 		
 		<item name="moveableToolbar">@+id/navbar</item>
 		<item name="moveableToolbarExtraStates">false</item>
-		<item name="moveableToolbarAnchor">bottom</item><!-- NOTE: Poweramp can make this bottomFixed if bottom is here and user selectes static navbar in settings -->
+		<!-- NOTE: Poweramp can make this bottomFixed if bottom is here and user selectes static navbar in settings -->
+		<item name="moveableToolbarAnchor">bottom</item>
 
-		<item name="bottomReservedSpace">@+id/navbar_bounds_2lines_size</item><!-- Should be ~ navbar height (in expanded form) + all its margins -->
-		<item name="bottomReservedSpace2">@+id/navbar_bounds_3lines_size</item><!-- Should be ~ navbar height (in expanded form) + all its margins -->
-		<item name="selectionBottomReservedExtraSpace">60dp</item><!-- Added to bottomReservedSpace to match ~ selection bar height + all its margins -->
+		<!-- Should be ~ navbar height (in expanded form) + all its margins -->
+		<item name="bottomReservedSpace">@+id/navbar_bounds_2lines_size</item>
+		<!-- Should be ~ navbar height (in expanded form) + all its margins -->
+		<item name="bottomReservedSpace2">@+id/navbar_bounds_3lines_size</item>
+		<!-- Added to bottomReservedSpace to match ~ selection bar height + all its margins -->
+		<item name="selectionBottomReservedExtraSpace">60dp</item>
 
 		<item name="listMilkMode">mainAA|list|lyrics</item>
 		<item name="listScroller">@+id/list_scroller</item>
@@ -141,7 +147,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     |                         |  |  - padding (included into bottomToolbarSize)
 		     ============================ +
 		 -->
-		<!-- NOTE: bottomToolbarSize is now pulled from the main theme as it depends on other skin options, such as ActivityTheme_Whitepro_OffsetNavbar -->
+		<!-- NOTE: bottomToolbarSize is now pulled from the main theme as it depends on other skin options, such as
+		     ActivityTheme_Whitepro_OffsetNavbar -->
 		<!--<item name="bottomToolbarSize">44dp</item>-->
 		
 		<!-- This is important to keep bottom toolbar over the items in the list -->
@@ -152,8 +159,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="separatorSize">@dimen/List_separatorSize</item>
 		<item name="searchHistoryItemSize">@dimen/searchHistoryItemSize</item>
 		
-		<!-- This is minumum space on the bottom AA layout tries to maintain. Usually in portrait orientation there is enough space for other controls, but
-		     for split screen mode AA takes whole screen and there is no room for controls.
+		<!-- This is minumum space on the bottom AA layout tries to maintain. Usually in portrait orientation there is enough space for
+		     other controls, but for split screen mode AA takes whole screen and there is no room for controls.
 		     aaMarginBottom forces AA to be keep some space
 		     NOTE: aaMinSize is still honored and takes priority over this
 		     NOTE: overridden in default-styles-alt.xml -->
@@ -181,8 +188,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="metaSubheadSize">24dp</item><!-- Size of meta subheader, e.g. for any Files --><!-- Not used ATM -->
 
 		<item name="headerStretchyImage">@+id/aa_image</item>
-		
-		<item name="pageAnimTime">250</item><!-- NOTE: also see styles-navbar.xml => twoLineEnterAnimTime, which should be synced with this -->
+
+		<!-- NOTE: also see styles-navbar.xml => twoLineEnterAnimTime, which should be synced with this -->
+		<item name="pageAnimTime">250</item>
 		<item name="aaToTopLibAnimTime">250</item>
 		<item name="topLibToAAAnimTime">250</item>
 		<item name="libSearchAnimTime">150</item>
@@ -219,8 +227,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopWaveseekLayout" parent="TopWaveseekLayoutBase">
 		<item name="android:layout_width">match_parent</item>
 		<item name="layout_attachTop">@+id/sub_aa_buttons</item>
-		<!-- NOTE: attaching to bottom inset + NavbarBounds_height, instead of attaching to meta_info_layout, as meta_info_layout can be GONE in some scenes,
-		  causing waveseek jumps (waveseek itself has no scene params, thus, not scene-animated) -->
+		<!-- NOTE: attaching to bottom inset + NavbarBounds_height, instead of attaching to meta_info_layout, as meta_info_layout can be
+		     GONE in some scenes, causing waveseek jumps (waveseek itself has no scene params, thus, not scene-animated) -->
 		
 		<item name="layout_attachBottom">@id/navbar_bounds</item>
 		<item name="android:layout_marginBottom">24dp</item><!-- Reserve space for meta info -->
@@ -267,7 +275,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="TopWaveseek" parent="TopWaveseekBase"></style>
 
 	<style name="TopWaveseekStatic" parent="TopWaveseek">
-		<!-- <item name="layout_maxHeight">150dp</item> -->
 		<item name="layout_maxHeight">@dimen/TopWaveseek_maxHeight</item><!-- 150dp -->
 		<item name="waveLayout">fixed</item>
 		<item name="numBars">60</item>
@@ -366,10 +373,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:scaleX">1.25</item>
 		<item name="android:scaleY">1.25</item>
 	</style>
-		
+
+	<!-- BusActionButton -->
 	<style name="TopPlayPauseBehind">
 		<item name="android:id">@+id/play_pause_behind</item>
-		<item name="android:layout_width">@dimen/TopPlayPauseBehind_size</item><!-- REVISIT: need smaller size for some screens like Nexus 4 --> 
+		<!-- REVISIT: need smaller size for some screens like Nexus 4 -->
+		<item name="android:layout_width">@dimen/TopPlayPauseBehind_size</item>
 		<item name="android:layout_height">@dimen/TopPlayPauseBehind_size</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="drawableOnly">true</item>
@@ -463,11 +472,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Default drawable size is 40dp -->
 	<style name="TopSmallButton">
 		<!-- NOTE: setting layout_maxWidth/layout_maxHeight, android:layout_height=match_parent, layout_matchDimension=widthToHeight 
-		     makes buttons kind of scallable for smaller parent, e.g. when we're shrinked due to the split window mode or due to the other window resize -->
+		     makes buttons kind of scallable for smaller parent, e.g. when we're shrinked due to the split window mode or due to the
+		     other window resize -->
 		<item name="layout_maxWidth">@dimen/TopSmallButton_size</item>
 		<item name="layout_maxHeight">@dimen/TopSmallButton_size</item>
 		<item name="android:layout_height">match_parent</item>
-		<item name="android:layout_width">0dp</item><!-- Provide some width => important for scenes as without layout_width scene won't apply layout params -->
+		<!-- Provide some width => important for scenes as without layout_width scene won't apply layout params -->
+		<item name="android:layout_width">0dp</item>
 		<item name="layout_matchDimension">widthToHeight</item>
 		
 		<item name="android:layout_gravity">center_vertical</item>
@@ -487,7 +498,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxWidth">@dimen/TopMediumButton_size</item>
 		<item name="layout_maxHeight">@dimen/TopMediumButton_size</item>
 		<item name="android:layout_height">match_parent</item>
-		<item name="android:layout_width">0dp</item><!-- Provide some width => important for scenes as without layout_width scene won't apply layout params -->
+		<!-- Provide some width => important for scenes as without layout_width scene won't apply layout params -->
+		<item name="android:layout_width">0dp</item>
 		<item name="layout_matchDimension">widthToHeight</item>
 				
 		<item name="android:layout_gravity">center_vertical</item>
@@ -684,18 +696,40 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">0px</item>
 	</style>
 
-
-	<style name="TopSubAAButtons">
-		<item name="android:id">@+id/sub_aa_buttons</item>
+	<style name="TopSubAAButtonsBase">
+		<!-- SubAAButtonsLayout is actually always private and privateScene=true here is ignored -->
 		<item name="privateScene">true</item>
-		<item name="android:layout_width">match_parent</item>		
+		<item name="android:id">@+id/sub_aa_buttons</item>
+		<item name="layout_minHeight">@dimen/TopBaseButtonLayout_height</item>
+
+		<!-- Allow buttons to overflow during scenes -->
+		<item name="android:clipToPadding">false</item>
+
+		<item name="slotLineHeight">@dimen/TopBaseButtonLayout_height</item>
+		<item name="slotWidth">@dimen/TopBaseButtonLayout_width</item>
+		<item name="slotPadding">4dp</item>
+		<!-- Same as height -->
+		<item name="smallSlotWidth">46dp</item>
+		<item name="slotLinePadding">4dp</item>
+
+		<item name="slotDrawable">@drawable/slot</item>
+		<item name="highlightedSlotDrawable">@drawable/slot_highlighted</item>
+
+		<item name="loadableDraggable">@+id/behavior_subaabuttons_edit</item>
+	</style>
+
+	<style name="TopSubAAButtons" parent="TopSubAAButtonsBase">
+		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachTop">@+id/aa_bounds</item>
 		<item name="android:layout_marginTop">@dimen/TopSubAAButtons_marginTop</item><!-- 0dp for shorter screens, 8dp for long screens -->
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:visibility">visible</item>
+		<!-- DEBUG -->
+		<!--<item name="android:background">#f00</item>-->
 	</style>
+	<!-- NOTE: using baseScene=default so we derive layout params from it and the layout is also animated (important for 1<->2lines anim -->
 	<style name="TopSubAAButtons_scenes_playing">
 		<item name="android:visibility">visible</item>
 	</style>
@@ -754,7 +788,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_marginBottomRef">@id/navbar_bounds_2lines_size</item>
 		<item name="android:visibility">gone</item>
 		<item name="android:clipChildren">false</item>
-		<item name="android:forceHasOverlappingRendering">@bool/v28_forceHasOverlappingRendering</item><!-- Avoid "leaking" shadow during alpha animation on Android 9 -->
+		<!-- Avoid "leaking" shadow during alpha animation on Android 9 -->
+		<item name="android:forceHasOverlappingRendering">@bool/v28_forceHasOverlappingRendering</item>
 	</style>
 	<style name="TopEqLayout" parent="TopEqLayoutBase">
 	</style>
@@ -943,8 +978,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- IMPORTANT: specifically can't use layout_margin* here, but extending the size due to issue with navbar shadow cut on some devices
 		 (looks like Android fails to properly handle clipping for some view combinations).
 		 
-		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight and minHeight + paddingTop + paddingBottom.
-		 This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
+		 NOTE: InvisibleView may set its content size for wrap_content as minWidth + paddingLeft + paddingRight
+		       and minHeight + paddingTop + paddingBottom.
+		       This enables InvisibleView to adjust its size based on multiple values instead of just single dimension
 	-->
 	<style name="TopNavbarBounds">
 		<item name="android:id">@id/navbar_bounds</item>
@@ -954,7 +990,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachBottom">inset</item>
 	</style>
 			
-	<!-- NOTE: top scene layout generally requires some non zero layout now before scene runs, thus it can't be wrap_content in this case (==0px for default scene) -->
+	<!-- NOTE: top scene layout generally requires some non zero layout now before scene runs, thus it can't be wrap_content in this case
+	     (==0px for default scene) -->
 	<style name="TopSelectionMenuContainer">
 		<item name="android:layout_width">match_parent</item>
 		<item name="layout_attachLeft">inset</item>
@@ -999,6 +1036,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:duration">250</item>
 	</style>
 	
+	<!-- NOTE: this fills whole screen, insets are managed by the code -->
 	<style name="TopMenuPlaceholderLayout">
 		<item name="privateScene">true</item>
 		<item name="android:layout_width">match_parent</item>
@@ -1014,10 +1052,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
 		<item name="android:background">?statusBarBg</item>
-		<!-- NOTE: keep >= TopMenuPlaceholderLayout. Status bar view is located below TopMenuPlaceholderLayout in XML order, so it's on top for same Z -->
+		<!-- NOTE: keep >= TopMenuPlaceholderLayout. Status bar view is located below TopMenuPlaceholderLayout in XML order, so it's on top
+		           for same Z -->
 		<item name="android:translationZ">?modal_translationZ</item>
 		<item name="android:outlineProvider">none</item>
-		<item name="android:visibility">visible</item><!-- Explicitly set, as we may change it for some scenes and we want this restored back -->
+		<!-- Explicitly set, as we may change it for some scenes and we want this restored back -->
+		<item name="android:visibility">visible</item>
 	</style>
 	
 	<style name="TopFitsStatusBarView_scenes_non_main">
@@ -1032,7 +1072,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">?navigationBarBg</item>
 		<item name="android:outlineProvider">none</item>
 		<item name="android:elevation">0px</item>
-		<item name="android:visibility">visible</item><!-- Explicitly set, as we may change it for some scenes and we want this restored back -->
+		<!-- Explicitly set, as we may change it for some scenes and we want this restored back -->
+		<item name="android:visibility">visible</item>
 	</style>
 	<style name="TopFitsNavigationBarView_scenes_non_main">
 	</style><!-- NOTE: nothing changes for default skins -->
@@ -1044,11 +1085,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_widthPercent">100%</item><!-- NOTE: sync with legacy ListSubstyle -->
 		<item name="layout_heightPercent">100%</item><!-- NOTE: sync with legacy ListSubstyle -->
 		<!-- NOTE: AA LE uses width in portait orientation as base size for AA, and height as base size in landscape orientation.
-			 More strictly, AA LE uses the smallest screen dimension for AA size, thus layout_matchDimension here should be orientation dependent -->
+			 More strictly, AA LE uses the smallest screen dimension for AA size, thus layout_matchDimension here should be
+			 orientation dependent -->
 		<item name="layout_matchDimension">heightToWidth</item>
 		<item name="layout_attachTop">inset</item>
-		<!-- DEBUG -->
-		<!--<item name="android:background">#5f0f</item>-->
 	</style>
 	
 	<!-- NOTE: new AABounds style, now derived from ListSubstyle2 and uses the same AA layout logic -->
@@ -1062,9 +1102,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="offsetWindowInsets">statusBar|navigationBar</item><!-- Sync with TopListWidget -->
 		
-		<!-- NOTE: needed, as by default, any margins applied to AABounds will "consume" available space for AA layout, thus, shrinking AABounds and making it
-		     smaller comparing to the actual list AA. This attribute forces FastLayout to ignore margins in size calculations -->
+		<!-- NOTE: needed, as by default, any margins applied to AABounds will "consume" available space for AA layout, thus, shrinking
+		     AABounds and making it smaller comparing to the actual list AA. This attribute forces FastLayout to ignore margins in size
+		     calculations -->
 		<item name="layout_wrapIgnoresMargins">true</item>
+
+		<!-- DEBUG -->
+		<!--<item name="android:background">#a00f</item>-->
 	</style>
 	
 	
@@ -1075,14 +1119,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">@dimen/TopBaseButtonLayout_height</item>
 				
 		<item name="menuPlaceholder">@+id/menu_placeholder</item>
-		<item name="android:background">@drawable/alpha_popup_button_layout_bg</item>
+		<item name="android:background">@drawable/alpha_player_button_layout_bg</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:longClickable">true</item>
 		<item name="android:hapticFeedbackEnabled">true</item>
-		
-		<item name="listItemSize">48dp</item><!-- NOTE: we usually override this for real lists (e.g. presets), so this is not used ATM -->
+
+		<!-- Avoid clipping the stuff in both button and menu states -->
+		<item name="android:clipToPadding">false</item>
+
+		<!-- Default list size for the derived list based popups.
+		     NOTE: we usually override this for real lists (e.g. presets), so this is not used ATM -->
+		<item name="listItemSize">48dp</item>
 		
 		<item name="buttonStyle">?PopupButton</item>
 		<item name="menuButtonStyle">?PopupButton_scene_button_menu</item>
@@ -1093,35 +1142,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="popupListStyle">@style/PopupListLayoutList</item>
 
 		<item name="separatorSize">@dimen/List_separatorSize</item><!-- Used for list separators, if any -->
+
 	</style>
-	
-	
+
 	<style name="TopVisButtonLayout" parent="TopBaseButtonLayout">
-		<item name="android:id">@id/vis_button_layout</item>
 		<item name="layout_attachLeft">parent</item>
 		<item name="android:layout_marginRight">4dp</item>
-
-		<item name="stateBusId">@id/bus_gui</item>
-		<item name="stateId">@id/state_gui_vis_mode</item>
-		<item name="msgId">@id/msg_gui_vis_mode_changed</item>
-		<item name="arg2">1</item>
-		<item name="buttonsLabels">@array/vis_modes</item>
-		<item name="buttonsDrawables">@array/vis_icons_32dp</item>
-		<item name="buttonsBusId">@id/bus_gui</item>
-		<item name="buttonsMsgId">@id/cmd_gui_set_vis_mode</item>
-		<item name="buttonsArg1">@array/vis_modes_enum</item>
-		<item name="android:contentDescription">@string/visualization</item>
 	</style>
-	
-	
-	<style name="TopSleepTimerButtonLayout" parent="TopBaseButtonLayout">
-		<item name="android:id">@id/sleep_timer_layout</item>
+
+	<style name="TopSleepTimerButtonLayoutBase" parent="TopBaseButtonLayout">
 		<item name="android:background">@drawable/alpha_popup_button_layout_activated_bg</item>
-		<item name="layout_attachLeft">@+id/vis_button_layout</item>
-		<item name="android:layout_marginRight">4dp</item>
 		<item name="closeOnClickInside">false</item>
 		<item name="menuItemsLayout">@layout/merge_sleep_timer_popup_layout</item>
 		<item name="android:contentDescription">@string/sleep_timer</item>
+		<!-- We don't need the paddings for the sleep layout dialog like popup -->
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+	</style>
+	<style name="TopSleepTimerButtonLayout" parent="TopSleepTimerButtonLayoutBase">
+		<item name="layout_attachLeft">@+id/vis_button_layout</item>
+		<item name="android:layout_marginRight">4dp</item>
 	</style>
 	<style name="TopSleepTimerButtonLayout_scene_item_menu" parent="ItemPopupMenu_scene_item_menu">
 		<item name="android:layout_width">match_parent</item>
@@ -1134,7 +1174,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:id">@id/sleep_timer_button</item>
 		<item name="android:drawable">?sleep_timer_32dp</item><!-- NOTE: tint is applied via drawable xml -->
 		<item name="drawableOnly">true</item>
-		<item name="drawablePosition">forceGravity</item>
+		<item name="drawablePosition">gravityNoPads</item>
 		<item name="android:gravity">center</item>
 		<item name="drawablePaddingStart">0dp</item>
 		<item name="android:paddingLeft">0dp</item>
@@ -1144,43 +1184,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		
 	<style name="TopShuffleButtonLayout" parent="TopBaseButtonLayout">
-		<item name="android:id">@id/shuffle_button_layout</item>
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginLeft">4dp</item>
-
-		<item name="stateBusId">@id/bus_player</item>
-		<item name="stateId">@id/state_player_shuffle_mode</item>
-		<item name="msgId">@id/msg_player_shuffle_mode_changed</item>
-		<item name="arg2">1</item>
-
-		<item name="buttonsLabels">@array/shuffle_modes</item>
-		<item name="buttonsDrawables">@array/shuffle_icons_32dp</item>
-		<item name="buttonsBusId">@id/bus_player_cmd</item>
-		<item name="buttonsMsgId">@id/cmd_player_set_shuffle_mode</item>
-		<item name="buttonsArg1">@array/shuffle_modes_enum</item>
 	</style>
 		
 	<style name="TopRepeatButtonLayout" parent="TopBaseButtonLayout">
-		<item name="android:id">@id/repeat_button_layout</item>
 		<item name="layout_attachRight">@+id/shuffle_button_layout</item>
 		<item name="android:layout_marginLeft">4dp</item>
-
-		<item name="stateBusId">@id/bus_player</item>
-		<item name="stateId">@id/state_player_repeat_mode</item>
-		<item name="msgId">@id/msg_player_repeat_mode_changed</item>
-		<item name="arg2">1</item>
-
-		<item name="buttonsLabels">@array/repeat_modes</item>
-		<item name="buttonsDrawables">@array/repeat_icons_32dp</item>
-		<item name="buttonsBusId">@id/bus_player_cmd</item>
-		<item name="buttonsMsgId">@id/cmd_player_set_repeat_mode</item>
-		<item name="buttonsArg1">@array/repeat_modes_enum</item>
 	</style>
 	
-	<!-- NOTE: as top counter now uses TopCounterLayout style, TopCounterLayout is just derived from TopCounter style, which still exists for compatibility -->
+	<!-- NOTE: as top counter now uses TopCounterLayout style, TopCounterLayout is just derived from TopCounter style, which still exists
+	     for compatibility -->
 	<style name="TopCounter">
-		<item name="android:paddingLeft">8dp</item>
-		<item name="android:paddingRight">8dp</item>
 		<item name="android:paddingTop">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
 		<item name="android:paddingBottom">@dimen/TopMetaInfoLabel_paddingTopBottom</item>
 		<item name="android:lineSpacingExtra">1.75dp</item>
@@ -1190,7 +1205,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center</item>
 		<item name="android:textAppearance">?TopCounterLayout_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
 	</style>
+	<style name="TopCounterLayout_Text" parent="TextAppearance.AppCompat">
+		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
+		<item name="android:textAllCaps">true</item>
+	</style>
+
+	<!-- Deprecated, not used anymore -->
 	<style name="TopCounterLayout" parent="TopCounter">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -1204,27 +1227,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="lineBackground">@drawable/alpha_rounded_medium</item>
 		<item name="android:layout_marginBottom">@dimen/TopCounterLayout_marginBottom</item>
 	</style>
-	<style name="TopCounterLayout_Text" parent="TextAppearance.AppCompat">
-		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>
-		<item name="android:textAllCaps">true</item>
-	</style>
+	<!-- Deprecated, not used anymore -->
 	<style name="TopCounterLayout_scenes_playing">
 		<item name="android:visibility">visible</item>
 		<item name="scale">1</item>
 		<item name="android:alpha">1</item>
 		<item name="layout_compensateScale">1</item>
 	</style>
+	<!-- Deprecated, not used anymore -->
 	<style name="TopCounterLayout_scenes_invisible">
 		<item name="scale">0.75</item>
 		<item name="android:visibility">gone</item>
 	</style>
+	<!-- Deprecated, not used anymore -->
 	<style name="TopCounterLayout_anim_seeking">
 		<item name="android:alpha">0.55</item>
 		<item name="android:scaleX">0.85</item>
 		<item name="android:scaleY">0.85</item>
 	</style>
-	
-	
+
 	<!-- NOTE: see also default-styles-plainseekbar.xml -->
 	<!-- Overridden in land -->
 	<style name="TopMetaInfoLayout">
@@ -1232,7 +1253,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachBottom">@id/navbar_bounds</item>
-		<!-- Need some min height, as when we expand meta to popup, the container becomes empty and collapses to the bottom, causing popup animating to too low position.
+		<!-- Need some min height, as when we expand meta to popup, the container becomes empty and collapses to the bottom, causing popup
+		     animating to too low position.
 		     Happens e.g. when Play => Pause happens during popup -->
 		<item name="android:minHeight">20dp</item>
 		<item name="android:layout_marginBottom">@dimen/TopMetaInfoLayout_marginBottom</item><!-- 8dp -->
@@ -1266,12 +1288,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:clipChildren">false</item>
-		<item name="android:clickable">true</item><!-- Force clickable, otherwise, while we're actually clickable here, some keyboard presses are mishandled -->
+		<!-- Force clickable, otherwise, while we're actually clickable here, some keyboard presses are mishandled -->
+		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item><!-- Clickability is managed automatically -->
 		<item name="android:focusableInTouchMode">false</item>
 		<item name="lineBackground">?meta_info_bg</item>
 		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="android:longClickable">true</item><!-- NOTE: making it also clickable=true here will cause ripple drawable in popup to activate -->
+		<!-- NOTE: making it also clickable=true here will cause ripple drawable in popup to activate -->
+		<item name="android:longClickable">true</item>
 		<item name="menuItemsLayout">@layout/merge_dsp_info_popup_layout</item>
 		<item name="busId">@id/bus_player_cmd</item>
 		<item name="msgId">@id/cmd_player_switch_track_meta</item>
@@ -1305,16 +1329,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:textAppearance">?TopMetaInfoLabel_Text</item>
 		<item name="android:textColor">?colorMetaInfo</item>
-		<item name="stateBusId">@id/bus_player</item>
-		<item name="labelStateId">@id/state_player_track_meta</item>
-		<item name="iconStateId">@id/state_player_track_meta_icon</item>
-		<item name="updateMsgId">@id/msg_player_track_changed</item>
-		<item name="updateMsgId_2">@id/msg_pipeline_started</item>
-		<item name="updateMsgId_3">@id/msg_player_track_meta_switched</item>
-		<item name="updateMsgId_4">@id/msg_player_repeat_mode_changed</item>
-		<item name="updateMsgId_5">@id/msg_player_output_meta_changed</item>
-		<item name="noUpdateInScene">@id/scene_button_menu</item>
-
 	</style>
 	<style name="TopMetaInfoLabel_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>

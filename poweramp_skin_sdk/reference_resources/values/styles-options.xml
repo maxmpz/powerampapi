@@ -56,7 +56,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="OptionRatingDisabled">
 		<!-- Empty -->
 	</style>
-	
+
+	<!-- Deprecated, not used anymore -->
 	<style name="OptionCounter">
 		<!-- Additional layout which is otherwise missing -->
 		<item name="TopContainer_extraLayout">@layout/merge_top_extralayout</item>

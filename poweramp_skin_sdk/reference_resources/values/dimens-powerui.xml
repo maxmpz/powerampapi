@@ -55,12 +55,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopBaseButtonLayout_width">58dp</dimen>
 	<dimen name="TopBaseButtonLayout_height">30dp</dimen>
 	<dimen name="PopupButtons_drawableSize">28dp</dimen>
-	<dimen name="PopupButton_scene_button_menu">56dp</dimen>
+	<dimen name="PopupButtons_drawableSize24dp">21dp</dimen>
+	<dimen name="PopupButtons_drawableSize19dp">16.625dp</dimen>
+	<dimen name="PopupButton_scene_button_menu">64dp</dimen>
 	<dimen name="SmallerPopupButton_marginLeft">-8dp</dimen>
 	<dimen name="SmallerPopupButtons_drawableSize">24dp</dimen>
 	<dimen name="PopupButtons_paddingLeft">15dp</dimen><!-- Sync with TopBaseButtonLayout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
 	<dimen name="PopupMenuItem_drawableWidth">24dp</dimen>
 	<dimen name="SmallerPopupButtons_paddingLeft">16.5dp</dimen>
+
+	<dimen name="EditableButtonContainer_marginTop">0dp</dimen>
+	<dimen name="EditableButtonContainer_marginBottom">10dp</dimen>
 
 	<dimen name="TopSelectionMenuContainer_height">300dp</dimen>
 	<!-- This should be ~ max selection menu height -->

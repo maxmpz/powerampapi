@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- NOTE: this is a DynamicPopupButton, which is FastLayout itself:
 	 - we have additional styles for the inner icon and label views
-	 - some derived attribures used to configure normal PopupButton, such as drawable attributes are ignored
+	 - some derived attributes used to configure normal PopupButton, such as drawable attributes are ignored
 
 	+====================================+ <- DynamicPopupButton (-> FastLayout)
 	| +===========+ +==================+ |    - buttonStyle (while in button scene)
@@ -37,8 +37,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 	<style name="DynamicPopupButton" parent="PopupButton">
 		<item name="recalcChildren">on_start</item>
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<!-- Reset paddings as those are not animatable and we want to change spacing via margins instead -->
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
 
 		<item name="dynamicIconStyle">@style/DynamicPopupButtonIcon</item>
 		<item name="dynamicIconStyle_scene_menu">@style/DynamicPopupButtonIcon_scene_menu</item>
@@ -47,6 +52,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dynamicLabel2Style">@style/DynamicPopupButtonLabel2</item>
 		<item name="dynamicLabel2Style_scene_menu">@style/DynamicPopupButtonLabel2_scene_menu</item>
 	</style>
+	<style name="DynamicPopupButtonNoTint" parent="DynamicPopupButton">
+		<item name="dynamicIconStyle">@style/DynamicPopupButtonIconNoTint</item>
+	</style>
+
 	<style name="DynamicPopupButton_scene_button_menu">
 		<item name="scene">@id/scene_button_menu</item>
 		<item name="recalcChildren">on_start</item>
@@ -56,26 +65,29 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">@dimen/PopupButton_scene_button_menu</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="applyViewParams">true</item>
-		<item name="drawableTint">?colorIconPrimaryForced</item><!-- NOTE: @null/@empty is not supported ATM, need an explicit tint, thus using forced -->
 		<item name="android:background">@drawable/ripple_with_check_selector</item>
 	</style>
 	<style name="DynamicPopupButtonIcon" parent="PopupButton">
 		<item name="recalcChildren">on_start</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>
-		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
 
-		<item name="drawableTint">?colorIconPrimary</item>
-		<item name="drawableWidth">24dp</item>
-		<item name="drawableHeight">24dp</item>
 		<!-- Ensure that we have icon properly positioned centered in the button by resetting all the derived paddings -->
 		<item name="drawablePaddingStart">0dp</item>
 		<item name="android:paddingLeft">0dp</item>
 		<item name="android:paddingRight">0dp</item>
 		<item name="android:drawablePadding">0dp</item>
 
+		<item name="drawableTint">?colorIconPrimary</item>
+
 		<item name="drawableOnly">true</item>
 		<item name="android:visibility">visible</item><!-- Force icon visibility as PopupButton is gone by default -->
+	</style>
+	<style name="DynamicPopupButtonIconNoTint" parent="DynamicPopupButtonIcon">
+		<item name="drawableTint">@null</item>
 	</style>
 	<style name="DynamicPopupButtonIcon_scene_menu">
 		<item name="scene">@id/scene_button_menu</item>
@@ -85,35 +97,43 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>
 		<item name="layout_consumeSpace">horizontal</item>
-		<item name="android:layout_marginLeft">15dp</item><!-- Synchronizes visually to the usual popup buttons -->
-		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:layout_marginLeft">@dimen/PopupButtons_paddingLeft</item>
+		<item name="android:layout_marginRight">@dimen/PopupButtons_paddingLeft</item>
 	</style>
 
 	<style name="DynamicPopupButtonLabel" parent="PopupButton">
 		<item name="recalcChildren">on_start</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">match_parent</item>
-		<item name="android:paddingLeft">8dp</item>
+		<item name="android:layout_width">0px</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingLeft">0dp</item>
 		<item name="layout_consumeSpace">@null</item>
-		<item name="android:visibility">visible</item><!-- Ensure we don't have label initially visible -->
+		<item name="android:visibility">gone</item>
 		<item name="android:background">@null</item>
 	</style>
 	<style name="DynamicPopupButtonLabel_scene_menu">
 		<item name="scene">@id/scene_button_menu</item>
 		<item name="recalcChildren">on_start</item>
-		<item name="android:visibility">gone</item>
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">match_parent</item>
-		<item name="layout_consumeSpace">@null</item>
-		<item name="android:layout_marginLeft">5dp</item><!-- Synchronizes visually to the usual popup buttons -->
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">0dp</item><!-- Synchronizes visually to the usual popup buttons -->
 		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:visibility">visible</item>
+		<item name="layout_gravityGroup">0</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="layout_alignToContent">vertical</item>
 	</style>
 
 	<style name="DynamicPopupButtonLabel2" parent="DynamicPopupButtonLabel">
 		<item name="android:visibility">gone</item>
+		<item name="allowZeroHeight">true</item>
+		<item name="android:textAppearance">?DynamicPopupButtonLabel2_Text2</item>
 	</style>
 	<style name="DynamicPopupButtonLabel2_scene_menu" parent="DynamicPopupButtonLabel_scene_menu">
 		<item name="android:visibility">visible</item>
+		<item name="layout_goneWhenEmpty">true</item>
+	</style>
+	<style name="DynamicPopupButtonLabel2_Text2" parent="TextAppearance.AppCompat.Small">
+		<item name="android:textSize">12dp</item>
 	</style>
 
 </resources>

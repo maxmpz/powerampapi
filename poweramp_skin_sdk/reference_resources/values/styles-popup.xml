@@ -28,11 +28,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_attachRight">@+id/configure_button</item>
 		<item name="android:layout_marginTop">16dp</item>
-		<item name="android:layout_marginLeft">20dp</item>
-		<item name="android:layout_marginRight">24dp</item>
+		<item name="android:layout_marginLeft">24dp</item>
+		<item name="android:layout_marginRight">28dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
-		<item name="android:drawable">@drawable/info_stroke_32dp</item>
-		<item name="android:drawablePadding">8dp</item>
+		<item name="android:drawable">?audio_info_24dp</item>
+		<item name="android:drawablePadding">14dp</item><!-- Synced to the underlying icon line + text padding -->
 		<item name="android:gravity">center_vertical</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="android:textAppearance">?PopupInfoTextTitle_Text</item>
@@ -67,6 +67,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PopupDSPInfoText" parent="PopupInfoText">
 		<item name="android:layout_marginLeft">38dp</item>
 		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:paddingTop">4dp</item>
+
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="unknownIcon">@drawable/question_24dp</item>
 
@@ -77,6 +79,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="arrowOffset">1dp</item>
 		<item name="arrowLineWeight">2dp</item>
 		<item name="arrowFillColor">?android:textColorSecondary</item>
+		<item name="android:clipToPadding">false</item>
 	</style>
 	<style name="PopupDSPInfoText_HeadText" parent="HeadText">
 		<item name="android:textStyle">normal</item>

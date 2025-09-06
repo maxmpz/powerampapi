@@ -171,8 +171,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:clipToPadding">false</item>
 		<item name="android:clipChildren">false</item><!-- Avoid clipping e.g. dragged up toast -->
-		<!-- NOTE: automatically disabled when needed, see dialog.xml, AdjustToSoftKeyboardBehavior -->
-		<item name="android:fitsSystemWindows">true</item>
+		<!-- NOTE: insets are handled by AdjustToSoftKeyboardBehavior -->
 	</style>
 	
 	<style name="BottomsheetDialog" parent="BaseDialog">
@@ -233,8 +232,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="BottomsheetDialogFrame" parent="BaseDialogFrame">
 		<item name="android:layout_gravity">center_horizontal</item>
 		<!-- NOTE: need bottom here as well,  we attach to the whole height and dialog initially is out of screen completely,
-		     but we want dialog size to account for all insets, not overlapping them if the dialog is >= screen size -->
-		<item name="layout_offsets">insets</item>
+		     but we want dialog size to account for all insets, not overlapping them if the dialog is >= screen size.
+		     Except for the bottom - to avoid popping up on the height of the Android navbar -->
+		<item name="layout_offsets">insetLeft|insetRight</item>
 		<item name="layout_attachTop">100%</item>
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
@@ -257,12 +257,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="TopsheetDialogFrame" parent="BaseDialogFrame">
-		<item name="layout_offsets">insets</item>
+		<item name="layout_offsets">insetLeft|insetRight</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachBottom">0%</item>
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
-		<item name="android:layout_marginBottom">24dp</item><!-- Compensate for status bar slightly -->
+		<!-- Compensate for status bar slightly?
+		     REVISIT: why that is needed - as we should attach 0% to bottom == attach bottom to the screen top, but looks like we
+		     don't do that?
+		 -->
+		<!--<item name="android:layout_marginBottom">28dp</item>-->
 	</style>
 	<style name="TopsheetDialogFrame_scene_dialog_in">
 		<item name="layout_offsets">insets</item>
@@ -272,7 +276,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxHeight">@dimen/TopBottomSheetDialogFrame_maxHeight</item>
 		<item name="layout_maxWidth">@dimen/DialogFrame_maxWidth</item>
 		<!-- Do not attach to insets, as we already have those in layout_offsets -->
-		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachTop">inset</item>
 	</style>
 	
 	<style name="CenteredDialogFrame" parent="BaseDialogFrame">

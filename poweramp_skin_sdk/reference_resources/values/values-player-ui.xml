@@ -59,5 +59,70 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="scene_eq"/>
 	<item type="id" name="scene_lib"/>
 	<item type="id" name="scene_search"/>
+
+	<item type="id" name="scene_1"/>
+	<item type="id" name="scene_alt"/>
+
+	<item type="id" name="_dragged_container"/>
+	<item type="id" name="_clickable_memo"/>
+
+	<!-- This is directly implemented via ButtonsFactory.kt, so no need for the layout for this button -->
+	<!-- NOTE: run pa_gen_public/pa_compile_public_to_flat when changed, as ids drift on rebuilds -->
+	<item type="id" name="subaabutton_vis"/>
+	<item type="id" name="subaabutton_sleeptimer"/>
+	<item type="id" name="subaabutton_counter"/>
+	<item type="id" name="subaabutton_shuffle"/>
+	<item type="id" name="subaabutton_repeat"/>
+	<item type="id" name="subaabutton_like"/>
+	<item type="id" name="subaabutton_unlike"/>
+	<item type="id" name="subaabutton_like_unlike"/>
+	<item type="id" name="subaabutton_love"/>
+	<item type="id" name="subaabutton_unlove"/>
+	<item type="id" name="subaabutton_loveUnloveButton"/>
+	<item type="id" name="subaabutton_menu"/>
+	<item type="id" name="subaabutton_cast"/>
+	<item type="id" name="subaabutton_delete"/>
+	<item type="id" name="subaabutton_add_to_pl"/>
+	<item type="id" name="subaabutton_bookmark"/>
+	<item type="id" name="subaabutton_aa"/>
+	<item type="id" name="subaabutton_info"/>
+	<item type="id" name="subaabutton_tags"/>
+	<item type="id" name="subaabutton_lyrics"/>
+	<item type="id" name="subaabutton_artist"/>
+	<item type="id" name="subaabutton_album"/>
+	<item type="id" name="subaabutton_folder"/>
+	<item type="id" name="subaabutton_genre"/>
+	<item type="id" name="subaabutton_audio_info"/>
+	<!-- 25 -->
+
+
+	<!-- ?references are resolved too, if needed. IMPORTANT: these should be stable, as they are stored in the prefs -->
+	<array name="sub_aa_buttons">
+		<item>@id/subaabutton_vis</item>
+		<item>@id/subaabutton_sleeptimer</item>
+		<item>@id/subaabutton_counter</item>
+		<item>@id/subaabutton_shuffle</item>
+		<item>@id/subaabutton_repeat</item>
+		<item>@id/subaabutton_menu</item>
+		<item>@id/subaabutton_cast</item>
+		<item>@id/subaabutton_delete</item>
+		<item>@id/subaabutton_add_to_pl</item>
+		<item>@id/subaabutton_bookmark</item>
+		<item>@id/subaabutton_aa</item>
+		<item>@id/subaabutton_info</item>
+		<item>@id/subaabutton_lyrics</item>
+		<item>@id/subaabutton_tags</item>
+		<item>@id/subaabutton_artist</item>
+		<item>@id/subaabutton_album</item>
+		<item>@id/subaabutton_genre</item>
+		<item>@id/subaabutton_folder</item>
+		<item>@id/subaabutton_like</item>
+		<item>@id/subaabutton_unlike</item>
+		<item>@id/subaabutton_like_unlike</item>
+		<item>@id/subaabutton_love</item>
+		<item>@id/subaabutton_unlove</item>
+		<item>@id/subaabutton_loveUnloveButton</item>
+		<item>@id/subaabutton_audio_info</item>
+	</array>
 	
 </resources>

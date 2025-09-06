@@ -78,8 +78,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 If layout_width exists in the attributes, we assume layout is set for this scene params, otherwise no different layout is applied for this scene params -->
 		<attr name="android:layout_width"/>
 
-		<!-- Defines point during transition when target view is re-laid out. Layout is a costly operation for the most views,
-		     so we want to keep it as rare as possible, still getting smooth animation.
+		<!-- Default is on_end.
+		     Defines point during transition when target view is re-laid out. Layout is a costly operation for the most views,
+		     so we want to keep it as infrequent as possible, still getting smooth enough animation.
 		     NOTE: this option changes only "layout" processing in terms of Android UI framework.
 		     The bounds of views are always transitioned/animated (unless view is GONE).
 		     NOTE: while it's called "recalc children", the relayout can be used on non-viewgroup views as well, so
@@ -87,10 +88,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     This can be either one of the enum values, or percentage (e.g. 50%) setting the point of transition where
 		     the relayout takes place -->
 		<attr name="recalcChildren" format="fraction|integer">
-			<!-- Initial child layout is used for the transition until end (jumps in the end) -->
+			<!-- Default. Initial child layout is used for the transition until end (jumps in the end) -->
 			<enum name="on_end" value="0" /><!-- Sync with SceneParams -->
 
-			<!-- Final child layout is used for the transition (jumps in the beggining) -->
+			<!-- Final child layout is used for the transition (jumps in the begining) -->
 			<enum name="on_start" value="1" /><!-- Sync with SceneParams -->
 
 			<!-- Dynamically recalculate layout of children, this is costly and can be slow, but may be required for images and some other views that
@@ -155,7 +156,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="Scene">
 		<!-- Default false. If true, scene allows scene-wide state anims, otherwise only specific per-view StateAnims are possible -->
 		<attr name="enableStateAnim" format="boolean"/>
-		<attr name="clipChildrenForSceneAnim" format="boolean"/><!-- Default false. NOTE: not used ATM -->
+		<attr name="clipChildrenForSceneAnim" format="boolean"/><!-- Default false. NOTE: not used ATM (disabled) -->
 		<!-- Default false. If private, child views are not processed by scenes, initiated outside of this view -->
 		<attr name="privateScene" format="boolean"/>
 	</declare-styleable>

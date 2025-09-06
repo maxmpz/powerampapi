@@ -11,5 +11,30 @@
 		</shape>
 	</item>
 	
-	<item android:minLevel="0" android:maxLevel="0" android:drawable="@drawable/ripple_alpha_activated_rounded_generic"/>
+	<item android:minLevel="0" android:maxLevel="0">
+		<selector
+			android:enterFadeDuration="250"
+			android:exitFadeDuration="250"
+			>
+			<item android:state_activated="true" android:drawable="@drawable/rounded_generic" />
+
+			<item>
+				<ripple android:color="?colorLessContrastRipple">
+					<item android:id="@android:id/mask">
+						<shape>
+							<corners android:radius="?corners_generic"/>
+							<solid android:color="#000"/>
+						</shape>
+					</item>
+
+					<item>
+						<shape>
+							<corners android:radius="?corners_generic"/>
+							<solid android:color="?colorBgPlayerButton"/>
+						</shape>
+					</item>
+				</ripple>
+			</item>
+		</selector>
+	</item>
 </level-list>

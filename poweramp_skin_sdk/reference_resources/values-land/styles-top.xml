@@ -77,9 +77,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginBottom">@dimen/TopMetaInfoLayout_marginBottom</item><!-- 0dp -->
 	</style>
 	
-	<style name="TopSubAAButtons">
-		<item name="android:id">@+id/sub_aa_buttons</item>
-		<item name="privateScene">true</item>
+	<style name="TopSubAAButtons" parent="TopSubAAButtonsBase">
 		<item name="layout_attachLeft">@+id/aa_bounds</item>
 		<item name="layout_attachRight">inset</item>
 		<item name="android:layout_height">wrap_content</item>

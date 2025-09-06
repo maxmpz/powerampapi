@@ -37,7 +37,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	 Paddings:
 	 NOTE: fast text padding processing (with drawable) differs from the standard Android TextView.
 	 This is due to the requirement for consistent padding around text, while padding around drawable may be specific to that drawable.
-	 This allows same styles for buttons with or without drawables and consistent text paddings as a result
+	 This allows same styles for button with or without drawable resulting in the consistent text paddings
 
 	 Horizontal FastTextView paddings when no drawable:
 	   paddingLeft text paddingRight
@@ -48,18 +48,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	 Horizontal FastTextView paddings when drawable is available, drawablePosition=right:
 	   paddingLeft text paddingRight drawablePadding (drawablePaddingEndNoText) drawable drawablePaddingStart
 
-	 Horizontal FastTextView paddings when drawable is available and drawableOnly=true:
+	 Horizontal FastTextView paddings when drawable is available and drawableOnly=true + drawablePosition=forceGravity (default)
+	   paddingLeft drawable paddingRight
+
+	 Horizontal FastTextView paddings when drawable is available and drawableOnly=true + drawablePosition=gravityWithDrPads (default)
 	   drawablePaddingStart drawable drawablePadding paddingLeft paddingRight
 
-	 NOTE: leadingOffset may be added (or removed if negative) to the paddingLeft/paddingRight (depending on the
+	 NOTE: drawableAdj may be added (or removed if negative) to the paddingLeft/paddingRight (depending on the
 	 text gravity).
 	 This is special offset which reduces leading pixels difference between various fonts/font styles/font sizes/scaling.
 	 Used for the better alignment of the visible text pixels
 
 	 NOTE: drawablePaddingEndNoText is applied only if text is empty (null or "")
-	 NOTE: when drawablePosition=GRAVITY (this is default for drawableOnly), no paddings applied as fixed size is assumed
+	 NOTE: when drawablePosition=forceGravity (this is default for drawableOnly), no drawablePaddingStart and drawablePadding are applied
+	 by default, only normal paddings are applied (compatibility mode)
+	 For drawablePosition=forceGravityWithDrPads,
 
-	 Same approach is used for vertical paddings (drawblePosition=top)
+
+	 Same approach is used for vertical paddings (drawablePosition=top)
 
 	 Paddings with drawablePosition=forceGravity and drawableOnly=true (icon only) are standard paddingLeft/Top/Right/Bottom.
 	 drawablePadding/drawablePaddingStart are ignored, as gravity make drawable to be positioned everywhere depending on gravity, thus
@@ -70,9 +76,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	 Fast text mitigates this by forcing the initial XML paddings when background is updated for scene
 -->
 	<declare-styleable name="FastTextView">
+		<!-- The background under the text. Does not expand under drawable.
+		     Accounts for the text paddings, but not for the drawable paddings -->
 		<attr name="lineBackground" format="reference|color"/>
-		<!-- If true, text won't be shown and drawablePosition is set to "forceGravity". Good for drawable without text, e.g. image buttons
-			 Default=false -->
+		<attr name="android:background"/>
+
+		<!-- Default=false. If true, text won't be shown and drawablePosition is set to "forceGravity".
+		     Also, text paddings won't affect layout for "gravity" based drawablePositions.
+		     Good for drawable without text, e.g. image buttons.
+		     Drawable padding handling is changed for the forceGravity (see drawablePosition description below)  -->
 		<attr name="drawableOnly" format="boolean"/>
 		<!-- Max number of lines in this view. If set to 1, single line mode is activated, similar to android TextView singleLine:
 			 - no any breaks are possible, even \n doesn't break text
@@ -84,28 +96,44 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- If true, no attempt to break text (on new line/overflow) will happen -->
 		<attr name="noBreak" format="boolean"/>
+
 		<!-- Optional drawable -->
 		<attr name="android:drawable"/>
-		<!-- Padding before drawable when drawable is available. Can be negative. NOTE: paddingLeft is not applied to drawable (always applied to the text)-->
+
+		<!-- Padding before drawable when drawable is available. Can be negative.
+		     NOTE: paddingLeft is not applied to drawable (always applied to the text)
+		     NOTE: ignored for drawablePosition=forceGravity -->
 		<attr name="drawablePaddingStart" format="dimension"/>
-		<!-- Padding between drawable and text. Basically it's added to paddingLeft when drawable exists -->
+
+		<!-- Padding between drawable and text. Basically it's added to paddingLeft when drawable exists
+		     NOTE: ignored for drawablePosition=forceGravity -->
 		<attr name="android:drawablePadding"/>
+
+		<!-- Defines internal position of the drawable -->
 		<attr name="drawablePosition">
 			<enum name="left" value="0"/>
 			<enum name="top" value="1"/>
 			<enum name="right" value="2"/>
-			<!-- Drawable will be positioned according to android:gravity. This makes sense only if drawableOnly=true, for pure icons
-			     without text. No paddings applied, fixed size assumed -->
+			<!-- Special mode. Drawable is positioned according to the android:gravity value.
+			     This makes sense only if drawableOnly=true, for pure icons without text.
+			     Text size still accounted for the view size/inner layout.
+			     No drawablePadding/drawablePaddingStart are applied
+			     NOTE: text layout still may be applied + text will be visible (if any) unless drawableOnly=true is set -->
 			<enum name="forceGravity" value="-1"/>
+			<!-- Same as forceGravity but no padding is applied for the drawable at all, so it's positioned independently of
+			     the paddings. This is mostly useful for the gravity=center drawableOnly=true buttons
+			     NOTE: text layout still may be applied + text will be visible (if any) unless drawableOnly=true is set -->
+			<enum name="gravityNoPads" value="-2"/>
 		</attr>
 
 		<!-- NOTE: android:drawableTint not supported by Android 5.0, thus using w:drawableTint -->
 		<!-- This is defined by AppCompat, but we can override it for AndroidStudio -->
 		<attr name="drawableTint" format="color"/>
-		<!-- Default drawableTintMode=src_in -->
-		<attr name="drawableTintMode2">
-		<!-- NOTE: while drawableTintMode is defined by AppCompat, AndroidStudio can't parse it properly no matter what,
+
+		<!-- Default value is src_in
+		     NOTE: while drawableTintMode is defined by AppCompat, AndroidStudio can't parse it properly no matter what due to some bug,
 		     so using "drawableTintMode2" -->
+		<attr name="drawableTintMode2">
 			<enum name="src_over" value="3" />
 			<enum name="src_in" value="5" />
 			<enum name="src_atop" value="9" />
@@ -119,18 +147,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Forced drawable height. Default is drawable original height -->
 		<attr name="drawableHeight" format="dimension"/>
 
-		<!-- Default true. If false, we won't use drawable height for the view height measuring,
-		     text view height is purely text dependent then. Applied when it makes sense (left/right positioned drawable + text) -->
+		<!-- Default true. If false, we won't use drawable height for the view height measuring for drawablePosition=left|right,
+		     text view height is purely text dependent then -->
 		<attr name="useDrawableHeight" format="boolean"/>
 
-		<!-- Default is false. If true, allow this view to have zero-height if no text (text=="" or null) nor drawable is set for it.
-		     NOTE: minHeight is still honored -->
+		<!-- Default is false. If true, allow this view to have zero-height if no text (text=="" or null) nor drawable is set for it
+		     and layout_height=wrap_content.
+		     NOTE: minHeight is still honored, but not the padding -->
 		<attr name="allowZeroHeight" format="boolean"/>
 		<!-- Extra drawable padding right when no text exists (empty or null). This can be negative value, it's summed with other paddings right to the drawable, i.e:
 		     drawablePaddingStart drawable (drawablePaddingEndNoText + drawablePadding + paddingLeft + paddingRight) -->
 		<attr name="drawablePaddingEndNoText" format="dimension"/>
 
-		<!-- Default is false. If true, we're ignoring drawable and consider text only for layout_goneWhenEmpty -->
+		<!-- Deprecated, not used anymore -->
 		<attr name="ignoreDrawableForEmpty" format="boolean"/>
 
 		<!--
@@ -141,11 +170,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		-->
 
 		<!-- Default true. Not applied for the horizontally centered text gravity.
-		     Applied when we have ellispsize=end and text should be cut so ellipsis should be shown.
+		     Applied when we have ellipsize=end and text should be cut so ellipsis should be shown.
 		     If false, ellipsis (...) is just drawn right after the text, line background ends right after the ellipsis (+ paddings).
 		     This may cause FastTextViews not being the same widths due to line background being attached to the
 		     wrapped/cut text which size varies with the symbols in it.
-		     If true (default), the resulting FastTextView width is set to avalable width and ellipsis is centered between
+		     If true (default), the resulting FastTextView width is set to available width and ellipsis is centered between
 		     text end and right text view side -->
 		<attr name="alignEllipsis" format="boolean"/>
 
@@ -246,5 +275,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- This is changed per scene, but not animated ATM -->
 		<attr name="android:gravity"/>
+
+		<attr name="drawablePaddingStart"/>
+
+		<attr name="android:drawablePadding"/>
+
+		<attr name="drawablePosition"/>
+
+		<attr name="drawableOnly"/>
 	</declare-styleable>
 </resources>

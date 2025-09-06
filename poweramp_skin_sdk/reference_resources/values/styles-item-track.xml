@@ -2328,7 +2328,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 	<style name="BlackListHeaderButton" parent="BlackButtonBase">
 		<item name="recalcChildren">on_start</item>
-		<item name="layout_unlimitedMeasure">true</item><!-- Avoid reducing header button width due to consumed space during transition to (small) list item -->
+		<!-- Avoid reducing header button width due to consumed space during transition to (small) list item -->
+		<item name="layout_unlimitedMeasure">true</item>
 
 		<item name="android:layout_marginLeft">12dp</item>
 		<item name="android:layout_marginRight">-8dp</item>

@@ -83,6 +83,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="NavbarExtensionLogoLabel_Text">@style/NavbarExtensionLogoLabel_Text_SystemFont</item>
 		<item name="NavbarExtensionMenuLine_Text">@style/NavbarExtensionMenuLine_Text_SystemFont</item>
 		<item name="PopupButton_Text">@style/PopupButton_Text_SystemFont</item>
+		<item name="DynamicPopupButtonLabel2_Text2">@style/DynamicPopupButtonLabel2_Text2_SystemFont</item>
 
 		<item name="DialogTitle_Text">@style/DialogTitle_Text_SystemFont</item>
 		<item name="DialogToastLine1_Text">@style/DialogToastLine1_Text_SystemFont</item>
@@ -212,6 +213,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="PopupButton_Text_SystemFont" parent="PopupButton_Text">
 		<item name="android:textSize">@dimen/medium4_AltFont_textSize</item>
+	</style>
+	<style name="DynamicPopupButtonLabel2_Text2_SystemFont" parent="DynamicPopupButtonLabel2_Text2">
+		<item name="android:textSize">@dimen/medium1_AltFont_textSize</item>
 	</style>
 		
 	<style name="DialogTitle_Text_SystemFont" parent="DialogTitle_Text">

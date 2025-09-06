@@ -68,8 +68,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">match_parent</item>
 
+		<!-- Ignore parent (container) padding in the "button" collapsed state. The paddings are used for the expanded menu,
+		     but not needed for the "button" state -->
+		<item name="layout_offsets">ignorePaddings</item>
+
 		<item name="drawablePaddingStart">@dimen/PopupButtons_paddingLeft</item><!-- Padding before image -->
-		<item name="android:paddingLeft">@dimen/PopupButtons_paddingLeft</item><!-- 18dp -->
+		<item name="android:paddingLeft">@dimen/PopupButtons_paddingLeft</item><!-- Padding between image and text -->
 		<item name="android:paddingRight">40dp</item><!-- Extra padding to the right for a possible check drawable -->
 		<item name="android:paddingTop">2dp</item>
 		<item name="android:paddingBottom">2dp</item>
@@ -77,11 +81,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="drawablePosition">left</item>
 		<item name="drawableWidth">@dimen/PopupButtons_drawableSize</item><!-- ~32dp, smaller for smaller screens -->
 		<item name="drawableHeight">@dimen/PopupButtons_drawableSize</item>
+
 		<item name="android:hapticFeedbackEnabled">true</item>
 		<item name="drawableTint">?colorIconLessContrast</item>
   		<item name="android:maxLines">1</item>
 
-		<item name="android:visibility">gone</item><!-- Maniuplated by the code and scenes -->
+		<item name="android:visibility">gone</item><!-- Manipulated by the code and scenes -->
 
   		<item name="android:textAppearance">?PopupButton_Text</item>
   		
@@ -102,22 +107,27 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PopupButton_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">16dp</item>
 	</style>
-	
+
 	<style name="PopupButtonNoTint" parent="PopupButton">
 		<item name="drawableTint">@null</item>
 	</style>
   	
 	<style name="PopupButton_scene_button_menu">
 		<item name="scene">@id/scene_button_menu</item>
-		<item name="recalcChildren">on_start</item>
-		<item name="android:visibility">visible</item>
-		<item name="android:alpha">1</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/PopupButton_scene_button_menu</item>
 		<item name="layout_consumeSpace">vertical</item>
+
+		<item name="android:visibility">visible</item>
+		<item name="android:alpha">1</item>
 		<item name="applyViewParams">true</item>
+
 		<item name="drawableTint">?colorIconPrimaryForced</item><!-- NOTE: @null/@empty is not supported ATM, need explicit tint, thus using forced -->
   		<item name="android:background">@drawable/ripple_with_check_selector</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="drawablePosition">left</item>
+		<item name="drawableOnly">false</item>
+		<item name="recalcChildren">on_start</item>
 	</style>
 	
 	<style name="PopupButtonNoTint_scene_button_menu" parent="PopupButton_scene_button_menu">
@@ -190,5 +200,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- REVISIT: ? disable as default Android seekbars do not play well with the rounded backgrounds? -->
 		<item name="android:scrollbars">vertical</item>
 	</style>
-	
 </resources>

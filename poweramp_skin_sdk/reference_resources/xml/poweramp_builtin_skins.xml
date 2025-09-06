@@ -83,7 +83,6 @@
 			smallLine1="@string/applied_for_alt_full"
 			/>
 
-		<!-- NOTE: disabled for light skin as we can't reliable show labels over very light and very dark bg for this skin -->
 		<multiSwitch
 			key="labels_bg"
 			name="@string/labels_bg"
@@ -105,6 +104,26 @@
 			smallLine1="@string/applied_for_alt_full"
 			smallLine2="@string/applied_on_main_screen"
 			smallLine3="@string/aa_bg_changed_main_readable"
+			/>
+
+		<multiSwitch
+			key="player_buttons_bg"
+			name="@string/player_buttons_bg"
+			>
+			<option
+				name="@string/enabled"
+				overlapAttr=""
+				/>
+			<option
+				name="@string/hidden"
+				overlapAttr="@attr/overlap_player_buttons_no_bg"
+				/>
+		</multiSwitch>
+
+		<msg
+			align="top"
+			line1="@string/hidden"
+			smallLine1="@string/adjust_bg_hint"
 			/>
 
 		<multiSwitch
@@ -186,7 +205,7 @@
 			name="@string/skin_more_buttons"
 			summary="@string/skin_summary_more_buttons"
 			overlapAttr="@attr/overlap_more_buttons"
-			checkedByDefault="false"
+			checkedByDefault="true"
 		/>
 		
 		<!-- REVISIT: requires also modifying more_buttons + elapsed and all the related styles
@@ -241,6 +260,10 @@
 			checkedByDefault="false"
 			summary="@string/skin_summary_force_light_navbar"
 		/>
+
+		<msg
+			line1="@string/skin_navbar_firmware_warn"
+			/>
 
 		<multiSwitch
 			key="navbar_bg"
@@ -382,6 +405,26 @@
 			/>
 
 		<multiSwitch
+			key="player_buttons_bg"
+			name="@string/player_buttons_bg"
+			>
+			<option
+				name="@string/enabled"
+				overlapAttr=""
+				/>
+			<option
+				name="@string/hidden"
+				overlapAttr="@attr/overlap_player_buttons_no_bg"
+				/>
+		</multiSwitch>
+
+		<msg
+			align="top"
+			line1="@string/hidden"
+			smallLine1="@string/adjust_bg_hint"
+			/>
+
+		<multiSwitch
 			key="mu_colors"
 			name="@string/mu_colors"
 			minSdk="31"
@@ -460,7 +503,7 @@
 			name="@string/skin_more_buttons"
 			summary="@string/skin_summary_more_buttons"
 			overlapAttr="@attr/overlap_more_buttons"
-			checkedByDefault="false"
+			checkedByDefault="true"
 		/>
 		
 		<multiSwitch
@@ -497,6 +540,10 @@
 				/>
 		</multiSwitch>
 
+		<msg
+			line1="@string/skin_navbar_firmware_warn"
+			/>
+
 		<multiSwitch
 			key="navbar_bg"
 			name="@string/skin_transparent_navbar"
@@ -516,6 +563,8 @@
 				overlapStyle="@style/ActivityTheme_Blackpro_NoMainNavbarBg"
 				/>
 		</multiSwitch>
+
+
 
 		<option
 			key="navbar_offset"

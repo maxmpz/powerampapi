@@ -30,6 +30,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="TopWaveseek_maxHeight">184dp</dimen>
 	<dimen name="PopupButtons_drawableSize">32dp</dimen>
+	<dimen name="PopupButtons_drawableSize24dp">24dp</dimen>
+	<dimen name="PopupButtons_drawableSize19dp">19dp</dimen>
 	<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>
 	
 	<!-- Alt -->

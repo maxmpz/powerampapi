@@ -69,7 +69,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Number of styles to apply to list internals -->
 		<attr name="listSubstyle" format="reference"/>
 		
-		<!-- Automaticaly set top padding and add to bottomReservedSpace from status bar or/and android navigation bar.
+		<!-- Automatically set top padding and add to bottomReservedSpace from status bar or/and android navigation bar.
 			 NOTE: only top padding is modified for statusBar and bottomReservedSpace for navigationBar
 		 -->
 		<attr name="offsetWindowInsets">
@@ -189,5 +189,52 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     by the intent -->
 		<attr name="isDialog" format="boolean"/>
 	</declare-styleable>
+
+	<declare-styleable name="DraggableSourceBehavior">
+		<!-- The layout we're dragging the view in. Expected to be a ancestor of this view in the view tree -->
+		<attr name="draggingContainer" format="reference"/>
+		<!-- The target view we want to drag into. Expected to be a descendant child view of the draggingContainer -->
+		<attr name="draggingTarget" format="reference"/>
+		<attr name="draggableButtons" format="reference"/>
+		<!-- The style for the FastLayout which contains each draggable button and label -->
+		<attr name="draggableButtonContainerStyle" format="reference"/>
+		<!-- The style for the FastTextView we use for the button label -->
+		<attr name="draggableButtonLabelStyle" format="reference"/>
+	</declare-styleable>
+
+
+	<declare-styleable name="SubAAButtonsLayout">
+		<!-- Reference to the array of possible buttons -->
+		<attr name="buttons" format="reference"/>
+
+		<!-- Reference to the appropriate LoadableDraggableButtonsBehavior.
+		     We assume it's a behavior for the parent view of SubAAButtonsLayout -->
+		<attr name="loadableDraggable" format="reference"/>
+
+		<!-- Width of the slot, generally should be the same as the appropriate dragged button size,
+		     e.g. @dimen/TopBaseButtonLayout_width -->
+		<attr name="slotWidth" format="dimension"/>
+
+		<!-- Reduced size (e.g. round) slot width -->
+		<attr name="smallSlotWidth" format="dimension"/>
+
+		<!-- Slot line height -->
+		<attr name="slotLineHeight" format="dimension"/>
+
+		<!-- Vertical padding between 2 slot lines (for 2 lines mode) -->
+		<attr name="slotLinePadding" format="dimension"/>
+
+		<!-- The padding between slots. Only applied between slots, not before the first one or after the last one -->
+		<attr name="slotPadding" format="dimension"/>
+
+		<attr name="slotDrawable" format="dimension"/>
+		<attr name="highlightedSlotDrawable" format="dimension"/>
+	</declare-styleable>
+
+	<declare-styleable name="DraggableButton">
+		<attr name="draggable" format="boolean"/>
+	</declare-styleable>
+
+
 
 </resources>

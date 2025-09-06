@@ -7,7 +7,7 @@
 	<item>
 		<shape>
 			<corners android:radius="?corners_searchbar"/>
-			<solid android:color="?android:textColorSecondaryInverse"/>
+			<solid android:color="?android:textColorHintInverse"/>
 		</shape>
 	</item>
 </selector>

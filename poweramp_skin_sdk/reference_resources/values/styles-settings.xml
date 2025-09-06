@@ -39,7 +39,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="colorStroke">?android:attr/textColorSecondary</item>
 		<item name="colorBgHelp">?android:attr/textColorSecondary</item>
-		<item name="colorStrokeHelp">#f00</item>
+		<item name="colorStrokeHelp">?android:attr/textColorSecondary</item>
 		<item name="colorLessContrast">?android:attr/textColorSecondary</item><!-- Used for e.g. for main screen tinted icons, some text -->
 		<item name="colorIconLessContrast">?android:attr/textColorSecondary</item>
 		<item name="colorShade">?android:attr/textColorSecondary</item>
@@ -416,7 +416,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingLeft">18dp</item>
 		<item name="android:paddingRight">18dp</item>
 
-		<!-- NOTE: as we eat paddings, tags with icon will look diferently - bigger due to image.
+		<!-- NOTE: as we eat paddings, tags with icon will look differently - bigger due to image.
 		     useDrawableHeight=false helps with that -->
 		<item name="android:paddingTop">12dp</item>
 		<item name="android:paddingBottom">12dp</item>

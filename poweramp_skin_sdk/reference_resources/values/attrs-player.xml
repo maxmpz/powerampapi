@@ -110,7 +110,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="vis_advance_24dp"/>
 	<attr name="vis_advance_by_time_24dp"/>
 	<attr name="vis_shuffle_24dp"/>
-	
+
+	<!-- These should be tinted the same way shuffle/vis/repeat icons are -->
+	<attr name="like_no_rating_24dp"/>
+	<attr name="like_24dp"/>
+	<attr name="unlike_24dp"/>
+
+	<attr name="love_no_rating_24dp"/>
+	<attr name="love_24dp"/>
+	<attr name="unlove_24dp"/>
+
 	<attr name="reverb_24dp" format="reference"/>
 	<attr name="vis_24dp" format="reference"/>
 	<attr name="waveseek_bar" format="reference"/>
@@ -119,17 +128,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Menu items -->
 	<attr name="rescan" format="reference"/>
 	<attr name="list_options" format="reference"/>
+
 	<attr name="add_to_pl" format="reference"/>
 	<attr name="add_to_pl_in_pl" format="reference"/>
 	<attr name="add_to_pl_at_start" format="reference"/>
 	<attr name="add_to_pl_shuffled" format="reference"/>
+
+	<attr name="pl_one_24dp" format="reference"/>
+	<attr name="pl_add_24dp" format="reference"/>
+	<attr name="pl_toggle_24dp" format="reference"/>
+
 	<attr name="info" format="reference"/>
+	<attr name="audio_info_24dp" format="reference"/>
 	<attr name="send" format="reference"/>
 	<attr name="enqueue" format="reference"/>
 	<attr name="enqueue_shuffled" format="reference"/>
 	<attr name="add_next" format="reference"/>
 	<attr name="add_next_shuffled" format="reference"/>
 	<attr name="lyrics" format="reference"/>
+	<attr name="lyrics_none_24dp" format="reference"/>
 	<attr name="album_art" format="reference"/>
 	<attr name="delete" format="reference"/>
 	<attr name="resort" format="reference"/>
@@ -210,6 +227,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="grid_drag_24dp" format="reference"/>
 
 	<attr name="edit_stroke_24dp" format="reference"/>
+	<attr name="edit_tags_24dp" format="reference"/>
 
 
 	<attr name="defaultLowResAA" format="reference"/><!-- Default AA image. Strictly 512x512 bitmap -->
@@ -242,6 +260,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="plus_check" format="reference"/>
 
 	<attr name="lock_unlock_24dp_selector" format="reference"/>
+
+	<!-- NOTE: drawables for sub-aa buttons SHOULD have explicit tinting specified for them as we don't apply any external tint for them -->
+	<!-- Like selector used for sub-aa buttons -->
+	<attr name="like_selector_subaa" format="reference"/>
+	<!-- Like selector used for sub-aa buttons -->
+	<attr name="unlike_selector_subaa" format="reference"/>
+	<!-- Heart selector used for sub-aa buttons -->
+	<attr name="love_selector_subaa" format="reference"/>
+	<!-- Heart selector used for sub-aa buttons -->
+	<attr name="unlove_selector_subaa" format="reference"/>
+	<!-- The menu icon for sub-aa buttons -->
+	<attr name="menu_subaa" format="reference"/>
 
 	<!-- These are overridden for alt styles + overlap_track_labels_no_bg -->
 	<attr name="ItemTrackAAImage_scene_header_drawableTintColor" format="color"/>
@@ -905,6 +935,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="param" format="reference"/>
 		<!-- One of msg_dsp_eq_changed/msg_dsp_other_changed/msg_dsp_reverb_changed to listen to --> 
 		<attr name="updateMsgId"/>
+		<!-- if true, we're expecting -1..0..1 range from the state param -->
+		<attr name="minus1Plus1Range" format="boolean"/>
 	</declare-styleable>
 	
 	<declare-styleable name="RoundKnob">
@@ -1273,7 +1305,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: not used by TagsLayout ATM, but used by the derived classes, i.e. NavExtSettingsTag -->
 		<attr name="clickDelay"/>
 	</declare-styleable>
-
 
 	<!-- Deprecated -->
 

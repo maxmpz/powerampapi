@@ -20,6 +20,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- Used for the debugging only -->
+	<attr name="_debug_ref" format="reference"/>
+
 	<!-- Used in <include>, if true, no any error happens if android:layout doesn't exist (set to @null for that <include>) -->
 	<attr name="optional" format="boolean"/>
 	
@@ -263,6 +266,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- E.g. @id/list (== bus supporting view id) or @id/bus_gui, or parent -> to attach to the first available msg bus up
 		     the views hierarchy -->
 		<attr name="busId" format="reference|integer">
+			<!-- Attach to the first ActionBusHostView parent -->
 			<enum name="parent" value="0"/>
 		</attr>
 		<attr name="msgId" format="reference|integer"/><!-- E.g. @id/cmd_list_select_all -->
@@ -273,14 +277,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="repeatLongPressPeriod" format="integer"/><!-- If non zero, repeated longPressMsgId events sent each repeatLongPressPeriod ms -->
 		
 		<attr name="arg1" format="reference|integer|boolean|float|fraction|dimension|color"><!-- Optional argument #1 -->
-			<enum name="checkedState" value="-1"/><!-- If parent view is Chechable, then arg will have checked state (1==checked)) -->
+			<enum name="checkedState" value="-1"/><!-- If parent view is Checkable, then arg will have checked state (1==checked)) -->
 		</attr>
 		<attr name="arg2" format="reference|integer|boolean|float|fraction|dimension|color"><!-- Optional argument #2 -->
 			<enum name="checkedState" value="-1"/>
 		</attr>
 		<!-- Optional string argument -->
 		<attr name="string" format="string"/>
-		
+
+		<attr name="longArg1" format="reference|integer|boolean|float|fraction|dimension|color"><!-- Optional argument #1 -->
+			<enum name="checkedState" value="-1"/><!-- If parent view is Checkable, then arg will have checked state (1==checked)) -->
+		</attr>
+		<attr name="longArg2" format="reference|integer|boolean|float|fraction|dimension|color"><!-- Optional argument #2 -->
+			<enum name="checkedState" value="-1"/>
+		</attr>
+		<!-- Optional string argument -->
+		<attr name="longString" format="string"/>
+
 		<!-- Optional confirmation dialog title. Should be set for dialog to show -->
 		<attr name="confirmTitle" format="string|reference"/>
 		<!-- Optional confirmation dialog text -->
@@ -315,12 +328,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Behavior (pseudo-view-tag which attaches to some real view and modifies its behavior in some way) to enable/disable views based on Poweramp state buses
 		 NOTE: also applied to BusActionButton -->
 	<declare-styleable name="BusDisabledForStateBehavior">
-		<attr name="disableForStateBusId"/><!-- E.g. @id/list -->
-		<attr name="disableForStateId" format="reference"/><!-- E.g. @id/state_list_selection_mode -->
-		<attr name="disableForStateId_2" format="reference"/><!-- Valid only if stateId defined -->
-		<attr name="enableForStateId" format="reference"/><!-- E.g. @id/state_list_selection_mode -->
-		<attr name="disableForStateMsgId" format="reference"/><!-- Can match stateIds or can be any other message. When msg received, the appropriate disable/enable ids are checked -->
-		<attr name="disableForStateMsgId_2" format="reference"/><!-- Can match stateIds or can be any other message. When msg received, the appropriate disable/enable ids are checked -->
+		<!-- E.g. @id/list -->
+		<attr name="disableForStateBusId"/>
+		<!-- E.g. @id/state_list_selection_mode -->
+		<attr name="disableForStateId" format="reference"/>
+		<!-- Valid only if stateId defined -->
+		<attr name="disableForStateId_2" format="reference"/>
+		<!-- E.g. @id/state_list_selection_mode -->
+		<attr name="enableForStateId" format="reference"/>
+		<!-- Can match stateIds or can be any other message. When msg received, the appropriate disable/enable ids are checked,
+		     so we don't directly disable based just on the msg -->
+		<attr name="disableForStateMsgId" format="reference"/>
+		<!-- Can match stateIds or can be any other message. When msg received, the appropriate disable/enable ids are checked,
+		     so we don't directly disable based just on the msg -->
+		<attr name="disableForStateMsgId_2" format="reference"/>
 	</declare-styleable>
 	
 	<!-- Extends BusDisabledForStateBehavior -->
@@ -345,25 +366,40 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="stateBusId" format="reference"/>
 		<!-- State id to set buttons to -->
 		<attr name="stateId"/>
-		<!-- Message id to listen from state bus msgbus and set buttons to arg1 --> 
+		<!-- Message id to listen from state bus msgbus and set buttons to arg1 or get state for, if getStateOnMsg=true -->
 		<attr name="msgId"/>
 		<!-- If true, state bus will be queried on message when received instead of using arg1 for msgId message -->
 		<attr name="getStateOnMsg" format="boolean"/>
 		
-		<!-- If set, arg1 will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
+		<!-- If set, arg1 will be overridden in BUTTON mode -->
 		<attr name="arg1"/>
-		<!-- If set, arg2 will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
+		<!-- If set, arg2 will be overridden in BUTTON mode -->
 		<attr name="arg2"/>
-		<!-- If set, string will be overridden for BusActionButtons inside when clicked NOT in popup mode -->
+		<!-- If set, string will be overridden in BUTTON mode -->
 		<attr name="string"/>
 		
 		<!-- Buttons message @id - the same command message id is used for all buttons -->
 		<attr name="buttonsMsgId" format="reference"/>
 		<!-- Buttons bus id - the same msg bus is used for all buttons -->
 		<attr name="buttonsBusId" format="reference"/>
-		<!-- Integer-array of arg1 for each button. If defined, this array is used to remap index for the reported selected index -->
+		<!-- Optional integer-array of arg1 for each button.
+		     If defined, this array is used to remap index for the reported selected index. The lengths of the array
+		     should be not less than number of labels -->
 		<attr name="buttonsArg1" format="reference"/>
-		
+
+		<!-- The delay before msg is sent. If delayedButtonMsgIds is defined, then delayedButtonMsgIds is sent with the delay
+		     and the "normal" buttonsMsgId is set immediately -->
+		<attr name="msgDelay" format="integer"/>
+
+		<!-- The optional delayed msg to sent, if msgDelay is > 0 -->
+		<attr name="delayedButtonMsgId" format="reference"/>
+
+		<!-- If non-0, we'll send this in the BUTTON mode -->
+		<attr name="buttonMsgIdInButtonMode" format="reference"/>
+
+		<!-- If non-0, we'll send this as delayed msg in the BUTTON mode -->
+		<attr name="delayedButtonMsgIdInButtonMode" format="reference"/>
+
 		<!-- If defined, BusDisabledForStateBehavior is created for this button layout --> 
 		<attr name="disableForStateBusId"/>
 		
@@ -475,20 +511,40 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="alwaysCheckState" format="boolean"/>
 	</declare-styleable>
 		
-	<!-- Extra options for BusCheckableStateBehavior, BusCheckableStateHelper, BusCheckBox which allow checking/unchecking view based on state -->  
+	<!-- Extra options for BusCheckableStateHelper, BusCheckBox which allow checking/unchecking view based on state -->
 	<declare-styleable name="BusCheckableStateHelper">
 		<!-- State bus to listen/query to -->
 		<attr name="stateBusId"/>
+		<!-- Bus to send check/uncheck commands. By default this is the same as stateBusId, but can be also changed -->
+		<attr name="cmdBusId" format="reference"/>
 		<!-- Boolean state to retrieve from StateBus. May match stateMsgId -->
 		<attr name="booleanStateId" format="reference"/>
 		<!-- Msg id with the boolean value in arg1 to listen to -->
 		<attr name="stateMsgId" format="reference"/>
-		<!-- If true, true state == checked, otherwise, false state == checked -->
+		<!-- Default is true. If true, true state == checked, otherwise, false state == checked -->
 		<attr name="checkedIfTrue" format="boolean"/>
-		<!-- Cmd to issue on check -->
+		<!-- Cmd to issue on check, optional -->
 		<attr name="checkCmdId" format="reference"/>
-		<!-- Cmd to issue on uncheck -->
+		<!-- Cmd to issue on uncheck, optional -->
 		<attr name="uncheckCmdId" format="reference"/>
+
+		<!-- Default is true. If false, we disallow unchecking by clicking (e.g. for radio buttons) -->
+		<attr name="uncheckOnClick" format="boolean"/>
+		<!-- Default is none. If non-none, we send arg1|2=boolean checked|unchecked -->
+		<attr name="sendBooleanArg">
+			<enum name="no" value="0"/>
+			<!-- Send the actual value of the checked as is -->
+			<enum name="checkedArg1" value="1"/>
+			<!-- Send the inverted value of the checked -->
+			<enum name="invertedArg1" value="2"/>
+			<!-- Send the actual value of the checked as is -->
+			<enum name="checkedArg2" value="3"/>
+			<!-- Send the inverted value of the checked -->
+			<enum name="invertedArg2" value="4"/>
+		</attr>
+
+		<!-- Default is false. If true, stateBus will be asked for the state on stateMsgId (instead of looking into arg1) -->
+		<attr name="recheckOnMsg" format="boolean"/>
 	</declare-styleable>
 	
 	<!-- Number of attributes to show formatted text based on Poweramp state buses -->
@@ -629,7 +685,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     the parent while in popup state.
 		     This is needed when we need relayouts in the app while popup is active, such as for some actions pressed in
 		     the popup, while popup stays.
-		     WARNING: this is dangereous attribute due to the stub view reusing the popup view id, while being
+		     WARNING: this is dangerous attribute due to the stub view reusing the popup view id, while being
 		     a completely different type of view, so any logic touching the popup view, esp. by id should be aware
 		     of this attribute being used -->
 		<attr name="keepLayoutForPopup" format="boolean"/>
@@ -638,7 +694,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="maxStretchOvershoot"/>
 	</declare-styleable>
 
-	<!-- Layout looking like button, but transformed to a menu on click/long click -->
+	<!-- Layout looking like button, but transformed to a menu on the click/long click -->
 	<declare-styleable name="PopupButtonLayout">
 		<!-- Default is false, and popup is opened by long click. If true, popup is opened by short click -->
 		<attr name="openOnClick"/> 
@@ -647,8 +703,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="popupExitAnimTime"/><!-- ms -->
 		<attr name="buttonAnimTime" format="integer"/><!-- ms -->
 		<attr name="menuPlaceholder"/>
-		<!--<attr name="menuItemsLayout"/>--><!-- NOTE: not supported here ATM -->
-		
+
 		<!-- Button labels string @array --> 
 		<attr name="buttonsLabels" format="reference"/>
 		<!-- Button drawables @array -->
@@ -678,8 +733,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="ToastFrameLayout">
 		<attr name="toastDuration" format="integer"/><!-- ms. This is default value, which is often overridden by code -->
 		<attr name="cmdId" format="reference"/><!-- By default - cmd_gui_show_toast -->
-		<!-- If set, this layout will queue and show toasts in order. If queueMinMs == 0, toasts will be shown with their duration, otherwise new toast will reduce 
-		     previous toast duration to queueMinMs ms -->
+		<!-- If set, this layout will queue and show toasts in order. If queueMinMs == 0, toasts will be shown with their
+		     duration, otherwise new toast will reduce
+		     previous toast duration to queueMinMs ms, UNLESS the message is Int.MAX_VALUE, which is never reduced -->
 		<attr name="queueMinMs" format="integer"/>
 	</declare-styleable>
 	
@@ -690,7 +746,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="maxStretchOvershoot" format="dimension"/>
 		<attr name="disallowParentScroll" format="boolean"/>
 		<attr name="noScrollbars" format="boolean"/><!-- If true, avoid enabling scrollbar drawing -->
-		
+		<!-- If set, we'll be looking in the parent FastLayout for that scrollerView by id -->
+		<attr name="scrollerView" format="reference"/>
+
 		<attr name="android:colorEdgeEffect"/><!-- Defines overshoot edge effect color -->
 	</declare-styleable>
 	
@@ -1000,6 +1058,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Padding between drawable and text. Basically it's added to paddingLeft when drawable exists -->
 		<attr name="android:drawablePadding"/>
 	</declare-styleable>
-
 
 </resources>

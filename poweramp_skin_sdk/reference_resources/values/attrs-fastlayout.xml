@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -52,15 +52,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT)
 		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size.
 		     This allows multiple views with same relative size (e.g. 4 views with layout_widthPercent="25%" in a row) also to consume
-		     space and being laid out as expeted in a sequence.
+		     space and being laid out as expected in a sequence.
 		     The views which consume space still may reduce the available size by using appropriate consume flags
-		     NOTE: this view horizontal margins reduce resulting width for layout_widthPercent.
-		     This is to match behavior of "match_parent" which is equal to layout_widthPercent="100%". Horizontal margins always reduce size of the view
-		     with layout_width="match_parent". Use layout_percentIngoresMargin to override this behavior -->
+		     NOTE: this view margins also reduce resulting width for layout_*Percent.
+		     This is to match behavior of "match_parent" which is equal to layout_*Percent="100%". The margins always reduce
+		     size of the view with layout_*="match_parent". Use layout_percentIgnoresMargins to override this behavior and make view
+		     margins participate in the layout_*Percent calculations -->
 		<attr name="layout_widthPercent" format="fraction"/>
 		<!-- NOTE: layout_*Percent works properly for FastLayout with fixed width/height (i.e. non WRAP_CONTENT)
 		     NOTE: layout_*Percent doesn't take consumed space into account and always uses the unmodified parent size
-		     NOTE: this view vertical margins reduce resulting height for layout_heightPercent. Use layout_percentIngoresMargin to override this behavior -->
+		     NOTE: this view margins also reduce resulting width for layout_*Percent.
+		     This is to match behavior of "match_parent" which is equal to layout_*Percent="100%". The margins always reduce
+		     size of the view with layout_*="match_parent". Use layout_percentIgnoresMargins to override this behavior and make view
+		     margins participate in the layout_*Percent calculations -->
 		<attr name="layout_heightPercent" format="fraction"/>
 
 		<!-- Defines max possible width for the child -->
@@ -110,15 +114,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- layout_attach* attribute can attach view to:
 			 - any other child view, including flex layout child.
-			   Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
-			 - "parent" attaches to parent side, accounting for any "consumed" space (if any) from side(s) where view is attached or "gravitated" to
+			   Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first
+			   (xml order is ignored).
+			 - "parent" attaches to parent side, accounting for any "consumed" space (if any) from side(s) where view is attached or
+			   "gravitated" to
 			 - percent value (e.g. 50%) positions view by offset calculated form parent width/height * percent.
 			   This works only if appropriate width or height is fixed for the parent FastLayout (i.e. not WRAP_CONTENT).
 			 - "inset" - like parent, but offsets by window inset on given side. Makes sense only for parent views which align with
-			   the appropriate screen side
+			   the appropriate screen side. Ignores consumed space
 			 - "none" - resets any previous value (e.g. set by theme style)
 		-->
-		<!-- layout_attachLeft => attaches left edge of view to right edge of target view or to parent left, or to parent fraction width from left -->
 		<attr name="layout_attachLeft" format="reference|integer|fraction">
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
@@ -133,25 +138,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
 			<enum name="inset" value="-2"/>
-			<!-- Attaches to the right parent side, calculated prior laying out of this view. If parent has a fixed width, that is the same as "parent",
-			     otherwise the right side may grow appropriately with every child laid out before this view -->
+			<!-- Attaches to the right parent side, calculated prior laying out of this view. If parent has a fixed width, that is the same
+			     as "parent", otherwise the right side may grow appropriately with every child laid out before this view -->
 			<enum name="side" value="-3"/>
 		</attr>
 		<attr name="layout_attachBottom" format="reference|integer|fraction">
 			<enum name="parent" value="0"/>
 			<enum name="none" value="-1"/>
 			<enum name="inset" value="-2"/>
-			<!-- Attaches to the bottom parent side, calculated prior laying out of this view. If parent has a fixed height, that is the same as "parent",
-			     otherwise the bottom side may grow appropriately with every child laid out before this view -->
+			<!-- Attaches to the bottom parent side, calculated prior laying out of this view. If parent has a fixed height, that is the
+				 same as "parent", otherwise the bottom side may grow appropriately with every child laid out before this view -->
 			<enum name="side" value="-3"/>
 		</attr>
 
 		<!-- layout_attach*To* (where *= Right|Left|Top|Bottom => attaches appropriate edge of the view to same edge of the target view.
 			 layout_attach*To* and layout_attach* for the same * (side) are mutually exclusive. layout_attach*To* takes priority.
-			 (Since 940) If layout_attach*="value %" is specified, then this view is also offset from the target view by the specified percent of the target
-			 size in the given axis (width for Right|Left, height for Top|Bottom).
+			 (Since 940) If layout_attach*="value %" is specified, then this view is also offset from the target view by the specified
+			 percent of the target size in the given axis (width for Right|Left, height for Top|Bottom).
 			 This allows percent positioning relative to the target view.
-			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first (xml order is ignored).
+			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first
+			 (xml order is ignored).
 		-->
 
 		<attr name="layout_attachRightToRight" format="reference"/>
@@ -159,16 +165,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="layout_attachLeftToLeft" format="reference"/>
 		<attr name="layout_attachTopToTop" format="reference"/>
 
-		<!-- By default, view gravitates to its parent (via standard android:layout_gravity). If layout_gravityTarget is some non-parent view id,
-			 that target view becomes the point of gravitaion. E.g. if android:layout_gravity="center" and layout_gravityTarget="@id/some_view", this view
-			 will be centered relatively to the target "some_view".
+		<!-- By default, view gravitates to its parent (via standard android:layout_gravity). If layout_gravityTarget is some non-parent
+		     view id, that target view becomes the point of gravitaion. E.g. if android:layout_gravity="center" and
+		     layout_gravityTarget="@id/some_view", this view will be centered relatively to the target "some_view".
+
 			 The gravity target view should be in the same parent as this view.
+
 			 If gravity target view doesn't exist, or is GONE, view gravitates to parent.
+
 			 Not supported for layout_flex views.
 			 Cyclic references are not allowed (you'll see stack overflow exception). The referenced view will be laid out first
-			 (xml order is ignored).<br><br>
+			 (xml order is ignored).
 
-			 NOTE: this disables accounting for gravity based consumed parent space, as gravityTarget view bounds become the reference bounds for this view
+			 NOTE: this disables accounting for gravity based consumed parent space, as gravityTarget view bounds become the reference
+			 bounds for this view.
+
 			 Consume space still works if layout_attach*="parent" is used<br><br>
 
 			 NOTE: doesn't trigger referenced view layout and doesn't take layout_goneWhenEmpty=true into account
@@ -184,14 +195,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="both" value="0x0300"/><!-- Default -->
 		</attr>
 
-		<!-- Applies additional offsets for gravity AND parent available size for this child on appropriate side based on window insets.
+		<!-- Applies additional offsets for gravity AND parent available size for this child on appropriate side.
+		     The offset is based either on insets (inset is added to the side) or paddings (paddings are ignored).
 		     By default, gravity aligns to the parent side ignoring possible insets. Also, for match_parent size, %-percent size, or any
 		     other parent-related size, by default no insets are accounted for.
-		     With this attribute, appropriate side inset WILL BE applied.
+		     With this attribute layout_offsets=inset*, appropriate side inset WILL BE applied.
+
 		     For example, view with layout_offsets=insets and match_parent/match_parent will fill parent according to window insets.
 		     For the given view, appropriate sides are offset, so attach*="parent" will also attach to the inset if appropriate
 		     side layout_offsets is specified (thus, avoid attaching to "inset", as it will cause double inset offset attachment).
-		     This, of course, works if insets are propagated appropriately -->
+		     This, of course, works if insets are propagated appropriately
+
+		     ignorePadding* values negate the appropriate parent padding from the child position, thus child can be placed
+		     to the actual side of the parent disregarding the parent padding
+		     -->
 		<attr name="layout_offsets">
 			<flag name="insetLeft"   value="0x10000000"/>
 			<flag name="insetTop"    value="0x20000000"/>
@@ -199,6 +216,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<flag name="insetBottom" value="0x80000000"/>
 			<!-- All 4 inset sides -->
 			<flag name="insets"      value="0xF0000000"/>
+
+			<flag name="ignorePaddingLeft"   value="0x1000000"/>
+			<flag name="ignorePaddingTop"    value="0x2000000"/>
+			<flag name="ignorePaddingRight"  value="0x4000000"/>
+			<flag name="ignorePaddingBottom" value="0x8000000"/>
+			<!-- All 4 padding sides -->
+			<flag name="ignorePaddings"      value="0xF000000"/>
 		</attr>
 
 
@@ -247,10 +271,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			-->
 			<flag name="skip_last_margin" value="0x80000"/>
 
-			<!-- Resets appropriate horizontal consumed space on one side (depending on view gravity, e.g. view attached to left will reset left side consumed space) -->
-			<!-- Works like <br/> -->
+			<!-- Resets appropriate horizontal consumed space on one side (depending on view gravity, e.g. view attached to left will reset
+			     left side consumed space).
+			     Works like <br/> -->
 			<flag name="reset_horizontal" value="0x4000000"/>
-			<!-- Resets appropriate vertical consumed space on one side (depending on view gravity, e.g. view attached to top will reset top side consumed space) -->
+			<!-- Resets appropriate vertical consumed space on one side (depending on view gravity, e.g. view attached to top will reset top
+			     side consumed space) -->
 			<flag name="reset_vertical" value="0x8000000"/>
 			<!-- reset_horizontal and reset_vertical combined -->
 			<flag name="reset_both" value="0xC000000"/>
@@ -263,26 +289,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<!-- Resets horizontal consumed space on all 4 sides (left/right/top/bottom) -->
 			<flag name="reset_full" value="0x30000000"/>
 
-			<!-- Automatically resets appropriate axis as soon as no more space on this axis exists and consumes other axis on such reset.
-				 This results in automatic layout break to new "line" (or column, for vertical layout).
+			<!-- Automatically resets appropriate axis as soon as no more space on this axis exists and consumes the other axis on such
+			     reset.
+			     This results in automatic layout break to the new "line" (or a column, for the vertical layout).
 				 E.g. if multiple views have layout_consumeSpace="horizontal|reset_auto", they will be laid out in cols, then, rows.
+
 				 NOTE: layout_consumeSpace is processed after the given view is laid out. Thus, if there is no enough space for view
-				 due to consumed space, view will "overshoot" or will be shrinked.
-				 Thus, reset_auto works best with predefined percent view dimensions, e.g.
+				 due to consumed space, view will "overshoot" or will be shrank.
+				 So, reset_auto works best with the predefined percent view dimensions, e.g.
 				 multiple views with w:layout_widthPercent="25%" w:layout_consumeSpace="horizontal|reset_auto" will be laid out
 				 in cols then in in rows, 4 views per a row.
-				 NOTE: reset_auto by default resets horizontal axis and consumes vertical.
-				 Only if vertical (without also horizontal) is specified for given view, vertical axis will be reset, and horizontal consumed.
-				 Other reset_* flags are processed as usual, thus, can cause double consumption and other side effects
-				 if used together with reset_auto.
+
+				 NOTE: reset_auto by the default resets horizontal axis and consumes vertical.
+				 Only if vertical (without also horizontal) is specified for the given view, the vertical axis will be reset, and
+				 the horizontal obe is consumed.
+
+				 Other reset_* flags are processed as usual, and may cause double consumption and other side effects if used together
+				 with reset_auto.
 			 -->
 			<flag name="reset_auto" value="0x40000000"/>
 
-			<!-- This shouldn't be combined with the other layout_consumeSpace flags, except for skip_last_margin.
+			<!-- This shouldn't be combined with other layout_consumeSpace flags, except for the skip_last_margin.
 			     Causes items to be positioned one by one as horizontal stacks with the auto wrapping to the next "line".
 			     The order of horizontal stacks is left-to-right unless layout_gravity=right for the view.
 			     Views are measured with the whole available container width (other horizontal consumed space is ignored,
-			     similarily to layout_*Percent measurement) -->
+			     similarly to layout_*Percent measurement).
+			     This is somewhat similar to horizontal|reset_auto, except it's not just about reseting after we overshoot or
+			     at the right edge of the container, but it checks if the view fits the available room in advance -->
 			<flag name="stack_horizontal" value="0x800000"/>
 
 		</attr>
@@ -308,6 +341,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		     For FastTextView and the derived views this also ignores inner font paddings, aligning
 		     the view almost to the text content pixels or the icon (when drawableAdj is defined for the FastTextView).
+		     (This works best for left-aligned FastTextViews or the views which are not much wider than the text inside).
 		     layout_compensateScales is important here, as it's used to scale all the paddings to ignore.
 		     See also FastTextView eatFontPads.
 
@@ -337,7 +371,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     Setting this attribute to true removes margins from the calculation, making whole space available for the child -->
 		<attr name="layout_wrapIgnoresMargins" format="boolean"/>
 
-		<!-- If true, applied gravity ignores this view margings. Note that gravity may be applied by one axis, both axises, or none,
+		<!-- If true, applied gravity ignores this view margins. Note that gravity may be applied by one axis, both axes, or none,
 		     and margins are ignored for the applied gravity axis. Note that also, if no other layout_attach* attributes defined for the axis,
 		     gravity is applied on this axis -->
 		<attr name="layout_gravityIgnoresMargins" format="boolean"/>
@@ -407,10 +441,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 Default is none (-1). If set to [0..3] defines the gravity group for this view.
 		     The first view in xml order defines the group layout_gravity and layout_gravityTarget.
 		     The gravity attributes for the subsequent views in this group are ignored, except layout_gravityIgnoresMargins which is always
-		     honored per the view.
+		     honored per the view in this case.
 
-		     The group views are laid out sequentaly in the axis of the group gravity. Only one axis is processed by group - if two
-		     gravity axises are defined, only the horizontal one is handled.
+		     The group views are laid out sequentially in the axis of the group gravity. Only one axis is processed by group - if two
+		     gravity axes are defined, only the horizontal one is handled.
 		     The other axis of the view stays laid out by the other attributes, as usually.
 
 		     Multiple views should be in the group for it to make sense.
@@ -447,11 +481,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		     The groups allows simple dynamic centered alignment of views (especially with layout_targetGravity=some view),
 		     when views can be gone/layout_goneWhenEmpty.
-		     For example, it makes title + line2 + meta + rating to be always vertacally centered as a whole, no matter which
+		     For example, it makes title + line2 + meta + rating to be always vertically centered as a whole, no matter which
 		     children are gone from this set of views.
 
 		     NOTE: the gravityGroup layouts are processed after main layout cycle, meaning that any other views attached to
-		     gravityGroup member views will attach to the "original" position of the member, before  the gravityGroup applied gravity.
+		     gravityGroup member views will attach to the "original" position of the member, before the gravityGroup applied gravity,
+		     so avoid attaching to such views on the axis of the gravityGroup
 		 -->
 		<attr name="layout_gravityGroup" format="enum|integer">
 			<enum name="none" value="-1"/>
@@ -461,7 +496,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		     But if that child has gravity with 2 axis, gravityGroup will apply first (horizontal) axis.
 
 		     layout_gravityGroupAxis allows overriding that axis. layout_gravityGroupAxis is applied only when
-		     the first group member gravity has both horizontal and vertical axises (e.g. ==center).
+		     the first group member gravity has both horizontal and vertical axes (e.g. ==center).
 
 		     This attribute is parsed only for the first group member view
 		-->
@@ -470,9 +505,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="vertical" value="1"/>
 		</attr>
 
-		<!-- NOTE: basic MarginLayoutParams attrs are needed for programmatic LP creation based on style attr/res. MarginLayoutParams doesn't support that,
-			 so FastLayoutLP handles margin parsing on its own
-			 NOTE: there is a slight difference for marginStart/End parsing. FastLayout always parses them in supportsRtl=true mode, meaning,
+		<!-- NOTE: basic MarginLayoutParams attrs are needed for programmatic LP creation based on style attr/res. MarginLayoutParams
+			 doesn't support that, so FastLayoutLP handles margin parsing on its own
+			 NOTE: there is a slight difference for marginStart/End parsing.
+			 FastLayout always parses them in supportsRtl=true mode, meaning,
 			 if marginStart or marginEnd or both are defined, then marginStart and marginStart are used instead of marginLeft/Right.
 			 If only one of the marginStart/End attributes defined, other attribute is considered to be 0 (marginLeft/Right ignored)
 		-->

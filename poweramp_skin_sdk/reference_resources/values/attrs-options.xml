@@ -38,6 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="OptionRatingDisabled" format="reference"/>
 		
 		<!-- Applied (over main theme style) when track counter is enabled -->
+		<!-- Deprecated, not used anymore -->
 		<attr name="OptionCounter" format="reference"/>
 		
 		<!-- Applied (over main theme style) when Chromecast buttons should be disabled completely. NOTE: default style shows CC button on top of the main screen AA -->

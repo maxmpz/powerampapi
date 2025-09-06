@@ -85,6 +85,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="overlap_track_labels_centered" format="reference"/>
 		<!-- No bg for track labels -->
 		<attr name="overlap_track_labels_no_bg" format="reference"/>
+		<attr name="overlap_player_buttons_no_bg" format="reference"/>
 		<attr name="overlap_less_rounding" format="reference"/>
 		<attr name="overlap_light_buttons" format="reference"/>
 		<attr name="overlap_knobs_hilite_mono" format="reference"/>

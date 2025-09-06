@@ -9,7 +9,7 @@
 		style="@style/TopHelpMain"
 
 		w:help_anchor="@id/list"
-		w:help_position="center"
+		w:help_position="top"
 		w:help_inside="true"
 
 		w:showArrow="false"
@@ -23,6 +23,23 @@
 		android:text="@string/selection_menu"
 		/>
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
+
+
+	<com.maxmpz.widget.player.Help android:id="@+id/help_main_bubble2"
+		style="@style/TopHelpNormal"
+
+		w:help_anchor="@id/list"
+		w:help_position="center"
+		w:help_inside="true"
+
+		w:showArrow="false"
+
+		w:html="@string/for_lists_supporting_dragging"
+		w:line1="@string/multiple_checked_items_dragged_msg"
+		w:line2="@string/empoji_feature_pak_1"
+		/>
+	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
+
 
 	<include android:layout="@layout/merge_help_buttons"/>
 

@@ -106,6 +106,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="NavbarExtensionLogoLabel_Text">@style/NavbarExtensionLogoLabel_Text_BoldFont</item>
 		<item name="NavbarExtensionMenuLine_Text">@style/NavbarExtensionMenuLine_Text_BoldFont</item>
 		<item name="PopupButton_Text">@style/PopupButton_Text_BoldFont</item>
+		<item name="DynamicPopupButtonLabel2_Text2">@style/DynamicPopupButtonLabel2_Text2_BoldFont</item>
 
 		<item name="DialogTitle_Text">@style/DialogTitle_Text_BoldFont</item>
 		<item name="DialogToastLine1_Text">@style/DialogToastLine1_Text_BoldFont</item>
@@ -266,6 +267,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PopupButton_Text_BoldFont" parent="PopupButton_Text">
 		<item name="android:fontFamily">?BoldFont_font</item>
 		<item name="android:textSize">@dimen/medium4_AltFont_textSize</item>
+	</style>
+	<style name="DynamicPopupButtonLabel2_Text2_BoldFont" parent="DynamicPopupButtonLabel2_Text2">
+		<item name="android:fontFamily">?BoldFont_medium_font</item>
+		<item name="android:textSize">@dimen/moderate0_AltFont_textSize</item>
 	</style>
 		
 	<style name="DialogTitle_Text_BoldFont" parent="DialogTitle_Text">

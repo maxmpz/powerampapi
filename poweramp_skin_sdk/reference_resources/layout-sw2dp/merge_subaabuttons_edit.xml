@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2025 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	>
+
+<com.maxmpz.widget.base.Shim android:id="@+id/sub_aa_buttons_edit_shim"
+	style="@style/SubAAButtonsEditShim"
+	/>
+
+<!-- NOTE: popup buttons generally require the scene layout somewhere in the parent containers -->
+<!-- NOTE: empty scenes are needed for a smoother animation so child views are animated in the parent during the
+	 appearance scene -->
+<com.maxmpz.widget.base.SceneFastLayout android:id="@+id/sub_aa_buttons_edit_top_container"
+	style="@style/SubAAButtonsEditTopContainer"
+	>
+
+	<com.maxmpz.widget.base.FastLayout android:id="@+id/sub_aa_buttons_edit_panel"
+		style="@style/SubAAButtonsEditPanel"
+		>
+		<com.maxmpz.widget.base.BusActionButton
+			style="@style/SubAAButtonsSettingsButton"
+			w:busId="@id/bus_app_cmd"
+			w:msgId="@id/cmd_app_open_settings"
+			w:string="ui_player#edit_player_screen_buttons"
+			android:contentDescription="@string/settings"
+			/>
+		<SceneParams w:scene="@+id/scene_visible"/>
+
+		<com.maxmpz.widget.base.FastLayout android:id="@+id/dialog_buttons"
+			style="@style/SubAAButtonsEditDialogButtons"
+			>
+			<!-- NOTE: stateBusId is set dynamically by SelectionMenuBehavior -->
+			<com.maxmpz.widget.base.BusCheckBox android:id="@+id/centered"
+				style="@style/SubAAButtonsEditCenteredCheckBox"
+
+				android:text="@string/centered"
+
+				w:stateBusId="@+id/sub_aa_buttons"
+				w:stateMsgId="@+id/state_centered"
+				w:booleanStateId="@+id/state_centered"
+				w:checkCmdId="@+id/cmd_set_centered"
+				w:uncheckCmdId="@+id/cmd_set_compact"
+				/>
+			<SceneParams w:scene="@+id/scene_visible"/>
+
+			<com.maxmpz.widget.base.BusCheckBox android:id="@+id/two_lines"
+				style="@style/SubAAButtonsEditTwoLinesCheckBox"
+
+				android:text="@string/two_lines"
+
+				w:stateBusId="@+id/sub_aa_buttons"
+				w:stateMsgId="@+id/state_two_lines"
+				w:booleanStateId="@+id/state_two_lines"
+				w:checkCmdId="@+id/cmd_set_two_lines"
+				w:uncheckCmdId="@+id/cmd_set_two_lines"
+				w:sendBooleanArg="checkedArg1"
+				/>
+			<SceneParams w:scene="@+id/scene_visible"/>
+
+			<com.maxmpz.widget.base.BusCheckBox android:id="@+id/small"
+				style="@style/SubAAButtonsEditSmallCheckBox"
+
+				android:text="@string/small_buttons_short"
+
+				w:stateBusId="@+id/sub_aa_buttons"
+				w:stateMsgId="@+id/state_small_buttons"
+				w:booleanStateId="@+id/state_small_buttons"
+				w:checkCmdId="@+id/cmd_set_small_buttons"
+				w:uncheckCmdId="@+id/cmd_set_small_buttons"
+				w:sendBooleanArg="checkedArg1"
+				/>
+			<SceneParams w:scene="@+id/scene_visible"/>
+
+			<!--
+			<com.maxmpz.widget.base.BusActionButton
+				style="@style/SubAAButtonsEditDialogButton1"
+				w:busId="@id/bus_gui"
+				w:msgId="@+id/cmd_gui_end_button_edit"
+				w:animOnClick="true"
+				android:text="@string/close"
+				/>
+			<SceneParams w:scene="@+id/scene_visible"/>
+			-->
+		</com.maxmpz.widget.base.FastLayout>
+		<SceneParams w:scene="@+id/scene_visible"/>
+
+		<com.maxmpz.widget.base.FastLayout
+			style="@style/SubAAButtonsEditScrollableCont"
+			>
+
+			<com.maxmpz.widget.base.FastLayout
+				style="@style/SubAAButtonsEditButtonsCont"
+				>
+				<com.maxmpz.widget.player.DraggableSourceBehavior
+					w:draggingContainer="@+id/top_container"
+					w:draggingTarget="@+id/sub_aa_buttons"
+					w:draggableButtons="@array/sub_aa_buttons"
+					w:draggableButtonContainerStyle="@style/EditableButtonContainer"
+					w:draggableButtonLabelStyle="@style/EditableButtonLabel"
+					/>
+
+			</com.maxmpz.widget.base.FastLayout>
+
+
+			<com.maxmpz.widget.base.ScrollingBehavior
+				w:disallowParentScroll="true"
+				w:noScrollbars="true"
+				/>
+		</com.maxmpz.widget.base.FastLayout>
+		<SceneParams w:scene="@+id/scene_visible"/>
+
+		<TextView android:id="@+id/hint"
+			style="@style/SubAAButtonsEditHint"
+			android:text="@string/hold_and_drag_buttons"
+			/>
+		<SceneParams w:scene="@+id/scene_visible"/>
+
+	</com.maxmpz.widget.base.FastLayout>
+	<SceneParams w:scene="@+id/scene_visible"
+		style="@style/SubAAButtonsEditPanel_scene_visible"
+		/>
+
+	<!-- Required for smooth dialog animation during 1-2lines transition -->
+	<SceneParams w:forId="parent" w:scene="defaultScene" w:scene_2="@id/scene_playing" w:scene_3="@id/scene_vis_temp_ui"
+		w:scene_4="@id/scene_vis_w_ui" w:scene_5="@id/scene_vis"
+		w:recalcChildren="dynamic"
+		/>
+</com.maxmpz.widget.base.SceneFastLayout>
+</merge>

@@ -79,6 +79,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			This behavior tries to manipulate parent layout scene params (margins) the way it animates soft keyboard state.
 			Also automatically disables fitsSystemWindows if needed and applies status bar offset via top margin.
 			NOTE: this changes insets and should be compatible with possible inset/bounds changes due to theming (e.g. pre-v29 vs v29)
+			NOTE: this also sets windowInsets for the DialogOuterFastLayout
 		-->
 		<com.maxmpz.widget.base.AdjustToSoftKeyboardBehavior
 			android:enabled="?dialogAdjustToSoftKeyboard"

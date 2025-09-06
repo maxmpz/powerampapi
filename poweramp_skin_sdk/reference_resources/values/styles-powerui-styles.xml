@@ -48,8 +48,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="vis_none_32dp">@drawable/vis_stroke_32dp_tinted</item>
 		<item name="vis_w_ui_32dp">@drawable/vis_w_ui_32dp_tinted</item>
 		<item name="vis_32dp">@drawable/vis_32dp_tinted</item>
-				
-		
+
+		<item name="like_no_rating_24dp">@drawable/like_none_24dp_tinted</item>
+		<item name="like_24dp">@drawable/like_24dp_tinted</item>
+		<item name="unlike_24dp">@drawable/unlike_24dp_tinted</item>
+
+		<item name="love_no_rating_24dp">@drawable/love_none_24dp_tinted</item>
+		<item name="love_24dp">@drawable/love_24dp_tinted</item>
+		<item name="unlove_24dp">@drawable/unlove_24dp_tinted</item>
+
 		<item name="reverb_24dp">@drawable/reverb_24dp</item>
 		<item name="vis_24dp">@drawable/vis_24dp</item><!-- Vis panel list item icon -->
 		
@@ -175,6 +182,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PopupButton_scene_button_menu">@style/PopupButtonNoTint_scene_button_menu</item>
 		<item name="PopupButtonTinted">@style/PopupButton</item>
 		<item name="PopupButtonTinted_scene_button_menu">@style/PopupButton_scene_button_menu</item>
+		<item name="DynamicPopupButtonLabel2_Text2">@style/DynamicPopupButtonLabel2_Text2</item>
 		
 		<item name="PopupButtonLayoutDialogButton3">@style/PopupButtonLayoutDialogButton3</item>
 		<item name="PopupButtonLayoutDialogButton2">@style/PopupButtonLayoutDialogButton2</item>
@@ -681,7 +689,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopSleepTimerButtonLayout_scene_item_menu">@style/TopSleepTimerButtonLayout_scene_item_menu</item>
 		<item name="SleepTimerButton_scene_button_menu">@style/SleepTimerButton_scene_button_menu</item>
 		<item name="TopSleepTimerButton">@style/TopSleepTimerButton</item>
-		
+
+		<item name="TopEditableButtonLayout">@style/TopEditableButtonLayout</item>
+		<item name="TopEditableButton24dpLayout">@style/TopEditableButton24dpLayout</item>
+		<item name="TopEditableDynamicButtonLayout">@style/TopEditableDynamicButtonLayout</item>
+		<item name="TopEditableSleepTimerButtonLayout">@style/TopEditableSleepTimerButtonLayout</item>
+		<item name="TopEditableCounterSubAaButton">@style/TopEditableCounterSubAaButton</item>
+		<item name="TopEditableSubAaButton">@style/TopEditableSubAaButton</item>
+		<item name="TopEditableSubAaButtonTinted">@style/TopEditableSubAaButtonTinted</item>
+		<item name="TopEditableSubAaButtonCast">@style/TopEditableSubAaButtonCast</item>
+		<item name="EditablePopupButton">@style/EditablePopupButton</item>
+		<item name="EditablePopupButton_scene_button_menu">@style/EditablePopupButton_scene_button_menu</item>
+		<item name="EditablePopupButton24dp">@style/EditablePopupButton24dp</item>
+		<item name="EditableInfoButtonTinted">@style/EditableInfoButtonTinted</item>
+
 		<item name="TopCounterLayout">@style/TopCounterLayout</item>
 		<item name="TopCounterLayout_Text">@style/TopCounterLayout_Text</item>
 		<item name="TopCounterLayout_scenes_playing">@style/TopMetaInfoLayout_scenes_playing</item><!-- NOTE: using same scene styles as TopMetaInfoLayout --> 

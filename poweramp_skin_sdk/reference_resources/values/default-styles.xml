@@ -49,6 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="OptionRatingStarsMenu">@style/OptionRatingStarsMenu</item>
 		<item name="OptionRatingLikeUnlike">@style/OptionRatingLikeUnlike</item>
 		<item name="OptionRatingDisabled">@style/OptionRatingDisabled</item>
+		<!-- Deprecated, not used anymore -->
 		<item name="OptionCounter">@style/OptionCounter</item>
 		<item name="OptionCCDisabled">@style/OptionCCDisabled</item><!-- See also CcButton_MainUI/CcButton_NavbarExtensionMenuLine -->
 		<item name="OptionCCInMenu">@style/OptionCCInMenu</item>
@@ -139,6 +140,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="colorBgPrimary">#fff</item>
 		<item name="colorBgPrimaryAlpha">#55F5F5F5</item>
+		<item name="colorBgPlayerButton">?colorBgPrimaryAlpha</item>
 		<item name="colorBgSeekbarLine">#55F5F5F5</item>
 		<item name="colorBgLessAlpha">#dfff</item>
 		<item name="colorBgPrimaryStrictAlpha">#bfff</item>
@@ -236,6 +238,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorTrackNum">#999</item>
 		<item name="colorSeparator">#FF888888</item>
 		<item name="colorSeparatorLight">#bbb</item><!-- A bit darker so we don't look contrasted vs animated faded in popup bg -->
+		<item name="colorPlaceholder">?colorSeparator</item>
 
 		<item name="colorNavbarIconsLessContrast">#fff</item><!-- NOTE: not used in default theme -->
 		<item name="colorNavbarIcons">#f333</item><!-- NOTE: using fixed color here as in white theme icons change for activated state -->
@@ -411,6 +414,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="grid_drag_24dp">@drawable/grid_drag</item>
 
 		<item name="edit_stroke_24dp">@drawable/edit_stroke_24dp</item>
+		<!-- Used for subaa button -->
+		<item name="edit_tags_24dp">@drawable/edit_stroke_24dp</item>
 
 
 		<item name="settings_v">@drawable/settings_v_colored</item><!-- NOTE: used in some dialogs -->
@@ -435,13 +440,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="add_to_pl_in_pl">@drawable/pl_toggle_24dp</item>
 		<item name="add_to_pl_at_start">@drawable/add_to_pl_at_start_24dp</item>
 		<item name="add_to_pl_shuffled">@drawable/add_to_pl_shuffled_24dp</item>
+
+		<item name="pl_one_24dp">@drawable/pl_one_24dp</item>
+		<item name="pl_add_24dp">@drawable/pl_add_24dp</item>
+		<item name="pl_toggle_24dp">@drawable/pl_toggle_24dp</item>
+
 		<item name="info">@drawable/info_stroke_24dp</item>
+		<item name="audio_info_24dp">@drawable/audio_info_24dp</item>
 		<item name="send">@drawable/send_stroke</item>
 		<item name="enqueue">@drawable/enqueue_stroke</item>
 		<item name="enqueue_shuffled">@drawable/enqueue_shuffled_24dp</item>
 		<item name="add_next">@drawable/add_next_stroke</item>
 		<item name="add_next_shuffled">@drawable/add_next_shuffled_24dp</item>
 		<item name="lyrics">@drawable/lyrics</item>
+		<item name="lyrics_none_24dp">@drawable/lyrics_none_24dp</item>
 		<item name="album_art">@drawable/image</item>
 		<item name="delete">@drawable/delete_stroke_24dp</item>
 		<item name="resort">@drawable/sort_24dp</item>
@@ -472,12 +484,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="lock_solid_24dp">@drawable/lock_solid_24dp</item>
 		<item name="lock_unlock_24dp">@drawable/lock_unlock_24dp</item>
 		<item name="lock_unlock_24dp_selector">@drawable/lock_unlock_24dp_selector</item>
+
+		<item name="like_selector_subaa">@drawable/like_selector_subaa</item>
+		<item name="unlike_selector_subaa">@drawable/unlike_selector_subaa</item>
+		<item name="love_selector_subaa">@drawable/love_selector_subaa</item>
+		<item name="unlove_selector_subaa">@drawable/unlove_selector_subaa</item>
+		<item name="menu_subaa">@drawable/menu</item>
+
+
 		<item name="assign_eq_24dp">@drawable/assign_eq_24dp</item>
 		<item name="playlist_24dp">@drawable/playlist_24dp</item>
 		<item name="play_24dp">@drawable/play_24dp</item>
 		<item name="search_24dp">@drawable/search</item>
 		<item name="add_to_launcher_24dp">@drawable/add_to_launcher_24dp</item>
-
 		<item name="changelog_24dp">@drawable/zap</item>
 
 		<item name="settings_navbar">@drawable/settings_navbar</item>
@@ -799,6 +818,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: overridden for Material You colors -->
 		<item name="overlap_knobs_hilite_color">@style/ActivityTheme_Whitepro_EqKnobsHiliteColorful</item>
 		<item name="overlap_graphic_frs_color">@style/ActivityTheme_White_GraphicFrsColorful</item>
+		<item name="overlap_player_buttons_no_bg">@style/ActivityTheme_overlap_player_buttons_no_bg</item>
 
 		<!-- The default bottomToolbarSize for ListSubstyleBase2. This is increased for ActivityTheme_Whitepro_OffsetNavbar -->
 		<item name="bottomToolbarSize">44dp</item>
@@ -819,7 +839,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="NavbarSeekbar_marginBottom">@dimen/NavbarSeekbar_marginBottom</item>
 
 		<!-- Globally setting overshoot parameters for stuff like AA popup, meta info AA. Some views override this (e.g. equalizer horizontal scrolls) -->
-		<item name="maxOvershoot">50dp</item>
+		<item name="maxOvershoot">0dp</item>
 		<item name="maxStretchOvershoot">50dp</item>
 
 		<!-- Used for ActivityTheme_Whitepro_PlainSeekbar, overridden by ActivityTheme_Whitepro_AltLayout  -->
@@ -853,8 +873,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="settings_target_equ">audio_equ</item>
 		<item name="EqLockLabelStyle">@null</item>
 
+		<!-- Define it globally so we're able to resolve these w/o looking into the specific styles -->
 		<item name="popupEnterAnimTime">350</item>
-		<item name="popupExitAnimTime">300</item>
+		<!-- Sync with drawable/item_bg exitFadeDuration If this is increased, tune activity_start_click_delay as well,
+		     esp. on low-end devices. -->
+		<item name="popupExitAnimTime">200</item>
 
 		<!-- Globally enables debug rectangle around fast text view text/drawables. Can be set per specific FastTextViews as well -->
 		<!--<item name="debugRectColor">#ffaaaaaa</item>-->
@@ -888,6 +911,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="ActivityTheme_White" parent="Base_ActivityTheme_Default">
 	</style>
+
+	<!-- Starting* themes are just placeholders until v33, as some Android 12 variants (Mi) will fail us with always animating some bg -->
+	<style name="StartingTheme" parent="StartupActivity">
+	</style>
+
+	<style name="StartingThemeBlack" parent="ActivityTheme_Black">
+	</style>
+
+	<style name="StartingThemeWhite" parent="ActivityTheme_White">
+	</style>
+
 
 	<style name="ActivityTheme_White_MilkViewEffect_Lyrics">
 		<item name="aaBlurIntensity">1.75</item>
@@ -1033,6 +1067,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopTrackDuration_scene_playing">@style/TopTrackDurationMoreButtons_scene_playing</item>
 	</style>
 
+	<!-- An overlap style -->
+	<style name="ActivityTheme_overlap_player_buttons_no_bg">
+		<item name="colorBgPlayerButton">#01000001</item>
+	</style>
+
 	<!-- NOTE: overridden for v28 -->
 	<style name="Base_ActivityTheme_White_LessRounding">
 		<!-- Corners -->
@@ -1160,6 +1199,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:colorBackgroundCacheHint">@null</item>
 		<item name="android:windowShowWallpaper">true</item>
 		<item name="android:windowTranslucentStatus">true</item>
+		<!-- windowSplashScreenAnimatedIcon=@null helps with some Samsungs showing default icon otherwise -->
+		<item name="android:windowSplashScreenBackground" tools:targetApi="31">#0000</item>
+		<item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="31">@null</item>
+		<item name="android:windowSplashScreenAnimationDuration" tools:targetApi="31">0</item>
+
 	</style>
 	
 	

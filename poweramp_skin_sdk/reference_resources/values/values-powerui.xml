@@ -151,6 +151,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<!-- Called by list onProviderOrDataChanged() on data change -->
 	<item type="id" name="msg_list_data_loaded"/>
+
+	<!-- Msg sent on aa page track updates (e.g. for some main screen buttons) -->
+	<item type="id" name="msg_list_current_track_changed"/>
 	
 	<!-- States -->
 	<!-- NOTE: "boolean" here means integer with 0=false, 1=true -->
@@ -159,7 +162,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_list_selection_mode"/><!-- boolean, also a msg -->
 	<item type="id" name="state_list_all_selected"/><!-- boolean, also a msg -->
 	<item type="id" name="state_list_something_selected"/><!-- boolean -->
-	<item type="id" name="state_list_can_delete"/><!-- boolean, like state_list_something_selected but depends on enable_deletion -->
+	<!-- boolean, like state_list_something_selected but depends on enable_deletion. For selection mode only -->
+	<item type="id" name="state_list_can_delete"/>
+	<!-- boolean. For the current track only -->
+	<item type="id" name="state_list_can_delete_current_track"/>
+	<!-- boolean. For the current track only -->
+	<item type="id" name="state_list_is_current_track_in_pl"/>
 	<item type="id" name="state_list_one_track_selected"/><!-- boolean -->
 	<item type="id" name="state_list_aa_selectable_selected"/><!-- boolean -->
 	<item type="id" name="state_list_one_item_selected"/><!-- boolean -->
@@ -193,7 +201,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	
 	<!-- Sets gui to modal mode: used for popups and other modal-like use cases -->
-	<item type="id" name="cmd_gui_set_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state, arg2, boolean true => do not lock orientation -->
+	<!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state,
+	     arg2, boolean true => do not lock orientation or flags, including STATE_TRUE for orientation, and MODAL_FLAG_LIST_INTERACTIVITY -->
+	<item type="id" name="cmd_gui_set_modal"/>
 	<!-- NOTE: prefer using post with this in case of removal of some popup menu modality
 	     - to avoid other layers to react to back action in this frame -->
 	<item type="id" name="cmd_gui_unset_modal"/><!-- bus_gui, arg1 => optional @id of scene or view, identifying this modal state -->
@@ -235,8 +245,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_selection_menu_focus"/>
 	
 	<item type="id" name="cmd_popup_menu_focus"/>
-	
-	
+
+
+	<item type="id" name="cmd_navigation_intent"/><!-- bus_gui -->
+
 	<item type="id" name="cmd_alert_dialog"/><!-- To alert dialog. NOTE: bus_app -->
 	<item type="id" name="msg_alert_dialog"/><!-- From alert dialog -->
 

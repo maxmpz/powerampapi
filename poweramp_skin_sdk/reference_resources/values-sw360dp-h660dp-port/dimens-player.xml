@@ -24,6 +24,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopWaveseek_maxHeight">152dp</dimen>
 	
 	<dimen name="PlainSeekbar_buttons_offset">30dp</dimen>
+
+	<dimen name="edit_buttons_cont_height">150dp</dimen>
 	
 	<!-- Alt -->
 	<dimen name="Alt_TopPlay_maxSize">76dp</dimen>

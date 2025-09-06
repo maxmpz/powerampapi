@@ -27,4 +27,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="PlainSeekbar_marginTop">-8dp</dimen>
 
 	<dimen name="CenterDialogFrame_maxHeight">590dp</dimen>
+
+	<dimen name="EditableButtonContainer_marginTop">4dp</dimen>
+	<dimen name="EditableButtonContainer_marginBottom">12dp</dimen>
+
 </resources>

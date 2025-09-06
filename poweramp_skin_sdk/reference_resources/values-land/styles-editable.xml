@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2025 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- land -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+	<style name="SubAAButtonsEditTopContainer">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="privateScene">true</item>
+		<item name="layout_attachTop">inset</item>
+		<item name="layout_attachBottom">@+id/sub_aa_buttons</item>
+		<item name="layout_attachLeftToLeft">@+id/sub_aa_buttons</item>
+		<item name="layout_attachRightToRight">@+id/sub_aa_buttons</item>
+		<item name="android:layout_marginBottom">4dp</item>
+	</style>
+	<style name="SubAAButtonsEditPanel">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">20dp</item>
+		<item name="android:background">@drawable/rounded_generic</item>
+		<item name="android:visibility">invisible</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:clickable">true</item>
+	</style>
+	<style name="SubAAButtonsEditPanel_scene_visible">
+		<item name="android:visibility">visible</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachBottom">parent</item>
+	</style>
+
+
+</resources>

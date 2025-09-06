@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2025 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- port -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+	<style name="SubAAButtonsEditShim">
+		<item name="android:background">?colorShade</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">false</item>
+		<item name="android:visibility">visible</item>
+		<item name="android:outlineProvider">none</item>
+	</style>
+
+	<!-- Overridden for land -->
+	<style name="SubAAButtonsEditTopContainer">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="privateScene">true</item>
+		<item name="layout_attachTop">@+id/sub_aa_buttons</item>
+		<item name="layout_attachBottom">inset</item>
+		<item name="android:layout_marginTop">4dp</item>
+	</style>
+
+	<!-- Clickable to disallow click through -->
+	<!-- Overridden for land -->
+	<style name="SubAAButtonsEditPanel">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">20dp</item>
+		<item name="android:visibility">invisible</item>
+		<item name="layout_attachBottom">0%</item>
+		<item name="android:clickable">true</item>
+		<item name="android:background">@drawable/rounded_generic</item>
+		<item name="layout_maxHeight">250dp</item>
+	</style>
+	<style name="SubAAButtonsEditPanel_scene_visible">
+		<item name="android:visibility">visible</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachBottom">parent</item>
+	</style>
+
+	<!-- TODO: remove -->
+	<!--<style name="SubAAButtonsEditScroller" parent="TopListScrollerViewBase">-->
+	<!--	<item name="android:layout_height">match_parent</item>-->
+	<!--	<item name="android:layout_width">wrap_content</item>-->
+	<!--	<item name="android:layout_marginTop">0dp</item>-->
+	<!--	<item name="android:layout_marginBottom">16dp</item>-->
+	<!--	<item name="layout_attachRight">parent</item>-->
+	<!--	<item name="layout_attachTop">parent</item>-->
+	<!--	<item name="layout_attachBottom">parent</item>-->
+	<!--	<item name="android:scrollbars">vertical</item>-->
+	<!--	<item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_track</item>-->
+	<!--</style>-->
+
+	<style name="SubAAButtonsEditHint">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+		<item name="android:background">@drawable/less_alpha_rounded_medium</item>
+	</style>
+
+	<style name="SubAAButtonsEditScrollableCont">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">0dp</item>
+		<item name="layout_attachBottom">parent</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="android:scrollbarStyle">insideOverlay</item>
+		<item name="android:scrollbars">vertical</item>
+		<item name="android:clipToPadding">false</item>
+		<!-- Matches bg corners rounding: drawable/alpha_popup_button_layout_bg / ?corners_popup -->
+		<item name="android:paddingBottom">?corners_popup</item>
+		<item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_track</item>
+	</style>
+
+	<style name="SubAAButtonsEditButtonsCont">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_unlimitedMeasure">true</item>
+		<item name="android:padding">8dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+
+	<!--
+	Editable buttons layout inside the edit dialog is:
+	<FastLayout style="EditableButtonContainer">
+		<some button style="TopEditableButtonLayout or TopEditableCounterSubAaButton etc"/>
+		<FastTextView style="EditableButtonLabel"/>
+	</FastLayout>
+	-->
+	<style name="EditableButtonContainer">
+		<item name="android:layout_width">0dp</item>
+		<item name="layout_widthPercent">24.999%</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">stack_horizontal</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginTop">@dimen/EditableButtonContainer_marginTop</item>
+		<item name="android:layout_marginBottom">@dimen/EditableButtonContainer_marginBottom</item>
+	</style>
+
+	<style name="EditablePopupButton" parent="PopupButtonNoTint">
+		<!-- Force drawable to be centered in the button, paddings are ignored -->
+		<item name="drawablePosition">gravityNoPads</item>
+		<item name="android:gravity">center</item>
+		<item name="drawableOnly">true</item>
+	</style>
+	<style name="EditablePopupButton_scene_button_menu" parent="PopupButtonNoTint_scene_button_menu">
+	</style>
+
+	<!-- We don't need 32dp for many popup buttons - for those which do not have toast icon also shown, thus use this 24dp style -->
+	<!-- NOTE: popup buttons are GONE by default in the default scene -->
+	<style name="EditablePopupButton24dp" parent="EditablePopupButton">
+		<item name="drawableWidth">@dimen/PopupButtons_drawableSize24dp</item>
+		<item name="drawableHeight">@dimen/PopupButtons_drawableSize24dp</item>
+	</style>
+
+	<style name="EditablePopupButton24dpTinted" parent="EditablePopupButton24dp">
+		<item name="drawableTint">?colorIconLessContrast</item>
+	</style>
+
+	<style name="EditableInfoButtonTinted" parent="EditablePopupButton24dpTinted">
+		<item name="drawableWidth">@dimen/TopMetaInfoLabel_drawableSize</item><!-- 10-12dp -->
+		<item name="drawableHeight">@dimen/TopMetaInfoLabel_drawableSize</item>
+		<item name="android:maxLines">2</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="android:textAppearance">?TopCounterLayout_Text</item>
+		<item name="android:textColor">?android:textColorPrimary</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+		<item name="drawablePaddingStart">4dp</item>
+		<item name="android:drawablePadding">-4dp</item>
+		<item name="drawablePosition">top</item>
+		<item name="android:gravity">center</item>
+		<item name="drawableOnly">false</item>
+		<item name="android:visibility">visible</item>
+
+		<!-- Ensure smaller views, such as counter are vertically centered -->
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+
+	<!-- Standard button layout - each button is a simple PopupButton == FastTextView -->
+	<style name="TopEditableButtonLayout" parent="TopBaseButtonLayout">
+		<item name="buttonStyle">?EditablePopupButton</item>
+		<item name="menuButtonStyle">?EditablePopupButton_scene_button_menu</item>
+	</style>
+
+	<style name="TopEditableButton24dpLayout" parent="TopEditableButtonLayout">
+		<item name="buttonStyle">?EditablePopupButton24dp</item>
+	</style>
+
+	<!-- "Dynamic" button layout - each button is a FastLayout with the separate icon, line and line2 internal views -->
+	<style name="TopEditableDynamicButtonLayout" parent="TopBaseButtonLayout">
+		<item name="buttonStyle">@style/DynamicPopupButtonNoTint</item>
+		<item name="menuButtonStyle">@style/DynamicPopupButton_scene_button_menu</item>
+		<item name="extraItemStyle">@style/DynamicPopupButton</item>
+		<item name="extraItemMenuStyle">@style/DynamicPopupButton_scene_button_menu</item>
+
+		<!-- This switches popup layout to use complex buttons layouts - instead of just one FastTextView, it's a DynamicButtonLayout
+		     - a FastLayout with inner icon + label -->
+		<item name="dynamicButtons">true</item>
+	</style>
+
+	<style name="TopEditableCounterSubAaButton" parent="TopCounter">
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+
+		<item name="android:layout_width">@dimen/TopBaseButtonLayout_width</item>
+		<item name="android:layout_height">@dimen/TopBaseButtonLayout_height</item>
+		<!-- Ensure smaller views, such as counter are vertically centered -->
+		<item name="android:layout_gravity">center_horizontal</item>
+	</style>
+
+	<style name="TopEditableSleepTimerButtonLayout" parent="TopSleepTimerButtonLayoutBase">
+	</style>
+
+	<!-- Generic (non-popup) button -->
+	<!-- Buttons should handle their own tint. We assume 24dp size drawable here -->
+	<style name="TopEditableSubAaButton" parent="TopEditableButtonLayout">
+		<item name="drawableOnly">true</item>
+		<item name="drawablePosition">gravityNoPads</item>
+		<item name="android:gravity">center</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+		<item name="animOnClick">true</item>
+	</style>
+	<!-- The button which doesn't maintain any drawable tint, thus we can't statically apply same tint all the time -->
+	<style name="TopEditableSubAaButtonTinted" parent="TopEditableSubAaButton">
+		<item name="drawableTint">?colorIconLessContrast</item>
+	</style>
+
+	<style name="TopEditableSubAaButtonCast" parent="TopEditableSubAaButtonTinted">
+		<!-- As we take media cast icons from Android lib, they require specific drawable size applied to be inline with the other
+		     our icons -->
+		<item name="drawableWidth">@dimen/PopupButtons_drawableSize19dp</item>
+		<item name="drawableHeight">@dimen/PopupButtons_drawableSize19dp</item>
+	</style>
+
+	<style name="EditableButtonLabel">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:singleLine">true</item>
+	</style>
+
+
+	<style name="SubAAButtonsEditDialogButtons">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_consumeSpace">vertical|reset_full_horizontal</item>
+		<item name="android:layout_marginLeft">12dp</item>
+	</style>
+
+
+	<style name="SubAAButtonsEditCheckBoxBase">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="layout_widthPercent">33.3%</item>
+		<item name="layout_maxWidth">150dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:clickable">true</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:drawable">?android:attr/listChoiceIndicatorMultiple</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+
+	<style name="SubAAButtonsEditCenteredCheckBox" parent="SubAAButtonsEditCheckBoxBase">
+	</style>
+
+	<style name="SubAAButtonsEditSmallCheckBox" parent="SubAAButtonsEditCheckBoxBase">
+	</style>
+
+	<style name="SubAAButtonsEditTwoLinesCheckBox" parent="SubAAButtonsEditCheckBoxBase">
+	</style>
+
+	<style name="SubAAButtonsEditDialogButton1" parent="PopupButtonLayoutDialogButton1">
+		<item name="android:layout_marginTop">-8dp</item>
+	</style>
+
+	<style name="SubAAButtonsSettingsButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">top|right</item>
+		<item name="android:layout_marginTop">2dp</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="layout_consumeSpace">horizontal</item>
+
+		<item name="android:drawable">@drawable/settings_24dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="drawableOnly">true</item>
+		<item name="android:paddingTop">8dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:background">@drawable/ripple_rounded_large</item>
+		<item name="android:clickable">true</item>
+		<item name="android:focusable">true</item>
+	</style>
+
+
+
+</resources>

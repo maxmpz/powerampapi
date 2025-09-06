@@ -316,8 +316,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">left|center_vertical</item>
 		<item name="android:layout_marginBottom">2dp</item><!-- Compensate paddingTop -->
 
-		<item name="android:layout_marginLeft">16dp</item>
-		<item name="android:layout_marginRight">16dp</item>
+		<item name="android:layout_marginLeft">@dimen/PopupButtons_paddingLeft</item>
+		<item name="android:layout_marginRight">@dimen/PopupButtons_paddingLeft</item>
 	</style>
 
 	<!-- We replace padding with the margins to allow animating these -->

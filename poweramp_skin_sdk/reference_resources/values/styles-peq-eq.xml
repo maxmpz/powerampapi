@@ -254,6 +254,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PeqVolumeKnobLayout" parent="EqVolumeKnobLayout">
 	</style>
 
+	<!-- BusActionButton -->
 	<style name="PeqLockLabelBase">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>

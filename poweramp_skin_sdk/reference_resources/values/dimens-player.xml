@@ -59,7 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Navbar_height">40dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">36dp</dimen>
 	<dimen name="NavBarButton_drawableSize">28dp</dimen>
-	<dimen name="Navbar_normal_marginB">8dp</dimen>
+	<dimen name="Navbar_normal_marginB">4dp</dimen>
 	<dimen name="NavbarList_marginBottom">-4dp</dimen>
 	<dimen name="NavbarSeekbar_marginTop">0dp</dimen>
 	<dimen name="NavbarSeekbar_marginBottom">-6dp</dimen>
@@ -135,4 +135,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft">14dp</dimen>
 	<dimen name="Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft">16dp</dimen>
+
+
+	<dimen name="edit_buttons_cont_height">120dp</dimen>
 </resources>

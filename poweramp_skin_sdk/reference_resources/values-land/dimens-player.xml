@@ -63,6 +63,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft">0dp</dimen>
 	<dimen name="Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft">4dp</dimen>
 
+	<!-- Can't fit on some screens - reduce -->
+	<dimen name="edit_buttons_cont_height">120dp</dimen>
+
 
 	<!-- Navbar + bottom Navbar paddings => resulting anchoring point for other views -->
 	<!-- @Deprecated -->
@@ -72,4 +75,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="NavbarBounds_height_more_rounded">40dp</dimen>
 	<!-- @Deprecated -->
 	<dimen name="NavbarBounds_height_scene_navbar_2lines_more_rounded">88dp</dimen>
+
+	<dimen name="EditableButtonContainer_marginTop">0dp</dimen>
+	<dimen name="EditableButtonContainer_marginBottom">12dp</dimen>
+
 </resources>

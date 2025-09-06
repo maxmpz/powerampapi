@@ -49,6 +49,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="loadForScene_3">@+id/scene_vis_w_ui</item>
 		<item name="insertAt">thisPosition</item>
 		<item name="unload">never</item>
+	</style>
 
+	<style name="behavior_subaabuttons_edit">
+		<item name="android:layout">@layout/merge_subaabuttons_edit</item>
+		<item name="insertAt">end</item>
+		<!-- We unload it by the code -->
+		<item name="unload">never</item>
 	</style>
 </resources>

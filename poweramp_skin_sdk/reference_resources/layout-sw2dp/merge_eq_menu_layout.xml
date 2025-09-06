@@ -76,6 +76,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		w:busId="@id/bus_data_cmd"
 		w:msgId="@id/cmd_data_eq_preset_rename"
+
+		w:disableForStateBusId="@id/bus_dsp"
+		w:enableForStateId="@id/dsp_eq_preset_rename_allowed"
+
 		/>
 
 	<!-- This should be hidden for low end Androids -->
