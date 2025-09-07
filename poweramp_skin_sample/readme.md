@@ -27,6 +27,8 @@
 redefined to allow the appropriate configuration, such as dynamic button position and sizes, and the dynamic size of the TopSubAAButtons 
 layout (1 line or 2 lines). Skins which previously overridden TopSubAAButtons and/or individual (previously fixed) buttons inside it now
 may require adjustments
+- it's not pretty useless to override style for the individual sub-aa buttons (Vis, Sleep, etc.) as those buttons size and position is now forced by TopSubAAButtons according to the user configuration
+- see [styles-editable.xml](/poweramp_skin_sdk/reference_resources/values/styles-editable.xml) for more details and in-depth description of the new layout
 
 ##### Build 991
 ###### iconTint for page and msg 
