@@ -94,7 +94,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="TopVisButtonLayout">@style/Alt_TopVisButtonLayout</item>
 		<item name="TopSleepTimerButtonLayout">@style/Alt_TopSleepTimerButtonLayout</item>
+		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopShuffleButtonLayout">@style/Alt_TopShuffleButtonLayout</item>
+		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopRepeatButtonLayout">@style/Alt_TopRepeatButtonLayout</item>
 		
 		<item name="TopPlay">@style/Alt_TopPlay</item>
@@ -426,10 +428,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:background">?alt_sub_aa_button_bg</item>
 		<item name="buttonStyle">@style/Alt_PopupButtonNoTint</item>
 	</style>
+	<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 	<style name="Alt_TopRepeatButtonLayout" parent="TopRepeatButtonLayout">
 		<item name="android:background">?alt_sub_aa_button_bg</item>
 		<item name="buttonStyle">@style/Alt_PopupButtonNoTint</item>
 	</style>
+	<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 	<style name="Alt_TopShuffleButtonLayout" parent="TopShuffleButtonLayout">
 		<item name="android:background">?alt_sub_aa_button_bg</item>
 		<item name="buttonStyle">@style/Alt_PopupButtonNoTint</item>

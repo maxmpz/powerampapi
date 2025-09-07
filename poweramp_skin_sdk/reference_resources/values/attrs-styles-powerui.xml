@@ -560,9 +560,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="TopSubAAButtons_scene_lib" format="reference"/>
 		<attr name="TopSubAAButtons_scenes_hidden" format="reference"/>
 		<attr name="TopVisButtonLayout" format="reference"/>
+		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<attr name="TopShuffleButtonLayout" format="reference"/>
+		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<attr name="TopRepeatButtonLayout" format="reference"/>
-		<!-- <attr name="TopAudioInfoButton" format="reference"/> -->
 		<attr name="TopSleepTimerButtonLayout" format="reference"/>
 		<attr name="TopSleepTimerButtonLayout_scene_item_menu" format="reference"/>
 		<attr name="SleepTimerButton_scene_button_menu" format="reference"/>

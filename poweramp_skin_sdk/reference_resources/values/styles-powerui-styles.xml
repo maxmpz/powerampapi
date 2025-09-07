@@ -677,15 +677,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopRw_scene_playing">@style/TopRw_scene_playing</item>
 		<item name="TopFf">@style/TopFf</item>
 		<item name="TopFf_scene_playing">@style/TopFf_scene_playing</item>
-		
+
+		<!-- See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopSubAAButtons">@style/TopSubAAButtons</item>
 		<item name="TopSubAAButtons_scenes_playing">@style/TopSubAAButtons_scenes_playing</item>
 		<item name="TopSubAAButtons_scene_lib">@style/TopSubAAButtons_scene_lib</item>
 		<item name="TopSubAAButtons_scenes_hidden">@style/TopSubAAButtons_scenes_hidden</item>
+		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopVisButtonLayout">@style/TopVisButtonLayout</item>
+		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopShuffleButtonLayout">@style/TopShuffleButtonLayout</item>
+		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopRepeatButtonLayout">@style/TopRepeatButtonLayout</item>
+		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopSleepTimerButtonLayout">@style/TopSleepTimerButtonLayout</item>
+
 		<item name="TopSleepTimerButtonLayout_scene_item_menu">@style/TopSleepTimerButtonLayout_scene_item_menu</item>
 		<item name="SleepTimerButton_scene_button_menu">@style/SleepTimerButton_scene_button_menu</item>
 		<item name="TopSleepTimerButton">@style/TopSleepTimerButton</item>

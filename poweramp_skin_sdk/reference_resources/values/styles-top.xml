@@ -696,28 +696,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">0px</item>
 	</style>
 
-	<style name="TopSubAAButtonsBase">
-		<!-- SubAAButtonsLayout is actually always private and privateScene=true here is ignored -->
-		<item name="privateScene">true</item>
-		<item name="android:id">@+id/sub_aa_buttons</item>
-		<item name="layout_minHeight">@dimen/TopBaseButtonLayout_height</item>
-
-		<!-- Allow buttons to overflow during scenes -->
-		<item name="android:clipToPadding">false</item>
-
-		<item name="slotLineHeight">@dimen/TopBaseButtonLayout_height</item>
-		<item name="slotWidth">@dimen/TopBaseButtonLayout_width</item>
-		<item name="slotPadding">4dp</item>
-		<!-- Same as height -->
-		<item name="smallSlotWidth">46dp</item>
-		<item name="slotLinePadding">4dp</item>
-
-		<item name="slotDrawable">@drawable/slot</item>
-		<item name="highlightedSlotDrawable">@drawable/slot_highlighted</item>
-
-		<item name="loadableDraggable">@+id/behavior_subaabuttons_edit</item>
-	</style>
-
+	<!-- See styles-editable.xml for the new editable sub-aa styles -->
 	<style name="TopSubAAButtons" parent="TopSubAAButtonsBase">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -726,6 +705,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:visibility">visible</item>
+
+		<item name="android:paddingTop">70dp</item>
 		<!-- DEBUG -->
 		<!--<item name="android:background">#f00</item>-->
 	</style>
@@ -1181,13 +1162,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:paddingRight">0dp</item>
 		<item name="android:visibility">visible</item>
 	</style>
-		
-		
+
+	<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 	<style name="TopShuffleButtonLayout" parent="TopBaseButtonLayout">
 		<item name="layout_attachRight">parent</item>
 		<item name="android:layout_marginLeft">4dp</item>
 	</style>
-		
+
+	<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 	<style name="TopRepeatButtonLayout" parent="TopBaseButtonLayout">
 		<item name="layout_attachRight">@+id/shuffle_button_layout</item>
 		<item name="android:layout_marginLeft">4dp</item>

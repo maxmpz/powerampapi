@@ -19,8 +19,59 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<!--
+Sub-AA editable buttons:
+- the number of buttons placed and configurable by the user
+- skin has a limited control over the content of the SubAA container, but still has a control over:
+  - TopSubAAButtons placement
+    - avoid forcing its height or/and reducing width as the internal layout depends on the
+      button "slot" size and TopSubAAButtons may dynamically change it's size depending on "2 lines" user setting
+  - buttons
+    - any buttons may be placed at any "slot" inside TopSubAAButtons, and TopSubAAButtons only takes overall generic slot size
+      into account - all buttons are forced to have the slot size. Restyling individual button size/margins thus has no effect
+      or may cause undesired effect
+-->
+
 <!-- port -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+	<style name="TopSubAAButtonsBase">
+		<!-- SubAAButtonsLayout is actually always private and privateScene=true here is ignored -->
+		<item name="privateScene">true</item>
+		<item name="android:id">@+id/sub_aa_buttons</item>
+
+		<!-- TopSubAAButtons manages its height depending on "2 lines" layout:
+		     - by default:  height = paddingTop + slotLineHeight + paddingBottom
+		     - for 2 lines: height = paddingTop + slotLineHeight + slotLinePadding + slotLineHeight + paddingBottom
+		     AVOID forcing height on TopSubAAButtons, as this effectively MAY break "2 lines layout"
+		     (provided TopSubAAButtons is forced to a large enough size, 2 lines layout may work still) -->
+		<item name="android:layout_height">wrap_content</item>
+
+		<!-- Allow buttons to overflow during scenes -->
+		<item name="android:clipToPadding">false</item>
+
+		<!-- This defines TopSubAAButtons height - it may be also 2x of this if "2 lines" option is activated -->
+		<item name="slotLineHeight">@dimen/TopBaseButtonLayout_height</item>
+		<!-- This defines default slot size -->
+		<item name="slotWidth">@dimen/TopBaseButtonLayout_width</item>
+		<!-- The space between slots. Not applied to the first left or last right slot -->
+		<item name="slotPadding">4dp</item>
+
+		<!-- "Small" slot width. Height stays the same -->
+		<item name="smallSlotWidth">46dp</item>
+
+		<!-- The padding between 2 slot lines in "2 lines" mode -->
+		<item name="slotLinePadding">4dp</item>
+
+		<!-- The drawable used to indicate the slot during the edit -->
+		<item name="slotDrawable">@drawable/slot</item>
+
+		<!-- The drawable used to indicate the hightlighted slot during the edit -->
+		<item name="highlightedSlotDrawable">@drawable/slot_highlighted</item>
+
+		<item name="loadableDraggable">@+id/behavior_subaabuttons_edit</item>
+	</style>
+
+
 	<style name="SubAAButtonsEditShim">
 		<item name="android:background">?colorShade</item>
 		<item name="android:layout_width">match_parent</item>
@@ -166,16 +217,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_horizontal</item>
 	</style>
 
+	<!-- Used by the buttons: AudioInfo, Vis -->
 	<!-- Standard button layout - each button is a simple PopupButton == FastTextView -->
 	<style name="TopEditableButtonLayout" parent="TopBaseButtonLayout">
 		<item name="buttonStyle">?EditablePopupButton</item>
 		<item name="menuButtonStyle">?EditablePopupButton_scene_button_menu</item>
 	</style>
 
+	<!-- Used by the buttons: LoveUnlove, LikeUnlike -->
 	<style name="TopEditableButton24dpLayout" parent="TopEditableButtonLayout">
 		<item name="buttonStyle">?EditablePopupButton24dp</item>
 	</style>
 
+	<!-- Used by the buttons: Repeat, Shuffle -->
 	<!-- "Dynamic" button layout - each button is a FastLayout with the separate icon, line and line2 internal views -->
 	<style name="TopEditableDynamicButtonLayout" parent="TopBaseButtonLayout">
 		<item name="buttonStyle">@style/DynamicPopupButtonNoTint</item>
@@ -188,6 +242,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dynamicButtons">true</item>
 	</style>
 
+	<!-- Used by the Counter "button" -->
 	<style name="TopEditableCounterSubAaButton" parent="TopCounter">
 		<item name="android:paddingLeft">0dp</item>
 		<item name="android:paddingTop">0dp</item>
@@ -200,10 +255,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_gravity">center_horizontal</item>
 	</style>
 
+	<!-- Used by the SleepTimer button -->
 	<style name="TopEditableSleepTimerButtonLayout" parent="TopSleepTimerButtonLayoutBase">
 	</style>
 
-	<!-- Generic (non-popup) button -->
+	<!-- Generic (non-popup) button. Used by buttons: Love, Unlove, Like, Unlike -->
 	<!-- Buttons should handle their own tint. We assume 24dp size drawable here -->
 	<style name="TopEditableSubAaButton" parent="TopEditableButtonLayout">
 		<item name="drawableOnly">true</item>
@@ -213,11 +269,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
 	</style>
+
 	<!-- The button which doesn't maintain any drawable tint, thus we can't statically apply same tint all the time -->
+	<!-- Used by simple buttons: Artist, Album, Aa (album art), AddToPl, Bookmark, Delete, Folder, Genre, Info, Lyrics, Menu, Tags -->
 	<style name="TopEditableSubAaButtonTinted" parent="TopEditableSubAaButton">
 		<item name="drawableTint">?colorIconLessContrast</item>
 	</style>
 
+	<!-- Used by the Cast button -->
 	<style name="TopEditableSubAaButtonCast" parent="TopEditableSubAaButtonTinted">
 		<!-- As we take media cast icons from Android lib, they require specific drawable size applied to be inline with the other
 		     our icons -->
