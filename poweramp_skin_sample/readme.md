@@ -27,7 +27,8 @@
 redefined to allow the appropriate configuration, such as dynamic button position and sizes, and the dynamic size of the TopSubAAButtons 
 layout (1 line or 2 lines). Skins which previously overridden TopSubAAButtons and/or individual (previously fixed) buttons inside it now
 may require adjustments
-- it's not pretty useless to override style for the individual sub-aa buttons (Vis, Sleep, etc.) as those buttons size and position is now forced by TopSubAAButtons according to the user configuration
+- if the <skin> targetBuild is <1003, Poweramp applies layer of compatibility for possible SubAA button overridden styles (see details in [attr-player-widgets.xml](/poweramp_skin_sdk/reference_resources/values/attr-player-widgets.xml) around SubAAButtonsLayout styleable). Update your <skin> targetBuild to value >= 1003 to avoid this legacy compatibility, which may cause undesired side effects
+- it's now pretty useless to override styles for the individual sub-aa buttons (Vis, Sleep, Repeat, Shuffle, etc.) as the button size and position are now forced by TopSubAAButtons according to the user configuration
 - see [styles-editable.xml](/poweramp_skin_sdk/reference_resources/values/styles-editable.xml) for more details and in-depth description of the new layout
 
 ##### Build 991

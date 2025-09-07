@@ -683,7 +683,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="TopSubAAButtons_scenes_playing">@style/TopSubAAButtons_scenes_playing</item>
 		<item name="TopSubAAButtons_scene_lib">@style/TopSubAAButtons_scene_lib</item>
 		<item name="TopSubAAButtons_scenes_hidden">@style/TopSubAAButtons_scenes_hidden</item>
-		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
+
+		<!-- Unused from build-1003.
+		     Still used for the legacy skins with targetBuild<1003 - see attrs-player-widgets.xml/SubAAButtonsLayout
+		     for the details on the legacy behavior for these button styles.
+		     See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopVisButtonLayout">@style/TopVisButtonLayout</item>
 		<!-- Unused from build-1003. See styles-editable.xml for the new editable sub-aa styles -->
 		<item name="TopShuffleButtonLayout">@style/TopShuffleButtonLayout</item>

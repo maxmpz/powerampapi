@@ -204,6 +204,22 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 	<declare-styleable name="SubAAButtonsLayout">
+		<!-- This is defined within SubAAButtonsLayout styleable, but it's set in the global theme (to simplify overriding).
+		     Default is false. If true (may be set for the old skins with the targetBuild<1003 via ActivityTheme_Legacy_subAA),
+		     SubAAButtonsLayout will try to check few unused attrs/styles - TopVisButtonLayout, TopSleepTimerButtonLayout,
+		     TopRepeatButtonLayout, TopShuffleButtonLayout.
+		     SubAAButtonsLayout will check specific attributes affecting _height_: layout_marginTop, layout_marginBottom, paddingTop,
+		     paddingBottom.
+		     Based on these, SubAAButtonsLayout will add to its vertical padding (paddingTop/paddingBottom) so the resulting
+		     SubAAButtonsLayout is close to the height in the old Poweramp builds+this skin.
+		     This partially resolves issue with skins which are not yet updated, but still the new features, such as 2 line button layout
+		     will not work properly
+
+		     WARNING: this complicates things a lot and makes further skin modifications for SubAA buttons much more complicated and
+		     surprising. It is recommended to set <skin> targetBuild to value >= 1003 and modify SubAA related styles, so the padding
+		     of SubAAButtonsLayout is set directly instead of this complicated logic of extracting that info from the button styles -->
+		<attr name="SubAAButtonsLayout_legacyMode" format="boolean"/>
+
 		<!-- Reference to the array of possible buttons -->
 		<attr name="buttons" format="reference"/>
 
@@ -229,6 +245,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<attr name="slotDrawable" format="dimension"/>
 		<attr name="highlightedSlotDrawable" format="dimension"/>
+	</declare-styleable>
+
+	<!-- Styleable used internally for SubAAButtonsLayout_legacyMode button height related calculations -->
+	<declare-styleable name="SubAAButtonsLayout_legacyButton">
+		<attr name="android:paddingTop"/>
+		<attr name="android:paddingBottom"/>
+		<attr name="android:layout_marginTop"/>
+		<attr name="android:layout_marginBottom"/>
 	</declare-styleable>
 
 	<declare-styleable name="DraggableButton">
