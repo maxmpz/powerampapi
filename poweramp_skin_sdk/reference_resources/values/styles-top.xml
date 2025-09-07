@@ -705,8 +705,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:layout_marginRight">8dp</item>
 		<item name="android:visibility">visible</item>
-
-		<item name="android:paddingTop">70dp</item>
 		<!-- DEBUG -->
 		<!--<item name="android:background">#f00</item>-->
 	</style>
