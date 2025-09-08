@@ -1365,7 +1365,7 @@ public final class PowerampAPI {
 		public static final int REPEAT_ON	   = 1;
 		
 		/**
-		 * Category will be advanced to next one after the last song played
+		 * Category will be advanced to next one after the last song played. When finished, we restart with the first cat
 		 */
 		public static final int REPEAT_ADVANCE = 2;
 		
@@ -1380,9 +1380,14 @@ public final class PowerampAPI {
 		public static final int SINGLE_SONG    = 4;
 
 		/**
+		 * Same as REPEAT_ADVANCE, but when finished we stop
+		 */
+		public static final int REPEAT_ADVANCE_AND_STOP = 5;
+
+		/**
 		 * Max possible repeat value
 		 */
-		public static final int MAX_REPEAT     = 4;
+		public static final int MAX_REPEAT     = 5;
 	}
 
 	/**
