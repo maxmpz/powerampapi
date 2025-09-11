@@ -14,7 +14,7 @@ allprojects {
         if(!project.hasProperty('JAVA_TARGET_COMPATIBILITY')) JAVA_TARGET_COMPATIBILITY = JavaVersion.VERSION_17
         if(!project.hasProperty('KOTLIN_JVM_TARGET_COMPATIBILITY')) KOTLIN_JVM_TARGET_COMPATIBILITY = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
         if(!project.hasProperty('KOTLIN_COMPILER_ARGS')) KOTLIN_COMPILER_ARGS = [
-            "-Xbackend-threads=0", // =0 - threads = num of cpus
+//            "-Xbackend-threads=0", // =0 - threads = num of cpus NOTE: breaks Kotlin 2.2.x
             "-opt-in=kotlin.RequiresOptIn",
             "-opt-in=kotlin.contracts.ExperimentalContracts",
             "-Xjvm-default=all",
@@ -24,7 +24,7 @@ allprojects {
             "-Xno-param-assertions",
             "-Xno-receiver-assertions",
 
-            "-Xcontext-receivers",
+//            "-Xcontext-receivers",
         ]
     }
 
