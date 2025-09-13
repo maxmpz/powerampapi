@@ -103,7 +103,7 @@
 			line1="@string/hidden"
 			smallLine1="@string/applied_for_alt_full"
 			smallLine2="@string/applied_on_main_screen"
-			smallLine3="@string/aa_bg_changed_main_readable"
+			smallLine3="@string/adjust_bg_hint"
 			/>
 
 		<multiSwitch
@@ -401,7 +401,7 @@
 			line1="@string/hidden"
 			smallLine1="@string/applied_for_alt_full"
 			smallLine2="@string/applied_on_main_screen"
-			smallLine3="@string/aa_bg_changed_main_readable"
+			smallLine3="@string/adjust_bg_hint"
 			/>
 
 		<multiSwitch

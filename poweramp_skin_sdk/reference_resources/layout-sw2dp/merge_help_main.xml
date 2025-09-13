@@ -46,20 +46,31 @@
 		android:text="@string/h_main_meta_info"
 	/>
 	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
-	
-	
+
+
+	<com.maxmpz.widget.player.Help
+		style="@style/TopHelpSmaller"
+		w:layout_maxWidth="150dp"
+
+		w:help_anchor="@id/sub_aa_buttons"
+		w:help_position="top"
+
+		android:text="@string/long_press_between_buttons_to_edit"
+		/>
+	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
+
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
 		
 		w:help_anchor="@id/vis_button_layout"
-		w:help_position="top"
+		w:help_position="bottom"
 		
 		android:text="@string/visualization"
 		w:line2="@string/long_press_for_menu"
 	/>
 	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 	
-	
+	<!--
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
 		
@@ -69,40 +80,31 @@
 		android:text="@string/sleep_timer"
 	/>
 	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
+	-->
 
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
 
 		w:help_anchor="@id/shuffle_button_layout"
-		w:help_position="top"
+		w:help_position="bottom"
 
 		android:text="@string/shuffle"
 		w:line1="@string/long_press_for_menu"
 		/>
 	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
 
-	<com.maxmpz.widget.player.Help
-		style="@style/TopHelpSmaller"
+	<!--<com.maxmpz.widget.player.Help-->
+	<!--	style="@style/TopHelpSmaller"-->
 
-		w:help_anchor="@id/repeat_button_layout"
-		w:help_position="bottom"
+	<!--	w:help_anchor="@id/repeat_button_layout"-->
+	<!--	w:help_position="bottom"-->
 
-		android:text="@string/repeat"
-		w:line2="@string/long_press_for_menu"
-		/>
-	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
+	<!--	android:text="@string/repeat"-->
+	<!--	w:line2="@string/long_press_for_menu"-->
+	<!--	/>-->
+	<!--<StateAnimParams style="@style/TopHelp_anim_help_visible"/>-->
 
-	<com.maxmpz.widget.player.Help
-		style="@style/TopHelpSmaller"
-		
-		w:help_anchor="@id/track_duration"
-		w:help_position="top"
-		w:showArrow="false"
-		
-		android:text="@string/h_main_waveseek"
-	/>
-	<StateAnimParams style="@style/TopHelp_anim_help_visible"/>
-		
+
 	<com.maxmpz.widget.player.Help
 		style="@style/TopHelpSmaller"
 		w:help_inside="true"

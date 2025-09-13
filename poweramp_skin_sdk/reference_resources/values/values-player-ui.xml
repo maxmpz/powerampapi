@@ -93,7 +93,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="subaabutton_folder"/>
 	<item type="id" name="subaabutton_genre"/>
 	<item type="id" name="subaabutton_audio_info"/>
-	<!-- 25 -->
+	<item type="id" name="subaabutton_nextcat"/>
+	<item type="id" name="subaabutton_prevcat"/>
+	<item type="id" name="subaabutton_plus10s"/>
+	<item type="id" name="subaabutton_minus10s"/>
+	<!-- 29 -->
 
 
 	<!-- ?references are resolved too, if needed. IMPORTANT: these should be stable, as they are stored in the prefs -->
@@ -122,6 +126,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>@id/subaabutton_love</item>
 		<item>@id/subaabutton_unlove</item>
 		<item>@id/subaabutton_loveUnloveButton</item>
+		<item>@id/subaabutton_prevcat</item>
+		<item>@id/subaabutton_nextcat</item>
+		<item>@id/subaabutton_minus10s</item>
+		<item>@id/subaabutton_plus10s</item>
 		<item>@id/subaabutton_audio_info</item>
 	</array>
 	

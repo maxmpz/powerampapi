@@ -173,10 +173,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	     white skin "more light" sub-style, which complicates things -->
 	<style name="Alt_White_TracksLabelsNoBg" parent="Base_Alt_TracksLabelsNoBg">
 		<item name="Alt_track_labels_scene_aa_margin">10dp</item>
-		<item name="aaBlurIntensityMult">1.5</item>
-		<item name="aaBlurSaturationMult">1.1</item>
-		<item name="aaBlurLighten">0.32</item>
-		<item name="aaBlurDarken">1</item>
+		<!--<item name="aaBlurIntensityMult">1.5</item>-->
+		<!--<item name="aaBlurSaturationMult">1.1</item>-->
+		<!--<item name="aaBlurLighten">0.32</item>-->
+		<!--<item name="aaBlurDarken">1</item>-->
 		<!-- Still reduce text bg alpha as much as possible: white icons should be still visible on white bg.
 		     Still overridden for overlap_light_buttons -->
 		<item name="colorTextBgAlpha">#88000000</item>
@@ -186,8 +186,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: this should be duplicated also for Alt2_Black_TracksLabelsNoBg -->
 	<style name="Alt_Black_TracksLabelsNoBg" parent="Base_Alt_TracksLabelsNoBg">
 		<item name="ItemTrackAAImage_scene_header_drawableTintColor">#8000</item><!-- Apply "darker" tint to make text more readable when w/o background -->
-		<item name="aaBlurIntensityMult">0.7</item>
-		<item name="aaBlurSaturationMult">1.1</item>
+
+		<!--<item name="aaBlurIntensityMult">0.7</item>-->
+		<!--<item name="aaBlurSaturationMult">1.1</item>-->
 		
 		<item name="ItemTrackTitle_scene_header_lineBackground">@null</item>
 		<item name="ItemTrackLine2_scene_header_lineBackground">@null</item>

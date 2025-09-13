@@ -407,7 +407,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_player_media_session"/><!-- object => MediaSessionWrapper -->
 	<item type="id" name="state_player_mediacontroller_for_vol"/><!-- object => MediaController (raw). NOTE: set only when such volume controller is actually needed (e.g. not for CC) -->
 	<item type="id" name="state_player_pipeline_info"/><!-- object => PipelineSessionInfo. NOTE: see also OutputEndDeviceMetaInfo which may override end device name -->
+	<!-- This is true when we want to use -10s/+10s buttons for a long enough track -->
 	<item type="id" name="state_player_long_seek"/><!-- boolean -->
+	<item type="id" name="state_player_track_seekable"/><!-- boolean -->
 
 	<item type="id" name="state_player_absvol"/><!-- int, also a msg -->
 
@@ -435,8 +437,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_reload_pipeline"/><!-- arg1 => boolean allowResume (PA), arg2 => int delay, obj = optional PipelineReloadCondition/OutputDeviceMapping OR cause OR PeqPakInfo -->
 	<item type="id" name="cmd_player_reroute"/><!-- arg1 => boolean allowResume (PA), obj = optional PipelineReloadCondition/OutputDeviceMapping OR cause -->
 	<item type="id" name="cmd_player_seek"/>
-	<item type="id" name="cmd_player_seek_step"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => step multiplier (if < 50, base=5000ms), seek jump ms, or 0 for 5000ms -->
-	<item type="id" name="cmd_player_seek_jump"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => step ms, obj: Boolean - flush -->
+	<item type="id" name="cmd_player_seek_step"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => step mult (<50, total=5000*mult) or seek jump ms, or 0 for 5000ms -->
+	<item type="id" name="cmd_player_seek_jump"/><!-- arg1 => STATE_TRUE => forward, STATE_FALSE => rewind; arg2 => step mult (<50, total=5000*mult) or step ms, obj: Boolean - flush -->
 	<item type="id" name="cmd_player_begin_seek_jumps"/><!-- arg1 =>  STATE_TRUE => forward, STATE_FALSE => rewind, arg2 => optional jump duration mult (base=5000ms) -->
 	<item type="id" name="cmd_player_end_seek_jumps"/><!-- -->
 	<item type="id" name="cmd_player_set_rg"/>
@@ -489,6 +491,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<integer name="REPEAT_ADVANCE">2</integer>
 	<integer name="REPEAT_SONG">3</integer>
 	<integer name="SINGLE_SONG">4</integer>
+	<integer name="REPEAT_ADVANCE_AND_STOP">5</integer>
 	
 	<!-- Sync with PowerampAPI.ShuffleMode -->
 	<integer name="SHUFFLE_NONE">0</integer>

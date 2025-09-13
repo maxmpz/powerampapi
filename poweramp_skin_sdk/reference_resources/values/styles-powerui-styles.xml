@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="repeat_none_32dp">@drawable/repeat_stroke_32dp_tinted</item>
 		<item name="repeat_32dp">@drawable/repeat_32dp_tinted</item>
 		<item name="repeat_advance_32dp">@drawable/repeat_advance_32dp_tinted</item>
+		<item name="repeat_advance_stop_32dp">@drawable/repeat_advance_stop_32dp_tinted</item>
 		<item name="repeat_song_32dp">@drawable/repeat_song_32dp_tinted</item>
 		<item name="single_song_32dp">@drawable/single_song_32dp_tinted</item>
 		

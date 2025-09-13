@@ -85,11 +85,14 @@ Sub-AA editable buttons:
 	<!-- Overridden for land -->
 	<style name="SubAAButtonsEditTopContainer">
 		<item name="android:layout_width">match_parent</item>
+		<item name="layout_maxWidth">600dp</item>
 		<item name="android:layout_height">0dp</item>
+		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="privateScene">true</item>
 		<item name="layout_attachTop">@+id/sub_aa_buttons</item>
 		<item name="layout_attachBottom">inset</item>
 		<item name="android:layout_marginTop">4dp</item>
+
 	</style>
 
 	<!-- Clickable to disallow click through -->

@@ -93,6 +93,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="repeat_none_32dp" format="reference"/>
 	<attr name="repeat_32dp" format="reference"/>
 	<attr name="repeat_advance_32dp" format="reference"/>
+	<attr name="repeat_advance_stop_32dp" format="reference"/>
 	<attr name="repeat_song_32dp" format="reference"/>
 	<attr name="single_song_32dp" format="reference"/>
 	
