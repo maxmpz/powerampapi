@@ -7,6 +7,7 @@
 		w:layout_attachTopToTop="@id/help_main_bubble"
 
 		android:drawable="@drawable/settings_close_24dp"
+		android:contentDescription="@string/close"
 
 		w:busId="@id/bus_gui"
 		w:msgId="@id/cmd_gui_close_help"
