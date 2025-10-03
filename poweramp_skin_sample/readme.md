@@ -21,6 +21,13 @@
 - [License](#license)
 
 ### Recent Changes
+##### Build 1007
+- FastTextView derived views (almost all text labels and buttons in Poweramp) now have unified drawable animation attributes for: background, drawable, lineBackground attributes. 
+  - No-value or @null values means "No Change" - the appropriate attribute is not changed during animation
+  - #0000 (#00000000 or @color/no_drawable0000) means "No-Drawable" - the appropriate attribute is animated to nothing
+- more details are available in attrs-fasttextview.xml
+
+  
 ##### Build 1003
 ###### Editable TopSubAAButtons
 - TopSubAAButtons are now user-editable and configurable. Due to this change, the layout and styling of this element and buttons are
