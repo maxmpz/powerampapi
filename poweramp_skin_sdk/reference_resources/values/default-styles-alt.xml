@@ -190,9 +190,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!--<item name="aaBlurIntensityMult">0.7</item>-->
 		<!--<item name="aaBlurSaturationMult">1.1</item>-->
 		
-		<item name="ItemTrackTitle_scene_header_lineBackground">@null</item>
-		<item name="ItemTrackLine2_scene_header_lineBackground">@null</item>
-		<item name="ItemTrackMeta_scene_header_w_meta_background">@null</item>
+		<item name="ItemTrackTitle_scene_header_lineBackground">#0000</item>
+		<item name="ItemTrackLine2_scene_header_lineBackground">#0000</item>
+		<item name="ItemTrackMeta_scene_header_w_meta_background">#0000</item>
 		<item name="ListHeaderButton_scene_header_background">@drawable/hidden_activated_rounded_large</item>
 		<item name="ItemTrackMenu_scene_header_background">@drawable/hidden_activated_rounded_large</item>
 		<item name="ItemTrackBackDecorTitle_scene_header_back_decor_background">@drawable/hidden_activated_rounded_large</item>
@@ -558,34 +558,34 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="Alt_ItemTrackTitle_scene_grid_1" parent="ItemTrackTitle_scene_grid_1">
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:layout_marginBottom">4dp</item>
 	</style>
 	<style name="Alt_ItemTrackTitle_scene_grid_1_zoomed" parent="ItemTrackTitle_scene_grid_1_zoomed">
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:layout_marginBottom">8dp</item>
 	</style>
 	<style name="Alt_ItemTrackTitle_scene_grid" parent="ItemTrackTitle_scene_grid">
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 	</style>
 	<style name="Alt_ItemTrackTitle_scene_grid_zoomed" parent="ItemTrackTitle_scene_grid_zoomed">
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 	</style>
 	
 	<style name="Alt_ItemTrackLine2_scene_grid" parent="ItemTrackLine2_scene_grid">
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:layout_marginTop">-4dp</item>
 	</style>
 	<style name="Alt_ItemTrackLine2_scene_grid_1" parent="ItemTrackLine2_scene_grid_1">
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 	</style>
 	<style name="Alt_ItemTrackLine2_scene_grid_zoomed" parent="ItemTrackLine2_scene_grid_zoomed">
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:layout_marginTop">-4dp</item>
 		<item name="android:layout_marginBottom">8dp</item>
 	</style>
 	<style name="Alt_ItemTrackLine2_scene_grid_1_zoomed" parent="ItemTrackLine2_scene_grid_1_zoomed">
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 	</style>
 	
 </resources>

@@ -290,7 +290,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:paddingTop">6dp</item>
 		<item name="android:paddingBottom">4dp</item>
 
-		<item name="lineBackground">@null</item>
 		<item name="android:maxLines">1</item>
 		
 		<item name="android:textAppearance">?ItemGenericTitle_Text</item>
@@ -332,7 +331,6 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:transformPivotY">0px</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
-		<item name="lineBackground">@null</item>
 		<item name="android:ellipsize">end</item>
 	</style>
 	<style name="ItemGenericLine2_Text" parent="TextAppearance.AppCompat">

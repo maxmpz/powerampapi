@@ -742,7 +742,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="applyViewParams">true</item>
 		<item name="android:maxLines">1</item>
 		<item name="android:ellipsize">end</item>
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:visibility">visible</item>
 	</style>
 	<style name="ItemTrackTitle_Text" parent="TextAppearance.AppCompat">
@@ -805,7 +805,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">end</item>
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:visibility">visible</item>
 	</style>
@@ -849,7 +849,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachBottom">parent</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 	</style>
 	<style name="ItemTrackTitle_scene_grid_zoomed" parent="ItemTrackTitle_scene_grid">
 		<item name="scale">?ItemTrackTitle_scene_grid_zoomed_scale</item>
@@ -872,7 +872,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_attachBottom">parent</item>
 		<item name="scale">?ItemTrackTitle_scene_grid_1_alt_zoomed_scale</item>
 		<item name="layout_compensateScale">?ItemTrackTitle_scene_grid_1_alt_zoomed_scale</item>
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	<!-- NOTE: parent is explicitly set to ItemTrackTitle to allow ItemTrackBackDecorTitle to derive from ItemTrackTitle_scene_header and have
@@ -964,7 +964,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">marquee</item>
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 		<item name="android:visibility">visible</item>
 	</style>
@@ -1025,7 +1025,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="applyViewParams">true</item>
 		<item name="android:maxLines">1</item>
 		<item name="android:ellipsize">end</item>
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 
 		<item name="android:clickable">true</item>
 		<item name="android:longClickable">true</item>
@@ -1099,7 +1099,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">end</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 	</style>
 	<style name="ItemTrackLine2_scene_1_zoomed" parent="ItemTrackLine2_scene_zoomed">
 		<item name="android:layout_width">0px</item>
@@ -1239,7 +1239,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">marquee</item>
-		<item name="lineBackground">@null</item>
+		<item name="lineBackground">#0000</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
 	</style>
 	<!-- scene_item_menu_lu is used for AA item menu (with the like/unlike layout) -->
@@ -1579,6 +1579,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 	<style name="ItemTrackMenu" parent="BlackListMenu">
 		<item name="android:longClickable">true</item>
+		<item name="android:outlineProvider">none</item>
 	</style>
 	<style name="ItemTrackMenu_scene_menu" parent="BlackListMenu_scene_menu">
 	</style>

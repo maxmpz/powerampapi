@@ -44,13 +44,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- These are overridden for alt styles + overlap_track_labels_no_bg -->
 	<attr name="ItemTrackAAImage_scene_header_drawableTintColor" format="color"/>
 
-	<attr name="ItemTrackTitle_scene_header_lineBackground" format="reference"/>
-	<attr name="ItemTrackLine2_scene_header_lineBackground" format="reference"/>
-	<attr name="ItemTrackMeta_scene_header_w_meta_background" format="reference"/>
-	<attr name="ListHeaderButton_scene_header_background" format="reference"/>
-	<attr name="ItemTrackMenu_scene_header_background" format="reference"/>
-	<attr name="ItemTrackBackDecorTitle_scene_header_back_decor_background" format="reference"/>
-	<attr name="ItemTextBackDecorTitle_scene_header_back_decor_background" format="reference"/>
+	<attr name="ItemTrackTitle_scene_header_lineBackground" format="reference|color"/>
+	<attr name="ItemTrackLine2_scene_header_lineBackground" format="reference|color"/>
+	<attr name="ItemTrackMeta_scene_header_w_meta_background" format="reference|color"/>
+	<attr name="ListHeaderButton_scene_header_background" format="reference|color"/>
+	<attr name="ItemTrackMenu_scene_header_background" format="reference|color"/>
+	<attr name="ItemTrackBackDecorTitle_scene_header_back_decor_background" format="reference|color"/>
+	<attr name="ItemTextBackDecorTitle_scene_header_back_decor_background" format="reference|color"/>
 	<attr name="ListHeaderButton_scene_header_marginLeft" format="dimension"/>
 	<attr name="ListHeaderButton_scene_header_marginRight" format="dimension"/>
 	<attr name="ListHeaderButton_scene_header_marginBottom" format="dimension"/>
