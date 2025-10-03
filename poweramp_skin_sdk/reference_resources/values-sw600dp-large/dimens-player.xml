@@ -27,6 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfo_scene_item_menu_maxWidth">580dp</dimen>
 	
 	<dimen name="TopBaseButtonLayout_width">68dp</dimen>
+	<dimen name="TopSubAAButtonsBase_smallSlotWidth">46dp</dimen><!-- TopBaseButtonLayout_width / 1.47 -->
 	<dimen name="TopBaseButtonLayout_height">36dp</dimen>
 	<dimen name="PopupButtons_drawableSize">32dp</dimen>
 	<dimen name="PopupButtons_drawableSize24dp">24dp</dimen>
@@ -61,14 +62,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Same for overlap_navbar_offset -->
 	<dimen name="NavbarBounds_height_offset">60dp</dimen>
 	<dimen name="NavbarBounds_height_scene_navbar_2lines_offset">112dp</dimen>
-
-
 		
 	<dimen name="ListMenu_drawableSize">26dp</dimen>
 
 	<dimen name="track_children_scene_aa_margin">32dp</dimen>
 
-		
 	<dimen name="TopSubAAButtons_marginTop">8dp</dimen><!-- NOTE: aa bounds already have visual margin on bottom == 8 dp -->
 	
 	<dimen name="TopWaveseek_maxHeight">160dp</dimen>

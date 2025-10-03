@@ -1,3 +1,4 @@
 <resources>
-	<string name="resfolder">sw580dp-w710dp-large-notlong-port-xxxhdpi</string>
+	<string name="resfolder_w">sw580dp-w710dp-large-notlong-port-xxxhdpi</string>
+	<string name="resfolder_h">sw580dp-w710dp-large-notlong-port-xxxhdpi</string>
 </resources>

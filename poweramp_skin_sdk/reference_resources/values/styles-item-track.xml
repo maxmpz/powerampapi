@@ -1275,10 +1275,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginTop">?ItemTrackMeta_marginTop</item>
 		<item name="android:visibility">visible</item>
 
-		<item name="android:gravity">left|center_vertical</item>
-
 		<item name="android:textAppearance">?ItemTrackMeta_Text</item>
-		<item name="android:textColor">?colorTrackMeta</item>
 
 		<item name="android:paddingLeft">?ItemTrackMeta_paddingLR</item><!-- 11dp -->
 		<item name="android:paddingRight">?ItemTrackMeta_paddingLR</item>
@@ -1299,8 +1296,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_compensateScale">?ItemTrackMeta_scale</item>
 
 		<item name="applyViewParams">true</item>
-		<item name="android:maxLines">1</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:textColor">?colorTrackMeta</item>
 		<item name="drawableTint">?colorTrackMeta</item>
+		<item name="android:maxLines">1</item>
 		<item name="lineBackground">#0000</item>
 		<item name="android:background">#0000</item>
 	</style>
@@ -1345,11 +1344,12 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_compensateScale">?ItemTrackMeta_scene_small_scale</item>
 
 		<item name="android:visibility">visible</item>
+		<item name="applyEvenIfGone">true</item>
+
 		<item name="applyViewParams">true</item>
 		<item name="android:textColor">?colorTrackMeta</item>
 		<item name="drawableTint">?colorTrackMeta</item>
 		<item name="android:background">#0000</item>
-		<item name="applyEvenIfGone">true</item>
 	</style>
 	<style name="ItemTrackMeta_scene_zoomed">
 		<item name="recalcChildren">dynamic</item>
@@ -1969,6 +1969,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:gravity">center_vertical</item>
 		<item name="layout_attachRight">@null</item>
 		<item name="layout_attachBottom">parent</item><!-- NOTE: ItemTrackBackDecorTitle lives in separate container, there is no any line2 to attach to -->
+		<!-- Ensures we transition to No-Drawable -->
 		<item name="android:background">#0000</item>
 		<item name="useDrawableHeight">false</item><!-- Do not measure based on image, as we need exactly the same same as normal title  -->
 	</style>

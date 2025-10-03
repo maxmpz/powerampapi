@@ -53,7 +53,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="SmallerSearchEditText_Text_size">17dp</dimen>
 
 	<dimen name="TopBaseButtonLayout_width">58dp</dimen>
+	<dimen name="TopSubAAButtonsBase_smallSlotWidth">39dp</dimen>
 	<dimen name="TopBaseButtonLayout_height">30dp</dimen>
+	<dimen name="EqTonePanelSpacer_marginTop">0dp</dimen>
 	<dimen name="PopupButtons_drawableSize">28dp</dimen>
 	<dimen name="PopupButtons_drawableSize24dp">21dp</dimen>
 	<dimen name="PopupButtons_drawableSize19dp">16.625dp</dimen>

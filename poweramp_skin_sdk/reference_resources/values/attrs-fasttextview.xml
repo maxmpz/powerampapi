@@ -265,23 +265,33 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- NOTE: prior SDK=22 it's not possible to detect @empty (or @null) vs missing attribute.
 		     For now, use #00000000 (#0000) color instead to indicate transition to no-background -->
 		<attr name="android:background"/>
+
+		<!-- This is animated. No value means no change of tint -->
 		<attr name="drawableTint"/>
-		<!-- NOTE: limited support for drawable transitions. For the new drawable to appear, default scene should have some default drawable set
-			 Basically, that means we can transition between drawables, but we can't transition between no-drawable and drawable and vice-versa -->
+
+		<!-- This is fully animated.
+		     No value in the default style means no drawable (transition to null drawable back to default scene),
+		     BUT no value in scene means no change of drawable (transition does not happen).
+			 As @empty value is recognized by SDK=23+ only, we can use @color/transparent0000 reference instead to signal no-drawable
+			 for the scene -->
 		<attr name="android:drawable"/>
 
-		<!-- NOTE: supported by MarqueeFastTextView only. Changed by not animated -->
+		<!-- NOTE: supported by MarqueeFastTextView only. Partially animated -->
 		<attr name="android:ellipsize"/>
 
-		<!-- This is changed per scene, but not animated ATM -->
+		<!-- Animated. If not specified, not changed -->
 		<attr name="android:gravity"/>
 
+		<!-- Animated. If not specified, not changed -->
 		<attr name="drawablePaddingStart"/>
 
+		<!-- Animated. If not specified, not changed -->
 		<attr name="android:drawablePadding"/>
 
+		<!-- Animated. If not specified, not changed -->
 		<attr name="drawablePosition"/>
 
+		<!-- Animated. If not specified, not changed -->
 		<attr name="drawableOnly"/>
 	</declare-styleable>
 </resources>

@@ -33,7 +33,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="SubAAButtonsEditPanel">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">20dp</item>
+		<item name="android:layout_height">20dp</item><!-- We grow from here -->
+		<item name="layout_maxHeight">360dp</item>
 		<item name="android:background">@drawable/rounded_generic</item>
 		<item name="android:visibility">invisible</item>
 		<item name="layout_attachBottom">parent</item>
@@ -41,10 +42,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="SubAAButtonsEditPanel_scene_visible">
 		<item name="android:visibility">visible</item>
+		<item name="layout_maxHeight">360dp</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachBottom">parent</item>
 	</style>
-
-
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
+	android:exitFadeDuration="@integer/selector_fade_ms">
+
+	<item android:state_checked="false">
+		<bitmap android:src="@drawable/dvc_24dp" android:tint="?colorIconDisabled"/>
+	</item>
+
+	<item>
+		<bitmap android:src="@drawable/dvc_24dp" android:tint="?colorIconLessContrast"/>
+	</item>
+
+</selector>

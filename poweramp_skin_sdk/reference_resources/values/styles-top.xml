@@ -159,7 +159,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="separatorSize">@dimen/List_separatorSize</item>
 		<item name="searchHistoryItemSize">@dimen/searchHistoryItemSize</item>
 		
-		<!-- This is minumum space on the bottom AA layout tries to maintain. Usually in portrait orientation there is enough space for
+		<!-- This is minimum space on the bottom AA layout tries to maintain. Usually in portrait orientation there is enough space for
 		     other controls, but for split screen mode AA takes whole screen and there is no room for controls.
 		     aaMarginBottom forces AA to be keep some space
 		     NOTE: aaMinSize is still honored and takes priority over this

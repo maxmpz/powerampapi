@@ -392,8 +392,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="Alt2_TopSubAAButtons" parent="Alt_TopSubAAButtons">
-		<!-- Reserve some space as due to like unlike on top meta info can be moved to close to sub aa buttons.
-		     But this also introduces vertical assemitry, so extra 4dp is also added to line2 -->
-		<item name="android:layout_marginTop">4dp</item>
 	</style>
 </resources>

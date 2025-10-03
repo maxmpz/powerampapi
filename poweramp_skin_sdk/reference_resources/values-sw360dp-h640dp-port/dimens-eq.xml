@@ -35,8 +35,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="EqKnobValueText_size">10.5sp</dimen>
 	<dimen name="EqKnobLabelText_size">13dp</dimen>
+
 	<dimen name="EqButton_width">64dp</dimen>
 	<dimen name="EqButton_height">36dp</dimen>
+	<dimen name="EqButtonsBase_smallSlotWidth">46dp</dimen>
 
 	<dimen name="EqParamPopupButtonLayout_height_port">32dp</dimen>
 	<dimen name="EqParamPlaceholder2_height_port">76dp</dimen><!-- 4 + 32 + 4 + 32 + 4 -->

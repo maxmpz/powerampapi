@@ -1,3 +1,4 @@
 <resources>
-	<string name="resfolder2">sw2dp-h700dp</string>
+	<string name="resfolder_w">sw2dp-h500dp-large</string>
+	<string name="resfolder_h">sw2dp-h500dp-large</string>
 </resources>

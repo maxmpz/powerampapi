@@ -57,4 +57,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- We unload it by the code -->
 		<item name="unload">never</item>
 	</style>
+
+	<style name="behavior_eqbuttons_edit">
+		<item name="android:layout">@layout/merge_eqbuttons_edit</item>
+		<item name="insertAt">end</item>
+		<!-- We unload it by the code -->
+		<item name="unload">never</item>
+	</style>
+
 </resources>

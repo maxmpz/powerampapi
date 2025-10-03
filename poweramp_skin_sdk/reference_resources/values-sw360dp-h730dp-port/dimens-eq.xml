@@ -23,5 +23,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <resources>
 	<dimen name="eq_frs_height">60dp</dimen>
 	<dimen name="EqParamRoundKnobPortBase_paddingBottom">42sp</dimen>
-	
+
 </resources>

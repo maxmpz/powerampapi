@@ -45,6 +45,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="ListSubstyleBase2_aaMarginBottom">400dp</dimen>
 	
 	<dimen name="TopBaseButtonLayout_width">104dp</dimen>
+	<dimen name="TopSubAAButtonsBase_smallSlotWidth">70dp</dimen><!-- TopBaseButtonLayout_width / 1.47 -->
 	<dimen name="TopBaseButtonLayout_height">48dp</dimen>
 	<dimen name="PopupButtons_drawableSize">48dp</dimen>
 	<dimen name="PopupButtons_drawableSize24dp">36dp</dimen>

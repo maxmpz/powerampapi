@@ -24,7 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	xmlns:w="http://schemas.android.com/apk/res-auto"
 	>
 
-<com.maxmpz.widget.base.Shim android:id="@+id/sub_aa_buttons_edit_shim"
+<com.maxmpz.widget.base.Shim
 	style="@style/SubAAButtonsEditShim"
 	/>
 
@@ -109,8 +109,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="@style/SubAAButtonsEditScrollableCont"
 			>
 
-			<com.maxmpz.widget.base.FastLayout
+			<com.maxmpz.widget.base.SceneFastLayout
 				style="@style/SubAAButtonsEditButtonsCont"
+				w:privateScene="true"
 				>
 				<com.maxmpz.widget.player.DraggableSourceBehavior
 					w:draggingContainer="@+id/top_container"
@@ -120,7 +121,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					w:draggableButtonLabelStyle="@style/EditableButtonLabel"
 					/>
 
-			</com.maxmpz.widget.base.FastLayout>
+			</com.maxmpz.widget.base.SceneFastLayout>
 
 
 			<com.maxmpz.widget.base.ScrollingBehavior

@@ -71,7 +71,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.base.FastLayout
 			style="?EqPagesLayout"
 		>
-			<include android:layout="@layout/merge_eq_equalizer_tab"/>
+			<include android:layout="@layout/merge_eq_equalizer_tab_common"/>
 			
 			<include android:layout="@layout/merge_eq_vol_tab"/>
 			

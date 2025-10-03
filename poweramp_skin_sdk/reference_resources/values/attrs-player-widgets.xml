@@ -234,6 +234,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Reduced size (e.g. round) slot width -->
 		<attr name="smallSlotWidth" format="dimension"/>
 
+		<!-- Try to fit at least x values when centered layout is used. If 0, we don't apply this logic -->
+		<attr name="fitCentered" format="integer"/>
+		<!-- Try to fit at least x values when centered layout is used -->
+		<attr name="smallFitCentered" format="integer"/>
+		<!-- We won't go below that for a slot width when trying to fit them in centered layout -->
+		<attr name="minSlotWidthForFitCentered" format="dimension"/>
+
 		<!-- Slot line height -->
 		<attr name="slotLineHeight" format="dimension"/>
 
@@ -245,6 +252,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<attr name="slotDrawable" format="dimension"/>
 		<attr name="highlightedSlotDrawable" format="dimension"/>
+
+		<!-- The top container to use for the scene anims. Differs for pa vs peq -->
+		<attr name="topSceneContainer" format="reference"/>
 	</declare-styleable>
 
 	<!-- Styleable used internally for SubAAButtonsLayout_legacyMode button height related calculations -->
@@ -253,10 +263,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="android:paddingBottom"/>
 		<attr name="android:layout_marginTop"/>
 		<attr name="android:layout_marginBottom"/>
-	</declare-styleable>
-
-	<declare-styleable name="DraggableButton">
-		<attr name="draggable" format="boolean"/>
 	</declare-styleable>
 
 

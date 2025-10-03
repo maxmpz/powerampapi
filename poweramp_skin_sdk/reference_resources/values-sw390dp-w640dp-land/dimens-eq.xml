@@ -37,6 +37,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqButton_width">76dp</dimen>
 	<dimen name="EqButton_height">36dp</dimen>
+	<dimen name="EqButtonsBase_smallSlotWidth">54dp</dimen>
+
 	<dimen name="EqMenu_size">36dp</dimen>
 	<dimen name="EqButton_textSize">13dp</dimen><!-- Default (fixed) font -->
 	

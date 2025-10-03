@@ -581,6 +581,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EditablePopupButton_scene_button_menu" format="reference"/>
 		<attr name="EditablePopupButton24dp" format="reference"/>
 		<attr name="EditableInfoButtonTinted" format="reference"/>
+		<attr name="EditableEqVisButton" format="reference"/>
 
 		<attr name="TopBaseButtonLayout" format="reference"/><!-- E.g. edit tag dialog genres popup -->
 		
@@ -644,6 +645,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqPagesLayout" format="reference"/>
 		<attr name="EqPagesScrollingBehavior" format="reference"/>
 		<attr name="EqTabLayout" format="reference"/>
+
+		<!-- Eq buttons -->
+		<attr name="EditableDSPCheckboxNoIcon" format="reference"/>
+		<attr name="EditableDSPCheckboxWithIcon" format="reference"/>
+		<attr name="EditableDSPCheckboxTinted_scene_small" format="reference"/>
+		<attr name="EditableDSPCheckbox_scene_small" format="reference"/>
 		
 		<!-- Equalizer tab -->
 		<attr name="EqButton_Text" format="reference"/>
@@ -686,6 +693,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="EqMenuIcon" format="reference"/>
 		<attr name="EqMenuLayoutItems" format="reference"/>
 		<attr name="EqTonePanel" format="reference"/>
+		<attr name="EqTonePanelSpacer" format="reference"/>
 		<attr name="EqBassToneKnobLayout" format="reference"/>
 		<attr name="EqTrebleToneKnobLayout" format="reference"/>
 		<attr name="PeqVisButtonLayout" format="reference"/>

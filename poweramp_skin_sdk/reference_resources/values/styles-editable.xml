@@ -57,10 +57,14 @@ Sub-AA editable buttons:
 		<item name="slotPadding">4dp</item>
 
 		<!-- "Small" slot width. Height stays the same -->
-		<item name="smallSlotWidth">46dp</item>
+		<item name="smallSlotWidth">@dimen/TopSubAAButtonsBase_smallSlotWidth</item><!-- 46dp -->
 
 		<!-- The padding between 2 slot lines in "2 lines" mode -->
 		<item name="slotLinePadding">4dp</item>
+
+		<item name="fitCentered">5</item>
+		<item name="smallFitCentered">7</item>
+		<item name="minSlotWidthForFitCentered">@dimen/TopBaseButtonLayout_height</item><!-- Don't go below this width  -->
 
 		<!-- The drawable used to indicate the slot during the edit -->
 		<item name="slotDrawable">@drawable/slot</item>
@@ -72,6 +76,7 @@ Sub-AA editable buttons:
 	</style>
 
 
+	<!-- Also used for EqButtons -->
 	<style name="SubAAButtonsEditShim">
 		<item name="android:background">?colorShade</item>
 		<item name="android:layout_width">match_parent</item>
@@ -138,6 +143,7 @@ Sub-AA editable buttons:
 		<item name="android:paddingTop">4dp</item>
 		<item name="android:paddingBottom">4dp</item>
 		<item name="android:background">@drawable/less_alpha_rounded_medium</item>
+		<item name="android:textAppearance">?Hint</item>
 	</style>
 
 	<style name="SubAAButtonsEditScrollableCont">
@@ -154,11 +160,14 @@ Sub-AA editable buttons:
 	</style>
 
 	<style name="SubAAButtonsEditButtonsCont">
+		<item name="privateScene">true</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_unlimitedMeasure">true</item>
 		<item name="android:padding">8dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
+		<!-- Needed mostly for overshoot compression when items moved up a bit -->
+		<item name="android:clipChildren">false</item>
 	</style>
 
 	<!--
@@ -187,18 +196,19 @@ Sub-AA editable buttons:
 	<style name="EditablePopupButton_scene_button_menu" parent="PopupButtonNoTint_scene_button_menu">
 	</style>
 
-	<!-- We don't need 32dp for many popup buttons - for those which do not have toast icon also shown, thus use this 24dp style -->
-	<!-- NOTE: popup buttons are GONE by default in the default scene -->
+
+	<!-- Deprecated: Not used. In fact we have 32dp default size for the editable buttons -->
 	<style name="EditablePopupButton24dp" parent="EditablePopupButton">
 		<item name="drawableWidth">@dimen/PopupButtons_drawableSize24dp</item>
 		<item name="drawableHeight">@dimen/PopupButtons_drawableSize24dp</item>
 	</style>
 
+	<!-- Deprecated: Not used -->
 	<style name="EditablePopupButton24dpTinted" parent="EditablePopupButton24dp">
 		<item name="drawableTint">?colorIconLessContrast</item>
 	</style>
 
-	<style name="EditableInfoButtonTinted" parent="EditablePopupButton24dpTinted">
+	<style name="EditableInfoButtonTinted" parent="EditablePopupButton">
 		<item name="drawableWidth">@dimen/TopMetaInfoLabel_drawableSize</item><!-- 10-12dp -->
 		<item name="drawableHeight">@dimen/TopMetaInfoLabel_drawableSize</item>
 		<item name="android:maxLines">2</item>
@@ -214,6 +224,7 @@ Sub-AA editable buttons:
 		<item name="drawablePosition">top</item>
 		<item name="android:gravity">center</item>
 		<item name="drawableOnly">false</item>
+		<!-- NOTE: popup buttons are GONE by default in the default scene, so making it explicitly visible -->
 		<item name="android:visibility">visible</item>
 
 		<!-- Ensure smaller views, such as counter are vertically centered -->
@@ -227,7 +238,7 @@ Sub-AA editable buttons:
 		<item name="menuButtonStyle">?EditablePopupButton_scene_button_menu</item>
 	</style>
 
-	<!-- Used by the buttons: LoveUnlove, LikeUnlike -->
+	<!-- Deprecated, not used -->
 	<style name="TopEditableButton24dpLayout" parent="TopEditableButtonLayout">
 		<item name="buttonStyle">?EditablePopupButton24dp</item>
 	</style>
@@ -263,7 +274,7 @@ Sub-AA editable buttons:
 	</style>
 
 	<!-- Generic (non-popup) button. Used by buttons: Love, Unlove, Like, Unlike -->
-	<!-- Buttons should handle their own tint. We assume 24dp size drawable here -->
+	<!-- Buttons should handle their own tint -->
 	<style name="TopEditableSubAaButton" parent="TopEditableButtonLayout">
 		<item name="drawableOnly">true</item>
 		<item name="drawablePosition">gravityNoPads</item>
@@ -271,6 +282,8 @@ Sub-AA editable buttons:
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="animOnClick">true</item>
+		<item name="drawableWidth">@dimen/PopupButtons_drawableSize</item><!-- ~32dp, smaller for smaller screens. Matches PopupButton -->
+		<item name="drawableHeight">@dimen/PopupButtons_drawableSize</item>
 	</style>
 
 	<!-- The button which doesn't maintain any drawable tint, thus we can't statically apply same tint all the time -->
@@ -342,7 +355,7 @@ Sub-AA editable buttons:
 		<item name="android:layout_marginRight">4dp</item>
 		<item name="layout_consumeSpace">horizontal</item>
 
-		<item name="android:drawable">@drawable/settings_24dp</item>
+		<item name="android:drawable">?settings_24dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableOnly">true</item>
 		<item name="android:paddingTop">8dp</item>

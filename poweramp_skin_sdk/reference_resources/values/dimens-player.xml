@@ -97,7 +97,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopCounterLayout_marginBottom">0dp</dimen>
 
 	<!-- Alt -->
-	<dimen name="Alt_TopSubAAButtons_marginTop">5dp</dimen>
+	<dimen name="Alt_TopSubAAButtons_marginTop">4dp</dimen>
 	
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-4dp</dimen>
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">.85</item>
@@ -121,7 +121,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">56dp</dimen>
 	<dimen name="Alt_TopSmallButton_size">36dp</dimen>
 	<dimen name="Alt_TopMediumButton_size">46dp</dimen>
-			
+
 	<dimen name="Alt_TopWaveseek_paddingTB">4dp</dimen>
 		
 	<dimen name="PlainSeekbar_buttons_offset">30dp</dimen>

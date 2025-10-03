@@ -32,9 +32,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="EqButton_width">80dp</dimen>
 	<dimen name="EqButton_height">40dp</dimen>
+	<dimen name="EqButtonsBase_smallSlotWidth">57dp</dimen>
+
 	<dimen name="EqButton_textSize">14dp</dimen>
 	<dimen name="EqMenu_size">40dp</dimen>
-	<dimen name="EqButton_paddingLR">16dp</dimen>
+	<!--<dimen name="EqButton_paddingLR">16dp</dimen>-->
 
 	<dimen name="EqParamRoundKnobPortBase_paddingBottom">34sp</dimen>
 
@@ -72,7 +74,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="EqMenuIcon_size">24dp</dimen>
 
-
+	<dimen name="EqInfoBase_marginTB">16dp</dimen><!-- Increased for longer screens -->
 
 
 </resources>

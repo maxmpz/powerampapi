@@ -35,7 +35,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>
 	
 	<!-- Alt -->
-	<dimen name="Alt_TopSubAAButtons_marginTop">8dp</dimen>
 	<dimen name="Alt_TopWaveseek_paddingTB">12dp</dimen>
 	<dimen name="Alt_TopPlay_maxSize">100dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">92dp</dimen>

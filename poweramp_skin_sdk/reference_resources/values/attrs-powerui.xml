@@ -543,8 +543,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="invertedArg2" value="4"/>
 		</attr>
 
+		<!-- Default: check|uncheck. Extra flags allowing to specify if we want to send it on check/uncheck or not -->
+		<attr name="sendBooleanArgOn">
+			<flag name="arg1OnCheck" value="0x1000"/>
+			<flag name="arg1OnUncheck" value="0x2000"/>
+			<flag name="arg2OnCheck" value="0x4000"/>
+			<flag name="arg2OnUncheck" value="0x8000"/>
+		</attr>
+
 		<!-- Default is false. If true, stateBus will be asked for the state on stateMsgId (instead of looking into arg1) -->
 		<attr name="recheckOnMsg" format="boolean"/>
+
+		<attr name="longPressBusId"/>
+		<attr name="longPressCmdId"/>
+		<!-- NOTE: this one is used for long press only -->
+		<attr name="string"/>
 	</declare-styleable>
 	
 	<!-- Number of attributes to show formatted text based on Poweramp state buses -->
@@ -676,8 +689,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="menuItemsLayout" format="reference"/>
 		<attr name="closeOnClickInside" format="boolean"/>
 		
-		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this view, as the view is detached
-		     completely from current parent while in popup mode. Alternatively use private scene layout, or set this to false and not rely on this view layout --> 
+		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this view,
+		     as the view is detached completely from current parent while in popup mode. Alternatively use private scene layout, or set
+		     this to false and not rely on this view layout -->
 		<attr name="disableParentLayoutForPopup" format="boolean"/>
 
 		<!-- If true, intermediate temporary stub view is created and attached in place of PopupLayout button when it's
@@ -720,8 +734,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Default is true -->
 		<attr name="closeOnClickInside"/>
 		
-		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this view, as the view is detached
-		     completely from current parent while in popup mode. Alternatively use private scene layout, or set this to false and not rely on this view layout --> 
+		<!-- True by default. Disables layout passes in parent scene while in popup mode. This is to avoid jumping views around this
+		     view, as the view is detached completely from current parent while in popup mode. Alternatively use private scene layout,
+		     or set this to false and not rely on this view layout -->
 		<attr name="disableParentLayoutForPopup"/>
 		
 		<attr name="toastOnPress" format="reference"/>

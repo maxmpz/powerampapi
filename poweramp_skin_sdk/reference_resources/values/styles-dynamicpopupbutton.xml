@@ -26,12 +26,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- NOTE: this is a DynamicPopupButton, which is FastLayout itself:
 	 - we have additional styles for the inner icon and label views
-	 - some derived attributes used to configure normal PopupButton, such as drawable attributes are ignored
+	 - some derived attributes (that are used to configure normal PopupButton) are ignored, such as drawable attributes
+	   - instead dynamicIcon/dynamicLabel styles are separately defined for button (default) and menu scenes
 
 	+====================================+ <- DynamicPopupButton (-> FastLayout)
-	| +===========+ +==================+ |    - buttonStyle (while in button scene)
-	| |dynamicIcon| | dynamicLabel     | |    - menuButtonStyle (while in menu scene)
-	| +===========+ +==================+ |
+	| +===========+ +==================+ |    - dynamicIconStyle, dynamicLabelStyle, dynamicLabel2Style (while in button scene)
+	| |dynamicIcon| | dynamicLabel     | |    - dynamicIconStyle_scene_menu, dynamicLabelStyle_scene_menu, dynamicLabel2Style_scene_menu
+	| +===========+ +==================+ |      (while in menu scene)
 	+====================================+
 
 -->

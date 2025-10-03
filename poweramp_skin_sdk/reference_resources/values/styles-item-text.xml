@@ -378,8 +378,10 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	<style name="ItemTextBackDecor" parent="ItemTrackBackDecor"><!-- Container -->
 	</style>
 
-	<!-- This view should visually match title in scene_header, but may have no any location set, as Poweramp automatically syncs its location to the real title.
-	     NOTE: Poweramp build 846+ automatically matches position of the back decor title to the header item view title in this (0) scene and in scene_header_1
+	<!-- This view should visually match title in scene_header, but may have no any location set, as Poweramp automatically syncs
+	     its location to the real title.
+	     NOTE: Poweramp build 846+ automatically matches position of the back decor title to the header item view title in this
+	     (0) scene and in scene_header_1
 	     NOTE: no textAppearance, instead using the derived style -->
 	<style name="ItemTextBackDecorTitle" parent="ItemTextTitle_scene_header">
 		<item name="android:paddingLeft">0dp</item>
@@ -401,6 +403,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>
+		<!-- Ensure we transition to No-Drawable -->
+		<item name="android:background">#0000</item>
 	</style>
 	<style name="ItemTextBackDecorTitle_scene_header_back_decor" parent="ItemTopTextBackDecorTitle_scene_header_back_decor">
 		<item name="drawableTint">?colorIconInverseForced</item>
@@ -435,6 +439,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>
+		<!-- Ensure we transition to No-Drawable -->
+		<item name="android:background">#0000</item>
 	</style>
 	<!-- NOTE: this is the final back decor title position (top left corner), position is required -->
 	<style name="ItemTopTextBackDecorTitle_scene_header_back_decor">

@@ -1,3 +1,4 @@
 <resources>
-	<string name="resfolder">sw390dp-w640dp-land</string>
+	<string name="resfolder_w">sw390dp-w640dp-land</string>
+	<string name="resfolder_h">sw390dp-w640dp-land</string>
 </resources>

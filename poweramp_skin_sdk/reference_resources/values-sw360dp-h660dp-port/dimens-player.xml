@@ -33,7 +33,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="Alt_TopMediumButton_size">58dp</dimen> 
 	<dimen name="Alt_TopSmallButton_size">44dp</dimen>
 	<dimen name="Alt_PlainSeekbar_buttons_offset">25dp</dimen>
-	<dimen name="Alt_TopSubAAButtons_marginTop">2dp</dimen>
 	<dimen name="Alt_ItemTrackTitle_scene_aa_marginTop">-2dp</dimen><!-- Increasing this moves rating up -->
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">1</item>
 	<dimen name="Alt_TopAABounds_marginBottom">72dp</dimen>

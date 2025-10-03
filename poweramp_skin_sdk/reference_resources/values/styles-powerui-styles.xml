@@ -50,13 +50,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="vis_w_ui_32dp">@drawable/vis_w_ui_32dp_tinted</item>
 		<item name="vis_32dp">@drawable/vis_32dp_tinted</item>
 
-		<item name="like_no_rating_24dp">@drawable/like_none_24dp_tinted</item>
-		<item name="like_24dp">@drawable/like_24dp_tinted</item>
-		<item name="unlike_24dp">@drawable/unlike_24dp_tinted</item>
+		<item name="like_no_rating_32dp">@drawable/like_none_32dp_tinted</item>
+		<item name="like_32dp">@drawable/like_32dp_tinted</item>
+		<item name="unlike_32dp">@drawable/unlike_32dp_tinted</item>
 
-		<item name="love_no_rating_24dp">@drawable/love_none_24dp_tinted</item>
-		<item name="love_24dp">@drawable/love_24dp_tinted</item>
-		<item name="unlove_24dp">@drawable/unlove_24dp_tinted</item>
+		<item name="love_no_rating_32dp">@drawable/love_none_32dp_tinted</item>
+		<item name="love_32dp">@drawable/love_32dp_tinted</item>
+		<item name="unlove_32dp">@drawable/unlove_32dp_tinted</item>
 
 		<item name="reverb_24dp">@drawable/reverb_24dp</item>
 		<item name="vis_24dp">@drawable/vis_24dp</item><!-- Vis panel list item icon -->
@@ -68,6 +68,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="nav_equ">@drawable/equ_rounded_stroke_selector</item>
 		<item name="nav_search">@drawable/search_rounded_stroke_selector</item>
 		<item name="nav_hamburger">@drawable/hamburger_rounded_stroke_selector</item>
+
+		<item name="eqbutton_eq_and_tone">@drawable/eqbutton_eq_and_tone_selector</item>
+		<item name="eqbutton_eq">@drawable/eqbutton_eq_selector</item>
+		<item name="eqbutton_tone">@drawable/eqbutton_tone_selector</item>
+		<item name="eqbutton_on_off">@drawable/eqbutton_on_off_selector</item>
+		<item name="eqbutton_limit">@drawable/eqbutton_limit_selector</item>
+		<item name="eqbutton_global">@drawable/eqbutton_global_selector</item>
+		<item name="eqbutton_compressor">@drawable/eqbutton_compressor_selector</item>
+		<item name="eqbutton_dvc">@drawable/eqbutton_dvc_selector</item>
 
 		<!-- xhdpi: 64dp, xxxhdpi: 128dp, sw600-large-xhdpi: 128dp -->
 		<item name="eq_equalizer">@drawable/eq_equalizer_stroke_selector</item>
@@ -713,6 +722,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EditablePopupButton_scene_button_menu">@style/EditablePopupButton_scene_button_menu</item>
 		<item name="EditablePopupButton24dp">@style/EditablePopupButton24dp</item>
 		<item name="EditableInfoButtonTinted">@style/EditableInfoButtonTinted</item>
+		<item name="EditableEqVisButton">@style/EditableEqVisButton</item>
 
 		<item name="TopCounterLayout">@style/TopCounterLayout</item>
 		<item name="TopCounterLayout_Text">@style/TopCounterLayout_Text</item>
@@ -764,6 +774,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqListControlsSelect">@style/EqListControlsSelect</item>
 		<!-- @Deprecated not used -->
 		<item name="EqPreampLinearKnob">@style/EqPreampLinearKnob</item>
+
+		<item name="EditableDSPCheckboxNoIcon">@style/EditableDSPCheckboxNoIcon</item>
+		<item name="EditableDSPCheckboxWithIcon">@style/EditableDSPCheckboxWithIcon</item>
+		<item name="EditableDSPCheckboxTinted_scene_small">@style/EditableDSPCheckboxTinted_scene_small</item>
+		<item name="EditableDSPCheckbox_scene_small">@style/EditableDSPCheckbox_scene_small</item>
+
 		<item name="EqKnobsLayout">@style/EqKnobsLayout</item>
 		<item name="EqLinearKnob">@style/EqLinearKnob</item>
 		<item name="EqParamLayout">@style/EqParamLayout</item>		
@@ -785,6 +801,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="EqMenuLayoutItems">@style/EqMenuLayoutItems</item>
 
 		<item name="EqTonePanel">@style/EqTonePanel</item>
+		<item name="EqTonePanelSpacer">@style/EqTonePanelSpacer</item>
 		<item name="EqBassToneKnobLayout">@style/EqBassToneKnobLayout</item>
 		<item name="EqTrebleToneKnobLayout">@style/EqTrebleToneKnobLayout</item>
 		<!-- Also see PeqVisButtonLayout, PeqEqEnableVisFrs, PeqEqEnableVisFrs_Text in styles-peq.xml -->

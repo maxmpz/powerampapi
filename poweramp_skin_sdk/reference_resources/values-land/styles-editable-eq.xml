@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2025 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- land -->
+<resources
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	>
+
+	<style name="EqButtons" parent="EqButtonsBase">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">0dp</item>
+
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
+		<item name="layout_attachTop">parent</item>
+		<item name="layout_attachBottom">@id/preset_button</item>
+	</style>
+
+	<style name="EqButtonsEditTopContainer">
+		<item name="privateScene">true</item>
+		<item name="layout_widthPercent">50%</item>
+		<item name="layout_maxWidth">580dp</item>
+		<item name="layout_heightPercent">80%</item>
+		<item name="layout_maxHeight">280dp</item>
+		<item name="layout_attachRight">@id/eq_buttons</item>
+		<item name="layout_attachTopToTop">@id/eq_buttons</item>
+		<item name="android:layout_marginRight">4dp</item>
+	</style>
+
+
+</resources>

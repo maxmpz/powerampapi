@@ -32,15 +32,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopHelpSmaller_paddingTB">6dp</dimen>
 	<dimen name="TopHelpSmaller_marginTB">12dp</dimen>
 	
-	<dimen name="ListSubstyleBase2_aaMarginBottom">250dp</dimen><!-- Increase area below AA as our aspect is close to 1:1 -->
+	<dimen name="ListSubstyleBase2_aaMarginBottom">300dp</dimen><!-- Increase area below AA as our aspect is close to 1:1 -->
 	
 	<dimen name="ItemTrackNum_width">40sp</dimen>
 	
 	<!-- Alt -->
 
-	<dimen name="Alt_TopListSubstyle_aaMarginBottom">268dp</dimen>
-	<dimen name="Alt_TopAABounds_marginBottom">80dp</dimen>
-	
+	<dimen name="Alt_TopListSubstyle_aaMarginBottom">300dp</dimen>
+	<dimen name="Alt_TopAABounds_marginBottom">74dp</dimen>
+
+	<!-- Increase this as we have a pretty crowed bottom on tablets in port -->
+	<dimen name="TopSubAAButtons_marginTop">16dp</dimen>
+	<dimen name="Alt_TopSubAAButtons_marginTop">24dp</dimen>
+
 	<dimen name="Alt_TopPlay_maxSize">90dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">72dp</dimen>
 	<dimen name="Alt_TopSmallButton_size">40dp</dimen>

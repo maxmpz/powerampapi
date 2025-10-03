@@ -489,7 +489,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="unlike_selector_subaa">@drawable/unlike_selector_subaa</item>
 		<item name="love_selector_subaa">@drawable/love_selector_subaa</item>
 		<item name="unlove_selector_subaa">@drawable/unlove_selector_subaa</item>
-		<item name="menu_subaa">@drawable/menu</item>
+		<item name="menu_subaa">@drawable/menu_32dp</item>
+		<item name="next_cat_subaa">@drawable/next_cat_subaa</item>
+		<item name="prev_cat_subaa">@drawable/prev_cat_subaa</item>
+		<item name="album_art_subaa">@drawable/image_32dp</item>
+		<item name="add_to_pl_subaa">@drawable/add_to_pl_stroke_32dp</item>
+		<item name="add_to_pl_in_pl_subaa">@drawable/pl_toggle_32dp</item>
+		<item name="album_subaa">@drawable/albums_stroke_32dp</item>
+		<item name="artist_subaa">@drawable/artists_stroke_32dp</item>
+		<item name="bookmark_subaa">@drawable/bookmark_stroke_32dp</item>
+		<item name="delete_subaa">@drawable/delete_32dp</item>
+		<item name="folder_subaa">@drawable/folder_stroke_32dp</item>
+		<item name="genre_subaa">@drawable/genres_stroke_32dp</item>
+		<item name="info_subaa">@drawable/info_stroke_32dp</item>
+		<item name="lyrics_subaa">@drawable/lyrics_32dp</item>
+		<item name="lyrics_none_subaa">@drawable/lyrics_none_32dp</item>
+		<item name="back_10s_subaa">@drawable/back_10s_32dp</item>
+		<item name="forward_10s_subaa">@drawable/forward_10s_32dp</item>
+		<item name="edit_tags_subaa">@drawable/edit_32dp</item>
 
 
 		<item name="assign_eq_24dp">@drawable/assign_eq_24dp</item>

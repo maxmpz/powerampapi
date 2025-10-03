@@ -1,3 +1,4 @@
 <resources>
-	<string name="resfolder">sw320dp-h630dp-port</string>
+	<string name="resfolder_w">sw320dp-h630dp-port</string>
+	<string name="resfolder_h">sw320dp-h630dp-port</string>
 </resources>

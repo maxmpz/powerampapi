@@ -31,4 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EditableButtonContainer_marginTop">4dp</dimen>
 	<dimen name="EditableButtonContainer_marginBottom">12dp</dimen>
 
+	<dimen name="EqTonePanelSpacer_marginTop">0dp</dimen>
+	<dimen name="EqInfoBase_marginTB">4dp</dimen><!-- Increased for longer screens -->
+
 </resources>

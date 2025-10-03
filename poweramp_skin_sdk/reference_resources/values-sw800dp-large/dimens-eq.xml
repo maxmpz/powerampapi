@@ -39,8 +39,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqButton_width">80dp</dimen>
 	<dimen name="EqButton_height">44dp</dimen>
+	<dimen name="EqButtonsBase_smallSlotWidth">57dp</dimen>
+
 	<dimen name="EqMenu_size">44dp</dimen>
-	<dimen name="EqButton_paddingLR">24dp</dimen>
+	<!--<dimen name="EqButton_paddingLR">24dp</dimen>-->
 	<dimen name="EqButton_textSize">16dp</dimen><!-- Default (fixed) font -->
 
 	<dimen name="EqParamRoundKnobPortBase_paddingBottom">48sp</dimen>

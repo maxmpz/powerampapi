@@ -230,7 +230,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="Alt_TopSubAAButtons" parent="TopSubAAButtons">
-		<item name="android:layout_marginTop">4dp</item><!-- Prev: @dimen/Alt_TopSubAAButtons_marginTop -->
+		<item name="android:layout_marginTop">@dimen/Alt_TopSubAAButtons_marginTop</item>
 		<item name="android:layout_marginLeft">14dp</item>
 		<item name="android:layout_marginRight">14dp</item>
 	</style>

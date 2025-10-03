@@ -33,6 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopUpperToastFrame_maxWidth">580dp</dimen><!-- Not limited in portrait, limited in land -->
 	
 	<dimen name="TopBaseButtonLayout_width">50dp</dimen>
+	<dimen name="TopSubAAButtonsBase_smallSlotWidth">34dp</dimen>
 	<dimen name="TopBaseButtonLayout_height">30dp</dimen>
 	<dimen name="PopupButtons_paddingLeft">11dp</dimen><!-- Sync with TopBaseButtonLayout_width=>PopupButtons_paddingLeft + 32dp (icon size) + PopupButtons_paddingLeft -->
 	

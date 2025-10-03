@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -117,7 +117,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="layout_heightPercent">50%</item>
 		<item name="android:paddingTop">@dimen/eq_top_margin</item><!-- NOTE: overridden for Peq -->
-		<item name="android:paddingBottom">@dimen/EqFrequencyResponseScroller_marginTop</item>
+		<item name="android:paddingBottom">@dimen/EqKnobsLayout_paddingBottom</item>
 		<item name="layout_attachTop">parent</item>
 		<item name="layout_attachBottom">@id/frequency_response_scroller</item>
 		<!-- NOTE: left/right margins not needed in land -->
@@ -269,7 +269,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_horizontal</item>
-		<item name="layout_attachBottom">@id/equ_button</item>
+		<item name="layout_attachBottom">@id/eq_tone_panel_spacer</item>
 	</style>
 	<style name="EqInfo_scene_item_menu" parent="TopMetaInfo_scene_item_menu">
 	</style>
@@ -318,6 +318,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="EqCheckButton" parent="EqButton"><!-- styles-eq usage only -->
+		<item name="android:layout_marginLeft">0dp</item><!-- Erase possible margins -->
 		<item name="android:textColor">@color/button_text_color_selector</item><!-- NOTE: keeping it out of textAppearance -->
 		<item name="android:background">@drawable/checkable_rounded_large</item>
 	</style>
@@ -330,7 +331,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachLeft">parent</item>
 		
 		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item><!-- NOTE: important - defines offset of tone panel and thus, space for knobs -->
-		<item name="android:ellipsize">end</item>
 	</style>
 	
 	<style name="EqToneButton" parent="EqCheckButton">
@@ -363,6 +363,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- NOTE: can't use dynamic size due to current popup behavior, when we can't return to new size -->
 		<item name="android:layout_height">@dimen/EqButton_height</item>
+
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 		<item name="android:focusableInTouchMode">false</item>
@@ -370,6 +371,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="listItemSize">@dimen/EqPresetButtonLayoutBase_listItemSize</item>
 		<item name="disableParentLayoutForPopup">false</item>
+		<item name="keepLayoutForPopup">true</item><!-- We need this, mostly for land -->
 
 		<item name="popupListStyle">@style/EqPresetPopupListLayoutList</item>
 	</style>
@@ -393,14 +395,26 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:nestedScrollingEnabled">true</item>
 	</style>
 
+	<!-- NOTE: in portrait EqTonePanelSpacer should match the position, height, and the vertical margins of this view -->
 	<style name="EqEquPresetButtonLayout" parent="EqPresetButtonLayoutBase">
 		<item name="android:layout_width">@dimen/EqEquPresetButtonLayout_width</item>
 		<item name="layout_attachRight">@null</item>
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="layout_attachBottom">@id/tone_panel</item>
-		<item name="android:layout_marginTop">8dp</item>
+		<!--<item name="android:layout_marginTop">8dp</item>-->
 		<!-- This is needed as list can be overlapped by the selection menu, so we may want to have this space always available -->
 		<item name="bottomReservedSpace">100dp</item>
+	</style>
+
+	<!-- This is an invisible spacer above tone panel. It acts as the anchor for eq_buttons and everything above the preset/menu.
+	     As we shouldn't directly attach to the preset/menu (these are popup buttons which are detached from the parent on popup action),
+	     we use this spacer as view to attach to.
+	     Overridden for land -->
+	<style name="EqTonePanelSpacer">
+		<item name="layout_attachBottom">@id/tone_panel</item>
+		<item name="android:layout_width">100dp</item><!-- Just for the debugging -->
+		<item name="android:layout_height">@dimen/EqButton_height</item>
+		<item name="android:layout_marginTop">@dimen/EqTonePanelSpacer_marginTop</item><!-- 8dp -->
 	</style>
 
 	<!-- REVISIT: somehow generalize dialog size so there is no need for multiple same layout definitions? -->
@@ -494,8 +508,6 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 	
 	<!-- TonePanel contains bass and treble knob layouts. Size of TonePanel (calculated from the size of inner knobs)
 	     defines size of other components.
-		 layout_marginLeft offsets panel by the size of the left buttons (equ/tone/limit).
-		 We also compensate implicit bottom navbar padding with marginTop.
 		 NOTE: preferring padding over margin here - to allow a bit more room for the possible round knob hilite blur
 		 (which may be drawn slightly outside the bounds)
 	 -->
@@ -514,8 +526,8 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>
 	</style>
-	
-	
+
+
 	<style name="EqToneKnobLayoutBase">
 		<item name="android:clipChildren">false</item>
 		<item name="android:clipToPadding">false</item>

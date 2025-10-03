@@ -46,7 +46,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	
 	<item type="id" name="state_closed"/><!-- bus_player, boolean/int, also a message -->
-	
+	<item type="id" name="state_global"/><!-- bus_player, boolean/int, also a message -->
+
 	<item type="id" name="msg_peq_headset_disconnected"/><!-- arg1 => boolean, isBT -->
 	
 	<item type="id" name="cmd_dsp_peq_pipeline_started"/><!-- bus_dsp_cmd -->

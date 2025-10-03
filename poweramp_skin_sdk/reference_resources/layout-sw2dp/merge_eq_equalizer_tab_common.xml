@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,7 +19,16 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto">
+<!-- REVISIT: why scene, why private, why stateAnim?
+     - private is mostly to avoid top scenes to go into eq layouts (though we have higher level private scenes already)
+     - scene - now used for 1-2line anim
+     - stateAnim? -->
+<com.maxmpz.widget.base.SceneFastLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:w="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/top_eq_tab_container"
+	style="?EqTabLayout"
+	w:privateScene="true"
+	w:enableStateAnim="true"
+	>
 	<!-- PowerList based band list -->
 	<com.maxmpz.widget.player.EqKnobsList android:id="@+id/eq_knobs_layout"
 		style="?EqKnobsLayout"
@@ -69,41 +78,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_button_menu" 
 		style="?EqInfo_scene_item_menu" 
 	/>
-			
-	
-	<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/equ_button"
-		style="?EqEquButton"
-		w:param="@id/dsp_eq_enabled"
-		w:updateMsgId="@id/msg_dsp_eq_changed"
-		
-		w:longPressCmdId="@id/cmd_app_open_settings"
-		w:longPressBusId="@id/bus_app_cmd"
-		w:string="?settings_target_equ"
-		
-		android:text="@string/equ"
-	/>
 
-	<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/tone_button"
-		style="?EqToneButton"
-		w:param="@id/dsp_tone_enabled"
-		w:updateMsgId="@id/msg_dsp_eq_changed"
+	<!-- Overridden for peq -->
+	<include android:layout="@layout/merge_eq_equalizer_buttons"/>
 
-		w:longPressCmdId="@id/cmd_app_open_settings"
-		w:longPressBusId="@id/bus_app_cmd"
-		w:string="peq_equ_tone"
 
-		android:text="@string/tone"
-	/>
-
-	<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/limiter_button"
-		style="?EqLimiterButton"
-		w:param="@id/dsp_limiter_enabled"
-		w:updateMsgId="@id/msg_dsp_eq_changed"
-		android:text="@string/limit" 
-	/>
-	
-	<!-- NOTE: this button is completely detached from here when it changes to popup, thus, avoid attaching/aligning anything to it.
-		 Alternatively, wrap it in private scene layout -->
+	<!-- Avoid attaching to this view - it's a popup layout thus it's re-attached (though we keep the stub in place) -->
 	<com.maxmpz.widget.player.EqPresetPopupListLayout android:id="@+id/preset_button"
 		style="?EqEquPresetButtonLayout"
 		android:contentDescription="@string/preset"
@@ -131,6 +111,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?EqEquPresetButtonLayout_scene_button_menu"
 	/>
 
+	<!-- Do not attach to this view - it's a popup layout thus it's re-attached -->
 	<com.maxmpz.widget.base.BusActionPopupLayout android:id="@+id/eq_menu"
 		style="?EqMenu"
 		android:contentDescription="@string/menu"
@@ -151,6 +132,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<SceneParams w:scene="@+id/scene_button_menu"
 		style="?EqMenu_scene_item_menu"
 	/>
+
+	<com.maxmpz.widget.base.InvisibleView android:id="@+id/eq_tone_panel_spacer"
+		style="?EqTonePanelSpacer"
+		/>
 
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/tone_panel"
 		style="?EqTonePanel"
@@ -178,4 +163,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			w:labelText="@string/treble"
 		/>
 	</com.maxmpz.widget.base.FastLayout>
-</merge>
+</com.maxmpz.widget.base.SceneFastLayout>

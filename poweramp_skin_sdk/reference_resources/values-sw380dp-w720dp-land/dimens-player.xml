@@ -32,6 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopWaveseek_maxHeight">184dp</dimen>
 
 	<dimen name="TopBaseButtonLayout_width">72dp</dimen>
+	<dimen name="TopSubAAButtonsBase_smallSlotWidth">53dp</dimen>
 	<dimen name="TopBaseButtonLayout_height">36dp</dimen>
 	<dimen name="PopupButtons_drawableSize">32dp</dimen>
 	<dimen name="PopupButtons_drawableSize24dp">24dp</dimen>

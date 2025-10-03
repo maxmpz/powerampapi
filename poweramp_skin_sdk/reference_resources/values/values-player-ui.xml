@@ -132,5 +132,29 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item>@id/subaabutton_plus10s</item>
 		<item>@id/subaabutton_audio_info</item>
 	</array>
-	
+
+
+	<item type="id" name="eqbutton_eq_and_tone"/>
+	<item type="id" name="eqbutton_eq"/>
+	<item type="id" name="eqbutton_vis"/>
+	<item type="id" name="eqbutton_tone"/>
+	<item type="id" name="eqbutton_limit"/>
+	<item type="id" name="eqbutton_toggle_on_off"/>
+	<item type="id" name="eqbutton_global"/>
+	<item type="id" name="eqbutton_compressor"/>
+	<item type="id" name="eqbutton_dvc"/>
+
+	<array name="eq_buttons">
+		<item>@id/eqbutton_toggle_on_off</item>
+		<item>@id/eqbutton_eq_and_tone</item>
+		<item>@id/eqbutton_limit</item>
+		<item>@id/eqbutton_tone</item>
+		<item>@id/eqbutton_vis</item>
+		<item>@id/eqbutton_eq</item>
+		<item>@id/eqbutton_global</item>
+		<item>@id/eqbutton_compressor</item>
+		<item>@id/eqbutton_dvc</item>
+		<item>@id/subaabutton_audio_info</item>
+	</array>
+
 </resources>

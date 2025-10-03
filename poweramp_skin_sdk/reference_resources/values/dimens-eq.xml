@@ -44,7 +44,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="preamp_knob_width">60dp</dimen>
 	<dimen name="preamp_bg_insetRight">4dp</dimen>
 	
-	<dimen name="eq_frs_height">38dp</dimen>
+	<dimen name="eq_frs_height">30dp</dimen>
 	<dimen name="EqInfoBase_marginTB">4dp</dimen><!-- Increased for longer screens -->
 	
 	<dimen name="linear_knob_text_size">12sp</dimen>
@@ -76,6 +76,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<dimen name="EqButton_width">48dp</dimen>
 	<dimen name="EqButton_height">28dp</dimen>
+	<dimen name="EqButtonsBase_smallSlotWidth">35dp</dimen>
+
 
 	<dimen name="EqParamPopupButtonLayout_height_port">28dp</dimen>
 	<dimen name="EqParamPlaceholder2_height_port">68dp</dimen><!-- 4 + 28 + 4 + 28 + 4 -->
@@ -134,7 +136,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- NOTE: includes labels, some paddings -->
 	<dimen name="EqSmallRoundKnobLayout_maxSize">120dp</dimen>
 	<dimen name="EqToneRoundKnobLayout_maxSize">200dp</dimen>
+	<!-- Not used ATM -->
 	<dimen name="EqToneRoundKnobLayout_maxWidth">220dp</dimen><!-- Further limit width for large tablets -->
+	<!-- Not used ATM -->
 	<dimen name="EqToneKnobLayout_marginSide">4dp</dimen><!-- Margin applied to bass right and treble left, so actual padding between those == x2 -->
 
 	<fraction name="EqToneKnobLayout_widthPercent">50%</fraction>

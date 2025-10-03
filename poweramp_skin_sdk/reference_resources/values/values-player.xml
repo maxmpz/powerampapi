@@ -593,6 +593,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="dsp_treble_gain"/><!-- float -->
 	<item type="id" name="dsp_eq_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_tone_enabled"/><!-- boolean -->
+	<!-- boolean. Generates dsp_eq_enabled/dsp_tone_enabled msgs as well -->
+	<item type="id" name="dsp_eq_and_tone_enabled"/>
 	<item type="id" name="dsp_limiter_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_tempo_enabled"/><!-- boolean -->
 	<item type="id" name="dsp_tempo_plus_enabled"/><!-- boolean -->
@@ -656,6 +658,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="dsp_eq_cascade"/>
 	<!-- boolean -->
 	<item type="id" name="dsp_dvc_vol_compensation"/>
+
+	<!-- boolean, global DVC switch (it's not the actual DVC state, which may be further disabled by AbsVol or per output No DVC -->
+	<item type="id" name="dsp_dvc_enabled"/>
 
 
 	<item type="id" name="bus_export_import"/>

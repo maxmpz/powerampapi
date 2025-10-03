@@ -26,6 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<dimen name="EqMenu_size">36dp</dimen>
 	<dimen name="EqButton_width">68dp</dimen>
+	<dimen name="EqButtonsBase_smallSlotWidth">49dp</dimen>
 	<dimen name="EqButton_maxWidth">96dp</dimen>
 	<dimen name="EqPresetButtonLayout_width">102dp</dimen>
 	<dimen name="eq_frs_height">36dp</dimen><!-- NOTE: increased for Peq -->

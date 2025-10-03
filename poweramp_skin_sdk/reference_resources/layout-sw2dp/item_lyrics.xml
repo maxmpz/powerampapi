@@ -40,14 +40,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<com.maxmpz.widget.player.list.LyricsFastTextView android:id="@+id/title"
 		style="?ItemLyricsTitle"
 	/>
-	<!-- This is needed to ensure applyViewParams=true in the defaultScene (which is not there otherwise) -->
-	<!--
-	<SceneParams
-		w:scene="defaultScene"
-		w:baseScene="defaultScene"
-		w:applyViewParams="true"
-		/>
-		-->
 	<SceneParams w:scene="@+id/scene_active"
 		style="?ItemLyricsTitle_active"
 		/>
