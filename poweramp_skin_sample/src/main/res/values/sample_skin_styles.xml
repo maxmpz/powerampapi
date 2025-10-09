@@ -175,8 +175,15 @@
 		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_bottom_toolbar">@style/ItemTrackMenu_scene_bottom_toolbar</item>
 		<item name="com.maxmpz.audioplayer:ItemTextMenu_scene_bottom_toolbar">@style/ItemTrackMenu_scene_bottom_toolbar</item>
 
+		<!--<item name="com.maxmpz.audioplayer:colorIconLessContrast">#f00</item>-->
+		<!--<item name="com.maxmpz.audioplayer:TopEditableSubAaButtonTinted">@style/MyTopEditableSubAaButtonTinted</item>-->
 
 	</style>
+
+	<!--<style name="MyTopEditableSubAaButtonTinted" parent="com.maxmpz.audioplayer:TopEditableSubAaButtonTinted">-->
+	<!--	<item name="com.maxmpz.audioplayer:drawableTint">#00f</item>-->
+
+	<!--</style>-->
 
 	<style name="TopContainer" parent="com.maxmpz.audioplayer:TopContainer">
 		<!-- Needed for Android 10+ and small Android navbar line. That line requires slight offset, so our paddings look fine
