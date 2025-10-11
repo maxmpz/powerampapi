@@ -6,8 +6,6 @@
 	<!-- Main theme, derived from Poweramp base white theme. We override only the attributes we need.
 	     Poweramp styles/attributes/values start with "com.maxmpz.audioplayer:", otherwise syntax is the standard Android xml resource syntax
 	 -->
-	<attr name="NeutralColor" format="color"/>
-
 	<style name="SampleSkin" parent="com.maxmpz.audioplayer:style/Base_ActivityTheme_Default">
 		<item name="com.maxmpz.audioplayer:corners_navbar">0dp</item>
 
@@ -178,12 +176,6 @@
 
 		<!--<item name="com.maxmpz.audioplayer:colorIconLessContrast">#f00</item>-->
 		<!--<item name="com.maxmpz.audioplayer:TopEditableSubAaButtonTinted">@style/MyTopEditableSubAaButtonTinted</item>-->
-
-		<item name="NeutralColor">#000</item>
-
-		<item name="com.maxmpz.audioplayer:love_no_rating_32dp">@drawable/vtrs_rt_love_disable</item>
-		<item name="com.maxmpz.audioplayer:love_32dp">@drawable/vtrs_rt_love</item>
-		<item name="com.maxmpz.audioplayer:unlove_32dp">@drawable/vtrs_rt_unlove</item>
 	</style>
 
 	<!--<style name="MyTopEditableSubAaButtonTinted" parent="com.maxmpz.audioplayer:TopEditableSubAaButtonTinted">-->
