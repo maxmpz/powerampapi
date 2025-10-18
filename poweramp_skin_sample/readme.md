@@ -23,9 +23,9 @@
 ### Recent Changes
 ##### Build 1007
 - FastTextView derived views (almost all text labels and buttons in Poweramp) now have unified drawable animation attributes for: background, drawable, lineBackground attributes. 
-  - No-value or @null values means "No Change" - the appropriate attribute is not changed during animation
-  - #0000 (#00000000 or @color/no_drawable0000) means "No-Drawable" - the appropriate attribute is animated to nothing
-  - This change causes skin or/and animation inperfections if your skin previously copy-pasted some styles and reused these without deriving from the base Poweramp styles for those elements. Particularily, various library elements, such as labels, top navigation back label may get invalid background or/and sudden jump of backround visibility in this case
+  - No value or @null values means "No Change" - the appropriate attribute is not changed during animation
+  - #0000 (#00000000 or @color/no_drawable0000) means "No Drawable" - the appropriate attribute is animated to nothing
+  - This change causes skin or/and animation imperfections if your skin uses previously copy-pasted styles and reused these without deriving them from the base Poweramp styles for the changed elements. Particularily, various library elements, such as library item labels, top navigation back labels may get invalid background/lineBackground or/and sudden jump of backround/lineBackground visibility in this case
 - more details are available in attrs-fasttextview.xml
 
   
