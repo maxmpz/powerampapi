@@ -48,6 +48,7 @@ public interface PipelineConsts {
 	int PA_OUTPUT_PARAM_SAMPLE_BITS          = 2;
 	int PA_OUTPUT_PARAM_ANDROID_SESSION_ID   = 3;
 	int PA_OUTPUT_PARAM_RESTART_LATENCY_MS   = 4;
+	@Deprecated
 	int PA_OUTPUT_PARAM_ANDROID_AUDIO_STREAM = 5;
 	/** NOTE: not used, use DSP_TH_OUTPUT_FORMAT */
 	int PA_OUTPUT_PARAM_SAMPLE_FORMAT        = 6;
