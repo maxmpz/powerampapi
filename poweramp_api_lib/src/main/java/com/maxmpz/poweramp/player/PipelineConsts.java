@@ -27,16 +27,19 @@ public interface PipelineConsts {
 	/** The format used between pipeline plugins */
 	int PIPELINE_FORMAT = PaSampleFormat.PA_SAMPLE_FMT_FLT;
 
-	// For getPipelineParamInt()
-	int SUBSYSTEM_PIPELINE   = 0;
-	int SUBSYSTEM_DSP_TH     = 1;
-	int SUBSYSTEM_DECODER_TH = 2;
-	int SUBSYSTEM_OUTPUT     = 3; // probably change to pipeline?
-
 	// For queueMsg()
 	int PLUGIN_ID_SUBSYSTEM_PIPELINE   = 0;
 	int PLUGIN_ID_SUBSYSTEM_DECODER_TH = 1; // NOTE: sync with NativePluginManager.PLUGIN_ID_SUBSYSTEM_LAST
 	int PLUGIN_ID_SUBSYSTEM_DSP_TH     = 2;
+
+	// NOTE: these should be matching the subsystem vals
+	// REVISIT: may use single subsystem consts namespace, e.g. PLUGIN_ID_SUBSYSTEM_* for params as well
+	// For getPipelineParamInt()
+	int PARAM_SUBSYSTEM_PIPELINE   = PLUGIN_ID_SUBSYSTEM_PIPELINE; // 0
+	int PARAM_SUBSYSTEM_DECODER_TH = PLUGIN_ID_SUBSYSTEM_DECODER_TH; // 1. Unused ATM
+	int PARAM_SUBSYSTEM_DSP_TH     = PLUGIN_ID_SUBSYSTEM_DSP_TH;
+	int PARAM_SUBSYSTEM_OUTPUT     = 3;
+
 
 	/*
 	 * NOTE: raw native plugin value, not resolved vs Android audio subsystem

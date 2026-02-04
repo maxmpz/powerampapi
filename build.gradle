@@ -44,3 +44,7 @@ subprojects {
         }
     }
 }
+
+tasks.register('clean', Delete) {
+    delete layout.buildDir
+}
