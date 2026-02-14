@@ -65,6 +65,7 @@ public interface PipelineConsts {
 	// getPipelineParamInt() SUBSYSTEM_PIPELINE
 	int PARAM_LAST_DECODER_IX       = 1; // Never used ATM
 	int PARAM_LAST_DECODER_ID       = 2;
+	int PARAM_HAS_FATAL_ERROR       = 3;
 
 	// getPipelineParamInt() SUBSYSTEM_DSP_TH
 	// NOTE: sync with dsp_threads.h
@@ -84,6 +85,7 @@ public interface PipelineConsts {
 	int DSP_TH_OUTPUT_PRESENTATION_LATENCY = 9;
 
 	// NOTE: sync with plugininterface-output.h
+	int PA_OUTPUT_CAP_INITED                   = 0x1;
 	int PA_OUTPUT_CAP_ALWAYS_UNITY_GAIN        = 0x0010;
 	int PA_OUTPUT_CAP_NO_HEADROOM_GAIN         = 0x0020;
 	int PA_OUTPUT_CAP_NO_EQU                   = 0x0040;
@@ -108,6 +110,7 @@ public interface PipelineConsts {
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only
 	int PA_OUTPUT_CAP_FORCED_UNITY_GAIN      = 0x20000;
+	/** Basically gives extra flag in settings called OEM Variant. Used for Lenovo only */
 	int PA_OUTPUT_CAP_OEM_VARIANT            = 0x40000; 	// Used for caps as well
 	// 2
 	
