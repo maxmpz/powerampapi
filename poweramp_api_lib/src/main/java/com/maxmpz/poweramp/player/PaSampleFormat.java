@@ -4,7 +4,8 @@ package com.maxmpz.poweramp.player;
 public final class PaSampleFormat {
 	public static final int PA_SAMPLE_FMT_NONE     = -1;
 
-	public static final int PA_SAMPLE_FMT_U8       = 0;      ///< unsigned 8 bits
+	/** unsigned 8 bits. As it matches 0, it generally means Auto/none currently */
+	public static final int PA_SAMPLE_FMT_U8       = 0;
 	public static final int PA_SAMPLE_FMT_S16      = 1;      ///< signed 16 bits
 	public static final int PA_SAMPLE_FMT_S32      = 2;      ///< signed 32 bits
 	public static final int PA_SAMPLE_FMT_FLT      = 3;      ///< float

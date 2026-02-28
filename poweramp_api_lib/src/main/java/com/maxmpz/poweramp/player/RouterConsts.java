@@ -27,6 +27,7 @@ import android.media.AudioDeviceInfo;
 
 
 public interface RouterConsts {
+	public static final int DEVICE_FIRST    = 0;
 	// Sync with plugininterface-output.h
 	public static final int DEVICE_HEADSET    = 0;
 	public static final int DEVICE_SPEAKER    = 1;
@@ -35,9 +36,10 @@ public interface RouterConsts {
 	public static final int DEVICE_OTHER      = 4;
 	public static final int DEVICE_CHROMECAST = 5;
 	// 6
+	public static final int DEVICE_LAST       = 5;
 
 	public static final int DEVICE_UNKNOWN = 0xFF;
-	
+
 	public static final int DEVICE_COUNT   = 6;
 	public static final int DEVICE_SAFE_DEFAULT = DEVICE_HEADSET;
 
@@ -47,6 +49,10 @@ public interface RouterConsts {
 	public static final @NonNull String DEVICE_NAME_USB = "usb";
 	public static final @NonNull String DEVICE_NAME_OTHER = "other";
 	public static final @NonNull String DEVICE_NAME_CHROMECAST = "chromecast";
+
+	static boolean isValidDeviceId(int deviceId) {
+		return deviceId >= DEVICE_FIRST && deviceId <= DEVICE_LAST;
+	}
 
 	@TargetApi(23)
 	public static int toAndroidDeviceType(int device) {
@@ -70,6 +76,7 @@ public interface RouterConsts {
 		return device >= 0 && device < DEVICE_COUNT;
 	}
 
+	/** @return matching device, or -1 if not matched */
 	public static int getDeviceId(@Nullable String device) {
 		if(device == null) {
 			return -1;

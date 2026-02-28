@@ -105,7 +105,9 @@ public interface PipelineConsts {
 	int PA_OUTPUT_CAP_USE_STREAM3              = 0x200000;
 	int PA_OUTPUT_CAP_DELAYED_FORMAT           = 0x400000;
 	int PA_OUTPUT_CAP_FOLLOW_SR                = 0x800000;
-	// 19
+
+	int PA_OUTPUT_CAP_DSD                      = 0x1000000;
+	// 20
 
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only
@@ -132,4 +134,7 @@ public interface PipelineConsts {
 	int CROSSFADE_ALL = 2;
 	int CROSSFADE_SHUFFLE = 3;
 	int CROSSFADE_MAX = 3;
+
+	/** Used for cmd_player_reload_pipeline arg1 */
+	int ARG1_FLAG_RECONFIGURE = 0x1000;
 }

@@ -1632,8 +1632,9 @@ public final class PowerampAPI {
 			public static final int TYPE_IT         = 28;
 			public static final int TYPE_MPTM       = 29;
 			public static final int TYPE_OGA        = 30;
+			public static final int TYPE_WEBM       = 31;
 
-			public static final int LAST_TYPE       = 30;
+			public static final int LAST_TYPE       = 31;
 		}
 
 		/**
@@ -2204,7 +2205,7 @@ public final class PowerampAPI {
 		/**
 		 * Extra for ACTIVITY_SETTINGS<br>
 		 * {@code boolean} {@code String } if true (also for String - not "0" nor "false" nor empty) and EXTRA_OPEN_PATH was used,
-		 * pressing back will return back to the activity it was started. Otherwise by default Poweramp "restores" appropriate
+		 * pressing back will return back to the activity it was started from. Otherwise by default Poweramp "restores" appropriate
 		 * parent settings page
 		 * @since 842
 		 */
