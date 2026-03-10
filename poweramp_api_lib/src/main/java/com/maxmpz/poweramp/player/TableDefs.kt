@@ -1892,7 +1892,7 @@ object TableDefs {
         const val DEVICE_NAME: String = "device_name"
 
         /**
-         * Device address
+         * Device address (actually, endDeviceName)
          * TEXT
          */
         const val DEVICE_ADDRESS: String = "device_address"
