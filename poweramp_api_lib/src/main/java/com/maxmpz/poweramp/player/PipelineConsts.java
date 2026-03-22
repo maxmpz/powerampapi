@@ -46,7 +46,7 @@ public interface PipelineConsts {
 	 */
 	int PA_OUTPUT_PARAM_SAMPLE_RATE          = 1;
 	/*
-	 * NOTE: raw native plugin value, not resolved vs Android audio subsystem
+	 * NOTE: raw native plugin value, not resolved vs Android audio subsystem. REVISIT: unused, drop?
 	 */
 	int PA_OUTPUT_PARAM_SAMPLE_BITS          = 2;
 	int PA_OUTPUT_PARAM_ANDROID_SESSION_ID   = 3;
