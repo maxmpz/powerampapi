@@ -65,7 +65,7 @@ public interface PipelineConsts {
 	// getPipelineParamInt() SUBSYSTEM_PIPELINE
 	int PARAM_LAST_DECODER_IX       = 1; // Never used ATM
 	int PARAM_LAST_DECODER_ID       = 2;
-	int PARAM_HAS_FATAL_ERROR       = 3;
+	int PARAM_FATAL_ERROR           = 3;
 
 	// getPipelineParamInt() SUBSYSTEM_DSP_TH
 	// NOTE: sync with dsp_threads.h
@@ -85,7 +85,10 @@ public interface PipelineConsts {
 	int DSP_TH_OUTPUT_PRESENTATION_LATENCY = 9;
 
 	// NOTE: sync with plugininterface-output.h
-	int PA_OUTPUT_CAP_INITED                   = 0x1;
+	int PA_OUTPUT_CAP_INITED                   = 0x0001;
+	int PA_OUTPUT_CAP_PTS_UI                   = 0x0002;
+	int PA_OUTPUT_CAP_NO_MUSIC_STREAM_VOL      = 0x0004;
+	int PA_OUTPUT_CAP_RAW                      = 0x0008;
 	int PA_OUTPUT_CAP_ALWAYS_UNITY_GAIN        = 0x0010;
 	int PA_OUTPUT_CAP_NO_HEADROOM_GAIN         = 0x0020;
 	int PA_OUTPUT_CAP_NO_EQU                   = 0x0040;
@@ -98,16 +101,14 @@ public interface PipelineConsts {
 	int PA_OUTPUT_CAP_NO_DUCK                  = 0x2000;
 	int PA_OUTPUT_CAP_TRACK_PLAYBACK           = 0x4000;
 	int PA_OUTPUT_CAP_NEEDS_VOL_UI             = 0x8000;
-	int PA_OUTPUT_CAP_RAW                      = 0x0008;
-	int PA_OUTPUT_CAP_NO_MUSIC_STREAM_VOL      = 0x0004;
-	int PA_OUTPUT_CAP_PTS_UI                   = 0x0002;
 	int PA_OUTPUT_CAP_NO_AUDIO_FOCUS           = 0x100000;
 	int PA_OUTPUT_CAP_USE_STREAM3              = 0x200000;
 	int PA_OUTPUT_CAP_DELAYED_FORMAT           = 0x400000;
 	int PA_OUTPUT_CAP_FOLLOW_SR                = 0x800000;
-
 	int PA_OUTPUT_CAP_DSD                      = 0x1000000;
-	// 20
+	int PA_OUTPUT_CAP_PIPELINE64               = 0x2000000;
+	int PA_OUTPUT_CAP_DSD_REMASTER             = 0x4000000;
+	int PA_OUTPUT_CAP_PERFECTBITPERFECT        = 0x8000000;
 
 	// NOTE: plugininterface-internal.h
 	// NOTE: used for get_options() only
@@ -115,15 +116,13 @@ public interface PipelineConsts {
 	/** Basically gives extra flag in settings called OEM Variant. Used for Lenovo only */
 	int PA_OUTPUT_CAP_OEM_VARIANT            = 0x40000; 	// Used for caps as well
 	// 2
-	
+
 	int UI_FLAG_NO_DVC_DUE_TO_BT_ABSVOL      = 0x0001;
 	
 	/** Volume update broadcast */
 	int PA_BROADCAST_VOLUME       = 1;
-	
-	
-	int MSG_SET_NO_DVC_HEADROOM_MB   = 0x0009; // NOTE: immediately applies this. NOTE: public - can be used by java code
 
+	int MSG_SET_NO_DVC_HEADROOM_MB   = 0x0009; // NOTE: immediately applies this. NOTE: public - can be used by java code
 
 	int FADE_NO_FADE = 0;
 	int FADE_IN_OUT = 1;

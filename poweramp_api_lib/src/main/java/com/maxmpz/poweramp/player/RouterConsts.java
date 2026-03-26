@@ -27,7 +27,7 @@ import android.media.AudioDeviceInfo;
 
 
 public interface RouterConsts {
-	public static final int DEVICE_FIRST    = 0;
+	public static final int DEVICE_FIRST      = 0;
 	// Sync with plugininterface-output.h
 	public static final int DEVICE_HEADSET    = 0;
 	public static final int DEVICE_SPEAKER    = 1;
@@ -38,7 +38,7 @@ public interface RouterConsts {
 	// 6
 	public static final int DEVICE_LAST       = 5;
 
-	public static final int DEVICE_UNKNOWN = 0xFF;
+	public static final int DEVICE_UNKNOWN    = 0xFF;
 
 	public static final int DEVICE_COUNT   = 6;
 	public static final int DEVICE_SAFE_DEFAULT = DEVICE_HEADSET;
