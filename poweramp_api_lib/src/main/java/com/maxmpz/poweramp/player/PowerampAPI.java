@@ -1086,19 +1086,6 @@ public final class PowerampAPI {
 
 	/**
 	 * Sent by your app to Poweramp<br>
-	 * Poweramp native plugin command<br>
-	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME}, or {@link #PLAYER_SERVICE_NAME} with the appropriate
-	 * methods (sendBroadcast, startActivity, startService)<br><br>
-	 * Extras:<br>
-	 * {@link #EXTRA_PACKAGE} - String - plugin package<br>
-	 * {@link #EXTRA_COMMAND} - int - some dsp unique command. cmd should be >= 0<br>
-	 * {@link #EXTRA_CONTENT} - byte[] - the command data serialized as byte array<br>
-	 * @since 700
-	 */
-	public static final String ACTION_NATIVE_PLUGIN_COMMAND = "com.maxmpz.audioplayer.NATIVE_PLUGIN_COMMAND";
-	
-	/**
-	 * Sent by your app to Poweramp<br>
 	 * Generic search command<br>
 	 * Should be sent to {@link #API_RECEIVER_NAME}, or {@link #API_ACTIVITY_NAME}, or {@link #ACTIVITY_STARTUP}, or
 	 * {@link #PLAYER_SERVICE_NAME} with the appropriate methods (sendBroadcast, startActivity, startService)
