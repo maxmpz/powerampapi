@@ -2,6 +2,7 @@ package com.maxmpz.poweramp.player;
 
 
 public final class PaSampleFormat {
+	/** Generally means auto format */
 	public static final int PA_SAMPLE_FMT_NONE     = -1;
 
 	/** unsigned 8 bits. As it matches 0, it generally means Auto/none currently */
@@ -36,9 +37,6 @@ public final class PaSampleFormat {
 	/** This is storage bits per given sample */
 	public static int getBitsPerSample(int sampleFormat) {
 		switch(sampleFormat) {
-			default:
-			case PA_SAMPLE_FMT_NONE:
-				return 0;
 			case PA_SAMPLE_FMT_U8:
 				return 8;
 			case PA_SAMPLE_FMT_S16:
@@ -66,7 +64,24 @@ public final class PaSampleFormat {
 			case PA_SAMPLE_FMT_S64:
 			case PA_SAMPLE_FMT_S64P:
 				return 64;
+			default:
+			case PA_SAMPLE_FMT_NONE:
+				return 0;
 		}
+	}
+
+	/** @return the most appropriate format for this bit width, or PA_SAMPLE_FMT_NONE otherwise */
+	public static int getSampleFmtForBits(int sampleBits) {
+		switch(sampleBits) {
+			case 8: return PA_SAMPLE_FMT_U8;
+			case 16: return PA_SAMPLE_FMT_S16;
+			case 24: return PA_SAMPLE_FMT_S24;
+			case 32: return PA_SAMPLE_FMT_S32;
+			case 64: return PA_SAMPLE_FMT_S64;
+			default:
+				return PA_SAMPLE_FMT_NONE;
+		}
+
 	}
 
 	/** This is storage bits per given sample */
