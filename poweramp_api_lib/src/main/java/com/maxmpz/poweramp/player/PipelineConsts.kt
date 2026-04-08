@@ -121,10 +121,6 @@ object PipelineConsts {
     const val PA_OUTPUT_CAP_PERFECTBITPERFECT: Int = 0x8000000
     const val PA_OUTPUT_CAP_FOLLOW_BT_CODEC: Int = 0x10000000
 
-    // NOTE: plugininterface-internal.h
-    // NOTE: used for get_options() only
-    const val PA_OUTPUT_CAP_FORCED_UNITY_GAIN: Int = 0x20000
-
     /** Basically gives extra flag in settings called OEM Variant. Used for Lenovo only  */
     const val PA_OUTPUT_CAP_OEM_VARIANT: Int = 0x40000 // Used for caps as well
 
