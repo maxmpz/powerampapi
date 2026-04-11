@@ -20,6 +20,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.maxmpz.poweramp.plugin;
 
+import androidx.annotation.Size;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
@@ -71,7 +72,17 @@ public class PluginMsgHelper {
 		return HEADER_SIZE_BYTES + desiredSizeBytes;
 	}
 
-	private static void writeHeader(int @NonNull[] buf, int pluginID, int msgID, int flags, int desiredSizeInts) {
+	/**
+	 * Writes header from index 0 of the buffer
+	 * @param buf should have at least HEADER_SIZE_INTS size
+	 */
+	public static void writeHeader(
+		@Size(min = HEADER_SIZE_INTS) int @NonNull [] buf,
+		int pluginID,
+		int msgID,
+		int flags,
+		int desiredSizeInts
+	) {
 		buf[0] = pluginID;
 		// 3 ints are zeros (reserved for Poweramp msg header).
 		buf[IX_TAG / 4] = MSG_TAG;
@@ -80,7 +91,37 @@ public class PluginMsgHelper {
 		buf[IX_DATA_SIZE / 4] = desiredSizeInts * 4;
 	}
 
-	private static void writeHeader(@NonNull ByteBuffer buf, int pluginID, int msgID, int flags, int desiredSizeBytes) {
+	private static void writeIntLE(byte @NonNull [] buf, int ix, int v) {
+		buf[ix++] = (byte)v;
+		buf[ix++] = (byte)(v >> 8);
+		buf[ix++] = (byte)(v >> 16);
+		buf[ix] = (byte)(v >> 24);
+	}
+
+	/**
+	 * Writes header from index 0 of the buffer
+	 * @param buf should have at least HEADER_SIZE_BYTES size
+	 */
+	public static void writeHeader(
+		@Size(min = HEADER_SIZE_BYTES) byte @NonNull [] buf,
+		int pluginID,
+		int msgID,
+		int flags,
+		int desiredSizeBytes
+	) {
+		writeIntLE(buf, 0, pluginID);
+		// 3 ints are zeros (reserved for Poweramp msg header).
+		writeIntLE(buf, IX_TAG, MSG_TAG);
+		writeIntLE(buf, IX_MSG_ID,  msgID);
+		writeIntLE(buf, IX_FLAGS, flags);
+		writeIntLE(buf, IX_DATA_SIZE,desiredSizeBytes);
+	}
+
+	/**
+	 * Writes header from index 0 of the buffer
+	 * @param buf should have at least HEADER_SIZE_BYTES size
+	 */
+	public static void writeHeader(@NonNull ByteBuffer buf, int pluginID, int msgID, int flags, int desiredSizeBytes) {
 		buf.putInt(pluginID);
 		// 3 ints are zeros (reserved for Poweramp msg header).
 		buf.position(IX_TAG);
@@ -90,12 +131,12 @@ public class PluginMsgHelper {
 		buf.putInt(desiredSizeBytes);
 	}
 
-	public static int @NonNull[] createIntMsgBuffer(int pluginID, int msgID, int flags, int desiredSizeInts) {
-		if(desiredSizeInts > MAX_SIZE_INTS) {
-			throw new PluginMsgException("bad desiredSizeInts=" + desiredSizeInts + " MAX_SIZE_INTS=" + MAX_SIZE_INTS);
+	public static int @NonNull[] createIntMsgBuffer(int pluginID, int msgID, int flags, int desiredDataSizeInts) {
+		if(desiredDataSizeInts > MAX_SIZE_INTS) {
+			throw new PluginMsgException("bad desiredDataSizeInts=" + desiredDataSizeInts + " MAX_SIZE_INTS=" + MAX_SIZE_INTS);
 		}
-		int[] buf = new int[calcBufferSizeInts(desiredSizeInts)];
-		writeHeader(buf, pluginID, msgID, flags, desiredSizeInts);
+		int[] buf = new int[calcBufferSizeInts(desiredDataSizeInts)];
+		writeHeader(buf, pluginID, msgID, flags, desiredDataSizeInts);
 		return buf;
 	}
 
@@ -103,23 +144,25 @@ public class PluginMsgHelper {
 	 * NOTE: returned ByteBuffer is positioned to the first data position<br>
 	 * NOTE: direct buffer makes no sense in our case and is slower<br>
 	 */
-	public static @NonNull ByteBuffer createBufferMsgBuffer(int pluginID, int msgID, int flags, int desiredSizeBytes) {
-		if(desiredSizeBytes > MAX_SIZE_BYTES) {
-			throw new PluginMsgException("bad desiredSizeBytes=" + MAX_SIZE_BYTES + " MAX_SIZE_BYTES=" + MAX_SIZE_BYTES);
+	public static @NonNull ByteBuffer createBufferMsgBuffer(int pluginID, int msgID, int flags, int desiredDataSizeBytes) {
+		if(desiredDataSizeBytes > MAX_SIZE_BYTES) {
+			throw new PluginMsgException("bad desiredDataSizeBytes=" + MAX_SIZE_BYTES + " MAX_SIZE_BYTES=" + MAX_SIZE_BYTES);
 		}
-		ByteBuffer buf = ByteBuffer.allocate(calcBufferSizeBytes(desiredSizeBytes));
+		ByteBuffer buf = ByteBuffer.allocate(calcBufferSizeBytes(desiredDataSizeBytes));
 		buf.order(ByteOrder.LITTLE_ENDIAN);
-		writeHeader(buf, pluginID, msgID, flags, desiredSizeBytes);
+		writeHeader(buf, pluginID, msgID, flags, desiredDataSizeBytes);
 		return buf;
 	}
 
 	public static @NonNull String msgBufferAsString(int @Nullable[] buf) {
-		if(buf == null) {
-			return "null";
-		}
-		if(buf.length < HEADER_SIZE_INTS) {
-			throw new PluginMsgException("bad buf length=" + buf.length);
-		}
+		if(buf == null) return "null";
+		return msgBufferAsString(buf, buf.length);
+	}
+
+	public static @NonNull String msgBufferAsString(int @Nullable[] buf, int size) {
+		if(buf == null) return "null";
+		if(buf.length < HEADER_SIZE_INTS || size < HEADER_SIZE_INTS)
+			throw new PluginMsgException("bad buf length=" + buf.length + " size=" + size);
 		return toString(buf);
 	}
 
