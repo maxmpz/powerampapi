@@ -22,10 +22,10 @@ package com.maxmpz.poweramp.player
 
 object PipelineConsts {
     /** The format used internally in DSP kernels  */
-    const val DSP_FORMAT: Int = PaSampleFormat.PA_SAMPLE_FMT_DBL
+    const val DSP_FORMAT: Int = PA_SAMPLE_FMT_DBL
 
     /** The format used between pipeline plugins  */
-    const val PIPELINE_FORMAT: Int = PaSampleFormat.PA_SAMPLE_FMT_FLT
+    const val PIPELINE_FORMAT: Int = PA_SAMPLE_FMT_FLT
 
     const val SAMPLE_RATE_AUTO: Int = 0
     /** Used on java side only, never sent to the native side. Native receives 0 */
@@ -120,6 +120,7 @@ object PipelineConsts {
     const val PA_OUTPUT_CAP_DSD_REMASTER: Int = 0x4000000
     const val PA_OUTPUT_CAP_PERFECTBITPERFECT: Int = 0x8000000
     const val PA_OUTPUT_CAP_FOLLOW_BT_CODEC: Int = 0x10000000
+    const val PA_OUTPUT_CAP_PREFER_BASE_RATE: Int = 0x20000000
 
     /** Basically gives extra flag in settings called OEM Variant. Used for Lenovo only  */
     const val PA_OUTPUT_CAP_OEM_VARIANT: Int = 0x40000 // Used for caps as well
