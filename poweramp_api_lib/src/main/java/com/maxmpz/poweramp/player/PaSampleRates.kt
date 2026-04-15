@@ -1,6 +1,23 @@
-package com.maxmpz.poweramp.player
+/*
+Copyright (C) 2011-2026 Maksim Petrov
 
-import kotlin.Int
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for widgets, plugins, applications and other software
+which communicate with Poweramp application on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+package com.maxmpz.poweramp.player
 
 // Sync with output-internal.h
 const val INTERNAL_OUTPUT_FLAG_FIRST: Int = 0x10
@@ -105,8 +122,16 @@ inline fun Int.iterateSampleRateBits(block: (sr: Int, srFlag: Int) -> Unit): Int
     return srCount
 }
 
+/**
+ * NOTE: this SKIPS unsupported sample rates
+ * @return DSD returned as a negative value
+ */
+fun paSupportedSampleRateFlagToValue(flag: Int): Int = paSampleRateFlagToValue(PA_ALL_SAMPLE_RATES_MASK and flag)
 
-/** @return DSD returned as a negative value */
+/**
+ * NOTE: this handles unsupported sample rates
+ * @return DSD returned as a negative value
+ */
 fun paSampleRateFlagToValue(flag: Int): Int = when(flag) {
     INTERNAL_OUTPUT_FLAG_SR_44K -> 44100
     INTERNAL_OUTPUT_FLAG_SR_48K -> 48000
