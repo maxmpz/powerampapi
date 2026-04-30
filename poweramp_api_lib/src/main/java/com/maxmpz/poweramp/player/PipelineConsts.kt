@@ -72,7 +72,6 @@ const val PA_OUTPUT_PARAM_AUDIO_IO_HANDLE: Int = -0x7fffffff
 // getPipelineParamInt() SUBSYSTEM_PIPELINE
 const val PARAM_LAST_DECODER_IX: Int = 1 // Never used ATM
 const val PARAM_LAST_DECODER_ID: Int = 2
-const val PARAM_FATAL_ERROR: Int = 3
 
 // getPipelineParamInt() SUBSYSTEM_DSP_TH
 // NOTE: sync with dsp_threads.h
@@ -112,6 +111,8 @@ const val PA_OUTPUT_CAP_TRACK_PLAYBACK: Int = 0x4000
 const val PA_OUTPUT_CAP_NEEDS_VOL_UI: Int   = 0x8000
 const val PA_OUTPUT_CAP_ALLOW_DSD_DOP: Int  = 0x10000
 const val PA_OUTPUT_CAP_PREFER_DSD_RAW: Int = 0x20000
+const val PA_OUTPUT_CAP_SOFTWARE_MASTER_VOL: Int = 0x40000
+const val PA_OUTPUT_CAP_FORCE_USB_FULLSPEED: Int = 0x80000
 
 const val PA_OUTPUT_CAP_NO_AUDIO_FOCUS: Int = 0x100000
 
