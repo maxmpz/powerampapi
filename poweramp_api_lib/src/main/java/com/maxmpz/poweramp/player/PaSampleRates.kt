@@ -292,8 +292,9 @@ fun getSampleRateAndLabel(
         return getShortSampleRateNameFromFlag(srFlag, kHzLabel, needSpaceBeforeKHz, defaultLabel)
     }
     if(sr > 0) {
-        return getSampleRateInKhz(sr) + "?" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    } else if(sr < 0) { // Unknown DSD
+        // Allow non-standard PCM rates, e.g., for tracks
+        return getSampleRateInKhz(sr) + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
+    } else if(sr < 0) { // Unknown DSD, keep ?
         return "DSD?(" + getSampleRateInKhz(-sr) + (if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel) + ")"
     } else {
         return defaultLabel
