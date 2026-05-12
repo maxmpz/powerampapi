@@ -55,7 +55,7 @@ const val PA_OUTPUT_PARAM_SAMPLE_RATE: Int = 1
 /** NOTE: raw native plugin value, not resolved vs Android audio subsystem. REVISIT: unused, drop? */
 const val PA_OUTPUT_PARAM_SAMPLE_BITS: Int = 2
 const val PA_OUTPUT_PARAM_ANDROID_SESSION_ID: Int = 3
-const val PA_OUTPUT_PARAM_RESTART_LATENCY_MS: Int = 4
+const val PA_OUTPUT_PARAM_RESTART_LATENCY_MS: Int = 4 // TODO
 
 @Deprecated("")
 const val PA_OUTPUT_PARAM_ANDROID_AUDIO_STREAM: Int = 5
@@ -146,5 +146,7 @@ const val CROSSFADE_ALL: Int = 2
 const val CROSSFADE_SHUFFLE: Int = 3
 const val CROSSFADE_MAX: Int = 3
 
-/** Used for cmd_player_reload_pipeline arg1  */
+/** Used for cmd_player_reload_pipeline arg1. Requests reconfiguration, instead of the full reload, if possible  */
 const val ARG1_FLAG_RECONFIGURE: Int = 0x1000
+/** Used for cmd_player_reload_pipeline arg1. The reconfigure should not reset output safe flags */
+const val ARG1_FLAG_KEEP_SAFE: Int = 0x2000
