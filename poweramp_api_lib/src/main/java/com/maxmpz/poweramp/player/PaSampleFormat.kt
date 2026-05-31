@@ -31,9 +31,9 @@ const val PA_SAMPLE_FMT_U8: Int = 0
 const val PA_SAMPLE_FMT_S16: Int = 1
 /** signed 32 bits */
 const val PA_SAMPLE_FMT_S32: Int = 2
-/** float (f32) */
+/** float (f32). Float32 */
 const val PA_SAMPLE_FMT_FLT: Int = 3
-/** double (f64) */
+/** double (f64). Float64 */
 const val PA_SAMPLE_FMT_DBL: Int = 4
 /** unsigned 8 bits, planar */
 const val PA_SAMPLE_FMT_U8P: Int = 5
