@@ -91,6 +91,7 @@ const val DSP_TH_OUTPUT_FORMAT: Int = 6
 const val DSP_TH_BUFFERS: Int = 7
 const val DSP_TH_BUFFER_FRAMES: Int = 8
 const val DSP_TH_OUTPUT_PRESENTATION_LATENCY: Int = 9
+const val DSP_TH_FORMAT: Int = 10
 
 // NOTE: sync with plugininterface-output.h
 const val PA_OUTPUT_CAP_INITED: Int = 0x0001
