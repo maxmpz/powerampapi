@@ -19,132 +19,233 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.maxmpz.poweramp.player
 
+import android.content.Context
+
 /** Generally means auto format  */
 const val PA_SAMPLE_FMT_NONE: Int = -1
 
-/** unsigned 8 bits. As it matches 0, it generally means Auto/none currently  */
+const val PA_SAMPLE_FMT_FIRST: Int = 0
+/** unsigned 8 bits 0. We may consider this as non-set value and use it as AUTO */
 const val PA_SAMPLE_FMT_U8: Int = 0
+/** signed 16 bits */
 const val PA_SAMPLE_FMT_S16: Int = 1
-
-/**< signed 16 bits */
+/** signed 32 bits */
 const val PA_SAMPLE_FMT_S32: Int = 2
-
-/**< signed 32 bits */
+/** float (f32) */
 const val PA_SAMPLE_FMT_FLT: Int = 3
-
-/**< float */
+/** double (f64) */
 const val PA_SAMPLE_FMT_DBL: Int = 4
-
-/**< double */
+/** unsigned 8 bits, planar */
 const val PA_SAMPLE_FMT_U8P: Int = 5
-
-/**< unsigned 8 bits, planar */
+/** signed 16 bits, planar */
 const val PA_SAMPLE_FMT_S16P: Int = 6
-
-/**< signed 16 bits, planar */
+/** signed 32 bits, planar */
 const val PA_SAMPLE_FMT_S32P: Int = 7
-
-/**< signed 32 bits, planar */
+/** float, planar */
 const val PA_SAMPLE_FMT_FLTP: Int = 8
-
-/**< float, planar */
+/** double, planar */
 const val PA_SAMPLE_FMT_DBLP: Int = 9
-
-/**< double, planar */
+/** signed 64 bits (s64) */
 const val PA_SAMPLE_FMT_S64: Int = 10
-
-/**< signed 64 bits */
+/** signed 64 bits, planar */
 const val PA_SAMPLE_FMT_S64P: Int = 11
 
-/**< signed 64 bits, planar */ // 12..19 are reserved, but still valid values
-const val PA_SAMPLE_FMT_S24: Int = 20 // packed 24bit
-const val PA_SAMPLE_FMT_S8_24: Int = 21 // Android Q8.23
+const val PA_SAMPLE_FMT_RESERVED_1: Int = 12
+const val PA_SAMPLE_FMT_RESERVED_2: Int = 13
+const val PA_SAMPLE_FMT_RESERVED_3: Int = 14
+const val PA_SAMPLE_FMT_RESERVED_4: Int = 15
+const val PA_SAMPLE_FMT_RESERVED_5: Int = 16
+const val PA_SAMPLE_FMT_FIRST_RESERVED: Int = 12
+const val PA_SAMPLE_FMT_LAST_RESERVED: Int = 16
 
-// 14
-/** NOTE: this indicates max sample format + 1, as we have reserved values  */
-const val PA_SAMPLE_FMT_NB: Int = 22
+/** S16 padded to S24 (subslot bytes==3). Left-justified (MSB-aligned). [16 bits audio][8 bits padding] */
+const val PA_SAMPLE_FMT_S16_S24: Int = 17
+/** S16 padded to S32 (subslot bytes==4). Left-justified (MSB-aligned). [16 bits audio][16 bits padding] */
+const val PA_SAMPLE_FMT_S16_S32: Int = 18
+/** S24 padded to S32 (subslot bytes==4). Left-justified (MSB-aligned). [24 bits audio][8 bits padding]. 1.0==0x7FFFFF00 */
+const val PA_SAMPLE_FMT_S24_S32: Int = 19
+/** packed 24bit. NOTE: we rely on S24 being > S32/S64, thus we'll select it last */
+const val PA_SAMPLE_FMT_S24: Int = 20
+/** Android Q8.23. Right-justified (LSB-aligned). [8 bits padding][24 bits audio] 1.0==0x007FFFFF */
+const val PA_SAMPLE_FMT_S8_24: Int = 21
+
+/** DOP DSD packed to 24 bits. Top 8 bits (MSB) alternate between 0x05 and 0xFA every sample, 16 LSB bits - actual data */
+const val PA_SAMPLE_FMT_DSD_DOP_24: Int = 22
+/** DOP DSD packed to 32 bits. Top 8 bits (MSB) alternate between 0x05 and 0xFA every sample, 16 LSB bits - actual data, 8 LSB 0-bits */
+const val PA_SAMPLE_FMT_DSD_DOP_32: Int = 23
+/** RAW DSD packed to 32 bits. Little-endian, LSB */
+const val PA_SAMPLE_FMT_DSD_RAW_32_LSB: Int = 24
+/** RAW DSD packed to 32 bits. Little-endian, MSB */
+const val PA_SAMPLE_FMT_DSD_RAW_32_MSB: Int = 25
+
+/** This is NOT exactly the number of formats, as it includes reserved formats */
+const val PA_SAMPLE_FMT_NB: Int = 26
+const val PA_SAMPLE_FMT_LAST: Int = 25
 
 
-// Sync with output-internal.h
-// This requires separate output param
-const val INTERNAL_OUTPUT_FLAG_FMT_U8: Int = 1 shl PA_SAMPLE_FMT_U8
-const val INTERNAL_OUTPUT_FLAG_FMT_S16: Int = 1 shl PA_SAMPLE_FMT_S16
-const val INTERNAL_OUTPUT_FLAG_FMT_S32: Int = 1 shl PA_SAMPLE_FMT_S32
-const val INTERNAL_OUTPUT_FLAG_FMT_FLT: Int = 1 shl PA_SAMPLE_FMT_FLT
-const val INTERNAL_OUTPUT_FLAG_FMT_DBL: Int = 1 shl PA_SAMPLE_FMT_DBL
-const val INTERNAL_OUTPUT_FLAG_FMT_U8P: Int = 1 shl PA_SAMPLE_FMT_U8P
-const val INTERNAL_OUTPUT_FLAG_FMT_S16P: Int = 1 shl PA_SAMPLE_FMT_S16P
-const val INTERNAL_OUTPUT_FLAG_FMT_S32P: Int = 1 shl PA_SAMPLE_FMT_S32P
-const val INTERNAL_OUTPUT_FLAG_FMT_FLTP: Int = 1 shl PA_SAMPLE_FMT_FLTP
-const val INTERNAL_OUTPUT_FLAG_FMT_DBLP: Int = 1 shl PA_SAMPLE_FMT_DBLP
-const val INTERNAL_OUTPUT_FLAG_FMT_S64: Int = 1 shl PA_SAMPLE_FMT_S64
-const val INTERNAL_OUTPUT_FLAG_FMT_S64P: Int = 1 shl PA_SAMPLE_FMT_S64P
-const val INTERNAL_OUTPUT_FLAG_FMT_S24: Int = 1 shl PA_SAMPLE_FMT_S24
-const val INTERNAL_OUTPUT_FLAG_FMT_S8_24: Int = 1 shl PA_SAMPLE_FMT_S8_24
+const val PA_FLAG_FMT_NONE: Int = 0 // 0x0
+const val PA_FLAG_FMT_U8: Int = 1 shl PA_SAMPLE_FMT_U8 // 0x1
+const val PA_FLAG_FMT_S16: Int = 1 shl PA_SAMPLE_FMT_S16 // 0x2
+const val PA_FLAG_FMT_S32: Int = 1 shl PA_SAMPLE_FMT_S32 // 0x4
+const val PA_FLAG_FMT_FLT: Int = 1 shl PA_SAMPLE_FMT_FLT // 0x8
+const val PA_FLAG_FMT_DBL: Int = 1 shl PA_SAMPLE_FMT_DBL // 0x10
+const val PA_FLAG_FMT_U8P: Int = 1 shl PA_SAMPLE_FMT_U8P // 0x20
+const val PA_FLAG_FMT_S16P: Int = 1 shl PA_SAMPLE_FMT_S16P // 0x40
+const val PA_FLAG_FMT_S32P: Int = 1 shl PA_SAMPLE_FMT_S32P // 0x80
+const val PA_FLAG_FMT_FLTP: Int = 1 shl PA_SAMPLE_FMT_FLTP // 0x100
+const val PA_FLAG_FMT_DBLP: Int = 1 shl PA_SAMPLE_FMT_DBLP // 0x200
+const val PA_FLAG_FMT_S64: Int = 1 shl PA_SAMPLE_FMT_S64 // 0x400
+const val PA_FLAG_FMT_S64P: Int = 1 shl PA_SAMPLE_FMT_S64P // 0x800
+
+const val PA_FLAG_FMT_S16_S24: Int = 1 shl PA_SAMPLE_FMT_S16_S24 // 0x20000
+const val PA_FLAG_FMT_S16_S32: Int = 1 shl PA_SAMPLE_FMT_S16_S32 // 0x40000
+const val PA_FLAG_FMT_S24_S32: Int = 1 shl PA_SAMPLE_FMT_S24_S32 // 0x80000
+
+const val PA_FLAG_FMT_S24: Int = 1 shl PA_SAMPLE_FMT_S24 // 0x100000
+const val PA_FLAG_FMT_S8_24: Int = 1 shl PA_SAMPLE_FMT_S8_24 // 0x200000
+const val PA_FLAG_FMT_DSD_DOP_24: Int = 1 shl PA_SAMPLE_FMT_DSD_DOP_24 // 0x400000
+const val PA_FLAG_FMT_DSD_DOP_32: Int = 1 shl PA_SAMPLE_FMT_DSD_DOP_32 // 0x800000
+const val PA_FLAG_FMT_DSD_RAW_32_LSB: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_32_LSB // 0x1000000
+const val PA_FLAG_FMT_DSD_RAW_32_MSB: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_32_MSB // 0x2000000
 
 
 fun isValidFormat(format: Int, allowReserve: Boolean): Boolean {
-    if(format < 0) return false
-    if(format >= PA_SAMPLE_FMT_NB) return false
-    if(!allowReserve && format > PA_SAMPLE_FMT_S64P && format < PA_SAMPLE_FMT_S24) return false
+    if (format < 0 || format >= PA_SAMPLE_FMT_NB) return false
+    if (!allowReserve && format in PA_SAMPLE_FMT_FIRST_RESERVED..PA_SAMPLE_FMT_LAST_RESERVED) return false
     return true
 }
 
 /** This is storage bits per given sample  */
 fun getBitsPerSample(sampleFormat: Int): Int {
-    when(sampleFormat) {
-        PA_SAMPLE_FMT_U8 -> return 8
-        PA_SAMPLE_FMT_S16 -> return 16
-        PA_SAMPLE_FMT_S32 -> return 32
-        PA_SAMPLE_FMT_FLT -> return 32
-        PA_SAMPLE_FMT_DBL -> return 64
-        PA_SAMPLE_FMT_U8P -> return 8
-        PA_SAMPLE_FMT_S16P -> return 16
-        PA_SAMPLE_FMT_S32P -> return 32
-        PA_SAMPLE_FMT_FLTP -> return 32
-        PA_SAMPLE_FMT_DBLP -> return 64
-        PA_SAMPLE_FMT_S24 -> return 24
-        PA_SAMPLE_FMT_S8_24 -> return 32
-        PA_SAMPLE_FMT_S64, PA_SAMPLE_FMT_S64P -> return 64
-        PA_SAMPLE_FMT_NONE -> return 0
-        else -> return 0
-    }
+    return getBytesPerSample(sampleFormat) * 8
 }
 
-/** @return the most appropriate format for this bit width, or PA_SAMPLE_FMT_NONE otherwise */
+/**
+ * @return the most appropriate format for this bit width, or PA_SAMPLE_FMT_NONE otherwise.
+ * Should be used for visual purposes only, as obviously we can't always guess the format from bits */
 fun getSampleFmtForBits(sampleBits: Int): Int {
-    when(sampleBits) {
-        8 -> return PA_SAMPLE_FMT_U8
-        16 -> return PA_SAMPLE_FMT_S16
-        24 -> return PA_SAMPLE_FMT_S24
-        32 -> return PA_SAMPLE_FMT_S32
-        64 -> return PA_SAMPLE_FMT_S64
-        else -> return PA_SAMPLE_FMT_NONE
+    return when(sampleBits) {
+        1 -> PA_SAMPLE_FMT_DSD_RAW_32_MSB
+        8 -> PA_SAMPLE_FMT_U8
+        16 -> PA_SAMPLE_FMT_S16
+        24 -> PA_SAMPLE_FMT_S24
+        32 -> PA_SAMPLE_FMT_S32
+        64 -> PA_SAMPLE_FMT_S64
+        else -> PA_SAMPLE_FMT_NONE
     }
 }
 
 /** This is storage bits per given sample  */
 fun getBytesPerSample(sampleFormat: Int): Int {
-    return getBitsPerSample(sampleFormat) / 8
+    return when (sampleFormat) {
+        PA_SAMPLE_FMT_U8,
+        PA_SAMPLE_FMT_U8P -> 1
+
+        PA_SAMPLE_FMT_S16,
+        PA_SAMPLE_FMT_S16P -> 2
+
+        PA_SAMPLE_FMT_S24,
+        PA_SAMPLE_FMT_DSD_DOP_24 -> 3
+
+        PA_SAMPLE_FMT_S32,
+        PA_SAMPLE_FMT_FLT,
+        PA_SAMPLE_FMT_S32P,
+        PA_SAMPLE_FMT_FLTP,
+        PA_SAMPLE_FMT_S8_24,
+        PA_SAMPLE_FMT_DSD_DOP_32,
+        PA_SAMPLE_FMT_DSD_RAW_32_LSB,
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB -> 4
+
+        PA_SAMPLE_FMT_DBL,
+        PA_SAMPLE_FMT_DBLP,
+        PA_SAMPLE_FMT_S64,
+        PA_SAMPLE_FMT_S64P -> 8
+
+        else -> 0
+    }
+}
+
+fun getAudibleBitsPerSample(sampleFormat: Int): Int {
+    return when (sampleFormat) {
+        PA_SAMPLE_FMT_DSD_DOP_24,
+        PA_SAMPLE_FMT_DSD_DOP_32,
+        PA_SAMPLE_FMT_DSD_RAW_32_LSB,
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB -> 1
+
+        PA_SAMPLE_FMT_U8,
+        PA_SAMPLE_FMT_U8P -> 8
+
+        PA_SAMPLE_FMT_S16,
+        PA_SAMPLE_FMT_S16P -> 16
+
+        PA_SAMPLE_FMT_FLT,
+        PA_SAMPLE_FMT_FLTP,
+        PA_SAMPLE_FMT_S8_24,
+        PA_SAMPLE_FMT_S24 -> 24
+
+        PA_SAMPLE_FMT_S32,
+        PA_SAMPLE_FMT_S32P -> 32
+
+        PA_SAMPLE_FMT_DBL,
+        PA_SAMPLE_FMT_DBLP -> 53
+
+        PA_SAMPLE_FMT_S64,
+        PA_SAMPLE_FMT_S64P -> 64
+
+        else -> 0
+    }
 }
 
 /** This is significant range bits per given sample, i.e. 24 for Float32 or S8_24  */
 fun getSignificantBitsPerSample(sampleFormat: Int): Int {
-    when(sampleFormat) {
-        PA_SAMPLE_FMT_NONE -> return 0
-        PA_SAMPLE_FMT_U8 -> return 8
-        PA_SAMPLE_FMT_S16 -> return 16
-        PA_SAMPLE_FMT_S32 -> return 32
-        PA_SAMPLE_FMT_FLT -> return 24
-        PA_SAMPLE_FMT_FLTP -> return 24
-        PA_SAMPLE_FMT_DBL -> return 53
-        PA_SAMPLE_FMT_U8P -> return 8
-        PA_SAMPLE_FMT_S16P -> return 16
-        PA_SAMPLE_FMT_S32P -> return 32
-        PA_SAMPLE_FMT_DBLP -> return 53
-        PA_SAMPLE_FMT_S24 -> return 24
-        PA_SAMPLE_FMT_S8_24 -> return 24 // NOTE: not sure about this, actually this is closer to normal float, thus this is 24 bit
-        PA_SAMPLE_FMT_S64, PA_SAMPLE_FMT_S64P -> return 53
-        else -> return 0
+    return getAudibleBitsPerSample(sampleFormat)
+}
+
+/**
+ * THREADING: any
+ * @param defaultValue value for PA_SAMPLE_FMT_NONE, "-" is used if null and defaultIsNull=false
+ * @param allowUnknownFormats if true, any unknown format will be reported, if false we return default value or "-"
+ * @return bits based sample format name with "bit" suffix
+ */
+fun getSampleFormatLabel(
+    sampleFmt: Int,
+    defaultValue: String?,
+    allowUnknownFormats: Boolean,
+    bitLabel: String,
+    unknownString: String
+): String {
+    return when(sampleFmt) {
+        PA_SAMPLE_FMT_NONE -> defaultValue ?: "-"
+        PA_SAMPLE_FMT_U8 -> "8 $bitLabel"
+        PA_SAMPLE_FMT_U8P -> "8P $bitLabel"
+        PA_SAMPLE_FMT_S16 -> "16 $bitLabel"
+        PA_SAMPLE_FMT_S32 -> "32 $bitLabel"
+        PA_SAMPLE_FMT_FLT -> "Float32"
+        PA_SAMPLE_FMT_DBL -> "Float64"
+        PA_SAMPLE_FMT_S16P -> "16P $bitLabel"
+        PA_SAMPLE_FMT_S32P -> "32P $bitLabel"
+        PA_SAMPLE_FMT_FLTP -> "Float32P"
+        PA_SAMPLE_FMT_DBLP -> "Float64P"
+        PA_SAMPLE_FMT_S64 -> "64 $bitLabel"
+        PA_SAMPLE_FMT_S64P -> "64P $bitLabel"
+
+        PA_SAMPLE_FMT_S24 -> "24 $bitLabel"
+        PA_SAMPLE_FMT_S8_24 -> "32 (8.24) $bitLabel"
+
+        // Padded formats
+        PA_SAMPLE_FMT_S16_S24 -> "16/24 $bitLabel"
+        PA_SAMPLE_FMT_S16_S32 -> "16/32 $bitLabel"
+        PA_SAMPLE_FMT_S24_S32 -> "24/32 $bitLabel"
+
+        // DSD formats
+        PA_SAMPLE_FMT_DSD_DOP_24 -> "DSD DoP24"
+        PA_SAMPLE_FMT_DSD_DOP_32 -> "DSD DoP32"
+        PA_SAMPLE_FMT_DSD_RAW_32_LSB -> "DSD Raw LSB"
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB -> "DSD Raw MSB"
+
+        else -> {
+            if(allowUnknownFormats) "$unknownString ($sampleFmt)" else defaultValue ?: "-"
+        }
     }
 }
+

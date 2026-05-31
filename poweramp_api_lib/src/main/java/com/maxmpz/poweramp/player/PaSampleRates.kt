@@ -19,6 +19,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.maxmpz.poweramp.player
 
+import kotlin.math.absoluteValue
+
 
 // Sync with output-internal.h
 const val INTERNAL_OUTPUT_FLAG_FIRST: Int = 0x10
@@ -116,6 +118,9 @@ const val PA_DEBUG_SAMPLE_RATES_MASK: Int = PA_ALL_SAMPLE_RATES_MASK or
                                             INTERNAL_OUTPUT_FLAG_DSD2048 or
                                             INTERNAL_OUTPUT_FLAG_DSD2048x48
 
+
+/** @return true if this rate seems to be a sample rate, but not necessary a supported sample rate */
+fun isSaneSampleRate(sr: Int): Boolean  = sr != 0 && sr != -1 && sr != Int.MIN_VALUE && sr != Int.MAX_VALUE
 
 /** @return index of the first sample rate bit or -1 if none */
 fun paFirstSampleRateBit(srFlags: Int): Int {
@@ -229,48 +234,57 @@ fun paSampleRateToFlag(sr: Int): Int = when(sr) {
     else -> 0
 }
 
+fun getShortSampleRateNameFromFlag(flag: Int, defaultString: String = "-"): String
+    = when(flag) {
+        INTERNAL_OUTPUT_FLAG_SR_44K -> "44.1"
+        INTERNAL_OUTPUT_FLAG_SR_48K -> "48"
+        INTERNAL_OUTPUT_FLAG_SR_88K -> "88.2"
+        INTERNAL_OUTPUT_FLAG_SR_96K -> "96"
+        INTERNAL_OUTPUT_FLAG_SR_176K -> "176.4"
+        INTERNAL_OUTPUT_FLAG_SR_192K -> "192"
+        INTERNAL_OUTPUT_FLAG_SR_352K -> "352.8"
+        INTERNAL_OUTPUT_FLAG_SR_384K -> "384"
+        INTERNAL_OUTPUT_FLAG_SR_705K -> "705.6"
+        INTERNAL_OUTPUT_FLAG_SR_768K -> "768"
+        INTERNAL_OUTPUT_FLAG_SR_1411K -> "1411.2"
+        INTERNAL_OUTPUT_FLAG_SR_1536K -> "1536"
+        INTERNAL_OUTPUT_FLAG_SR_2822K -> "2822.4"
+        INTERNAL_OUTPUT_FLAG_SR_3072K -> "3072"
+
+        INTERNAL_OUTPUT_FLAG_DSD64 -> "DSD64" // => ffmpeg 352800
+        INTERNAL_OUTPUT_FLAG_DSD128 -> "DSD128"
+        INTERNAL_OUTPUT_FLAG_DSD256 -> "DSD256"
+        INTERNAL_OUTPUT_FLAG_DSD512 -> "DSD512"
+        INTERNAL_OUTPUT_FLAG_DSD1024 -> "DSD1014" // => ffmpeg 5644800
+        INTERNAL_OUTPUT_FLAG_DSD64x48   -> "DSD64x48"
+        INTERNAL_OUTPUT_FLAG_DSD128x48  -> "DSD128x48"
+        INTERNAL_OUTPUT_FLAG_DSD256x48  -> "DSD256x48"
+        INTERNAL_OUTPUT_FLAG_DSD512x48  -> "DSD512x48"
+        INTERNAL_OUTPUT_FLAG_DSD1024x48 -> "DSD1024x48"
+        else -> defaultString
+    }
+
 /**
- * @return short name of the sample rate - xxK or DSDxx or "?" for unknown sample rate flag
+ * @return short name of the sample rate - xxK or DSDxx or defaultString ("-") for unknown sample rate flag
  */
 fun getShortSampleRateNameFromFlag(
     flag: Int,
-    kHzLabel: String = "K",
-    needSpaceBeforeKHz: Boolean = false,
-    defaultString: String = "-"
-): String
-    = when(flag) {
-    INTERNAL_OUTPUT_FLAG_SR_44K -> "44.1" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_48K -> "48" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_88K -> "88.2" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_96K -> "96" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_176K -> "176.4" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_192K -> "192" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_352K -> "352.8" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_384K -> "384" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_705K -> "705.6" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_768K -> "768" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_1411K -> "1411.2" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_1536K -> "1536" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_2822K -> "2822.4" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    INTERNAL_OUTPUT_FLAG_SR_3072K -> "3072" + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-
-    INTERNAL_OUTPUT_FLAG_DSD64 -> "DSD64" // => ffmpeg 352800
-    INTERNAL_OUTPUT_FLAG_DSD128 -> "DSD128"
-    INTERNAL_OUTPUT_FLAG_DSD256 -> "DSD256"
-    INTERNAL_OUTPUT_FLAG_DSD512 -> "DSD512"
-    INTERNAL_OUTPUT_FLAG_DSD1024 -> "DSD1014" // => ffmpeg 5644800
-    INTERNAL_OUTPUT_FLAG_DSD64x48   -> "DSD64x48"
-    INTERNAL_OUTPUT_FLAG_DSD128x48  -> "DSD128x48"
-    INTERNAL_OUTPUT_FLAG_DSD256x48  -> "DSD256x48"
-    INTERNAL_OUTPUT_FLAG_DSD512x48  -> "DSD512x48"
-    INTERNAL_OUTPUT_FLAG_DSD1024x48 -> "DSD1024x48"
-    else -> defaultString
+    kHzLabel: String? = "K",
+    needSpaceBeforeHz: Boolean = false,
+    defaultString: String = "-",
+): String {
+    if((flag and PA_ALL_SAMPLE_RATES_MASK) == 0) return defaultString
+    // Generally can't be defaultString here, but let's use ? to indicate logic error
+    val name = getShortSampleRateNameFromFlag(flag, "?")
+    if((flag and PA_ALL_PCM_SAMPLE_RATES_MASK) != 0) {
+        return if(kHzLabel.isNullOrEmpty()) name else name + if(needSpaceBeforeHz) " $kHzLabel" else kHzLabel
+    }
+    return name
 }
 
 private fun getSampleRateInKhz(sr: Int, defaultLabel: String = "-"): String {
-    if(sr <= 0) {
-        return defaultLabel
-    }
+    if(sr == 0) return defaultLabel
+    val sr = sr.absoluteValue
     val kHz = sr / 1000
     val fraction: Int = sr - kHz * 1000
     if(fraction < 100) {
@@ -279,23 +293,40 @@ private fun getSampleRateInKhz(sr: Int, defaultLabel: String = "-"): String {
     return kHz.toString() + "." + fraction / 100
 }
 
+private fun getSampleRateInMhz(sr: Int, defaultLabel: String = "-"): String {
+    if(sr == 0) return defaultLabel
+    val sr = sr.absoluteValue
+    val mHz = sr / 1000000
+    val fraction: Int = sr - mHz * 1000000
+    if(fraction < 100) {
+        return mHz.toString()
+    }
+    return mHz.toString() + "." + fraction / 100
+}
+
 @JvmOverloads
 fun getSampleRateAndLabel(
     sr: Int,
     kHzLabel: String = "K",
-    needSpaceBeforeKHz: Boolean = false,
-    defaultLabel: String = "-"
+    needSpaceBeforeHz: Boolean = false,
+    defaultLabel: String = "-",
+    expandDSDRate: Boolean = false,
+    mHzLabel: String = "M"
 ): String {
     val srFlag = paSampleRateToFlag(sr)
     if(srFlag != 0) {
         // We're good - matched SR
-        return getShortSampleRateNameFromFlag(srFlag, kHzLabel, needSpaceBeforeKHz, defaultLabel)
+        val srAndLabel = getShortSampleRateNameFromFlag(srFlag, kHzLabel, needSpaceBeforeHz, defaultLabel)
+        if(expandDSDRate && (srFlag and PA_ALL_DSD_SAMPLE_RATES_MASK) != 0) {
+            return srAndLabel + " " + getSampleRateInMhz(sr.absoluteValue) + (if(needSpaceBeforeHz) " $mHzLabel" else mHzLabel)
+        }
+        return srAndLabel
     }
     if(sr > 0) {
         // Allow non-standard PCM rates, e.g., for tracks
-        return getSampleRateInKhz(sr) + if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel
-    } else if(sr < 0) { // Unknown DSD, keep ?
-        return "DSD?(" + getSampleRateInKhz(-sr) + (if(needSpaceBeforeKHz) " $kHzLabel" else kHzLabel) + ")"
+        return getSampleRateInKhz(sr) + if(needSpaceBeforeHz) " $kHzLabel" else kHzLabel
+    } else if(sr < -1) { // Unknown DSD, keep ?. NOTE: we ignore possible -1
+        return "DSD? " + getSampleRateInMhz(sr.absoluteValue) + (if(needSpaceBeforeHz) " $mHzLabel" else mHzLabel)
     } else {
         return defaultLabel
     }
