@@ -38,12 +38,13 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 /**
- * Simple "seekable" socket protocol:
- * - unix domain socket is used instead of a pipe for the duplex communication
- * - seek command exposed from {@link #sendData} and can be processed as needed
- * - {@link #sendData} is blocking almost in the same way as standard ParcelFileDescriptor pipe write is
+ * Simple "seekable" socket protocol:<br>
+ * - unix domain socket is used instead of a pipe for the duplex communication<br>
+ * - seek command exposed from {@link #sendData} and can be processed as needed<br>
+ * - {@link #sendData} is blocking almost in the same way as standard ParcelFileDescriptor pipe write is<br><br>
  *
- * NOTE: it's not possible to use timeouts on this side of the socket as Poweramp may open and hold the socket while in paused state for indefinite time
+ * NOTE: it's not possible to use timeouts on this side of the socket as Poweramp may open and hold the socket while in paused
+ * state for an indefinite time
  */
 public class TrackProviderProto implements AutoCloseable {
 	private static final String TAG = "TrackProviderProto";

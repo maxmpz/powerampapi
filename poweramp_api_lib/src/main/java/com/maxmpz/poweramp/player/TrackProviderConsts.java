@@ -105,7 +105,7 @@ public class TrackProviderConsts {
 	public static final String COLUMN_FLAGS = "__flags";
 	
 	/**
-	 * If set for directories: hint for Poweramp to avoid extra sub-directory lookup, especially useful for first time Music Folder selection
+	 * If set for directories: hint for Poweramp to avoid extra subdirectory lookup, especially useful for first time Music Folder selection
 	 * and first time loading, e.g. via non-yet cached network requests.<br>
 	 * @see #COLUMN_FLAGS
 	 * @since 871
@@ -113,7 +113,7 @@ public class TrackProviderConsts {
 	public static final int FLAG_NO_SUBDIRS = 0x0001;
 
 	/**
-	 * If set for directories: hint for Poweramp to avoid extra sub-directory lookup, especially useful for first time Music Folder selection
+	 * If set for directories: hint for Poweramp to avoid extra subdirectory lookup, especially useful for first time Music Folder selection
 	 * and first time loading, e.g. via non-yet cached network requests.<br>
 	 * @see #COLUMN_FLAGS
 	 * @since 871
@@ -128,7 +128,8 @@ public class TrackProviderConsts {
 	public static final int FLAG_HAS_LYRICS = 0x0004;
 
 	/**
-	 * Special value for #COLUMN_URL to use with dynamic url - an url which is dynamically retrieved at the moment of playback with #CALL_GET_URL
+	 * Special value for #COLUMN_URL to use with dynamic url - a url which is dynamically retrieved at the moment of playback
+	 * with #CALL_GET_URL
 	 */
 	public static final String DYNAMIC_URL = "__dynamic_url";
 	
