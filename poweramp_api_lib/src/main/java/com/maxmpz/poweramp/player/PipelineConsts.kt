@@ -69,10 +69,6 @@ const val PA_OUTPUT_PARAM_FIRST_CUSTOM: Int = 0x1000
 // Internal
 const val PA_OUTPUT_PARAM_AUDIO_IO_HANDLE: Int = -0x7fffffff
 
-// getPipelineParamInt() SUBSYSTEM_PIPELINE
-const val PARAM_LAST_DECODER_IX: Int = 1 // Never used ATM
-const val PARAM_LAST_DECODER_ID: Int = 2
-
 // getPipelineParamInt() SUBSYSTEM_DSP_TH
 // NOTE: sync with dsp_threads.h
 const val DSP_TH_OUTPUT_ID: Int = 1
