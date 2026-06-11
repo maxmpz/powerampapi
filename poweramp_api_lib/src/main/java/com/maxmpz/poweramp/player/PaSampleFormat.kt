@@ -73,14 +73,22 @@ const val PA_SAMPLE_FMT_S8_24: Int = 21
 const val PA_SAMPLE_FMT_DSD_DOP_24: Int = 22
 /** DOP DSD packed to 32 bits. Top 8 bits (MSB) alternate between 0x05 and 0xFA every sample, 16 LSB bits - actual data, 8 LSB 0-bits */
 const val PA_SAMPLE_FMT_DSD_DOP_32: Int = 23
-/** RAW DSD packed to 32 bits. Little-endian, LSB */
+/** RAW DSD packed to 32 bits. BE, LSB */
 const val PA_SAMPLE_FMT_DSD_RAW_32_LSB: Int = 24
-/** RAW DSD packed to 32 bits. Little-endian, MSB */
+/** RAW DSD packed to 32 bits. BE, MSB */
 const val PA_SAMPLE_FMT_DSD_RAW_32_MSB: Int = 25
+/** RAW DSD packed to 32 bits. LE, LSB */
+const val PA_SAMPLE_FMT_DSD_RAW_32_LSB_LE: Int = 26
+/** RAW DSD packed to 32 bits. LE, MSB */
+const val PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE: Int = 27
+/** RAW DSD, 16-bit L/R interleave, 32-bit framing. BE, MSB == SNDRV_PCM_FORMAT_DSD_U16_BE */
+const val PA_SAMPLE_FMT_DSD_RAW_16_32_MSB: Int = 28
+/** RAW DSD, 16-bit L/R interleave, 32-bit framing. LE, MSB == SNDRV_PCM_FORMAT_DSD_U16_LE */
+const val PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE: Int = 29
 
+const val PA_SAMPLE_FMT_LAST: Int = PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE
 /** This is NOT exactly the number of formats, as it includes reserved formats */
-const val PA_SAMPLE_FMT_NB: Int = 26
-const val PA_SAMPLE_FMT_LAST: Int = 25
+const val PA_SAMPLE_FMT_NB: Int = 30
 
 
 const val PA_FLAG_FMT_NONE: Int = 0 // 0x0
@@ -107,6 +115,10 @@ const val PA_FLAG_FMT_DSD_DOP_24: Int = 1 shl PA_SAMPLE_FMT_DSD_DOP_24 // 0x4000
 const val PA_FLAG_FMT_DSD_DOP_32: Int = 1 shl PA_SAMPLE_FMT_DSD_DOP_32 // 0x800000
 const val PA_FLAG_FMT_DSD_RAW_32_LSB: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_32_LSB // 0x1000000
 const val PA_FLAG_FMT_DSD_RAW_32_MSB: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_32_MSB // 0x2000000
+const val PA_FLAG_FMT_DSD_RAW_32_LSB_LE: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_32_LSB_LE // 0x4000000
+const val PA_FLAG_FMT_DSD_RAW_32_MSB_LE: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE // 0x8000000
+const val PA_FLAG_FMT_DSD_RAW_16_32_MSB: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_16_32_MSB // 0x10000000
+const val PA_FLAG_FMT_DSD_RAW_16_32_MSB_LE: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE // 0x20000000
 
 
 fun isValidFormat(format: Int, allowReserve: Boolean): Boolean {
@@ -154,7 +166,11 @@ fun getBytesPerSample(sampleFormat: Int): Int {
         PA_SAMPLE_FMT_S8_24,
         PA_SAMPLE_FMT_DSD_DOP_32,
         PA_SAMPLE_FMT_DSD_RAW_32_LSB,
-        PA_SAMPLE_FMT_DSD_RAW_32_MSB -> 4
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB,
+        PA_SAMPLE_FMT_DSD_RAW_32_LSB_LE,
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE,
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB,
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE -> 4
 
         PA_SAMPLE_FMT_DBL,
         PA_SAMPLE_FMT_DBLP,
@@ -170,7 +186,11 @@ fun getAudibleBitsPerSample(sampleFormat: Int): Int {
         PA_SAMPLE_FMT_DSD_DOP_24,
         PA_SAMPLE_FMT_DSD_DOP_32,
         PA_SAMPLE_FMT_DSD_RAW_32_LSB,
-        PA_SAMPLE_FMT_DSD_RAW_32_MSB -> 1
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB,
+        PA_SAMPLE_FMT_DSD_RAW_32_LSB_LE,
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE,
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB,
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE -> 1
 
         PA_SAMPLE_FMT_U8,
         PA_SAMPLE_FMT_U8P -> 8
@@ -242,6 +262,10 @@ fun getSampleFormatLabel(
         PA_SAMPLE_FMT_DSD_DOP_32 -> "DSD DoP32"
         PA_SAMPLE_FMT_DSD_RAW_32_LSB -> "DSD Raw LSB"
         PA_SAMPLE_FMT_DSD_RAW_32_MSB -> "DSD Raw MSB"
+        PA_SAMPLE_FMT_DSD_RAW_32_LSB_LE -> "DSD Raw LSB LE"
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE -> "DSD Raw MSB LE"
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB -> "DSD Raw MSB 16/32"
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE -> "DSD Raw MSB 16/32 LE"
 
         else -> {
             if(allowUnknownFormats) "$unknownString ($sampleFmt)" else defaultValue ?: "-"

@@ -91,7 +91,7 @@ const val DSP_TH_FORMAT: Int = 10
 
 // NOTE: sync with plugininterface-output.h
 const val PA_OUTPUT_CAP_INITED: Int = 0x0001
-const val PA_OUTPUT_CAP_PTS_UI: Int = 0x0002
+//const val PA_OUTPUT_CAP_RESERVED: Int = 0x0002
 const val PA_OUTPUT_CAP_NO_MUSIC_STREAM_VOL: Int = 0x0004
 const val PA_OUTPUT_CAP_RAW: Int = 0x0008
 const val PA_OUTPUT_CAP_ALWAYS_UNITY_GAIN: Int = 0x0010
@@ -122,7 +122,9 @@ const val PA_OUTPUT_CAP_DSD_REMASTER: Int = 0x4000000
 const val PA_OUTPUT_CAP_PERFECTBITPERFECT: Int = 0x8000000
 const val PA_OUTPUT_CAP_FOLLOW_BT_CODEC: Int = 0x10000000
 const val PA_OUTPUT_CAP_PREFER_BASE_RATE: Int = 0x20000000
-
+const val PA_OUTPUT_CAP_HAS_HARDWARE_MASTER_VOL: Int = 0x40000000
+/** Warning, requires non-sign extended checks */
+const val PA_OUTPUT_CAP_DSD_REMASTER_ALLOW_48K: Int =  0x80000000.toInt()
 
 /**
  * This is added to OutputOpts.uiFlags IF we know we requested DVC, but disabled it due to absvol
@@ -147,3 +149,5 @@ const val CROSSFADE_MAX: Int = 3
 const val ARG1_FLAG_RECONFIGURE: Int = 0x1000
 /** Used for cmd_player_reload_pipeline arg1. The reconfigure should not reset output safe flags */
 const val ARG1_FLAG_KEEP_SAFE: Int = 0x2000
+
+const val VOLUME_TYPE_FORCE_SOFTWARE = 1
