@@ -126,6 +126,11 @@ const val PA_OUTPUT_CAP_HAS_HARDWARE_MASTER_VOL: Int = 0x40000000
 /** Warning, requires non-sign extended checks */
 const val PA_OUTPUT_CAP_DSD_REMASTER_ALLOW_48K: Int =  0x80000000.toInt()
 
+// PA_OUTPUT_OPT_* are get_options-scope only "option" flags in the HIGH 32 bits of the 64-bit get_options return (outputOpts).
+// They are NOT capabilities: they never appear in the live outputCaps (Int) / OutputConfig.flags. Long, as they are >32bit.
+const val PA_OUTPUT_OPT_ASK_AF_FORMAT_AND_SR: Long = 0x100000000L
+const val PA_OUTPUT_OPT_EXTRA_SLEEPS: Long = 0x200000000L
+
 /**
  * This is added to OutputOpts.uiFlags IF we know we requested DVC, but disabled it due to absvol
  * This is used not just by UI, but also by PSPipelineManager to detect requested but missing DVC
