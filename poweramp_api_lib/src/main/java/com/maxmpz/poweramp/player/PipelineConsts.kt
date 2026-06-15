@@ -91,7 +91,7 @@ const val DSP_TH_FORMAT: Int = 10
 
 // NOTE: sync with plugininterface-output.h
 const val PA_OUTPUT_CAP_INITED: Int = 0x0001
-const val PA_OUTPUT_CAP_WARMPUP: Int = 0x0002
+const val PA_OUTPUT_CAP_WARMUP: Int = 0x0002
 const val PA_OUTPUT_CAP_NO_MUSIC_STREAM_VOL: Int = 0x0004
 const val PA_OUTPUT_CAP_RAW: Int = 0x0008
 const val PA_OUTPUT_CAP_ALWAYS_UNITY_GAIN: Int = 0x0010

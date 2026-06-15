@@ -21,6 +21,7 @@ package com.maxmpz.poweramp.player
 
 import kotlin.math.absoluteValue
 
+// TODO: rename to PA_
 
 // Sync with output-internal.h
 const val INTERNAL_OUTPUT_FLAG_FIRST: Int = 0x10
