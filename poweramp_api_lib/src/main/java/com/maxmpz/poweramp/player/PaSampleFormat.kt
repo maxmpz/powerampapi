@@ -19,7 +19,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.maxmpz.poweramp.player
 
-import android.content.Context
+import android.util.Log
+
+private const val TAG = "PaSampleFormat"
+private const val DEBUG_CHECKS = true
 
 /** Generally means auto format  */
 const val PA_SAMPLE_FMT_NONE: Int = -1
@@ -85,10 +88,12 @@ const val PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE: Int = 27
 const val PA_SAMPLE_FMT_DSD_RAW_16_32_MSB: Int = 28
 /** RAW DSD, 16-bit L/R interleave, 32-bit framing. LE, MSB == SNDRV_PCM_FORMAT_DSD_U16_LE */
 const val PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE: Int = 29
+/** RAW DSD, native 8-bit packets [L, R, L, R], dsd/8 packet rate, MSB == SNDRV_PCM_FORMAT_DSD_U8 */
+const val PA_SAMPLE_FMT_DSD_RAW_8_MSB: Int = 30
 
-const val PA_SAMPLE_FMT_LAST: Int = PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE
+const val PA_SAMPLE_FMT_LAST: Int = PA_SAMPLE_FMT_DSD_RAW_8_MSB
 /** This is NOT exactly the number of formats, as it includes reserved formats */
-const val PA_SAMPLE_FMT_NB: Int = 30
+const val PA_SAMPLE_FMT_NB: Int = 31
 
 
 const val PA_FLAG_FMT_NONE: Int = 0 // 0x0
@@ -119,6 +124,7 @@ const val PA_FLAG_FMT_DSD_RAW_32_LSB_LE: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_32_LS
 const val PA_FLAG_FMT_DSD_RAW_32_MSB_LE: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE // 0x8000000
 const val PA_FLAG_FMT_DSD_RAW_16_32_MSB: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_16_32_MSB // 0x10000000
 const val PA_FLAG_FMT_DSD_RAW_16_32_MSB_LE: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE // 0x20000000
+const val PA_FLAG_FMT_DSD_RAW_8_MSB: Int = 1 shl PA_SAMPLE_FMT_DSD_RAW_8_MSB // 0x40000000
 
 
 fun isValidFormat(format: Int, allowReserve: Boolean): Boolean {
@@ -126,6 +132,40 @@ fun isValidFormat(format: Int, allowReserve: Boolean): Boolean {
     if (!allowReserve && format in PA_SAMPLE_FMT_FIRST_RESERVED..PA_SAMPLE_FMT_LAST_RESERVED) return false
     return true
 }
+
+fun paIsPcmFormat(fmt: Int): Boolean
+    = when(fmt) {
+        PA_SAMPLE_FMT_U8,
+        PA_SAMPLE_FMT_U8P,
+        PA_SAMPLE_FMT_S16,
+        PA_SAMPLE_FMT_S16P,
+        PA_SAMPLE_FMT_S24,
+        PA_SAMPLE_FMT_S32,
+        PA_SAMPLE_FMT_FLT,
+        PA_SAMPLE_FMT_S32P,
+        PA_SAMPLE_FMT_FLTP,
+        PA_SAMPLE_FMT_S8_24,
+        PA_SAMPLE_FMT_DBL,
+        PA_SAMPLE_FMT_DBLP,
+        PA_SAMPLE_FMT_S64,
+        PA_SAMPLE_FMT_S64P -> true
+        else -> false
+    }
+
+fun paIsDsdFormat(fmt: Int): Boolean
+    = when(fmt) {
+        PA_SAMPLE_FMT_DSD_DOP_24,
+        PA_SAMPLE_FMT_DSD_DOP_32,
+        PA_SAMPLE_FMT_DSD_RAW_32_LSB,
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB,
+        PA_SAMPLE_FMT_DSD_RAW_32_LSB_LE,
+        PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE,
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB,
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE,
+        PA_SAMPLE_FMT_DSD_RAW_8_MSB -> true
+        else -> false
+    }
+
 
 /** This is storage bits per given sample  */
 fun getBitsPerSample(sampleFormat: Int): Int {
@@ -151,7 +191,8 @@ fun getSampleFmtForBits(sampleBits: Int): Int {
 fun getBytesPerSample(sampleFormat: Int): Int {
     return when (sampleFormat) {
         PA_SAMPLE_FMT_U8,
-        PA_SAMPLE_FMT_U8P -> 1
+        PA_SAMPLE_FMT_U8P,
+        PA_SAMPLE_FMT_DSD_RAW_8_MSB -> 1 // native 8-bit DSD packets (DSD_U8): 1 byte/ch packet, dsd/8 rate
 
         PA_SAMPLE_FMT_S16,
         PA_SAMPLE_FMT_S16P -> 2
@@ -164,6 +205,7 @@ fun getBytesPerSample(sampleFormat: Int): Int {
         PA_SAMPLE_FMT_S32P,
         PA_SAMPLE_FMT_FLTP,
         PA_SAMPLE_FMT_S8_24,
+
         PA_SAMPLE_FMT_DSD_DOP_32,
         PA_SAMPLE_FMT_DSD_RAW_32_LSB,
         PA_SAMPLE_FMT_DSD_RAW_32_MSB,
@@ -177,7 +219,10 @@ fun getBytesPerSample(sampleFormat: Int): Int {
         PA_SAMPLE_FMT_S64,
         PA_SAMPLE_FMT_S64P -> 8
 
-        else -> 0
+        else -> {
+            if(DEBUG_CHECKS) Log.e(TAG, "!sampleFormat=$sampleFormat", Exception())
+            0
+        }
     }
 }
 
@@ -190,7 +235,8 @@ fun getAudibleBitsPerSample(sampleFormat: Int): Int {
         PA_SAMPLE_FMT_DSD_RAW_32_LSB_LE,
         PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE,
         PA_SAMPLE_FMT_DSD_RAW_16_32_MSB,
-        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE -> 1
+        PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE,
+        PA_SAMPLE_FMT_DSD_RAW_8_MSB -> 1
 
         PA_SAMPLE_FMT_U8,
         PA_SAMPLE_FMT_U8P -> 8
@@ -212,7 +258,10 @@ fun getAudibleBitsPerSample(sampleFormat: Int): Int {
         PA_SAMPLE_FMT_S64,
         PA_SAMPLE_FMT_S64P -> 64
 
-        else -> 0
+        else -> {
+            if(DEBUG_CHECKS) Log.e(TAG, "!sampleFormat=$sampleFormat", Exception())
+            0
+        }
     }
 }
 
@@ -266,6 +315,7 @@ fun getSampleFormatLabel(
         PA_SAMPLE_FMT_DSD_RAW_32_MSB_LE -> "DSD Raw MSB LE"
         PA_SAMPLE_FMT_DSD_RAW_16_32_MSB -> "DSD Raw MSB 16/32"
         PA_SAMPLE_FMT_DSD_RAW_16_32_MSB_LE -> "DSD Raw MSB 16/32 LE"
+        PA_SAMPLE_FMT_DSD_RAW_8_MSB -> "DSD Raw MSB 8"
 
         else -> {
             if(allowUnknownFormats) "$unknownString ($sampleFmt)" else defaultValue ?: "-"

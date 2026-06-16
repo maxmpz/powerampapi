@@ -21,6 +21,7 @@ package com.maxmpz.poweramp.player
 
 import kotlin.math.absoluteValue
 
+
 // TODO: rename to PA_
 
 // Sync with output-internal.h
@@ -122,6 +123,9 @@ const val PA_DEBUG_SAMPLE_RATES_MASK: Int = PA_ALL_SAMPLE_RATES_MASK or
 
 /** @return true if this rate seems to be a sample rate, but not necessary a supported sample rate */
 fun isSaneSampleRate(sr: Int): Boolean  = sr != 0 && sr != -1 && sr != Int.MIN_VALUE && sr != Int.MAX_VALUE
+
+fun paIsDsdSampleRate(sr: Int) = sr < 0
+fun paIsPcmSampleRate(sr: Int) = sr > 0
 
 /** @return index of the first sample rate bit or -1 if none */
 fun paFirstSampleRateBit(srFlags: Int): Int {
@@ -299,10 +303,10 @@ private fun getSampleRateInMhz(sr: Int, defaultLabel: String = "-"): String {
     val sr = sr.absoluteValue
     val mHz = sr / 1000000
     val fraction: Int = sr - mHz * 1000000
-    if(fraction < 100) {
+    if(fraction < 100000) {
         return mHz.toString()
     }
-    return mHz.toString() + "." + fraction / 100
+    return mHz.toString() + "." + fraction / 100000
 }
 
 @JvmOverloads

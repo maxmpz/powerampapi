@@ -49,9 +49,6 @@ const val PARAM_SUBSYSTEM_DSP_TH: Int = PLUGIN_ID_SUBSYSTEM_DSP_TH
 const val PARAM_SUBSYSTEM_OUTPUT: Int = 3
 
 
-/** NOTE: raw native plugin value, not resolved vs Android audio subsystem */
-const val PA_OUTPUT_PARAM_SAMPLE_RATE: Int = 1
-
 /** NOTE: raw native plugin value, not resolved vs Android audio subsystem. REVISIT: unused, drop? */
 const val PA_OUTPUT_PARAM_SAMPLE_BITS: Int = 2
 const val PA_OUTPUT_PARAM_ANDROID_SESSION_ID: Int = 3
@@ -60,39 +57,15 @@ const val PA_OUTPUT_PARAM_RESTART_LATENCY_MS: Int = 4 // TODO
 @Deprecated("")
 const val PA_OUTPUT_PARAM_ANDROID_AUDIO_STREAM: Int = 5
 
-/** NOTE: not used, use DSP_TH_OUTPUT_FORMAT  */
-const val PA_OUTPUT_PARAM_SAMPLE_FORMAT: Int = 6
-const val PA_OUTPUT_PARAM_DEFAULT_MASTER_VOLUME_LEVELS: Int = 20
-
 const val PA_OUTPUT_PARAM_FIRST_CUSTOM: Int = 0x1000
 
 // Internal
 const val PA_OUTPUT_PARAM_AUDIO_IO_HANDLE: Int = -0x7fffffff
 
-// getPipelineParamInt() SUBSYSTEM_DSP_TH
-// NOTE: sync with dsp_threads.h
-const val DSP_TH_OUTPUT_ID: Int = 1
-const val DSP_TH_PIPELINE_LATENCY: Int = 2
-const val DSP_TH_OUTPUT_LATENCY: Int = 3
-const val DSP_TH_OUTPUT_CAPS: Int = 4
-
-/**
- * This is active DSP and output sample rate, always corresponds to the negotiated sample rate, but not the device sample rate.<br></br>
- * NOTE: we ALWAYS run DSP and output on the same sample rate (though format still can differ, as we always use float32 for DSP)
- */
-const val DSP_TH_AND_OUTPUT_SAMPLE_RATE: Int = 5
-
-/** This is active output format, always corresponds to the negotiated format, but it is not the end device format  */
-const val DSP_TH_OUTPUT_FORMAT: Int = 6
-const val DSP_TH_BUFFERS: Int = 7
-const val DSP_TH_BUFFER_FRAMES: Int = 8
-const val DSP_TH_OUTPUT_PRESENTATION_LATENCY: Int = 9
-const val DSP_TH_FORMAT: Int = 10
-
 // NOTE: sync with plugininterface-output.h
 const val PA_OUTPUT_CAP_INITED: Int = 0x0001
 const val PA_OUTPUT_CAP_WARMUP: Int = 0x0002
-const val PA_OUTPUT_CAP_NO_MUSIC_STREAM_VOL: Int = 0x0004
+const val PA_OUTPUT_CAP_PREFER_NO_FLUSH: Int = 0x0004
 const val PA_OUTPUT_CAP_RAW: Int = 0x0008
 const val PA_OUTPUT_CAP_ALWAYS_UNITY_GAIN: Int = 0x0010
 const val PA_OUTPUT_CAP_NO_HEADROOM_GAIN: Int = 0x0020
@@ -102,13 +75,13 @@ const val PA_OUTPUT_CAP_PAUSE_FAST_VOLUME: Int = 0x0100
 const val PA_OUTPUT_CAP_SEEK_FAST_VOLUME: Int = 0x0200
 const val PA_OUTPUT_CAP_TRACK_CHANGE_FAST_VOLUME: Int = 0x0400
 const val PA_OUTPUT_CAP_NEEDS_VOLUME_PROVIDER: Int = 0x0800
-const val PA_OUTPUT_CAP_CUSTOM_MASTER_VOLUME: Int = 0x1000
+const val PA_OUTPUT_OPT_CUSTOM_MASTER_VOLUME: Int = 0x1000
 const val PA_OUTPUT_CAP_NO_DUCK: Int        = 0x2000
 const val PA_OUTPUT_CAP_TRACK_PLAYBACK: Int = 0x4000
 const val PA_OUTPUT_CAP_NEEDS_VOL_UI: Int   = 0x8000
 const val PA_OUTPUT_CAP_ALLOW_DSD_DOP: Int  = 0x10000
 const val PA_OUTPUT_CAP_PREFER_DSD_RAW: Int = 0x20000
-const val PA_OUTPUT_CAP_SOFTWARE_MASTER_VOL: Int = 0x40000
+const val PA_OUTPUT_OPT_SOFTWARE_MASTER_VOL: Int = 0x40000
 const val PA_OUTPUT_CAP_FORCE_USB_FULLSPEED: Int = 0x80000
 
 const val PA_OUTPUT_CAP_NO_AUDIO_FOCUS: Int = 0x100000
@@ -122,14 +95,13 @@ const val PA_OUTPUT_CAP_DSD_REMASTER: Int = 0x4000000
 const val PA_OUTPUT_CAP_PERFECTBITPERFECT: Int = 0x8000000
 const val PA_OUTPUT_CAP_FOLLOW_BT_CODEC: Int = 0x10000000
 const val PA_OUTPUT_CAP_PREFER_BASE_RATE: Int = 0x20000000
-const val PA_OUTPUT_CAP_HAS_HARDWARE_MASTER_VOL: Int = 0x40000000
+//const val PA_OUTPUT_CAP_: Int = 0x40000000
 /** Warning, requires non-sign extended checks */
 const val PA_OUTPUT_CAP_DSD_REMASTER_ALLOW_48K: Int =  0x80000000.toInt()
 
-// PA_OUTPUT_OPT_* are get_options-scope only "option" flags in the HIGH 32 bits of the 64-bit get_options return (outputOpts).
-// They are NOT capabilities: they never appear in the live outputCaps (Int) / OutputConfig.flags. Long, as they are >32bit.
 const val PA_OUTPUT_OPT_ASK_AF_FORMAT_AND_SR: Long = 0x100000000L
 const val PA_OUTPUT_OPT_EXTRA_SLEEPS: Long = 0x200000000L
+const val PA_OUTPUT_OPT_AF_BASED: Long = 0x400000000L
 
 /**
  * This is added to OutputOpts.uiFlags IF we know we requested DVC, but disabled it due to absvol
