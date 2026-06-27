@@ -95,7 +95,7 @@ const val PA_OUTPUT_CAP_DSD_REMASTER: Int = 0x4000000
 const val PA_OUTPUT_CAP_PERFECTBITPERFECT: Int = 0x8000000
 const val PA_OUTPUT_CAP_FOLLOW_BT_CODEC: Int = 0x10000000
 const val PA_OUTPUT_CAP_PREFER_BASE_RATE: Int = 0x20000000
-//const val PA_OUTPUT_CAP_: Int = 0x40000000
+const val PA_OUTPUT_CAP_PCM_DSD_EXTRA_WARMUP: Int = 0x40000000
 /** Warning, requires non-sign extended checks */
 const val PA_OUTPUT_CAP_DSD_REMASTER_ALLOW_48K: Int =  0x80000000.toInt()
 
