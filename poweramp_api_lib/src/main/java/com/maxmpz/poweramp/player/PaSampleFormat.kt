@@ -22,7 +22,7 @@ package com.maxmpz.poweramp.player
 import android.util.Log
 
 private const val TAG = "PaSampleFormat"
-private const val DEBUG_CHECKS = true
+private const val DEBUG_CHECKS = false
 
 /** Generally means auto format  */
 const val PA_SAMPLE_FMT_NONE: Int = -1
