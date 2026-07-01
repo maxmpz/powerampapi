@@ -527,23 +527,23 @@ should exist in stable-ids.txt. Other lines/stable ids are not needed.
 
 ### Skin Verification
 
-Poweramp (since build-1026-beta) adds a trust layer for third‑party skins. This is anti‑piracy *friction*, not a hard block: an unverified
-skin still installs, loads, and renders, but it is **soft‑degraded** - shows an `[unverified]` prefix in the skin
+Poweramp (since build-1026-beta) adds a trust layer for third‑party skins. This is anti‑piracy friction, not a hard block: an unverified
+skin still installs, loads, and renders, but it is soft‑degraded - shows an `[unverified]` prefix in the skin
 picker, its options are kept in memory only (never persisted) and are not exported/imported, it has no in‑app options
 page, and it is automatically deselected 48 hours after it was first selected.
 
-A skin becomes **verified** when its APK signing certificate is on Poweramp's built‑in allowlist. There is nothing to
-embed in the APK and nothing to strip — the trust anchor is the APK signer.
+A skin becomes **verified** when its APK signing certificate is on Poweramp's built‑in allowlist + optional in-skin-app verification
+(i.e., check for Play purchase).
 
 To get a skin verified:
 
-1. Build and publish (alpha/beta channel is enough) your skin signed with your release key (Play App Signing is fine — its per‑app certificate is
+1. Build and publish (alpha/beta channel is enough) your skin signed with your release key (Play App Signing is fine - its per‑app certificate is
    stable across devices)
 2. Get the signing certificate SHA‑256 fingerprint and your package name, and share both with us for allowlisting:
    ```
    apksigner verify --print-certs your-skin.apk
    ```
-   Use the **"certificate SHA‑256 digest"** value. (Do not use `keytool -printcert -jarfile` — it reads only the v1/JAR
+   Use the **"certificate SHA‑256 digest"** value. (Do not use `keytool -printcert -jarfile` - it reads only the v1/JAR
    signature and returns nothing for v2/v3‑only APKs.) Without this, the skin is not trusted and any self‑verification
    token it sends is ignored
 3. We add the entry; it ships in the next Poweramp update (or beta iteration), after which the skin is recognized as
