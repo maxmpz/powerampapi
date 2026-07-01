@@ -24,6 +24,8 @@
 		/>
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
 
+	<include android:layout="@layout/merge_help_buttons"/>
+
 
 	<com.maxmpz.widget.player.Help android:id="@+id/help_main_bubble2"
 		style="@style/TopHelpNormal"
@@ -39,9 +41,6 @@
 		w:line2="@string/empoji_feature_pak_1"
 		/>
 	<StateAnimParams w:stateAnim="@+id/anim_help_visible" style="@style/TopHelp_anim_help_visible"/>
-
-
-	<include android:layout="@layout/merge_help_buttons"/>
 
 
 	<com.maxmpz.widget.player.Help

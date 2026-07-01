@@ -24,6 +24,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?EqEquButton"
 		w:param="@id/dsp_eq_enabled"
 		w:updateMsgId="@id/msg_dsp_eq_changed"
+		w:enablingParam="@id/dsp_enabled"
 
 		w:longPressCmdId="@id/cmd_app_open_settings"
 		w:longPressBusId="@id/bus_app_cmd"
@@ -36,6 +37,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?EqToneButton"
 		w:param="@id/dsp_tone_enabled"
 		w:updateMsgId="@id/msg_dsp_eq_changed"
+		w:enablingParam="@id/dsp_enabled"
 
 		w:longPressCmdId="@id/cmd_app_open_settings"
 		w:longPressBusId="@id/bus_app_cmd"
@@ -44,8 +46,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		android:text="@string/tone"
 		/>
 
-	<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/limiter_button"
+	<com.maxmpz.widget.player.LimiterDSPCheckBox android:id="@+id/limiter_button"
 		style="?EqLimiterButton"
+		w:enablingParam="@id/dsp_enabled"
 		w:param="@id/dsp_limiter_enabled"
 		w:updateMsgId="@id/msg_dsp_eq_changed"
 		android:text="@string/limit"

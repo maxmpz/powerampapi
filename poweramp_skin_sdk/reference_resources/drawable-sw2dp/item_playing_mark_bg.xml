@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- NOTE:
+     - enterFadeDuration/exitFadeDuration doesn't seem to work with shapes
+     - when going from list to AA, AAPage has no concept of activated item, so it immediately deactivates the item,
+      and we have abrupt change to non-activated/no-background state (even if PlayingMark itself is alpha-animated) -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android" 
 	android:enterFadeDuration="250" android:exitFadeDuration="250">
 	<item android:state_activated="true">

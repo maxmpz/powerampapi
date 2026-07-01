@@ -47,5 +47,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="EqMenu_size">36dp</dimen>
 	<dimen name="EqButton_textSize">13dp</dimen><!-- Default (fixed) font -->
 	<dimen name="eq_frs_height">48dp</dimen>
-	
+
+	<fraction name="EqVolPanel1_heightPercent">30%</fraction>
+	<fraction name="EqVolPanel2_heightPercent">30%</fraction>
+	<fraction name="EqVolPanel3_heightPercent">40%</fraction>
 </resources>

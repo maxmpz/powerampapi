@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2026 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -24,17 +24,25 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     style="?VolumePanelFrame"
     w:enableStateAnim="true"
 >
-	<!-- NOTE: 100.5 rounding helps with 0-100 (101 items) to 100 steps rounding, especially around 50% (where by default rounded 0.5050 value is ~51%) -->
+	<!--
+		NOTE: 100.5 rounding helps with 0-100 (101 items) to 100 steps rounding, especially around 50%
+		(where by default rounded 0.5050 value is ~51%)
+	-->
+	<!--
+		w:labelText="@string/volume"
+		w:valueFormat="@string/f0_percent"
+		w:valueFormatMin="0"
+		w:valueFormatMax="100"
+	-->
 	<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/volume_knob_layout"
 		style="?VolumePanelKnobLayout"
 		
 		w:param="@+id/dsp_master_volume"
 		w:updateMsgId="@+id/msg_dsp_other_changed"
 
-		w:labelText="@string/volume"
-		w:valueFormat="@string/f0_percent"
-		w:valueFormatMin="0"
-		w:valueFormatMax="100"
+		w:enablingParam="@id/dsp_master_volume_enabled"
+		w:dspParamDef="@id/dsp_master_volume"
+
 		w:rounding="100.5"
 		w:animOnAttach="true"
 	/>

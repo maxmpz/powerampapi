@@ -620,6 +620,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			<enum name="string" value="0"/><!-- Default -->
 			<enum name="integer" value="1"/>
 		</attr>
+
+		<attr name="enablingParam"/>
 	</declare-styleable>
 	
 	<!-- FastButton which is able to start specified Activity -->

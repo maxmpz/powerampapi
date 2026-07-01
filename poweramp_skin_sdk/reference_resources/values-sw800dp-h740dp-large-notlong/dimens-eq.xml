@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2025 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<!-- Foldable rect screen -->
+<resources>
+	<dimen name="EqLinearKnob_thumbWidth">32dp</dimen>
+	<dimen name="EqLinearKnob_thumbHeight">64dp</dimen>
+	<dimen name="knob_thumb_indicator_top_bottom">30dp</dimen>
+	<dimen name="knob_thumb_indicator_left_right">8.5dp</dimen>
+	<dimen name="knob_thumb_radius">16dp</dimen>
+	<dimen name="knob_thumb_radius_less_rounded">12dp</dimen>
+
+	<dimen name="knob_thumb_lock_size">24dp</dimen>
+	<dimen name="knob_thumb_lock_top">20dp</dimen>
+	<dimen name="knob_thumb_lock_left">4dp</dimen>
+
+	<dimen name="EqKnobValueText_size">10.5sp</dimen>
+	<dimen name="EqKnobLabelText_size">13dp</dimen>
+
+	<dimen name="EqParamPopupButtonLayout_height_port">32dp</dimen>
+	<dimen name="EqParamPlaceholder2_height_port">76dp</dimen><!-- 4 + 32 + 4 + 32 + 4 -->
+	<dimen name="EqParamTypePopupButtonLayout_marginBottom_port">4dp</dimen>
+
+	<dimen name="EqButton_textSize">13dp</dimen><!-- Default (fixed) font -->
+
+	<dimen name="EqToneRoundKnobLayout_maxWidth">110dp</dimen><!-- Further limit width for large tablets -->
+	<dimen name="EqToneRoundKnobLayout_maxSize">110dp</dimen>
+	<dimen name="EqInfoBase_marginTB">4dp</dimen>
+	<dimen name="eq_frs_height">54dp</dimen>
+	<dimen name="EqButton_width">76dp</dimen>
+	<dimen name="EqButton_height">36dp</dimen>
+	<dimen name="EqButtonsBase_smallSlotWidth">54dp</dimen>
+
+	<dimen name="EqMenu_size">36dp</dimen>
+
+</resources>

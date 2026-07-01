@@ -81,6 +81,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- Used for Android 12+ -->
 	<attr name="colorKnobShadow" format="color"/>
+
+	<attr name="colorLimiterActive" format="color"/>
+	<attr name="colorLimiterActiveBg" format="color"/>
 	
 	
 	<attr name="colorPreampBg" format="color"/>

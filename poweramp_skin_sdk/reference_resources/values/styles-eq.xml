@@ -178,6 +178,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:longClickable">true</item>
 		
 		<item name="textPadding">0.75sp</item><!-- LinearKnob only attribute -->
+
+		<item name="thumbMinTouchableSize">48dp</item>
 		
 		<item name="linesBackground">true</item>
 		<item name="line13Color">?colorEqKnobsLines1</item>
@@ -318,7 +320,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	
 	<style name="EqCheckButton" parent="EqButton"><!-- styles-eq usage only -->
-		<item name="android:layout_marginLeft">0dp</item><!-- Erase possible margins -->
 		<item name="android:textColor">@color/button_text_color_selector</item><!-- NOTE: keeping it out of textAppearance -->
 		<item name="android:background">@drawable/checkable_rounded_large</item>
 	</style>
@@ -331,6 +332,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachLeft">parent</item>
 		
 		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item><!-- NOTE: important - defines offset of tone panel and thus, space for knobs -->
+		<item name="android:layout_marginLeft">8dp</item>
 	</style>
 	
 	<style name="EqToneButton" parent="EqCheckButton">
@@ -340,6 +342,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item>
 		<item name="android:ellipsize">end</item>
+		<item name="android:layout_marginLeft">8dp</item>
 	</style>
 	<!-- NOTE: hidden for PEQ -->
 	<style name="EqToneButtonHidden" parent="EqToneButton">
@@ -355,6 +358,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_attachLeft">parent</item>
 		<item name="layout_maxWidth">@dimen/EqEquButton_maxWidth</item>
 		<item name="android:ellipsize">end</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:background">@drawable/checkable_limiting_rounded_large</item>
 	</style>
 		
 	<style name="EqPresetButtonLayoutBase" parent="TopBaseButtonLayout">
@@ -595,6 +600,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 		<item name="layout_attachTop">@id/_label</item>
 		<item name="layout_attachLeftToLeft">@id/_label</item>
 		<item name="android:layout_marginTop">@dimen/EqRoundKnobValueLabel_marginTop</item>
+		<item name="android:maxLines">1</item>
 		
 		<item name="android:id">@id/_value_label</item>
 		<item name="android:importantForAccessibility">no</item>
@@ -743,7 +749,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 	<style name="EqVolPanel1">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
-		<item name="layout_heightPercent">30%</item>
+		<item name="layout_heightPercent">@fraction/EqVolPanel1_heightPercent</item>
 		<item name="android:layout_marginTop">@dimen/eq_top_margin</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clipChildren">false</item>
@@ -752,7 +758,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 	<style name="EqVolPanel2">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
-		<item name="layout_heightPercent">30%</item>
+		<item name="layout_heightPercent">@fraction/EqVolPanel2_heightPercent</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clipChildren">false</item>
 	</style>
@@ -760,7 +766,7 @@ s		<item name="android:textAppearance">?EqEquPresetLabel_Text</item>
 	<style name="EqVolPanel3">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">0px</item>
-		<item name="layout_heightPercent">40%</item>
+		<item name="layout_heightPercent">@fraction/EqVolPanel3_heightPercent</item>
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="android:clipChildren">false</item>
 	</style>

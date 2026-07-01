@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopSmallButton_size">42dp</dimen>
 	
 	<dimen name="TopBaseButtonLayout_width">68dp</dimen>
-	<dimen name="TopSubAAButtonsBase_smallSlotWidth">46dp</dimen><!-- TopBaseButtonLayout_width / 1.47 -->
+	<dimen name="TopSubAAButtonsBase_smallSlotWidth">48dp</dimen><!-- TopBaseButtonLayout_width / 1.47 -->
 	<dimen name="TopBaseButtonLayout_height">36dp</dimen>
 	<dimen name="PopupButtons_drawableSize">32dp</dimen>
 	<dimen name="PopupButtons_drawableSize24dp">24dp</dimen>

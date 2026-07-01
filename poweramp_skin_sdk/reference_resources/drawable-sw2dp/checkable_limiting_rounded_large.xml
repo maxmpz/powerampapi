@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- As we change states rapidly on press (checked/unchecked state), we want ripple to be on top - so ripple animation has a chance
+     to "play" fully. If we use selector on top, ripples are replaced on state change, thus no full ripple animation -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:w="http://schemas.android.com/apk/res-auto"
+	android:color="?colorPrimary">
+
+	<item android:id="@android:id/mask" android:drawable="@drawable/rounded_large" />
+
+	<item>
+		<selector android:exitFadeDuration="300">
+
+			<!-- Limiter actively limiting (set by LimiterDSPCheckBox): checked-style fill plus an accent ring so it stands out -->
+			<item w:state_limiting="true">
+				<shape>
+					<corners android:radius="?corners_large"/>
+					<solid android:color="?colorLimiterActiveBg"/>
+					<stroke android:width="2dp" android:color="?colorLimiterActive"/>
+				</shape>
+			</item>
+
+			<item android:state_checked="true">
+				<shape>
+					<corners android:radius="?corners_large"/>
+					<solid android:color="?colorBgInverseChecked"/>
+				</shape>
+			</item>
+
+			<item android:drawable="@drawable/inverse_stroke_bg_alpha_rounded_large" />
+
+		</selector>
+	</item>
+</ripple>

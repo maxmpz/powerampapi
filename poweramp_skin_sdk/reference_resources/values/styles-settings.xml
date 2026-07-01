@@ -51,8 +51,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorIconInverse">?android:attr/colorForegroundInverse</item>
 		<item name="colorIconInverseForced">?android:attr/panelColorBackground</item>
 		<item name="colorIconDisabled">#7777</item>
-				
-		
+		<!-- Settings only -->
+		<item name="colorSettingsWarn">#9d6538</item>
+
+
 		<item name="corners_popup">6dp</item>
 		<item name="corners_medium">8dp</item>
 		<item name="corners_medium_plus">16dp</item>
@@ -71,7 +73,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ItemEmptyListText">@style/SearchItemEmptyListText</item>
 		<item name="ItemEmptyListText2">@style/ItemEmptyListText2</item>
 
-		<item name="preferenceIndentPadding">52dp</item>
+		<item name="preferenceIndentPadding">44dp</item><!-- 8dp smaller due to the padding -->
 		<item name="skinPreferenceIndentPadding">44dp</item><!-- 8dp smaller due to the padding -->
 
 		<item name="settings_v">@drawable/settings_v_colored</item>
@@ -96,6 +98,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="settings_restore_purchase">@drawable/settings_restore_purchase_colored</item>
 		<item name="settings_doubleq">@drawable/settings_doubleq_colored</item>
 		<item name="settings_pak">@drawable/settings_pak_colored</item>
+
+		<item name="pre_speaker">@drawable/pre_speaker</item>
+		<item name="pre_wired">@drawable/pre_wired</item>
+		<item name="pre_wired_35">@drawable/pre_wired_35</item>
+		<item name="pre_bt">@drawable/pre_bt</item>
+		<item name="pre_song">@drawable/pre_song</item>
+		<item name="pre_usb">@drawable/pre_usb</item>
+		<item name="pre_chromecast">@drawable/pre_chromecast</item>
+		<item name="pre_other">@drawable/pre_other</item>
 
 		<item name="LargerText">@style/LargerText</item>
 	</style>
@@ -284,8 +295,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:focusableInTouchMode">false</item>
 		<item name="android:visibility">gone</item>
 	</style>
-	
-	
+
+	<!-- NOTE: aligned vertically to radio button -->
+	<style name="SettingsRightGearButton">
+		<item name="layout_consumeSpace">horizontal</item>
+		<item name="android:layout_gravity">top|right</item>
+		<item name="android:layout_width">52dp</item>
+		<item name="android:layout_height">52dp</item>
+		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:layout_marginRight">8dp</item>
+		<item name="drawableOnly">true</item>
+		<item name="drawablePosition">forceGravity</item>
+		<item name="android:gravity">center</item>
+		<item name="drawableTint">?android:textColorSecondary</item>
+		<item name="animOnClick">true</item>
+		<item name="android:drawable">@drawable/settings_24dp</item>
+		<item name="android:background">@drawable/ripple_rounded_large</item>
+	</style>
+
 	<!-- Used for skip options. Slightly smaller than usual (or at least, limited in size, as some devices have incorrect sizes for just textAppearanceListItem -->
 	<style name="SkinSettingsTitleText">
 		<item name="android:textAppearance">?android:attr/textAppearanceListItem</item>
@@ -360,21 +387,23 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_unlimitedMeasure">true</item>
-		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingTop">4dp</item>
 		<item name="android:paddingBottom">0dp</item>
 		<item name="android:paddingLeft">24dp</item><!-- NOTE: no access to ?dialogContentPaddingLR here as we have settings activity context when creating this -->
 		<item name="android:paddingRight">24dp</item>
 		<item name="tagStyle">@style/TagPreferenceTagEditTag</item>
 		<item name="tagStyleReadOnly">@style/TagPreferenceTagEditTagReadOnly</item>
 	</style>
-
-	
-	<!-- NOTE: while overridding android:fontFamily works for the Settings, technically it forces each textview and similar views to 
+	<!-- Used in settings - drop padding LR -->
+	<style name="TagPreferenceTagEditInList" parent="TagPreferenceTagEdit">
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+	</style>
+	<!-- NOTE: while overriding android:fontFamily works for the Settings, technically it forces each textview and similar views to
 		 additionally resolve non-textAppearance attribute and apply it VS just resolving the textAppearance.
 		 Text views style resolving always gets textAppearance for the theme+attrs and (as they always exist) resolve attributes from that textAppearance.
 		 Thus, using textAppearance styles here derived from e.g. app compat TA will override font for in-Dialog labels/tags
 	  -->
-	
 	<!-- Visually same paddings for None as for tag to avoid jumps -->
 	<!-- NOTE: inflated in the Dialog/main OR in Settings theme -->
 	<style name="TagPreferenceTagEditNone">
@@ -383,8 +412,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
 		<item name="android:layout_marginRight">8dp</item>
-		<item name="android:paddingLeft">0dp</item>
-		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingRight">4dp</item>
 		<item name="android:paddingTop">6dp</item>
 		<item name="android:paddingBottom">6dp</item>
 		
@@ -487,6 +516,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<item name="android:background">@drawable/ripple_inverse_stroke_bg_rounded_circle</item>
 	</style>
+
+	<!-- Used by settings for slightly less apparent hints, without size change -->
+	<style name="SettingsNormalSizeHint" parent="TextAppearance.AppCompat">
+		<item name="android:textColor">?android:textColorTertiary</item>
+		<item name="android:fontFamily">?Settings_font</item><!-- Global override -->
+	</style>
+
+
 
 </resources>
 

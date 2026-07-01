@@ -22,7 +22,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!-- values/ -->
 <resources>
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- Need less margin for shorter screens -->
-	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
+	<dimen name="TopWaveseekLayout_paddingTop">16dp</dimen>
 	<dimen name="ListSubstyleBase2_aaMarginBottom">200dp</dimen>
 	<dimen name="ListSubstyleBase2_searchHeaderSize">144dp</dimen><!-- REVISIT: includes sp text size, so should be sp based or dynamic -->
 	<dimen name="ListSubstyleBase2_targetSearchHeaderSize">144dp</dimen>

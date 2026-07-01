@@ -358,6 +358,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="PopupInfoText" format="reference"/>
 		<attr name="PopupContent_scene_button_menu" format="reference"/>
 		<attr name="PopupDSPInfoText" format="reference"/>
+		<attr name="PopupDSPInfoScoreLayout" format="reference"/>
+		<attr name="PopupDSPInfoScoreText1" format="reference"/>
+		<attr name="PopupDSPInfoScoreText2" format="reference"/>
+		<attr name="PopupDSPInfoScoreLabel1" format="reference"/>
+		<attr name="PopupDSPInfoScoreLabel2" format="reference"/>
+		<attr name="PopupDSPInfoScoreStamp" format="reference"/>
 		<attr name="PopupDSPInfoImage" format="reference"/>
 				
 		<attr name="ItemHeaderButtonsBg" format="reference"/>

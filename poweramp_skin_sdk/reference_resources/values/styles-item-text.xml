@@ -127,7 +127,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:maxLines">2</item>
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
-		<item name="android:ellipsize">end</item>
+		<item name="android:ellipsize">?item_label_in_list_ellipsize</item>
 
 		<item name="android:visibility">visible</item><!-- IMPORANT: as we change visibility and may initially render in hidden state -->
 	</style>
@@ -240,7 +240,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
 		<item name="eatFontPads">true</item>
-		<item name="android:ellipsize">end</item>
+		<item name="android:ellipsize">?item_label_in_list_ellipsize</item>
 		
 		<item name="android:visibility">visible</item>
 		<item name="scale">1</item>
@@ -341,9 +341,9 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<style name="ItemTextMenu_scene_top_header">
 		<item name="android:layout_gravity">center_vertical</item>
-		<item name="android:layout_marginRight">16dp</item>
+		<item name="layout_offsets">insetTop</item><!-- Force gravity to account for window inset, so we're aligned with offset to the status bar -->		<item name="android:layout_marginRight">16dp</item>
 		<!-- NOTE: no marginLeft here now to sync it with usual text header menu, thus, syncing scan progress margin -->
-		<item name="android:layout_marginTop">16dp</item>
+		<!--<item name="android:layout_marginTop">0dp</item>-->
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachRight">parent</item>
@@ -361,6 +361,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 
 	<style name="ItemTextMenu_scene_bottom_toolbar" parent="ItemTextMenu_scene_top_header">
+		<item name="layout_offsets">@null</item>
 		<item name="android:layout_gravity">top|start</item>
 		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:layout_marginBottom">0dp</item><!-- NOTE: button distance from bottom defined by ListSubstyleBase2/bottomToolbarSize -->

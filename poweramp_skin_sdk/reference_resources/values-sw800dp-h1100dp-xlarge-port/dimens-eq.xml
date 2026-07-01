@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2020 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -20,8 +20,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 
-<!-- Overridding the foldable res for xlarge tablets -->
+<!-- Overriding the foldable res for xlarge tablets -->
 <resources>
-	<dimen name="EqToneRoundKnobLayout_maxWidth">320dp</dimen>
-	<dimen name="EqToneRoundKnobLayout_maxSize">280dp</dimen>
+	<fraction name="EqToneKnobLayout_widthPercent">40%</fraction>
+	<fraction name="EqBassToneKnobLayout_attachLeft">0%</fraction>
+	<dimen name="EqToneRoundKnobLayout_maxWidth">200dp</dimen>
+	<dimen name="EqToneRoundKnobLayout_maxSize">200dp</dimen>
+	<dimen name="EqInfoBase_marginTB">16dp</dimen>
 </resources>

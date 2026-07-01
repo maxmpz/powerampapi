@@ -53,11 +53,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="PeqVisButtonLayoutBase" parent="EqPresetButtonLayoutBase">
 		<item name="android:background">@drawable/checkable_rounded_stroke_button_layout_bg</item>
-		<!--<item name="android:disabledAlpha">0</item>&lt;!&ndash; Hide this completely when disabled (e.g. in PA) &ndash;&gt;-->
 		<item name="dynamicButtons">true</item>
 
 		<item name="buttonStyle">@style/PeqEqPopupButton</item>
 		<item name="menuButtonStyle">@style/PeqEqPopupButton_scene_button_menu</item>
+
+		<item name="extraItemStyle">@style/PeqEqPopupButton</item>
+		<item name="extraItemMenuStyle">@style/PeqEqPopupButton_scene_button_menu</item>
+
 	</style>
 
 	<style name="PeqVisButtonLayout" parent="PeqVisButtonLayoutBase">
@@ -285,6 +288,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="PeqEqReverbParamKnobLayout" parent="PeqEqCompressKnobLayout">
 		<item name="layout_widthPercent">25%</item>
 		<item name="layout_consumeSpace">horizontal</item>
+	</style>
+
+	<style name="PeqSelectionMenuHelpButton" parent="SelectionMenuHelpButton">
+		<item name="android:visibility">gone</item>
 	</style>
 		
 		

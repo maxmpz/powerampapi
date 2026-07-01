@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2025 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -243,14 +243,14 @@ Here we have base + "landscape" layout styles
 		<item name="layout_attachBottom">parent</item>
 		<item name="layout_attachLeftToLeft">@id/_gain</item>
 		<item name="layout_attachRightToRight">@id/_placeholder2</item>
-		<item name="android:layout_marginLeft">8dp</item>
-		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginRight">16dp</item>
 		
 		<item name="android:translationZ">?over_aa_elevation</item>
 		<item name="android:outlineProvider">none</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">false</item><!-- Handles just touching -->
-		<item name="android:background">@drawable/rounded_large</item>
+		<item name="android:background">@drawable/less_alpha_rounded_large</item>
 		<item name="android:drawable">?list_drag_hor_24dp</item>
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableWidth">22dp</item>

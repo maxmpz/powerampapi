@@ -49,7 +49,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:textAppearance">?Text</item>
 		<item name="android:paddingLeft">24dp</item>
 		<item name="android:paddingRight">24dp</item>
-		<item name="android:paddingBottom">16dp</item>
+		<!--<item name="android:paddingBottom">16dp</item>-->
 		<item name="android:defaultFocusHighlightEnabled">false</item><!-- Disable, as we allow internal links to be focused, not view itself -->
 		<item name="layout_consumeSpace">vertical</item>
 		<item name="layout_unlimitedMeasure">true</item>
@@ -83,5 +83,87 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="PopupDSPInfoText_HeadText" parent="HeadText">
 		<item name="android:textStyle">normal</item>
+	</style>
+
+
+	<style name="PopupDSPInfoScoreLayout">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_unlimitedMeasure">true</item>
+		<item name="android:paddingLeft">24dp</item>
+		<item name="android:paddingRight">24dp</item>
+		<item name="android:paddingTop">16dp</item>
+		<item name="android:paddingBottom">20dp</item>
+		<item name="android:layout_marginLeft">38dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:background">@drawable/alpha_rounded_large</item>
+	</style>
+
+	<!-- FastButton -->
+	<style name="BasePopupDSPInfoScoreLabel">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="layout_maxWidth">120dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:includeFontPadding">false</item>
+		<item name="android:layout_marginBottom">-4dp</item>
+		<item name="android:drawable">@drawable/info_16dp</item>
+		<item name="drawablePosition">right</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="animOnClick">true</item>
+		<item name="android:background">@drawable/ripple_hidden_rounded_large</item>
+		<item name="android:drawablePadding">0dp</item>
+		<item name="drawablePaddingStart">8dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:paddingBottom">2dp</item>
+		<item name="android:paddingTop">2dp</item>
+		<item name="android:clickable">true</item>
+		<item name="layout_alignToContent">horizontal</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">marquee</item>
+	</style>
+
+	<style name="PopupDSPInfoScoreLabel1" parent="BasePopupDSPInfoScoreLabel">
+		<item name="android:id">@id/score_label1</item>
+		<item name="android:text">@string/fidelity</item>
+	</style>
+	<style name="PopupDSPInfoScoreLabel2" parent="BasePopupDSPInfoScoreLabel">
+		<item name="android:id">@id/score_label2</item>
+		<item name="android:text">@string/dsp</item>
+		<item name="android:layout_marginLeft">130dp</item><!-- 130 - 8 -->
+		<item name="layout_consumeSpace">vertical</item>
+	</style>
+
+	<style name="BasePopupDSPInfoScoreText" tools:ignore="NewApi">
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:textAppearance">?Text</item>
+		<item name="android:textSize">40dp</item>
+		<item name="android:defaultFocusHighlightEnabled">false</item>
+		<item name="android:includeFontPadding">false</item>
+		<item name="layout_minWidth">60dp</item>
+	</style>
+
+	<style name="PopupDSPInfoScoreText1" parent="BasePopupDSPInfoScoreText">
+		<item name="android:id">@id/score_text1</item>
+	</style>
+	<style name="PopupDSPInfoScoreText2" parent="BasePopupDSPInfoScoreText">
+		<item name="android:id">@id/score_text2</item>
+		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:layout_marginLeft">130dp</item>
+	</style>
+
+	<style name="PopupDSPInfoScoreStamp">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">?Hint</item>
+		<item name="android:textSize">8dp</item>
+		<item name="android:alpha">0.05</item>
+		<item name="layout_attachRightToRight">@id/score_text2</item>
+		<item name="layout_attachBottomToBottom">@id/score_text2</item>
+		<item name="android:layout_marginBottom">-16dp</item>
+		<item name="android:layout_marginRight">4dp</item>
+
 	</style>
 </resources>

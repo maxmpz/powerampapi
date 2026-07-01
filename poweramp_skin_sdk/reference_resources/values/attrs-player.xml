@@ -25,6 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Not themeable functional attributes -->
 	<attr name="state_playing" format="boolean" /><!-- Extra state for drawables -->
 	<attr name="state_locked" format="boolean" /><!-- Extra state for drawables -->
+	<attr name="state_limiting" format="boolean" /><!-- Extra state: limiter button while the limiter is actively limiting -->
 
 	<attr name="milk_advance_modes" format="reference"/>
 	<attr name="milk_advance_icons" format="reference"/>
@@ -161,6 +162,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="corners_miniplayer_aa" format="dimension|reference">
 		<enum name="matchHeight" value="-1"/>
 	</attr>
+
+	<!-- This is "end" by default but can be overridden by global theme to apply long track label animations everywhere -->
+	<attr name="item_label_in_list_ellipsize" format="integer">
+		<enum name="none" value="0" />
+		<enum name="end" value="3" />
+		<enum name="marquee" value="4" />
+	</attr>
+	<attr name="item_label_in_miniplayer_ellipsize" format="integer">
+		<enum name="none" value="0" />
+		<enum name="end" value="3" />
+		<enum name="marquee" value="4" />
+	</attr>
+
 
 	<!-- "eatFontPads" attribute for all track text views -->
 	<attr name="TrackItem_eatFontPads" format="boolean"/>
@@ -635,6 +649,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="thumbWidth" format="dimension"/>
 		<!-- Optional thumb height, required for cases when drawable is xml and it's not possible to calculate desired size from that drawable -->
 		<attr name="thumbHeight" format="dimension"/>
+
+		<!-- If set, knob will sense touches to thumb in this area, even if thumb is very very small. This is 24dp by default -->
+		<attr name="thumbMinTouchableSize" format="dimension"/>
+
 		<!-- Hole size is the view size, thus, inner hole drawable paddings should be used to position it inside linear knob -->
 		<attr name="hole" format="reference" />
 		<attr name="pos" format="integer" />
@@ -758,8 +776,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="DSPRoundKnob">
 		<!-- @id/dsp_* parameter -->
 		<attr name="param"/>
-		<!-- @id/dsp_* boolean parameter, e.g. dsp_eq_enabled -->
-		<attr name="enablingParam" format="boolean"/>
+		<!-- @id/dsp_* integer parameter, e.g., dsp_eq_enabled, with possible LOCKED (Peq) -->
+		<attr name="enablingParam" format="reference"/>
 		<!-- One of msg_dsp_eq_changed/msg_dsp_other_changed/msg_dsp_reverb_changed to listen to --> 
 		<attr name="updateMsgId"/>
 		<!-- Animate to value on attach -->
@@ -910,7 +928,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<declare-styleable name="PlayingMark">
 		<!-- The transition ration point at which PlayingMark starts alpha animation. Should be < 1.
 		     For example, alphaRatio=0 means PlayingMark alpha will be animated for whole transition range: 0..1,
-		     alphaRatio=0.5 means alpha will be animated when transition is in range: 0.5..1, making PlayingMark less obstrutive for animations e.g. from main screen to list.
+		     alphaRatio=0.5 means alpha will be animated when transition is in range: 0.5..1, making PlayingMark less obstructive
+		     for animations e.g. from main screen to list.
 		     Default value is 0.5 -->
 		<attr name="alphaRatio" format="float"/>
 	</declare-styleable>
@@ -992,6 +1011,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Adds extra space for subHead lines -->
 		<attr name="subheadPadding" format="dimension"/>
+	</declare-styleable>
+
+	<declare-styleable name="DSPScoreLayout">
+		<attr name="AccentedText"/>
+		<attr name="Text"/>
+		<attr name="HeadText"/>
+		<attr name="SubheadText"/>
+		<attr name="Hint"/>
 	</declare-styleable>
 	
 	<declare-styleable name="EqKnobParamLayout">

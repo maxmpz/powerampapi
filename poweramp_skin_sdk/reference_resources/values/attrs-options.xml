@@ -82,6 +82,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<!-- Applied (over main theme style) for screens with rounded corners - only on Android 12+ where appropriate API exists -->
 		<attr name="OptionRoundedScreenCorners" format="reference"/>
-				
+
+		<!-- Applied (over main theme style) when we want the labels to be animated in lists -->
+		<attr name="OptionAnimLongLabelsInLists" format="reference"/>
 	</declare-styleable>
 </resources>

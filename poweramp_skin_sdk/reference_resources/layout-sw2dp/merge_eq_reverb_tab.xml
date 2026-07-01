@@ -106,6 +106,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/reverb_button"
 			style="?EqReverbCheckButton"
 			w:param="@id/dsp_reverb_enabled"
+			w:enablingParam="@id/dsp_enabled"
 			w:updateMsgId="@id/msg_dsp_reverb_changed"
 			android:text="@string/reverb"
 		/>
@@ -143,13 +144,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 			w:busId="@id/bus_data_cmd"
 			w:msgId="@id/cmd_data_add_reverb_preset_dialog"
+
+			w:disableForStateBusId="@id/bus_dsp"
+			w:enableForStateId="@id/dsp_enabled"
+			w:disableForStateMsgId="@id/msg_dsp_started"
 		/>
 				
 		<com.maxmpz.widget.base.BusActionButton android:id="@+id/reverb_reset_button"
 			style="?EqReverbResetButton"
 			w:busId="@id/bus_dsp_cmd"
 			w:msgId="@id/cmd_dsp_reset_reverb"
-			
+
+			w:disableForStateBusId="@id/bus_dsp"
+			w:enableForStateId="@id/dsp_enabled"
+			w:disableForStateMsgId="@id/msg_dsp_started"
+
 			android:text="@string/reset"
 			w:confirmTitle="@string/reset"
 			w:confirmText="@string/reset_knobs_on_screen"

@@ -8,7 +8,8 @@
 	
 	<!-- NOTE: forceGlobalOptions=true means global options (by default in styles-options.xml) will force-override
 	     base skin attributes. By default, global options do not override base skin theme, just add to it, but 
-	     for more complicated cases, overriding may be required (e.g. for OptionRatingStarsMenu - overlap_alt_layout and stars rating in menu/lists only)-->
+	     for more complicated cases, overriding may be required (e.g. for OptionRatingStarsMenu - overlap_alt_layout and stars rating
+	     in menu/lists only)-->
 	<skin
 		name="@string/skin_light"
 		author="@string/pa_plugin_author"
@@ -261,6 +262,25 @@
 			summary="@string/skin_summary_force_light_navbar"
 		/>
 
+		<!-- Not for white skin, as I can guarantee contrast for icons for white theme (for the white default bg)-->
+		<!--
+		<multiSwitch
+			key="statusbar_bg"
+			name="@string/skin_transparent_statusbar"
+			defaultValue=""
+			summary="@string/summary_skin_transparent_statusbar"
+			>
+			<option
+				name="@string/default_string"
+				overlapStyle=""
+				/>
+			<option
+				name="@string/no_background"
+				overlapStyle="@style/ActivityTheme_White_NoStatusBar"
+				/>
+		</multiSwitch>
+		-->
+
 		<msg
 			line1="@string/skin_navbar_firmware_warn"
 			/>
@@ -309,7 +329,7 @@
 		</multiSwitch>
 
 	</skin>
-		
+
 	<skin
 		name="@string/skin_black"
 		author="@string/pa_plugin_author"
@@ -540,9 +560,25 @@
 				/>
 		</multiSwitch>
 
+		<multiSwitch
+			key="statusbar_bg"
+			name="@string/skin_transparent_statusbar"
+			defaultValue=""
+			>
+			<option
+				name="@string/default_string"
+				overlapStyle=""
+				/>
+			<option
+				name="@string/no_background"
+				overlapStyle="@style/ActivityTheme_Black_NoStatusBar"
+				/>
+		</multiSwitch>
+
 		<msg
-			line1="@string/skin_navbar_firmware_warn"
+			line1="@string/summary_skin_transparent_statusbar"
 			/>
+
 
 		<multiSwitch
 			key="navbar_bg"
@@ -563,6 +599,10 @@
 				overlapStyle="@style/ActivityTheme_Blackpro_NoMainNavbarBg"
 				/>
 		</multiSwitch>
+
+		<msg
+			line1="@string/skin_navbar_firmware_warn"
+			/>
 
 
 

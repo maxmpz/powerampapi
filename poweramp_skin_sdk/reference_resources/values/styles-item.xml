@@ -219,6 +219,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_gravityTargetAxis">vertical</item>
 		<item name="android:layout_gravity">center_vertical</item>
 		<item name="layout_gravityGroup">0</item>
+		<item name="android:ellipsize">?item_label_in_miniplayer_ellipsize</item>
 	</style>
 
 	<style name="ItemMiniplayerLine2" parent="ItemGenericLine2">
@@ -229,6 +230,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginTop">8dp</item>
 		<item name="layout_gravityGroup">0</item>
 		<item name="layout_goneWhenEmpty">true</item>
+		<item name="android:ellipsize">?item_label_in_miniplayer_ellipsize</item>
 	</style>
 
 	<style name="ItemMiniplayerPlayButton">

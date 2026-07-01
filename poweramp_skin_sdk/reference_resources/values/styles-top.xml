@@ -1185,8 +1185,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:gravity">center</item>
 		<item name="android:textAppearance">?TopCounterLayout_Text</item>
 		<item name="android:textColor">?android:textColorPrimary</item>
-		<item name="android:paddingLeft">0dp</item>
-		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
 	</style>
 	<style name="TopCounterLayout_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">@dimen/TopMetaInfoLabel_textSize</item>

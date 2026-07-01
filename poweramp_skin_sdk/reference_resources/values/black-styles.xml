@@ -132,6 +132,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorKnobDisabled">#7444</item>
 		<item name="colorKnobHoleDisabled">#7444</item>
 		<item name="colorPreampBg">#111</item>
+
+		<item name="colorLimiterActiveBg">#322</item>
 		
 		<item name="colorTrackMeta">#999</item>
 		<item name="colorTrackNum">#999</item>
@@ -300,6 +302,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="Navbar">@style/Navbar_noBgNavbar</item>
 		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
 		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+	</style>
+
+	<style name="ActivityTheme_Black_NoStatusBar">
+		<item name="statusBarBg">#0000</item>
 	</style>
 
 	<!-- An overlay style -->

@@ -102,7 +102,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="ItemPopupListMicroIcon" parent="ItemPopupListMicroIconBase">
 		<item name="layout_attachTop">@id/line2</item>
-		<item name="layout_maxWidth">100dp</item>
+		<item name="layout_maxWidth">150dp</item>
 		<item name="android:layout_marginTop">4dp</item>
 	</style>
 

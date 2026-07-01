@@ -70,6 +70,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			android:contentDescription="@string/close"
 		/>
 		<!-- Attached -> right -->
+		<!-- Hidden for peq -->
 		<com.maxmpz.widget.base.BusActionButton
 			style="?SelectionMenuHelpButton"
 			w:busId="@id/bus_gui"

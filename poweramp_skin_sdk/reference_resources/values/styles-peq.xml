@@ -38,7 +38,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="VisPanelContainer">?PeqVisPanelContainer</item>
 		
 		<item name="EqLockLabelStyle">@style/PeqLockLabel</item>
-		
+		<!-- Hidden for peq -->
+		<item name="SelectionMenuHelpButton">@style/PeqSelectionMenuHelpButton</item>
 	</style>
 
 	<style name="PeqStyles">

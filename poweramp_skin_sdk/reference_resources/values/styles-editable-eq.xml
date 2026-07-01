@@ -86,14 +86,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_widthPercent">50%</item>
 	</style>
 
+	<style name="EditableEqCheckButton" parent="EqCheckButton">
+		<item name="android:layout_marginLeft">0dp</item><!-- Erase possible margins -->
+	</style>
+
 	<!-- Eq button with the icon for the "normal" size. No Tint -->
-	<style name="EditableDSPCheckboxWithIcon" parent="EqCheckButton">
+	<style name="EditableDSPCheckboxWithIcon" parent="EditableEqCheckButton">
 		<item name="drawableOnly">true</item>
 		<item name="drawablePosition">gravityNoPads</item>
 	</style>
 
 	<!-- Eq button without icon for the "normal" size -->
-	<style name="EditableDSPCheckboxNoIcon" parent="EqCheckButton">
+	<style name="EditableDSPCheckboxNoIcon" parent="EditableEqCheckButton">
 		<item name="drawableOnly">false</item>
 		<item name="drawablePosition">left</item><!-- Actually we don't have icon, but nevertheless, setup its possible layout -->
 		<item name="android:drawable">@color/no_drawable0000</item>

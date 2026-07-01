@@ -166,6 +166,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="PopupInfoText">@style/PopupInfoText</item>
 		<item name="PopupContent_scene_button_menu">@style/PopupContent_scene_button_menu</item>
 		<item name="PopupDSPInfoText">@style/PopupDSPInfoText</item>
+		<item name="PopupDSPInfoScoreLayout">@style/PopupDSPInfoScoreLayout</item>
+		<item name="PopupDSPInfoScoreText1">@style/PopupDSPInfoScoreText1</item>
+		<item name="PopupDSPInfoScoreText2">@style/PopupDSPInfoScoreText2</item>
+		<item name="PopupDSPInfoScoreLabel1">@style/PopupDSPInfoScoreLabel1</item>
+		<item name="PopupDSPInfoScoreLabel2">@style/PopupDSPInfoScoreLabel2</item>
+		<item name="PopupDSPInfoScoreStamp">@style/PopupDSPInfoScoreStamp</item>
 		<item name="PopupDSPInfoImage">@style/PopupDSPInfoImage</item>
 		
 		<item name="PopupMenuItem">@style/PopupMenuItem</item>
@@ -608,6 +614,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="SelectionMenuCountText">@style/SelectionMenuCountText</item>
 		<item name="SelectionMenu_Text">@style/SelectionMenu_Text</item>
 		<item name="SelectionMenuCloseButton">@style/SelectionMenuCloseButton</item>
+		<!-- Hidden for peq -->
 		<item name="SelectionMenuHelpButton">@style/SelectionMenuHelpButton</item>
 		<item name="SelectionMenuRangeButton">@style/SelectionMenuRangeButton</item>
 		<item name="SelectionMenuSeparator">@style/SelectionMenuSeparator</item>

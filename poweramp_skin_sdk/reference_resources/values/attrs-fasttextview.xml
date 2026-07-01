@@ -100,7 +100,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- Optional drawable -->
 		<attr name="android:drawable"/>
 
-		<!-- Padding before drawable when drawable is available. Can be negative.
+		<!-- Padding before drawable (or after, for drawablePosition=right) when drawable is available. Can be negative.
 		     NOTE: paddingLeft is not applied to drawable (always applied to the text)
 		     NOTE: ignored for drawablePosition=forceGravity -->
 		<attr name="drawablePaddingStart" format="dimension"/>

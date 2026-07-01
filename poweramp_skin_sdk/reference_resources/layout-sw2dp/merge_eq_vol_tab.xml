@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2021 Maksim Petrov
+Copyright (C) 2010-2026 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/balance_knob_layout"
 			style="?EqBalanceKnobLayout"
 			w:param="@id/dsp_balance"
+			w:enablingParam="@id/dsp_enabled"
 			w:updateMsgId="@id/msg_dsp_other_changed"
 			w:valueFormat="@string/format_2f"
 			w:valueFormatMin="-1"
@@ -47,6 +48,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.player.DSPRoundKnobLayout android:id="@+id/sfx_knob_layout"
 			style="?EqSFXKnobLayout"
 			w:param="@id/dsp_stereo_fx"
+			w:enablingParam="@id/dsp_enabled"
 			w:updateMsgId="@id/msg_dsp_other_changed"
 			w:valueFormat="@string/f0_percent"
 			w:valueFormatMin="0"
@@ -62,6 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/tempo_button"
 			style="?EqTempoCheckButton"
 			w:param="@id/dsp_tempo_enabled"
+			w:enablingParam="@id/dsp_enabled"
 			w:updateMsgId="@id/msg_dsp_tempo_state_changed"
 			android:text="@string/tempo"
 		/>
@@ -115,19 +118,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			android:text="-"
 			tools:ignore="HardcodedText"
 		/>
-		
-						
-	
 	</com.maxmpz.widget.base.FastLayout><!-- tempo_knob_outer_layout -->
 	
 	<!-- Mono + Volume -->
-	
+
 	<com.maxmpz.widget.base.FastLayout android:id="@+id/vol_panel3"
 		style="?EqVolPanel3"
 	>
 		<com.maxmpz.widget.player.DSPCheckBox android:id="@+id/mono_button"
 			style="?EqMonoCheckButton"
 			w:param="@id/dsp_mono_enabled"
+			w:enablingParam="@id/dsp_enabled"
 			w:updateMsgId="@id/msg_dsp_other_changed"
 			android:text="@string/mono"
 		/>
@@ -147,12 +148,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			style="?EqOtherResetButton"
 			w:busId="@id/bus_dsp_cmd"
 			w:msgId="@id/cmd_dsp_reset_other"
-			
+
+			w:disableForStateBusId="@id/bus_dsp"
+			w:enableForStateId="@id/dsp_enabled"
+			w:disableForStateMsgId="@id/msg_dsp_started"
+
 			android:text="@string/reset"
 			w:confirmTitle="@string/reset"
 			w:confirmText="@string/reset_knobs_on_screen"
 		/>
-				
 			
 		<!-- NOTE: 100.5 rounding helps with 0-100 (101 items) to 100 steps rounding, especially around 50%
 		    (where the rounded 0.5050 value is ~51% by default) -->
@@ -161,14 +165,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 			w:param="@id/dsp_master_volume"
 			w:updateMsgId="@id/msg_dsp_other_changed"
-			
-			w:valueFormat="@string/f0_percent"
-			w:valueFormatMin="0"
-			w:valueFormatMax="100"
 			w:rounding="100.5"
-			w:dialogPrecision="0"
-			
-			w:labelText="@string/volume"
+			w:enablingParam="@id/dsp_master_volume_enabled"
+
+			w:dspParamDef="@id/dsp_master_volume"
 		/>
 	</com.maxmpz.widget.base.FastLayout>
 		

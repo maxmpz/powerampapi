@@ -112,7 +112,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqToneButton" parent="EqCheckButton">
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
-		<!--<item name="layout_attachTop">@+id/equ_button</item>-->
 		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
 		<item name="layout_maxWidth">@dimen/EqButton_maxWidth</item>
 		<item name="layout_consumeSpace">vertical</item>
@@ -121,10 +120,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqLimiterButton" parent="EqCheckButton">
 		<item name="android:layout_marginTop">4dp</item>
 		<item name="android:layout_marginLeft">8dp</item>
-		<!--<item name="layout_attachTop">@+id/tone_button</item>-->
 		<item name="layout_attachLeft">@+id/eq_knobs_layout</item>
 		<item name="layout_maxWidth">@dimen/EqButton_maxWidth</item>
 		<item name="layout_consumeSpace">vertical</item>
+		<item name="android:background">@drawable/checkable_limiting_rounded_large</item>
 	</style>
 	
 	<style name="EqTonePanel">

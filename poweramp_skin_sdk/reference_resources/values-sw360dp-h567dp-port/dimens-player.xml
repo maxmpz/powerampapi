@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 	<dimen name="TopSubAAButtons_marginTop">0dp</dimen><!-- NOTE: aa bounds already have visual margin on bottom == 8 dp -->
 	
-	<dimen name="TopWaveseekLayout_paddingTop">4dp</dimen>
+	<dimen name="TopWaveseekLayout_paddingTop">16dp</dimen>
 	
 	<dimen name="TopPlayPauseBehind_size">55dp</dimen>
 	

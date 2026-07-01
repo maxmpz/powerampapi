@@ -64,7 +64,7 @@ Sub-AA editable buttons:
 
 		<item name="fitCentered">5</item>
 		<item name="smallFitCentered">7</item>
-		<item name="minSlotWidthForFitCentered">@dimen/TopBaseButtonLayout_height</item><!-- Don't go below this width  -->
+		<item name="minSlotWidthForFitCentered">@dimen/TopBaseButtonLayout_height</item><!-- Don't go below this width (which is height)  -->
 
 		<!-- The drawable used to indicate the slot during the edit -->
 		<item name="slotDrawable">@drawable/slot</item>
@@ -258,15 +258,16 @@ Sub-AA editable buttons:
 
 	<!-- Used by the Counter "button" -->
 	<style name="TopEditableCounterSubAaButton" parent="TopCounter">
-		<item name="android:paddingLeft">0dp</item>
-		<item name="android:paddingTop">0dp</item>
-		<item name="android:paddingRight">0dp</item>
-		<item name="android:paddingBottom">0dp</item>
+		<!--<item name="android:paddingLeft">0dp</item>-->
+		<!--<item name="android:paddingTop">0dp</item>-->
+		<!--<item name="android:paddingRight">0dp</item>-->
+		<!--<item name="android:paddingBottom">0dp</item>-->
 
 		<item name="android:layout_width">@dimen/TopBaseButtonLayout_width</item>
 		<item name="android:layout_height">@dimen/TopBaseButtonLayout_height</item>
 		<!-- Ensure smaller views, such as counter are vertically centered -->
 		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="lineBackground">@drawable/alpha_player_button_layout_bg</item>
 	</style>
 
 	<!-- Used by the SleepTimer button -->
@@ -306,6 +307,7 @@ Sub-AA editable buttons:
 		<item name="android:layout_gravity">center_horizontal</item>
 		<item name="android:layout_marginTop">2dp</item>
 		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
 	</style>
 
 

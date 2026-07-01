@@ -64,6 +64,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="OptionNoHeaderButtons">@style/OptionNoHeaderButtons</item>
 		<item name="OptionLocalizedAZScroll">@style/OptionLocalizedAZScroll</item>
 		<item name="OptionRoundedScreenCorners">@style/OptionRoundedScreenCorners</item>
+		<item name="OptionAnimLongLabelsInLists">@style/OptionAnimLongLabelsInLists</item>
 
 		<item name="BasePoweruiStyles">@style/BasePoweruiStyles</item>
 		<item name="TopPoweruiStyles">@style/TopPoweruiStyles</item>
@@ -219,6 +220,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="colorPreampBg">#ccc</item>
 		<item name="colorKnobShadow">@null</item>
 
+		<item name="colorLimiterActive">#f00</item>
+		<item name="colorLimiterActiveBg">#600</item>
+
 		<!-- These are overridden for ActivityTheme_Whitepro_EqKnobsHiliteMonochromatic/ActivityTheme_Whitepro_EqKnobsHiliteColorful -->
 		<item name="colorKnobHiliteStartDisabled">#0000</item>
 		<item name="colorKnobHiliteStartPressed">#0000</item>
@@ -341,8 +345,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="waveseek_elapsedbar">@drawable/elapsedbar</item>
 
 		<!-- Small equalizer preset icons when assigned to output -->
+		<!-- NOTE: sync to styles-settings.xml -->
 		<item name="pre_speaker">@drawable/pre_speaker</item>
 		<item name="pre_wired">@drawable/pre_wired</item>
+		<item name="pre_wired_35">@drawable/pre_wired_35</item>
 		<item name="pre_bt">@drawable/pre_bt</item>
 		<item name="pre_song">@drawable/pre_song</item>
 		<item name="pre_usb">@drawable/pre_usb</item>
@@ -684,6 +690,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="lyricsPrevAlpha">0.3</item>
 		<item name="lyricsNextAlpha">0.5</item>
 
+		<!-- Long labels end with ... in lists. This may be overridden by OptionAnimLongLabelsInLists -->
+		<item name="item_label_in_list_ellipsize">end</item>
+		<!-- Long labels end with ... in miniplayer. This may be overridden by OptionAnimLongLabelsInLists -->
+		<item name="item_label_in_miniplayer_ellipsize">end</item>
+
 		<!-- ListSubstyle -->
 		<item name="textHeaderSize">186dp</item>
 		<item name="topTextHeaderSize">76dp</item>
@@ -995,6 +1006,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="Navbar">@style/Navbar_noBgNavbar</item>
 		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
 		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+	</style>
+
+	<style name="ActivityTheme_White_NoStatusBar">
+		<item name="statusBarBg">#0000</item>
+		<item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
 	</style>
 
 	<style name="ActivityTheme_NoAndroidNavbarBg">

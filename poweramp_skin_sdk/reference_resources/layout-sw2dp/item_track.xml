@@ -255,7 +255,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		style="?ItemTrackCatImage"
 	/>
 	<SceneParams w:scene="@+id/scene_1"
-		w:baseScene="defaultScene" 
+		w:baseScene="defaultScene"
 	/>
 	<SceneParams w:scene="@+id/scene_zoomed" w:scene_2="@+id/scene_1_zoomed"
 		style="?ItemTrackCatImage_scene_zoomed" 

@@ -361,7 +361,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			 layout_unlimitedMeasure="true" may be required for the cases when there is only one child view which should grow beyond its container size
 			 on the scrollable axis. Such behavior is close to Android ScrollableView children measuring.
 
-			 Also can be used when we're running some "expanding" scene where our initial layout is very small, so there is no enough
+			 Also, this can be used when we're running some "expanding" scene where our initial layout is very small, so there is no enough
 			 space to properly layout wrap_content view (as it gets no available space otherwise)
 		-->
 		<attr name="layout_unlimitedMeasure" format="boolean"/>
@@ -445,7 +445,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		     The group views are laid out sequentially in the axis of the group gravity. Only one axis is processed by group - if two
 		     gravity axes are defined, only the horizontal one is handled.
-		     The other axis of the view stays laid out by the other attributes, as usually.
+		     The other axis of the view continues to be laid out by other attributes, as usually.
 
 		     Multiple views should be in the group for it to make sense.
 		     The views then processed this way (vertical axis here for example):

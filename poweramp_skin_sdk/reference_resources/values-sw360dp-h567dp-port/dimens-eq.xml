@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2010-2023 Maksim Petrov
+Copyright (C) 2010-2020 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
@@ -19,9 +19,23 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!-- Foldable rect screen -->
-<resources>
-	<dimen name="EqToneRoundKnobLayout_maxWidth">220dp</dimen><!-- Further limit width for large tablets -->
-	<dimen name="EqToneRoundKnobLayout_maxSize">180dp</dimen>
 
+<resources>
+	<dimen name="EqInfoLabel_maxWidth">350dp</dimen>
+	<dimen name="EqButton_maxWidth">72dp</dimen>
+	<dimen name="EqButton_marginSide">4dp</dimen>
+	<dimen name="EqEquPresetButtonLayout_width">150dp</dimen>
+
+	<!-- NOTE: this is also duplicated in sw360dp-h567w-land -->
+	<fraction name="EqEquPresetButtonLayout_scene_button_menu_heightPercent">70%</fraction>
+	<dimen name="TopActionModeBar_marginTop">4dp</dimen>
+	<dimen name="EqKnob_spacing">4dp</dimen>
+	<dimen name="EqRoundKnobLayout_maxSize">200dp</dimen>
+	<dimen name="EqLargerRoundKnobLayout_maxSize">220dp</dimen>
+	<dimen name="EqLargerRoundKnob_maxSize">180dp</dimen>
+	<dimen name="EqTonePanel_paddingTop">12dp</dimen>
+	<dimen name="EqInfoBase_marginTB">4dp</dimen>
+	<dimen name="eq_top_margin">4dp</dimen>
+	<dimen name="EqKnobsLayout_paddingBottom">4dp</dimen>
+	<dimen name="EqRoundKnobLabel_marginTop">4dp</dimen>
 </resources>
