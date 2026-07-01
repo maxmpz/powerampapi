@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- targetBuild is important. Some specific values are checked and layer of additional styles may be applied.
      See reference_resources/values/legacy-styles.xml -->
-<skins targetBuild="1003">
+<skins targetBuild="1003" verification="true">
 	<!-- NOTE: forceGlobalOptions=true means global options (by default in styles-options.xml) will force-override base skin attributes.
 
 	     By default, global options do not override base skin theme, just add to it,

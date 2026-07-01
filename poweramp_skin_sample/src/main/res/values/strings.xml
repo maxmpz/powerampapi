@@ -103,4 +103,9 @@
 	<string name="skin_basic_options">Basic</string>
 	<string name="skin_page_1">Skin Sub-Page</string>
 	<string name="skin_page_1_summary">More skin options here</string>
+
+	<string name="verify_skin">Verify Skin</string>
+	<string name="failed_to_verify">Failed to verify</string>
+	<string name="successfully_verified_excl">Successfully verified!</string>
+	<string name="validating">Validating...</string>
 </resources>

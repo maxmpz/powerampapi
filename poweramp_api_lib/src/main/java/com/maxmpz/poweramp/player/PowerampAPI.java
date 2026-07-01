@@ -88,7 +88,6 @@ import org.eclipse.jdt.annotation.NonNull;
  * <ul>
  * <li>{@link #ACTION_API_COMMAND} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}
  * <li>{@link #ACTION_ASK_FOR_DATA_PERMISSION} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
- * <li>{@link #ACTION_NATIVE_PLUGIN_COMMAND} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}
  * <li>{@link #ACTION_RELOAD_DATA} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}, {@link #PLAYER_SERVICE_NAME}
  * <li>{@link #ACTION_OPEN_EQ} -> {@link #ACTIVITY_STARTUP}
  * <li>{@link #ACTION_OPEN_LIBRARY} -> {@link #ACTIVITY_STARTUP}
@@ -1106,11 +1105,23 @@ public final class PowerampAPI {
 	public static final String ACTION_NATIVE_PLUGIN_INIT = "com.maxmpz.audioplayer.NATIVE_PLUGIN_INIT";
 
 	/**
+	 * Sent by Poweramp to your skin.<br>
 	 * This action should be used by skin apps for their main activity intent-filter element in AndroidManifest.xml.<br>
 	 * Helps future Poweramp builds (targeting Android 11/SDK=30) to find skins, as Android 11 requires some explicit action to be
 	 * defined by the "plugin" apps, such as skins.
 	 */
 	public static final String ACTION_SKIN_MAIN = "com.maxmpz.audioplayer.SKIN_MAIN";
+
+	/**
+	 * Sent by Poweramp to your skin.<br>
+	 * This action may be placed in the skin AndroidManifest.xml for the verification.
+	 * Skin is optionally "unverified" until the skin checks its purchase state or whatever author decided to use as
+	 * the verification.
+	 * Extras:<br>
+	 * {@link #EXTRA_TOKEN} - PendingIntent - "token" which should be sent Poweramp in case of the successful verification
+	 * @since 1026-beta
+	 */
+	public static final String ACTION_SKIN_VERIFICATION = "com.maxmpz.audioplayer.SKIN_VERIFICATION";
 
 	/**
 	 * Used internally
@@ -1293,6 +1304,14 @@ public final class PowerampAPI {
 	 * @since 955
 	 */
 	public static final String EXTRA_RATING = "rating";
+
+	/**
+	 * Extra<br>
+	 * {@code PendingIntent}
+	 * @since 1026-beta
+	 */
+	public static final String EXTRA_TOKEN = "token";
+
 
 	/**
 	 * Shuffle extras values

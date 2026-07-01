@@ -13,6 +13,7 @@
 - [Poweramp v3 Skin Theme Specifics](#poweramp-v3-skin-theme-specifics)
 - [Poweramp v3 Skin Options](#poweramp-v3-skin-options)
 - [Skin Options Persistence](#skin-options-persistence)
+- [Skin Verification](#skin-verification)
 - [Custom/Loadable Fonts](#customloadable-fonts)
 - [Errors](#errors)
 - [Difference vs Poweramp v2 Skins](#difference-vs-poweramp-v2-skins)
@@ -522,6 +523,66 @@ com.poweramp.v3.sampleskin:style/SampleSkin = 0x80070054
 ```
 should exist in stable-ids.txt. Other lines/stable ids are not needed.
 
+
+
+### Skin Verification
+
+Poweramp (since build-1026-beta) adds a trust layer for third‑party skins. This is anti‑piracy *friction*, not a hard block: an unverified
+skin still installs, loads, and renders, but it is **soft‑degraded** - shows an `[unverified]` prefix in the skin
+picker, its options are kept in memory only (never persisted) and are not exported/imported, it has no in‑app options
+page, and it is automatically deselected 48 hours after it was first selected.
+
+A skin becomes **verified** when its APK signing certificate is on Poweramp's built‑in allowlist. There is nothing to
+embed in the APK and nothing to strip — the trust anchor is the APK signer.
+
+To get a skin verified:
+
+1. Build and publish (alpha/beta channel is enough) your skin signed with your release key (Play App Signing is fine — its per‑app certificate is
+   stable across devices)
+2. Get the signing certificate SHA‑256 fingerprint and your package name, and share both with us for allowlisting:
+   ```
+   apksigner verify --print-certs your-skin.apk
+   ```
+   Use the **"certificate SHA‑256 digest"** value. (Do not use `keytool -printcert -jarfile` — it reads only the v1/JAR
+   signature and returns nothing for v2/v3‑only APKs.) Without this, the skin is not trusted and any self‑verification
+   token it sends is ignored
+3. We add the entry; it ships in the next Poweramp update (or beta iteration), after which the skin is recognized as
+   verified
+4. If you published your skin on Play (before build-1026-beta), your skin is already trusted, but you can make it optionally
+   require a verification (e.g., payment/subscription/or anything you, as author, decide requires gating) - you can do it by
+   utilizing new `<skin verification="true">` attribute. See [Optional self‑verification handshake](#optional-self‑verification-handshake)
+
+While developing, your unverified skin still loads and is fully testable - the unverified path is the development
+path, there is no separate developer mode. Your skin app can also open its own options page in Poweramp via
+the `open=theme` settings intent (see `openPowerampThemeSettings` in **[SkinInfoActivity.kt](src/main/java/com/poweramp/v3/sampleskin/SkinInfoActivity.kt)**),
+which must be launched with `startActivityForResult` so Poweramp can authenticate that the caller is your skin.
+
+#### Optional self‑verification handshake
+
+A trusted (allowlisted) skin may additionally gate its verified status behind its **own** check - for example a Google
+Play purchase / license check. This is an opt‑in layer on top of the allowlist; it can only make an already‑allowlisted
+skin stricter, never grant trust to an unknown signer.
+
+To opt in:
+
+1. Mark the root tag of **[xml/skins.xml](src/main/res/xml/skins.xml)** with `verification="true"`:
+   ```xml
+   <skins xmlns:android="http://schemas.android.com/apk/res/android" targetBuild="1003" verification="true">
+   ```
+   While the handshake has not yet passed, the skin stays `[unverified]` even though it is allowlisted
+
+2. Declare an intent‑filter for `com.maxmpz.audioplayer.SKIN_VERIFICATION` on your main activity (next to `SKIN_MAIN` /
+   `LAUNCHER`)
+
+3. Handle the verification intent. Poweramp launches your component with a `PendingIntent` token in the
+   `EXTRA_TOKEN` extra. Run your check (sync or async - there is no time limit) and, once it passes, fire the token with
+   `token.send()`. See the reference flow in **[SkinInfoActivity.kt](src/main/java/com/poweramp/v3/sampleskin/SkinInfoActivity.kt)**
+   (`mayBeInitiateVerification` → `yourSkinVerification` → `verificationDone`), which includes a commented Google Play
+   Billing skeleton
+
+The token is one‑shot and immutable, and Poweramp accepts it only if your package is still allowlisted under the same
+signer‑key when it is fired - so a token can never be replayed for a different package or an unknown signer. An
+allowlisted skin that does not opt in is verified directly, with no handshake required.
 
 
 ### Custom/Loadable Fonts

@@ -95,4 +95,30 @@
 			tools:ignore="UsingOnClickInXml"
 			/>
 	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/progress"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:layout_centerInParent="true"
+		android:padding="8dp"
+		android:background="?android:colorBackground"
+		android:visibility="gone"
+	>
+		<ProgressBar
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			tools:ignore="ContentDescription"
+			/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="16dp"
+			android:text="@string/validating"
+			/>
+	</LinearLayout>
+
 </RelativeLayout>

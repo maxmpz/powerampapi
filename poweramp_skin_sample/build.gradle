@@ -47,6 +47,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':poweramp_api_lib')
     implementation libs.androidx.appcompat.resources
     implementation libs.androidx.core.ktx
 }

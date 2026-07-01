@@ -29,11 +29,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-	        <!-- This action should be used by skin apps for their main activity intent-filter element in AndroidManifest.xml.<br>
-	             Helps future Poweramp builds (targeting Android 11/SDK=30) to find skins, as Android 11 requires some explicit action to be
-	             defined by the "plugin" apps, such as skins -->
 	        <intent-filter>
+		        <!-- This action should be used by skin apps for their main activity intent-filter element in AndroidManifest.xml.<br>
+					 Helps future Poweramp builds (targeting Android 11/SDK=30) to find skins, as Android 11 requires some explicit action to be
+					 defined by the "plugin" apps, such as skins -->
 		        <action android:name="com.maxmpz.audioplayer.SKIN_MAIN" />
+
+		        <!-- This is optional action which will be invoked for the skins which want verification -->
+		        <action android:name="com.maxmpz.audioplayer.SKIN_VERIFICATION" />
 	        </intent-filter>
         </activity>
     </application>
