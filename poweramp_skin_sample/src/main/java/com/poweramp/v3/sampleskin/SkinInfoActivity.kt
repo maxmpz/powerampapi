@@ -1,103 +1,68 @@
 package com.poweramp.v3.sampleskin
 
 import android.app.Activity
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.IntentCompat
 import com.maxmpz.poweramp.player.PowerampAPI.ACTION_SKIN_VERIFICATION
-import com.maxmpz.poweramp.player.PowerampAPI.EXTRA_TOKEN
+import com.maxmpz.poweramp.player.PowerampAPI.ACTION_START_SKIN_VERIFICATION
+import com.maxmpz.poweramp.player.PowerampAPI.API_ACTIVITY_NAME
+import com.maxmpz.poweramp.player.PowerampAPI.EXTRA_PACKAGE
+import com.maxmpz.poweramp.player.PowerampAPIHelper.getPowerampPackageName
 
 private const val TAG = "SkinInfoActivity"
+private const val LOG = true
+
+
+/** Helper function to get the resolved Poweramp package or show the error toast */
+internal fun Context.getPaPak(): String? {
+    val pak = getPowerampPackageName(this, false)
+    if(pak == null) {
+        Toast.makeText(this, R.string.skin_poweramp_not_installed, Toast.LENGTH_LONG).show()
+    }
+    return pak
+}
 
 
 class SkinInfoActivity : Activity() {
-    val handler = Handler(Looper.getMainLooper())
+    companion object {
+        var skinVerifiedOnce = false
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skin_info)
-
-        mayBeInitiateVerification()
     }
 
-    private fun mayBeInitiateVerification() {
-        val intent = intent
-        if(intent != null && intent.action == ACTION_SKIN_VERIFICATION) {
-            val token = IntentCompat.getParcelableExtra(intent, EXTRA_TOKEN, PendingIntent::class.java)
-            if(token != null) {
-                yourSkinVerification(token)
-            }
-        }
+    override fun onResume() {
+        super.onResume()
+        // Disable reverify button if we already successfully verified during this process lifetime
+        findViewById<View>(R.id.reverify_button).isEnabled = !skinVerifiedOnce
     }
 
-    // Your code to verify the skin synchronously or asynchronously. We use delay here just for the demonstration
-    private fun yourSkinVerification(token: PendingIntent) {
-        // Disable the action buttons + show progress while we verify. There is no time limit on the verification — the
-        // skin may take arbitrarily long (a purchase prompt, Play Billing / license server calls, etc.).
-        setControlsEnabled(false)
-        findViewById<View>(R.id.progress)?.visibility = VISIBLE
 
-        // --- Google Play purchase verification (sample skeleton; add the Play Billing library and uncomment to use) ---
-        // Verify the user actually owns this skin BEFORE sending the token. Real apps run their own check here. Only call
-        // verificationDone(true, token) once it passes; call verificationDone(false, token) otherwise.
-        //
-        // val billing = BillingClient.newBuilder(this).enablePendingPurchases().setListener { _, _ -> }.build()
-        // billing.startConnection(object : BillingClientStateListener {
-        //     override fun onBillingSetupFinished(result: BillingResult) {
-        //         if(result.responseCode != BillingClient.BillingResponseCode.OK) { verificationDone(false, token); return }
-        //         billing.queryPurchasesAsync(
-        //             QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build()
-        //         ) { _, purchases ->
-        //             val owned = purchases.any { p ->
-        //                 p.purchaseState == Purchase.PurchaseState.PURCHASED /* && p.products.contains(YOUR_SKU) */
-        //             }
-        //             verificationDone(owned, token)
-        //         }
-        //     }
-        //     override fun onBillingServiceDisconnected() { verificationDone(false, token) }
-        // })
-        // return
+    /**
+     * Optional start of the (optional) verification for this skin. Normally, Poweramp will redirect a user to this activity
+     * when the skin is unverified and the user tries to open its settings, but skin also may initiate such verification by
+     * itself. Skin doesn't know in advance if the skin is verified or unverified, so wording for the verification button
+     * should allow it, e.g., Re-verification of the skin.
+     * In response to [ACTION_START_SKIN_VERIFICATION] Poweramp will immediately redirect back to this app's
+     * [SkinVerificationActivity] with [ACTION_SKIN_VERIFICATION].
+     */
+    fun reverifySkin(view: View?) {
+        val pak = getPaPak() ?: return
+        // NOTE: use Poweramp API activity + startActivity, not the API receiver + sendBroadcast: Poweramp needs an
+        // activity launch path here because it opens this app's verification activity in response.
 
-        // Demo: post a positive result after a delay. Real apps shouldn't use this delay — it only simulates async work.
-        handler.postDelayed({ verificationDone(true, token) }, 1000)
-    }
+        findViewById<View>(R.id.reverify_button).isEnabled = false
 
-    private fun verificationDone(ok: Boolean, token: PendingIntent) {
-        findViewById<View>(R.id.progress)?.visibility = GONE
+        val intent = Intent(ACTION_START_SKIN_VERIFICATION)
+            .setClassName(pak, API_ACTIVITY_NAME)
+            .putExtra(EXTRA_PACKAGE, packageName)
 
-        // Re-enable the action buttons
-        setControlsEnabled(true)
-
-        if(ok) {
-            Toast.makeText(this, R.string.successfully_verified_excl, Toast.LENGTH_SHORT).show()
-            handler.postDelayed({
-                // Firing the token tells Poweramp the skin verified itself. The token is one-shot + immutable; Poweramp
-                // accepts it only if this package is still in its allowlist under the same signer-key.
-                token.send()
-                finish()
-            }, 1000)
-
-        } else {
-            Toast.makeText(this, R.string.failed_to_verify, Toast.LENGTH_LONG).show(); // Enable toast if needed
-        }
-    }
-
-    /** Enable/disable the activity's action buttons while verification is in progress. */
-    private fun setControlsEnabled(enabled: Boolean) {
-        val buttons = findViewById<ViewGroup>(R.id.buttons) ?: return
-        for(i in 0 until buttons.childCount) {
-            buttons.getChildAt(i).isEnabled = enabled
-        }
+        startActivity(intent)
     }
 
     fun startWithSampleSkin(view: View?) {
@@ -135,31 +100,5 @@ class SkinInfoActivity : Activity() {
             .putExtra("theme_id", R.style.SampleSkin)
         startActivityForResult(intent, 1) // startActivityForResult is required for open=theme
         finish()
-    }
-
-    private fun getPaPak(): String? {
-        val pak = getPowerampPackageName(this)
-        if(pak == null) {
-            Toast.makeText(this, R.string.skin_poweramp_not_installed, Toast.LENGTH_LONG).show()
-        }
-        return pak
-    }
-
-    companion object {
-        /**
-         * @return resolved Poweramp package name or null if not installed
-         * NOTE: can be called from any thread, though double initialization is possible, but it's OK
-         */
-        fun getPowerampPackageName(context: Context): String? {
-            try {
-                val info = context.packageManager.resolveService(Intent("com.maxmpz.audioplayer.API_COMMAND"), 0)
-                if(info != null && info.serviceInfo != null) {
-                    return info.serviceInfo.packageName
-                }
-            } catch(th: Throwable) {
-                Log.e(TAG, "", th)
-            }
-            return null
-        }
     }
 }

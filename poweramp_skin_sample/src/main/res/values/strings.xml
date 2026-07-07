@@ -11,6 +11,7 @@
 	<string name="skin_sample_description">This is a sample skin</string>
 	<string name="open_theme_settings">Open Theme Settings</string>
 	<string name="skin_sample_dark">Sample Dark Skin</string>
+	<string name="reverify_skin">(Re)verify the skin</string>
 
 
 	<string name="skin_divided_waveseek">Divided Waveseek</string>
@@ -107,5 +108,6 @@
 	<string name="verify_skin">Verify Skin</string>
 	<string name="failed_to_verify">Failed to verify</string>
 	<string name="successfully_verified_excl">Successfully verified!</string>
-	<string name="validating">Validating...</string>
+	<string name="skin_verification">Skin Verification</string>
+	<string name="verification_in_process">Verification in process...</string>
 </resources>

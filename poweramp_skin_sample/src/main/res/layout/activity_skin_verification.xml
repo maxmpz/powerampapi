@@ -12,7 +12,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:scrollbarDefaultDelayBeforeFade="100000"
-		android:layout_above="@+id/buttons"
 		android:layout_alignParentTop="true"
 	>
 		<RelativeLayout
@@ -47,63 +46,37 @@
 				android:layout_below="@+id/icon"		
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:text="@string/installation_ok"
+				android:text="@string/skin_verification"
 				android:textSize="16sp"
 				android:layout_marginTop="22dip"
 			/>
 		</RelativeLayout>
 	</ScrollView>
 
-	<LinearLayout android:id="@+id/buttons"
-		android:layout_width="match_parent"
+
+	<LinearLayout
+		android:id="@+id/progress"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
 		android:orientation="vertical"
+		android:layout_centerInParent="true"
+		android:padding="8dp"
+		android:background="?android:colorBackground"
+		android:visibility="gone"
 	>
-		<Button
-			android:id="@+id/reverify_button"
-			android:onClick="reverifySkin"
-			android:layout_width="match_parent"
+		<ProgressBar
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/reverify_skin"
-			android:layout_marginLeft="10dp"
-			android:layout_marginRight="10dp"
-			tools:ignore="UsingOnClickInXml"
+			android:layout_gravity="center_horizontal"
+			tools:ignore="ContentDescription"
 			/>
-
-		<Button
-			android:onClick="startWithSampleSkin"
-			android:layout_width="match_parent"
+		<TextView
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:padding="16dp"
-			android:text="@string/start_with_sample_skin"
-			android:textSize="16sp"
-			android:layout_marginLeft="10dp"
-			android:layout_marginRight="10dp"
-			tools:ignore="UsingOnClickInXml"
-			/>
-
-		<Button
-			android:onClick="startWithSampleAAASkin"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:padding="16dp"
-			android:text="@string/start_with_sample_aaa_skin"
-			android:textSize="16sp"
-			android:layout_marginLeft="10dp"
-			android:layout_marginRight="10dp"
-			tools:ignore="UsingOnClickInXml"
-			/>
-
-		<Button
-			android:onClick="openPowerampThemeSettings"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/open_theme_settings"
-			android:layout_marginLeft="10dp"
-			android:layout_marginRight="10dp"
-			android:layout_marginBottom="10dp"
-			tools:ignore="UsingOnClickInXml"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="16dp"
+			android:text="@string/verification_in_process"
 			/>
 	</LinearLayout>
+
 </RelativeLayout>
