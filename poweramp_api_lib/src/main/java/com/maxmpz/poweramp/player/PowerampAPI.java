@@ -97,6 +97,7 @@ import org.eclipse.jdt.annotation.NonNull;
  * <li>{@link #ACTION_SHOW_LIST} -> {@link #ACTIVITY_STARTUP}
  * <li>{@link #INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH} -> {@link #ACTIVITY_STARTUP}, {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME},
  *     {@link #PLAYER_SERVICE_NAME}
+ * <li>{@link #ACTION_START_SKIN_VERIFICATION} -> {@link #API_ACTIVITY_NAME}
  * <li>{@link Scanner#ACTION_SCAN_DIRS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * <li>{@link Scanner#ACTION_SCAN_TAGS} -> {@link #API_RECEIVER_NAME}, {@link #API_ACTIVITY_NAME}
  * <li>{@link MilkScanner#ACTION_SCAN} -> {@link PowerampAPIHelper#getMilkScannerServiceComponentName}, since 868 ->
@@ -1122,6 +1123,22 @@ public final class PowerampAPI {
 	 * @since 1026-beta
 	 */
 	public static final String ACTION_SKIN_VERIFICATION = "com.maxmpz.audioplayer.SKIN_VERIFICATION";
+
+	/**
+	 * May be optionally sent by your app to Poweramp.<br>
+	 * Initiates skin verification protocol in the same way it's initialized by user clicking "Click to verify" for the
+	 * unverified skin. If skin is verified already, the procedure is repeated, thus this case should be handled by the skin,
+	 * but generally it's harmless.<br>
+	 * Send this via {@link #API_ACTIVITY_NAME} and {@code Context.startActivity()} when the call should open the skin
+	 * verification UI. The broadcast receiver path can't reliably open another app's activity on recent Android versions
+	 * due to background activity launch restrictions.<br>
+	 * The implementation of this intent is not required for the skin which wants verification, as Poweramp will try to
+	 * verify unverified skin on a user click to the skin settings anyway.
+	 * Extras:<br>
+	 * {@link #EXTRA_PACKAGE} - string - the package of the skin to start verification for
+	 * @since 1027-beta
+	 */
+	public static final String ACTION_START_SKIN_VERIFICATION = "com.maxmpz.audioplayer.START_SKIN_VERIFICATION";
 
 	/**
 	 * Used internally

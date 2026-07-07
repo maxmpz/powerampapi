@@ -54,23 +54,33 @@ public class PowerampAPIHelper {
 
 
 	/**
-	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
-	 * @return resolved and cached Poweramp package name or null if it's not installed<br>
+	 * @return resolved and cached Poweramp package name or default package name otherwise<br>
 	 */
 	public static String getPowerampPackageName(Context context) {
+		return getPowerampPackageName(context, true);
+	}
+
+	/**
+	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
+	 * @return resolved and cached Poweramp package name, or null if it's not installed and useFallback==false, or
+	 * default package name otherwise<br>
+	 */
+	public static String getPowerampPackageName(Context context, boolean useFallback) {
 		String pak = sPowerampPak;
 		if(pak == null) {
 			ComponentName componentName = getPlayerServiceComponentNameImpl(context);
 			if(componentName != null) {
 				pak = sPowerampPak = componentName.getPackageName();
-			} else {
+			} else if(useFallback) {
 				//noinspection deprecation
-				pak = sPowerampPak = PowerampAPI.PACKAGE_NAME;
+				return PowerampAPI.PACKAGE_NAME; // NOTE: don't cache it to allow a re-resolution on the next call
+			} else {
+				return null;
 			}
 		}
 		return pak;
 	}
-	
+
 	/**
 	 * THREADING: can be called from any thread, though double initialization is possible, but it's OK
 	 * @return resolved and cached Poweramp PlayerService component name, or null if not installed
