@@ -14,6 +14,19 @@ android {
         versionName "1.0"
     }
 
+    // Important for skin verification. As Poweramp will check your release signature, debug builds signed with debug key won't be
+    // verified (e.g., during the development). Instead, force gradle to use release signature for the debug builds
+    //signingConfigs {
+    //    release {
+    //       ... here you have your normal release signature setup ...
+    //    }
+    //}
+    //buildTypes {
+    //  debug {
+    //        signingConfig signingConfigs.release // Here you force release signature for the debug builds
+    //  }
+    //}
+
     compileOptions {
         sourceCompatibility = JAVA_SOURCE_COMPATIBILITY
         targetCompatibility = JAVA_TARGET_COMPATIBILITY
