@@ -547,7 +547,10 @@ To get a skin allowlisted:
    Use the **"certificate SHA-256 digest"** value. Do not use `keytool -printcert -jarfile` - it reads only the v1/JAR
    signature and returns nothing for v2/v3-only APKs. Without allowlisting, the skin is not trusted and any
    self-verification token it sends is ignored.
-3. We add the entry; it ships in the next Poweramp update (or beta iteration), after which the skin is recognized as
+3. If you use Play signing with Play generated keys, navigate to the app in Play console->Protected with Play->Manage play app signing->
+**SHA-256 certificate fingerprint**. Note that if you distribute both APKs (e.g., via your website), and Play bundles; and those 
+SHA-256 digests differ, we have to add **both fingerprints**
+4. We add the entries; it ships in the next Poweramp update (or beta iteration), after which the skin is recognized as
    verified unless it opted into the additional handshake below.
 
 For local verification testing, make sure your debug build is signed with the same release key you shared for
