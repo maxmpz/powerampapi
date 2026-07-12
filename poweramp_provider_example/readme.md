@@ -282,8 +282,10 @@ This is configurable in the Poweramp settings: for example, only manual rescan m
 Please note that the Scanner intents sent to Poweramp will be only processed if your app is on the foreground, or if Poweramp is a foreground process (either Poweramp UI is visible or Poweramp is playing).  
 If this is not true, scan service is a subject to the Android 8+ background services policy and your intent will be ignored.
 
-Use [EXTRA_PROVIDER from PowerampAPI.java](../poweramp_api_lib/src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java#L1694) for fine-grained scan just for your provider. If not specified,
-Poweramp will scan all known folders and providers.
+Use a complete provider path in [EXTRA_PATH from PowerampAPI.java](../poweramp_api_lib/src/main/java/com/maxmpz/poweramp/player/PowerampAPI.java),
+for example `@com.example.provider/` or `@com.example.provider/encodedTree/encodedDocument/`, for a targeted provider scan.
+The old `EXTRA_PROVIDER` plus relative `EXTRA_PATH` form remains accepted for compatibility. If no target is specified,
+Poweramp scans the Music Folders selected for the requested scan mode.
 
 ### Rescan
  

@@ -1981,32 +1981,22 @@ public final class PowerampAPI {
 		public static final String EXTRA_RESCAN_LYRICS_TAGS = "rescanLyricsTags";
 
 		/**
-		 * If set, Poweramp will scan only folders matching this provider authority. scanProviders extra should be set to true (or missing)
-		 * in this case<br>
-		 * Warning: don't use this with {@link #EXTRA_FULL_RESCAN}, as only the provider tracks will appear after such rescan<br>
-		 * Extra for {@link #ACTION_SCAN_DIRS}<br>
-		 * {@code String}
-		 * @since 862
-		 */
-		public static final String EXTRA_PROVIDER = "provider";
-
-		/**
-		 * If set, and {@link #EXTRA_PROVIDER} is specified, Poweramp will scan only sub-hierarchy of folders matching this folder
-		 * path for the given provider.<br><br>
-		 *
-		 * The path format is {@code /opaque-treeId/opaque-documentId/}:<br>
+		 * Optional target for {@link #ACTION_SCAN_DIRS}. The target must be a complete Poweramp database-form path inside a
+		 * selected Music Folder: {@code primary/Music/Artist/}, {@code /absolute/path/}, {@code @authority/},
+		 * {@code @authority/opaque-treeId/}, or {@code @authority/opaque-treeId/opaque-documentId/}. Direct targeted
+		 * {@link #ACTION_SCAN_TAGS} requests are unsupported.<br><br>
+		 * Provider path segments use this format:<br>
 		 * - {@code opaque-treeId} is Uri.encoded treeId as returned from tree uri by
 		 *   Uri.encode({@link android.provider.DocumentsContract#getTreeDocumentId})<br>
 		 * - {@code opaque-documentId} is Uri.encoded documentId as returned from documentId uri by
 		 *   Uri.encode({@link android.provider.DocumentsContract#getDocumentId})<br><br>
-		 *
-		 * The path is case-sensitive.<br><br>
-		 *
-		 * For example, for the folder URI {@code content://provider/tree/root1/my%2Fpath}, EXTRA_PATH is "root1/my%2Fpath/".<br><br>
-		 *
-		 * Note, that EXTRA_PATH assumes provider paths have some sort of hierarchy in them as GLOB pattern matching is used to
-		 * match subfolders.
-		 * @since 869
+		 * A targeted scan always uses fast mode and ignores full-rescan, erase-tags, and forced-playlist-reparse flags.
+		 * A provider target forces provider scanning on and walks only overlapping selected roots for that authority.
+		 * An inaccessible normal target may broaden to its first accessible parent, but never above its selected Music Folder;
+		 * an inaccessible selected root causes the request to be skipped.
+		 * Provider document ids are opaque prefix-matched. Thus a target ending in an encoded {@code Folder1} id may also match
+		 * a sibling encoded id beginning with the same prefix, such as {@code Folder10}.
+		 * @since 869, 1027 (full path targeting)
 		 */
 		public static final String EXTRA_PATH = "path";
 
@@ -2018,6 +2008,18 @@ public final class PowerampAPI {
 
 
 		// Deprecated
+
+		/**
+		 * Deprecated legacy provider-target input. Use a complete provider path in {@link #EXTRA_PATH}.
+		 * {@code EXTRA_PROVIDER + relative EXTRA_PATH} form still is accepted for compatibility.<br>
+		 * Extra for {@link #ACTION_SCAN_DIRS}<br>
+		 * {@code String}
+		 * @since 862
+		 * @deprecated since 1027
+		 *
+		 */
+		@Deprecated
+		public static final String EXTRA_PROVIDER = "provider";
 
 		/**
 		 * Sent by Poweramp to your app.<br>

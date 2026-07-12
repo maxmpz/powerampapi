@@ -146,7 +146,10 @@ public class TrackProviderConsts {
 	 * Depending on ths passed arguments, provider may do some refresh on data - if absolutely needed. Poweramp (and user) waits until this method returns, so in most cases,
 	 * it should return as soon as possible.<br><br>
 	 *
-	 * The provided extras bundle contains the same arguments as passed to Poweramp scanner in the request. See {@link PowerampAPI.Scanner} extras for the details.<br>
+	 * The provided extras bundle preserves the scan request context. For provider-targeted scans only the target fields are
+	 * rewritten to the legacy callback representation: {@link PowerampAPI.Scanner#EXTRA_PROVIDER} contains the authority and
+	 * {@link PowerampAPI.Scanner#EXTRA_PATH} is absent for a whole-provider target or contains the relative tree/document path.
+	 * Other known and unknown extras are preserved. See {@link PowerampAPI.Scanner} extras for details.<br>
 	 * @since 869
 	 */
 	public static final String CALL_RESCAN = "com.maxmpz.audioplayer:rescan";

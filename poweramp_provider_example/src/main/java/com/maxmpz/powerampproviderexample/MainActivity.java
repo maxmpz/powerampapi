@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
 		if(LOG) Log.w(TAG, "sendScanThis");
 		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS)
 			.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan")
-			.putExtra(PowerampAPI.Scanner.EXTRA_PROVIDER, "com.maxmpz.powerampproviderexample") // Our provider authority (matches pak name in this case)
+			.putExtra(PowerampAPI.Scanner.EXTRA_PATH, "@com.maxmpz.powerampproviderexample/")
 			.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName())
 			.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
 		try {
@@ -102,14 +102,11 @@ public class MainActivity extends Activity {
 		if(LOG) Log.w(TAG, "sendScanThisSubdir");
 		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS)
 				.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan")
-				.putExtra(PowerampAPI.Scanner.EXTRA_PROVIDER, "com.maxmpz.powerampproviderexample") // Our provider authority (matches pak name in this case)
 				// This rescans everything under root1
 				// The path format is {@code /opaque-treeId/opaque-documentId/}:
 				// - opaque-treeId is Uri.encoded treeId as returned from tree uri by Uri.encode(DocumentsContract.getTreeDocumentId(...))
 				// - opaque-documentId is Uri.encoded documentId as returned from documentId uri by Uri.encode(DocumentsContract.getDocumentId(...))
-				// Poweramp uses GLOB and just adds "*" to the EXTRA_PATH, thus, in our case, Poweramp will search for root1/* folders/files.
-				// Last slash is required here so we avoid matching e.g. root123/.
-				.putExtra(PowerampAPI.Scanner.EXTRA_PATH, "root1/")
+				.putExtra(PowerampAPI.Scanner.EXTRA_PATH, "@com.maxmpz.powerampproviderexample/root1/")
 				.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName())
 				//.putExtra(PowerampAPI.Scanner.EXTRA_FAST_SCAN, true) // If specified, Poweramp will only scan tracks if parent folder lastModified changed
 				.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
@@ -124,16 +121,15 @@ public class MainActivity extends Activity {
 		if(LOG) Log.w(TAG, "sendScanThisSubdir2");
 		Intent intent = new Intent(PowerampAPI.Scanner.ACTION_SCAN_DIRS)
 				.putExtra(PowerampAPI.Scanner.EXTRA_CAUSE, getPackageName() + " rescan")
-				.putExtra(PowerampAPI.Scanner.EXTRA_PROVIDER, "com.maxmpz.powerampproviderexample") // Our provider authority (matches pak name in this case)
 				// This rescans everything under root1/Folder2 subpath.
 				// The path format is {@code /opaque-treeId/opaque-documentId/}:
 				// - opaque-treeId is Uri.encoded treeId as returned from tree uri by Uri.encode(DocumentsContract.getTreeDocumentId(...))
 				// - opaque-documentId is Uri.encoded documentId as returned from documentId uri by Uri.encode(DocumentsContract.getDocumentId(...))
-				// Poweramp uses GLOB and just adds "*" to the EXTRA_PATH.
-				// Last slash is not added here, as we want to match  root1/root1%2FFolder2*
+				// Provider document ids are opaque prefix-matched.
 				// e.g. for file: @com.maxmpz.powerampproviderexample/root1/root1%2FFolder2%2Fdubstep-8.mp3.
 				// Again, the EXTRA_PATH depends on how THIS provider defines and exposes paths/documentIds
-				.putExtra(PowerampAPI.Scanner.EXTRA_PATH, Uri.encode("root1") + "/" + Uri.encode("root1/Folder2"))
+				.putExtra(PowerampAPI.Scanner.EXTRA_PATH, "@com.maxmpz.powerampproviderexample/" +
+					Uri.encode("root1") + "/" + Uri.encode("root1/Folder2") + "/")
 				.putExtra(PowerampAPI.EXTRA_PACKAGE, getPackageName())
 				//.putExtra(PowerampAPI.Scanner.EXTRA_FAST_SCAN, true) // If specified, Poweramp will only scan tracks if parent folder lastModified changed
 				.setComponent(PowerampAPIHelper.getApiActivityComponentName(this));
