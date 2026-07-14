@@ -605,7 +605,6 @@ object TableDefs {
             "(SELECT short_name FROM folders AS f2 WHERE f2._id=folders.parent_id) AS parent_short_name_subquery"
     }
 
-
     object Albums {
         const val TABLE: String = "albums"
 
@@ -2110,6 +2109,15 @@ object TableDefs {
          */
         const val CONTENT: String = "$TABLE.content"
     }
+
+    /**
+     * Used internally
+     * @since 1027
+     */
+    object CueParseStates {
+        const val TABLE: String = "cue_parse_states"
+    }
+
 
     /**
      * Alias used for category. Useful when query is actually a multi table join
