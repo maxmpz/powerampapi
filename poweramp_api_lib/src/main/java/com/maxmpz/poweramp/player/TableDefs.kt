@@ -1407,6 +1407,13 @@ object TableDefs {
         const val MTIME: String = TABLE + ".mtime"
 
         /**
+         * Latest usable filesystem mtime observed by FolderScanner, in seconds. Internal usage only.
+         * Zero means no usable observation. This is not the mtime currently applied to entries
+         * INTEGER NOT NULL DEFAULT 0
+         */
+        const val FILE_MTIME: String = TABLE + ".file_mtime"
+
+        /**
          * TEXT
          */
         const val PATH: String = TABLE + ".playlist_path"
