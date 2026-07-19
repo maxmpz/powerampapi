@@ -105,7 +105,6 @@ public class ExampleProvider extends DocumentsProvider {
 	/** If true, we'll force-stop playback after the header. Works for seekable sockets/PA protocol */
 	private static final boolean DEBUG_STOP_PROTOCOL_AFTER_HEADER = false;
 
-
 	/** Default columns returned for roots */
 	private static final String[] DEFAULT_ROOT_PROJECTION =	new String[] {
 			Root.COLUMN_ROOT_ID,
@@ -162,6 +161,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 
 	private long mApkInstallTime;
+	private ExampleProviderFixture mScannerFixture;
 
 
 	@Override
@@ -178,6 +178,7 @@ public class ExampleProvider extends DocumentsProvider {
 			Log.e(TAG, "", ex);
 			mApkInstallTime = System.currentTimeMillis();
 		}
+		mScannerFixture = new ExampleProviderFixture(getContext(), mApkInstallTime);
 
 		if(USE_MP3_COPY) {
 			// Extract our mp3s to storage as Poweramp won't properly play asset apk fd (fd points to apk itself, so Poweramp tries to play the apk file itself,
@@ -245,6 +246,9 @@ public class ExampleProvider extends DocumentsProvider {
 	@Override
 	public Cursor queryDocument(String documentId, String[] projection) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "queryDocument documentId=" + documentId + " projection=" + Arrays.toString(projection));
+		if(mScannerFixture.isDocumentId(documentId)) {
+			return mScannerFixture.queryDocument(documentId, projection);
+		}
 
 		try {
 
@@ -256,7 +260,13 @@ public class ExampleProvider extends DocumentsProvider {
 				final MatrixCursor c = new MatrixCursor(resolveDocumentProjection(projection));
 				MatrixCursor.RowBuilder row = c.newRow();
 				AssetManager assets = getContext().getResources().getAssets();
-				fillFolderRow(documentId, row, hasSubDirs(assets, documentId) ? TrackProviderConsts.FLAG_HAS_SUBDIRS : TrackProviderConsts.FLAG_NO_SUBDIRS);
+				long modifiedAtMs = documentId.equals("root2") ? mScannerFixture.getRootModifiedAtMs() : mApkInstallTime;
+				fillFolderRow(
+					documentId,
+					row,
+					hasSubDirs(assets, documentId) ? TrackProviderConsts.FLAG_HAS_SUBDIRS : TrackProviderConsts.FLAG_NO_SUBDIRS,
+					modifiedAtMs
+				);
 				// NOTE: we return display name derived from documentId here VS returning the same label as used for Root.COLUMN_TITLE
 				// Real app should use same labels in both places (roots and queryDocument) for same root
 				row.add(Document.COLUMN_DISPLAY_NAME, capitalize(documentId));
@@ -395,11 +405,15 @@ public class ExampleProvider extends DocumentsProvider {
 	}
 
 	private void fillFolderRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, int flags) {
+		fillFolderRow(documentId, row, flags, mApkInstallTime);
+	}
+
+	private void fillFolderRow(@NonNull String documentId, @NonNull MatrixCursor.RowBuilder row, int flags, long modifiedAtMs) {
 		row.add(Document.COLUMN_DOCUMENT_ID, documentId);
 		row.add(Document.COLUMN_MIME_TYPE, Document.MIME_TYPE_DIR);
 		// Here we're returning actual folder name, but Poweramp supports anything in display name for folders, not necessary the name matching or related to the documentId or path.
 		row.add(Document.COLUMN_DISPLAY_NAME, getShortDirName(documentId));
-		row.add(Document.COLUMN_LAST_MODIFIED, mApkInstallTime);
+		row.add(Document.COLUMN_LAST_MODIFIED, modifiedAtMs);
 
 		boolean hasThumb = documentId.endsWith("1");
 		if(hasThumb) {
@@ -527,6 +541,9 @@ public class ExampleProvider extends DocumentsProvider {
 	@Override
 	public Cursor queryChildDocuments(String parentDocumentId, String[] projection, String sortOrder) throws FileNotFoundException {
 		if(LOG) Log.w(TAG, "queryChildDocuments parentDocumentId=" + parentDocumentId + " projection=" + Arrays.toString(projection));
+		if(mScannerFixture.isDocumentId(parentDocumentId)) {
+			return mScannerFixture.queryChildDocuments(parentDocumentId, projection);
+		}
 
 		try {
 			AssetManager assets = getContext().getResources().getAssets();
@@ -558,6 +575,7 @@ public class ExampleProvider extends DocumentsProvider {
 
 				} // Else this is empty.txt file, we skip it
 			}
+			if(parentDocumentId.equals("root2")) mScannerFixture.addRootIfEnabled(c);
 
 			// Generate some number of files for given folder
 
@@ -1134,6 +1152,9 @@ public class ExampleProvider extends DocumentsProvider {
 	 */
 	@Override
 	public Bundle call(String method, String arg, Bundle extras) {
+		Bundle scannerFixtureResult = mScannerFixture.call(method, extras);
+		if(scannerFixtureResult != null) return scannerFixtureResult;
+
 		Bundle res = super.call(method, arg, extras);
 		if(res == null) {
 			if(TrackProviderConsts.CALL_GET_URL.equals(method)) {
@@ -1282,6 +1303,10 @@ public class ExampleProvider extends DocumentsProvider {
 	@Override
 	public boolean isChildDocument(String parentDocumentId, String documentId) {
 		try {
+			if(mScannerFixture.isDocumentId(parentDocumentId) || mScannerFixture.isDocumentId(documentId)) {
+				return mScannerFixture.isChildDocument(parentDocumentId, documentId);
+			}
+
 			// As our hierarchy is defined by assets/, we could just return true here, but for a sake of example, let's verify that given documentId is inside the folder
 			// This is track, we randomly generate track entries, so we can't verify them
 			boolean res = documentId.endsWith(".mp3") || documentId.endsWith(".m3u8") || documentId.endsWith(DOCID_STATIC_URL_SUFFIX)
