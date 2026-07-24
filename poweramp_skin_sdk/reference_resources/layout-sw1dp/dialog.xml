@@ -129,10 +129,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					/>
 					<!-- Needed to make title animate between loading/progress state and normal one -->
 					<SceneParams w:scene="@id/scene_dialog_in_loading"
-						w:scene_2="@id/scene_dialog_in_progress"
-						w:scene_3="@id/scene_dialog_in"
+						w:scene_2="@id/scene_dialog_in"
 						w:recalcChildren="on_start"
-					/>	
+					/>
+					<SceneParams w:scene="@id/scene_dialog_in_progress"
+						style="?DialogTitle_scene_dialog_in_progress"
+						w:recalcChildren="on_start"
+					/>
 				</com.maxmpz.widget.base.FastLayout>
 				<!-- Left aligned title layout -->
 				<SceneParams

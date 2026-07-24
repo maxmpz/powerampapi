@@ -27,8 +27,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="SmallerCenterDialogFrame_maxHeight">460dp</dimen>
 
 	<dimen name="CenterDialogFrame_maxWidth">540dp</dimen>
+	<dimen name="WiderCenterDialogFrame_maxWidth">540dp</dimen>
 	<dimen name="CenterDialogFrame_maxHeight">800dp</dimen>
-	
+
 	<dimen name="TopSleepTimerButtonLayout_scene_item_menu_width">500dp</dimen>
 	<dimen name="PopupButtonLayoutDialogButton_marginTop">8dp</dimen>
 	

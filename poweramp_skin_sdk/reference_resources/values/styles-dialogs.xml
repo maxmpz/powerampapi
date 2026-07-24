@@ -95,6 +95,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogTitleLayout">@style/DialogTitleLayout</item>
 		<item name="DialogTitleLayout_scene_progress">@style/DialogTitleLayout_scene_progress</item>
 		<item name="DialogTitle">@style/DialogTitle</item>
+		<item name="DialogTitle_scene_dialog_in_progress">@style/DialogTitle_scene_dialog_in_progress</item>
 		<item name="DialogTitleProgress">@style/DialogTitleProgress</item>
 		<item name="DialogProgressButton">@style/DialogProgressButton</item>
 		<item name="DialogToast">@style/DialogToast</item>
@@ -126,10 +127,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="dialogButtonsBarPaddingLR">16dp</item>
 		<item name="dialogButtonsBarPaddingTB">8dp</item>
-		
-		<item name="check_48dp">@drawable/check_48dp</item>
-		<item name="fail_48dp">@drawable/fail_48dp</item>
-		
+
+		<item name="dialog_check_48dp">@drawable/check_lite_48dp</item>
+
 		<item name="dialogCheckBig">?check_48dp</item>
 		
 		<!-- NOTE: optically the same as padding left/right due to optical extra padding on text view -->
@@ -212,6 +212,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SmallerCenteredDialog" parent="CenteredDialog">
 		<item name="DialogFrame">@style/SmallerCenteredDialogFrame</item>
 		<item name="DialogFrame_scene_dialog_in">@style/SmallerCenteredDialogFrame_scene_dialog_in</item>
+	</style>
+
+	<style name="WiderCenteredDialog" parent="CenteredDialog">
+		<item name="DialogFrame">@style/WiderCenteredDialogFrame</item>
+		<item name="DialogFrame_scene_dialog_in">@style/WiderCenteredDialogFrame_scene_dialog_in</item>
 	</style>
 	
 	<style name="DialogShim">
@@ -307,6 +312,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="SmallerCenteredDialogFrame_scene_dialog_in" parent="CenteredDialogFrame_scene_dialog_in">
 		<item name="layout_maxHeight">@dimen/SmallerCenterDialogFrame_maxHeight</item>
 	</style>
+	<style name="WiderCenteredDialogFrame" parent="CenteredDialogFrame">
+		<item name="layout_maxWidth">@dimen/WiderCenterDialogFrame_maxWidth</item>
+	</style>
+	<style name="WiderCenteredDialogFrame_scene_dialog_in" parent="CenteredDialogFrame_scene_dialog_in">
+		<item name="layout_maxWidth">@dimen/WiderCenterDialogFrame_maxWidth</item>
+	</style>
 	
 	
 	<style name="CenteredDialogFrameContent">
@@ -336,13 +347,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="DialogTitleLayout_scene_progress" parent="DialogTitleLayout">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_margin">16dp</item>
-		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="android:layout_gravity">left|center_vertical</item><!-- center_vertical is ignored here -->
 	</style>
 
 	<!-- NOTE: to properly align with title and not expand title with the drawable, using sp vertical sizes here -->
 	<style name="DialogTitleProgress" parent="@style/Widget.AppCompat.ProgressBar">
-		<item name="android:layout_width">20sp</item>
-		<item name="android:layout_height">20sp</item>
+		<item name="android:layout_width">25.5sp</item>
+		<item name="android:layout_height">25.5sp</item><!-- This also moves it vertically, e.g., to align with possible button -->
 		<item name="android:visibility">gone</item>
 		<item name="android:layout_marginRight">8dp</item>
 	</style>
@@ -356,7 +367,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_height">wrap_content</item>
 		<item name="layout_attachLeft">@id/dialog_progress</item>
 		<item name="layout_attachRight">@id/dialog_progress_button</item>
-		<item name="android:layout_marginTop">0dp</item>
 		<item name="android:maxLines">2</item>
 		<item name="android:ellipsize">end</item>
 		<item name="android:gravity">left|center_vertical</item>
@@ -367,6 +377,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="DialogTitle_Text" parent="TextAppearance.AppCompat">
 		<item name="android:textSize">19sp</item>
 		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="DialogTitle_scene_dialog_in_progress">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="layout_attachLeft">@id/dialog_progress</item>
+		<item name="layout_attachRight">@id/dialog_progress_button</item>
+		<item name="layout_minHeight">25.5sp</item><!-- Sync to progress height -->
 	</style>
 
 
@@ -394,8 +412,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">48dp</item>
 		<item name="android:layout_height">42sp</item>
 		<item name="android:layout_marginRight">8dp</item>
+		<item name="android:layout_marginLeft">6dp</item>
 		<item name="android:gravity">center_vertical</item>
-		<item name="android:drawable">?check_48dp</item><!-- Also ?fail_48dp can be used -->
+		<item name="android:drawable">?dialog_check_48dp</item><!-- Also ?fail_48dp can be used -->
 		<item name="drawableTint">?colorIconPrimary</item>
 		<item name="drawableOnly">true</item>
 		<item name="layout_consumeSpace">horizontal</item>

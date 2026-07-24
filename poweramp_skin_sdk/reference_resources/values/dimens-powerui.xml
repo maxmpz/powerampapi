@@ -35,6 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="DialogButtonStyle_maxWidth">148dp</dimen>
 	
 	<dimen name="CenterDialogFrame_maxWidth">380dp</dimen>
+	<dimen name="WiderCenterDialogFrame_maxWidth">380dp</dimen>
 	
 	<dimen name="TopToastContainer_height">200dp</dimen><!-- Ensure 2-3 line fits -->
 	<dimen name="TopToastContainer_scenes_non_main_height">146dp</dimen><!-- Not used -->

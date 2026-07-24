@@ -367,7 +367,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_player_dsp_frames"/><!-- int -->
 	<item type="id" name="state_player_dsp_bufs"/><!-- int -->
 	
-	<item type="id" name="state_player_output_caps"/><!-- int -->
+	<item type="id" name="state_player_output_caps"/><!-- long -->
 	<item type="id" name="state_player_output_plugin_id"/><!-- int -->
 	<item type="id" name="state_player_output_plugin_name"/><!-- string -->
 	<item type="id" name="state_player_output_plugin_uniq_name"/><!-- string -->
@@ -502,7 +502,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_player_apply_long_volume_controls"/>
 	<item type="id" name="cmd_player_resolve_output_info"/><!-- arg1 => deviceId. Sent by NATIVE athd to force output info re-resolve -->
 	<item type="id" name="cmd_player_apply_internal_plugin_config"/><!-- obj => plugin uniq name -->
-	<item type="id" name="cmd_player_headset_disconnected"/><!-- obj => long uptimeMillis -->
+	<item type="id" name="cmd_player_headset_disconnected"/><!-- obj => DisconnectionData -->
 	<item type="id" name="cmd_player_request_usbx_caps"/><!-- Specific message for usbx output to request caps -->
 
 	

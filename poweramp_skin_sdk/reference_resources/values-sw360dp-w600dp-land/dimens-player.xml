@@ -32,7 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopMetaInfoLabel_textSize">10dp</dimen>
 	<dimen name="TopMetaInfoLabel_drawableSize">12dp</dimen>
 	<dimen name="TopMetaInfoLabel_paddingTopBottom">3dp</dimen>
-	
+
+	<dimen name="WiderCenterDialogFrame_maxWidth">550dp</dimen>
 	
 	<!--<dimen name="TopMetaInfoLayout_marginBottom">8dp</dimen>-->
 

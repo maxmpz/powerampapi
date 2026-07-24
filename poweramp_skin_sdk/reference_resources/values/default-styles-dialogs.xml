@@ -70,7 +70,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="layout_maxWidth">250dp</item>
 	</style>
 				
-	<style name="dialog_ChangelogActivity" parent="CenteredDialog">
+	<style name="dialog_ChangelogActivity" parent="WiderCenteredDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text_spread</item>
 		<!-- NOTE: can't override Text here -->
 	</style>

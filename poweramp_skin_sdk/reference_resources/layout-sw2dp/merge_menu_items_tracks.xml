@@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>	
 	
  	<!-- arg1=0 => fastScan -->
-	<!-- NOTE: label/args can be changed e.g. for Playlists -->
+	<!-- NOTE: label/args can be changed e.g. for Playlists, Folders  -->
 	<com.maxmpz.widget.base.BusActionButton android:id="@+id/rescan"
 		style="?PopupMenuItem"
 		android:drawable="?rescan"

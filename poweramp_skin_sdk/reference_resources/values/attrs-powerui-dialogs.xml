@@ -85,6 +85,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<attr name="check_48dp" format="reference"/>
 	<attr name="fail_48dp" format="reference"/>
+	<attr name="dialog_check_48dp" format="reference"/>
 
 	<attr name="dialogPositiveButtonBg" format="reference"/>
 	<attr name="dialogNegativeButtonBg" format="reference"/>
@@ -106,6 +107,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="DialogTitleLayout_scene_progress" format="reference"/>
 	<attr name="DialogTitle" format="reference"/>
 	<attr name="DialogTitle_Text" format="reference"/>
+	<attr name="DialogTitle_scene_dialog_in_progress" format="reference"/>
 	<attr name="DialogTitleProgress" format="reference"/>
 	<attr name="DialogProgressButton" format="reference"/>
 	

@@ -322,6 +322,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<style name="EqCheckButton" parent="EqButton"><!-- styles-eq usage only -->
 		<item name="android:textColor">@color/button_text_color_selector</item><!-- NOTE: keeping it out of textAppearance -->
 		<item name="android:background">@drawable/checkable_rounded_large</item>
+		<item name="drawableTint">@color/button_text_color_selector</item>
 	</style>
 			
 	

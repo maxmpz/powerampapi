@@ -166,7 +166,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="layout_attachTopToTop" format="reference"/>
 
 		<!-- By default, view gravitates to its parent (via standard android:layout_gravity). If layout_gravityTarget is some non-parent
-		     view id, that target view becomes the point of gravitaion. E.g. if android:layout_gravity="center" and
+		     view id, that target view becomes the point of the gravity. E.g. if android:layout_gravity="center" and
 		     layout_gravityTarget="@id/some_view", this view will be centered relatively to the target "some_view".
 
 			 The gravity target view should be in the same parent as this view.

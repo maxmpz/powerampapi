@@ -427,6 +427,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="settings_v">@drawable/settings_v_colored</item><!-- NOTE: used in some dialogs -->
 		<item name="settings_thumb_up">@drawable/settings_thumb_up_colored</item>
 		<item name="check_48dp">@drawable/check_48dp</item>
+		<item name="dialog_check_48dp">@drawable/check_lite_48dp</item>
 		<item name="fail_48dp">@drawable/fail_48dp</item>
 
 		<item name="toast_excl">@drawable/toast_exclamation_tinted</item><!-- Toast exlcamation sign -->
