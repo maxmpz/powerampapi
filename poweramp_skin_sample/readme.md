@@ -527,14 +527,14 @@ should exist in stable-ids.txt. Other lines/stable ids are not needed.
 
 ### Skin Verification
 
-Poweramp (since build-1026-beta) adds a trust layer for third-party skins. This is anti-piracy friction, not a hard block:
+Poweramp (since build-1026-beta) adds a trust layer for 3rd-party skins. This is anti-piracy friction:
 an unverified skin still installs, loads, and renders, but it is soft-degraded - it shows an `[unverified]` prefix in the
 skin picker, its options are kept in memory only (never persisted) and are not exported/imported, it has no in-app
 options page, and it is automatically deselected 48 hours after it was first selected.
 
 A skin is **verified** when its APK signing certificate is on Poweramp's built-in allowlist. An allowlisted skin can also
 opt into an additional in-skin-app verification handshake, for example a Play purchase, subscription, account, or license
-check. This handshake can only make an already-allowlisted skin stricter; it never grants trust to an unknown signer.
+check. This handshake can only make an already-allowlisted skin stricter, it never grants trust to an unknown signer.
 
 To get a skin allowlisted:
 
@@ -552,6 +552,10 @@ To get a skin allowlisted:
 SHA-256 digests differ, we have to add **both fingerprints**
 4. We add the entries; it ships in the next Poweramp update (or beta iteration), after which the skin is recognized as
    verified unless it opted into the additional handshake below.
+
+Once you shared the fingerprint with us, prefer using the same signature for your next skins - they will be allowlisted automatically - 
+generating new signature for each app is not necessary. The currently Play-published skins fingerprints already allowlisted, so
+if you continue to use same signature for your next skins - no additional steps are required.
 
 For local verification testing, make sure your debug build is signed with the same release key you shared for
 allowlisting. Poweramp checks the APK signature it sees on-device, so a normal Gradle debug build signed with the debug
