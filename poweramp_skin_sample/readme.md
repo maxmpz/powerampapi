@@ -538,24 +538,43 @@ check. This handshake can only make an already-allowlisted skin stricter, it nev
 
 To get a skin allowlisted:
 
-1. Build and publish (alpha/beta channel is enough) your skin signed with your release key. Play App Signing is fine - its
-   per-app certificate is stable across devices.
-2. Get the signing certificate SHA-256 fingerprint and your package name, and share both with us for allowlisting:
+1. Build and publish your skin. A Google Play internal, closed, or open testing release is enough
+2. For a skin published through Google Play, get the fingerprint from Play Console:
+   - Open the skin app in Play Console
+   - Navigate to **Protected with Play -> Play Store distribution -> Go to Play app signing**. Some Play Console layouts
+     show this as **Release -> Setup -> App signing**
+   - In the **App signing key** section, copy the **SHA-256 certificate fingerprint**
+   - Do not send the **Upload key certificate** fingerprint. The upload key signs the bundle sent to Google, while the
+     app signing key signs the APK installed on users' devices
+   - If the **App signing key** section shows multiple signing certificates due to a key upgrade or quantum-ready hybrid
+     signing, send every SHA-256 fingerprint shown there. Play can use different signing keys depending on the Android
+     version
+
+   See Google's **[Play App Signing documentation](https://support.google.com/googleplay/android-developer/answer/9842756)**
+   for the current Play Console path and signing-key details
+3. For a skin distributed as an APK outside Google Play, extract the fingerprint from the final release APK:
    ```
    apksigner verify --print-certs your-skin.apk
    ```
    Use the **"certificate SHA-256 digest"** value. Do not use `keytool -printcert -jarfile` - it reads only the v1/JAR
-   signature and returns nothing for v2/v3-only APKs. Without allowlisting, the skin is not trusted and any
-   self-verification token it sends is ignored.
-3. If you use Play signing with Play generated keys, navigate to the app in Play console->Protected with Play->Manage play app signing->
-**SHA-256 certificate fingerprint**. Note that if you distribute both APKs (e.g., via your website), and Play bundles; and those 
-SHA-256 digests differ, we have to add **both fingerprints**
-4. We add the entries; it ships in the next Poweramp update (or beta iteration), after which the skin is recognized as
-   verified unless it opted into the additional handshake below.
+   signature and returns nothing for v2/v3-only APKs
+4. [Optional] To inspect the exact Play build installed on a device, retrieve its APK path and pull the `base.apk` entry:
+   ```
+   adb shell pm path your.skin.package
+   adb pull /data/app/.../base.apk play-installed-skin.apk
+   apksigner verify --print-certs play-installed-skin.apk
+   ```
+   `pm path` can print the base APK followed by configuration splits. Use the path ending in `/base.apk`. Prefer the Play
+   Console workflow for allowlisting because a device receives only the signing key applicable to its Android version
+5. Share the **package name** and every applicable **SHA-256 fingerprint** with us. If Play and another distribution channel use
+   different app signing keys, send the fingerprints for both channels. Without allowlisting, the skin is not trusted and
+   any self-verification token it sends is ignored
+6. We add the entries; they ship in the next Poweramp update or beta iteration, after which the skin is recognized as
+   verified unless it opted into the additional handshake below
 
-Once you shared the fingerprint with us, prefer using the same signature for your next skins - they will be allowlisted automatically - 
-generating new signature for each app is not necessary. The currently Play-published skins fingerprints already allowlisted, so
-if you continue to use same signature for your next skins - no additional steps are required.
+Once you have shared a fingerprint with us, you can use the same app signing key for your next skins so they are
+allowlisted automatically. Google-generated Play app signing keys are per-app by default, so select Play Console's option
+to use the same app signing key as another app if you want multiple Play skins to share an already-allowlisted certificate
 
 For local verification testing, make sure your debug build is signed with the same release key you shared for
 allowlisting. Poweramp checks the APK signature it sees on-device, so a normal Gradle debug build signed with the debug
@@ -665,7 +684,7 @@ The most important files are:
 
 
 ### License
-Copyright (C) 2010-2022 Maksim Petrov
+Copyright (C) 2010-2026 Maksim Petrov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted for themes, skins, widgets, plugins, applications and other software
