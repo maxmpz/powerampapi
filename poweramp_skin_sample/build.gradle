@@ -38,7 +38,7 @@ android {
     androidResources {
         def localProps = new Properties()
         localProps.load(rootProject.file("local.properties").newDataInputStream())
-        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-1026-resources.zip"
+        def paResources = localProps['poweramp.apk'] ?: "Poweramp-build-1035-resources.zip"
         println "Using $paResources PA resources"
 
         def params = []
