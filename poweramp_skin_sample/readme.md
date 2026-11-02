@@ -582,7 +582,7 @@ To get a skin allowlisted:
 6. We add the entries; they ship in the next Poweramp update or beta iteration, after which the skin is recognized as
    verified unless it opted into the additional handshake below
 
-Once you have shared a fingerprint with us, you can use the same app signing key for your next skins so they are
+Once you have shared a fingerprint with us (gpmaxmpz@gmail.com), you can use the same app signing key for your next skins so they are
 allowlisted automatically. Google-generated Play app signing keys are per-app by default, so select Play Console's option
 to use the same app signing key as another app if you want multiple Play skins to share an already-allowlisted certificate
 
