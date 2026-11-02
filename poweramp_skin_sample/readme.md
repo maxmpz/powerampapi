@@ -22,6 +22,16 @@
 - [License](#license)
 
 ### Recent Changes
+
+##### Build 1035
+
+###### Blended
+
+- New Blended option in the built-in Light and Dark skins blends edge-to-edge cover art into the background.
+  It works with Default, Alternative layout, and Full Cover and applies only in portrait; landscape and square windows use the selected 
+  layout without blending
+- See [styles-blended.xml](/poweramp_skin_sdk/reference_resources/values/styles-blended.xml) for the reference
+
 ##### Build 1007
 - FastTextView derived views (almost all text labels and buttons in Poweramp) now have unified drawable animation attributes for: background, drawable, lineBackground attributes. 
   - No value or @null values means "No Change" - the appropriate attribute is not changed during animation
