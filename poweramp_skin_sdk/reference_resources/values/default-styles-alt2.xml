@@ -98,9 +98,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="Alt2_ItemRatingBar_scene_aa_marginLeft">@dimen/ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft</item>
 	</style>
 	<style name="ActivityTheme_White_AltLayout2" parent="Base_ActivityTheme_AltLayout2">
+        <item name="overlap_blended_variant">@style/Blended_Full_White</item>
 		<item name="overlap_track_labels_no_bg">@style/Alt2_White_TracksLabelsNoBg</item>
 	</style>
 	<style name="ActivityTheme_Black_AltLayout2" parent="Base_ActivityTheme_AltLayout2">
+        <item name="overlap_blended_variant">@style/Blended_Full_Black</item>
 		<item name="overlap_track_labels_no_bg">@style/Alt2_Black_TracksLabelsNoBg</item>
 	</style>
 

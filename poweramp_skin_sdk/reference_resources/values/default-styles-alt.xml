@@ -44,6 +44,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="Alt_track_labels_scene_aa_margin" format="dimension"/>
 
 	<style name="ActivityTheme_Whitepro_AltLayout">
+        <item name="overlap_blended_variant">@style/Blended_Alt_White</item>
 		<item name="VisPanelContainer">@style/Alt_VisPanelContainer</item>
 		
 		<item name="TopListWidget">@style/Alt_TopListWidget</item>
@@ -150,6 +151,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="ActivityTheme_Black_AltLayout" parent="ActivityTheme_Whitepro_AltLayout">
+        <item name="overlap_blended_variant">@style/Blended_Alt_Black</item>
 		<item name="overlap_track_labels_no_bg">@style/Alt_Black_TracksLabelsNoBg</item>
 	</style>
 

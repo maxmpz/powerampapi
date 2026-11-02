@@ -59,6 +59,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<!-- bus is different in PA vs Peq -->
 		<com.maxmpz.widget.player.BusStatusText android:id="@id/_label"
 			style="?EqInfoLabel"
+			w:debounceDelay="100"
 			w:stateBusId="@id/bus_dsp"
 			w:labelStateId="@id/dsp_meta"
 			w:updateMsgId="@id/msg_dsp_started"

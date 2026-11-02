@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+	  Default: the labels and the rating/menu row over the cover, no space below it
+	  +==========================================+  <== 0, the status bar is the top inset
+	  |                                          |
+	  |                 cover                    |
+	  |                                          |  <== fade start: aaBlendedFadeStart x the art height (62%),
+	  |                                          |      at most aaBlendedFadeGap (16dp) above the overlay top
+	  |  Title                                   |  <== overlay top: aaBlendedOverlayReserve (@id/blended_overlay_reserve)
+	  |  Artist - Album                          |      above the image view bottom, kept below the safe top inset
+	  |  [like] [unlike]                 [menu]  |
+	  +==========================================+  <== art bottom: aaItemHeightPercent x H (60%), lowered to fit the
+	  |                                          |      controls; also the image view and item bottom, aaPaddingBottom is 0dp
+	  |  [vis] [timer]     (controls)    [shuf]  |  <== aaMarginBottom as in Alternative
+	  +==========================================+  <== H - the system bottom inset
+
+	  Alternative layout. The art shrinks first when the reserves don't fit
+	  +==========================================+  <== 0, the status bar is the top inset
+	  |                                          |
+	  |                 cover                    |
+	  |                                          |
+	  |                                          |  <== fade start: aaBlendedFadeStart x the art height (62%),
+	  |                                          |      at most aaBlendedFadeGap (16dp) above the overlay top
+	  |  [like] [unlike]                 [menu]  |  <== overlay top: aaBlendedOverlayReserve (?Blended_buttonRow) above
+	  |                                          |      the image view bottom, kept below the safe top inset
+	  +==========================================+  <== art bottom: aaItemHeightPercent x H (60%), lowered to fit the
+	  |  Title                                   |      reserves below; also the image view bottom
+	  |  Artist - Album                          |  <== aaPaddingBottom (@id/blended_alt_below_art_reserve): the labels
+	  |                                          |      inside the item, below the art
+	  +==========================================+  <== item bottom
+	  |  [vis] [timer]          [repeat] [shuf]  |  <== aaMarginBottom (@id/blended_controls_reserve): the controls
+	  |       |<<    <<    ( > )    >>    >>|    |      below the item, including the app navbar
+	  |  |||||||||||||| waveseek ||||||||||||||  |
+	  |  0:05                              5:32  |
+	  |  [lib]     [eq]     [search]     [more]  |
+	  +==========================================+  <== H - the system bottom inset
+
+
+	  Full Cover: the labels and the rating/menu row below the cover, no overlay
+	  +==========================================+  <== 0, the status bar is the top inset
+	  |                                          |
+	  |                 cover                    |
+	  |                                          |  <== fade start: aaBlendedFadeStart x the art height (62%),
+	  |                                          |      at most aaBlendedFadeGap (16dp) above the art bottom
+	  +==========================================+  <== art bottom: aaItemHeightPercent x H (60%), lowered to fit the
+	  |  Title                                   |      reserves below; also the image view bottom and the overlay top,
+	  |  Artist - Album                          |      aaBlendedOverlayReserve is 0dp
+	  |  [like] [unlike]                 [menu]  |  <== aaPaddingBottom (@id/blended_full_below_art_reserve): the labels
+	  |                                          |      and the rating/menu row inside the item, below the art
+	  +==========================================+  <== item bottom
+	  |  [vis] [timer]     (controls)    [shuf]  |  <== aaMarginBottom as in Alternative
+	  +==========================================+  <== H - the system bottom inset
+
+	  In every layout, when the art is shorter than the safe top + aaBlendedOverlayReserve, the image view extends
+	  below the art
+	-->
+    <attr name="overlap_blended_layout" format="reference"/>
+    <attr name="blendedLayoutSelected" format="boolean"/>
+    <attr name="overlap_blended_variant" format="reference"/>
+
+    <!-- The set of ids which can be used for layout_*Ref. These are dynamically calculated based on the theme values -->
+    <!-- Used for layout_heightRef -->
+    <item type="id" name="blended_artwork_view_height"/>
+    <!-- Calculated Blended reserves, resolved by from the activity theme. A label line is
+         (text size x ?Blended_labelLineHeightFactor + ?Blended_labelLinePadding) x scale, with the text size and the scale
+         of ?ItemTrackTitle or ?ItemTrackLine2, its text appearance and its ?ItemTrack*_scene_aa style -->
+    <!-- Calculated as: ?Blended_controlsReserve + ?TopPlay layout_maxHeight and layout_marginBottom
+         + ?TopWaveseekLayout paddingTop, paddingBottom and layout_marginBottom + navbar_bounds_size
+         + max(?Blended_buttonRow, sub_aa_buttons height for its slot line count) -->
+    <item type="id" name="blended_controls_reserve"/>
+    <!-- Calculated as: title line + line2 line + ?Blended_ListSubstyle_overlayReserve -->
+    <item type="id" name="blended_overlay_reserve"/>
+    <!-- Calculated as: title line + line2 line + ?Blended_Alt_ListSubstyle_belowArtReserve -->
+    <item type="id" name="blended_alt_below_art_reserve"/>
+    <!-- Calculated as: line2 line + 2 x max(title line, ?Blended_buttonRow) + ?Blended_Full_ListSubstyle_belowArtReserve -->
+    <item type="id" name="blended_full_below_art_reserve"/>
+
+    <!-- Text size factor of a label line, the font bottom - top -->
+    <attr name="Blended_labelLineHeightFactor" format="float"/>
+    <!-- Paddings and margins of a label line -->
+    <attr name="Blended_labelLinePadding" format="dimension"/>
+    <!-- A button row: the Alternative row over the art, the Full Cover title and rating rows, and the least
+         sub_aa_buttons height -->
+    <attr name="Blended_buttonRow" format="dimension"/>
+    <!-- The fixed part of blended_overlay_reserve, the Default rating/menu row with its margins -->
+    <attr name="Blended_ListSubstyle_overlayReserve" format="dimension"/>
+    <!-- The fixed part of blended_alt_below_art_reserve -->
+    <attr name="Blended_Alt_ListSubstyle_belowArtReserve" format="dimension"/>
+    <!-- The fixed part of blended_full_below_art_reserve -->
+    <attr name="Blended_Full_ListSubstyle_belowArtReserve" format="dimension"/>
+    <!-- The fixed part of blended_controls_reserve: 16dp gap below the buttons + 32dp around the play button + 4dp (the
+         28dp track info line minus the 24dp waveseek layout_marginBottom) -->
+    <attr name="Blended_controlsReserve" format="dimension"/>
+
+    <style name="Base_BlendedLayout" parent="">
+        <item name="blendedLayoutSelected">true</item>
+        <item name="alt_title_bg">@drawable/text_bg_alpha_rounded</item>
+        <item name="alt_ratingbar_bg">@drawable/text_bg_alpha_rounded</item>
+        <item name="alt_menu_bg">@drawable/ripple_inverse_rounded_large</item>
+
+        <item name="TopFitsNavigationBarView">@style/Blended_TopFitsNavigationBarView</item>
+        <item name="TopFitsNavigationBarView_scenes_non_main">@style/Blended_TopFitsNavigationBarView_scenes_non_main</item>
+        <item name="TopFitsNavigationBarView_scene_lyrics">@style/Blended_TopFitsNavigationBarView_scenes_non_main</item>
+        <item name="TopAABounds">@style/Blended_TopAABounds</item>
+        <item name="aaEffectBlendedMain">@style/Blended_MilkEffect</item>
+        <item name="CcButton_MainUI_background">@drawable/ripple_text_bg_rounded_large</item>
+        <item name="TopFitsStatusBarView">@style/Blended_TopFitsStatusBarView</item>
+        <item name="TopFitsStatusBarView_scenes_non_main">@style/Blended_TopFitsStatusBarView_scenes_non_main</item>
+        <item name="TopFitsStatusBarView_scene_lyrics">@style/Blended_TopFitsStatusBarView_scenes_non_main</item>
+    </style>
+    <style name="Blended_Default" parent="">
+        <item name="ItemRatingBar_scene_aa">@style/Blended_ItemRatingBar_scene_aa</item>
+        <item name="overlap_track_labels_centered">@style/Blended_Centered</item>
+        <item name="overlap_track_labels_no_bg">@style/Blended_NoBg</item>
+        <item name="overlap_OptionRatingDisabled">@style/Blended_RatingDisabled</item>
+        <item name="overlap_OptionRatingStarsMenu">@style/Blended_RatingDisabled</item>
+        <item name="ItemTrackTitle_scene_aa">@style/Blended_ItemTrackTitle_scene_aa</item>
+        <item name="ItemTrackLine2_scene_aa">@style/Blended_ItemTrackLine2_scene_aa</item>
+        <item name="ItemTrackMenu_scene_aa">@style/Blended_ItemTrackMenu_scene_aa</item>
+        <item name="ItemTrackLyrics_scene_aa">@style/Blended_ItemTrackLyrics_scene_aa</item>
+        <item name="ItemLike_scene_aa">@style/Blended_ItemLike_scene_aa</item>
+        <item name="ItemUnlike_scene_aa">@style/Blended_ItemUnlike_scene_aa</item>
+        <item name="TopListWidget">@style/Blended_TopListWidget</item>
+        <item name="ItemTrackAAImage_scene_aa">@style/Blended_ItemTrackAAImage_scene_aa</item>
+    </style>
+    <style name="ActivityTheme_White_BlendedLayout" parent="Base_BlendedLayout">
+        <!-- Matches the Dark default image, as the light one has too much contrast over the dark Blended base -->
+        <item name="blendedPlaceholderTint">#222222</item>
+        <item name="Navbar">@style/Blended_Navbar</item>
+        <item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet_transparentNavbar</item>
+        <item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines_transparentNavbar</item>
+        <item name="NavBarButton">@style/Blended_NavBarButton</item>
+        <item name="NavBarButton_scenes_non_main">@style/Blended_NavBarButton_non_main</item>
+    </style>
+    <style name="ActivityTheme_Black_BlendedLayout" parent="Base_BlendedLayout">
+        <item name="aaEffectBlendedMain">@style/Blended_MilkEffect_Black</item>
+    </style>
+    <style name="Blended_TopListWidget" parent="TopListWidget">
+        <item name="listSubstyle">@style/Blended_ListSubstyle</item>
+    </style>
+    <style name="Blended_ListSubstyle" parent="ListSubstyle2">
+        <item name="aaBlendedLayout">true</item>
+        <item name="aaItemHeightPercent">60%</item>
+        <item name="aaPaddingBottom">0dp</item>
+        <item name="aaMarginBottom">@id/blended_controls_reserve</item>
+        <item name="aaBlendedOverlayReserve">@id/blended_overlay_reserve</item>
+        <item name="aaBlendedFadeStart">62%</item>
+        <item name="aaBlendedFadeGap">16dp</item>
+        <item name="aaDenseFactor">1</item>
+        <item name="aaMaxXRotation">0</item>
+        <item name="aaMaxYRotation">0</item>
+        <item name="aaMaxZRotation">0</item>
+    </style>
+    <style name="Blended_TopAABounds" parent="TopAABounds2">
+        <item name="aaBlendedLayout">true</item>
+        <item name="aaPaddingTop">0dp</item>
+        <item name="aaPaddingBottom">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+    </style>
+    <style name="Blended_ItemTrackAAImage_scene_aa" parent="ItemTrackAAImage_scene_aa">
+        <item name="layout_heightRef">@id/blended_artwork_view_height</item>
+        <item name="layout_matchDimension">0</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="cornerRadius1">0dp</item>
+        <item name="cornerRadius2">0dp</item>
+        <item name="cornerRadius3">0dp</item>
+        <item name="scale">1</item>
+        <item name="aaBlendedAmount">1</item>
+    </style>
+    <style name="Blended_MilkEffect" parent="">
+        <!--<item name="aaBlurScaleSize">16</item>-->
+        <!--<item name="aaBlurLevel">5</item>-->
+        <item name="aaBlurSaturation">-1</item>
+        <item name="aaBlurIntensity">-1</item>
+        <!--<item name="aaBlurPinLight">-1</item>-->
+        <!--<item name="aaBlurLighten">0</item>-->
+        <!--<item name="aaBlurDarken">1</item>-->
+        <!-- Base under missing or transparent artwork. Light keeps it dark, as its colorAABgColor is white -->
+        <item name="aaBgColor">#121212</item>
+    </style>
+    <style name="Blended_MilkEffect_Black" parent="Blended_MilkEffect">
+        <!-- Matches the non-Blended background for missing artwork -->
+        <item name="aaBgColor">?colorAABgColor</item>
+    </style>
+    <style name="Blended_TopFitsStatusBarView" parent="TopFitsStatusBarView">
+        <item name="android:background">@drawable/blended_top_scrim</item>
+    </style>
+    <style name="Blended_TopFitsStatusBarView_scenes_non_main" parent="">
+        <item name="applyViewParams">true</item>
+        <item name="android:background">?statusBarBg</item>
+    </style>
+    <style name="Base_BlendedFullCover" parent="">
+        <item name="blendedLayoutSelected">true</item>
+        <item name="TopListWidget">@style/BlendedFullCover_TopListWidget</item>
+        <item name="TopAABounds">@style/Alt2_TopAABounds</item>
+        <item name="ItemTrackAAImage_scene_aa">@style/Alt2_ItemTrackAAImage_scene_aa</item>
+        <item name="Alt_track_labels_scene_aa_margin">14dp</item>
+        <item name="ItemTrackTitle_scene_aa">@style/Alt2_ItemTrackTitle_scene_aa</item>
+        <item name="ItemTrackLine2_scene_aa">@style/Alt2_ItemTrackLine2_scene_aa</item>
+        <item name="ItemLikeUnlikeLayout_scene_aa">@style/Alt2_ItemLikeUnlikeLayout_scene_aa</item>
+        <item name="ItemLike_scene_aa">@style/Alt_ItemLike_scene_aa</item>
+        <item name="ItemUnlike_scene_aa">@style/Alt_ItemUnlike_scene_aa</item>
+        <item name="ItemRatingBar_scene_aa">@style/Alt2_ItemRatingBar_scene_aa</item>
+        <item name="ItemTrackMenu_scene_aa">@style/Alt2_ItemTrackMenu_scene_aa</item>
+        <item name="ItemTrackLyrics_scene_aa">@style/Alt2_ItemTrackLyrics_scene_aa</item>
+        <item name="TopSubAAButtons">@style/Alt2_TopSubAAButtons</item>
+        <item name="TopWaveseekLayout">@style/Alt2_TopWaveseekLayout</item>
+        <item name="TopWaveseek">@style/Alt_TopWaveseek</item>
+        <item name="TopMetaInfoLayout">@style/Alt_TopMetaInfoLayout</item>
+        <item name="TopVisButtonLayout">@style/Alt_TopVisButtonLayout</item>
+        <item name="TopSleepTimerButtonLayout">@style/Alt_TopSleepTimerButtonLayout</item>
+        <item name="TopShuffleButtonLayout">@style/Alt_TopShuffleButtonLayout</item>
+        <item name="TopRepeatButtonLayout">@style/Alt_TopRepeatButtonLayout</item>
+        <item name="TopPlay">@style/Alt_TopPlay</item>
+        <item name="TopPrevCat">@style/Alt_TopPrevCat</item>
+        <item name="TopNextCat">@style/Alt_TopNextCat</item>
+        <item name="TopRw">@style/Alt_TopRw</item>
+        <item name="TopFf">@style/Alt_TopFf</item>
+        <item name="TopRw_scene_playing">@style/Alt_TopRw_scene_playing</item>
+        <item name="TopFf_scene_playing">@style/Alt_TopFf_scene_playing</item>
+        <item name="TopToastContainer">@style/Alt_TopToastContainer</item>
+        <item name="TopToastContainer_scenes_non_main">@style/Alt_TopToastContainer_scenes_non_main</item>
+        <item name="TopToastFrame">@style/Alt_TopToastFrame</item>
+        <item name="TopToastFrame_scene_expanded">@style/Alt_TopToastFrame_scene_expanded</item>
+        <item name="TopCounterLayout">@style/Alt_TopCounterLayout</item>
+        <item name="overlap_more_buttons">@style/Alt_Whitepro_MoreButtons</item>
+        <item name="overlap_plain_seekbar">@style/ActivityTheme_Whitepro_PlainSeekbar_Alt</item>
+        <item name="overlap_track_labels_centered">@style/BlendedFullCover_Centered</item>
+        <item name="overlap_track_labels_no_bg">@style/BlendedFullCover_NoBg</item>
+        <item name="alt_title_bg">@drawable/alpha_rounded_popup</item>
+        <item name="alt_ratingbar_bg">@drawable/ripple_alpha_rounded_large</item>
+        <item name="alt_menu_bg">@drawable/ripple_alpha_rounded_large</item>
+        <item name="alt_sub_aa_button_bg">@drawable/alpha_popup_button_layout_activated_large_bg</item>
+        <item name="colorAltTitle">?android:textColorPrimary</item>
+        <item name="colorAltMenu">?android:textColorPrimary</item>
+        <item name="colorRating">?android:textColorPrimary</item>
+        <item name="PlainSeekbar_buttons_offset">@dimen/Alt_PlainSeekbar_buttons_offset</item>
+        <item name="PlainSeekbar_marginBottom">@dimen/Alt_PlainSeekbar_marginBottom</item>
+        <item name="overlap_OptionRatingDisabled">@style/Alt2_OptionRatingDisabled</item>
+        <item name="overlap_OptionRatingStarsMenu">@style/Alt2_OptionRatingDisabled</item>
+        <item name="Alt2_ItemRatingBar_scene_aa_marginLeft">@dimen/ActivityTheme_AltLayout2_Alt2_ItemRatingBar_scene_aa_marginLeft</item>
+    </style>
+    <style name="ActivityTheme_White_BlendedFullCover" parent="Base_BlendedFullCover">
+        <item name="overlap_track_labels_no_bg">@style/BlendedFullCover_White_NoBg</item>
+    </style>
+    <style name="ActivityTheme_Black_BlendedFullCover" parent="Base_BlendedFullCover">
+    </style>
+    <style name="BlendedFullCover_TopListWidget" parent="TopListWidget">
+        <item name="listSubstyle">@style/BlendedFullCover_ListSubstyle</item>
+    </style>
+    <style name="BlendedFullCover_ListSubstyle" parent="ListSubstyle2">
+        <item name="aaPaddingBottom">@dimen/Alt2_TopAABounds_marginBottom</item>
+        <item name="aaMinSize">50dp</item>
+        <item name="aaMarginBottom">@dimen/Alt_TopListSubstyle_aaMarginBottom</item>
+    </style>
+    <style name="BlendedFullCover_Centered" parent="">
+        <item name="overlap_OptionRatingDisabled">@style/Alt2_OptionRatingDisabled</item>
+        <item name="overlap_OptionRatingStarsMenu">@style/Alt2_OptionRatingDisabled</item>
+        <item name="ItemTrackTitle_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa</item>
+        <item name="ItemTrackLine2_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa</item>
+        <item name="ItemTrackMenu_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackMenu_scene_aa</item>
+        <item name="ItemTrackLyrics_scene_aa">@style/Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa</item>
+        <item name="ItemLikeUnlikeLayout_scene_aa">@style/Alt2_TrackLabelsCentered_ItemLikeUnlikeLayout_scene_aa</item>
+        <item name="ItemLike_scene_aa">@style/Alt2_ItemLike_scene_aa</item>
+        <item name="ItemRatingBar_scene_aa">@style/Alt2_TrackLabelsCentered_ItemRatingBar_scene_aa</item>
+    </style>
+    <style name="BlendedFullCover_NoBg" parent="">
+        <item name="alt_title_bg">#0000</item>
+        <item name="alt_sub_aa_button_bg">@drawable/hidden_popup_button_layout_activated_large_bg</item>
+        <item name="meta_info_bg">@drawable/hidden_popup_button_layout_bg</item>
+        <item name="colorMetaInfo">?colorOnAABg</item>
+        <item name="TopEditableSubAaButtonTinted">@style/BlendedFullCover_NoBg_SubAaButtonTinted</item>
+        <item name="TopEditableSubAaButtonCast">@style/BlendedFullCover_NoBg_SubAaButtonCast</item>
+        <item name="Alt2_ItemRatingBar_scene_aa_marginLeft">@dimen/Alt2_TracksLabelsNoBg_Alt2_ItemRatingBar_scene_aa_marginLeft</item>
+        <item name="alt_ratingbar_bg">#0000</item>
+        <item name="alt_menu_bg">@drawable/ripple_hidden_rounded_large</item>
+        <item name="colorAltTitle">?colorOnAABg</item>
+        <item name="colorAltMenu">?colorOnAABg</item>
+        <item name="colorRating">?colorOnAABg</item>
+    </style>
+    <style name="BlendedFullCover_White_NoBg" parent="BlendedFullCover_NoBg">
+        <item name="Alt_track_labels_scene_aa_margin">10dp</item>
+    </style>
+    <!-- Scope icon contrast to main buttons so list, popup, and equalizer icons retain their skin colors -->
+    <style name="BlendedFullCover_NoBg_SubAaButtonTinted" parent="TopEditableSubAaButtonTinted">
+        <item name="drawableTint">?colorOnAABgLessContrast</item>
+    </style>
+    <style name="BlendedFullCover_NoBg_SubAaButtonCast" parent="TopEditableSubAaButtonCast">
+        <item name="drawableTint">?colorOnAABgLessContrast</item>
+    </style>
+    <style name="Blended_ItemTrackTitle_scene_aa" parent="ItemTrackTitle_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_ItemTrackTitle_centered" parent="Blended_ItemTrackTitle_scene_aa">
+        <item name="layout_attachLeft">@null</item>
+        <item name="layout_attachRight">@null</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginLeft">48dp</item>
+        <item name="android:layout_marginRight">48dp</item>
+    </style>
+    <style name="Blended_ItemTrackLine2_scene_aa" parent="ItemTrackLine2_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_ItemTrackLine2_centered" parent="Blended_ItemTrackLine2_scene_aa">
+        <item name="layout_attachLeft">@null</item>
+        <item name="layout_attachRight">@null</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginLeft">48dp</item>
+        <item name="android:layout_marginRight">48dp</item>
+    </style>
+    <style name="Blended_ItemRatingBar_scene_aa" parent="ItemRatingBar_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+        <item name="lineBackground">?alt_ratingbar_bg</item>
+    </style>
+    <style name="Blended_Centered" parent="">
+        <item name="ItemTrackTitle_scene_aa">@style/Blended_ItemTrackTitle_centered</item>
+        <item name="ItemTrackLine2_scene_aa">@style/Blended_ItemTrackLine2_centered</item>
+    </style>
+    <style name="Blended_NoBg" parent="">
+        <item name="alt_title_bg">#0000</item>
+        <item name="alt_ratingbar_bg">#0000</item>
+        <item name="alt_menu_bg">@drawable/ripple_hidden_rounded_large</item>
+    </style>
+    <style name="Blended_RatingDisabled" parent="">
+        <item name="ItemRatingBar_scene_aa">@style/ItemRatingBar_scene_aa_menu</item>
+    </style>
+    <style name="Blended_NavBarButton" parent="NavBarButton">
+        <item name="drawableTint">#888888</item>
+    </style>
+    <style name="Blended_NavBarButton_non_main" parent="">
+        <item name="applyViewParams">true</item>
+        <item name="drawableTint">?colorNavbarIcons</item>
+    </style>
+    <style name="Blended_TopFitsNavigationBarView" parent="TopFitsNavigationBarView">
+        <item name="android:background">#00000000</item>
+    </style>
+    <style name="Blended_TopFitsNavigationBarView_scenes_non_main" parent="">
+        <item name="applyViewParams">true</item>
+        <item name="android:background">?navigationBarBg</item>
+    </style>
+    <style name="Blended_ItemTrackMenu_scene_aa" parent="ItemTrackMenu_scene_aa">
+        <item name="android:background">?alt_menu_bg</item>
+    </style>
+    <style name="Blended_ItemTrackLyrics_scene_aa" parent="ItemTrackLyrics_scene_aa">
+        <item name="android:background">?alt_menu_bg</item>
+    </style>
+    <style name="Blended_ItemLike_scene_aa" parent="ItemLike_scene_aa">
+        <item name="android:background">?alt_menu_bg</item>
+    </style>
+    <style name="Blended_ItemUnlike_scene_aa" parent="ItemUnlike_scene_aa">
+        <item name="android:background">?alt_menu_bg</item>
+    </style>
+    <style name="Blended_Navbar" parent="Navbar_transparentNavbar">
+        <item name="android:background">@drawable/blended_navbar_bg</item>
+    </style>
+    <!-- Retained for skins referencing this public style -->
+    <style name="Blended_CcButton_MainUI" parent="CcButton_MainUI">
+        <item name="android:background">@drawable/ripple_text_bg_rounded_large</item>
+    </style>
+    <style name="Blended_Selected" parent="">
+        <item name="blendedLayoutSelected">true</item>
+    </style>
+    <style name="Blended_BelowArt_Image" parent="Blended_ItemTrackAAImage_scene_aa">
+        <item name="layout_consumeSpace">vertical|size|skip_last_margin</item>
+    </style>
+    <style name="Blended_Alt_ListSubstyle" parent="Alt_ListSubstyle">
+        <item name="aaBlendedLayout">true</item>
+        <item name="aaItemHeightPercent">60%</item>
+        <item name="aaPaddingBottom">@id/blended_alt_below_art_reserve</item>
+        <item name="aaMarginBottom">@id/blended_controls_reserve</item>
+        <item name="aaBlendedOverlayReserve">?Blended_buttonRow</item>
+        <item name="aaBlendedFadeStart">62%</item>
+        <item name="aaBlendedFadeGap">16dp</item>
+        <item name="aaDenseFactor">1</item>
+        <item name="aaMaxXRotation">0</item>
+        <item name="aaMaxYRotation">0</item>
+        <item name="aaMaxZRotation">0</item>
+        <item name="aaMinSize">0dp</item>
+    </style>
+    <style name="Blended_Alt_TopListWidget" parent="Alt_TopListWidget">
+        <item name="listSubstyle">@style/Blended_Alt_ListSubstyle</item>
+    </style>
+    <style name="Blended_Alt_ItemTrackTitle" parent="Alt_ItemTrackTitle_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_Alt_ItemTrackLine2" parent="Alt_ItemTrackLine2_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_Alt_ItemRatingBar" parent="Alt_ItemRatingBar_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Alt_ItemTrackMenu" parent="Alt_ItemTrackMenu_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Alt_ItemTrackLyrics" parent="Alt_ItemTrackLyrics_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Alt_ItemLike" parent="Alt_ItemLike_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Alt_ItemUnlike" parent="Alt_ItemUnlike_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Alt_White" parent="">
+        <item name="TopListWidget">@style/Blended_Alt_TopListWidget</item>
+        <item name="ItemTrackAAImage_scene_aa">@style/Blended_BelowArt_Image</item>
+        <item name="overlap_track_labels_centered">@style/Blended_Alt_Centered</item>
+        <item name="overlap_track_labels_no_bg">@style/Blended_Alt_White_NoBg</item>
+        <item name="overlap_OptionRatingDisabled">@style/Blended_Alt_RatingDisabled</item>
+        <item name="overlap_OptionRatingStarsMenu">@style/Blended_Alt_RatingDisabled</item>
+        <item name="ItemTrackTitle_scene_aa">@style/Blended_Alt_ItemTrackTitle</item>
+        <item name="ItemTrackLine2_scene_aa">@style/Blended_Alt_ItemTrackLine2</item>
+        <item name="ItemRatingBar_scene_aa">@style/Blended_Alt_ItemRatingBar</item>
+        <item name="ItemTrackMenu_scene_aa">@style/Blended_Alt_ItemTrackMenu</item>
+        <item name="ItemTrackLyrics_scene_aa">@style/Blended_Alt_ItemTrackLyrics</item>
+        <item name="ItemLike_scene_aa">@style/Blended_Alt_ItemLike</item>
+        <item name="ItemUnlike_scene_aa">@style/Blended_Alt_ItemUnlike</item>
+    </style>
+    <style name="Blended_Alt_Black" parent="Blended_Alt_White">
+        <item name="overlap_track_labels_no_bg">@style/Blended_Alt_Black_NoBg</item>
+    </style>
+    <style name="Blended_Alt_ItemTrackTitle_Centered" parent="Alt_TrackLabelsCentered_ItemTrackTitle_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_Alt_ItemTrackLine2_Centered" parent="Alt_TrackLabelsCentered_ItemTrackLine2_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_Alt_Centered" parent="Alt_TrackLabelsCentered">
+        <item name="ItemTrackTitle_scene_aa">@style/Blended_Alt_ItemTrackTitle_Centered</item>
+        <item name="ItemTrackLine2_scene_aa">@style/Blended_Alt_ItemTrackLine2_Centered</item>
+        <item name="overlap_OptionRatingDisabled">@style/Blended_Alt_RatingDisabled</item>
+        <item name="overlap_OptionRatingStarsMenu">@style/Blended_Alt_RatingDisabled</item>
+    </style>
+    <style name="Blended_Alt_RatingDisabled" parent="Blended_RatingDisabled">
+    </style>
+    <style name="Blended_Alt_White_NoBg" parent="Alt_White_TracksLabelsNoBg">
+        <item name="TopMetaInfoLabel">@style/Blended_NoBg_MetaInfoLabel</item>
+        <item name="TopEditableSubAaButtonTinted">@style/Blended_NoBg_SubAaButtonTinted</item>
+        <item name="TopEditableSubAaButtonCast">@style/Blended_NoBg_SubAaButtonCast</item>
+        <item name="alt_title_bg">#0000</item>
+        <item name="alt_ratingbar_bg">#0000</item>
+        <item name="alt_menu_bg">@drawable/ripple_hidden_rounded_large</item>
+    </style>
+    <style name="Blended_Alt_Black_NoBg" parent="Alt_Black_TracksLabelsNoBg">
+        <item name="TopMetaInfoLabel">@style/Blended_NoBg_MetaInfoLabel</item>
+        <item name="TopEditableSubAaButtonTinted">@style/Blended_NoBg_SubAaButtonTinted</item>
+        <item name="TopEditableSubAaButtonCast">@style/Blended_NoBg_SubAaButtonCast</item>
+        <item name="alt_title_bg">#0000</item>
+        <item name="alt_ratingbar_bg">#0000</item>
+        <item name="alt_menu_bg">@drawable/ripple_hidden_rounded_large</item>
+    </style>
+    <style name="Blended_Full_ListSubstyle" parent="Alt2_ListSubstyle">
+        <item name="aaBlendedLayout">true</item>
+        <item name="aaItemHeightPercent">60%</item>
+        <item name="aaPaddingBottom">@id/blended_full_below_art_reserve</item>
+        <item name="aaMarginBottom">@id/blended_controls_reserve</item>
+        <item name="aaBlendedOverlayReserve">0dp</item>
+        <item name="aaBlendedFadeStart">62%</item>
+        <item name="aaBlendedFadeGap">16dp</item>
+        <item name="aaDenseFactor">1</item>
+        <item name="aaMaxXRotation">0</item>
+        <item name="aaMaxYRotation">0</item>
+        <item name="aaMaxZRotation">0</item>
+        <item name="aaMinSize">0dp</item>
+    </style>
+    <style name="Blended_Full_TopListWidget" parent="Alt2_TopListWidget">
+        <item name="listSubstyle">@style/Blended_Full_ListSubstyle</item>
+    </style>
+    <style name="Blended_Full_ItemTrackTitle" parent="Alt2_ItemTrackTitle_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_Full_ItemTrackLine2" parent="Alt2_ItemTrackLine2_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_Full_ItemRatingBar" parent="Alt2_ItemRatingBar_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_ItemTrackMenu" parent="Alt2_ItemTrackMenu_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_ItemTrackLyrics" parent="Alt2_ItemTrackLyrics_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_ItemLike" parent="Alt_ItemLike_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_ItemUnlike" parent="Alt_ItemUnlike_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_White" parent="">
+        <item name="TopListWidget">@style/Blended_Full_TopListWidget</item>
+        <item name="ItemTrackAAImage_scene_aa">@style/Blended_BelowArt_Image</item>
+        <item name="overlap_track_labels_centered">@style/Blended_Full_Centered</item>
+        <item name="overlap_track_labels_no_bg">@style/Blended_Full_White_NoBg</item>
+        <item name="overlap_OptionRatingDisabled">@style/Blended_Full_RatingDisabled</item>
+        <item name="overlap_OptionRatingStarsMenu">@style/Blended_Full_RatingDisabled</item>
+        <item name="ItemTrackTitle_scene_aa">@style/Blended_Full_ItemTrackTitle</item>
+        <item name="ItemTrackLine2_scene_aa">@style/Blended_Full_ItemTrackLine2</item>
+        <item name="ItemRatingBar_scene_aa">@style/Blended_Full_ItemRatingBar</item>
+        <item name="ItemTrackMenu_scene_aa">@style/Blended_Full_ItemTrackMenu</item>
+        <item name="ItemTrackLyrics_scene_aa">@style/Blended_Full_ItemTrackLyrics</item>
+        <item name="ItemLike_scene_aa">@style/Blended_Full_ItemLike</item>
+        <item name="ItemUnlike_scene_aa">@style/Blended_Full_ItemUnlike</item>
+    </style>
+    <style name="Blended_Full_Black" parent="Blended_Full_White">
+        <item name="overlap_track_labels_no_bg">@style/Blended_Full_Black_NoBg</item>
+    </style>
+    <style name="Blended_Full_ItemTrackTitle_Centered" parent="Alt2_TrackLabelsCentered_ItemTrackTitle_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_Full_ItemTrackLine2_Centered" parent="Alt2_TrackLabelsCentered_ItemTrackLine2_scene_aa">
+        <item name="android:textColor">#ffffff</item>
+        <item name="lineBackground">?alt_title_bg</item>
+    </style>
+    <style name="Blended_Full_ItemTrackMenu_Centered" parent="Alt2_TrackLabelsCentered_ItemTrackMenu_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_ItemTrackLyrics_Centered" parent="Alt2_TrackLabelsCentered_ItemTrackLyrics_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_ItemRatingBar_Centered" parent="Alt2_TrackLabelsCentered_ItemRatingBar_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_ItemLike_Centered" parent="Alt2_ItemLike_scene_aa">
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_Full_Centered" parent="Alt2_TrackLabelsCentered">
+        <item name="ItemTrackTitle_scene_aa">@style/Blended_Full_ItemTrackTitle_Centered</item>
+        <item name="ItemTrackLine2_scene_aa">@style/Blended_Full_ItemTrackLine2_Centered</item>
+        <item name="ItemTrackMenu_scene_aa">@style/Blended_Full_ItemTrackMenu_Centered</item>
+        <item name="ItemTrackLyrics_scene_aa">@style/Blended_Full_ItemTrackLyrics_Centered</item>
+        <item name="ItemRatingBar_scene_aa">@style/Blended_Full_ItemRatingBar_Centered</item>
+        <item name="ItemLike_scene_aa">@style/Blended_Full_ItemLike_Centered</item>
+        <item name="overlap_OptionRatingDisabled">@style/Blended_Full_RatingDisabled</item>
+        <item name="overlap_OptionRatingStarsMenu">@style/Blended_Full_RatingDisabled</item>
+    </style>
+    <style name="Blended_Full_RatingDisabled" parent="Alt2_OptionRatingDisabled">
+    </style>
+    <style name="Blended_Full_White_NoBg" parent="Alt2_White_TracksLabelsNoBg">
+        <item name="TopMetaInfoLabel">@style/Blended_NoBg_MetaInfoLabel</item>
+        <item name="TopEditableSubAaButtonTinted">@style/Blended_NoBg_SubAaButtonTinted</item>
+        <item name="TopEditableSubAaButtonCast">@style/Blended_NoBg_SubAaButtonCast</item>
+        <item name="alt_title_bg">#0000</item>
+        <item name="alt_ratingbar_bg">#0000</item>
+        <item name="alt_menu_bg">@drawable/ripple_hidden_rounded_large</item>
+    </style>
+    <style name="Blended_Full_Black_NoBg" parent="Alt2_Black_TracksLabelsNoBg">
+        <item name="TopMetaInfoLabel">@style/Blended_NoBg_MetaInfoLabel</item>
+        <item name="TopEditableSubAaButtonTinted">@style/Blended_NoBg_SubAaButtonTinted</item>
+        <item name="TopEditableSubAaButtonCast">@style/Blended_NoBg_SubAaButtonCast</item>
+        <item name="alt_title_bg">#0000</item>
+        <item name="alt_ratingbar_bg">#0000</item>
+        <item name="alt_menu_bg">@drawable/ripple_hidden_rounded_large</item>
+    </style>
+    <!-- Hidden main labels and buttons stay readable over the subdued artwork background -->
+    <style name="Blended_NoBg_MetaInfoLabel" parent="TopMetaInfoLabel">
+        <item name="android:textColor">#ffffff</item>
+        <item name="drawableTint">#ffffff</item>
+    </style>
+    <style name="Blended_NoBg_SubAaButtonTinted" parent="TopEditableSubAaButtonTinted">
+        <item name="drawableTint">#eeeeee</item>
+    </style>
+    <style name="Blended_NoBg_SubAaButtonCast" parent="TopEditableSubAaButtonCast">
+        <item name="drawableTint">#eeeeee</item>
+    </style>
+</resources>

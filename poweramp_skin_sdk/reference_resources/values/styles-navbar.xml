@@ -223,6 +223,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:padding">2dp</item>
 	</style>
 	
+	<attr name="NavBarButton_scenes_non_main" format="reference"/>
+	<style name="NavBarButton_scenes_non_main" parent=""/>
 	<style name="NavBarButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">match_parent</item>

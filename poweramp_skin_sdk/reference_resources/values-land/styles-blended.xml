@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BlendedFullCover_ListSubstyle" parent="ListSubstyle2">
+        <item name="aaItemBoundsMatchList">width</item>
+        <item name="aaMarginBottom">@id/navbar_bounds_size</item>
+        <item name="aaPaddingBottom">0dp</item>
+        <item name="aaMinSize">50dp</item>
+    </style>
+</resources>

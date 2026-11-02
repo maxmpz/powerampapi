@@ -25,6 +25,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 >
 	<!-- Applied to top activity and dialogs -->
 	<style name="BasePoweruiStyles">
+		<item name="CcButton_MainUI_background">@drawable/ripple_rounded_mini</item>
 		<!-- Drawables -->
 		<!-- NOTE: for non default themes, these can be overridden in a theme xml -->
 		
@@ -605,6 +606,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="NavbarList">@style/NavbarList</item>
 		<item name="NavbarNavButtonsLayout">@style/NavbarNavButtonsLayout</item>
 		<item name="NavBarButton">@style/NavBarButton</item>
+		<item name="NavBarButton_scenes_non_main">@style/NavBarButton_scenes_non_main</item>
 		<item name="Navbar_scene_navbar_1line_sheet">@style/Navbar_scene_navbar_1line_sheet</item>
 		<item name="Navbar_scene_navbar_2lines">@style/Navbar_scene_navbar_2lines</item>
 		<item name="NavbarSeekbar">@style/NavbarSeekbar</item>
@@ -662,9 +664,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<item name="TopFitsStatusBarView">@style/TopFitsStatusBarView</item>
 		<item name="TopFitsStatusBarView_scenes_non_main">@style/TopFitsStatusBarView_scenes_non_main</item>
+		<item name="TopFitsStatusBarView_scene_lyrics">@style/TopFitsStatusBarView_scene_lyrics</item>
 		
 		<item name="TopFitsNavigationBarView">@style/TopFitsNavigationBarView</item>
 		<item name="TopFitsNavigationBarView_scenes_non_main">@style/TopFitsNavigationBarView_scenes_non_main</item>
+		<item name="TopFitsNavigationBarView_scene_lyrics">@style/TopFitsNavigationBarView_scene_lyrics</item>
 		
 		<item name="TopWaveseekLayout">@style/TopWaveseekLayout</item>
 		<item name="TopWaveseek">@style/TopWaveseek</item>

@@ -73,6 +73,8 @@
 		<attr name="aaEffectReadable" format="reference"/>
 		<!-- MilkViewEffect parameters to apply for the list which should be readable -->
 		<attr name="aaEffectList" format="reference"/>
+		<!-- MilkViewEffect parameters for the Blended main-player background in portrait windows -->
+		<attr name="aaEffectBlendedMain" format="reference"/>
 
 		<!-- Default is true. If true, we allow background gradient for lists.
 		     As dark gradient may look bad for white-ish backgrounds, we disable it for light themes -->
@@ -81,6 +83,7 @@
 	</declare-styleable>
 
 	<declare-styleable name="MilkViewEffect">
+		<attr name="aaBlurLevel"/>
 		<attr name="aaSolidColorTarget"/>
 
 		<!-- Saturation to apply when we want text over bg. If positive, overrides any user value and aaBlurSaturationMult. Default is -1.0 -->
@@ -96,6 +99,8 @@
 		<!-- Darken value. [0..1] range, 1 - no change, 0 - darker. Default is 1
 		     This basically darkens first the light colors -->
 		<attr name="aaBlurDarken"/>
+		<!-- Opaque base under missing or transparent Album Art. Used only by aaEffectBlendedMain, default is #121212 -->
+		<attr name="aaBgColor"/>
 	</declare-styleable>
 
 

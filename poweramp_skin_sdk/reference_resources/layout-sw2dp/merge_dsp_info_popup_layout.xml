@@ -102,6 +102,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/>
 
 	<!-- Renders 4 TextViews with style attr=PopupDSPInfoScoreText1/2, PopupDSPInfoScoreLabel1/2 -->
+	<!-- NOTE: hidden for Peq, but may be temporarily set to visible due to PopupContent_scene_button_menu -->
 	<com.maxmpz.widget.player.DSPScoreLayout android:id="@+id/dsp_info_score_layout"
 		style="?PopupDSPInfoScoreLayout"
 	>

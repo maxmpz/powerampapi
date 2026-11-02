@@ -160,23 +160,47 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 					android:drawable="?nav_lists"
 					android:contentDescription="@string/library"
 				/>
+                <com.maxmpz.widget.base.SceneParams w:scene="defaultScene" w:baseScene="defaultScene" w:applyViewParams="true"/>
+                <com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
+                    w:scene_2="@id/scene_navbar_2lines" w:scene_3="@id/scene_navbar_2lines_sheet"
+                    w:scene_4="@id/scene_navbar_3lines" w:scene_5="@id/scene_navbar_3lines_sheet"
+                    style="?NavBarButton_scenes_non_main"
+                />
 				<com.maxmpz.widget.base.FastButton android:id="@id/cmd_nav_to_eq"
 					style="?NavBarButton"
 					android:longClickable="true"
 					android:drawable="?nav_equ"
 					android:contentDescription="@string/h_equ_effects"
 				/>
+                <com.maxmpz.widget.base.SceneParams w:scene="defaultScene" w:baseScene="defaultScene" w:applyViewParams="true"/>
+                <com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
+                    w:scene_2="@id/scene_navbar_2lines" w:scene_3="@id/scene_navbar_2lines_sheet"
+                    w:scene_4="@id/scene_navbar_3lines" w:scene_5="@id/scene_navbar_3lines_sheet"
+                    style="?NavBarButton_scenes_non_main"
+                />
 				<com.maxmpz.widget.base.FastButton android:id="@id/cmd_nav_to_search"
 					style="?NavBarButton"
 					android:drawable="?nav_search"
 					android:contentDescription="@string/search"
 				/>
+                <com.maxmpz.widget.base.SceneParams w:scene="defaultScene" w:baseScene="defaultScene" w:applyViewParams="true"/>
+                <com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
+                    w:scene_2="@id/scene_navbar_2lines" w:scene_3="@id/scene_navbar_2lines_sheet"
+                    w:scene_4="@id/scene_navbar_3lines" w:scene_5="@id/scene_navbar_3lines_sheet"
+                    style="?NavBarButton_scenes_non_main"
+                />
 				<com.maxmpz.widget.base.FastButton android:id="@id/cmd_nav_more"
 					style="?NavBarButton"
 					android:longClickable="true"
 					android:drawable="?nav_hamburger"
 					android:contentDescription="@string/pref_main_menu"
 				/>
+                <com.maxmpz.widget.base.SceneParams w:scene="defaultScene" w:baseScene="defaultScene" w:applyViewParams="true"/>
+                <com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_1line_sheet"
+                    w:scene_2="@id/scene_navbar_2lines" w:scene_3="@id/scene_navbar_2lines_sheet"
+                    w:scene_4="@id/scene_navbar_3lines" w:scene_5="@id/scene_navbar_3lines_sheet"
+                    style="?NavBarButton_scenes_non_main"
+                />
 				
 			</com.maxmpz.widget.base.FastLayout>
 			<com.maxmpz.widget.base.SceneParams w:scene="@id/scene_navbar_2lines" w:scene_2="@id/scene_navbar_2lines_sheet"

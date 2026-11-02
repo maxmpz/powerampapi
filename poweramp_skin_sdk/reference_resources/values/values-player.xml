@@ -52,9 +52,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="cmd_app_settings_refresh"/>
 	
 	<item type="id" name="cmd_app_create_file_dialog"/><!-- obj => CreateFileRequest -->
-	<item type="id" name="msg_app_create_file_dialog_res"/><!-- obj => uri or null -->
+	<item type="id" name="msg_app_create_file_dialog_res"/><!-- obj => uri or null, arg1 => BaseActivity.fileDialogResTag() of the activity which got the result -->
 	<item type="id" name="cmd_app_open_file_dialog"/><!-- obj => OpenFileRequest -->
-	<item type="id" name="msg_app_open_file_dialog_res"/><!-- obj => uri or null -->
+	<item type="id" name="msg_app_open_file_dialog_res"/><!-- obj => uri or null, arg1 => BaseActivity.fileDialogResTag() of the activity which got the result -->
 	
 	<item type="id" name="msg_app_aa_refreshed"/><!-- bus_app. Refretch AA. Should be sent by AppAAProvider after cmd_app_refresh_aa  -->
 	<!-- bus_app. Current track AA is probably reloaded w/o track change (e.g. for the streams), no cache reset.
@@ -434,6 +434,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="state_player_track_seekable"/><!-- boolean -->
 
 	<item type="id" name="state_player_absvol"/><!-- int, also a msg -->
+	<!-- String, also a msg: the BT device abs vol is disabled for via Shizuku (PSShizukuAbsVol), null if none -->
+	<item type="id" name="state_player_shizuku_absvol_device"/>
 
 	<!-- Boolean -->
 	<item type="id" name="state_player_track_tags_editable"/>

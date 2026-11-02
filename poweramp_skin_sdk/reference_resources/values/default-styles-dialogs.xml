@@ -65,6 +65,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
 		<!--<item name="DialogNegativeButtonStyle">@style/LongDialogNegativeButtonStyle</item>-->
 	</style>
+
+	<style name="dialog_HuaweiMigrationActivity" parent="CenteredDialog_vertical_buttons">
+		<item name="dialogContentLayout">@layout/dialog_content_scrollable_text</item>
+	</style>
 	
 	<style name="LongDialogNegativeButtonStyle" parent="DialogNegativeButtonStyle">
 		<item name="layout_maxWidth">250dp</item>

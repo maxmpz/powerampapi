@@ -56,6 +56,21 @@
 				/>
 		</radio>
 
+        <option
+            key="blended"
+            name="@string/skin_blended_layout"
+            summary="@string/skin_summary_blended_layout"
+            checkedByDefault="false"
+            overlapAttr="@attr/overlap_blended_layout"
+            />
+        <msg
+            align="top"
+	        icon="@drawable/blended"
+	        iconAlign="top"
+            smallLine1="@string/applied_in_portrait_only"
+	        smallLine2="@string/skin_background_opts"
+            />
+
 		<msg
 			align="top"
 			line1="@string/skin_more_player_ui_opts_avail"
@@ -64,7 +79,6 @@
 		<multiSwitch
 			key="track_labels_align"
 			name="@string/track_labels"
-			dependency="alt_layout"
 			>
 			<option
 				name="@string/_default"
@@ -87,7 +101,6 @@
 		<multiSwitch
 			key="labels_bg"
 			name="@string/labels_bg"
-			dependency="alt_layout"
 			>
 			<option
 				name="@string/enabled"
@@ -373,6 +386,21 @@
 				/>
 		</radio>
 
+        <option
+            key="blended"
+            name="@string/skin_blended_layout"
+            summary="@string/skin_summary_blended_layout"
+            checkedByDefault="false"
+            overlapAttr="@attr/overlap_blended_layout"
+            />
+        <msg
+            align="top"
+	        icon="@drawable/blended"
+	        iconAlign="top"
+            line1="@string/applied_in_portrait_only"
+	        smallLine2="@string/skin_background_opts"
+	        />
+
 		<msg
 			align="top"
 			line1="@string/skin_more_player_ui_opts_avail"
@@ -381,7 +409,6 @@
 		<multiSwitch
 			key="track_labels_align"
 			name="@string/track_labels"
-			dependency="alt_layout"
 			>
 			<option
 				name="@string/_default"
@@ -404,7 +431,6 @@
 		<multiSwitch
 			key="labels_bg"
 			name="@string/labels_bg"
-			dependency="alt_layout"
 			>
 			<option
 				name="@string/enabled"

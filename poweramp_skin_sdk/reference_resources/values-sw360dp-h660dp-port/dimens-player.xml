@@ -20,13 +20,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Huawei P20 360x677, OPPO CPH1819 360x685, S8 360x668 -->
 	<dimen name="TopWaveseek_maxHeight">152dp</dimen>
 	
 	<dimen name="PlainSeekbar_buttons_offset">30dp</dimen>
 
 	<dimen name="edit_buttons_cont_height">150dp</dimen>
-	
+	<dimen name="PlainSeekbar_marginTop">-4dp</dimen>
+
+	<dimen name="PlainSeekbar_marginBottom">4dp</dimen>
+	<dimen name="Alt_PlainSeekbar_marginBottom">8dp</dimen>
+	<dimen name="PlainSeekbar_TopTrackElapsedMoreButtons_marginTop">0dp</dimen>
+
+
 	<!-- Alt -->
 	<dimen name="Alt_TopPlay_maxSize">76dp</dimen>
 	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">68dp</dimen>
@@ -37,5 +42,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="dimen" format="float" name="Alt_ItemTrackTitle_scene_aa_scale">1</item>
 	<dimen name="Alt_TopAABounds_marginBottom">72dp</dimen>
 	<dimen name="Alt2_TopAABounds_marginBottom">110sp</dimen>
-	<dimen name="Alt_TopListSubstyle_aaMarginBottom">222dp</dimen>
+	<dimen name="Alt_TopListSubstyle_aaMarginBottom">280dp</dimen>
 </resources>

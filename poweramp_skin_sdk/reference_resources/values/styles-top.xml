@@ -1041,6 +1041,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="TopFitsStatusBarView_scenes_non_main">
 	</style><!-- NOTE: nothing changes for default skins -->
+	<style name="TopFitsStatusBarView_scene_lyrics" parent=""/>
 	
 	<!-- Overridden in values-sw2dp-land -->
 	<style name="TopFitsNavigationBarView">
@@ -1056,6 +1057,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 	<style name="TopFitsNavigationBarView_scenes_non_main">
 	</style><!-- NOTE: nothing changes for default skins -->
+	<style name="TopFitsNavigationBarView_scene_lyrics" parent=""/>
 
 	<!-- NOTE: old TopAABounds style used for compatibility with old skins. Not used anymore -->
 	<!-- @Deprecated -->

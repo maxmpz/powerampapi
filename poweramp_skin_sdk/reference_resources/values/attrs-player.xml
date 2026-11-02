@@ -285,6 +285,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			
 	<!-- Styles, applied to ListWidget internals (e.g. LayoutEngines/HeaderEngines/etc.) -->
 	<declare-styleable name="ListSubstyle">
+		<attr name="aaBlendedLayout" format="boolean"/>
+		<!-- For aaBlendedLayout: the artwork height target, of the top container height before the reserves. 100% if absent -->
+		<attr name="aaItemHeightPercent" format="fraction"/>
+		<!-- For aaBlendedLayout: label/button space over the artwork bottom, also kept below the top inset.
+		     A dimension or a calculated id, e.g. @id/blended_overlay_reserve -->
+		<attr name="aaBlendedOverlayReserve" format="dimension|reference"/>
+		<!-- For aaBlendedLayout: the latest fade start, of the artwork height. 100% if absent -->
+		<attr name="aaBlendedFadeStart" format="fraction"/>
+		<!-- For aaBlendedLayout: the gap between the fade start and the overlay space -->
+		<attr name="aaBlendedFadeGap" format="dimension"/>
 		<!-- Controls size of an item in scene_aa. Calculated as ratio * screen width (portrait) or ratio * screen height (landscape) 
 			 Usually == 100%, but can be smaller for shorter screens, to leave a bit more space on bottom for controls
 			 NOTE: fraction, to allow same dimens for TopAABounds layout_widthPercent/layout_heightPercent, which is fraction too and should be matched  
@@ -328,7 +338,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="aaMarginTop" format="dimension|reference"/>
 		<!-- Additional margin to apply to AA layout. Usuful e.g. to offset AA item from navbar -->
 		<attr name="aaMarginRight" format="dimension|reference"/>
-		<!-- Additional margin to apply to AA layout. Usuful e.g. to offset AA item from navbar -->
+		<!-- Additional margin to apply to AA layout. Usuful e.g. to offset AA item from navbar.
+		     For aaBlendedLayout: the controls space below the item, including the app navbar, e.g. @id/blended_controls_reserve -->
 		<attr name="aaMarginBottom" format="dimension|reference"/>
 		
 		<!-- Additional padding to apply to AA layout. Usuful e.g. for landscape or extra views inside AA "frame" -->
@@ -337,8 +348,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<attr name="aaPaddingTop" format="dimension"/>
 		<!-- Additional padding to apply to AA layout. Usuful e.g. for landscape or extra views inside AA "frame" -->
 		<attr name="aaPaddingRight" format="dimension"/>
-		<!-- Additional padding to apply to AA layout. Usuful e.g. for landscape or extra views inside AA "frame" -->
-		<attr name="aaPaddingBottom" format="dimension"/>
+		<!-- Additional padding to apply to AA layout. Usuful e.g. for landscape or extra views inside AA "frame".
+		     For aaBlendedLayout: the label space inside the item, below the image, a dimension or a calculated id,
+		     e.g. @id/blended_alt_below_art_reserve -->
+		<attr name="aaPaddingBottom" format="dimension|reference"/>
 
 		<!-- Max X rotation for AA item when swiped left/right. Default value is 5.0.
 		     Not applied on some devices which have rendered artifacts for this property (Androids 8.1 and below)
@@ -494,6 +507,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</declare-styleable>
 	
 	<declare-styleable name="AABounds">
+		<attr name="aaBlendedLayout"/>
 		<!-- If true, we're matching all these aa* attributes. False is the default - for old skins -->
 		<attr name="matchAASubstyle" format="boolean"/>
 		<attr name="altAaLayoutRatio"/>
@@ -548,10 +562,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 		<attr name="drawableTintColor" format="color"/><!-- NOTE: state lists not supported -->
 		<attr name="drawableTintMode2"/>
+		<!-- Tint for the default (no Album Art) image in the Blended main layout, faded in with the Blended amount.
+		     Usually set in the theme, as the default image is shared by all the lists, widgets, notification -->
+		<attr name="blendedPlaceholderTint" format="color"/>
 	</declare-styleable>
 	
+	<!-- Style items read for the calculated Blended reserves -->
+	<declare-styleable name="BlendedReserve">
+        <attr name="android:textAppearance"/>
+        <attr name="android:textSize"/>
+        <attr name="android:paddingTop"/>
+        <attr name="android:paddingBottom"/>
+        <attr name="android:layout_marginBottom"/>
+        <attr name="layout_maxHeight"/>
+        <attr name="scale"/>
+    </declare-styleable>
+	<!-- Theme values read for the calculated Blended reserves, declared in styles-blended.xml -->
+	<declare-styleable name="BlendedReserveTheme">
+        <attr name="Blended_labelLineHeightFactor"/>
+        <attr name="Blended_labelLinePadding"/>
+        <attr name="Blended_buttonRow"/>
+        <attr name="Blended_ListSubstyle_overlayReserve"/>
+        <attr name="Blended_Alt_ListSubstyle_belowArtReserve"/>
+        <attr name="Blended_Full_ListSubstyle_belowArtReserve"/>
+        <attr name="Blended_controlsReserve"/>
+    </declare-styleable>
+
 	<!-- Scene params for AAImageView -->
-	<declare-styleable name="AAImageViewSceneParams">
+    <declare-styleable name="AAImageViewSceneParams">
+		<attr name="aaBlendedAmount" format="float"/>
 		<attr name="applyViewParams"/>
 		
 		<attr name="cornerRadius1"/>

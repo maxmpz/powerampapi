@@ -153,6 +153,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<fraction name="EqTrebleToneKnobLayout_attachLeft">50%</fraction>
 
 	<dimen name="EqRoundKnobLayout_maxSize">120dp</dimen>
+	<dimen name="VolumePanelKnobLayout_maxSize">160dp</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">130dp</dimen>
 	
 	<dimen name="EqSmallRoundKnob_maxSize">80dp</dimen>

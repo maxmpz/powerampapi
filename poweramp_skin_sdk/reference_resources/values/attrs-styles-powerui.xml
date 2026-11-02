@@ -529,8 +529,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		
 		<attr name="TopFitsStatusBarView" format="reference"/>
 		<attr name="TopFitsStatusBarView_scenes_non_main" format="reference"/>
+		<attr name="TopFitsStatusBarView_scene_lyrics" format="reference"/>
 		<attr name="TopFitsNavigationBarView" format="reference"/>
 		<attr name="TopFitsNavigationBarView_scenes_non_main" format="reference"/>
+		<attr name="TopFitsNavigationBarView_scene_lyrics" format="reference"/>
 		
 		<attr name="TopWaveseekLayout" format="reference"/>
 		<attr name="TopWaveseek" format="reference"/>

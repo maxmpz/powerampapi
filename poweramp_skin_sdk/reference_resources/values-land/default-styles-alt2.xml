@@ -55,7 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	</style>
 
 	<style name="Alt2_ItemTrackLine2_scene_aa" parent="Alt_ItemTrackLine2_scene_aa">
-		<!--<item name="layout_attachRight">@id/lyrics</item>-->
+		<item name="layout_attachRight">@id/lyrics</item>
 		<item name="android:layout_marginRight">0dp</item>
 	</style>
 
@@ -69,7 +69,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<!-- Move menu to the line2 right, centered vertically -->
 	<style name="Alt2_ItemTrackMenu_scene_aa" parent="Alt_ItemTrackMenu_scene_aa">
-		<item name="layout_attachRight">inset</item>
+		<item name="layout_attachRight">parent</item>
 		<item name="layout_attachTop">@id/title</item>
 		<item name="layout_attachRightToRight">@null</item>
 		<item name="layout_attachBottom">@null</item>
