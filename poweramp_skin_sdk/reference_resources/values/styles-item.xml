@@ -64,7 +64,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="android:layout_marginRight">16dp</item>
 		<item name="layout_consumeSpace">horizontal|reset_auto</item>
 	</style>
-	
+
 	<!-- Spacer top is aligned exactly as AA, bottom is aligned either exactly bottomToBottom to rating/meta or
 	     minSize=ItemTrackAAImage_scene_item_menu_size maintained -->
 	<style name="ItemPopupMenuTopSpacer">

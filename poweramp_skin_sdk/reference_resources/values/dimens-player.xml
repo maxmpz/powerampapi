@@ -26,6 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="ListSubstyleBase2_aaMarginBottom">200dp</dimen>
 	<dimen name="ListSubstyleBase2_searchHeaderSize">144dp</dimen><!-- REVISIT: includes sp text size, so should be sp based or dynamic -->
 	<dimen name="ListSubstyleBase2_targetSearchHeaderSize">144dp</dimen>
+	<dimen name="BlendedLists_headerArtExtraSize">96dp</dimen><!-- About the header labels and buttons height, so the image keeps its size -->
 	
 	<dimen name="TopWaveseek_maxHeight">128dp</dimen>
 	

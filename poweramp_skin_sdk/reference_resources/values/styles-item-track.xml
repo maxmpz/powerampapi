@@ -904,7 +904,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">marquee</item>
 		<item name="lineBackground">?ItemTrackTitle_scene_header_lineBackground</item><!-- Overridden for alt styles + overlap_track_labels_no_bg -->
-		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+		<item name="android:textColor">?ItemTrack_scene_header_textColor</item>
 	</style>
 	<style name="ItemTrackTitle_scene_header_1" parent="ItemTrackTitle_scene_header">
 		<item name="layout_attachBottom">@+id/meta</item>
@@ -1178,7 +1178,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="applyViewParams">true</item>
 		<item name="android:ellipsize">marquee</item>
 		<item name="lineBackground">?ItemTrackLine2_scene_header_lineBackground</item>
-		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+		<item name="android:textColor">?ItemTrack_scene_header_textColor</item>
 	</style>
 	<style name="ItemTrackLine2_scene_header" parent="Base_ItemTrackLine2_scene_header">
 		<!-- Redefined for the land -->
@@ -1451,8 +1451,8 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 
 		<item name="applyViewParams">true</item>
 		<item name="android:background">?ItemTrackMeta_scene_header_w_meta_background</item>
-		<item name="android:textColor">?android:textColorPrimaryInverse</item>
-		<item name="drawableTint">?colorIconInverse</item>
+		<item name="android:textColor">?ItemTrack_scene_header_textColor</item>
+		<item name="drawableTint">?ItemTrack_scene_header_iconTint</item>
 	</style>
 	<!-- Overridden in values-sw2dp-land -->
 	<style name="ItemTrackMeta_scene_header_w_meta" parent="ItemTrackMeta_scene_header_w_meta_base">
@@ -1591,7 +1591,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 	</style>
 	<style name="ItemTrackMenu_scene_header" parent="BlackListMenu_scene_header">
 		<item name="applyViewParams">true</item><!-- NOTE: as currently menu is not shown for items and basically never transitions between item states, applyViewParams just here is enough -->
-		<item name="drawableTint">?colorIconInverse</item>
+		<item name="drawableTint">?ItemTrack_scene_header_iconTint</item>
 		<item name="android:background">?ItemTrackMenu_scene_header_background</item>
 	</style>
 	<!-- When there is no rating, shift button a bit to match line2 vertical align -->
@@ -2256,7 +2256,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="layout_consumeSpace">reset_horizontal</item>
 	</style>
 	<style name="ItemHeaderSelectButton_scene_header" parent="BlackListHeaderButton_scene_header">
-		<item name="android:textColor">?android:textColorPrimaryInverse</item>
+		<item name="android:textColor">?ItemTrack_scene_header_textColor</item>
 	</style>
 	<style name="ItemHeaderSelectButton_scene_menu" parent="BlackListHeaderButton_scene_menu"></style>
 	<style name="ItemHeaderSelectButton_scene_bottom_toolbar" parent="ItemTextHeaderSelectButton_scene_bottom_toolbar"></style>
@@ -2397,7 +2397,7 @@ NOTE: outlineProvider="@null" causes default outline provider (some shadow), use
 		<item name="drawableTint">?colorIconInverseForced</item>
 	</style>
 	<style name="BlackListIconOnlyHeaderButton_scene_header" parent="BlackListHeaderButton_scene_header">
-		<item name="drawableTint">?colorIconInverseForced</item>
+		<item name="drawableTint">?ListHeaderButton_scene_header_drawableTint</item>
 	</style>
 	<style name="BlackListIconOnlyHeaderButton_scene_menu" parent="BlackListHeaderButton_scene_menu">
 	</style>

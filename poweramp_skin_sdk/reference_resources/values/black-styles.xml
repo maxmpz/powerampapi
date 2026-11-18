@@ -203,6 +203,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_alt_layout2">@style/ActivityTheme_Black_AltLayout2</item>
 		<item name="overlap_blended_layout">@style/ActivityTheme_Black_BlendedLayout</item>
         <item name="overlap_blended_variant">@style/Blended_Default</item>
+		<item name="overlap_blended_lists">@style/ActivityTheme_Black_BlendedLists</item>
 		<item name="overlap_graphic_frs_color">@style/ActivityTheme_Black_GraphicFrsColorful</item>
 
 		<item name="DialogForceLightSystemUIStyle">@style/ActivityTheme_Black_DialogForceLightSystemUIStyle</item>

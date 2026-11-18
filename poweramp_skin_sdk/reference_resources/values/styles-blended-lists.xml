@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+      Blended Lists.
+      The image of a list header ends at the header labels and fades into the list background.
+      The labels and the buttons are below the image, on the list background, so they get the text header look.
+      Applied in any orientation, on top of any layout
+      +==========================================+  <== 0, the status bar is over the image
+      |                                          |
+      |                 image                    |
+      |                                          |  <== fade start: aaBlendedLocalFadeStart x the drawn image height
+      |  title                                   |  <== the image bottom, fully transparent (+ a small overlap)
+      |  line2                                   |
+      |  meta                                    |
+      |  [shuffle] [play]                  [...] |
+      +==========================================+  <== the usual header size + headerArtExtraSize
+    -->
+    <style name="Base_BlendedLists" parent="">
+        <item name="ItemTrackAAImage_scene_header">@style/BlendedLists_ItemTrackAAImage_scene_header</item>
+        <item name="headerArtExtraSize">@dimen/BlendedLists_headerArtExtraSize</item>
+
+        <item name="ItemTrackTitle_scene_header_lineBackground">#0000</item>
+        <item name="ItemTrackLine2_scene_header_lineBackground">#0000</item>
+        <item name="ItemTrackMeta_scene_header_w_meta_background">#0000</item>
+        <item name="ListHeaderButton_scene_header_background">@drawable/ripple_inverse_stroke_rounded_large</item>
+        <item name="ItemTrackMenu_scene_header_background">@drawable/ripple_inverse_stroke_rounded_large</item>
+        <item name="ItemTrack_scene_header_textColor">?android:textColorPrimary</item>
+        <item name="ItemTrack_scene_header_iconTint">?colorIconPrimaryForced</item>
+        <item name="ListHeaderButton_scene_header_drawableTint">?colorIconPrimaryForced</item>
+    </style>
+    <style name="ActivityTheme_White_BlendedLists" parent="Base_BlendedLists">
+        <item name="aaEffectList">@style/ActivityTheme_White_MilkViewEffect_BlendedLists</item>
+    </style>
+    <style name="ActivityTheme_Black_BlendedLists" parent="Base_BlendedLists">
+        <item name="aaEffectList">@style/ActivityTheme_Black_MilkViewEffect_BlendedLists</item>
+    </style>
+
+    <style name="BlendedLists_ItemTrackAAImage_scene_header" parent="ItemTrackAAImage_scene_header">
+        <item name="aaBlendedAmount">1</item>
+        <item name="aaBlendedLocalFadeStart">15%</item><!-- The lower xx% (==100%-aaBlendedLocalFadeStart) of the image fades -->
+        <!-- NOTE: the top attach is required, otherwise the image keeps the full height and moves up -->
+        <item name="layout_attachTop">parent</item>
+        <item name="layout_attachBottom">@+id/title</item>
+        <item name="android:layout_marginBottom">-12dp</item><!-- The end of the fade goes a bit under the title -->
+    </style>
+
+    <!-- More of the image color in the list background, as the header image fades into it -->
+    <style name="ActivityTheme_White_MilkViewEffect_BlendedLists" parent="ActivityTheme_White_MilkViewEffect_List">
+        <item name="aaBlurPinLight">0.8</item>
+        <item name="aaBlurLighten">0.65</item>
+    </style>
+    <style name="ActivityTheme_Black_MilkViewEffect_BlendedLists" parent="ActivityTheme_Black_MilkViewEffect_List">
+        <item name="aaBlurIntensity">.3</item>
+        <item name="aaBlurPinLight">0.35</item>
+        <item name="aaBlurDarken">.4</item>
+    </style>
+</resources>

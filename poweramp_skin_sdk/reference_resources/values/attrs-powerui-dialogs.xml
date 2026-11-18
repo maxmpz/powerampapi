@@ -130,6 +130,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="DialogNeutralButtonStyle" format="reference"/>
 	<attr name="DialogButtonSpace" format="reference"/>
 	<attr name="DialogSeparator" format="reference"/>
+	<attr name="DialogSeparator3" format="reference"/>
 	<attr name="DialogMenuPlaceholderLayout" format="reference"/>
 	<attr name="DialogNeutralSeparator" format="reference"/>
 	<attr name="DialogPositiveSeparator" format="reference"/>

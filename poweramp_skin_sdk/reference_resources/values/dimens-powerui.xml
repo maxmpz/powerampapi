@@ -30,6 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="CenterDialogFrame_maxHeight">540dp</dimen>
 	<dimen name="SmallerCenterDialogFrame_maxHeight">320dp</dimen>
 	<dimen name="LargerTopBottomSheetDialogFrame_maxHeight">600dp</dimen>
+	<dimen name="InfoDialogFrame_maxHeight">860dp</dimen>
 	<dimen name="DialogFrame_maxWidth">680dp</dimen>
 
 	<dimen name="DialogButtonStyle_maxWidth">148dp</dimen>

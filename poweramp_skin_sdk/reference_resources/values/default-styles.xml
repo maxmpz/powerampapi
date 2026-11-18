@@ -453,7 +453,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="pl_toggle_24dp">@drawable/pl_toggle_24dp</item>
 
 		<item name="info">@drawable/info_stroke_24dp</item>
+		<item name="info_16dp">@drawable/info_16dp</item>
 		<item name="audio_info_24dp">@drawable/audio_info_24dp</item>
+		<item name="analysis_24dp">@drawable/analysis_24dp</item>
 		<item name="send">@drawable/send_stroke</item>
 		<item name="enqueue">@drawable/enqueue_stroke</item>
 		<item name="enqueue_shuffled">@drawable/enqueue_shuffled_24dp</item>
@@ -746,6 +748,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="ListHeaderButton_scene_header_marginBottom">7dp</item>
 		<item name="ListMenu_scene_header_marginBottom">5dp</item>
 		<item name="ItemBackDecorTitle_scene_header_back_decor_marginLeft">12dp</item>
+		<item name="ItemTrack_scene_header_textColor">?android:textColorPrimaryInverse</item>
+		<item name="ItemTrack_scene_header_iconTint">?colorIconInverse</item>
+		<item name="ListHeaderButton_scene_header_drawableTint">?colorIconInverseForced</item>
 
 		<item name="ItemTrack_labels_scene_grid_lineBackground">@drawable/text_bg_alpha_rounded</item><!-- Overridden by alt mode -->
 		<item name="ItemTrack_labels_scene_grid_textColor">?android:textColorPrimaryInverse</item><!-- Overridden by alt mode -->
@@ -851,6 +856,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="overlap_alt_layout2">@style/ActivityTheme_White_AltLayout2</item>
 		<item name="overlap_blended_layout">@style/ActivityTheme_White_BlendedLayout</item>
         <item name="overlap_blended_variant">@style/Blended_Default</item>
+		<item name="overlap_blended_lists">@style/ActivityTheme_White_BlendedLists</item>
 		<item name="overlap_less_rounding">@style/ActivityTheme_White_LessRounding</item>
 		<!-- NOTE: overlap_less_rounding manipulates overlap_light_buttons -->
 		<item name="overlap_light_buttons">@style/ActivityTheme_Whitepro_LightButtons</item>

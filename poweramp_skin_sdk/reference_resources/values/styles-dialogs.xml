@@ -109,6 +109,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogToastLineOnly1_Text">@style/DialogToastLineOnly1_Text</item>
 		
 		<item name="DialogSeparator">@style/DialogSeparator</item>
+		<item name="DialogSeparator3">@style/DialogSeparator3</item>
+
 		
 		<!-- NOTE: following attributes are pulled from theme by DialogBehavior -->
 		<item name="collapseDragDirection">none</item>
@@ -614,8 +616,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:layout_width">0px</item>
 		<item name="android:layout_height">0px</item>
 		<item name="android:background">@null</item>
-	</style>		
-	
+	</style>
+
+	<!-- A bit more contrast separator -->
+	<style name="DialogSeparator3" parent="ItemPopupMenuSeparator">
+		<item name="android:background">?colorSeparator</item>
+		<item name="android:layout_marginLeft">?dialogContentPaddingLR</item>
+		<item name="android:layout_marginRight">?dialogContentPaddingLR</item>
+		<item name="android:layout_marginBottom">@dimen/dialog_info_separator_padding</item>
+	</style>
 
 	<!-- NOTE: forced this to normal dialog buttons for land, but again vertical for tablets -->
 	<style name="BaseCenteredDialog_vertical_buttons" parent="CenteredDialog">

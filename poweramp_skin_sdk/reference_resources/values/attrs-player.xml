@@ -52,6 +52,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<attr name="ItemTrackMenu_scene_header_background" format="reference|color"/>
 	<attr name="ItemTrackBackDecorTitle_scene_header_back_decor_background" format="reference|color"/>
 	<attr name="ItemTextBackDecorTitle_scene_header_back_decor_background" format="reference|color"/>
+	<!-- Colors of the labels and buttons of the header with the image. Overridden when these are shown outside the image -->
+	<attr name="ItemTrack_scene_header_textColor" format="reference|color"/>
+	<attr name="ItemTrack_scene_header_iconTint" format="reference|color"/>
+	<attr name="ListHeaderButton_scene_header_drawableTint" format="reference|color"/>
 	<attr name="ListHeaderButton_scene_header_marginLeft" format="dimension"/>
 	<attr name="ListHeaderButton_scene_header_marginRight" format="dimension"/>
 	<attr name="ListHeaderButton_scene_header_marginBottom" format="dimension"/>
@@ -411,6 +415,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		 
 		<!-- If headerSize<=0, headerSize will be list width/2 -->
 		<attr name="headerSize" format="dimension"/>
+		<!-- Extra size for the header with the image (scene_header/scene_header_1 of the track item), added to any of its sizes.
+		     For skins showing the header labels below the image -->
+		<attr name="headerArtExtraSize" format="dimension"/>
 		<!-- Compact header size. If headerSize<=0, headerSize will be list width/2 -->
 		<attr name="compactHeaderSize" format="dimension"/>
 		<!-- Larger header size for "human" categories, i.e. artists/composers, also years -->
@@ -591,6 +598,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!-- Scene params for AAImageView -->
     <declare-styleable name="AAImageViewSceneParams">
 		<attr name="aaBlendedAmount" format="float"/>
+		<!-- With aaBlendedAmount the image fades by its own drawn rect, from this fraction of its height down to its bottom,
+		     and an image shorter than the view is moved to the view bottom. If absent, the main artwork geometry is used -->
+		<attr name="aaBlendedLocalFadeStart" format="fraction"/>
 		<attr name="applyViewParams"/>
 		
 		<attr name="cornerRadius1"/>

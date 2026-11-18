@@ -37,6 +37,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	
 	<style name="dialog_InfoActivity" parent="BottomsheetDialog">
 		<item name="dialogContentLayout">@layout/dialog_content_info</item>
+		<item name="DialogTitle">@style/dialog_InfoActivity_DialogTitle</item>
+		<item name="DialogFrame">@style/dialog_InfoActivity_DialogFrame</item>
+		<item name="DialogFrame_scene_dialog_in">@style/dialog_InfoActivity_DialogFrame_scene_dialog_in</item>
+	</style>
+	<style name="dialog_InfoActivity_DialogFrame" parent="BottomsheetDialogFrame">
+		<item name="layout_maxHeight">@dimen/InfoDialogFrame_maxHeight</item>
+	</style>
+	<style name="dialog_InfoActivity_DialogFrame_scene_dialog_in" parent="BottomsheetDialogFrame_scene_dialog_in">
+		<item name="layout_maxHeight">@dimen/InfoDialogFrame_maxHeight</item>
+	</style>
+	<!-- No drawable - Audio Analysis sets its icon on the result. The 24dp icon doesn't grow the title row -->
+	<style name="dialog_InfoActivity_DialogTitle" parent="DialogTitle">
+		<item name="android:drawablePadding">6dp</item>
+		<item name="drawableTint">?colorIconPrimary</item>
+		<item name="useDrawableHeight">false</item>
 	</style>
 	
 	<style name="dialog_WelcomeActivity" parent="CenteredDialog_vertical_buttons">
@@ -153,7 +168,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="DialogProgressButton">@style/dialog_PlaylistSelectActivity_DialogProgressButton</item>
 		<item name="dialogTitleExtraLayout">@layout/dialog_title_extra_playlist_select</item>
 
-		<item name="DialogFrame">@style/LargerBottomsheetDialogFrame</item>
+		<item name="DialogFrame">@style/dialog_PlaylistSelectActivity_DialogFrame</item>
 		<item name="DialogFrame_scene_dialog_in">@style/LargerBottomsheetDialogFrame_scene_dialog_in</item>
 	</style>
 
@@ -254,8 +269,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 		<item name="android:clipChildren">false</item>
 	</style>
 
+	<style name="dialog_PlaylistSelectActivity_DialogFrame" parent="LargerBottomsheetDialogFrame">
+		<item name="android:clipChildren">false</item>
+	</style>
+
 	<style name="dialog_PlaylistSelectActivity_DialogTitleLayout" parent="DialogTitleLayout">
 		<item name="android:layout_marginRight">0dp</item>
+		<item name="android:clipChildren">false</item>
+		<!-- 20dp total (?dialogPaddingTop) - the padding holds the 5.33dp the 32sp buttons stick out above the title, so they stay tappable -->
+		<item name="android:layout_marginTop">14.67dp</item>
+		<item name="android:paddingTop">5.33dp</item>
+		<item name="android:clipToPadding">false</item><!-- The buttons are drawn in that padding -->
 	</style>
 
 	<style name="dialog_PlaylistSelectActivity_DialogProgressButton" parent="DialogProgressButton">
@@ -264,18 +288,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	<style name="dialog_PlaylistSelectActivity_DialogTitle" parent="DialogTitle">
 		<item name="android:singleLine">true</item>
-		<item name="android:layout_gravity">left|center_vertical</item>
-		<item name="layout_gravityTarget">@+id/top_buttons</item>
 	</style>
 
 	<style name="PlaylistSelectDialogTopButtons">
+		<item name="android:clipChildren">false</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginTop">0dp</item>
-		<item name="android:layout_marginRight">12dp</item>
+		<item name="android:layout_marginRight">16dp</item>
 		<item name="android:layout_marginLeft">0dp</item>
 
-		<item name="android:layout_gravity">top|right</item>
+		<item name="layout_gravityTarget">@+id/title</item>
+		<item name="layout_gravityTargetAxis">vertical</item>
+		<item name="android:layout_gravity">center_vertical|right</item>
 	</style>
 
 	<style name="PlaylistDialogTopButtonBase">

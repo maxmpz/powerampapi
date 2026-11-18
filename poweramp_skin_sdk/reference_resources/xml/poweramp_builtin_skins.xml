@@ -59,20 +59,34 @@
         <option
             key="blended"
             name="@string/skin_blended_layout"
-            summary="@string/skin_summary_blended_layout"
             checkedByDefault="false"
             overlapAttr="@attr/overlap_blended_layout"
             />
-        <msg
-            align="top"
-	        icon="@drawable/blended"
-	        iconAlign="top"
-            smallLine1="@string/applied_in_portrait_only"
-	        smallLine2="@string/skin_background_opts"
+		<msg
+			align="top"
+			icon="@drawable/blended"
+			iconAlign="top"
+			line1="@string/skin_summary_blended_layout"
+			smallLine1="@string/applied_in_portrait_only"
+			smallLine2="@string/skin_background_opts"
+			/>
+
+        <option
+            key="blended_lists"
+            name="@string/skin_blended_lists"
+            checkedByDefault="false"
+            overlapAttr="@attr/overlap_blended_lists"
             />
 
 		<msg
 			align="top"
+			icon="@drawable/blended_lists"
+			iconAlign="top"
+			line1="@string/skin_summary_blended_lists"
+			smallLine2="@string/skin_background_opts"
+			/>
+
+		<msg
 			line1="@string/skin_more_player_ui_opts_avail"
 			/>
 
@@ -389,20 +403,35 @@
         <option
             key="blended"
             name="@string/skin_blended_layout"
-            summary="@string/skin_summary_blended_layout"
             checkedByDefault="false"
             overlapAttr="@attr/overlap_blended_layout"
             />
-        <msg
+
+		<msg
             align="top"
 	        icon="@drawable/blended"
 	        iconAlign="top"
-            line1="@string/applied_in_portrait_only"
+			line1="@string/skin_summary_blended_layout"
+            smallLine1="@string/applied_in_portrait_only"
 	        smallLine2="@string/skin_background_opts"
 	        />
 
+        <option
+            key="blended_lists"
+            name="@string/skin_blended_lists"
+            checkedByDefault="false"
+            overlapAttr="@attr/overlap_blended_lists"
+            />
+
 		<msg
 			align="top"
+			icon="@drawable/blended_lists"
+			iconAlign="top"
+			line1="@string/skin_summary_blended_lists"
+			smallLine2="@string/skin_background_opts"
+			/>
+
+		<msg
 			line1="@string/skin_more_player_ui_opts_avail"
 			/>
 

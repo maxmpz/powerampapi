@@ -21,6 +21,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <!-- values-land. Baseline values for scaled screens -->
 <resources>
+	<dimen name="BlendedLists_headerArtExtraSize">48dp</dimen><!-- Less than in portrait to keep enough rows on screen -->
 	<dimen name="Navbar_height">36dp</dimen>
 	<dimen name="NavBarButton_drawableSize">24dp</dimen>
 	<dimen name="NavbarNavButtonsLayout_height">36dp</dimen>

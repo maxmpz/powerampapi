@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2010-2026 Maksim Petrov
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted for themes, skins, widgets, plugins, applications and other software
+which communicate with Poweramp music player or Poweramp Equalizer applications on Android platform.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<resources>
+	<!-- Keeps the reduced sizes from sw500, where squarer windows (e.g. 4:3) leave a narrower pane than the
+	     sw440dp-w760dp sizes need. w760dp makes those sizes dominate this file, otherwise aapt2 drops it as a
+	     duplicate of values-sw400dp-h400dp-normal-notlong-land. Sync with that file -->
+	<dimen name="TopPlay_maxSize">50dp</dimen>
+	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">50dp</dimen>
+	<dimen name="TopMediumButton_size">37dp</dimen>
+	<dimen name="TopSmallButton_size">34dp</dimen>
+
+	<dimen name="Alt_TopPlay_maxSize">50dp</dimen>
+	<dimen name="Alt_TopPauseMoreButtons_maxSize_scene_playing">50dp</dimen>
+	<dimen name="Alt_TopMediumButton_size">37dp</dimen>
+	<dimen name="Alt_TopSmallButton_size">34dp</dimen>
+</resources>

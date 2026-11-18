@@ -26,6 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<dimen name="TopActionModeBar_marginTop">4dp</dimen>
 	<dimen name="EqKnob_spacing">4dp</dimen>
 	<dimen name="EqRoundKnobLayout_maxSize">200dp</dimen>
+	<dimen name="VolumePanelKnobLayout_maxSize">@dimen/EqRoundKnobLayout_maxSize</dimen>
 	<dimen name="EqLargerRoundKnobLayout_maxSize">220dp</dimen>
 	<dimen name="EqLargerRoundKnob_maxSize">180dp</dimen>
 	<dimen name="EqTonePanel_paddingTop">12dp</dimen>

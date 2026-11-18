@@ -135,7 +135,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<!--<item type="id" name="cmd_gui_toggle_lyrics"/>&lt;!&ndash; bus_gui &ndash;&gt;-->
 
 	
-	<item type="id" name="cmd_data_info_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track -->
+	<item type="id" name="cmd_data_info_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track, arg1 = ARG_TRUE => opens the Audio Analysis -->
 	<item type="id" name="cmd_data_edit_tags"/><!-- bus_data_cmd, obj => IdAndPath,Long fileId, String/Uri => file path/uri, null => current track -->
 	<item type="id" name="cmd_data_lyrics"/><!-- bus_data_cmd -->
 	<item type="id" name="cmd_data_reset_track_stats"/><!-- obj => id or arg1=1 & arg2=1 to reset all tracks stats -->
@@ -639,6 +639,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<item type="id" name="dsp_balance"/><!-- float, boolean (true==enabled) -->
 	<item type="id" name="dsp_stereo_fx"/><!-- float, boolean (true==enabled) -->
 	<item type="id" name="dsp_tempo"/><!-- float -->
+	<item type="id" name="dsp_tempo_scale"/><!-- float, effective playback speed multiplier, 1.0 when tempo is off or no DSP is allowed -->
 	<item type="id" name="dsp_master_volume"/><!-- float -->
 	<!-- Boolean, int -->
 	<item type="id" name="dsp_master_volume_enabled"/>

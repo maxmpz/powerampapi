@@ -58,6 +58,7 @@
     <attr name="overlap_blended_layout" format="reference"/>
     <attr name="blendedLayoutSelected" format="boolean"/>
     <attr name="overlap_blended_variant" format="reference"/>
+    <attr name="overlap_blended_lists" format="reference"/>
 
     <!-- The set of ids which can be used for layout_*Ref. These are dynamically calculated based on the theme values -->
     <!-- Used for layout_heightRef -->
@@ -104,7 +105,6 @@
         <item name="TopFitsNavigationBarView_scene_lyrics">@style/Blended_TopFitsNavigationBarView_scenes_non_main</item>
         <item name="TopAABounds">@style/Blended_TopAABounds</item>
         <item name="aaEffectBlendedMain">@style/Blended_MilkEffect</item>
-        <item name="CcButton_MainUI_background">@drawable/ripple_text_bg_rounded_large</item>
         <item name="TopFitsStatusBarView">@style/Blended_TopFitsStatusBarView</item>
         <item name="TopFitsStatusBarView_scenes_non_main">@style/Blended_TopFitsStatusBarView_scenes_non_main</item>
         <item name="TopFitsStatusBarView_scene_lyrics">@style/Blended_TopFitsStatusBarView_scenes_non_main</item>

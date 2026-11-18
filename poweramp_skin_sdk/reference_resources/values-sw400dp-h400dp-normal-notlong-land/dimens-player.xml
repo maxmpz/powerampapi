@@ -20,7 +20,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
 <resources>
-	<!-- Five Pro buttons plus four default 2dp gaps fit into a 200dp-wide landscape pane -->
+	<!-- Five Pro buttons plus four default 2dp gaps fit into a 200dp-wide landscape pane.
+	     Sync with values-sw500dp-w760dp-h400dp-normal-notlong-land -->
 	<dimen name="TopPlay_maxSize">50dp</dimen>
 	<dimen name="TopPauseMoreButtons_maxSize_scene_playing">50dp</dimen>
 	<dimen name="TopMediumButton_size">37dp</dimen>
