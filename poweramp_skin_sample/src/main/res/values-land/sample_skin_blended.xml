@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+
+	<!-- Blended is for portrait only, so the option style is empty in landscape and the option changes nothing there.
+	     See values/sample_skin_blended.xml -->
+	<style name="SampleSkin_Blended">
+	</style>
+
+</resources>

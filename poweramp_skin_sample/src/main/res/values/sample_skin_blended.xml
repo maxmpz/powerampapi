@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceCycle, NewApi">
+
+	<!-- Blended (Poweramp build 1035+) and Blended Lists (build 1037+) options.
+
+	     The styles here are templates. Each one derives from the Poweramp style which the built-in Light skin uses for the same
+	     element and adds nothing to it, so both options look as the built-in ones. Add your items to the style of the element you want to change.
+	     For a dark skin, derive from the ActivityTheme_Black_* styles where the parent here is an ActivityTheme_White_* one.
+
+	     See reference_resources/values/styles-blended.xml and styles-blended-lists.xml for the parent styles -->
+
+
+	<!-- ================ Blended ================
+	     The cover fills the top of the main screen edge-to-edge and fades into the background.
+
+	     The built-in skins apply 2 styles for Blended - the appearance (ActivityTheme_White_BlendedLayout - the status and
+	     navigation bars, the navbar, the background effect), and the layout, which depends on the selected layout option
+	     (Blended_Default, Blended_Alt_White, or Blended_Full_White).
+	     A skin option applies just one style, so this style derives from the appearance and repeats the layout items of
+	     Blended_Default (the labels and buttons over the cover), pointing them to our templates.
+	     Blended_Default also sets the overlap_* attributes for the built-in "centered labels", "labels background" and rating
+	     options. Add those if your skin has such options.
+
+	     NOTE: Blended is for portrait only, and it's the skin which shouldn't apply it in landscape. Here the option style is
+	     SampleSkin_Blended, which is empty in values-land/sample_skin_blended.xml -->
+	<style name="SampleSkin_Blended_Base" parent="com.maxmpz.audioplayer:ActivityTheme_White_BlendedLayout">
+		<item name="com.maxmpz.audioplayer:TopListWidget">@style/SampleSkin_Blended_TopListWidget</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa">@style/SampleSkin_Blended_ItemTrackAAImage_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackTitle_scene_aa">@style/SampleSkin_Blended_ItemTrackTitle_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLine2_scene_aa">@style/SampleSkin_Blended_ItemTrackLine2_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemRatingBar_scene_aa">@style/SampleSkin_Blended_ItemRatingBar_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemLike_scene_aa">@style/SampleSkin_Blended_ItemLike_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemUnlike_scene_aa">@style/SampleSkin_Blended_ItemUnlike_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackMenu_scene_aa">@style/SampleSkin_Blended_ItemTrackMenu_scene_aa</item>
+		<item name="com.maxmpz.audioplayer:ItemTrackLyrics_scene_aa">@style/SampleSkin_Blended_ItemTrackLyrics_scene_aa</item>
+
+		<!-- The background of the main screen -->
+		<item name="com.maxmpz.audioplayer:aaEffectBlendedMain">@style/SampleSkin_Blended_MilkEffect</item>
+
+		<!-- Our skin scales the cover while playing (see ItemTrackAAImage_scene_aa_playing in sample_skin_styles.xml).
+		     The Blended cover is not scaled, so we restore the Poweramp style here -->
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_aa_playing">@com.maxmpz.audioplayer:style/ItemTrackAAImage_scene_aa_playing</item>
+	</style>
+	<!-- The style of the Blended option. We override this for landscape -->
+	<style name="SampleSkin_Blended" parent="SampleSkin_Blended_Base">
+	</style>
+
+	<!-- The main screen list. Its listSubstyle defines the cover size and the fade -->
+	<style name="SampleSkin_Blended_TopListWidget" parent="com.maxmpz.audioplayer:Blended_TopListWidget">
+		<item name="com.maxmpz.audioplayer:listSubstyle">@style/SampleSkin_Blended_ListSubstyle</item>
+	</style>
+	<style name="SampleSkin_Blended_ListSubstyle" parent="com.maxmpz.audioplayer:Blended_ListSubstyle">
+		<!-- The cover height, of the screen height. The cover gets smaller if the controls below don't fit -->
+		<!--<item name="com.maxmpz.audioplayer:aaItemHeightPercent">60%</item>-->
+		<!-- Where the fade starts, of the cover height. The fade ends at the cover bottom -->
+		<!--<item name="com.maxmpz.audioplayer:aaBlendedFadeStart">62%</item>-->
+	</style>
+
+	<!-- The cover -->
+	<style name="SampleSkin_Blended_ItemTrackAAImage_scene_aa" parent="com.maxmpz.audioplayer:Blended_ItemTrackAAImage_scene_aa">
+	</style>
+
+	<!-- The labels and buttons over the cover -->
+	<style name="SampleSkin_Blended_ItemTrackTitle_scene_aa" parent="com.maxmpz.audioplayer:Blended_ItemTrackTitle_scene_aa">
+	</style>
+	<style name="SampleSkin_Blended_ItemTrackLine2_scene_aa" parent="com.maxmpz.audioplayer:Blended_ItemTrackLine2_scene_aa">
+	</style>
+	<style name="SampleSkin_Blended_ItemRatingBar_scene_aa" parent="com.maxmpz.audioplayer:Blended_ItemRatingBar_scene_aa">
+	</style>
+	<style name="SampleSkin_Blended_ItemLike_scene_aa" parent="com.maxmpz.audioplayer:Blended_ItemLike_scene_aa">
+	</style>
+	<style name="SampleSkin_Blended_ItemUnlike_scene_aa" parent="com.maxmpz.audioplayer:Blended_ItemUnlike_scene_aa">
+	</style>
+	<style name="SampleSkin_Blended_ItemTrackMenu_scene_aa" parent="com.maxmpz.audioplayer:Blended_ItemTrackMenu_scene_aa">
+	</style>
+	<style name="SampleSkin_Blended_ItemTrackLyrics_scene_aa" parent="com.maxmpz.audioplayer:Blended_ItemTrackLyrics_scene_aa">
+	</style>
+
+	<!-- The background effect of the main screen. The cover fades into it -->
+	<style name="SampleSkin_Blended_MilkEffect" parent="com.maxmpz.audioplayer:Blended_MilkEffect">
+	</style>
+
+
+	<!-- ================ Blended Lists ================
+	     The image of a list header ends at the header labels and fades into the list background. The labels and buttons
+	     are below the image, on the list background.
+	     Doesn't depend on Blended and works in any orientation.
+
+	     ActivityTheme_White_BlendedLists (Base_BlendedLists) changes the header image style, the header size, the colors and
+	     the backgrounds of the header labels and buttons, and the background effect of the lists. We repeat here only the
+	     items which point to our templates -->
+	<style name="SampleSkin_BlendedLists" parent="com.maxmpz.audioplayer:ActivityTheme_White_BlendedLists">
+		<item name="com.maxmpz.audioplayer:ItemTrackAAImage_scene_header">@style/SampleSkin_BlendedLists_ItemTrackAAImage_scene_header</item>
+		<item name="com.maxmpz.audioplayer:aaEffectList">@style/SampleSkin_BlendedLists_MilkViewEffect</item>
+
+		<!-- The header with the image is higher by this size, so the image keeps its size above the labels.
+		     The default is @com.maxmpz.audioplayer:dimen/BlendedLists_headerArtExtraSize, which is smaller in landscape -->
+		<!--<item name="com.maxmpz.audioplayer:headerArtExtraSize">64dp</item>-->
+
+		<!-- Our skin shows the background under the header buttons (see ItemHeaderButtonsBg_scene_header in sample_skin_styles.xml).
+		     The buttons are not over the image anymore, so we restore the Poweramp style, which hides it -->
+		<item name="com.maxmpz.audioplayer:ItemHeaderButtonsBg_scene_header">@com.maxmpz.audioplayer:style/ItemHeaderButtonsBg_scene_header</item>
+	</style>
+
+	<!-- The header image -->
+	<style name="SampleSkin_BlendedLists_ItemTrackAAImage_scene_header" parent="com.maxmpz.audioplayer:BlendedLists_ItemTrackAAImage_scene_header">
+		<!-- Where the fade starts, of the image height. The fade ends at the image bottom -->
+		<!--<item name="com.maxmpz.audioplayer:aaBlendedLocalFadeStart">40%</item>-->
+	</style>
+
+	<!-- The background effect of the lists. The header image fades into it -->
+	<style name="SampleSkin_BlendedLists_MilkViewEffect" parent="com.maxmpz.audioplayer:ActivityTheme_White_MilkViewEffect_BlendedLists">
+	</style>
+
+</resources>

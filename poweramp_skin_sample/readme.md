@@ -23,6 +23,16 @@
 
 ### Recent Changes
 
+##### Build 1037
+
+###### Blended Lists
+
+- New Blended Lists option in the built-in Light and Dark skins blends the list header image into the list background.
+  It doesn't depend on Blended and applies in any orientation
+- See [styles-blended-lists.xml](/poweramp_skin_sdk/reference_resources/values/styles-blended-lists.xml) for the reference
+- The sample skin now has Blended and Blended Lists options with the template styles derived from the Poweramp ones, see
+  [values/sample_skin_blended.xml](src/main/res/values/sample_skin_blended.xml)
+
 ##### Build 1035
 
 ###### Blended

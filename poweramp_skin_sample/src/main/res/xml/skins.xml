@@ -566,6 +566,30 @@
 				/>
 		</page>
 
+		<!-- (build 1035+) Blended - the cover fills the top of the main screen and fades into the background.
+		     This is a usual option with our own style, which derives from the Poweramp Blended styles and applies in portrait only.
+		     See values/sample_skin_blended.xml and values-land/sample_skin_blended.xml.
+
+		     The options are applied in the order they are defined here, so this option is placed after the options which change
+		     the same main screen styles (alternative layout, album art options, etc.) and overrides them -->
+		<option
+			key="blended"
+			name="@string/skin_blended"
+			summary="@string/skin_summary_blended"
+			overlapStyle="@style/SampleSkin_Blended"
+			checkedByDefault="false"
+		/>
+
+		<!-- (build 1037+) Blended Lists - the image of a list header fades into the list background.
+		     Doesn't depend on Blended and applies in any orientation. See values/sample_skin_blended.xml -->
+		<option
+			key="blended_lists"
+			name="@string/skin_blended_lists"
+			summary="@string/skin_summary_blended_lists"
+			overlapStyle="@style/SampleSkin_BlendedLists"
+			checkedByDefault="false"
+		/>
+
 		<!-- Include tag includes skin definition from other xml files.
 		     Include is supported by build 866+ and ignored by the builds prior that -->
 		<include file="@xml/skin_sample_subpage2"/>
